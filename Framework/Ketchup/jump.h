@@ -9,7 +9,7 @@ namespace ketchup
 		jbe
 	};
 
-	enum class JumpDistance
+	enum class e_jump_distance
 	{
 		Short,
 		Long
@@ -20,14 +20,14 @@ namespace ketchup
 	{
 	public:
 		template<typename... Args>
-		_jump(const char* pMask, JumpDistance jumpSize, Args... args)
+		_jump(const char* pMask, e_jump_distance jumpSize, Args... args)
 			:Instruction(pMask, args...)
 			, m_jumpSize(jumpSize)
 		{
 			
 		}
 
-		const JumpDistance m_jumpSize;
+		const e_jump_distance m_jumpSize;
 	};
 
 	typedef _jump<JumpType::jz> _jz;

@@ -1,11 +1,15 @@
 #include "gameframework-private-pch.h"
 
 e_next_launch_mode g_next_launch_mode = _next_launch_mode_none;
+
+c_window* c_game_launcher::s_window = nullptr;
+c_mouse_input* c_game_launcher::s_mouse_input = nullptr;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_startup_events;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_shutdown_events;
 bool c_game_launcher::s_is_game_running = false;
 c_opus_game_engine_host* current_game_host = nullptr;
 e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
+c_mandrill_user_interface* c_game_launcher::mandrill_user_interface = nullptr;
 
 
 
@@ -37,8 +41,10 @@ static bool use_remastered_visuals = true;
 static bool use_remastered_music = true;
 static bool start_as_forge_mode = true;
 
-void c_game_launcher::init_game_launcher()
+void c_game_launcher::init_game_launcher(c_window& window)
 {
+	s_window = &window;
+	s_mouse_input = new c_mouse_input(*s_window);
 	k_autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
 	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
@@ -163,11 +169,15 @@ void c_game_launcher::init_game_launcher()
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::Init();
 #endif
-	c_window_win32::register_window_procedure_callback(window_procedure_callback);
+	s_window->on_window_procedure.register_callback(window_procedure);
+	s_window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
 
-	c_window_win32::register_destroy_callback(window_destroy_callback);
+	s_window->on_destroy.register_callback(window_destroy_callback);
+
+	ASSERT(mandrill_user_interface == nullptr);
+	mandrill_user_interface = new c_mandrill_user_interface(*s_window, true);
 
 	if (!has_auto_started)
 	{
@@ -182,13 +192,19 @@ void c_game_launcher::init_game_launcher()
 
 void c_game_launcher::deinit_game_launcher()
 {
-	c_window_win32::unregister_destroy_callback(window_destroy_callback);
+	delete mandrill_user_interface;
+	mandrill_user_interface = nullptr;
+
+	s_window->on_destroy.unregister_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
-	c_window_win32::unregister_window_procedure_callback(window_procedure_callback);
+	s_window->on_window_procedure.unregister_callback(window_procedure);
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::deinit();
 #endif
+	delete s_mouse_input;
+	s_mouse_input = nullptr;
+	s_window = nullptr;
 }
 
 void c_game_launcher::window_destroy_callback()
@@ -199,7 +215,7 @@ void c_game_launcher::window_destroy_callback()
 		IGameEngine* game_engine = current_game_host->get_game_engine();
 		ASSERT(game_engine != nullptr);
 		game_engine->UpdateEngineState(eEngineState::ImmediateExit);
-		write_line_verbose("Waiting for game to exit...");
+		c_console::write_line_verbose("Waiting for game to exit...");
 		while (s_is_game_running) { Sleep(1); }
 	}
 }
@@ -208,7 +224,7 @@ void c_game_launcher::load_settings()
 {
 	float horizontalSensitivity = c_settings_legacy::read_float(_settings_section_legacy_controls, "HorizontalSensitivity", 1.0f);
 	float verticalSensitivity = c_settings_legacy::read_float(_settings_section_legacy_controls, "VerticalSensitivity", 1.0f);
-	c_mouse_input::set_sensitivity(horizontalSensitivity, verticalSensitivity);
+	s_mouse_input->set_sensitivity(horizontalSensitivity, verticalSensitivity);
 }
 
 void c_game_launcher::opus_tick()
@@ -231,7 +247,7 @@ void c_game_launcher::opus_tick()
 			ImGuiWindowFlags_NoDecoration |
 			ImGuiWindowFlags_NoInputs;
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(s_window->get_width_float(), s_window->get_height_float()), ImGuiCond_Always);
 		if (ImGui::Begin("##debug", NULL, k_debug_window_flags)) // render inside of the dummy imgui window for on screen text display
 		{
 			game_render();
@@ -251,7 +267,7 @@ void c_game_launcher::update()
 	if (s_is_game_running)
 	{
 		// need some place to update the launcher, might as well do it here for now
-		c_window_win32::update_no_callbacks();
+		s_window->update(false);
 	}
 	else
 	{
@@ -265,7 +281,7 @@ void c_game_launcher::update()
 
 void c_game_launcher::game_render()
 {
-	c_mantle_gui::render_in_game_gui();
+	mandrill_user_interface->render_game_layer();
 	c_primitive_render_manager::render();
 }
 
@@ -284,7 +300,7 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 
 void c_game_launcher::render_ui()
 {
-	c_mantle_gui::render_gui();
+	mandrill_user_interface->render();
 	if (s_is_game_running)
 	{
 		current_game_host->render_ui();
@@ -357,7 +373,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
 		break;
 	default:
-		write_line_verbose(__FUNCTION__"> unknown engine_type");
+		c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
 		return;
 	}
 	ASSERT(current_game_host != nullptr);
@@ -400,13 +416,13 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				//c_haloreach_game_option_selection_legacy::load_savefilm(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
 				{
-					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
+					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
 					const char *map_file_name = selected_map_info->GetMafilepath();
-					write_line_verbose("Loading map '%s.map'", map_file_name);
+					c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
 						_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
-						c_mantle_gui::open_cache_file_from_filepath(map_filepath);
+						mandrill_user_interface->open_cache_file(map_filepath);
 					}
 				}
 			}
@@ -485,7 +501,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_engine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_swap_chain, c_render::s_swap_chain);
 	game_main_thread = game_engine->InitThread(game_engine_host, game_context);
 
-	c_window_win32::set_post_message_thread_id(game_main_thread);
+	s_window->set_post_message_thread_id(game_main_thread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
@@ -508,7 +524,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 	//WaitForSingleObject(hMainGameThread, INFINITE);
 
-	write_line_verbose("Game has exited.");
+	c_console::write_line_verbose("Game has exited.");
 
 	for (t_generic_game_event game_event : s_game_shutdown_events)
 	{
@@ -526,6 +542,7 @@ void c_game_launcher::launch_eldorado_game()
 {
 
 }
+
 #endif
 void c_game_launcher::check_steam_ownership()
 {
@@ -566,7 +583,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
-		MessageBoxA(c_window_win32::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
+		MessageBoxA(s_window->get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
 }
@@ -574,9 +591,9 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 void c_game_launcher::render_main_menu()
 {
 	if (s_is_game_running) return;
-	c_mouse_input::set_mode(_mouse_mode_ui);
+	s_mouse_input->set_mode(_mouse_mode_ui);
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
+	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
@@ -591,7 +608,7 @@ void c_game_launcher::render_main_menu()
 	if (ImGui::Begin("Main Menu", nullptr, window_flags))
 	{
 		ImGui::Columns(2);
-		ImGui::SetColumnOffset(1, c_window_win32::get_width() * 0.5f);
+		ImGui::SetColumnOffset(1, s_window->get_width_float() * 0.5f);
 
 		const char* current_engine_name = get_enum_pretty_string<decltype(current_engine_name)>(g_engine_type);
 		if (ImGui::BeginCombo("Game", current_engine_name))
@@ -753,12 +770,12 @@ void c_game_launcher::render_main_menu()
 
 void c_game_launcher::render_pause_menu()
 {
-	c_mouse_input::set_mode(_mouse_mode_ui);
+	s_mouse_input->set_mode(_mouse_mode_ui);
 
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
+	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
@@ -869,15 +886,15 @@ void c_game_launcher::render_pause_menu()
 	ImGui::End();
 }
 
-LRESULT CALLBACK c_game_launcher::window_procedure_callback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT c_game_launcher::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
 	case WM_INPUT:
-		c_mouse_input::handle_input_window_message(lParam);
+		s_mouse_input->handle_input_window_message(lParam);
 		break;
 	case WM_SETCURSOR:
-		if (c_mouse_input::handle_cursor_window_message(lParam))
+		if (s_mouse_input->handle_cursor_window_message(lParam))
 		{
 			return TRUE;
 		}
@@ -932,7 +949,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	{
 		if (!selected.empty())
 		{
-			write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
+			c_console::write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
 		}
 
 		variant_data = new char[variant_buffer_size];
@@ -957,12 +974,12 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	if (!filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
 	{
-		write_line_verbose("Failed to open variant file");
+		c_console::write_line_verbose("Failed to open variant file");
 		return false;
 	}
 	if (variant_data_size == 0)
 	{
-		write_line_verbose("Variant file was zero sized");
+		c_console::write_line_verbose("Variant file was zero sized");
 		return false;
 	}
 

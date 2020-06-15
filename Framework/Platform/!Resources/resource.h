@@ -2,11 +2,14 @@
 // Microsoft Visual C++ generated include file.
 // Used by Resource.rc
 //
-#define IDI_ICON1                       101
-#define IDR_FONT1                       102
-#define IDR_MAPDATABASE					103
-#define IDR_BOXSHADERPS					104
-#define IDR_BOXSHADERVS					105
+#define IDI_ICON_APPLICATION			100
+#define IDI_ICON_BLAM_CREATION_SUITE	101
+#define IDI_ICON_MANDRILL				102
+#define IDR_FONT_COUSING_REGULAR        200
+#define IDR_FONT_FONT_AWESOME           201
+#define IDR_MAPDATABASE					300
+#define IDR_BOXSHADERPS					400
+#define IDR_BOXSHADERVS					401
 
 // Next default values for new objects
 // 

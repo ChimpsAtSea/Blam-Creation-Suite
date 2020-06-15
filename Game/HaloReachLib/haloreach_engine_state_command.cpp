@@ -14,42 +14,42 @@ void haloreach_update_engine_state(IGameEngine *game_engine, const std::string e
 	{
 		if (!engine_state_str.compare("pause"))
 		{
-			write_line_verbose("Pausing game");
+			c_console::write_line_verbose("Pausing game");
 			game_engine->UpdateEngineState(eEngineState::Pause);
 		}
 		else if (!engine_state_str.compare("unpause"))
 		{
-			write_line_verbose("Unpausing game");
+			c_console::write_line_verbose("Unpausing game");
 			game_engine->UpdateEngineState(eEngineState::Unpause);
 		}
 		else if (!engine_state_str.compare("end"))
 		{
-			write_line_verbose("Ending game");
+			c_console::write_line_verbose("Ending game");
 			game_engine->UpdateEngineState(eEngineState::EndGame);
 		}
 		else if (!engine_state_str.compare("restart"))
 		{
-			write_line_verbose("Restarting level");
+			c_console::write_line_verbose("Restarting level");
 			game_engine->UpdateEngineState(eEngineState::RestartLevel);
 		}
 		else if (!engine_state_str.compare("revert"))
 		{
-			write_line_verbose("Restarting checkpoint");
+			c_console::write_line_verbose("Restarting checkpoint");
 			game_engine->UpdateEngineState(eEngineState::RestartCheckpoint);
 		}
 		else if (!engine_state_str.compare("save"))
 		{
-			write_line_verbose("Saving game variant");
+			c_console::write_line_verbose("Saving game variant");
 			game_engine->UpdateEngineState(eEngineState::SaveGameVariant);
 
-			write_line_verbose("Saving map variant");
+			c_console::write_line_verbose("Saving map variant");
 			game_engine->UpdateEngineState(eEngineState::SaveMapVariant);
 		}
 
 		return;
 	}
 
-	write_line_verbose("Unable to update engine state");
+	c_console::write_line_verbose("Unable to update engine state");
 }
 
 c_haloreach_engine_state_command::c_haloreach_engine_state_command() :

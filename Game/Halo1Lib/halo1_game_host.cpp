@@ -17,6 +17,7 @@ static c_halo1_halo_script_command* g_halo1_halo_script_command;
 #include "halo1_game_host.scripting.inl"
 #include "halo1_game_host.console.inl"
 #include "halo1_game_host.controls_research.inl"
+#include "halo1_game_host.fixes.inl"
 
 uintptr_t g_keyboard_state_offset(e_engine_type engine_type, e_build build)
 {
@@ -33,7 +34,7 @@ void register_halo1lib()
 c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 	c_opus_game_engine_host(engine_type, build, get_game_runtime())
 {
-	write_line_verbose("Init Halo1GameHost");
+	c_console::write_line_verbose("Init Halo1GameHost");
 
 	init_runtime_modifications(g_halo1_game_runtime->get_build());
 
@@ -53,10 +54,10 @@ c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 
 c_halo1_game_host::~c_halo1_game_host()
 {
-	write_line_verbose("Deinit Halo1GameHost");
+	c_console::write_line_verbose("Deinit Halo1GameHost");
 
-	c_mantle_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mantle_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);
@@ -242,39 +243,6 @@ void c_halo1_game_host::input_debug_gui()
 	ImGui::End();
 #endif
 }
-
-uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1806F4000);
-	return ~uintptr_t();
-}
-FunctionHookEx<sub_1806F4000_offset, void()> sub_1806F4000 = { "sub_1806F4000", []() {
-
-	sub_1806F4000();
-	debug_point;
-
-} };
-
-uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1800935B0);
-	return ~uintptr_t();
-}
-FunctionHookEx<sub_1800935B0_offset, __int64 __fastcall (__int64 a1)> sub_1800935B0 = { "sub_1800935B0", [](__int64 a1) {
-
-	uint32_t sub_1806F4000_reference_count = sub_1806F4000.reference_counter;
-
-	if (sub_1806F4000_reference_count > 0)
-	{
-		return __int64(0);
-	}
-	else
-	{
-		__int64 result = sub_1800935B0(a1);
-		return result;
-	}
-
-} };
 
 void c_halo1_game_host::draw_camera_debug_ui()
 {

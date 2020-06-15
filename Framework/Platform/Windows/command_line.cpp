@@ -13,16 +13,31 @@ void c_command_line::Deinit()
 bool c_command_line::has_command_line_arg(const char* pArgument)
 {
 	static LPSTR command_line = GetCommandLineA();
-	return strstr(command_line, pArgument) != 0;
+	const char* string_search = strstr(command_line, pArgument);
+	size_t search_length = strlen(pArgument);
+	while (string_search != nullptr)
+	{
+		const char* string_search_end = string_search + search_length;
+		switch (*string_search_end)
+		{
+		case '\0':
+		case ' ':
+		case ':':
+			return true;
+		}
+
+		string_search = strstr(string_search + 1, pArgument);
+	}
+	return false;
 }
 
 std::string c_command_line::get_command_line_arg(const char* command)
 {
-	if (has_command_line_arg(command))
-	{
-		static LPSTR command_line = GetCommandLineA();
+	static LPSTR command_line = GetCommandLineA();
 
-		const char* command_start = strstr(command_line, command);
+	const char* command_start = strstr(command_line, command);
+	if (command_start)
+	{
 		const char* command_value_start = command_start + strlen(command);
 
 		if (*command_value_start == ':')

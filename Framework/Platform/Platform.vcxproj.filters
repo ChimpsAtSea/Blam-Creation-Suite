@@ -45,9 +45,6 @@
     <ClInclude Include="macro_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\window_win32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Windows\command_line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +81,15 @@
     <ClInclude Include="Strings\fixed_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="language_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="callback_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform-private-pch.cpp">
@@ -93,9 +99,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!Resources\resources_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\window_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\command_line.cpp">
@@ -119,6 +122,12 @@
     <ClCompile Include="Strings\fixed_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Windows\window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="callback_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc">
@@ -133,11 +142,21 @@
     <None Include="!Resources\HLSL\BoxShader.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="!Resources\reach_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Font Include="!Resources\fa-regular-400.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Image Include="!Resources\mandrill_icon_debug.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="!Resources\bcs_icon_debug.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="!Resources\mandrill_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="!Resources\bcs_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

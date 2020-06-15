@@ -14,12 +14,6 @@ typedef uint32_t DEPRECATED_basic_string_id;
 #include "legacy/observer_camera.h"
 
 #include "legacy/cache_file_magic.h"
-#include "legacy/cache_file_section_file_bounds.h"
-#include "legacy/cache_file_section.h"
-#include "legacy/cache_file_header.h"
-#include "legacy/cache_file_tag_instance.h"
-#include "legacy/cache_file_tag_group.h"
-#include "legacy/cache_file_tags_header.h"
 
 #include "legacy/blamfile_chunk_type.h"
 #include "legacy/blamfile_header.h"

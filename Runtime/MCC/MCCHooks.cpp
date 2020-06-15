@@ -86,7 +86,7 @@ uintptr_t sub_141806A64_offset(e_engine_type engine_type, e_build build)
 FunctionHookEx<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, int a2)> sub_141806A64 = { "sub_141806A64", [](__int64 a1, int a2)
 {
 	const wchar_t* szResult = sub_141806A64(a1, a2);
-	write_line_verbose("%S", szResult);
+	c_console::write_line_verbose("%S", szResult);
 	return szResult;
 } };
 

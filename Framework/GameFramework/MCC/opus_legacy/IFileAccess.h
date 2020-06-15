@@ -22,7 +22,7 @@ public:
 
 	void FileWrite(char *, size_t);
 
-	LPCSTR GetFilePath();
+	LPCSTR get_filepath();
 
 private:
 	char s_filePath[MAX_PATH] = {};

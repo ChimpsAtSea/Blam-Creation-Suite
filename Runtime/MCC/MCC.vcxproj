@@ -58,13 +58,13 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;GameFramework.lib;SymbolsLib.lib;MantleGen.lib;MantleLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -94,13 +94,13 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;GameFramework.lib;SymbolsLib.lib;MantleGen.lib;MantleLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y

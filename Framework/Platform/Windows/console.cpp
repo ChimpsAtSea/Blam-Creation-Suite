@@ -26,9 +26,9 @@ void c_console::Update()
 #define ps1beg "\xAF["
 #define ps1end "]\xAE"
 
-void c_console::init_console()
+void c_console::init_console(const wchar_t* title)
 {
-	c_console::AllocateConsole("Opus");
+	c_console::AllocateConsole(title);
 
 	CurArg = 0;
 
@@ -396,6 +396,38 @@ void c_console::show_startup_banner()
 	PrintLine();
 }
 
+void c_console::write_line_verbose(const char* format, ...)
+{
+	if (g_debug_log_mode >= _debug_log_mode_verbose)
+	{
+		va_list args;
+		va_start(args, format);
+		write_line_internal(format, args);
+		va_end(args);
+	}
+}
+
+void c_console::write_line(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	write_line_internal(format, args);
+	va_end(args);
+}
+
+std::mutex console_mutex;
+int (__cdecl *c_console::console_printf_impl)(const char* format, ...) = printf;
+void c_console::write_line_internal(const char* format, va_list args)
+{
+	std::lock_guard console_mutex_lockguard(console_mutex);
+
+	c_fixed_string_4096 fixed_string;
+	fixed_string.vformat(format, args);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	console_printf_impl("%s\n", fixed_string.c_str());
+}
+
 bool c_console::DefaultConsoleCommand::execute_command(const std::vector<std::string>& Args)
 {
 	if (!Args.empty())
@@ -491,7 +523,7 @@ std::string c_console::DefaultConsoleCommand::get_command_auto_complete(const st
 	return ""; // todo;
 };
 
-bool c_console::AllocateConsole(const std::string& ConsoleTitle)
+bool c_console::AllocateConsole(const wchar_t* title)
 {
 	if (s_consoleAllocated)
 	{
@@ -505,7 +537,7 @@ bool c_console::AllocateConsole(const std::string& ConsoleTitle)
 	(void)freopen("CONOUT$", "w", stdout);
 	(void)freopen("CONOUT$", "w", stderr);
 
-	SetConsoleTitleA(ConsoleTitle.c_str());
+	SetConsoleTitleW(title);
 	EnableMenuItem(GetSystemMenu(GetConsoleWindow(), FALSE), SC_CLOSE & SC_MINIMIZE | SC_MAXIMIZE, MF_GRAYED);
 	DrawMenuBar(GetConsoleWindow());
 

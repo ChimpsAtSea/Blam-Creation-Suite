@@ -17,7 +17,7 @@ uintptr_t console_initialize_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<console_initialize_offset, signed int()> console_initialize = { "console_initialize", []() {
 
-	write_line_verbose("console_initialize called");
+	c_console::write_line_verbose("console_initialize called");
 	return console_initialize();
 } };
 
@@ -30,7 +30,7 @@ uintptr_t console_open_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<console_open_offset, signed int()> console_open = { "console_open", []() {
 
-	write_line_verbose("console_open called");
+	c_console::write_line_verbose("console_open called");
 	return console_open();
 } };
 
@@ -41,7 +41,7 @@ uintptr_t console_close_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<console_close_offset, signed int()> console_close = { "console_close", []() {
 
-	write_line_verbose("console_close called");
+	c_console::write_line_verbose("console_close called");
 	return console_close();
 } };
 

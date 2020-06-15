@@ -3,18 +3,29 @@
 
 const char* c_console::g_console_executable_name = "Resource";
 
-void update_resource_data(LPWSTR szExecutablePath, e_resource_type type, const char* data, size_t data_length)
+void update_resource_data(LPCWSTR szExecutablePath, e_resource_type type, const char* data, size_t data_length)
 {
-	HANDLE hUpdateResource = BeginUpdateResourceW(szExecutablePath, FALSE);
-	ASSERT(hUpdateResource != NULL);
-	BOOL updateResourceResult = UpdateResourceA(hUpdateResource, RT_RCDATA, c_resources_manager::get_resource_int_resource<LPSTR>(type), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), const_cast<char*>(data), static_cast<DWORD>(data_length));
-	ASSERT(updateResourceResult == TRUE);
-	BOOL endUpdateResourceResult = EndUpdateResource(hUpdateResource, FALSE);
-	ASSERT(updateResourceResult == TRUE);
+	HANDLE update_resource_handle = BeginUpdateResourceW(szExecutablePath, FALSE);
+	ASSERT(update_resource_handle != NULL);
+
+	LPCWSTR resource_type = c_resources_manager::get_resource_type(type);
+	LPCWSTR resource_name = c_resources_manager::get_resource_int_resource(type);
+	BOOL update_resource_result = UpdateResourceW(
+		update_resource_handle, 
+		resource_type,
+		resource_name,
+		MAKELANGID(LANG_NEUTRAL, 
+		SUBLANG_NEUTRAL), 
+		const_cast<char*>(data), 
+		static_cast<DWORD>(data_length));
+	ASSERT(update_resource_result == TRUE);
+
+	BOOL end_update_resource_result = EndUpdateResource(update_resource_handle, FALSE);
+	ASSERT(update_resource_result == TRUE);
 
 }
 
-void update_resource(LPWSTR executable_path, LPWSTR file_path, e_resource_type resource_type)
+void update_resource(LPCWSTR executable_path, LPCWSTR file_path, e_resource_type resource_type)
 {
 	char* file_data = nullptr;
 	size_t file_length = 0;
@@ -33,34 +44,81 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd
 )
 {
-	int numArgs = 0;
-	LPWSTR* pCommandArgs = CommandLineToArgvW(lpCmdLine, &numArgs);
-
-	if (numArgs < 2) return 1;
-
-	LPWSTR executable_filepath = pCommandArgs[0];
-	LPWSTR executable_map_filepath = pCommandArgs[1];
-	LPWSTR box_shader_ps_filepath = pCommandArgs[2];
-	LPWSTR box_shader_vs_filepath = pCommandArgs[3];
-
-
-	const char* excluded_symbol_libs[] =
+	std::wstring executable = c_command_line::get_command_line_warg("-executable");
+	if (executable.size() == 0)
 	{
-		"Shared",
-		"MantleLib",
-		"MantleGen",
-		"imgui",
-		"tbb_static",
-		"gameframework",
-		"detours"
-	};
+		c_console::write_line_verbose("ResourcesPackager> missing argument -executable");
+		return 1;
+	}
 
-	c_map_file_parser map_file_parser = c_map_file_parser(executable_map_filepath, excluded_symbol_libs, _countof(excluded_symbol_libs));
-	update_resource_data(executable_filepath, _resource_type_symbols_blob, map_file_parser.get_sym_data(), map_file_parser.get_sym_size());
-	update_resource(executable_filepath, box_shader_ps_filepath, _resource_type_box_pixel_shader);
-	update_resource(executable_filepath, box_shader_vs_filepath, _resource_type_box_vertex_shader);
+	std::wstring outputdir = c_command_line::get_command_line_warg("-outputdir");
+	if (outputdir.size() == 0)
+	{
+		c_console::write_line_verbose("ResourcesPackager> missing argument -outputdir");
+		return 1;
+	}
 
-	write_line_verbose("ResourcesPackager> Successfully updated resources");
+	std::wstring resources = c_command_line::get_command_line_warg("-resources");
+	if (resources.size() == 0)
+	{
+		c_console::write_line_verbose("ResourcesPackager> missing argument -resources");
+		return 1;
+	}
+
+	bool mandrill = c_command_line::has_command_line_arg("-mandrill");
+	bool gameframework = c_command_line::has_command_line_arg("-gameframework");
+	if (!mandrill && !gameframework)
+	{
+		c_console::write_line_verbose("ResourcesPackager> missing argument -mandrill, -gameframework");
+		return 1;
+	}
+
+	bool package_symbols = gameframework;
+	bool package_shaders = gameframework;
+
+	if (package_symbols)
+	{
+		std::wstring symbolfile = c_command_line::get_command_line_warg("-symbolfile");
+		if (symbolfile.size() == 0)
+		{
+			c_console::write_line_verbose("ResourcesPackager> missing argument -symbolfile");
+			return 1;
+		}
+
+		const char* excluded_symbol_libs[] =
+		{
+			"Shared",
+			"MandrillLib",
+			"MandrillGen",
+			"imgui",
+			"tbb_static",
+			"gameframework",
+			"detours"
+		};
+
+		c_map_file_parser map_file_parser = c_map_file_parser(symbolfile.c_str(), excluded_symbol_libs, _countof(excluded_symbol_libs));
+		update_resource_data(executable.c_str(), _resource_type_symbols_blob, map_file_parser.get_sym_data(), map_file_parser.get_sym_size());
+	}
+
+	if (package_shaders)
+	{
+		std::wstring box_shader_ps_filepath = outputdir + L"BoxShaderPS.cso";
+		std::wstring box_shader_vs_filepath = outputdir + L"BoxShaderVS.cso";
+		update_resource(executable.c_str(), box_shader_ps_filepath.c_str(), _resource_type_box_pixel_shader);
+		update_resource(executable.c_str(), box_shader_vs_filepath.c_str(), _resource_type_box_vertex_shader);
+	}
+
+	if (mandrill)
+	{
+#ifdef _DEBUG
+		std::wstring mandrill_icon = resources + L"mandrill_icon_debug.ico";
+#else
+		std::wstring mandrill_icon = resources + L"mandrill_icon.ico";
+#endif
+		// #TODO Programatically replace icons here
+	}
+
+	c_console::write_line_verbose("ResourcesPackager> Successfully updated resources");
 
 	return 0;
 }

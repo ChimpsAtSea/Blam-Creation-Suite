@@ -50,9 +50,7 @@ public:
 		virtual std::string get_command_auto_complete(const std::vector<std::string>& Arguments) const override;
 	};
 
-
-
-	static void init_console();
+	static void init_console(const wchar_t* title = L"Console");
 	static void deinit_console();
 	static void Update();
 
@@ -66,8 +64,18 @@ public:
 
 	static void show_startup_banner();
 
+
+
+	static void write_line_verbose(const char* format, ...);
+	static void write_line(const char* format, ...);
+
+	static int (__cdecl *console_printf_impl)(const char* format, ...);
+	static void write_line_internal(const char* format, va_list args);
+
+
+
 private:
-	static bool AllocateConsole(const std::string& ConsoleTitle);
+	static bool AllocateConsole(const wchar_t* title);
 
 	static bool s_consoleAllocated;
 

@@ -18,7 +18,7 @@ public:
 	virtual void render_ui() const override;
 	virtual IGameEngine* get_game_engine() const override;
 
-	static inline IDataAccess* get_data_access() { return g_halo3_game_runtime->GetDataAccess(); }
+	static inline IDataAccess* get_data_access() { return g_halo3_game_runtime->get_data_access(); }
 	static c_game_runtime& get_game_runtime();
 	static void init_runtime_modifications(e_build build);
 	static void deinit_runtime_modifications(e_build build);

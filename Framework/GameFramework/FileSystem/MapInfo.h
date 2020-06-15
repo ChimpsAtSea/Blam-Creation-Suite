@@ -20,7 +20,7 @@ public:
 
 	const char* GetFriendlyName() const;
 	const char* GetFriendlyDescription() const;
-	const char* GetMafilepath() const { return m_levelChunk.m_mafilepath; }
+	const char* GetMafilepath() const { return m_levelChunk.map_path; }
 	int GetMapID() const;
 	inline bool IsMainMenu() const { return getLittleEndianLevelChunkFlags().m_isMainMenu; }
 	inline bool IsMultiplayer() const { return getLittleEndianLevelChunkFlags().m_isMultiplayer; }

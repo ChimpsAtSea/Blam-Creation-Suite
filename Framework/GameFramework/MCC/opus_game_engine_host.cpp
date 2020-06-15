@@ -6,11 +6,13 @@
 
 c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime) :
 	IGameEngineHost(engine_type, build, &game_events),
+	game_engine(nullptr),
+	window(*c_game_launcher::get_window()),
+	mouse_input(*c_game_launcher::get_mouse_input()),
 	game_runtime(rGameRuntime),
 	game_events(),
 	frame_timer(),
-	total_frame_cpu_time(0.0),
-	game_engine(nullptr)
+	total_frame_cpu_time(0.0)
 {
 	const wchar_t* engine_string = get_enum_string<decltype(engine_string), true>(engine_type);
 	const wchar_t* build_string = build_to_string<decltype(build_string), true>(engine_type, build); //#TODO: MCC product version to string to snag build numbers we don't know about
@@ -21,12 +23,12 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	window_title.append(build_string);
 	window_title.append(L" ");
 	window_title.append(build_configuration);
-	c_window_win32::SetWindowTitle(window_title.c_str()); // #TODO: Replace with push/pop
+	window.set_title(window_title.c_str()); // #TODO: Replace with push/pop
 }
 
 c_opus_game_engine_host::~c_opus_game_engine_host()
 {
-	c_window_win32::SetWindowTitle(L"Opus");
+	window.set_title(L"Opus");
 }
 
 char c_opus_game_engine_host::FrameStart()
@@ -61,18 +63,18 @@ void c_opus_game_engine_host::EngineStateUpdate(eEngineState state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
+	c_console::write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
 
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
 		switch (state)
 		{
 		case eEngineState::PushUIPage:
-			write_line_verbose("Push UI stack");
+			c_console::write_line_verbose("Push UI stack");
 			LegacyGameLauncher::s_uiStackLength++;
 			break;
 		case eEngineState::PopUIPage:
-			write_line_verbose("Pop UI stack");
+			c_console::write_line_verbose("Pop UI stack");
 			LegacyGameLauncher::s_uiStackLength--;
 			break;
 		}
@@ -90,11 +92,11 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 
 	if (IsBadReadPtr(a2, 1)) // #LEGACY
 	{
-		write_line_verbose("%s %u [%p]", __func__, a1, a2);
+		c_console::write_line_verbose("%s %u [%p]", __func__, a1, a2);
 	}
 	else
 	{
-		write_line_verbose("%s %u [%s]", __func__, a1, a2);
+		c_console::write_line_verbose("%s %u [%s]", __func__, a1, a2);
 	}
 
 	c_game_launcher::game_exited_callback();
@@ -114,7 +116,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 	{
 		return __int64(0);
 	}
-	//write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
+	//c_console::write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
@@ -172,7 +174,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		delete[] autosave_buffer;
 	}
 
-	write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
+	c_console::write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
 
 	return __int64(0);
 }
@@ -186,13 +188,13 @@ void c_opus_game_engine_host::Function07(unsigned int)
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
 	{
-		write_line_verbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
+		c_console::write_line_verbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
 		DebugUI::RegisterCallback(LegacyGameLauncher::DrawPauseMenu);
 		DebugUI::Show();
 	}
 	else
 	{
-		write_line_verbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
+		c_console::write_line_verbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
 	}
 	*/
 }
@@ -382,18 +384,18 @@ void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* session_info_p
 
 void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* session_membership, uint32_t player_count)
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 }
 
 bool __fastcall c_opus_game_engine_host::Function26()
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
 bool __fastcall c_opus_game_engine_host::Function27()
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
@@ -402,8 +404,8 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	DEBUG_ASSERT(update_graphics_data != nullptr);
 
 	// set resolution to 4k
-	update_graphics_data->VIDEO_SizeX = c_window_win32::get_width();
-	update_graphics_data->VIDEO_SizeY = c_window_win32::get_height();
+	update_graphics_data->VIDEO_SizeX = static_cast<int>(window.get_width_integer());
+	update_graphics_data->VIDEO_SizeY = static_cast<int>(window.get_height_integer());
 
 	update_graphics_data->VIDEO_FPS_Lock = false;
 	update_graphics_data->VIDEO_Wait_VSync = false;
@@ -415,7 +417,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	update_graphics_data->VIDEO_LodDistQualityFactor = 2;
 	update_graphics_data->VIDEO_UseEdgeAA = true;
 
-	write_line_verbose(__FUNCTION__);
+	c_console::write_line_verbose(__FUNCTION__);
 
 	// returning false effectively doubles fps when unlocked
 	return !(update_graphics_data->VIDEO_FPS_Lock || update_graphics_data->VIDEO_Wait_VSync);
@@ -423,7 +425,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 
 c_player_configuration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 
 	static c_player_configuration *player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(build, &player_configuration))
@@ -453,41 +455,43 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 	return __int64(1);
 }
 
-bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuffer* input_buffer)
+bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, InputBuffer* input_buffer)
 {
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
-	bool debugUIVisible = c_debug_gui::IsVisible();
-	bool windowFocused = c_window_win32::IsWindowFocused();
+	c_console::write_line_verbose("%llu", a1);
+
+	bool is_debug_ui_visible = c_debug_gui::IsVisible();
+	bool is_window_focused = window.is_focused();
 
 	e_mouse_mode mode = _mouse_mode_none;
-	if (windowFocused)
+	if (is_window_focused)
 	{
-		mode = debugUIVisible ? _mouse_mode_ui : _mouse_mode_exclusive;
+		mode = is_debug_ui_visible ? _mouse_mode_ui : _mouse_mode_exclusive;
 	}
-	c_mouse_input::set_mode(mode);
+	mouse_input.set_mode(mode);
 
 	// don't update and return an empty zero buffer
-	if (debugUIVisible)
+	if (is_debug_ui_visible)
 	{
 		input_buffer->inputSource = InputSource::MouseAndKeyboard;
 		return unsigned __int8(1);
 	}
 
-	static InputSource sCurrentInputSource = InputSource::MouseAndKeyboard;
+	static InputSource s_current_input_source = InputSource::MouseAndKeyboard;
 
 	// grab controller
 	// grab mouse and keyboard
 
-	float mouseInputX = 0;
-	float mouseInputY = 0;
-	bool leftButtonPressed = 0;
-	bool rightButtonPressed = 0;
-	bool middleButtonPressed = 0;
+	float mouse_input_x = 0;
+	float mouse_input_y = 0;
+	bool left_button_pressed = 0;
+	bool right_button_pressed = 0;
+	bool middle_button_pressed = 0;
 
 	bool hasControllerInput = false;
-	bool hasMouseAndKeyboardInput = false;
+	bool has_mouse_and_keyboard_input = false;
 
 	float fThumbLX = 0;
 	float fThumbLY = 0;
@@ -497,7 +501,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	float fThumbR_Length = 0;
 	XINPUT_STATE xinputState = {};
 
-	if (windowFocused || true)
+	if (is_window_focused || true)
 	{
 		DWORD xinputGetStateResult = XInputGetState(0, &xinputState);
 		if (xinputGetStateResult == ERROR_SUCCESS)
@@ -533,54 +537,61 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 			if (!GetKeyboardState(keyboardState))
 				ZeroMemory(keyboardState, sizeof(keyboardState));
 
-			mouseInputX = c_mouse_input::get_mouse_x();
-			mouseInputY = c_mouse_input::get_mouse_y();
+			mouse_input_x = mouse_input.get_mouse_x();
+			mouse_input_y = mouse_input.get_mouse_y();
 
-			leftButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_left);
-			rightButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_right);
-			middleButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_middle);
+			left_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_left);
+			right_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_right);
+			middle_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_middle);
 
 			{
 				//for (size_t i = 0; i < sizeof(keyboardState); i++)
-				//	hasMouseAndKeyboardInput |= keyboardState[i] != 0;
+				//	has_mouse_and_keyboard_input |= keyboardState[i] != 0;
 
-				hasMouseAndKeyboardInput |= mouseInputX != 0.0f;
-				hasMouseAndKeyboardInput |= mouseInputY != 0.0f;
-				hasMouseAndKeyboardInput |= leftButtonPressed;
-				hasMouseAndKeyboardInput |= rightButtonPressed;
-				hasMouseAndKeyboardInput |= middleButtonPressed;
+				has_mouse_and_keyboard_input |= mouse_input_x != 0.0f;
+				has_mouse_and_keyboard_input |= mouse_input_y != 0.0f;
+				has_mouse_and_keyboard_input |= left_button_pressed;
+				has_mouse_and_keyboard_input |= right_button_pressed;
+				has_mouse_and_keyboard_input |= middle_button_pressed;
 
-				if (hasMouseAndKeyboardInput)
+				for (int i = 32; i < 128; i++)
 				{
-					sCurrentInputSource = InputSource::MouseAndKeyboard;
+					has_mouse_and_keyboard_input |= (keyboardState[i] & 0b10000000) != 0;
+				}
+
+				if (has_mouse_and_keyboard_input)
+				{
+					s_current_input_source = InputSource::MouseAndKeyboard;
 				}
 			}
+
+			c_console::write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
 		}
 	}
 
 	if (hasControllerInput)
 	{
-		sCurrentInputSource = InputSource::Gamepad;
+		s_current_input_source = InputSource::Gamepad;
 	}
-	else if (hasMouseAndKeyboardInput)
+	else if (has_mouse_and_keyboard_input)
 	{
-		sCurrentInputSource = InputSource::MouseAndKeyboard;
+		s_current_input_source = InputSource::MouseAndKeyboard;
 	}
 
-	if (sCurrentInputSource == InputSource::MouseAndKeyboard)
+	if (s_current_input_source == InputSource::MouseAndKeyboard)
 	{
 		for (int i = 0; i < 256; i++)
 		{
 			input_buffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
 		}
-		input_buffer->MouseX += mouseInputX;
-		input_buffer->MouseY += mouseInputY;
-		input_buffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
-		input_buffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
-		input_buffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
+		input_buffer->MouseX += mouse_input_x;
+		input_buffer->MouseY += mouse_input_y;
+		input_buffer->mouseButtonBits |= BYTE(left_button_pressed) << 0;
+		input_buffer->mouseButtonBits |= BYTE(middle_button_pressed) << 1;
+		input_buffer->mouseButtonBits |= BYTE(right_button_pressed) << 2;
 	}
 
-	if (sCurrentInputSource == InputSource::Gamepad)
+	if (s_current_input_source == InputSource::Gamepad)
 	{
 		input_buffer->wButtons = xinputState.Gamepad.wButtons;
 		input_buffer->bLeftTrigger = xinputState.Gamepad.bLeftTrigger;
@@ -591,7 +602,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 		input_buffer->sThumbRY = fThumbRY * static_cast<float>(fThumbRY > 0 ? INT16_MAX : -INT16_MIN);
 	}
 
-	input_buffer->inputSource = sCurrentInputSource;
+	input_buffer->inputSource = s_current_input_source;
 
 	return unsigned __int8(1);
 }
@@ -652,7 +663,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 		}
 		wcsncpy(player_names[player_index], pName, __min(wcslen(pName) + 1, player_name_max_len));
 		player_names[player_index][player_name_max_index] = 0;
-		write_line_verbose("player[%d].Name: set %ls", player_index, pName);
+		c_console::write_line_verbose("player[%d].Name: set %ls", player_index, pName);
 	}
 
 	return true;

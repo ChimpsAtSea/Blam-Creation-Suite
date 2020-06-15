@@ -1,16 +1,26 @@
 #include "gameframework-private-pch.h"
 
-float c_mouse_input::s_horizontal_sensitivity = 1.0f;
-float c_mouse_input::s_vertical_sensitivity = 1.0f;
-e_mouse_mode c_mouse_input::s_current_mode;
-std::atomic<int32_t> c_mouse_input::s_x_position_accumulator = 0;
-std::atomic<int32_t> c_mouse_input::s_y_position_accumulator = 0;
-std::atomic<int32_t> c_mouse_input::s_wheel_accumulator = 0;
-bool c_mouse_input::s_left_button_pressed = false;
-bool c_mouse_input::s_right_button_pressed = false;
-bool c_mouse_input::s_middle_button_pressed = false;
-bool c_mouse_input::s_button4_pressed = false;
-bool c_mouse_input::s_button5_pressed = false;
+c_mouse_input::c_mouse_input(c_window& window) :
+	window(window),
+	s_horizontal_sensitivity(1.0f),
+	s_vertical_sensitivity(1.0f),
+	s_current_mode(),
+	s_x_position_accumulator(0),
+	s_y_position_accumulator(0),
+	s_wheel_accumulator(0),
+	s_left_button_pressed(false),
+	s_right_button_pressed(false),
+	s_middle_button_pressed(false),
+	s_button4_pressed(false),
+	s_button5_pressed(false)
+{
+
+}
+
+c_mouse_input::~c_mouse_input()
+{
+
+}
 
 void c_mouse_input::handle_input_window_message(LPARAM lParam)
 {
@@ -112,7 +122,7 @@ void c_mouse_input::set_clip_mode(e_mouse_mode mode)
 {
 	if (mode == _mouse_mode_exclusive)
 	{
-		HWND window_handle = c_window_win32::get_window_handle();
+		HWND window_handle = window.get_window_handle();
 		RECT window_rectangle = {};
 		GetClientRect(window_handle, &window_rectangle);
 		POINT upper_left;

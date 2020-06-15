@@ -41,7 +41,7 @@
 // - v0.34: binary preview now applies endianness setting [@nicolasnoble]
 // - v0.35: using ImGuiDataType available since Dear ImGui 1.69.
 //
-// - Mantle 1: Added a size string formatting option to replace `Range XX..XX` display. (Is default)
+// - Mandrill 1: Added a size string formatting option to replace `Range XX..XX` display. (Is default)
 //
 // Todo/Bugs:
 // - Arrows are being sent to the InputText() about to disappear which for LeftArrow makes the text cursor appear at position 1 for one frame.

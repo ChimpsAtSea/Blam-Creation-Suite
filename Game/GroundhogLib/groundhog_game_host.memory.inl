@@ -7,7 +7,7 @@ uintptr_t groundhog_tag_instances_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1570_0_0, 0x1816043F8);
 	return ~uintptr_t();
 }
-s_cache_file_tag_instance*& groundhog_tag_instances = reference_symbol<s_cache_file_tag_instance*>("groundhog_tag_instances", groundhog_tag_instances_offset);
+gen3::s_cache_file_tag_instance*& groundhog_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("groundhog_tag_instances", groundhog_tag_instances_offset);
 
 uintptr_t groundhog_tag_address_table_offset(e_engine_type engine_type, e_build build)
 {
@@ -56,7 +56,7 @@ T& groundhog_tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& groundhog_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
+T& groundhog_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint16_t index)
 {
 	T* tag_block_definition_ptr = reinterpret_cast<T*>(groundhog_tag_address_get(tag_block_ref.address));
 
@@ -68,13 +68,13 @@ T& groundhog_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint
 	return *tag_block_definition_ptr;
 }
 
-s_groundhog_cache_file_header* groundhog_cache_file_header_get()
+groundhog::s_groundhog_cache_file_header* groundhog_cache_file_header_get()
 {
 	if (!is_valid(groundhog_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_groundhog_cache_file_header& cache_file_header = *reinterpret_cast<s_groundhog_cache_file_header*>(&groundhog_cache_file_global_loaded_state[0x10]);
+	groundhog::s_groundhog_cache_file_header& cache_file_header = *reinterpret_cast<groundhog::s_groundhog_cache_file_header*>(&groundhog_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }

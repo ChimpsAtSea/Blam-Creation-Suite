@@ -22,7 +22,7 @@ c_field_formatter::c_field_formatter(const blofeld::s_tag_field* field, const ch
 {
 	//name = "air reverb gain*!^{reverb gain}*!^:dB*!^[   -100  ]#how much reverb applies to this sound class";
 	static int y = 0;
-	//write_line_verbose("%i %s", y, name);
+	//c_console::write_line_verbose("%i %s", y, name);
 	if (name != nullptr)
 	{
 		// bespoke fixups
@@ -49,7 +49,7 @@ c_field_formatter::c_field_formatter(const blofeld::s_tag_field* field, const ch
 		int display_name_scan = sscanf(remainder_buffer_b.data, "%511[^*^!~?]%15[^\1]", display_name.data, flags2.data);
 
 		c_fixed_string_64 flags;
-		flags.format("%s%s%s", flags0, flags1, flags2);
+		flags.format("%s%s%s", flags0.data, flags1.data, flags2.data);
 
 		read_only = flags.contains('*');
 		is_index = flags.contains('^');

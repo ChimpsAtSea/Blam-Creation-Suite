@@ -43,7 +43,7 @@ void terminal_output_print_hook(void *, const char *format, ...)
 {
 	va_list argptr;
 	va_start(argptr, format);
-	write_line_verbose(format, argptr);
+	c_console::write_line_verbose(format, argptr);
 }
 
 // TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570

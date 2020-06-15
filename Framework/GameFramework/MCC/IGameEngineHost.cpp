@@ -18,7 +18,7 @@ void IGameEngineHostEmptyFunction()
 {
 	RUNONCE({
 		c_console::set_text_color(_console_color_error);
-		write_line_verbose("IGameEngineHostEmptyFunction was hit!");
+		c_console::write_line_verbose("IGameEngineHostEmptyFunction was hit!");
 		c_console::set_text_color(_console_color_info);
 		});
 }
@@ -600,7 +600,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 		}
 	}
 
-	if (player_configuration.users_skins_enabled && player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (is_valid(player_configuration.users_skins_enabled) && player_configuration.users_skins_enabled && player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
 	{
 		for (int i = 0; i < 15; i++)
 		{

@@ -9,7 +9,7 @@ namespace blofeld
 	extern s_tag_block_definition weapon_block;
 	extern s_tag_group weapon_group;
 
-	extern s_tag_struct_definition melee_damage_parameters_block_block_struct;
+	extern s_tag_struct_definition melee_damage_parameters_block_struct_definition;
 	extern s_tag_block_definition melee_damage_parameters_block_block;
 	extern s_tag_struct_definition globalAimAssistBlock_block_struct;
 	extern s_tag_block_definition globalAimAssistBlock_block;
@@ -88,8 +88,12 @@ namespace blofeld
 	extern s_string_list_definition secondary_trigger_modes;
 	extern const char* movement_penalty_modes_strings[];
 	extern s_string_list_definition movement_penalty_modes;
+	extern const char* multiplayer_weapon_types_strings[];
+	extern s_string_list_definition multiplayer_weapon_types;
 	extern const char* weapon_types_strings[];
 	extern s_string_list_definition weapon_types;
+	extern const char* tracking_types_strings[];
+	extern s_string_list_definition tracking_types;
 	extern const char* first_time_pickup_types_strings[];
 	extern s_string_list_definition first_time_pickup_types;
 	extern const char* global_melee_class_enum_definition_strings[];

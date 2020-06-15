@@ -1705,7 +1705,7 @@ namespace blofeld
 		{ vertex_shader_block_struct, 28 }, // block
 		{ wave_squad_specification_struct_struct_struct_definition, 28 },
 		{ wave_template_block_struct, 12 }, // block
-		{ melee_damage_parameters_block_block_struct, 200 }, // block
+		{ melee_damage_parameters_block_struct_definition, 200 }, // block
 		{ globalAimAssistBlock_block_struct, 68 }, // block
 		{ globalAimSwimBlock_block_struct, 36 }, // block
 		{ weapon_first_person_interface_block_block_struct, 40 }, // block

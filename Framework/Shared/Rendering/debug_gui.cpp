@@ -39,6 +39,7 @@ DXGI_SWAP_CHAIN_DESC  c_debug_gui::s_swapChainDescription = {};
 c_debug_gui::IDXGISwapChainPresent c_debug_gui::s_IDXGISwapChainPresentPointer;
 std::vector<c_debug_gui::DebugUICallback> c_debug_gui::s_pToggleableCallbacks;
 std::vector<c_debug_gui::DebugUICallback> c_debug_gui::s_pAlwaysRunCallbacks;
+ImFont* c_debug_gui::s_imgui_font;
 
 bool c_debug_gui::IsVisible()
 {
@@ -58,7 +59,7 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
-		write_line_verbose("DebugUI::Init");
+		c_console::write_line_verbose("DebugUI::Init");
 
 		s_swap_chain = swap_chain;
 		s_pDevice = pDevice;
@@ -67,24 +68,67 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 		s_swap_chain->GetDesc(&s_swapChainDescription);
 
 		ImGui::CreateContext();
-		ImGuiIO& rImguiIO = ImGui::GetIO(); (void)rImguiIO;
-		rImguiIO.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableSetMousePos | ImGuiConfigFlags_NavEnableGamepad;
+		ImGuiIO& imgui_io = ImGui::GetIO(); (void)imgui_io;
+		imgui_io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableSetMousePos | ImGuiConfigFlags_NavEnableGamepad;
 
 		{
-			float baseSize = 10.0f;
-			if (c_render::s_deviceMode.dmPelsWidth < c_render::s_deviceMode.dmPelsHeight)
-				baseSize *= static_cast<float>(c_render::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN); // width is smallest, scale on width
-			else
-				baseSize *= static_cast<float>(c_render::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN); // height is smallest, scale on height
+			float scaling = 15.0f;
+			{
+				ImGuiIO& io = ImGui::GetIO();
 
-			char* pFontData;
-			size_t pFontSize;
-			bool fontResourceFound = c_resources_manager::get_resource(_resource_type_imgui_font, &pFontData, &pFontSize);
-			ASSERT(fontResourceFound);
-			ASSERT(pFontSize < INT_MAX);
-			rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, static_cast<int>(pFontSize), 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
-			//delete pFontData; // imgui owns this memory
+				static HMONITOR monitor = NULL;
+				EnumDisplayMonitors(NULL, NULL, [](HMONITOR Arg1, HDC Arg2, LPRECT Arg3, LPARAM Arg4) { monitor = Arg1; return FALSE; }, 0);
+
+				uint32_t dpi_x, dpi_y;
+				GetDpiForMonitor(monitor, MDT_EFFECTIVE_DPI, &dpi_x, &dpi_y);
+
+#define BASE_DPI 96
+
+				uint32_t dpi = (dpi_x + dpi_y) / 2;
+				scaling = static_cast<float>(dpi) / static_cast<float>(BASE_DPI);
+			}
+
+			float font_size = floorf(15.0f * scaling);
+			float font_awesome_size = floorf(13.0f * scaling);
+
+			{
+				ImFontConfig config;
+				config.MergeMode = false;
+				//config.GlyphMinAdvanceX = font_size; // Use if you want to make the icon monospaced
+				config.PixelSnapH = true;
+
+				char* font_resource_data;
+				size_t font_resource_size;
+				bool font_resource_found = c_resources_manager::get_resource(_resource_type_font_cousine_regular, &font_resource_data, &font_resource_size);
+				ASSERT(font_resource_found);
+				ASSERT(font_size < INT_MAX);
+				s_imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_resource_data, static_cast<int>(font_resource_size), font_size, &config, imgui_io.Fonts->GetGlyphRangesDefault());
+				imgui_io.Fonts->Build();
+				ImGui::SetCurrentFont(s_imgui_font);
+			}
+
+			{
+				ImFontConfig config;
+				config.MergeMode = true;
+				config.GlyphMinAdvanceX = font_size * 1.25f; // Use if you want to make the icon monospaced
+				config.PixelSnapH = true;
+
+				char* font_resource_data;
+				size_t font_resource_size;
+				bool font_resource_found = c_resources_manager::get_resource(_resource_type_font_font_awesome, &font_resource_data, &font_resource_size);
+				ASSERT(font_resource_found);
+				ASSERT(font_size < INT_MAX);
+				static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+				s_imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_resource_data, static_cast<int>(font_resource_size), font_awesome_size, &config, icon_ranges);
+				imgui_io.Fonts->Build();
+				ImGui::SetCurrentFont(s_imgui_font);
+			}
+
+
+			//ImGui::SetCurrentFont(s_imgui_font);
 		}
+
+
 
 		ImGui_ImplWin32_Init(s_swapChainDescription.OutputWindow);
 		ImGui_ImplDX11_Init(s_pDevice, s_pContext);
@@ -112,7 +156,7 @@ void c_debug_gui::Deinit()
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
-		write_line_verbose("DebugUI::Deinit");
+		c_console::write_line_verbose("DebugUI::Deinit");
 
 		ImGui_ImplWin32_Shutdown();
 		ImGui_ImplDX11_Shutdown();
@@ -160,6 +204,8 @@ void c_debug_gui::start_frame()
 	ImGui_ImplWin32_NewFrame();
 
 	ImGui::NewFrame();
+
+	ImGui::PushFont(s_imgui_font);
 }
 
 void c_debug_gui::end_frame()
@@ -182,6 +228,8 @@ void c_debug_gui::end_frame()
 		//bool bShow = true;
 		//ImGui::ShowDemoWindow(&bShow);
 	}
+
+	ImGui::PopFont();
 
 	ImGui::EndFrame();
 	ImGui::Render();
@@ -239,9 +287,11 @@ void c_debug_gui::ProcessWindowMessages()
 	}
 }
 
-void c_debug_gui::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT c_debug_gui::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	windowQueue.Enqueue({ hwnd, msg, wParam, lParam }); // thread safe queue
+
+	return 0;
 }
 
 void c_debug_gui::register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback)

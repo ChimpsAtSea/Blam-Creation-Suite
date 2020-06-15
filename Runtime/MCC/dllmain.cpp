@@ -15,7 +15,7 @@ extern void deinit_haloreach(e_engine_type engine_type, e_build build);
 
 void haloreach_dll_loaded_callback()
 {
-	write_line_verbose("Halo Reach was loaded!");
+	c_console::write_line_verbose("Halo Reach was loaded!");
 	{
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		c_haloreach_game_host::init_runtime_modifications(build);
@@ -24,7 +24,7 @@ void haloreach_dll_loaded_callback()
 
 void halo1_dll_loaded_callback()
 {
-	write_line_verbose("Halo 1 was loaded!");
+	c_console::write_line_verbose("Halo 1 was loaded!");
 	{
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		c_halo1_game_host::init_runtime_modifications(build);
@@ -146,21 +146,21 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	
 	Window::Init("Opus", "OpusConsole", "opus");
 	c_render::Init(hInstance);
-	MantleGUI::Init(true);
+	MandrillGUI::Init(true);
 	GameLauncher::Init();
 
 	Window::RegisterUpdateCallback(UpdateCallback);
 	Window::RegisterDestroyCallback(DestroyCallback);
-	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
+	//MandrillGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	while (s_running) Window::Update();
 
 	Window::UnregisterUpdateCallback(UpdateCallback);
 	Window::UnregisterDestroyCallback(DestroyCallback);
-	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
+	//MandrillGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
-	MantleGUI::Deinit();
+	MandrillGUI::Deinit();
 	c_render::Deinit();
 	Window::Deinit();
 

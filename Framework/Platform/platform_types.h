@@ -15,3 +15,6 @@ typedef long long			int64;
 typedef long long           sint64;
 typedef unsigned long long  uint64;
 
+typedef uint32  time32_t;
+typedef uint64  time64_t;
+

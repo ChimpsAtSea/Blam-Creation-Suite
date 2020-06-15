@@ -3,17 +3,11 @@
 bool SystemPatch::s_patchedEnumWindows = false;
 
 thread_local WNDENUMPROC s_lpEnumFunc = nullptr;
-thread_local bool s_processedWindow = false;
 
 BOOL CALLBACK EnumWindowsSort(HWND hWnd, LPARAM lParam)
 {
 	bool isExcluded = false;
 	isExcluded |= hWnd == GetConsoleWindow();
-
-	if (hWnd == c_window_win32::get_window_handle())
-	{
-		s_processedWindow = true;
-	}
 
 	if (isExcluded)
 	{
@@ -33,7 +27,6 @@ BOOL EnumWindowsHook(
 	ASSERT(s_lpEnumFunc == nullptr);
 	ASSERT(EnumWindowsPointer != nullptr);
 
-	s_processedWindow = false;
 	s_lpEnumFunc = lpEnumFunc;
 
 	BOOL result = EnumWindowsPointer(EnumWindowsSort, lParam);

@@ -19,7 +19,7 @@ uintptr_t haloreach_tag_instances_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1826475F8);
 	return ~uintptr_t();
 }
-s_cache_file_tag_instance*& haloreach_tag_instances = reference_symbol<s_cache_file_tag_instance*>("haloreach_tag_instances", haloreach_tag_instances_offset);
+gen3::s_cache_file_tag_instance*& haloreach_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("haloreach_tag_instances", haloreach_tag_instances_offset);
 
 uintptr_t haloreach_tag_address_table_offset(e_engine_type engine_type, e_build build)
 {
@@ -92,7 +92,7 @@ T& haloreach_tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& haloreach_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
+T& haloreach_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint16_t index)
 {
 	T* tag_block_definition_ptr = reinterpret_cast<T*>(haloreach_tag_address_get(tag_block_ref.address));
 
@@ -104,14 +104,14 @@ T& haloreach_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint
 	return *tag_block_definition_ptr;
 }
 
-s_reach_cache_file_header* haloreach_cache_file_header_get()
+haloreach::s_cache_file_header* haloreach_cache_file_header_get()
 {
 	if (!is_valid(haloreach_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&haloreach_cache_file_global_loaded_state[0x10]);
+	haloreach::s_cache_file_header& cache_file_header = *reinterpret_cast<haloreach::s_cache_file_header*>(&haloreach_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
 
@@ -130,6 +130,6 @@ uintptr_t t_restricted_allocation_manager__reserve_memory_offset(e_engine_type e
 FunctionHookEx<t_restricted_allocation_manager__reserve_memory_offset, __int64 __fastcall (t_restricted_allocation_manager__reserve_memory_offset_args)> t_restricted_allocation_manager__reserve_memory = { "t_restricted_allocation_manager__reserve_memory", [](t_restricted_allocation_manager__reserve_memory_offset_args)
 {
 	__int64 result = t_restricted_allocation_manager__reserve_memory(__this, szName, a3, a4, a5, a6, a7, a8);
-	write_line_verbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
+	c_console::write_line_verbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
 	return result;
 } };

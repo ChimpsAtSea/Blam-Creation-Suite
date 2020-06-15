@@ -67,3 +67,12 @@
 #define _field_word_integer _field_word_integer, __FILE__, __LINE__
 #define _field_dword_integer _field_dword_integer, __FILE__, __LINE__
 #define _field_qword_integer _field_qword_integer, __FILE__, __LINE__
+
+#define  _field_version_equal _field_version_equal, __FILE__, __LINE__
+#define  _field_version_not_equal _field_version_not_equal, __FILE__, __LINE__
+#define  _field_version_less _field_version_less, __FILE__, __LINE__
+#define  _field_version_greater _field_version_greater, __FILE__, __LINE__
+#define  _field_version_less_or_equal _field_version_less_or_equal, __FILE__, __LINE__
+#define  _field_version_greater_or_equal _field_version_greater_or_equal, __FILE__, __LINE__
+#define  _field_version_custom _field_version_custom, __FILE__, __LINE__
+

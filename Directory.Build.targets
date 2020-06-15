@@ -16,6 +16,7 @@
   <IncludePath>$(SolutionDir)Tooling\Audio\;$(IncludePath)</IncludePath>
   <IncludePath>$(SolutionDir)Tooling\Blender\;$(IncludePath)</IncludePath>
   <IncludePath>$(SolutionDir)Framework\blamlib\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)CTS\;$(IncludePath)</IncludePath>
   
   <IncludePath>$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
   <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>

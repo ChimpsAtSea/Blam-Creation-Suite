@@ -24,7 +24,7 @@ public:
 	static void Hide();
 	static void ProcessWindowMessages();
 	static void AddMessageBreak();
-	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	static LRESULT window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
 	static void unregister_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
 	static bool is_rendering();
@@ -41,5 +41,6 @@ private:
 	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;
 	static std::vector<DebugUICallback> s_pToggleableCallbacks;
 	static std::vector<DebugUICallback> s_pAlwaysRunCallbacks;
+	static ImFont* s_imgui_font;
 };
 

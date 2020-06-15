@@ -38,8 +38,8 @@ int WINAPI wWinMain(
 	constexpr const char usage[] = "Usage: SymbolsPreprocessor -input:<input filepath> -output:<output filepath> [-cacheverify] [-excludedlibs:<lib filename>,<lib filename>,...]";
 	if (input_symbols.empty())
 	{
-		write_line_verbose("Input filepath not specified");
-		write_line_verbose(usage);
+		c_console::write_line_verbose("Input filepath not specified");
+		c_console::write_line_verbose(usage);
 		return 1;
 	}
 

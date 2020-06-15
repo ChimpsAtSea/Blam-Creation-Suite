@@ -1,5 +1,36 @@
 #include "platform-private-pch.h"
 
+bool filesystem_read_from_file_handle(FILE* file_handle, void* destination, size_t size)
+{
+	const long long read_beginning = _ftelli64(file_handle);
+	_fseeki64(file_handle, 0, SEEK_END);
+	const long long file_end = _ftelli64(file_handle);
+	_fseeki64(file_handle, read_beginning, SEEK_SET);
+	const long long read_end_expected = read_beginning + static_cast<long long>(size);
+
+	if (read_beginning == file_end)
+	{
+		return false;
+	}
+
+	char* output_data = static_cast<char*>(destination);
+
+	const long long read_position = read_beginning;
+	const long long read_end = __min(file_end, read_end_expected);
+	size_t remaining_size = size;
+	for (long long read_position = read_beginning; read_position < read_end;)
+	{
+		size_t bytes_read = fread(output_data, 1, remaining_size, file_handle);
+		remaining_size -= bytes_read;
+		read_position += static_cast<long long>(bytes_read);
+	}
+
+	if (read_end_expected > read_end)
+	{
+		return false;
+	}
+	return true;
+}
 
 bool filesystem_filepath_exists(const char* filepath)
 {
@@ -19,7 +50,10 @@ bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t*
 	ASSERT(buffer != nullptr);
 
 	*buffer = nullptr;
-	*buffer_size = 0;
+	if (buffer_size != nullptr)
+	{
+		*buffer_size = 0;
+	}
 
 	FILE* file_handle = fopen(filepath, "rb");
 	if (file_handle)
@@ -29,7 +63,10 @@ bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t*
 		fseek(file_handle, 0, SEEK_SET);
 
 		*buffer = new char[file_size] {};
-		*buffer_size = file_size;
+		if (buffer_size != nullptr)
+		{
+			*buffer_size = file_size;
+		}
 
 		size_t bytes_read = 0;
 		while (bytes_read < file_size)
@@ -50,7 +87,10 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 	ASSERT(buffer != nullptr);
 
 	*buffer = nullptr;
-	*buffer_size = 0;
+	if (buffer_size != nullptr)
+	{
+		*buffer_size = 0;
+	}
 
 	FILE* file_handle = _wfopen(filepath, L"rb");
 	if (file_handle)
@@ -60,7 +100,10 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 		fseek(file_handle, 0, SEEK_SET);
 
 		*buffer = new char[file_size] {};
-		*buffer_size = file_size;
+		if (buffer_size != nullptr)
+		{
+			*buffer_size = file_size;
+		}
 
 		size_t bytes_read = 0;
 		while (bytes_read < file_size)
@@ -235,12 +278,21 @@ char* filesystem_read_to_memory_legacy2(const wchar_t* filepathPath, char* buffe
 	size_t fileSize = static_cast<size_t>(_ftelli64(file_handle));
 	fseek(file_handle, 0, SEEK_SET);
 
+	size_t read_length = fileSize;
 	if (pAllocatedSize)
 	{
-		*pAllocatedSize = fileSize;
+		if (*pAllocatedSize > 0)
+		{
+			read_length = __min(*pAllocatedSize, read_length);
+			*pAllocatedSize = read_length;
+		}
+		else
+		{
+			*pAllocatedSize = fileSize;
+		}
 	}
 
-	filesystem_read_to_buffer_legacy_impl(file_handle, buffer, fileSize);
+	filesystem_read_to_buffer_legacy_impl(file_handle, buffer, read_length);
 
 	int fcloseResult = fclose(file_handle);
 	ASSERT(fcloseResult == 0);

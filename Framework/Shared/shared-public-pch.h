@@ -5,6 +5,7 @@
 #include <imgui\imgui_internal.h>
 #include <imgui\imgui_impl_win32.h>
 #include <imgui\imgui_impl_dx11.h>
+#include "IconsFontAwesome5.h"
 
 #include "hexrays_defs.h" // #TODO: Integrate this into a global types definition list
 

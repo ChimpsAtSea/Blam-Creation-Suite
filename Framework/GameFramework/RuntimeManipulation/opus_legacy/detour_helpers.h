@@ -72,11 +72,11 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 	if (detourAttachResult)
 	{
 		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
+		c_console::write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
 	}
 	else
 	{
-		write_line_verbose("Successfully hooked %s", pName);
+		c_console::write_line_verbose("Successfully hooked %s", pName);
 	}
 }
 
@@ -102,11 +102,11 @@ LONG create_hook(e_engine_type engine_type, e_build build, size_t offset, const 
 	if (detourAttachResult)
 	{
 		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
+		c_console::write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
 	}
 	else
 	{
-		write_line_verbose("Successfully hooked %s", pName);
+		c_console::write_line_verbose("Successfully hooked %s", pName);
 	}
 	return detourAttachResult;
 }
@@ -137,11 +137,11 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 		if (detourAttachResult)
 		{
 			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-			write_line_verbose("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, detourAttachResultStr);
+			c_console::write_line_verbose("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, detourAttachResultStr);
 		}
 		else
 		{
-			write_line_verbose("Successfully hooked %s %s", pModuleName, pProcedureName);
+			c_console::write_line_verbose("Successfully hooked %s %s", pModuleName, pProcedureName);
 		}
 	}
 }

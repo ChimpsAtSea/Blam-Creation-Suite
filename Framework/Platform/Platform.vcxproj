@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="!Resources\resources_manager.h" />
+    <ClInclude Include="callback_util.h" />
     <ClInclude Include="debug_util.h" />
     <ClInclude Include="endianness_util.h" />
     <ClInclude Include="enum_util.h" />
     <ClInclude Include="error_handling.h" />
     <ClInclude Include="filesystem_util.h" />
+    <ClInclude Include="language_util.h" />
     <ClInclude Include="Strings\fixed_string.h" />
     <ClInclude Include="intrinsics.h" />
     <ClInclude Include="language_runtime.h" />
@@ -39,12 +41,13 @@
     <ClInclude Include="threading.h" />
     <ClInclude Include="Windows\command_line.h" />
     <ClInclude Include="Windows\console.h" />
-    <ClInclude Include="Windows\window_win32.h" />
+    <ClInclude Include="Windows\window.h" />
     <ClInclude Include="windows_api.h" />
     <ClInclude Include="xxhash_cx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="!Resources\resources_manager.cpp" />
+    <ClCompile Include="callback_util.cpp" />
     <ClCompile Include="debug_util.cpp" />
     <ClCompile Include="error_handling.cpp" />
     <ClCompile Include="filesystem_util.cpp" />
@@ -59,7 +62,7 @@
     <ClCompile Include="Strings\stack_string.cpp" />
     <ClCompile Include="Windows\command_line.cpp" />
     <ClCompile Include="Windows\console.cpp" />
-    <ClCompile Include="Windows\window_win32.cpp" />
+    <ClCompile Include="Windows\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc" />
@@ -82,10 +85,14 @@
     <None Include="!Resources\HLSL\BoxShader.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="!Resources\reach_icon.ico" />
+    <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Font Include="!Resources\fa-regular-400.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Image Include="!Resources\bcs_icon.ico" />
+    <Image Include="!Resources\bcs_icon_debug.ico" />
+    <Image Include="!Resources\mandrill_icon.ico" />
+    <Image Include="!Resources\mandrill_icon_debug.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -164,6 +171,7 @@
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
     </FxCompile>
+    <ResourceCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -185,6 +193,7 @@
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
     </FxCompile>
+    <ResourceCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

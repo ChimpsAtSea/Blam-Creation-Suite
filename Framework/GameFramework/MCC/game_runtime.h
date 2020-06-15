@@ -5,7 +5,7 @@ public:
 	c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, e_build build = _build_not_set);
 	~c_game_runtime();
 
-	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
+	IDataAccess* get_data_access() const { return m_pDataAccess; };
 	e_build get_build() const { return m_build; }
 
 	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)

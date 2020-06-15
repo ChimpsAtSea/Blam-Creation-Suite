@@ -65,12 +65,13 @@ public:
 	virtual void render_ui() const = 0;
 	virtual IGameEngine* get_game_engine() const = 0;
 
-
 protected:
+	IGameEngine* game_engine;
+	c_window& window;
+	c_mouse_input& mouse_input;
 	c_game_runtime& game_runtime;
 	IGameEvents game_events;
 	c_high_precision_timer frame_timer;
 	double total_frame_cpu_time;
-	IGameEngine* game_engine;
 };
 

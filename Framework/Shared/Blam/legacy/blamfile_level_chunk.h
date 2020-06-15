@@ -14,7 +14,7 @@ public:
 	wchar_t m_levelDescription[12][0x80];
 	// dont know how to parse rest of struct
 	char m_imageFileName[0x100];
-	char m_mafilepath[0x100];
+	char map_path[0x100];
 	char __unknown[0xBB84];
 };
 constexpr size_t s_blamfile_level_chunk_size = sizeof(s_blamfile_level_chunk);

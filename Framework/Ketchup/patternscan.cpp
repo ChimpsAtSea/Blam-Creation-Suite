@@ -1,6 +1,6 @@
 #include "ketchup-private-pch.h"
 
-PatternScan::PatternScan(HANDLE hProcess, HMODULE hModule)
+c_pattern_scanner::c_pattern_scanner(HANDLE hProcess, HMODULE hModule)
 {
 	MODULEINFO moduleInfo = {};
 
@@ -24,7 +24,7 @@ PatternScan::PatternScan(HANDLE hProcess, HMODULE hModule)
 	);
 }
 
-PatternScan::~PatternScan()
+c_pattern_scanner::~c_pattern_scanner()
 {
 	// Cleanup
 	for (size_t i = 0; i < Instructions.size(); i++)
@@ -33,12 +33,12 @@ PatternScan::~PatternScan()
 	}
 }
 
-void PatternScan::AddInstruction(Instruction* instruction)
+void c_pattern_scanner::add_instruction(Instruction* instruction)
 {
 	Instructions.push_back(instruction);
 }
 
-DWORD PatternScan::FindPattern(DWORD startOffset)
+DWORD c_pattern_scanner::find_pattern(DWORD startOffset)
 {
 	// use instructions length so we don't go off the end of the data
 	size_t instructions_test_length = 0;
@@ -91,7 +91,7 @@ DWORD PatternScan::FindPattern(DWORD startOffset)
 	return 0;
 }
 
-unsigned char* PatternScan::GetData()
+unsigned char* c_pattern_scanner::get_data()
 {
 	return (unsigned char*)Data.data();
 }

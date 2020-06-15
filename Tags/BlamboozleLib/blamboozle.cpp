@@ -20,8 +20,8 @@ int blamboozle_run()
 	std::wstring output_directory = c_command_line::get_command_line_warg("blamboozle-output");
 	if (output_directory.empty())
 	{
-		write_line_verbose("No output directory specified");
-		write_line_verbose("Usage <output directory> <binary ...>");
+		c_console::write_line_verbose("No output directory specified");
+		c_console::write_line_verbose("Usage <output directory> <binary ...>");
 		return 1;
 	}
 
@@ -36,8 +36,8 @@ int blamboozle_run()
 		halo5_forge_file.empty() && 
 		halo4_midnight_tags_test.empty())
 	{
-		write_line_verbose("No binary file(s) specified");
-		write_line_verbose("Usage <output directory> <binary ...>");
+		c_console::write_line_verbose("No binary file(s) specified");
+		c_console::write_line_verbose("Usage <output directory> <binary ...>");
 		return 1;
 	}
 
@@ -72,12 +72,12 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	size_t binary_data_size = 0;
 	if (!filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
 	{
-		write_line_verbose("Failed to open binary file");
+		c_console::write_line_verbose("Failed to open binary file");
 		return 1;
 	}
 	if (binary_data_size == 0)
 	{
-		write_line_verbose("Binary file was zero sized");
+		c_console::write_line_verbose("Binary file was zero sized");
 		return 1;
 	}
 
@@ -130,12 +130,12 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 
 	if (engine_type == _engine_type_not_set)
 	{
-		write_line_verbose("Unrecognised executable provided");
+		c_console::write_line_verbose("Unrecognised executable provided");
 		return 1;
 	}
 
 	const char* build_pretty_name = build_to_string<decltype(build_pretty_name), true>(engine_type, build);
-	write_line_verbose("Found %s build", build_pretty_name);
+	c_console::write_line_verbose("Found %s build", build_pretty_name);
 
 	const char* engine_type_name = get_enum_string<decltype(engine_type_name)>(engine_type);
 

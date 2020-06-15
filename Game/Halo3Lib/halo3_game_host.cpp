@@ -22,7 +22,7 @@ void register_halo3lib()
 c_halo3_game_host::c_halo3_game_host(e_engine_type engine_type, e_build build) :
 	c_opus_game_engine_host(engine_type, build, get_game_runtime())
 {
-	write_line_verbose("Init Halo3GameHost");
+	c_console::write_line_verbose("Init Halo3GameHost");
 
 	init_runtime_modifications(g_halo3_game_runtime->get_build());
 
@@ -40,10 +40,10 @@ c_halo3_game_host::c_halo3_game_host(e_engine_type engine_type, e_build build) :
 
 c_halo3_game_host::~c_halo3_game_host()
 {
-	write_line_verbose("Deinit Halo3GameHost");
+	c_console::write_line_verbose("Deinit Halo3GameHost");
 
-	c_mantle_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mantle_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	deinit_runtime_modifications(g_halo3_game_runtime->get_build());
 

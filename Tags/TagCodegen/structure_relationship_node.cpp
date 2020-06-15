@@ -77,9 +77,9 @@ c_structure_relationship_node& c_structure_relationship_node::get_node_by_struct
 
 void c_structure_relationship_node::create_structure_relationships()
 {
-	for (const blofeld::s_tag_struct_definition* tag_struct_definition : blofeld::tag_struct_definitions)
+	for (const blofeld::s_tag_struct_definition** tag_struct_definition = blofeld::tag_struct_definitions; *tag_struct_definition; tag_struct_definition++)
 	{
-		nodes.push_back(new c_structure_relationship_node(*tag_struct_definition));
+		nodes.push_back(new c_structure_relationship_node(**tag_struct_definition));
 	}
 	for (c_structure_relationship_node* node : nodes)
 	{

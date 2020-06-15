@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma warning(disable : 4200)
+
 #ifndef _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 #endif
@@ -20,6 +22,7 @@
 using namespace xxhash;
 using namespace xxhash::literals;
 
+#include "language_util.h"
 #include "threading.h"
 #include "language_runtime.h"
 #include "debug_util.h"
@@ -27,10 +30,11 @@ using namespace xxhash::literals;
 #include "filesystem_util.h"
 #include "endianness_util.h"
 #include "enum_util.h"
+#include "callback_util.h"
 
 #include "Strings/strings.h"
 
-#include "Windows/window_win32.h"
+#include "Windows/window.h"
 #include "Windows/command_line.h"
 #include "Windows/console.h"
 

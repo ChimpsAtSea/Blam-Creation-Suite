@@ -293,7 +293,7 @@
 namespace blofeld
 {
 
-	extern const s_tag_group* tag_groups[262];
+	extern const s_tag_group* tag_groups[];
 } // namespace blofeld
 
 
