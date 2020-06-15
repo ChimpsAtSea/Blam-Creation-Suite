@@ -71,26 +71,35 @@ uint32_t c_gen3_cache_file::get_string_id_count() const
 	return cache_file_header.string_count;
 }
 
-char* c_gen3_cache_file::get_tag_data(s_tag_data& tag_data) const
+char* c_gen3_cache_file::get_data_with_page_offset(uint32_t page_offset) const
 {
 	const s_section_cache& section_info = get_section(_cache_file_section_index_tags);
 	char* tags_section_data = section_info.data;
 
-	uint64_t data_offset = convert_page_offset(tag_data.address);
-	char* data_reference_data_pointer = tags_section_data + data_offset;
+	uint64_t data_offset = convert_page_offset(page_offset);
+	char* data = tags_section_data + data_offset;
 
-	return data_reference_data_pointer;
+	return data;
+}
+
+bool c_gen3_cache_file::is_valid_data_address(char* data) const
+{
+	char* begin = virtual_memory_container.get_data();
+	char* end = begin + virtual_memory_container.GetSize();
+
+	return data >= begin && data < end;
+}
+
+char* c_gen3_cache_file::get_tag_data(s_tag_data& tag_data) const
+{
+	char* data = get_data_with_page_offset(tag_data.address);
+	return data;
 }
 
 char* c_gen3_cache_file::get_tag_block_data(s_tag_block& tag_block) const
 {
-	const s_section_cache& section_info = get_section(_cache_file_section_index_tags);
-	char* tags_section_data = section_info.data;
-
-	uint64_t data_offset = convert_page_offset(tag_block.address);
-	char* data_reference_data_pointer = tags_section_data + data_offset;
-
-	return data_reference_data_pointer;
+	char* data = get_data_with_page_offset(tag_block.address);
+	return data;
 }
 
 const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const

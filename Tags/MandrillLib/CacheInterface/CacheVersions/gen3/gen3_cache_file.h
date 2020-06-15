@@ -25,6 +25,8 @@ public:
 	virtual uint32_t get_tag_count() const final;
 	virtual uint32_t get_tag_group_count() const final;
 	virtual uint32_t get_string_id_count() const final;
+	char* get_data_with_page_offset(uint32_t page_offset) const;
+	bool is_valid_data_address(char* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const final;
 	virtual const char* get_string_id_by_index(uint32_t index) const final;

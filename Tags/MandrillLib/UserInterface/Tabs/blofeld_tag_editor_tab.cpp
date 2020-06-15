@@ -302,22 +302,52 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 		{
 			s_tag_block& tag_block = *reinterpret_cast<s_tag_block*>(current_data_position);
 
+			bool is_valid = true;
+			is_valid &= tag_block.definition_address == 0;
+			if (tag_block.count == 0)
+			{
+				is_valid &= tag_block.address == 0;
+			}
+			else if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(&tag_interface.get_cache_file()))
+			{
+				char* data_address = gen3_cache_file->get_data_with_page_offset(tag_block.address);
+				is_valid &= gen3_cache_file->is_valid_data_address(data_address);
+			}
+
 			ImDrawList* draw_list = ImGui::GetWindowDrawList();
-			ImVec2 start_pos = ImGui::GetCursorScreenPos();
+			ImVec2 group_start_pos = ImGui::GetCursorScreenPos();
 			ImGui::BeginGroup();
 			ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 0.7f, 0.7f));
 			ImGui::Text("Tag Block %s", current_field->name);
 			ImGui::Text("count: %i", tag_block.count);
 			ImGui::Text("address: %i", tag_block.address);
+			float status_pos_y = ImGui::GetCursorScreenPos().y;
 			ImGui::Text("definition_address: %i", tag_block.definition_address);
 			ImGui::PopStyleColor(1);
 			ImGui::EndGroup();
-			ImVec2 end_pos = ImGui::GetItemRectSize();
-			end_pos.x += start_pos.x;
-			end_pos.y += start_pos.y;
+			ImVec2 end_pos = ImGui::GetCursorScreenPos();
+			ImVec2 group_end_pos = ImGui::GetItemRectSize();
+			group_end_pos.x += group_start_pos.x;
+			group_end_pos.y += group_start_pos.y;
 
-			draw_list->AddRect(start_pos, end_pos, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.7f, 0.7f, 0.5f }));
+			draw_list->AddRect(group_start_pos, group_end_pos, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.7f, 0.7f, 0.5f }));
 
+			ImVec2 status_pos = { group_end_pos.x + 5.0f,status_pos_y };
+			ImGui::SetCursorScreenPos(status_pos);
+
+			if (is_valid)
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(0.3f, 1.0f, 0.3f));
+				ImGui::Text("valid");
+			}
+			else
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 0.3f, 0.3f));
+				ImGui::Text("invalid");
+			}
+			ImGui::PopStyleColor(1);
+
+			ImGui::SetCursorScreenPos(end_pos);
 		}
 		break;
 		case blofeld::_field_tag_reference:
@@ -379,7 +409,6 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			ImGui::PopStyleColor(1);
 
 			ImGui::SetCursorScreenPos(end_pos);
-
 		}
 		break;
 		case blofeld::_field_custom:					
