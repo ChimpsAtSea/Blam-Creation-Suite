@@ -487,11 +487,15 @@ namespace blofeld
 		{ _field_block, "tricks", &unit_trick_definition_block_block },
 		{ _field_char_enum, "player training vehicle type", &player_training_vehicle_type_enum },
 		{ _field_char_enum, "vehicle size#The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)", &vehicle_size_enum },
+
 		{ _field_char_integer, "complex suspension sample count#How many additional raycasts to perform per side of a tire." },
 		{ _field_pad, "VQWHV", 1 },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_angle, "complex suspension distribution angle:degrees#0-90 degrees of the wedge portion of the wheel to test suspension" },
 		{ _field_real, "complex suspension wheel diameter" },
 		{ _field_real, "complex suspension wheel width" },
+
 		{ _field_real, "minimum flipping angular velocity" },
 		{ _field_real, "maximum flipping angular velocity" },
 		{ _field_real, "crouch transition time:seconds" },
@@ -501,8 +505,13 @@ namespace blofeld
 		{ _field_real, "blur speed" },
 		{ _field_string_id, "flip message" },
 		{ _field_explanation, "sounds and effects", "" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "Player vehicle sound bank#High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
+
 		{ _field_tag_reference, "suspension sound", &global_sound_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_real, "fake audio speed - speed increase amount#amount to increase per frame while speeding up(.002 is a good number)" },
 		{ _field_real, "fake audio speed - boost speed increase amount#amount to increase per frame while boosting (.006 is a good number)" },
 		{ _field_real, "fake audio speed - speed decrease amount#amount to decrease per frame while slowing down (.002 is a good number)" },
@@ -510,9 +519,12 @@ namespace blofeld
 		{ _field_real, "fake audio speed - max speed scale#scales speed value. Must be > 0 for this to work (ie for banshee, 5 is good)" },
 		{ _field_block, "Sound RTPCs", &SoundRTPCBlock_block },
 		{ _field_block, "Sound Sweeteners", &SoundSweetenerBlock_block },
+
 		{ _field_tag_reference, "special effect", &global_effect_reference },
 		{ _field_tag_reference, "driver boost damage effect or response", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "rider boost damage effect or response", &global_damage_effect_or_response_definition_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_string_id, "vehicle name" },
 		{ _field_block, "physics transitions", &physics_transitions_block_block },
 		{ _field_custom },

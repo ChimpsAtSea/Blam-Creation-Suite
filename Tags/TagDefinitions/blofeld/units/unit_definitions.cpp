@@ -205,7 +205,10 @@ namespace blofeld
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ UNIT $$$" },
 		{ _field_long_flags, "flags", &unit_flags_part1 },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags2", &unit_flags_part2 },
+
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "constant sound volume", &ai_sound_volume_enum },
 		{ _field_tag_reference, "hologram unit reference", &unit_struct_definition_hologram_unit_reference_reference },
@@ -281,24 +284,30 @@ namespace blofeld
 		{ _field_block, "postures", &unit_postures_block_block },
 		{ _field_block, "Hud audio cues", &hud_unit_sound_block_block },
 		{ _field_block, "dialogue variants", &dialogue_variant_block_block },
+
 		{ _field_custom, "standard grenade throw" },
 		{ _field_real, "grenade angle:degrees" },
 		{ _field_real, "grenade angle max elevation:degrees" },
 		{ _field_real, "grenade angle min elevation:degrees" },
 		{ _field_real, "grenade velocity:world units per second" },
 		{ _field_custom },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_custom, "sprinting grenade throw" },
 		{ _field_real, "grenade angle (sprinting):degrees" },
 		{ _field_real, "grenade angle max elevation (sprinting):degrees" },
 		{ _field_real, "grenade angle min elevation (sprinting):degrees" },
 		{ _field_real, "grenade velocity (sprinting):world units per second" },
 		{ _field_custom },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_custom, "primary weapon toss" },
 		{ _field_real, "weapon angle:degrees" },
 		{ _field_real, "weapon angle max elevation:degrees" },
 		{ _field_real, "weapon angle min elevation:degrees" },
 		{ _field_real, "weapon velocity:world units per second" },
 		{ _field_custom },
+
 		{ _field_enum, "grenade type", &global_grenade_type_enum },
 		{ _field_short_integer, "grenade count" },
 		{ _field_block, "powered seats", &powered_seat_block_block },
@@ -311,7 +320,10 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_custom, "EMP Disabling" },
 		{ _field_real, "emp disabled time:seconds" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "emp disabled time (PVP):seconds #Set to -1 for not disabled in MP but disabled in SP" },
+
 		{ _field_tag_reference, "emp disabled effect", &global_effect_reference },
 		{ _field_custom },
 		{ _field_custom, "Boost" },
@@ -323,6 +335,8 @@ namespace blofeld
 		{ _field_tag_reference, "exit and detach damage", &global_damage_reference },
 		{ _field_tag_reference, "exit and detach weapon", &global_weapon_reference },
 		{ _field_explanation, "Experience", "" },
+
+		{ _field_version_greater, _engine_type_haloreach, 9 },
 		{ _field_short_integer, "experience for kill" },
 		{ _field_short_integer, "experience for assist" },
 		{ _field_tag_reference, "hero assist equipment#this is where you stick an equipment that the biped will always have, to implement the bizarrely named hero assist", &global_equipment_reference },
@@ -332,6 +346,7 @@ namespace blofeld
 		{ _field_custom, "Birthing" },
 		{ _field_struct, "birth", &unit_birth_struct_struct_definition },
 		{ _field_custom },
+
 		{ _field_terminator }
 	};
 
@@ -378,7 +393,10 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_string_id, "preferred_grenade_marker#if found, use this marker to attach live grenades to" },
 		{ _field_explanation, "Weapon Specific Markers", "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit" },
+
+		{_field_version_greater, _engine_type_haloreach},
 		{ _field_block, "weapon specific markers", &WeaponSpecificMarkersBlock_block },
+
 		{ _field_terminator }
 	};
 
@@ -391,8 +409,14 @@ namespace blofeld
 		{ _field_tag_reference, "landing melee damage", &global_damage_reference },
 		{ _field_tag_reference, "flurry melee damage", &global_damage_reference },
 		{ _field_tag_reference, "obstacle smash damage", &global_damage_reference },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_tag_reference, "assassination damage", &global_damage_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "assassination primary damage", &global_damage_reference },
 		{ _field_tag_reference, "assassination ragdoll damage{assassination damage}", &global_damage_reference },
+
 		{ _field_terminator }
 	};
 
@@ -404,7 +428,10 @@ namespace blofeld
 		{ _field_real, "boost rise time:s#if the trigger is fully down, takes this long to reach peak power" },
 		{ _field_real, "boost fall time:s#if the trigger is let go (or peak time expires), takes this long to reach 0 power" },
 		{ _field_real, "boost power per second#1, means you burn all your power in one sec.  .1 means you can boost for 10 seconds." },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "boost low warning threshold" },
+
 		{ _field_real, "recharge rate#1 means you recharge fully in 1 second.  .1 means you rechage fully in 10 seconds" },
 		{ _field_real, "recharge delay:s#how long do you have to be off the tirgger for before boost starts recharging" },
 		{ _field_custom },
