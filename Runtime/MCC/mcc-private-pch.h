@@ -8,4 +8,6 @@
 #include <MantleLib\mantlelib-public-pch.h>
 #include <HaloReachLib\haloreachlib-private-pch.h>
 #include <Halo1Lib\halo1lib-private-pch.h>
+#include <Halo2Lib\halo2lib-private-pch.h>
+#include <Halo3Lib\halo3lib-private-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>

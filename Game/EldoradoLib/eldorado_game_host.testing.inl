@@ -164,8 +164,9 @@ FunctionHookEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 	write_line_verbose("Hf2pInit_offset");
 	if (c_eldorado_game_host::get_build() == _build_eldorado_1_106708_cert_ms23)
 	{
-		// #TODO: What are these for?
+		// null `g_game_statistics_callback_pointer` this is supposed to happen in `game_statistics_initialize` called from a function within `Hf2pInit`
 		*(uint32_t*)0x50CCB3C = 0;
+		// null `g_ui_proxy_unknown_pointer` this is supposed to happen in `ui_proxy_initialize` called from a function within `Hf2pInit`
 		*(uint32_t*)0x244ED28 = 0;
 	}
 	//InitSoundSystem();

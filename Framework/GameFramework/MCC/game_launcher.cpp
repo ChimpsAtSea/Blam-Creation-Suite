@@ -29,6 +29,7 @@ static bool has_auto_started = false;
 static bool k_autostart_halo_haloreach = false;
 static bool k_autostart_halo_halo1 = false;
 static bool k_autostart_halo_halo2 = false;
+static bool k_autostart_halo_halo3 = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
@@ -41,6 +42,7 @@ void c_game_launcher::init_game_launcher()
 	k_autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
 	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
+	k_autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
 	k_autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
 	k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
 	k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
@@ -84,6 +86,12 @@ void c_game_launcher::init_game_launcher()
 		g_supported_engine_types.push_back(_engine_type_groundhog);
 	}
 
+	if (PathFileExistsA("halo3\\halo3.dll"))
+	{
+		is_bink2_required = true;
+		g_supported_engine_types.push_back(_engine_type_halo3);
+	}
+
 	if (is_bink2_required)
 	{
 		ensure_library_loaded("bink2w64.dll", "MCC\\Binaries\\Win64");
@@ -114,6 +122,10 @@ void c_game_launcher::init_game_launcher()
 	}
 #endif
 
+	g_halo1_map_ids.push_back(_map_id_mainmenu);
+	g_halo2_map_ids.push_back(_map_id_mainmenu);
+	g_halo3_map_ids.push_back(_map_id_mainmenu);
+
 	for (long i = 0; i < k_number_of_map_ids; i++)
 	{
 		e_map_id map_id = static_cast<e_map_id>(i);
@@ -143,8 +155,6 @@ void c_game_launcher::init_game_launcher()
 			break;
 		}
 	}
-	g_halo1_map_ids.push_back(_map_id_mainmenu);
-	g_halo2_map_ids.push_back(_map_id_mainmenu);
 
 	// #TODO: Attempt to restore from previously selected engine
 	g_engine_type = g_supported_engine_types.empty() ? _engine_type_not_set : g_supported_engine_types.front();
@@ -164,6 +174,7 @@ void c_game_launcher::init_game_launcher()
 		if (k_autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
 		if (k_autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
 		if (k_autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
+		if (k_autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
 		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
 		if (k_autostart_halo_eldorado || k_autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
@@ -293,6 +304,7 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 	case _engine_type_haloreach:
 	case _engine_type_halo1:
 	case _engine_type_halo2:
+	case _engine_type_halo3:
 	case _engine_type_groundhog:
 		launch_mcc_game(engine_type);
 		break;
@@ -329,6 +341,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		current_game_host = new c_halo2_game_host(engine_type, build);
 		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
+		break;
+	case _engine_type_halo3:
+		build = c_halo3_game_host::get_game_runtime().get_build();
+		current_game_host = new c_halo3_game_host(engine_type, build);
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "00_sandbox-0_010";
+		c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
 		break;
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
@@ -414,7 +432,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			case _engine_type_halo3:
 				game_context->game_mode = map_id_to_game_mode(g_halo3_map_id);
 				game_context->map_id = g_halo3_map_id;
-				//data_access = c_halo3_game_host::get_data_access();
+				data_access = c_halo3_game_host::get_data_access();
 				break;
 			case _engine_type_halo3odst:
 				game_context->game_mode = map_id_to_game_mode(g_halo3odst_map_id);
@@ -640,6 +658,28 @@ void c_game_launcher::render_main_menu()
 			{
 				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
 				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+			}
+		}
+		break;
+		case _engine_type_halo3:
+		{
+			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo3_map_id)))
+			{
+				for (e_map_id map_id : g_halo3_map_ids)
+				{
+					bool is_selected = map_id == g_halo3_map_id;
+
+					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					{
+						g_halo3_map_id = map_id;
+					}
+				}
+				ImGui::EndCombo();
+			}
+
+			if (map_id_to_game_mode(g_halo3_map_id) == _mcc_game_mode_campaign)
+			{
 				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
 		}

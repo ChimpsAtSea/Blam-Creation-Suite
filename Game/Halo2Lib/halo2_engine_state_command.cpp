@@ -81,7 +81,8 @@ std::string c_halo2_engine_state_command::get_command_info(const std::string &to
 		{
 			return
 				"Update engine state\n"
-				"Usage: engine_state_str <state>";
+				"Usage: engine_state <state>\n"
+				"States: pause, unpause, end, restart, revert";
 		}
 	}
 	return "";
@@ -89,7 +90,31 @@ std::string c_halo2_engine_state_command::get_command_info(const std::string &to
 
 std::string c_halo2_engine_state_command::get_command_auto_complete(const std::vector<std::string> &Arguments) const
 {
-	return ""; // todo;
+	if (Arguments.size() > 1)
+	{
+		if (!Arguments[1].compare("p"))
+		{
+			return "pause";
+		}
+		else if (!Arguments[1].compare("u"))
+		{
+			return "unpause";
+		}
+		else if (!Arguments[1].compare("e"))
+		{
+			return "end";
+		}
+		else if (!Arguments[1].compare("res"))
+		{
+			return "restart";
+		}
+		else if (!Arguments[1].compare("rev"))
+		{
+			return "revert";
+		}
+	}
+
+	return "";
 }
 
 void c_halo2_engine_state_command::set_game_engine(IGameEngine* game_engine)
