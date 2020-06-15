@@ -29,7 +29,7 @@ UINT64 file_get_image_base_address(LPCWSTR filename)
 void write_stack_back_trace(LPCWSTR calling_function, DWORD depth = 1, DWORD size = 1024)
 {
 	depth++;
-	write_line_verbose("TRACE(%ls)\n{", calling_function);
+	c_console::write_line_verbose("TRACE(%ls)\n{", calling_function);
 
 	LPVOID* traces = new LPVOID[size];
 	for (int trace_index = 0; trace_index < CaptureStackBackTrace(depth, size, traces, NULL); trace_index++)
@@ -54,7 +54,7 @@ void write_stack_back_trace(LPCWSTR calling_function, DWORD depth = 1, DWORD siz
 							{
 								std::wstring module_name = std::wstring(szModName).substr(std::wstring(szModName).find_last_of(L"/\\") + 1);
 								UINT64 module_base_address = file_get_image_base_address(szModName) + module_offset;
-								write_line_verbose("\t%16ls+0x%08IIX, 0x%016IIX", module_name.c_str(), module_offset, module_base_address);
+								c_console::write_line_verbose("\t%16ls+0x%08IIX, 0x%016IIX", module_name.c_str(), module_offset, module_base_address);
 							}
 						}
 					}
@@ -63,7 +63,7 @@ void write_stack_back_trace(LPCWSTR calling_function, DWORD depth = 1, DWORD siz
 		}
 	}
 
-	write_line_verbose("}");
+	c_console::write_line_verbose("}");
 };
 
 uintptr_t enable_mainmenu_scenario_patch_offset(e_engine_type engine_type, e_build build)
