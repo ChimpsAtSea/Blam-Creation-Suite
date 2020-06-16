@@ -1821,12 +1821,13 @@ INT64 IGameEvents::Member134(INT64)
 	return INT64(0);
 }
 
-void IGameEvents::Member135()
+INT64 IGameEvents::Member135()
 {
 	if (g_logGameEventMessages)
 	{
 		c_console::write_line_verbose(__FUNCTION__);
 	}
+	return 0;
 }
 
 LPGUID IGameEvents::GetSessionID()
