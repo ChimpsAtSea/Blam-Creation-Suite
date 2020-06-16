@@ -1825,7 +1825,8 @@ INT64 IGameEvents::Member135()
 {
 	if (g_logGameEventMessages)
 	{
-		c_console::write_line_verbose(__FUNCTION__);
+		// spams console
+		//c_console::write_line_verbose(__FUNCTION__);
 	}
 	return 0;
 }
