@@ -179,8 +179,15 @@ void rhesus_debugger(DWORD process_creation_flags)
 
 bool rhesus_crash_reporter(int& result)
 {
+	bool is_debugger_present = IsDebuggerPresent();
 	bool is_rhesus = c_command_line::has_command_line_arg("-rhesus");
 	bool is_rhesus_debug = !is_rhesus && c_command_line::has_command_line_arg("-rhesusdebug");
+
+	if (is_debugger_present && !is_rhesus_debug)
+	{
+		return false;
+	}
+
 	if (is_rhesus_debug)
 	{
 		c_console::init_console(L"Rhesus");
@@ -204,7 +211,6 @@ bool rhesus_crash_reporter(int& result)
 		return false;
 	}
 
-	bool is_debugger_present = IsDebuggerPresent();
 	DWORD process_creation_flags = DEBUG_ONLY_THIS_PROCESS;
 	if (is_debugger_present)
 	{

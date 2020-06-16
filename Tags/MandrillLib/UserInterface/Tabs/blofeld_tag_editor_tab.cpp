@@ -220,7 +220,6 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 
 	uint32_t struct_size = get_struct_size(struct_definition);	// dynamic
 
-	ImGui::Dummy({ 30.0f, 30.0f });
 	ImGui::Text("------ START %s [size:0x%x] ------", struct_definition.name, struct_size);
 	ImGui::Dummy({ 10.0f, 10.0f });
 	uint32_t bytes_traversed = 0;
@@ -243,9 +242,13 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 		switch (current_field->field_type)
 		{
 		case blofeld::_field_struct:
+			ImGui::Dummy({ 30.0f, 30.0f });
+			ImGui::Text("VVV %s VVV", current_field->name);
 			render_tag_struct_definition(current_data_position, *current_field->struct_definition);
 			break;
 		case blofeld::_field_array:
+			ImGui::Dummy({ 30.0f, 30.0f });
+			ImGui::Text("[[[ %s ]]]", current_field->name);
 			for (uint32_t i = 0; i < current_field->array_definition->count; i++)
 			{
 				render_tag_struct_definition(current_data_position, current_field->array_definition->struct_definition);
@@ -292,6 +295,34 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			break;
 			break;
 		case blofeld::_field_string_id:
+		{
+			bool is_valid = true;
+			string_id value = *reinterpret_cast<string_id*>(current_data_position);
+			const char* string_value = "";
+			if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(&tag_interface.get_cache_file()))
+			{
+				string_value = gen3_cache_file->get_string_id(value, nullptr);
+				if (!string_value)
+				{
+					is_valid = false;
+					string_value = "";
+				}
+			}
+			ImGui::InputInt(current_field->name, reinterpret_cast<int*>(current_data_position));
+			ImGui::SameLine();
+			if (is_valid)
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(0.3f, 1.0f, 0.3f));
+				ImGui::Text("valid '%s'", string_value);
+			}
+			else
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 0.3f, 0.3f));
+				ImGui::Text("invalid");
+			}
+			ImGui::PopStyleColor(1);
+			break;
+		}
 		case blofeld::_field_old_string_id:
 			ImGui::InputInt(current_field->name, reinterpret_cast<int*>(current_data_position));
 			break;
@@ -352,6 +383,61 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			ImGui::SetCursorScreenPos(end_pos);
 		}
 		break;
+		case blofeld::_field_data:
+		{
+			s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(current_data_position);
+
+			bool is_valid = true;
+			is_valid &= tag_data.stream_flags == 0;
+			is_valid &= tag_data.stream_offset == 0;
+			is_valid &= tag_data.definition == 0;
+			if (tag_data.size > 0)
+			{
+				if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(&tag_interface.get_cache_file()))
+				{
+					char* data_address = gen3_cache_file->get_data_with_page_offset(tag_data.address);
+					is_valid &= gen3_cache_file->is_valid_data_address(data_address);
+				}
+			}
+
+			ImDrawList* draw_list = ImGui::GetWindowDrawList();
+			ImVec2 group_start_pos = ImGui::GetCursorScreenPos();
+			ImGui::BeginGroup();
+			ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 1.0f, 0.7f));
+			ImGui::Text("Tag Data %s", current_field->name);
+			ImGui::Text("size: %i", tag_data.size);
+			ImGui::Text("stream_flags: %i", tag_data.stream_flags);
+			ImGui::Text("stream_offset: %i", tag_data.stream_offset);
+			ImGui::Text("address: %i", tag_data.address);
+			float status_pos_y = ImGui::GetCursorScreenPos().y;
+			ImGui::Text("definition: %i", tag_data.definition);
+			ImGui::PopStyleColor(1);
+			ImGui::EndGroup();
+			ImVec2 end_pos = ImGui::GetCursorScreenPos();
+			ImVec2 group_end_pos = ImGui::GetItemRectSize();
+			group_end_pos.x += group_start_pos.x;
+			group_end_pos.y += group_start_pos.y;
+
+			draw_list->AddRect(group_start_pos, group_end_pos, ImGui::ColorConvertFloat4ToU32({ 1.0f, 1.0f, 0.7f, 0.5f }));
+
+			ImVec2 status_pos = { group_end_pos.x + 5.0f,status_pos_y };
+			ImGui::SetCursorScreenPos(status_pos);
+
+			if (is_valid)
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(0.3f, 1.0f, 0.3f));
+				ImGui::Text("valid");
+			}
+			else
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 0.3f, 0.3f));
+				ImGui::Text("invalid");
+			}
+			ImGui::PopStyleColor(1);
+
+			ImGui::SetCursorScreenPos(end_pos);
+		}
+		break;
 		case blofeld::_field_tag_reference:
 		{
 			s_tag_reference& tag_reference = *reinterpret_cast<s_tag_reference*>(current_data_position);
@@ -363,6 +449,7 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			};
 			__group_tag = _byteswap_ulong(tag_reference.group_tag);
 
+			c_tag_interface* instance = nullptr;
 			bool is_valid = true;
 			if (tag_reference.group_tag == UINT32_MAX)
 			{
@@ -374,6 +461,14 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			{
 				const char* known_legacy_tag_group_name = get_known_legacy_tag_group_name(tag_reference.group_tag);
 				is_valid = known_legacy_tag_group_name != nullptr;
+			}
+			if (is_valid && tag_reference.index != UINT16_MAX)
+			{
+				instance = tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
+				if (instance == nullptr)
+				{
+					is_valid = false;
+				}
 			}
 
 			ImDrawList* draw_list = ImGui::GetWindowDrawList();
@@ -401,7 +496,12 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data
 			if (is_valid)
 			{
 				ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(0.3f, 1.0f, 0.3f));
-				ImGui::Text("valid");
+				const char* tag_name = "<null>";
+				if (instance && !instance->is_null())
+				{
+					tag_name = instance->get_path_with_group_name_cstr();
+				}
+				ImGui::Text("valid '%s'", tag_name);
 			}
 			else
 			{

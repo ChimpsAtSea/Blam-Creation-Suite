@@ -65,15 +65,15 @@ uint32_t c_blofeld_tag_definition_debug_tab::render_tag_struct_definition(int le
 	int32_t field_index = 0;
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 	{
-		const char* field_typename = field_to_string(current_field->field_type);
-		ASSERT(field_typename != nullptr);
-
 		uint32_t field_skip_count;
 		if (skip_tag_field_version(*current_field, engine_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
 		}
+
+		const char* field_typename = field_to_string(current_field->field_type);
+		ASSERT(field_typename != nullptr);
 
 		ImGui::Dummy({ static_cast<float>(level) * indent, 0.0f });
 		ImGui::SameLine();

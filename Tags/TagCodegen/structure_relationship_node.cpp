@@ -65,6 +65,7 @@ void c_structure_relationship_node::create_sorted_tag_struct_definitions()
 
 c_structure_relationship_node& c_structure_relationship_node::get_node_by_structure(const blofeld::s_tag_struct_definition& tag_struct_definition)
 {
+	REFERENCE_ASSERT(tag_struct_definition);
 	for (c_structure_relationship_node* node : nodes)
 	{
 		if (&node->tag_struct_definition == &tag_struct_definition)
