@@ -40,6 +40,9 @@ namespace blofeld
 	extern s_tag_struct_definition unit_lipsync_scales_struct_struct_definition;
 	extern s_tag_struct_definition unit_birth_struct_struct_definition;
 
+	extern s_tag_block_definition halo3_unit_camera_struct_unknown_block;
+	extern s_tag_struct_definition halo3_unit_camera_struct_unknown_block_struct;
+
 	extern const char* unit_camera_acceleration_displacement_input_strings[];
 	extern s_string_list_definition unit_camera_acceleration_displacement_input;
 	extern const char* unit_camera_flags_definition_strings[];

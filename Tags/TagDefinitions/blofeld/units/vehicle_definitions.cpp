@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block );
+	TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block);
 
-	TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition );
+	TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition);
 
 	TAG_BLOCK(human_jeep_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_block, "boat engine", &boat_engine_definition_block_block },
@@ -54,7 +54,7 @@ namespace blofeld
 
 	TAG_BLOCK(wolverine_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_explanation, "wheel circumferance", "" },
@@ -71,7 +71,7 @@ namespace blofeld
 
 	TAG_BLOCK(alien_scout_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -102,7 +102,7 @@ namespace blofeld
 
 	TAG_BLOCK(alien_fighter_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
@@ -135,7 +135,7 @@ namespace blofeld
 
 	TAG_BLOCK(turret_block, 1)
 	{
-		{ _field_word_flags, "flags", &turret_flags },
+		{ _field_word_flags, "flags", & turret_flags },
 		{ _field_pad, "pad", 2 },
 		{ _field_string_id, "physical yaw node" },
 		{ _field_string_id, "physical pitch node" },
@@ -146,7 +146,7 @@ namespace blofeld
 
 	TAG_BLOCK(mantis_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
@@ -195,7 +195,7 @@ namespace blofeld
 
 	TAG_BLOCK(vtol_block, 1)
 	{
-		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
+		{ _field_struct, "turning control", & vehicle_turning_control_struct_struct_definition },
 		{ _field_custom },
 		{ _field_string_id, "left lift marker" },
 		{ _field_custom },
@@ -236,7 +236,7 @@ namespace blofeld
 
 	TAG_BLOCK(chopper_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_explanation, "wheel circumferance", "" },
@@ -260,7 +260,7 @@ namespace blofeld
 
 	TAG_BLOCK(guardian_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -276,7 +276,7 @@ namespace blofeld
 
 	TAG_BLOCK(jackal_glider_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -328,7 +328,7 @@ namespace blofeld
 
 	TAG_BLOCK(boat_block, 1)
 	{
-		{ _field_byte_flags, "flags", &boat_flags },
+		{ _field_byte_flags, "flags", & boat_flags },
 		{ _field_pad, "blah", 3 },
 		{ _field_angle, "tank control forward arc:degrees#only used when \'use tank controls\' is checked above" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
@@ -343,7 +343,7 @@ namespace blofeld
 
 	TAG_BLOCK(space_fighter_block, 1)
 	{
-		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "full throttle speed:wu/s#maximum speed when throttle = 1.0" },
@@ -424,7 +424,7 @@ namespace blofeld
 
 	TAG_BLOCK(revenant_block, 1)
 	{
-		{ _field_struct, "tank block", &human_tank_struct_struct_definition },
+		{ _field_struct, "tank block", & human_tank_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -473,11 +473,11 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition );
+	TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition);
 
 	TAG_STRUCT(vehicle_group)
 	{
-		{ _field_struct, "unit", &unit_struct_definition_struct_definition },
+		{ _field_struct, "unit", & unit_struct_definition_struct_definition },
 		{ _field_custom, "$$$ VEHICLE $$$" },
 		{ _field_long_flags, "flags", &vehicle_flags },
 		{ _field_explanation, "physics type", "define one of the following blocks for the type of physics you wish this vehicle to have." },
@@ -502,7 +502,13 @@ namespace blofeld
 		{ _field_real, "HOOJYTSU!" },
 		{ _field_real, "seat enterance acceleration scale#how much do we scale the force the vehicle the applies down on the seat when he enters. 0 == no acceleration" },
 		{ _field_real, "seat exit accelersation scale#how much do we scale the force the vehicle the applies down on the seat when he exits. 0 == no acceleration" },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "blur speed" },
+
+		{ _field_version_less, _engine_type_haloreach },
+		{ _field_real, "flip time" }, // assembly #TODO: VALIDATE
+
 		{ _field_string_id, "flip message" },
 		{ _field_explanation, "sounds and effects", "" },
 
@@ -537,6 +543,7 @@ namespace blofeld
 		{ _field_block, "type-human_tank", &human_tank_block_block },
 		{ _field_block, "type-human_jeep", &human_jeep_block_block },
 		{ _field_block, "type-human_plane", &human_plane_block_block },
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "type-wolverine", &wolverine_block_block },
 		{ _field_block, "type-alien_scout", &alien_scout_block_block },
 		{ _field_block, "type-alien_fighter", &alien_fighter_block_block },
@@ -545,6 +552,7 @@ namespace blofeld
 		{ _field_block, "type-vtol", &vtol_block_block },
 		{ _field_block, "type-chopper", &chopper_block_block },
 		{ _field_block, "type-guardian", &guardian_block_block },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_block, "type-jackal-glider", &jackal_glider_block_block },
 		{ _field_block, "type-boat", &boat_block_block },
 		{ _field_block, "type-space-fighter", &space_fighter_block_block },
@@ -626,14 +634,14 @@ namespace blofeld
 
 	TAG_STRUCT(vtol_descent_function_struct)
 	{
-		{ _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition },
+		{ _field_struct, "descent to boost", & scalar_function_named_struct_struct_definition },
 		{ _field_real, "max downward speed:wu/s" },
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(flight_surface_struct)
 	{
-		{ _field_char_enum, "offset axis", &dimensions_enum },
+		{ _field_char_enum, "offset axis", & dimensions_enum },
 		{ _field_char_enum, "pivot axis", &dimensions_enum },
 		{ _field_char_enum, "rotation axis", &dimensions_enum },
 		{ _field_char_enum, "normal axis", &dimensions_enum },
@@ -660,66 +668,66 @@ namespace blofeld
 	STRINGS(vehicle_flags)
 	{
 		"no friction w/driver",
-		"autoaim when teamless",
-		"ai weapon cannot rotate",
-		"ai does not require driver",
-		"ai driver enable",
-		"ai driver flying",
-		"ai driver can-sidestep",
-		"ai driver hovering",
-		"noncombat vehicle",
-		"does not cause collision damage",
-		"huge vehicle physics group",
-		"enable wheelie-popping hack",
-		"ai auto turret#will attempt to spawn Unit\'s \'spawned turret character\' to control this turret",
-		"ai sentry turret",
-		"ignore camera pitch",
-		"auto turret#will be ignored if \'ai auto turret\' is set in campaign or survival",
-		"ignore kill volumes#Suppress kill volume checks performed by unmanned vehicles (needed by RemoteStrike/power weapon ordnance)",
-		"targetable when open#makes this targetable if it is in an open state",
-		"vehicle wants to recieve reduced weapon acceleration when on ground#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is on the ground",
-		"vehicle wants to recieve reduced weapon acceleration when airborne#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is airborne",
-		"do not force units to exit when upside down",
-		"vehicle creates enemy spawn influencers#Used for Dominion Sentry Turrets, which enemies should not spawn in range of",
-		"driver cannot take damage",
-		"player cannot flip vehicle#the player isn\'t allowed to flip the vehicle under any circumstances"
+			"autoaim when teamless",
+			"ai weapon cannot rotate",
+			"ai does not require driver",
+			"ai driver enable",
+			"ai driver flying",
+			"ai driver can-sidestep",
+			"ai driver hovering",
+			"noncombat vehicle",
+			"does not cause collision damage",
+			"huge vehicle physics group",
+			"enable wheelie-popping hack",
+			"ai auto turret#will attempt to spawn Unit\'s \'spawned turret character\' to control this turret",
+			"ai sentry turret",
+			"ignore camera pitch",
+			"auto turret#will be ignored if \'ai auto turret\' is set in campaign or survival",
+			"ignore kill volumes#Suppress kill volume checks performed by unmanned vehicles (needed by RemoteStrike/power weapon ordnance)",
+			"targetable when open#makes this targetable if it is in an open state",
+			"vehicle wants to recieve reduced weapon acceleration when on ground#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is on the ground",
+			"vehicle wants to recieve reduced weapon acceleration when airborne#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is airborne",
+			"do not force units to exit when upside down",
+			"vehicle creates enemy spawn influencers#Used for Dominion Sentry Turrets, which enemies should not spawn in range of",
+			"driver cannot take damage",
+			"player cannot flip vehicle#the player isn\'t allowed to flip the vehicle under any circumstances"
 	};
 	STRING_LIST(vehicle_flags, vehicle_flags_strings, _countof(vehicle_flags_strings));
 
 	STRINGS(vehicle_size_enum)
 	{
 		"small",
-		"large"
+			"large"
 	};
 	STRING_LIST(vehicle_size_enum, vehicle_size_enum_strings, _countof(vehicle_size_enum_strings));
 
 	STRINGS(alien_scout_specific_type_enum)
 	{
 		"none",
-		"ghost",
-		"spectre",
-		"wraith",
-		"hover craft"
+			"ghost",
+			"spectre",
+			"wraith",
+			"hover craft"
 	};
 	STRING_LIST(alien_scout_specific_type_enum, alien_scout_specific_type_enum_strings, _countof(alien_scout_specific_type_enum_strings));
 
 	STRINGS(vehicle_type_enum)
 	{
 		"vehicle_type_human_tank",
-		"vehicle_type_human_jeep",
-		"vehicle_type_human_plane",
-		"vehicle_type_wolverine",
-		"vehicle_type_alien_scout",
-		"vehicle_type_alien_fighter",
-		"vehicle_type_turret",
-		"vehicle_type_mantis",
-		"vehicle_type_vtol",
-		"vehicle_type_chopper",
-		"vehicle_type_guardian",
-		"vehicle_type_jackal_glider",
-		"vehicle_type_boat",
-		"vehicle_type_space_fighter",
-		"vehicle_type_revenant"
+			"vehicle_type_human_jeep",
+			"vehicle_type_human_plane",
+			"vehicle_type_wolverine",
+			"vehicle_type_alien_scout",
+			"vehicle_type_alien_fighter",
+			"vehicle_type_turret",
+			"vehicle_type_mantis",
+			"vehicle_type_vtol",
+			"vehicle_type_chopper",
+			"vehicle_type_guardian",
+			"vehicle_type_jackal_glider",
+			"vehicle_type_boat",
+			"vehicle_type_space_fighter",
+			"vehicle_type_revenant"
 	};
 	STRING_LIST(vehicle_type_enum, vehicle_type_enum_strings, _countof(vehicle_type_enum_strings));
 
@@ -732,34 +740,34 @@ namespace blofeld
 	STRINGS(tank_flags)
 	{
 		"Enable New Control",
-		"Use Linear Velocity#Used to decide if we use linear velocity to calculate if we are in motion",
-		"Use Angular Velocity#Used to decide if we use angular velocity to calculate if we are in motion"
+			"Use Linear Velocity#Used to decide if we use linear velocity to calculate if we are in motion",
+			"Use Angular Velocity#Used to decide if we use angular velocity to calculate if we are in motion"
 	};
 	STRING_LIST(tank_flags, tank_flags_strings, _countof(tank_flags_strings));
 
 	STRINGS(dimensions_enum)
 	{
 		"foward",
-		"left",
-		"up"
+			"left",
+			"up"
 	};
 	STRING_LIST(dimensions_enum, dimensions_enum_strings, _countof(dimensions_enum_strings));
 
 	STRINGS(turret_flags)
 	{
 		"powered by parent#this is basicly a flag for the wolverine.  This turret pops up when the wolverine activates",
-		"idles in default position#this turret holds its default position instead of swinging freely when not controlled",
-		"reverse yaw motor direction",
-		"reverse pitch motor direction",
-		"reverse elevate motor direction",
-		"targetable when open"
+			"idles in default position#this turret holds its default position instead of swinging freely when not controlled",
+			"reverse yaw motor direction",
+			"reverse pitch motor direction",
+			"reverse elevate motor direction",
+			"targetable when open"
 	};
 	STRING_LIST(turret_flags, turret_flags_strings, _countof(turret_flags_strings));
 
 	STRINGS(boat_flags)
 	{
 		"brick on throttle#use this for torpedoes",
-		"use tank controls"
+			"use tank controls"
 	};
 	STRING_LIST(boat_flags, boat_flags_strings, _countof(boat_flags_strings));
 

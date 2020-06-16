@@ -72,14 +72,26 @@ namespace blofeld
 		{ _field_real, "anti_gravity_bank_lift#lift per WU." },
 		{ _field_real, "steering_bank_reaction_scale#how quickly we bank when we steer " },
 		{ _field_real, "gravity scale#value of 0 defaults to 1.  .5 is half gravity" },
+
+		{ _field_version_less, _engine_type_haloreach, 4 },
+		{ _field_real, "radius" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+
+		{_field_version_greater_or_equal, _engine_type_haloreach, 5},
 		{ _field_custom },
 		{ _field_enum, "maximum update period ticks#ticks. 0 is default of 2", &physics_update_period_enum },
 		{ _field_enum, "maximum remote update period ticks#ticks. when controlled by an ai or remote player. 0 defaults to 4", &physics_update_period_enum },
 		{ _field_long_integer, "iteration count# 0 defaults to 1.  Number of iterations per frame of physics" },
 		{ _field_long_integer, "suspension count*!" },
+
 		{ _field_block, "anti gravity points", &anti_gravity_point_definition_block_block },
 		{ _field_block, "friction points", &friction_point_definition_block_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "boat physics", &boat_physics_definition_struct_struct_definition },
+
 		{ _field_terminator }
 	};
 
