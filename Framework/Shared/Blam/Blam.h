@@ -21,7 +21,6 @@ typedef uint32_t DEPRECATED_basic_string_id;
 #include "legacy/blamfile_level_chunk.h"
 
 #include "legacy/campaign_difficulty_level.h"
-#include "legacy/map_id.h"
 #include "legacy/damage_reporting_type.h"
 #include "legacy/campaign_metagame_bucket_type.h"
 

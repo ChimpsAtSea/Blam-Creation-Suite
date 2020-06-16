@@ -135,7 +135,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	for (long i = 0; i < k_number_of_map_ids; i++)
 	{
 		e_map_id map_id = static_cast<e_map_id>(i);
-		long engine_type = map_id_to_engine_type(map_id);
+		e_engine_type engine_type = map_id_to_engine_type(map_id);
 		switch (engine_type)
 		{
 		case _engine_type_haloreach:
@@ -161,6 +161,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 			break;
 		}
 	}
+	g_halo3_map_id = g_halo3_map_ids.front();
 
 	// #TODO: Attempt to restore from previously selected engine
 	g_engine_type = g_supported_engine_types.empty() ? _engine_type_not_set : g_supported_engine_types.front();

@@ -1,7 +1,6 @@
-#include <shared-private-pch.h>
-#include <Versioning\engine_type.h>
+#include <gameframework-private-pch.h>
 
-long map_id_to_engine_type(e_map_id map_id)
+e_engine_type map_id_to_engine_type(e_map_id map_id)
 {
 	switch (map_id)
 	{
@@ -240,7 +239,7 @@ long map_id_to_engine_type(e_map_id map_id)
 	return _engine_type_not_set;
 }
 
-long map_id_to_game_mode(e_map_id map_id)
+e_mcc_game_mode map_id_to_game_mode(e_map_id map_id)
 {
 	switch (map_id)
 	{

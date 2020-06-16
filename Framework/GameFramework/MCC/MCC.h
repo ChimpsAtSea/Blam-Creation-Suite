@@ -2,6 +2,9 @@
 
 #define OFFSET(Engine, Build, ...) if(engine_type == Engine && build == Build) return { __VA_ARGS__ };
 
+#include "map_id.h"
+
+
 /* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"
 /* LEGACY */ #include "opus_legacy\IGameVariant.h"
 /* LEGACY */ #include "opus_legacy\IMapVariant.h"

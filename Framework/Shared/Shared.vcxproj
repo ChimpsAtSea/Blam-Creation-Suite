@@ -33,7 +33,6 @@
     <ClInclude Include="Blam\legacy\damage_reporting_type.h" />
     <ClInclude Include="Blam\mcc_game_mode.h" />
     <ClInclude Include="Blam\legacy\life_cycle_join_result.h" />
-    <ClInclude Include="Blam\legacy\map_id.h" />
     <ClInclude Include="Blam\legacy\network_message_type.h" />
     <ClInclude Include="Blam\legacy\network_session_class.h" />
     <ClInclude Include="Blam\legacy\network_session_parameter_type.h" />
@@ -71,7 +70,6 @@
     <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Blam\legacy\map_id.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="string_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />

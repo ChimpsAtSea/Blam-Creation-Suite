@@ -129,9 +129,6 @@
     <ClInclude Include="Blam\legacy\life_cycle_join_result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blam\legacy\map_id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\legacy\network_message_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -207,9 +204,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="string_helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Blam\legacy\map_id.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

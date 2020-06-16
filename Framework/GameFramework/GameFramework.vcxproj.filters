@@ -93,6 +93,9 @@
     <ClCompile Include="MCC\haloreach_game_option_selection_legacy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MCC\map_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h">
@@ -228,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\haloreach_game_option_selection_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\map_id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

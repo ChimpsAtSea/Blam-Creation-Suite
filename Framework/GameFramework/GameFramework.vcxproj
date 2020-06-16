@@ -179,6 +179,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MCC\map_id.cpp" />
     <ClCompile Include="session_manager.cpp" />
     <ClCompile Include="RuntimeManipulation\data_patch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
@@ -219,6 +220,7 @@
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
     <ClInclude Include="is_valid.h" />
+    <ClInclude Include="MCC\map_id.h" />
     <ClInclude Include="MCC\player_configuration.h" />
     <ClInclude Include="session_manager.h" />
     <ClInclude Include="MCC\game_context.h" />

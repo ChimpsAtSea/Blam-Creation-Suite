@@ -482,6 +482,6 @@ static inline e_map_id string_to_map_id(const char* map_id_string)
 	return _map_id_none;
 }
 
-long map_id_to_engine_type(e_map_id map_id);
+e_engine_type map_id_to_engine_type(e_map_id map_id);
 
-long map_id_to_game_mode(e_map_id map_id);
+e_mcc_game_mode map_id_to_game_mode(e_map_id map_id);
