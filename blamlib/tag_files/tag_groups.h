@@ -28,10 +28,10 @@ static_assert(sizeof(s_tag_block) == 0xC);
 struct s_tag_data
 {
 	long size;
-	long : 32; // unused stream_flags;
-	long : 32; // unused stream_offset;
+	long stream_flags; // unused
+	long stream_offset; // unused
 	c_ptr32<byte> address;
-	long : 32; // unused definition
+	long definition; // unused 
 };
 static_assert(sizeof(s_tag_data) == 0x14);
 
