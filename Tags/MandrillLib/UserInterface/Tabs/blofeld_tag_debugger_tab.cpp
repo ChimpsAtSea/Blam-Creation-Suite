@@ -639,6 +639,13 @@ void c_blofeld_tag_debugger_tab::render_impl()
 	static c_custom_tool_render_model custom_tool;
 	//custom_tool.render();
 
+	ImVec2 size = ImGui::GetContentRegionAvail();
+
+	ImGuiWindowFlags flags = ImGuiWindowFlags_None;
+	flags |= ImGuiWindowFlags_AlwaysHorizontalScrollbar;
+	flags |= ImGuiWindowFlags_AlwaysVerticalScrollbar;
+	ImGui::BeginChild("##fields", size, false, flags);
+
 	if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface))
 	{
 		validator->validate_tag_instance(*gen3_tag_interface);
@@ -647,6 +654,8 @@ void c_blofeld_tag_debugger_tab::render_impl()
 	{
 		ImGui::Text("Debugging not yet supported for this tag interface");
 	}
+
+	ImGui::EndChild();
 }
 
 void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
