@@ -1,5 +1,11 @@
 #pragma once
 
+enum e_menu_render_type
+{
+	_menu_render_type_root,
+	_menu_render_type_child,
+};
+
 class c_mandrill_tab :
 	public c_mandrill_tab_container, public s_mandrill_dynamic_data, public c_mandrill_event_queue
 {
@@ -10,7 +16,7 @@ public:
 	virtual ~c_mandrill_tab();
 
 	void render(bool set_selected);
-	void render_menu_gui();
+	void render_menu_gui(e_menu_render_type menu_render_type);
 	void render_file_dialogue_gui();
 	void render_game_layer();
 
@@ -36,7 +42,7 @@ public:
 
 protected:
 	virtual void render_impl() = 0;
-	virtual void render_menu_gui_impl() = 0;
+	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) = 0;
 	virtual void render_file_dialogue_gui_impl() = 0;
 	virtual void render_game_layer_impl() = 0;
 

@@ -41,7 +41,7 @@ void c_blofeld_tag_definition_debug_tab::render_impl()
 	render_tag_group(nullptr, *group);
 }
 
-void c_blofeld_tag_definition_debug_tab::render_menu_gui_impl()
+void c_blofeld_tag_definition_debug_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 
 }

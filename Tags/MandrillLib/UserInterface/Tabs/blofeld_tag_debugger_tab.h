@@ -17,17 +17,17 @@ public:
 
 protected:
 	virtual void render_impl() override final;
-	virtual void render_menu_gui_impl() override final;
+	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
 	virtual void render_file_dialogue_gui_impl() override final;
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_interface& tag_interface;
-
-
-
-
-
 	c_gen3_cache_file_validator* validator;
+
+	static bool show_hex_values;
+	static bool show_hex_values_float;
+
+
 	void setup_render_callbacks();
 #define render_field_callback_args char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
 	void render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback);
@@ -99,4 +99,8 @@ protected:
 	void render_field_dword_integer(render_field_callback_args);
 	void render_field_qword_integer(render_field_callback_args);
 #undef callback_args
+
+	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::e_field field_type, const char* field_name, const char* format = nullptr);
+private:
+	template<typename t_raw_value> void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field);
 };

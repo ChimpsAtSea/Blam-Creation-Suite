@@ -1,6 +1,10 @@
 #include "mandrilllib-private-pch.h"
 #include <TagValidate\field_validation_result.h>
 
+bool c_blofeld_tag_debugger_tab::show_hex_values = false;
+bool c_blofeld_tag_debugger_tab::show_hex_values_float = false;
+float intent_size = 20.0f;
+
 c_blofeld_tag_debugger_tab::c_blofeld_tag_debugger_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent) :
 	c_mandrill_tab("Tag Debugger", "Blofeld Tag Debugger", &parent, false),
 	tag_interface(tag_interface),
@@ -12,6 +16,50 @@ c_blofeld_tag_debugger_tab::c_blofeld_tag_debugger_tab(c_tag_interface& tag_inte
 c_blofeld_tag_debugger_tab::~c_blofeld_tag_debugger_tab()
 {
 
+}
+
+void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::e_field field_type, const char* field_name, const char* format)
+{
+	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
+	if (show_hex_values && data_type != ImGuiDataType_Float)
+	{
+		flags |= ImGuiInputTextFlags_CharsHexadecimal;
+	}
+	if (show_hex_values_float && data_type == ImGuiDataType_Float)
+	{
+		data_type = ImGuiDataType_U32;
+		flags |= ImGuiInputTextFlags_CharsHexadecimal;
+	}
+
+	const ImGuiDataTypeInfo* info = ImGui::DataTypeGetInfo(data_type);
+	ImGui::Dummy({ level * intent_size, 0.0f });
+	ImGui::SameLine();
+	ImGui::InputScalarN("", data_type, data, (int)count, nullptr, nullptr, format, ImGuiInputTextFlags_ReadOnly);
+	ImGui::SameLine();
+	ImGui::Text("%s %s", blofeld::field_to_string(field_type), field_name);
+}
+
+template<typename t_raw_value>
+void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field)
+{
+	const char* format_string = "raw: %u ";
+	if (show_hex_values)
+	{
+		format_string = "raw: 0x%X ";
+	}
+
+	ImGui::Dummy({ level * intent_size, 0.0f });
+	ImGui::SameLine();
+	byte& raw_value = *reinterpret_cast<byte*>(data);
+	c_fixed_string_256 enum_value;
+	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
+	if (raw_value < field.string_list_definition->count)
+	{
+		enum_value += field.string_list_definition->strings[raw_value];
+	}
+	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);
+	ImGui::SameLine();
+	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
 }
 
 void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback)
@@ -35,7 +83,6 @@ void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_arg
 	ImGui::PopID();
 }
 
-float intent_size = 20.0f;
 void c_blofeld_tag_debugger_tab::render_field_string(render_field_callback_args)
 {
 	ImGui::Dummy({ result->level * intent_size, 0.0f });
@@ -70,17 +117,6 @@ void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callbac
 	ImGui::SameLine();
 	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
 }
-
-void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::e_field field_type, const char* field_name, const char* format = nullptr)
-{
-	const ImGuiDataTypeInfo* info = ImGui::DataTypeGetInfo(data_type);
-	ImGui::Dummy({ level * intent_size, 0.0f });
-	ImGui::SameLine();
-	ImGui::InputScalarN("", data_type, data, (int)count, nullptr, nullptr, format, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field_type), field_name);
-}
-
 void c_blofeld_tag_debugger_tab::render_field_char_integer(render_field_callback_args)
 {
 	render_field_scalar_type(ImGuiDataType_S8, 1, result->level, data, field.field_type, field.name);
@@ -105,24 +141,6 @@ void c_blofeld_tag_debugger_tab::render_field_tag(render_field_callback_args)
 {
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
 }
-
-template<typename t_raw_value>
-void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field)
-{
-	ImGui::Dummy({ level * intent_size, 0.0f });
-	ImGui::SameLine();
-	byte& raw_value = *reinterpret_cast<byte*>(data);
-	c_fixed_string_256 enum_value;
-	enum_value.format("raw: %u ", static_cast<uint32_t>(raw_value));
-	if (raw_value < field.string_list_definition->count)
-	{
-		enum_value += field.string_list_definition->strings[raw_value];
-	}
-	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
-}
-
 void c_blofeld_tag_debugger_tab::render_field_char_enum(render_field_callback_args)
 {
 	render_field_enum_type<byte>(result->level, data, field);
@@ -147,7 +165,6 @@ void c_blofeld_tag_debugger_tab::render_field_byte_flags(render_field_callback_a
 {
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
 }
-
 void c_blofeld_tag_debugger_tab::render_field_point_2d(render_field_callback_args)
 {
 	ImGui::Dummy({ result->level * intent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
@@ -277,9 +294,15 @@ void c_blofeld_tag_debugger_tab::render_field_tag_reference(render_field_callbac
 	ImGui::InputText("", (char*)tag_name, strlen(tag_name) + 1, ImGuiInputTextFlags_ReadOnly);
 	ImGui::SameLine();
 	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+
+	const char* format_string = "[group_tag:'%s' name:0x%X name_length:0x%i index:%u datum:0x%X]";
+	if (show_hex_values)
+	{
+		format_string = "[group_tag:0x%X name:0x%X name_length:0x%X index:0x%X datum:0x%X]";
+	}
 	ImGui::SameLine();
 	ImGui::Text(
-		"[group_tag:'%s' name:0x%X name_length:0x%i index:%u datum:0x%X]",
+		format_string,
 		group_tag_str,
 		tag_reference.name,
 		tag_reference.name_length,
@@ -293,7 +316,12 @@ void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 	ImGui::SameLine();
 	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
 	ImGui::SameLine();
-	ImGui::Text("[count:%i address:0x%X definition_address:0x%i]", tag_block.count, tag_block.address, tag_block.definition_address);
+	const char* format_string = "[count:%i address:0x%X definition_address:0x%i]";
+	if (show_hex_values)
+	{
+		format_string = "[count:0x%X address:0x%X definition_address:0x%X]";
+	}
+	ImGui::Text(format_string, tag_block.count, tag_block.address, tag_block.definition_address);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_block_flags(render_field_callback_args)
 {
@@ -621,9 +649,26 @@ void c_blofeld_tag_debugger_tab::render_impl()
 	}
 }
 
-void c_blofeld_tag_debugger_tab::render_menu_gui_impl()
+void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-
+	if (menu_render_type == _menu_render_type_root)
+	{
+		for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+		{
+			tab.render_menu_gui(_menu_render_type_root);
+		}
+	}
+	if (menu_render_type == _menu_render_type_child)
+	{
+		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values" : "Show Hex Values"))
+		{
+			show_hex_values = !show_hex_values;
+		}
+		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
+		{
+			show_hex_values_float = !show_hex_values_float;
+		}
+	}
 }
 
 void c_blofeld_tag_debugger_tab::render_file_dialogue_gui_impl()

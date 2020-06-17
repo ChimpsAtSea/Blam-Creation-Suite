@@ -45,9 +45,9 @@ void c_mandrill_tab::render(bool set_selected)
 	ImGui::PopID();
 }
 
-void c_mandrill_tab::render_menu_gui()
+void c_mandrill_tab::render_menu_gui(e_menu_render_type menu_render_type)
 {
-	render_menu_gui_impl();
+	render_menu_gui_impl(menu_render_type);
 }
 
 void c_mandrill_tab::render_file_dialogue_gui()

@@ -105,7 +105,7 @@ void c_mandrill_user_interface::render_impl()
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
-		render_menu_gui_impl();
+		render_menu_gui_impl(_menu_render_type_root);
 
 		if (ImGui::BeginTabBar("##root"))
 		{
@@ -129,66 +129,69 @@ void c_mandrill_user_interface::render_impl()
 	}
 }
 
-void c_mandrill_user_interface::render_menu_gui_impl()
+void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-	if (ImGui::BeginMenuBar())
+	if (menu_render_type == _menu_render_type_root)
 	{
-		if (ImGui::BeginMenu("File"))
+		if (ImGui::BeginMenuBar())
 		{
-			ImGui::MenuItem("New");
-			if (ImGui::MenuItem("Open File", "Ctrl+O"))
+			if (ImGui::BeginMenu("File"))
 			{
-				show_file_dialogue = true;
+				ImGui::MenuItem("New");
+				if (ImGui::MenuItem("Open File", "Ctrl+O"))
+				{
+					show_file_dialogue = true;
+				}
+				ImGui::MenuItem("Close");
+				ImGui::Separator();
+				ImGui::MenuItem("Save");
+				ImGui::MenuItem("Save As");
+				ImGui::Separator();
+				ImGui::MenuItem("Compile");
+				ImGui::Separator();
+				ImGui::MenuItem("Save Workspace");
+				ImGui::MenuItem("Load Workspace");
+				ImGui::Separator();
+				if (ImGui::MenuItem("Exit"))
+				{
+					is_open = false;
+				}
+				ImGui::EndMenu();
 			}
-			ImGui::MenuItem("Close");
-			ImGui::Separator();
-			ImGui::MenuItem("Save");
-			ImGui::MenuItem("Save As");
-			ImGui::Separator();
-			ImGui::MenuItem("Compile");
-			ImGui::Separator();
-			ImGui::MenuItem("Save Workspace");
-			ImGui::MenuItem("Load Workspace");
-			ImGui::Separator();
-			if (ImGui::MenuItem("Exit"))
+			if (ImGui::BeginMenu("Edit"))
 			{
-				is_open = false;
+				ImGui::MenuItem("Undo");
+				ImGui::Separator();
+				ImGui::MenuItem("Cut");
+				ImGui::MenuItem("Copy");
+				ImGui::MenuItem("Paste");
+				ImGui::MenuItem("Clear");
+				ImGui::Separator();
+				ImGui::MenuItem("Expert Mode");
+				ImGui::EndMenu();
 			}
-			ImGui::EndMenu();
+			if (ImGui::BeginMenu("Tools"))
+			{
+				ImGui::MenuItem("Push to game");
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu("View"))
+			{
+				ImGui::MenuItem("Explorer Bar");
+				ImGui::EndMenu();
+			}
+			for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+			{
+				tab.render_menu_gui(_menu_render_type_root);
+			}
+			if (ImGui::BeginMenu("Help"))
+			{
+				ImGui::MenuItem("Read Me");
+				ImGui::MenuItem("About");
+				ImGui::EndMenu();
+			}
+			ImGui::EndMenuBar();
 		}
-		if (ImGui::BeginMenu("Edit"))
-		{
-			ImGui::MenuItem("Undo");
-			ImGui::Separator();
-			ImGui::MenuItem("Cut");
-			ImGui::MenuItem("Copy");
-			ImGui::MenuItem("Paste");
-			ImGui::MenuItem("Clear");
-			ImGui::Separator();
-			ImGui::MenuItem("Expert Mode");
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Tools"))
-		{
-			ImGui::MenuItem("Push to game");
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("View"))
-		{
-			ImGui::MenuItem("Explorer Bar");
-			ImGui::EndMenu();
-		}
-		for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
-		{
-			tab.render_menu_gui();
-		}
-		if (ImGui::BeginMenu("Help"))
-		{
-			ImGui::MenuItem("Read Me");
-			ImGui::MenuItem("About");
-			ImGui::EndMenu();
-		}
-		ImGui::EndMenuBar();
 	}
 }
 
