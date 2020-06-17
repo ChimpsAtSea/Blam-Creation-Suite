@@ -2,7 +2,8 @@
 
 c_gen3_cache_file_validator::c_gen3_cache_file_validator(c_gen3_cache_file& cache_file) :
 	cache_file(cache_file),
-	engine_type(cache_file.get_engine_type())
+	engine_type(cache_file.get_engine_type()),
+	show_broken_block_data(false)
 {
 
 
@@ -90,15 +91,31 @@ uint32_t __log2u(uint32_t index)
 	return value;
 }
 
-uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, char* const data, const blofeld::s_tag_struct_definition& struct_definition, bool is_block, bool render, bool& data_is_valid)
+uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, char* const data, const blofeld::s_tag_struct_definition& struct_definition, bool is_block, bool render, bool& data_is_valid, e_cache_file_validator_struct_type struct_type, uint32_t index)
 {
-	float intent_size = 20.0f;
+	float indent_size = 20.0f;
 	uint32_t struct_size = get_struct_size(struct_definition);
 
 	if (render)
 	{
+		ImGui::PushID(data);
+		ImGui::BeginGroup();
 		ImGui::PushStyleColor(ImGuiCol_Text, { 0.3f, 0.5f, 1.0f, 1.0f });
-		ImGui::Dummy({ level * intent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("STRUCT START>%s [0x%X]", struct_definition.name, struct_size);
+		ImGui::Dummy({ level * indent_size, 0.0f }); 
+		ImGui::SameLine();
+		switch (struct_type)
+		{
+		case _cache_file_validator_struct_type_array:
+			ImGui::Text("ARRAY STRUCT START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		case _cache_file_validator_struct_type_tag_block:
+			ImGui::Text("BLOCK STRUCT START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		default:
+		case _cache_file_validator_struct_type_structure:
+			ImGui::Text("STRUCT START>%s [0x%X]", struct_definition.name, struct_size);
+			break;
+		}
 		ImGui::PopStyleColor();
 	}
 
@@ -120,7 +137,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 
 		uint32_t field_size = get_field_size(*current_field);
 
-		
+
 		s_field_validation_result result = {};
 		result.field_size = field_size;
 		result.string_id_value = nullptr;
@@ -303,7 +320,15 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 						char* block_data_position = data_address;
 						for (uint32_t tag_block_index = 0; tag_block_index < tag_block.count; tag_block_index++)
 						{
-							uint32_t bytes_traversed = render_tag_struct_definition(level + 2, block_data_position, current_field->block_definition->struct_definition, true, false, result.block_struct_is_valid);
+							uint32_t bytes_traversed = render_tag_struct_definition(
+								level + 2,
+								block_data_position,
+								current_field->block_definition->struct_definition,
+								true,
+								false,
+								result.block_struct_is_valid,
+								_cache_file_validator_struct_type_tag_block,
+								tag_block_index);
 							block_data_position += bytes_traversed;
 						}
 					}
@@ -312,15 +337,29 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 			}
 			case blofeld::_field_struct:
 			{
-				render_tag_struct_definition(level + 2, current_data_position, *current_field->struct_definition, false, render, data_is_valid);
+				render_tag_struct_definition(
+					level + 2,
+					current_data_position,
+					*current_field->struct_definition,
+					false,
+					render,
+					data_is_valid,
+					_cache_file_validator_struct_type_structure);
 				break;
 			}
 			case blofeld::_field_array:
 			{
 				char* array_data_position = current_data_position;
-				for (uint32_t i = 0; i < current_field->array_definition->count; i++)
+				for (uint32_t array_index = 0; array_index < current_field->array_definition->count; array_index++)
 				{
-					uint32_t bytes_traversed = render_tag_struct_definition(level + 2, array_data_position, *current_field->struct_definition, false, render, data_is_valid);
+					uint32_t bytes_traversed = render_tag_struct_definition(
+						level + 2,
+						array_data_position,
+						*current_field->struct_definition,
+						false,
+						render, data_is_valid,
+						_cache_file_validator_struct_type_array,
+						array_index);
 					array_data_position += bytes_traversed;
 				}
 				break;
@@ -346,7 +385,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 			switch (current_field->field_type)
 			{
 			case blofeld::_field_custom:
-			//case blofeld::_field_explanation:
+				//case blofeld::_field_explanation:
 				break; // skip rendering custom fields
 			default:
 				field_render_callback(current_data_position, *current_field, &result, field_type_render_callbacks[current_field->field_type]);
@@ -363,9 +402,24 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 					bool is_struct_valid = true;
 					char* block_data_position_old = cache_file.get_data_with_page_offset(tag_block.address);
 					char* block_data_position = cache_file.get_tag_block_data(tag_block);
-					for (uint32_t tag_block_index = 0; tag_block_index < tag_block.count && is_struct_valid; tag_block_index++)
+					for (uint32_t tag_block_index = 0; tag_block_index < tag_block.count && (is_struct_valid || show_broken_block_data); tag_block_index++)
 					{
-						uint32_t bytes_traversed = render_tag_struct_definition(level + 2, block_data_position, current_field->block_definition->struct_definition, true, render, is_struct_valid);
+						if (!cache_file.is_valid_data_address(block_data_position))
+						{
+							ImGui::Dummy({ level * indent_size, 0.0f }); 
+							ImGui::SameLine();
+							ImGui::Text("ERROR: TAG BLOCK READ INTO INVALID MEMORY REGION!!!!!!");
+							break;
+						}
+						uint32_t bytes_traversed = render_tag_struct_definition(
+							level + 2,
+							block_data_position,
+							current_field->block_definition->struct_definition,
+							true,
+							render,
+							is_struct_valid,
+							_cache_file_validator_struct_type_tag_block,
+							tag_block_index);
 						block_data_position += bytes_traversed;
 					}
 				}
@@ -381,8 +435,48 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 	if (render)
 	{
 		ImGui::PushStyleColor(ImGuiCol_Text, { 0.3f, 0.5f, 1.0f, 1.0f });
-		ImGui::Dummy({ level * intent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("STRUCT END>%s [0x%X]", struct_definition.name, struct_size);
+		ImGui::Dummy({ level * indent_size, 0.0f }); 
+		ImGui::SameLine();
+		switch (struct_type)
+		{
+		case _cache_file_validator_struct_type_array:
+			ImGui::Text("ARRAY STRUCT END>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		case _cache_file_validator_struct_type_tag_block:
+			ImGui::Text("BLOCK STRUCT END>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		default:
+		case _cache_file_validator_struct_type_structure:
+			ImGui::Text("STRUCT END>%s [0x%X]", struct_definition.name, struct_size);
+			break;
+		}
 		ImGui::PopStyleColor();
+	}
+
+	if (render)
+	{
+		ImGui::EndGroup();
+		ImGui::PopID();
+
+		if (level)
+		{
+			ImVec2 item_rect_min = ImGui::GetItemRectMin();
+			item_rect_min.x += level * indent_size;
+			ImVec2 item_rect_max = ImGui::GetItemRectMax();
+			ImDrawList* draw_list = ImGui::GetWindowDrawList();
+			if (data_is_valid)
+			{
+				draw_list->AddRectFilled(item_rect_min, item_rect_max, ImGui::ColorConvertFloat4ToU32({ 0.3f, 0.5f, 1.0f, 0.02f }));
+				draw_list->AddRect(item_rect_min, item_rect_max, ImGui::ColorConvertFloat4ToU32({ 0.3f, 0.5f, 1.0f, 0.35f }));
+			}
+			else
+			{
+				draw_list->AddRectFilled(item_rect_min, item_rect_max, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.3f, 0.5f, 0.04f }));
+				draw_list->AddRect(item_rect_min, item_rect_max, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.3f, 0.5f, 0.5f }));
+			}
+
+
+		}
 	}
 
 	return bytes_traversed;
@@ -398,12 +492,20 @@ uint32_t c_gen3_cache_file_validator::validate_tag_group(char* data, const blofe
 	//}
 
 	bool data_is_valid = true;
-	uint32_t bytes_traversed = render_tag_struct_definition(0, data, group.block_definition.struct_definition, false, true, data_is_valid);
+	uint32_t bytes_traversed = render_tag_struct_definition(0,
+		data,
+		group.block_definition.struct_definition,
+		false,
+		true,
+		data_is_valid,
+		_cache_file_validator_struct_type_structure);
 	return bytes_traversed;
 }
 
-void c_gen3_cache_file_validator::validate_tag_instance(c_gen3_tag_interface& tag_interface)
+void c_gen3_cache_file_validator::validate_tag_instance(c_gen3_tag_interface& tag_interface, bool show_broken_block_data)
 {
+	this->show_broken_block_data = show_broken_block_data;
+
 	const blofeld::s_tag_group* group = tag_interface.get_blofeld_reflection_data();
 	char* data = tag_interface.get_data();
 

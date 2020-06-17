@@ -26,6 +26,7 @@ protected:
 
 	static bool show_hex_values;
 	static bool show_hex_values_float;
+	static bool show_broken_block_data;
 
 
 	void setup_render_callbacks();
