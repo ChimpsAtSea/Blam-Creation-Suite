@@ -19,7 +19,7 @@ static_assert(sizeof(s_tag_reference) == 0x10);
 
 struct s_tag_block
 {
-	long count;
+	unsigned long count;
 	c_ptr32<byte> address;
 	long definition_address;
 };

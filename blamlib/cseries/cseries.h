@@ -110,6 +110,7 @@ static_assert(sizeof(intptr64_t) == 0x8);
 	((flags) = ((value) ? ((flags) | FLAG(bit)) : ((flags) & ~FLAG(bit))))
 
 #define VALID_INDEX(index, max_count) \
+	__pragma(warning(suppress: 4296)) \
 	(((index) >= 0) && ((index) < (max_count)))
 
 #define BIT_VECTOR_SIZE_IN_LONGS(bit_count) \

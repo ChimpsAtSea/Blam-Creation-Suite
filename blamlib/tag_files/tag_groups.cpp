@@ -4,11 +4,10 @@
 
 void *tag_block_get_element_with_size(
 	s_tag_block *block,
-	long element_index,
-	[[maybe_unused]] long element_size)
+	unsigned long element_index,
+	[[maybe_unused]] unsigned long element_size)
 {
 	blamlib_assert(block);
-	blamlib_assert(block->count >= 0);
 	blamlib_assert(block->address);
 
 	static c_static_string<256> temp;
