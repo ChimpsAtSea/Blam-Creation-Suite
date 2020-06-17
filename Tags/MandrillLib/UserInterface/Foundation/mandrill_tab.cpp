@@ -37,6 +37,10 @@ void c_mandrill_tab::render(bool set_selected)
 
 		ImGui::EndTabItem();
 	}
+	else
+	{
+		is_selected = false;
+	}
 
 	if (!is_open)
 	{
