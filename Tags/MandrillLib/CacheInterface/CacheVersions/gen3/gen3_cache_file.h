@@ -5,6 +5,7 @@ struct s_section_cache
 	long mask;
 	long offset;
 	long size;
+	char* masked_data;
 	char* data;
 };
 

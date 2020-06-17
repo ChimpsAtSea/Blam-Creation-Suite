@@ -10,32 +10,18 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 {
 	char* map_data = virtual_memory_container.get_data();
 
-	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
-	{
-		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
-
-		long mask = haloreach_cache_file_header.section_table.offset_masks[cache_file_section_index];
-		long offset = haloreach_cache_file_header.section_table.sections[cache_file_section_index].offset;
-		long size = haloreach_cache_file_header.section_table.sections[cache_file_section_index].size;
-
-		section_cache[cache_file_section_index].mask = mask;
-		section_cache[cache_file_section_index].offset = offset;
-		section_cache[cache_file_section_index].size = size;
-		section_cache[cache_file_section_index].data = reinterpret_cast<char*>(map_data + mask);
-	}
-
 	const s_section_cache& debug_section = get_section(gen3::_cache_file_section_index_debug);
 	const s_section_cache& tags_section = get_section(gen3::_cache_file_section_index_tags);
 
-	string_ids_buffer = debug_section.data + haloreach_cache_file_header.string_table_offset;
-	string_id_indices = reinterpret_cast<long*>(debug_section.data + haloreach_cache_file_header.string_table_indices_offset);
+	string_ids_buffer = debug_section.masked_data + haloreach_cache_file_header.string_table_offset;
+	string_id_indices = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header.string_table_indices_offset);
 
-	filenames_buffer = debug_section.data + haloreach_cache_file_header.file_table_offset;
-	filename_indices = reinterpret_cast<long*>(debug_section.data + haloreach_cache_file_header.file_table_indices_offset);
+	filenames_buffer = debug_section.masked_data + haloreach_cache_file_header.file_table_offset;
+	filename_indices = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header.file_table_indices_offset);
 
-	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_section.data + (cache_file_header.tags_header_address - cache_file_header.virtual_base_address));
+	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_section.masked_data + (cache_file_header.tags_header_address - cache_file_header.virtual_base_address));
 
-	tags_buffer = tags_section.data + haloreach_cache_file_header.tag_buffer_offset;
+	tags_buffer = tags_section.masked_data + haloreach_cache_file_header.tag_buffer_offset;
 	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(haloreach_cache_file_header.tags_header_address));
 
 	string_id_guesstimator = new c_cache_file_string_id_guesstimator(*this);

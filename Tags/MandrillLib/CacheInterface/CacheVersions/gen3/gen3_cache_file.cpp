@@ -44,6 +44,26 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 	string_id_guesstimator(nullptr)
 {
 	REFERENCE_ASSERT(cache_file_header);
+
+	char* map_data = virtual_memory_container.get_data();
+
+	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
+	{
+		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
+
+		long mask = cache_file_header.section_table.offset_masks[cache_file_section_index];
+		long offset = cache_file_header.section_table.sections[cache_file_section_index].offset;
+		long size = cache_file_header.section_table.sections[cache_file_section_index].size;
+
+		char* masked_data = reinterpret_cast<char*>(map_data + mask);
+		char* data = masked_data + offset;
+
+		section_cache[cache_file_section_index].mask = mask;
+		section_cache[cache_file_section_index].offset = offset;
+		section_cache[cache_file_section_index].size = size;
+		section_cache[cache_file_section_index].masked_data = masked_data;
+		section_cache[cache_file_section_index].data = data;
+	}
 }
 
 c_gen3_cache_file::~c_gen3_cache_file()
@@ -78,6 +98,11 @@ char* c_gen3_cache_file::get_data_with_page_offset(uint32_t page_offset) const
 
 	uint64_t data_offset = convert_page_offset(page_offset);
 	char* data = tags_section_data + data_offset;
+
+	if (!is_valid_data_address(data))
+	{
+		return nullptr;
+	}
 
 	return data;
 }

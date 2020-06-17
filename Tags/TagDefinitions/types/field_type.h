@@ -80,6 +80,7 @@ namespace blofeld
 		_field_version_less_or_equal,
 		_field_version_greater_or_equal,
 		_field_version_custom,
+		k_number_of_blofeld_field_types
 	};
 
 	inline uint32_t get_blofeld_field_size(e_field field)

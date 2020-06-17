@@ -19,17 +19,6 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	tags_buffer = map_data + halo3_cache_file_header.tag_buffer_offset;
 	halo3_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(halo3_cache_file_header.tags_header_address));
 
-	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
-	{
-		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
-
-		long offset = halo3_cache_file_header.section_table.sections[cache_file_section_index].offset + halo3_cache_file_header.section_table.offset_masks[cache_file_section_index];
-		long size = halo3_cache_file_header.section_table.sections[cache_file_section_index].size;
-
-		section_cache[cache_file_section_index].data = reinterpret_cast<char*>(map_data + offset);
-		section_cache[cache_file_section_index].size = size;
-	}
-
 	cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(halo3_cache_file_tags_header->tag_groups.address));
 	for (uint32_t group_index = 0; group_index < halo3_cache_file_tags_header->tag_groups.count; group_index++)
 	{
@@ -48,17 +37,6 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 		const char* name = string_ids_buffer + string_id_indices[0];
 
 		tag_interfaces.push_back(new c_gen3_tag_interface(*this, tag_instance));
-	}
-
-	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
-	{
-		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
-
-		long offset = halo3_cache_file_header.section_table.sections[cache_file_section_index].offset + halo3_cache_file_header.section_table.offset_masks[cache_file_section_index];
-		long size = halo3_cache_file_header.section_table.sections[cache_file_section_index].size;
-
-		section_cache[cache_file_section_index].data = reinterpret_cast<char*>(map_data + offset);
-		section_cache[cache_file_section_index].size = size;
 	}
 
 	init_sorted_instance_lists();

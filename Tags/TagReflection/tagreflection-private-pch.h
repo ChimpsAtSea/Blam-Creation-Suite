@@ -8,3 +8,5 @@
 #include <MandrillLib/mandrilllib-private-pch.h>
 
 #include "tagreflection-public-pch.h"
+
+#include <TagValidate\tagvalidate-public-pch.h>

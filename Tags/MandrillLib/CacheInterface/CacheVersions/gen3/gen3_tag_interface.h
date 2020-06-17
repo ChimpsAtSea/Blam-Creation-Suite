@@ -15,6 +15,7 @@ public:
 
 	inline gen3::s_cache_file_tag_instance* get_cache_file_instance() const { return &cache_file_tag_instance; };
 	inline gen3::s_cache_file_tag_group* get_cache_file_group() const { return cache_file_tag_group; };
+	inline c_gen3_cache_file& get_cache_file() const { return *reinterpret_cast<c_gen3_cache_file*>(&cache_file); };
 
 	virtual const char* get_filepath() const final;
 	virtual const char* get_path_with_group_id_cstr() const final;
