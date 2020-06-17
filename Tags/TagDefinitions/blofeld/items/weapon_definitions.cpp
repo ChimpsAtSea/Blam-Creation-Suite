@@ -6,7 +6,7 @@ namespace blofeld
 
 	TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
 	{
-		{ _field_struct, "item", & item_struct_definition_struct_definition },
+		{ _field_struct, "item", &item_struct_definition_struct_definition },
 		{ _field_custom, "$$$ WEAPON $$$" },
 		{ _field_explanation, "", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'." },
 		{ _field_long_flags, "flags", &weapon_definition_flags },
@@ -285,7 +285,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_first_person_interface_block, k_first_person_interface_count)
 	{
-		{ _field_tag_reference, "first person model", & render_model_reference$10 },
+		{ _field_tag_reference, "first person model", &render_model_reference$10 },
 		{ _field_tag_reference, "first person animations", &model_animation_graph_reference$4 },
 		{ _field_real, "first person fov scale#the multiplier by the standard first person FOV to use when this weapon is held" },
 		{ _field_real, "first person dof distance#the distance to apply depth of field to the weapon" },
@@ -302,7 +302,7 @@ namespace blofeld
 
 	TAG_BLOCK(magazines, MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON)
 	{
-		{ _field_long_flags, "flags", & magazine_flags },
+		{ _field_long_flags, "flags", &magazine_flags },
 		{ _field_short_integer, "rounds recharged:per second" },
 		{ _field_short_integer, "rounds total initial" },
 		{ _field_short_integer, "rounds total maximum" },
@@ -334,7 +334,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_triggers, k_weapon_trigger_count)
 	{
-		{ _field_long_flags, "flags", & weapon_trigger_definition_flags },
+		{ _field_long_flags, "flags", &weapon_trigger_definition_flags },
 		{ _field_enum, "input", &weapon_trigger_inputs },
 		{ _field_enum, "behavior", &weapon_trigger_behaviors },
 		{ _field_short_block_index, "primary barrel" },
@@ -357,7 +357,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_barrel_function_block, 1)
 	{
-		{ _field_struct, "function", & scalar_function_named_struct_struct_definition },
+		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -391,7 +391,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_barrels, k_weapon_barrel_count)
 	{
-		{ _field_long_flags, "flags", & weapon_barrel_flags },
+		{ _field_long_flags, "flags", &weapon_barrel_flags },
 		{ _field_explanation, "firing", "" },
 		{ _field_struct, "firing", &weapon_barrel_firing_parameters_struct_struct_definition },
 		{ _field_short_block_index, "magazine#the magazine from which this trigger draws its ammunition" },
@@ -442,7 +442,7 @@ namespace blofeld
 
 	TAG_BLOCK(weaponScaleshotLevelStruct, WeaponScaleshotLevelDefinition::k_maxLevels)
 	{
-		{ _field_long_flags, "flags", & weaponScaleshotLevelFlags },
+		{ _field_long_flags, "flags", &weaponScaleshotLevelFlags },
 		{ _field_real, "minimum power level^#the minimum power at which this scaleshot level kicks in" },
 		{ _field_real, "power change per shot#the change per shot in power when you\'re at this level" },
 		{ _field_real, "power change per second#the change per second in power when you\'re at this level" },
@@ -453,7 +453,7 @@ namespace blofeld
 
 	TAG_BLOCK(weaponScaleshotStruct, 1)
 	{
-		{ _field_long_flags, "flags", & weaponScaleshotFlags },
+		{ _field_long_flags, "flags", &weaponScaleshotFlags },
 		{ _field_real, "power per shot#the amount of scaleshot power you get when this weapon is fired" },
 		{ _field_real, "power per hit#the amount of scaleshot power you get when a projectile from this weapon hits an enemy" },
 		{ _field_real, "power change per second#the change per second in power" },
@@ -464,7 +464,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_screen_effect_block, 4)
 	{
-		{ _field_byte_flags, "flags", & weapon_screen_effect_flags },
+		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
 		{ _field_pad, "LKSZJFSE", 3 },
 		{ _field_tag_reference, "screen effect^", &global_area_screen_effect_reference },
 		{ _field_terminator }
@@ -618,7 +618,7 @@ namespace blofeld
 
 	TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_function_struct)
 	{
-		{ _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired", & weapon_barrel_function_block_block },
+		{ _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired", &weapon_barrel_function_block_block },
 		{ _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position", &weapon_barrel_function_block_block },
 		{ _field_block, "moving penalty function#percentage accuracy lost when moving", &weapon_barrel_function_block_block },
 		{ _field_block, "turning penalty function#percentage accuracy lost when turning the camera", &weapon_barrel_function_block_block },
@@ -628,7 +628,7 @@ namespace blofeld
 
 	TAG_STRUCT(weapon_barrel_damage_effect_struct)
 	{
-		{ _field_tag_reference, "damage effect", & global_damage_reference },
+		{ _field_tag_reference, "damage effect", &global_damage_reference },
 		{ _field_terminator }
 	};
 

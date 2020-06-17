@@ -35,13 +35,13 @@ namespace blofeld
 
 	TAG_BLOCK(global_vertex_shader_vertex_types_block, k_number_of_vertex_types * 2)
 	{
-		{ _field_block, "entry point dependency", & global_shader_entry_point_block_block },
+		{ _field_block, "entry point dependency", &global_shader_entry_point_block_block },
 		{ _field_terminator }
 	};
 
 	TAG_GROUP(pixel_shader, PIXEL_SHADER_TAG)
 	{
-		{ _field_block, "entry points", & pixel_entry_point_block_block },
+		{ _field_block, "entry points", &pixel_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_pixel_shader_block_block },
 		{ _field_terminator }
@@ -56,14 +56,14 @@ namespace blofeld
 
 	TAG_BLOCK(compiled_pixel_shader_block, 10 * k_kilo)
 	{
-		{ _field_struct, "compiled shader splut", & rasterizer_compiled_shader_struct_struct_definition },
+		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct_struct_definition },
 		{ _field_long_integer, "runtime shader ~*!" },
 		{ _field_terminator }
 	};
 
 	TAG_GROUP(vertex_shader, VERTEX_SHADER_TAG)
 	{
-		{ _field_block, "entry points", & vertex_entry_point_block_block },
+		{ _field_block, "entry points", &vertex_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_vertex_shader_block_block },
 		{ _field_terminator }
@@ -78,20 +78,20 @@ namespace blofeld
 
 	TAG_BLOCK(vertex_entry_point_block, k_number_of_vertex_types * 2)
 	{
-		{ _field_block, "vertex types", & vertex_types_block$3_block },
+		{ _field_block, "vertex types", &vertex_types_block$3_block },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(compiled_vertex_shader_block, 10 * k_kilo)
 	{
-		{ _field_struct, "compiled shader splut", & rasterizer_compiled_shader_struct_struct_definition },
+		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct_struct_definition },
 		{ _field_long_integer, "runtime shader ~*!" },
 		{ _field_terminator }
 	};
 
 	TAG_GROUP(compute_shader, COMPUTE_SHADER_TAG)
 	{
-		{ _field_block, "entry points", & compute_entry_point_block_block },
+		{ _field_block, "entry points", &compute_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_compute_shader_block_block },
 		{ _field_terminator }
@@ -113,7 +113,7 @@ namespace blofeld
 
 	TAG_STRUCT(rasterizer_compiled_shader_struct)
 	{
-		{ _field_long_flags, "shader flags", & shader_flags },
+		{ _field_long_flags, "shader flags", &shader_flags },
 		{ _field_data, "xenon compiled shader{..:xenon compiled shader}" },
 		{ _field_data, "dx9 compiled shader{..:dx9 compiled shader}" },
 		{ _field_explanation, "Xenon constant table", "" },

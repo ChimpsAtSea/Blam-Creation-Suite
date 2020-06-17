@@ -10,7 +10,7 @@ namespace blofeld
 
 	TAG_BLOCK(human_jeep_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_block, "boat engine", &boat_engine_definition_block_block },
@@ -54,7 +54,7 @@ namespace blofeld
 
 	TAG_BLOCK(wolverine_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_explanation, "wheel circumferance", "" },
@@ -71,7 +71,7 @@ namespace blofeld
 
 	TAG_BLOCK(alien_scout_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -102,7 +102,7 @@ namespace blofeld
 
 	TAG_BLOCK(alien_fighter_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
@@ -135,7 +135,7 @@ namespace blofeld
 
 	TAG_BLOCK(turret_block, 1)
 	{
-		{ _field_word_flags, "flags", & turret_flags },
+		{ _field_word_flags, "flags", &turret_flags },
 		{ _field_pad, "pad", 2 },
 		{ _field_string_id, "physical yaw node" },
 		{ _field_string_id, "physical pitch node" },
@@ -146,7 +146,7 @@ namespace blofeld
 
 	TAG_BLOCK(mantis_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
@@ -195,7 +195,7 @@ namespace blofeld
 
 	TAG_BLOCK(vtol_block, 1)
 	{
-		{ _field_struct, "turning control", & vehicle_turning_control_struct_struct_definition },
+		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_custom },
 		{ _field_string_id, "left lift marker" },
 		{ _field_custom },
@@ -236,7 +236,7 @@ namespace blofeld
 
 	TAG_BLOCK(chopper_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_struct, "engine", &global_vehicle_engine_struct_struct_definition },
 		{ _field_explanation, "wheel circumferance", "" },
@@ -260,7 +260,7 @@ namespace blofeld
 
 	TAG_BLOCK(guardian_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
 		{ _field_real, "speed acceleration" },
@@ -276,7 +276,7 @@ namespace blofeld
 
 	TAG_BLOCK(jackal_glider_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -328,7 +328,7 @@ namespace blofeld
 
 	TAG_BLOCK(boat_block, 1)
 	{
-		{ _field_byte_flags, "flags", & boat_flags },
+		{ _field_byte_flags, "flags", &boat_flags },
 		{ _field_pad, "blah", 3 },
 		{ _field_angle, "tank control forward arc:degrees#only used when \'use tank controls\' is checked above" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
@@ -343,7 +343,7 @@ namespace blofeld
 
 	TAG_BLOCK(space_fighter_block, 1)
 	{
-		{ _field_struct, "steering control", & vehicle_steering_control_struct_struct_definition },
+		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "full throttle speed:wu/s#maximum speed when throttle = 1.0" },
@@ -424,7 +424,7 @@ namespace blofeld
 
 	TAG_BLOCK(revenant_block, 1)
 	{
-		{ _field_struct, "tank block", & human_tank_struct_struct_definition },
+		{ _field_struct, "tank block", &human_tank_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
 		{ _field_real, "maximum reverse speed" },
@@ -477,7 +477,7 @@ namespace blofeld
 
 	TAG_STRUCT(vehicle_group)
 	{
-		{ _field_struct, "unit", & unit_struct_definition_struct_definition },
+		{ _field_struct, "unit", &unit_struct_definition_struct_definition },
 		{ _field_custom, "$$$ VEHICLE $$$" },
 		{ _field_long_flags, "flags", &vehicle_flags },
 		{ _field_explanation, "physics type", "define one of the following blocks for the type of physics you wish this vehicle to have." },
@@ -634,14 +634,14 @@ namespace blofeld
 
 	TAG_STRUCT(vtol_descent_function_struct)
 	{
-		{ _field_struct, "descent to boost", & scalar_function_named_struct_struct_definition },
+		{ _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition },
 		{ _field_real, "max downward speed:wu/s" },
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(flight_surface_struct)
 	{
-		{ _field_char_enum, "offset axis", & dimensions_enum },
+		{ _field_char_enum, "offset axis", &dimensions_enum },
 		{ _field_char_enum, "pivot axis", &dimensions_enum },
 		{ _field_char_enum, "rotation axis", &dimensions_enum },
 		{ _field_char_enum, "normal axis", &dimensions_enum },

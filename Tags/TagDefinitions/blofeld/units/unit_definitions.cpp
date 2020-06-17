@@ -8,13 +8,13 @@ namespace blofeld
 
 	TAG_BLOCK(unit_screen_effect_block, 4)
 	{
-		{ _field_tag_reference, "screen effect^", & global_area_screen_effect_reference },
+		{ _field_tag_reference, "screen effect^", &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
 	{
-		{ _field_tag_reference, "track", & global_camera_track_reference },
+		{ _field_tag_reference, "track", &global_camera_track_reference },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
@@ -67,7 +67,7 @@ namespace blofeld
 
 	TAG_BLOCK(SentryPropertiesBlock, 1)
 	{
-		{ _field_byte_flags, "behavior", & sentryTurretBehaviorFlagDefinition },
+		{ _field_byte_flags, "behavior", &sentryTurretBehaviorFlagDefinition },
 		{ _field_pad, "flagPad", 3 },
 		{ _field_real, "sight cone angle:degrees#the cone that this sentry actually sees with; only used when scanning" },
 		{ _field_real, "alert range:world units#how far the sentry can see (sentry will track enemies within alert range, but not necessarily fire)" },
@@ -88,7 +88,7 @@ namespace blofeld
 
 	TAG_BLOCK(unit_weapon_block, MAXIMUM_INITIAL_WEAPONS_PER_UNIT)
 	{
-		{ _field_tag_reference, "weapon^", & weapon_reference },
+		{ _field_tag_reference, "weapon^", &weapon_reference },
 		{ _field_string_id, "variant name" },
 		{ _field_long_enum, "position", &initial_weapon_position },
 		{ _field_real, "maximum firing cone angle:degrees#must be greater than zero for turret to fire" },
@@ -134,7 +134,7 @@ namespace blofeld
 
 	TAG_BLOCK(unit_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
 	{
-		{ _field_long_flags, "flags", & unit_seat_flags },
+		{ _field_long_flags, "flags", &unit_seat_flags },
 		{ _field_long_flags, "secondary flags", &unit_seat_secondary_flags },
 		{ _field_old_string_id, "label^" },
 		{ _field_custom },
@@ -204,7 +204,7 @@ namespace blofeld
 
 	TAG_STRUCT(unit_struct_definition)
 	{
-		{ _field_struct, "object", & object_struct_definition_struct_definition },
+		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ UNIT $$$" },
 		{ _field_long_flags, "flags", &unit_flags_part1 },
 
@@ -452,7 +452,7 @@ namespace blofeld
 
 	TAG_STRUCT(unit_camera_acceleration_displacement_function_struct)
 	{
-		{ _field_char_enum, "Input Variable", & unit_camera_acceleration_displacement_input },
+		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input },
 		{ _field_pad, "blah", 3 },
 		{ _field_custom },
 		{ _field_struct, "mapping", &mapping_function_struct_definition },
@@ -478,7 +478,7 @@ namespace blofeld
 
 	TAG_STRUCT(unit_boarding_melee_struct)
 	{
-		{ _field_tag_reference, "boarding melee damage", & global_damage_reference },
+		{ _field_tag_reference, "boarding melee damage", &global_damage_reference },
 		{ _field_tag_reference, "boarding melee response", &global_damage_reference },
 		{ _field_tag_reference, "eviction melee damage", &global_damage_reference },
 		{ _field_tag_reference, "eviction melee response", &global_damage_reference },
@@ -498,7 +498,7 @@ namespace blofeld
 
 	TAG_STRUCT(unit_boost_struct)
 	{
-		{ _field_tag_reference, "boost collision damage", & collision_damage_reference$2 },
+		{ _field_tag_reference, "boost collision damage", &collision_damage_reference$2 },
 
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &boost_flags },
