@@ -122,6 +122,19 @@ public:
 		}
 	}
 
+	void operator +=(t_char_type value)
+	{
+		t_char_type string[2] = { value, 0 };
+		if constexpr (is_char_type)
+		{
+			strncat(data, string, k_capacity - 1);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			wcsncat(data, string, k_capacity - 1);
+		}
+	}
+
 	template<size_t S>
 	void operator +=(const c_fixed_string<S>& string)
 	{

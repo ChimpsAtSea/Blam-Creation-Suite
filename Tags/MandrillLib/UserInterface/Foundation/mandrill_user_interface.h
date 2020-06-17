@@ -20,6 +20,8 @@ public:
 	~c_mandrill_user_interface();
 
 	void open_cache_file(const wchar_t* filepath);
+	void restore_previous_session();
+	void save_current_session();
 	void render();
 	void render_game_layer();
 
@@ -39,8 +41,11 @@ protected:
 	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
 	virtual void render_file_dialogue_gui_impl() override final;
 	virtual void render_game_layer_impl() override final;
+	virtual void add_tab(c_mandrill_tab& tab) override final;
+	virtual void remove_tab(c_mandrill_tab& tab) override final;
 
 	c_window& window;
+	bool is_session_restored;
 	bool is_game_mode;
 	bool window_open;
 	bool show_file_dialogue;

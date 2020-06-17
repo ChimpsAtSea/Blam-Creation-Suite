@@ -10,8 +10,8 @@ public:
 	c_mandrill_tab_container(c_mandrill_tab* parent);
 	virtual ~c_mandrill_tab_container();
 
-	void add_tab(c_mandrill_tab& tab);
-	void remove_tab(c_mandrill_tab& tab);
+	virtual void add_tab(c_mandrill_tab& tab);
+	virtual void remove_tab(c_mandrill_tab& tab);
 	void tab_closed_callback(c_mandrill_tab& tab);
 
 	inline c_mandrill_tab* get_parent() const { return parent; }

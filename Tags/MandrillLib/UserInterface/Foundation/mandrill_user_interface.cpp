@@ -6,6 +6,7 @@ t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section
 c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
 	window(window),
+	is_session_restored(false),
 	is_game_mode(is_game_mode),
 	window_open(true),
 	show_file_dialogue(false),
@@ -14,9 +15,8 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	mandrill_theme_var_count(0),
 	file_browser()
 {
+	restore_previous_session();
 	open_cache_file(startup_file);
-
-
 }
 
 c_mandrill_user_interface::~c_mandrill_user_interface()
@@ -58,6 +58,53 @@ void c_mandrill_user_interface::open_cache_file(const wchar_t* filepath)
 	{
 		// #TODO: Display an error message that the map failed to open
 	}
+}
+
+void c_mandrill_user_interface::restore_previous_session()
+{
+	c_fixed_wide_string<32 * 1024> open_maps_buffer;
+	c_settings::read_wstring(_settings_section_mandrill, "open_maps", open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
+
+	c_fixed_wide_path open_maps_path;
+	const wchar_t* read_position = open_maps_buffer.c_str();
+	while (*read_position != 0)
+	{
+		while (*read_position && *read_position != ';')
+		{
+			open_maps_path += *read_position;
+			read_position++;
+		}
+
+		open_cache_file(open_maps_path.c_str());
+
+		open_maps_path.clear();
+		read_position++;
+	}
+	is_session_restored = true;
+}
+
+void c_mandrill_user_interface::save_current_session()
+{
+	if (!is_session_restored)
+	{
+		return;
+	}
+
+	c_fixed_wide_path open_maps_path;
+	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+	{
+		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
+		{
+			if (!open_maps_path.is_empty())
+			{
+				open_maps_path += ';';
+			}
+			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();			
+		}
+	}
+
+	c_settings::write_wstring(_settings_section_mandrill, "open_maps", open_maps_path.c_str());
+	//c_settings::write_wstring(_settings_section_mandrill, "open_maps", L"C:\\!MCC\\haloreach\\maps\\forge_halo.map;C:\\!MCC\\haloreach\\maps\\m45.map");
 }
 
 void c_mandrill_user_interface::render()
@@ -226,6 +273,18 @@ void c_mandrill_user_interface::render_game_layer_impl()
 	{
 		tab.render_game_layer();
 	}
+}
+
+void c_mandrill_user_interface::add_tab(c_mandrill_tab& tab)
+{
+	c_mandrill_tab_container::add_tab(tab);
+	save_current_session();
+}
+
+void c_mandrill_user_interface::remove_tab(c_mandrill_tab& tab)
+{
+	c_mandrill_tab_container::remove_tab(tab);
+	save_current_session();
 }
 
 void c_mandrill_user_interface::mandrill_theme_push()
