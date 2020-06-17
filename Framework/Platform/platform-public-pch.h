@@ -31,6 +31,7 @@ using namespace xxhash::literals;
 #include "endianness_util.h"
 #include "enum_util.h"
 #include "callback_util.h"
+#include "settings.h"
 
 #include "Strings/strings.h"
 

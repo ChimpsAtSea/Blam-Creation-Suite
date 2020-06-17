@@ -214,7 +214,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Settings\opus_legacy\settings_legacy.cpp" />
     <ClCompile Include="RuntimeManipulation\SystemPatch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -261,9 +260,7 @@
     <ClInclude Include="RuntimeManipulation\FunctionHookVarArgs.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookVarArgsEx.h" />
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h" />
-    <ClInclude Include="Settings\opus_legacy\settings_legacy.h" />
     <ClInclude Include="RuntimeManipulation\SystemPatch.h" />
-    <ClInclude Include="Settings\settings_legacy.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

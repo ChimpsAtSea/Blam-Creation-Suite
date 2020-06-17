@@ -48,7 +48,7 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 	}
 
 	char pLaunchGameModeBuffer[256] = {};
-	c_settings_legacy::read_string(_settings_section_legacy_launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
+	c_settings::read_string(_settings_section_launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
 	s_currentGameMode = string_to_mcc_game_mode(pLaunchGameModeBuffer);
 	if (s_currentGameMode == _mcc_game_mode_none)
 	{
@@ -56,7 +56,7 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 	}
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
-	c_settings_legacy::read_string(_settings_section_legacy_launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
+	c_settings::read_string(_settings_section_launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
 	g_campaign_difficulty_level = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
 
 	LPCSTR pDefaultHopperGameVariant = "";
@@ -76,7 +76,7 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 
 	// #TODO: This must persist outside of the read
 	static char pLaunchGameVariantBuffer[256] = {};
-	uint32_t LaunchGameVariantLength = c_settings_legacy::read_string(_settings_section_legacy_launch, "GameVariant", pLaunchGameVariantBuffer, sizeof(pLaunchGameVariantBuffer), pDefaultHopperGameVariant);
+	uint32_t LaunchGameVariantLength = c_settings::read_string(_settings_section_launch, "GameVariant", pLaunchGameVariantBuffer, sizeof(pLaunchGameVariantBuffer), pDefaultHopperGameVariant);
 	if (LaunchGameVariantLength > 0)
 	{
 		s_launch_game_variant = pLaunchGameVariantBuffer;
@@ -88,7 +88,7 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 
 	// #TODO: This must persist outside of the read
 	static char pLaunchMapVariantBuffer[256] = {};
-	uint32_t LaunchMapVariantLength = c_settings_legacy::read_string(_settings_section_legacy_launch, "MapVariant", pLaunchMapVariantBuffer, sizeof(pLaunchMapVariantBuffer), "");
+	uint32_t LaunchMapVariantLength = c_settings::read_string(_settings_section_launch, "MapVariant", pLaunchMapVariantBuffer, sizeof(pLaunchMapVariantBuffer), "");
 	if (LaunchMapVariantLength > 0)
 	{
 		s_launch_map_variant = pLaunchMapVariantBuffer;
@@ -120,7 +120,7 @@ void c_haloreach_game_option_selection_legacy::SelectGameMode()
 				if (ImGui::Selectable(current_mcc_game_mode_string, &selected))
 				{
 					s_currentGameMode = static_cast<e_mcc_game_mode>(i);
-					c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
+					c_settings::write_string(_settings_section_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
 				}
 			}
 
@@ -147,7 +147,7 @@ void c_haloreach_game_option_selection_legacy::SelectGameMode()
 					if (ImGui::Selectable(pGameModeStr, &selected))
 					{
 						s_currentGameMode = gameMode;
-						c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
+						c_settings::write_string(_settings_section_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
 					}
 				}
 			}
@@ -192,7 +192,7 @@ void c_haloreach_game_option_selection_legacy::Render()
 
 const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
 {
-	int previousMapID = c_settings_legacy::read_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
+	int previousMapID = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
 	{
 		if (rMapInfo.GetMapID() == previousMapID)
@@ -206,7 +206,7 @@ const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(
 
 const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
 {
-	int previousMapID = c_settings_legacy::read_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
+	int previousMapID = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
 	{
 		if (rMapInfo.GetMapID() == previousMapID)
@@ -288,16 +288,16 @@ void c_haloreach_game_option_selection_legacy::SaveSelectedMap(e_mcc_game_mode g
 	switch (gameMode)
 	{
 	case _mcc_game_mode_campaign:
-		c_settings_legacy::write_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	case _mcc_game_mode_multiplayer:
-		c_settings_legacy::write_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	case _mcc_game_mode_firefight:
-		c_settings_legacy::write_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	default:
-		c_settings_legacy::write_integer(_settings_section_legacy_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Unknown)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Unknown)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	}
 }
@@ -388,7 +388,7 @@ void c_haloreach_game_option_selection_legacy::SelectDifficulty()
 					if (ImGui::Selectable(pDifficultyStr, &selected))
 					{
 						g_campaign_difficulty_level = static_cast<e_campaign_difficulty_level>(difficulty);
-						c_settings_legacy::write_string(_settings_section_legacy_launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_campaign_difficulty_level));
+						c_settings::write_string(_settings_section_launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_campaign_difficulty_level));
 					}
 				}
 			}

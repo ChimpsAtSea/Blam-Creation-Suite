@@ -1,19 +1,18 @@
-#include "gameframework-private-pch.h"
-#include "settings_legacy.h"
+#include "platform-private-pch.h"
 
-bool c_settings_legacy::read_boolean(e_settings_section_legacy section, const char* pName, bool defaultValue /*= false*/)
+bool c_settings::read_boolean(e_settings_section section, const char* pName, bool defaultValue /*= false*/)
 {
 	const char* pSectionName = get_section_name_string(section);
 	return !!GetPrivateProfileIntA(pSectionName, pName, defaultValue, k_settings_path);
 }
 
-int c_settings_legacy::read_integer(e_settings_section_legacy section, const char* pName, int defaultValue /*= 0*/)
+int c_settings::read_integer(e_settings_section section, const char* pName, int defaultValue /*= 0*/)
 {
 	const char* pSectionName = get_section_name_string(section);
 	return GetPrivateProfileIntA(pSectionName, pName, defaultValue, k_settings_path);
 }
 
-float c_settings_legacy::read_float(e_settings_section_legacy section, const char* pName, float defaultValue /*= 0.0*/)
+float c_settings::read_float(e_settings_section section, const char* pName, float defaultValue /*= 0.0*/)
 {
 	char floatBuffer[32] = {};
 	uint32_t length = read_string(section, pName, floatBuffer, sizeof(floatBuffer), "");
@@ -26,7 +25,7 @@ float c_settings_legacy::read_float(e_settings_section_legacy section, const cha
 	return defaultValue;
 }
 
-uint32_t c_settings_legacy::read_string(e_settings_section_legacy section, const char* pName, char* buffer, uint32_t buffer_size, const char* pDefaultValue /*= nullptr*/)
+uint32_t c_settings::read_string(e_settings_section section, const char* pName, char* buffer, uint32_t buffer_size, const char* pDefaultValue /*= nullptr*/)
 {
 	if (buffer_size > 0)
 	{
@@ -38,7 +37,7 @@ uint32_t c_settings_legacy::read_string(e_settings_section_legacy section, const
 	return 0;
 }
 
-uint32_t c_settings_legacy::read_wstring(e_settings_section_legacy section, const char* pName, wchar_t* buffer, uint32_t buffer_size, const wchar_t* pDefaultValue /*= nullptr*/)
+uint32_t c_settings::read_wstring(e_settings_section section, const char* pName, wchar_t* buffer, uint32_t buffer_size, const wchar_t* pDefaultValue /*= nullptr*/)
 {
 	if (buffer_size > 0)
 	{
@@ -61,13 +60,13 @@ uint32_t c_settings_legacy::read_wstring(e_settings_section_legacy section, cons
 	return 0;
 }
 
-bool c_settings_legacy::write_boolean(e_settings_section_legacy section, const char* pName, bool value)
+bool c_settings::write_boolean(e_settings_section section, const char* pName, bool value)
 {
 	const char* pSectionName = get_section_name_string(section);
 	return WritePrivateProfileStringA(pSectionName, pName, value ? "1" : "0", k_settings_path);
 }
 
-bool c_settings_legacy::write_integer(e_settings_section_legacy section, const char* pName, int value)
+bool c_settings::write_integer(e_settings_section section, const char* pName, int value)
 {
 	const char* pSectionName = get_section_name_string(section);
 	size_t buffer_length = static_cast<int>(logl(UINT_MAX)) + 2;
@@ -77,30 +76,32 @@ bool c_settings_legacy::write_integer(e_settings_section_legacy section, const c
 	return WritePrivateProfileStringA(pSectionName, pName, buffer, k_settings_path);
 }
 
-bool c_settings_legacy::write_string(e_settings_section_legacy section, const char* pName, const char* pValue)
+bool c_settings::write_string(e_settings_section section, const char* pName, const char* pValue)
 {
 	const char* pSectionName = get_section_name_string(section);
 	return WritePrivateProfileStringA(pSectionName, pName, pValue, k_settings_path);
 }
 
-const char* c_settings_legacy::get_section_name_string(e_settings_section_legacy section)
+const char* c_settings::get_section_name_string(e_settings_section section)
 {
 	switch (section)
 	{
-	case _settings_section_legacy_game:
+	case _settings_section_game:
 		return "Game";
-	case _settings_section_legacy_camera:
+	case _settings_section_camera:
 		return "Camera";
-	case _settings_section_legacy_player:
+	case _settings_section_player:
 		return "Player";
-	case _settings_section_legacy_debug:
+	case _settings_section_debug:
 		return "Debug";
-	case _settings_section_legacy_launch:
+	case _settings_section_launch:
 		return "Launch";
-	case _settings_section_legacy_controls:
+	case _settings_section_controls:
 		return "Controls";
+	case _settings_section_mandrill:
+		return "Mandrill";
 	default:
-		FATAL_ERROR(L"unknown <e_settings_section_legacy>");
+		FATAL_ERROR(L"unknown <e_settings_section>");
 		return nullptr;
 	}
 }

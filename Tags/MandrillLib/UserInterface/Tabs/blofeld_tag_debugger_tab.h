@@ -24,6 +24,12 @@ protected:
 	c_tag_interface& tag_interface;
 	c_gen3_cache_file_validator* validator;
 
+	static constexpr const char* k_show_hex_values_setting = "show_hex_values";
+	static constexpr const char* k_show_hex_values_float_setting = "show_hex_values_float";
+	static constexpr const char* k_show_broken_block_data_setting = "show_broken_block_data";
+	static constexpr const char* k_show_field_offsets_setting = "show_field_offsets";
+	static constexpr const char* k_show_custom_fields_setting = "show_custom_fields";
+
 	static bool show_hex_values;
 	static bool show_hex_values_float;
 	static bool show_broken_block_data;

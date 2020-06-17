@@ -648,7 +648,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 			static bool initialized_player_name = false;
 			if (!initialized_player_name)
 			{
-				c_settings_legacy::read_wstring(_settings_section_legacy_player, "Name", player_name_configuration, sizeof(player_name_configuration), pName);
+				c_settings::read_wstring(_settings_section_player, "Name", player_name_configuration, sizeof(player_name_configuration), pName);
 				initialized_player_name = true;
 			}
 			if (player_name_configuration[0])

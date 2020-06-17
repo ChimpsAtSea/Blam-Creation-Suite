@@ -75,9 +75,6 @@
     <ClCompile Include="MCC\mouse_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Settings\opus_legacy\settings_legacy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem\map_info_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,12 +201,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\mouse_input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings\opus_legacy\settings_legacy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings\settings_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileSystem\map_info_manager.h">

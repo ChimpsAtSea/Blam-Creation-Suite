@@ -1,11 +1,10 @@
 #include "mandrilllib-private-pch.h"
-#include <TagValidate\field_validation_result.h>
 
-bool c_blofeld_tag_debugger_tab::show_hex_values = false;
-bool c_blofeld_tag_debugger_tab::show_hex_values_float = false;
-bool c_blofeld_tag_debugger_tab::show_broken_block_data = false;
-bool c_blofeld_tag_debugger_tab::show_field_offsets = true;
-bool c_blofeld_tag_debugger_tab::show_custom_fields = false;
+bool c_blofeld_tag_debugger_tab::show_hex_values = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_setting, false);
+bool c_blofeld_tag_debugger_tab::show_hex_values_float = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, false);
+bool c_blofeld_tag_debugger_tab::show_broken_block_data = c_settings::read_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, false);
+bool c_blofeld_tag_debugger_tab::show_field_offsets = c_settings::read_boolean(_settings_section_mandrill, k_show_field_offsets_setting, true);
+bool c_blofeld_tag_debugger_tab::show_custom_fields = c_settings::read_boolean(_settings_section_mandrill, k_show_custom_fields_setting, false);
 
 float indent_size = 20.0f;
 
@@ -698,27 +697,33 @@ void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_re
 	}
 	if (menu_render_type == _menu_render_type_child)
 	{
-		if (ImGui::MenuItem(show_hex_values ? "Hide Decimal Values" : "Show Hex Values"))
+
+		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values" : "Show Hex Values"))
 		{
 			show_hex_values = !show_hex_values;
+			c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_setting, show_hex_values);
 		}
-		if (ImGui::MenuItem(show_hex_values ? "Hide Decimal Values (Float)" : "Show Hex Values (Float)"))
+		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
 		{
 			show_hex_values_float = !show_hex_values_float;
+			c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, show_hex_values_float);
 		}
 		if (ImGui::MenuItem(show_broken_block_data ? "Hide Broken Block Data" : "Show Broken Block Data"))
 		{
 			show_broken_block_data = !show_broken_block_data;
+			c_settings::write_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, show_broken_block_data);
 		}
 		if (ImGui::MenuItem(show_field_offsets ? "Hide Field Offsets" : "Show Field Offsets"))
 		{
 			show_field_offsets = !show_field_offsets;
+			c_settings::write_boolean(_settings_section_mandrill, k_show_field_offsets_setting, show_field_offsets);
 		}
 		if (ImGui::MenuItem(show_custom_fields ? "Hide Custom Fields" : "Show Custom Fields"))
 		{
 			show_custom_fields = !show_custom_fields;
+			c_settings::write_boolean(_settings_section_mandrill, k_show_custom_fields_setting, show_custom_fields);
 		}
-		
+
 	}
 }
 

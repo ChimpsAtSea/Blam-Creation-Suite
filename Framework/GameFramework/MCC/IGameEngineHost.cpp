@@ -609,7 +609,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 	}
 
 
-	c_settings_legacy::read_wstring(_settings_section_legacy_player, "service_tag", player_configuration.service_tag, 4, L"117");
+	c_settings::read_wstring(_settings_section_player, "service_tag", player_configuration.service_tag, 4, L"117");
 	player_configuration.online_medal_flasher = false;
 	//player_configuration.vertical_look_sensitivity = ;
 	//player_configuration.horizontal_look_sensitivity = ;

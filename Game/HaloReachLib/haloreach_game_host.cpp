@@ -102,9 +102,9 @@ void c_haloreach_game_host::init_runtime_modifications(e_build build)
 	g_haloreach_camera_command = new c_haloreach_camera_command();
 
 	//player_mapping_get_local_player
-	spawn_ai_with_scripts_and_effects.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "SpawnAiWithScriptsAndEffects", true));
-	allow_night_vision_in_multiplayer.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "AllowNightVisionInMultiplayer", true));
-	enable_debug_hud_coordinates.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PanCamEnabled", true));
+	spawn_ai_with_scripts_and_effects.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
+	allow_night_vision_in_multiplayer.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
+	enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
 
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_haloreach, build);

@@ -392,11 +392,11 @@ FunctionHookEx<mcc_map_id_parse_from_reach_offset, int __fastcall (int a1)> mcc_
 
 void ReadConfig()
 {
-	g_frameLimit = __max(30, c_settings_legacy::read_integer(_settings_section_legacy_game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
-	g_controlsLayout = c_settings_legacy::read_integer(_settings_section_legacy_player, "ControlsLayout", 0);
-	g_pancamEnabled = c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PancamEnabled", false);
-	g_keyboardPrintKeyState = c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PrintKeyState", 0);
-	g_useController = c_settings_legacy::read_integer(_settings_section_legacy_player, "UseController", 0);
+	g_frameLimit = __max(30, c_settings::read_integer(_settings_section_game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
+	g_controlsLayout = c_settings::read_integer(_settings_section_player, "ControlsLayout", 0);
+	g_pancamEnabled = c_settings::read_boolean(_settings_section_debug, "PancamEnabled", false);
+	g_keyboardPrintKeyState = c_settings::read_boolean(_settings_section_debug, "PrintKeyState", 0);
+	g_useController = c_settings::read_integer(_settings_section_player, "UseController", 0);
 	//ReadInputBindings();
 }
 
@@ -635,12 +635,12 @@ void init_haloreach_with_mcc(e_engine_type engine_type, e_build build, bool isMC
 
 	if (hs_function_table != nullptr)
 	{
-		if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "ReplacePrintScriptEvaluate", true))
+		if (c_settings::read_boolean(_settings_section_debug, "ReplacePrintScriptEvaluate", true))
 		{
 			hs_script_op* hs_print_function = hs_function_get(0x28);
 			hs_script_op* hs_chud_post_message_function = hs_function_get(build >= _build_mcc_1_1186_0_0 ? 0x509 : 0x508);
 
-			if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PrintToHud", false))
+			if (c_settings::read_boolean(_settings_section_debug, "PrintToHud", false))
 			{
 				hs_print_function->replace_evaluate(hs_chud_post_message_function->evaluate);
 			}
