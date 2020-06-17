@@ -362,7 +362,7 @@ public:
 		return strlen(data);
 	}
 
-	constexpr size_t capacity()
+	constexpr uint32_t capacity()
 	{
 		return k_capacity;
 	}

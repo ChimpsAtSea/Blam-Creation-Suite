@@ -28,14 +28,44 @@ non_copyconstructable(non_copyconstructable&&) = delete; /* redundant */ \
 non_copyconstructable& operator=(non_copyconstructable const&) = delete; \
 non_copyconstructable& operator=(non_copyconstructable&&) = delete; /* redundant */
 
-template<typename t_value>
+template<typename T>
+class c_explicit_storage
+{
+public:
+	c_explicit_storage() :
+		is_initialized(false)
+	{
+
+	}
+	~c_explicit_storage()
+	{
+		if (is_initialized)
+		{
+			delete reinterpret_cast<T*>(storage_data);
+		}
+	}
+
+	template <class... Args>
+	T& operator()(Args&&... args)
+	{
+		return *new(storage_data) T(args...);
+	}
+
+	bool is_initialized;
+	char storage_data[sizeof(T)];
+};
+
+template<typename t_value, bool reverse = false>
 class c_reference_iterator
 {
 public:
-	c_reference_iterator(t_value start_position) :
-		current_position(start_position)
+	c_reference_iterator(t_value start_position, t_value end_position) :
+		current_position(reverse ? end_position : start_position)
 	{
-
+		if constexpr (reverse)
+		{
+			current_position--;
+		}
 	}
 
 	t_value current_position;
@@ -49,7 +79,14 @@ public:
 
 	void operator++()
 	{
-		current_position++;
+		if constexpr (reverse)
+		{
+			current_position--;
+		}
+		else
+		{
+			current_position++;
+		}
 	}
 
 	bool operator !=(c_reference_iterator& it)
@@ -58,22 +95,35 @@ public:
 	}
 };
 
-template<typename t_value, typename t_iterator>
+template<typename t_value, typename t_iterator, bool start_and_end_iterator_ctor = false>
 class c_loop_helper
 {
 public:
-
 	t_value begin_pointer;
 	t_value end_pointer;
 
 	t_iterator begin()
 	{
-		return begin_pointer;
+		if constexpr (start_and_end_iterator_ctor)
+		{
+			return { begin_pointer, end_pointer };
+		}
+		else
+		{
+			return begin_pointer;
+		}
 	}
 
 	t_iterator end()
 	{
-		return end_pointer;
+		if constexpr (start_and_end_iterator_ctor)
+		{
+			return { end_pointer, begin_pointer };
+		}
+		else
+		{
+			return end_pointer;
+		}
 	}
 
 	c_loop_helper(t_value begin, t_value end) :
@@ -101,12 +151,21 @@ public:
 };
 
 template<typename t_value>
-class c_reference_loop : public c_loop_helper<t_value, c_reference_iterator<t_value>>
+class c_reference_loop : public c_loop_helper<t_value, c_reference_iterator<t_value>, true>
 {
 public:
-	c_reference_loop(t_value begin, t_value end) : c_loop_helper<t_value, c_reference_iterator<t_value>>(begin, end) {}
-	c_reference_loop(t_value begin, size_t count) : c_loop_helper<t_value, c_reference_iterator<t_value>>(begin, count) {}
-	c_reference_loop(t_value begin) : c_loop_helper<t_value, c_reference_iterator<t_value>>(begin) {}
+	c_reference_loop(t_value begin, t_value end) : c_loop_helper<t_value, c_reference_iterator<t_value>, true>(begin, end) {}
+	c_reference_loop(t_value begin, size_t count) : c_loop_helper<t_value, c_reference_iterator<t_value>, true>(begin, count) {}
+	c_reference_loop(t_value begin) : c_loop_helper<t_value, c_reference_iterator<t_value>, true>(begin) {}
+};
+
+template<typename t_value>
+class c_reverse_reference_loop : public c_loop_helper<t_value, c_reference_iterator<t_value, true>, true>
+{
+public:
+	c_reverse_reference_loop(t_value begin, t_value end) : c_loop_helper<t_value, c_reference_iterator<t_value, true>, true>(begin, end) {}
+	c_reverse_reference_loop(t_value begin, size_t count) : c_loop_helper<t_value, c_reference_iterator<t_value, true>, true>(begin, count) {}
+	c_reverse_reference_loop(t_value begin) : c_loop_helper<t_value, c_reference_iterator<t_value, true>, true>(begin) {}
 };
 
 template<typename t_value>

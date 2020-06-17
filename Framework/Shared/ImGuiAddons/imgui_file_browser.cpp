@@ -37,7 +37,7 @@
 
 namespace ImGuiAddons
 {
-    ImGuiFileBrowser::ImGuiFileBrowser()
+    ImGuiFileBrowser::ImGuiFileBrowser(std::string path)
     {
         show_popup_next_run = true;
         is_dir = false;
@@ -48,7 +48,19 @@ namespace ImGuiAddons
         selected_ext_idx = 0;
         col_width = 280.0f;
         #ifdef OSWIN
-        current_path = "./";
+        if (path.empty())
+        {
+			current_path = "./";
+			char current_working_directory_buffer[MAX_PATH];
+			if (GetCurrentDirectoryA(MAX_PATH, current_working_directory_buffer))
+			{
+				current_path = current_working_directory_buffer;
+			}
+        }
+        else
+        {
+            current_path = path;
+        }
         #else
         current_path = "/";
         current_dirlist.push_back("/");
@@ -208,7 +220,7 @@ namespace ImGuiAddons
             //Output directories in yellow
             bool show_drives = false;
             #ifdef OSWIN
-            (current_dirlist.back() == "Computer") ? show_drives = true : show_drives = false;
+            (current_dirlist.empty() || current_dirlist.back() == "Computer") ? show_drives = true : show_drives = false;
             #endif // OSWIN
 
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.882f, 0.745f, 0.078f,1.0f));
@@ -603,7 +615,7 @@ namespace ImGuiAddons
         {
             #ifdef OSWIN
             // If we are on Windows and failed to load Windows Drives, populate filebar with default path
-            if(current_dirlist.empty() && pathdir == "./")
+            if(current_dirlist.empty()/* && pathdir == "./"*/)
             {
                 const wchar_t* absolute_path = dir->wdirp->patt;
                 std::string current_directory = wStringToString(absolute_path);
