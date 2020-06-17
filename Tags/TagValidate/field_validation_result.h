@@ -19,6 +19,7 @@ struct s_field_validation_result
 	bool float_is_out_of_range;
 	bool block_is_out_of_range;
 	bool block_struct_is_valid;
+	uint32_t field_offset;
 	int level;
 };
 

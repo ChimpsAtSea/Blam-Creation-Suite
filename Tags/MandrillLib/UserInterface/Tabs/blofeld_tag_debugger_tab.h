@@ -27,7 +27,9 @@ protected:
 	static bool show_hex_values;
 	static bool show_hex_values_float;
 	static bool show_broken_block_data;
-
+	static bool show_field_offsets;
+	static bool show_custom_fields;
+	
 
 	void setup_render_callbacks();
 #define render_field_callback_args char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
@@ -101,7 +103,8 @@ protected:
 	void render_field_qword_integer(render_field_callback_args);
 #undef callback_args
 
-	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::e_field field_type, const char* field_name, const char* format = nullptr);
+	void render_field_name(const blofeld::s_tag_field& field, s_field_validation_result* result);
+	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, const char* format = nullptr);
 private:
-	template<typename t_raw_value> void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field);
+	template<typename t_raw_value> void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result);
 };

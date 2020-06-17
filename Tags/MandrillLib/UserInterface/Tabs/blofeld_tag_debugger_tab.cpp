@@ -4,6 +4,8 @@
 bool c_blofeld_tag_debugger_tab::show_hex_values = false;
 bool c_blofeld_tag_debugger_tab::show_hex_values_float = false;
 bool c_blofeld_tag_debugger_tab::show_broken_block_data = false;
+bool c_blofeld_tag_debugger_tab::show_field_offsets = true;
+bool c_blofeld_tag_debugger_tab::show_custom_fields = false;
 
 float indent_size = 20.0f;
 
@@ -20,7 +22,20 @@ c_blofeld_tag_debugger_tab::~c_blofeld_tag_debugger_tab()
 
 }
 
-void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::e_field field_type, const char* field_name, const char* format)
+void c_blofeld_tag_debugger_tab::render_field_name(const blofeld::s_tag_field& field, s_field_validation_result* result)
+{
+	ImGui::SameLine();
+	if (show_field_offsets)
+	{
+		ImGui::Text("0x%X | %s %s", result->field_offset, blofeld::field_to_string(field.field_type), field.name);
+	}
+	else
+	{
+		ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	}
+}
+
+void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, const char* format)
 {
 	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
 	if (show_hex_values && data_type != ImGuiDataType_Float)
@@ -45,12 +60,11 @@ void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_typ
 	ImGui::Dummy({ level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImGui::InputScalarN("", data_type, data, (int)count, nullptr, nullptr, format, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field_type), field_name);
+	render_field_name(field, result);
 }
 
 template<typename t_raw_value>
-void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field)
+void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result)
 {
 	const char* format_string = "raw: %u ";
 	if (show_hex_values)
@@ -68,8 +82,7 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 		enum_value += field.string_list_definition->strings[raw_value];
 	}
 	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 
 void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback)
@@ -98,16 +111,14 @@ void c_blofeld_tag_debugger_tab::render_field_string(render_field_callback_args)
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImGui::InputText("", data, 32, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_string(render_field_callback_args)
 {
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImGui::InputText("", data, 256, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_string_id(render_field_callback_args)
 {
@@ -115,8 +126,7 @@ void c_blofeld_tag_debugger_tab::render_field_string_id(render_field_callback_ar
 	ImGui::SameLine();
 	const char* string_id = result->string_id_value ? result->string_id_value : "<error invalid string id>";
 	ImGui::InputText("", (char*)string_id, strlen(string_id) + 1, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callback_args)
 {
@@ -124,116 +134,119 @@ void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callbac
 	ImGui::SameLine();
 	int& old_string_id = *reinterpret_cast<int*>(data);
 	ImGui::InputInt("", &old_string_id, 1, 100, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_char_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_int64_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S64, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S64, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_angle(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_tag(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_char_enum(render_field_callback_args)
 {
-	render_field_enum_type<byte>(result->level, data, field);
+	render_field_enum_type<byte>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_enum(render_field_callback_args)
 {
-	render_field_enum_type<word>(result->level, data, field);
+	render_field_enum_type<word>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_enum(render_field_callback_args)
 {
-	render_field_enum_type<unsigned long>(result->level, data, field);
+	render_field_enum_type<unsigned long>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_point_2d(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_rectangle_2d(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_rgb_color(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_argb_color(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_fraction(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_point_2d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_point_3d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_vector_2d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_vector_3d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_quaternion(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_euler_angles_2d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_euler_angles_3d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_plane_2d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_plane_3d(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_rgb_color(render_field_callback_args)
 {
@@ -241,8 +254,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_rgb_color(render_field_callba
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
 	ImGui::ColorEdit3("", &color.x, ImGuiColorEditFlags_Float);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callback_args)
 {
@@ -250,8 +262,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callb
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
 	ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_Float);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callback_args)
 {
@@ -259,8 +270,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callba
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
 	ImGui::ColorEdit3("", &color.x, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callback_args)
 {
@@ -268,24 +278,23 @@ void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callb
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
 	ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_bounds(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S16, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S16, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_angle_bounds(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_bounds(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_fraction_bounds(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_tag_reference(render_field_callback_args)
 {
@@ -302,8 +311,7 @@ void c_blofeld_tag_debugger_tab::render_field_tag_reference(render_field_callbac
 	ImGui::SameLine();
 	const char* tag_name = result->tag_reference_instance ? result->tag_reference_instance->get_path_with_group_name_cstr() : "";
 	ImGui::InputText("", (char*)tag_name, strlen(tag_name) + 1, ImGuiInputTextFlags_ReadOnly);
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 
 	const char* format_string = "[group_tag:'%s' name:0x%X name_length:0x%i index:%u datum:0x%X]";
 	if (show_hex_values)
@@ -323,8 +331,7 @@ void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 {
 	s_tag_block& tag_block = *reinterpret_cast<s_tag_block*>(data);
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 	ImGui::SameLine();
 	const char* format_string = "[count:%i address:0x%X definition_address:0x%i]";
 	if (show_hex_values)
@@ -335,70 +342,74 @@ void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 }
 void c_blofeld_tag_debugger_tab::render_field_long_block_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_block_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_block_flags(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_char_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_char_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_short_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_long_block_index(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_data(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_vertex_buffer(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_pad(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_S8, field.padding, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_S8, field.padding, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_useless_pad(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_skip(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_non_cache_runtime_value(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_explanation(render_field_callback_args)
 {
 	ImGui::PushStyleColor(ImGuiCol_Text, { 0.8f, 0.6f, 1.0f, 1.0f });
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
-	ImGui::SameLine();
-	ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	render_field_name(field, result);
 	if (field.explanation && strlen(field.explanation) > 0)
 	{
 		ImGui::Dummy({ result->level * indent_size, 0.0f });
@@ -409,23 +420,31 @@ void c_blofeld_tag_debugger_tab::render_field_explanation(render_field_callback_
 }
 void c_blofeld_tag_debugger_tab::render_field_custom(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	if (show_custom_fields)
+	{
+		ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+		render_field_name(field, result);
+	}
 }
 void c_blofeld_tag_debugger_tab::render_field_struct(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_array(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_pageable(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_api_interop(render_field_callback_args)
 {
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine(); ImGui::Text("%s %s", blofeld::field_to_string(field.field_type), field.name);
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_terminator(render_field_callback_args)
 {
@@ -433,19 +452,19 @@ void c_blofeld_tag_debugger_tab::render_field_terminator(render_field_callback_a
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_dword_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_qword_integer(render_field_callback_args)
 {
-	render_field_scalar_type(ImGuiDataType_U64, 1, result->level, data, field.field_type, field.name);
+	render_field_scalar_type(ImGuiDataType_U64, 1, result->level, data, field, result);
 }
 
 void c_blofeld_tag_debugger_tab::setup_render_callbacks()
@@ -679,17 +698,25 @@ void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_re
 	}
 	if (menu_render_type == _menu_render_type_child)
 	{
-		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values" : "Show Hex Values"))
+		if (ImGui::MenuItem(show_hex_values ? "Hide Decimal Values" : "Show Hex Values"))
 		{
 			show_hex_values = !show_hex_values;
 		}
-		if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
+		if (ImGui::MenuItem(show_hex_values ? "Hide Decimal Values (Float)" : "Show Hex Values (Float)"))
 		{
 			show_hex_values_float = !show_hex_values_float;
 		}
-		if (ImGui::MenuItem(show_broken_block_data ? "Show Broken Block Data" : "Show Broken Block Data"))
+		if (ImGui::MenuItem(show_broken_block_data ? "Hide Broken Block Data" : "Show Broken Block Data"))
 		{
 			show_broken_block_data = !show_broken_block_data;
+		}
+		if (ImGui::MenuItem(show_field_offsets ? "Hide Field Offsets" : "Show Field Offsets"))
+		{
+			show_field_offsets = !show_field_offsets;
+		}
+		if (ImGui::MenuItem(show_custom_fields ? "Hide Custom Fields" : "Show Custom Fields"))
+		{
+			show_custom_fields = !show_custom_fields;
 		}
 		
 	}

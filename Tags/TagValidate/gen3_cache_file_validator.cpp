@@ -145,6 +145,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 		result.float_is_out_of_range = false;
 		result.block_is_out_of_range = false;
 		result.block_struct_is_valid = true;
+		result.field_offset = bytes_traversed;
 		result.level = level + 1;
 		if (!data_is_valid) result.validation_state = _validation_state_previously_invalid;
 		else
@@ -382,14 +383,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 
 		if (render)
 		{
-			switch (current_field->field_type)
-			{
-			case blofeld::_field_custom:
-				//case blofeld::_field_explanation:
-				break; // skip rendering custom fields
-			default:
-				field_render_callback(current_data_position, *current_field, &result, field_type_render_callbacks[current_field->field_type]);
-			}
+			field_render_callback(current_data_position, *current_field, &result, field_type_render_callbacks[current_field->field_type]);
 
 			switch (current_field->field_type)
 			{
