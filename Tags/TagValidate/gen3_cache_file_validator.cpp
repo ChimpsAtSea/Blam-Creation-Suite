@@ -355,7 +355,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 					uint32_t bytes_traversed = render_tag_struct_definition(
 						level + 2,
 						array_data_position,
-						*current_field->struct_definition,
+						current_field->array_definition->struct_definition,
 						false,
 						render, data_is_valid,
 						_cache_file_validator_struct_type_array,
