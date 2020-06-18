@@ -147,8 +147,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 		result.block_struct_is_valid = true;
 		result.field_offset = bytes_traversed;
 		result.level = level + 1;
-		if (!data_is_valid) result.validation_state = _validation_state_previously_invalid;
-		else
+		bool previously_invalid = !data_is_valid;
 		{
 			bool was_tested = true;
 			switch (current_field->field_type)
@@ -372,7 +371,8 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(int level, ch
 			}
 			}
 
-			if (!was_tested) result.validation_state = _validation_state_unknown;
+			if (previously_invalid) result.validation_state = _validation_state_previously_invalid;
+			else if (!was_tested) result.validation_state = _validation_state_unknown;
 			else if (!data_is_valid) result.validation_state = _validation_state_invalid;
 			else if (result.float_is_out_of_range) result.validation_state = _validation_state_warning;
 			else if (result.block_is_out_of_range) result.validation_state = _validation_state_warning;
