@@ -9,43 +9,36 @@ int create_source_file()
 
 	int result = 0;
 
-	tbb::parallel_invoke(
-		[&result]()
-		{
-			c_tag_source_generator tag_source_generator(_engine_type_haloreach, _build_not_set);
-			tag_source_generator.generate_source();
-			if (tag_source_generator.has_error) result++;
-		},
-		[&result]()
-		{
-			c_tag_source_generator tag_source_generator(_engine_type_halo3, _build_not_set);
-			tag_source_generator.generate_source();
-			if (tag_source_generator.has_error) result++;
-		},
-		[&result]()
-		{
-			c_tag_source_generator tag_source_generator(_engine_type_halo4, _build_not_set);
-			tag_source_generator.generate_source();
-			if (tag_source_generator.has_error) result++;
-		},
-		[&result]()
-		{
-			c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_haloreach, _build_not_set);
-			virtual_tag_source_generator.generate_header();
-			virtual_tag_source_generator.generate_source();
-		},
-		[&result]()
-		{
-			c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_halo3, _build_not_set);
-			virtual_tag_source_generator.generate_header();
-			virtual_tag_source_generator.generate_source();
-		},
-		[&result]()
-		{
-			c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_halo4, _build_not_set);
-			virtual_tag_source_generator.generate_header();
-			virtual_tag_source_generator.generate_source();
-		});
+	e_engine_type const engine_types[] =
+	{
+		_engine_type_halo1,
+		_engine_type_halo2,
+		_engine_type_halo3,
+		_engine_type_halo3odst,
+		_engine_type_haloreach,
+		_engine_type_halo4,
+		_engine_type_groundhog,
+		_engine_type_gen3_xbox360,
+	};
+
+	tbb::task_group g;
+	for (e_engine_type engine_type : engine_types)
+	{
+		g.run([&result, engine_type]
+			{
+				c_tag_source_generator tag_source_generator(engine_type, _build_not_set);
+				tag_source_generator.generate_source();
+				if (tag_source_generator.has_error) result++;
+			});
+
+		g.run([&result, engine_type]
+			{
+				c_virtual_tag_source_generator virtual_tag_source_generator(engine_type, _build_not_set);
+				virtual_tag_source_generator.generate_header();
+				virtual_tag_source_generator.generate_source();
+			});
+	}
+	g.wait();
 
 	return result;
 }

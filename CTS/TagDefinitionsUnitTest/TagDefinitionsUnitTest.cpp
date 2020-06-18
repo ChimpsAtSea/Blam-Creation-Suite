@@ -33,7 +33,7 @@ namespace TagDefinitionsUnitTest
 
 		TEST_METHOD_EX(blofeld_validate_halo_4, "Blofeld | Validate Halo 4")
 		{
-			bool halo4_validated_result = blofeld::validate_halo4();
+			bool halo4_validated_result = blofeld::validate_gen3_definitions();
 			Assert::IsFalse(halo4_validated_result);
 		}
 

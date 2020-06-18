@@ -169,7 +169,7 @@ void c_virtual_tag_source_generator::generate_header()
 
 
 	std::string source_code = hs.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "_virtual.h";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + "_virtual.h";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
@@ -233,7 +233,7 @@ void c_virtual_tag_source_generator::generate_source()
 	ss << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = ss.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "_virtual.cpp";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + "_virtual.cpp";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;

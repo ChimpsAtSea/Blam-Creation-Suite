@@ -91,6 +91,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile>tagreflection-private-pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,6 +112,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile>tagreflection-private-pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +133,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile>tagreflection-private-pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +154,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile>tagreflection-private-pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,19 +167,34 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="halo3.h" />
-    <ClInclude Include="halo4.h" />
-    <ClInclude Include="halo4_virtual.h" />
-    <ClInclude Include="haloreach.h" />
-    <ClInclude Include="haloreach_virtual.h" />
+    <ClInclude Include="groundhog\groundhog.h" />
+    <ClInclude Include="groundhog\groundhog_virtual.h" />
+    <ClInclude Include="halo1\halo1.h" />
+    <ClInclude Include="halo1\halo1_virtual.h" />
+    <ClInclude Include="halo2\halo2.h" />
+    <ClInclude Include="halo2\halo2_virtual.h" />
+    <ClInclude Include="halo3odst\halo3odst.h" />
+    <ClInclude Include="halo3odst\halo3odst_virtual.h" />
+    <ClInclude Include="halo3\halo3.h" />
+    <ClInclude Include="halo3\halo3_virtual.h" />
+    <ClInclude Include="halo4\halo4.h" />
+    <ClInclude Include="halo4\halo4_virtual.h" />
+    <ClInclude Include="haloreach\haloreach.h" />
+    <ClInclude Include="haloreach\haloreach_virtual.h" />
     <ClInclude Include="tagreflection-private-pch.h" />
     <ClInclude Include="tagreflection-public-pch.h" />
     <ClInclude Include="virtual_tag_interface.h" />
+    <ClInclude Include="xbox360_gen3\xbox360_gen3.h" />
+    <ClInclude Include="xbox360_gen3\xbox360_gen3_virtual.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="halo3_virtual.cpp" />
-    <ClCompile Include="halo4_virtual.cpp" />
-    <ClCompile Include="haloreach_virtual.cpp" />
+    <ClCompile Include="groundhog\groundhog_virtual.cpp" />
+    <ClCompile Include="halo1\halo1_virtual.cpp" />
+    <ClCompile Include="halo2\halo2_virtual.cpp" />
+    <ClCompile Include="halo3odst\halo3odst_virtual.cpp" />
+    <ClCompile Include="halo3\halo3_virtual.cpp" />
+    <ClCompile Include="halo4\halo4_virtual.cpp" />
+    <ClCompile Include="haloreach\haloreach_virtual.cpp" />
     <ClCompile Include="tagreflection-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -183,6 +202,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="virtual_tag_interface.cpp" />
+    <ClCompile Include="xbox360_gen3\xbox360_gen3_virtual.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

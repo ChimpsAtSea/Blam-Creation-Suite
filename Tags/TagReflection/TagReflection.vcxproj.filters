@@ -21,22 +21,55 @@
     <ClInclude Include="tagreflection-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="haloreach.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo4_virtual.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="haloreach_virtual.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="virtual_tag_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo3.h">
+    <ClInclude Include="halo3odst\halo3odst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3odst\halo3odst_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo4\halo4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo4\halo4_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach\haloreach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach\haloreach_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xbox360_gen3\xbox360_gen3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xbox360_gen3\xbox360_gen3_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="groundhog\groundhog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="groundhog\groundhog_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo1\halo1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo1\halo1_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2\halo2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2\halo2_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3\halo3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3\halo3_virtual.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,16 +77,31 @@
     <ClCompile Include="tagreflection-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo4_virtual.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="haloreach_virtual.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="virtual_tag_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo3_virtual.cpp">
+    <ClCompile Include="halo3odst\halo3odst_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo4\halo4_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="haloreach\haloreach_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xbox360_gen3\xbox360_gen3_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="groundhog\groundhog_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo1\halo1_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2\halo2_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo3\halo3_virtual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

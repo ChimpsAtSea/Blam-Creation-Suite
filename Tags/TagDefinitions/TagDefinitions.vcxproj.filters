@@ -873,9 +873,6 @@
     <ClCompile Include="blofeld\weather\weather_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\halo4_validation_data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld\inline_files.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -892,6 +889,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blofeld\tag_structs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1769,9 +1769,6 @@
     <ClInclude Include="blofeld\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\halo4_validation_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld\manual_tag_references.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1812,6 +1809,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\tag_structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\gen3_xbox360_validation_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -367,7 +367,7 @@ void c_h4_source_generator::create_validation_header(std::stringstream& hs)
 
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	hs << "\textern s_tag_struct_validation_data halo4_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
+	hs << "\textern s_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
 
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
@@ -379,7 +379,7 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	ss << "\ts_tag_struct_validation_data halo4_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
+	ss << "\ts_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
 	ss << "\t{" << std::endl;
 	for (c_h4_tag_block_container* tag_block_container : preprocessor.tag_block_containers)
 	{

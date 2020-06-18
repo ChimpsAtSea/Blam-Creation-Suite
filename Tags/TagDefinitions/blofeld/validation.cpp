@@ -80,18 +80,18 @@ namespace blofeld
 		return computed_size;
 	}
 
-	bool validate_halo4()
+	bool validate_gen3_definitions()
 	{
 		bool any_block_failed_validation = false;
 		uint32_t successful_validation_attempts = 0;
-		for (s_tag_struct_validation_data& struct_validation_data : halo4_tag_struct_validation_data)
+		for (s_tag_struct_validation_data& struct_validation_data : gen3_xbox360_tag_struct_validation_data)
 		{
 			bool block_failed_validation = false;
 			const s_tag_struct_definition& struct_definition = struct_validation_data.struct_definition;
 			const char* const block_name = struct_definition.name;
 			uint32_t const expected_size = struct_validation_data.size;
 
-			uint32_t computed_size = calculate_struct_size(_engine_type_halo4, _build_not_set, struct_definition, &block_failed_validation);
+			uint32_t computed_size = calculate_struct_size(_engine_type_gen3_xbox360, _build_not_set, struct_definition, &block_failed_validation);
 
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)
@@ -104,7 +104,7 @@ namespace blofeld
 			}
 			any_block_failed_validation |= block_failed_validation;
 		}
-		float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(halo4_tag_struct_validation_data));
+		float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(gen3_xbox360_tag_struct_validation_data));
 		if (percentage != 100.0f)
 		{
 			c_console::write_line_verbose("warning V1000: failed to validate all tags. success rate %.1f.", percentage);

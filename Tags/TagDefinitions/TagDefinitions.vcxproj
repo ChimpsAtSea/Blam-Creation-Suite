@@ -155,7 +155,7 @@
     <ClCompile Include="blofeld\game\variant_definitions.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions_new.cpp" />
-    <ClCompile Include="blofeld\halo4_validation_data.cpp" />
+    <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp" />
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
     <ClCompile Include="blofeld\interface\chud\polyart\polyartbasedefinitions.cpp" />
@@ -458,7 +458,7 @@
     <ClInclude Include="blofeld\game\variant_definitions.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions_new.h" />
-    <ClInclude Include="blofeld\halo4_validation_data.h" />
+    <ClInclude Include="blofeld\gen3_xbox360_validation_data.h" />
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\polyart\polyartbasedefinitions.h" />
     <ClInclude Include="blofeld\interface\chud\polyart\polyartdefinitions.h" />

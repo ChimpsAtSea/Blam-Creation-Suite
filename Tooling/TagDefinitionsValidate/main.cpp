@@ -23,7 +23,7 @@ int WINAPI wWinMain(
 )
 {
 	static bool const fatal_validation = c_command_line::has_command_line_arg("-fatal-validation");
-	bool failed_validation = blofeld::validate_halo4();
+	bool failed_validation = blofeld::validate_gen3_definitions();
 	return fatal_validation ? fatal_validation : 0;
 }
 

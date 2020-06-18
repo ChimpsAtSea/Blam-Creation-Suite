@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-	s_tag_struct_validation_data halo4_tag_struct_validation_data[1804] = 
+	s_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[1804] = 
 	{
 		{ short_block_block_struct, 2 }, // block
 		{ render_method_animated_parameter_block_block_struct, 36 }, // block

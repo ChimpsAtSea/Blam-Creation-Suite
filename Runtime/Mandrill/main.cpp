@@ -69,7 +69,7 @@ static bool run_tests(const wchar_t* command_line)
 
 	if (c_command_line::has_command_line_arg("-validatehalo4"))
 	{
-		blofeld::validate_halo4();
+		blofeld::validate_gen3_definitions();
 
 		return false;
 	}

@@ -317,7 +317,7 @@ void c_tag_source_generator::generate_source()
 
 
 	std::string source_code = ss.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + ".h";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + ".h";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;

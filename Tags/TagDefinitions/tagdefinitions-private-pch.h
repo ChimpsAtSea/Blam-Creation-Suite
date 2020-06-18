@@ -5,7 +5,7 @@
 #include <Shared\Blam\blamlib-public-pch.h>
 
 #include "tagdefinitions-public-pch.h"
-#include "blofeld/halo4_validation_data.h"
+#include "blofeld/gen3_xbox360_validation_data.h"
 
 namespace blofeld
 {
