@@ -2073,6 +2073,7 @@ namespace blofeld
 		&cache_file_tag_resource_prediction_molecule_keys_block_block_struct, // block
 		// manual
 		&compute_shader_block_struct,
+		&compute_shader2_block_struct,
 		&compute_entry_point_block_block_struct,
 		&compiled_compute_shader_block_block_struct,
 		&halo3_unit_camera_struct_unknown_block_struct,

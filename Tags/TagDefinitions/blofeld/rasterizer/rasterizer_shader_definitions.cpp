@@ -41,6 +41,9 @@ namespace blofeld
 
 	TAG_GROUP(pixel_shader, PIXEL_SHADER_TAG)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_dword_integer, "unknown@" },
+
 		{ _field_block, "entry points", &pixel_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_pixel_shader_block_block },
@@ -63,6 +66,9 @@ namespace blofeld
 
 	TAG_GROUP(vertex_shader, VERTEX_SHADER_TAG)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_dword_integer, "unknown@" },
+
 		{ _field_block, "entry points", &vertex_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_vertex_shader_block_block },
@@ -91,6 +97,20 @@ namespace blofeld
 
 	TAG_GROUP(compute_shader, COMPUTE_SHADER_TAG)
 	{
+		{ _field_version_less, _engine_type_haloreach },
+		{ _field_dword_integer, "unknown@" },
+
+		{ _field_block, "entry points", & compute_entry_point_block_block },
+		{ _field_dword_integer, "version*" },
+		{ _field_block, "compiled shaders", &compiled_compute_shader_block_block },
+		{ _field_terminator }
+	};
+
+	TAG_GROUP(compute_shader2, COMPUTE_SHADER2_TAG)
+	{
+		{ _field_version_less, _engine_type_haloreach },
+		{ _field_dword_integer, "unknown@" },
+
 		{ _field_block, "entry points", &compute_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_compute_shader_block_block },
@@ -113,15 +133,28 @@ namespace blofeld
 
 	TAG_STRUCT(rasterizer_compiled_shader_struct)
 	{
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_long_flags, "shader flags", &shader_flags },
+
 		{ _field_data, "xenon compiled shader{..:xenon compiled shader}" },
-		{ _field_data, "dx9 compiled shader{..:dx9 compiled shader}" },
+		//{ _field_data, "dx9 compiled shader{..:dx9 compiled shader}" },		// legacy
+		{ _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },		
+		{ _field_data, "durango compiled shader{..:durango compiled shader}" },	
+
 		{ _field_explanation, "Xenon constant table", "" },
 		{ _field_struct, "xenon rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
-		{ _field_explanation, "DX9 constant table", "" },
-		{ _field_struct, "dx9 rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
+		//{ _field_explanation, "DX9 constant table", "" },		// legacy #TODO 
+		//{ _field_struct, "dx9 rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },		// legacy
+		{ _field_explanation, "dx11 constant table", "" },
+		{ _field_struct, "dx11 rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
+		{ _field_explanation, "durango constant table", "" },
+		{ _field_struct, "durango rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
 		{ _field_dword_integer, "gprs{..:gprs}" },
 		{ _field_long_integer, "cache file reference*" },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_dword_integer, "unknown@" },
+
 		{ _field_terminator }
 	};
 

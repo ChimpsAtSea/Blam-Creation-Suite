@@ -153,7 +153,10 @@ namespace blofeld
 		{ _field_word_flags, "flags", &render_method_pass_flags },
 		{ _field_pad, "nothing", 2 },
 		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
+
 		{ _field_terminator }
 	};
 
@@ -251,13 +254,19 @@ namespace blofeld
 	{
 		{ _field_custom },
 		{ _field_tag_reference, "definition*", &render_method_definition_reference },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "reference", &render_method_reference },
+
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
 		{ _field_block, "postprocess", &render_method_postprocess_block_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "is template" },
 		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
 		{ _field_block, "locked parameters", &render_method_locked_parameter_block_block },
+
 		{ _field_word_flags, "shader flags*", &global_render_method_flags_defintion },
 		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
 		{ _field_char_integer, "version!" },

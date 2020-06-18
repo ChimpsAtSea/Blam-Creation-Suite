@@ -9,7 +9,8 @@ namespace blofeld
 	constexpr unsigned long HLSL_INCLUDE_TAG = 'hlsl';
 	constexpr unsigned long PIXEL_SHADER_TAG = 'pixl';
 	constexpr unsigned long VERTEX_SHADER_TAG = 'vtsh';
-	constexpr unsigned long COMPUTE_SHADER_TAG = 'cmps';
+	constexpr unsigned long COMPUTE_SHADER_TAG = 'cmpu';
+	constexpr unsigned long COMPUTE_SHADER2_TAG = 'cmps';
 
 	extern const char* shader_flags_strings[];
 	extern s_string_list_definition shader_flags;
@@ -47,8 +48,11 @@ namespace blofeld
 	extern s_tag_struct_definition compiled_vertex_shader_block_block_struct;
 
 	extern s_tag_group compute_shader_group;
+	extern s_tag_group compute_shader2_group;
 	extern s_tag_block_definition compute_shader_block;
+	extern s_tag_block_definition compute_shader2_block;
 	extern s_tag_struct_definition compute_shader_block_struct;
+	extern s_tag_struct_definition compute_shader2_block_struct;
 	extern s_tag_block_definition compute_entry_point_block_block;
 	extern s_tag_struct_definition compute_entry_point_block_block_struct;
 	extern s_tag_block_definition compiled_compute_shader_block_block;

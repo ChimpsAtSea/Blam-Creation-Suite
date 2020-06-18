@@ -257,6 +257,7 @@ namespace blofeld
 		&variant_globals_group,
 		&vertex_shader_group,
 		&compute_shader_group,
+		&compute_shader2_group,
 		&wave_template_group,
 		&weapon_group,
 		&scenario_wetness_bsp_data_group,

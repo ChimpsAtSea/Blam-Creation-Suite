@@ -15,7 +15,12 @@ namespace blofeld
 
 	TAG_STRUCT(global_rasterizer_constant_table_struct)
 	{
-		{ _field_block, "constants*", &rasterizer_constant_block_block },
+		{ _field_block, "constants*", & rasterizer_constant_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_dword_integer, "unknown@" },
+		{ _field_dword_integer, "unknown@" },
+
 		{ _field_char_enum, "type*", &rasterizer_constant_table_type_enum },
 		{ _field_pad, "qersaui", 3 },
 		{ _field_terminator }
@@ -37,7 +42,8 @@ namespace blofeld
 	STRINGS(rasterizer_constant_table_type_enum)
 	{
 		"vertex",
-		"pixel"
+		"pixel",
+		"compute"
 	};
 	STRING_LIST(rasterizer_constant_table_type_enum, rasterizer_constant_table_type_enum_strings, _countof(rasterizer_constant_table_type_enum_strings));
 
