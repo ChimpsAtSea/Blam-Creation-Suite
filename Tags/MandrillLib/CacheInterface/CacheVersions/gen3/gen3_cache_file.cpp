@@ -41,7 +41,8 @@ void c_gen3_cache_file::init_gen3_cache_file()
 c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type) :
 	c_cache_file(map_filepath, engine_type),
 	cache_file_header(*read_cache_file()),
-	string_id_guesstimator(nullptr)
+	string_id_guesstimator(nullptr),
+	validator(nullptr)
 {
 	REFERENCE_ASSERT(cache_file_header);
 
@@ -64,11 +65,13 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 		section_cache[cache_file_section_index].masked_data = masked_data;
 		section_cache[cache_file_section_index].data = data;
 	}
+
+	validator = new c_gen3_cache_file_validator(*this);
 }
 
 c_gen3_cache_file::~c_gen3_cache_file()
 {
-
+	delete validator;
 }
 
 bool c_gen3_cache_file::is_loading() const

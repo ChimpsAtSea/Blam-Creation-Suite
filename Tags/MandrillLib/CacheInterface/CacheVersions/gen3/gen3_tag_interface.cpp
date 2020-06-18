@@ -4,7 +4,9 @@ c_gen3_tag_interface::c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint16
 	c_tag_interface(cache_file, tag_index),
 	cache_file_tag_instance(cache_file.get_internal_tag_instance(tag_index)),
 	cache_file_tag_group(is_null() ? nullptr : cache_file.get_internal_tag_group(cache_file_tag_instance.group_index)),
-	tag_group_interface(static_cast<c_gen3_tag_group_interface*>(cache_file.get_tag_group_interface(cache_file_tag_instance.group_index))) /* #TODO: Remove this static cast when c_cache_file has template args */
+	tag_group_interface(static_cast<c_gen3_tag_group_interface*>(cache_file.get_tag_group_interface(cache_file_tag_instance.group_index))) /* #TODO: Remove this static cast when c_cache_file has template args */,
+	is_struct_valid(false),
+	is_tag_valid(false)
 {
 	is_tag_null = cache_file_tag_instance.group_index == 0xFFFFu || cache_file_tag_instance.address == 0;
 	if (is_tag_null)
@@ -27,6 +29,7 @@ c_gen3_tag_interface::c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint16
 
 	register_with_tag_group();
 	init_virtual_tag_interface();
+
 }
 
 c_gen3_tag_interface::~c_gen3_tag_interface()
@@ -54,3 +57,9 @@ const char* c_gen3_tag_interface::get_path_with_group_name_cstr() const { return
 const char* c_gen3_tag_interface::get_name_cstr() const { return filename; };
 const char* c_gen3_tag_interface::get_name_with_group_id_cstr() const { return filename_with_group_id; };
 const char* c_gen3_tag_interface::get_name_with_group_name_cstr() const { return filename_with_group_name; };
+
+void c_gen3_tag_interface::validate()
+{
+	c_gen3_cache_file_validator& validator = get_cache_file().get_cache_file_validator();
+	validator.validate_tag_instance(*this, false, is_struct_valid, is_tag_valid);
+}

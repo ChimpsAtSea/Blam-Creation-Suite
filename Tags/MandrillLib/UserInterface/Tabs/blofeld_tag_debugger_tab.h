@@ -22,7 +22,6 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_interface& tag_interface;
-	c_gen3_cache_file_validator* validator;
 
 	static constexpr const char* k_show_hex_values_setting = "show_hex_values";
 	static constexpr const char* k_show_hex_values_float_setting = "show_hex_values_float";
@@ -38,7 +37,7 @@ protected:
 	
 
 	void setup_render_callbacks();
-#define render_field_callback_args char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
+#define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
 	void render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback);
 	void render_field_string(render_field_callback_args);
 	void render_field_long_string(render_field_callback_args);

@@ -16,6 +16,8 @@ public:
 	inline gen3::s_cache_file_tag_instance* get_cache_file_instance() const { return &cache_file_tag_instance; };
 	inline gen3::s_cache_file_tag_group* get_cache_file_group() const { return cache_file_tag_group; };
 	inline c_gen3_cache_file& get_cache_file() const { return *reinterpret_cast<c_gen3_cache_file*>(&cache_file); };
+	inline bool get_is_tag_valid() const { return is_tag_valid; };
+	inline bool get_is_struct_valid() const { return is_struct_valid; };
 
 	virtual const char* get_filepath() const final;
 	virtual const char* get_path_with_group_id_cstr() const final;
@@ -24,6 +26,7 @@ public:
 	virtual const char* get_name_with_group_id_cstr() const final;
 	virtual const char* get_name_with_group_name_cstr() const final;
 
+	void validate();
 protected:
 	gen3::s_cache_file_tag_instance& cache_file_tag_instance;
 	gen3::s_cache_file_tag_group* cache_file_tag_group;
@@ -35,5 +38,8 @@ protected:
 	const char* filename;
 	const char* filename_with_group_id;
 	const char* filename_with_group_name;
+
+	bool is_tag_valid;
+	bool is_struct_valid;
 };
 

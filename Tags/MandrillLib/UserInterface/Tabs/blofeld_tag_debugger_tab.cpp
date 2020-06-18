@@ -10,8 +10,7 @@ float indent_size = 20.0f;
 
 c_blofeld_tag_debugger_tab::c_blofeld_tag_debugger_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent) :
 	c_mandrill_tab("Tag Debugger", "Blofeld Tag Debugger", &parent, false),
-	tag_interface(tag_interface),
-	validator(nullptr)
+	tag_interface(tag_interface)
 {
 	setup_render_callbacks();
 }
@@ -86,6 +85,8 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 
 void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback)
 {
+	if (&tag_interface != &this->tag_interface) return;
+
 	static ImVec4 validation_colors[] =
 	{
 		MANDRILL_THEME_TEXT(1.0f),			// unknown,
@@ -99,7 +100,7 @@ void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_arg
 	ImGui::PushID(data);
 	ImGui::PushStyleColor(ImGuiCol_Text, validation_colors[result->validation_state]);
 
-	render_field_callback(data, field, result);
+	render_field_callback(tag_interface, data, field, result);
 
 	ImGui::PopStyleColor();
 	ImGui::PopID();
@@ -107,6 +108,7 @@ void c_blofeld_tag_debugger_tab::render_field_callback(render_field_callback_arg
 
 void c_blofeld_tag_debugger_tab::render_field_string(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImGui::InputText("", data, 32, ImGuiInputTextFlags_ReadOnly);
@@ -114,6 +116,7 @@ void c_blofeld_tag_debugger_tab::render_field_string(render_field_callback_args)
 }
 void c_blofeld_tag_debugger_tab::render_field_long_string(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImGui::InputText("", data, 256, ImGuiInputTextFlags_ReadOnly);
@@ -121,6 +124,7 @@ void c_blofeld_tag_debugger_tab::render_field_long_string(render_field_callback_
 }
 void c_blofeld_tag_debugger_tab::render_field_string_id(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	const char* string_id = result->string_id_value ? result->string_id_value : "<error invalid string id>";
@@ -129,6 +133,7 @@ void c_blofeld_tag_debugger_tab::render_field_string_id(render_field_callback_ar
 }
 void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	int& old_string_id = *reinterpret_cast<int*>(data);
@@ -137,118 +142,146 @@ void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callbac
 }
 void c_blofeld_tag_debugger_tab::render_field_char_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_int64_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S64, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_angle(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_tag(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_char_enum(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_enum_type<byte>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_enum(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_enum_type<word>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_enum(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_enum_type<unsigned long>(result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_point_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_rectangle_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_rgb_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_argb_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_fraction(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_point_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_point_3d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_vector_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_vector_3d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_quaternion(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_euler_angles_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_euler_angles_3d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_plane_2d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 3, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_plane_3d(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 4, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_rgb_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
@@ -257,6 +290,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_rgb_color(render_field_callba
 }
 void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
@@ -265,6 +299,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callb
 }
 void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
@@ -273,6 +308,7 @@ void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callba
 }
 void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
 	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
@@ -281,22 +317,27 @@ void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callb
 }
 void c_blofeld_tag_debugger_tab::render_field_short_bounds(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S16, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_angle_bounds(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_bounds(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_fraction_bounds(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_Float, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_tag_reference(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	s_tag_reference& tag_reference = *reinterpret_cast<s_tag_reference*>(data);
 	union
 	{
@@ -328,6 +369,7 @@ void c_blofeld_tag_debugger_tab::render_field_tag_reference(render_field_callbac
 }
 void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	s_tag_block& tag_block = *reinterpret_cast<s_tag_block*>(data);
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
@@ -341,71 +383,87 @@ void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 }
 void c_blofeld_tag_debugger_tab::render_field_long_block_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_block_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_block_flags(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_char_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_char_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_short_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_long_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_custom_long_block_index(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_data(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_vertex_buffer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_pad(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_S8, field.padding, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_useless_pad(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_skip(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_non_cache_runtime_value(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_explanation(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::PushStyleColor(ImGuiCol_Text, { 0.8f, 0.6f, 1.0f, 1.0f });
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name(field, result);
@@ -421,27 +479,32 @@ void c_blofeld_tag_debugger_tab::render_field_custom(render_field_callback_args)
 {
 	if (show_custom_fields)
 	{
+		if (&tag_interface != &this->tag_interface) return;
 		ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 		render_field_name(field, result);
 	}
 }
 void c_blofeld_tag_debugger_tab::render_field_struct(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_array(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_pageable(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_api_interop(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name(field, result);
 }
@@ -451,18 +514,22 @@ void c_blofeld_tag_debugger_tab::render_field_terminator(render_field_callback_a
 }
 void c_blofeld_tag_debugger_tab::render_field_byte_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U8, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_word_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U16, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_dword_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_qword_integer(render_field_callback_args)
 {
+	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U64, 1, result->level, data, field, result);
 }
 
@@ -478,12 +545,12 @@ void c_blofeld_tag_debugger_tab::setup_render_callbacks()
 
 	c_gen3_cache_file& gen3_cache_file = gen3_tag_interface->get_cache_file();
 
-	validator = new c_gen3_cache_file_validator(gen3_cache_file);
+	c_gen3_cache_file_validator* validator = &gen3_cache_file.get_cache_file_validator();
 
-	validator->field_render_callback.register_callback(this, std::bind(&c_blofeld_tag_debugger_tab::render_field_callback, this, _1, _2, _3, _4));
+	validator->field_render_callback.register_callback(this, std::bind(&c_blofeld_tag_debugger_tab::render_field_callback, this, _1, _2, _3, _4, _5));
 
 #define register_validation_callback(field_type, callback) \
-	validator->field_type_render_callbacks[field_type].register_callback(this, std::bind(&c_blofeld_tag_debugger_tab::callback, this, _1, _2, _3))
+	validator->field_type_render_callbacks[field_type].register_callback(this, std::bind(&c_blofeld_tag_debugger_tab::callback, this, _1, _2, _3, _4))
 
 	register_validation_callback(blofeld::_field_string, render_field_string);
 	register_validation_callback(blofeld::_field_long_string, render_field_long_string);
@@ -676,7 +743,12 @@ void c_blofeld_tag_debugger_tab::render_impl()
 
 	if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface))
 	{
-		validator->validate_tag_instance(*gen3_tag_interface, show_broken_block_data);
+		bool is_struct_valid;
+		bool is_tag_valid;
+
+		c_gen3_cache_file& cache_file = gen3_tag_interface->get_cache_file();
+		c_gen3_cache_file_validator& validator = cache_file.get_cache_file_validator();
+		validator.validate_tag_instance(*gen3_tag_interface, true, is_struct_valid, is_tag_valid);
 	}
 	else
 	{

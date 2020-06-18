@@ -255,14 +255,33 @@ void c_cache_file_tab::render_tags_list_tree()
 			? group_interface->get_tag_interfaces_sorted_by_path_with_group_id()
 			: group_interface->get_tag_interfaces_sorted_by_name_with_group_id();
 
+		const char* group_name = group_interface->get_full_name();
 		const char* group_short_name = group_interface->get_short_name();
 
 		bool display_group = tag_interfaces_count > 0;
 
 		if (!display_group) continue;
 
-		if (ImGui::TreeNode(group_short_name, group_short_name))
+
+		bool is_group_tag_valid = true;
+		bool has_valid_tag = false;
+		for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
 		{
+			bool is_tag_valid = true;
+			if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+			{
+				is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+			}
+			is_group_tag_valid &= is_tag_valid;
+			has_valid_tag |= is_tag_valid;
+		}
+		if (is_group_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+		else if(has_valid_tag) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
+		else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+
+		if (ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name))
+		{
+
 			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
 			{
 				if (tag_interface->is_null()) continue;
@@ -270,6 +289,14 @@ void c_cache_file_tab::render_tags_list_tree()
 				const char* tag_display_with_group_id = user_interface.get_use_full_file_length_display()
 					? tag_interface->get_path_with_group_id_cstr()
 					: tag_interface->get_name_with_group_id_cstr();
+
+				bool is_tag_valid = true;
+				if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+				{
+					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+				}
+				if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, {0.55f, 1.0f, 0.55f, 1.0f});
+				else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 
 				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 				if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, tag_display_with_group_id))
@@ -280,9 +307,12 @@ void c_cache_file_tab::render_tags_list_tree()
 						open_tag_interface_tab(*tag_interface);
 					}
 				}
+				ImGui::PopStyleColor();
 			}
+
 			ImGui::TreePop();
 		}
+		ImGui::PopStyleColor();
 	}
 }
 

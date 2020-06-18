@@ -9,6 +9,7 @@ struct s_section_cache
 	char* data;
 };
 
+class c_gen3_cache_file_validator;
 class c_cache_file_string_id_guesstimator;
 
 class c_gen3_cache_file :
@@ -42,6 +43,7 @@ public:
 	inline const s_section_cache& get_resources_section() const { return get_section(gen3::_cache_file_section_index_resource); };
 	inline const s_section_cache& get_localization_section() const { return get_section(gen3::_cache_file_section_index_localization); };
 	inline char* get_tags_buffer() const { return tags_buffer; }
+	inline c_gen3_cache_file_validator& get_cache_file_validator() const { return *validator; }
 
 	inline gen3::s_cache_file_tag_instance& get_internal_tag_instance(uint16_t tag_index) const 
 	{ 
@@ -69,5 +71,6 @@ protected:
 	char* tags_buffer;
 	s_section_cache section_cache[underlying_cast(gen3::k_number_of_cache_file_sections)];
 	c_cache_file_string_id_guesstimator* string_id_guesstimator;
+	c_gen3_cache_file_validator* validator;
 };
 

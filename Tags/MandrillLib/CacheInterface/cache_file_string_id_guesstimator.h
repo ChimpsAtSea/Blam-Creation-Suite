@@ -23,6 +23,10 @@ public:
 		}
 		else
 		{
+			if (stringid.set > _countof(string_id_set_start_indices))
+			{
+				return 0xFFFFFFFF;
+			}
 			start_index = string_id_set_start_indices[stringid.set];
 		}
 
