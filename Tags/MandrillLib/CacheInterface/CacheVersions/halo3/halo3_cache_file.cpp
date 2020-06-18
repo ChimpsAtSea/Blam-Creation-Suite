@@ -40,6 +40,11 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	}
 
 	init_sorted_instance_lists();
+
+	for (c_gen3_tag_interface& tag_interface : c_reference_loop(reinterpret_cast<c_gen3_tag_interface* const*>(get_tag_interfaces()), get_tag_count()))
+	{
+		tag_interface.validate();
+	}
 }
 
 c_halo3_cache_file::~c_halo3_cache_file()
