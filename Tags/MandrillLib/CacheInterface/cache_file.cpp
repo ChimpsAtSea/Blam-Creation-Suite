@@ -240,12 +240,15 @@ void c_cache_file::init_sorted_instance_lists()
 	};
 	tbb::parallel_for(0u, static_cast<uint32_t>(tag_group_interfaces.size()), create_group);
 
-	tag_interfaces_sorted_by_name_with_group_id.resize(tag_interfaces.size());
-	std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_name_with_group_id.begin(), tag_interfaces_sorted_by_name_with_group_id.end(), sort_tag_instance_by_name_with_group_id);
+	//tag_interfaces_sorted_by_name_with_group_id.resize(tag_interfaces.size());
+	//std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_name_with_group_id.begin(), tag_interfaces_sorted_by_name_with_group_id.end(), sort_tag_instance_by_name_with_group_id);
+	tag_interfaces_sorted_by_name_with_group_id = tag_interfaces;
 
-	tag_interfaces_sorted_by_path_with_group_id.resize(tag_interfaces.size());
-	std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_path_with_group_id.begin(), tag_interfaces_sorted_by_path_with_group_id.end(), sort_tag_instance_by_path_with_group_id);
+	//tag_interfaces_sorted_by_path_with_group_id.resize(tag_interfaces.size());
+	//std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_path_with_group_id.begin(), tag_interfaces_sorted_by_path_with_group_id.end(), sort_tag_instance_by_path_with_group_id);
+	tag_interfaces_sorted_by_path_with_group_id = tag_interfaces;
 
-	tag_interfaces_sorted_by_data_address.resize(tag_interfaces.size());
-	std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_data_address.begin(), tag_interfaces_sorted_by_data_address.end(), sort_tag_instance_by_data_address);
+	//tag_interfaces_sorted_by_data_address.resize(tag_interfaces.size());
+	//std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_data_address.begin(), tag_interfaces_sorted_by_data_address.end(), sort_tag_instance_by_data_address);
+	tag_interfaces_sorted_by_data_address = tag_interfaces;
 }

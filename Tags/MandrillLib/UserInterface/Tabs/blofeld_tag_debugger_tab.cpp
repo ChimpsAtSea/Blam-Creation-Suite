@@ -127,8 +127,20 @@ void c_blofeld_tag_debugger_tab::render_field_string_id(render_field_callback_ar
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	const char* string_id = result->string_id_value ? result->string_id_value : "<error invalid string id>";
-	ImGui::InputText("", (char*)string_id, strlen(string_id) + 1, ImGuiInputTextFlags_ReadOnly);
+	if (result->string_id_value)
+	{
+		const char* string_id = result->string_id_value;
+		ImGui::InputText("", (char*)string_id, strlen(string_id) + 1, ImGuiInputTextFlags_ReadOnly);
+	}
+	else
+	{
+		ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
+		if (show_hex_values)
+		{
+			flags |= ImGuiInputTextFlags_CharsHexadecimal;
+		}
+		ImGui::InputInt("", reinterpret_cast<int*>(data), 1, 100, flags);
+	}
 	render_field_name(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_old_string_id(render_field_callback_args)
