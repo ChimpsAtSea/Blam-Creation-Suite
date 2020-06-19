@@ -17,8 +17,11 @@ namespace blofeld
 		{ _field_explanation, "Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery" },
 		{ _field_enum, "lightmapping policy", &lightmapping_policy_enum },
 		{ _field_pad, "WGW", 2 },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "Structure Lighting Tag", &Tag::Reference<struct s_structure_lighting_info>::s_defaultDefinition },
 		{ _field_useless_pad },
+
 		{ _field_terminator }
 	};
 
