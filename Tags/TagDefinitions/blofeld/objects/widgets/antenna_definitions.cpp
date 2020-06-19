@@ -27,7 +27,10 @@ namespace blofeld
 		{ _field_tag_reference, "bitmaps", &bitmap_reference$4 },
 		{ _field_tag_reference, "physics", &global_point_physics_reference },
 		{ _field_real_fraction, "spring strength coefficient#strength of the spring (larger values make the spring stronger)" },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "texel to world width scale" },
+		
 		{ _field_real, "falloff pixels!" },
 		{ _field_real, "cutoff pixels!" },
 		{ _field_real, "point of bend#[0,1]" },
