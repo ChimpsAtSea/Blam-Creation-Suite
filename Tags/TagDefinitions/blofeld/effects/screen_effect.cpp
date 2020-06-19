@@ -23,8 +23,11 @@ namespace blofeld
 		{ _field_explanation, "OBJECT FALLOFF", "applies a falloff based on an object function - ignored if the effect is not attached to an object" },
 		{ _field_struct, "object falloff", &screen_effect_scalar_object_function_struct_struct_definition },
 		{ _field_explanation, "EFFECTS", "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "color grading look-up-texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_real, "runtime color grading strength!:[do not edit]#do not edit" },
+		
 		{ _field_real, "exposure boost:stops#increase in exposure" },
 		{ _field_real, "exposure deboost:stops#decrease in exposure" },
 		{ _field_real, "hue left:degrees [0-360]#shifts hue R->G->B" },
@@ -38,11 +41,18 @@ namespace blofeld
 		{ _field_real, "dark noise:[0-1]#add dark noise contribution, 0 turns it off, 1: full on" },
 		{ _field_real_rgb_color, "color filter#this color is multiplied on top" },
 		{ _field_real_rgb_color, "color floor#this color is subtracted" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real_fraction, "color replace strength:[0-1]#used to blend in the color replace below" },
 		{ _field_real_rgb_color, "color replace#this color is blended in place of the screen\'s color" },
+		
 		{ _field_real, "tron:[0-1]#adds a full-screen tron effect" },
 		{ _field_real, "motion suck:[-2, 2]#adds motion-blur towards or away from this screen effect" },
+
+		// This or the field above could be wrong.
+		{ _field_version_greater, _engine_type_haloreach }, 
 		{ _field_real, "bloom buffer motion suck:[-2, 2]#adds cheap bloom buffer motion-blur towards or away from this screen effect" },
+		
 		{ _field_real_vector_3d, "motion suck direction!:[do not edit]#do not edit" },
 		{ _field_real, "horizontal blur:[0-10] expensive#blurs the entire screen" },
 		{ _field_real, "vertical blur:[0-10] expensive#blurs the entire screen" },
