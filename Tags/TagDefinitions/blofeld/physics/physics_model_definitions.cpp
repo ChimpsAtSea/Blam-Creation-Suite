@@ -314,11 +314,24 @@ namespace blofeld
 		{ _field_real_vector_3d, "aabb center*" },
 		{ _field_real, "havok w aabb center*!" },
 		{ _field_long_integer, "field pointer skip!~" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "Unknown@" },
+		
 		{ _field_long_integer, "four vectors size*" },
 		{ _field_long_integer, "four vectors capacity*!" },
 		{ _field_long_integer, "num vertices*" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "m_useSpuBuffer*" },
 		{ _field_pad, "algn434", 3 },
+		
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_long_integer, "Unknown@" },
+		{ _field_long_integer, "Unknown@" },
+		{ _field_long_integer, "Unknown@" },
+		{ _field_long_integer, "Unknown@" },
+		
 		{ _field_long_integer, "another field pointer skip!~" },
 		{ _field_long_integer, "plane equations size*" },
 		{ _field_long_integer, "plane equations capacity*!" },
