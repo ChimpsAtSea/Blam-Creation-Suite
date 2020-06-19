@@ -15,7 +15,10 @@ namespace blofeld
 	TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
 	{
 		{ _field_tag_reference, "track", &global_camera_track_reference },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
+
 		{ _field_terminator }
 	};
 
@@ -89,7 +92,11 @@ namespace blofeld
 	TAG_BLOCK(unit_weapon_block, MAXIMUM_INITIAL_WEAPONS_PER_UNIT)
 	{
 		{ _field_tag_reference, "weapon^", &weapon_reference },
+
+		{ _field_version_greater, _engine_type_halo3 },
 		{ _field_string_id, "variant name" },
+
+		{ _field_version_greater, _engine_type_haloreach, 32 },
 		{ _field_long_enum, "position", &initial_weapon_position },
 		{ _field_real, "maximum firing cone angle:degrees#must be greater than zero for turret to fire" },
 		{ _field_real, "minimum retarget time:seconds#minimum time before autoturret will change targets" },
@@ -122,6 +129,7 @@ namespace blofeld
 		{ _field_string_id, "alert mode effect secondary scale" },
 		{ _field_block, "sentry properties", &SentryPropertiesBlock_block },
 		{ _field_real, "target camouflage threshold# 0 - 1 : target when players camo level falls below this threshold, full camo = 1" },
+
 		{ _field_terminator }
 	};
 
