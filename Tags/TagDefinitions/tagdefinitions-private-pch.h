@@ -72,8 +72,8 @@ TAG_BLOCK_FORWARD(tag_group_name) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, parent_group_tag, CONCAT(tag_group_name, _block), &CONCAT(parent_tag_group_name, _group) }; \
 TAG_BLOCK(tag_group_name, 1)
 
-#define TAG_BLOCK_FROM_STRUCT(tag_block_name, block_count, block_name) \
-s_tag_block_definition CONCAT(tag_block_name, _block) = { STRINGIFY(tag_block_name)"_block", STRINGIFY(tag_block_name)"_block", __FILE__, __LINE__, block_count, #block_count, block_name };
+#define TAG_BLOCK_FROM_STRUCT(block_name, block_count, struct_name) \
+s_tag_block_definition CONCAT(block_name, _block) = { STRINGIFY(block_name)"_block", STRINGIFY(block_name)"_block", __FILE__, __LINE__, block_count, #block_count, struct_name };
 
 #define TAG_GROUP_FROM_BLOCK(tag_group_name, group_tag, block_name) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, INVALID_TAG, block_name, nullptr };

@@ -89,13 +89,18 @@ namespace blofeld
 	extern s_tag_block_definition equipmentAbilityTypeSuicideBombBlock_block;
 	extern s_tag_struct_definition equipmentAbilityTypeActiveShieldBlock_block_struct;
 	extern s_tag_block_definition equipmentAbilityTypeActiveShieldBlock_block;
-	extern s_tag_struct_definition equipmentAbilityDatum_block_struct;
-	extern s_tag_block_definition equipmentAbilityDatum_block;
 	extern s_tag_struct_definition EquipmentSoundRTPCBlock_block_struct;
 	extern s_tag_block_definition EquipmentSoundRTPCBlock_block;
 	extern s_tag_struct_definition EquipmentSoundSweetenerBlock_block_struct;
 	extern s_tag_block_definition EquipmentSoundSweetenerBlock_block;
 	extern s_tag_block_definition equipment_block_block;
+
+	extern s_tag_struct_definition unknown_equipment_ability_block_struct;
+	extern s_tag_block_definition unknown_equipment_ability_block;
+
+
+	extern s_tag_struct_definition equipmentAbilityDatum_struct_definition;
+	extern s_tag_block_definition equipmentAbilityDatum_block;
 
 	extern s_tag_struct_definition equipment_struct_definition_struct_definition; // tag group
 

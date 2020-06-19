@@ -20,14 +20,21 @@ namespace blofeld
 
 	TAG_BLOCK(equipmentAbilityTypeSpawnerBlock, 1)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2},
+		{ _field_tag_reference, "spawned object", & object_reference$4 },
+		{ _field_tag_reference, "spawned effect", &global_effect_reference },
+
 		{ _field_real, "spawn radius#distance from players eyeball on the z-plane that this effect spawns" },
 		{ _field_real, "spawn z offset#z-offset of effect spawn" },
 		{ _field_real, "spawn area radius#need a sphere of radius r\'s free space in order to spawn, otherwise we pick a new spawn location" },
 		{ _field_real, "spawn velocity#WU/sec" },
 		{ _field_enum, "type", &equipment_spawner_spawn_type },
 		{ _field_pad, "LSJ", 2 },
-		{ _field_tag_reference, "spawned object", &object_reference$4 },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_tag_reference, "spawned object", & object_reference$4 },
 		{ _field_tag_reference, "spawned effect", &global_effect_reference },
+
 		{ _field_terminator }
 	};
 
@@ -56,7 +63,9 @@ namespace blofeld
 
 	TAG_BLOCK(equipmentAbilityTypeMotionTrackerNoiseBlock, 1)
 	{
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &equipmentAbilityType_MotionTrackerNoise_flags },
+
 		{ _field_real, "arm time#time before it starts making noise" },
 		{ _field_real, "noise radius#radius in WU that the noise extends to." },
 		{ _field_long_integer, "noise count#number of noise points that are generated" },
@@ -245,16 +254,23 @@ namespace blofeld
 
 	TAG_BLOCK(equipmentAbilityTypeJetPackBlock, 1)
 	{
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeJetPackFlags },
 		{ _field_pad, "pad after useCamAndMoveForThrustDirection", 3 },
+
 		{ _field_struct, "thrust to acceleration function", &scalar_function_named_struct_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "Infinite energy thrust to acceleration function", &scalar_function_named_struct_struct_definition },
+
 		{ _field_real, "thrust attack time:s" },
 		{ _field_real, "thrust decay time:s" },
 		{ _field_real, "negative velocity acceleration scale#when falling, scale the thrust by this (so you can \'catch\' yourself easier)" },
 		{ _field_real, "airborne acceleration scale!" },
 		{ _field_real, "grounded acceleration magnitude#how hard to kick you upwards if you activate while grounded" },
 		{ _field_real, "landing anticipation time:s#how many seconds before landing the jetpack user enters the airborne arc" },
+
+		{ _field_version_greater, _engine_type_haloreach, 10 },
 		{ _field_explanation, "Zero-G jet pack", "These apply if \'Use camera and movement for thrust dir\' flag is checked" },
 		{ _field_real, "camera vs move input thrust control#Camera direction (0.0) VS movement input (1.0) interpolation" },
 		{ _field_real, "min speed#drag will be applied above this" },
@@ -265,6 +281,7 @@ namespace blofeld
 		{ _field_real, "drag cutoff time#if 0, drag is always applied" },
 		{ _field_real, "cow catcher duration" },
 		{ _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock_block },
+
 		{ _field_terminator }
 	};
 
@@ -282,8 +299,11 @@ namespace blofeld
 		{ _field_real, "shimmer decrease rate:1.0/s#how fast shimmer decreases" },
 		{ _field_real, "shimmer bullet ping:0-1#how much to ping shimmer when hit by a bullet" },
 		{ _field_struct, "shimmer to camo function#this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)", &scalar_function_named_struct_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeHologramFlags },
 		{ _field_pad, "pad after hologram flags", 3 },
+
 		{ _field_terminator }
 	};
 
@@ -299,11 +319,14 @@ namespace blofeld
 		{ _field_string_id, "left" },
 		{ _field_string_id, "backward" },
 		{ _field_string_id, "right" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_char_enum, "default direction", &EquipmentSpecialMoveDefaultDirectionDefinition },
 		{ _field_pad, "pad0", 3 },
 		{ _field_tag_reference, "directional effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_real, "Danger Radius#AI avoidance radius.  Ignored if zero." },
 		{ _field_real, "Speed multiplier#Use this instead of a trait.  0 defaults to 1.  With a trait, the client will move at non-modified scale until it gets replicated." },
+
 		{ _field_terminator }
 	};
 
@@ -477,8 +500,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityDatum, k_equipmentMaxAbilityCount)
+	TAG_BLOCK(unknown_equipment_ability, 65536)
 	{
+		{_field_terminator}
+	};
+
+	TAG_BLOCK_FROM_STRUCT(equipmentAbilityDatum, k_equipmentMaxAbilityCount, equipmentAbilityDatum_struct_definition);
+
+	TAG_STRUCT(equipmentAbilityDatum)
+	{
+		{ _field_version_greater, _engine_type_haloreach, 23 },
 		{ _field_custom, "Timers" },
 		{ _field_real, "duration:seconds#use negative numbers for infinite duration" },
 		{ _field_real, "warmup time:seconds#time before the equipment truly becomes active" },
@@ -487,11 +518,13 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_custom, "Energy" },
 		{ _field_explanation, "Energy", "All these fields are additive, meaning a negative number will reduce energy and a positive one will increase energy.  Every piece of equipment starts at 1.0 energy" },
+		{ _field_real, "energy recovery time" },
 		{ _field_real, "minimum activation energy#energy must be at least this high to activate\nLike activation cost, but doesn\'t actually change energy levels" },
 		{ _field_real, "low energy warning threshold#used by UI" },
 		{ _field_real, "activation energy cost" },
 		{ _field_real, "deactivation energy cost" },
 		{ _field_real, "active energy rate:energy/second" },
+		{ _field_real, "recharge rate" },
 		{ _field_struct, "movement speed to energy rate:1/s", &scalar_function_named_struct_struct_definition },
 		{ _field_real, "movement speed domain:wu/s" },
 		{ _field_custom },
@@ -500,20 +533,31 @@ namespace blofeld
 		{ _field_short_integer, "charges#-1 means unlimited charges" },
 		{ _field_char_enum, "activation mode^", &equipment_activation_mode },
 		{ _field_char_integer, "object noise adjustment#for AI perception.\nwhile active, adjusts noises made by the owner unit by this many \'notches\'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
+
 		{ _field_custom, "Type Definitions" },
 		{ _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock_block },
 		{ _field_block, "spawner", &equipmentAbilityTypeSpawnerBlock_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "ai spawner", &equipmentAbilityTypeAiSpawnerBlock_block },
+
 		{ _field_block, "proximity mine", &equipmentAbilityTypeProximityMineBlock_block },
 		{ _field_block, "moition tracker noise", &equipmentAbilityTypeMotionTrackerNoiseBlock_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_block, "unknown@", &unknown_equipment_ability_block },
+
 		{ _field_block, "invincibility mode", &equipmentAbilityTypeInvincibilityBlock_block },
 		{ _field_block, "tree of life", &equipmentAbilityTypeTreeOfLifeBlock_block },
 		{ _field_block, "shapeshifter", &equipmentAbilityTypeShapeshifterBlock_block },
 		{ _field_block, "player trait field", &equipmentAbilityTypePlayerTraitFieldBlock_block },
 		{ _field_block, "ai trait field", &equipmentAbilityTypeAiTraitFieldBlock_block },
 		{ _field_block, "repulsor field", &equipmentAbilityTypeRepulsorFieldBlock_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "stasis field", &equipmentAbilityTypeStasisFieldBlock_block },
 		{ _field_block, "ball lightning", &equipmentAbilityTypeBallLightningBlock_block },
+
 		{ _field_block, "IWHBYDaddy", &equipmentAbilityTypeDaddyBlock_block },
 		{ _field_block, "laser designation", &equipmentAbilityTypeLaserDesignationBlock_block },
 		{ _field_block, "super jump", &equipmentAbilityTypeSuperJumpBlock_block },
@@ -526,6 +570,8 @@ namespace blofeld
 		{ _field_block, "special move", &equipmentAbilityTypeSpecialMoveBlock_block },
 		{ _field_block, "engineer shields", &equipmentAbilityTypeEngineerShieldsBlock_block },
 		{ _field_block, "sprint", &equipmentAbilityTypeSprintBlock_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 19 },
 		{ _field_block, "teleporter", &equipmentAbilityTypeTeleporterBlock_block },
 		{ _field_block, "auto turret", &equipmentAbilityTypeAutoTurretBlock_block },
 		{ _field_block, "vision mode", &equipmentAbilityTypeVisionModeBlock_block },
@@ -545,6 +591,7 @@ namespace blofeld
 		{ _field_string_id, "active animation" },
 		{ _field_string_id, "deactivate animation" },
 		{ _field_string_id, "active animation stance" },
+
 		{ _field_terminator }
 	};
 
@@ -572,15 +619,44 @@ namespace blofeld
 	{
 		{ _field_struct, "item", &item_struct_definition_struct_definition },
 		{ _field_custom, "$$$ EQUIPMENT $$$" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 21 },
+		{ _field_custom, "Timers" },
+		{ _field_real, "duration:seconds#use negative numbers for infinite duration" },
+		{ _field_real, "warmup time:seconds#time before the equipment truly becomes active" },
+		{ _field_real, "cooldown time:seconds#for equipment that suppresses combat actions, these actions remain suppressed for this long after the equipment deactivates\nNote that if this equipment also readies weapons when deactivated, the weapon will not be usable until both this timer expires and the ready animation has finished, whichever is longer" },
+		{ _field_real, "phantom volume activation time#time in seconds for the phantom volumes on this object to start accelerating things in them" },
+		{ _field_custom },
+		{ _field_custom, "Energy" },
+		{ _field_explanation, "Energy", "All these fields are additive, meaning a negative number will reduce energy and a positive one will increase energy.  Every piece of equipment starts at 1.0 energy" },
+		{ _field_real, "energy recovery time" },
+		{ _field_real, "minimum activation energy#energy must be at least this high to activate\nLike activation cost, but doesn\'t actually change energy levels" },
+		{ _field_real, "activation energy cost" },
+		{ _field_real, "deactivation energy cost" },
+		{ _field_real, "active energy rate:energy/second" },
+		{ _field_real, "recharge rate" },
+		{ _field_struct, "movement speed to energy rate:1/s", &scalar_function_named_struct_struct_definition },
+		{ _field_real, "movement speed domain:wu/s" },
+		{ _field_custom },
+		{ _field_long_flags, "flags", &equipment_activation_flags },
+		{ _field_short_integer, "charges#-1 means unlimited charges" },
+		{ _field_char_enum, "activation mode^", &equipment_activation_mode },
+		{ _field_char_integer, "object noise adjustment#for AI perception.\nwhile active, adjusts noises made by the owner unit by this many \'notches\'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_custom, "Energy" },
 		{ _field_real, "initial energy" },
 		{ _field_real, "energy recovery time:seconds#after deactivation, energy stays constant for this long before starting to change by \'inactive energy rate\'" },
 		{ _field_real, "inactive energy rate:energy/second" },
 		{ _field_custom },
 		{ _field_long_flags, "flags", &equipment_flags },
+
 		{ _field_string_id, "unit stow marker name#the marker on the unit to attach this equipment to when it is stowed.\nThe equipment should have a marker named \"equipment_stow_anchor\"" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "pickup behavior", &equipment_pickup_behavior },
 		{ _field_pad, "IJKMOP", 3 },
+
 		{ _field_real_argb_color, "forced primary change color#sets the primary change color on the unit to this if the flag above is checked" },
 		{ _field_real_argb_color, "forced secondary change color#sets the secondary change color on the unit to this if the flag above is checked" },
 		{ _field_custom, "AI" },
@@ -591,17 +667,39 @@ namespace blofeld
 		{ _field_string_id, "ai dialogue equipment type#The equipment ability type name used by the ai dialog system used to filter equipment activation dialogue events." },
 		{ _field_custom },
 		{ _field_block, "override camera", &optionalUnitCameraBlock_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_struct, "abilities", &equipmentAbilityDatum_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "abilities", &equipmentAbilityDatum_block },
+
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_pad, "LKSHFDIJ", 3 },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_tag_reference, "pickup sound", &global_sound_reference },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_tag_reference, "activation while disabled by player traits sound", &global_sound_reference },
+		{ _field_tag_reference, "activate effect", &global_effect_reference },
+		{ _field_tag_reference, "looping effect", &global_effect_reference },
+		{ _field_tag_reference, "deactivate effect", &global_effect_reference },
+
 		{ _field_tag_reference, "energy charged effect", &global_effect_reference },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_string_id, "activation animation" },
+		{ _field_string_id, "active animation" },
+		{ _field_string_id, "deactivate animation" },
+		{ _field_string_id, "active animation stance" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_tag_reference, "unable to activate sound", &global_sound_reference },
 		{ _field_tag_reference, "Player sound bank#High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 		{ _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock_block },
 		{ _field_block, "Sound Sweeteners", &EquipmentSoundSweetenerBlock_block },
 		{ _field_custom },
+
 		{ _field_terminator }
 	};
 

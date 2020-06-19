@@ -556,7 +556,7 @@ namespace blofeld
 		{ equipmentAbilityTypeRemoteVehicleBlock_block_struct, 40 }, // block
 		{ equipmentAbilityTypeSuicideBombBlock_block_struct, 32 }, // block
 		{ equipmentAbilityTypeActiveShieldBlock_block_struct, 1 }, // block
-		{ equipmentAbilityDatum_block_struct, 572 }, // block
+		{ equipmentAbilityDatum_struct_definition, 572 }, // block
 		{ EquipmentSoundRTPCBlock_block_struct, 16 }, // block
 		{ EquipmentSoundSweetenerBlock_block_struct, 28 }, // block
 		{ equipment_struct_definition_struct_definition, 924 }, // group

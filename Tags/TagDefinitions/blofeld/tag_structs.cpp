@@ -626,7 +626,7 @@ namespace blofeld
 		&item_struct_definition_struct_definition, // tag group
 		&predicted_bitmaps_block_block_struct, // block
 		&optionalUnitCameraBlock_block_struct, // block
-		&equipmentAbilityDatum_block_struct, // block
+		//&equipmentAbilityDatum_block_struct, // block
 		&equipmentAbilityTypeMultiplayerPowerupBlock_block_struct, // block
 		&equipmentAbilityTypeSpawnerBlock_block_struct, // block
 		&equipmentAbilityTypeAiSpawnerBlock_block_struct, // block
@@ -2079,6 +2079,8 @@ namespace blofeld
 		&halo3_unit_camera_struct_unknown_block_struct,
 		&unit_hud_interfaces_block_block_struct,
 		&hud_screen_reference_block_block_struct,
+		&equipmentAbilityDatum_struct_definition,
+		& unknown_equipment_ability_block_struct,
 		nullptr
 	};
 
