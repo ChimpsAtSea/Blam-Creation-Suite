@@ -509,7 +509,7 @@ namespace blofeld
 
 	TAG_STRUCT(equipmentAbilityDatum)
 	{
-		{ _field_version_greater, _engine_type_haloreach, 23 },
+		{ _field_version_greater, _engine_type_haloreach, 21 },
 		{ _field_custom, "Timers" },
 		{ _field_real, "duration:seconds#use negative numbers for infinite duration" },
 		{ _field_real, "warmup time:seconds#time before the equipment truly becomes active" },
@@ -518,13 +518,11 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_custom, "Energy" },
 		{ _field_explanation, "Energy", "All these fields are additive, meaning a negative number will reduce energy and a positive one will increase energy.  Every piece of equipment starts at 1.0 energy" },
-		{ _field_real, "energy recovery time" },
 		{ _field_real, "minimum activation energy#energy must be at least this high to activate\nLike activation cost, but doesn\'t actually change energy levels" },
 		{ _field_real, "low energy warning threshold#used by UI" },
 		{ _field_real, "activation energy cost" },
 		{ _field_real, "deactivation energy cost" },
 		{ _field_real, "active energy rate:energy/second" },
-		{ _field_real, "recharge rate" },
 		{ _field_struct, "movement speed to energy rate:1/s", &scalar_function_named_struct_struct_definition },
 		{ _field_real, "movement speed domain:wu/s" },
 		{ _field_custom },
