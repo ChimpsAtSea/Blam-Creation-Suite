@@ -80,6 +80,8 @@
 #include "entities\spawnerdefinition.h"
 #include "errors\error_report_definitions.h"
 #include "fx\fx_test_tag.h"
+#include "fx\beam_system.h"
+#include "fx\contrail_system.h"
 #include "game\armormod_definitions.h"
 #include "game\campaign_metagame_definitions.h"
 #include "game\challenges\challenge_definitions.h"

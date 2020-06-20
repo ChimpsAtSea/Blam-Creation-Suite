@@ -269,6 +269,9 @@ namespace blofeld
 		&water_physics_drag_properties_group,
 		&weather_globals_group,
 		&cache_file_resource_gestalt_group,
+		// manual
+		&beam_system_group,
+		&contrail_system_group,
 		nullptr
 	};
 

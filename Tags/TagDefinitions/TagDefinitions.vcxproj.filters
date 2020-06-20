@@ -894,6 +894,12 @@
     <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\fx\contrail_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\fx\beam_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1812,6 +1818,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\gen3_xbox360_validation_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\fx\contrail_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\fx\beam_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

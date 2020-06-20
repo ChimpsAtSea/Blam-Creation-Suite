@@ -2080,7 +2080,9 @@ namespace blofeld
 		&unit_hud_interfaces_block_block_struct,
 		&hud_screen_reference_block_block_struct,
 		&equipmentAbilityDatum_struct_definition,
-		& unknown_equipment_ability_block_struct,
+		&unknown_equipment_ability_block_struct,
+		&beam_system_block_struct,
+		&contrail_system_block_struct,
 		nullptr
 	};
 
