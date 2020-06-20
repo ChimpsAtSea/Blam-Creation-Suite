@@ -54,7 +54,13 @@ namespace blofeld
 	{
 		"random rotation",
 		"force planar",
-		"is strip"
+		"is strip",
+		"unknown_bit4", // haloreach
+		"unknown_bit5", // haloreach
+		"unknown_bit6", // haloreach
+		"unknown_bit7", // haloreach
+		"unknown_bit8", // haloreach
+		"unknown_bit9", // haloreach
 	};
 	STRING_LIST(decal_system_flags, decal_system_flags_strings, _countof(decal_system_flags_strings));
 
