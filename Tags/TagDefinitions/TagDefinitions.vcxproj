@@ -97,8 +97,8 @@
     <ClCompile Include="blofeld\entities\entitydefinition.cpp" />
     <ClCompile Include="blofeld\entities\spawnerdefinition.cpp" />
     <ClCompile Include="blofeld\errors\error_report_definitions.cpp" />
-    <ClCompile Include="blofeld\fx\beam_system.cpp" />
-    <ClCompile Include="blofeld\fx\contrail_system.cpp" />
+    <ClCompile Include="blofeld\effects\beam_system.cpp" />
+    <ClCompile Include="blofeld\effects\contrail_system.cpp" />
     <ClCompile Include="blofeld\fx\fx_test_tag.cpp" />
     <ClCompile Include="blofeld\game\armormod_definitions.cpp" />
     <ClCompile Include="blofeld\game\campaign_metagame_definitions.cpp" />
@@ -321,8 +321,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="blofeld\fx\beam_system.h" />
-    <ClInclude Include="blofeld\fx\contrail_system.h" />
+    <ClInclude Include="blofeld\effects\beam_system.h" />
+    <ClInclude Include="blofeld\effects\contrail_system.h" />
     <ClInclude Include="blofeld\tag_structs.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
