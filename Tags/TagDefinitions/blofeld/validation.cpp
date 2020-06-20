@@ -2,12 +2,121 @@
 
 namespace blofeld
 {
+	void iterate_structure_fields(
+		e_engine_type engine_type,
+		e_build build,
+		const s_tag_struct_definition& struct_definition,
+		bool recursive,
+		bool recursive_block,
+		t_iterate_structure_fields_callback* callback,
+		void* userdata)
+	{
+		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			const char* field_string = field_to_string(current_field->field_type);
+			const char* nice_field_string = field_string + 1;
+
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
+			if (recursive)
+			{
+				const s_tag_struct_definition* next_struct_definition = nullptr;
+				switch (current_field->field_type)
+				{
+				case _field_struct:
+				{
+					next_struct_definition = current_field->struct_definition;
+					break;
+				}
+				case _field_array:
+				{
+					next_struct_definition = &current_field->array_definition->struct_definition;
+					break;
+				}
+				case _field_block:
+					if (recursive_block)
+					{
+						next_struct_definition = &current_field->block_definition->struct_definition;
+						break;
+					}
+				}
+
+				if (next_struct_definition != nullptr)
+				{
+					iterate_structure_fields(
+						engine_type,
+						build,
+						*next_struct_definition,
+						recursive,
+						recursive_block,
+						callback,
+						userdata);
+				}
+			}
+		}
+	}
+
+	void iterate_structure_fields(
+		const s_tag_struct_definition& struct_definition,
+		bool recursive,
+		bool recursive_block,
+		t_iterate_structure_fields_callback* callback,
+		void* userdata)
+	{
+		callback(struct_definition, userdata);
+
+		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			const char* field_string = field_to_string(current_field->field_type);
+			const char* nice_field_string = field_string + 1;
+
+			if (recursive)
+			{
+				const s_tag_struct_definition* next_struct_definition = nullptr;
+				switch (current_field->field_type)
+				{
+				case _field_struct:
+				{
+					next_struct_definition = current_field->struct_definition;
+					break;
+				}
+				case _field_array:
+				{
+					next_struct_definition = &current_field->array_definition->struct_definition;
+					break;
+				}
+				case _field_block:
+					if (recursive_block)
+					{
+						next_struct_definition = &current_field->block_definition->struct_definition;
+						break;
+					}
+				}
+
+				if (next_struct_definition != nullptr)
+				{
+					iterate_structure_fields(
+						*next_struct_definition,
+						recursive,
+						recursive_block,
+						callback,
+						userdata);
+				}
+			}
+		}
+	}
+
 	uint32_t calculate_struct_size(e_engine_type engine_type, e_build build, const s_tag_struct_definition& struct_definition, bool* block_failed_validation)
 	{
 		uint32_t computed_size = 0;
 
 
-		for(const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			const char* field_string = field_to_string(current_field->field_type);
 			const char* nice_field_string = field_string + 1;
