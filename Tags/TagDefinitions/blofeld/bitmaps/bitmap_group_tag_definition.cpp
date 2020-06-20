@@ -33,7 +33,10 @@ namespace blofeld
 		{ _field_block, "xenon bitmaps*", &bitmap_data_block_def_block },
 		{ _field_block, "hardware textures", &bitmap_texture_interop_block_block },
 		{ _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block_block },
+
 		{ _field_terminator }
 	};
 

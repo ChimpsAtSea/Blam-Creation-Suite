@@ -246,8 +246,7 @@ void c_blofeld_tag_debugger_tab::render_field_byte_flags(render_field_callback_a
 void c_blofeld_tag_debugger_tab::render_field_point_2d(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
-	ImGui::Dummy({ result->level * indent_size, 0.0f });
-	render_field_name_and_information(field, result);
+	render_field_scalar_type(ImGuiDataType_S16, 2, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_rectangle_2d(render_field_callback_args)
 {

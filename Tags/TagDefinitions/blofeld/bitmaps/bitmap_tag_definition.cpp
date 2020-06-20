@@ -26,6 +26,12 @@ namespace blofeld
 		{ _field_long_integer, "high res pixels size!#DO NOT CHANGE" },
 		{ _field_long_integer, "hardware format*!" },
 		{ _field_long_integer, "runtime tag base address*!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_terminator }
 	};
 
