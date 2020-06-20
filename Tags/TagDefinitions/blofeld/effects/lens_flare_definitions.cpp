@@ -8,24 +8,43 @@ namespace blofeld
 
 	TAG_BLOCK(lens_flare_reflection_block, k_maximum_reflections_per_lens_flare)
 	{
+		// #TODO: Verify fields between beginning and unknown for Halo Reach
+
 		{ _field_custom },
 		{ _field_string_id, "name^" },
 		{ _field_word_flags, "flags", &lens_flare_reflection_flags_definition },
+		{ _field_short_integer, "bitmap index" },
 
 		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_short_integer, "bitmap index" },
-		
 		{ _field_tag_reference, "bitmap override", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+
 		{ _field_real, "rotation offset:degrees" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_real_bounds, "radius bounds" },
+		{ _field_real_bounds, "brightness bounds" },
+
+		{ _field_version_greater, _engine_type_haloreach, 3},
 		{ _field_real, "axis offset:percent#percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side" },
 		{ _field_real_bounds, "offset bounds#the axis offset times corona offset is clamped between these values" },
 		{ _field_struct, "radius curve#interpolated by external input", &scalar_function_named_struct_struct_definition },
+
 		{ _field_struct, "scale curve X#interpolated by external input", &scalar_function_named_struct_struct_definition },
 		{ _field_struct, "scale curve Y#interpolated by external input", &scalar_function_named_struct_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "brightness curve#interpolated by external input", &scalar_function_named_struct_struct_definition },
+
 		{ _field_explanation, "TINT COLOR", "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint." },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "color curve#interpolated by external input", &color_function_named_struct_struct_definition },
+		
 		{ _field_real_fraction, "modulation factor:[0,1]" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real_rgb_color, "tint color" },
+
 		{ _field_real, "tint power:[0.1, 16]" },
 		{ _field_custom },
 		{ _field_terminator }

@@ -327,8 +327,8 @@ void c_blofeld_tag_debugger_tab::render_field_real_rgb_color(render_field_callba
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
-	ImGui::ColorEdit3("", &color.x, ImGuiColorEditFlags_Float);
+	float* color = reinterpret_cast<float*>(data);
+	ImGui::ColorEdit3("", color, ImGuiColorEditFlags_Float);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callback_args)
@@ -336,8 +336,8 @@ void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callb
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
-	ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_Float);
+	float* color = reinterpret_cast<float*>(data);
+	ImGui::ColorEdit4("", color, ImGuiColorEditFlags_Float);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callback_args)
@@ -345,8 +345,8 @@ void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callba
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
-	ImGui::ColorEdit3("", &color.x, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
+	float* color = reinterpret_cast<float*>(data);
+	ImGui::ColorEdit3("", color, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callback_args)
@@ -354,8 +354,8 @@ void c_blofeld_tag_debugger_tab::render_field_real_ahsv_color(render_field_callb
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	ImVec4 color = ImGui::ColorConvertU32ToFloat4(*reinterpret_cast<ImU32*>(data));
-	ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
+	float* color = reinterpret_cast<float*>(data);
+	ImGui::ColorEdit4("", color, ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputHSV);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_short_bounds(render_field_callback_args)
