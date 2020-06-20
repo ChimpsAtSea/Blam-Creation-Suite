@@ -57,6 +57,8 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
 	check_steam_ownership();
 
+	c_console::write_line("checking supported game versions");
+
 	// #TODO: Find a home for this
 
 	bool is_bink2_required = false;
@@ -189,6 +191,8 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
 		if (k_autostart_halo_eldorado || k_autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
+
+	c_console::write_line_verbose("and here we go...");
 }
 
 void c_game_launcher::deinit_game_launcher()
@@ -557,6 +561,7 @@ void c_game_launcher::check_steam_ownership()
 	bool steam_api_init_result = SteamAPI_Init();
 	if (!steam_api_init_result)
 	{
+		c_console::write_line("Steam failed to initialize.");
 		MessageBoxA(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
 	}
@@ -584,6 +589,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
+		c_console::write_line("failed to load library '%s'", library_name);
 		MessageBoxA(s_window->get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
