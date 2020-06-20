@@ -18,28 +18,57 @@ namespace blofeld
 
 	TAG_BLOCK(combat_cue_payload_block, 1)
 	{
+		/*
+		NOTE: For Halo Reach this was the best looking outcome based purely on trying
+		to make some kind of data look pretty. There are demons here!!!!
+
+		This data doesn't appear to change in each level so maybe as long as it is 
+		initialized correctly this won't be a problem? - Squaresome
+		*/
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ 
+			_field_explanation, 
+			"THIS STRUCTURE DEFINITION IS FICTIONAL", 
+			"NOTE: For Halo Reach this was the best looking outcome based purely on trying\n"
+			"to make some kind of data look pretty. There are demons here!!!!\n"
+			"\n"
+			"This data doesn't appear to change in each level so maybe as long as it is\n"
+			"initialized correctly this won't be a problem? - Squaresome"
+		},
+
 		{ _field_real_point_3d, "position!" },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
 		{ _field_word_flags, "flags!", &g_firing_position_flags },
 		{ _field_word_flags, "posture flags!", &g_firing_position_posture_flags },
+
 		{ _field_short_block_index, "area^!" },
 		{ _field_short_integer, "cluster index!" },
 		{ _field_short_integer, "cluster bsp*" },
 		{ _field_char_integer, "bits and pad!" },
 		{ _field_pad, "PAD1", 1 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_real_euler_angles_2d, "normal!" },
 		{ _field_angle, "facing!" },
 		{ _field_long_integer, "lastAbsoluteRejectionGameTime!" },
 		{ _field_enum, "preference", &combat_cue_preference_enum },
 		{ _field_pad, "post-preference", 2 },
+
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_cue_template_block, k_max_ai_cue_templates)
 	{
 		{ _field_string_id, "name^" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "template_flags", &cue_template_flags },
+
 		{ _field_block, "firing points", &firing_point_payload_block_block },
 		{ _field_block, "stimulus", &stimulus_payload_block_block },
 		{ _field_block, "combat cue", &combat_cue_payload_block_block },
