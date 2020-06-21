@@ -15,16 +15,21 @@ namespace blofeld
 		{ _field_tag_reference, "imposter model", &imposter_model_reference$2 },
 		{ _field_long_integer, "runtime render checksum*!" },
 		{ _field_long_integer, "runtime collision checksum*!" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_explanation, "Optional Static Lightmap", "\n" },
 		{ _field_tag_reference, "Lighting Info^", &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
 		{ _field_long_flags, "Lightmap Flags{PVS flags}", &model_lightmap_flags_definition },
 		{ _field_long_block_index, "Lightmap Variant" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_explanation, "PVS", "\n" },
 		{ _field_real, "PVS bounding box extension factor #How much we extend the PVS region around the objects AABB : [good initial value 2.5]" },
 		{ _field_real_vector_3d, "PVS block size #How big a single PVS block is, in world units : [good initial value (2.0,2.0,2.0)]" },
 		{ _field_long_integer, "PVS sampling subdivision per axis #How many sample subdivisions we perform per PVS block when generating the data : [good initial value 2]" },
 		{ _field_real, "PVS visibility threshold #Minimum amount we need to see of an individual part mesh to care about it : [good initial value 0.004]" },
+		
 		{ _field_explanation, "level of detail", "\n" },
 		{ _field_real, "disappear distance:world units" },
 		{ _field_real, "begin fade distance:world units" },
@@ -38,12 +43,19 @@ namespace blofeld
 		{ _field_real, "midrange detail disappear distance:world units#distance at which the midrange detail disappears" },
 		{ _field_real, "close detail disappear distance:world units#distance at which the close detail disappears" },
 		{ _field_real, "tessellation max draw distance:world units" },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_long_flags, "resource distance override flags", &model_lod_resource_distance_flags_definition },
 		{ _field_real, "medium priority distance" },
 		{ _field_real, "low priority distance" },
+
 		{ _field_block, "variants", &model_variant_block_block },
 		{ _field_block, "region sort", &region_name_block_block },
 		{ _field_block, "instance groups", &global_model_instance_group_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_block, "old materials", &model_material_block_new_block },
+
 		{ _field_block, "model materials*", &model_material_block_new_block },
 		{ _field_block, "new damage info!", &global_damage_info_block_block },
 		{ _field_struct, "damage info", &model_damage_info_struct_struct_definition },
@@ -141,12 +153,24 @@ namespace blofeld
 	TAG_BLOCK(model_variant_block, k_maximum_variants_per_model)
 	{
 		{ _field_string_id, "name^" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_array, "runtime variant region indices!", &runtime_region_index_array_array },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_array, "runtime variant region indices!", &haloreach_runtime_region_index_array_array },
+			
 		{ _field_block, "regions", &model_variant_region_block_block },
 		{ _field_block, "objects", &model_variant_object_block_block },
 		{ _field_long_block_index, "instance group#selects an instance group for this variant" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "muted nodes#turn off animation on these named nodes and children", &model_variant_muted_node_block_block },
 		{ _field_array, "muted flag*!", &g_node_flag_storage_array_array },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },  // #TODO: Replace with new constants system
+		{ _field_array, "muted flag*!", &g_node_flag_storage_array_haloreach_array },  // #TODO: Replace with new constants system
+
 		{ _field_terminator }
 	};
 
@@ -292,6 +316,12 @@ namespace blofeld
 	};
 
 	TAG_ARRAY(runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL)
+	{
+		{ _field_char_integer, "runtime region index!" },
+		{ _field_terminator }
+	};
+
+	TAG_ARRAY(haloreach_runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL_HALOREACH)
 	{
 		{ _field_char_integer, "runtime region index!" },
 		{ _field_terminator }
