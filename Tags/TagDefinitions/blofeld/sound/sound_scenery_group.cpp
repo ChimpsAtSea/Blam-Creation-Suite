@@ -11,11 +11,20 @@ namespace blofeld
 	TAG_STRUCT(sound_scenery_struct_definition)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_real, "obstruction cutoff frequency:Hz" },
+		{ _field_real, "obstruction output gain:dB" },
+		{ _field_real, "occlusion cutoff frequency:Hz" },
+		{ _field_real, "occlusion output gain:dB" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_long_integer, "YJNXHAWAO1!" },
 		{ _field_long_integer, "YJNXHAWAO2!" },
 		{ _field_long_integer, "YJNXHAWAO3!" },
 		{ _field_long_integer, "YJNXHAWAO4!" },
 		{ _field_useless_pad },
+
 		{ _field_terminator }
 	};
 
