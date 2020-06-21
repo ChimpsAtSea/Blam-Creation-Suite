@@ -45,6 +45,11 @@ inline const T* h4_va_to_pointer(const char* data, uint32_t address)
 {
 	return reinterpret_cast<const T*>(h4_va_to_pointer(data, address));
 }
+template<typename T>
+inline const T* h4_va_to_pointer_safe(const char* data, uint32_t address)
+{
+	return reinterpret_cast<const T*>(h4_va_to_pointer_safe(data, address));
+}
 //inline const char* h4_va_to_pointer(const char* data, uint32_t address)
 //{
 //	if (address == 0) return nullptr;

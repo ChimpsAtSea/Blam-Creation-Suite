@@ -189,7 +189,7 @@ public:
 			uintptr_t option_string_address = options_strings_address[option_index];
 			const char* option = va_to_pointer(guerilla_data, option_string_address);
 			options.push_back(option);
-			debug_point;
+			
 		}
 	}
 };

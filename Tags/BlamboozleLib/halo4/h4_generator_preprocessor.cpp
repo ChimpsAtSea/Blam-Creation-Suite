@@ -519,7 +519,7 @@ void c_h4_generator_preprocessor::process_tag_reference_field(c_h4_tag_field* ta
 
 
 
-		debug_point;
+		
 	}
 }
 

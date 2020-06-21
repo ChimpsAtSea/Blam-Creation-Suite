@@ -353,7 +353,7 @@ void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
 		{
 			ss << "\t\t&" << tag_struct_container->name << "_struct_definition," << std::endl;
 		}
-		debug_point;
+		
 	}
 	ss << "\t};" << std::endl;
 	ss << std::endl;

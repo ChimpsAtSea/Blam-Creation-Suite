@@ -114,7 +114,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 					break;
 				}
 
-				debug_point;
+				
 			}
 			ASSERT(minidump_memory64_list_directory != nullptr);
 		}
@@ -140,7 +140,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 					break;
 				}
 
-				debug_point;
+				
 				minidump_memory64_rva += minidump_memory64.DataSize;
 			}
 			//ASSERT(minidump_address_memory64 != nullptr);
@@ -153,7 +153,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 			executable_image_data = midnight_image_data + rva;
 		}
 
-		debug_point;
+		
 	}
 	else
 	{
@@ -244,7 +244,8 @@ c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, c
 
 c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 	const char* h4_data,
-	const s_h4_tag_struct_definition* definition_header
+	const s_h4_tag_struct_definition* definition_header,
+	uint32_t offset
 )
 {
 	if (definition_header == nullptr)
@@ -274,7 +275,7 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 
 	c_h4_tag_struct* tag_struct_definition = reinterpret_cast<c_h4_tag_struct*>(malloc(sizeof(c_h4_tag_struct)));
 	tag_struct_definitions[definition_header] = tag_struct_definition;
-	new(tag_struct_definition) c_h4_tag_struct(h4_data, definition_header);
+	new(tag_struct_definition) c_h4_tag_struct(h4_data, definition_header, offset);
 
 
 	return tag_struct_definition;
@@ -384,11 +385,11 @@ int c_h4_blamboozle::run()
 		uint32_t layout_header_va = tag_layout_entry.layout_header;
 		const s_h4_tag_group* layout_header = reinterpret_cast<const s_h4_tag_group*>(h4_va_to_pointer(h4_data, tag_layout_entry.layout_header));
 		//if (layout_header->group_tag.value == 'dpib')
+		//if (_byteswap_ulong(layout_header->group_tag.value) == 'hlmt')
 		{
 			c_h4_tag_group* tag_layout = new c_h4_tag_group(h4_data, layout_header);
 			tag_groups.emplace_back(tag_layout);
 		}
-		debug_point;
 	}
 
 	c_h4_generator_preprocessor preprocessor = c_h4_generator_preprocessor(*this);

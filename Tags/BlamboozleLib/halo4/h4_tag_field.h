@@ -153,7 +153,7 @@ public:
 		uint32_t definition_address = field_definition->definition_address;
 		uint32_t group_tags_address = this->definition->group_tags_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -166,7 +166,7 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -178,13 +178,13 @@ public:
 
 	c_h4_tag_field_struct(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition))
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition, field_definition->definition_address))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 		const char* field_set_display_name = h4_va_to_pointer(h4_data, definition->display_name);
 		const char* field_set_name = h4_va_to_pointer(h4_data, definition->name);
 
-		debug_point;
+		
 	}
 };
 
@@ -200,7 +200,7 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -216,7 +216,7 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -249,12 +249,12 @@ public:
 		count(definition->count),
 		count_string(h4_va_to_pointer(h4_data, definition->count_string)),
 		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition))
+		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 		uint32_t struct_definition_address = definition->struct_definition;
 
-		debug_point;
+		
 	}
 };
 
@@ -280,9 +280,9 @@ public:
 
 		const s_h4_tag_struct_definition* struct_definition = reinterpret_cast<const s_h4_tag_struct_definition*>(h4_va_to_pointer(h4_data, definition->struct_definition));
 		ASSERT(struct_definition != nullptr);
-		tag_struct = c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition);
+		tag_struct = c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition);
 
-		debug_point;
+		
 	}
 };
 
@@ -306,7 +306,7 @@ public:
 
 		name = h4_va_to_pointer(h4_data, definition->name_address);
 
-		debug_point;
+		
 	}
 };
 
@@ -365,13 +365,13 @@ public:
 		count(definition->element_count),
 		count_string(h4_va_to_pointer(h4_data, definition->element_count_string)),
 		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition)),
+		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition)),
 		tag_array_definition(c_h4_blamboozle::get_tag_array_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 		uint32_t struct_definition_address = definition->struct_definition;
 
-		debug_point;
+		
 	}
 };
 
@@ -385,7 +385,7 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -399,7 +399,7 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -449,7 +449,7 @@ public:
 		count(definition->count),
 		unknown1(definition->unknown1),
 		unknown2(definition->unknown2),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition))
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
@@ -457,7 +457,7 @@ public:
 		//ASSERT(unknown1 == 0);
 		//ASSERT(unknown2 == 0);
 
-		debug_point;
+		
 	}
 };
 
@@ -489,11 +489,11 @@ public:
 		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
 		name(h4_va_to_pointer(h4_data, definition->name)),
 		unknown(definition->unknown),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition))
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };
 
@@ -507,6 +507,6 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		debug_point;
+		
 	}
 };

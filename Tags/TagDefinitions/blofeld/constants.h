@@ -23,6 +23,7 @@ namespace blofeld
 #define MAXIMUM_SPRITES_PER_SEQUENCE 128
 #define MAXIMUM_BITMAPS_PER_BITMAP_GROUP 65536
 #define MAXIMUM_REGIONS_PER_MODEL 32
+#define MAXIMUM_REGIONS_PER_MODEL_HALOREACH 16 // #TODO: Replace with constant system
 #define MAXIMUM_PERMUTATIONS_PER_MODEL_REGION 255
 #define NUMBER_OF_PROP_CLASSES 14
 #define NUMBER_OF_ACTOR_COMBAT_STATUS_LEVELS 10
@@ -593,6 +594,7 @@ namespace blofeld
 	struct c_node_flags
 	{
 		static const unsigned long k_flag_chunk_count = 8;
+		static const unsigned long k_flag_chunk_count_haloreach = 2; // #TODO: Replace with constant system
 	};
 	struct s_render_method_postprocess_definition
 	{

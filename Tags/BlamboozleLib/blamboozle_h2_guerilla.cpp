@@ -203,7 +203,7 @@ public:
 			uintptr_t option_string_address = options_strings_address[option_index];
 			const char* option = va_to_pointer(guerilla_data, option_string_address);
 			options.push_back(option);
-			debug_point;
+			
 		}
 	}
 };
@@ -416,7 +416,7 @@ public:
 		const void* field_set_latest = va_to_pointer(guerilla_data, definition_header->field_set_latest_address);
 
 		bool unsupported_inheritance_flag = tag_layout_header ? !!(tag_layout_header->inheritance_flags & 2) : false;
-		debug_point;
+		
 
 		if (!unsupported_inheritance_flag)
 		{

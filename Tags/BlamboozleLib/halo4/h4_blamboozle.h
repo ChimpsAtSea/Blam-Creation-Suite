@@ -31,7 +31,8 @@ public:
 
 	static c_h4_tag_struct* get_tag_struct_definition(
 		const char* h4_data,
-		const s_h4_tag_struct_definition* definition_header);
+		const s_h4_tag_struct_definition* definition_header,
+		uint32_t offset);
 	static std::map<const void*, c_h4_tag_struct*> tag_struct_definitions;
 
 	static c_h4_tag_enum* get_tag_enum_definition(
