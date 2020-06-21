@@ -12,6 +12,11 @@ using t_get_tag_section_address_callback = char* (uint32_t address);
 #define MANDRILL_THEME_TEXT(v) { 0.930f, 0.965f, 0.945f, v }
 #define MANDRILL_THEME_MENU(v) { 0.377f, 0.377f, 0.377f, v }
 
+namespace ImGuiAddons
+{
+	class ImGuiFileBrowser;
+}
+
 class c_mandrill_user_interface :
 	public c_mandrill_tab
 {

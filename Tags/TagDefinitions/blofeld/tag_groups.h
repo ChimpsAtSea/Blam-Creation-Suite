@@ -295,7 +295,7 @@
 namespace blofeld
 {
 
-	extern const s_tag_group* tag_groups[];
+	extern BCSAPI const s_tag_group* tag_groups[];
 } // namespace blofeld
 
 

@@ -204,6 +204,29 @@ bool filesystem_directory_exists(const wchar_t* directorypath)
 	return result;
 }
 
+void filesystem_iterate_directory(const wchar_t* directorypath, std::function<bool(const wchar_t* filepath)>& handler)
+{
+	WIN32_FIND_DATAW find_data = {};
+	HANDLE find_file_handle = FindFirstFile(directorypath, &find_data);
+
+	if (find_file_handle == INVALID_HANDLE_VALUE)
+	{
+		return;
+	}
+
+	do
+	{
+		bool continue_search = handler(find_data.cFileName);
+		if (!continue_search)
+		{
+			break;
+		}
+
+	} while (FindNextFile(find_file_handle, &find_data) != 0);
+
+	FindClose(find_file_handle);
+}
+
 
 // ------------- LEGACY -----------------
 

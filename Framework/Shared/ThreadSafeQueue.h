@@ -11,13 +11,13 @@ public:
 
 	void Enqueue(T value)
 	{
-		AtomicLockGuard lockGuard(m_lock);
+		c_atomic_lock_guard lockGuard(m_lock);
 		m_queue.push(value);
 	}
 
 	bool Dequeue(T& rResult)
 	{
-		AtomicLockGuard lockGuard(m_lock);
+		c_atomic_lock_guard lockGuard(m_lock);
 		if (m_queue.empty())
 		{
 			return false;
@@ -29,5 +29,5 @@ public:
 
 private:
 	std::queue<T> m_queue;
-	AtomicLock m_lock;
+	c_atomic_lock m_lock;
 };

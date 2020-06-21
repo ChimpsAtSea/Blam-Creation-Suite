@@ -21,9 +21,6 @@
     <ClInclude Include="shared-system-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shared-tbb-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shared-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,9 +40,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadSafeQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AtomicLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StringUtilities.h">

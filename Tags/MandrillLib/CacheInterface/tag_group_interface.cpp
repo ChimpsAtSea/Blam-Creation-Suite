@@ -24,7 +24,8 @@ c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t 
 	tag_interfaces_sorted_by_path_with_group_id(),
 	short_name(),
 	full_name(),
-	cache_file(cache_file)
+	cache_file(cache_file),
+	atomic_lock()
 {
 	
 }
@@ -36,7 +37,9 @@ c_tag_group_interface::~c_tag_group_interface()
 
 void c_tag_group_interface::add_tag_interface(c_tag_interface& tag_interface)
 {
+	c_atomic_lock_guard lock_guard(atomic_lock);
 
+	tag_interfaces.push_back(&tag_interface);
 }
 
 #pragma optimize( "t", on ) // always prefer fast code here

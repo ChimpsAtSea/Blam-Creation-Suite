@@ -14,15 +14,15 @@ class c_tag_interface
 protected:
 	non_copyable(c_tag_interface);
 
-	c_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
-	virtual ~c_tag_interface();
+	BCSAPI c_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
+	BCSAPI virtual ~c_tag_interface();
 
-	void associate_virtual_tag_interface(c_virtual_tag_interface& virtual_tag_interface);
-	void init_virtual_tag_interface();
-	void register_with_tag_group();
+	BCSAPI void associate_virtual_tag_interface(c_virtual_tag_interface& virtual_tag_interface);
+	BCSAPI void init_virtual_tag_interface();
+	BCSAPI void register_with_tag_group();
 public:
-	virtual unsigned long get_group_tag() const;
-	virtual c_tag_group_interface* get_tag_group_interface() const;
+	BCSAPI virtual unsigned long get_group_tag() const;
+	BCSAPI virtual c_tag_group_interface* get_tag_group_interface() const;
 
 	virtual const char* get_filepath() const = 0; // eg. globals/globals
 	virtual const char* get_path_with_group_id_cstr() const = 0; // eg. globals/globals.matg

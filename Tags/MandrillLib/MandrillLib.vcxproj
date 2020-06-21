@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Extension\mandrill_extension.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_debugger_tab.h" />
     <ClInclude Include="CustomTools\CustomTools.h" />
     <ClInclude Include="CustomTools\custom_tool_render_model.h" />
@@ -72,6 +73,7 @@
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Extension\mandrill_extension.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_tag_debugger_tab.cpp" />
     <ClCompile Include="CustomTools\custom_tool_render_model.cpp" />
     <ClCompile Include="CustomTools\custom_tool_base.cpp" />

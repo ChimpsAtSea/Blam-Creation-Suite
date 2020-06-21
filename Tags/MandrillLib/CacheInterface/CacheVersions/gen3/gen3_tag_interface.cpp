@@ -29,7 +29,6 @@ c_gen3_tag_interface::c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint16
 
 	register_with_tag_group();
 	init_virtual_tag_interface();
-
 }
 
 c_gen3_tag_interface::~c_gen3_tag_interface()

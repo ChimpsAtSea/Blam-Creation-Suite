@@ -2,6 +2,12 @@
 
 #pragma warning(disable : 4200)
 
+#ifdef BCS_EXTENSION
+#define BCSAPI __declspec(dllimport)
+#else
+#define BCSAPI __declspec(dllexport)
+#endif
+
 #ifndef _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 #endif
