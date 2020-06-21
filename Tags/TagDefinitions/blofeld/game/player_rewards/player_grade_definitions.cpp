@@ -12,8 +12,11 @@ namespace blofeld
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "sprite index" },
 		{ _field_pad, "pad0", 2 },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "time played multiplier#This is an additional multiplier to rewards given for time played for players at this grade" },
 		{ _field_block, "level up rewards#These rewards will be given to the player when they reach this grade", &rewardBlock_block },
+
 		{ _field_terminator }
 	};
 

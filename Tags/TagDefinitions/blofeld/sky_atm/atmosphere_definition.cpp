@@ -20,6 +20,10 @@ namespace blofeld
 		{ _field_pad, "ABCDEFGH", 1 },
 		{ _field_explanation, "Ambient Fog Parameters", "All heights are absolute world space height\n" },
 		{ _field_real, "distance bias:world units#negative means into the screen" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real, "unknown@" },
+
 		{ _field_custom, "Sky Fog" },
 		{ _field_struct, "sky fog", &solo_fog_parameters_struct_definition_struct_definition },
 		{ _field_custom },
@@ -32,6 +36,9 @@ namespace blofeld
 		{ _field_custom, "Fog Light" },
 		{ _field_struct, "fog light", &fog_light_struct_definition_struct_definition },
 		{ _field_custom },
+
+
+		{ _field_version_greater, _engine_type_haloreach, 8 },
 		{ _field_explanation, "Patchy Fog Per-Cluster Parameters", "Sheet density.............Intensity scaling factor applied to all sheets\nFull intensity height.....Height above 0 below which fog should be at full intensity\nHalf intensity height.....Height at which fog should be attenuated to half intensity\nWind......................Direction and intensity of fog motion due to wind\n\n" },
 		{ _field_real, "Sheet density" },
 		{ _field_real_rgb_color, "Color tint" },
@@ -40,12 +47,19 @@ namespace blofeld
 		{ _field_real, "Full intensity height" },
 		{ _field_real, "Half intensity height" },
 		{ _field_real_vector_3d, "Wind direction" },
+
 		{ _field_real, "Reference plane height" },
 		{ _field_custom, "Volume Fog" },
 		{ _field_struct, "volume fog", &VolumeFogParametersDefinition_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_custom },
 		{ _field_custom, "Light Shafts" },
 		{ _field_struct, "light shaft", &LightShaftParametersDefinition_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_real, "unknown@" },
+
 		{ _field_custom },
 		{ _field_explanation, "Weather effect", "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n" },
 		{ _field_tag_reference, "Weather effect", &global_effect_reference },
@@ -60,7 +74,10 @@ namespace blofeld
 		{ _field_real, "fog falloff end{max fog distance}" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity#scales color up or down to allow for HDR values" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "Function", &soloFogFunctionBlock_block },
+
 		{ _field_terminator }
 	};
 
