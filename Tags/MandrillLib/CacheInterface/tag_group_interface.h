@@ -4,30 +4,18 @@ class c_tag_interface;
 class c_old_mandrill_cache_file_gui_tab;
 class c_cache_file;
 
-const char* get_known_legacy_tag_group_name(unsigned long tag_group);
+BCSAPI const char* get_known_legacy_tag_group_name(unsigned long tag_group);
 
 class c_tag_group_interface
 {
 public:
 	friend class c_tag_interface;
 protected:
-	c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag = blofeld::INVALID_TAG);
-	virtual ~c_tag_group_interface();
+	BCSAPI c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag = blofeld::INVALID_TAG);
+	BCSAPI virtual ~c_tag_group_interface();
 
 public:
-	virtual void add_tag_interface(c_tag_interface& tag_interface);
-
-
-
-
-
-
-
-
-
-
-
-
+	BCSAPI virtual void add_tag_interface(c_tag_interface& tag_interface);
 
 	inline uint16_t get_index() { return group_index; };
 	inline unsigned long get_group_tag() const { return group_tag; }
@@ -42,7 +30,7 @@ public:
 	inline const char* get_full_name() const { return full_name.c_str(); };
 	inline c_cache_file& get_cache_file() const { return cache_file; };
 
-	virtual void init_sorted_instance_lists();
+	BCSAPI virtual void init_sorted_instance_lists();
 protected:
 
 	uint16_t group_index;
@@ -62,5 +50,6 @@ protected:
 	std::string full_name;
 
 	c_cache_file& cache_file;
+	c_atomic_lock atomic_lock;
 };
 

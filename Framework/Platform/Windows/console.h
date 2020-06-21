@@ -53,32 +53,21 @@ public:
 	static void init_console(const wchar_t* title = L"Console");
 	static void deinit_console();
 	static void Update();
-
-	static void set_text_color(uint8_t color);
-
+	BCSAPI static void set_text_color(uint8_t color);
 	static void HandleInput(uint32_t KeyCode);
 	static void PrintLine();
-
 	static void register_command(const std::string& CommandName, c_console_command* Command);
 	static void unregister_command(const std::string& CommandName);
-
 	static void show_startup_banner();
-
-
-
-	static void write_line_verbose(const char* format, ...);
-	static void write_line(const char* format, ...);
-
+	BCSAPI static void write_line_verbose(const char* format, ...);
+	BCSAPI static void write_line(const char* format, ...);
 	static int (__cdecl *console_printf_impl)(const char* format, ...);
 	static void write_line_internal(const char* format, va_list args);
-
-
 
 private:
 	static bool AllocateConsole(const wchar_t* title);
 
 	static bool s_consoleAllocated;
-
 	static std::map<std::string, c_console_command*> Commands;
 
 	// History

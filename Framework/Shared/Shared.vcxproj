@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AtomicLock.h" />
     <ClInclude Include="Blam\blamlib-public-pch.h" />
     <ClInclude Include="Blam\legacy\basic_buffer.h" />
     <ClInclude Include="Blam\Blam.h" />
@@ -63,7 +62,6 @@
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
-    <ClInclude Include="shared-tbb-pch.h" />
     <ClInclude Include="StringUtilities.h" />
     <ClInclude Include="ThreadPrimitives\ThreadPrimitives.h" />
     <ClInclude Include="ThreadSafeQueue.h" />

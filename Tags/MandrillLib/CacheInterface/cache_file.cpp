@@ -1,7 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-#pragma optimize("", off)
-
 e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 {
 	FILE* file_handle = _wfopen(filepath, L"rb");
@@ -62,8 +60,10 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 	else
 	{
 		// #TODO: Attempt to identify as a Halo 1 file format
-
-		engine_type = _engine_type_halo1;
+		if (wcscmp_ic(filepath, L".map") == 0)
+		{
+			engine_type = _engine_type_halo1;
+		}
 	}
 
 	fclose(file_handle);
@@ -73,6 +73,15 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 
 c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 {
+	for (c_mandrill_extension& extension : c_reference_loop(c_mandrill_extension::get_extensions(), c_mandrill_extension::get_extension_count()))
+	{
+		c_cache_file* cache_file = extension.create_cache_file(map_filepath);
+		if (cache_file)
+		{
+			return cache_file;
+		}
+	}
+
 	e_engine_type engine_type = get_cache_file_engine_type(map_filepath.c_str());
 	switch (engine_type)
 	{
@@ -91,6 +100,7 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 	case _engine_type_groundhog:
 		return new c_groundhog_cache_file(map_filepath);
 	}
+
 	return nullptr;
 }
 

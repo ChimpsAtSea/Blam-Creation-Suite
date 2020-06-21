@@ -39,17 +39,31 @@ void c_tag_interface::init_virtual_tag_interface()
 
 	blofeld_reflection_type = blofeld::get_group_tag_by_group_tag(get_group_tag());
 
-	switch (cache_file.engine_type)
+
+
+	for (c_mandrill_extension& extension : c_reference_loop(c_mandrill_extension::get_extensions(), c_mandrill_extension::get_extension_count()))
 	{
-	case _engine_type_halo3:
-		virtual_tag_interface = blofeld::halo3::create_virtual_tag_interface(*this, get_group_tag());
-		break;
-	case _engine_type_haloreach:
-		virtual_tag_interface = blofeld::haloreach::create_virtual_tag_interface(*this, get_group_tag());
-		break;
-	case _engine_type_halo4:
-		virtual_tag_interface = blofeld::halo4::create_virtual_tag_interface(*this, get_group_tag());
-		break;
+		virtual_tag_interface = extension.create_virtual_tag_interface(*this, get_group_tag());
+		if (virtual_tag_interface != nullptr)
+		{
+			break;
+		}
+	}
+
+	if (virtual_tag_interface == nullptr)
+	{
+		switch (cache_file.engine_type)
+		{
+		case _engine_type_halo3:
+			virtual_tag_interface = blofeld::halo3::create_virtual_tag_interface(*this, get_group_tag());
+			break;
+		case _engine_type_haloreach:
+			virtual_tag_interface = blofeld::haloreach::create_virtual_tag_interface(*this, get_group_tag());
+			break;
+		case _engine_type_halo4:
+			virtual_tag_interface = blofeld::halo4::create_virtual_tag_interface(*this, get_group_tag());
+			break;
+		}
 	}
 
 	if (virtual_tag_interface == nullptr)

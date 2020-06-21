@@ -41,6 +41,8 @@ private:
 	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;
 	static std::vector<DebugUICallback> s_pToggleableCallbacks;
 	static std::vector<DebugUICallback> s_pAlwaysRunCallbacks;
+#ifndef NO_IMGUI
 	static ImFont* s_imgui_font;
+#endif
 };
 

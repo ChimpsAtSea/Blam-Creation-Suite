@@ -1,9 +1,4 @@
-#include <Platform\platform-public-pch.h>
-#include <Versioning\versioning-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <MandrillLib\mandrilllib-public-pch.h>
-#include <Rhesus\rhesus-public-pch.h>
+#include "mandrill-private-pch.h"
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -29,10 +24,7 @@ static const wchar_t* get_launch_filepath_command_line_argument(const wchar_t* c
 	{
 		const wchar_t* launch_argument_extension = PathFindExtensionW(argv[0]);
 		// #TODO: Add support for c_mandrill::is_supported_file_extension();
-		if (wcscmp_ic(launch_argument_extension, L".map") == 0)
-		{
-			return argv[0];
-		}
+		return argv[0];
 	}
 
 	return nullptr;
@@ -77,6 +69,57 @@ static bool run_tests(const wchar_t* command_line)
 	return true;
 }
 
+static void load_plugins()
+{
+
+	c_fixed_wide_path executable_directory;
+	GetModuleFileNameW(c_runtime_util::get_current_module(), executable_directory.str(), executable_directory.capacity());
+	PathRemoveFileSpecW(executable_directory.str());
+	executable_directory += L"\\*.mext";
+
+	std::function<bool(const wchar_t* filepath)> handler = [](const wchar_t* filepath)
+	{
+		const wchar_t* filename = PathFindFileNameW(filepath);
+		HMODULE extension_module = LoadLibraryW(filepath);
+		if (extension_module == nullptr)
+		{
+			c_console::write_line_verbose("failed to load plugin '%S' LoadLibrary failed", filename);
+			return true; // continue
+		}
+
+		t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
+		if (create_mandrill_extension == nullptr)
+		{
+			c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
+			if (extension_module)
+			{
+				FreeLibrary(extension_module);
+			}
+			return true; // continue
+		}
+
+		c_mandrill_extension* extension = create_mandrill_extension();
+		int version = extension->get_version();
+		if (version != BCS_EXTENSION_VERSION)
+		{
+			c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
+			if (extension_module)
+			{
+				FreeLibrary(extension_module);
+			}
+			return true; // continue
+		}
+
+		const char* extension_name = extension->get_name();
+		c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
+
+		c_mandrill_extension::register_extension(extension);
+
+		return true;
+	};
+	filesystem_iterate_directory(executable_directory.c_str(), handler);
+}
+
 static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
@@ -90,6 +133,7 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 	window = new c_window(instance_handle, k_window_title, L"mandrill", _window_icon_mandrill, show_cmd);
 	c_render::init_render(window, instance_handle, true);
+	load_plugins();
 	mandrill_user_interface = new c_mandrill_user_interface(*window, false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
@@ -100,6 +144,7 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 	c_debug_gui::show_ui();
 	c_console::show_startup_banner();
+
 }
 
 static int run_mandrill()
