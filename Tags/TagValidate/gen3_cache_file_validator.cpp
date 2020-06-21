@@ -155,6 +155,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 		result.float_is_out_of_range = false;
 		result.block_is_out_of_range = false;
 		result.block_struct_is_valid = true;
+		result.is_enum_empty = false;
 		result.field_offset = bytes_traversed;
 		result.absolute_offset = parent_offset + bytes_traversed;
 		result.level = level + 1;
@@ -188,24 +189,24 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			{
 				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count : 0;
 				byte enum_value = __log2u(*reinterpret_cast<byte*>(current_data_position));
-				enum_max++;
-				is_struct_valid &= enum_value < enum_max;
+				result.is_enum_empty = enum_max == 0;
+				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
 				break;
 			}
 			case blofeld::_field_word_flags:
 			{
 				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count : 0;
 				word enum_value = __log2u(*reinterpret_cast<word*>(current_data_position));
-				enum_max++;
-				is_struct_valid &= enum_value < enum_max;
+				result.is_enum_empty = enum_max == 0;
+				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
 				break;
 			}
 			case blofeld::_field_long_flags:
 			{
 				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count : 0;
 				unsigned long enum_value = __log2u(*reinterpret_cast<unsigned long*>(current_data_position));
-				enum_max++;
-				is_struct_valid &= enum_value < enum_max;
+				result.is_enum_empty = enum_max == 0;
+				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
 				break;
 			}
 			case blofeld::_field_real:
@@ -401,6 +402,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			else if (result.float_is_out_of_range) result.validation_state = _validation_state_warning;
 			else if (result.block_is_out_of_range) result.validation_state = _validation_state_warning;
 			else if (!result.block_struct_is_valid) result.validation_state = _validation_state_warning;
+			else if (result.is_enum_empty) result.validation_state = _validation_state_warning;
 			else if (is_block) result.validation_state = _validation_state_block_valid;
 			else result.validation_state = _validation_state_valid;
 		}

@@ -110,11 +110,23 @@ namespace blofeld
 		{ _field_enum, "environment", &effect_environments },
 		{ _field_enum, "disposition", &effect_dispositions },
 		{ _field_enum, "camera mode", &effect_camera_modes },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		{ _field_pad, "pad0", 1 },
+
 		{ _field_short_integer, "sort bias#use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_word_flags, "flags", &particle_system_flags },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_real, "unknown" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_long_flags, "flags", &particle_system_flags },
 		{ _field_real_bounds, "percent velocity to inherit#flag must be checked above" },
+
 		{ _field_real, "size scale#multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
 		{ _field_real, "camera offset:world units#the particle is pushed away from the camera this distance (can be negative)" },
 		{ _field_custom, "Estimate overdraw threshold" },
@@ -124,12 +136,19 @@ namespace blofeld
 		{ _field_real, "near fade override:world units#distance in front of camera where fade is complete" },
 		{ _field_real, "far fade range:world units#distance before cutoff over which particles fade" },
 		{ _field_real, "far fade cutoff:world units#distance from camera where fade is complete" },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_real, "LOD in distance#" },
 		{ _field_real, "LOD feather in delta#minimum is 0.0001" },
 		{ _field_real, "inverse LOD feather in!" },
+
 		{ _field_real, "LOD out distance#defaults to 20.0" },
 		{ _field_real, "LOD feather out delta#0 defaults to 5.0, minimum is 0.0001" },
 		{ _field_real, "inverse LOD feather out!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real, "unknown" },
+
 		{ _field_custom },
 		{ _field_block, "emitters", &particle_system_emitter_definition_block_block },
 		{ _field_real, "runtime max lifespan!" },

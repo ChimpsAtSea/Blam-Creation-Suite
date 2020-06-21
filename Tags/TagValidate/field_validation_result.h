@@ -19,6 +19,7 @@ struct s_field_validation_result
 	bool float_is_out_of_range;
 	bool block_is_out_of_range;
 	bool block_struct_is_valid;
+	bool is_enum_empty;
 	uint32_t field_offset;
 	uint32_t absolute_offset;
 	int level;
