@@ -48,7 +48,7 @@ namespace blofeld
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description" },
 
-		{ _field_version_equal, _engine_type_haloreach, 13 }, // #TODO: Research these fields. Based on assembly's plugins for now ew.
+		{ _field_version_equal, _engine_type_haloreach, 21 }, // #TODO: Research these fields. Based on assembly's plugins for now ew.
 		{ _field_long_integer, "credits earned before silver" },
 		{ _field_long_integer, "credits earned after silver" },
 		{ _field_short_integer, "unknown@" },

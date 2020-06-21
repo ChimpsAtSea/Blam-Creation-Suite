@@ -137,7 +137,7 @@ namespace blofeld
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "turbulence types", &cheapParticleTurbulenceTypeBlock_block },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },

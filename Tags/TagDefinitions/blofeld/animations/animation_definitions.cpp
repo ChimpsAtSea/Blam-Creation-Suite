@@ -858,7 +858,7 @@ namespace blofeld
 		{ _field_block, "blend screens|ABCDCC!*#Legacy field - please edit in NEW blend screens tag below", &animation_blend_screen_block_block },
 		{ _field_block, "foot markers|ABCDCC", &foot_tracking_member_block_block },
 
-		{ _field_version_equal, _engine_type_haloreach, 3 },
+		{ _field_version_equal, _engine_type_haloreach, 1 },
 		{ _field_tag_reference, "imported events|ABCDCC", &global_frame_event_list_reference }, // moved
 
 		{ _field_block, "animations*|ABCDCC", &animation_pool_block_block },
