@@ -460,7 +460,8 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
-	c_console::write_line_verbose("%llu", a1);
+	// #TODO: add toggle for this output, for now it'll be commented out
+	//c_console::write_line_verbose("%llu", a1);
 
 	bool is_debug_ui_visible = c_debug_gui::IsVisible();
 	bool is_window_focused = window.is_focused();
@@ -565,7 +566,8 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 				}
 			}
 
-			c_console::write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
+			// #TODO: add toggle for this output, for now it'll be commented out
+			//c_console::write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
 		}
 	}
 
