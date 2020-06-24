@@ -63,6 +63,8 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_function49,
 	__game_engine_virtual_function_function50,
 	__game_engine_virtual_function_function51,
+	__game_engine_virtual_function_function52,
+	__game_engine_virtual_function_function53,
 };
 
 class IGameEngineHost
@@ -252,6 +254,8 @@ public:
 	/* 49 */ virtual char* __fastcall Function49(char* str); /* added in 1377 */
 	/* 50 */ virtual __int64  __fastcall Function58(); /* added in 1629 */
 	/* 51 */ virtual __int64 __fastcall Function59(__int64 a1, unsigned int a2); /* added in 1629 */
+	/* 52 */ virtual __int64  __fastcall Function60(__int64 a1); /* added in 1658 */
+	/* 53 */ virtual void __fastcall Function61(__int64 a1); /* added in 1658 */
 
 	/* barrier functions to prevent new versions of games calling our functions */
 	IGameEngineHostCreateBarrierDefinition(50);

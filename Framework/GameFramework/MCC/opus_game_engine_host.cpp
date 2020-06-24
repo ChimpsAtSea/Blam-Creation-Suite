@@ -794,3 +794,12 @@ __int64 __fastcall c_opus_game_engine_host::Function59(__int64 a1, unsigned int 
 	// appears to be skins related
 	return 0;
 }
+
+__int64 __fastcall c_opus_game_engine_host::Function60(__int64 a1)
+{
+	return 0;
+}
+
+void __fastcall c_opus_game_engine_host::Function61(__int64 a1)
+{
+}

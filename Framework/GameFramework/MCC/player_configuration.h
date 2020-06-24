@@ -1423,7 +1423,7 @@ struct s_player_configuration_v7
 	long player_model_primary_color;								 // e_customization_item_v2
 	long player_model_secondary_color;								 // e_customization_item_v2
 	long player_model_tertiary_color;								 // e_customization_item_v2
-	s_customization_item_skin customization_item_skins[15];
+	/* new in this version */ s_customization_item_skin customization_item_skins[15];
 
 	wchar_t service_tag[4];
 	long online_medal_flasher;
