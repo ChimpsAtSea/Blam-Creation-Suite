@@ -595,6 +595,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	ASSERT(module_handle != NULL);
 }
 
+#ifdef _WIN64
 void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 {
 	if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(map_id_ref)))
@@ -624,6 +625,7 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 		//ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
 	}
 }
+#endif
 
 void c_game_launcher::render_main_menu()
 {
