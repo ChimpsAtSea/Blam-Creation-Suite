@@ -40,7 +40,7 @@ c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 
 	if (game_engine == nullptr)
 	{
-		__int64 create_game_engine_result = get_game_runtime().CreateGameEngine(&game_engine);
+		__int64 create_game_engine_result = get_game_runtime().create_game_engine(&game_engine);
 	}
 	ASSERT(game_engine != nullptr);
 
@@ -72,17 +72,17 @@ c_halo1_game_host::~c_halo1_game_host()
 	new(&halo1_game_runtime) c_game_runtime(_engine_type_halo1, "halo1", "Halo1\\halo1.dll");
 }
 
-void c_halo1_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
+void c_halo1_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->UpdateEngineState(eEngineState::EndGame);
+		get_game_engine()->update_engine_state(_engine_state_game_end);
 	}
 
 
 
 	update_camera_data();
-	c_opus_game_engine_host::FrameEnd(swap_chain, unknown1);
+	c_opus_game_engine_host::frame_end(swap_chain, unknown1);
 }
 
 void c_halo1_game_host::render_ui() const

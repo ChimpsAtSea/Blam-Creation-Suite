@@ -195,20 +195,20 @@ FunctionHookEx<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __int1
 
 } };
 
-//uintptr_t Halo1UpdateEngineState_offset(e_engine_type engine_type, e_build build)
+//uintptr_t Halo1update_engine_state_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076490);
 //	return ~uintptr_t();
 //}
-//FunctionHookEx<Halo1UpdateEngineState_offset, __int64 __fastcall (IGameEngine* _this, eEngineState status, _QWORD* extraArgument)> Halo1UpdateEngineState = { "Halo1UpdateEngineState", [](IGameEngine* _this, eEngineState status, _QWORD* extraArgument) {
+//FunctionHookEx<Halo1update_engine_state_offset, __int64 __fastcall (IGameEngine* _this, e_engine_state status, _QWORD* extraArgument)> Halo1update_engine_state = { "Halo1update_engine_state", [](IGameEngine* _this, e_engine_state status, _QWORD* extraArgument) {
 //
-//	//auto result = Halo1UpdateEngineState(_this, status, extraArgument);
+//	//auto result = Halo1update_engine_state(_this, status, extraArgument);
 //	//return result;
 //	return __int64(0);
 //
 //} };
 
-//__int64 __fastcall UpdateEngineState(IGameEngine* _this, eEngineState status, _QWORD* extraArgument);
+//__int64 __fastcall update_engine_state(IGameEngine* _this, e_engine_state status, _QWORD* extraArgument);
 
 uintptr_t dword_18115BB84_offset(e_engine_type engine_type, e_build build)
 {

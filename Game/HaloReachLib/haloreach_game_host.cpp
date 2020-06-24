@@ -42,7 +42,7 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 	c_console::write_line_verbose("Init HaloReachGameHost");
 
 	if (game_engine == nullptr)
-		__int64 createGameEngineResult = g_haloreach_game_runtime.CreateGameEngine(&game_engine);
+		__int64 createGameEngineResult = g_haloreach_game_runtime.create_game_engine(&game_engine);
 	ASSERT(game_engine != nullptr);
 
 	if (g_haloreach_engine_state_command != nullptr)
@@ -52,11 +52,8 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 
 	if (g_haloreach_camera_command != nullptr)
 	{
-		g_haloreach_camera_command->set_player_mapping_get_local_player(player_mapping_get_local_player.base);
-		g_haloreach_camera_command->set_observer_try_and_get_camera(observer_try_and_get_camera.base);
+		g_haloreach_camera_command->read_config();
 	}
-
-	g_haloreach_camera_command->read_config();
 }
 
 c_haloreach_game_host::~c_haloreach_game_host()
@@ -79,15 +76,15 @@ c_haloreach_game_host::~c_haloreach_game_host()
 	current_host = nullptr;
 }
 
-void c_haloreach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
+void c_haloreach_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->UpdateEngineState(eEngineState::EndGame);
+		get_game_engine()->update_engine_state(_engine_state_game_end);
 	}
 
 	update_camera_data();
-	c_opus_game_engine_host::FrameEnd(swap_chain, unknown1);
+	c_opus_game_engine_host::frame_end(swap_chain, unknown1);
 }
 
 void c_haloreach_game_host::render_ui() const

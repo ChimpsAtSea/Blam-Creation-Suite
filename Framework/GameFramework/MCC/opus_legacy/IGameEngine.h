@@ -1,36 +1,36 @@
 #pragma once
 
-enum class eEngineState : int
+enum e_engine_state : int
 {
-	Pause,
-	Unpause,
+	_engine_state_pause,
+	_engine_state_unpause,
 
-	ImmediateExit,
-	RestartCheckpoint,
-	RestartLevel,
+	_engine_state_immediate_exit,
+	_engine_state_restart_checkpoint,
+	_engine_state_restart_level,
 
-	ReloadSettings,
+	_engine_state_reload_settings,
 
 	// 6 and 7 are connected
-	GameLoadStart, // sets a temp variable to `g_render_thread_mode` and sets `g_render_thread_mode` to `0`, sets `g_game_is_loading` to `true` and runs `UpdateGameStatus(RestartCheckpoint)`
-	GameLoadEnd, // sets `g_render_thread_mode` to the temp variable and sets the temp variable to `0`, sets `g_game_is_loading` to `false` and runs `UpdateGameStatus(RestartLevel)`
+	_engine_state_game_load_start, // sets a temp variable to `g_render_thread_mode` and sets `g_render_thread_mode` to `0`, sets `g_game_is_loading` to `true` and runs `UpdateGameStatus(RestartCheckpoint)`
+	_engine_state_game_load_end, // sets `g_render_thread_mode` to the temp variable and sets the temp variable to `0`, sets `g_game_is_loading` to `false` and runs `UpdateGameStatus(RestartLevel)`
 
 	// 8 and 9 are connected
-	PushUIPage, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
-	PopUIPage, // sets the temp variable to `false` and player spawns
+	_engine_state_push_ui_page, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
+	_engine_state_pop_ui_page, // sets the temp variable to `false` and player spawns
 
-	SaveGameVariant, // creates a new `IGameVariant` and passes it to `IGameEngineHostLegacy::SaveGameVariant`
-	SaveMapVariant, // creates a new `IMapVariant` and passes it to `IGameEngineHostLegacy::SaveMapVariant`
+	_engine_state_game_variant_save, // creates a new `IGameVariant` and passes it to `IGameEngineHostLegacy::SaveGameVariant`
+	_engine_state_map_variant_save, // creates a new `IMapVariant` and passes it to `IGameEngineHostLegacy::SaveMapVariant`
 
-	EndRound, // not confirmed
-	EndGame, // not confirmed
+	_engine_state_round_end, // not confirmed
+	_engine_state_game_end, // not confirmed
 
-	ReloadRenderer, // potentially enhanced graphics. causes member 42 to run, also causes memory spike!
+	_engine_state_reload_renderer, // potentially enhanced graphics. causes member 42 to run, also causes memory spike!
 
-	Unknown15, // unknown
-	Unknown16, // unknown this takes some extra argument provided to UpdateEngineState
+	_engine_state_unknown15, // unknown
+	_engine_state_unknown16, // unknown this takes some extra argument provided to update_engine_state
 };
-extern const char* engine_state_to_string(eEngineState engineState);
+extern const char* engine_state_to_string(e_engine_state engineState);
 
 #ifdef __INTELLISENSE__
 
@@ -44,13 +44,13 @@ public: // instance functions
 	virtual void Free();
 	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, IDXGISwapChain* pSwapchain, IDXGISwapChain* pFallbackSwapchain);
 	virtual HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
-	virtual __int64 __fastcall UpdateEngineState(eEngineState status, _QWORD* extraArgument = nullptr);
+	virtual __int64 __fastcall update_engine_state(e_engine_state status, _QWORD* extraArgument = nullptr);
 	virtual void __fastcall Member04(ID3D11Device* pDevice);
 	virtual void __fastcall Member05(int map_id);
 	virtual void __fastcall Member06();
 	virtual void __fastcall Member07();
 	virtual void __fastcall Member08();
-	virtual __int64 __fastcall Member09(const char* a1); // Member09 looks same as UpdateEngineState but takes a string argument that is copied with strdup
+	virtual __int64 __fastcall Member09(const char* a1); // Member09 looks same as update_engine_state but takes a string argument that is copied with strdup
 	virtual __int64 __fastcall Member10();
 
 	// #INTELLISENSE
@@ -188,7 +188,7 @@ public:
 		_Free = static_cast<decltype(_Free)>(game_engine.__vfptr[free_virtual_function_index]);
 		_InitGraphics = static_cast<decltype(_InitGraphics)>(game_engine.__vfptr[init_graphics_virtual_function_index]);
 		_InitThread = static_cast<decltype(_InitThread)>(game_engine.__vfptr[init_thread_virtual_function_index]);
-		_UpdateEngineState = static_cast<decltype(_UpdateEngineState)>(game_engine.__vfptr[update_engine_state_virtual_function_index]);
+		_update_engine_state = static_cast<decltype(_update_engine_state)>(game_engine.__vfptr[update_engine_state_virtual_function_index]);
 		_Member04 = static_cast<decltype(_Member04)>(game_engine.__vfptr[member_4_virtual_function_index]);
 		_Member05 = static_cast<decltype(_Member05)>(game_engine.__vfptr[member_5_virtual_function_index]);
 		_Member06 = static_cast<decltype(_Member06)>(game_engine.__vfptr[member_6_virtual_function_index]);
@@ -200,7 +200,7 @@ public:
 		DEBUG_ASSERT(_Free != nullptr);
 		DEBUG_ASSERT(_InitGraphics != nullptr);
 		DEBUG_ASSERT(_InitThread != nullptr);
-		DEBUG_ASSERT(_UpdateEngineState != nullptr);
+		DEBUG_ASSERT(_update_engine_state != nullptr);
 		DEBUG_ASSERT(_Member04 != nullptr);
 		DEBUG_ASSERT(_Member05 != nullptr);
 		DEBUG_ASSERT(_Member06 != nullptr);
@@ -223,7 +223,7 @@ public:
 		IDXGISwapChain* pSwapchain,
 		IDXGISwapChain* pFallbackSwapchain);
 	typedef HANDLE __fastcall InitThreadFunc(__IGameEngine*, class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
-	typedef __int64 __fastcall UpdateEngineStateFunc(__IGameEngine*, eEngineState status, _QWORD* extraArgument);
+	typedef __int64 __fastcall update_engine_stateFunc(__IGameEngine*, e_engine_state status, _QWORD* extraArgument);
 	typedef void __fastcall Member04Func(__IGameEngine*, ID3D11Device* pDevice);
 	typedef void __fastcall Member05Func(__IGameEngine*, int map_id);
 	typedef void __fastcall Member06Func(__IGameEngine*);
@@ -238,7 +238,7 @@ public:
 	FreeFunc* _Free;
 	InitGraphicsFunc* _InitGraphics;
 	InitThreadFunc* _InitThread;
-	UpdateEngineStateFunc* _UpdateEngineState;
+	update_engine_stateFunc* _update_engine_state;
 	Member04Func* _Member04;
 	Member05Func* _Member05;
 	Member06Func* _Member06;
@@ -257,7 +257,7 @@ public:
 		return _InitGraphics(&game_engine, pDevice, pDeviceContext, pSwapchain, pFallbackSwapchain);
 	}
 	HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext) { return _InitThread(&game_engine, pGameEngineHost, pGameContext); }
-	__int64 __fastcall UpdateEngineState(eEngineState status, _QWORD* extraArgument = nullptr) { return _UpdateEngineState(&game_engine, status, extraArgument); }
+	__int64 __fastcall update_engine_state(e_engine_state status, _QWORD* extraArgument = nullptr) { return _update_engine_state(&game_engine, status, extraArgument); }
 	void __fastcall Member04(ID3D11Device* pDevice) { return _Member04(&game_engine, pDevice); }
 	void __fastcall Member05(int map_id) { return _Member05(&game_engine, map_id); }
 	void __fastcall Member06() { return _Member06(&game_engine); }

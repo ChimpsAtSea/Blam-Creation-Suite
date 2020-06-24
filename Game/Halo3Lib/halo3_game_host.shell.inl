@@ -48,7 +48,7 @@ FunctionHookEx<halo3_main_game_launch_offset, char __fastcall(__int64 a1, __int6
 	ASSERT(is_valid(halo3_main_game_launch));
 	if (is_valid(halo3_external_launch_state))
 	{
-		static int halo3_external_launch_state_prev = -1;
+		static long halo3_external_launch_state_prev = -1l;
 		if (halo3_external_launch_state != halo3_external_launch_state_prev)
 		{
 			halo3_external_launch_state_prev = halo3_external_launch_state;

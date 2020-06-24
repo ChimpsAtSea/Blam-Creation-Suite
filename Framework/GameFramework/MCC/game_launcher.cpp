@@ -219,7 +219,7 @@ void c_game_launcher::window_destroy_callback()
 	{
 		IGameEngine* game_engine = current_game_host->get_game_engine();
 		ASSERT(game_engine != nullptr);
-		game_engine->UpdateEngineState(eEngineState::ImmediateExit);
+		game_engine->update_engine_state(_engine_state_immediate_exit);
 		c_console::write_line_verbose("Waiting for game to exit...");
 		while (s_is_game_running) { Sleep(1); }
 	}
@@ -762,7 +762,7 @@ void c_game_launcher::render_pause_menu()
 	//{
 	//	if (!isPaused)
 	//	{
-	//		s_pHaloReachEngine->UpdateEngineState(eEngineState::Pause);
+	//		s_pHaloReachEngine->update_engine_state(_engine_state_pause);
 	//		isPaused = true;
 	//	}
 
@@ -775,7 +775,7 @@ void c_game_launcher::render_pause_menu()
 	//	{
 	//		if (ImGui::Button("REVERT TO LAST SAVE", grid_button_size))
 	//		{
-	//			s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartCheckpoint);
+	//			s_pHaloReachEngine->update_engine_state(_engine_state_restart_checkpoint);
 	//			isPaused = false;
 	//		}
 	//	}
@@ -784,7 +784,7 @@ void c_game_launcher::render_pause_menu()
 	//	{
 	//		if (ImGui::Button("END ROUND", grid_button_size))
 	//		{
-	//			s_pHaloReachEngine->UpdateEngineState(eEngineState::EndRound);
+	//			s_pHaloReachEngine->update_engine_state(_engine_state_round_end);
 	//			isPaused = false;
 	//		}
 	//	}
@@ -793,20 +793,20 @@ void c_game_launcher::render_pause_menu()
 	//	{
 	//		if (ImGui::Button("RESTART GAME", grid_button_size))
 	//		{
-	//			s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartLevel);
+	//			s_pHaloReachEngine->update_engine_state(_engine_state_restart_level);
 	//			isPaused = false;
 	//		}
 	//	}
 
 	//	if (ImGui::Button("RETURN TO MAINMENU", grid_button_size))
 	//	{
-	//		s_pHaloReachEngine->UpdateEngineState(eEngineState::EndGame);
+	//		s_pHaloReachEngine->update_engine_state(_engine_state_game_end);
 	//		isPaused = false;
 	//	}
 
 	//	if (!isPaused)
 	//	{
-	//		s_pHaloReachEngine->UpdateEngineState(eEngineState::Unpause);
+	//		s_pHaloReachEngine->update_engine_state(_engine_state_unpause);
 	//		DebugUI::UnregisterCallback(LegacyGameLauncher::DrawPauseMenu);
 	//		MouseInput::SetMode(MouseMode::Exclusive);
 	//		DebugUI::Hide();
