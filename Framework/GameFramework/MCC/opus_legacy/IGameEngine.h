@@ -55,13 +55,10 @@ public: // instance functions
 
 	// #INTELLISENSE
 	IGameEngine(__IGameEngine& game_engine, e_build build);
-
-	DWORD unknown8;
-	float GameSpeed;
-	char unknown10[1056];
-	SLIST_HEADER header430;
-	SLIST_HEADER header440;
-	char unknown450[16];
+	
+	DWORD __unknown8;
+	float game_speed;
+	SLIST_HEADER ListHeaders[69];
 };
 
 
@@ -160,12 +157,9 @@ class __IGameEngine // raw data
 	friend class IGameEngine;
 private:
 	void* (&__vfptr)[32];
-	DWORD unknown8;
-	float GameSpeed;
-	char unknown10[1056];
-	SLIST_HEADER header430;
-	SLIST_HEADER header440;
-	char unknown450[16];
+	DWORD __unknown8;
+	float game_speed;
+	SLIST_HEADER ListHeaders[69];
 };
 static_assert_64(sizeof(__IGameEngine) == 0x460, "__IGameEngine is incorrect size");
 

@@ -18,11 +18,11 @@ static std::vector<e_engine_type> g_supported_engine_types;
 static e_engine_type g_engine_type = _engine_type_not_set;
 static std::vector<e_map_id> g_haloreach_map_ids;
 static std::vector<e_map_id> g_halo1_map_ids;
-e_map_id g_halo1_map_id = _map_id_halo1_blood_gulch;
+e_map_id g_halo1_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo2_map_ids;
-e_map_id g_halo2_map_id = _map_id_halo2_coagulation;
+e_map_id g_halo2_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3_map_ids;
-e_map_id g_halo3_map_id = _map_id_halo3_valhalla;
+e_map_id g_halo3_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3odst_map_ids;
 e_map_id g_halo3odst_map_id = _map_id_halo3odst_mombasa_streets;
 static std::vector<e_map_id> g_halo4_map_ids;
@@ -595,6 +595,36 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	ASSERT(module_handle != NULL);
 }
 
+void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
+{
+	if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(map_id_ref)))
+	{
+		for (e_map_id map_id : map_ids)
+		{
+			bool is_selected = map_id == map_id_ref;
+
+			if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
+			{
+				map_id_ref = map_id;
+			}
+		}
+		ImGui::EndCombo();
+	}
+
+	if (map_id_to_engine_type(map_id_ref) == _mcc_game_mode_campaign)
+	{
+		ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+		ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+		c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+	}
+
+	if (map_id_to_engine_type(map_id_ref) == _mcc_game_mode_multiplayer)
+	{
+		// commented out due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
+		//ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
+	}
+}
+
 void c_game_launcher::render_main_menu()
 {
 	if (s_is_game_running) return;
@@ -635,99 +665,13 @@ void c_game_launcher::render_main_menu()
 		switch (g_engine_type)
 		{
 #ifdef _WIN64
-		case _engine_type_halo1:
-		{
-			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo1_map_id)))
-			{
-				for (e_map_id map_id : g_halo1_map_ids)
-				{
-					bool is_selected = map_id == g_halo1_map_id;
-
-					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
-					{
-						g_halo1_map_id = map_id;
-					}
-				}
-				ImGui::EndCombo();
-			}
-
-			if (map_id_to_engine_type(g_halo1_map_id) == _mcc_game_mode_campaign)
-			{
-				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
-				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
-				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
-			}
-		}
-		break;
-		case _engine_type_haloreach:
-			c_haloreach_game_option_selection_legacy::Render();
-			break;
-		case _engine_type_halo2:
-		{
-			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo2_map_id)))
-			{
-				for (e_map_id map_id : g_halo2_map_ids)
-				{
-					bool is_selected = map_id == g_halo2_map_id;
-
-					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
-					{
-						g_halo2_map_id = map_id;
-					}
-				}
-				ImGui::EndCombo();
-			}
-
-			if (map_id_to_engine_type(g_halo2_map_id) == _mcc_game_mode_campaign)
-			{
-				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
-				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
-				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
-			}
-		}
-		break;
-		case _engine_type_halo3:
-		{
-			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo3_map_id)))
-			{
-				for (e_map_id map_id : g_halo3_map_ids)
-				{
-					bool is_selected = map_id == g_halo3_map_id;
-
-					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
-					{
-						g_halo3_map_id = map_id;
-					}
-				}
-				ImGui::EndCombo();
-			}
-
-			if (map_id_to_engine_type(g_halo3_map_id) == _mcc_game_mode_campaign)
-			{
-				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
-			}
-		}
-		break;
-		case _engine_type_groundhog:
-		{
-			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_groundhog_map_id)))
-			{
-				for (e_map_id map_id : g_groundhog_map_ids)
-				{
-					bool is_selected = map_id == g_groundhog_map_id;
-
-					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
-					{
-						g_groundhog_map_id = map_id;
-					}
-				}
-				ImGui::EndCombo();
-			}
-			// commented out due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
-			//ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
-		}
-		break;
-
+		case _engine_type_haloreach:	c_haloreach_game_option_selection_legacy::Render(); break;
+		case _engine_type_halo1:		display_map_in_ui(g_halo1_map_ids, g_halo1_map_id); break;
+		case _engine_type_halo2:		display_map_in_ui(g_halo2_map_ids, g_halo2_map_id); break;
+		case _engine_type_halo3:		display_map_in_ui(g_halo3_map_ids, g_halo3_map_id); break;
+		case _engine_type_halo3odst:	display_map_in_ui(g_halo3odst_map_ids, g_halo3odst_map_id); break;
+		case _engine_type_halo4:		display_map_in_ui(g_halo4_map_ids, g_halo4_map_id); break;
+		case _engine_type_groundhog:	display_map_in_ui(g_groundhog_map_ids, g_groundhog_map_id); break;
 #else
 		case _engine_type_eldorado:
 			break;
