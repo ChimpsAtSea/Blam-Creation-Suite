@@ -511,11 +511,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	case _build_mcc_1_1350_0_0: DEBUG_ASSERT(current_function_index == 49); break;
 	case _build_mcc_1_1367_0_0: DEBUG_ASSERT(current_function_index == 47); break;
 	case _build_mcc_1_1377_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1384_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1387_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1477_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1499_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1520_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1570_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1619_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1629_0_0: DEBUG_ASSERT(current_function_index == 50); break;
 	case _build_mcc_1_1658_0_0: DEBUG_ASSERT(current_function_index == 52); break;
 	}
@@ -555,6 +558,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	case _build_mcc_1_1477_0_0:
 	case _build_mcc_1_1499_0_0:
 	case _build_mcc_1_1520_0_0:
+	case _build_mcc_1_1619_0_0:
 		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_6);
 		break;
 	case _build_mcc_1_1629_0_0:

@@ -58,6 +58,7 @@ uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
 	
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1806F4000);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x1806F42B0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x1806F42B0);
 	return ~uintptr_t();
 }
 FunctionHookEx<sub_1806F4000_offset, void()> sub_1806F4000 = { "sub_1806F4000", []() {
@@ -125,6 +126,7 @@ uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
 
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1800935B0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x1800935F0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x1800935F0);
 	return ~uintptr_t();
 }
 FunctionHookEx<sub_1800935B0_offset, __int64 __fastcall (__int64 a1)> sub_1800935B0 = { "sub_1800935B0", [](__int64 a1) {
