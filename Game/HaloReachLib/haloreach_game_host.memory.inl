@@ -78,7 +78,7 @@ char* haloreach_tag_address_get(uint32_t tag_instance_address)
 	return reinterpret_cast<char*>(pData);
 }
 
-char* haloreach_tag_definition_get(uint16_t index)
+char* haloreach_tag_definition_get(uint32_t index)
 {
 	if (!is_valid(haloreach_tag_instances))
 	{
@@ -89,7 +89,7 @@ char* haloreach_tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& haloreach_tag_definition_get(uint16_t index)
+T& haloreach_tag_definition_get(uint32_t index)
 {
 	return *reinterpret_cast<T*>(haloreach_tag_definition_get(index));
 }

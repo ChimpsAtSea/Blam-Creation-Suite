@@ -132,7 +132,7 @@ uint64_t c_cache_file::convert_virtual_address(uint64_t virtual_address) const
 	return virtual_address - get_base_virtual_address();
 }
 
-c_tag_interface* c_cache_file::get_tag_interface(uint16_t tag_index) const
+c_tag_interface* c_cache_file::get_tag_interface(uint32_t tag_index) const
 {
 	if (tag_index < get_tag_count())
 	{
@@ -154,6 +154,10 @@ c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_name_with_gro
 {
 	if (get_tag_count() > 0)
 	{
+		return tag_interfaces.data();
+	}
+	if (get_tag_count() > 0)
+	{
 		return tag_interfaces_sorted_by_name_with_group_id.data();
 	}
 	return nullptr;
@@ -163,6 +167,10 @@ c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_path_with_gro
 {
 	if (get_tag_count() > 0)
 	{
+		return tag_interfaces.data();
+	}
+	if (get_tag_count() > 0)
+	{
 		return tag_interfaces_sorted_by_path_with_group_id.data();
 	}
 	return nullptr;
@@ -170,6 +178,10 @@ c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_path_with_gro
 
 c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_data_address() const
 {
+	if (get_tag_count() > 0)
+	{
+		return tag_interfaces.data();
+	}
 	if (get_tag_count() > 0)
 	{
 		return tag_interfaces_sorted_by_data_address.data();

@@ -66,7 +66,7 @@ const char* c_halo2_cache_file::get_string_id(string_id const id, const char* co
 	return nullptr;
 }
 
-const char* c_halo2_cache_file::get_tag_path(uint16_t tag_index) const
+const char* c_halo2_cache_file::get_tag_path(uint32_t tag_index) const
 {
 	return nullptr;
 }
@@ -81,7 +81,7 @@ void c_halo2_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& o
 
 }
 
-void* c_halo2_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const
+void* c_halo2_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const
 {
 	return nullptr;
 }

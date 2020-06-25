@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tag_index) :
+c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint32_t tag_index) :
 	tag_data(nullptr),
 	tag_index(tag_index),
 	is_tag_null(false),

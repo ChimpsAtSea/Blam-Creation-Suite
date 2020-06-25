@@ -14,7 +14,7 @@ class c_tag_interface
 protected:
 	non_copyable(c_tag_interface);
 
-	BCSAPI c_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
+	BCSAPI c_tag_interface(c_cache_file& cache_file, uint32_t tag_index);
 	BCSAPI virtual ~c_tag_interface();
 
 	BCSAPI void associate_virtual_tag_interface(c_virtual_tag_interface& virtual_tag_interface);
@@ -53,7 +53,7 @@ public:
 	inline T* get_data() { return reinterpret_cast<T*>(tag_data); }; // #TODO: check if this type is alright
 	template<typename T>
 	inline T* get_data(size_t relative_offset) { return reinterpret_cast<T*>(tag_data + relative_offset); }; // #TODO: check if this type is alright
-	inline uint16_t get_index() { return tag_index; };
+	inline uint32_t get_index() { return tag_index; };
 
 	//inline c_tag_group_interface* get_tag_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
 	inline const blofeld::s_tag_group* get_blofeld_reflection_data() const { return blofeld_reflection_type; }
@@ -61,7 +61,7 @@ public:
 protected:
 	bool is_tag_null;
 	char* tag_data;
-	uint16_t tag_index;
+	uint32_t tag_index;
 	const blofeld::s_tag_group* blofeld_reflection_type;
 	c_cache_file& cache_file;
 	c_virtual_tag_interface* virtual_tag_interface;

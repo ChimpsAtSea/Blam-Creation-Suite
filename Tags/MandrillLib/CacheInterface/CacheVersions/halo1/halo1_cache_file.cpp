@@ -169,7 +169,7 @@ const char* c_halo1_cache_file::get_string_id(string_id const id, const char* co
 	return nullptr;
 }
 
-const char* c_halo1_cache_file::get_tag_path(uint16_t tag_index) const
+const char* c_halo1_cache_file::get_tag_path(uint32_t tag_index) const
 {
 	char* map_data = virtual_memory_container.get_data();
 	const char* name = map_data + cache_file_header->tags_header_address + convert_page_offset(cache_file_tag_instances[tag_index].name_address);
@@ -186,7 +186,7 @@ void c_halo1_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& o
 
 }
 
-void* c_halo1_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const
+void* c_halo1_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const
 {
 	return nullptr;
 }

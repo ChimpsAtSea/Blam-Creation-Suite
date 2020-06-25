@@ -66,7 +66,7 @@ const char* c_halo5_cache_file::get_string_id(string_id const id, const char* co
 	return nullptr;
 }
 
-const char* c_halo5_cache_file::get_tag_path(uint16_t tag_index) const
+const char* c_halo5_cache_file::get_tag_path(uint32_t tag_index) const
 {
 	return nullptr;
 }
@@ -81,7 +81,7 @@ const s_section_cache* c_halo5_cache_file::get_section(uint32_t section_index) c
 	return nullptr;
 }
 
-void* c_halo5_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const
+void* c_halo5_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const
 {
 	return nullptr;
 }

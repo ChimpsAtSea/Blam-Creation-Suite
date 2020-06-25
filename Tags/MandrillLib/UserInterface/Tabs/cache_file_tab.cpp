@@ -289,24 +289,29 @@ void c_cache_file_tab::render_tags_list_tree()
 					? tag_interface->get_path_with_group_id_cstr()
 					: tag_interface->get_name_with_group_id_cstr();
 
+				c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface);
 				bool is_tag_valid = true;
-				if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+				if (gen3_tag_interface)
 				{
 					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+
+					if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+					else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 				}
-				if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-				else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 
 				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
-				if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, tag_display_with_group_id))
+				if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s - 0x%X", tag_display_with_group_id, tag_interface->get_index()))
 				{
-
 					if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 					{
 						open_tag_interface_tab(*tag_interface);
 					}
 				}
-				ImGui::PopStyleColor();
+
+				if (gen3_tag_interface)
+				{
+					ImGui::PopStyleColor();
+				}
 			}
 
 			ImGui::TreePop();

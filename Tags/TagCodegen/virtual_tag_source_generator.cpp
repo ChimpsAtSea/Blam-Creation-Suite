@@ -26,7 +26,7 @@ void c_virtual_tag_source_generator::generate_header()
 
 
 	//hs << "\t\t" << "class c_cache_file;" << std::endl << std::endl;
-	//hs << "\t\t" << "class c_tag_interface { public: c_tag_interface(c_cache_file&, uint16_t tag_index); template<typename T> T* get_data(); };" << std::endl << std::endl;
+	//hs << "\t\t" << "class c_tag_interface { public: c_tag_interface(c_cache_file&, uint32_t tag_index); template<typename T> T* get_data(); };" << std::endl << std::endl;
 	//hs << "\t\t" << "template<typename t_value> class c_virtual_tag_block { public: c_virtual_tag_block(c_cache_file& cache_file, c_tag_interface& tag_interface, c_typed_tag_block<t_value>& tag_block); };" << std::endl << std::endl;
 	//hs << "\t\t" << "class c_virtual_tag { public: c_virtual_tag(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference); };" << std::endl << std::endl;
 

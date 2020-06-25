@@ -151,7 +151,7 @@ const char* c_gen3_cache_file::get_string_id(string_id const id, const char* con
 	return error_value;
 }
 
-const char* c_gen3_cache_file::get_tag_path(uint16_t tag_index) const
+const char* c_gen3_cache_file::get_tag_path(uint32_t tag_index) const
 {
 	const char* tag_path = filenames_buffer + filename_indices[tag_index];
 	return tag_path;
@@ -172,7 +172,7 @@ const s_section_cache& c_gen3_cache_file::get_section(uint32_t section_index) co
 	return section_cache[section_index];
 }
 
-void* c_gen3_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const
+void* c_gen3_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const
 {
 	s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
 	return &cache_file_tag_instance;

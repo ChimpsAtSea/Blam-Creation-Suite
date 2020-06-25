@@ -42,30 +42,30 @@ char* groundhog_tag_address_get(uint32_t tag_instance_address)
 	return reinterpret_cast<char*>(pData);
 }
 
-char* groundhog_tag_definition_get(uint16_t index)
+char* groundhog_tag_definition_get(uint32_t tag_index)
 {
 	if (!is_valid(groundhog_tag_instances))
 	{
 		return nullptr;
 	}
-	uint32_t tag_instance_address = groundhog_tag_instances[index].address;
+	uint32_t tag_instance_address = groundhog_tag_instances[tag_index].address;
 	return groundhog_tag_address_get(tag_instance_address);
 }
 
 template<typename T>
-T& groundhog_tag_definition_get(uint16_t index)
+T& groundhog_tag_definition_get(uint32_t tag_index)
 {
-	return *reinterpret_cast<T*>(groundhog_tag_definition_get(index));
+	return *reinterpret_cast<T*>(groundhog_tag_definition_get(tag_index));
 }
 
 template<typename T>
-T& groundhog_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint16_t index)
+T& groundhog_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint32_t tag_index)
 {
 	T* tag_block_definition_ptr = reinterpret_cast<T*>(groundhog_tag_address_get(tag_block_ref.address));
 
-	for (size_t i = 0; i < tag_block_ref.count; i++)
+	for (uint32_t i = 0; i < tag_block_ref.count; i++)
 	{
-		if (i == index) break;
+		if (i == tag_index) break;
 		tag_block_definition_ptr++;
 	}
 	return *tag_block_definition_ptr;

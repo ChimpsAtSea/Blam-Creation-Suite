@@ -19,14 +19,14 @@ public:
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const final;
 	virtual const char* get_string_id_by_index(uint32_t index) const final;
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const final;
-	virtual const char* get_tag_path(uint16_t tag_index) const final;
+	virtual const char* get_tag_path(uint32_t tag_index) const final;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const final;
 
 	virtual const s_section_cache* get_section(uint32_t section_index) const final;
 
 protected:
-	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const final;
+	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
 };
 
