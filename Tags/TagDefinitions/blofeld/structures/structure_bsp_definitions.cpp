@@ -3,83 +3,199 @@
 
 namespace blofeld
 {
+	TAG_BLOCK(haloreach_sbsp_unknown_block, 65536)
+	{
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_terminator }
+	};
 
 	TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block );
 
 	TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	{
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_struct, "build identifier*", &structure_manifest_build_identifier_struct_struct_definition },
 		{ _field_struct, "parent build identifier*", &structure_manifest_build_identifier_struct_struct_definition },
+
 		{ _field_long_integer, "import info checksum*" },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_tag_reference, "structure lighting_info^", &structure_lighting_bsp_reference },
+
 		{ _field_long_integer, "import version*!" },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_tag_reference, "structure meta data*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_word_flags, "flags*!", &structure_bsp_flags_definition },
 		{ _field_word_flags, "content policy flags*!", &structure_bsp_content_policy_flag },
 		{ _field_word_flags, "failed content policy flags*!", &structure_bsp_content_policy_flag },
 		{ _field_pad, "faild policy pad*!", 2 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_long_flags, "flags", &structure_bsp_flags_definition },
+
 		{ _field_block, "seam identifiers*!", &structure_seam_mapping_block_block },
 		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block_block },
 		{ _field_block, "collision materials*", &structure_collision_materials_block_block },
+
+		{ _field_version_equal, _engine_type_halo4, 1 },
+		{ _field_block, "collision bsp*", &global_collision_bsp_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_block, "leaves*", &structure_bsp_leaf_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_block, "leaves*!", &structure_bsp_leaf_block_block },
 		{ _field_block, "super aabbs*!", &structure_super_node_aabbs_block_block },
 		{ _field_block, "super node parent mappings*!", &super_node_mappings_block_block },
 		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block_block },
 		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block_block },
 		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct_struct_definition },
+
 		{ _field_real_bounds, "world bounds x*" },
 		{ _field_real_bounds, "world bounds y*" },
 		{ _field_real_bounds, "world bounds z*" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_block, "structure surfaces*", &structure_surface_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "large structure surfaces*", &structure_surface_block_block },
+
 		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block_block },
 		{ _field_block, "cluster portals*", &structure_bsp_cluster_portal_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_block, "unknown", &haloreach_sbsp_unknown_block_block },
+		{ _field_block, "atmosphere palette*", &scenario_atmosphere_palette_block_block },
+		{ _field_block, "camera fx palette", &scenario_camera_fx_palette_block_block },
+		{ _field_block, "weather palette", &scenario_weather_palette_block_block }, // #TODO: Confirm, based off observation with scenario_struct_definition and halo 2 guerilla
+
 		{ _field_block, "detail objects*", &structure_bsp_detail_object_data_block_block },
 		{ _field_block, "clusters*", &structure_bsp_cluster_block_block },
 		{ _field_block, "materials*", &global_geometry_material_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "emissive materials*", &structure_material_lighting_info_block_block },
+
 		{ _field_block, "sky owner cluster*", &structure_bsp_sky_owner_cluster_block_block },
 		{ _field_block, "conveyor surfaces*", &structure_bsp_conveyor_surface_block_block },
 		{ _field_block, "breakable surface sets*", &breakable_surface_set_block_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_block, "unknown@", &g_null_block_block }, // unknown, potentially 
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
+
 		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
 		{ _field_data, "sound PAS data*" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: this data is pure speculation, these might not even be tag blocks!!!
+		{ _field_block, "unknown@", &g_null_block_block },
+		{ _field_block, "unknown@", &g_null_block_block },
+
 		{ _field_block, "markers*", &structure_bsp_marker_block_block },
 		{ _field_block, "marker light palette*", &structure_bsp_marker_light_palette_block },
 		{ _field_block, "marker light palette index*", &structure_bsp_marker_light_index_block },
 		{ _field_block, "runtime decals*", &structure_bsp_runtime_decal_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_block, "environment object palette*", &structure_bsp_environment_object_palette_block_block },
+		{ _field_block, "environment objects*", &structure_bsp_environment_object_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "(DEPRECATED) environment object palette*", &structure_bsp_environment_object_palette_block_block },
 		{ _field_block, "(DEPRECATED) environment objects*", &structure_bsp_environment_object_block_block },
+
 		{ _field_pad, "IMISWXUG", 4 },
 		{ _field_block, "leaf map leaves*", &global_map_leaf_block_block },
 		{ _field_block, "leaf map connections*", &global_leaf_connection_block_block },
 		{ _field_block, "errors*", &global_error_report_categories_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_block, "cluster to instance group mopps", &mopp_code_definition_block_block },
 		{ _field_block, "instance group to instance mopps", &mopp_code_definition_block_block },
 		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
 		{ _field_block, "instance group to instance spheres", &structure_instance_group_definition_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
+		{ _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block_block },
+
 		{ _field_block, "instanced geometry instances*", &structure_bsp_instanced_geometry_instances_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_block, "instanced geometry instance names*", &structure_bsp_instanced_geometry_instances_names_block_block },
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count!" },
 		{ _field_custom, "decorator info" },
+
 		{ _field_block, "decorator sets*", &runtime_decorator_set_block_block },
 		{ _field_struct, "decorator instance buffer!*", &global_render_geometry_struct_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_custom },
 		{ _field_custom, "decals info" },
 		{ _field_block, "preplaced decal sets*", &bsp_preplaced_decal_set_reference_block_block },
 		{ _field_block, "preplaced decals*", &bsp_preplaced_decal_reference_block_block },
 		{ _field_struct, "preplaced decal geometry!*", &global_render_geometry_struct_struct_definition },
 		{ _field_custom },
+
 		{ _field_block, "acoustics sound clusters!", &structure_bsp_sound_cluster_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_block, "acoustics sound clusters 2!", &structure_bsp_sound_cluster_block_block },
+		{ _field_block, "acoustics sound clusters 3!", &structure_bsp_sound_cluster_block_block },
+
 		{ _field_block, "transparent planes*", &transparent_planes_block_block },
 		{ _field_block, "debug info*", &structure_bsp_debug_info_block_block },
 		{ _field_struct, "structure_physics*", &global_structure_physics_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 }, // #TODO: this data is pure speculation!!!
+		{ _field_block, "unknown@", &g_null_block_block },
+		{ _field_block, "unknown@", &g_null_block_block },
+
 		{ _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition },
+
 		{ _field_block, "widget references", &widget_reference_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "cheap light references", &cheap_light_reference_block_block },
+
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 9 },
 		{ _field_custom, "Any Platform Temporary Storage" },
 		{ _field_block, "Any Platform Temp Havok Data*!", &structureIOHavokDataBlock_block },
 		{ _field_custom },
@@ -89,6 +205,7 @@ namespace blofeld
 		{ _field_block, "obb volume list", &structure_bsp_obb_volume_block_block },
 		{ _field_block, "scripted dependencies", &hs_references_block_block },
 		{ _field_block, "pupAnimations*!", &AnimGraphDependencyBlock_block },
+
 		{ _field_terminator }
 	};
 
@@ -104,7 +221,10 @@ namespace blofeld
 	TAG_BLOCK(structure_collision_materials_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
 	{
 		{ _field_tag_reference, "render method{old shader}*^", &structure_collision_materials_block_render_method_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_string_id, "override material name" },
+
 		{ _field_short_integer, "runtime global material index!" },
 		{ _field_short_block_index, "conveyor surface index*" },
 		{ _field_short_block_index, "seam mapping index*" },
@@ -183,7 +303,9 @@ namespace blofeld
 
 	TAG_BLOCK(structure_bsp_cluster_portal_block, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
 	{
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block_struct_definition },
+
 		{ _field_short_integer, "back cluster*" },
 		{ _field_short_integer, "front cluster*" },
 		{ _field_long_integer, "plane index*" },
@@ -232,6 +354,9 @@ namespace blofeld
 
 	TAG_BLOCK(pvs_bound_object_references_block, k_maximum_scenario_object_datum_count)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real_point_3d, "unknown#position?" },
+
 		{ _field_struct, "scenario object reference*!", &scenario_object_reference_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -242,18 +367,72 @@ namespace blofeld
 		{ _field_real_bounds, "bounds x*" },
 		{ _field_real_bounds, "bounds y*" },
 		{ _field_real_bounds, "bounds z*" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_char_integer, "unknown" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_pad, "DING", 1 },
+
 		{ _field_char_integer, "atmosphere index*" },
 		{ _field_char_integer, "camera fx index*" },
 		{ _field_char_integer, "weather index*" },
 		{ _field_short_block_index, "acoustics*" },
 		{ _field_short_integer, "acoustics sound cluster index" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 6 },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+
 		{ _field_short_integer, "runtime first decal index!" },
 		{ _field_short_integer, "runtime decal cound!" },
+
 		{ _field_word_flags, "flags", &structure_cluster_flags },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_pad, "ERERRFQ", 2 },
+
 		{ _field_block, "predicted resources*", &g_null_block_block },
 		{ _field_block, "portals*", &structure_bsp_cluster_portal_index_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 33 },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_short_integer, "unknown size" },
+		{ _field_short_integer, "unknown count" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown offset" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_tag_reference, "bsp", &structure_bsp_reference_non_resolving },
+		{ _field_long_integer, "cluster index" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_short_integer, "unknown size" },
+		{ _field_short_integer, "unknown count" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown offset" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_block, "mopp_codes*", &mopp_code_definition_block_block },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_short_integer, "mesh index*" },
 		{ _field_short_integer, "instance imposter cluster mopp index" },
 		{ _field_block, "seam indices*!", &seam_indices_block_definition_block },
@@ -261,7 +440,10 @@ namespace blofeld
 		{ _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block_block },
 		{ _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block_block },
 		{ _field_block, "pvs bound object references*!", &pvs_bound_object_references_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "cluster cubemaps", &structure_cluster_cubemap_block },
+
 		{ _field_terminator }
 	};
 
@@ -325,12 +507,21 @@ namespace blofeld
 	{
 		{ _field_short_integer, "decal palette index!" },
 		{ _field_pad, "post-decal-palette-index-pad", 2 },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition },
+
 		{ _field_real_quaternion, "rotation*" },
 		{ _field_real_point_3d, "position*" },
-		{ _field_real, "scale_x(scale}*" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_real, "scale*" },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
+		{ _field_real, "scale_x{scale}*" },
 		{ _field_real, "scale_y*" },
 		{ _field_real, "cull angle" },
+
 		{ _field_terminator }
 	};
 
@@ -351,10 +542,17 @@ namespace blofeld
 		{ _field_short_block_index, "palette_index" },
 		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
 		{ _field_pad, "QHUGQ", 1 },
+
 		{ _field_long_integer, "unique id*" },
 		{ _field_tag, "exported object type" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_pad, "unknown", 32 }, // #TODO: Are there string id's in here???
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "scenario object name" },
 		{ _field_string_id, "variant name" },
+
 		{ _field_terminator }
 	};
 
@@ -607,7 +805,10 @@ namespace blofeld
 	TAG_STRUCT(structure_bsp_resource_interface)
 	{
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_pageable, "tag_resources" },
+
 		{ _field_pageable, "cache_file_resources" },
 		{ _field_long_integer, "use resource items*" },
 		{ _field_terminator }

@@ -16,6 +16,55 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(structure_bsp_instanced_geometry_collision_definition_block, 65536) // assembly
+	{
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
+		{ _field_real, "unknown@" },
+		{ _field_long_integer, "offset" },
+		{ _field_real, "unknown@" },
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real_vector_3d, "unknown" },
+		{ _field_real, "unknown@" },
+		{ _field_real_vector_3d, "unknown" },
+		{ _field_real, "unknown@" },
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_char_integer, "bsp index" },
+		{ _field_char_integer, "unknown" },
+		{ _field_short_integer, "instance geometry index" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
+		{ _field_real, "unknown@" },
+		{ _field_long_integer, "offset" },
+		{ _field_real, "unknown@" },
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(structure_bsp_instanced_geometry_instances_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_real, "scale" },
@@ -25,36 +74,69 @@ namespace blofeld
 		{ _field_real_point_3d, "position" },
 		{ _field_short_block_index, "instance definition*" },
 		{ _field_word_flags, "flags", &instanced_geometry_flags },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Light Channels:", &channelDefinitionFlags },
+
 		{ _field_short_integer, "mesh_index" },
 		{ _field_short_integer, "compression_index" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_long_integer, "unknown@" },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_long_integer, "seam bit vector 0" },
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_real, "bounds x0!" },
 		{ _field_real, "bounds x1!" },
 		{ _field_real, "bounds y0!" },
 		{ _field_real, "bounds y1!" },
 		{ _field_real, "bounds z0!" },
 		{ _field_real, "bounds z1!" },
+
 		{ _field_real_point_3d, "world bounding sphere center!" },
 		{ _field_real, "world bounding sphere radius!" },
 		{ _field_real, "imposter transition complete distance!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_string_id, "name" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "imposter brightness!" },
 		{ _field_long_integer, "checksum*" },
+
 		{ _field_char_enum, "pathfinding policy*", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "lightmapping policy*", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "imposter policy*", &instanced_geometry_imposter_policy_enum },
 		{ _field_pad, "SDFSDFE", 1 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_char_enum, "streaming priority*", &instanced_geometry_streamingpriority_enum },
 		{ _field_pad, "strpad", 1 },
 		{ _field_short_integer, "cubemap 0 bitmap index" },
+
 		{ _field_real, "lightmap resolution scale" },
+
+		{ _field_block, "collision definition?", &structure_bsp_instanced_geometry_collision_definition_block_block },
+
 		{ _field_short_integer, "group_index!" },
 		{ _field_short_integer, "group_list_index!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "name*^" },
 		{ _field_long_string, "source file name*" },
+
 		{ _field_terminator }
 	};
 

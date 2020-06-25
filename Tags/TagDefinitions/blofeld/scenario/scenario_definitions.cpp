@@ -580,7 +580,10 @@ namespace blofeld
 		{ _field_string_id, "name!" },
 		{ _field_word_integer, "Atmosphere Setting Index!" },
 		{ _field_pad, "XQLJZUE", 2 },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "atmosphere^", &global_atmosphere_definition_reference },
+
 		{ _field_terminator }
 	};
 

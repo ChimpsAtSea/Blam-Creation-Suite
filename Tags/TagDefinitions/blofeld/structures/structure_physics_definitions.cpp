@@ -87,8 +87,15 @@ namespace blofeld
 
 	TAG_STRUCT(global_structure_physics_struct)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_block, "collision mopp code block!*", &mopp_code_definition_block_block },
+		{ _field_real, "unknown@" },
+		{ _field_real_point_3d, "collision world bounds min" },
+		{ _field_real_point_3d, "collision world bounds max" },
+
 		{ _field_block, "breakable surfaces mopp code block!*", &mopp_code_definition_block_block },
 		{ _field_block, "breakable surfaace key table", &breakable_surface_key_table_block_block },
+
 		{ _field_terminator }
 	};
 

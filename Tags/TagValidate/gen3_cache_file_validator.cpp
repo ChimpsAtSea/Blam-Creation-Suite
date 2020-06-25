@@ -1,5 +1,7 @@
 #include "tagvalidate-private-pch.h"
 
+static uint32_t k_max_group_iterations = 5;
+
 c_gen3_cache_file_validator::c_gen3_cache_file_validator(c_gen3_cache_file& cache_file) :
 	cache_file(cache_file),
 	engine_type(cache_file.get_engine_type())
@@ -332,22 +334,30 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 					{
 						result.block_is_out_of_range = tag_block.count > current_field->block_definition->max_count;
 
-						uint32_t total_block_bytes_traversed = 0;
-						for (uint32_t tag_block_index = 0; tag_block_index < tag_block.count; tag_block_index++)
+						char* start = data_address;
+						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, _build_not_set, current_field->block_definition->struct_definition));
+
+						is_struct_valid &= cache_file.is_valid_data_address(start) && cache_file.is_valid_data_address(end);
+
+						if (is_struct_valid)
 						{
-							uint32_t block_bytes_traversed = render_tag_struct_definition(
-								tag_interface,
-								level + 2,
-								data_address + total_block_bytes_traversed,
-								current_field->block_definition->struct_definition,
-								true,
-								false,
-								result.block_struct_is_valid,
-								is_tag_valid,
-								total_block_bytes_traversed,
-								_cache_file_validator_struct_type_tag_block,
-								tag_block_index);
-							total_block_bytes_traversed += block_bytes_traversed;
+							uint32_t total_block_bytes_traversed = 0;
+							for (uint32_t tag_block_index = 0; tag_block_index < __min(k_max_group_iterations, tag_block.count); tag_block_index++)
+							{
+								uint32_t block_bytes_traversed = render_tag_struct_definition(
+									tag_interface,
+									level + 2,
+									data_address + total_block_bytes_traversed,
+									current_field->block_definition->struct_definition,
+									true,
+									false,
+									result.block_struct_is_valid,
+									is_tag_valid,
+									total_block_bytes_traversed,
+									_cache_file_validator_struct_type_tag_block,
+									tag_block_index);
+								total_block_bytes_traversed += block_bytes_traversed;
+							}
 						}
 					}
 				}
@@ -423,7 +433,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 					char* block_data_position_old = cache_file.get_data_with_page_offset(tag_block.address);
 					char* const block_data = cache_file.get_tag_block_data(tag_block);
 					uint32_t total_block_bytes_traversed = 0;
-					for (uint32_t tag_block_index = 0; tag_block_index < tag_block.count/* && (is_struct_valid || show_broken_block_data)*/; tag_block_index++)
+					for (uint32_t tag_block_index = 0; tag_block_index < __min(tag_block.count, k_max_group_iterations)/* && (is_struct_valid || show_broken_block_data)*/; tag_block_index++)
 					{
 						char* current_block_data = block_data + total_block_bytes_traversed;
 						if (!cache_file.is_valid_data_address(current_block_data))

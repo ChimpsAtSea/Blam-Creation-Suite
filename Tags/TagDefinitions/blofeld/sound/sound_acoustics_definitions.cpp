@@ -51,16 +51,22 @@ namespace blofeld
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition_struct_definition },
 		{ _field_explanation, "BACKGROUND SOUND", "" },
 		{ _field_struct, "ambience", &scenario_acoustics_ambience_definition_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_explanation, "SOUND BANK", "" },
 		{ _field_tag_reference, "Sound bank tag", &global_soundbank_reference },
 		{ _field_tag_reference, "DVD Only sound bank tag", &global_soundbank_reference },
+
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustics_environment_definition)
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
+
 		{ _field_real, "cutoff distance" },
 		{ _field_real, "interpolation time{interpolation speed}:seconds" },
 		{ _field_terminator }
@@ -70,14 +76,27 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
 		{ _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale.", &global_looping_sound_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "entry sound#plays when entering this area", &global_sound_reference },
 		{ _field_tag_reference, "exit sound#plays when leaving this area", &global_sound_reference },
+
 		{ _field_real, "cutoff distance" },
+
+		{ _field_version_less, _engine_type_haloreach, 4 },
+		{ _field_long_flags, "scale flags", &background_sound_scale_flags_definition },
+		{ _field_real_fraction, "interior scale" },
+		{ _field_real_fraction, "portal scale" },
+		{ _field_real_fraction, "exterior scale" },
+
 		{ _field_real, "interpolation time{interpolation speed}:seconds" },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_long_flags, "scale flags DEPRICATED!", &background_sound_scale_flags_definition },
 		{ _field_real_fraction, "interior scale DEPRICATED!" },
 		{ _field_real_fraction, "portal scale DEPRICATED!" },
 		{ _field_real_fraction, "exterior scale DEPRICATED!" },
+
 		{ _field_terminator }
 	};
 

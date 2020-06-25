@@ -22,9 +22,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sound, SOUND_TAG)
+	TAG_STRUCT(sound_group)
 	{
-		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
+		{ _field_long_flags, "flags", & SoundEventDefinitionFlags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
 		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
 		{ _field_string_id, "Event Name#Sound event name." },
@@ -39,6 +39,8 @@ namespace blofeld
 		{ _field_long_integer, "deterministic flag index" },
 		{ _field_terminator }
 	};
+	TAG_BLOCK_FROM_STRUCT(sound_group, 1, sound_group_struct_definition);
+	TAG_GROUP_FROM_BLOCK(sound, SOUND_TAG, sound_group_block);
 
 	TAG_GROUP(sound_old, SOUND_OLD_TAG)
 	{
