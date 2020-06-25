@@ -34,27 +34,24 @@ void register_halo1lib()
 c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 	c_opus_game_engine_host(engine_type, build, get_game_runtime())
 {
-	c_console::write_line_verbose("Init Halo1GameHost");
+	c_console::write_line_verbose("Init %s", __func__);
 
 	init_runtime_modifications(g_halo1_game_runtime->get_build());
 
-	if (game_engine == nullptr)
-	{
-		__int64 create_game_engine_result = get_game_runtime().create_game_engine(&game_engine);
-	}
-	ASSERT(game_engine != nullptr);
-
 	if (g_halo1_engine_state_command != nullptr)
 	{
-		g_halo1_engine_state_command->set_game_engine(game_engine);
+		g_halo1_engine_state_command->set_game_engine(get_game_engine());
 	}
+
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	c_debug_gui::register_callback(_callback_mode_always_run, input_debug_gui);
 }
 
 c_halo1_game_host::~c_halo1_game_host()
 {
-	c_console::write_line_verbose("Deinit Halo1GameHost");
+	c_console::write_line_verbose("Deinit %s", __func__);
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
@@ -92,6 +89,12 @@ void c_halo1_game_host::render_ui() const
 
 IGameEngine* c_halo1_game_host::get_game_engine() const
 {
+	if (game_engine == nullptr)
+	{
+		__int64 create_game_engine_result = get_game_runtime().create_game_engine((IGameEngine**)&game_engine);
+	}
+	ASSERT(game_engine != nullptr);
+
 	return game_engine;
 }
 

@@ -23,28 +23,22 @@ void register_groundhoglib()
 c_groundhog_game_host::c_groundhog_game_host(e_engine_type engine_type, e_build build) :
 	c_opus_game_engine_host(engine_type, build, get_game_runtime())
 {
-	c_console::write_line_verbose("Init GroundhogGameHost");
+	c_console::write_line_verbose("Init %s", __func__);
 
 	init_runtime_modifications(g_groundhog_game_runtime->get_build());
 
-	c_mandrill_user_interface::set_get_tag_section_address_callback(groundhog_tag_address_get); // #TODO: This is kinda hacky
-	c_mandrill_user_interface::set_get_tag_game_memory_callback(groundhog_tag_definition_get); // #TODO: This is kinda hacky
-
-	if (game_engine == nullptr)
-	{
-		__int64 create_game_engine_result = get_game_runtime().create_game_engine(&game_engine);
-	}
-	ASSERT(game_engine != nullptr);
-
 	if (g_groundhog_engine_state_command != nullptr)
 	{
-		g_groundhog_engine_state_command->set_game_engine(game_engine);
+		g_groundhog_engine_state_command->set_game_engine(get_game_engine());
 	}
+
+	c_mandrill_user_interface::set_get_tag_section_address_callback(groundhog_tag_address_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(groundhog_tag_definition_get); // #TODO: This is kinda hacky
 }
 
 c_groundhog_game_host::~c_groundhog_game_host()
 {
-	c_console::write_line_verbose("Deinit GroundhogGameHost");
+	c_console::write_line_verbose("Deinit %s", __func__);
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
@@ -72,6 +66,12 @@ void c_groundhog_game_host::render_ui() const
 
 IGameEngine* c_groundhog_game_host::get_game_engine() const
 {
+	if (game_engine == nullptr)
+	{
+		__int64 create_game_engine_result = get_game_runtime().create_game_engine((IGameEngine**)&game_engine);
+	}
+	ASSERT(game_engine != nullptr);
+
 	return game_engine;
 }
 
