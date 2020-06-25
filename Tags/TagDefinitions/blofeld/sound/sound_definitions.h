@@ -15,7 +15,7 @@ namespace blofeld
 	extern s_tag_group sound_global_propagation_group;
 	constexpr unsigned long SOUND_TAG = 'snd!';
 
-	extern s_tag_struct_definition sound_block_struct;
+	extern s_tag_struct_definition sound_group_struct_definition;
 	extern s_tag_block_definition sound_block;
 	extern s_tag_group sound_group;
 	constexpr unsigned long SOUND_OLD_TAG = 'sndo';

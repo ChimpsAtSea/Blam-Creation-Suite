@@ -1558,7 +1558,7 @@ namespace blofeld
 		{ deterministicSpeechEventBlock_struct_struct_definition, 16 },
 		{ facial_animation_language_block_block_struct, 12 }, // block
 		{ soundLipSyncInfoBlock_struct_struct_definition, 28 },
-		{ sound_block_struct, 72 }, // block
+		{ sound_group_struct_definition, 72 }, // block
 		{ sound_environment_block_struct, 72 }, // block
 		{ sound_promotion_rule_block_block_struct, 16 }, // block
 		{ sound_promotion_runtime_timer_block_block_struct, 4 }, // block
