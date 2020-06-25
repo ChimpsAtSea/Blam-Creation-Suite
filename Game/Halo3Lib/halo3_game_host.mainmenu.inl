@@ -89,31 +89,4 @@ c_data_patch<external_launch_timeout_patch_offset> external_launch_timeout_patch
 		copy_to_address(data, jmp.data(), jmp.size());
 	}
 } };
-
-uintptr_t version_number_callback_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1805430F0);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1805419B0);
-	return ~uintptr_t();
-}
-FunctionHookEx<version_number_callback_offset, char __fastcall(__int64, wchar_t*, int)> version_number_callback = { "version_number_callback", [](__int64 unused, wchar_t* dst, int len)
-{
-	swprintf_s(dst, len, L"%s", L"ED 0.7 Sucks! Buy MCC on Steam");
-
-	e_build build = c_halo3_game_host::get_game_runtime().get_build();
-	const wchar_t* build_str = get_enum_string<const wchar_t*, true>(build);
-
-	bool use_custom_version_number = true;
-	char result = use_custom_version_number ? 1i8 : version_number_callback(unused, dst, len);
-
-	switch (build)
-	{
-	case _build_mcc_1_1629_0_0:
-	case _build_mcc_1_1658_0_0:
-		swprintf_s(dst, len, L"%s", build_str);
-		break;
-	}
-
-	return result;
-} };
 #pragma endregion
