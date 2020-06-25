@@ -8,47 +8,50 @@
 /* ---------- private prototypes */
 /* ---------- public code */
 
-void haloreach_debug_save_camera(int(__stdcall *player_mapping_get_local_player)(), s_observer_camera *(__fastcall *observer_try_and_get_camera)(signed int local_player))
+extern uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build);
+extern FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
+
+extern uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build);
+extern FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> observer_try_and_get_camera;
+
+void haloreach_debug_save_camera()
 {
-	if (player_mapping_get_local_player != nullptr && observer_try_and_get_camera != nullptr)
+	if (!player_mapping_get_local_player.is_hooked()) return;
+	if (!observer_try_and_get_camera.is_hooked()) return;
+
+	int local_player = player_mapping_get_local_player();
+	s_observer_camera* observer_camera = observer_try_and_get_camera(local_player);
+
+	FILE* stream = fopen("camera.txt", "w");
+	if (stream)
 	{
-		int local_player = player_mapping_get_local_player();
-		s_observer_camera *observer_camera = observer_try_and_get_camera(local_player);
-
-		FILE *stream = fopen("camera.txt", "w");
-		if (stream)
-		{
-			fprintf(stream, "%f %f %f\n", observer_camera->position.i, observer_camera->position.j, observer_camera->position.k);
-			fprintf(stream, "%f %f %f\n", observer_camera->forward.i, observer_camera->forward.j, observer_camera->forward.k);
-			fprintf(stream, "%f %f %f\n", observer_camera->up.i, observer_camera->up.j, observer_camera->up.k);
-			fprintf(stream, "%f\n", observer_camera->field_of_view);
-			fclose(stream);
-		}
-
-		return;
+		fprintf(stream, "%f %f %f\n", observer_camera->position.i, observer_camera->position.j, observer_camera->position.k);
+		fprintf(stream, "%f %f %f\n", observer_camera->forward.i, observer_camera->forward.j, observer_camera->forward.k);
+		fprintf(stream, "%f %f %f\n", observer_camera->up.i, observer_camera->up.j, observer_camera->up.k);
+		fprintf(stream, "%f\n", observer_camera->field_of_view);
+		fclose(stream);
 	}
 
 	c_console::write_line_verbose("Unable to save camera");
 }
 
-void haloreach_debug_load_camera(int(__stdcall *player_mapping_get_local_player)(), s_observer_camera *(__fastcall *observer_try_and_get_camera)(signed int local_player))
+void haloreach_debug_load_camera()
 {
-	if (player_mapping_get_local_player != nullptr && observer_try_and_get_camera != nullptr)
+	if (!player_mapping_get_local_player.is_hooked()) return;
+	if (!observer_try_and_get_camera.is_hooked()) return;
+
+
+	int local_player = player_mapping_get_local_player();
+	s_observer_camera* observer_camera = observer_try_and_get_camera(local_player);
+
+	FILE* stream = fopen("camera.txt", "r");
+	if (stream)
 	{
-		int local_player = player_mapping_get_local_player();
-		s_observer_camera *observer_camera = observer_try_and_get_camera(local_player);
-
-		FILE *stream = fopen("camera.txt", "r");
-		if (stream)
-		{
-			fscanf(stream, "%f %f %f\n", &observer_camera->position.i, &observer_camera->position.j, &observer_camera->position.k);
-			fscanf(stream, "%f %f %f\n", &observer_camera->forward.i, &observer_camera->forward.j, &observer_camera->forward.k);
-			fscanf(stream, "%f %f %f\n", &observer_camera->up.i, &observer_camera->up.j, &observer_camera->up.k);
-			fscanf(stream, "%f\n", &observer_camera->field_of_view);
-			fclose(stream);
-		}
-
-		return;
+		fscanf(stream, "%f %f %f\n", &observer_camera->position.i, &observer_camera->position.j, &observer_camera->position.k);
+		fscanf(stream, "%f %f %f\n", &observer_camera->forward.i, &observer_camera->forward.j, &observer_camera->forward.k);
+		fscanf(stream, "%f %f %f\n", &observer_camera->up.i, &observer_camera->up.j, &observer_camera->up.k);
+		fscanf(stream, "%f\n", &observer_camera->field_of_view);
+		fclose(stream);
 	}
 
 	c_console::write_line_verbose("Unable to load camera");
@@ -71,9 +74,7 @@ uintptr_t g_field_of_view_offset(e_engine_type engine_type, e_build build)
 }
 float& g_field_of_view = reference_symbol<float>("g_field_of_view", g_field_of_view_offset);
 
-c_haloreach_camera_command::c_haloreach_camera_command() :
-	g_player_mapping_get_local_player(nullptr),
-	g_observer_try_and_get_camera(nullptr)
+c_haloreach_camera_command::c_haloreach_camera_command()
 {
 	c_console::register_command(k_haloreach_camera_command_name, this);
 }
@@ -97,12 +98,12 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 			if (!arg1.compare("save"))
 			{
 				c_console::write_line_verbose("camera save is not currently implemented");
-				//haloreach_debug_save_camera(g_player_mapping_get_local_player, g_observer_try_and_get_camera);
+				//haloreach_debug_save_camera();
 			}
 			if (!arg1.compare("load"))
 			{
 				c_console::write_line_verbose("camera load is not currently implemented");
-				//haloreach_debug_save_camera(g_player_mapping_get_local_player, g_observer_try_and_get_camera);
+				//haloreach_debug_save_camera();
 			}
 		}
 		else if (arguments.size() == 3)
@@ -160,18 +161,6 @@ void c_haloreach_camera_command::read_config()
 
 	std::string crosshair = std::to_string(c_settings::read_boolean(_settings_section_camera, "CenteredCrosshair", true));
 	execute_command({ "camera", "crosshair", crosshair.c_str() });
-}
-
-void c_haloreach_camera_command::set_player_mapping_get_local_player(int(__stdcall *player_mapping_get_local_player)())
-{
-	g_player_mapping_get_local_player = player_mapping_get_local_player;
-	return;
-}
-
-void c_haloreach_camera_command::set_observer_try_and_get_camera(s_observer_camera *(__fastcall *observer_try_and_get_camera)(signed int local_player))
-{
-	g_observer_try_and_get_camera = observer_try_and_get_camera;
-	return;
 }
 
 /* ---------- private code */

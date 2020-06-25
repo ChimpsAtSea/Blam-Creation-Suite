@@ -1,14 +1,14 @@
 #include "gameframework-private-pch.h"
 
 c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
-	: m_engineName(pEngineName)
+	: m_engine_name(pEngineName)
 	, m_build(build == _build_not_set ? get_library_file_version(pLibFileName) : build)
-	, m_enginePath(pLibFileName)
+	, m_engine_path(pLibFileName)
 {
 
 	if (m_build == _build_not_set)
 	{
-		c_console::write_line_verbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
+		c_console::write_line_verbose("Warning: `c_game_runtime` initialized with `_build_not_set`");
 		return;
 	}
 
@@ -16,41 +16,41 @@ c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineNam
 	{
 		loadLibrary(pLibFileName);
 
-		m_pDataAccess = nullptr;
-		__int64 createDataAccessResult = CreateDataAccess(&m_pDataAccess);
-		ASSERT(m_pDataAccess != nullptr);
+		m_data_access = nullptr;
+		__int64 createDataAccessResult = create_data_access(&m_data_access);
+		ASSERT(m_data_access != nullptr);
 	}
 	else
 	{
-		hGameModule = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
+		m_game_module = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
 	}
 }
 
 c_game_runtime::~c_game_runtime()
 {
-	if (m_pDataAccess)
+	if (m_data_access)
 	{
-		m_pDataAccess->Free();
-		//delete m_pDataAccess;
+		m_data_access->Free();
+		//delete m_data_access;
 	}
 
-	FreeLibrary(hGameModule);
+	FreeLibrary(m_game_module);
 }
 
 void c_game_runtime::loadLibrary(const char* pLibFileName)
 {
-	hGameModule = LoadLibraryA(pLibFileName);
+	m_game_module = LoadLibraryA(pLibFileName);
 
-	if (hGameModule == NULL)
+	if (m_game_module == NULL)
 	{
-		c_console::write_line_verbose("Failed to load %s", pLibFileName);
+		c_console::write_line_verbose("Failed to load module `%s`", pLibFileName);
 	}
-	ASSERT(hGameModule != NULL);
-	c_console::write_line_verbose("%s: 0x%p", pLibFileName, hGameModule);
+	ASSERT(m_game_module != NULL);
+	c_console::write_line_verbose("Module '%s' loaded at 0x%p", pLibFileName, m_game_module);
 
-	pCreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(hGameModule, "CreateGameEngine");
-	pCreateDataAccess = (CreateDataAccessFunc*)GetProcAddress(hGameModule, "CreateDataAccess");
-	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
+	create_game_engine_func = (t_create_game_engine_func*)GetProcAddress(m_game_module, "CreateGameEngine");
+	create_data_access_func = (t_create_data_access_func*)GetProcAddress(m_game_module, "CreateDataAccess");
+	set_library_settings_func = (t_set_library_settings_func*)GetProcAddress(m_game_module, "SetLibrarySettings");
 }
 
 e_build c_game_runtime::get_library_file_version(const char* file_path)

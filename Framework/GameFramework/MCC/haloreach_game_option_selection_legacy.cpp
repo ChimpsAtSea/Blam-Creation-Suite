@@ -449,20 +449,37 @@ int c_haloreach_game_option_selection_legacy::ReadMapVariant(LPCSTR pName, std::
 
 int c_haloreach_game_option_selection_legacy::ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	IDataAccess* pDataAccess = c_haloreach_game_host::get_data_access();
-	if (pDataAccess)
+	IDataAccess* data_access = c_haloreach_game_host::get_data_access();
+	if (data_access)
 	{
-		char* out_data = { 0 };
+		char* saved_film_data = nullptr;
+		size_t saved_film_data_size = 0;
 
-		c_file_reference filo(pPath);
-		if (filo.open_file())
+		if (!filesystem_read_file_to_memory(pPath, reinterpret_cast<void**>(&saved_film_data), &saved_film_data_size))
 		{
-			out_data = pDataAccess->SaveFilmMetadataCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->data;
+			c_console::write_line_verbose("Failed to open saved film file");
+			return -1;
+		}
+		if (saved_film_data == 0)
+		{
+			c_console::write_line_verbose("Saved film was zero sized");
+			return -1;
+		}
 
-			filo.read_string_long_as_string(name, 256, 0xC0);
-			filo.read_string_long_as_string(desc, 256, 0x1C0);
+		ISaveFilmMetadata* save_film_metadata = data_access->SaveFilmMetadataCreateFromFile(saved_film_data, saved_film_data_size);// ->data;
 
-			filo.close_file();
+		{
+			std::wstring wide(save_film_metadata->GetName());
+			*name = std::string(wide.begin(), wide.end());
+		}
+		{
+			std::wstring wide(save_film_metadata->GetDescription());
+			*desc = std::string(wide.begin(), wide.end());
+		}
+
+		if (is_valid(saved_film_data))
+		{
+			delete[] saved_film_data;
 		}
 	}
 
@@ -574,46 +591,46 @@ void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
 {
 	return;
 
-	static std::vector<std::string> filepathPaths = {
-		format_string("%s/Temporary/autosave/", "haloreach"),
-		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/", get_user_profile_environment_variable(), "haloreach"),
-		format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/", get_user_profile_environment_variable(), "haloreach")
-	};
+	//static std::vector<std::string> filepathPaths = {
+	//	format_string("%s/Temporary/autosave/", "haloreach"),
+	//	format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/", get_user_profile_environment_variable(), "haloreach"),
+	//	format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/", get_user_profile_environment_variable(), "haloreach")
+	//};
 
-	static c_file_array fileArray = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
-	static LPCSTR pLast = "";
+	//static c_file_array fileArray = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
+	//static LPCSTR pLast = "";
 
-	if (s_launch_saved_film_filepath != fileArray.get_filename(pLast))
-	{
-		s_launch_saved_film_filepath = fileArray.get_filename(pLast);
-	}
-	if (pLast != fileArray.get_filename(pLast))
-	{
-		pLast = fileArray.get_filename(pLast);
-	}
+	//if (s_launch_saved_film_filepath != fileArray.get_filename(pLast))
+	//{
+	//	s_launch_saved_film_filepath = fileArray.get_filename(pLast);
+	//}
+	//if (pLast != fileArray.get_filename(pLast))
+	//{
+	//	pLast = fileArray.get_filename(pLast);
+	//}
 
-	if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
-	{
-		for (size_t i = 0; i < fileArray.file_count; i++)
-		{
-			if (fileArray.get_name(i))
-			{
-				bool selected = fileArray.get_name(i) == fileArray.get_name(pLast);
+	//if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
+	//{
+	//	for (size_t i = 0; i < fileArray.file_count; i++)
+	//	{
+	//		if (fileArray.get_name(i))
+	//		{
+	//			bool selected = fileArray.get_name(i) == fileArray.get_name(pLast);
 
-				std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
-				if (ImGui::Selectable(fileArray.GetDesc(i), &selected))
-				{
-					pLast = fileArray.get_filename(i);
-				}
+	//			std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
+	//			if (ImGui::Selectable(fileArray.GetDesc(i), &selected))
+	//			{
+	//				pLast = fileArray.get_filename(i);
+	//			}
 
-				RenderHoveredTooltip(fileArray.get_name(i));
-			}
-		}
+	//			RenderHoveredTooltip(fileArray.get_name(i));
+	//		}
+	//	}
 
-		ImGui::EndCombo();
-	}
+	//	ImGui::EndCombo();
+	//}
 
-	s_launch_saved_film_filepath = pLast;
+	//s_launch_saved_film_filepath = pLast;
 }
 
 void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDataAccess, const char* engine_name, const char* pVariantName, s_map_variant& rMapVariant, bool print)
@@ -637,16 +654,30 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDa
 			}
 		}
 
-		c_file_reference filo(filepath.c_str());
-		if (filo.open_file())
+		char* variant_data = nullptr;
+		size_t variant_data_size = 0;
+
+		if (!filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
+		{
+			c_console::write_line_verbose("Failed to open map variant file");
+			return;
+		}
+		if (variant_data == 0)
+		{
+			c_console::write_line_verbose("Map variant was zero sized");
+			return;
+		}
+
+		if (is_valid(variant_data))
 		{
 			if (print)
 			{
 				c_console::write_line_verbose("Loading map variant [%s]", filepath.c_str());
 			}
 
-			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->MapVariant;
-			filo.close_file();
+			rMapVariant = pDataAccess->MapVariantCreateFromFile(variant_data, variant_data_size)->MapVariant;
+
+			delete[] variant_data;
 			return;
 		}
 	}
@@ -691,51 +722,67 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pD
 		}
 	}
 
-	c_file_reference filo(filepath.c_str());
-	if (filo.open_file())
+	char* variant_data = nullptr;
+	size_t variant_data_size = 0;
+
+	if (!filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
+	{
+		c_console::write_line_verbose("Failed to open map variant file");
+		return;
+	}
+	if (variant_data == 0)
+	{
+		c_console::write_line_verbose("Map variant was zero sized");
+		return;
+	}
+
+	if (is_valid(variant_data))
 	{
 		if (print)
 		{
 			c_console::write_line_verbose("Loading game variant [%s]", filepath.c_str());
 		}
 
-		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size));
+		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(variant_data, variant_data_size);
 		if (game_variant)
 		{
-
 			rGameVariant = game_variant->GameVariant;
 		}
 		else
 		{
 			c_console::write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
 		}
-		filo.close_file();
+
+		delete[] variant_data;
+		return;
 	}
 }
 
 // TODO: Test, and fix if broke
 void c_haloreach_game_option_selection_legacy::load_savegame(const char* pGamestateName, GameContext& gameContext)
 {
-	char filepath[MAX_PATH + 1];
-	sprintf(filepath, "%s.hdr", pGamestateName);
-	filepath[MAX_PATH] = 0;
+	return;
 
-	char* pGameStateBuffer = {};
-	size_t gameStateSize = {};
+	//char filepath[MAX_PATH + 1];
+	//sprintf(filepath, "%s.hdr", pGamestateName);
+	//filepath[MAX_PATH] = 0;
 
-	c_file_reference filo(filepath);
-	if (filo.open_file())
-	{
-		pGameStateBuffer = new char[filo.buffer_size];
-		memset(pGameStateBuffer, 0x00, filo.buffer_size);
-		pGameStateBuffer = filo.buffer;
+	//char* pGameStateBuffer = {};
+	//size_t gameStateSize = {};
 
-		gameContext.game_mode = _mcc_game_mode_campaign;
-		gameContext.game_state_header_size = filo.buffer_size;
-		gameContext.game_state_header = pGameStateBuffer;
+	//c_file_reference filo(filepath);
+	//if (filo.open_file())
+	//{
+	//	pGameStateBuffer = new char[filo.buffer_size];
+	//	memset(pGameStateBuffer, 0x00, filo.buffer_size);
+	//	pGameStateBuffer = filo.buffer;
 
-		filo.close_file();
-	}
+	//	gameContext.game_mode = _mcc_game_mode_campaign;
+	//	gameContext.game_state_header_size = filo.buffer_size;
+	//	gameContext.game_state_header = pGameStateBuffer;
+
+	//	filo.close_file();
+	//}
 }
 
 void c_haloreach_game_option_selection_legacy::load_savefilm(const char* pSavedFilmName, GameContext& gameContext)

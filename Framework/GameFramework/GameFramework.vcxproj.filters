@@ -48,9 +48,6 @@
     <ClCompile Include="c_file_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="c_file_reference.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem\GameTypeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -165,9 +162,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="c_file_array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c_file_reference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileSystem\GameTypeManager.h">

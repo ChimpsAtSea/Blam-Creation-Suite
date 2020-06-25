@@ -15,27 +15,27 @@ void halo1_update_engine_state(IGameEngine* game_engine, const std::string engin
 		if (!engine_state_str.compare("pause"))
 		{
 			c_console::write_line_verbose("Pausing game");
-			game_engine->UpdateEngineState(eEngineState::Pause);
+			game_engine->update_engine_state(_engine_state_pause);
 		}
 		else if (!engine_state_str.compare("unpause"))
 		{
 			c_console::write_line_verbose("Unpausing game");
-			game_engine->UpdateEngineState(eEngineState::Unpause);
+			game_engine->update_engine_state(_engine_state_unpause);
 		}
 		else if (!engine_state_str.compare("end"))
 		{
 			c_console::write_line_verbose("Ending game");
-			game_engine->UpdateEngineState(eEngineState::EndGame);
+			game_engine->update_engine_state(_engine_state_game_end);
 		}
 		else if (!engine_state_str.compare("restart"))
 		{
 			c_console::write_line_verbose("Restarting level");
-			game_engine->UpdateEngineState(eEngineState::RestartLevel);
+			game_engine->update_engine_state(_engine_state_restart_level);
 		}
 		else if (!engine_state_str.compare("revert"))
 		{
 			c_console::write_line_verbose("Restarting checkpoint");
-			game_engine->UpdateEngineState(eEngineState::RestartCheckpoint);
+			game_engine->update_engine_state(_engine_state_restart_checkpoint);
 		}
 
 		return;
