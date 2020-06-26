@@ -33,7 +33,7 @@ public:
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const final;
 	virtual const char* get_string_id_by_index(uint32_t index) const final;
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const final;
-	virtual const char* get_tag_path(uint16_t tag_index) const final;
+	virtual const char* get_tag_path(uint32_t tag_index) const final;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const;
 
@@ -45,7 +45,7 @@ public:
 	inline char* get_tags_buffer() const { return tags_buffer; }
 	inline c_gen3_cache_file_validator& get_cache_file_validator() const { return *validator; }
 
-	inline gen3::s_cache_file_tag_instance& get_internal_tag_instance(uint16_t tag_index) const 
+	inline gen3::s_cache_file_tag_instance& get_internal_tag_instance(uint32_t tag_index) const 
 	{ 
 		gen3::s_cache_file_tag_instance* tag_instance = reinterpret_cast<gen3::s_cache_file_tag_instance*>(get_internal_tag_instance_impl(tag_index));
 		DEBUG_ASSERT(tag_instance != nullptr);
@@ -58,7 +58,7 @@ public:
 	};
 
 protected:
-	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const final;
+	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
 
 	gen3::s_cache_file_header& cache_file_header;

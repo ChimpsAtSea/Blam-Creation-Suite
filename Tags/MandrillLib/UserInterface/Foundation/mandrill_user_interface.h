@@ -2,7 +2,7 @@
 
 class c_cache_file_tab;
 
-using t_get_tag_game_memory_callback = char* (uint16_t tag_index);
+using t_get_tag_game_memory_callback = char* (uint32_t tag_index);
 using t_get_tag_section_address_callback = char* (uint32_t address);
 
 #define MANDRILL_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }

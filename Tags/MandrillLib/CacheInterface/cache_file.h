@@ -24,7 +24,7 @@ public:
 	virtual uint32_t get_tag_count() const = 0;
 	virtual uint32_t get_tag_group_count() const = 0;
 	virtual uint32_t get_string_id_count() const = 0;
-	BCSAPI c_tag_interface* get_tag_interface(uint16_t tag_index) const;
+	BCSAPI c_tag_interface* get_tag_interface(uint32_t tag_index) const;
 	BCSAPI c_tag_interface* const* get_tag_interfaces() const;
 	BCSAPI c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const;
 	BCSAPI c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const;
@@ -36,10 +36,10 @@ public:
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const = 0;
 	virtual const char* get_string_id_by_index(uint32_t index) const = 0;
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const = 0;
-	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const = 0;
+	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const = 0;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const = 0;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const = 0;
-	virtual const char* get_tag_path(uint16_t tag_index) const = 0;
+	virtual const char* get_tag_path(uint32_t tag_index) const = 0;
 
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const = 0;
 

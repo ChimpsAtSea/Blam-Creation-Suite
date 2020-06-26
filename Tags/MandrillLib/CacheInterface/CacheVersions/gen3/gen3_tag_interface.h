@@ -7,7 +7,7 @@ class c_gen3_tag_interface :
 	public c_tag_interface
 {
 public:
-	c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint16_t tag_index);
+	c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint32_t tag_index);
 	~c_gen3_tag_interface();
 
 	virtual unsigned long get_group_tag() const final;

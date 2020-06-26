@@ -13,7 +13,7 @@ class c_halo1_tag_interface :
 	public c_tag_interface
 {
 public:
-	c_halo1_tag_interface(c_halo1_cache_file& cache_file, uint16_t tag_index);
+	c_halo1_tag_interface(c_halo1_cache_file& cache_file, uint32_t tag_index);
 
 	virtual unsigned long get_group_tag() const final; 
 	virtual c_tag_group_interface* get_tag_group_interface() const final;

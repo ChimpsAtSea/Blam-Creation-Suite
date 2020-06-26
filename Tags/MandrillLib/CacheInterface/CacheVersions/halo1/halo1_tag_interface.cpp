@@ -2,7 +2,7 @@
 
 using namespace halo1;
 
-c_halo1_tag_interface::c_halo1_tag_interface(c_halo1_cache_file& cache_file, uint16_t tag_index) :
+c_halo1_tag_interface::c_halo1_tag_interface(c_halo1_cache_file& cache_file, uint32_t tag_index) :
 	c_tag_interface(cache_file, tag_index),
 	cache_file_tag_instance(cache_file.cache_file_tag_instances[tag_index]),
 	tag_group_interface(dynamic_cast<c_halo1_tag_group_interface*>(cache_file.get_tag_group_interface_by_group_id(cache_file_tag_instance.group_tags[0])))
