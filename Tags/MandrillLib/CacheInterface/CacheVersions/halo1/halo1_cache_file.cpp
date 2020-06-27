@@ -91,7 +91,7 @@ void c_halo1_cache_file::load_map()
 
 	unsigned long* group_tags = new(alloca(sizeof(unsigned long) * cache_file_tags_header->tag_count)) unsigned long[cache_file_tags_header->tag_count]{};
 	unsigned long* group_tags_end = group_tags + cache_file_tags_header->tag_count;
-	for (long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
+	for (unsigned long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
 	{
 		halo1::s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
 		group_tags[tag_index] = cache_file_tag_instance.group_tags[0];
