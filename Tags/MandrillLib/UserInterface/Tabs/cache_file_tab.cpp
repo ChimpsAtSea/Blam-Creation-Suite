@@ -139,8 +139,6 @@ void c_cache_file_tab::render_explorer_bar()
 
 				ImGui::EndChild();
 
-
-
 				ImGui::PopStyleVar();
 				ImGui::EndTabItem();
 			}
@@ -170,8 +168,11 @@ void c_cache_file_tab::render_explorer_bar()
 	}
 	else
 	{
+		ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar);
 
 		render_tags_list_search();
+
+		ImGui::EndChild();
 
 	}
 	ImGui::PopStyleVar();
@@ -362,19 +363,44 @@ void c_cache_file_tab::render_tags_list_search()
 	{
 		if (tag_interface.is_null()) continue;
 
-		const char* tag_display_with_group_id = user_interface.get_use_full_file_length_display()
-			? tag_interface.get_path_with_group_id_cstr()
-			: tag_interface.get_name_with_group_id_cstr();
+		const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
+		const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
+
+		const char* tag_display_with_group_name = user_interface.get_use_full_file_length_display()
+			? tag_interface.get_path_with_group_name_cstr()
+			: tag_interface.get_name_with_group_name_cstr();
 
 		if (!search_buffer.is_empty())
 		{
-			if (strstr(tag_display_with_group_id, search_buffer.c_str()) == nullptr)
+			if (strstr(tag_path_group_name, search_buffer.c_str()) == nullptr && strstr(tag_path_group_id, search_buffer.c_str()) == nullptr)
 			{
 				continue;
 			}
 		}
 
-		bool selected = ImGui::Selectable(tag_display_with_group_id, search_selected_tag_interface == &tag_interface, ImGuiSelectableFlags_AllowDoubleClick);
+		c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
+		bool is_tag_valid = true;
+		if (gen3_tag_interface)
+		{
+			is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+
+			if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+		}
+
+		bool selected = ImGui::Selectable(tag_display_with_group_name, search_selected_tag_interface == &tag_interface, ImGuiSelectableFlags_AllowDoubleClick);
+
+		if (gen3_tag_interface)
+		{
+			ImGui::PopStyleColor();
+		}
+
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::BeginTooltip();
+			ImGui::Text(tag_path_group_name);
+			ImGui::EndTooltip();
+		}
 		if (selected && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
 		{
 			search_selected_tag_interface = &tag_interface;
