@@ -13,25 +13,28 @@ c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& par
 		open_tag_by_search_name(load_tag_command_line.c_str());
 	}
 
-	c_fixed_path tag_name;
-	const char* read_position = tag_list;
-	while (*read_position != 0)
+	if (tag_list != nullptr)
 	{
-		if (*read_position == ';')
+		c_fixed_path tag_name;
+		const char* read_position = tag_list;
+		while (*read_position != 0)
 		{
-			read_position++;
+			if (*read_position == ';')
+			{
+				read_position++;
+			}
+			while (*read_position && *read_position != ';' && *read_position != '[')
+			{
+				tag_name += *read_position;
+				read_position++;
+			}
+
+			DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
+
+			open_tag_by_search_name(tag_name.c_str());
+
+			tag_name.clear();
 		}
-		while (*read_position && *read_position != ';' && *read_position != '[')
-		{
-			tag_name += *read_position;
-			read_position++;
-		}
-
-		DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
-
-		open_tag_by_search_name(tag_name.c_str());
-
-		tag_name.clear();
 	}
 }
 
@@ -130,7 +133,13 @@ void c_cache_file_tab::render_explorer_bar()
 				ImGui::Dummy({ 0.0f, 1.0f });
 				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 4, 4 });
 
+				ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar);
+
 				render_tags_list_tree();
+
+				ImGui::EndChild();
+
+
 
 				ImGui::PopStyleVar();
 				ImGui::EndTabItem();
@@ -175,7 +184,7 @@ void c_cache_file_tab::render_impl()
 	ImGui::Separator();
 	{
 		ImGui::BeginGroup();
-		ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_NoScrollbar);
+		ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
 		render_explorer_bar();
 

@@ -22,6 +22,12 @@ c_mandrill_tab::~c_mandrill_tab()
 
 void c_mandrill_tab::render(bool set_selected)
 {
+	if (!is_open)
+	{
+		delete this;
+		return;
+	}
+
 	ImGui::PushID(this);
 
 	run_events();
@@ -42,10 +48,6 @@ void c_mandrill_tab::render(bool set_selected)
 		is_selected = false;
 	}
 
-	if (!is_open)
-	{
-		delete this;
-	}
 	ImGui::PopID();
 }
 
