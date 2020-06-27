@@ -64,6 +64,7 @@ void c_blofeld_tag_definition_debug_tab::render_game_layer_impl()
 uint32_t c_blofeld_tag_definition_debug_tab::render_tag_struct_definition(int level, char* data, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	e_engine_type engine_type = tag_interface.get_cache_file().get_engine_type();
+	e_platform_type platform_type = tag_interface.get_cache_file().get_platform_type();
 
 	constexpr float indent = 25.0f;
 	uint32_t bytes_traversed = 0;
@@ -71,7 +72,7 @@ uint32_t c_blofeld_tag_definition_debug_tab::render_tag_struct_definition(int le
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, _build_not_set, field_skip_count))
+		if (skip_tag_field_version(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;

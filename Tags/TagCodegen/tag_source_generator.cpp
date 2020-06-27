@@ -2,8 +2,9 @@
 
 using namespace blofeld;
 
-c_tag_source_generator::c_tag_source_generator(e_engine_type engine_type, e_build build) :
+c_tag_source_generator::c_tag_source_generator(e_engine_type engine_type, e_platform_type platform_type, e_build build) :
 	engine_type(engine_type),
+	platform_type(platform_type),
 	build(build),
 	has_error(false)
 {
@@ -116,7 +117,7 @@ void c_tag_source_generator::generate_source()
 			const char* field_type_string = field_to_string(current_field->field_type);
 
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -298,7 +299,7 @@ void c_tag_source_generator::generate_source()
 
 		ss << "\t\t" << "};" << std::endl;
 
-		uint32_t struct_size = calculate_struct_size(engine_type, build, *tag_struct_definition);
+		uint32_t struct_size = calculate_struct_size(engine_type, platform_type, build, *tag_struct_definition);
 
 		ss << "\t\t" << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
 		ss << "\t\t" << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;

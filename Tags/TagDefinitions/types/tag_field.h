@@ -30,6 +30,7 @@ namespace blofeld
 		//enum e_build const max_version;
 
 		e_engine_type _engine_type;
+		e_platform_type _platform_type;
 		e_build _build;
 		uint32_t _version_field_skip_count;
 		t_tag_field_custom_version_callback _custom_version_callback;
@@ -49,6 +50,7 @@ namespace blofeld
 			value1((void*)(value1)),
 			value2((void*)(value1)),
 			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
 			_custom_version_callback(nullptr)
@@ -70,6 +72,7 @@ namespace blofeld
 			value1((void*)(value1)),
 			value2(nullptr),
 			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
 			_custom_version_callback(nullptr)
@@ -89,6 +92,7 @@ namespace blofeld
 			value1(nullptr),
 			value2(nullptr),
 			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
 			_custom_version_callback(nullptr)
@@ -107,6 +111,7 @@ namespace blofeld
 			value1(nullptr),
 			value2(nullptr),
 			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
 			_custom_version_callback(nullptr)
@@ -114,15 +119,33 @@ namespace blofeld
 			ASSERT(field_type < _field_type_non_standard);
 		}
 
-		struct s_engine_type_and_build
+		struct s_engine_type_and_platform_and_build
 		{
-			s_engine_type_and_build(e_engine_type engine_type, e_build build = _build_not_set) :
+			s_engine_type_and_platform_and_build(e_platform_type platform_type) :
+				engine_type(_engine_type_not_set),
+				platform_type(platform_type),
+				build(_build_not_set)
+			{
+
+			}
+
+			s_engine_type_and_platform_and_build(e_engine_type engine_type, e_platform_type platform_type, e_build build = _build_not_set) :
 				engine_type(engine_type),
+				platform_type(platform_type),
+				build(build)
+			{
+
+			}
+
+			s_engine_type_and_platform_and_build(e_engine_type engine_type, e_build build = _build_not_set) :
+				engine_type(engine_type),
+				platform_type(_platform_type_not_set),
 				build(build)
 			{
 
 			}
 			e_engine_type engine_type;
+			e_platform_type platform_type;
 			e_build build;
 		};
 
@@ -130,7 +153,7 @@ namespace blofeld
 			e_field field_type,
 			const char* filename,
 			int32_t line,
-			s_engine_type_and_build engine_type_and_build,
+			s_engine_type_and_platform_and_build engine_type_and_build,
 			uint32_t version_field_skip_count = 1) :
 			field_type(field_type),
 			name(nullptr),
@@ -139,6 +162,7 @@ namespace blofeld
 			value1(nullptr),
 			value2(nullptr),
 			_engine_type(engine_type_and_build.engine_type),
+			_platform_type(engine_type_and_build.platform_type),
 			_build(engine_type_and_build.build),
 			_version_field_skip_count(version_field_skip_count),
 			_custom_version_callback(nullptr)
@@ -158,6 +182,7 @@ namespace blofeld
 			value1(nullptr),
 			value2(nullptr),
 			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
 			_custom_version_callback(custom_version_callback)
@@ -166,14 +191,27 @@ namespace blofeld
 		}
 	};
 
-	inline bool skip_tag_field_version(s_tag_field const& tag_field, e_engine_type engine_type, e_build build, uint32_t& skip_count)
+	inline bool skip_tag_field_version(s_tag_field const& tag_field, e_engine_type engine_type, e_platform_type platform_type, e_build build, uint32_t& skip_count)
 	{
 		if (tag_field.field_type > _field_type_non_standard)
 		{
 			bool skip_versioning_field = false;
 			skip_count = tag_field._version_field_skip_count;
+
 			switch (tag_field.field_type)
 			{
+			case _field_version_platform_include:
+				if (tag_field._platform_type != _platform_type_not_set && platform_type != _platform_type_not_set)
+				{
+					skip_versioning_field = (tag_field._platform_type & platform_type) != 0;
+				}
+				break;
+			case _field_version_platform_exclude:
+				if (tag_field._platform_type != _platform_type_not_set && platform_type != _platform_type_not_set)
+				{
+					skip_versioning_field = (tag_field._platform_type & platform_type) == 0;
+				}
+				break;
 			case _field_version_equal:
 				skip_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type == tag_field._engine_type;
 				skip_versioning_field &= tag_field._build == _build_not_set || build == tag_field._build;

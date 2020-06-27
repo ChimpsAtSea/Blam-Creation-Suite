@@ -38,8 +38,8 @@ void c_gen3_cache_file::init_gen3_cache_file()
 
 }
 
-c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type) :
-	c_cache_file(map_filepath, engine_type),
+c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type) :
+	c_cache_file(map_filepath, engine_type, platform_type),
 	cache_file_header(*read_cache_file()),
 	string_id_guesstimator(nullptr),
 	validator(nullptr)

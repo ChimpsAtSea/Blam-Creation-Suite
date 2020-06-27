@@ -4,6 +4,7 @@ namespace blofeld
 {
 	void iterate_structure_fields(
 		e_engine_type engine_type,
+		e_platform_type platform_type,
 		e_build build,
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
@@ -17,7 +18,7 @@ namespace blofeld
 			const char* nice_field_string = field_string + 1;
 
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -50,6 +51,7 @@ namespace blofeld
 				{
 					iterate_structure_fields(
 						engine_type,
+						platform_type,
 						build,
 						*next_struct_definition,
 						recursive,
@@ -111,10 +113,14 @@ namespace blofeld
 		}
 	}
 
-	uint32_t calculate_struct_size(e_engine_type engine_type, e_build build, const s_tag_struct_definition& struct_definition, bool* block_failed_validation)
+	uint32_t calculate_struct_size(
+		e_engine_type engine_type, 
+		e_platform_type platform_type, 
+		e_build build, 
+		const s_tag_struct_definition& struct_definition, 
+		bool* block_failed_validation)
 	{
 		uint32_t computed_size = 0;
-
 
 		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -122,7 +128,7 @@ namespace blofeld
 			const char* nice_field_string = field_string + 1;
 
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -191,7 +197,7 @@ namespace blofeld
 				computed_size += current_field->length;
 				break;
 			case _field_struct:
-				computed_size += calculate_struct_size(engine_type, build, *current_field->struct_definition, block_failed_validation);
+				computed_size += calculate_struct_size(engine_type, platform_type, build, *current_field->struct_definition, block_failed_validation);
 				break;
 			case _field_array:
 			{
@@ -199,7 +205,7 @@ namespace blofeld
 				REFERENCE_ASSERT(array_definition);
 				const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 				REFERENCE_ASSERT(struct_definition);
-				uint32_t struct_size = calculate_struct_size(engine_type, build, struct_definition, block_failed_validation);
+				uint32_t struct_size = calculate_struct_size(engine_type, platform_type, build, struct_definition, block_failed_validation);
 				uint32_t array_data_size = struct_size * array_definition.count;
 				computed_size += array_data_size;
 				break;
@@ -224,7 +230,7 @@ namespace blofeld
 			const char* const block_name = struct_definition.name;
 			uint32_t const expected_size = struct_validation_data.size;
 
-			uint32_t computed_size = calculate_struct_size(_engine_type_gen3_xbox360, _build_not_set, struct_definition, &block_failed_validation);
+			uint32_t computed_size = calculate_struct_size(_engine_type_gen3_xbox360, _platform_type_xbox_360, _build_not_set, struct_definition, &block_failed_validation);
 
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)

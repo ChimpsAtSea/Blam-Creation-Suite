@@ -13,7 +13,7 @@ struct s_halo1_compressed_chunk_header
 };
 
 c_halo1_cache_file::c_halo1_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath, _engine_type_halo1)
+	c_cache_file(map_filepath, _engine_type_halo1, _platform_type_pc)
 {
 	load_map();
 }

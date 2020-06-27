@@ -259,16 +259,35 @@ void c_blofeld_tag_debugger_tab::render_field_rectangle_2d(render_field_callback
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name_and_information(field, result);
 }
+
+uint32_t argb_to_abgr(uint32_t argb_color)
+{
+	uint32_t bgra_color = _byteswap_ulong(argb_color);
+	uint32_t Xbgr_color = bgra_color >> 8;
+	uint32_t abgr_color = argb_color & 0xFF00FF00 | Xbgr_color & 0x00FF00FF;
+	return abgr_color;
+}
+
 void c_blofeld_tag_debugger_tab::render_field_rgb_color(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	ImGui::SameLine();
+	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
+	uint32_t abgr_color = argb_to_abgr(argb_color);
+	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
+	ImGui::ColorEdit3("", &float_color.x, ImGuiColorEditFlags_Uint8);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_argb_color(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	ImGui::SameLine();
+	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
+	uint32_t abgr_color = argb_to_abgr(argb_color);
+	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
+	ImGui::ColorEdit4("", &float_color.x, ImGuiColorEditFlags_Uint8);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real(render_field_callback_args)

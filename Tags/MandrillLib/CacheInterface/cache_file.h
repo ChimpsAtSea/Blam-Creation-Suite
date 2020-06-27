@@ -12,7 +12,7 @@ public:
 	static c_cache_file* create_cache_file(const std::wstring& map_filepath);
 
 protected:
-	BCSAPI c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type);
+	BCSAPI c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type);
 public:
 	BCSAPI virtual ~c_cache_file();
 
@@ -58,10 +58,12 @@ public:
 	inline const char* get_map_path_utf8() const { return map_filename_utf8.c_str(); }
 
 	inline e_engine_type get_engine_type() const { return engine_type; }
+	inline e_platform_type get_platform_type() const { return platform_type; }
 
 protected:
 	c_virtual_memory_container& virtual_memory_container;
 	e_engine_type engine_type;
+	e_platform_type platform_type;
 
 	// interface types
 	std::vector<c_tag_interface*> tag_interfaces;

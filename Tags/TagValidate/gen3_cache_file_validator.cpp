@@ -4,7 +4,8 @@ static uint32_t k_max_group_iterations = 5;
 
 c_gen3_cache_file_validator::c_gen3_cache_file_validator(c_gen3_cache_file& cache_file) :
 	cache_file(cache_file),
-	engine_type(cache_file.get_engine_type())
+	engine_type(cache_file.get_engine_type()),
+	platform_type(cache_file.get_platform_type())
 {
 
 
@@ -47,7 +48,7 @@ uint32_t c_gen3_cache_file_validator::get_struct_size(const blofeld::s_tag_struc
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, _build_not_set, field_skip_count))
+		if (skip_tag_field_version(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
@@ -138,7 +139,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, _build_not_set, field_skip_count))
+		if (skip_tag_field_version(*current_field, engine_type, platform_type, _build_not_set, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
@@ -335,7 +336,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 						result.block_is_out_of_range = tag_block.count > current_field->block_definition->max_count;
 
 						char* start = data_address;
-						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, _build_not_set, current_field->block_definition->struct_definition));
+						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, platform_type, _build_not_set, current_field->block_definition->struct_definition));
 
 						is_struct_valid &= cache_file.is_valid_data_address(start) && cache_file.is_valid_data_address(end);
 

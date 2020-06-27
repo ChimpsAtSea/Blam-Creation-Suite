@@ -4,7 +4,7 @@ using namespace gen3;
 using namespace halo3;
 
 c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
-	c_gen3_cache_file(map_filepath, _engine_type_halo3),
+	c_gen3_cache_file(map_filepath, _engine_type_halo3, _platform_type_pc),
 	halo3_cache_file_header(*static_cast<halo3::s_cache_file_header*>(&cache_file_header)),
 	halo3_cache_file_tags_header(nullptr)
 {

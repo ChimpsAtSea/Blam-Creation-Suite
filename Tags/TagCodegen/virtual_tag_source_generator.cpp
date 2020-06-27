@@ -2,8 +2,9 @@
 
 using namespace blofeld;
 
-c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type engine_type, e_build build) :
+c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type engine_type, e_platform_type platform_type, e_build build) :
 	engine_type(engine_type),
+	platform_type(platform_type),
 	build(build)
 {
 
@@ -53,7 +54,7 @@ void c_virtual_tag_source_generator::generate_header()
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -95,7 +96,7 @@ void c_virtual_tag_source_generator::generate_header()
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;

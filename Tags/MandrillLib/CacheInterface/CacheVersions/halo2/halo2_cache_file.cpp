@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
 c_halo2_cache_file::c_halo2_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath, _engine_type_halo2)
+	c_cache_file(map_filepath, _engine_type_halo2, _platform_type_pc)
 {
 
 }

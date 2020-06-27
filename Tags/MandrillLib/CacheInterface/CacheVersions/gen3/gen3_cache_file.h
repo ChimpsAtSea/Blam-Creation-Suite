@@ -19,7 +19,7 @@ class c_gen3_cache_file :
 protected:
 	gen3::s_cache_file_header* read_cache_file();
 	void init_gen3_cache_file();
-	c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type);
+	c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type);
 	virtual ~c_gen3_cache_file();
 
 public:

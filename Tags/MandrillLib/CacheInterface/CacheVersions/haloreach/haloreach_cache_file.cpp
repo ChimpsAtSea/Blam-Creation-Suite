@@ -4,7 +4,7 @@ using namespace gen3;
 using namespace haloreach;
 
 c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath) :
-	c_gen3_cache_file(map_filepath, _engine_type_haloreach),
+	c_gen3_cache_file(map_filepath, _engine_type_haloreach, _platform_type_pc),
 	haloreach_cache_file_header(*static_cast<haloreach::s_cache_file_header*>(&cache_file_header)),
 	haloreach_cache_file_tags_header(nullptr)
 {

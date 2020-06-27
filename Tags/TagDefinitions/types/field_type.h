@@ -79,6 +79,8 @@ namespace blofeld
 		_field_version_greater,
 		_field_version_less_or_equal,
 		_field_version_greater_or_equal,
+		_field_version_platform_include,
+		_field_version_platform_exclude,
 		_field_version_custom,
 		k_number_of_blofeld_field_types
 	};

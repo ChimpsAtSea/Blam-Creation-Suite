@@ -30,15 +30,15 @@
     <ClInclude Include="game_context_version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="platform_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="versioning-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="build_type.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game_context_version.cpp">

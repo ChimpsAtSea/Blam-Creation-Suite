@@ -9,31 +9,31 @@ int create_source_file()
 
 	int result = 0;
 
-	e_engine_type const engine_types[] =
+	std::pair<e_engine_type, e_platform_type> const engine_and_platform_types[] =
 	{
-		_engine_type_halo1,
-		_engine_type_halo2,
-		_engine_type_halo3,
-		_engine_type_halo3odst,
-		_engine_type_haloreach,
-		_engine_type_halo4,
-		_engine_type_groundhog,
-		_engine_type_gen3_xbox360,
+		{_engine_type_halo1,				_platform_type_pc },
+		{_engine_type_halo2,				_platform_type_pc },
+		{_engine_type_halo3,				_platform_type_pc },
+		{_engine_type_halo3odst,			_platform_type_pc },
+		{_engine_type_haloreach,			_platform_type_pc },
+		{_engine_type_halo4,				_platform_type_pc },
+		{_engine_type_groundhog,			_platform_type_pc },
+		{_engine_type_gen3_xbox360,			_platform_type_xbox_360 },
 	};
 
 	tbb::task_group g;
-	for (e_engine_type engine_type : engine_types)
+	for (std::pair<e_engine_type, e_platform_type> engine_and_platform_type : engine_and_platform_types)
 	{
-		g.run([&result, engine_type]
+		g.run([&result, engine_and_platform_type]
 			{
-				c_tag_source_generator tag_source_generator(engine_type, _build_not_set);
+				c_tag_source_generator tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				tag_source_generator.generate_source();
 				if (tag_source_generator.has_error) result++;
 			});
 
-		g.run([&result, engine_type]
+		g.run([&result, engine_and_platform_type]
 			{
-				c_virtual_tag_source_generator virtual_tag_source_generator(engine_type, _build_not_set);
+				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				virtual_tag_source_generator.generate_header();
 				virtual_tag_source_generator.generate_source();
 			});

@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
 c_groundhog_cache_file::c_groundhog_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath, _engine_type_groundhog)
+	c_cache_file(map_filepath, _engine_type_groundhog, _platform_type_pc)
 {
 
 }

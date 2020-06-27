@@ -44,6 +44,7 @@ private:
 
 		c_gen3_cache_file& cache_file;
 		e_engine_type engine_type;
+		e_platform_type platform_type;
 
 public:
 #define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
