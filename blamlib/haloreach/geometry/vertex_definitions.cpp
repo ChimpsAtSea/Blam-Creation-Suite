@@ -1,5 +1,7 @@
 #include <blamlib/haloreach/geometry/vertex_definitions.h>
 
+using namespace blamlib;
+
 #define WIN32_LEAN_AND_MEAN
 #include <d3d11.h>
 
