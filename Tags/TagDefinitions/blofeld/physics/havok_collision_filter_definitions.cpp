@@ -25,13 +25,28 @@ namespace blofeld
 
 	TAG_STRUCT(havok_group_filter_filter_struct)
 	{
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_int64_integer, "hkReferencedObject vtable*~!" },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_long_integer, "hkReferencedObject vtable*~!" },
+
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
+
+		{ _field_version_platform_include, _platform_type_pc, 5 },
+		{ _field_pad, "8byte struct alignment", 4 },
+		{ _field_int64_integer, "hkpCollidableCollidableFilter vtable*~!" },
+		{ _field_int64_integer, "hkpShapeCollectionFilter vtable*~!" },
+		{ _field_int64_integer, "hkpRayShapeCollectionFilter vtable*~!" },
+		{ _field_int64_integer, "hkpRayCollidableFilter vtable*~!" },
+
+		{ _field_version_platform_exclude, _platform_type_pc, 4 },
 		{ _field_long_integer, "hkpCollidableCollidableFilter vtable*~!" },
 		{ _field_long_integer, "hkpShapeCollectionFilter vtable*~!" },
 		{ _field_long_integer, "hkpRayShapeCollectionFilter vtable*~!" },
 		{ _field_long_integer, "hkpRayCollidableFilter vtable*~!" },
+
 		{ _field_pad, "m_prepad[2]", 8 },
 		{ _field_long_integer, "m_type!" },
 		{ _field_pad, "m_postpad[3]", 12 },
@@ -68,7 +83,10 @@ namespace blofeld
 		{ _field_long_integer, "m_collisionLookupTable29*~!" },
 		{ _field_long_integer, "m_collisionLookupTable30*~!" },
 		{ _field_long_integer, "m_collisionLookupTable31*~!" },
+
+		{ _field_version_less, _engine_type_haloreach, 1 },
 		{ _field_pad, "16 byte align pad", 12 },
+
 		{ _field_real_vector_3d, "m_pad256[0]*~!" },
 		{ _field_real, "havok w m_pad256[0]*~!!" },
 		{ _field_real_vector_3d, "m_pad256[1]*~!" },
@@ -77,6 +95,10 @@ namespace blofeld
 		{ _field_real, "havok w m_pad256[2]*~!!" },
 		{ _field_real_vector_3d, "m_pad256[3]*~!" },
 		{ _field_real, "havok w m_pad256[3]*~!!" },
+
+		{ _field_version_platform_include, _platform_type_pc, 1 },
+		{ _field_pad, "8byte struct alignment", 4 },
+
 		{ _field_terminator }
 	};
 

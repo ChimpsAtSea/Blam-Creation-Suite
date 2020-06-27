@@ -76,7 +76,13 @@ namespace blofeld
 		{ _field_enum, "danger level#Speaker must have danger level of at least this much", &danger_enum },
 		{ _field_char_enum, "speaker/subject position", &spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &spatial_relation_enum },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown" }, // likely a block index
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
+
 		{ _field_explanation, "Matching", "" },
 		{ _field_enum, "spatial relation#with respect to the subject, the cause is ...", &spatial_relation_enum },
 		{ _field_enum, "damage type", &damage_enum },

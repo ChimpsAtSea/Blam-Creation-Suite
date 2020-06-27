@@ -440,7 +440,7 @@ void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name_and_information(field, result);
 	ImGui::SameLine();
-	const char* format_string = "[count:%i address:0x%X definition_address:0x%i]";
+	const char* format_string = "[count:%i address:0x%X definition_address:0x%X]";
 	if (show_hex_values)
 	{
 		format_string = "[count:0x%X address:0x%X definition_address:0x%X]";
