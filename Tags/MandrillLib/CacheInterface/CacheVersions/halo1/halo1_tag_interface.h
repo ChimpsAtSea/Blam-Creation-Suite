@@ -25,6 +25,8 @@ public:
 	virtual const char* get_name_with_group_id_cstr() const final;
 	virtual const char* get_name_with_group_name_cstr() const final;
 
+	virtual char* get_data();
+
 protected:
 	halo1::s_cache_file_tag_instance& cache_file_tag_instance;
 	c_halo1_tag_group_interface* tag_group_interface;

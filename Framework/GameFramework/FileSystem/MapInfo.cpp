@@ -20,10 +20,10 @@ std::wstring ConvertBigEndianWideCharString(const wchar_t* pString)
 	return std::wstring(pLittleEndianBuffer);
 }
 
-MapInfo::MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEndian, const s_blamfile_level_chunk& rLevelChunk)
+MapInfo::MapInfo(const std::filesystem::path& filepath, bool isLevelChunkIsLittleEndian, const s_blamfile_level_chunk& rLevelChunk)
 	: m_levelChunk(rLevelChunk)
 	, m_isLevelChunkIsLittleEndian(isLevelChunkIsLittleEndian)
-	, m_filesystemPath(rPath)
+	, filesystem_path(filepath)
 {
 	using convert_type = std::codecvt_utf8<wchar_t>;
 	std::wstring_convert<convert_type, wchar_t> stringConverter;
@@ -35,7 +35,7 @@ MapInfo::MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEn
 	}
 	else
 	{
-		std::filesystem::path filesystemName = rPath.filename();
+		std::filesystem::path filesystemName = filepath.filename();
 		char levelNameBuffer[MAX_PATH + 1] = {};
 		snprintf(levelNameBuffer, MAX_PATH, "<%S>", filesystemName.c_str());
 		levelNameBuffer[MAX_PATH] = 0;

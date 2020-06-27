@@ -415,7 +415,7 @@ void c_haloreach_game_option_selection_legacy::GetVariantInfo(char* buffer, std:
 	}
 }
 
-int c_haloreach_game_option_selection_legacy::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
+int c_haloreach_game_option_selection_legacy::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR filesystem_path)
 {
 	static s_game_variant gameVariant;
 	IDataAccess* pDataAccess = c_haloreach_game_host::get_data_access();

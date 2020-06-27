@@ -24,7 +24,7 @@ struct s_h4_tag_struct_definition
 
 struct s_h4_tag_field_definition
 {
-	bigendian_integer<e_h4_field_type> field_type;
+	bigendian_type<e_h4_field_type> field_type;
 	bpointer32<const char*> name_address;
 	bpointer32<void*> definition_address;
 	uint32_t group_tag;
@@ -412,7 +412,7 @@ enum e_tag_resource_type
 struct s_tag_resource_definition
 {
 	bpointer32<const char*> name;
-	bigendian_integer<e_tag_resource_type> resource_type;
+	bigendian_type<e_tag_resource_type> resource_type;
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
 	bpointer32<void*> tag_resource_vtable; // c_tag_resource_vtable<c_sound_resource_vtable>
 	buint32_t unknown0;

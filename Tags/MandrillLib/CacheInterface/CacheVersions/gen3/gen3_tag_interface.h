@@ -26,6 +26,8 @@ public:
 	virtual const char* get_name_with_group_id_cstr() const final;
 	virtual const char* get_name_with_group_name_cstr() const final;
 
+	virtual char* get_data() final;
+
 	void validate();
 protected:
 	gen3::s_cache_file_tag_instance& cache_file_tag_instance;
@@ -38,6 +40,8 @@ protected:
 	const char* filename;
 	const char* filename_with_group_id;
 	const char* filename_with_group_name;
+
+	char* tag_data;
 
 	bool is_tag_valid;
 	bool is_struct_valid;

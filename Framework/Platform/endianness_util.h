@@ -7,7 +7,7 @@ constexpr U bswap(T i) { return bswap_impl<U>(i, std::make_index_sequence<sizeof
 #define bswap_auto_endian(littleEndian, i) (littleEndian ? i : bswap(i))
 
 template<typename T>
-struct bigendian_integer
+struct bigendian_type
 {
 public:
 	operator T() const
@@ -42,14 +42,14 @@ public:
 	T value;
 };
 
-using buint8_t = bigendian_integer<uint8_t>;
-using buint16_t = bigendian_integer<uint16_t>;
-using buint32_t = bigendian_integer<uint32_t>;
-using buint64_t = bigendian_integer<uint64_t>;
-using bint8_t = bigendian_integer<int8_t>;
-using bint16_t = bigendian_integer<int16_t>;
-using bint32_t = bigendian_integer<int32_t>;
-using bint64_t = bigendian_integer<int64_t>;
+using buint8_t = bigendian_type<uint8_t>;
+using buint16_t = bigendian_type<uint16_t>;
+using buint32_t = bigendian_type<uint32_t>;
+using buint64_t = bigendian_type<uint64_t>;
+using bint8_t = bigendian_type<int8_t>;
+using bint16_t = bigendian_type<int16_t>;
+using bint32_t = bigendian_type<int32_t>;
+using bint64_t = bigendian_type<int64_t>;
 
 template<typename T>
-using bpointer32 = bigendian_integer<uint32_t>;
+using bpointer32 = bigendian_type<uint32_t>;

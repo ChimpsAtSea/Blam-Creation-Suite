@@ -34,3 +34,8 @@ const char* c_halo1_tag_interface::get_path_with_group_name_cstr() const { retur
 const char* c_halo1_tag_interface::get_name_cstr() const { return filename; };
 const char* c_halo1_tag_interface::get_name_with_group_id_cstr() const { return filename_with_group_id; };
 const char* c_halo1_tag_interface::get_name_with_group_name_cstr() const { return filename_with_group_name; };
+
+char* c_halo1_tag_interface::get_data()
+{
+	return nullptr;
+}

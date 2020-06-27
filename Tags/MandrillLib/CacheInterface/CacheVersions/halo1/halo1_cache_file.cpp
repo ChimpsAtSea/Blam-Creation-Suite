@@ -105,9 +105,9 @@ void c_halo1_cache_file::load_map()
 		}
 	}
 
-	for (long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
+	for (unsigned long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
 	{
-		tag_interfaces.push_back(new c_halo1_tag_interface(*this, static_cast<uint16_t>(tag_index)));
+		tag_interfaces.push_back(new c_halo1_tag_interface(*this, tag_index));
 	}
 
 	init_sorted_instance_lists();

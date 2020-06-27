@@ -18,7 +18,7 @@ struct tag_group
 	};
 };
 
-using btag_group = bigendian_integer<tag_group>;
+using btag_group = bigendian_type<tag_group>;
 
 #include "halo5/halo5_forge.h"
 #include "halo4/halo4.h"

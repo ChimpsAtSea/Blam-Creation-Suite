@@ -87,12 +87,12 @@ namespace halo1
 		unsigned long tags_address;                     // ptr32_t<void>, 0x40448028, g_tags_address is 0x40448000
 		long scenario_index;
 		unsigned long checksum;
-		long tag_count;
-		long geometry_vertices_count;
-		long geometry_vertices_offset;
-		long geometry_indices_count;
-		long geometry_indices_offset;
-		long geometry_data_total_size;
+		unsigned long tag_count;
+		unsigned long geometry_vertices_count;
+		unsigned long geometry_vertices_offset;
+		unsigned long geometry_indices_count;
+		unsigned long geometry_indices_offset;
+		unsigned long geometry_data_total_size;
 		unsigned long signature;                        // 'tags'
 	};
 }

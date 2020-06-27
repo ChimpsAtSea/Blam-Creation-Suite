@@ -28,7 +28,6 @@ c_gen3_tag_interface::c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint32
 	filename_with_group_name = PathFindFileNameA(static_cast<const char*>(filepath_with_group_name));
 
 	register_with_tag_group();
-	init_virtual_tag_interface();
 }
 
 c_gen3_tag_interface::~c_gen3_tag_interface()
@@ -56,6 +55,11 @@ const char* c_gen3_tag_interface::get_path_with_group_name_cstr() const { return
 const char* c_gen3_tag_interface::get_name_cstr() const { return filename; };
 const char* c_gen3_tag_interface::get_name_with_group_id_cstr() const { return filename_with_group_id; };
 const char* c_gen3_tag_interface::get_name_with_group_name_cstr() const { return filename_with_group_name; };
+
+char* c_gen3_tag_interface::get_data()
+{
+	return tag_data;
+}
 
 void c_gen3_tag_interface::validate()
 {

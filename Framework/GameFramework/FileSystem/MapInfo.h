@@ -4,7 +4,7 @@ class MapInfo
 private:
 	s_blamfile_level_chunk m_levelChunk;
 	bool m_isLevelChunkIsLittleEndian;
-	std::filesystem::path m_filesystemPath;
+	std::filesystem::path filesystem_path;
 	std::string m_friendlyName;
 	std::string m_friendlyDescription;
 
@@ -16,7 +16,7 @@ private:
 	}
 
 public:
-	MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEndian, const s_blamfile_level_chunk& rLevelChunk);
+	MapInfo(const std::filesystem::path& filepath, bool isLevelChunkIsLittleEndian, const s_blamfile_level_chunk& rLevelChunk);
 
 	const char* GetFriendlyName() const;
 	const char* GetFriendlyDescription() const;

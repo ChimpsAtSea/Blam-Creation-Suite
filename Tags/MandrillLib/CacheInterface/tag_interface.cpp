@@ -1,11 +1,11 @@
 #include "mandrilllib-private-pch.h"
 
 c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint32_t tag_index) :
-	tag_data(nullptr),
 	tag_index(tag_index),
 	is_tag_null(false),
 	blofeld_reflection_type(nullptr),
 	cache_file(cache_file),
+	reflection_initialised(false),
 	virtual_tag_interface(nullptr),
 	virtual_resource_user_data(nullptr)
 {
@@ -97,4 +97,26 @@ unsigned long c_tag_interface::get_group_tag() const
 c_tag_group_interface* c_tag_interface::get_tag_group_interface() const
 {
 	return nullptr;
+}
+
+c_virtual_tag_interface* c_tag_interface::get_virtual_tag_interface()
+{
+	if (!reflection_initialised)
+	{
+		init_virtual_tag_interface();
+		reflection_initialised = true;
+	}
+
+	return virtual_tag_interface;
+}
+
+const blofeld::s_tag_group* c_tag_interface::get_blofeld_reflection_data()
+{
+	if (!reflection_initialised)
+	{
+		init_virtual_tag_interface();
+		reflection_initialised = true;
+	}
+
+	return blofeld_reflection_type;
 }
