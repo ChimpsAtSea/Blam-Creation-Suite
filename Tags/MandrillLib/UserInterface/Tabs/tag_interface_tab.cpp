@@ -34,7 +34,7 @@ void c_tag_interface_tab::game_quick_preview()
 
 void c_tag_interface_tab::render_impl()
 {
-	if (children.empty())
+	if (!has_enabled_children())
 	{
 		ImGui::Text("No supported editors");
 		return;

@@ -33,6 +33,7 @@ protected:
 
 	c_fixed_string_1024 search_buffer;
 	c_tag_interface* search_selected_tag_interface;
+
 //
 //
 //

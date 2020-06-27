@@ -3,6 +3,9 @@
 t_get_tag_game_memory_callback* c_mandrill_user_interface::s_get_tag_game_memory = nullptr;
 t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section_address = nullptr;
 
+bool c_mandrill_user_interface::use_developer_features = c_settings::read_boolean(_settings_section_mandrill, k_use_developer_features, false);
+bool c_mandrill_user_interface::show_explorer_bar = c_settings::read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
+
 c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
 	window(window),
@@ -301,7 +304,20 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 			}
 			if (ImGui::BeginMenu("View"))
 			{
-				ImGui::MenuItem("Explorer Bar");
+				if (ImGui::MenuItem(show_explorer_bar ? "Hide Explorer Bar" : "Show Explorer Bar"))
+				{
+					show_explorer_bar = !show_explorer_bar;
+					c_settings::write_boolean(_settings_section_mandrill, k_show_explorer_bar, show_explorer_bar);
+				}
+
+				ImGui::Separator();
+
+				if (ImGui::MenuItem(use_developer_features ? "Disable Developer Features" : "Enable Developer Features"))
+				{
+					use_developer_features = !use_developer_features;
+					c_settings::write_boolean(_settings_section_mandrill, k_use_developer_features, use_developer_features);
+				}
+
 				ImGui::EndMenu();
 			}
 			for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))

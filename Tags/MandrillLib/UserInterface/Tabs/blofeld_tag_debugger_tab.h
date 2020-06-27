@@ -17,6 +17,8 @@ public:
 	c_tag_interface& get_tag_interface() const { return tag_interface; }
 	c_cache_file& get_cache_file() const { return tag_interface.get_cache_file(); }
 
+	virtual bool is_enabled() const final;
+
 protected:
 	virtual void render_impl() override final;
 	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;

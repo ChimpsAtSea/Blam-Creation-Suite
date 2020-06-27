@@ -142,25 +142,6 @@ void c_cache_file_tab::render_explorer_bar()
 				ImGui::PopStyleVar();
 				ImGui::EndTabItem();
 			}
-			//if (ImGui::BeginTabItem("Tags"))
-			//{
-			//	ImGui::Dummy({ 0.0f, 1.0f });
-			//	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 4, 4 });
-			//	//for (uint32_t i = 0; i < root.num_nodes; i++)
-			//	//{
-			//	//	render_tree_node(*root.children[i]);
-			//	//}
-			//	ImGui::PopStyleVar();
-			//	ImGui::EndTabItem();
-			//}
-			//if (ImGui::BeginTabItem("Files"))
-			//{
-			//	ImGui::Dummy({ 0.0f, 1.0f });
-			//	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 4, 4 });
-			//	//render_tree_node(tags);
-			//	ImGui::PopStyleVar();
-			//	ImGui::EndTabItem();
-			//}
 
 
 			ImGui::EndTabBar();
@@ -180,19 +161,22 @@ void c_cache_file_tab::render_explorer_bar()
 
 void c_cache_file_tab::render_impl()
 {
-	ImGui::Columns(2, "##navigation");
-	RUNONCE(ImGui::SetColumnOffset(1, 500));
-	ImGui::Separator();
+	if (c_mandrill_user_interface::show_explorer_bar)
 	{
-		ImGui::BeginGroup();
-		ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+		ImGui::Columns(2, "##navigation");
+		RUNONCE(ImGui::SetColumnOffset(1, 500));
+		ImGui::Separator();
+		{
+			ImGui::BeginGroup();
+			ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
-		render_explorer_bar();
+			render_explorer_bar();
 
-		ImGui::EndChild();
-		ImGui::EndGroup();
+			ImGui::EndChild();
+			ImGui::EndGroup();
+		}
+		ImGui::NextColumn();
 	}
-	ImGui::NextColumn();
 	{
 		ImGui::BeginGroup();
 		ImGui::BeginChild("right column", {}, false);
@@ -292,22 +276,24 @@ void c_cache_file_tab::render_tags_list_tree()
 
 		if (!display_group) continue;
 
-
-		bool is_group_tag_valid = true;
-		bool has_valid_tag = false;
-		for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
+		if (c_mandrill_user_interface::use_developer_features)
 		{
-			bool is_tag_valid = true;
-			if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+			bool is_group_tag_valid = true;
+			bool has_valid_tag = false;
+			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
 			{
-				is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+				bool is_tag_valid = true;
+				if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+				{
+					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+				}
+				is_group_tag_valid &= is_tag_valid;
+				has_valid_tag |= is_tag_valid;
 			}
-			is_group_tag_valid &= is_tag_valid;
-			has_valid_tag |= is_tag_valid;
+			if (is_group_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+			else if (has_valid_tag) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
+			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 		}
-		if (is_group_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-		else if (has_valid_tag) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
-		else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 
 		if (ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name))
 		{
@@ -320,14 +306,18 @@ void c_cache_file_tab::render_tags_list_tree()
 					? tag_interface->get_path_with_group_id_cstr()
 					: tag_interface->get_name_with_group_id_cstr();
 
-				c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface);
-				bool is_tag_valid = true;
-				if (gen3_tag_interface)
+				c_gen3_tag_interface* gen3_tag_interface = nullptr;
+				if (c_mandrill_user_interface::use_developer_features)
 				{
-					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+					gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface);
+					bool is_tag_valid = true;
+					if (gen3_tag_interface)
+					{
+						is_tag_valid = gen3_tag_interface->get_is_tag_valid();
 
-					if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-					else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+						if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+						else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+					}
 				}
 
 				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
@@ -339,7 +329,7 @@ void c_cache_file_tab::render_tags_list_tree()
 					}
 				}
 
-				if (gen3_tag_interface)
+				if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface != nullptr)
 				{
 					ImGui::PopStyleColor();
 				}
@@ -347,7 +337,11 @@ void c_cache_file_tab::render_tags_list_tree()
 
 			ImGui::TreePop();
 		}
-		ImGui::PopStyleColor();
+
+		if (c_mandrill_user_interface::use_developer_features)
+		{
+			ImGui::PopStyleColor();
+		}
 	}
 }
 
@@ -378,19 +372,23 @@ void c_cache_file_tab::render_tags_list_search()
 			}
 		}
 
-		c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
-		bool is_tag_valid = true;
-		if (gen3_tag_interface)
+		c_gen3_tag_interface* gen3_tag_interface = nullptr; 
+		if (c_mandrill_user_interface::use_developer_features)
 		{
-			is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+			gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
+			bool is_tag_valid = true;
+			if (gen3_tag_interface)
+			{
+				is_tag_valid = gen3_tag_interface->get_is_tag_valid();
 
-			if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+				if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+				else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+			}
 		}
 
 		bool selected = ImGui::Selectable(tag_display_with_group_name, search_selected_tag_interface == &tag_interface, ImGuiSelectableFlags_AllowDoubleClick);
 
-		if (gen3_tag_interface)
+		if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface)
 		{
 			ImGui::PopStyleColor();
 		}

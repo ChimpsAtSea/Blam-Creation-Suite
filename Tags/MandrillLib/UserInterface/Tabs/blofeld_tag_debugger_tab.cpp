@@ -25,6 +25,11 @@ c_blofeld_tag_debugger_tab::~c_blofeld_tag_debugger_tab()
 
 }
 
+bool c_blofeld_tag_debugger_tab::is_enabled() const
+{
+	return c_mandrill_user_interface::use_developer_features;
+}
+
 void c_blofeld_tag_debugger_tab::render_field_name(c_field_formatter& formatter, const blofeld::s_tag_field& field, s_field_validation_result* result)
 {
 	float start = ImGui::GetCursorPosX();
@@ -806,7 +811,7 @@ void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_re
 {
 	if (menu_render_type == _menu_render_type_root)
 	{
-		if (ImGui::BeginMenu("Debugging"))
+		if (c_mandrill_user_interface::use_developer_features && ImGui::BeginMenu("Debugging"))
 		{
 			if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values" : "Show Hex Values"))
 			{

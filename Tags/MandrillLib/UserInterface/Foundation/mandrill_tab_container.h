@@ -12,6 +12,8 @@ public:
 
 	virtual void add_tab(c_mandrill_tab& tab);
 	virtual void remove_tab(c_mandrill_tab& tab);
+	virtual bool is_enabled() const;
+	bool has_enabled_children() const;
 	c_callback<void(c_mandrill_tab&)> on_tab_added;
 	c_callback<void(c_mandrill_tab&)> on_tab_removed;
 	c_callback<void(c_mandrill_tab&)> on_closed;

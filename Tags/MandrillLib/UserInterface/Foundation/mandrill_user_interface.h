@@ -41,6 +41,12 @@ public:
 	static void set_get_tag_section_address_callback(t_get_tag_section_address_callback* get_tag_section_address);
 	static void set_get_tag_game_memory_callback(t_get_tag_game_memory_callback* get_tag_game_memory);
 
+	static constexpr const char* k_use_developer_features = "use_developer_features";
+	static constexpr const char* k_show_explorer_bar = "show_explorer_bar";
+
+	static bool use_developer_features;
+	static bool show_explorer_bar;
+
 protected:
 	void mandrill_theme_push();
 	void mandrill_theme_pop();

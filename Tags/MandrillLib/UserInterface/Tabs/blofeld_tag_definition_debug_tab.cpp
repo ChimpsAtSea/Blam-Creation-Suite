@@ -12,6 +12,11 @@ c_blofeld_tag_definition_debug_tab::~c_blofeld_tag_definition_debug_tab()
 
 }
 
+bool c_blofeld_tag_definition_debug_tab::is_enabled() const
+{
+	return c_mandrill_user_interface::use_developer_features;
+}
+
 void c_blofeld_tag_definition_debug_tab::render_impl()
 {
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
