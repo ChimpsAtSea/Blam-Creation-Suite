@@ -1,13 +1,38 @@
 #include "mandrilllib-private-pch.h"
 
-c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent) :
+c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent, const char* tag_list) :
 	c_mandrill_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8(), &parent),
 	cache_file(cache_file),
 	render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes")),
 	search_buffer(),
 	search_selected_tag_interface(nullptr)
 {
-	open_command_line_tag();
+	std::string load_tag_command_line = c_command_line::get_command_line_arg("-loadtag");
+	if (!load_tag_command_line.empty())
+	{
+		open_tag_by_search_name(load_tag_command_line.c_str());
+	}
+
+	c_fixed_path tag_name;
+	const char* read_position = tag_list;
+	while (*read_position != 0)
+	{
+		if (*read_position == ';')
+		{
+			read_position++;
+		}
+		while (*read_position && *read_position != ';' && *read_position != '[')
+		{
+			tag_name += *read_position;
+			read_position++;
+		}
+
+		DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
+
+		open_tag_by_search_name(tag_name.c_str());
+
+		tag_name.clear();
+	}
 }
 
 c_cache_file_tab::~c_cache_file_tab()
@@ -35,36 +60,32 @@ c_tag_interface_tab& c_cache_file_tab::open_tag_interface_tab(c_tag_interface& t
 	return *tag_interface_tab;
 }
 
-void c_cache_file_tab::open_command_line_tag()
+void c_cache_file_tab::open_tag_by_search_name(const char* tag_name)
 {
-	std::string load_tag_command_line = c_command_line::get_command_line_arg("-loadtag");
-	if (!load_tag_command_line.empty())
+	// #TODO: Create a callback function interface that will run on the first frame of the main thread
+	while (cache_file.is_loading()) { Sleep(1); };
+
+	c_tag_interface* tag_interface = nullptr;
+
+	for (c_tag_interface* current_tag_interface : c_range_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 	{
-		// #TODO: Create a callback function interface that will run on the first frame of the main thread
-		while (cache_file.is_loading()) { Sleep(1); };
+		if (current_tag_interface->is_null()) continue;
 
-		c_tag_interface* tag_interface = nullptr;
-
-		for (c_tag_interface* current_tag_interface : c_range_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
+		bool is_match =
+			_stricmp(tag_name, current_tag_interface->get_name_with_group_id_cstr()) == 0 ||
+			_stricmp(tag_name, current_tag_interface->get_path_with_group_id_cstr()) == 0 ||
+			_stricmp(tag_name, current_tag_interface->get_name_with_group_name_cstr()) == 0 ||
+			_stricmp(tag_name, current_tag_interface->get_path_with_group_name_cstr()) == 0;
+		if (is_match)
 		{
-			if (current_tag_interface->is_null()) continue;
-
-			bool is_match = false;
-			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_id_cstr();
-			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_id_cstr();
-			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_name_cstr();
-			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_name_cstr();
-			if (is_match)
-			{
-				tag_interface = current_tag_interface;
-				break;
-			}
+			tag_interface = current_tag_interface;
+			break;
 		}
+	}
 
-		if (tag_interface)
-		{
-			open_tag_interface_tab(*tag_interface);
-		}
+	if (tag_interface)
+	{
+		open_tag_interface_tab(*tag_interface);
 	}
 }
 

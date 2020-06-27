@@ -28,9 +28,11 @@ void c_mandrill_tab_container::add_tab(c_mandrill_tab& tab)
 				this->remove_tab(tab); 
 			});
 	}
+	on_tab_added(tab);
 }
 
 void c_mandrill_tab_container::remove_tab(c_mandrill_tab& tab)
 {
 	vector_erase_by_value_helper(children, &tab);
+	on_tab_removed(tab);
 }

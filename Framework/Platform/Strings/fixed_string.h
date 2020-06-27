@@ -6,6 +6,11 @@ template<uint32_t k_capacity, typename t_char_type = char>
 class c_fixed_string
 {
 public:
+	template<typename T> struct s_string_conversion_type;
+	template<> struct s_string_conversion_type<char> { typedef typename wchar_t t_type; };
+	template<> struct s_string_conversion_type<wchar_t> { typedef typename char t_type; };
+	typedef typename s_string_conversion_type<t_char_type>::t_type t_conversion_char_type;
+
 	static constexpr bool is_char_type = std::is_same<t_char_type, char>::value;
 	static constexpr bool is_wchar_type = std::is_same<t_char_type, wchar_t>::value;
 
@@ -108,6 +113,30 @@ public:
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
 
 		data[k_capacity - 1] = 0; // ensure null terminated
+	}
+
+	void operator +=(const t_conversion_char_type* string)
+	{
+		size_t string_length;
+		if constexpr (is_char_type)
+		{
+			string_length = wcslen(string);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			string_length = strlen(string);
+		}
+		size_t buffer_length = string_length + 1;
+		t_char_type* buffer = static_cast<t_char_type*>(alloca(sizeof(t_char_type) * buffer_length));
+		if constexpr (is_char_type)
+		{
+			snprintf(buffer, buffer_length, "%S", string);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			swprintf(buffer, buffer_length, L"%S", string);
+		}
+		*this += buffer;
 	}
 
 	void operator +=(const t_char_type* string)

@@ -38,7 +38,7 @@ c_mandrill_user_interface::~c_mandrill_user_interface()
 	delete file_browser;
 }
 
-void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath)
+void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, const char* tag_list)
 {
 	if (filepath == nullptr || !PathFileExistsW(filepath))
 	{
@@ -61,7 +61,15 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath)
 	c_cache_file* cache_file = c_cache_file::create_cache_file(filepath);
 	if (cache_file)
 	{
-		c_cache_file_tab* cache_file_tab = new c_cache_file_tab(*cache_file, *this);
+		c_cache_file_tab* cache_file_tab = new c_cache_file_tab(*cache_file, *this, tag_list);
+		cache_file_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
+			{
+				save_current_session();
+			});
+		cache_file_tab->on_tab_removed.register_callback(cache_file, [this](c_mandrill_tab& tab)
+			{
+				save_current_session();
+			});
 		cache_file_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
 			{
 				if (c_cache_file_tab* cache_file_tab = static_cast<c_cache_file_tab*>(&tab))
@@ -92,19 +100,37 @@ void c_mandrill_user_interface::restore_previous_session()
 	tbb::task_group g;
 
 	c_fixed_wide_path open_maps_path;
-	const wchar_t* read_position = open_maps_buffer.c_str();
+	const wchar_t* const start_read_position = open_maps_buffer.c_str();
+	const wchar_t* read_position = start_read_position;
 	while (*read_position != 0)
 	{
-		while (*read_position && *read_position != ';')
+		if (*read_position == ';')
+		{
+			read_position++;
+		}
+		while (*read_position && *read_position != ';' && *read_position != '[')
 		{
 			open_maps_path += *read_position;
 			read_position++;
 		}
 
-		g.run([this, open_maps_path] { open_cache_file_tab(open_maps_path.c_str()); });
+		c_fixed_string<65536> tags_list;
+		if (*read_position == '[')
+		{
+			read_position++; // [
+			while (*read_position && *read_position != ']')
+			{
+				tags_list += static_cast<char>(*read_position);
+				read_position++;
+			}
+			read_position++; // ]
+		}
+
+		DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
+
+		g.run([this, open_maps_path, tags_list] { open_cache_file_tab(open_maps_path.c_str(), tags_list.c_str()); });
 
 		open_maps_path.clear();
-		read_position++;
 	}
 	g.wait();
 
@@ -128,6 +154,30 @@ void c_mandrill_user_interface::save_current_session()
 				open_maps_path += ';';
 			}
 			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();			
+			
+			uint32_t cache_file_tab_index = 0;
+			for (c_mandrill_tab& cache_file_child_tab : c_reference_loop(cache_file_tab->get_children(), cache_file_tab->get_child_count()))
+			{
+				if (c_tag_interface_tab* tag_interface_tab = dynamic_cast<c_tag_interface_tab*>(&cache_file_child_tab))
+				{
+					if (cache_file_tab_index == 0)
+					{
+						open_maps_path += '[';
+					}
+					else
+					{
+						open_maps_path += ';';
+					}
+
+					open_maps_path += tag_interface_tab->get_tag_interface().get_path_with_group_name_cstr();
+
+					cache_file_tab_index++;
+				}
+			}
+			if (cache_file_tab_index > 0)
+			{
+				open_maps_path += ']';
+			}
 		}
 	}
 

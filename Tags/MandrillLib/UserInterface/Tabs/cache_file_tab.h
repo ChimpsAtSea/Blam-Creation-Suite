@@ -10,7 +10,7 @@ class c_cache_file_tab :
 public:
 	non_copyconstructable(c_cache_file_tab);
 
-	c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent);
+	c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent, const char* tag_list);
 	~c_cache_file_tab();
 
 	c_cache_file& get_cache_file() const { return cache_file; }
@@ -24,7 +24,7 @@ protected:
 	void render_tags_list_tree();
 	void render_tags_list_search();
 	c_tag_interface_tab& open_tag_interface_tab(c_tag_interface& tag_interface);
-	void open_command_line_tag();
+	void open_tag_by_search_name(const char* tag_name);
 	void render_search_box();
 	void render_explorer_bar();
 
