@@ -54,7 +54,7 @@ void c_tag_interface_tab::render_impl()
 
 void c_tag_interface_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-	if (menu_render_type == _menu_render_type_root && is_selected)
+	if (menu_render_type == _menu_render_type_root && _is_selected)
 	{
 		//if (ImGui::BeginMenu(tag_interface.get_name_with_group_name_cstr()))
 		//{

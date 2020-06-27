@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+float c_cache_file_tab::explorer_bar_width = c_settings::read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
+
 c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent, const char* tag_list) :
 	c_mandrill_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8(), &parent),
 	cache_file(cache_file),
@@ -15,6 +17,7 @@ c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& par
 
 	if (tag_list != nullptr)
 	{
+		c_fixed_path selected_tag_name;
 		c_fixed_path tag_name;
 		const char* read_position = tag_list;
 		while (*read_position != 0)
@@ -23,9 +26,14 @@ c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& par
 			{
 				read_position++;
 			}
-			while (*read_position && *read_position != ';' && *read_position != '[')
+			while (*read_position && *read_position != ';' && *read_position != ']' && *read_position != '*')
 			{
 				tag_name += *read_position;
+				read_position++;
+			}
+			if (*read_position == '*')
+			{
+				selected_tag_name = tag_name;
 				read_position++;
 			}
 
@@ -34,6 +42,10 @@ c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& par
 			open_tag_by_search_name(tag_name.c_str());
 
 			tag_name.clear();
+		}
+		if (!selected_tag_name.is_empty())
+		{
+			open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
 		}
 	}
 }
@@ -164,16 +176,31 @@ void c_cache_file_tab::render_impl()
 	if (c_mandrill_user_interface::show_explorer_bar)
 	{
 		ImGui::Columns(2, "##navigation");
-		RUNONCE(ImGui::SetColumnOffset(1, 500));
+		ImGui::SetColumnOffset(1, explorer_bar_width);
 		ImGui::Separator();
 		{
 			ImGui::BeginGroup();
-			ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-
+			ImVec2 size = ImGui::GetContentRegionAvail();
+			if (size.x < 200.0f)
+			{
+				size.x = 200.0f;
+			}
+			ImGui::BeginChild("left column", size, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+			
 			render_explorer_bar();
 
 			ImGui::EndChild();
 			ImGui::EndGroup();
+		}
+		if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
+		{
+			auto& x = ImGui::GetStyle();
+			explorer_bar_width = ImGui::GetItemRectSize().x + 16.0f;
+			c_settings::write_float(_settings_section_mandrill, k_explorer_bar_width, explorer_bar_width);
+		}
+		if (explorer_bar_width < 200.0f)
+		{
+			explorer_bar_width = 200.0f + 16.0f;
 		}
 		ImGui::NextColumn();
 	}
@@ -200,7 +227,7 @@ void c_cache_file_tab::render_impl()
 
 void c_cache_file_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-	if (menu_render_type == _menu_render_type_root && is_selected)
+	if (menu_render_type == _menu_render_type_root && _is_selected)
 	{
 		if (ImGui::BeginMenu("Cache"))
 		{

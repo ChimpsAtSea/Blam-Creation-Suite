@@ -7,9 +7,6 @@ c_mandrill_tab::c_mandrill_tab(const char* title, const char* description, c_man
 	c_mandrill_event_queue(),
 	title(title),
 	description(description),
-	is_selected(false),
-	allow_close(allow_close),
-	is_open(true),
 	next_selected_tab(nullptr)
 {
 
@@ -22,22 +19,31 @@ c_mandrill_tab::~c_mandrill_tab()
 
 void c_mandrill_tab::render(bool set_selected)
 {
-	if (!is_open)
+	if (!_is_open)
 	{
 		delete this;
 		return;
 	}
 
-	ImGui::PushID(this);
-
 	run_events();
+
+	if (!is_enabled())
+	{
+		return;
+	}
+
+	ImGui::PushID(this);
 
 	ImGuiTabItemFlags flags = 0;
 	if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
-	is_selected = false;
-	if (ImGui::BeginTabItem(title.c_str(), allow_close ? &is_open : nullptr, flags))
+	if (ImGui::BeginTabItem(title.c_str(), _allow_close ? &_is_open : nullptr, flags))
 	{
-		is_selected = true;
+		if (set_selected || !_is_selected)
+		{
+			_is_selected = true;
+			on_selected(*this);
+			on_selected_tree_change(*this, *this);
+		}
 
 		render_impl();
 
@@ -45,7 +51,7 @@ void c_mandrill_tab::render(bool set_selected)
 	}
 	else
 	{
-		is_selected = false;
+		_is_selected = false;
 	}
 
 	ImGui::PopID();

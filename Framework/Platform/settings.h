@@ -25,6 +25,7 @@ public:
 
 	static bool write_boolean(e_settings_section section, const char* name, bool value);
 	static bool write_integer(e_settings_section section, const char* name, int value);
+	static bool write_float(e_settings_section section, const char* name, float value);
 	static bool write_string(e_settings_section section, const char* name, const char* value);
 	static bool write_wstring(e_settings_section section, const char* name, const wchar_t* value);
 

@@ -76,6 +76,16 @@ bool c_settings::write_integer(e_settings_section section, const char* name, int
 	return WritePrivateProfileStringA(section_name, name, buffer, k_settings_path);
 }
 
+bool c_settings::write_float(e_settings_section section, const char* name, float value)
+{
+	const char* section_name = get_section_name_string(section);
+	size_t buffer_length = static_cast<int>(logf(value)) + 16;
+	char* buffer = static_cast<char*>(alloca(buffer_length));
+	memset(buffer, 0, buffer_length);
+	snprintf(buffer, buffer_length, "%f", value);
+	return WritePrivateProfileStringA(section_name, name, buffer, k_settings_path);
+}
+
 bool c_settings::write_string(e_settings_section section, const char* name, const char* value)
 {
 	const char* section_name = get_section_name_string(section);

@@ -1,8 +1,15 @@
 #include "mandrilllib-private-pch.h"
 
-c_mandrill_tab_container::c_mandrill_tab_container(c_mandrill_tab* parent) :
-	parent(parent),
+c_mandrill_tab_container::c_mandrill_tab_container(c_mandrill_tab* parent, bool allow_close) :
+	on_selected(),
+	on_selected_tree_change(),
+	on_tab_added(),
+	on_tab_removed(),
 	on_closed(),
+	_is_selected(false),
+	_allow_close(allow_close),
+	_is_open(true),
+	parent(parent),
 	children()
 {
 
@@ -23,6 +30,10 @@ void c_mandrill_tab_container::add_tab(c_mandrill_tab& tab)
 	{
 		children.push_back(&tab);
 
+		tab.on_selected_tree_change.register_callback(this, [this](c_mandrill_tab& callee, c_mandrill_tab& target)
+			{
+				on_selected_tree_change(*static_cast<c_mandrill_tab*>(this), target);
+			});
 		tab.on_closed.register_callback(this, [this] (c_mandrill_tab& tab) 
 			{ 
 				this->remove_tab(tab); 

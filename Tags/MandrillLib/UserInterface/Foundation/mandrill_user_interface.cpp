@@ -73,6 +73,10 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 			{
 				save_current_session();
 			});
+		cache_file_tab->on_selected_tree_change.register_callback(cache_file, [this](c_mandrill_tab& callee, c_mandrill_tab& target)
+			{
+				save_current_session();
+			});
 		cache_file_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
 			{
 				if (c_cache_file_tab* cache_file_tab = static_cast<c_cache_file_tab*>(&tab))
@@ -100,24 +104,31 @@ void c_mandrill_user_interface::restore_previous_session()
 	c_fixed_wide_string<32 * 1024> open_maps_buffer;
 	c_settings::read_wstring(_settings_section_mandrill, "open_maps", open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
 
-	tbb::task_group g;
-
-	c_fixed_wide_path open_maps_path;
+	c_fixed_wide_path selected_map_path;
+	c_fixed_string_64k selected_map_tags_list;
 	const wchar_t* const start_read_position = open_maps_buffer.c_str();
 	const wchar_t* read_position = start_read_position;
 	while (*read_position != 0)
 	{
+		c_fixed_wide_path map_path;
+
 		if (*read_position == ';')
 		{
 			read_position++;
 		}
-		while (*read_position && *read_position != ';' && *read_position != '[')
+		while (*read_position && *read_position != ';' && *read_position != '[' && *read_position != '*')
 		{
-			open_maps_path += *read_position;
+			map_path += *read_position;
+			read_position++;
+		}
+		bool is_selected = false;
+		if (*read_position == '*')
+		{
+			is_selected = true;
 			read_position++;
 		}
 
-		c_fixed_string<65536> tags_list;
+		c_fixed_string_64k tags_list;
 		if (*read_position == '[')
 		{
 			read_position++; // [
@@ -129,13 +140,21 @@ void c_mandrill_user_interface::restore_previous_session()
 			read_position++; // ]
 		}
 
-		DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
+		DEBUG_ASSERT(*read_position == 0 || *read_position == ';' || *read_position == '*');
 
-		g.run([this, open_maps_path, tags_list] { open_cache_file_tab(open_maps_path.c_str(), tags_list.c_str()); });
+		if (is_selected)
+		{
+			selected_map_path = map_path;
+			selected_map_tags_list = tags_list;
+		}
+		open_cache_file_tab(map_path.c_str(), tags_list.c_str());
 
-		open_maps_path.clear();
+		map_path.clear();
 	}
-	g.wait();
+	if (!selected_map_path.is_empty())
+	{
+		open_cache_file_tab(selected_map_path.c_str(), selected_map_tags_list.c_str());
+	}
 
 	is_session_restored = true;
 }
@@ -158,6 +177,12 @@ void c_mandrill_user_interface::save_current_session()
 			}
 			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();			
 			
+
+			if (tab.is_selected())
+			{
+				open_maps_path += "*";
+			}
+
 			uint32_t cache_file_tab_index = 0;
 			for (c_mandrill_tab& cache_file_child_tab : c_reference_loop(cache_file_tab->get_children(), cache_file_tab->get_child_count()))
 			{
@@ -173,6 +198,11 @@ void c_mandrill_user_interface::save_current_session()
 					}
 
 					open_maps_path += tag_interface_tab->get_tag_interface().get_path_with_group_name_cstr();
+
+					if (tag_interface_tab->is_selected())
+					{
+						open_maps_path += "*";
+					}
 
 					cache_file_tab_index++;
 				}
@@ -250,7 +280,7 @@ void c_mandrill_user_interface::render_impl()
 
 	mandrill_theme_pop();
 
-	if (!is_open)
+	if (!_is_open)
 	{
 		on_close();
 	}
@@ -281,7 +311,7 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
 				{
-					is_open = false;
+					_is_open = false;
 				}
 				ImGui::EndMenu();
 			}

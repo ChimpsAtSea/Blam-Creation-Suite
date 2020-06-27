@@ -48,8 +48,5 @@ protected:
 
 	c_fixed_string_128 title;
 	c_fixed_string_256 description;
-	bool is_selected;
-	bool allow_close;
-	bool is_open;
 	c_mandrill_tab* next_selected_tab;
 };

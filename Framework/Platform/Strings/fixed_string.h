@@ -426,6 +426,10 @@ using c_fixed_string_512 = c_fixed_string<512>;
 using c_fixed_string_1024 = c_fixed_string<1024>;
 using c_fixed_string_2048 = c_fixed_string<2048>;
 using c_fixed_string_4096 = c_fixed_string<4096>;
+using c_fixed_string_8k = c_fixed_string<8192>;
+using c_fixed_string_16k = c_fixed_string<16384>;
+using c_fixed_string_32k = c_fixed_string<32768>;
+using c_fixed_string_64k = c_fixed_string<65536>;
 
 template<uint32_t k_capacity>
 using c_fixed_wide_string = c_fixed_string<k_capacity, wchar_t>;
@@ -440,3 +444,7 @@ using c_fixed_wide_string_512 = c_fixed_wide_string<512>;
 using c_fixed_wide_string_1024 = c_fixed_wide_string<1024>;
 using c_fixed_wide_string_2048 = c_fixed_wide_string<2048>;
 using c_fixed_wide_string_4096 = c_fixed_wide_string<4096>;
+using c_fixed_wide_string_8k = c_fixed_wide_string<8192>;
+using c_fixed_wide_string_16k = c_fixed_wide_string<16384>;
+using c_fixed_wide_string_32k = c_fixed_wide_string<32768>;
+using c_fixed_wide_string_64k = c_fixed_wide_string<65536>;
