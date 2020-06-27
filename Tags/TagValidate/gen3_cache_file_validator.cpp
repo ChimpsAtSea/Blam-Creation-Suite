@@ -81,7 +81,7 @@ uint32_t c_gen3_cache_file_validator::get_field_size(const blofeld::s_tag_field&
 		uint32_t struct_size = get_struct_size(*field.struct_definition);	// dynamic
 		return struct_size;
 	}
-	case blofeld::_field_array:							return get_struct_size(field.array_definition->struct_definition) * field.array_definition->count;	// dynamic
+	case blofeld::_field_array:							return get_struct_size(field.array_definition->struct_definition) * field.array_definition->count(engine_type);	// dynamic
 	}
 	throw;
 }
@@ -333,7 +333,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 
 					if (is_struct_valid)
 					{
-						result.block_is_out_of_range = tag_block.count > current_field->block_definition->max_count;
+						result.block_is_out_of_range = tag_block.count > current_field->block_definition->max_count(engine_type);
 
 						char* start = data_address;
 						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, platform_type, _build_not_set, current_field->block_definition->struct_definition));
@@ -382,7 +382,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			case blofeld::_field_array:
 			{
 				uint32_t total_array_struct_bytes_traversed = 0;
-				for (uint32_t array_index = 0; array_index < current_field->array_definition->count; array_index++)
+				for (uint32_t array_index = 0; array_index < current_field->array_definition->count(engine_type); array_index++)
 				{
 					uint32_t array_struct_bytes_traversed = render_tag_struct_definition(
 						tag_interface,

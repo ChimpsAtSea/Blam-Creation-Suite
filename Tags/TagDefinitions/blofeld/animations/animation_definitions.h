@@ -171,8 +171,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition g_node_flag_storage_array_struct_definition;
 	extern s_tag_array_definition g_node_flag_storage_array_array;
-	extern s_tag_struct_definition g_node_flag_storage_array_haloreach_struct_definition; // #TODO: Replace with new constants system
-	extern s_tag_array_definition g_node_flag_storage_array_haloreach_array; // #TODO: Replace with new constants system
 	extern s_tag_struct_definition animation_velocity_boundaries_struct_definition;
 	extern s_tag_array_definition animation_velocity_boundaries_array;
 	extern s_tag_struct_definition frame_event_list_struct_definition_struct_definition; // tag group

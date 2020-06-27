@@ -125,7 +125,7 @@ void c_virtual_tag_source_generator::generate_header()
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count << "];";
+				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_type) << "];";
 				break;
 			}
 			case _field_struct:

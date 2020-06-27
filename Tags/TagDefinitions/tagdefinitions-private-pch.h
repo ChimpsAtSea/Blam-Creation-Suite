@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef BLOFELD_TAG_DEFINITIONS
+#define BLOFELD_TAG_DEFINITIONS 1
+#endif
+
 #include <Platform\platform-public-pch.h>
 #include <Versioning\versioning-public-pch.h>
 #include <Shared\Blam\blamlib-public-pch.h>
@@ -59,7 +63,7 @@ TAG_FIELDS(CONCAT(tag_struct_name, _struct))
 
 #define TAG_BLOCK(tag_block_name, block_count) \
 TAG_BLOCK_STRUCT_FORWARD(CONCAT(tag_block_name, _block)) \
-s_tag_block_definition CONCAT(tag_block_name, _block) = { STRINGIFY(tag_block_name)"_block", STRINGIFY(tag_block_name)"_block", __FILE__, __LINE__, block_count, #block_count, CONCAT(tag_block_name, _block_struct) }; \
+s_tag_block_definition CONCAT(tag_block_name, _block) = { STRINGIFY(tag_block_name)"_block", STRINGIFY(tag_block_name)"_block", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(block_count); }, #block_count, CONCAT(tag_block_name, _block_struct) }; \
 TAG_BLOCK_STRUCT(CONCAT(tag_block_name, _block))
 
 #define TAG_GROUP(tag_group_name, group_tag) \
@@ -73,7 +77,7 @@ s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_
 TAG_BLOCK(tag_group_name, 1)
 
 #define TAG_BLOCK_FROM_STRUCT(block_name, block_count, struct_name) \
-s_tag_block_definition CONCAT(block_name, _block) = { STRINGIFY(block_name)"_block", STRINGIFY(block_name)"_block", __FILE__, __LINE__, block_count, #block_count, struct_name };
+s_tag_block_definition CONCAT(block_name, _block) = { STRINGIFY(block_name)"_block", STRINGIFY(block_name)"_block", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(block_count); }, #block_count, struct_name };
 
 #define TAG_GROUP_FROM_BLOCK(tag_group_name, group_tag, block_name) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, INVALID_TAG, block_name, nullptr };
@@ -107,7 +111,7 @@ const char* CONCAT(name, _strings)[] = { "" }
 
 #define TAG_ARRAY(tag_array_name, array_count) \
 TAG_STRUCT_FORWARD(tag_array_name) \
-s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, array_count, #array_count, CONCAT(tag_array_name, _struct_definition) }; \
+s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(array_count); }, #array_count, CONCAT(tag_array_name, _struct_definition) }; \
 TAG_STRUCT(tag_array_name)
 
 }

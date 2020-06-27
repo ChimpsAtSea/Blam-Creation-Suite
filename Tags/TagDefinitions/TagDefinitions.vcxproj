@@ -59,6 +59,12 @@
     <ClCompile Include="blofeld\camera\camera_obstruction.cpp" />
     <ClCompile Include="blofeld\camera\camera_track_definitions.cpp" />
     <ClCompile Include="blofeld\components\selfilluminationdefinition.cpp" />
+    <ClCompile Include="blofeld\constants.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="blofeld\creatures\creature_definitions.cpp" />
     <ClCompile Include="blofeld\cutscene\cinematics_definitions.cpp" />
     <ClCompile Include="blofeld\cutscene\lightrig.cpp" />

@@ -64,11 +64,7 @@ namespace blofeld
 
 	TAG_BLOCK(cinematic_shot_playback_data_block, MAX_CINEMATIC_SCENE_COUNT)
 	{
-		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_array, "shot flags!", &g_cinematicShotFlagArray_array },
-
-	    { _field_version_less_or_equal, _engine_type_haloreach, 1 },
-	    { _field_array, "shot flags!", &g_cinematicShotFlagArray_haloreach_array }, // 1 flag instead of 2
 
 		{ _field_terminator }
 	};
@@ -410,12 +406,6 @@ namespace blofeld
 	};
 
 	TAG_ARRAY(g_cinematicShotFlagArray, c_cinematic_shot_flags::k_flag_chunk_count)
-	{
-		{ _field_dword_integer, "shot flag data" },
-		{ _field_terminator }
-	};
-
-	TAG_ARRAY(g_cinematicShotFlagArray_haloreach, c_cinematic_shot_flags::k_flag_chunk_count_haloreach)
 	{
 		{ _field_dword_integer, "shot flag data" },
 		{ _field_terminator }

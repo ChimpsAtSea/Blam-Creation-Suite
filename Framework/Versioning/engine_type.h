@@ -14,6 +14,7 @@ enum e_engine_type : uint8_t
 	_engine_type_eldorado,
 	_engine_type_halo5,
 	_engine_type_gen3_xbox360,
+	k_number_of_engine_types
 };
 
 template<typename string_type, bool pretty_string>

@@ -121,7 +121,7 @@ uint32_t c_blofeld_tag_definition_debug_tab::render_tag_struct_definition(int le
 			REFERENCE_ASSERT(field_struct_definition);
 
 			ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(0.7f, 1.0f, 0.7f));
-			for (uint32_t array_index = 0; array_index < field_array_definition->count; array_index++)
+			for (uint32_t array_index = 0; array_index < field_array_definition->count(engine_type); array_index++)
 			{
 				render_tag_struct_definition(level + 1, nullptr, field_struct_definition);
 				break;

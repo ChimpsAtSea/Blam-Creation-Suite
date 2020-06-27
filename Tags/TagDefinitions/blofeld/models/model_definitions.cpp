@@ -153,23 +153,16 @@ namespace blofeld
 	TAG_BLOCK(model_variant_block, k_maximum_variants_per_model)
 	{
 		{ _field_string_id, "name^" },
-
-		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_array, "runtime variant region indices!", &runtime_region_index_array_array },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_array, "runtime variant region indices!", &haloreach_runtime_region_index_array_array },
 			
 		{ _field_block, "regions", &model_variant_region_block_block },
 		{ _field_block, "objects", &model_variant_object_block_block },
 		{ _field_long_block_index, "instance group#selects an instance group for this variant" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "muted nodes#turn off animation on these named nodes and children", &model_variant_muted_node_block_block },
-		{ _field_array, "muted flag*!", &g_node_flag_storage_array_array },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },  // #TODO: Replace with new constants system
-		{ _field_array, "muted flag*!", &g_node_flag_storage_array_haloreach_array },  // #TODO: Replace with new constants system
+		{ _field_array, "muted flag*!", &g_node_flag_storage_array_array },
 
 		{ _field_terminator }
 	};
@@ -316,12 +309,6 @@ namespace blofeld
 	};
 
 	TAG_ARRAY(runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL)
-	{
-		{ _field_char_integer, "runtime region index!" },
-		{ _field_terminator }
-	};
-
-	TAG_ARRAY(haloreach_runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL_HALOREACH)
 	{
 		{ _field_char_integer, "runtime region index!" },
 		{ _field_terminator }

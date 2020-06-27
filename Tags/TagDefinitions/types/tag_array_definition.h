@@ -8,7 +8,8 @@ namespace blofeld
 		const char* const display_name;
 		const char* const filename;
 		int32_t const line;
-		unsigned long const count;
+		//unsigned long const count;
+		t_max_count_func* count;
 		const char* const count_string;
 		const s_tag_struct_definition& struct_definition;
 	};
