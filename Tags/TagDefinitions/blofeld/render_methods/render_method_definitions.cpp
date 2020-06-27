@@ -179,7 +179,10 @@ namespace blofeld
 	TAG_BLOCK(render_method_option_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
 		{ _field_string_id, "parameter name" },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "parameter ui override name" },
+
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
 		{ _field_long_enum, "source extern", &render_method_extern_enum },
 		{ _field_tag_reference, "default bitmap", &global_bitmap_reference },
@@ -197,7 +200,10 @@ namespace blofeld
 		{ _field_real, "suggested real min" },
 		{ _field_real, "suggested real max" },
 		{ _field_long_integer, "ticks from min to max" },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_data, "help text" },
+
 		{ _field_terminator }
 	};
 
