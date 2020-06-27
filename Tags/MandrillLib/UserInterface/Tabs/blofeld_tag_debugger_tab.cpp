@@ -107,7 +107,7 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 
 	ImGui::Dummy({ level * indent_size, 0.0f });
 	ImGui::SameLine();
-	byte& raw_value = *reinterpret_cast<byte*>(data);
+	t_raw_value& raw_value = *reinterpret_cast<t_raw_value*>(data);
 	c_fixed_string_256 enum_value;
 	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
 	if (raw_value < field.string_list_definition->count)

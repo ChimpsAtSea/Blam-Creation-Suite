@@ -21,6 +21,10 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 {
 	c_fixed_path previous_file_path;
 	c_settings::read_string(_settings_section_mandrill, k_previous_open_filepath_setting, previous_file_path.str(), previous_file_path.capacity(), "");
+	if (!filesystem_directory_exists(previous_file_path.c_str()))
+	{
+		previous_file_path.clear();
+	}
 	file_browser = new ImGuiAddons::ImGuiFileBrowser(previous_file_path.c_str());
 
 	restore_previous_session();
@@ -45,6 +49,12 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 {
 	if (filepath == nullptr || !PathFileExistsW(filepath))
 	{
+		return;
+	}
+
+	if (!filesystem_filepath_exists(filepath))
+	{
+		c_console::write_line("failed to open %s", filepath);
 		return;
 	}
 
@@ -175,8 +185,8 @@ void c_mandrill_user_interface::save_current_session()
 			{
 				open_maps_path += ';';
 			}
-			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();			
-			
+			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();
+
 
 			if (tab.is_selected())
 			{
