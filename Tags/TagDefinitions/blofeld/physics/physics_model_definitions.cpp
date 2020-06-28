@@ -68,6 +68,13 @@ namespace blofeld
 		{ _field_long_integer, "collision filter*" },
 		{ _field_long_integer, "shape size*" },
 		{ _field_long_integer, "num child shapes*" },
+
+		{ _field_version_platform_include, _platform_type_pc, 4 },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_terminator }
 	};
 
@@ -118,13 +125,17 @@ namespace blofeld
 		{ _field_real, "direction max vel" },
 		{ _field_real, "orbit acc#negative values spin the opposite direction from positive ones" },
 		{ _field_real, "orbit max vel" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "TF", 20 },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "TF", 28 },
+		
 		{ _field_explanation, "Angular Motion", "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis" },
 		{ _field_real, "alignment hookes law e#0 if you don\'t want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
-
-		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "TYXJL", 8 },
 
 		{ _field_terminator }
@@ -429,6 +440,10 @@ namespace blofeld
 		{ _field_pad, "mopp alignment*!~", 4 },
 		{ _field_real, "scale*!" },
 		{ _field_pad, "final alignment*!~", 12 },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "16 byte align pad", 8 },
+
 		{ _field_terminator }
 	};
 

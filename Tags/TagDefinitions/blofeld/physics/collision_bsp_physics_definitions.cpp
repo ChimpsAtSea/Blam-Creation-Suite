@@ -71,8 +71,14 @@ namespace blofeld
 		{ _field_pad, "8byte alignment", 4 },
 
 		{ _field_pad, "mopp alignment*!~", 4 },
-		{ _field_real, "mopp scale*" },
+		{ _field_real, "mopp scale*" }, 
+		
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "final pad", 16 },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "final pad", 12 },
+
 		{ _field_terminator }
 	};
 
