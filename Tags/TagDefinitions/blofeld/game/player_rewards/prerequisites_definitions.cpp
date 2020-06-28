@@ -53,17 +53,34 @@ namespace blofeld
 
 	TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
 	{
-		{ _field_string_id, "prerequisite purchased item error string" },
+		{ _field_version_greater, _engine_type_haloreach, 4 },
+		{ _field_string_id, "prerequisite purchased item error string" }, // moved
 		{ _field_string_id, "prerequisite unlockable error string" },
 		{ _field_string_id, "prerequisite offers error string" },
 		{ _field_long_integer, "prerequisite enlistment count" },
+
 		{ _field_block, "prerequisite grades", &purchase_prerequisite_grade_definition_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "prerequisite commendations", &purchase_prerequisite_commendation_definition_block_block },
+
 		{ _field_block, "prerequisite appearance purchased items", &PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock_block },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_string_id, "prerequisite purchased item error string" }, // moved
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "prerequisite loadout purchased items", &PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock_block },
 		{ _field_block, "prerequisite ordnance purchased items", &PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock_block },
+
 		{ _field_block, "prerequisite unlockables", &purchase_prerequisites_unlockable_definition_block_block },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_string_id, "prerequisite unlockable item error string" },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "prerequisite offers", &purchase_prerequisites_offer_definition_block_block },
+
 		{ _field_terminator }
 	};
 
