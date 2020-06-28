@@ -179,6 +179,11 @@ namespace blofeld
 	TAG_BLOCK(character_ref_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_tag_reference, "character type^", &character_reference$7 },
 		{ _field_short_integer, "chance" },
 		{ _field_pad, "post-chance", 2 },
@@ -187,7 +192,12 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_struct, "place on", & ai_spawn_conditions_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_tag_reference, "weapon type^", &weapon_reference$8 },
 		{ _field_short_integer, "chance" },
 		{ _field_pad, "post-chance", 2 },
@@ -196,7 +206,12 @@ namespace blofeld
 
 	TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_struct, "place on", & ai_spawn_conditions_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_tag_reference, "equipment type^", &equipment_reference$4 },
 		{ _field_short_integer, "chance" },
 		{ _field_pad, "post-chance", 2 },
@@ -209,6 +224,13 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_short_integer, "unknown@" },
+		{ _field_short_integer, "unknown@" },
+		{ _field_short_integer, "leader count" },
+		{ _field_short_integer, "follower count" },
+
 		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
 		{ _field_block, "character type", &character_ref_choice_block_block },
 		{ _field_block, "initial weapon", &weapon_ref_choice_block_block },
