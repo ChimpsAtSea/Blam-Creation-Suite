@@ -508,7 +508,15 @@ namespace blofeld
 	c_constant k_maximum_opposing_objectives = { "k_maximum_opposing_objectives", 4 };
 	c_constant k_maximum_tasks_per_objective = { "k_maximum_tasks_per_objective", 100 };
 	c_constant k_max_points_per_task_direction = { "k_max_points_per_task_direction", 8 };
-	c_constant k_maximum_designer_zone_count = { "k_maximum_designer_zone_count", 64 };
+	c_constant k_maximum_designer_zone_count = 
+	{ 
+		"k_maximum_designer_zone_count", 
+		{
+			{ _engine_type_not_set, 32 },
+			{ _engine_type_haloreach, 32 }, // #NOTE: Deduced as the block flags in cache_file_zone_set_zone_usage_block for reach is only 32bits
+			{ _engine_type_gen3_xbox360, 64 },
+		}
+	};
 	c_constant e_scriptableLightRigMax = { "e_scriptableLightRigMax", 128 };
 	c_constant k_maximum_scenario_cinematic_lighting_palette_entry_count = { "k_maximum_scenario_cinematic_lighting_palette_entry_count", 128 };
 	c_constant k_maximum_campaign_metagame_scenario_completion_bonus_count = { "k_maximum_campaign_metagame_scenario_completion_bonus_count", 8 };

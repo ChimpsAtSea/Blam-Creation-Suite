@@ -29,7 +29,7 @@ namespace blofeld
 
 		{ _field_version_platform_include, _platform_type_pc, 2 },
 		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-		{ _field_block, "unknown", &g_null_block_block },
+		{ _field_block, "unknown@", &g_null_block_block },
 
 		{ _field_block, "sections", &cache_file_resource_section_block_block },
 		{ _field_block, "resources*", &cache_file_resource_data_block_block },
@@ -127,9 +127,8 @@ namespace blofeld
 		{ _field_long_integer, "identifier part 3" },
 		{ _field_long_integer, "definition flags" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 }, // this needs to be setup properly as a _field_array with a count of 2
-		{ _field_short_integer, "page alignment bits1" },
-		{ _field_short_integer, "page alignment bits2" },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array },
 
 		{ _field_string_id, "name^" },
 
@@ -203,14 +202,7 @@ namespace blofeld
 	TAG_BLOCK(cache_file_tag_resource_usage_block, k_maximum_cache_file_tag_resource_types)
 	{
 		{ _field_string_id, "name^" },
-
-		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_array, "page sizes", &resource_usage_page_size_array_definition_array },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 }, // this needs to be setup properly as a _field_array with a count of 2
-		{ _field_long_integer, "page sizes" },
-		{ _field_long_integer, "page sizes" },
-
 		{ _field_long_integer, "deferred required size" },
 		{ _field_long_integer, "streamed resource size" },
 		{ _field_long_integer, "dvd in-memory resource size" },
@@ -251,13 +243,13 @@ namespace blofeld
 		{ _field_long_block_flags, "expected touched bsp zones" },
 
 		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_qword_integer, "required designer zones" },
-		{ _field_qword_integer, "expected designer zones" },
+		{ _field_qword_integer, "required designer zones" }, // #NOTE: 64bit block flags
+		{ _field_qword_integer, "expected designer zones" }, // #NOTE: 64bit block flags
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
-		{ _field_long_block_flags, "unknown" }, // a thorough verification is required for this tagblock
 		{ _field_long_block_flags, "required designer zones" },
 		{ _field_long_block_flags, "expected designer zones" },
+		{ _field_long_block_flags, "expected designer zones (inverted)" }, // #NOTE: named from observation of data
 
 		{ _field_long_block_flags, "required cinematic zones" },
 		{ _field_long_block_index, "hint previous zone set" },
