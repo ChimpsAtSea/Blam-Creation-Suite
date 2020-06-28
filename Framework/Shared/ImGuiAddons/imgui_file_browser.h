@@ -27,6 +27,7 @@ namespace ImGuiAddons
 		 */
 		bool show_save_file_dialog(std::string label, ImVec2 sz_xy, std::string save_types, std::string filename = "");
 
+		bool handle_shortcut(std::string shortcut_link_path);
 		const char* get_current_path() const { return current_path.c_str(); }
 		const char* get_selected_file_name() const { return selected_fn.empty() ? nullptr : selected_fn.c_str(); }
 		void set_selected_file_name(const char* filename) { selected_fn = filename; }

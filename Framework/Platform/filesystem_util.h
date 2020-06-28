@@ -27,7 +27,8 @@ BCSAPI bool filesystem_directory_exists(const char* szPath);
 
 BCSAPI void filesystem_iterate_directory(const wchar_t* directorypath, std::function<bool(const wchar_t* filepath)>& handler);
 
-
+HRESULT filesystem_resolve_shell_link(HWND hwnd, LPCSTR lpszLinkFile, LPSTR lpszPath, int iPathBufferSize);
+HRESULT filesystem_resolve_shell_link_wide(HWND hwnd, LPCSTR lpszLinkFile, LPWSTR lpszPath, int iPathBufferSize);
 
 // ------------- LEGACY -----------------
 

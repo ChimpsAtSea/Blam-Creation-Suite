@@ -6,6 +6,9 @@
  *
  * Modifications made for project Opus
  */
+
+#include "shared-private-pch.h"
+
 #pragma warning( disable : 4244 4267 )
 #define _CRT_SECURE_NO_WARNINGS
 #define NOMINMAX
@@ -31,6 +34,7 @@
 #define OSWIN
 #include "Dirent/dirent.h"
 #include <windows.h>
+#include <shlwapi.h>
 #else
 #include <dirent.h>
 #endif // defined (WIN32) || defined (_WIN32)
@@ -118,6 +122,41 @@ namespace ImGuiAddons
         }
         return result;
     }
+
+    bool ImGuiFileBrowser::handle_shortcut(std::string shortcut_link_path)
+	{
+		c_fixed_string_32k shortcut_path;
+		HRESULT get_shortcut_result = filesystem_resolve_shell_link(NULL, shortcut_link_path.c_str(), shortcut_path.str(), shortcut_path.capacity());
+
+		if (get_shortcut_result == S_OK)
+		{
+			WIN32_FIND_DATAA find_file_data;
+			HANDLE find_file_handle = FindFirstFileA(shortcut_path.c_str(), &find_file_data);
+			if (find_file_handle != INVALID_HANDLE_VALUE)
+			{
+				if (find_file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				{
+					// file is a directory
+					auto before = current_dirlist;
+					current_dirlist.clear();
+					if (!readDIR(shortcut_path.c_str()))
+					{
+						current_dirlist = before;
+					}
+					is_dir = true;
+				}
+				else
+				{
+					// file is not a directory
+					selected_fn = shortcut_path.c_str();
+				}
+
+				FindClose(find_file_handle);
+				return true;
+			}
+		}
+		return false;
+	};
 
     bool ImGuiFileBrowser::showOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types)
     {
@@ -248,15 +287,41 @@ namespace ImGuiAddons
                 if(!filtered_files[i]->is_hidden || show_hidden)
                 {
                     filtered_items++;
-                    if(ImGui::Selectable(filtered_files[i]->name.c_str(), selected_idx == i && !is_dir, ImGuiSelectableFlags_AllowDoubleClick))
+
+                    const char* filename = filtered_files[i]->name.c_str();
+                    const char* extension = PathFindExtensionA(filename);
+                    bool is_shortcut = _stricmp(extension, ".lnk") == 0;
+                    if (is_shortcut)
+                    {
+                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.078f, 0.745f, 0.882f, 1.0f));
+                    }
+
+                    if(ImGui::Selectable(filename, selected_idx == i && !is_dir, ImGuiSelectableFlags_AllowDoubleClick))
                     {
                         selected_idx = i;
                         is_dir = false;
-                        if(ImGui::IsMouseDoubleClicked(0))
-                            selected_fn = current_path + filtered_files[i]->name;
-                    }
-                    if( (filtered_items) % col_items_limit == 0)
+                        if (ImGui::IsMouseDoubleClicked(0))
+                        {
+                            if (is_shortcut)
+                            {
+                                handle_shortcut(current_path + filtered_files[i]->name);
+                            }
+                            else
+                            {
+                                selected_fn = current_path + filtered_files[i]->name;
+                            }
+                        }
+					}
+
+					if (is_shortcut)
+					{
+						ImGui::PopStyleColor(1);
+					}
+
+                    if ((filtered_items) % col_items_limit == 0)
+                    {
                         ImGui::NextColumn();
+                    }
                 }
             }
             ImGui::Columns(1);
@@ -272,10 +337,20 @@ namespace ImGuiAddons
             {
                 if(selected_idx >= 0)
                 {
-                    if(is_dir)
-                       show_error |= !(onDirClick(selected_idx, show_drives, false));
+					const char* extension = PathFindExtensionA(subfiles[selected_idx].name.c_str());
+					bool is_shortcut = _stricmp(extension, ".lnk") == 0;
+
+                    if (is_shortcut && handle_shortcut(current_path + subfiles[selected_idx].name))
+                    {
+                    }
+                    else if (is_dir)
+                    {
+                        show_error |= !(onDirClick(selected_idx, show_drives, false));
+                    }
                     else
+                    {
                         selected_fn = current_path + subfiles[selected_idx].name;
+                    }
                 }
             }
             ImGui::SameLine();

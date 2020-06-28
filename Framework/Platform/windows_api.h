@@ -9,6 +9,7 @@
 #include <DbgHelp.h>
 #include <Shlobj.h>
 #include <ShellScalingApi.h>
+#include <strsafe.h>
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
