@@ -125,7 +125,6 @@ namespace blofeld
 		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			const char* field_string = field_to_string(current_field->field_type);
-			const char* nice_field_string = field_string + 1;
 
 			uint32_t field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
@@ -136,7 +135,6 @@ namespace blofeld
 
 			if (block_failed_validation)
 			{
-
 				// data validation
 				switch (current_field->field_type)
 				{
@@ -148,14 +146,14 @@ namespace blofeld
 				case _field_byte_flags:
 					if (current_field->string_list_definition == nullptr)
 					{
-						c_console::write_line_verbose("%s(%i): warning V1000: '%s' '%s':'%s' failed validation. no string list specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						c_console::write_line_verbose("%s(%i): warning V1000: '%s' '%s':'%s' failed validation. no string list specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
 						*block_failed_validation = true;
 					}
 					break;
 				case _field_struct:
 					if (current_field->struct_definition == nullptr)
 					{
-						c_console::write_line_verbose("%s(%i): warning V2000: '%s' '%s':'%s' failed validation. no struct specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						c_console::write_line_verbose("%s(%i): warning V2000: '%s' '%s':'%s' failed validation. no struct specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
 						*block_failed_validation = true;
 						continue;
 					}
@@ -163,7 +161,7 @@ namespace blofeld
 				case _field_array:
 					if (current_field->array_definition == nullptr)
 					{
-						c_console::write_line_verbose("%s(%i): warning V3000: '%s' '%s':'%s' failed validation. no array specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						c_console::write_line_verbose("%s(%i): warning V3000: '%s' '%s':'%s' failed validation. no array specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
 						*block_failed_validation = true;
 						continue;
 					}
@@ -171,7 +169,7 @@ namespace blofeld
 				case _field_block:
 					if (current_field->block_definition == nullptr)
 					{
-						c_console::write_line_verbose("%s(%i): warning V2000: '%s' '%s':'%s' failed validation. no block specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						c_console::write_line_verbose("%s(%i): warning V2000: '%s' '%s':'%s' failed validation. no block specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
 						*block_failed_validation = true;
 						continue;
 					}
@@ -179,12 +177,19 @@ namespace blofeld
 				case _field_tag_reference:
 					if (current_field->tag_reference_definition == nullptr)
 					{
-						c_console::write_line_verbose("%s(%i): warning V4000: '%s' '%s':'%s' failed validation. no tag reference specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						c_console::write_line_verbose("%s(%i): warning V4000: '%s' '%s':'%s' failed validation. no tag reference specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
 						*block_failed_validation = true;
 						continue;
 					}
 					break;
 				}
+
+				//c_field_formatter field_formatter(current_field, current_field->name, nullptr);
+				//if (field_formatter.is_pointer && current_field->field_type == _field_long_integer)
+				//{
+				//	c_console::write_line_verbose("%s(%i): warning V5000: '%s' '%s' failed validation. field type is not pointer.", current_field->filename, current_field->line, field_string, current_field->name);
+				//}
+
 			}
 
 			switch (current_field->field_type)
@@ -211,7 +216,7 @@ namespace blofeld
 				break;
 			}
 			default:
-				computed_size += get_blofeld_field_size(current_field->field_type);
+				computed_size += get_blofeld_field_size(platform_type, current_field->field_type);
 				break;
 			}
 		}

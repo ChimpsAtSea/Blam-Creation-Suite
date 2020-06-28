@@ -63,7 +63,7 @@ uint32_t c_gen3_cache_file_validator::get_struct_size(const blofeld::s_tag_struc
 
 uint32_t c_gen3_cache_file_validator::get_field_size(const blofeld::s_tag_field& field)
 {
-	uint32_t field_size = get_blofeld_field_size(field.field_type);
+	uint32_t field_size = get_blofeld_field_size(platform_type, field.field_type);
 	if (field_size > 0)
 	{
 		return field_size;

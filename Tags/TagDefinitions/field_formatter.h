@@ -14,6 +14,7 @@ public:
 	c_fixed_string_128 maximum;
 	bool read_only;
 	bool is_index;
+	bool is_pointer;
 
 	c_fixed_string_512 code_name;
 

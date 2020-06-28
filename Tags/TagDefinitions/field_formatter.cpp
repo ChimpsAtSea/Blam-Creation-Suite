@@ -1,4 +1,4 @@
-#include "tagcodegen-private-pch.h"
+#include "tagdefinitions-private-pch.h"
 
 std::pair<const char*, const char*> c_field_formatter::bespoke_fixups[] =
 {
@@ -18,7 +18,8 @@ c_field_formatter::c_field_formatter(const blofeld::s_tag_field* field, const ch
 	maximum(),
 	code_name(),
 	read_only(false),
-	is_index(false)
+	is_index(false),
+	is_pointer(false)
 {
 	//name = "air reverb gain*!^{reverb gain}*!^:dB*!^[   -100  ]#how much reverb applies to this sound class";
 	static int y = 0;
@@ -44,15 +45,16 @@ c_field_formatter::c_field_formatter(const blofeld::s_tag_field* field, const ch
 
 		int description_scan = sscanf(name, "%[^#]#%2047[^\1]", remainder_buffer_a.data, description.data);
 		int min_max_scan = sscanf(remainder_buffer_a.data, "%[^[][%*[\x20]%127[^\x20,]%*[\x20],%*[\x20]%127[^\x20]]]", remainder_buffer_b.data, minimum.data, maximum.data);
-		int units_scan = sscanf(remainder_buffer_b.data, "%[^:]:%255[^*^!~?]%15[^\1]", remainder_buffer_a.data, units.data, flags0.data);
-		int alt_name_scan = sscanf(remainder_buffer_a.data, "%[^{]{%[^}]}%15[^\1]", remainder_buffer_b.data, alt_name.data, flags1.data);
-		int display_name_scan = sscanf(remainder_buffer_b.data, "%511[^*^!~?]%15[^\1]", display_name.data, flags2.data);
+		int units_scan = sscanf(remainder_buffer_b.data, "%[^:]:%255[^*^!~?\1]%15[^\xFF]", remainder_buffer_a.data, units.data, flags0.data);
+		int alt_name_scan = sscanf(remainder_buffer_a.data, "%[^{]{%[^}]}%15[^\xFF]", remainder_buffer_b.data, alt_name.data, flags1.data);
+		int display_name_scan = sscanf(remainder_buffer_b.data, "%511[^*^!~?\1]%15[^\xFF]", display_name.data, flags2.data);
 
 		c_fixed_string_64 flags;
 		flags.format("%s%s%s", flags0.data, flags1.data, flags2.data);
 
 		read_only = flags.contains('*');
 		is_index = flags.contains('^');
+		is_pointer = flags.contains('\1');
 
 		code_name = display_name;
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "blofeld.h"
+#include "field_formatter.h"
 #include "blofeld/constants.h"
 #include "types/field_type.h"
 #include "types/tag_group.h"

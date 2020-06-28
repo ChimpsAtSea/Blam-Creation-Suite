@@ -11,11 +11,11 @@ c_tag_source_generator::c_tag_source_generator(e_engine_type engine_type, e_plat
 
 }
 
-const char* c_tag_source_generator::field_type_to_source_type(e_field field_type)
+const char* c_tag_source_generator::field_type_to_source_type(e_platform_type platform_type, e_field field_type)
 {
 	switch (field_type)
 	{
-	case _field_string:							return "c_static_string<32>";
+	case _field_string:								return "c_static_string<32>";
 	case _field_long_string:						return "c_static_string<256>";
 	case _field_string_id:							return "string_id";
 	case _field_old_string_id:						return "c_old_string_id";
@@ -28,27 +28,27 @@ const char* c_tag_source_generator::field_type_to_source_type(e_field field_type
 	case _field_char_enum:							return "char";
 	case _field_enum:								return "short";
 	case _field_long_enum:							return "long";
-	case _field_long_flags:						return "long";
-	case _field_word_flags:						return "word";
-	case _field_byte_flags:						return "byte";
+	case _field_long_flags:							return "long";
+	case _field_word_flags:							return "word";
+	case _field_byte_flags:							return "byte";
 	case _field_point_2d:							return "s_point2d";
 	case _field_rectangle_2d:						return "s_rectangle2d";
 	case _field_rgb_color:							return "pixel32";
-	case _field_argb_color:						return "pixel32";
+	case _field_argb_color:							return "pixel32";
 	case _field_real:								return "real";
 	case _field_real_fraction:						return "real_fraction";
 	case _field_real_point_2d:						return "real_point2d";
 	case _field_real_point_3d:						return "real_point3d";
-	case _field_real_vector_2d:					return "real_vector2d";
-	case _field_real_vector_3d:					return "real_vector3d";
+	case _field_real_vector_2d:						return "real_vector2d";
+	case _field_real_vector_3d:						return "real_vector3d";
 	case _field_real_quaternion:					return "real_quaternion";
 	case _field_real_euler_angles_2d:				return "real_euler_angles2d";
 	case _field_real_euler_angles_3d:				return "real_euler_angles3d";
 	case _field_real_plane_2d:						return "real_plane2d";
 	case _field_real_plane_3d:						return "real_plane3d";
-	case _field_real_rgb_color:					return "rgb_color";
+	case _field_real_rgb_color:						return "rgb_color";
 	case _field_real_argb_color:					return "argb_color";
-	case _field_real_hsv_color:					return "real_hsv_color";
+	case _field_real_hsv_color:						return "real_hsv_color";
 	case _field_real_ahsv_color:					return "real_ahsv_color";
 	case _field_short_bounds:						return "short_bounds";
 	case _field_angle_bounds:						return "angle_bounds";
@@ -72,16 +72,26 @@ const char* c_tag_source_generator::field_type_to_source_type(e_field field_type
 	case _field_skip:								return nullptr;	// dynamic
 	case _field_non_cache_runtime_value:			return "long";
 	case _field_explanation:						return nullptr;	// empty
-	case _field_custom:							return nullptr;	// empty
-	case _field_struct:							return nullptr;	// dynamic
+	case _field_custom:								return nullptr;	// empty
+	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
 	case _field_pageable:							return "s_tag_resource";
 	case _field_api_interop:						return "s_tag_interop";
-	case _field_terminator:						return nullptr;	// empty
+	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";
 	case _field_word_integer:						return "word";
 	case _field_dword_integer:						return "dword";
 	case _field_qword_integer:						return "qword";
+	case _field_pointer: // #NONSTANDARD
+		switch (get_platform_pointer_size(platform_type))
+		{
+		case 8: return "long long";
+		case 4: return "long";
+		default: FATAL_ERROR(L"bad pointer size");
+		}
+		break;
+
+
 	default: FATAL_ERROR(L"Unknown field type");
 	}
 }
@@ -258,7 +268,7 @@ void c_tag_source_generator::generate_source()
 			}
 			default:
 			{
-				const char* field_source_type = field_type_to_source_type(current_field->field_type);
+				const char* field_source_type = field_type_to_source_type(platform_type, current_field->field_type);
 				ASSERT(!field_formatter.code_name.is_empty());
 				ss << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
 			}

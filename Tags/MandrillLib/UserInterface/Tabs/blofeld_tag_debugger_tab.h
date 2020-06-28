@@ -113,11 +113,12 @@ protected:
 	void render_field_word_integer(render_field_callback_args);
 	void render_field_dword_integer(render_field_callback_args);
 	void render_field_qword_integer(render_field_callback_args);
+	void render_field_pointer(render_field_callback_args);
 #undef callback_args
 
 	void render_field_name(c_field_formatter& field_formatter, const blofeld::s_tag_field& field, s_field_validation_result* result);
 	void render_field_name_and_information(const blofeld::s_tag_field& field, s_field_validation_result* result);
-	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, const char* format = nullptr);
+	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex = false, const char* format = nullptr);
 private:
 	template<typename t_raw_value> void render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result);
 };

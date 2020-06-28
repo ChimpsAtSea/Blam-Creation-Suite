@@ -30,9 +30,6 @@
     <ClCompile Include="virtual_tag_source_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="field_formatter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tagcodegen-private-pch.h">
@@ -48,9 +45,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="virtual_tag_source_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="field_formatter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

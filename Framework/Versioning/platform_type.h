@@ -21,3 +21,20 @@ inline string_type get_enum_string(e_platform_type platform_type)
 	enum_string_ex(string_type, pretty_string, platform_type, _platform_type_pc_legacy, "PC (Legacy)");
 	return nullptr;
 }
+
+inline uint32_t get_platform_pointer_size(e_platform_type platform_type)
+{
+	switch (platform_type)
+	{
+	case _platform_type_xbox:
+	case _platform_type_pc_legacy:
+	case _platform_type_xbox_360:
+		return 4;
+	case _platform_type_xbox_one:
+	case _platform_type_pc:
+		return 8;
+	case _platform_type_not_set:
+	default: throw;
+		break;
+	}
+}

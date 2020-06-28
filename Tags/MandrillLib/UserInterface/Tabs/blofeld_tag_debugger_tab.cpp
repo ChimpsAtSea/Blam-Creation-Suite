@@ -1,8 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-#include <TagCodegen/field_formatter.h>
-#include <TagCodegen/field_formatter.cpp>
-
 bool c_blofeld_tag_debugger_tab::show_hex_values = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_setting, false);
 bool c_blofeld_tag_debugger_tab::show_hex_values_float = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, false);
 bool c_blofeld_tag_debugger_tab::show_broken_block_data = c_settings::read_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, false);
@@ -53,14 +50,14 @@ void c_blofeld_tag_debugger_tab::render_field_name_and_information(const blofeld
 	}
 }
 
-void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, const char* format)
+void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
 {
 	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
-	if (show_hex_values && data_type != ImGuiDataType_Float)
+	if ((show_hex_values || use_hex) && data_type != ImGuiDataType_Float)
 	{
 		flags |= ImGuiInputTextFlags_CharsHexadecimal;
 	}
-	if (show_hex_values_float && data_type == ImGuiDataType_Float)
+	if ((show_hex_values_float || use_hex) && data_type == ImGuiDataType_Float)
 	{
 		data_type = ImGuiDataType_U32;
 		flags |= ImGuiInputTextFlags_CharsHexadecimal;
@@ -598,6 +595,24 @@ void c_blofeld_tag_debugger_tab::render_field_qword_integer(render_field_callbac
 	if (&tag_interface != &this->tag_interface) return;
 	render_field_scalar_type(ImGuiDataType_U64, 1, result->level, data, field, result);
 }
+void c_blofeld_tag_debugger_tab::render_field_pointer(render_field_callback_args)
+{
+	if (&tag_interface != &this->tag_interface) return;
+
+	uint32_t pointer_size = get_platform_pointer_size(get_cache_file().get_platform_type());
+	switch (pointer_size)
+	{
+	case 8:
+		render_field_scalar_type(ImGuiDataType_U64, 1, result->level, data, field, result, true, "0x%llX");
+		break;
+	case 4:
+		render_field_scalar_type(ImGuiDataType_U32, 1, result->level, data, field, result, true, "0x%X");
+		break;
+	default: 
+		ImGui::Text("ERROR: Unknown pointer size %u", pointer_size);
+		break;
+	}
+}
 
 void c_blofeld_tag_debugger_tab::setup_render_callbacks()
 {
@@ -685,6 +700,7 @@ void c_blofeld_tag_debugger_tab::setup_render_callbacks()
 	register_validation_callback(blofeld::_field_word_integer, render_field_word_integer);
 	register_validation_callback(blofeld::_field_dword_integer, render_field_dword_integer);
 	register_validation_callback(blofeld::_field_qword_integer, render_field_qword_integer);
+	register_validation_callback(blofeld::_field_pointer, render_field_pointer);
 
 #undef register_validation_callback
 }

@@ -147,7 +147,7 @@ void c_virtual_tag_source_generator::generate_header()
 			}
 			default:
 			{
-				const char* field_source_type = c_tag_source_generator::field_type_to_source_type(current_field->field_type);
+				const char* field_source_type = c_tag_source_generator::field_type_to_source_type(platform_type, current_field->field_type);
 				ASSERT(field_source_type != nullptr);
 				hs << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 			}

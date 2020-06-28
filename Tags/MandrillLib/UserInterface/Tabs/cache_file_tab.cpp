@@ -303,26 +303,43 @@ void c_cache_file_tab::render_tags_list_tree()
 
 		if (!display_group) continue;
 
+
+		bool tree_node_selected = false;
 		if (c_mandrill_user_interface::use_developer_features)
 		{
-			bool is_group_tag_valid = true;
-			bool has_valid_tag = false;
+			uint32_t tag_interface_count = 0;
+			uint32_t tag_interface_validated_count = 0;
 			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
 			{
-				bool is_tag_valid = true;
+				tag_interface_count++;
 				if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
 				{
-					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+					if (gen3_tag_interface->get_is_tag_valid())
+					{
+						tag_interface_validated_count++;
+					}
 				}
-				is_group_tag_valid &= is_tag_valid;
-				has_valid_tag |= is_tag_valid;
+				else
+				{
+					tag_interface_validated_count++;
+				}
 			}
-			if (is_group_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-			else if (has_valid_tag) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
+
+			bool is_tag_group_valid = tag_interface_count == 0 || tag_interface_validated_count == tag_interface_count;
+			bool has_valid_tags = tag_interface_validated_count > 0;
+
+			if (is_tag_group_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+			else if (has_valid_tags) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
 			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+
+			tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s (%u/%u)", group_name, group_short_name, tag_interface_validated_count, tag_interface_count);
+		}
+		else
+		{
+			tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
 		}
 
-		if (ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name))
+		if (tree_node_selected)
 		{
 
 			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))

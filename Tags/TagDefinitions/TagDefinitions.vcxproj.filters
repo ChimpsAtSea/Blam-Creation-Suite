@@ -903,6 +903,9 @@
     <ClCompile Include="blofeld\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="field_formatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1827,6 +1830,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\effects\contrail_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="field_formatter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

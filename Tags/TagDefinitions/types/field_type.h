@@ -72,6 +72,8 @@ namespace blofeld
 		_field_dword_integer,
 		_field_qword_integer,
 
+		_field_type_non_standard_custom_type, // custom fields begin here
+		_field_pointer,
 		_field_type_non_standard, // custom fields begin here
 		_field_version_equal,
 		_field_version_not_equal,
@@ -85,7 +87,7 @@ namespace blofeld
 		k_number_of_blofeld_field_types
 	};
 
-	inline uint32_t get_blofeld_field_size(e_field field)
+	inline uint32_t get_blofeld_field_size(e_platform_type platform_type, e_field field)
 	{
 		if (field > _field_type_non_standard)
 		{
@@ -160,6 +162,7 @@ namespace blofeld
 		case _field_word_integer:					return sizeof(word);
 		case _field_dword_integer:					return sizeof(dword);
 		case _field_qword_integer:					return sizeof(qword);
+		case _field_pointer:						return get_platform_pointer_size(platform_type); // #NONSTANDARD
 		default: FATAL_ERROR(L"unknown field type");
 		}
 	}
@@ -235,6 +238,7 @@ namespace blofeld
 		case _field_word_integer:							return "word integer";
 		case _field_dword_integer:							return "dword integer";
 		case _field_qword_integer:							return "qword integer";
+		case _field_pointer:								return "pointer"; // #NONSTANDARD
 		}
 		return nullptr;
 	}

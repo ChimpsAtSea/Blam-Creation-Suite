@@ -155,7 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="field_formatter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tag_source_generator.cpp" />
     <ClCompile Include="structure_relationship_node.cpp" />
@@ -168,7 +167,6 @@
     <ClCompile Include="virtual_tag_source_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="field_formatter.h" />
     <ClInclude Include="tag_source_generator.h" />
     <ClInclude Include="structure_relationship_node.h" />
     <ClInclude Include="tagcodegen-private-pch.h" />
