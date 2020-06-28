@@ -42,7 +42,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(mopp_bv_tree_shape_struct)
+	TAG_STRUCT(mopp_bv_tree_shape_struct) // #NOTE: same as mopps_block
 	{
 		{ _field_struct, "mopp bv tree shape", &havok_shape_struct_2010_2_struct_definition },
 		{ _field_pad, "m_bvTreeType!~", 1 },

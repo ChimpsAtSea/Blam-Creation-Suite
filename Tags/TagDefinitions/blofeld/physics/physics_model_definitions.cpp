@@ -8,33 +8,26 @@ namespace blofeld
 
 	TAG_BLOCK(spheres_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
-
+		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct_struct_definition },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "unknown padding", 4 },
 
 		{ _field_pad, "algn344", 12 },
 		{ _field_struct, "translate shape", &havok_convex_translate_shape_struct_struct_definition },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
 
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(pills_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
+		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct_struct_definition },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "algn243", 12 },
+		
 		{ _field_real_vector_3d, "bottom*!" },
 		{ _field_real, "havok w bottom*!!" },
 		{ _field_real_vector_3d, "top*!" },
@@ -45,10 +38,15 @@ namespace blofeld
 	TAG_BLOCK(lists_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2_struct_definition },
+
 		{ _field_pointer, "field pointer skip!~" },
 		{ _field_long_integer, "child shapes size*" },
 		{ _field_long_integer, "child shapes capacity*!" },
 		{ _field_pad, "nail_in_dick", 12 },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "8byte alignment", 4 },
+
 		{ _field_real_vector_3d, "aabb half extents!*!" },
 		{ _field_real, "havok w aabb half extents!*!!" },
 		{ _field_real_vector_3d, "aabb center!*!" },
@@ -125,7 +123,10 @@ namespace blofeld
 		{ _field_real, "alignment hookes law e#0 if you don\'t want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "TYXJL", 8 },
+
 		{ _field_terminator }
 	};
 
@@ -221,7 +222,13 @@ namespace blofeld
 		{ _field_real, "water physics y1#y1 value of the water physics aabb" },
 		{ _field_real, "water physics z0#z0 value of the water physics aabb" },
 		{ _field_real, "water physics z1#z1 value of the water physics aabb" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_pointer, "Runtime Shape Pointer*~!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "padding", 4 },
+
 		{ _field_real_vector_3d, "center of mass*!" },
 		{ _field_real, "havok w center of mass*!!" },
 		{ _field_real_vector_3d, "intertia tensor x*!" },
@@ -233,12 +240,12 @@ namespace blofeld
 		{ _field_long_integer, "runtime havok group mask *!" },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_real, "Unknown@" },
+		{ _field_pad, "padding", 4 },
 		
 		{ _field_struct, "shape reference", &havok_shape_reference_struct_struct_definition },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach},
-		{ _field_real, "Unknown" },
+		{ _field_long_integer, "unknown" }, // likely "child size"
 		
 		{ _field_real, "mass:kg*!" },
 		{ _field_real, "bounding sphere pad#the bounding sphere for this rigid body will be outset by this much" },
@@ -248,6 +255,10 @@ namespace blofeld
 		{ _field_explanation, "Stupid mass override", "If you want to override what the calculated mass distribution or artist set mass is, this is where you do it. Also, this will show up as n/100 in the game debugger. Awesome." },
 		{ _field_real, "Mass body override" },
 		{ _field_pad, "pad4", 8 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "unknown", 8 }, // assumed
+
 		{ _field_terminator }
 	};
 
@@ -276,19 +287,23 @@ namespace blofeld
 
 	TAG_BLOCK(boxes_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
+		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
 		{ _field_struct, "box shape", &havok_convex_shape_struct_struct_definition },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "algn3473", 12 },
+
 		{ _field_real_vector_3d, "half extents*!" },
 		{ _field_real, "havok w half extents*!!" },
 		{ _field_struct, "convex transform shape", &havok_convex_transform_shape_struct_struct_definition },
+
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(triangles_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
-		{ _field_struct, "triangle shape", &havok_convex_shape_struct_2010_2_struct_definition },
+		{ _field_struct, "triangle shape", &havok_convex_shape_struct_struct_definition },
 		{ _field_short_integer, "welding info*!" },
 		{ _field_char_integer, "welding type*!" },
 		{ _field_char_integer, "is extruded*!" },
@@ -308,32 +323,47 @@ namespace blofeld
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "polyhedron shape", &havok_convex_shape_struct_struct_definition },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "algn743", 12 },
+
+		// aabbHalfExtents
 		{ _field_real_vector_3d, "aabb half extents*" },
 		{ _field_real, "havok w aabb half extents*!" },
+		// aabbCenter
 		{ _field_real_vector_3d, "aabb center*" },
 		{ _field_real, "havok w aabb center*!" },
+		// rotatedVertices
 		{ _field_pointer, "field pointer skip!~" },
-		
 		{ _field_long_integer, "four vectors size*" },
 		{ _field_long_integer, "four vectors capacity*!" },
+		// numVertices
 		{ _field_long_integer, "num vertices*" },
 
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		// convexPiece
+		{ _field_pointer, "convex piece pointer skip!~" },
+
 		{ _field_version_greater, _engine_type_haloreach, 2 },
+		// useSpuBuffer
 		{ _field_char_integer, "m_useSpuBuffer*" },
 		{ _field_pad, "algn434", 3 },
-		
-		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
-		{ _field_long_integer, "Unknown@" },
-		{ _field_long_integer, "Unknown@" },
-		{ _field_long_integer, "Unknown@" },
-		{ _field_long_integer, "Unknown@" },
-		
-		{ _field_pointer, "another field pointer skip!~" },
+
+		// hkArray planeEquations
+		{ _field_pointer, "another field pointer skip!~" }, 
 		{ _field_long_integer, "plane equations size*" },
 		{ _field_long_integer, "plane equations capacity*!" },
 		{ _field_pointer, "connectivity*!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "SAMTRA", 8 },
+
+		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "SAMTRA", 12 },
+		
 		{ _field_terminator }
 	};
 
@@ -368,19 +398,34 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mopps_block, k_maximum_rigid_bodies_per_physics_model)
+	TAG_BLOCK(mopps_block, k_maximum_rigid_bodies_per_physics_model) // #NOTE: same as mopp_bv_tree_shape_struct
 	{
-		{ _field_struct, "base", &havok_shape_struct_struct_definition },
+		{ _field_struct, "base", & havok_shape_struct_2010_2_struct_definition },
 		{ _field_pad, "m_bvTreeType", 1 },
 		{ _field_pad, "3 other bytes", 3 },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "8byte alignment", 4 },
+
+		// hkMoppBvTreeShapeBase
 		{ _field_pointer, "mopp code pointer!~" },
 		{ _field_pointer, "mopp data skip!~" },
 		{ _field_long_integer, "mopp data size~" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "8byte alignment", 4 },
+
 		{ _field_real_vector_3d, "m_codeInfoCopy*" },
 		{ _field_real, "havok w m_codeInfoCopy*!" },
+
+		// hkpSingleShapeContainer
 		{ _field_pointer, "child shape vtable*!~" },
 		{ _field_struct, "childShapePointer!~", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child size!~" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "8byte alignment", 4 },
+
 		{ _field_pad, "mopp alignment*!~", 4 },
 		{ _field_real, "scale*!" },
 		{ _field_pad, "final alignment*!~", 12 },
@@ -491,11 +536,26 @@ namespace blofeld
 
 	TAG_BLOCK(phantoms_block, k_maximum_phantoms_per_physics_model)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "bv shape", &havok_shape_struct_2010_2_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "bv shape", &havok_shape_struct_struct_definition },
+
 		{ _field_struct, "havok shape reference struct1", &havok_shape_reference_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown" }, // likely "child size"
+
 		{ _field_pointer, "field pointer skip!~" },
 		{ _field_pointer, "child shape pointer!~" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "phantom shape", &havok_shape_struct_2010_2_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "phantom shape", &havok_shape_struct_struct_definition },
+
 		{ _field_terminator }
 	};
 
@@ -544,31 +604,37 @@ namespace blofeld
 
 	TAG_STRUCT(havok_convex_shape_struct)
 	{
-		{ _field_struct, "base", & havok_shape_struct_struct_definition },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-
+		{ _field_struct, "base", &havok_shape_struct_struct_definition },
 		{ _field_real, "radius*!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "16 byte align pad", 12 },
 
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(havok_shape_struct)
 	{
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_long_integer, "unknown@" },
-
+		// hkBaseObject
 		{ _field_pointer, "field pointer skip!~" },
+
+		// hkReferencedObject
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
 		{ _field_char_integer, "type*~!" },
 		{ _field_char_integer, "dispatchType*~!" },
 		{ _field_char_integer, "bitsPerKey*~!" },
 		{ _field_char_integer, "codecType*~!" },
-		{ _field_long_integer, "user data*~!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
+		{ _field_pointer, "user data*~!" },
+
 		{ _field_terminator }
 	};
 
@@ -684,7 +750,7 @@ namespace blofeld
 
 	TAG_STRUCT(havok_convex_transform_shape_struct)
 	{
-		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
+		{ _field_struct, "convex", & havok_convex_shape_struct_struct_definition },
 		{ _field_pointer, "field pointer skip!~" },
 		{ _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child shape size" },
@@ -696,13 +762,6 @@ namespace blofeld
 		{ _field_real, "havok w rotation k*!!" },
 		{ _field_real_vector_3d, "translation*!" },
 		{ _field_real, "havok w translation*!!" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(havok_convex_shape_struct_2010_2)
-	{
-		{ _field_struct, "base", &havok_shape_struct_2010_2_struct_definition },
-		{ _field_real, "radius*!" },
 		{ _field_terminator }
 	};
 
@@ -781,7 +840,7 @@ namespace blofeld
 	};
 	STRING_LIST(rigid_body_size_enum, rigid_body_size_enum_strings, _countof(rigid_body_size_enum_strings));
 
-	STRINGS(physics_material_proxy_collision_groups)
+	STRINGS(physics_material_proxy_collision_groups) // #TODO: Investigate the unknown reach values
 	{
 		"NONE",
 		"small crate",
@@ -803,7 +862,11 @@ namespace blofeld
 		"user00",
 		"user01",
 		"everything",
-		"creatures"
+		"creatures",
+		"__unknown21", // haloreach
+		"__unknown22", // haloreach
+		"__unknown23", // haloreach
+		"__unknown24", // haloreach
 	};
 	STRING_LIST(physics_material_proxy_collision_groups, physics_material_proxy_collision_groups_strings, _countof(physics_material_proxy_collision_groups_strings));
 

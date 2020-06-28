@@ -212,6 +212,28 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
 				break;
 			}
+			case blofeld::_field_pointer:
+			{
+				switch (get_platform_pointer_size(platform_type))
+				{
+				case 4:
+				{
+					uint32_t ptr32 = *reinterpret_cast<uint32_t*>(current_data_position);
+					//is_struct_valid &= ptr32 == 0;
+					is_struct_valid &= bytes_traversed % 4 == 0;
+					break;
+				}
+				case 8:
+				{
+					uint64_t ptr64 = *reinterpret_cast<uint64_t*>(current_data_position);
+					//is_struct_valid &= ptr64 == 0;
+					is_struct_valid &= bytes_traversed % 8 == 0;
+					break;
+				}
+				default: throw;
+				}
+				break;
+			}
 			case blofeld::_field_real:
 			case blofeld::_field_angle:
 			case blofeld::_field_real_fraction:

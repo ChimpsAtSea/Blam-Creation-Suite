@@ -99,7 +99,6 @@ namespace blofeld
 	extern s_tag_struct_definition physics_model_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition physics_model_motor_reference_struct_struct_definition;
 	extern s_tag_struct_definition havok_convex_transform_shape_struct_struct_definition;
-	extern s_tag_struct_definition havok_convex_shape_struct_2010_2_struct_definition;
 	extern s_tag_struct_definition constraint_bodies_struct_struct_definition;
 
 	extern const char* physics_material_flags_strings[];
