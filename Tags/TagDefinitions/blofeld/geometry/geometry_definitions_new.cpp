@@ -8,7 +8,9 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "render method^*", &global_geometry_material_block_render_method_reference },
 
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "properties", &g_null_block_block },
+
 		{ _field_long_integer, "imported material index*" },
 
 		{ _field_version_greater, _engine_type_haloreach, 6 },

@@ -54,8 +54,8 @@ namespace blofeld
 
 	TAG_STRUCT(language_pack_definition)
 	{
-		{ _field_long_integer, "string reference pointer!" },
-		{ _field_long_integer, "string data pointer!" },
+		{ _field_pointer, "string reference pointer!" },
+		{ _field_pointer, "string data pointer!" },
 		{ _field_long_integer, "number of strings!" },
 		{ _field_long_integer, "string data size!" },
 		{ _field_long_integer, "string reference cache offset!" },

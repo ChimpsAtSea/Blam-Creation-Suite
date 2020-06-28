@@ -114,9 +114,6 @@ namespace blofeld
 		{ _field_char_enum, "imposter policy*", &instanced_geometry_imposter_policy_enum },
 		{ _field_pad, "SDFSDFE", 1 },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-
-
 		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_char_enum, "streaming priority*", &instanced_geometry_streamingpriority_enum },
 		{ _field_pad, "strpad", 1 },
@@ -124,7 +121,8 @@ namespace blofeld
 
 		{ _field_real, "lightmap resolution scale" },
 
-		{ _field_block, "collision definition?", &structure_bsp_instanced_geometry_collision_definition_block_block },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_block, "collision definition", &structure_bsp_instanced_geometry_collision_definition_block_block },
 
 		{ _field_short_integer, "group_index!" },
 		{ _field_short_integer, "group_list_index!" },

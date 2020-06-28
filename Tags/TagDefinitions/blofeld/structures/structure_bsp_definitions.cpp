@@ -149,7 +149,7 @@ namespace blofeld
 		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
 		{ _field_block, "instance group to instance spheres", &structure_instance_group_definition_block },
 
-		{ _field_version_greater, _engine_type_haloreach, 1 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block_block },
 
 		{ _field_block, "instanced geometry instances*", &structure_bsp_instanced_geometry_instances_block_block },
@@ -380,7 +380,7 @@ namespace blofeld
 		{ _field_short_block_index, "acoustics*" },
 		{ _field_short_integer, "acoustics sound cluster index" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 6 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 5 },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },

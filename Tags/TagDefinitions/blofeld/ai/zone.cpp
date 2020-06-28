@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_custom },
 		{ _field_custom },
-		{ _field_long_integer, "hkaiVolume vtable*~!" },
+		{ _field_pointer, "hkaiVolume vtable*~!" },
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
 		{ _field_string, "name^`" },

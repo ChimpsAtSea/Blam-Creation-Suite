@@ -45,7 +45,7 @@ namespace blofeld
 	TAG_BLOCK(lists_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2_struct_definition },
-		{ _field_long_integer, "field pointer skip!~" },
+		{ _field_pointer, "field pointer skip!~" },
 		{ _field_long_integer, "child shapes size*" },
 		{ _field_long_integer, "child shapes capacity*!" },
 		{ _field_pad, "nail_in_dick", 12 },
@@ -221,7 +221,7 @@ namespace blofeld
 		{ _field_real, "water physics y1#y1 value of the water physics aabb" },
 		{ _field_real, "water physics z0#z0 value of the water physics aabb" },
 		{ _field_real, "water physics z1#z1 value of the water physics aabb" },
-		{ _field_long_integer, "Runtime Shape Pointer*~!" },
+		{ _field_pointer, "Runtime Shape Pointer*~!" },
 		{ _field_real_vector_3d, "center of mass*!" },
 		{ _field_real, "havok w center of mass*!!" },
 		{ _field_real_vector_3d, "intertia tensor x*!" },
@@ -313,10 +313,7 @@ namespace blofeld
 		{ _field_real, "havok w aabb half extents*!" },
 		{ _field_real_vector_3d, "aabb center*" },
 		{ _field_real, "havok w aabb center*!" },
-		{ _field_long_integer, "field pointer skip!~" },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_long_integer, "Unknown@" },
+		{ _field_pointer, "field pointer skip!~" },
 		
 		{ _field_long_integer, "four vectors size*" },
 		{ _field_long_integer, "four vectors capacity*!" },
@@ -332,10 +329,10 @@ namespace blofeld
 		{ _field_long_integer, "Unknown@" },
 		{ _field_long_integer, "Unknown@" },
 		
-		{ _field_long_integer, "another field pointer skip!~" },
+		{ _field_pointer, "another field pointer skip!~" },
 		{ _field_long_integer, "plane equations size*" },
 		{ _field_long_integer, "plane equations capacity*!" },
-		{ _field_long_integer, "connectivity*!" },
+		{ _field_pointer, "connectivity*!" },
 		{ _field_pad, "SAMTRA", 12 },
 		{ _field_terminator }
 	};
@@ -376,12 +373,12 @@ namespace blofeld
 		{ _field_struct, "base", &havok_shape_struct_struct_definition },
 		{ _field_pad, "m_bvTreeType", 1 },
 		{ _field_pad, "3 other bytes", 3 },
-		{ _field_long_integer, "mopp code pointer!~" },
-		{ _field_long_integer, "mopp data skip!~" },
+		{ _field_pointer, "mopp code pointer!~" },
+		{ _field_pointer, "mopp data skip!~" },
 		{ _field_long_integer, "mopp data size~" },
 		{ _field_real_vector_3d, "m_codeInfoCopy*" },
 		{ _field_real, "havok w m_codeInfoCopy*!" },
-		{ _field_long_integer, "child shape vtable*!~" },
+		{ _field_pointer, "child shape vtable*!~" },
 		{ _field_struct, "childShapePointer!~", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child size!~" },
 		{ _field_pad, "mopp alignment*!~", 4 },
@@ -496,8 +493,8 @@ namespace blofeld
 	{
 		{ _field_struct, "bv shape", &havok_shape_struct_struct_definition },
 		{ _field_struct, "havok shape reference struct1", &havok_shape_reference_struct_struct_definition },
-		{ _field_long_integer, "field pointer skip!~" },
-		{ _field_long_integer, "child shape pointer!~" },
+		{ _field_pointer, "field pointer skip!~" },
+		{ _field_pointer, "child shape pointer!~" },
 		{ _field_struct, "phantom shape", &havok_shape_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -506,7 +503,7 @@ namespace blofeld
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_long_integer, "version*" },
-		{ _field_long_integer, "Runtime Deserialized Shape Pointer*~!" },
+		{ _field_pointer, "Runtime Deserialized Shape Pointer*~!" },
 		{ _field_data, "Serialized Havok Data*" },
 		{ _field_data, "Serialized Havok Data Any Temp*!" },
 		{ _field_terminator }
@@ -564,7 +561,7 @@ namespace blofeld
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "unknown@" },
 
-		{ _field_long_integer, "field pointer skip!~" },
+		{ _field_pointer, "field pointer skip!~" },
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
 		{ _field_char_integer, "type*~!" },
@@ -578,7 +575,7 @@ namespace blofeld
 	TAG_STRUCT(havok_convex_translate_shape_struct)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
-		{ _field_long_integer, "field pointer skip!~" },
+		{ _field_pointer, "field pointer skip!~" },
 		{ _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child shape size" },
 		{ _field_real_vector_3d, "translation*!" },
@@ -596,20 +593,36 @@ namespace blofeld
 	TAG_STRUCT(havok_shape_collection_struct_2010_2)
 	{
 		{ _field_struct, "base", &havok_shape_struct_2010_2_struct_definition },
-		{ _field_long_integer, "field pointer skip!~" },
+		{ _field_pointer, "field pointer skip!~" },
 		{ _field_char_integer, "disable welding*~" },
 		{ _field_char_integer, "collection type*~" },
 		{ _field_pad, "VDVAPBSS", 2 },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkReferencedObjectClass 8byte alignment", 4 },
+
 		{ _field_terminator }
 	};
 
 	TAG_STRUCT(havok_shape_struct_2010_2)
 	{
-		{ _field_long_integer, "field pointer skip!~" },
+		// hkBaseObject
+		{ _field_pointer, "field pointer skip!~" },
+
+		// hkReferencedObject
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
-		{ _field_long_integer, "user data*~!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
+		// hkpShape
+		{ _field_pointer, "user data*~!" }, // TYPE_ULONG
 		{ _field_long_integer, "type*~!" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_pad, "hkpShape 8byte alignment", 4 },
+
 		{ _field_terminator }
 	};
 
@@ -672,7 +685,7 @@ namespace blofeld
 	TAG_STRUCT(havok_convex_transform_shape_struct)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
-		{ _field_long_integer, "field pointer skip!~" },
+		{ _field_pointer, "field pointer skip!~" },
 		{ _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child shape size" },
 		{ _field_real_vector_3d, "rotation i*!" },

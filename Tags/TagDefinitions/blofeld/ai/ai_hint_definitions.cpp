@@ -154,7 +154,7 @@ namespace blofeld
 
 	TAG_BLOCK(user_hint_cookie_cutter_block, k_max_cookie_cutters)
 	{
-		{ _field_long_integer, "hkaiVolume vtable*~!" },
+		{ _field_pointer, "hkaiVolume vtable*~!" },
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
 		{ _field_block, "points", &user_hint_sector_point_block_block },
@@ -173,7 +173,7 @@ namespace blofeld
 
 	TAG_BLOCK(user_hint_navmesh_area_block, k_max_navmesh_areas)
 	{
-		{ _field_long_integer, "hkaiVolume vtable*~!" },
+		{ _field_pointer, "hkaiVolume vtable*~!" },
 		{ _field_short_integer, "size*~!" },
 		{ _field_short_integer, "count*~!" },
 		{ _field_block, "points", &user_hint_sector_point_block_block },
