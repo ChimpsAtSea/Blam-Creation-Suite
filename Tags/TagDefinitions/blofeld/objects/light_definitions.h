@@ -13,7 +13,7 @@ namespace blofeld
 	extern s_tag_struct_definition light_scalar_function_struct_struct_definition;
 	extern s_tag_struct_definition light_struct_definition_struct_definition; // tag group
 
-	extern const char* output_mod_enum$4_strings[];
+	extern c_versioned_string_list output_mod_enum$4_strings;
 	extern s_string_list_definition output_mod_enum$4;
 
 } // namespace blofeld

@@ -53,29 +53,29 @@ namespace blofeld
 
 	extern s_tag_struct_definition user_hint_volume_avoidance_struct_struct_definition;
 
-	extern const char* user_hint_geometry_flags_strings[];
+	extern c_versioned_string_list user_hint_geometry_flags_strings;
 	extern s_string_list_definition user_hint_geometry_flags;
-	extern const char* parallelogram_points_invalid_flags_strings[];
+	extern c_versioned_string_list parallelogram_points_invalid_flags_strings;
 	extern s_string_list_definition parallelogram_points_invalid_flags;
-	extern const char* hint_type_enum_strings[];
+	extern c_versioned_string_list hint_type_enum_strings;
 	extern s_string_list_definition hint_type_enum;
-	extern const char* jump_flags_strings[];
+	extern c_versioned_string_list jump_flags_strings;
 	extern s_string_list_definition jump_flags;
-	extern const char* forced_hoist_height_enum_strings[];
+	extern c_versioned_string_list forced_hoist_height_enum_strings;
 	extern s_string_list_definition forced_hoist_height_enum;
-	extern const char* user_hint_well_geometry_flags_strings[];
+	extern c_versioned_string_list user_hint_well_geometry_flags_strings;
 	extern s_string_list_definition user_hint_well_geometry_flags;
-	extern const char* user_hint_well_point_type_enum_strings[];
+	extern c_versioned_string_list user_hint_well_point_type_enum_strings;
 	extern s_string_list_definition user_hint_well_point_type_enum;
-	extern const char* user_hint_avoidance_volume_enum_strings[];
+	extern c_versioned_string_list user_hint_avoidance_volume_enum_strings;
 	extern s_string_list_definition user_hint_avoidance_volume_enum;
-	extern const char* user_hint_spline_segment_flags_strings[];
+	extern c_versioned_string_list user_hint_spline_segment_flags_strings;
 	extern s_string_list_definition user_hint_spline_segment_flags;
-	extern const char* cookie_cutter_type_enum_strings[];
+	extern c_versioned_string_list cookie_cutter_type_enum_strings;
 	extern s_string_list_definition cookie_cutter_type_enum;
-	extern const char* navmesh_area_type_enum_strings[];
+	extern c_versioned_string_list navmesh_area_type_enum_strings;
 	extern s_string_list_definition navmesh_area_type_enum;
-	extern const char* special_movement_flags_strings[];
+	extern c_versioned_string_list special_movement_flags_strings;
 	extern s_string_list_definition special_movement_flags;
 
 } // namespace blofeld

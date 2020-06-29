@@ -21,9 +21,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition SpawnSettings_struct_definition_struct_definition; // tag group
 
-	extern const char* InfluencerSpawnSettingsFlagsDefinition_strings[];
+	extern c_versioned_string_list InfluencerSpawnSettingsFlagsDefinition_strings;
 	extern s_string_list_definition InfluencerSpawnSettingsFlagsDefinition;
-	extern const char* SpawnSettingsFlagsDefinition_strings[];
+	extern c_versioned_string_list SpawnSettingsFlagsDefinition_strings;
 	extern s_string_list_definition SpawnSettingsFlagsDefinition;
 
 	extern s_tag_reference_definition g_spawnSettingsReference;

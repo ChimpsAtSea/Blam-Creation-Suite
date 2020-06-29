@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition leaf_system_struct_definition_struct_definition; // tag group
 
-	extern const char* leaf_flags$2_strings[];
+	extern c_versioned_string_list leaf_flags$2_strings;
 	extern s_string_list_definition leaf_flags$2;
 
 } // namespace blofeld

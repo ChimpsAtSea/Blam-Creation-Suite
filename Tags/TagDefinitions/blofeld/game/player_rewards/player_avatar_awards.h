@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition avatar_awards_struct_definition_struct_definition; // tag group
 
-	extern const char* global_avatar_award_enum_strings[];
+	extern c_versioned_string_list global_avatar_award_enum_strings;
 	extern s_string_list_definition global_avatar_award_enum;
 
 } // namespace blofeld

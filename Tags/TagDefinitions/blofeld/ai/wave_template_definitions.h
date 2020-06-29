@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition wave_squad_specification_struct_struct_struct_definition;
 
-	extern const char* wave_placement_filter_enum_strings[];
+	extern c_versioned_string_list wave_placement_filter_enum_strings;
 	extern s_string_list_definition wave_placement_filter_enum;
 
 } // namespace blofeld

@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition new_cinematic_lighting_struct_definition_struct_definition; // tag group
 
-	extern const char* cinematic_dynamic_light_flags_strings[];
+	extern c_versioned_string_list cinematic_dynamic_light_flags_strings;
 	extern s_string_list_definition cinematic_dynamic_light_flags;
 
 	extern s_tag_reference_definition global_new_cinematic_lighting_reference;

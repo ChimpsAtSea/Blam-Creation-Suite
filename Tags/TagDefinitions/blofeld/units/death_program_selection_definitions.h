@@ -17,7 +17,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition death_program_selector_struct_definition_struct_definition; // tag group
 
-	extern const char* death_program_result_enum_strings[];
+	extern c_versioned_string_list death_program_result_enum_strings;
 	extern s_string_list_definition death_program_result_enum;
 
 	extern s_tag_reference_definition death_program_selector_reference;

@@ -101,31 +101,31 @@ namespace blofeld
 	extern s_tag_struct_definition havok_convex_transform_shape_struct_struct_definition;
 	extern s_tag_struct_definition constraint_bodies_struct_struct_definition;
 
-	extern const char* physics_material_flags_strings[];
+	extern c_versioned_string_list physics_material_flags_strings;
 	extern s_string_list_definition physics_material_flags;
-	extern const char* PhantomFlagsV2_strings[];
+	extern c_versioned_string_list PhantomFlagsV2_strings;
 	extern s_string_list_definition PhantomFlagsV2;
-	extern const char* rigid_body_size_enum_strings[];
+	extern c_versioned_string_list rigid_body_size_enum_strings;
 	extern s_string_list_definition rigid_body_size_enum;
-	extern const char* physics_material_proxy_collision_groups_strings[];
+	extern c_versioned_string_list physics_material_proxy_collision_groups_strings;
 	extern s_string_list_definition physics_material_proxy_collision_groups;
-	extern const char* shape_enum_strings[];
+	extern c_versioned_string_list shape_enum_strings;
 	extern s_string_list_definition shape_enum;
-	extern const char* physics_model_flags_strings[];
+	extern c_versioned_string_list physics_model_flags_strings;
 	extern s_string_list_definition physics_model_flags;
-	extern const char* rigid_constraint_types_enum_strings[];
+	extern c_versioned_string_list rigid_constraint_types_enum_strings;
 	extern s_string_list_definition rigid_constraint_types_enum;
-	extern const char* physics_model_motor_types_enum_strings[];
+	extern c_versioned_string_list physics_model_motor_types_enum_strings;
 	extern s_string_list_definition physics_model_motor_types_enum;
-	extern const char* rigid_body_constraint_edge_constraint_flags_definition_strings[];
+	extern c_versioned_string_list rigid_body_constraint_edge_constraint_flags_definition_strings;
 	extern s_string_list_definition rigid_body_constraint_edge_constraint_flags_definition;
-	extern const char* nodes_flags_strings[];
+	extern c_versioned_string_list nodes_flags_strings;
 	extern s_string_list_definition nodes_flags;
-	extern const char* rigid_body_flags_strings[];
+	extern c_versioned_string_list rigid_body_flags_strings;
 	extern s_string_list_definition rigid_body_flags;
-	extern const char* rigid_body_motion_enum_strings[];
+	extern c_versioned_string_list rigid_body_motion_enum_strings;
 	extern s_string_list_definition rigid_body_motion_enum;
-	extern const char* rigid_body_collision_quality_enum_strings[];
+	extern c_versioned_string_list rigid_body_collision_quality_enum_strings;
 	extern s_string_list_definition rigid_body_collision_quality_enum;
 
 } // namespace blofeld

@@ -42,9 +42,9 @@ namespace blofeld
 	extern s_tag_struct_definition global_collision_bsp_struct_struct_definition;
 	extern s_tag_struct_definition collision_leaf_struct_struct_definition;
 
-	extern const char* leaf_flags_strings[];
+	extern c_versioned_string_list leaf_flags_strings;
 	extern s_string_list_definition leaf_flags;
-	extern const char* surface_flags_strings[];
+	extern c_versioned_string_list surface_flags_strings;
 	extern s_string_list_definition surface_flags;
 
 } // namespace blofeld

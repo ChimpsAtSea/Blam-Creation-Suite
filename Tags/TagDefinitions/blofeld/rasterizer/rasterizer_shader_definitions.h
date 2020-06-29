@@ -12,7 +12,7 @@ namespace blofeld
 	constexpr unsigned long COMPUTE_SHADER_TAG = 'cmpu';
 	constexpr unsigned long COMPUTE_SHADER2_TAG = 'cmps';
 
-	extern const char* shader_flags_strings[];
+	extern c_versioned_string_list shader_flags_strings;
 	extern s_string_list_definition shader_flags;
 
 	extern s_tag_group hlsl_include_group;

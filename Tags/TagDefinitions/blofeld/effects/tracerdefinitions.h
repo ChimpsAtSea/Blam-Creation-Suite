@@ -17,17 +17,17 @@ namespace blofeld
 	extern s_tag_struct_definition tracerProperty_real_point2d_Struct_struct_definition;
 	extern s_tag_struct_definition tracerProperty_real_rgb_color_Struct_struct_definition;
 
-	extern const char* tracerStateInputEnum_strings[];
+	extern c_versioned_string_list tracerStateInputEnum_strings;
 	extern s_string_list_definition tracerStateInputEnum;
-	extern const char* tracerStateOutputModEnum_strings[];
+	extern c_versioned_string_list tracerStateOutputModEnum_strings;
 	extern s_string_list_definition tracerStateOutputModEnum;
-	extern const char* tracerProfileShapeEnum_strings[];
+	extern c_versioned_string_list tracerProfileShapeEnum_strings;
 	extern s_string_list_definition tracerProfileShapeEnum;
-	extern const char* tracerFlags_strings[];
+	extern c_versioned_string_list tracerFlags_strings;
 	extern s_string_list_definition tracerFlags;
-	extern const char* tracerAppearanceFlags_strings[];
+	extern c_versioned_string_list tracerAppearanceFlags_strings;
 	extern s_string_list_definition tracerAppearanceFlags;
-	extern const char* tracerSystemFlags_strings[];
+	extern c_versioned_string_list tracerSystemFlags_strings;
 	extern s_string_list_definition tracerSystemFlags;
 
 } // namespace blofeld

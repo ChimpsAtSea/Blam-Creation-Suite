@@ -22,7 +22,7 @@ namespace blofeld
 	extern s_tag_array_definition super_node_mapping_index_array_array;
 	extern s_tag_struct_definition collision_kd_hierarchy_static_struct_struct_definition;
 
-	extern const char* collision_kd_hierarchy_static_hash_table_cull_flags_strings[];
+	extern c_versioned_string_list collision_kd_hierarchy_static_hash_table_cull_flags_strings;
 	extern s_string_list_definition collision_kd_hierarchy_static_hash_table_cull_flags;
 
 } // namespace blofeld

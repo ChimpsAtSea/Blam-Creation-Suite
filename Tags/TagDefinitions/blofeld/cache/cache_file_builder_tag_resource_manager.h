@@ -119,17 +119,17 @@ namespace blofeld
 	extern s_tag_struct_definition debug_cache_file_zone_manifest_struct_struct_definition;
 	extern s_tag_struct_definition cache_file_tag_resource_prediction_table_struct_definition;
 
-	extern const char* cache_file_shared_file_flags_definition_strings[];
+	extern c_versioned_string_list cache_file_shared_file_flags_definition_strings;
 	extern s_string_list_definition cache_file_shared_file_flags_definition;
-	extern const char* cache_file_tag_resource_page_flags_strings[];
+	extern c_versioned_string_list cache_file_tag_resource_page_flags_strings;
 	extern s_string_list_definition cache_file_tag_resource_page_flags;
-	extern const char* cache_file_resource_data_flags_definition_strings[];
+	extern c_versioned_string_list cache_file_resource_data_flags_definition_strings;
 	extern s_string_list_definition cache_file_resource_data_flags_definition;
-	extern const char* cache_file_resource_global_zone_attachment_flags_strings[];
+	extern c_versioned_string_list cache_file_resource_global_zone_attachment_flags_strings;
 	extern s_string_list_definition cache_file_resource_global_zone_attachment_flags;
-	extern const char* named_value_type_enum_strings[];
+	extern c_versioned_string_list named_value_type_enum_strings;
 	extern s_string_list_definition named_value_type_enum;
-	extern const char* cache_file_tag_parentage_flags_definition_strings[];
+	extern c_versioned_string_list cache_file_tag_parentage_flags_definition_strings;
 	extern s_string_list_definition cache_file_tag_parentage_flags_definition;
 
 } // namespace blofeld

@@ -2,12 +2,21 @@
 
 namespace blofeld
 {
+	enum e_versioned_string_list_mode
+	{
+		_versioned_string_list_mode_new,
+		_versioned_string_list_mode_append,
+	};
+
+	static constexpr uint32_t k_versioned_string_list_table_size = 1024;
+
 	class c_versioned_string_list
 	{
 	public:
+		c_versioned_string_list();
 		c_versioned_string_list(const char** strings_list, size_t strings_list_count);
 		c_versioned_string_list(std::initializer_list<const char*> init_list);
-		c_versioned_string_list(std::initializer_list<std::pair<e_engine_type, std::initializer_list<const char*>>> init_list);
+		c_versioned_string_list(std::initializer_list<std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>> init_lists);
 
 		template<size_t count>
 		c_versioned_string_list(const char* strings[count]) :
@@ -17,9 +26,9 @@ namespace blofeld
 		}
 
 		uint32_t counts[k_number_of_engine_types];
-		const char* strings[k_number_of_engine_types][64];
+		const char* strings[k_number_of_engine_types][k_versioned_string_list_table_size];
 
-		const char* (& get_strings(e_engine_type engine_type))[64]
+		const char* (& get_strings(e_engine_type engine_type))[k_versioned_string_list_table_size]
 		{
 			  return strings[engine_type];
 		}
@@ -42,7 +51,7 @@ namespace blofeld
 		}
 
 		inline uint32_t count(e_engine_type engine_type) const { return string_list.get_count(engine_type); }
-		inline const char* (&strings(e_engine_type engine_type) const)[64]{ return string_list.get_strings(engine_type); }
+		inline const char* (&strings(e_engine_type engine_type) const)[k_versioned_string_list_table_size]{ return string_list.get_strings(engine_type); }
 
 		const char* name;
 		//uint32_t count;

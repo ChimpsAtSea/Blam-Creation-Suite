@@ -13,9 +13,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition decal_system_struct_definition_struct_definition; // tag group
 
-	extern const char* decal_flags_strings[];
+	extern c_versioned_string_list decal_flags_strings;
 	extern s_string_list_definition decal_flags;
-	extern const char* decal_system_flags_strings[];
+	extern c_versioned_string_list decal_system_flags_strings;
 	extern s_string_list_definition decal_system_flags;
 
 } // namespace blofeld

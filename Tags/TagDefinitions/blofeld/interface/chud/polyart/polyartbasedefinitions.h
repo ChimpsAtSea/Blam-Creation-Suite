@@ -13,9 +13,9 @@ namespace blofeld
 	extern s_tag_struct_definition vertexBuffersBlock_struct_struct_definition;
 	extern s_tag_struct_definition indexBuffersBlock_struct_struct_definition;
 
-	extern const char* g_polyartAssetStateFlags_strings[];
+	extern c_versioned_string_list g_polyartAssetStateFlags_strings;
 	extern s_string_list_definition g_polyartAssetStateFlags;
-	extern const char* PolyartVertexFormatTypeEnum_strings[];
+	extern c_versioned_string_list PolyartVertexFormatTypeEnum_strings;
 	extern s_string_list_definition PolyartVertexFormatTypeEnum;
 
 } // namespace blofeld

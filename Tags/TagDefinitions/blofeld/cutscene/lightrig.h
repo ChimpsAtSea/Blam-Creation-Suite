@@ -15,7 +15,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition light_rig_struct_definition_struct_definition; // tag group
 
-	extern const char* lightRigLocation_strings[];
+	extern c_versioned_string_list lightRigLocation_strings;
 	extern s_string_list_definition lightRigLocation;
 
 	extern s_tag_reference_definition global_midnight_light_definition_reference;

@@ -57,27 +57,27 @@ namespace blofeld
 	extern s_tag_struct_definition flight_surface_struct_struct_definition;
 	extern s_tag_struct_definition jackal_glider_drag_struct_struct_definition;
 
-	extern const char* vehicle_flags_strings[];
+	extern c_versioned_string_list vehicle_flags_strings;
 	extern s_string_list_definition vehicle_flags;
-	extern const char* vehicle_size_enum_strings[];
+	extern c_versioned_string_list vehicle_size_enum_strings;
 	extern s_string_list_definition vehicle_size_enum;
-	extern const char* alien_scout_specific_type_enum_strings[];
+	extern c_versioned_string_list alien_scout_specific_type_enum_strings;
 	extern s_string_list_definition alien_scout_specific_type_enum;
-	extern const char* vehicle_type_enum_strings[];
+	extern c_versioned_string_list vehicle_type_enum_strings;
 	extern s_string_list_definition vehicle_type_enum;
-	extern const char* alien_scout_flags_strings[];
+	extern c_versioned_string_list alien_scout_flags_strings;
 	extern s_string_list_definition alien_scout_flags;
-	extern const char* tank_flags_strings[];
+	extern c_versioned_string_list tank_flags_strings;
 	extern s_string_list_definition tank_flags;
-	extern const char* dimensions_enum_strings[];
+	extern c_versioned_string_list dimensions_enum_strings;
 	extern s_string_list_definition dimensions_enum;
-	extern const char* turret_flags_strings[];
+	extern c_versioned_string_list turret_flags_strings;
 	extern s_string_list_definition turret_flags;
-	extern const char* boat_flags_strings[];
+	extern c_versioned_string_list boat_flags_strings;
 	extern s_string_list_definition boat_flags;
-	extern const char* space_fighter_turn_back_flags_strings[];
+	extern c_versioned_string_list space_fighter_turn_back_flags_strings;
 	extern s_string_list_definition space_fighter_turn_back_flags;
-	extern const char* space_fighter_roll_flags_strings[];
+	extern c_versioned_string_list space_fighter_roll_flags_strings;
 	extern s_string_list_definition space_fighter_roll_flags;
 
 } // namespace blofeld

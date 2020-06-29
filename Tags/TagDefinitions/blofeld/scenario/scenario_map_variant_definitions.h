@@ -16,7 +16,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition mapVariantResourceManifest_struct_definition;
 
-	extern const char* map_variant_palette_flags_strings[];
+	extern c_versioned_string_list map_variant_palette_flags_strings;
 	extern s_string_list_definition map_variant_palette_flags;
 
 } // namespace blofeld

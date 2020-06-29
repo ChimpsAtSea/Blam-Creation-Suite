@@ -11,11 +11,11 @@ namespace blofeld
 
 	extern s_tag_struct_definition scenery_group_struct_definition; // tag group
 
-	extern const char* pathfinding_policy_enum$2_strings[];
+	extern c_versioned_string_list pathfinding_policy_enum$2_strings;
 	extern s_string_list_definition pathfinding_policy_enum$2;
-	extern const char* lightmapping_policy_enum_strings[];
+	extern c_versioned_string_list lightmapping_policy_enum_strings;
 	extern s_string_list_definition lightmapping_policy_enum;
-	extern const char* scenery_flags_strings[];
+	extern c_versioned_string_list scenery_flags_strings;
 	extern s_string_list_definition scenery_flags;
 
 } // namespace blofeld

@@ -15,9 +15,9 @@ namespace blofeld
 	extern s_tag_block_definition sound_references_block_block;
 
 
-	extern const char* vocalization_stimulus_flags_strings[];
+	extern c_versioned_string_list vocalization_stimulus_flags_strings;
 	extern s_string_list_definition vocalization_stimulus_flags;
-	extern const char* dialogue_flags_strings[];
+	extern c_versioned_string_list dialogue_flags_strings;
 	extern s_string_list_definition dialogue_flags;
 
 } // namespace blofeld

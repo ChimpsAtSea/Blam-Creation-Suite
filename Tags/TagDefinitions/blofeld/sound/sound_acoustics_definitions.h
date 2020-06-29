@@ -17,9 +17,9 @@ namespace blofeld
 	extern s_tag_struct_definition scenario_acoustic_location_definition_struct_definition;
 	extern s_tag_struct_definition scenario_acoustic_cluster_reference_definition_struct_definition;
 
-	extern const char* background_sound_scale_flags_definition_strings[];
+	extern c_versioned_string_list background_sound_scale_flags_definition_strings;
 	extern s_string_list_definition background_sound_scale_flags_definition;
-	extern const char* acousticPaletteFlags_strings[];
+	extern c_versioned_string_list acousticPaletteFlags_strings;
 	extern s_string_list_definition acousticPaletteFlags;
 
 } // namespace blofeld

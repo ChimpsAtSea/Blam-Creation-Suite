@@ -71,31 +71,31 @@ namespace blofeld
 	extern s_tag_struct_definition render_method_option_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition render_method_template_struct_definition_struct_definition; // tag group
 
-	extern const char* render_method_parameter_type_enum_strings[];
+	extern c_versioned_string_list render_method_parameter_type_enum_strings;
 	extern s_string_list_definition render_method_parameter_type_enum;
-	extern const char* render_method_bitmap_filter_mode_enum_strings[];
+	extern c_versioned_string_list render_method_bitmap_filter_mode_enum_strings;
 	extern s_string_list_definition render_method_bitmap_filter_mode_enum;
-	extern const char* render_method_bitmap_address_mode_enum_strings[];
+	extern c_versioned_string_list render_method_bitmap_address_mode_enum_strings;
 	extern s_string_list_definition render_method_bitmap_address_mode_enum;
-	extern const char* render_method_animated_parameter_type_enum_strings[];
+	extern c_versioned_string_list render_method_animated_parameter_type_enum_strings;
 	extern s_string_list_definition render_method_animated_parameter_type_enum;
-	extern const char* render_method_extern_enum_strings[];
+	extern c_versioned_string_list render_method_extern_enum_strings;
 	extern s_string_list_definition render_method_extern_enum;
-	extern const char* render_method_definition_flags_strings[];
+	extern c_versioned_string_list render_method_definition_flags_strings;
 	extern s_string_list_definition render_method_definition_flags;
-	extern const char* entry_point_enum_strings[];
+	extern c_versioned_string_list entry_point_enum_strings;
 	extern s_string_list_definition entry_point_enum;
-	extern const char* render_method_pass_flags_strings[];
+	extern c_versioned_string_list render_method_pass_flags_strings;
 	extern s_string_list_definition render_method_pass_flags;
-	extern const char* vertex_types_names_enum_strings[];
+	extern c_versioned_string_list vertex_types_names_enum_strings;
 	extern s_string_list_definition vertex_types_names_enum;
-	extern const char* ui_and_usage_flags_strings[];
+	extern c_versioned_string_list ui_and_usage_flags_strings;
 	extern s_string_list_definition ui_and_usage_flags;
-	extern const char* global_render_method_lock_option_flags_defintion_strings[];
+	extern c_versioned_string_list global_render_method_lock_option_flags_defintion_strings;
 	extern s_string_list_definition global_render_method_lock_option_flags_defintion;
-	extern const char* global_render_method_flags_defintion_strings[];
+	extern c_versioned_string_list global_render_method_flags_defintion_strings;
 	extern s_string_list_definition global_render_method_flags_defintion;
-	extern const char* global_sort_layer_enum_defintion_strings[];
+	extern c_versioned_string_list global_sort_layer_enum_defintion_strings;
 	extern s_string_list_definition global_sort_layer_enum_defintion;
 
 } // namespace blofeld

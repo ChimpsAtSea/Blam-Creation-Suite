@@ -17,7 +17,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition rasterizer_globals_struct_definition_struct_definition; // tag group
 
-	extern const char* global_bitmap_flags_strings[];
+	extern c_versioned_string_list global_bitmap_flags_strings;
 	extern s_string_list_definition global_bitmap_flags;
 
 	extern s_tag_reference_definition global_rasterizer_globals_reference;

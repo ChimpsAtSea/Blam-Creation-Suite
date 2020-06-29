@@ -11,9 +11,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition render_water_ripple_struct_definition_struct_definition; // tag group
 
-	extern const char* ripple_behavior_flags_strings[];
+	extern c_versioned_string_list ripple_behavior_flags_strings;
 	extern s_string_list_definition ripple_behavior_flags;
-	extern const char* transition_function_enum_strings[];
+	extern c_versioned_string_list transition_function_enum_strings;
 	extern s_string_list_definition transition_function_enum;
 
 } // namespace blofeld

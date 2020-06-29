@@ -39,17 +39,17 @@ namespace blofeld
 
 	extern s_tag_struct_definition style_sheet_list_struct_definition_struct_definition; // tag group
 
-	extern const char* text_case_enum_strings[];
+	extern c_versioned_string_list text_case_enum_strings;
 	extern s_string_list_definition text_case_enum;
-	extern const char* justification_enum_strings[];
+	extern c_versioned_string_list justification_enum_strings;
 	extern s_string_list_definition justification_enum;
-	extern const char* alignment_enum_strings[];
+	extern c_versioned_string_list alignment_enum_strings;
 	extern s_string_list_definition alignment_enum;
-	extern const char* drop_shadow_style_enum_strings[];
+	extern c_versioned_string_list drop_shadow_style_enum_strings;
 	extern s_string_list_definition drop_shadow_style_enum;
-	extern const char* style_sheet_language_enum_definition_strings[];
+	extern c_versioned_string_list style_sheet_language_enum_definition_strings;
 	extern s_string_list_definition style_sheet_language_enum_definition;
-	extern const char* gradient_shape_enum_strings[];
+	extern c_versioned_string_list gradient_shape_enum_strings;
 	extern s_string_list_definition gradient_shape_enum;
 
 	extern s_tag_reference_definition style_sheets_global_reference;

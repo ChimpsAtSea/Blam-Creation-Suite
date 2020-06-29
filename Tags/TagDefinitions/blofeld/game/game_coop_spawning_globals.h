@@ -11,9 +11,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition coop_spawning_globals_definition_struct_definition_struct_definition; // tag group
 
-	extern const char* coop_spawning_flags_strings[];
+	extern c_versioned_string_list coop_spawning_flags_strings;
 	extern s_string_list_definition coop_spawning_flags;
-	extern const char* safety_check_mode_enum_strings[];
+	extern c_versioned_string_list safety_check_mode_enum_strings;
 	extern s_string_list_definition safety_check_mode_enum;
 
 	extern s_tag_reference_definition global_coop_spawning_globals_reference;

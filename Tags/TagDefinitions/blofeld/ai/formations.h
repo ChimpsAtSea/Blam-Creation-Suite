@@ -15,7 +15,7 @@ namespace blofeld
 	extern s_tag_block_definition formation_primitive_definition_block;
 
 
-	extern const char* formation_primitive_flags_strings[];
+	extern c_versioned_string_list formation_primitive_flags_strings;
 	extern s_string_list_definition formation_primitive_flags;
 
 } // namespace blofeld

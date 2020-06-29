@@ -23,23 +23,23 @@ namespace blofeld
 	extern s_tag_struct_definition global_lightmap_global_illumination_falloff_settings_struct_struct_definition;
 	extern s_tag_struct_definition global_lightmap_local_override_settings_struct_struct_definition;
 
-	extern const char* lightmap_mode_enum_strings[];
+	extern c_versioned_string_list lightmap_mode_enum_strings;
 	extern s_string_list_definition lightmap_mode_enum;
-	extern const char* lightmap_hemicube_resolution_enum_strings[];
+	extern c_versioned_string_list lightmap_hemicube_resolution_enum_strings;
 	extern s_string_list_definition lightmap_hemicube_resolution_enum;
-	extern const char* lightmap_ao_quality_enum_strings[];
+	extern c_versioned_string_list lightmap_ao_quality_enum_strings;
 	extern s_string_list_definition lightmap_ao_quality_enum;
-	extern const char* lightmap_dxt_quality_enum_strings[];
+	extern c_versioned_string_list lightmap_dxt_quality_enum_strings;
 	extern s_string_list_definition lightmap_dxt_quality_enum;
-	extern const char* lightmap_indirect_quality_enum_strings[];
+	extern c_versioned_string_list lightmap_indirect_quality_enum_strings;
 	extern s_string_list_definition lightmap_indirect_quality_enum;
-	extern const char* lightmap_direct_shadow_map_resolution_enum_strings[];
+	extern c_versioned_string_list lightmap_direct_shadow_map_resolution_enum_strings;
 	extern s_string_list_definition lightmap_direct_shadow_map_resolution_enum;
-	extern const char* lightmap_supersampling_factor_enum_strings[];
+	extern c_versioned_string_list lightmap_supersampling_factor_enum_strings;
 	extern s_string_list_definition lightmap_supersampling_factor_enum;
-	extern const char* lightmap_local_flags_strings[];
+	extern c_versioned_string_list lightmap_local_flags_strings;
 	extern s_string_list_definition lightmap_local_flags;
-	extern const char* lightmap_global_flags_strings[];
+	extern c_versioned_string_list lightmap_global_flags_strings;
 	extern s_string_list_definition lightmap_global_flags;
 
 } // namespace blofeld

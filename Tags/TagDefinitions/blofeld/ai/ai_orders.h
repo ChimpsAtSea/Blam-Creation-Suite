@@ -17,21 +17,21 @@ namespace blofeld
 	extern s_tag_block_definition triggers_block_block;
 
 
-	extern const char* condition_type_enum_strings[];
+	extern c_versioned_string_list condition_type_enum_strings;
 	extern s_string_list_definition condition_type_enum;
-	extern const char* completion_condition_flags_strings[];
+	extern c_versioned_string_list completion_condition_flags_strings;
 	extern s_string_list_definition completion_condition_flags;
-	extern const char* combination_rules_enum_strings[];
+	extern c_versioned_string_list combination_rules_enum_strings;
 	extern s_string_list_definition combination_rules_enum;
-	extern const char* trigger_flags_strings[];
+	extern c_versioned_string_list trigger_flags_strings;
 	extern s_string_list_definition trigger_flags;
-	extern const char* trigger_ref_flags_strings[];
+	extern c_versioned_string_list trigger_ref_flags_strings;
 	extern s_string_list_definition trigger_ref_flags;
-	extern const char* order_ending_dialogue_enum_strings[];
+	extern c_versioned_string_list order_ending_dialogue_enum_strings;
 	extern s_string_list_definition order_ending_dialogue_enum;
-	extern const char* order_flags_strings[];
+	extern c_versioned_string_list order_flags_strings;
 	extern s_string_list_definition order_flags;
-	extern const char* force_combat_status_enum_strings[];
+	extern c_versioned_string_list force_combat_status_enum_strings;
 	extern s_string_list_definition force_combat_status_enum;
 
 } // namespace blofeld

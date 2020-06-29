@@ -18,13 +18,13 @@ namespace blofeld
 	extern s_tag_array_definition area_cluster_occupancy_bitvector_array_array;
 	extern s_tag_struct_definition NavMeshAttachmentsStruct_struct_definition;
 
-	extern const char* area_flags_strings[];
+	extern c_versioned_string_list area_flags_strings;
 	extern s_string_list_definition area_flags;
-	extern const char* generate_flags_strings[];
+	extern c_versioned_string_list generate_flags_strings;
 	extern s_string_list_definition generate_flags;
-	extern const char* generate_preset_enum_strings[];
+	extern c_versioned_string_list generate_preset_enum_strings;
 	extern s_string_list_definition generate_preset_enum;
-	extern const char* zone_flags_strings[];
+	extern c_versioned_string_list zone_flags_strings;
 	extern s_string_list_definition zone_flags;
 
 } // namespace blofeld

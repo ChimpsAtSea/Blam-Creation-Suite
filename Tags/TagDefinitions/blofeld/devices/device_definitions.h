@@ -33,27 +33,27 @@ namespace blofeld
 	extern s_tag_struct_definition device_machine_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition device_terminal_struct_definition_struct_definition; // tag group
 
-	extern const char* device_definition_flags_strings[];
+	extern c_versioned_string_list device_definition_flags_strings;
 	extern s_string_list_definition device_definition_flags;
-	extern const char* device_lightmap_flags_strings[];
+	extern c_versioned_string_list device_lightmap_flags_strings;
 	extern s_string_list_definition device_lightmap_flags;
-	extern const char* machine_types_strings[];
+	extern c_versioned_string_list machine_types_strings;
 	extern s_string_list_definition machine_types;
-	extern const char* machine_flags_strings[];
+	extern c_versioned_string_list machine_flags_strings;
 	extern s_string_list_definition machine_flags;
-	extern const char* machine_collision_responses_strings[];
+	extern c_versioned_string_list machine_collision_responses_strings;
 	extern s_string_list_definition machine_collision_responses;
-	extern const char* machine_pathfinding_policy_enum_strings[];
+	extern c_versioned_string_list machine_pathfinding_policy_enum_strings;
 	extern s_string_list_definition machine_pathfinding_policy_enum;
-	extern const char* control_types_strings[];
+	extern c_versioned_string_list control_types_strings;
 	extern s_string_list_definition control_types;
-	extern const char* control_triggers_strings[];
+	extern c_versioned_string_list control_triggers_strings;
 	extern s_string_list_definition control_triggers;
-	extern const char* teamUseRestrictionEnum_strings[];
+	extern c_versioned_string_list teamUseRestrictionEnum_strings;
 	extern s_string_list_definition teamUseRestrictionEnum;
-	extern const char* DispenserDefinitionFlags_strings[];
+	extern c_versioned_string_list DispenserDefinitionFlags_strings;
 	extern s_string_list_definition DispenserDefinitionFlags;
-	extern const char* DispenserDefinitionTrigger_strings[];
+	extern c_versioned_string_list DispenserDefinitionTrigger_strings;
 	extern s_string_list_definition DispenserDefinitionTrigger;
 
 } // namespace blofeld

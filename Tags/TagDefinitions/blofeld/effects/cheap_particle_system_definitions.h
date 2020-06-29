@@ -23,9 +23,9 @@ namespace blofeld
 	extern s_tag_struct_definition cheap_particle_scalar_object_function_struct_struct_definition;
 	extern s_tag_struct_definition cheap_particle_type_library_struct_definition_struct_definition; // tag group
 
-	extern const char* cheap_particle_emitter_flags_strings[];
+	extern c_versioned_string_list cheap_particle_emitter_flags_strings;
 	extern s_string_list_definition cheap_particle_emitter_flags;
-	extern const char* cheap_particle_type_orientation_strings[];
+	extern c_versioned_string_list cheap_particle_type_orientation_strings;
 	extern s_string_list_definition cheap_particle_type_orientation;
 
 	extern s_tag_reference_definition global_cheap_particle_emitter_reference;

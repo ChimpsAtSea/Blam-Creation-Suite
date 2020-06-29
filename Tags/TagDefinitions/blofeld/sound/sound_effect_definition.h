@@ -17,11 +17,11 @@ namespace blofeld
 
 	extern s_tag_struct_definition sound_effect_template_struct_definition_struct_definition; // tag group
 
-	extern const char* sound_effect_template_type_enum_definition_strings[];
+	extern c_versioned_string_list sound_effect_template_type_enum_definition_strings;
 	extern s_string_list_definition sound_effect_template_type_enum_definition;
-	extern const char* sound_effect_template_parameter_flags_definition_strings[];
+	extern c_versioned_string_list sound_effect_template_parameter_flags_definition_strings;
 	extern s_string_list_definition sound_effect_template_parameter_flags_definition;
-	extern const char* sound_effect_template_flags_definition_strings[];
+	extern c_versioned_string_list sound_effect_template_flags_definition_strings;
 	extern s_string_list_definition sound_effect_template_flags_definition;
 
 } // namespace blofeld

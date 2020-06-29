@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition self_illumination_struct_definition_struct_definition; // tag group
 
-	extern const char* self_illumination_flags_strings[];
+	extern c_versioned_string_list self_illumination_flags_strings;
 	extern s_string_list_definition self_illumination_flags;
 
 } // namespace blofeld

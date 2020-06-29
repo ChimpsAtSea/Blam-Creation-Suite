@@ -29,13 +29,13 @@ namespace blofeld
 	extern s_tag_block_definition HSImportManifestBlock_block;
 
 
-	extern const char* hs_script_types_enum_strings[];
+	extern c_versioned_string_list hs_script_types_enum_strings;
 	extern s_string_list_definition hs_script_types_enum;
-	extern const char* scriptFlagsEnumDefinition_strings[];
+	extern c_versioned_string_list scriptFlagsEnumDefinition_strings;
 	extern s_string_list_definition scriptFlagsEnumDefinition;
-	extern const char* hs_types_enum_strings[];
+	extern c_versioned_string_list hs_types_enum_strings;
 	extern s_string_list_definition hs_types_enum;
-	extern const char* hs_source_file_flags_strings[];
+	extern c_versioned_string_list hs_source_file_flags_strings;
 	extern s_string_list_definition hs_source_file_flags;
 
 } // namespace blofeld

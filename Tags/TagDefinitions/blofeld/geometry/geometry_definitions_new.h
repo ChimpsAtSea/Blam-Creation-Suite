@@ -7,7 +7,7 @@ namespace blofeld
 	extern s_tag_block_definition global_geometry_material_block_block;
 
 
-	extern const char* global_geometry_material_lightmap_flags_strings[];
+	extern c_versioned_string_list global_geometry_material_lightmap_flags_strings;
 	extern s_string_list_definition global_geometry_material_lightmap_flags;
 
 } // namespace blofeld

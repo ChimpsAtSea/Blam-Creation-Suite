@@ -16,9 +16,9 @@ namespace blofeld
 	extern s_tag_struct_definition material_physics_properties_struct_struct_definition;
 	extern s_tag_struct_definition materials_sweeteners_struct_struct_definition;
 
-	extern const char* materials_sweeteners_inheritance_flags_strings[];
+	extern c_versioned_string_list materials_sweeteners_inheritance_flags_strings;
 	extern s_string_list_definition materials_sweeteners_inheritance_flags;
-	extern const char* global_material_flags_definition_strings[];
+	extern c_versioned_string_list global_material_flags_definition_strings;
 	extern s_string_list_definition global_material_flags_definition;
 
 } // namespace blofeld

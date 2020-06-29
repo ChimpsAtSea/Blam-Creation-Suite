@@ -83,28 +83,72 @@ namespace blofeld
 
 	STRINGS(game_state_type_enum)
 	{
-		"particle age",
-		"system age{emitter age}",
-		"particle random",
-		"system random{emitter random}",
-		"particle correlation 1{particle random 1}",
-		"particle correlation 2{particle random 2}",
-		"particle correlation 3{particle random 3}",
-		"particle correlation 4{particle random 4}",
-		"system correlation 1{emitter correlation 1}{emitter random 1}",
-		"system correlation 2{emitter correlation 2}{emitter random 2}",
-		"particle emission time{emitter time}{particle emit time}",
-		"location lod{system lod}",
-		"game time",
-		"effect a scale",
-		"effect b scale",
-		"particle rotation{physics rotation}",
-		"location random",
-		"distance from emitter",
-		"particle simulation a",
-		"particle simulation b",
-		"particle velocity",
-		"invalid state --- please set again"
+		{
+			_engine_type_halo2,
+			_versioned_string_list_mode_new,
+			{
+				"particle age",
+				"particle emit time",
+				"particle random 1",
+				"particle random 2",
+				"emitter age",
+				"emitter random 1",
+				"emitter random 2",
+				"system lod",
+				"game time",
+				"effect a scale",
+				"effect b scale",
+				"particle rotation",
+				"explosion animation",
+				"explosion rotation",
+				"particle random 3",
+				"particle random 4",
+				"location random",
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"_haloreach_unknown_17",
+				"_haloreach_unknown_18",
+				"_haloreach_unknown_19",
+				"_haloreach_unknown_20",
+				"_haloreach_unknown_21",
+				"_haloreach_unknown_22",
+				"_haloreach_unknown_23",
+				"_haloreach_unknown_24",
+				"_haloreach_unknown_25",
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"particle age",
+				"system age{emitter age}",
+				"particle random",
+				"system random{emitter random}",
+				"particle correlation 1{particle random 1}",
+				"particle correlation 2{particle random 2}",
+				"particle correlation 3{particle random 3}",
+				"particle correlation 4{particle random 4}",
+				"system correlation 1{emitter correlation 1}{emitter random 1}",
+				"system correlation 2{emitter correlation 2}{emitter random 2}",
+				"particle emission time{emitter time}{particle emit time}",
+				"location lod{system lod}",
+				"game time",
+				"effect a scale",
+				"effect b scale",
+				"particle rotation{physics rotation}",
+				"location random",
+				"distance from emitter",
+				"particle simulation a",
+				"particle simulation b",
+				"particle velocity",
+				"invalid state --- please set again"
+			}
+		}
 	};
 	STRING_LIST(game_state_type_enum, game_state_type_enum_strings, _countof(game_state_type_enum_strings));
 

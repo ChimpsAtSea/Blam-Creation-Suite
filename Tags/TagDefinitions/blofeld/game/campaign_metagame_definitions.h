@@ -19,15 +19,15 @@ namespace blofeld
 	extern s_tag_block_definition campaign_metagame_scenario_block_block;
 
 
-	extern const char* campaign_metagame_bucket_type_enum_strings[];
+	extern c_versioned_string_list campaign_metagame_bucket_type_enum_strings;
 	extern s_string_list_definition campaign_metagame_bucket_type_enum;
-	extern const char* campaign_metagame_bucket_class_enum_strings[];
+	extern c_versioned_string_list campaign_metagame_bucket_class_enum_strings;
 	extern s_string_list_definition campaign_metagame_bucket_class_enum;
-	extern const char* campaign_metagame_bucket_type_with_none_enum_strings[];
+	extern c_versioned_string_list campaign_metagame_bucket_type_with_none_enum_strings;
 	extern s_string_list_definition campaign_metagame_bucket_type_with_none_enum;
-	extern const char* campaign_metagame_bucket_class_with_none_enum_strings[];
+	extern c_versioned_string_list campaign_metagame_bucket_class_with_none_enum_strings;
 	extern s_string_list_definition campaign_metagame_bucket_class_with_none_enum;
-	extern const char* campaign_metagame_bucket_flags_strings[];
+	extern c_versioned_string_list campaign_metagame_bucket_flags_strings;
 	extern s_string_list_definition campaign_metagame_bucket_flags;
 
 } // namespace blofeld

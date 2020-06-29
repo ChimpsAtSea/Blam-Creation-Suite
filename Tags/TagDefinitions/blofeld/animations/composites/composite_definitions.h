@@ -21,7 +21,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition g_compositeTag_struct_struct_definition;
 
-	extern const char* CompositeAxisFlags_strings[];
+	extern c_versioned_string_list CompositeAxisFlags_strings;
 	extern s_string_list_definition CompositeAxisFlags;
 
 } // namespace blofeld

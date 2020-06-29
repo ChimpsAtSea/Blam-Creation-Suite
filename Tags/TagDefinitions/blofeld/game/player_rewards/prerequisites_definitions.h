@@ -23,7 +23,7 @@ namespace blofeld
 	extern s_tag_struct_definition PurchaseLoadoutDefinitionReferenceStruct_struct_definition;
 	extern s_tag_struct_definition PurchaseOrdnanceDefinitionReferenceStruct_struct_definition;
 
-	extern const char* MarketplaceOfferTypeEnum_strings[];
+	extern c_versioned_string_list MarketplaceOfferTypeEnum_strings;
 	extern s_string_list_definition MarketplaceOfferTypeEnum;
 
 } // namespace blofeld

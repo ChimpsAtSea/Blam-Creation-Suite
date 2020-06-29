@@ -16,9 +16,9 @@ namespace blofeld
 	extern s_tag_struct_definition curve_scalar_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition color_function_named_struct_struct_definition;
 
-	extern const char* function_type_enum_definition_strings[];
+	extern c_versioned_string_list function_type_enum_definition_strings;
 	extern s_string_list_definition function_type_enum_definition;
-	extern const char* color_graph_type_enum_definition_strings[];
+	extern c_versioned_string_list color_graph_type_enum_definition_strings;
 	extern s_string_list_definition color_graph_type_enum_definition;
 
 } // namespace blofeld

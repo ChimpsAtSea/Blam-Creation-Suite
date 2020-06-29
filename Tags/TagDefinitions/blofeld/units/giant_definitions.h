@@ -13,9 +13,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition giant_struct_definition_struct_definition; // tag group
 
-	extern const char* giant_definition_flags_strings[];
+	extern c_versioned_string_list giant_definition_flags_strings;
 	extern s_string_list_definition giant_definition_flags;
-	extern const char* slider_movement_patterns_strings[];
+	extern c_versioned_string_list slider_movement_patterns_strings;
 	extern s_string_list_definition slider_movement_patterns;
 
 } // namespace blofeld

@@ -49,29 +49,29 @@ namespace blofeld
 	extern s_tag_block_definition halo3_unit_camera_struct_unknown_block;
 	extern s_tag_struct_definition halo3_unit_camera_struct_unknown_block_struct;
 
-	extern const char* unit_camera_acceleration_displacement_input_strings[];
+	extern c_versioned_string_list unit_camera_acceleration_displacement_input_strings;
 	extern s_string_list_definition unit_camera_acceleration_displacement_input;
-	extern const char* unit_camera_flags_definition_strings[];
+	extern c_versioned_string_list unit_camera_flags_definition_strings;
 	extern s_string_list_definition unit_camera_flags_definition;
-	extern const char* unit_seat_flags_strings[];
+	extern c_versioned_string_list unit_seat_flags_strings;
 	extern s_string_list_definition unit_seat_flags;
-	extern const char* unit_seat_secondary_flags_strings[];
+	extern c_versioned_string_list unit_seat_secondary_flags_strings;
 	extern s_string_list_definition unit_seat_secondary_flags;
-	extern const char* global_ai_seat_type_enum_strings[];
+	extern c_versioned_string_list global_ai_seat_type_enum_strings;
 	extern s_string_list_definition global_ai_seat_type_enum;
-	extern const char* initial_weapon_position_strings[];
+	extern c_versioned_string_list initial_weapon_position_strings;
 	extern s_string_list_definition initial_weapon_position;
-	extern const char* sentryTurretBehaviorFlagDefinition_strings[];
+	extern c_versioned_string_list sentryTurretBehaviorFlagDefinition_strings;
 	extern s_string_list_definition sentryTurretBehaviorFlagDefinition;
-	extern const char* unit_flags_part1_strings[];
+	extern c_versioned_string_list unit_flags_part1_strings;
 	extern s_string_list_definition unit_flags_part1;
-	extern const char* unit_flags_part2_strings[];
+	extern c_versioned_string_list unit_flags_part2_strings;
 	extern s_string_list_definition unit_flags_part2;
-	extern const char* unit_default_teams$2_strings[];
+	extern c_versioned_string_list unit_default_teams$2_strings;
 	extern s_string_list_definition unit_default_teams$2;
-	extern const char* boost_flags_strings[];
+	extern c_versioned_string_list boost_flags_strings;
 	extern s_string_list_definition boost_flags;
-	extern const char* unit_item_owner_size_enum_strings[];
+	extern c_versioned_string_list unit_item_owner_size_enum_strings;
 	extern s_string_list_definition unit_item_owner_size_enum;
 
 } // namespace blofeld

@@ -26,15 +26,15 @@ namespace blofeld
 	extern s_tag_array_definition runtime_queryable_properties$3_array;
 	extern s_tag_struct_definition material_struct_struct_definition;
 
-	extern const char* layerBlendModeEnum_strings[];
+	extern c_versioned_string_list layerBlendModeEnum_strings;
 	extern s_string_list_definition layerBlendModeEnum;
-	extern const char* materialPostprocessFlags_strings[];
+	extern c_versioned_string_list materialPostprocessFlags_strings;
 	extern s_string_list_definition materialPostprocessFlags;
-	extern const char* materialFlags_strings[];
+	extern c_versioned_string_list materialFlags_strings;
 	extern s_string_list_definition materialFlags;
-	extern const char* materialRenderFlags_strings[];
+	extern c_versioned_string_list materialRenderFlags_strings;
 	extern s_string_list_definition materialRenderFlags;
-	extern const char* MaterialTransparentShadowPolicyEnum_strings[];
+	extern c_versioned_string_list MaterialTransparentShadowPolicyEnum_strings;
 	extern s_string_list_definition MaterialTransparentShadowPolicyEnum;
 
 } // namespace blofeld

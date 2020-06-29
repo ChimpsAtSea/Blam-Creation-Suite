@@ -13,7 +13,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition item_struct_definition_struct_definition; // tag group
 
-	extern const char* item_definition_flags_strings[];
+	extern c_versioned_string_list item_definition_flags_strings;
 	extern s_string_list_definition item_definition_flags;
 
 	extern s_tag_reference_definition object_reference$3;

@@ -77,29 +77,29 @@ namespace blofeld
 	extern s_tag_struct_definition global_render_geometry_struct_struct_definition;
 	extern s_tag_struct_definition global_render_geometry_user_data_header_struct_struct_definition;
 
-	extern const char* part_flags_strings[];
+	extern c_versioned_string_list part_flags_strings;
 	extern s_string_list_definition part_flags;
-	extern const char* tessellation_mode_definition_strings[];
+	extern c_versioned_string_list tessellation_mode_definition_strings;
 	extern s_string_list_definition tessellation_mode_definition;
-	extern const char* specialized_render_definition_strings[];
+	extern c_versioned_string_list specialized_render_definition_strings;
 	extern s_string_list_definition specialized_render_definition;
-	extern const char* compression_flags_strings[];
+	extern c_versioned_string_list compression_flags_strings;
 	extern s_string_list_definition compression_flags;
-	extern const char* mesh_flags_strings[];
+	extern c_versioned_string_list mesh_flags_strings;
 	extern s_string_list_definition mesh_flags;
-	extern const char* mesh_vertex_type_definition_strings[];
+	extern c_versioned_string_list mesh_vertex_type_definition_strings;
 	extern s_string_list_definition mesh_vertex_type_definition;
-	extern const char* mesh_transfer_vertex_type_definition_strings[];
+	extern c_versioned_string_list mesh_transfer_vertex_type_definition_strings;
 	extern s_string_list_definition mesh_transfer_vertex_type_definition;
-	extern const char* mesh_lighting_policy_type_definition_strings[];
+	extern c_versioned_string_list mesh_lighting_policy_type_definition_strings;
 	extern s_string_list_definition mesh_lighting_policy_type_definition;
-	extern const char* mesh_index_buffer_type_definition_strings[];
+	extern c_versioned_string_list mesh_index_buffer_type_definition_strings;
 	extern s_string_list_definition mesh_index_buffer_type_definition;
-	extern const char* per_mesh_raw_data_flags_strings[];
+	extern c_versioned_string_list per_mesh_raw_data_flags_strings;
 	extern s_string_list_definition per_mesh_raw_data_flags;
-	extern const char* render_geometry_user_data_type_definition_strings[];
+	extern c_versioned_string_list render_geometry_user_data_type_definition_strings;
 	extern s_string_list_definition render_geometry_user_data_type_definition;
-	extern const char* render_geometry_flags_strings[];
+	extern c_versioned_string_list render_geometry_flags_strings;
 	extern s_string_list_definition render_geometry_flags;
 
 } // namespace blofeld

@@ -12,11 +12,11 @@ namespace blofeld
 	extern s_tag_struct_definition simulated_input_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition simulated_input_stick_struct_struct_definition;
 
-	extern const char* simulated_input_flags_strings[];
+	extern c_versioned_string_list simulated_input_flags_strings;
 	extern s_string_list_definition simulated_input_flags;
-	extern const char* direction_type_enum_definition_strings[];
+	extern c_versioned_string_list direction_type_enum_definition_strings;
 	extern s_string_list_definition direction_type_enum_definition;
-	extern const char* mapping_type_enum_definition_strings[];
+	extern c_versioned_string_list mapping_type_enum_definition_strings;
 	extern s_string_list_definition mapping_type_enum_definition;
 
 	extern s_tag_reference_definition global_simulated_input_reference;

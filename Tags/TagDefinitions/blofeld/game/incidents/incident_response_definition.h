@@ -11,11 +11,11 @@ namespace blofeld
 	extern s_tag_block_definition game_incident_response_block_block;
 
 
-	extern const char* incident_fanfare_event_input_enum_definition_strings[];
+	extern c_versioned_string_list incident_fanfare_event_input_enum_definition_strings;
 	extern s_string_list_definition incident_fanfare_event_input_enum_definition;
-	extern const char* incident_fanfare_queue_type_strings[];
+	extern c_versioned_string_list incident_fanfare_queue_type_strings;
 	extern s_string_list_definition incident_fanfare_queue_type;
-	extern const char* incident_fanfare_event_flags_definition_strings[];
+	extern c_versioned_string_list incident_fanfare_event_flags_definition_strings;
 	extern s_string_list_definition incident_fanfare_event_flags_definition;
 
 } // namespace blofeld

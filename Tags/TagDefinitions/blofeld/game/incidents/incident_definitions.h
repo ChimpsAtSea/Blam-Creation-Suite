@@ -53,21 +53,21 @@ namespace blofeld
 	extern s_tag_struct_definition incident_global_properties_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition SuppressedIncident_struct_definition_struct_definition; // tag group
 
-	extern const char* numeric_comparison_flags_strings[];
+	extern c_versioned_string_list numeric_comparison_flags_strings;
 	extern s_string_list_definition numeric_comparison_flags;
-	extern const char* suppressed_incident_flags_strings[];
+	extern c_versioned_string_list suppressed_incident_flags_strings;
 	extern s_string_list_definition suppressed_incident_flags;
-	extern const char* incident_definition_flags_strings[];
+	extern c_versioned_string_list incident_definition_flags_strings;
 	extern s_string_list_definition incident_definition_flags;
-	extern const char* specialized_incident_kill_bucket_flags_strings[];
+	extern c_versioned_string_list specialized_incident_kill_bucket_flags_strings;
 	extern s_string_list_definition specialized_incident_kill_bucket_flags;
-	extern const char* specializedIncidentGameOverFlags_strings[];
+	extern c_versioned_string_list specializedIncidentGameOverFlags_strings;
 	extern s_string_list_definition specializedIncidentGameOverFlags;
-	extern const char* specialized_incident_special_kill_type_enum_strings[];
+	extern c_versioned_string_list specialized_incident_special_kill_type_enum_strings;
 	extern s_string_list_definition specialized_incident_special_kill_type_enum;
-	extern const char* incident_accumulator_reset_enum_strings[];
+	extern c_versioned_string_list incident_accumulator_reset_enum_strings;
 	extern s_string_list_definition incident_accumulator_reset_enum;
-	extern const char* incident_accumulator_aggregation_method_enum_strings[];
+	extern c_versioned_string_list incident_accumulator_aggregation_method_enum_strings;
 	extern s_string_list_definition incident_accumulator_aggregation_method_enum;
 
 	extern s_tag_reference_definition SuppressedIncidentGroupReference;

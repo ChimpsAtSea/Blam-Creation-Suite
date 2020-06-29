@@ -11,7 +11,7 @@ namespace blofeld
 	extern s_tag_block_definition big_battle_creature_palette_block_block;
 
 
-	extern const char* ai_sound_volume_enum_strings[];
+	extern c_versioned_string_list ai_sound_volume_enum_strings;
 	extern s_string_list_definition ai_sound_volume_enum;
 
 	extern s_tag_reference_definition structureBspReferenceNonDependency;

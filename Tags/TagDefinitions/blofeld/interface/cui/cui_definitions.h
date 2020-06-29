@@ -86,33 +86,33 @@ namespace blofeld
 	extern s_tag_struct_definition cui_screen_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition cui_static_data_struct_definition_struct_definition; // tag group
 
-	extern const char* propertyComponentPtrFlags_strings[];
+	extern c_versioned_string_list propertyComponentPtrFlags_strings;
 	extern s_string_list_definition propertyComponentPtrFlags;
-	extern const char* property_type_strings[];
+	extern c_versioned_string_list property_type_strings;
 	extern s_string_list_definition property_type;
-	extern const char* property_binding_flags_strings[];
+	extern c_versioned_string_list property_binding_flags_strings;
 	extern s_string_list_definition property_binding_flags;
-	extern const char* binding_conversion_function_enum_definition_strings[];
+	extern c_versioned_string_list binding_conversion_function_enum_definition_strings;
 	extern s_string_list_definition binding_conversion_function_enum_definition;
-	extern const char* binding_conversion_comparison_operator_enum_definition_strings[];
+	extern c_versioned_string_list binding_conversion_comparison_operator_enum_definition_strings;
 	extern s_string_list_definition binding_conversion_comparison_operator_enum_definition;
-	extern const char* animation_property_composition_type_strings[];
+	extern c_versioned_string_list animation_property_composition_type_strings;
 	extern s_string_list_definition animation_property_composition_type;
-	extern const char* animation_property_flags_strings[];
+	extern c_versioned_string_list animation_property_flags_strings;
 	extern s_string_list_definition animation_property_flags;
-	extern const char* animationInputType_strings[];
+	extern c_versioned_string_list animationInputType_strings;
 	extern s_string_list_definition animationInputType;
-	extern const char* step_type_strings[];
+	extern c_versioned_string_list step_type_strings;
 	extern s_string_list_definition step_type;
-	extern const char* step_operator_strings[];
+	extern c_versioned_string_list step_operator_strings;
 	extern s_string_list_definition step_operator;
-	extern const char* step_variable_strings[];
+	extern c_versioned_string_list step_variable_strings;
 	extern s_string_list_definition step_variable;
-	extern const char* component_definition_flags_strings[];
+	extern c_versioned_string_list component_definition_flags_strings;
 	extern s_string_list_definition component_definition_flags;
-	extern const char* editor_overlay_info_flags_strings[];
+	extern c_versioned_string_list editor_overlay_info_flags_strings;
 	extern s_string_list_definition editor_overlay_info_flags;
-	extern const char* editor_property_info_flags_strings[];
+	extern c_versioned_string_list editor_property_info_flags_strings;
 	extern s_string_list_definition editor_property_info_flags;
 
 } // namespace blofeld

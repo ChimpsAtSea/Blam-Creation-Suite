@@ -97,9 +97,9 @@ namespace blofeld
 	extern s_tag_struct_definition shader_water_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_waterfall_struct_definition_struct_definition; // tag group
 
-	extern const char* global_screen_shader_render_layer_enum_strings[];
+	extern c_versioned_string_list global_screen_shader_render_layer_enum_strings;
 	extern s_string_list_definition global_screen_shader_render_layer_enum;
-	extern const char* global_screen_shader_flags_definition_strings[];
+	extern c_versioned_string_list global_screen_shader_flags_definition_strings;
 	extern s_string_list_definition global_screen_shader_flags_definition;
 
 } // namespace blofeld

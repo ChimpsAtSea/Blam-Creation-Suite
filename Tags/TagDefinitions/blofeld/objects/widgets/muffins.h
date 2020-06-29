@@ -18,7 +18,7 @@ namespace blofeld
 	extern s_tag_struct_definition global_muffin_type_struct_struct_definition;
 	extern s_tag_struct_definition muffin_scalar_function_struct_struct_definition;
 
-	extern const char* muffin_type_flags_definition_strings[];
+	extern c_versioned_string_list muffin_type_flags_definition_strings;
 	extern s_string_list_definition muffin_type_flags_definition;
 
 } // namespace blofeld

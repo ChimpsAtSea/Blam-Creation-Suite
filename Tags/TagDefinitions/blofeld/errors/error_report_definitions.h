@@ -32,11 +32,11 @@ namespace blofeld
 	extern s_tag_array_definition error_report_quad_point_array_array;
 	extern s_tag_struct_definition error_report_point_definition_struct_definition;
 
-	extern const char* error_report_types_strings[];
+	extern c_versioned_string_list error_report_types_strings;
 	extern s_string_list_definition error_report_types;
-	extern const char* error_report_source_strings[];
+	extern c_versioned_string_list error_report_source_strings;
 	extern s_string_list_definition error_report_source;
-	extern const char* error_report_flags_strings[];
+	extern c_versioned_string_list error_report_flags_strings;
 	extern s_string_list_definition error_report_flags;
 
 } // namespace blofeld

@@ -104,12 +104,13 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 
 	ImGui::Dummy({ level * indent_size, 0.0f });
 	ImGui::SameLine();
+	e_engine_type engine_type = get_cache_file().get_engine_type();
 	t_raw_value& raw_value = *reinterpret_cast<t_raw_value*>(data);
 	c_fixed_string_256 enum_value;
 	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
-	if (raw_value < field.string_list_definition->count)
+	if (raw_value < field.string_list_definition->count(engine_type))
 	{
-		enum_value += field.string_list_definition->strings[raw_value];
+		enum_value += field.string_list_definition->strings(engine_type)[raw_value];
 	}
 	ImGui::PushItemWidth(350.0f);
 	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);

@@ -19,11 +19,11 @@ namespace blofeld
 
 	extern s_tag_struct_definition flock_struct_definition_struct_definition; // tag group
 
-	extern const char* flock_source_flags_strings[];
+	extern c_versioned_string_list flock_source_flags_strings;
 	extern s_string_list_definition flock_source_flags;
-	extern const char* destination_type_enum_strings[];
+	extern c_versioned_string_list destination_type_enum_strings;
 	extern s_string_list_definition destination_type_enum;
-	extern const char* flock_flags_strings[];
+	extern c_versioned_string_list flock_flags_strings;
 	extern s_string_list_definition flock_flags;
 
 } // namespace blofeld

@@ -26,15 +26,15 @@ namespace blofeld
 	extern s_tag_struct_definition commendationAggregatorDependent_struct_struct_definition;
 	extern s_tag_struct_definition commendation_globals_definition_struct_definition_struct_definition; // tag group
 
-	extern const char* commendationCategoryEnum_strings[];
+	extern c_versioned_string_list commendationCategoryEnum_strings;
 	extern s_string_list_definition commendationCategoryEnum;
-	extern const char *commendationCategoryReachEnum_strings[];
+	extern c_versioned_string_list commendationCategoryReachEnum_strings;
 	extern s_string_list_definition commendationCategoryReachEnum;
-	extern const char* commendationFlags_strings[];
+	extern c_versioned_string_list commendationFlags_strings;
 	extern s_string_list_definition commendationFlags;
-	extern const char* commendationSubcategoryEnum_strings[];
+	extern c_versioned_string_list commendationSubcategoryEnum_strings;
 	extern s_string_list_definition commendationSubcategoryEnum;
-	extern const char* aggregatorDependentTypeEnumDefinition_strings[];
+	extern c_versioned_string_list aggregatorDependentTypeEnumDefinition_strings;
 	extern s_string_list_definition aggregatorDependentTypeEnumDefinition;
 
 

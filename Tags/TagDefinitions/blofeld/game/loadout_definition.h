@@ -24,7 +24,7 @@ namespace blofeld
 	extern s_tag_struct_definition loadout_globals_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition loadout_definition_struct_struct_definition;
 
-	extern const char* loadout_flags_definition_strings[];
+	extern c_versioned_string_list loadout_flags_definition_strings;
 	extern s_string_list_definition loadout_flags_definition;
 
 	extern s_tag_reference_definition global_loadout_globals_reference;

@@ -27,13 +27,13 @@ namespace blofeld
 
 	extern s_tag_struct_definition vision_mode_struct_definition_struct_definition; // tag group
 
-	extern const char* visionModeBipedTeamTypes_strings[];
+	extern c_versioned_string_list visionModeBipedTeamTypes_strings;
 	extern s_string_list_definition visionModeBipedTeamTypes;
-	extern const char* visionModeBipedPassFlags_strings[];
+	extern c_versioned_string_list visionModeBipedPassFlags_strings;
 	extern s_string_list_definition visionModeBipedPassFlags;
-	extern const char* visionModeBipedPassesFlags_strings[];
+	extern c_versioned_string_list visionModeBipedPassesFlags_strings;
 	extern s_string_list_definition visionModeBipedPassesFlags;
-	extern const char* visionModeFlags_strings[];
+	extern c_versioned_string_list visionModeFlags_strings;
 	extern s_string_list_definition visionModeFlags;
 
 

@@ -17,17 +17,17 @@ namespace blofeld
 	extern s_tag_struct_definition structureIOHavokDataBlock_struct_struct_definition;
 	extern s_tag_struct_definition SerializedHavokGeometryDataBlock_struct_struct_definition;
 
-	extern const char* instanced_geometry_flags_strings[];
+	extern c_versioned_string_list instanced_geometry_flags_strings;
 	extern s_string_list_definition instanced_geometry_flags;
-	extern const char* instanced_geometry_imposter_policy_enum_strings[];
+	extern c_versioned_string_list instanced_geometry_imposter_policy_enum_strings;
 	extern s_string_list_definition instanced_geometry_imposter_policy_enum;
-	extern const char* instanced_geometry_pathfinding_policy_enum_strings[];
+	extern c_versioned_string_list instanced_geometry_pathfinding_policy_enum_strings;
 	extern s_string_list_definition instanced_geometry_pathfinding_policy_enum;
-	extern const char* instanced_geometry_lightmapping_policy_enum_strings[];
+	extern c_versioned_string_list instanced_geometry_lightmapping_policy_enum_strings;
 	extern s_string_list_definition instanced_geometry_lightmapping_policy_enum;
-	extern const char* instanced_geometry_streamingpriority_enum_strings[];
+	extern c_versioned_string_list instanced_geometry_streamingpriority_enum_strings;
 	extern s_string_list_definition instanced_geometry_streamingpriority_enum;
-	extern const char* instanced_geometry_definition_flags_strings[];
+	extern c_versioned_string_list instanced_geometry_definition_flags_strings;
 	extern s_string_list_definition instanced_geometry_definition_flags;
 
 } // namespace blofeld

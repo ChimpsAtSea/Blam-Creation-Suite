@@ -23,7 +23,7 @@ namespace blofeld
 	extern s_tag_block_definition user_edge_block_block;
 
 
-	extern const char* MobileNavMeshFlagsDefinition_strings[];
+	extern c_versioned_string_list MobileNavMeshFlagsDefinition_strings;
 	extern s_string_list_definition MobileNavMeshFlagsDefinition;
 
 } // namespace blofeld

@@ -27,13 +27,13 @@ namespace blofeld
 	extern s_tag_struct_definition camera_fx_color_grading_struct_struct_definition;
 	extern s_tag_struct_definition camera_fx_filmic_tone_curve_struct_struct_definition;
 
-	extern const char* camera_fx_parameter_flags_auto_adjust_strings[];
+	extern c_versioned_string_list camera_fx_parameter_flags_auto_adjust_strings;
 	extern s_string_list_definition camera_fx_parameter_flags_auto_adjust;
-	extern const char* camera_fx_parameter_flags_no_auto_adjust_strings[];
+	extern c_versioned_string_list camera_fx_parameter_flags_no_auto_adjust_strings;
 	extern s_string_list_definition camera_fx_parameter_flags_no_auto_adjust;
-	extern const char* camera_fx_parameter_flags_enabled_strings[];
+	extern c_versioned_string_list camera_fx_parameter_flags_enabled_strings;
 	extern s_string_list_definition camera_fx_parameter_flags_enabled;
-	extern const char* camera_fx_parameter_flags_bling_spikes_strings[];
+	extern c_versioned_string_list camera_fx_parameter_flags_bling_spikes_strings;
 	extern s_string_list_definition camera_fx_parameter_flags_bling_spikes;
 
 	extern s_tag_reference_definition global_camera_fx_settings_reference;

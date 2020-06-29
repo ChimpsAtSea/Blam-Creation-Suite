@@ -21,7 +21,7 @@ namespace blofeld
 	extern s_tag_block_definition compiled_pixel_shader_refererence_block_block;
 
 
-	extern const char* material_shader_flags_strings[];
+	extern c_versioned_string_list material_shader_flags_strings;
 	extern s_string_list_definition material_shader_flags;
 
 } // namespace blofeld

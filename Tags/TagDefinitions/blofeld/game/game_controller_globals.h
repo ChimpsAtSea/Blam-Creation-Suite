@@ -15,7 +15,7 @@ namespace blofeld
 	extern s_tag_block_definition player_control_block_block;
 
 
-	extern const char* input_mapping_shape_enum_strings[];
+	extern c_versioned_string_list input_mapping_shape_enum_strings;
 	extern s_string_list_definition input_mapping_shape_enum;
 
 } // namespace blofeld

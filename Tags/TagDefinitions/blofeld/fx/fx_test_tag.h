@@ -16,15 +16,15 @@ namespace blofeld
 	extern s_tag_struct_definition fx_test_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition fx_test_scalar_function_struct_struct_definition;
 
-	extern const char* fx_property_flags_strings[];
+	extern c_versioned_string_list fx_property_flags_strings;
 	extern s_string_list_definition fx_property_flags;
-	extern const char* fx_property_value_type_enum_strings[];
+	extern c_versioned_string_list fx_property_value_type_enum_strings;
 	extern s_string_list_definition fx_property_value_type_enum;
-	extern const char* fx_property_bitmap_filter_enum_strings[];
+	extern c_versioned_string_list fx_property_bitmap_filter_enum_strings;
 	extern s_string_list_definition fx_property_bitmap_filter_enum;
-	extern const char* fx_property_bitmap_address_enum_strings[];
+	extern c_versioned_string_list fx_property_bitmap_address_enum_strings;
 	extern s_string_list_definition fx_property_bitmap_address_enum;
-	extern const char* fx_property_bitmap_bias_enum_strings[];
+	extern c_versioned_string_list fx_property_bitmap_bias_enum_strings;
 	extern s_string_list_definition fx_property_bitmap_bias_enum;
 
 } // namespace blofeld

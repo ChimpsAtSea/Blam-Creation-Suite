@@ -10,15 +10,15 @@ namespace blofeld
 
 	extern s_tag_struct_definition havok_vehicle_physics_struct_struct_definition;
 
-	extern const char* anti_gravity_point_definition_flags_strings[];
+	extern c_versioned_string_list anti_gravity_point_definition_flags_strings;
 	extern s_string_list_definition anti_gravity_point_definition_flags;
-	extern const char* anti_gravity_point_definition_damping_strings[];
+	extern c_versioned_string_list anti_gravity_point_definition_damping_strings;
 	extern s_string_list_definition anti_gravity_point_definition_damping;
-	extern const char* friction_point_definition_flags_strings[];
+	extern c_versioned_string_list friction_point_definition_flags_strings;
 	extern s_string_list_definition friction_point_definition_flags;
-	extern const char* havok_vehicle_physics_definition_flags_strings[];
+	extern c_versioned_string_list havok_vehicle_physics_definition_flags_strings;
 	extern s_string_list_definition havok_vehicle_physics_definition_flags;
-	extern const char* physics_update_period_enum_strings[];
+	extern c_versioned_string_list physics_update_period_enum_strings;
 	extern s_string_list_definition physics_update_period_enum;
 
 } // namespace blofeld

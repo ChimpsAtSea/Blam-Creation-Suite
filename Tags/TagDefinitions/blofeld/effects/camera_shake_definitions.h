@@ -15,9 +15,9 @@ namespace blofeld
 	extern s_tag_struct_definition camera_impulse_struct_struct_definition;
 	extern s_tag_struct_definition camera_shake_struct_struct_definition;
 
-	extern const char* animated_camera_shake_playback_type_enum_strings[];
+	extern c_versioned_string_list animated_camera_shake_playback_type_enum_strings;
 	extern s_string_list_definition animated_camera_shake_playback_type_enum;
-	extern const char* animated_camera_shake_weight_type_enum_strings[];
+	extern c_versioned_string_list animated_camera_shake_weight_type_enum_strings;
 	extern s_string_list_definition animated_camera_shake_weight_type_enum;
 
 	extern s_tag_reference_definition global_camera_shake_reference;

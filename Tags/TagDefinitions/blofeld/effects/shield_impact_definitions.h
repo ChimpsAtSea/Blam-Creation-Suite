@@ -13,7 +13,7 @@ namespace blofeld
 	extern s_tag_struct_definition shield_color_function_struct_struct_definition;
 	extern s_tag_struct_definition shield_scalar_function_struct_struct_definition;
 
-	extern const char* shield_flags_strings[];
+	extern c_versioned_string_list shield_flags_strings;
 	extern s_string_list_definition shield_flags;
 
 	extern s_tag_reference_definition global_shield_parameters_reference;
