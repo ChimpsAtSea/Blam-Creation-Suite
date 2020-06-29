@@ -160,7 +160,7 @@ void c_render::init_directx()
 	DEBUG_ASSERT(s_device == nullptr);
 	DEBUG_ASSERT(s_device_context == nullptr);
 	DEBUG_ASSERT(s_swap_chain == nullptr);
-
+	
 	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_device_mode);
 
 	D3D_FEATURE_LEVEL feature_level[] =
@@ -474,7 +474,7 @@ void c_render::deinit_render()
 		s_device->Release();
 		s_device_context->Release();
 		s_swap_chain->Release();
-		s_dxgi_factory_5->Release();
+		s_dxgi_factory->Release(); // #NOTE: same as s_dxgi_factory_5
 	}
 
 	s_window->on_resize.unregister_callback(RequestResize);
@@ -482,6 +482,7 @@ void c_render::deinit_render()
 	s_device = nullptr;
 	s_device_context = nullptr;
 	s_swap_chain = nullptr;
+	s_dxgi_factory = nullptr;
 	s_dxgi_factory_5 = nullptr;
 
 	is_directx_custom_init = false;
