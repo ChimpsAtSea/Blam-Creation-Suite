@@ -62,6 +62,8 @@ namespace blofeld
 		{ _field_real, "density" },
 		{ _field_custom, "hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000" },
 		{ _field_real, "hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000" },
+
+		{ _field_version_greater, _engine_type_haloreach, 8 },
 		{ _field_explanation, "WWise Environment", "Use these values for WWise reverb. Above stuff will be removed eventually." },
 		{ _field_string_id, "Environment name#Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
 		{ _field_custom, "Dry mix value#0 to 1 with 0 being none, and 1 being full." },
@@ -70,6 +72,7 @@ namespace blofeld
 		{ _field_real, "Wet mix value#0 to 1 with 0 being none, and 1 being full." },
 		{ _field_custom, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." },
 		{ _field_real, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." },
+
 		{ _field_terminator }
 	};
 
