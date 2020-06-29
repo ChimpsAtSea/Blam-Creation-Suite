@@ -96,16 +96,20 @@ namespace blofeld
 		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
 		{ _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition },
 
-		{ _field_version_greater, _engine_type_haloreach, 1 },
-		{ _field_pad, "BAASDFIR", 1 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_char_integer, "pca mesh index*" },
 
+		{ _field_version_greater, _engine_type_haloreach, 2 },	
+		{ _field_pad, "BAASDFIR", 1 },
 		{ _field_short_integer, "pca mesh index*" },
+
 		{ _field_block, "instance buckets*", &global_instance_bucket_block_block },
 		{ _field_block, "water indices start", &indices_word_block_block },
 
-		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_real, "runtime bounding radius:world units*!" },
 		{ _field_real_point_3d, "runtime bounding offset*!" },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "vertex keys*", &vertexKeyBlock_block },
 		{ _field_short_block_index, "clone index*" },
 		{ _field_short_integer, "cumulative part count (initialized by PVS building code)" },
@@ -128,8 +132,6 @@ namespace blofeld
 		{ _field_real_point_3d, "position bounds 1*" },
 		{ _field_real_point_2d, "texcoord bounds 0*" },
 		{ _field_real_point_2d, "texcoord bounds 1*" },
-
-		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "unused0*" },
 		{ _field_real, "unused1*" },
 
@@ -371,25 +373,19 @@ namespace blofeld
 		{ _field_block, "compression info*", &compression_info_block_block },
 		{ _field_block, "part sorting position*", &sorting_position_block_block },
 		{ _field_block, "user data*", &user_data_block_block },
-
-		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "per mesh temporary*", &per_mesh_raw_data_block_block },
 
 		{ _field_pad, "pad3", 12 },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 5 }, // assembly. #TODO: Verify this
-		{ _field_block, "unknown meshes", &global_render_geometry_unknown_meshes_block }, // Unknown Meshes
-		{ _field_block, "per mesh node map*", &per_mesh_node_map_block_block }, // Node Maps
-		{ _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block_block }, // Unknown
-		{ _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block_block }, // empty space
-		{ _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block_block }, // Unknown Yo
-
-		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_block, "per mesh node map*", &per_mesh_node_map_block_block },
 		{ _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block_block },
 		{ _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block_block },
 		{ _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block_block },
-		{ _field_block, "water bounding box block*", &water_bounding_box_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 }, // assembly. #TODO: Verify this
+		{ _field_block, "unknown meshes", &global_render_geometry_unknown_meshes_block }, // Unknown Meshes
+
+		{ _field_block, "water bounding box block*", &water_bounding_box_block_block },	
 
 		{ _field_pageable, "api resource" },
 

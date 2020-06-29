@@ -81,16 +81,11 @@ namespace blofeld
 		{ _field_short_integer, "mesh_index" },
 		{ _field_short_integer, "compression_index" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-		{ _field_long_integer, "unknown@" },
-
-		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_long_integer, "seam bit vector 0" },
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
 
-		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_real, "bounds x0!" },
 		{ _field_real, "bounds x1!" },
 		{ _field_real, "bounds y0!" },
@@ -102,11 +97,9 @@ namespace blofeld
 		{ _field_real, "world bounding sphere radius!" },
 		{ _field_real, "imposter transition complete distance!" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-		{ _field_string_id, "name" },
-
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_real, "imposter brightness!" },
+
 		{ _field_long_integer, "checksum*" },
 
 		{ _field_char_enum, "pathfinding policy*", &instanced_geometry_pathfinding_policy_enum },
@@ -131,8 +124,9 @@ namespace blofeld
 		{ _field_long_integer, "unknown@" },
 		{ _field_long_integer, "unknown@" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "name*^" },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_long_string, "source file name*" },
 
 		{ _field_terminator }
