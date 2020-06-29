@@ -102,10 +102,27 @@ namespace blofeld
 
 	STRINGS(challenge_category_enum_definition)
 	{
-		"campaign",
-		"competitive",
-		"spartan ops",
-		"waypoint"
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_new,
+			{
+				"campaign",
+				"competitive",
+				"firefight",
+				"waypoint",
+				"unknown"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"campaign",
+				"competitive",
+				"spartan ops",
+				"waypoint"
+			}
+		}
 	};
 	STRING_LIST(challenge_category_enum_definition, challenge_category_enum_definition_strings, _countof(challenge_category_enum_definition_strings));
 

@@ -119,6 +119,8 @@ namespace blofeld
 				"_haloreach_unknown_23",
 				"_haloreach_unknown_24",
 				"_haloreach_unknown_25",
+				"_haloreach_unknown_26",
+				"_haloreach_unknown_27",
 			}
 		},
 		{

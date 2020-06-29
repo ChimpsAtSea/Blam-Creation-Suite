@@ -85,21 +85,18 @@ namespace blofeld
 		{ _field_array, "vertex buffer indices*", &vertex_buffer_indices_word_array_array },
 		{ _field_short_integer, "index buffer index*" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-		{ _field_byte_flags, "mesh flags*", &mesh_flags },
-
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_short_integer, "index buffer tessellation*" },
+
 		{ _field_word_flags, "mesh flags*", &mesh_flags },
 
 		{ _field_char_integer, "rigid node index*" },
 		{ _field_char_enum, "vertex type*", &mesh_vertex_type_definition },
 		{ _field_char_enum, "PRT vertex type*", &mesh_transfer_vertex_type_definition },
+		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
+		{ _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition },
 
 		{ _field_version_greater, _engine_type_haloreach, 1 },
-		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
-
-		{ _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition },
 		{ _field_pad, "BAASDFIR", 1 },
 
 		{ _field_short_integer, "pca mesh index*" },

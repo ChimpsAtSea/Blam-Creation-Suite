@@ -11,10 +11,26 @@ namespace blofeld
 		{ _field_real, "acceleration range:world units" },
 		{ _field_real, "inverse acceleration range:world units*!" },
 		{ _field_real, "world acceleration scale#0 defaults to 1, scale the acceleration the object itself applies on this system." },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "presumed 8byte struct alignment", 4 },
+
 		{ _field_explanation, "damping", "feed velocity into this function and damp by the value that comes out" },
 		{ _field_struct, "spring damping", &scalar_function_named_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "presumed 8byte struct alignment", 4 },
+
 		{ _field_real, "velocity domain" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "presumed 8byte struct alignment", 4 },
+
 		{ _field_struct, "spring acceleration", &scalar_function_named_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pad, "presumed 8byte struct alignment", 4 },
+
 		{ _field_terminator }
 	};
 
