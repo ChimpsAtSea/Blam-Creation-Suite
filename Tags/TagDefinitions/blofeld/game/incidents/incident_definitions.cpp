@@ -152,12 +152,18 @@ namespace blofeld
 		{ _field_struct, "disallowed game modes", &game_mode_flags_struct_struct_definition },
 		{ _field_custom },
 		{ _field_block, "suppressed incidents", &suppressed_incident_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block },
+
 		{ _field_custom },
 		{ _field_custom, "CREATION" },
 		{ _field_block, "specialized incidents", &specialized_incident_block_block },
 		{ _field_block, "accumulator incidents", &incident_accumulator_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block_block },
+
 		{ _field_custom },
 		{ _field_block, "response", &game_incident_response_block_block },
 		{ _field_terminator }
@@ -166,6 +172,12 @@ namespace blofeld
 	TAG_BLOCK_FROM_STRUCT(incident_global_properties_definition_block, 1, incident_global_properties_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK_FROM_STRUCT(SuppressedIncident_block, 1, SuppressedIncident_struct_definition_struct_definition );
+
+	TAG_BLOCK(incident_global_properties_incident_definitions, 65536)
+	{
+		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
+		{ _field_terminator }
+	};
 
 	TAG_STRUCT(incident_global_properties_definition_struct_definition)
 	{
@@ -176,6 +188,7 @@ namespace blofeld
 		{ _field_real, "shield recharge threshold:[0,1]" },
 		{ _field_real, "maximum vengeance time:s" },
 		{ _field_real, "lifesaver damage threshold:[0,2]" },
+		{ _field_version_greater, _engine_type_haloreach, 8 },
 		{ _field_real, "avenger dead time:s" },
 		{ _field_real, "hologram recently used maximum time:s" },
 		{ _field_long_enum, "active camouflage incident minimum level", &active_camo_enum_definition },
@@ -184,6 +197,7 @@ namespace blofeld
 		{ _field_real, "damage threshold for hologram incidents:[0,1]" },
 		{ _field_real, "damage threshold for distraction incident killer:[0,1]" },
 		{ _field_real, "damage threshold for distraction incident distractor:[0,1]" },
+
 		{ _field_tag_reference, "reward globals!", &reward_globals_definition_reference },
 		{ _field_tag_reference, "commendation globals", &commendation_globals_definition_reference },
 		{ _field_custom, "HEAT" },
@@ -193,8 +207,15 @@ namespace blofeld
 		{ _field_real, "full heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" },
 		{ _field_real, "betrayal heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" },
 		{ _field_custom },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_block, "incident definitions", &incident_global_properties_incident_definitions_block },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
+
 		{ _field_block, "default incident definition!*#generated in code", &incident_definition_block_block },
+
 		{ _field_terminator }
 	};
 
