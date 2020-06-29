@@ -57,6 +57,11 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_struct, "translational offset:world units#XYZ controls that offset the emitter\'s origin from the original location", &particle_property_real_point3d_struct_new_struct_definition },
 		{ _field_struct, "relative direction#yaw/pitch that changes the initial rotation of the emitter", &particle_property_real_euler_angles2d_struct_new_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_custom },
 		{ _field_struct, "emission radius:world units#defines the size of the emitter", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "emission angle:degrees#determines the angle at which particles are emitted", &particle_property_scalar_struct_new_struct_definition },
@@ -67,6 +72,7 @@ namespace blofeld
 		{ _field_struct, "particle max count:0=unlimited#max number of particles allowed to exist at one time", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle emission rate:particles per second#number of particles that are spawned every second from the emitters", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle emission per distance:particles per world unit#number of particles that are spawned every world unit of motion from the emitters", &particle_property_scalar_struct_new_struct_definition },
+		{ _field_version_greater, _engine_type_haloreach, 1 }, // #TODO: Which one of these properties was removed?
 		{ _field_struct, "particle lifespan:seconds#the number of seconds a particle will live after emission", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_custom },
 		{ _field_custom, "PARTICLE MOTION|8FAF8D" },
@@ -74,8 +80,11 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_struct, "particle movement", &particle_physics_struct_struct_definition },
 		{ _field_custom },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block },
 		{ _field_block, "particle clip sphere", &emitterClipSphereBlock_block },
+
 		{ _field_struct, "particle self-acceleration:world units per second per second", &particle_property_real_vector3d_struct_new_struct_definition },
 		{ _field_struct, "particle initial velocity{particle velocity}:world units per second", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle rotation:.25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new_struct_definition },
@@ -84,17 +93,32 @@ namespace blofeld
 		{ _field_custom, "PARTICLE APPEARANCE|8FAF8D" },
 		{ _field_struct, "particle size:world units", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle scale:multiple of size", &particle_property_scalar_struct_new_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_struct, "particle scale x:multiple of size", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle scale y:multiple of size", &particle_property_scalar_struct_new_struct_definition },
+
 		{ _field_struct, "particle tint:RGB#controls the overall tint of the particle", &particle_property_color_struct_new_struct_definition },
 		{ _field_struct, "particle alpha", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "particle alpha black point:0=normal, 1=clamped", &particle_property_scalar_struct_new_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "particle alpha white point:1=normal, 0=clamped", &particle_property_scalar_struct_new_struct_definition },
+
 		{ _field_custom },
 		{ _field_custom },
 		{ _field_long_integer, "runtime m_constant_per_particle_properties!" },
 		{ _field_long_integer, "runtime m_constant_over_time_properties!" },
 		{ _field_long_integer, "runtime m_used_particle_states!" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_long_integer, "structured scenario interop index" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "runtime m_gpu_data!", &gpu_property_function_color_struct_struct_definition },
 		{ _field_terminator }
 	};

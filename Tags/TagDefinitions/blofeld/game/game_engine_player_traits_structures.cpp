@@ -6,7 +6,9 @@ namespace blofeld
 
 	TAG_BLOCK(player_traits_vitality_block, 1)
 	{
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
+
 		{ _field_explanation, "damage resistance", "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"." },
 		{ _field_real, "damage resistance" },
 		{ _field_real, "shield multiplier" },

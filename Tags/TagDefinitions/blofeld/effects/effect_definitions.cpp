@@ -12,7 +12,13 @@ namespace blofeld
 		{ _field_real, "continue if within:world units" },
 		{ _field_real, "death_delay" },
 		{ _field_short_block_index, "loop start event" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_char_integer, "unknown" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_char_enum, "priority!*", &global_effect_priority_enum },
+
 		{ _field_pad, "asdfsdf", 1 },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach },
