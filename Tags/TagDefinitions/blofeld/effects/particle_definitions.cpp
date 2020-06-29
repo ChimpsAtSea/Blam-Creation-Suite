@@ -38,6 +38,8 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_REFERENCE(particle_struct_unknown_reference);
+
 	TAG_STRUCT(particle_struct_definition)
 	{
 		{ _field_custom },
@@ -57,33 +59,60 @@ namespace blofeld
 		{ _field_real, "motion blur translation scale#affects billboard tilt from observer motion" },
 		{ _field_real, "motion blur rotation scale#affects billboard tilt from observer turning" },
 		{ _field_real, "motion blur aspect scale#affects aspect ratio stretching from particle and observer motion" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_explanation, "Render Method" },
+		{ _field_struct, "render method", &render_method_struct_definition_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_custom, "material" },
 		{ _field_custom },
 		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 10 },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_tag_reference, "unknown@", &particle_struct_unknown_reference },
+
 		{ _field_custom },
 		{ _field_custom },
 		{ _field_struct, "aspect ratio", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "color:RGB#controls how the color of the particle changes as a function of its input", &particle_property_color_struct_new_struct_definition },
 		{ _field_struct, "intensity#multiplies color to give dynamic range outside [0,1]", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "alpha#separate from color, controls how the particle fades as a function of its input", &particle_property_scalar_struct_new_struct_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_real, "tint factor:0=modulate, 1=tint#switches between modulate (multiply) and tint(preserve whites)" },
+
 		{ _field_explanation, "PARTICLE ANIMATION", "" },
 		{ _field_long_flags, "animation flags", &particle_animation_flags },
+
 		{ _field_struct, "frame index#0=first frame, 1=last frame", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "animation rate:index cycles per second", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_struct, "palette animation:v coord of palette", &particle_property_scalar_struct_new_struct_definition },
 		{ _field_explanation, "Mesh data, if this is a mesh particle", "" },
 		{ _field_tag_reference, "Model", &particle_model_reference$2 },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_custom, "OLD DEPRECATED shader definition" },
 		{ _field_custom, "shader" },
 		{ _field_custom },
 		{ _field_custom },
 		{ _field_struct, "actual shader\?", &shader_particle_struct_definition_struct_definition },
 		{ _field_custom },
+
 		{ _field_dword_integer, "runtime m_used_particle_states!" },
 		{ _field_dword_integer, "runtime m_constant_per_particle_properties!" },
 		{ _field_dword_integer, "runtime m_constant_over_time_properties!" },
 		{ _field_struct, "runtime m_gpu_data!", &gpu_data_struct$2_struct_definition },
+
 		{ _field_terminator }
 	};
 
@@ -120,7 +149,11 @@ namespace blofeld
 		"low res#renders heavy overdraw particles faster",
 		"low res tighter mask#requires depth fade",
 		"never kill verts on GPU (expensive)",
-		"particle velocity relative to camera#makes parallel and perpindicular to velocity behave differently based upon camera motion"
+		"particle velocity relative to camera#makes parallel and perpindicular to velocity behave differently based upon camera motion",
+		"_unknown_particle_appearance_flag_15",
+		"_unknown_particle_appearance_flag_16",
+		"_unknown_particle_appearance_flag_17",
+		"_unknown_particle_appearance_flag_18",
 	};
 	STRING_LIST(particle_appearance_flags, particle_appearance_flags_strings, _countof(particle_appearance_flags_strings));
 
