@@ -50,7 +50,9 @@ namespace blofeld
 
 	TAG_BLOCK(emblem_runtime_front_list, s_emblem_library::k_max_front_emblem_count)
 	{
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name0" },
+
 		{ _field_short_integer, "bitmap0_index" },
 		{ _field_enum, "bitmap0_address_x", &render_method_bitmap_address_mode_enum },
 		{ _field_enum, "bitmap0_address_y", &render_method_bitmap_address_mode_enum },
@@ -63,7 +65,10 @@ namespace blofeld
 		{ _field_real_quaternion, "bitmap_transform3" },
 		{ _field_real_quaternion, "bitmap_params0" },
 		{ _field_real_quaternion, "bitmap_params1" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name1" },
+
 		{ _field_short_integer, "bitmap2_index" },
 		{ _field_enum, "bitmap2_address_x", &render_method_bitmap_address_mode_enum },
 		{ _field_enum, "bitmap2_address_y", &render_method_bitmap_address_mode_enum },
@@ -84,7 +89,9 @@ namespace blofeld
 
 	TAG_BLOCK(emblem_runtime_back_list, s_emblem_library::k_max_back_emblem_count)
 	{
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name" },
+
 		{ _field_short_integer, "bitmap0_index" },
 		{ _field_enum, "bitmap0_address_x", &render_method_bitmap_address_mode_enum },
 		{ _field_enum, "bitmap0_address_y", &render_method_bitmap_address_mode_enum },
