@@ -19,6 +19,18 @@ namespace blofeld
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 8 },
+		{ _field_real, "scale x" },
+		{ _field_real, "scale y" },
+		{ _field_char_integer, "sequence index" },
+		{ _field_char_enum, "medal class", &medal_class_enum },
+		{ _field_byte_integer, "tier index#the tier that this medal belongs to" },
+		{ _field_pad, "PAD1", 1 },
+		{ _field_short_integer, "override point value#if greater than zero, this point value will be awarded to players instead of the tier\'s point value" },
+		{ _field_pad, "PAD1", 2 },
+
+		{ _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_short_integer, "sequence index" },
 		{ _field_char_enum, "medal class", &medal_class_enum },
 		{ _field_pad, "PAD1", 1 },
@@ -26,6 +38,7 @@ namespace blofeld
 		{ _field_byte_integer, "ordnance multiplier#The ordnance multiplier to add to players ordnance multiplier when they earn this medal." },
 		{ _field_byte_integer, "tier index#the tier that this medal belongs to" },
 		{ _field_short_integer, "override point value#if greater than zero, this point value will be awarded to players instead of the tier\'s point value" },
+
 		{ _field_terminator }
 	};
 
@@ -33,6 +46,7 @@ namespace blofeld
 
 	TAG_STRUCT(game_medal_globals_struct_definition)
 	{
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "tiers", &gameMedalTiers_block },
 		{ _field_block, "medals", &game_medal_block_block },
 		{ _field_terminator }
