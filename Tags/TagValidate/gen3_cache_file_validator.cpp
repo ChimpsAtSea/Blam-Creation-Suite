@@ -362,7 +362,8 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 
 					if (is_struct_valid)
 					{
-						result.block_is_out_of_range = tag_block.count > current_field->block_definition->max_count(engine_type);
+						uint32_t block_max_count = current_field->block_definition->max_count(engine_type);
+						result.block_is_out_of_range = tag_block.count > block_max_count;
 
 						char* start = data_address;
 						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, platform_type, _build_not_set, current_field->block_definition->struct_definition));

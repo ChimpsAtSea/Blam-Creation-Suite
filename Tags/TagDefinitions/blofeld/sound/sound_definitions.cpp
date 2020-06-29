@@ -24,6 +24,11 @@ namespace blofeld
 
 	TAG_STRUCT(sound_group)
 	{
+		{_field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_struct, "playback", &cache_file_sound_struct_definition_struct_definition },
+		{ _field_block, "extra info!", &sound_extra_info_block_block },
+
+		{_field_version_greater, _engine_type_haloreach, 13 },
 		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
 		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
@@ -37,6 +42,7 @@ namespace blofeld
 		{ _field_tag_reference, "Sound bank#Reference to the sound bank tag this event is in. Can be empty.", &global_soundbank_reference },
 		{ _field_block, "lipsync info", &soundLipSyncInfoBlock_block },
 		{ _field_long_integer, "deterministic flag index" },
+
 		{ _field_terminator }
 	};
 	TAG_BLOCK_FROM_STRUCT(sound_group, 1, sound_group_struct_definition);
@@ -259,6 +265,10 @@ namespace blofeld
 
 	TAG_BLOCK(sound_permutation_raw_info_block, 2*k_language_count)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_long_integer, "unknown" },
+
+		{ _field_version_greater, _engine_type_haloreach, 9 },
 		{ _field_string_id, "skip fraction name" },
 		{ _field_data, "samples!#sampled sound data" },
 		{ _field_block, "markers!", &sound_permutation_marker_block_block },
@@ -268,6 +278,7 @@ namespace blofeld
 		{ _field_char_enum, "language*", &sound_language_enum_definition },
 		{ _field_pad, "ZHDGBHWS", 1 },
 		{ _field_long_integer, "sample count!" },
+
 		{ _field_long_integer, "resource sample offset!" },
 		{ _field_long_integer, "resource sample size!" },
 		{ _field_terminator }
@@ -275,6 +286,12 @@ namespace blofeld
 
 	TAG_BLOCK(sound_definition_language_permutation_info_block, MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE*2)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+
 		{ _field_block, "raw info block", &sound_permutation_raw_info_block_block },
 		{ _field_terminator }
 	};
@@ -282,7 +299,16 @@ namespace blofeld
 	TAG_BLOCK(sound_extra_info_block, 1)
 	{
 		{ _field_block, "language permutation info", &sound_definition_language_permutation_info_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_data, "facial animation resource" }, // #TODO: Research, not 100% that this is facial animation resource but the format might have changed?
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_enum, "language", &sound_language_enum_definition },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "facial animation resource languages", &facial_animation_language_block_block },
+
 		{ _field_terminator }
 	};
 
