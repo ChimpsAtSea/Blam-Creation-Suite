@@ -394,7 +394,7 @@ FunctionHookEx<mcc_map_id_parse_from_reach_offset, int __fastcall (int a1)> mcc_
 
 void ReadConfig()
 {
-	g_frameLimit = __max(30, c_settings::read_integer(_settings_section_game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
+	g_frameLimit = __max(30, c_settings::read_integer(_settings_section_game, "FrameLimit", c_render::s_device_mode.dmDisplayFrequency));
 	g_controlsLayout = c_settings::read_integer(_settings_section_player, "ControlsLayout", 0);
 	g_pancamEnabled = c_settings::read_boolean(_settings_section_debug, "PancamEnabled", false);
 	g_keyboardPrintKeyState = c_settings::read_boolean(_settings_section_debug, "PrintKeyState", 0);

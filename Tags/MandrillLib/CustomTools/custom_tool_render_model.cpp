@@ -29,13 +29,13 @@ void c_custom_tool_render_model::init_placeholder_textures()
 		subresource_data.SysMemPitch = static_cast<UINT>(row_bytes);
 		subresource_data.SysMemSlicePitch = static_cast<UINT>(num_bytes);
 
-		HRESULT create_texture_2d_result = c_render::s_pDevice->CreateTexture2D(&texture_description, &subresource_data, &placeholder_texture);
+		HRESULT create_texture_2d_result = c_render::s_device->CreateTexture2D(&texture_description, &subresource_data, &placeholder_texture);
 		ASSERT(SUCCEEDED(create_texture_2d_result));
 		ASSERT(placeholder_texture);
 	}
 	if (shader_resource_view == nullptr)
 	{
-		HRESULT createShaderResourceViewResult = c_render::s_pDevice->CreateShaderResourceView(placeholder_texture, NULL, &shader_resource_view);
+		HRESULT createShaderResourceViewResult = c_render::s_device->CreateShaderResourceView(placeholder_texture, NULL, &shader_resource_view);
 		ASSERT(SUCCEEDED(createShaderResourceViewResult));
 	}
 }

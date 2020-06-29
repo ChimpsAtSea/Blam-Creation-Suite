@@ -1,11 +1,13 @@
 #include "shared-private-pch.h"
 
-ID3D11Device* c_render::s_pDevice = nullptr;
-ID3D11DeviceContext1* c_render::s_pDeviceContext = nullptr;
+ID3D11Device* c_render::s_device = nullptr;
+ID3D11DeviceContext1* c_render::s_device_context = nullptr;
 IDXGISwapChain1* c_render::s_swap_chain = nullptr;
-IDXGIFactory5* c_render::s_pFactory = nullptr;
-DEVMODE c_render::s_deviceMode = {};
-bool c_render::s_directxCustomInit = false;
+D3D_FEATURE_LEVEL c_render::s_feature_level = {};
+IDXGIFactory3* c_render::s_dxgi_factory = nullptr;
+IDXGIFactory5* c_render::s_dxgi_factory_5 = nullptr;
+DEVMODE c_render::s_device_mode = {};
+bool c_render::is_directx_custom_init = false;
 ID3D11RenderTargetView* c_render::s_pRenderTargetView = nullptr;
 ID3D11Texture2D* c_render::s_pDepthStencilBuffer = nullptr;
 ID3D11DepthStencilView* c_render::s_pDepthStencilView = nullptr;
@@ -118,60 +120,71 @@ bool c_render::calculate_screen_coordinates(float positionX, float positionY, fl
 	return false;
 }
 
-void c_render::CreateSwapchain(IDXGISwapChain1*& swap_chain)
+void c_render::create_swapchain(IDXGISwapChain1*& swap_chain)
 {
-	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
-	s_SwapchainDescription.Width = s_window->get_width_integer();
-	s_SwapchainDescription.Height = s_window->get_height_integer();
-	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	s_SwapchainDescription.Stereo = false;
-	s_SwapchainDescription.SampleDesc.Count = 1;
-	s_SwapchainDescription.SampleDesc.Quality = 0;
-	s_SwapchainDescription.AlphaMode = DXGI_ALPHA_MODE_IGNORE;
-	//s_SwapchainDescription.Flags = DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT; // Enable GetFrameLatencyWaitableObject()
-	s_SwapchainDescription.Flags = 0;
-	s_SwapchainDescription.BufferUsage = DXGI_USAGE_SHADER_INPUT | DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	s_SwapchainDescription.BufferCount = 2; // Use double-buffering to minimize latency.
-	s_SwapchainDescription.Scaling = DXGI_SCALING_STRETCH;
-	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	DXGI_SWAP_CHAIN_DESC1 swapchain_desc = {};
+	swapchain_desc.Width = s_window->get_width_integer();
+	swapchain_desc.Height = s_window->get_height_integer();
+	swapchain_desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	swapchain_desc.Stereo = false;
+	swapchain_desc.SampleDesc.Count = 1;
+	swapchain_desc.SampleDesc.Quality = 0;
+	swapchain_desc.AlphaMode = DXGI_ALPHA_MODE_IGNORE;
+	if (s_dxgi_factory_5)
+	{
+		//s_SwapchainDescription.Flags = DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT; // Enable GetFrameLatencyWaitableObject()
+	}
+	swapchain_desc.Flags = 0;
+	swapchain_desc.BufferUsage = DXGI_USAGE_SHADER_INPUT | DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapchain_desc.BufferCount = 2; // Use double-buffering to minimize latency.
+	swapchain_desc.Scaling = DXGI_SCALING_STRETCH;
+	swapchain_desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 
 	constexpr bool createCompositionSwapchain = false;
 	if constexpr (createCompositionSwapchain)
 	{
-		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &swap_chain);
-		ASSERT(SUCCEEDED(createSwapChainForCompositionResult));
+		HRESULT create_swap_chain_for_composition_result = s_dxgi_factory->CreateSwapChainForComposition(s_device, &swapchain_desc, NULL, &swap_chain);
+		ASSERT(SUCCEEDED(create_swap_chain_for_composition_result));
 	}
 	else
 	{
 		HWND hWnd = s_window->get_window_handle();
-		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &swap_chain);
-		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
+		HRESULT create_swap_chain_for_hwnd_result = s_dxgi_factory->CreateSwapChainForHwnd(s_device, hWnd, &swapchain_desc, NULL, NULL, &swap_chain);
+		ASSERT(SUCCEEDED(create_swap_chain_for_hwnd_result));
 	}
 	ASSERT(swap_chain != nullptr);
 }
 
-void c_render::InitDirectX()
+void c_render::init_directx()
 {
-	DEBUG_ASSERT(s_pDevice == nullptr);
-	DEBUG_ASSERT(s_pDeviceContext == nullptr);
+	DEBUG_ASSERT(s_device == nullptr);
+	DEBUG_ASSERT(s_device_context == nullptr);
 	DEBUG_ASSERT(s_swap_chain == nullptr);
 
-	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_deviceMode);
+	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_device_mode);
 
-	D3D_FEATURE_LEVEL pFeatureLevels[] =
+	D3D_FEATURE_LEVEL feature_level[] =
 	{
 		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_0,
 	};
 
-	D3D_FEATURE_LEVEL FeatureLevel = {};
-
-	bool createSwapchain = true;
-
-	HRESULT CreateDXGIFactory1Result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory5), (void**)(&s_pFactory));
-	ASSERT(CreateDXGIFactory1Result == S_OK);
-	ASSERT(s_pFactory != nullptr);
+	HRESULT create_dxgi_5_factory_result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory5), (void**)(&s_dxgi_factory_5));
+	if (create_dxgi_5_factory_result == S_OK)
+	{
+		s_dxgi_factory = s_dxgi_factory_5;
+	}
+	else
+	{
+		s_dxgi_factory_5 = nullptr;
+		HRESULT create_dxgi_factory_result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory3), (void**)(&s_dxgi_factory));
+		ASSERT(create_dxgi_factory_result == S_OK);
+	}
+	if (s_dxgi_factory == nullptr)
+	{
+		FATAL_ERROR(L"failed to create DXGIFactory. unsupported platform.");
+	}
 
 	UINT createDeviceFlags = 0;
 	if (c_command_line::has_command_line_arg("-d3ddebug"))
@@ -185,49 +198,46 @@ void c_render::InitDirectX()
 		D3D_DRIVER_TYPE_HARDWARE,
 		NULL,
 		createDeviceFlags,
-		pFeatureLevels,
-		_countof(pFeatureLevels),
+		feature_level,
+		_countof(feature_level),
 		D3D11_SDK_VERSION,
-		&s_pDevice,
-		&FeatureLevel,
+		&s_device,
+		&s_feature_level,
 		&pDeviceContext);
 	ASSERT(D3D11CreateDeviceResult == S_OK);
-	ASSERT(s_pDevice != nullptr);
+	ASSERT(s_device != nullptr);
 	ASSERT(pDeviceContext != nullptr);
 
 	// check that it supports our directx interface
-	pDeviceContext->QueryInterface(&s_pDeviceContext);
-	ASSERT(s_pDeviceContext != nullptr);
+	pDeviceContext->QueryInterface(&s_device_context);
+	ASSERT(s_device_context != nullptr);
 
-	if (createSwapchain)
-	{
-		CreateSwapchain(s_swap_chain);
-	}
-
+	create_swapchain(s_swap_chain);
 }
 
-void c_render::init_render(c_window* window, HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame)
+void c_render::init_render(c_window* window, HINSTANCE instance_handle, ID3D11Device* device, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame)
 {
-	if (hInstance == NULL)
+	if (instance_handle == NULL)
 	{
-		hInstance = c_runtime_util::get_current_module();
+		instance_handle = c_runtime_util::get_current_module();
 	}
 
-	DEBUG_ASSERT(s_pDevice == nullptr);
-	DEBUG_ASSERT(s_pDeviceContext == nullptr);
+	DEBUG_ASSERT(s_device == nullptr);
+	DEBUG_ASSERT(s_device_context == nullptr);
 	DEBUG_ASSERT(s_swap_chain == nullptr);
-	DEBUG_ASSERT(pDevice != nullptr);
+
+	DEBUG_ASSERT(device != nullptr);
 	DEBUG_ASSERT(swap_chain != nullptr);
 
 	s_window = window;
-	s_directxCustomInit = true;
-	s_pDevice = pDevice;
+	is_directx_custom_init = true;
+	s_device = device;
 	s_swap_chain = swap_chain;
 
-	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
-	ASSERT(s_pDeviceContext != nullptr);
+	device->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_device_context));
+	ASSERT(s_device_context != nullptr);
 
-	init_render(window, hInstance, allow_resize_at_beginning_of_frame);
+	init_render(window, instance_handle, allow_resize_at_beginning_of_frame);
 }
 
 void c_render::init_render(c_window* window, HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame)
@@ -236,12 +246,12 @@ void c_render::init_render(c_window* window, HINSTANCE hInstance, bool allow_res
 	g_allow_resize_at_beginning_of_frame = allow_resize_at_beginning_of_frame;
 	s_window->on_resize.register_callback(RequestResize);
 
-	if (!s_directxCustomInit)
+	if (!is_directx_custom_init)
 	{
-		InitDirectX();
+		init_directx();
 	}
 
-	c_debug_gui::Init(hInstance, s_pFactory, s_swap_chain, s_pDevice, s_pDeviceContext);
+	c_debug_gui::Init(hInstance, s_dxgi_factory_5, s_swap_chain, s_device, s_device_context);
 }
 
 void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
@@ -260,7 +270,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 		HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 		ASSERT(SUCCEEDED(getBufferResult));
 
-		HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_pRenderTargetView);
+		HRESULT createRenderTargetViewResult = s_device->CreateRenderTargetView(pBackBuffer, NULL, &s_pRenderTargetView);
 		ASSERT(SUCCEEDED(createRenderTargetViewResult));
 
 		pBackBuffer->Release();
@@ -290,7 +300,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 		depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
 		depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 		depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-		HRESULT createDepthStencilStateResult = s_pDevice->CreateDepthStencilState(&depthStencilDesc, &s_pDepthStencilState);
+		HRESULT createDepthStencilStateResult = s_device->CreateDepthStencilState(&depthStencilDesc, &s_pDepthStencilState);
 		ASSERT(SUCCEEDED(createDepthStencilStateResult));
 
 	}
@@ -316,7 +326,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 		blendStateDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
 
-		HRESULT createBlendStateResult = s_pDevice->CreateBlendState(&blendStateDesc, &m_pBlendState);
+		HRESULT createBlendStateResult = s_device->CreateBlendState(&blendStateDesc, &m_pBlendState);
 		ASSERT(SUCCEEDED(createBlendStateResult));
 	}
 
@@ -357,10 +367,10 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 
 	if (settargetts)
 	{
-		s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
+		s_device_context->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
 	}
-	s_pDeviceContext->OMSetDepthStencilState(s_pDepthStencilState, 0);
-	s_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
+	s_device_context->OMSetDepthStencilState(s_pDepthStencilState, 0);
+	s_device_context->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
@@ -370,12 +380,12 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
-	s_pDeviceContext->RSSetViewports(1, &vp);
+	s_device_context->RSSetViewports(1, &vp);
 
 	if (clear)
 	{
 		// Clear the back buffer.
-		s_pDeviceContext->ClearRenderTargetView(s_pRenderTargetView, clearColor);
+		s_device_context->ClearRenderTargetView(s_pRenderTargetView, clearColor);
 
 		//// Clear the depth buffer.
 		//s_pDeviceContext->ClearDepthStencilView(s_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
@@ -395,11 +405,11 @@ void c_render::RequestResize(uint32_t width, uint32_t height)
 
 void c_render::ResizeBegin()
 {
-	s_pDeviceContext->Flush();
+	s_device_context->Flush();
 	c_debug_gui::Deinit();
 
-	s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
-	s_pDeviceContext->ClearState();
+	s_device_context->OMSetRenderTargets(0, 0, 0);
+	s_device_context->ClearState();
 	// Release all outstanding references to the swap chain's buffers.
 	if(s_pRenderTargetView) s_pRenderTargetView->Release();
 	//s_pDepthStencilView->Release();
@@ -408,7 +418,7 @@ void c_render::ResizeBegin()
 void c_render::ResizeEnd()
 {
 	bool isVisible = c_debug_gui::IsVisible();
-	c_debug_gui::Init(GetModuleHandle(NULL), s_pFactory, s_swap_chain, s_pDevice, s_pDeviceContext);
+	c_debug_gui::Init(GetModuleHandle(NULL), s_dxgi_factory_5, s_swap_chain, s_device, s_device_context);
 	if (isVisible) c_debug_gui::show_ui();
 }
 
@@ -433,12 +443,12 @@ void c_render::ResizeWindow()
 			HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
 			ASSERT(SUCCEEDED(getBufferResult));
 
-			HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(buffer, NULL, &s_pRenderTargetView);
+			HRESULT createRenderTargetViewResult = s_device->CreateRenderTargetView(buffer, NULL, &s_pRenderTargetView);
 			ASSERT(SUCCEEDED(createRenderTargetViewResult));
 
 			buffer->Release();
 
-			s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
+			s_device_context->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
 
 			// Set up the viewport.
 			D3D11_VIEWPORT vp;
@@ -448,7 +458,7 @@ void c_render::ResizeWindow()
 			vp.MaxDepth = 1.0f;
 			vp.TopLeftX = 0;
 			vp.TopLeftY = 0;
-			s_pDeviceContext->RSSetViewports(1, &vp);
+			s_device_context->RSSetViewports(1, &vp);
 		}
 		ResizeEnd();
 	}
@@ -458,21 +468,21 @@ void c_render::deinit_render()
 {
 	c_debug_gui::Deinit();
 
-	if (!s_directxCustomInit)
+	if (!is_directx_custom_init)
 	{
 		s_swap_chain->SetFullscreenState(false, NULL);
-		s_pDevice->Release();
-		s_pDeviceContext->Release();
+		s_device->Release();
+		s_device_context->Release();
 		s_swap_chain->Release();
-		s_pFactory->Release();
+		s_dxgi_factory_5->Release();
 	}
 
 	s_window->on_resize.unregister_callback(RequestResize);
 
-	s_pDevice = nullptr;
-	s_pDeviceContext = nullptr;
+	s_device = nullptr;
+	s_device_context = nullptr;
 	s_swap_chain = nullptr;
-	s_pFactory = nullptr;
+	s_dxgi_factory_5 = nullptr;
 
-	s_directxCustomInit = false;
+	is_directx_custom_init = false;
 }

@@ -501,9 +501,9 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	IGameEngineHost* game_engine_host = current_game_host->GetDynamicGameEngineHost();
 	static HANDLE game_main_thread = NULL;
 
-	game_engine->Member04(c_render::s_pDevice);
+	game_engine->Member04(c_render::s_device);
 	game_engine->Member05(game_context->map_id);
-	game_engine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_swap_chain, c_render::s_swap_chain);
+	game_engine->InitGraphics(c_render::s_device, c_render::s_device_context, c_render::s_swap_chain, c_render::s_swap_chain);
 	game_main_thread = game_engine->InitThread(game_engine_host, game_context);
 
 	s_window->set_post_message_thread_id(game_main_thread);

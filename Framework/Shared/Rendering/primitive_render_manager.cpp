@@ -115,7 +115,7 @@ void c_primitive_render_manager::SetupConstantBuffers()
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppFrameConstantsBuffers[i];
 
-			HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			HRESULT createBufferResult = c_render::s_device->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
 			ASSERT(SUCCEEDED(createBufferResult));
 			ASSERT(pConstantsBuffer != nullptr);
 		}
@@ -146,7 +146,7 @@ void c_primitive_render_manager::render_immediate_box()
 void c_primitive_render_manager::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	HRESULT mapResult = c_render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	HRESULT mapResult = c_render::s_device_context->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	ASSERT(SUCCEEDED(mapResult));
 
 	// contigious memory
@@ -155,7 +155,7 @@ void c_primitive_render_manager::MapConstantsBuffer()
 
 void c_primitive_render_manager::UnmapConstantsBuffer()
 {
-	c_render::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
+	c_render::s_device_context->Unmap(pCurrentFrameConstantsBuffer, 0);
 	pPerFrameConstantsArray = nullptr;
 }
 

@@ -3,12 +3,14 @@
 class c_render
 {
 public:
-	static ID3D11Device* s_pDevice;
-	static ID3D11DeviceContext1* s_pDeviceContext;
+	static ID3D11Device* s_device;
+	static ID3D11DeviceContext1* s_device_context;
 	static IDXGISwapChain1* s_swap_chain;
-	static IDXGIFactory5* s_pFactory;
-	static DEVMODE s_deviceMode;
-	static bool s_directxCustomInit;
+	static D3D_FEATURE_LEVEL s_feature_level;
+	static IDXGIFactory3* s_dxgi_factory;
+	static IDXGIFactory5* s_dxgi_factory_5; // to support windows 10 features
+	static DEVMODE s_device_mode;
+	static bool is_directx_custom_init;
 	static ID3D11RenderTargetView* s_pRenderTargetView;
 	static ID3D11Texture2D* s_pDepthStencilBuffer;
 	static ID3D11DepthStencilView* s_pDepthStencilView;
@@ -47,7 +49,7 @@ public:
 	static bool calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
 
 
-	static void CreateSwapchain(IDXGISwapChain1*& s_swap_chain);
+	static void create_swapchain(IDXGISwapChain1*& s_swap_chain);
 	static void init_render(c_window* window, HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame = false);
 	static void init_render(c_window* window, HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
 	static void begin_frame(bool clear, float clearColor[4], bool setTargets = true);
@@ -61,6 +63,6 @@ public:
 	static bool IsResizeEnabled() { return s_resizeEnabled; }
 
 private:
-	static void InitDirectX();
+	static void init_directx();
 };
 
