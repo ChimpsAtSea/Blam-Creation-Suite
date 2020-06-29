@@ -18,7 +18,10 @@ namespace blofeld
 	TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
 	{
 		{ _field_string_id, "selection name^" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "app name#Which player-stats modifier should be activated when this item is equipped" },
+
 		{ _field_block, "customized bits", &customized_model_player_bits_block_block },
 		{ _field_terminator }
 	};

@@ -44,7 +44,13 @@ namespace blofeld
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_short_integer, "unknown" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_pad, "WAXI", 2 },
+
 		{ _field_terminator }
 	};
 
