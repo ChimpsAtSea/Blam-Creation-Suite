@@ -3,7 +3,10 @@
 namespace blofeld
 {
 
+	constexpr unsigned long SOUND_MIX_MASTERING_TAG = 'snmm';
 	constexpr unsigned long SOUNDBANK_TAG = 'sbnk';
+
+	extern s_tag_group sound_mix_mastering_group;
 
 	extern s_tag_struct_definition soundbank_block_struct;
 	extern s_tag_block_definition soundbank_block;

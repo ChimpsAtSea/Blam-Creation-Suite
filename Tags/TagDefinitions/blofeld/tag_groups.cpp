@@ -202,6 +202,7 @@ namespace blofeld
 		&render_water_ripple_group,
 		&scenario_lightmap_group,
 		&spring_acceleration_group,
+		&sound_mix_mastering_group,
 		&soundbank_group,
 		&scenario_structure_bsp_group,
 		&scenery_group,

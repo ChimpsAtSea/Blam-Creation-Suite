@@ -3,6 +3,56 @@
 
 namespace blofeld
 {
+	TAG_STRUCT(sound_mix_equalizer)
+	{
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "base db" },
+		{ _field_real, "40hz" },
+		{ _field_real, "50hz" },
+		{ _field_real, "63hz" },
+		{ _field_real, "80hz" },
+		{ _field_real, "100hz" },
+		{ _field_real, "125hz" },
+		{ _field_real, "160hz" },
+		{ _field_real, "200hz" },
+		{ _field_real, "250hz" },
+		{ _field_real, "315hz" },
+		{ _field_real, "400hz" },
+		{ _field_real, "500hz" },
+		{ _field_real, "630hz" },
+		{ _field_real, "800hz" },
+		{ _field_real, "1000hz" },
+		{ _field_real, "1250hz" },
+		{ _field_real, "1600hz" },
+		{ _field_real, "2000hz" },
+		{ _field_real, "2500hz" },
+		{ _field_real, "3150hz" },
+		{ _field_real, "4000hz" },
+		{ _field_real, "5000hz" },
+		{ _field_real, "6300hz" },
+		{ _field_real, "8000hz" },
+		{ _field_real, "10000hz" },
+		{ _field_real, "12500hz" },
+		{ _field_terminator }
+	};
+
+	TAG_GROUP(sound_mix_mastering, SOUND_MIX_MASTERING_TAG)
+	{
+		{ _field_long_integer, "unknown@" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "base db" },
+		{ _field_real, "left db@" },
+		{ _field_real, "right db@" },
+		{ _field_real, "ambient db@" },
+		{ _field_real, "object db@" },
+		{ _field_real, "unknown@" },
+		{ _field_struct, "equalizer a", &sound_mix_equalizer_struct_definition },
+		{ _field_struct, "equalizer b", &sound_mix_equalizer_struct_definition },
+
+		{ _field_terminator }
+	};
 
 	TAG_GROUP(soundbank, SOUNDBANK_TAG)
 	{
