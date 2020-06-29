@@ -140,6 +140,8 @@
 #include "geometry\geometry_definitions.h"
 #include "geometry\geometry_definitions_new.h"
 #include "hs\hs_scenario_definitions.h"
+#include "interface\chud\chud_definitions.h"
+#include "interface\chud\chud_widgets.h"
 #include "interface\chud\polyart\polyartbasedefinitions.h"
 #include "interface\chud\polyart\polyartdefinitions.h"
 #include "interface\chud\polyart\vectorartdefinitions.h"

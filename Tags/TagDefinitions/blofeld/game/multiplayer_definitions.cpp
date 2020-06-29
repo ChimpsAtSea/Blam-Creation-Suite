@@ -14,6 +14,10 @@ namespace blofeld
 
 	TAG_BLOCK(teamDefinitionBlock, k_multiplayer_team_game_team_count)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real_rgb_color, "color" },
+
+		{ _field_version_greater, _engine_type_haloreach, 12 },
 		{ _field_string_id, "name^" },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
@@ -26,6 +30,7 @@ namespace blofeld
 		{ _field_char_enum, "background color index", &playerColorEnum },
 		{ _field_pad, "pad", 2 },
 		{ _field_custom },
+
 		{ _field_terminator }
 	};
 
@@ -80,10 +85,13 @@ namespace blofeld
 		{ _field_tag_reference, "multiplayer text", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "sandbox text", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "sandbox object properties values", &g_sandbox_object_properties_interface_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_tag_reference, "effects", &global_multiplayer_effect_group_reference },
 		{ _field_block, "multiplayer roles", &global_team_role_block_block },
 		{ _field_block, "requisition constants", &requisition_constants_block_block },
 		{ _field_block, "player starting profile", &scenario_profiles_block_block },
+
 		{ _field_terminator }
 	};
 
@@ -99,10 +107,70 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_STRUCT(multiplayer_constants_unknown_struct)
+	{
+		{ _field_real, "unknown0" },
+		{ _field_real, "unknown4" },
+		{ _field_real, "unknown8" },
+		{ _field_real, "unknownC" },
+		{ _field_real, "unknown10" },
+		{ _field_real, "unknown14" },
+		{ _field_real, "unknown18" },
+		{ _field_real, "unknown1C" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(multiplayer_constants_weapon_block, 65536)
+	{
+		{ _field_tag_reference, "weapon", &weapon_reference },
+		{ _field_real, "unknown0" },
+		{ _field_real, "unknown4" },
+		{ _field_real, "unknown8" },
+		{ _field_real, "unknownC" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(multiplayer_constants_vehicle_block, 65536)
+	{
+		{ _field_tag_reference, "vehicle", &vehicle_reference },
+		{ _field_real, "unknown0" },
+		{ _field_real, "unknown4" },
+		{ _field_real, "unknown8" },
+		{ _field_real, "unknownC" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(multiplayer_constants_projectile_block, 65536)
+	{
+		{ _field_tag_reference, "projectile", &projectile_reference },
+		{ _field_real, "unknown0" },
+		{ _field_real, "unknown4" },
+		{ _field_real, "unknown8" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(multiplayer_constants_block, 1)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 14 },
+		{ _field_struct, "unknown0", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_struct, "unknown1", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_struct, "unknown2", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_struct, "unknown3", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_struct, "unknown4", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_struct, "unknown5", &multiplayer_constants_unknown_struct_struct_definition },
+		{ _field_real, "unknownC0" },
+		{ _field_block, "weapons", &multiplayer_constants_weapon_block_block },
+		{ _field_block, "vehicles", &multiplayer_constants_vehicle_block_block },
+		{ _field_block, "projectiles", &multiplayer_constants_projectile_block_block },
+		{ _field_real, "unknownE8" },
+		{ _field_real, "unknownE4" },
+		{ _field_real, "unknownE4" },
+		{ _field_real, "unknownE4" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_explanation, "PLAYER SPAWN INFLUENCERS", "These are the default spawn influencer settings which can be overridden by scenario tags" },
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
+
 		{ _field_explanation, "MORE MP CONSTANTS", "More old Halo2 stuff follows..." },
 		{ _field_real, "teleporter recharge time:seconds" },
 		{ _field_tag_reference, "sandbox effect", &global_effect_reference },
@@ -140,6 +208,34 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(multiplayer_unknown_block, 65536)
+	{
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(multiplayer_runtime_block, 1)
 	{
 		{ _field_tag_reference, "editor biped", &unit_reference$4 },
@@ -155,11 +251,23 @@ namespace blofeld
 		{ _field_tag_reference, "communication sounds{comm english}", &global_communication_sound_group_reference },
 		{ _field_long_integer, "maximum frag count" },
 		{ _field_long_integer, "maximum plasma count" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_block, "unknown", &multiplayer_unknown_block_block },
+
 		{ _field_block, "multiplayer constants", &multiplayer_constants_block_block },
 		{ _field_block, "state responses", &game_engine_status_response_block_block },
 		{ _field_tag_reference, "scoreboard emblem bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "scoreboard dead emblem bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "hill shader", &multiplayer_runtime_block_hill_shader_reference },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 5 },
+		{ _field_tag_reference, "null intro hud", &chud_reference },
+		{ _field_tag_reference, "sandbox intro hud", &chud_reference },
+		{ _field_tag_reference, "megalo intro hud", &chud_reference },
+		{ _field_tag_reference, "campaign intro hud", &chud_reference },
+		{ _field_tag_reference, "survival intro hud", &chud_reference },
+
 		{ _field_tag_reference, "default_biped_simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_tag_reference, "default_vehicle_simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_tag_reference, "default_crate_simulation_interpolation", &global_simulation_interpolation_reference },
@@ -168,7 +276,10 @@ namespace blofeld
 		{ _field_tag_reference, "default_object_simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
 		{ _field_tag_reference, "megalo string_id table", &global_megalo_string_id_table_reference },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_tag_reference, "killcam parameters# Used for non projectile killcams.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
+
 		{ _field_terminator }
 	};
 

@@ -909,6 +909,12 @@
     <ClCompile Include="types\string_list_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1836,6 +1842,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="field_formatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\chud_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\chud_widgets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

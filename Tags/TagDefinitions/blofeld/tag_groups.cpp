@@ -202,7 +202,6 @@ namespace blofeld
 		&render_water_ripple_group,
 		&scenario_lightmap_group,
 		&spring_acceleration_group,
-		&sound_mix_mastering_group,
 		&soundbank_group,
 		&scenario_structure_bsp_group,
 		&scenery_group,
@@ -274,6 +273,14 @@ namespace blofeld
 		// manual
 		&beam_system_group,
 		&contrail_system_group,
+		&sound_mix_mastering_group,
+		&chud_widget_animation_data_group,
+		&chud_widget_placement_data_group,
+		&chud_widget_render_data_group,
+		&chud_widget_state_data_group,
+		&chud_animation_group,
+		&chud_group,
+		&chud_globals_group,
 		nullptr
 	};
 
