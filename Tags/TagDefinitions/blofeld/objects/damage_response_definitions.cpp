@@ -26,10 +26,16 @@ namespace blofeld
 		{ _field_tag_reference, "rumble{rumble data}", &global_rumble_reference },
 		{ _field_explanation, "camera shake and impulse data", "" },
 		{ _field_tag_reference, "camera shake{camera shake data}", &global_camera_shake_reference },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "camera shake zoomed{camera shake data} #falls back on camerashake if untuned", &global_camera_shake_reference },
+
 		{ _field_explanation, "simulated input", "" },
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "simulated_input zoomed #falls back on simulated input if untuned", &global_simulated_input_reference },
+
 		{ _field_explanation, "global sound effect", "" },
 		{ _field_block, "global sound effect", &damage_response_global_sound_effect_block_block },
 		{ _field_terminator }
@@ -62,7 +68,10 @@ namespace blofeld
 	TAG_STRUCT(damage_response_directional_flash_struct)
 	{
 		{ _field_real, "indicator duration" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "flash duration {duration}" },
+
 		{ _field_enum, "fade function", &global_reverse_transition_functions_enum },
 		{ _field_pad, "ZASSFACE", 2 },
 		{ _field_real, "center size" },
