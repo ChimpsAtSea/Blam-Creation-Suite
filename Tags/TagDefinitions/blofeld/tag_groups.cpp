@@ -79,6 +79,7 @@ namespace blofeld
 		&flock_group,
 		&fluid_dynamics_group,
 		&atmosphere_fog_group,
+		&sky_atm_parameters_group,
 		&material_effects_group,
 		&forge_globals_group,
 		&formation_group,

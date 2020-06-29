@@ -3,6 +3,62 @@
 
 namespace blofeld
 {
+	TAG_BLOCK(sky_atm_parameters_atmosphere_properties, 65536)
+	{
+		{ _field_string_id, "name" },
+		{ _field_word_flags, "Flags", &atmosphere_flags },
+		{ _field_byte_integer, "Version!" },
+		{ _field_pad, "ABCDEFGH", 1 },
+		{ _field_explanation, "Ambient Fog Parameters", "All heights are absolute world space height\n" },
+		{ _field_real, "distance bias:world units#negative means into the screen" },
+		{ _field_real, "unknown@" },
+		{ _field_custom, "Sky Fog" },
+		{ _field_struct, "sky fog", &solo_fog_parameters_struct_definition_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "Ground Fog" },
+		{ _field_struct, "ground fog", &solo_fog_parameters_struct_definition_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "Fog Light" },
+		{ _field_struct, "fog light", &fog_light_struct_definition_struct_definition },
+		{ _field_custom },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_custom },
+		{ _field_explanation, "Weather effect", "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n" },
+		{ _field_tag_reference, "Weather effect", &global_effect_reference },
+		{ _field_real, "unknown@" },
+		{ _field_real, "unknown@" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(sky_atm_parameters_underwater_properties, 65536)
+	{
+		{ _field_string_id, "name" },
+		{ _field_real_argb_color, "color" },
+		{ _field_terminator }
+	};
+
+	TAG_GROUP(sky_atm_parameters, SKY_ATM_PARAMETERS_TAG)
+	{
+		{ _field_tag_reference, "fog bitmap", &global_bitmap_reference },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_block, "atmosphere properties", &sky_atm_parameters_atmosphere_properties_block },
+		{ _field_block, "underwater properties", &sky_atm_parameters_underwater_properties_block },
+
+		{ _field_terminator }
+	};
+
 
 	TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block_block );
 
@@ -126,6 +182,7 @@ namespace blofeld
 	};
 	STRING_LIST(atmosphere_flags, atmosphere_flags_strings, _countof(atmosphere_flags_strings));
 
+	TAG_REFERENCE(global_sky_atmosphere_definition_reference, SKY_ATM_PARAMETERS_TAG);
 	TAG_REFERENCE(global_atmosphere_definition_reference, ATMOSPHERE_FOG_TAG);
 
 } // namespace blofeld
