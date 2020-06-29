@@ -537,14 +537,27 @@ namespace blofeld
 
 	STRINGS(sound_compression_enum)
 	{
-		"none (big endian)",
-		"xbox adpcm",
-		"ima adpcm",
-		"none (little endian)",
-		"wma",
-		"none (endian agnostic)",
-		"xma",
-		"xma v2.0"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"none (big endian)",
+				"xbox adpcm",
+				"ima adpcm",
+				"none (little endian)",
+				"wma",
+				"none (endian agnostic)",
+				"xma",
+				"xma v2.0"
+			}
+		},
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_append,
+			{
+				"unknown compression codec"
+			}
+		}
 	};
 	STRING_LIST(sound_compression_enum, sound_compression_enum_strings, _countof(sound_compression_enum_strings));
 
@@ -560,9 +573,22 @@ namespace blofeld
 
 	STRINGS(sound_sample_rate_enum)
 	{
-		"22kHz",
-		"44kHz",
-		"32kHz"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"22kHz",
+				"44kHz",
+				"32kHz"
+			}
+		},
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_append,
+			{
+				"unknown sample rate"
+			}
+		}
 	};
 	STRING_LIST(sound_sample_rate_enum, sound_sample_rate_enum_strings, _countof(sound_sample_rate_enum_strings));
 
