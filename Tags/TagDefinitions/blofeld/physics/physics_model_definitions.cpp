@@ -8,7 +8,7 @@ namespace blofeld
 
 	TAG_BLOCK(spheres_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
+		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct_struct_definition },
 
 		{ _field_version_platform_include, _platform_type_pc },
@@ -22,7 +22,7 @@ namespace blofeld
 
 	TAG_BLOCK(pills_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
+		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct_struct_definition },
 
 		{ _field_version_platform_exclude, _platform_type_pc },
@@ -298,7 +298,7 @@ namespace blofeld
 
 	TAG_BLOCK(boxes_block, k_maximum_shapes_per_physics_model)
 	{
-		{ _field_struct, "base", & havok_primitive_struct_struct_definition },
+		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "box shape", &havok_convex_shape_struct_struct_definition },
 
 		{ _field_version_platform_exclude, _platform_type_pc },
@@ -411,7 +411,7 @@ namespace blofeld
 
 	TAG_BLOCK(mopps_block, k_maximum_rigid_bodies_per_physics_model) // #NOTE: same as mopp_bv_tree_shape_struct
 	{
-		{ _field_struct, "base", & havok_shape_struct_2010_2_struct_definition },
+		{ _field_struct, "base", &havok_shape_struct_2010_2_struct_definition },
 		{ _field_pad, "m_bvTreeType", 1 },
 		{ _field_pad, "3 other bytes", 3 },
 
@@ -765,7 +765,7 @@ namespace blofeld
 
 	TAG_STRUCT(havok_convex_transform_shape_struct)
 	{
-		{ _field_struct, "convex", & havok_convex_shape_struct_struct_definition },
+		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
 		{ _field_pointer, "field pointer skip!~" },
 		{ _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "child shape size" },

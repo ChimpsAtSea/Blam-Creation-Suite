@@ -144,7 +144,7 @@ namespace blofeld
 
 	TAG_BLOCK(hud_screen_reference_block, 65536)
 	{
-		{ _field_tag_reference, "hud screen reference", & hud_screen_reference },
+		{ _field_tag_reference, "hud screen reference", &hud_screen_reference },
 		{ _field_terminator }
 	};
 

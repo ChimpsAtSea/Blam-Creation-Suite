@@ -100,7 +100,7 @@ namespace blofeld
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_dword_integer, "unknown@" },
 
-		{ _field_block, "entry points", & compute_entry_point_block_block },
+		{ _field_block, "entry points", &compute_entry_point_block_block },
 		{ _field_dword_integer, "version*" },
 		{ _field_block, "compiled shaders", &compiled_compute_shader_block_block },
 		{ _field_terminator }

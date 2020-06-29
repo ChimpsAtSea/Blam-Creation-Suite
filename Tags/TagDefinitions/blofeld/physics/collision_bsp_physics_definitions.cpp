@@ -13,7 +13,7 @@ namespace blofeld
 
 	TAG_STRUCT(collision_geometry_shape_struct)
 	{
-		{ _field_struct, "base", & havok_shape_collection_struct_2010_2_struct_definition },
+		{ _field_struct, "base", &havok_shape_collection_struct_2010_2_struct_definition },
 
 		{ _field_version_platform_exclude, _platform_type_pc },
 		{ _field_pad, "foobar666", 8 },

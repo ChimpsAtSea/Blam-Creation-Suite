@@ -24,7 +24,7 @@ namespace blofeld
 
 	TAG_STRUCT(sound_group)
 	{
-		{ _field_long_flags, "flags", & SoundEventDefinitionFlags },
+		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
 		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
 		{ _field_string_id, "Event Name#Sound event name." },

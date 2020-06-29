@@ -21,7 +21,7 @@ namespace blofeld
 	TAG_BLOCK(equipmentAbilityTypeSpawnerBlock, 1)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2},
-		{ _field_tag_reference, "spawned object", & object_reference$4 },
+		{ _field_tag_reference, "spawned object", &object_reference$4 },
 		{ _field_tag_reference, "spawned effect", &global_effect_reference },
 
 		{ _field_real, "spawn radius#distance from players eyeball on the z-plane that this effect spawns" },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_pad, "LSJ", 2 },
 
 		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_tag_reference, "spawned object", & object_reference$4 },
+		{ _field_tag_reference, "spawned object", &object_reference$4 },
 		{ _field_tag_reference, "spawned effect", &global_effect_reference },
 
 		{ _field_terminator }

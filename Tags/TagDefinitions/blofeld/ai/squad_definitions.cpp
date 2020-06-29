@@ -192,7 +192,7 @@ namespace blofeld
 
 	TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", & ai_spawn_conditions_struct_struct_definition },
+		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "unknown@" },
@@ -206,7 +206,7 @@ namespace blofeld
 
 	TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", & ai_spawn_conditions_struct_struct_definition },
+		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "unknown@" },

@@ -15,7 +15,7 @@ namespace blofeld
 
 	TAG_STRUCT(global_rasterizer_constant_table_struct)
 	{
-		{ _field_block, "constants*", & rasterizer_constant_block_block },
+		{ _field_block, "constants*", &rasterizer_constant_block_block },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_dword_integer, "unknown@" },
