@@ -8,6 +8,9 @@ namespace blofeld
 
 	TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_block, "incidents", &incident_definition_block_block },
 		{ _field_terminator }
 	};
@@ -43,12 +46,20 @@ namespace blofeld
 
 	TAG_BLOCK(specialized_incident_object_properties_block, 10)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4},
+		{ _field_word_flags, "flags", &specialized_incident_kill_bucket_flags },
+		{ _field_char_enum, "bucket type^", &campaign_metagame_bucket_type_with_none_enum },
+		{ _field_char_enum, "bucket class^", &campaign_metagame_bucket_class_with_none_enum },
+		{ _field_string, "profile name" },
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
 		{ _field_char_enum, "bucket type^", &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "bucket class^", &campaign_metagame_bucket_class_with_none_enum },
 		{ _field_pad, "PAD0", 2 },
 		{ _field_string, "gamertag" },
 		{ _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block_block },
+
 		{ _field_terminator }
 	};
 
@@ -93,14 +104,21 @@ namespace blofeld
 	TAG_BLOCK(specialized_incident_block, 1)
 	{
 		{ _field_string_id, "base incident^" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block_block },
 		{ _field_block, "cause object", &specialized_incident_object_properties_block_block },
 		{ _field_block, "effect object{kill bucket}", &specialized_incident_object_properties_block_block },
 		{ _field_block, "special kill type", &specialized_incident_special_kill_type_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_block, "game over filter", &specializedIncidentGameOverBlock_block },
 		{ _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block },
 		{ _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock_block },
 		{ _field_block, "distance filter", &specializedIncidentDistanceFilterBlock_block },
+
 		{ _field_terminator }
 	};
 
@@ -110,8 +128,11 @@ namespace blofeld
 		{ _field_pad, "VLHSJNRE", 3 },
 		{ _field_long_integer, "count" },
 		{ _field_string_id, "incident name" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "reset incident name" },
 		{ _field_real, "reset timeout" },
+
 		{ _field_terminator }
 	};
 
