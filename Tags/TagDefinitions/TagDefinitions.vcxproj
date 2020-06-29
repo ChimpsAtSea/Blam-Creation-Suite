@@ -287,6 +287,7 @@
     <ClCompile Include="blofeld\sound\sound_environment_definitions.cpp" />
     <ClCompile Include="blofeld\sound\sound_language_definitions.cpp" />
     <ClCompile Include="blofeld\sound\sound_scenery_group.cpp" />
+    <ClCompile Include="types\string_list_definitions.cpp" />
     <ClCompile Include="blofeld\structures\detail_object_definitions.cpp" />
     <ClCompile Include="blofeld\structures\instanced_geometry_definitions.cpp" />
     <ClCompile Include="blofeld\structures\instance_imposter_definitions.cpp" />

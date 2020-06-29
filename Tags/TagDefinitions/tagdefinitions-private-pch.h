@@ -94,10 +94,10 @@ s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition
 unsigned long CONCAT(tag_reference_symbolname, _tag_groups)[] =
 
 #define STRINGS(name) \
-extern const char* CONCAT(name, _strings)[] =
+c_versioned_string_list CONCAT(name, _strings) =
 
 #define STRING_LIST(name, string_list, count) \
-s_string_list_definition name = { STRINGIFY(name), count, static_cast<const char**>(string_list), __FILE__, __LINE__ }
+s_string_list_definition name = { STRINGIFY(name), string_list, __FILE__, __LINE__ }
 
 #define _TAG_ENUM(name, count) \
 extern const char* CONCAT(name, _strings)[]; \
