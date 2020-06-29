@@ -40,4 +40,3 @@ namespace blofeld
 	};
 
 } // namespace blofeld
-
