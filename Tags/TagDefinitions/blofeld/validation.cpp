@@ -233,6 +233,38 @@ namespace blofeld
 		return computed_size;
 	}
 
+	bool validate_all_definitions()
+	{
+		bool any_block_failed_validation = false;
+		uint32_t validation_attempts = 0;
+		uint32_t successful_validation_attempts = 0;
+
+		for (const s_tag_struct_definition& struct_definition : c_reference_loop(blofeld::get_tag_struct_definitions()))
+		{
+			validation_attempts++;
+
+			e_validation_result block_failed_validation = _validation_result_ok;
+			const char* const block_name = struct_definition.name;
+
+			calculate_struct_size(_engine_type_not_set, _platform_type_pc, _build_not_set, struct_definition, &block_failed_validation);
+
+			if (block_failed_validation == _validation_result_ok)
+			{
+				successful_validation_attempts++;
+			}
+			else
+			{
+				any_block_failed_validation = true;
+			}
+		}
+		float percentage = 100.0f * float(successful_validation_attempts) / float(validation_attempts);
+		if (percentage != 100.0f)
+		{
+			c_console::write_line_verbose("warning V0001: failed to validate all tags. success rate %.1f.", percentage);
+		}
+		return any_block_failed_validation;
+	}
+
 	bool validate_gen3_definitions()
 	{
 		bool any_block_failed_validation = false;

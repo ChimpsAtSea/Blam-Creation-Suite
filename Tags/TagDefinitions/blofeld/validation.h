@@ -38,6 +38,7 @@ namespace blofeld
 		e_build build, 
 		const s_tag_struct_definition& struct_definition, 
 		e_validation_result* block_failed_validation = nullptr);
+	bool validate_all_definitions();
 	bool validate_gen3_definitions();
 }
 

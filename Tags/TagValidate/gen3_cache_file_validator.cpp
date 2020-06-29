@@ -176,9 +176,16 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			}
 			case blofeld::_field_enum:
 			{
-				long enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
-				short enum_value = *reinterpret_cast<short*>(current_data_position);
-				is_struct_valid &= enum_value < enum_max;
+				if (current_field->string_list_definition == nullptr)
+				{
+					is_struct_valid = false;
+				}
+				else
+				{
+					long enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
+					short enum_value = *reinterpret_cast<short*>(current_data_position);
+					is_struct_valid &= enum_value < enum_max;
+				}
 				break;
 			}
 			case blofeld::_field_long_enum:

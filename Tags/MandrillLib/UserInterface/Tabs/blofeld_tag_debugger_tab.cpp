@@ -96,6 +96,12 @@ void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_typ
 template<typename t_raw_value>
 void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result)
 {
+	if (field.string_list_definition == nullptr)
+	{
+		ImGui::Text("ERROR: MISSING ENUM STRING_LIST_DEFINITION!!!!!!");
+		return;
+	}
+
 	const char* format_string = "raw: %u ";
 	if (show_hex_values)
 	{
