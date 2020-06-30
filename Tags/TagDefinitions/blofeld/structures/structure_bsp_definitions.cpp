@@ -563,10 +563,10 @@ namespace blofeld
 		{ _field_long_integer, "unique id*" },
 		{ _field_tag, "exported object type" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_version_less, _engine_type_haloreach, 1 },
 		{ _field_pad, "unknown", 32 }, // #TODO: Are there string id's in here???
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_string_id, "scenario object name" },
 		{ _field_string_id, "variant name" },
 

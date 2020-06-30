@@ -6,6 +6,50 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block );
 
+
+
+	TAG_BLOCK(render_model_unknown_struct_unknown_block, 65536)
+	{
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(render_model_unknown_sky_struct2)
+	{
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_real, "unknown" }, 
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(render_model_unknown_struct)
+	{
+		{ _field_block, "sky light unknown", & render_model_unknown_struct_unknown_block_block },
+		{ _field_struct, "sh sky red", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_struct, "sh sky green", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_struct, "sh sky blue", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_struct, "sh sky alpha", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_real_point_3d, "sky light levels#Negative for the opposite direction" },
+		{ _field_real_rgb_color, "sky light color" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" }, // #TODO: Test these values
+		{ _field_terminator }
+	};
+
 	TAG_GROUP(render_model, RENDER_MODEL_TAG)
 	{
 		{ _field_string_id, "name*" },
@@ -28,13 +72,20 @@ namespace blofeld
 		{ _field_real, "don\'t draw over camera cosine angle#dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition },
 		{ _field_block, "node map mapping*", &instance_node_map_mapping_block_block },
+
+		{ _field_version_less_or_equal , _engine_type_haloreach, 1 },
+		{ _field_struct, "unknown", &render_model_unknown_struct_struct_definition },
+
 		{ _field_block, "volume samples", &volume_samples_block_block },
 		{ _field_block, "runtime node orientations!", &default_node_orientations_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block },
 		{ _field_explanation, "Static Lightmap", "" },
 		{ _field_tag_reference, "structure meta data*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "forge lightmap atlases", &RenderModelLightmapAtlasReference },
+
 		{ _field_terminator }
 	};
 
@@ -59,7 +110,10 @@ namespace blofeld
 		{ _field_string_id, "name^*" },
 		{ _field_short_integer, "mesh index*" },
 		{ _field_short_integer, "mesh count*" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "clone name*" },
+
 		{ _field_long_flags, "instance mask 0-31*", &render_model_instance_bitfield_flags_definition },
 		{ _field_long_flags, "instance mask 32-63*", &render_model_instance_bitfield_flags_definition },
 		{ _field_long_flags, "instance mask 64-95*", &render_model_instance_bitfield_flags_definition },
@@ -85,12 +139,21 @@ namespace blofeld
 		{ _field_pad, "RELFLFLLE", 2 },
 		{ _field_real_point_3d, "default translation*" },
 		{ _field_real_quaternion, "default rotation*" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real, "scale*" },
+
 		{ _field_real_vector_3d, "inverse forward*" },
 		{ _field_real_vector_3d, "inverse left*" },
 		{ _field_real_vector_3d, "inverse up*" },
 		{ _field_real_point_3d, "inverse position*" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "inverse scale*" },
+
 		{ _field_real, "distance from parent*" },
+
+		{ _field_version_greater, _engine_type_haloreach, 9 },
 		{ _field_custom, "Procedural Joint" },
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },
@@ -100,6 +163,7 @@ namespace blofeld
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
 		{ _field_custom },
+
 		{ _field_terminator }
 	};
 
@@ -204,10 +268,50 @@ namespace blofeld
 
 	STRINGS(render_model_flags_definition)
 	{
-		"is hologram",
-		"UNUSED2",
-		"has node maps",
-		"has fur shader"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"is hologram",
+				"UNUSED2",
+				"has node maps",
+				"has fur shader"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"has split lighting", // #NOTE: unconfirmed, taken from halo5
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"is hologram",
+				"UNUSED2",
+				"has node maps",
+				"has fur shader"
+			}
+		},
+		{
+			_engine_type_halo5,
+			_versioned_string_list_mode_new,
+			{
+				"is hologram",
+				"has water",
+				"has node maps",
+				"LOD regions enabled",
+				"has split lighting",
+				"has depth peeling",
+				"has custom shadow meshes",
+				"has deferred reflections",
+				"is hologram lofi",
+				"has mid distance cull parts",
+				"has close distance cull parts",
+			}
+		}
 	};
 	STRING_LIST(render_model_flags_definition, render_model_flags_definition_strings, _countof(render_model_flags_definition_strings));
 

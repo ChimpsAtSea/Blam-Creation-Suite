@@ -238,14 +238,41 @@ namespace blofeld
 
 	STRINGS(material_response)
 	{
-		"impact (detonate)",
-		"fizzle",
-		"overpenetrate",
-		"attach",
-		"bounce",
-		"bounce (dud)",
-		"fizzle (ricochet)",
-		"turn physical"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"impact (detonate)",
+				"fizzle",
+				"overpenetrate",
+				"attach",
+				"bounce",
+				"bounce (dud)",
+				"fizzle (ricochet)",
+				"turn physical"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 9"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"impact (detonate)",
+				"fizzle",
+				"overpenetrate",
+				"attach",
+				"bounce",
+				"bounce (dud)",
+				"fizzle (ricochet)",
+				"turn physical"
+			}
+		}
 	};
 	STRING_LIST(material_response, material_response_strings, _countof(material_response_strings));
 

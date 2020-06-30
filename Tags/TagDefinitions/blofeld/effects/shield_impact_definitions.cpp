@@ -91,9 +91,31 @@ namespace blofeld
 
 	STRINGS(shield_flags)
 	{
-		"render always",
-		"render first person",
-		"dont render third person"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"render always",
+				"render first person",
+				"dont render third person"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 4"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"render always",
+				"render first person",
+				"dont render third person"
+			}
+		}
 	};
 	STRING_LIST(shield_flags, shield_flags_strings, _countof(shield_flags_strings));
 

@@ -197,26 +197,38 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			}
 			case blofeld::_field_byte_flags:
 			{
-				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
-				byte enum_value = __log2u(*reinterpret_cast<byte*>(current_data_position));
-				result.is_enum_empty = enum_max == 0;
-				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
+				if (!(current_field->string_list_definition && &current_field->string_list_definition->string_list == &blofeld::empty_string_list))
+				{
+					uint64_t enum_value = *reinterpret_cast<byte*>(current_data_position);
+					uint32_t enum_count = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
+					uint64_t enum_bits = 1ull << enum_count;
+					enum_bits--;
+					is_struct_valid &= enum_value <= enum_bits;
+				}
 				break;
 			}
 			case blofeld::_field_word_flags:
 			{
-				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
-				word enum_value = __log2u(*reinterpret_cast<word*>(current_data_position));
-				result.is_enum_empty = enum_max == 0;
-				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
+				if (!(current_field->string_list_definition && &current_field->string_list_definition->string_list == &blofeld::empty_string_list))
+				{
+					uint64_t enum_value = *reinterpret_cast<word*>(current_data_position);
+					uint32_t enum_count = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
+					uint64_t enum_bits = 1ull << enum_count;
+					enum_bits--;
+					is_struct_valid &= enum_value <= enum_bits;
+				}
 				break;
 			}
 			case blofeld::_field_long_flags:
 			{
-				uint32_t enum_max = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
-				unsigned long enum_value = __log2u(*reinterpret_cast<unsigned long*>(current_data_position));
-				result.is_enum_empty = enum_max == 0;
-				is_struct_valid &= enum_value < (enum_max + 1) || enum_max == 0;
+				if (!(current_field->string_list_definition && &current_field->string_list_definition->string_list == &blofeld::empty_string_list))
+				{
+					unsigned long enum_value = *reinterpret_cast<unsigned long*>(current_data_position);
+					uint32_t enum_count = current_field->string_list_definition ? current_field->string_list_definition->count(engine_type) : 0;
+					uint64_t enum_bits = 1ull << enum_count;
+					enum_bits--;
+					is_struct_valid &= enum_value <= enum_bits;
+				}
 				break;
 			}
 			case blofeld::_field_pointer:

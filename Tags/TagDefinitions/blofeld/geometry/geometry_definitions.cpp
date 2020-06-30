@@ -415,20 +415,34 @@ namespace blofeld
 
 	STRINGS(part_flags)
 	{
-		"is water surface",
-		"per vertex lightmap part",
-		"debug flag instance part",
-		"subparts has uberlights info",
-		"draw cull distance medium",
-		"draw cull distance close",
-		"draw cull rendering shields",
-		"cannot single pass render",
-		"is transparent",
-		"cannot two pass",
-		"transparent should output depth for DoF#expensive",
-		"do not include in static lightmap",
-		"do not include in PVS generation",
-		"draw cull rendering active camo"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"is water surface",
+				"per vertex lightmap part",
+				"debug flag instance part",
+				"subparts has uberlights info",
+				"draw cull distance medium",
+				"draw cull distance close",
+				"draw cull rendering shields",
+				"cannot single pass render",
+				"is transparent",
+				"cannot two pass",
+				"transparent should output depth for DoF#expensive",
+				"do not include in static lightmap",
+				"do not include in PVS generation",
+				"draw cull rendering active camo",
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 15",
+				"bit 16"
+			}
+		}
 	};
 	STRING_LIST(part_flags, part_flags_strings, _countof(part_flags_strings));
 

@@ -531,19 +531,51 @@ namespace blofeld
 
 	STRINGS(sound_definition_flags)
 	{
-		"fit to adpcm blocksize",
-		"always spatialize#always play as 3d sound, even in first person",
-		"never obstruct#disable occlusion/obstruction for this sound",
-		"internal don\'t touch!",
-		"facial animation data stripped!",
-		"use huge sound transmission",
-		"link count to owner unit",
-		"pitch range is language",
-		"don\'t use sound class speaker flag",
-		"don\'t use lipsync data",
-		"instant sound propagation",
-		"fake spatialization with distance",
-		"play permutations in order#picks the first permutation randomly"
+		{
+			_engine_type_not_set,
+				_versioned_string_list_mode_new,
+			{
+				"fit to adpcm blocksize",
+				"always spatialize#always play as 3d sound, even in first person",
+				"never obstruct#disable occlusion/obstruction for this sound",
+				"internal don\'t touch!",
+				"facial animation data stripped!",
+				"use huge sound transmission",
+				"link count to owner unit",
+				"pitch range is language",
+				"don\'t use sound class speaker flag",
+				"don\'t use lipsync data",
+				"instant sound propagation",
+				"fake spatialization with distance",
+				"play permutations in order#picks the first permutation randomly"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 14"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"fit to adpcm blocksize",
+				"always spatialize#always play as 3d sound, even in first person",
+				"never obstruct#disable occlusion/obstruction for this sound",
+				"internal don\'t touch!",
+				"facial animation data stripped!",
+				"use huge sound transmission",
+				"link count to owner unit",
+				"pitch range is language",
+				"don\'t use sound class speaker flag",
+				"don\'t use lipsync data",
+				"instant sound propagation",
+				"fake spatialization with distance",
+				"play permutations in order#picks the first permutation randomly"
+			}
+		}
 	};
 	STRING_LIST(sound_definition_flags, sound_definition_flags_strings, _countof(sound_definition_flags_strings));
 

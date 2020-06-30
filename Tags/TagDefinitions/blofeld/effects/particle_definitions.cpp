@@ -125,12 +125,37 @@ namespace blofeld
 
 	STRINGS(particle_main_flags)
 	{
-		"dies at rest",
-		"dies on structure collision",
-		"dies in water",
-		"dies in air",
-		"has sweetener",
-		"uses cheap shader"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"dies at rest",
+				"dies on structure collision",
+				"dies in water",
+				"dies in air",
+				"has sweetener",
+				"uses cheap shader"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 7"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"dies at rest",
+				"dies on structure collision",
+				"dies in water",
+				"dies in air",
+				"has sweetener",
+				"uses cheap shader"
+			}
+		}
 	};
 	STRING_LIST(particle_main_flags, particle_main_flags_strings, _countof(particle_main_flags_strings));
 
@@ -159,8 +184,30 @@ namespace blofeld
 
 	STRINGS(particle_animation_flags)
 	{
-		"frame animation one shot",
-		"can animate backwards"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"frame animation one shot",
+				"can animate backwards"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 3",
+				"bit 4"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"frame animation one shot",
+				"can animate backwards"
+			}
+		}
 	};
 	STRING_LIST(particle_animation_flags, particle_animation_flags_strings, _countof(particle_animation_flags_strings));
 

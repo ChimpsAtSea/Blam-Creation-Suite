@@ -71,21 +71,73 @@ namespace blofeld
 
 	STRINGS(decal_flags)
 	{
-		"render in transparents pass"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"render in transparents pass",
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"render in transparents pass",
+				"use team color#you need to select a team based decal shader with this option" // unconfirmed, taken from halo 5
+			}
+		},
+		{
+			_engine_type_halo5,
+			_versioned_string_list_mode_new,
+			{
+				"render in transparents pass",
+				"use team color#you need to select a team based decal shader with this option"
+			}
+		},
 	};
 	STRING_LIST(decal_flags, decal_flags_strings, _countof(decal_flags_strings));
 
 	STRINGS(decal_system_flags)
 	{
-		"random rotation",
-		"force planar",
-		"is strip",
-		"unknown_bit4", // haloreach
-		"unknown_bit5", // haloreach
-		"unknown_bit6", // haloreach
-		"unknown_bit7", // haloreach
-		"unknown_bit8", // haloreach
-		"unknown_bit9", // haloreach
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"random rotation",
+				"force planar",
+				"is strip",
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 4",
+				"bit 5",
+				"bit 6",
+				"bit 7",
+				"bit 8",
+				"bit 9",
+				"bit 10",
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"random rotation",
+				"force planar",
+				"is strip",
+			}
+		},
+		{
+			_engine_type_halo5,
+			_versioned_string_list_mode_new,
+			{
+				"random rotation",
+				"force planar",
+			}
+		},
 	};
 	STRING_LIST(decal_system_flags, decal_system_flags_strings, _countof(decal_system_flags_strings));
 
