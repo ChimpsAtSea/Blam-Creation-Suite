@@ -571,6 +571,22 @@ void c_blofeld_tag_debugger_tab::render_field_pageable(render_field_callback_arg
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
 	render_field_name_and_information(field, result);
+
+	s_tag_resource& tag_resource = *reinterpret_cast<s_tag_resource*>(data);
+	unsigned long absolute_index = tag_resource.resource_handle.get_absolute_index();
+	unsigned long identifier = tag_resource.resource_handle.get_identifier();
+	unsigned long definition_address = tag_resource.definition_address;
+
+	ImGui::SameLine();
+
+	if (show_hex_values)
+	{
+		ImGui::Text("absolute_index:0x%X identifier:0x%X definition_address:0x%X", absolute_index, identifier, definition_address);
+	}
+	else
+	{
+		ImGui::Text("absolute_index:%u identifier:%u definition_address:%u", absolute_index, identifier, definition_address);
+	}
 }
 void c_blofeld_tag_debugger_tab::render_field_api_interop(render_field_callback_args)
 {

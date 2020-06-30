@@ -75,6 +75,15 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
 
+	TAG_BLOCK(decorator_runtime_cluster_unknown_block, 65536)
+	{
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
 	{
 		{ _field_word_integer, "decorator placement count*" },
@@ -85,6 +94,10 @@ namespace blofeld
 		{ _field_real, "bounding sphere radius*" },
 		{ _field_real_vector_3d, "position bounds size*" },
 		{ _field_real_vector_3d, "bounding sphere center*" },
+
+		{ _field_version_equal, _engine_type_haloreach },
+		{ _field_block, "unknown", &decorator_runtime_cluster_unknown_block_block },
+
 		{ _field_terminator }
 	};
 

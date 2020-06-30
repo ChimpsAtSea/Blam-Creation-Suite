@@ -9,6 +9,5 @@ namespace blofeld
 	extern s_tag_block_definition structure_design_block;
 	extern s_tag_group structure_design_group;
 
-
 } // namespace blofeld
 

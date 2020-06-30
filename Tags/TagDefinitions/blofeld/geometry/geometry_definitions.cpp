@@ -361,6 +361,12 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(structure_design_constant_buffer_interop, 65536) // assembly
+	{
+		{ _field_api_interop, "constant buffer interop*" },
+		{ _field_terminator }
+	};
+
 	TAG_STRUCT(global_render_geometry_struct)
 	{
 		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
@@ -392,6 +398,9 @@ namespace blofeld
 		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "Optional PVS data", &render_geometry_pvs_data_block_block },
 		{ _field_block, "shapeNames*", &shapeNameBlock_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_block, "constant buffer interop", &structure_design_constant_buffer_interop_block }, // assembly
 
 		{ _field_terminator }
 	};
