@@ -271,7 +271,7 @@ namespace blofeld
 				}
 			},
 			{
-				_engine_type_halo4,
+				_engine_type_gen3_xbox360,
 				_versioned_string_list_mode_new,
 				{
 					"unchanged",
@@ -384,7 +384,7 @@ namespace blofeld
 				}
 			},
 			{
-				_engine_type_halo4,
+				_engine_type_gen3_xbox360,
 				_versioned_string_list_mode_append,
 				{
 					"on_plus_lunge"

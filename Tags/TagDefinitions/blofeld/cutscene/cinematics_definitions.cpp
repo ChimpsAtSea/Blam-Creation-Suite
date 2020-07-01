@@ -542,7 +542,10 @@ namespace blofeld
 		{ _field_real, "fade in time [seconds]" },
 		{ _field_real, "up time [seconds]" },
 		{ _field_real, "fade out time [seconds]" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "letter print time:seconds" },
+
 		{ _field_terminator }
 	};
 
