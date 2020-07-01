@@ -215,7 +215,15 @@ void c_blofeld_tag_debugger_tab::render_field_int64_integer(render_field_callbac
 void c_blofeld_tag_debugger_tab::render_field_angle(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
-	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
+
+	float value = *reinterpret_cast<float*>(data);
+	value *= 180.0f / 3.14159265359;
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
+	render_field_name_and_information(field, result);
+	ImGui::SameLine();
+	ImGui::Text("angle: [%.4f]", value);
+
+	//render_field_scalar_type(ImGuiDataType_Float, 1, result->level, data, field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_tag(render_field_callback_args)
 {
