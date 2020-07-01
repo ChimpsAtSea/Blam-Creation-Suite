@@ -256,6 +256,14 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				}
 				break;
 			}
+			case blofeld::_field_half:
+			{
+				uint16_t& raw_half_data = *reinterpret_cast<uint16_t*>(data);
+				float half_value = half_to_float(raw_half_data);
+				is_struct_valid &= !isnan(half_value);
+				result.float_is_out_of_range |= fabsf(half_value) > float(0xFFFFFFFu);
+				break;
+			}
 			case blofeld::_field_real:
 			case blofeld::_field_angle:
 			case blofeld::_field_real_fraction:
