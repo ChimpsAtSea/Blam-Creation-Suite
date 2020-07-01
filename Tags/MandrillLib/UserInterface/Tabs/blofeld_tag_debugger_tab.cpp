@@ -217,7 +217,7 @@ void c_blofeld_tag_debugger_tab::render_field_angle(render_field_callback_args)
 	if (&tag_interface != &this->tag_interface) return;
 
 	float value = *reinterpret_cast<float*>(data);
-	value *= 180.0f / 3.14159265359;
+	value *= 180.0f / 3.14159265359f;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name_and_information(field, result);
 	ImGui::SameLine();
