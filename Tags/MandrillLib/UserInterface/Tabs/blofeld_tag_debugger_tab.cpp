@@ -371,8 +371,9 @@ void c_blofeld_tag_debugger_tab::render_field_real_argb_color(render_field_callb
 	if (&tag_interface != &this->tag_interface) return;
 	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	ImGui::SameLine();
-	float* color = reinterpret_cast<float*>(data);
-	ImGui::ColorEdit4("", color, ImGuiColorEditFlags_Float);
+	float* raw_color = reinterpret_cast<float*>(data);
+	float swizzled_color[4] = { raw_color[1], raw_color[2], raw_color[3], raw_color[0] };
+	ImGui::ColorEdit4("", swizzled_color, ImGuiColorEditFlags_Float);
 	render_field_name_and_information(field, result);
 }
 void c_blofeld_tag_debugger_tab::render_field_real_hsv_color(render_field_callback_args)
