@@ -444,7 +444,28 @@ namespace blofeld
 
 	STRINGS(model_variant_permutation_flags_definition)
 	{
-		"copy states to all permutations"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"copy states to all permutations"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"unknown_1",
+				"unknown_2"
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"copy states to all permutations"
+			}
+		},
 	};
 	STRING_LIST(model_variant_permutation_flags_definition, model_variant_permutation_flags_definition_strings, _countof(model_variant_permutation_flags_definition_strings));
 
