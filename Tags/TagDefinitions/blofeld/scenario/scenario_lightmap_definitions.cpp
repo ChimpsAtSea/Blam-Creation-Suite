@@ -17,8 +17,8 @@ namespace blofeld
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
 
@@ -38,7 +38,7 @@ namespace blofeld
 
 	TAG_BLOCK(scenario_lightmap_bsp_data_unknown0_block, 65536)
 	{
-		{ _field_real, "unknown" },
+		{ _field_long_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
 		{ _field_real, "unknown" },
