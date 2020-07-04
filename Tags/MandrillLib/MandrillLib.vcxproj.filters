@@ -304,29 +304,5 @@
     <None Include="CacheInterface\tag_group_names.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="OldUserInterface\GUI\render_bitfield_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_dataref_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_enum_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_primitive_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_stringid_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_struct_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_tagblock_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="OldUserInterface\GUI\render_tagref_gui.inl">
-      <Filter>Header Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

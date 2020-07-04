@@ -203,8 +203,10 @@ namespace blofeld
 
 			switch (current_field->field_type)
 			{
-			case _field_pad:
 			case _field_useless_pad:
+				//computed_size += current_field->padding;
+				break;
+			case _field_pad:
 				computed_size += current_field->padding;
 				break;
 			case _field_skip:
