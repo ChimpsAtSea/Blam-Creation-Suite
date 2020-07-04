@@ -903,7 +903,7 @@ namespace blofeld
 	TAG_BLOCK(scenario_unknown_object_reference, 65536) // CUSTOM
 	{
 		{ _field_struct, "object ID*!", &scenario_object_id_struct_struct_definition },
-		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition },
+		{ _field_char_integer, "unknown" }, // index?
 		{ _field_pad, "pad", 1 },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },

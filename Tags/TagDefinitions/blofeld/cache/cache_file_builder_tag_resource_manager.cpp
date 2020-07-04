@@ -557,9 +557,35 @@ namespace blofeld
 
 	STRINGS(cache_file_shared_file_flags_definition)
 	{
-		"use header io offset",
-		"not required",
-		"use header locations"
+		{
+			_engine_type_not_set,
+			_versioned_string_list_mode_new,
+			{
+				"use header io offset",
+				"not required",
+				"use header locations"
+			}
+		},
+		{
+			_engine_type_haloreach,
+			_versioned_string_list_mode_append,
+			{
+				"bit 4",
+				"bit 5",
+				"bit 6",
+				"bit 7",
+				"bit 8",
+			}
+		},
+		{
+			_engine_type_gen3_xbox360,
+			_versioned_string_list_mode_new,
+			{
+				"use header io offset",
+				"not required",
+				"use header locations"
+			}
+		},
 	};
 	STRING_LIST(cache_file_shared_file_flags_definition, cache_file_shared_file_flags_definition_strings, _countof(cache_file_shared_file_flags_definition_strings));
 
