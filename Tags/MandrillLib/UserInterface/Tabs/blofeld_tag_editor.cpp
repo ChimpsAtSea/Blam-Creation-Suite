@@ -1000,6 +1000,7 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 				DEBUG_ASSERT(traversed_size == dynamic_data.structure_size);
 
 				current_data_position += dynamic_data.structure_size * array_count;
+				bytes_traversed += dynamic_data.structure_size * array_count;
 			}
 			else
 			{
@@ -1007,6 +1008,7 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 				{
 					uint32_t traversed_size = render_tag_struct_definition(level++, current_data_position, current_field->array_definition->struct_definition);
 					current_data_position += traversed_size;
+					bytes_traversed += traversed_size;
 				}
 			}
 			break;
