@@ -32,7 +32,10 @@ namespace blofeld
 		{ _field_short_integer, "runtime material index!" },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
 		{ _field_pad, "L", 1 },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "max_visibility_distance#manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." },
+
 		{ _field_terminator }
 	};
 
