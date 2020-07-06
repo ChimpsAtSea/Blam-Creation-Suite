@@ -179,11 +179,13 @@ namespace blofeld
 
 	STRINGS(tracerAppearanceFlags)
 	{
-		"tint from lightmap",
-		"double-sided",
-		"profile opacity from scale a",
-		"random u offset",
-		"random v offset",
+		"tint from lightmap",				// _tint_from_lightmap_bit
+		"double-sided",						// _double_sided_bit
+		"profile opacity from scale a",		// _profile_opacity_from_scale_a_bit
+		"random u offset",					// _random_u_offset_bit
+		"random v offset",					// _random_v_offset_bit
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		"can render low res"
 	};
 	STRING_LIST(tracerAppearanceFlags, tracerAppearanceFlags_strings, _countof(tracerAppearanceFlags_strings));

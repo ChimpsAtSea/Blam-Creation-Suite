@@ -191,13 +191,13 @@ namespace blofeld
 
 	TAG_STRUCT(gpu_property_function_color_struct)
 	{
-		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_version_equal, _engine_type_haloreach, 4 },
 		{ _field_long_integer, "structured scenario interop index" },
 		{ _field_long_integer, "unknown@" },
 		{ _field_long_integer, "unknown@" },
 		{ _field_long_integer, "unknown@" },
 
-		{ _field_version_greater, _engine_type_haloreach, 3 },
+		{ _field_version_not_equal, _engine_type_haloreach, 3 },
 		{ _field_block, "runtime gpu_property_block!", &gpu_property_block_block },
 		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block_block },
 		{ _field_block, "runtime gpu_colors_block!", &gpu_color_block_block },
