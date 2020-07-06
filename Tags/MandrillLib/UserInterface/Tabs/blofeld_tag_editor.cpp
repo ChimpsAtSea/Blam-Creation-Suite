@@ -318,6 +318,7 @@ static bool field_type_to_imgui_data_type(blofeld::e_field field_type, ImGuiData
 	case blofeld::_field_qword_integer: components = 1; data_type = ImGuiDataType_U64; return true;
 
 	case blofeld::_field_angle:
+	case blofeld::_field_real_fraction:
 	case blofeld::_field_real: components = 1; data_type = ImGuiDataType_Float; return true;
 
 	case blofeld::_field_half: components = 1; data_type = ImGuiDataType_Float; return true;
@@ -327,7 +328,6 @@ static bool field_type_to_imgui_data_type(blofeld::e_field field_type, ImGuiData
 
 	case blofeld::_field_rectangle_2d: components = 4; data_type = ImGuiDataType_S16; return true;
 
-	case blofeld::_field_real_fraction:
 	case blofeld::_field_real_vector_2d:
 	case blofeld::_field_real_euler_angles_2d:
 	case blofeld::_field_angle_bounds:
