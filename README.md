@@ -18,8 +18,7 @@ Blam Creation Suite is made up of a collection of tools and a very wide variety 
 * Visual Studio 2019 16.5 or newer
     * Desktop Development with C++
     * Windows 10 SDK 10.0.18362.0
-* [CMake 3.14]([https://cmake.org/download/](https://cmake.org/download/)) or newer is required (`cmake` is added to PATH)
-* [SVN 1.13]([https://tortoisesvn.net/downloads.html](https://tortoisesvn.net/downloads.html)) or newer is required (`svn` is added to PATH)
+* [CMake 3.14]([https://cmake.org/download/](https://cmake.org/download/)) or newer is required (`cmake` added to PATH)
 
 > **Note**: Build support is not provided by team members in Discord. Our philosophy is that a green AppVeyor means a green build.
 > 
