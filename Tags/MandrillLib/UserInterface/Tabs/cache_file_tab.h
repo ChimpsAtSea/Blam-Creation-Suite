@@ -14,6 +14,7 @@ public:
 	~c_cache_file_tab();
 
 	c_cache_file& get_cache_file() const { return cache_file; }
+	c_tag_interface_tab& open_tag_interface_tab(c_tag_interface& tag_interface);
 
 protected:
 	virtual void render_impl() override final;
@@ -23,7 +24,6 @@ protected:
 
 	void render_tags_list_tree();
 	void render_tags_list_search();
-	c_tag_interface_tab& open_tag_interface_tab(c_tag_interface& tag_interface);
 	void open_tag_by_search_name(const char* tag_name);
 	void render_search_box();
 	void render_explorer_bar();

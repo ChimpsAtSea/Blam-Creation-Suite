@@ -412,13 +412,13 @@ void c_blofeld_tag_editor_tab::render_tagblock(void* data, const blofeld::s_tag_
 
 		~s_tag_block_dynamic_data()
 		{
-
+			delete& field_formatter;
 		}
 
 		uint32_t position;
 		uint32_t struct_size;
 		bool is_open;
-		c_field_formatter& field_formatter;
+		c_field_formatter& field_formatter; // #TODO: remove
 	};
 	s_tag_block_dynamic_data& dynamic_data = get_dynamic_data<s_tag_block_dynamic_data, c_cache_file&>(data, cache_file, field);
 
@@ -481,10 +481,11 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 		group_name = tag_group_interface->get_full_name();
 	}
 
-	ImGui::Columns(3, nullptr, false);
+	ImGui::Columns(4, nullptr, false);
 	ImGui::SetColumnWidth(0, 350);
 	ImGui::SetColumnWidth(1, 350);
 	ImGui::SetColumnWidth(2, 1000);
+	ImGui::SetColumnWidth(3, 250); // buttons
 
 	c_field_formatter field_formatter = c_field_formatter(&field, nullptr);
 	ImGui::Text(field_formatter.display_name.c_str());
@@ -758,6 +759,287 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 		}
 	}
 	ImGui::NextColumn();
+	{
+		if (ImGui::Button("Open"))
+		{
+			if (tag_reference.index != INT16_MAX)
+			{
+				if (c_tag_interface* tag_interface = cache_file.get_tag_interface(tag_reference.index))
+				{
+					if (c_cache_file_tab* cache_file_tab = search_parent_tab_type<c_cache_file_tab>())
+					{
+						cache_file_tab->open_tag_interface_tab(*tag_interface);
+					}
+				}
+			}
+		}
+		else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Opens this tag in a new tab");
+
+		//ImGui::SameLine();
+		//ImGui::Button("Import");
+
+		ImGui::SameLine();
+		ImGui::Dummy({ 20.0f, 0.0f });
+
+		ImGui::SameLine();
+		if (ImGui::Button("Clear"))
+		{
+			tag_reference.group_tag = blofeld::INVALID_TAG;
+			tag_reference.name = 0;
+			tag_reference.name_length = 0;
+			tag_reference.index = INT16_MAX;
+			tag_reference.datum = INT16_MAX;
+		}
+		else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
+	}
+	ImGui::NextColumn();
+
+	ImGui::Columns(1);
+
+	ImGui::PopID();
+}
+
+void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld::s_tag_field& field)
+{
+	DEBUG_ASSERT(field.string_list_definition != nullptr);
+	if (field.string_list_definition == nullptr)
+	{
+		ImGui::Text("Flag field fail. String list definition is null!");
+		return;
+	}
+	const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
+
+	uint64_t value = 0;
+	switch (field.field_type)
+	{
+	case blofeld::_field_byte_flags:
+		value = *reinterpret_cast<uint8_t*>(data);
+		break;
+	case blofeld::_field_word_flags:
+		value = *reinterpret_cast<uint16_t*>(data);
+		break;
+	case blofeld::_field_long_flags:
+		value = *reinterpret_cast<uint32_t*>(data);
+		break;
+		//case blofeld::_field_qword_flags:
+		//	current_value = *reinterpret_cast<uint64_t*>(data);
+		//	break;
+	DEBUG_ONLY(default: throw);
+	}
+
+	struct s_flags_dynamic_data
+	{
+		s_flags_dynamic_data(uint64_t value, const blofeld::s_tag_field& field) :
+			bools(),
+			field_formatter(*new c_field_formatter(&field, nullptr))
+		{
+			represented_value = ~value; // force update
+			update(value);
+		}
+
+		~s_flags_dynamic_data()
+		{
+			delete& field_formatter;
+		}
+
+		void update(uint64_t value)
+		{
+			if (represented_value != value)
+			{
+				for (uint64_t i = 0; i < 64; i++)
+				{
+					bools[i] = static_cast<bool>(value >> i & 1);
+				}
+				represented_value = value;
+			}
+		}
+
+		bool bools[64];
+		uint64_t represented_value;
+		c_field_formatter& field_formatter; // #TODO: remove
+	};
+	s_flags_dynamic_data& dynamic_data = get_dynamic_data<s_flags_dynamic_data>(data, value, field);
+	dynamic_data.update(value);
+
+	ImGui::PushID(data);
+
+	bool bitfield_value_updated = false;
+
+	ImGui::Columns(2, NULL, false);
+	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(1, 1150);
+	{
+		ImGui::Text(dynamic_data.field_formatter.display_name.c_str());
+	}
+	ImGui::NextColumn();
+	{
+		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+		uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+
+		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
+		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(string_list_count));
+
+		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
+		{
+			for (uint32_t enum_value_index = 0; enum_value_index < string_list_count; enum_value_index++)
+			{
+				const char* const string_list_value = string_list_values[enum_value_index];
+				bitfield_value_updated |= ImGui::Checkbox(string_list_value, dynamic_data.bools + enum_value_index);
+			}
+			// #TODO: display out of bounds enum values
+		}
+		ImGui::EndChild();
+
+	}
+
+	if (bitfield_value_updated)
+	{
+		uint64_t new_value = 0;
+		for (uint64_t i = 0; i < 64; i++)
+		{
+			if (dynamic_data.bools[i])
+			{
+				new_value |= 1ull << i;
+			}
+		}
+		dynamic_data.represented_value = new_value; // #NOTE: no need to update bools
+
+		switch (field.field_type)
+		{
+		case blofeld::_field_byte_flags:
+			*reinterpret_cast<uint8_t*>(data) = static_cast<uint8_t>(new_value);
+			break;
+		case blofeld::_field_word_flags:
+			*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(new_value);
+			break;
+		case blofeld::_field_long_flags:
+			*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(new_value);
+			break;
+			//case blofeld::_field_qword_flags:
+			//	*reinterpret_cast<uint64_t*>(data) = static_cast<uint64_t>(new_value);
+			//	break;
+		DEBUG_ONLY(default: throw);
+		}
+	}
+
+	if (!dynamic_data.field_formatter.units.is_empty())
+	{
+		ImGui::SameLine();
+		ImGui::Text(dynamic_data.field_formatter.units.c_str());
+
+		//const char* type_name = blofeld::field_to_string(field.field_type);
+		//ImGui::Text(type_name);
+	}
+
+	ImGui::Columns(1);
+
+	ImGui::PopID();
+}
+
+void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld::s_tag_field& field)
+{
+	DEBUG_ASSERT(field.string_list_definition != nullptr);
+	if (field.string_list_definition == nullptr)
+	{
+		ImGui::Text("Flag field fail. String list definition is null!");
+		return;
+	}
+	const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
+
+	uint32_t value = 0;
+	switch (field.field_type)
+	{
+	case blofeld::_field_char_enum:
+		value = *reinterpret_cast<uint8_t*>(data);
+		break;
+	case blofeld::_field_enum:
+		value = *reinterpret_cast<uint16_t*>(data);
+		break;
+	case blofeld::_field_long_enum:
+		value = *reinterpret_cast<uint32_t*>(data);
+		break;
+	DEBUG_ONLY(default: throw);
+	}
+
+	struct s_enum_dynamic_data
+	{
+		s_enum_dynamic_data(const blofeld::s_tag_field& field) :
+			field_formatter(*new c_field_formatter(&field, nullptr))
+		{
+
+		}
+
+		~s_enum_dynamic_data()
+		{
+			delete& field_formatter;
+		}
+
+		c_field_formatter& field_formatter; // #TODO: remove
+	};
+	s_enum_dynamic_data& dynamic_data = get_dynamic_data<s_enum_dynamic_data>(data, field);
+
+	ImGui::PushID(data);
+
+	bool enum_value_updated = false;
+
+	ImGui::Columns(2, NULL, false);
+	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(1, 1000);
+	{
+		ImGui::Text(dynamic_data.field_formatter.display_name.c_str());
+	}
+	ImGui::NextColumn();
+	{
+		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+		uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+
+		ImGui::SetNextItemWidth(350);
+
+		const char* const selected_string_value = value < string_list_count ? string_list_values[value] : "<INVALID VALUE>";
+		if (ImGui::BeginCombo("##enum", selected_string_value))
+		{
+			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			{
+				const char* const current_string_value = string_list_values[string_index];
+				if (ImGui::Selectable(current_string_value))
+				{
+					value = string_index;
+					enum_value_updated = true;
+				}
+			}
+
+			ImGui::EndCombo();
+		}
+	}
+
+	if (enum_value_updated)
+	{
+		switch (field.field_type)
+		{
+		case blofeld::_field_char_enum:
+			*reinterpret_cast<uint8_t*>(data) = static_cast<uint8_t>(value);
+			break;
+		case blofeld::_field_enum:
+			*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(value);
+			break;
+		case blofeld::_field_long_enum:
+			*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(value);
+			break;
+		DEBUG_ONLY(default: throw);
+		}
+	}
+
+	if (!dynamic_data.field_formatter.units.is_empty())
+	{
+		ImGui::SameLine();
+		ImGui::Text(dynamic_data.field_formatter.units.c_str());
+
+		//const char* type_name = blofeld::field_to_string(field.field_type);
+		//ImGui::Text(type_name);
+	}
+
 	ImGui::Columns(1);
 
 	ImGui::PopID();
@@ -765,8 +1047,6 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 
 uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
-	ImGui::PushID(structure_data);
-
 	e_engine_type engine_type = tag_interface.get_cache_file().get_engine_type();
 	e_platform_type platform_type = tag_interface.get_cache_file().get_platform_type();
 
@@ -792,6 +1072,20 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 
 		switch (current_field->field_type)
 		{
+		case blofeld::_field_char_enum:
+		case blofeld::_field_enum:
+		case blofeld::_field_long_enum:
+			render_enum_definition(current_data_position, *current_field);
+			//render_primitive(current_data_position, *current_field);
+			break;
+
+		case blofeld::_field_long_flags:
+		case blofeld::_field_word_flags:
+		case blofeld::_field_byte_flags:
+			render_flags_definition(current_data_position, *current_field);
+			//render_primitive(current_data_position, *current_field);
+			break;
+
 		case blofeld::_field_string:
 		{
 			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
@@ -821,14 +1115,6 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		case blofeld::_field_word_integer:
 		case blofeld::_field_dword_integer:
 		case blofeld::_field_qword_integer:
-
-		case blofeld::_field_char_enum:
-		case blofeld::_field_enum:
-		case blofeld::_field_long_enum:
-
-		case blofeld::_field_long_flags:
-		case blofeld::_field_word_flags:
-		case blofeld::_field_byte_flags:
 
 		case blofeld::_field_point_2d:
 		case blofeld::_field_rectangle_2d:
@@ -1030,7 +1316,6 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		bytes_traversed += field_size;
 	}
 
-	ImGui::PopID();
 	return bytes_traversed;
 }
 

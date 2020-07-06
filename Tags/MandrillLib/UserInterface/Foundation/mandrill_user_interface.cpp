@@ -252,15 +252,21 @@ void c_mandrill_user_interface::render_impl()
 	mandrill_theme_push();
 
 	float margin = 4.0f;
-	ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-	ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
 
 	ImGuiWindowFlags imgui_window_flags = 0;
 	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;
 	imgui_window_flags |= ImGuiWindowFlags_MenuBar;
 	imgui_window_flags |= ImGuiWindowFlags_NoSavedSettings;
-	if (!is_game_mode)
+	if (is_game_mode)
 	{
+		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_FirstUseEver);
+	}
+	else
+	{
+		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
+		ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+
 		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
 		imgui_window_flags |= ImGuiWindowFlags_NoMove;
 		imgui_window_flags |= ImGuiWindowFlags_NoResize;
@@ -268,7 +274,7 @@ void c_mandrill_user_interface::render_impl()
 
 	render_file_dialogue_gui_impl();
 
-	if (ImGui::Begin("##mandrill", &window_open, imgui_window_flags))
+	if (ImGui::Begin("Mandrill", &window_open, imgui_window_flags))
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
