@@ -264,9 +264,16 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				result.float_is_out_of_range |= fabsf(half_value) > float(0xFFFFFFFu);
 				break;
 			}
+			case blofeld::_field_real_fraction:
+			{
+				float float_value = *reinterpret_cast<float*>(current_data_position);
+				is_struct_valid &= !isnan(float_value);
+				is_struct_valid &= fabsf(float_value) <= 1.0f;
+				result.float_is_out_of_range |= fabsf(float_value) > 1.0f;
+				break;
+			}
 			case blofeld::_field_real:
 			case blofeld::_field_angle:
-			case blofeld::_field_real_fraction:
 			{
 				float float_value = *reinterpret_cast<float*>(current_data_position);
 				is_struct_valid &= !isnan(float_value);
@@ -306,7 +313,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				float float_value0 = reinterpret_cast<float*>(current_data_position)[0];
 				float float_value1 = reinterpret_cast<float*>(current_data_position)[1];
 				float float_value2 = reinterpret_cast<float*>(current_data_position)[2];
-				float float_value3 = reinterpret_cast<float*>(current_data_position)[4];
+				float float_value3 = reinterpret_cast<float*>(current_data_position)[3];
 				is_struct_valid &= !isnan(float_value0);
 				is_struct_valid &= !isnan(float_value1);
 				is_struct_valid &= !isnan(float_value2);
