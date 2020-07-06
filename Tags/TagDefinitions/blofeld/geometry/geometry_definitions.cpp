@@ -9,25 +9,25 @@ namespace blofeld
 		{ _field_short_block_index, "render method index^*" },
 		{ _field_short_block_index, "transparent sorting index*" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_version_less, _engine_type_haloreach, 2 },
 		{ _field_short_integer, "index start*" },
 		{ _field_short_integer, "index count*" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "index start*" },
 		{ _field_long_integer, "index count*" },
 
 		{ _field_short_integer, "subpart start*" },
 		{ _field_short_integer, "subpart count*" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_char_integer, "part type*" },
 		{ _field_char_enum, "specialized render", &specialized_render_definition },
 
 		{ _field_word_flags, "part flags*", &part_flags },
 		{ _field_word_integer, "budget vertex count" },
 
-		{ _field_version_greater, _engine_type_haloreach },
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_enum, "tessellation", &tessellation_mode_definition },
 
 		{ _field_terminator }
