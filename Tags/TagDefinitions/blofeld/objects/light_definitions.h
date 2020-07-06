@@ -22,5 +22,8 @@ namespace blofeld
 	extern c_versioned_string_list e_light_priority_bias_strings;
 	extern s_string_list_definition e_light_priority_bias;
 
+	extern c_versioned_string_list light_definition_flags_strings;
+	extern s_string_list_definition light_definition_flags;
+
 } // namespace blofeld
 

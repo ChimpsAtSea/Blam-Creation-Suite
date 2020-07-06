@@ -146,5 +146,24 @@ namespace blofeld
 	};
 	STRING_LIST(e_light_priority_bias, e_light_priority_bias_strings, _countof(e_light_priority_bias_strings));
 
+	STRINGS(light_definition_flags)
+	{
+		"allow shadows and gels!#",																	//_light_expensive_bit,
+		"shadow casting#turns on shadow casting",													//_light_shadow_bit,
+		"render first person only#only render when camera is 1st person",							//_light_render_first_person_only_bit,
+		"render third person only#don\'t render when camera is 1st person",							//_light_render_third_person_only_bit,
+		"dont render splitscreen#no rendering this light in splitscreen mode",						//_light_no_render_in_splitscreen_bit,
+		"render while active camo#keep rendering this light when the attached player goes camo",	//_light_render_under_active_camo_bit,
+		"render in multiplayer override#overrides game settings that disable dynamic lights",		//_light_render_in_multiplayer_override_bit,
+		"move to camera in first person#moves the light to match the camera",						//_light_first_person_move_to_camera_bit,
+		"never priority cull#never cull this light because of low priority",						//_light_ignores_priority_bit,
+		"affected by game_can_use_flashlights",														//_light_uses_game_flashlight_scripting_bit,
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		"screenspace specular lighting#uses expensive specular lighting on screenspace lights",
+		"always on for weapon#even it is dropped"
+	};
+	STRING_LIST(light_definition_flags, light_definition_flags_strings, _countof(light_definition_flags_strings));
+
 } // namespace blofeld
 

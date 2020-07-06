@@ -143,22 +143,5 @@ namespace blofeld
 	};
 	STRING_LIST(channelDefinitionFlags, channelDefinitionFlags_strings, _countof(channelDefinitionFlags_strings));
 
-	STRINGS(light_definition_flags)
-	{
-		"allow shadows and gels!#",
-		"shadow casting#turns on shadow casting",
-		"render first person only#only render when camera is 1st person",
-		"render third person only#don\'t render when camera is 1st person",
-		"dont render splitscreen#no rendering this light in splitscreen mode",
-		"render while active camo#keep rendering this light when the attached player goes camo",
-		"render in multiplayer override#overrides game settings that disable dynamic lights",
-		"move to camera in first person#moves the light to match the camera",
-		"never priority cull#never cull this light because of low priority",
-		"affected by game_can_use_flashlights",
-		"screenspace specular lighting#uses expensive specular lighting on screenspace lights",
-		"always on for weapon#even it is dropped"
-	};
-	STRING_LIST(light_definition_flags, light_definition_flags_strings, _countof(light_definition_flags_strings));
-
 } // namespace blofeld
 
