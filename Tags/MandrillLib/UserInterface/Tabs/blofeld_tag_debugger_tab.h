@@ -3,7 +3,7 @@
 class c_gen3_cache_file_validator;
 struct s_field_validation_result;
 
-class c_field_formatter;
+class c_blamlib_string_parser;
 
 class c_blofeld_tag_debugger_tab :
 	public c_mandrill_tab
@@ -117,7 +117,7 @@ protected:
 	void render_field_half(render_field_callback_args);
 #undef callback_args
 
-	void render_field_name(c_field_formatter& field_formatter, const blofeld::s_tag_field& field, s_field_validation_result* result);
+	void render_field_name(c_blamlib_string_parser& field_formatter, const blofeld::s_tag_field& field, s_field_validation_result* result);
 	void render_field_name_and_information(const blofeld::s_tag_field& field, s_field_validation_result* result);
 	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex = false, const char* format = nullptr);
 private:

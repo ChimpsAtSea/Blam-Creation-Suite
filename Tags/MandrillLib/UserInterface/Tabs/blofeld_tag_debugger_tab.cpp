@@ -27,7 +27,7 @@ bool c_blofeld_tag_debugger_tab::is_enabled() const
 	return c_mandrill_user_interface::use_developer_features;
 }
 
-void c_blofeld_tag_debugger_tab::render_field_name(c_field_formatter& formatter, const blofeld::s_tag_field& field, s_field_validation_result* result)
+void c_blofeld_tag_debugger_tab::render_field_name(c_blamlib_string_parser& formatter, const blofeld::s_tag_field& field, s_field_validation_result* result)
 {
 	float start = ImGui::GetCursorPosX();
 	ImGui::Text(formatter.display_name.c_str());
@@ -71,7 +71,7 @@ void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_typ
 		}
 	}
 
-	c_field_formatter formatter = c_field_formatter(&field, nullptr);
+	c_blamlib_string_parser formatter = c_blamlib_string_parser(field.name);
 
 	const ImGuiDataTypeInfo* info = ImGui::DataTypeGetInfo(data_type);
 	ImGui::BeginGroup();

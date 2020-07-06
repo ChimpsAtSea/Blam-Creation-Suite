@@ -20,8 +20,8 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	bool render_primitive(void* data, const blofeld::s_tag_field& field);
-	void render_tagblock(void* data, const blofeld::s_tag_field& field);
-	void render_tagref(void* data, const blofeld::s_tag_field& field);
+	void render_tag_block(void* data, const blofeld::s_tag_field& field);
+	void render_tag_reference(void* data, const blofeld::s_tag_field& field);
 	c_tag_interface& tag_interface;
 	c_cache_file& cache_file;
 	ImVec2 viewport_size;

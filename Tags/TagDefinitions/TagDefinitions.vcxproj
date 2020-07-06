@@ -323,7 +323,7 @@
     <ClCompile Include="blofeld\weather\weather_control.cpp" />
     <ClCompile Include="blofeld\weather\weather_definition.cpp" />
     <ClCompile Include="blofeld\__unknown\tag_references.cpp" />
-    <ClCompile Include="field_formatter.cpp" />
+    <ClCompile Include="blamlib_string_parser.cpp" />
     <ClCompile Include="tagdefinitions-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -338,7 +338,7 @@
     <ClInclude Include="blofeld\tag_structs.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />
-    <ClInclude Include="field_formatter.h" />
+    <ClInclude Include="blamlib_string_parser.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld\ai\ai.h" />

@@ -193,7 +193,7 @@ namespace blofeld
 					break;
 				}
 
-				//c_field_formatter field_formatter(current_field, current_field->name, nullptr);
+				//c_blamlib_string_parser field_formatter(current_field, current_field->name, nullptr);
 				//if (field_formatter.is_pointer && current_field->field_type == _field_long_integer)
 				//{
 				//	c_console::write_line_verbose("%s(%i): warning V5000: '%s' '%s' failed validation. field type is not pointer.", current_field->filename, current_field->line, field_string, current_field->name);

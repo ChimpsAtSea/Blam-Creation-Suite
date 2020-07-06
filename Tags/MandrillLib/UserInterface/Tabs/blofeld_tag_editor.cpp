@@ -352,38 +352,76 @@ static bool field_type_to_imgui_data_type(blofeld::e_field field_type, ImGuiData
 
 bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag_field& field)
 {
+	struct s_flags_dynamic_data
+	{
+		s_flags_dynamic_data(const blofeld::s_tag_field& field) :
+			is_active(false),
+			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
+		{
+			
+		}
+
+		~s_flags_dynamic_data()
+		{
+			delete& string_parser;
+		}
+
+		bool is_active;
+		c_blamlib_string_parser& string_parser; // #TODO: remove
+	};
+	s_flags_dynamic_data& dynamic_data = get_dynamic_data<s_flags_dynamic_data>(data, field);
+
 	bool result = false;
 
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, 350);
 
-	c_field_formatter field_formatter = c_field_formatter(&field, nullptr);
+	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
 
-	ImGui::Text(field_formatter.display_name.c_str());
+	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	if (current_string_has_tooltip)
+	{
+		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
+	}
+	else
+	{
+		ImGui::Text(field_formatter.display_name.c_str());
+	}
 
 	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
 	{
-		ImGui::BeginTooltip();
-		ImGui::Text(field_formatter.description.c_str());
-		ImGui::EndTooltip();
+		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
 
 	ImGui::NextColumn();
 	{
-		ImGui::SetNextItemWidth(350);
-
 		int components;
 		ImGuiDataType data_type;
 		if (field_type_to_imgui_data_type(field.field_type, data_type, components))
 		{
-			if (components == 0)
+			if (dynamic_data.is_active)
 			{
+				ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+				ImGui::PushStyleColor(ImGuiCol_Border, MANDRILL_THEME_HIGH(1.0f));
+			}
+			if (components <= 1)
+			{
+				ImGui::SetNextItemWidth(350);
+
 				result = ImGui::InputScalar(field_formatter.units.c_str(), data_type, data);
 			}
 			else
 			{
+				ImGui::SetNextItemWidth(200.0f * static_cast<float>(components));
+
 				result = ImGui::InputScalarN(field_formatter.units.c_str(), data_type, data, components);
 			}
+			if (dynamic_data.is_active)
+			{
+				ImGui::PopStyleVar();
+				ImGui::PopStyleColor();
+			}
+			dynamic_data.is_active = ImGui::IsItemActive(); // #TODO: is there a more efficient way to do this?
 		}
 	}
 	ImGui::NextColumn();
@@ -392,7 +430,7 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 	return result;
 }
 
-void c_blofeld_tag_editor_tab::render_tagblock(void* data, const blofeld::s_tag_field& field)
+void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag_field& field)
 {
 	s_tag_block& tag_block = *static_cast<s_tag_block*>(data);
 
@@ -405,7 +443,10 @@ void c_blofeld_tag_editor_tab::render_tagblock(void* data, const blofeld::s_tag_
 				cache_file.get_platform_type(),
 				_build_not_set,
 				field.block_definition->struct_definition)),
-			field_formatter(*new c_field_formatter(&field, nullptr))
+			is_open(false),
+			content_width(0.0f),
+			content_height(0.0f),
+			field_formatter(*new c_blamlib_string_parser(field.name))
 		{
 
 		}
@@ -418,53 +459,180 @@ void c_blofeld_tag_editor_tab::render_tagblock(void* data, const blofeld::s_tag_
 		uint32_t position;
 		uint32_t struct_size;
 		bool is_open;
-		c_field_formatter& field_formatter; // #TODO: remove
+		float content_width;
+		float content_height;
+		c_blamlib_string_parser& field_formatter; // #TODO: remove
 	};
 	s_tag_block_dynamic_data& dynamic_data = get_dynamic_data<s_tag_block_dynamic_data, c_cache_file&>(data, cache_file, field);
-
-	if (ImGui::Button("+"))
-	{
-		dynamic_data.position++;
-		if (tag_block.count == 0)
-		{
-			dynamic_data.position = 0;
-		}
-		else if (dynamic_data.position == tag_block.count)
-		{
-			//dynamic_data.position = tag_block.count - 1;
-			dynamic_data.position = 0;
-		}
-	}
-	if (ImGui::Button("-"))
-	{
-		dynamic_data.position--;
-		if (tag_block.count == 0)
-		{
-			dynamic_data.position = 0;
-		}
-		else if (dynamic_data.position > tag_block.count) // unsigned underflow
-		{
-			dynamic_data.position = tag_block.count - 1;
-			//dynamic_data.position = 0;
-		}
-	}
 
 	char* const block_data = cache_file.get_tag_block_data(tag_block);
 	if (block_data == nullptr)
 	{
 		// #TODO disable
 	}
-	bool header_open = ImGui::CollapsingHeader(dynamic_data.field_formatter.display_name.c_str(), /*ImGuiTreeNodeFlags_DefaultOpen |*/ /*ImGuiTreeNodeFlags_OpenOnArrow |*/ ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap);
-	if (header_open && block_data != nullptr && tag_block.count > 0)
+
+	float k_min_block_width = 1000.0f;
+	float k_block_header_height = 80.0f;
+
+	ImVec2 collapsing_header_pos = ImGui::GetCursorPos();
+
+	ImGui::Dummy({ 0.0f, k_block_header_height });
+
+	if (dynamic_data.is_open)
 	{
-		char* selected_block_data = block_data + dynamic_data.position * dynamic_data.struct_size;
-		render_tag_struct_definition(10, selected_block_data, field.block_definition->struct_definition);
+		if (block_data != nullptr && tag_block.count > 0)
+		{
+			ImGui::BeginGroup();
+			char* selected_block_data = block_data + dynamic_data.position * dynamic_data.struct_size;
+			render_tag_struct_definition(10, selected_block_data, field.block_definition->struct_definition);
+			ImGui::EndGroup();
+			dynamic_data.content_width = ImGui::GetItemRectSize().x;
+		}
+		else
+		{
+			dynamic_data.content_width = k_min_block_width;
+		}
 	}
 
-	ImGui::Text("BLOCK POS [%i] size[%i] %s", dynamic_data.position, tag_block.count, dynamic_data.field_formatter.display_name.c_str());
+	ImVec2 block_finish_pos = ImGui::GetCursorPos();
+
+	ImGui::SetCursorPos(collapsing_header_pos);
+
+	float width = k_min_block_width;
+	if (dynamic_data.is_open)
+	{
+		width = __max(k_min_block_width, dynamic_data.content_width);
+	}
+
+	if (ImGui::BeginChild("##block", ImVec2(width, k_block_header_height), false, ImGuiWindowFlags_NoScrollbar))
+	{
+		ImGui::Columns(3, "##block_controls", false);
+		ImGui::SetColumnWidth(0, width - 80);
+		ImGui::SetColumnWidth(1, 40);
+		ImGui::SetColumnWidth(2, 40);
+
+		{
+			ImGui::Dummy({ 3.0f, 3.0f });
+			if (tag_block.count == 0)
+			{
+				ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+				ImGui::PushStyleColor(ImGuiCol_Header, MANDRILL_THEME_DISABLED_MED(0.76f));
+				ImGui::PushStyleColor(ImGuiCol_HeaderHovered, MANDRILL_THEME_DISABLED_MED(0.86f));
+				ImGui::PushStyleColor(ImGuiCol_HeaderActive, MANDRILL_THEME_DISABLED_HIGH(1.00f));
+			}
+			dynamic_data.is_open = ImGui::CollapsingHeader(
+				dynamic_data.field_formatter.display_name.c_str(), 
+				/*ImGuiTreeNodeFlags_DefaultOpen |*/ 
+				/*ImGuiTreeNodeFlags_OpenOnArrow |*/ 
+				ImGuiTreeNodeFlags_Framed | 
+				ImGuiTreeNodeFlags_AllowItemOverlap);
+			if (tag_block.count == 0)
+			{
+				ImGui::PopStyleColor(3);
+				ImGui::PopItemFlag();
+			}
+		}
+		ImGui::NextColumn();
+		{
+			ImGui::Dummy({ 0.0f, 3.0f });
+			ImGui::SetNextItemWidth(-1);
+			ImGui::Button(ICON_FA_COG);
+		}
+		ImGui::NextColumn();
+		{
+			ImGui::Dummy({ 0.0f, 3.0f });
+			ImGui::SetNextItemWidth(-1);
+			ImGui::Button(ICON_FA_INFO);
+		}
+		ImGui::NextColumn();
+
+		ImGui::Columns(1);
+		ImGui::Dummy({ 3.0f, 0.0f });
+		ImGui::SameLine();
+		{
+			ImGui::SetNextItemWidth(350);
+			if (tag_block.count > 0)
+			{
+				// #TODO: advanced block index formatting
+				c_fixed_string_128 index_str = "None";
+				index_str.format("index: %u", dynamic_data.position);
+				if (ImGui::BeginCombo("##index", index_str.c_str()))
+				{
+					ImGui::EndCombo();
+				}
+			}
+			else
+			{
+				ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+
+				if (ImGui::BeginCombo("##index", "None"))
+				{
+					ImGui::EndCombo();
+				}
+
+				ImGui::PopItemFlag();
+			}
+		}
+
+
+		ImGui::SameLine();
+		if (ImGui::Button(ICON_FA_PLUS))
+		{
+			dynamic_data.position++;
+			if (tag_block.count == 0)
+			{
+				dynamic_data.position = 0;
+			}
+			else if (dynamic_data.position == tag_block.count)
+			{
+				//dynamic_data.position = tag_block.count - 1;
+				dynamic_data.position = 0;
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::Button(ICON_FA_MINUS))
+		{
+			dynamic_data.position--;
+			if (tag_block.count == 0)
+			{
+				dynamic_data.position = 0;
+			}
+			else if (dynamic_data.position > tag_block.count) // unsigned underflow
+			{
+				dynamic_data.position = tag_block.count - 1;
+				//dynamic_data.position = 0;
+			}
+		}
+		ImGui::SameLine();
+		ImGui::Dummy({ 25.0f, 0.0f });
+		ImGui::SameLine();
+		ImGui::Button("Add");
+
+		if (tag_block.count == 0)
+		{
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		}
+		ImGui::SameLine();
+		ImGui::Button("Insert");
+		ImGui::SameLine();
+		ImGui::Button("Duplicate");
+		ImGui::SameLine();
+		ImGui::Dummy({ 25.0f, 0.0f });
+		ImGui::SameLine();
+		ImGui::Button("Delete");
+		ImGui::SameLine();
+		ImGui::Button("Delete All");
+		if (tag_block.count == 0)
+		{
+			ImGui::PopItemFlag();
+		}
+	}
+	ImGui::EndChild();
+
+	ImGui::SetCursorPos(block_finish_pos);
 }
 
-void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_field& field)
+void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s_tag_field& field)
 {
 	ImGui::PushID(data);
 
@@ -481,25 +649,29 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 		group_name = tag_group_interface->get_full_name();
 	}
 
-	ImGui::Columns(4, nullptr, false);
+	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, 350);
-	ImGui::SetColumnWidth(1, 350);
-	ImGui::SetColumnWidth(2, 1000);
-	ImGui::SetColumnWidth(3, 250); // buttons
 
-	c_field_formatter field_formatter = c_field_formatter(&field, nullptr);
-	ImGui::Text(field_formatter.display_name.c_str());
+	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name);
+
+	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	if (current_string_has_tooltip)
+	{
+		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
+	}
+	else
+	{
+		ImGui::Text(field_formatter.display_name.c_str());
+	}
 
 	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
 	{
-		ImGui::BeginTooltip();
-		ImGui::Text(field_formatter.description.c_str());
-		ImGui::EndTooltip();
+		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
 
 	ImGui::NextColumn();
 	{
-		ImGui::SetNextItemWidth(-1);
+		ImGui::SetNextItemWidth(250);
 		if (ImGui::BeginCombo("##tag_tag_group", group_name))
 		{
 			if (ImGui::Selectable("(null)", tag_group_interface == nullptr))
@@ -585,9 +757,9 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 			ImGui::EndCombo();
 		}
 	}
-	ImGui::NextColumn();
+	ImGui::SameLine();
 	{
-		ImGui::SetNextItemWidth(-1);
+		ImGui::SetNextItemWidth(700);
 
 		const char* tag_instance_name = "";
 		c_tag_interface* current_interface = nullptr;
@@ -758,7 +930,7 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 			ImGui::EndCombo();
 		}
 	}
-	ImGui::NextColumn();
+	ImGui::SameLine();
 	{
 		if (ImGui::Button("Open"))
 		{
@@ -773,7 +945,10 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 				}
 			}
 		}
-		else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Opens this tag in a new tab");
+		else if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Opens this tag in a new tab");
+		}
 
 		//ImGui::SameLine();
 		//ImGui::Button("Import");
@@ -790,7 +965,10 @@ void c_blofeld_tag_editor_tab::render_tagref(void* data, const blofeld::s_tag_fi
 			tag_reference.index = INT16_MAX;
 			tag_reference.datum = INT16_MAX;
 		}
-		else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
+		else if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Nulls this tag reference");
+		}
 	}
 	ImGui::NextColumn();
 
@@ -829,17 +1007,30 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 
 	struct s_flags_dynamic_data
 	{
-		s_flags_dynamic_data(uint64_t value, const blofeld::s_tag_field& field) :
+		s_flags_dynamic_data(c_cache_file& cache_file, uint64_t value, const blofeld::s_tag_field& field) :
 			bools(),
-			field_formatter(*new c_field_formatter(&field, nullptr))
+			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
 		{
 			represented_value = ~value; // force update
 			update(value);
+
+			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
+			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+			uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+
+			string_list_parsers.reserve(string_list_count);
+
+			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			{
+				const char* const current_string_value = string_list_values[string_index];
+				string_list_parsers.push_back(new c_blamlib_string_parser(current_string_value));
+			}
 		}
 
 		~s_flags_dynamic_data()
 		{
-			delete& field_formatter;
+			delete& string_parser;
 		}
 
 		void update(uint64_t value)
@@ -856,9 +1047,10 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 
 		bool bools[64];
 		uint64_t represented_value;
-		c_field_formatter& field_formatter; // #TODO: remove
+		c_blamlib_string_parser& string_parser; // #TODO: remove
+		std::vector<c_blamlib_string_parser*> string_list_parsers; // #TODO: remove
 	};
-	s_flags_dynamic_data& dynamic_data = get_dynamic_data<s_flags_dynamic_data>(data, value, field);
+	s_flags_dynamic_data& dynamic_data = get_dynamic_data<s_flags_dynamic_data, c_cache_file&>(data, cache_file, value, field);
 	dynamic_data.update(value);
 
 	ImGui::PushID(data);
@@ -869,7 +1061,7 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 	ImGui::SetColumnWidth(0, 350);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(dynamic_data.field_formatter.display_name.c_str());
+		ImGui::Text(dynamic_data.string_parser.display_name.c_str());
 	}
 	ImGui::NextColumn();
 	{
@@ -882,10 +1074,24 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 
 		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
 		{
-			for (uint32_t enum_value_index = 0; enum_value_index < string_list_count; enum_value_index++)
+			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const char* const string_list_value = string_list_values[enum_value_index];
-				bitfield_value_updated |= ImGui::Checkbox(string_list_value, dynamic_data.bools + enum_value_index);
+				const char* const string_list_value = string_list_values[string_index];
+				c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
+				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+				if (current_string_has_tooltip)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+				}
+				bitfield_value_updated |= ImGui::Checkbox(current_string_parser.display_name.c_str(), dynamic_data.bools + string_index);
+				if (current_string_has_tooltip)
+				{
+					ImGui::PopStyleColor();
+					if (ImGui::IsItemHovered())
+					{
+						ImGui::SetTooltip(current_string_parser.description.c_str());
+					}
+				}
 			}
 			// #TODO: display out of bounds enum values
 		}
@@ -923,10 +1129,10 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 		}
 	}
 
-	if (!dynamic_data.field_formatter.units.is_empty())
+	if (!dynamic_data.string_parser.units.is_empty())
 	{
 		ImGui::SameLine();
-		ImGui::Text(dynamic_data.field_formatter.units.c_str());
+		ImGui::Text(dynamic_data.string_parser.units.c_str());
 
 		//const char* type_name = blofeld::field_to_string(field.field_type);
 		//ImGui::Text(type_name);
@@ -964,10 +1170,22 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 
 	struct s_enum_dynamic_data
 	{
-		s_enum_dynamic_data(const blofeld::s_tag_field& field) :
-			field_formatter(*new c_field_formatter(&field, nullptr))
+		s_enum_dynamic_data(c_cache_file& cache_file, const blofeld::s_tag_field& field) :
+			field_formatter(*new c_blamlib_string_parser(field.name, false, nullptr)),
+			string_list_parsers()
 		{
+			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
+			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+			uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
+			string_list_parsers.reserve(string_list_count);
+
+			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			{
+				const char* const current_string_value = string_list_values[string_index];
+				string_list_parsers.push_back(new c_blamlib_string_parser(current_string_value));
+			}
 		}
 
 		~s_enum_dynamic_data()
@@ -975,9 +1193,11 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 			delete& field_formatter;
 		}
 
-		c_field_formatter& field_formatter; // #TODO: remove
+		
+		c_blamlib_string_parser& field_formatter; // #TODO: remove
+		std::vector<c_blamlib_string_parser*> string_list_parsers; // #TODO: remove
 	};
-	s_enum_dynamic_data& dynamic_data = get_dynamic_data<s_enum_dynamic_data>(data, field);
+	s_enum_dynamic_data& dynamic_data = get_dynamic_data<s_enum_dynamic_data, c_cache_file&>(data, cache_file, field);
 
 	ImGui::PushID(data);
 
@@ -997,20 +1217,44 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 
 		ImGui::SetNextItemWidth(350);
 
-		const char* const selected_string_value = value < string_list_count ? string_list_values[value] : "<INVALID VALUE>";
+		c_blamlib_string_parser& selected_string_parser = *dynamic_data.string_list_parsers[value];
+		bool const selected_string_has_tooltip = !selected_string_parser.description.is_empty();
+		if (selected_string_has_tooltip)
+		{
+			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+		}
+		const char* const selected_string_value = value < string_list_count ? selected_string_parser.display_name.c_str() : "<INVALID VALUE>";
 		if (ImGui::BeginCombo("##enum", selected_string_value))
 		{
 			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const char* const current_string_value = string_list_values[string_index];
-				if (ImGui::Selectable(current_string_value))
+				c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
+				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+				if (current_string_has_tooltip)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+				}
+				if (ImGui::Selectable(current_string_parser.display_name.c_str()))
 				{
 					value = string_index;
 					enum_value_updated = true;
 				}
+				if (current_string_has_tooltip)
+				{
+					ImGui::PopStyleColor();
+					if (ImGui::IsItemHovered())
+					{
+						ImGui::SetTooltip(current_string_parser.description.c_str());
+					}
+				}
 			}
 
 			ImGui::EndCombo();
+		}
+		else if (selected_string_has_tooltip)
+		{
+			ImGui::PopStyleColor();
 		}
 	}
 
@@ -1044,6 +1288,10 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 
 	ImGui::PopID();
 }
+
+float constexpr pi = 3.14159265359f;
+float constexpr degrees_to_radians = pi / 180.0f;
+float constexpr radians_to_degrees = 180.0f / pi;
 
 uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
@@ -1153,20 +1401,26 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		}
 		case blofeld::_field_angle:
 		{
-			float constexpr pi = 3.14159265359f;
-			float constexpr degrees_to_radians = 180.0f / pi;
-			float constexpr radians_to_degrees = pi / 180.0f;
-
 			float& src_radians = *reinterpret_cast<float*>(current_data_position);
 			float degrees = src_radians * radians_to_degrees;
 			if (render_primitive(&degrees, *current_field))
 			{
-				src_radians = degrees * radians_to_degrees;
+				src_radians = degrees * degrees_to_radians;
+			}
+			break;
+		}
+		case blofeld::_field_angle_bounds:
+		{
+			float* src_radians = reinterpret_cast<float*>(current_data_position);
+			float degrees[2] = { src_radians[0] * radians_to_degrees, src_radians[1] * radians_to_degrees };
+			if (render_primitive(&degrees, *current_field))
+			{
+				src_radians[0] = degrees[0] * degrees_to_radians;
+				src_radians[1] = degrees[1] * degrees_to_radians;
 			}
 			break;
 		}
 		case blofeld::_field_real_euler_angles_2d:
-		case blofeld::_field_angle_bounds:
 		{
 			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
 			break;
@@ -1183,12 +1437,12 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		}
 		case blofeld::_field_tag_reference:
 		{
-			render_tagref(current_data_position, *current_field);
+			render_tag_reference(current_data_position, *current_field);
 			break;
 		}
 		case blofeld::_field_block:
 		{
-			render_tagblock(current_data_position, *current_field);
+			render_tag_block(current_data_position, *current_field);
 			break;
 		}
 		case blofeld::_field_data:
@@ -1223,15 +1477,43 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		}
 		case blofeld::_field_explanation:
 		{
-			ImGui::Dummy({ 10.0f, 10.0f });
-			ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.0f, 0.0f, 1.0f });
-			ImGui::Text(current_field->name);
-			if (current_field->explanation && *current_field->explanation)
+			c_blamlib_string_parser string_parser = { current_field->name };
+			ImGui::BeginGroup();
 			{
-				ImGui::Text(current_field->explanation);
+				ImGui::Dummy({ 0.0f, 10.0f });
+
+				float padding_offset = ImGui::GetStyle().FramePadding.x; /* is there a better way to do this? */
+				ImGui::Dummy({ padding_offset, 0.0f });
+				ImGui::SameLine();
+
+				static const ImVec4 explanation_color = MANDRILL_THEME_COMMENT_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA);
+				if (!string_parser.display_name.is_empty())
+				{
+					ImVec2 header_start = ImGui::GetCursorPos();
+					ImGui::TextColored(explanation_color, string_parser.display_name.c_str());
+					ImVec2 header_end = ImGui::GetCursorPos();
+					ImGui::SetCursorPos({ header_start.x + 1, header_start.y + 1 });
+					ImGui::TextColored(explanation_color, string_parser.display_name.c_str());
+					ImGui::SetCursorPos({ header_start.x + 1, header_start.y });
+					ImGui::TextColored(explanation_color, string_parser.display_name.c_str());
+					ImGui::SetCursorPos({ header_start.x, header_start.y + 1 });
+					ImGui::TextColored(explanation_color, string_parser.display_name.c_str());
+					ImGui::SetCursorPos(header_end);
+				}
+				if (current_field->explanation && *current_field->explanation)
+				{
+					ImGui::Dummy({ padding_offset, 0.0f });
+					ImGui::SameLine();
+					ImGui::TextColored(explanation_color, current_field->explanation);
+				}
+				ImGui::Dummy({ 5.0f, 5.0f });
 			}
-			ImGui::PopStyleColor(1);
-			ImGui::Dummy({ 5.0f, 5.0f });
+			ImGui::EndGroup();
+			if (!string_parser.description.is_empty() && ImGui::IsItemHovered())
+			{
+				ImGui::SetTooltip(string_parser.description.c_str());
+			}
+
 			break;
 		}
 		case blofeld::_field_custom:

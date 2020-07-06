@@ -903,9 +903,6 @@
     <ClCompile Include="blofeld\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="field_formatter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="types\string_list_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -916,6 +913,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blofeld\components\chocolate_mountain_new_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blamlib_string_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1844,9 +1844,6 @@
     <ClInclude Include="blofeld\effects\contrail_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="field_formatter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1854,6 +1851,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\components\chocolate_mountain_new_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blamlib_string_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

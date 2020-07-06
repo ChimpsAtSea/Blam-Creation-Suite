@@ -1,11 +1,12 @@
 #pragma once
 
-class c_field_formatter
+class c_blamlib_string_parser
 {
 public:
-	c_field_formatter(const blofeld::s_tag_field* field, std::map<std::string, int>* field_name_unique_counter);
+	c_blamlib_string_parser(const char* name, bool is_block = 0, std::map<std::string, int>* field_name_unique_counter = nullptr);
 	void cleanup_code_name();
 
+	c_fixed_string_2048 string;
 	c_fixed_string_512 display_name;
 	c_fixed_string_512 alt_name;
 	c_fixed_string_128 units;

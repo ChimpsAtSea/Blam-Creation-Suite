@@ -8,9 +8,16 @@ using t_get_tag_section_address_callback = char* (uint32_t address);
 #define MANDRILL_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }
 #define MANDRILL_THEME_MED(v) { 0.455f, 0.198f, 0.301f, v }
 #define MANDRILL_THEME_LOW(v) { 0.232f, 0.201f, 0.271f, v }
+#define MANDRILL_THEME_DISABLED_HIGH(v) { 0.224f, 0.224f, 0.224f, v }
+#define MANDRILL_THEME_DISABLED_MED(v) { 0.286f, 0.286f, 0.286f, v }
+#define MANDRILL_THEME_DISABLED_LOW(v) { 0.215f, 0.215f, 0.215f, v }
 #define MANDRILL_THEME_BG(v) { 0.200f, 0.220f, 0.270f, v }
 #define MANDRILL_THEME_TEXT(v) { 0.930f, 0.965f, 0.945f, v }
+#define MANDRILL_THEME_COMMENT_TEXT(v) { 0.752f, 0.965f, 0.766f, v }
+#define MANDRILL_THEME_INFO_TEXT(v) { 0.796f, 0.808f, 0.965f, v }
 #define MANDRILL_THEME_MENU(v) { 0.377f, 0.377f, 0.377f, v }
+
+constexpr float MANDRILL_THEME_DEFAULT_TEXT_ALPHA = 0.78f;
 
 namespace ImGuiAddons
 {
