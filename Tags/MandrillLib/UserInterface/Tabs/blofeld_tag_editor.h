@@ -14,6 +14,8 @@ public:
 	c_cache_file& get_cache_file() const { return tag_interface.get_cache_file(); }
 
 protected:
+	static constexpr float k_field_display_name_width = 400.0f;
+	
 	virtual void render_impl() override final;
 	virtual void render_menu_gui_impl(e_menu_render_type menu_render_type) override final;
 	virtual void render_file_dialogue_gui_impl() override final;

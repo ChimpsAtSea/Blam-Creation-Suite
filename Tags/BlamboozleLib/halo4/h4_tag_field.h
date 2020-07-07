@@ -27,7 +27,7 @@ struct s_h4_tag_field_definition
 	bigendian_type<e_h4_field_type> field_type;
 	bpointer32<const char*> name_address;
 	bpointer32<void*> definition_address;
-	uint32_t group_tag;
+	buint32_t tool_tag;
 };
 
 struct s_h4_tag_block_definition
@@ -61,7 +61,8 @@ public:
 		field_type(field_definition->field_type),
 		field_definition(field_definition),
 		name(h4_va_to_pointer(h4_data, field_definition->name_address)),
-		raw(field_definition->definition_address)
+		raw(field_definition->definition_address),
+		tool_tag(field_definition->tool_tag)
 	{
 
 	}
@@ -71,6 +72,7 @@ public:
 	e_h4_field_type field_type;
 	const char* name;
 	const uint32_t raw;
+	const uint32_t tool_tag;
 
 protected:
 	const s_h4_tag_field_definition* field_definition;

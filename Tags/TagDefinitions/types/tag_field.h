@@ -48,7 +48,7 @@ namespace blofeld
 			filename(filename),
 			line(line),
 			value1((void*)(value1)),
-			value2((void*)(value1)),
+			value2((void*)(value2)),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),

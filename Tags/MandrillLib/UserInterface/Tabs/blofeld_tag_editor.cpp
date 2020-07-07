@@ -374,7 +374,7 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 	bool result = false;
 
 	ImGui::Columns(2, nullptr, false);
-	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
 
 	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
 
@@ -483,8 +483,13 @@ void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag
 		if (block_data != nullptr && tag_block.count > 0)
 		{
 			ImGui::BeginGroup();
+			ImGui::Dummy({ 15.0f, 0.0f });
+			ImGui::SameLine();
+			ImGui::BeginGroup();
 			char* selected_block_data = block_data + dynamic_data.position * dynamic_data.struct_size;
 			render_tag_struct_definition(10, selected_block_data, field.block_definition->struct_definition);
+			ImGui::EndGroup();
+			ImGui::Dummy({ 15.0f, 15.0f });
 			ImGui::EndGroup();
 			dynamic_data.content_width = ImGui::GetItemRectSize().x;
 		}
@@ -650,7 +655,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 	}
 
 	ImGui::Columns(2, nullptr, false);
-	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
 
 	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name);
 
@@ -672,15 +677,20 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 	ImGui::NextColumn();
 	{
 		ImGui::SetNextItemWidth(250);
-		if (ImGui::BeginCombo("##tag_tag_group", group_name))
+		bool combo_active = ImGui::BeginCombo("##tag_tag_group", group_name);
+		if (tag_group_interface && ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip(group_name);
+		}
+		if (combo_active)
 		{
 			if (ImGui::Selectable("(null)", tag_group_interface == nullptr))
 			{
 				tag_reference.group_tag = blofeld::INVALID_TAG;
 				tag_reference.name = 0;
 				tag_reference.name_length = 0;
-				tag_reference.index = INT16_MAX;
-				tag_reference.datum = INT16_MAX;
+				tag_reference.index = UINT16_MAX;
+				tag_reference.datum = UINT16_MAX;
 				tag_group_interface = nullptr;
 			}
 
@@ -702,8 +712,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 						tag_reference.group_tag = current_tag_group_interface.get_group_tag();
 						tag_reference.name = 0;
 						tag_reference.name_length = 0;
-						tag_reference.index = INT16_MAX;
-						tag_reference.datum = INT16_MAX;
+						tag_reference.index = UINT16_MAX;
+						tag_reference.datum = UINT16_MAX;
 					}
 				}
 			}
@@ -727,8 +737,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.group_tag = current_tag_group_interface.get_group_tag();
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
-							tag_reference.index = INT16_MAX;
-							tag_reference.datum = INT16_MAX;
+							tag_reference.index = UINT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 
 						break;
@@ -748,8 +758,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 						tag_reference.group_tag = current_tag_group_interface.get_group_tag();
 						tag_reference.name = 0;
 						tag_reference.name_length = 0;
-						tag_reference.index = INT16_MAX;
-						tag_reference.datum = INT16_MAX;
+						tag_reference.index = UINT16_MAX;
+						tag_reference.datum = UINT16_MAX;
 					}
 				}
 			}
@@ -772,7 +782,12 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 			}
 		}
 
-		if (ImGui::BeginCombo("##tag_path", tag_instance_name))
+		bool combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
+		if (*tag_instance_name && ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip(tag_instance_name);
+		}
+		if (combo_active)
 		{
 			if (tag_group_interface)
 			{
@@ -798,7 +813,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
 							tag_reference.index = current_tag_interface.get_index();
-							tag_reference.datum = INT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 						else
 						{
@@ -807,8 +822,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.group_tag = blofeld::INVALID_TAG;
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
-							tag_reference.index = INT16_MAX;
-							tag_reference.datum = INT16_MAX;
+							tag_reference.index = UINT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 					}
 				}
@@ -837,7 +852,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
 							tag_reference.index = current_tag_interface.get_index();
-							tag_reference.datum = INT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 						else
 						{
@@ -846,8 +861,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.group_tag = blofeld::INVALID_TAG;
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
-							tag_reference.index = INT16_MAX;
-							tag_reference.datum = INT16_MAX;
+							tag_reference.index = UINT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 					}
 				}
@@ -881,7 +896,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
 							tag_reference.index = current_tag_interface.get_index();
-							tag_reference.datum = INT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 						else
 						{
@@ -890,8 +905,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.group_tag = blofeld::INVALID_TAG;
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
-							tag_reference.index = INT16_MAX;
-							tag_reference.datum = INT16_MAX;
+							tag_reference.index = UINT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 					}
 				}
@@ -911,7 +926,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
 							tag_reference.index = current_tag_interface.get_index();
-							tag_reference.datum = INT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 						else
 						{
@@ -920,8 +935,8 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 							tag_reference.group_tag = blofeld::INVALID_TAG;
 							tag_reference.name = 0;
 							tag_reference.name_length = 0;
-							tag_reference.index = INT16_MAX;
-							tag_reference.datum = INT16_MAX;
+							tag_reference.index = UINT16_MAX;
+							tag_reference.datum = UINT16_MAX;
 						}
 					}
 				}
@@ -932,9 +947,14 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 	}
 	ImGui::SameLine();
 	{
+		if (tag_reference.index == UINT16_MAX)
+		{
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		}
+
 		if (ImGui::Button("Open"))
 		{
-			if (tag_reference.index != INT16_MAX)
+			if (tag_reference.index != UINT16_MAX)
 			{
 				if (c_tag_interface* tag_interface = cache_file.get_tag_interface(tag_reference.index))
 				{
@@ -962,12 +982,17 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 			tag_reference.group_tag = blofeld::INVALID_TAG;
 			tag_reference.name = 0;
 			tag_reference.name_length = 0;
-			tag_reference.index = INT16_MAX;
-			tag_reference.datum = INT16_MAX;
+			tag_reference.index = UINT16_MAX;
+			tag_reference.datum = UINT16_MAX;
 		}
 		else if (ImGui::IsItemHovered())
 		{
 			ImGui::SetTooltip("Nulls this tag reference");
+		}
+
+		if (tag_reference.index == UINT16_MAX)
+		{
+			ImGui::PopItemFlag();
 		}
 	}
 	ImGui::NextColumn();
@@ -1058,7 +1083,7 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 	bool bitfield_value_updated = false;
 
 	ImGui::Columns(2, NULL, false);
-	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
 		ImGui::Text(dynamic_data.string_parser.display_name.c_str());
@@ -1204,7 +1229,7 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 	bool enum_value_updated = false;
 
 	ImGui::Columns(2, NULL, false);
-	ImGui::SetColumnWidth(0, 350);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1000);
 	{
 		ImGui::Text(dynamic_data.field_formatter.display_name.c_str());

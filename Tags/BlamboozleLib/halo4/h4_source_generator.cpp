@@ -325,7 +325,6 @@ void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
 	{
 		c_h4_tag_block_container* tag_block_container = tag_struct_container->tag_block_container;
 
-		bool x = strstr(tag_struct_container->name.c_str(), "runtime_queryable_properties");
 		if(tag_struct_container->is_array)
 		{
 			if (tag_struct_container->tag_block_container)
@@ -871,11 +870,37 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_useless_pad:
 			if (tag_field->name)
 			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
+				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
+				{
+					union
+					{
+						uint64_t value;
+						char string[8];
+					};
+					value = _byteswap_ulong(tag_field->tool_tag);
+					ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", nullptr, '" << string << "' }," << std::endl;
+				}
+				else
+				{
+					ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
+				}
 			}
 			else
 			{
-				ss << "\t\t{ " << field_generic_type_name << " }," << std::endl;
+				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
+				{
+					union
+					{
+						uint64_t value;
+						char string[8];
+					};
+					value = _byteswap_ulong(tag_field->tool_tag);
+					ss << "\t\t{ " << field_generic_type_name << ", nullptr, nullptr, '" << string << "' }," << std::endl;
+				}
+				else
+				{
+					ss << "\t\t{ " << field_generic_type_name << " }," << std::endl;
+				}
 			}
 			break;
 		case _h4_field_type_explanation:
