@@ -12,6 +12,8 @@ namespace blofeld
 		{ _field_tag_reference, "collision model", &collision_model_reference },
 		{ _field_tag_reference, "animation", &global_animation_graph_reference },
 		{ _field_tag_reference, "physics_model", &physics_model_reference },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "imposter model", &imposter_model_reference$2 },
 		{ _field_long_integer, "runtime render checksum*!" },
 		{ _field_long_integer, "runtime collision checksum*!" },
@@ -35,11 +37,19 @@ namespace blofeld
 		{ _field_real, "begin fade distance:world units" },
 		{ _field_real, "animation lod distance:world units" },
 		{ _field_real, "shadow fade distance:world units#NOTE this is only a maximum distance, shadows may fade closer when you exceed the shadow budget, you should balance the total shadows in a scene" },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "imposter render distance:world units" },
 		{ _field_enum, "imposter quality", &imposter_quality_definition },
 		{ _field_enum, "imposter policy", &imposter_policy_definition },
 		{ _field_real, "imposter brightness adjustment" },
+
 		{ _field_real, "instance disappear distance:world units" },
+
+		{ _field_version_less, _engine_type_haloreach, 1 },
+		{ _field_tag_reference, "lod render model", &render_model_reference$2 },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "midrange detail disappear distance:world units#distance at which the midrange detail disappears" },
 		{ _field_real, "close detail disappear distance:world units#distance at which the close detail disappears" },
 		{ _field_real, "tessellation max draw distance:world units" },
@@ -50,17 +60,28 @@ namespace blofeld
 		{ _field_real, "low priority distance" },
 
 		{ _field_block, "variants", &model_variant_block_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "region sort", &region_name_block_block },
+
 		{ _field_block, "instance groups", &global_model_instance_group_block_block },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_version_equal, _engine_type_haloreach },
 		{ _field_block, "old materials", &model_material_block_new_block },
 
 		{ _field_block, "model materials*", &model_material_block_new_block },
 		{ _field_block, "new damage info!", &global_damage_info_block_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "damage info", &model_damage_info_struct_struct_definition },
+
+		{ _field_version_less, _engine_type_haloreach, 1 },
+		{ _field_block, "targets!", &model_target_block_old_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "targets old{targets}!", &model_target_block_old_block },
 		{ _field_block, "model targets", &model_target_block_new_block },
+
 		{ _field_block, "runtime regions!", &model_region_block_block },
 		{ _field_block, "runtime nodes!", &model_node_block_block },
 		{ _field_long_integer, "runtime node list checksum!" },
@@ -77,11 +98,13 @@ namespace blofeld
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "game mode render model override", &model_game_mode_render_model_override_block },
 
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 5 },
 		{ _field_real_fraction, "Sky parallax percent#If flag checked % between sky pos and camera pos 0=camera" },
 		{ _field_real, "shadow depth compare bias#Default is 0.002" },
 		{ _field_real, "shadow slope scale bias:degrees#controls cutoff point for shadows around edges.  Default is 81 degrees" },
 		{ _field_real, "shadow depth compare bias (dynamic lights)#Default is 0.0008" },
 		{ _field_real, "shadow slope scale bias (dynamic lights):degrees#controls cutoff point for shadows around edges.  Default is 81 degrees" },
+		
 		{ _field_explanation, "PRT Shadows (soft self-shadow)", "By default, the shadows on each permutation are computed using the first permutation in\nevery other region as shadow casters.  You can override this behavior below by specifying\nwhich permutation to use as a shadow caster in a given region.\n\n  PRT shadow bounces:\n    the number of light bounces to use when computing the global illumination.\n    (0 bounces gets only direct light).  Increasing the number of bounces\n    increases the calculation time.  1 or 2 bounces should be good enough for\n    almost all models.\n" },
 		{ _field_char_enum, "PRT shadow detail!#how much information is recorded about different light directions", &model_self_shadow_detail_definition },
 		{ _field_char_enum, "PRT shadow bounces#0 means direct light only", &model_self_shadow_bounces_definition },
@@ -92,8 +115,11 @@ namespace blofeld
 		{ _field_explanation, "Shield impact overrides!", "Regular and 1st person shield impact effect overrides\n" },
 		{ _field_tag_reference, "shield impact parameter override!", &global_shield_parameters_reference },
 		{ _field_tag_reference, "1st person shield impact parameter override!", &global_shield_parameters_reference },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "runtime bounding radius:world units*!" },
 		{ _field_real_point_3d, "runtime bounding offset*!" },
+
 		{ _field_terminator }
 	};
 
@@ -345,55 +371,26 @@ namespace blofeld
 
 	STRINGS(model_flags_definition)
 	{
-		{
-			_engine_type_not_set,
-			_versioned_string_list_mode_new,
-			{
-				"active camo always on",
-				"active camo never",
-				"inconsequential target#used in magnetism and campaign saving",
-				"model use airprobe lighting first{model use airprobe lighting}",
-				"locked precomputed probes#air or scenery probe",
-				"If sky attaches to camera#parallax % between sky pos and camera pos below",
-				"model is big battle object",
-				"model never uses compressed vertex position",
-				"model is invisible, even attachments",
-				"model can have shield impact effect!*",
-				"model is good z occluder",
-				"no child objects in lightmap shadow",
-				"should include model in floating shadow"
-			}
-		},
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_append,
-			{
-				"bit 14",
-				"bit 15",
-				"bit 16",
-				"bit 17",
-				"bit 18",
-			}
-		},
-		{
-			_engine_type_gen3_xbox360,
-			_versioned_string_list_mode_new,
-			{
-				"active camo always on",
-				"active camo never",
-				"inconsequential target#used in magnetism and campaign saving",
-				"model use airprobe lighting first{model use airprobe lighting}",
-				"locked precomputed probes#air or scenery probe",
-				"If sky attaches to camera#parallax % between sky pos and camera pos below",
-				"model is big battle object",
-				"model never uses compressed vertex position",
-				"model is invisible, even attachments",
-				"model can have shield impact effect!*",
-				"model is good z occluder",
-				"no child objects in lightmap shadow",
-				"should include model in floating shadow"
-			}
-		}
+		"active camo always on",
+		"active camo never",
+		"inconsequential target#used in magnetism and campaign saving",
+		"model use airprobe lighting first{model use airprobe lighting}",
+		"locked precomputed probes#air or scenery probe",
+		"If sky attaches to camera#parallax % between sky pos and camera pos below",
+		"model is big battle object",
+		"model never uses compressed vertex position",
+		"model is invisible, even attachments",
+		"model can have shield impact effect!*",
+		"model is good z occluder",
+		"no child objects in lightmap shadow",
+		"should include model in floating shadow",
+
+		{ _field_version_equal, _engine_type_haloreach, 5 },
+		"bit 14",
+		"bit 15",
+		"bit 16",
+		"bit 17",
+		"bit 18",
 	};
 	STRING_LIST(model_flags_definition, model_flags_definition_strings, _countof(model_flags_definition_strings));
 
