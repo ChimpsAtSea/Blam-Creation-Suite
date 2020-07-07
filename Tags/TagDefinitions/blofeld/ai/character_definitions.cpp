@@ -437,8 +437,11 @@ namespace blofeld
 		{ _field_real, "throw delay max#Up to how many seconds can elapse until another throw is attempted" },
 		{ _field_real_bounds, "default combat range:wus#If we are not holding a weapon, or we don\'t know how to use our weapon, use these bounds on my combat range" },
 		{ _field_real_bounds, "default firing range:wus#If we don\'t know how to use our weapon, use these bounds on my firing range" },
+
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real_fraction, "Preferred engage fraction #0 will default to .3, other is ratio from min to max combat range preferred" },
 		{ _field_real, "Active Shield Fire Cutoff Delay#Number of seconds elapsed before stop firing at active shielded target." },
+
 		{ _field_terminator }
 	};
 
