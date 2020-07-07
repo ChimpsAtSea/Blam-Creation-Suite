@@ -6,9 +6,24 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
 
+	TAG_BLOCK(cinematic_sh_light_block, 16)
+	{
+		{ _field_long_flags, "Flags", & cinematic_dynamic_light_flags },
+		{ _field_custom, "Dynamic Light" },
+		{ _field_custom, "Direction" },
+		{ _field_real, "Direction" },
+		{ _field_custom, "Front-Back" },
+		{ _field_real, "Front-Back" },
+		{ _field_real, "intensity" },
+		{ _field_real_rgb_color, "color" },
+		{ _field_real, "diffusion" },
+
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(cinematic_dynamic_light_block, 16)
 	{
-		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
+		{ _field_long_flags, "Flags", & cinematic_dynamic_light_flags },
 		{ _field_custom, "Dynamic Light" },
 		{ _field_custom, "Direction" },
 		{ _field_real, "Direction" },
@@ -23,6 +38,7 @@ namespace blofeld
 
 	TAG_STRUCT(new_cinematic_lighting_struct_definition)
 	{
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 38 },
 		{ _field_custom, "Cinematic Lighting" },
 		{ _field_custom, "Cinema Lighting" },
 
@@ -68,7 +84,14 @@ namespace blofeld
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block },
 		{ _field_block, "Cortana Lighting", &hologramLightingBlock_block },
 
+		{ _field_version_less, _engine_type_haloreach, 1 },
+		{ _field_block, "sh lights!", &cinematic_sh_light_block_block },
+
 		{ _field_block, "dynamic lights!", &cinematic_dynamic_light_block_block },
+
+		{ _field_version_less, _engine_type_haloreach, 1 },
+		{ _field_real, "sampled lighting scale" },
+
 		{ _field_terminator }
 	};
 
