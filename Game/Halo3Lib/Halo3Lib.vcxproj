@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="halo3_game_host.mainmenu.inl" />
+    <None Include="halo3_game_host.memory.inl" />
     <None Include="halo3_game_host.shell.inl" />
     <None Include="halo3_game_host.testing.inl" />
     <None Include="halo3_game_host.user_interface.inl" />
