@@ -9,7 +9,8 @@ uintptr_t sub_180041770_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo2, _build_mcc_1_1619_0_0, 0x180041770);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_180041770_offset, char()> sub_180041770 = { "sub_180041770", []() {
+FunctionHookEx<sub_180041770_offset, char()> sub_180041770 = { "sub_180041770", []()
+{
 	return char(0);
 } };
 
@@ -67,7 +68,8 @@ c_data_patch<halo2_map_info_table_patch_offset> halo2_map_info_table_patch =
 //	OFFSET(_engine_type_halo2, _build_mcc_1_1477_0_0, 0x1804B4FC0);
 //	return ~uintptr_t();
 //}
-//FunctionHookVarArgsEx<sub_1804B4FC0_offset, char()> sub_1804B4FC0 = { "sub_1804B4FC0", []() {
+//FunctionHookVarArgsEx<sub_1804B4FC0_offset, char()> sub_1804B4FC0 = { "sub_1804B4FC0", []()
+//{
 //	return char(0);
 //} };
 

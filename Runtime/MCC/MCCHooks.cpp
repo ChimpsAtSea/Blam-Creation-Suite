@@ -1,25 +1,14 @@
 #include "mcc-private-pch.h"
 
 
-uintptr_t Function29_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_player_configuration_get_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_mcc)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1389_0_0: return 0x1418BFDE8;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1418BFDE8);
 	return ~uintptr_t();
 }
-FunctionHookEx<Function29_offset, c_player_configuration* __fastcall (void* _this, __int64 value)> player_configuration_get = { "player_configuration_get", [](void* _this, __int64 value)
+FunctionHookEx<mcc_player_configuration_get_offset, c_player_configuration* __fastcall (void* _this, __int64 value)> mcc_player_configuration_get = { "mcc_player_configuration_get", [](void* _this, __int64 value)
 {
-	c_player_configuration* result = player_configuration_get(_this, value);
-
-
-
-
-
+	c_player_configuration* result = mcc_player_configuration_get(_this, value);
 	return result;
 } };
 
@@ -40,13 +29,7 @@ FunctionHookEx<InitThread_offset, HANDLE __fastcall (void*, class IGameEngineHos
 //.text:0000000180076BA0; void __fastcall sub_180076BA0(struct IGameEngine* thisptr, struct ID3D11Device* pDevice)
 uintptr_t sub_180076BA0_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1389_0_0: return 0x180076BA0;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076BA0);
 	return ~uintptr_t();
 }
 FunctionHookEx<sub_180076BA0_offset, void __fastcall (IGameEngine* thisptr, struct ID3D11Device* pDevice)> sub_180076BA0 = { "sub_180076BA0", [](IGameEngine* thisptr, struct ID3D11Device* pDevice)
@@ -57,13 +40,7 @@ FunctionHookEx<sub_180076BA0_offset, void __fastcall (IGameEngine* thisptr, stru
 //.text:0000000180076D60; void __fastcall sub_180076D60(struct IGameEngine* a1, int map_id)
 uintptr_t sub_180076D60_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1389_0_0: return 0x180076D60;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076D60);
 	return ~uintptr_t();
 }
 FunctionHookEx<sub_180076D60_offset, void __fastcall (IGameEngine* a1, int map_id)> sub_180076D60 = { "sub_180076D60", [](IGameEngine* a1, int map_id)
@@ -74,13 +51,7 @@ FunctionHookEx<sub_180076D60_offset, void __fastcall (IGameEngine* a1, int map_i
 
 uintptr_t sub_141806A64_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_mcc)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1350_0_0: return 0x141806A64;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x141806A64);
 	return ~uintptr_t();
 }
 FunctionHookEx<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, int a2)> sub_141806A64 = { "sub_141806A64", [](__int64 a1, int a2)
@@ -93,13 +64,7 @@ FunctionHookEx<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, int 
 
 uintptr_t CreateGameEngine_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1350_0_0: return 0x18008D2C0;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18008D2C0);
 	return ~uintptr_t();
 }
 FunctionHookEx<CreateGameEngine_offset, __int64 __fastcall (QWORD * a1)> CreateGameEngine = { "CreateGameEngine", [](QWORD* a1)
@@ -109,13 +74,7 @@ FunctionHookEx<CreateGameEngine_offset, __int64 __fastcall (QWORD * a1)> CreateG
 //
 //uintptr_t InitThread_offset(e_engine_type engine_type, e_build build)
 //{
-//	if (engine_type == _engine_type_halo1)
-//	{
-//		switch (build)
-//		{
-//		case _build_mcc_1_1350_0_0: return 0x18008C550;
-//		}
-//	}
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18008C550);
 //	return ~uintptr_t();
 //}
 //FunctionHookEx<InitThread_offset, HANDLE __fastcall (IGameEngine*, IGameEngineHost*, GameContext*)> InitThread = { "InitThread", [](IGameEngine* pGameEngine, IGameEngineHost* pGameEngineHost, GameContext* pGameContext)

@@ -5,8 +5,9 @@ uintptr_t get_local_player_input_blob_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180767C10);
 	return ~uintptr_t();
 }
-FunctionHookEx<get_local_player_input_blob_offset, char __fastcall(__int64 a1, __int64 a2, __int64 a3)> get_local_player_input_blob = { "get_local_player_input_blob", [](__int64 a1, __int64 a2, __int64 a3) {
-
+FunctionHookEx<get_local_player_input_blob_offset, char __fastcall(__int64 a1, __int64 a2, __int64 a3)> get_local_player_input_blob 
+	= { "get_local_player_input_blob", [](__int64 a1, __int64 a2, __int64 a3)
+{
 	auto result = get_local_player_input_blob(a1, a2, a3);
 	return result;
 } };
@@ -16,8 +17,8 @@ uintptr_t sub_18006ECD0_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18006ECD0);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_18006ECD0_offset, signed int()> sub_18006ECD0 = { "sub_18006ECD0", []() {
-
+FunctionHookEx<sub_18006ECD0_offset, signed int()> sub_18006ECD0 = { "sub_18006ECD0", []()
+{
 	update_console();
 	return sub_18006ECD0();
 } };
@@ -29,8 +30,8 @@ uintptr_t input_update_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E120);
 	return ~uintptr_t();
 }
-FunctionHookEx<input_update_offset, void()> input_update = { "input_update", []() {
-
+FunctionHookEx<input_update_offset, void()> input_update = { "input_update", []()
+{
 	input_update();
 
 	//for (int i = 0; i < 256; i++)
@@ -63,8 +64,8 @@ uintptr_t input_abstraction_update_offset(e_engine_type engine_type, e_build bui
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071F200);
 	return ~uintptr_t();
 }
-FunctionHookEx<input_abstraction_update_offset, __int64 __fastcall (__int64 a1)> input_abstraction_update = { "input_abstraction_update", [](__int64 a1) {
-
+FunctionHookEx<input_abstraction_update_offset, __int64 __fastcall (__int64 a1)> input_abstraction_update = { "input_abstraction_update", [](__int64 a1)
+{
 	disable_input = disable_input_state;
 
 	return input_abstraction_update(a1);
@@ -91,16 +92,10 @@ uintptr_t input_key_is_down_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E8B0);
 	return ~uintptr_t();
 }
-FunctionHookEx<input_key_is_down_offset, char __fastcall (__int16 a1)> input_key_is_down = { "input_key_is_down", [](__int16 a1) {
-
-	if (disable_input)
-	{
-		return char(0);
-	}
-
-	auto result = input_key_is_down(a1);
+FunctionHookEx<input_key_is_down_offset, char __fastcall (__int16 a1)> input_key_is_down = { "input_key_is_down", [](__int16 a1)
+{
+	char result = (disable_input) ? char(0) : input_key_is_down(a1);
 	return result;
-
 } };
 
 bool sub_18071E950_override = 0;
@@ -112,9 +107,9 @@ uintptr_t sub_18071E950_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E950);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1, QWORD* a2)> sub_18071E950 = { "sub_18071E950", [](unsigned __int16 a1, QWORD* a2) {
-
-	auto result = sub_18071E950(a1, a2);
+FunctionHookEx<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1, QWORD* a2)> sub_18071E950 = { "sub_18071E950", [](unsigned __int16 a1, QWORD* a2)
+{
+	__int64 result = sub_18071E950(a1, a2);
 
 	int16_t& value = *reinterpret_cast<int16_t*>(a2);
 
@@ -126,7 +121,6 @@ FunctionHookEx<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1, QW
 	}
 
 	return result;
-
 } };
 
 
@@ -156,17 +150,16 @@ FunctionHookEx<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1, QW
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
 #define CONTROLLER_JOYSTICK_THRESHOLD 0.15f
 
-uintptr_t input_update_mcc_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_input_update_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_mcc, _build_mcc_1_1389_0_0, 0x1418BFE5C);
 	return ~uintptr_t();
 }
-FunctionHookEx<input_update_mcc_offset, unsigned __int8 __fastcall (void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer)> input_update_mcc = { "input_update_mcc", [](void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer) {
-
-	auto result = input_update_mcc(a1, a2, input_buffer);
-
+FunctionHookEx<mcc_input_update_offset, unsigned __int8 __fastcall (void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer)> mcc_input_update
+	= { "mcc_input_update", [](void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer)
+{
+	auto result = mcc_input_update(a1, a2, input_buffer);
 	return result;
-
 } };
 
 
@@ -180,8 +173,8 @@ uintptr_t sub_18071E690_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E690);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __int16 a2)> sub_18071E690 = { "sub_18071E690", [](unsigned int a1, __int16 a2) {
-
+FunctionHookEx<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __int16 a2)> sub_18071E690 = { "sub_18071E690", [](unsigned int a1, __int16 a2)
+{
 	sub_18071E690_state = a1;
 	if (sub_18071E690_override)
 	{
@@ -192,17 +185,17 @@ FunctionHookEx<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __int1
 	auto result = sub_18071E690(a1, a2);
 	return __int64(1);
 	return result;
-
 } };
 
-//uintptr_t Halo1update_engine_state_offset(e_engine_type engine_type, e_build build)
+//uintptr_t halo1_update_engine_state_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076490);
 //	return ~uintptr_t();
 //}
-//FunctionHookEx<Halo1update_engine_state_offset, __int64 __fastcall (IGameEngine* _this, e_engine_state status, _QWORD* extraArgument)> Halo1update_engine_state = { "Halo1update_engine_state", [](IGameEngine* _this, e_engine_state status, _QWORD* extraArgument) {
+//FunctionHookEx<halo1_update_engine_state_offset, __int64 __fastcall (IGameEngine* _this, e_engine_state status, _QWORD* extraArgument)> halo1_update_engine_state 
+//	= { "halo1_update_engine_state", [](IGameEngine* _this, e_engine_state status, _QWORD* extraArgument) {
 //
-//	//auto result = Halo1update_engine_state(_this, status, extraArgument);
+//	//auto result = halo1_update_engine_state(_this, status, extraArgument);
 //	//return result;
 //	return __int64(0);
 //
@@ -237,8 +230,8 @@ uintptr_t sub_18072FCF0_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18072FCF0);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_18072FCF0_offset, void* (__int16 a1)> sub_18072FCF0 = { "sub_18072FCF0", [](__int16 a1) {
-
+FunctionHookEx<sub_18072FCF0_offset, void* (__int16 a1)> sub_18072FCF0 = { "sub_18072FCF0", [](__int16 a1)
+{
 	uint32_t sub_18006ECD0_reference_counter = sub_18006ECD0.reference_counter;
 
 	if (sub_18006ECD0_reference_counter > 0)
@@ -251,7 +244,6 @@ FunctionHookEx<sub_18072FCF0_offset, void* (__int16 a1)> sub_18072FCF0 = { "sub_
 		void* result = sub_18072FCF0(a1);
 		return result;
 	}
-
 } };
 
 uintptr_t g_player_configuration_offset(e_engine_type engine_type, e_build build)
@@ -265,13 +257,12 @@ uintptr_t sub_180093240_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180093240);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_180093240_offset, void __fastcall (c_player_configuration* player_configuration)> sub_180093240 = { "sub_180093240", [](c_player_configuration* player_configuration) {
-
+FunctionHookEx<sub_180093240_offset, void __fastcall (c_player_configuration* player_configuration)> sub_180093240 = { "sub_180093240", [](c_player_configuration* player_configuration)
+{
 	sub_180093240(player_configuration);
-	printf("");
+	//printf("");
 	return;
-}
-};
+} };
 
 
 uintptr_t sub_1807A6200_offset(e_engine_type engine_type, e_build build)
@@ -279,11 +270,10 @@ uintptr_t sub_1807A6200_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807A6200);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_1807A6200_offset, __int64 __fastcall (__int16* a1, __int16 a2, __int64 a3)> sub_1807A6200 = { "sub_1807A6200", [](__int16* a1, __int16 a2, __int64 a3) {
-
+FunctionHookEx<sub_1807A6200_offset, __int64 __fastcall (__int16* a1, __int16 a2, __int64 a3)> sub_1807A6200 = { "sub_1807A6200", [](__int16* a1, __int16 a2, __int64 a3)
+{
 	__int64 result = sub_1807A6200(a1, a2, a3);
 	return result;
-
 } };
 
 uintptr_t sub_180721840_offset(e_engine_type engine_type, e_build build)
@@ -291,10 +281,10 @@ uintptr_t sub_180721840_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180721840);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_180721840_offset, __int64 __fastcall (char* control_type, char* virtual_key_code_name, __int64 a3)> sub_180721840 = { "sub_180721840", [](char* control_type, char* virtual_key_code_name, __int64 a3) {
-
+FunctionHookEx<sub_180721840_offset, __int64 __fastcall (char* control_type, char* virtual_key_code_name, __int64 a3)> sub_180721840 
+	= { "sub_180721840", [](char* control_type, char* virtual_key_code_name, __int64 a3)
+{
 	__int64 result = sub_180721840(control_type, virtual_key_code_name, a3);
 	c_console::write_line_verbose("sub_180721840> '%s' '%s' [%lli]", control_type, virtual_key_code_name, result);
 	return result;
-
 } };
