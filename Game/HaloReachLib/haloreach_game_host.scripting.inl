@@ -3,26 +3,23 @@ template<typename t_type>
 class c_data_array_base
 {
 public:
-	char m_Name[32];
-	size_t m_Size;
-	unsigned int m_Signature;
-	int m_MaximumCount;
-
+	char name[32];
+	size_t size;
+	unsigned long signature;
+	long max_count;
 private:
 	char __unknown30[8];
-
 public:
-	class c_allocation_interface* m_pAllocation;
-	int m_NextIndex;
-	int m_FirstUnallocated;
-	int m_ActualCount;
-	unsigned __int16 m_NextIdentifier;
-	unsigned __int16 m_IsolatedNextIdentifier;
-	t_type* m_pData;
-	unsigned int* m_InUseBitVector;
-	int m_OffsetToData;
-	int m_OffsetToBitVector;
-
+	class c_allocation_interface* allocation;
+	long next_index;
+	long first_unallocated;
+	long count;
+	unsigned short next_identifier;
+	unsigned short isolated_next_identifier;
+	t_type* data_ptr;
+	unsigned long* in_use_bit_vector;
+	long data_offset;
+	long bit_vector_offset;
 private:
 	char __unknown68[8];
 };
@@ -31,22 +28,30 @@ template<typename t_type, size_t k_count>
 class c_data_array : public c_data_array_base<t_type>
 {
 private:
-	t_type m_Data[k_count];
+	t_type data[k_count];
 };
 
-struct s_script_node_datum
+struct hs_syntax_datum
 {
-	char data[24];
+	short datum_header;
+	short script_index;
+	short node_expression_type;
+	short flags;
+	long next_node;
+	long source_data;
+	long source_offset_location;
+	long source_file_offset;
 };
-constexpr size_t s_script_node_datum_size = sizeof(s_script_node_datum);
+constexpr size_t hs_syntax_datum_size = sizeof(hs_syntax_datum);
+using hs_syntax_data_array = c_data_array<hs_syntax_datum, 61440>;
 
-
-using s_script_node_data_array = c_data_array<s_script_node_datum, 61440>;
-
-
-// BuildVersion::Build_1_1350_0_0, 0x180D2A048
-// BuildVersion::Build_1_1367_0_0, 0x180D2A048
-s_script_node_data_array*& g_script_node_data_array = reference_symbol<s_script_node_data_array*>("g_script_node_data_array", _engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180D2A048);
+uintptr_t hs_syntax_data_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180D2A048);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180D2A048);
+	return ~uintptr_t();
+}
+hs_syntax_data_array*& g_hs_syntax_data = reference_symbol<hs_syntax_data_array*>("g_hs_syntax_data", hs_syntax_data_offset);
 
 std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type engine_type, e_build build)
 {
