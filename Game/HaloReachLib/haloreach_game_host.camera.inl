@@ -96,6 +96,7 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800712E0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800712E0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800712E0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180071C90);
 	return ~uintptr_t();
 }
 FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
@@ -193,6 +194,7 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800E46C0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800E46C0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800E46C0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800E5FA0);
 	return ~uintptr_t();
 }
 FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
@@ -208,6 +210,7 @@ std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800DE0DA, 0x1800DE0E7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800DE0DA, 0x1800DE0E7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800DE0DA, 0x1800DE0E7);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800DF9EA, 0x1800DF9F7);
 	return {};
 }
 // Enable debug hud coordinates
