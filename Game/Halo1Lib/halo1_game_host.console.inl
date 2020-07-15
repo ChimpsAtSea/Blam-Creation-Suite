@@ -63,6 +63,7 @@ uintptr_t convert_mcc_map_id_to_map_name_offset(e_engine_type engine_type, e_bui
 	OFFSET(_engine_type_halo1, _build_mcc_1_1520_0_0, 0x18073CC60);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x18073CC60);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x18073CC60);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x180747000);
 	return ~uintptr_t();
 }
 FunctionHookEx<convert_mcc_map_id_to_map_name_offset, const char* __fastcall (e_map_id)> convert_mcc_map_id_to_map_name = { "convert_mcc_map_id_to_map_name", [](e_map_id map_id)
