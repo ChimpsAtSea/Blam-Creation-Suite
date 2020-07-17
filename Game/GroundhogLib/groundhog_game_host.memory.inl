@@ -41,8 +41,8 @@ char* groundhog_tag_address_get(uint32_t tag_instance_address)
 	{
 		return nullptr;
 	}
-	uint32_t* pData = &groundhog_tag_address_table[tag_instance_address >> 28][tag_instance_address];
-	return reinterpret_cast<char*>(pData);
+	uint32_t* data = &groundhog_tag_address_table[tag_instance_address >> 28][tag_instance_address];
+	return reinterpret_cast<char*>(data);
 }
 
 char* groundhog_tag_definition_get(uint32_t tag_index)

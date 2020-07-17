@@ -35,8 +35,8 @@ c_halo3_game_host::c_halo3_game_host(e_engine_type engine_type, e_build build) :
 		g_halo3_engine_state_command->set_game_engine(get_game_engine());
 	}
 
-	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
-	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(halo3_tag_address_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(halo3_tag_definition_get); // #TODO: This is kinda hacky
 }
 
 c_halo3_game_host::~c_halo3_game_host()

@@ -77,8 +77,8 @@ char* haloreach_tag_address_get(uint32_t tag_instance_address)
 	{
 		return nullptr;
 	}
-	uint32_t* pData = &haloreach_tag_address_table[tag_instance_address >> 28][tag_instance_address];
-	return reinterpret_cast<char*>(pData);
+	uint32_t* data = &haloreach_tag_address_table[tag_instance_address >> 28][tag_instance_address];
+	return reinterpret_cast<char*>(data);
 }
 
 char* haloreach_tag_definition_get(uint32_t index)
