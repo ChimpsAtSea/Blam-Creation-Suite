@@ -558,6 +558,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	case _build_mcc_1_1477_0_0:
 	case _build_mcc_1_1499_0_0:
 	case _build_mcc_1_1520_0_0:
+	case _build_mcc_1_1570_0_0:
 	case _build_mcc_1_1619_0_0:
 		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_6);
 		break;
