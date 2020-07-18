@@ -140,8 +140,12 @@ public:
 	{
 		struct GeneralSettings // 0x2C
 		{
-			/* 0x00 */	long DesiredScreenWidth;			// SwapChainDesc.BufferDesc.Width;
-			/* 0x04 */	long DesiredScreenHeight;			// SwapChainDesc.BufferDesc.Height;
+			// SwapChainDesc.BufferDesc.Width;
+			/* 0x00 */	long DesiredScreenWidth;
+
+			// SwapChainDesc.BufferDesc.Height;
+			/* 0x04 */	long DesiredScreenHeight;
+
 			/* 0x08 */	long TextureResolution;
 			/* 0x0C */	long TextureFilteringQuality;
 			/* 0x10 */	long LightingQuality;
@@ -153,7 +157,9 @@ public:
 			/* 0x28 */	bool AntiAliasing;
 			/* 0x29 */	bool VSync;
 			/* 0x2A */	bool FPSLock;
-			/* 0x2B */	char Padding;				// Assumed, this value is never used
+
+			// Assumed, this value is never used
+			/* 0x2B */	char Padding;
 		};
 
 		struct ScaleAndOffset // 0x8
@@ -192,9 +198,12 @@ public:
 			/* 0xA8 */	long DisableRain;
 		};
 
-		/* 0x00 */	GeneralSettings			GeneralSettings;
-		/* 0x2C */	char 					Unknown[0xA8];		// Unknown, this buffer is always memset to 0
-		/* 0xD4 */	PerformanceThrottles	PerformanceThrottles;
+		/* 0x00 */	GeneralSettings GeneralSettings;
+
+		// Unknown, this buffer is always memset to 0
+		/* 0x2C */	char Unknown[0xA8];
+
+		/* 0xD4 */	PerformanceThrottles PerformanceThrottles;
 	};
 	CHECK_STRUCTURE_SIZE(VideoSettings, 0x180);
 #pragma pack(pop)

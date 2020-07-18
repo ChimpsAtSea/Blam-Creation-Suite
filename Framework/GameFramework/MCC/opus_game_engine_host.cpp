@@ -406,9 +406,6 @@ bool __fastcall c_opus_game_engine_host::video_settings_update_handler(VideoSett
 	video_settings->GeneralSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
 	video_settings->GeneralSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
 
-	video_settings->GeneralSettings.VSync = false;
-	video_settings->GeneralSettings.FPSLock = false;
-
 	// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
 	video_settings->GeneralSettings.TextureResolution = 2;
 	video_settings->GeneralSettings.TextureFilteringQuality = 2;
@@ -418,6 +415,10 @@ bool __fastcall c_opus_game_engine_host::video_settings_update_handler(VideoSett
 	video_settings->GeneralSettings.DetailsQuality = 2;
 	video_settings->GeneralSettings.PostProcessingQuality = 2;
 	video_settings->GeneralSettings.AntiAliasing = true;
+
+	// UNLIMITED POWER! *frames*
+	video_settings->GeneralSettings.VSync = false;
+	video_settings->GeneralSettings.FPSLock = false;
 	
 	// the values set are taken from `AppData\LocalLow\MCC\Saved\Config\WindowsNoEditor\GameUserSettings.ini` for "Enhanced Mode",
 	// these values are overrides for the `globals\default.performance_throttles` tag
