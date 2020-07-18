@@ -36,7 +36,7 @@ public:
 	virtual void __fastcall session_membership_update_handler(s_session_membership* session_membership, uint32_t player_count) override;
 	virtual bool __fastcall function26() override;
 	virtual bool __fastcall function27() override;
-	virtual bool __fastcall graphical_settings_update_handler(s_graphical_settings* update_graphics_data) override;
+	virtual bool __fastcall video_settings_update_handler(VideoSettings* video_settings) override;
 	virtual c_player_configuration* __fastcall player_configuration_get(__int64 value) override;
 	virtual __int64 __fastcall player_configuration_update_handler(wchar_t player_names[4][16], c_player_configuration* player_configuration) override;
 	virtual bool __fastcall input_update_handler(_QWORD, InputBuffer* input_buffer) override;

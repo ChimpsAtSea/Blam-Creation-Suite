@@ -39,7 +39,7 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_session_membership_update_handler,
 	__game_engine_virtual_function_function26,
 	__game_engine_virtual_function_function27,
-	__game_engine_virtual_function_graphical_settings_update_handler,
+	__game_engine_virtual_function_video_settings_update_handler,
 	__game_engine_virtual_function_player_configuration_get,
 	__game_engine_virtual_function_player_configuration_update_handler,
 	__game_engine_virtual_function_input_update_handler,
@@ -136,68 +136,67 @@ public:
 	CHECK_STRUCTURE_SIZE(s_function22_data, 0x110);
 
 #pragma pack(push, 1)
-	struct s_graphical_settings
+	struct VideoSettings
 	{
-		int VIDEO_SizeX;
-		int VIDEO_SizeY;
-		int VIDEO_TextureQuality;					 // between 0 and 2
-		int VIDEO_AF_Qual;							 // between 0 and 2
-		int VIDEO_SSAOQuality;						 // between 0 and 2
-		int unknown10_4;
-		int VIDEO_ShadowMapQual;					 // between 0 and 2
-		int VIDEO_LodDistQualityFactor;				 // between 0 and 2
-		int unknown20;
-		int WindowMode;
-		bool VIDEO_UseEdgeAA;
-		bool VIDEO_Wait_VSync;
-		bool VIDEO_FPS_Lock;
-		char unknown2B;
-		char unknown2C[168]; // unknown
-		float unknownD4_0;
-		float unknownD4_4;
-		float unknownD4_8;
-		float unknownD4_C;
-		float unknownD4_10;
-		float unknownD4_14;
-		float unknownD4_18;
-		float unknownD4_1C;
-		float unknownD4_20;
-		float unknownD4_24;
-		float unknownD4_28;
-		float unknownD4_2C;
-		float unknownD4_30;
-		float unknownD4_34;
-		float unknownD4_38;
-		float unknownD4_3C;
-		float unknownD4_40;
-		float unknownD4_44;
-		float unknownD4_48;
-		float unknownD4_4C;
-		float unknownD4_50;
-		float unknownD4_54;
-		float unknownD4_58;
-		float unknownD4_5C;
-		float unknownD4_60;
-		float unknownD4_64;
-		float unknownD4_68;
-		float unknownD4_6C;
-		float unknownD4_70;
-		float unknownD4_74;
-		float unknownD4_78;
-		float unknownD4_7C;
-		float unknownD4_80;
-		float unknownD4_84;
-		long unknownD4_88;
-		long unknownD4_8C;
-		long unknownD4_90;
-		long unknownD4_94;
-		long unknownD4_98;
-		long unknownD4_9C;
-		long unknownD4_A0;
-		long unknownD4_A4;
-		long unknownD4_A8;
+		struct GeneralSettings // 0x2C
+		{
+			/* 0x00 */	long DesiredScreenWidth;			// SwapChainDesc.BufferDesc.Width;
+			/* 0x04 */	long DesiredScreenHeight;			// SwapChainDesc.BufferDesc.Height;
+			/* 0x08 */	long TextureResolution;
+			/* 0x0C */	long TextureFilteringQuality;
+			/* 0x10 */	long LightingQuality;
+			/* 0x14 */	long EffectsQuality;
+			/* 0x18 */	long ShadowQuality;
+			/* 0x1C */	long DetailsQuality;
+			/* 0x20 */	long PostProcessingQuality;
+			/* 0x24 */	long WindowMode;
+			/* 0x28 */	bool AntiAliasing;
+			/* 0x29 */	bool VSync;
+			/* 0x2A */	bool FPSLock;
+			/* 0x2B */	char Padding;				// Assumed, this value is never used
+		};
+
+		struct ScaleAndOffset // 0x8
+		{
+			/* 0x00 */	float Scale;
+			/* 0x04 */	float Offset;
+		};
+
+		struct PerformanceThrottles // 0xAC
+		{
+			/* 0x00 */	ScaleAndOffset WaterLod;
+			/* 0x08 */	ScaleAndOffset DecoratorFadeDistance;
+			/* 0x10 */	ScaleAndOffset EffectsLODDistanceScale;
+			/* 0x18 */	ScaleAndOffset InstanceFadeModifier;
+			/* 0x20 */	ScaleAndOffset ObjectFadeModifer;
+			/* 0x28 */	ScaleAndOffset ObjectDetailModifer;
+			/* 0x30 */	ScaleAndOffset ObjectImposterCutoffModifer;
+			/* 0x38 */	ScaleAndOffset DecalFadeDistanceScale;
+			/* 0x40 */	ScaleAndOffset StructureInstanceLODModifer;
+			/* 0x48 */	ScaleAndOffset CPUDynamicLightMaxCount;
+			/* 0x50 */	ScaleAndOffset CPUDynamicLightScale;
+			/* 0x58 */	ScaleAndOffset GPUDynamicLightMaxCount;
+			/* 0x60 */	ScaleAndOffset GPUDynamicLightScale;
+			/* 0x68 */	ScaleAndOffset ScreenspaceDynamicLightMaxCount;
+			/* 0x70 */	ScaleAndOffset ScreenspaceDynamicLightScale;
+			/* 0x78 */	ScaleAndOffset ShadowGenerateCount;
+			/* 0x80 */	ScaleAndOffset ShadowQualityLOD;
+			/* 0x88 */	long DisableObjectPRT;
+			/* 0x9C */	long DisableFirstPersonShadow;
+			/* 0x90 */	long DisableDynamicLightingShadows;
+			/* 0x94 */	long DisablePatchyFog;
+			/* 0x98 */	long DisableCheapParticles;
+			/* 0xAC */	long DisableSSAO;
+			/* 0xA0 */	long DisableCHUDTurbulence;
+			/* 0xA4 */	long DisableDecoratorTypeInstances;
+			/* 0xA8 */	long DisableRain;
+		};
+
+		/* 0x00 */	GeneralSettings			GeneralSettings;
+		/* 0x2C */	char 					Unknown[0xA8];		// Unknown, this buffer is always memset to 0
+		/* 0xD4 */	PerformanceThrottles	PerformanceThrottles;
 	};
-	CHECK_STRUCTURE_SIZE(s_graphical_settings, 0x180);
+	CHECK_STRUCTURE_SIZE(VideoSettings, 0x180);
 #pragma pack(pop)
 
 	struct s_transport_address;
@@ -230,7 +229,7 @@ public:
 	/* 25 */ virtual void __fastcall session_membership_update_handler(s_session_membership* session_membership, uint32_t player_count);
 	/* 26 */ virtual bool __fastcall function26();
 	/* 27 */ virtual bool __fastcall function27();
-	/* 28 */ virtual bool __fastcall graphical_settings_update_handler(s_graphical_settings* update_graphics_data);
+	/* 28 */ virtual bool __fastcall video_settings_update_handler(VideoSettings* video_settings);
 	/* 29 */ virtual c_player_configuration* __fastcall player_configuration_get(__int64 value);
 	/* 30 */ virtual __int64 __fastcall player_configuration_update_handler(wchar_t player_names[4][16], c_player_configuration* player_configuration);
 	/* 31 */ virtual bool __fastcall input_update_handler(_QWORD, InputBuffer* input_buffer);
