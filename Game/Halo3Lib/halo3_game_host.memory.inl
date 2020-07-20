@@ -18,6 +18,15 @@ uintptr_t k_virtual_to_physical_base_offset(e_engine_type engine_type, e_build b
 }
 const long long& k_virtual_to_physical_base = reference_symbol<const long long>("k_virtual_to_physical_base", k_virtual_to_physical_base_offset);
 
+uintptr_t k_physical_base_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1808842E8);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180892418);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x18087B418);
+	return ~uintptr_t();
+}
+const long long& k_physical_base = reference_symbol<const long long>("k_physical_base", k_physical_base_offset);
+
 uintptr_t halo3_cache_file_header_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CC9998);

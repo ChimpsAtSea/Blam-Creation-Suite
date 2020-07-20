@@ -17,6 +17,7 @@ static c_halo3_test_command* g_halo3_test_command;
 #include "halo3_game_host.mainmenu.inl"
 #include "halo3_game_host.shell.inl"
 #include "halo3_game_host.user_interface.inl"
+#include "halo3_game_host.game.inl"
 #include "halo3_game_host.testing.inl"
 
 void register_halo3lib()
@@ -93,6 +94,9 @@ void c_halo3_game_host::init_runtime_modifications(e_build build)
 {
 	g_halo3_engine_state_command = new c_halo3_engine_state_command();
 	g_halo3_test_command = new c_halo3_test_command();
+
+	g_use_30_tick = c_settings::read_boolean(_settings_section_game, "Use30Tick", false);
+	c_settings::write_boolean(_settings_section_game, "Use30Tick", g_use_30_tick);
 
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_halo3, build);

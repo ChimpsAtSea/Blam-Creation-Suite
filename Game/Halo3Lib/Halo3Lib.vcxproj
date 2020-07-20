@@ -108,6 +108,7 @@
     <ClInclude Include="opus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="halo3_game_host.game.inl" />
     <None Include="halo3_game_host.mainmenu.inl" />
     <None Include="halo3_game_host.memory.inl" />
     <None Include="halo3_game_host.shell.inl" />

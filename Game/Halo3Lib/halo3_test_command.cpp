@@ -6,10 +6,12 @@
 /* ---------- private classes */
 /* ---------- globals */
 /* ---------- private prototypes */
-/* ---------- public code */
 
 void print_mainmenu_ui_globals_test_command();
 void first_person_weapon_offset_test_command();
+void use_30_tick_command();
+
+/* ---------- public code */
 
 c_halo3_test_command::c_halo3_test_command()
 {
@@ -41,6 +43,10 @@ bool c_halo3_test_command::execute_command(const std::vector<std::string>& argum
 			{
 				first_person_weapon_offset_test_command();
 			}
+			else if (!arg1.compare("use_30_tick"))
+			{
+				use_30_tick_command();
+			}
 		}
 		else return false;
 	}
@@ -59,6 +65,7 @@ std::string c_halo3_test_command::get_command_info(const std::string& topic) con
 				"Commands:\n"
 				"\tprint_mainmenu_ui_globals\n";
 				"\tfirst_person_weapon_offset\n";
+				"\tuse_30_tick\n";
 		}
 	}
 	return "";
@@ -75,6 +82,10 @@ std::string c_halo3_test_command::get_command_auto_complete(const std::vector<st
 		else if (!Arguments[1].compare("f"))
 		{
 			return "first_person_weapon_offset";
+		}
+		else if (!Arguments[1].compare("u"))
+		{
+			return "use_30_tick";
 		}
 	}
 
@@ -134,7 +145,7 @@ char* weapon_get(const char* tag_name)
 
 real_vector3d& first_person_weapon_offset_get(bool centered, const char* tag_name)
 {
-	real_vector3d default_offset = {};
+	static real_vector3d default_offset = {};
 	if (char* weapon = weapon_get(tag_name); weapon)
 	{
 		return *reinterpret_cast<real_vector3d*>(&weapon[!centered ? 0x4D8 : 0x4E4]);
@@ -200,4 +211,11 @@ void first_person_weapon_offset_test_command()
 	real_vector3d& missile_pod_centered_fp_weapon_offset = first_person_weapon_offset_get(true, "objects\\weapons\\turret\\missile_pod\\missile_pod");
 
 	debug_point;
+}
+
+extern bool g_use_30_tick;
+void use_30_tick_command()
+{
+	g_use_30_tick = !g_use_30_tick;
+	c_console::write_line_verbose("using 30 tick: %s", g_use_30_tick ? "true" : "false");
 }
