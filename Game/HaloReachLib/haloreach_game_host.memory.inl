@@ -18,6 +18,7 @@ uintptr_t haloreach_tag_instances_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1826475F8);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1826475F8);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1826475F8);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1826495C0);
 	return ~uintptr_t();
 }
 gen3::s_cache_file_tag_instance*& haloreach_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("haloreach_tag_instances", haloreach_tag_instances_offset);
@@ -41,6 +42,7 @@ uintptr_t haloreach_tag_address_table_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1838CDC20);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1838CDC20);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1838CDC20);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1838D1BE0);
 	return ~uintptr_t();
 }
 uint32_t* (&haloreach_tag_address_table)[] = reference_symbol<uint32_t * []>("haloreach_tag_address_table", haloreach_tag_address_table_offset);
@@ -64,6 +66,7 @@ uintptr_t haloreach_cache_file_global_loaded_state_offset(e_engine_type engine_t
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1825C65E0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1825C65E0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1825C65E0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1825C85A8);
 	return ~uintptr_t();
 }
 char*& haloreach_cache_file_global_loaded_state = reference_symbol<char*>("haloreach_cache_file_global_loaded_state", haloreach_cache_file_global_loaded_state_offset);
@@ -74,8 +77,8 @@ char* haloreach_tag_address_get(uint32_t tag_instance_address)
 	{
 		return nullptr;
 	}
-	uint32_t* pData = &haloreach_tag_address_table[tag_instance_address >> 28][tag_instance_address];
-	return reinterpret_cast<char*>(pData);
+	uint32_t* data = &haloreach_tag_address_table[tag_instance_address >> 28][tag_instance_address];
+	return reinterpret_cast<char*>(data);
 }
 
 char* haloreach_tag_definition_get(uint32_t index)
@@ -120,13 +123,7 @@ haloreach::s_cache_file_header* haloreach_cache_file_header_get()
 
 uintptr_t t_restricted_allocation_manager__reserve_memory_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_haloreach)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1270_0_0: return 0x180211A20;
-		}
-	}
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x180211A20);
 	return ~uintptr_t();
 }
 #define t_restricted_allocation_manager__reserve_memory_offset_args void* __this, const char* szName, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8

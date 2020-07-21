@@ -1,15 +1,4 @@
 
-uintptr_t engine_shutdown_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802659D0);
-	return ~uintptr_t();
-}
-FunctionHookEx<engine_shutdown_offset, void()> engine_shutdown = { "engine_shutdown", []()
-{
-		//write_stack_back_trace(__FUNCTIONW__, 2);
-		//engine_shutdown();
-	} };
-
 #pragma region network tests
 
 uintptr_t transport_endpoint_bind_offset(e_engine_type engine_type, e_build build)

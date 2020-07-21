@@ -26,6 +26,7 @@ uintptr_t groundhog_external_launch_individual_state_offset(e_engine_type engine
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1520_0_0, 0x18130E2A4);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1570_0_0, 0x18130E324);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1619_0_0, 0x18130E324);
+	OFFSET(_engine_type_groundhog, _build_mcc_1_1698_0_0, 0x181311524);
 	return ~uintptr_t();
 }
 long& groundhog_external_launch_individual_state = reference_symbol<long>("groundhog_external_launch_individual_state", groundhog_external_launch_individual_state_offset);
@@ -37,6 +38,7 @@ uintptr_t groundhog_main_game_launch_offset(e_engine_type engine_type, e_build b
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1520_0_0, 0x1800265D0);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1570_0_0, 0x1800265D0);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1619_0_0, 0x1800265D0);
+	OFFSET(_engine_type_groundhog, _build_mcc_1_1698_0_0, 0x1800265D0);
 	return ~uintptr_t();
 }
 FunctionHookEx<groundhog_main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> groundhog_main_game_launch = { "groundhog_main_game_launch", [](__int64 a1, __int64 a2)

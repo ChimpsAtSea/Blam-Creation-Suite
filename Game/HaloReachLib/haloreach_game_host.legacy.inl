@@ -157,6 +157,7 @@ uintptr_t haloreach_external_launch_individual_state_offset(e_engine_type engine
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x180D08274);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x180D08274);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x180D08274);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180D0A1F4);
 	return ~uintptr_t();
 }
 long& haloreach_external_launch_individual_state = reference_symbol<long>("haloreach_external_launch_individual_state", haloreach_external_launch_individual_state_offset);
@@ -180,6 +181,7 @@ uintptr_t haloreach_main_game_launch_offset(e_engine_type engine_type, e_build b
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x180012550);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x180012550);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x180012550);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800124C0);
 
 	if (engine_type == _engine_type_haloreach)
 	{

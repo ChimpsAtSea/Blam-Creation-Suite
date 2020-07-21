@@ -399,28 +399,60 @@ bool __fastcall c_opus_game_engine_host::function27()
 	return false;
 }
 
-bool __fastcall c_opus_game_engine_host::graphical_settings_update_handler(s_graphical_settings* update_graphics_data)
+bool __fastcall c_opus_game_engine_host::video_settings_update_handler(VideoSettings* video_settings)
 {
-	DEBUG_ASSERT(update_graphics_data != nullptr);
+	DEBUG_ASSERT(video_settings != nullptr);
 
-	// set resolution to 4k
-	update_graphics_data->VIDEO_SizeX = static_cast<int>(window.get_width_integer());
-	update_graphics_data->VIDEO_SizeY = static_cast<int>(window.get_height_integer());
+	video_settings->GeneralSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
+	video_settings->GeneralSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
 
-	update_graphics_data->VIDEO_FPS_Lock = false;
-	update_graphics_data->VIDEO_Wait_VSync = false;
+	// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
+	video_settings->GeneralSettings.TextureResolution = 2;
+	video_settings->GeneralSettings.TextureFilteringQuality = 2;
+	video_settings->GeneralSettings.LightingQuality = 2;
+	video_settings->GeneralSettings.EffectsQuality = 2;
+	video_settings->GeneralSettings.ShadowQuality = 2;
+	video_settings->GeneralSettings.DetailsQuality = 2;
+	video_settings->GeneralSettings.PostProcessingQuality = 2;
+	video_settings->GeneralSettings.AntiAliasing = true;
 
-	update_graphics_data->VIDEO_TextureQuality = 2;
-	update_graphics_data->VIDEO_AF_Qual = 2;
-	update_graphics_data->VIDEO_SSAOQuality = 2;
-	update_graphics_data->VIDEO_ShadowMapQual = 2;
-	update_graphics_data->VIDEO_LodDistQualityFactor = 2;
-	update_graphics_data->VIDEO_UseEdgeAA = true;
+	// UNLIMITED POWER! *frames*
+	video_settings->GeneralSettings.VSync = false;
+	video_settings->GeneralSettings.FPSLock = false;
+	
+	// the values set are taken from `AppData\LocalLow\MCC\Saved\Config\WindowsNoEditor\GameUserSettings.ini` for "Enhanced Mode",
+	// these values are overrides for the `globals\default.performance_throttles` tag
+	video_settings->PerformanceThrottles.WaterLod = { 1.0f, 0.0f };
+	video_settings->PerformanceThrottles.DecoratorFadeDistance = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.EffectsLODDistanceScale = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.InstanceFadeModifier = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ObjectFadeModifer = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ObjectDetailModifer = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ObjectImposterCutoffModifer = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.DecalFadeDistanceScale = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.StructureInstanceLODModifer = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.CPUDynamicLightMaxCount = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.CPUDynamicLightScale = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.GPUDynamicLightMaxCount = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.GPUDynamicLightScale = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ScreenspaceDynamicLightMaxCount = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ScreenspaceDynamicLightScale = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ShadowGenerateCount = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.ShadowQualityLOD = { 3.0f, 0.0f };
+	video_settings->PerformanceThrottles.DisableObjectPRT = false;
+	video_settings->PerformanceThrottles.DisableFirstPersonShadow = false;
+	video_settings->PerformanceThrottles.DisableDynamicLightingShadows = false;
+	video_settings->PerformanceThrottles.DisablePatchyFog = false;
+	video_settings->PerformanceThrottles.DisableCheapParticles = false;
+	video_settings->PerformanceThrottles.DisableSSAO = false;
+	video_settings->PerformanceThrottles.DisableCHUDTurbulence = false;
+	video_settings->PerformanceThrottles.DisableDecoratorTypeInstances = false;
+	video_settings->PerformanceThrottles.DisableRain = false;
 
 	c_console::write_line_verbose(__FUNCTION__);
 
 	// returning false effectively doubles fps when unlocked
-	return !(update_graphics_data->VIDEO_FPS_Lock || update_graphics_data->VIDEO_Wait_VSync);
+	return !(video_settings->GeneralSettings.VSync || video_settings->GeneralSettings.FPSLock);
 }
 
 c_player_configuration* __fastcall c_opus_game_engine_host::player_configuration_get(__int64 value)

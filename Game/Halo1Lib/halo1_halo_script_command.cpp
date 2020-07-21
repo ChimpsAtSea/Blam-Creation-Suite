@@ -39,13 +39,7 @@ struct hs_script_op_halo1
 // TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570
 uintptr_t hs_function_table_halo1_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1389_0_0: return 0x180E9C8B0;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180E9C8B0);
 	return ~uintptr_t();
 }
 hs_script_op_halo1 *(&hs_function_table_halo1)[] = reference_symbol<hs_script_op_halo1 *[]>("hs_function_table_halo1", hs_function_table_halo1_offset);

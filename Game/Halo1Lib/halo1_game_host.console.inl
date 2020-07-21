@@ -15,8 +15,8 @@ uintptr_t console_initialize_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807015E0);
 	return ~uintptr_t();
 }
-FunctionHookEx<console_initialize_offset, signed int()> console_initialize = { "console_initialize", []() {
-
+FunctionHookEx<console_initialize_offset, signed int()> console_initialize = { "console_initialize", []()
+{
 	c_console::write_line_verbose("console_initialize called");
 	return console_initialize();
 } };
@@ -28,8 +28,8 @@ uintptr_t console_open_offset(e_engine_type engine_type, e_build build)
 
 	return ~uintptr_t();
 }
-FunctionHookEx<console_open_offset, signed int()> console_open = { "console_open", []() {
-
+FunctionHookEx<console_open_offset, signed int()> console_open = { "console_open", []()
+{
 	c_console::write_line_verbose("console_open called");
 	return console_open();
 } };
@@ -39,8 +39,8 @@ uintptr_t console_close_offset(e_engine_type engine_type, e_build build)
 	//OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180701800);
 	return ~uintptr_t();
 }
-FunctionHookEx<console_close_offset, signed int()> console_close = { "console_close", []() {
-
+FunctionHookEx<console_close_offset, signed int()> console_close = { "console_close", []()
+{
 	c_console::write_line_verbose("console_close called");
 	return console_close();
 } };
@@ -63,10 +63,11 @@ uintptr_t convert_mcc_map_id_to_map_name_offset(e_engine_type engine_type, e_bui
 	OFFSET(_engine_type_halo1, _build_mcc_1_1520_0_0, 0x18073CC60);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x18073CC60);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x18073CC60);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x180747000);
 	return ~uintptr_t();
 }
-FunctionHookEx<convert_mcc_map_id_to_map_name_offset, const char* __fastcall (e_map_id)> convert_mcc_map_id_to_map_name = { "convert_mcc_map_id_to_map_name", [](e_map_id map_id) {
-
+FunctionHookEx<convert_mcc_map_id_to_map_name_offset, const char* __fastcall (e_map_id)> convert_mcc_map_id_to_map_name = { "convert_mcc_map_id_to_map_name", [](e_map_id map_id)
+{
 	switch (map_id)
 	{
 	case _map_id_mainmenu:

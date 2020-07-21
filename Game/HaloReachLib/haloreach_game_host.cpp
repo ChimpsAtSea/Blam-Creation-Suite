@@ -151,7 +151,7 @@ void c_haloreach_game_host::draw_script_debug_ui()
 	{
 		return;
 	}
-	if (!is_valid(g_script_node_data_array))
+	if (!is_valid(g_hs_syntax_data))
 	{
 		return;
 	}
@@ -162,13 +162,13 @@ void c_haloreach_game_host::draw_script_debug_ui()
 	// Main body of the Demo window starts here.
 	if (ImGui::Begin("Script Debug", &g_is_reach_script_debug_window_open, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
 	{
-		ImGui::Text("g_script_node_data_array %p", g_script_node_data_array);
-		if (g_script_node_data_array)
+		ImGui::Text("g_hs_syntax_data %p", g_hs_syntax_data);
+		if (g_hs_syntax_data)
 		{
-			ImGui::Text("m_ActualCount %i", g_script_node_data_array->m_ActualCount);
-			for (int i = 0; i < g_script_node_data_array->m_ActualCount; i++)
+			ImGui::Text("count %i", g_hs_syntax_data->count);
+			for (int i = 0; i < g_hs_syntax_data->count; i++)
 			{
-				s_script_node_datum& script_node_datum = g_script_node_data_array->m_pData[i];
+				hs_syntax_datum& syntax_datum = g_hs_syntax_data->data_ptr[i];
 
 			}
 		}

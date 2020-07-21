@@ -94,9 +94,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="halo3_test_command.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="halo3_engine_state_command.h" />
+    <ClInclude Include="halo3_test_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />
     <ClInclude Include="halo3_game_host.h" />
     <ClInclude Include="halo3lib-private-pch.h" />
@@ -106,7 +108,9 @@
     <ClInclude Include="opus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="halo3_game_host.game.inl" />
     <None Include="halo3_game_host.mainmenu.inl" />
+    <None Include="halo3_game_host.memory.inl" />
     <None Include="halo3_game_host.shell.inl" />
     <None Include="halo3_game_host.testing.inl" />
     <None Include="halo3_game_host.user_interface.inl" />

@@ -5,6 +5,7 @@ uintptr_t start_menu_screen_patch_offset(e_engine_type engine_type, e_build buil
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804C176B);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BFD89);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804BFEA9);
 	return ~uintptr_t();
 }
 c_data_patch<start_menu_screen_patch_offset> start_menu_screen_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -19,6 +20,7 @@ uintptr_t settings_menu_patch2_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804C183A);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BFE53);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804BFF73);
 	return ~uintptr_t();
 }
 c_data_patch<settings_menu_patch2_offset> settings_menu_patch2 = {
@@ -33,6 +35,7 @@ uintptr_t gui_screen_provider_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804BBB50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BA140);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804BA230);
 	return ~uintptr_t();
 }
 FunctionHookEx<gui_screen_provider_offset, void* __fastcall (__int64, int)> gui_screen_provider = { "gui_screen_provider", [](__int64 manager, int id)
@@ -56,6 +59,7 @@ uintptr_t version_number_callback_offset(e_engine_type engine_type, e_build buil
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1805430F0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1805419B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180541C10);
 	return ~uintptr_t();
 }
 FunctionHookEx<version_number_callback_offset, char __fastcall(__int64, wchar_t*, int)> version_number_callback = { "version_number_callback", [](__int64 unused, wchar_t* dst, int len)
