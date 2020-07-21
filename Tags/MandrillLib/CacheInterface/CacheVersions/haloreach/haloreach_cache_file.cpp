@@ -48,9 +48,23 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 
 	init_sorted_instance_lists();
 
+	bool tags_valid = true;
 	for (c_gen3_tag_interface& tag_interface : c_reference_loop(reinterpret_cast<c_gen3_tag_interface* const*>(get_tag_interfaces()), get_tag_count()))
 	{
+		if (tag_interface.is_null())
+		{
+			continue;
+		}
+
 		tag_interface.validate();
+		bool is_valid = tag_interface.get_is_tag_valid();
+		tags_valid &= is_valid;
+	}
+
+	if (tags_valid)
+	{
+		c_gen3_cache_file_validator2 validator2(*this);
+		validator2.validate_tag_instances();
 	}
 }
 

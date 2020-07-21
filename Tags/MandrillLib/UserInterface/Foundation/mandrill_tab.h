@@ -4,6 +4,7 @@ enum e_menu_render_type
 {
 	_menu_render_type_root,
 	_menu_render_type_child,
+	_menu_render_type_root_file,
 };
 
 class c_mandrill_tab :

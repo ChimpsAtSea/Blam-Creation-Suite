@@ -350,6 +350,7 @@ namespace blofeld
 		{ _field_real, "unknown" },
 
 		{ _field_block, "raw info block", &sound_permutation_raw_info_block_block },
+
 		{ _field_terminator }
 	};
 

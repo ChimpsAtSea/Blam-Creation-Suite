@@ -111,6 +111,10 @@ namespace blofeld
 		{ _field_long_integer, "flags" },
 		{ _field_long_integer, "im_so_fired_pad!*" },
 		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_pageable, "unknown pageable" },
+
 		{ _field_terminator }
 	};
 
@@ -224,6 +228,10 @@ namespace blofeld
 		{ _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" },
 		{ _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" },
 		{ _field_long_integer, "alpha blend mode" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown@" },
+
 		{ _field_terminator }
 	};
 

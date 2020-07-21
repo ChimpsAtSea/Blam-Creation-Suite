@@ -90,6 +90,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			if (tag_struct_container->is_block) continue; // these are created manually through c_h4_tag_block_container
 			create_tag_struct_header(hs, *tag_struct_container);
 			create_tag_struct_source(ss, *tag_struct_container);
+			debug_point;
 		}
 		if (!source_file->tag_structs.empty()) hs << std::endl;
 
@@ -861,7 +862,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_non_cache_runtime_value:
 		case _h4_field_type_custom:
 		case _h4_field_type_pageable:
-		case _h4_field_type_api_interop:
 		case _h4_field_type_terminator:
 		case _h4_field_type_byte_integer:
 		case _h4_field_type_word_integer:
@@ -903,6 +903,29 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				}
 			}
 			break;
+		case _h4_field_type_api_interop:
+		{
+			c_h4_tag_interop_definition* interop_field = dynamic_cast<c_h4_tag_interop_definition*>(tag_field);
+			ASSERT(interop_field);
+			ASSERT(interop_field->name);
+			ASSERT(interop_field->tag_interop_definition);
+			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(interop_field->tag_interop_definition->tag_struct);
+			ASSERT(tag_struct_container);
+
+
+			if (tag_struct_container->is_block)
+			{
+				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << " }," << std::endl;
+			}
+			else
+			{
+				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << " }," << std::endl;
+			}
+
+			break;
+
+			break;
+		}
 		case _h4_field_type_explanation:
 		{
 

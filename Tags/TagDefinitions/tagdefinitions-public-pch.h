@@ -10,6 +10,7 @@
 #include "types/tag_block_definition.h"
 #include "types/tag_array_definition.h"
 #include "types/tag_reference_definition.h"
+#include "types/tag_interop_definition.h"
 #include "types/string_list_definition.h"
 #include "types/tag_field.h"
 #ifndef BLOFELD_EXCLUDE_STRUCTS

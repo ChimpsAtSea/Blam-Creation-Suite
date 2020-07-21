@@ -1859,6 +1859,9 @@
     <ClInclude Include="types\engine_type_and_platform_and_build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="types\tag_interop_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="blofeld\sound\looping_sound_definition.inl">

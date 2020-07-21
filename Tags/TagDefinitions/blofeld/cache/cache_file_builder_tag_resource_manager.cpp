@@ -118,8 +118,14 @@ namespace blofeld
 
 	TAG_BLOCK(cache_file_resource_section_block, SHORT_MAX)
 	{
-		{ _field_array, "page offsets", &location_offsets_array_definition_array },
+		{ _field_version_greater, _engine_type_haloreach },
+		{ _field_array, "page offsets", &location_offsets_array_definition_array }, // moved
+
 		{ _field_array, "file page indexes", &file_location_indexes_array_definition_array },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_array, "page offsets", &location_offsets_array_definition_array }, // moved
+
 		{ _field_array, "subpage table indexes", &sublocation_table_indexes_array_definition_array },
 		{ _field_terminator }
 	};

@@ -1,5 +1,7 @@
 #pragma once
 
+class c_custom_tool_render_model;
+
 class c_blofeld_tag_editor_tab :
 	public c_mandrill_tab
 {
@@ -22,6 +24,7 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	bool render_primitive(void* data, const blofeld::s_tag_field& field);
+	void render_string(void* data, const blofeld::s_tag_field& field);
 	void render_tag_block(void* data, const blofeld::s_tag_field& field);
 	void render_tag_reference(void* data, const blofeld::s_tag_field& field);
 	c_tag_interface& tag_interface;
@@ -32,4 +35,6 @@ protected:
 	void render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 	void render_enum_definition(void* data, const blofeld::s_tag_field& field);
 	uint32_t render_tag_group(char* data, const blofeld::s_tag_group& group);
+
+	c_custom_tool_render_model* custom_tool;
 };

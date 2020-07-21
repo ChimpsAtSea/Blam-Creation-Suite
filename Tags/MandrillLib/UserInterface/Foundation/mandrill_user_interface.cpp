@@ -310,21 +310,20 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				ImGui::MenuItem("New");
+				//ImGui::MenuItem("New");
 				if (ImGui::MenuItem("Open File", "Ctrl+O"))
 				{
 					show_file_dialogue = true;
 				}
 				ImGui::MenuItem("Close");
 				ImGui::Separator();
-				ImGui::MenuItem("Save");
-				ImGui::MenuItem("Save As");
-				ImGui::Separator();
-				ImGui::MenuItem("Compile");
-				ImGui::Separator();
-				ImGui::MenuItem("Save Workspace");
-				ImGui::MenuItem("Load Workspace");
-				ImGui::Separator();
+				for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+				{
+					tab.render_menu_gui(_menu_render_type_root_file);
+				}
+				//ImGui::MenuItem("Save Workspace");
+				//ImGui::MenuItem("Load Workspace");
+				//ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
 				{
 					_is_open = false;
@@ -341,11 +340,6 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				ImGui::MenuItem("Clear");
 				ImGui::Separator();
 				ImGui::MenuItem("Expert Mode");
-				ImGui::EndMenu();
-			}
-			if (ImGui::BeginMenu("Tools"))
-			{
-				ImGui::MenuItem("Push to game");
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("View"))

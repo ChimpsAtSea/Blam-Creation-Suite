@@ -4,7 +4,8 @@ c_blofeld_tag_editor_tab::c_blofeld_tag_editor_tab(c_tag_interface& tag_interfac
 	c_mandrill_tab("Tag Editor", "Blofeld Tag Definition Debug", &parent, false),
 	tag_interface(tag_interface),
 	cache_file(tag_interface.get_cache_file()),
-	viewport_size()
+	viewport_size(),
+	custom_tool(nullptr)
 {
 
 }
@@ -224,9 +225,6 @@ void c_blofeld_tag_editor_tab::render_impl()
 	}
 	ImGui::Dummy({ 0.0f, ImGui::GetStyle().ItemSpacing.y });
 
-	static c_custom_tool_render_model custom_tool;
-	//custom_tool.render();
-
 	ImVec2 size = ImGui::GetContentRegionAvail();
 
 	ImGuiWindowFlags flags = ImGuiWindowFlags_None;
@@ -430,6 +428,76 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 	return result;
 }
 
+void c_blofeld_tag_editor_tab::render_string(void* data, const blofeld::s_tag_field& field)
+{
+	struct s_string_editor_dynamic_data
+	{
+		s_string_editor_dynamic_data(const blofeld::s_tag_field& field) :
+			is_active(false),
+			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
+		{
+
+		}
+
+		~s_string_editor_dynamic_data()
+		{
+			delete& string_parser;
+		}
+
+		bool is_active;
+		c_blamlib_string_parser& string_parser; // #TODO: remove
+	};
+	s_string_editor_dynamic_data& dynamic_data = get_dynamic_data<s_string_editor_dynamic_data>(data, field);
+
+	ImGui::Columns(2, nullptr, false);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
+
+	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
+
+	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	if (current_string_has_tooltip)
+	{
+		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
+	}
+	else
+	{
+		ImGui::Text(field_formatter.display_name.c_str());
+	}
+
+	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	{
+		ImGui::SetTooltip(field_formatter.description.c_str());
+	}
+
+	ImGui::NextColumn();
+	{
+		if (dynamic_data.is_active)
+		{
+			ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+			ImGui::PushStyleColor(ImGuiCol_Border, MANDRILL_THEME_HIGH(1.0f));
+		}
+		switch (field.field_type)
+		{
+		case blofeld::_field_string:
+			ImGui::SetNextItemWidth(350);
+			ImGui::InputText("##string", static_cast<char*>(data), 32);
+			break;
+		case blofeld::_field_long_string:
+			ImGui::SetNextItemWidth(800);
+			ImGui::InputText("##string", static_cast<char*>(data), 256);
+			break;
+		}
+		if (dynamic_data.is_active)
+		{
+			ImGui::PopStyleVar();
+			ImGui::PopStyleColor();
+		}
+		dynamic_data.is_active = ImGui::IsItemActive(); // #TODO: is there a more efficient way to do this?
+	}
+	ImGui::NextColumn();
+	ImGui::Columns(1);
+}
+
 void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag_field& field)
 {
 	s_tag_block& tag_block = *static_cast<s_tag_block*>(data);
@@ -525,8 +593,10 @@ void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag
 				ImGui::PushStyleColor(ImGuiCol_HeaderHovered, MANDRILL_THEME_DISABLED_MED(0.86f));
 				ImGui::PushStyleColor(ImGuiCol_HeaderActive, MANDRILL_THEME_DISABLED_HIGH(1.00f));
 			}
+			c_fixed_string_128 header_str;
+			header_str.format("%s : count:%u", dynamic_data.field_formatter.display_name.c_str(), tag_block.count);
 			dynamic_data.is_open = ImGui::CollapsingHeader(
-				dynamic_data.field_formatter.display_name.c_str(), 
+				header_str.c_str(),
 				/*ImGuiTreeNodeFlags_DefaultOpen |*/ 
 				/*ImGuiTreeNodeFlags_OpenOnArrow |*/ 
 				ImGuiTreeNodeFlags_Framed | 
@@ -617,20 +687,22 @@ void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag
 		{
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
 		}
-		ImGui::SameLine();
-		ImGui::Button("Insert");
-		ImGui::SameLine();
-		ImGui::Button("Duplicate");
-		ImGui::SameLine();
-		ImGui::Dummy({ 25.0f, 0.0f });
-		ImGui::SameLine();
-		ImGui::Button("Delete");
-		ImGui::SameLine();
-		ImGui::Button("Delete All");
 		if (tag_block.count == 0)
 		{
 			ImGui::PopItemFlag();
 		}
+		ImGui::SameLine();
+		ImGui::InputScalar("count", ImGuiDataType_S32, &tag_block.count);
+		//ImGui::SameLine();
+		//ImGui::Button("Insert");
+		//ImGui::SameLine();
+		//ImGui::Button("Duplicate");
+		//ImGui::SameLine();
+		//ImGui::Dummy({ 25.0f, 0.0f });
+		//ImGui::SameLine();
+		//ImGui::Button("Delete");
+		//ImGui::SameLine();
+		//ImGui::Button("Delete All");
 	}
 	ImGui::EndChild();
 
@@ -1320,6 +1392,15 @@ float constexpr radians_to_degrees = 180.0f / pi;
 
 uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
+	if (&struct_definition == &blofeld::object_struct_definition_struct_definition)
+	{
+		if (custom_tool == nullptr)
+		{
+			custom_tool = new c_custom_tool_render_model(cache_file, reinterpret_cast<blofeld::haloreach::s_object_struct_definition*>(structure_data));
+		}
+		custom_tool->render();
+	}
+
 	e_engine_type engine_type = tag_interface.get_cache_file().get_engine_type();
 	e_platform_type platform_type = tag_interface.get_cache_file().get_platform_type();
 
@@ -1349,26 +1430,19 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		case blofeld::_field_enum:
 		case blofeld::_field_long_enum:
 			render_enum_definition(current_data_position, *current_field);
-			//render_primitive(current_data_position, *current_field);
 			break;
 
 		case blofeld::_field_long_flags:
 		case blofeld::_field_word_flags:
 		case blofeld::_field_byte_flags:
 			render_flags_definition(current_data_position, *current_field);
-			//render_primitive(current_data_position, *current_field);
 			break;
 
 		case blofeld::_field_string:
-		{
-			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
-			break;
-		}
 		case blofeld::_field_long_string:
-		{
-			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
+			render_string(current_data_position, *current_field);
 			break;
-		}
+
 		case blofeld::_field_string_id:
 		{
 			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
@@ -1589,8 +1663,12 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 
 				char* array_data_position = current_data_position + dynamic_data.structure_size * dynamic_data.position;
 
-				uint32_t traversed_size = render_tag_struct_definition(level++, array_data_position, current_field->array_definition->struct_definition);
-				DEBUG_ASSERT(traversed_size == dynamic_data.structure_size);
+				for (uint32_t i = 0; i < array_count; i++)
+				{
+					uint32_t traversed_size = render_tag_struct_definition(level++, array_data_position, current_field->array_definition->struct_definition);
+					DEBUG_ASSERT(traversed_size == dynamic_data.structure_size);
+					array_data_position += traversed_size;
+				}
 
 				current_data_position += dynamic_data.structure_size * array_count;
 				bytes_traversed += dynamic_data.structure_size * array_count;

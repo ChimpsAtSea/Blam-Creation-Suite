@@ -6,6 +6,7 @@ struct s_h4_tag_array_definition;
 struct s_h4_tag_struct_definition;
 struct s_h4_tag_enum_definition;
 struct s_h4_tag_reference_definition;
+struct s_h4_tag_interop_definition;
 
 class c_h4_tag_block;
 using c_h4_tag_array = c_h4_tag_block;
@@ -13,6 +14,7 @@ class c_h4_tag_struct;
 class c_h4_tag_group;
 class c_h4_tag_enum;
 class c_h4_tag_reference;
+class c_h4_tag_interop;
 
 class c_h4_blamboozle :
 	public c_blamboozle_base
@@ -34,6 +36,11 @@ public:
 		const s_h4_tag_struct_definition* definition_header,
 		uint32_t offset);
 	static std::map<const void*, c_h4_tag_struct*> tag_struct_definitions;
+
+	static c_h4_tag_interop* get_tag_interop_definition(
+		const char* h4_data,
+		const s_h4_tag_interop_definition* definition_header);
+	static std::map<const void*, c_h4_tag_interop*> tag_interop_definitions;
 
 	static c_h4_tag_enum* get_tag_enum_definition(
 		const char* h4_data,

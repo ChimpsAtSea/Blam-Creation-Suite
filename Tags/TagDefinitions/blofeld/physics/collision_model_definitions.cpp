@@ -14,7 +14,13 @@ namespace blofeld
 		{ _field_block, "cookie cutters*", &collision_model_region_block_block },
 		{ _field_block, "pathfinding spheres*", &collision_model_pathfinding_sphere_block_block },
 		{ _field_block, "nodes*", &collision_model_node_block_block },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "unknown@" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_pageable, "regions resource" },
+
 		{ _field_terminator }
 	};
 

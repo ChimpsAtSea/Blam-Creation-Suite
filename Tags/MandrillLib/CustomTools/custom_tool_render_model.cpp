@@ -1,5 +1,21 @@
 #include "mandrilllib-private-pch.h"
 
+c_custom_tool_render_model::c_custom_tool_render_model(c_cache_file& cache_file, blofeld::haloreach::s_object_struct_definition* object_struct_definition) :
+	c_custom_tool_base()
+{
+	v_tag_interface<s_model_definition>* model_tag = dynamic_cast<v_tag_interface<s_model_definition>*>(cache_file.get_tag_interface(object_struct_definition->model.index));
+
+	title = "Render model";
+	maximum_height = 500.0f;
+	init_placeholder_textures();
+}
+
+c_custom_tool_render_model::~c_custom_tool_render_model()
+{
+	placeholder_texture->Release();
+	shader_resource_view->Release();
+}
+
 void c_custom_tool_render_model::init_placeholder_textures()
 {
 	if (placeholder_texture == nullptr)
@@ -45,6 +61,8 @@ void c_custom_tool_render_model::render_contents()
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
 
 	ImGui::Columns(2, nullptr, false);
+	float col0_width = ImGui::GetContentRegionAvailWidth();
+	ImGui::SetColumnWidth(0, __min(720.0f, col0_width) + ImGui::GetStyle().ItemSpacing.x * 2.0f);
 	{
 		const char* slider_format = "%.2f";
 		if (scale >= 10.0f) slider_format = "%.1f";
@@ -83,6 +101,7 @@ void c_custom_tool_render_model::render_contents()
 	{
 		ImGui::Text("Variant:");
 		ImGui::SameLine();
+		ImGui::SetNextItemWidth(400.0f);
 		if (ImGui::BeginCombo("##variant", ""))
 		{
 			ImGui::EndCombo();

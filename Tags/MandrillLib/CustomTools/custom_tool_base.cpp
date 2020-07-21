@@ -20,13 +20,14 @@ void c_custom_tool_base::render()
 	float width = ImGui::GetWindowContentRegionWidth();
 	ImGui::BeginChild(title, ImVec2(width, content_height), false, window_flags);
 	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_None;
-	if (is_open)
+	bool is_collapsing_header_open = is_open;
+	if (is_collapsing_header_open)
 	{
 		flags |= ImGuiTreeNodeFlags_DefaultOpen;
 	}
-	is_open = ImGui::CollapsingHeader(title, flags);
+	is_collapsing_header_open = ImGui::CollapsingHeader(title, flags);
 	content_height = ImGui::GetItemRectSize().y;
-	if (is_open)
+	if (is_collapsing_header_open)
 	{
 		ImGui::BeginGroup();
 		{
@@ -42,6 +43,11 @@ void c_custom_tool_base::render()
 	//ImGui::EndChild();
 	ImGui::EndChild();
 	ImGui::PopStyleVar();
+
+	if (ImGui::IsItemVisible())
+	{
+		is_open = is_collapsing_header_open;
+	}
 
 	ImGui::PopID();
 }

@@ -57,22 +57,26 @@ void c_tag_interface_tab::render_impl()
 
 void c_tag_interface_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-	if (menu_render_type == _menu_render_type_root && _is_selected)
+	if (!_is_selected) return;
+
+	switch (menu_render_type)
 	{
-		//if (ImGui::BeginMenu(tag_interface.get_name_with_group_name_cstr()))
-		//{
-		//	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
-		//	{
-		//		tab.render_menu_gui(_menu_render_type_child);
-		//	}
+	case _menu_render_type_child:
+	{
+		ImGui::MenuItem("Quick Preview");
+		ImGui::MenuItem("Enable Live Preview");
 
-		//	ImGui::EndMenu();
-		//}
-
+		ImGui::Separator();
+		break;
+	}
+	case _menu_render_type_root:
+	{
 		for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 		{
 			tab.render_menu_gui(_menu_render_type_root);
 		}
+		break;
+	}
 	}
 }
 

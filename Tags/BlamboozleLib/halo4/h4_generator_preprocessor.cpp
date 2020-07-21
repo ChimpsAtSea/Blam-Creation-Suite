@@ -85,8 +85,35 @@ bool c_h4_tag_group_container::operator ==(const c_h4_tag_group_container& conta
 	return &tag_group == &container.tag_group;
 }
 
+c_h4_tag_interop_container::c_h4_tag_interop_container(c_h4_tag_interop& tag_interop_definition, c_h4_generator_preprocessor& preprocessor) :
+	tag_interop_definition(tag_interop_definition),
+	tag_struct_container(nullptr)
+{
+	tag_struct_container = &preprocessor.traverse_tag_structs(tag_interop_definition.tag_struct, false, false, true, false);
+	tag_struct_container->is_interop = true;
+	tag_struct_container->tag_interop_container = this;
+
+	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+	if (index > 0)
+	{
+		std::string suffix = std::to_string(index + 1);
+		name += "$";
+		name += suffix;
+	}
+
+	name_uppercase = name;
+	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
+	preprocessor.tag_interop_containers.push_back(this);
+}
+
+bool c_h4_tag_interop_container::operator ==(const c_h4_tag_interop_container& container) const
+{
+	return &tag_interop_definition == &container.tag_interop_definition;
+}
+
 c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, bool is_tag) :
 	tag_block(tag_block),
+	tag_struct_container(nullptr),
 	name(tag_block.name),
 	symbol_name(name),
 	name_uppercase(),
@@ -108,7 +135,7 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 	//use_tag_block_definition = expected_struct_name == tag_block.tag_struct.name;
 	use_tag_block_definition = string_ends_with(tag_block.tag_struct.name, "_block_struct") || (std::string(tag_block.name) == tag_block.tag_struct.name);
 	// && !string_ends_with(tag_block.tag_struct.name, "_struct_definition");
-	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, tag_block.is_array, true);
+	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, tag_block.is_array, false, false);
 	tag_struct_container->is_block = use_tag_block_definition;
 	tag_struct_container->tag_block_container = this;
 
@@ -130,14 +157,16 @@ bool c_h4_tag_block_container::operator ==(const c_h4_tag_block_container& conta
 	return &tag_block == &container.tag_block;
 }
 
-c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array) :
+c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array, bool is_interop) :
 	tag_block_container(nullptr),
+	tag_interop_container(nullptr),
 	tag_struct(tag_struct),
 	name(tag_struct.name),
 	symbol_name(name),
 	name_uppercase(),
 	is_block(is_block),
 	is_array(is_array),
+	is_interop(is_interop),
 	is_tag_group(false),
 	has_traversed(false)
 {
@@ -310,7 +339,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	for (c_h4_tag_block_container* tag_block_container : tag_block_containers) // traverse tag blocks to create tag structs
 	{
 		c_h4_tag_block& tag_block = tag_block_container->tag_block;
-		traverse_tag_structs(tag_block.tag_struct, true, false, true);
+		traverse_tag_structs(tag_block.tag_struct, true, false, false, true);
 	}
 	cleanup_tag_structs();
 
@@ -548,7 +577,7 @@ void c_h4_generator_preprocessor::process_tag_block_field(c_h4_tag_field* tag_fi
 	{
 		c_h4_tag_struct* tag_struct = tag_field_struct->tag_struct;
 		ASSERT(tag_struct != nullptr);
-		traverse_tag_structs(*tag_struct, false, false, true);
+		traverse_tag_structs(*tag_struct, false, false, false, true);
 
 		for (c_h4_tag_field* tag_field : tag_struct->tag_fields)
 		{
@@ -584,7 +613,15 @@ void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_f
 	{
 		c_h4_tag_struct* _struct = struct_field->tag_struct;
 		ASSERT(_struct != nullptr);
-		traverse_tag_structs(*_struct, false, false, true);
+		traverse_tag_structs(*_struct, false, false, false, true);
+	}
+
+	if (c_h4_tag_interop_definition* interop_field = dynamic_cast<c_h4_tag_interop_definition*>(tag_field))
+	{
+		c_h4_tag_interop* tag_interop = interop_field->tag_interop_definition;
+		ASSERT(tag_interop != nullptr);
+		c_h4_tag_struct& _struct = tag_interop->tag_struct;
+		traverse_tag_structs(_struct, false, false, false, true);
 	}
 
 	if (c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field))
@@ -613,13 +650,13 @@ void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_f
 	}
 }
 
-c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool is_array, bool traverse)
+c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool is_array, bool is_interop, bool traverse)
 {
 	//bool y = std::string(tag_struct.name) == "cache_file_tag_zone_manifest_struct";
 	c_h4_tag_struct_container* tag_struct_container = find_existing_tag_struct_container(tag_struct);
 	if (tag_struct_container == nullptr)
 	{
-		tag_struct_container = new c_h4_tag_struct_container(tag_struct, *this, is_block, is_array);
+		tag_struct_container = new c_h4_tag_struct_container(tag_struct, *this, is_block, is_array, is_interop);
 	}
 	if (traverse && !tag_struct_container->has_traversed)
 	{

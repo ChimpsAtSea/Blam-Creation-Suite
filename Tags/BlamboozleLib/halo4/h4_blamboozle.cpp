@@ -170,6 +170,8 @@ std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
 std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
 std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
 std::map<const void*, c_h4_tag_reference*> c_h4_blamboozle::tag_reference_definitions;
+std::map<const void*, c_h4_tag_interop*> c_h4_blamboozle::tag_interop_definitions;
+
 c_runtime_symbols* c_h4_blamboozle::symbols = nullptr;
 
 c_h4_blamboozle::c_h4_blamboozle(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
@@ -240,6 +242,40 @@ c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, c
 	new(tag_block_definition) c_h4_tag_block(h4_data, definition_header);
 
 	return tag_block_definition;
+}
+
+c_h4_tag_interop* c_h4_blamboozle::get_tag_interop_definition(
+	const char* h4_data, 
+	const s_h4_tag_interop_definition* definition_header)
+{
+	if (definition_header == nullptr)
+	{
+		return nullptr;
+	}
+	ASSERT(h4_data != nullptr);
+
+	std::map<const void*, c_h4_tag_interop*>::iterator tag_interop_definition_iterator = tag_interop_definitions.find(definition_header);
+
+	if (tag_interop_definition_iterator != tag_interop_definitions.end())
+	{
+		return tag_interop_definition_iterator->second;
+	}
+
+	for (const std::pair<const void*, c_h4_tag_interop*>& tag_interop_key : tag_interop_definitions)
+	{
+		c_h4_tag_interop& tag_interop = *tag_interop_key.second;
+		if (definition_header == tag_interop.tag_interop_definition)
+		{
+			return tag_interop_key.second;
+		}
+	}
+
+	c_h4_tag_interop* tag_interop_definition = reinterpret_cast<c_h4_tag_interop*>(malloc(sizeof(c_h4_tag_interop)));
+	tag_interop_definitions[definition_header] = tag_interop_definition;
+	new(tag_interop_definition) c_h4_tag_interop(h4_data, definition_header);
+
+
+	return tag_interop_definition;
 }
 
 c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(

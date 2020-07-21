@@ -771,9 +771,6 @@ void c_blofeld_tag_debugger_tab::render_impl()
 	}
 	ImGui::Dummy({ 0.0f, ImGui::GetStyle().ItemSpacing.y });
 
-	static c_custom_tool_render_model custom_tool;
-	//custom_tool.render();
-
 	ImVec2 size = ImGui::GetContentRegionAvail();
 
 	ImGuiWindowFlags flags = ImGuiWindowFlags_None;

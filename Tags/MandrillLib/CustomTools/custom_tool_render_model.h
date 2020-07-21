@@ -1,21 +1,20 @@
 #pragma once
 
+namespace blofeld
+{
+	namespace haloreach
+	{
+		struct s_object_struct_definition;
+	}
+}
+
 class c_custom_tool_render_model :
 	public c_custom_tool_base
 {
 public:
-	c_custom_tool_render_model() :
-		c_custom_tool_base()
-	{
-		title = "Render model";
-		maximum_height = 500.0f;
-		init_placeholder_textures();
-	}
-	~c_custom_tool_render_model()
-	{
-		placeholder_texture->Release();
-		shader_resource_view->Release();
-	}
+	c_custom_tool_render_model(c_cache_file& cache_file, blofeld::haloreach::s_object_struct_definition* object_struct_definition);
+	~c_custom_tool_render_model();
+
 protected:
 	float scale = 1.0f;
 	bool show_markers = false;

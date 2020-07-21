@@ -79,5 +79,6 @@ inline const T* h4_va_to_pointer_safe(const char* data, uint32_t address)
 #include "halo4/h4_tag_field.h"
 #include "halo4/h4_tag_block.h"
 #include "halo4/h4_tag_group.h"
+#include "halo4/h4_tag_interop.h"
 #include "halo4/h4_generator_preprocessor.h"
 #include "halo4/h4_source_generator.h"

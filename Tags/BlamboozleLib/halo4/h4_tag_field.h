@@ -39,20 +39,6 @@ struct s_h4_tag_block_definition
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
 };
 
-struct s_h4_tag_data_definition
-{
-	bpointer32<const char*> definition_name_address;
-	uint32_t flags;
-	uint32_t alignment_bit;
-	uint32_t maximum_size;
-	bpointer32<const char*> maximum_size_string_address;
-	bpointer32<void*> byteswap_procedure;
-	bpointer32<void*> copy_procedure;
-	uint32_t : 32; // unknown
-	uint32_t : 32; // unknown
-	uint32_t : 32; // unknown
-};
-
 
 class c_h4_tag_field
 {
@@ -159,6 +145,20 @@ public:
 	}
 };
 
+struct s_h4_tag_data_definition
+{
+	bpointer32<const char*> definition_name_address;
+	uint32_t flags;
+	uint32_t alignment_bit;
+	uint32_t maximum_size;
+	bpointer32<const char*> maximum_size_string_address;
+	bpointer32<void*> byteswap_procedure;
+	bpointer32<void*> copy_procedure;
+	uint32_t : 32; // unknown
+	uint32_t : 32; // unknown
+	uint32_t : 32; // unknown
+};
+
 class c_h4_tag_field_data :
 	public t_h4_tag_field<s_h4_tag_data_definition>
 {
@@ -168,7 +168,11 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		
+		if (definition)
+		{
+			const char* definition_name = h4_va_to_pointer(h4_data, definition->definition_name_address);
+			c_console::write_line("found data for field '%s' called '%s'", name, definition_name);
+		}
 	}
 };
 
@@ -463,7 +467,7 @@ public:
 	}
 };
 
-struct s_tag_interop_definition
+struct s_h4_tag_interop_definition
 {
 	GUID guid;
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
@@ -472,32 +476,47 @@ struct s_tag_interop_definition
 	buint32_t unknown;
 };
 
-class c_h4_tag_field_api_interop :
-	public t_h4_tag_field<s_tag_interop_definition>
+class c_h4_tag_interop_definition :
+	public t_h4_tag_field<s_h4_tag_interop_definition>
 {
 public:
-	GUID const guid;
-protected:
-	const s_h4_tag_struct_definition* const struct_definition;
-public:
-	const char* name;
-	uint32_t unknown;
-	c_h4_tag_struct* tag_struct;
+	c_h4_tag_interop* tag_interop_definition;
 
-
-	c_h4_tag_field_api_interop(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
+	c_h4_tag_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
-		guid(definition->guid),
-		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		name(h4_va_to_pointer(h4_data, definition->name)),
-		unknown(definition->unknown),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
+		tag_interop_definition(c_h4_blamboozle::get_tag_interop_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		
+
 	}
 };
+//
+//class c_h4_tag_interop_definition :
+//	public t_h4_tag_field<s_h4_tag_interop_definition>
+//{
+//public:
+//	GUID const guid;
+//protected:
+//	const s_h4_tag_struct_definition* const struct_definition;
+//public:
+//	const char* name;
+//	uint32_t unknown;
+//	c_h4_tag_struct* tag_struct;
+//
+//	c_h4_tag_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
+//		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
+//		guid(definition->guid),
+//		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
+//		name(h4_va_to_pointer(h4_data, definition->name)),
+//		unknown(definition->unknown),
+//		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
+//	{
+//		uint32_t definition_address = field_definition->definition_address;
+//
+//		
+//	}
+//};
 
 struct s_tag_custom_tool_data_definition;
 class c_h4_tag_field_custom :

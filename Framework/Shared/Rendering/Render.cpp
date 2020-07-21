@@ -166,8 +166,7 @@ void c_render::init_directx()
 	D3D_FEATURE_LEVEL feature_level[] =
 	{
 		D3D_FEATURE_LEVEL_11_1,
-		D3D_FEATURE_LEVEL_11_0,
-		D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL_11_0
 	};
 
 	HRESULT create_dxgi_5_factory_result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory5), (void**)(&s_dxgi_factory_5));

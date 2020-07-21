@@ -21,6 +21,7 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_interface& tag_interface;
+	bool use_live_preview;
 
 //	//void copy_data_recursively(const s_reflection_structure_type_legacy& reflection_type, char* source, char* destination);
 //	void send_to_game();

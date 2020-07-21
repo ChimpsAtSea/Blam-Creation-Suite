@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="field_validation_result.cpp" />
     <ClCompile Include="gen3_cache_file_validator.cpp" />
+    <ClCompile Include="gen3_cache_file_validator2.cpp" />
     <ClCompile Include="tagvalidate-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="field_validation_result.h" />
     <ClInclude Include="gen3_cache_file_validator.h" />
+    <ClInclude Include="gen3_cache_file_validator2.h" />
     <ClInclude Include="tagvalidate-private-pch.h" />
     <ClInclude Include="tagvalidate-public-pch.h" />
   </ItemGroup>

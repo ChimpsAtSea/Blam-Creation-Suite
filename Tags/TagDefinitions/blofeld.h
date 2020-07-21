@@ -9,6 +9,7 @@ namespace blofeld
 	struct s_tag_block_definition;
 	struct s_tag_array_definition;
 	struct s_tag_reference_definition;
+	struct s_tag_interop_definition;
 	struct s_string_list_definition;
 	class c_versioned_string_list;
 	struct s_tag_field;

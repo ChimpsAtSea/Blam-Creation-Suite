@@ -35,18 +35,18 @@ namespace blofeld
 
 	TAG_BLOCK(subpart_block, UNSIGNED_SHORT_MAX)
 	{
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_version_less, _engine_type_haloreach, 2 },
 		{ _field_short_integer, "index start*" },
 		{ _field_short_integer, "index count*" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_long_integer, "index start*" },
 		{ _field_long_integer, "index count*" },
 
 		{ _field_short_block_index, "part index*" },
 		{ _field_word_integer, "budget vertex count" },
 
-		{ _field_version_greater, _engine_type_haloreach },
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_terminator }
 	};

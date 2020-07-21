@@ -643,6 +643,7 @@
     <ClInclude Include="types\tag_block_definition.h" />
     <ClInclude Include="types\tag_field.h" />
     <ClInclude Include="types\tag_group.h" />
+    <ClInclude Include="types\tag_interop_definition.h" />
     <ClInclude Include="types\tag_reference_definition.h" />
     <ClInclude Include="types\tag_struct_definition.h" />
   </ItemGroup>

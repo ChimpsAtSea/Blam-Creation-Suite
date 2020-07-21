@@ -27,6 +27,9 @@
     <ClInclude Include="field_validation_result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gen3_cache_file_validator2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tagvalidate-private-pch.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="field_validation_result.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gen3_cache_file_validator2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

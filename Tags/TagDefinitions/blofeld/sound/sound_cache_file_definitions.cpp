@@ -67,6 +67,11 @@ namespace blofeld
 		{ _field_char_integer, "permutation info index" },
 		{ _field_word_integer, "first layer marker index" },
 		{ _field_word_integer, "layer marker count" },
+
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_long_integer, "fsb info value"},
+				
 		{ _field_terminator }
 	};
 
@@ -109,6 +114,8 @@ namespace blofeld
 		{ _field_long_integer, "polish uncompressed sample count" },
 		{ _field_long_integer, "polish first chunk index" },
 		{ _field_long_integer, "polish chunk count" },
+
+		{ _field_version_greater, _engine_type_haloreach, 15 },
 		{ _field_long_integer, "russian uncompressed sample count" },
 		{ _field_long_integer, "russian first chunk index" },
 		{ _field_long_integer, "russian chunk count" },
@@ -124,6 +131,7 @@ namespace blofeld
 		{ _field_long_integer, "norwegian uncompressed sample count" },
 		{ _field_long_integer, "norwegian first chunk index" },
 		{ _field_long_integer, "norwegian chunk count" },
+
 		{ _field_terminator }
 	};
 

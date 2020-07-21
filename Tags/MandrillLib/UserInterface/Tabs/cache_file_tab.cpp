@@ -229,7 +229,20 @@ void c_cache_file_tab::render_impl()
 
 void c_cache_file_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
-	if (menu_render_type == _menu_render_type_root && _is_selected)
+	if (menu_render_type == _menu_render_type_root_file && is_selected())
+	{
+		c_fixed_string_512 save_string;
+		save_string.format("Save %s", cache_file.get_map_path_utf8());
+		if (ImGui::MenuItem(save_string.c_str(), "Ctrl+S"))
+		{
+			cache_file.save_map();
+		}
+		//ImGui::MenuItem("Save As");
+		ImGui::Separator();
+		//ImGui::MenuItem("Compile");
+		//ImGui::Separator();
+	}
+	if (menu_render_type == _menu_render_type_root && is_selected())
 	{
 		if (ImGui::BeginMenu("Cache"))
 		{
