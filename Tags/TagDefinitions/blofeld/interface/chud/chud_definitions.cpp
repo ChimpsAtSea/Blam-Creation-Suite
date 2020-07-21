@@ -205,9 +205,9 @@ namespace blofeld
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
-		//{ undefined ooga booga, "unknown" },
-		//{ undefined ooga booga, "unknown" },
-		//{ undefined ooga booga, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
 	TAG_BLOCK(chdt_animation_data_block, 65536)
