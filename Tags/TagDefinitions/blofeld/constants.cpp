@@ -397,6 +397,8 @@ namespace blofeld
 			{ _engine_type_haloreach, 2 }, 
 		}
 	};
+	c_constant k_interleaved_texture_count = { "k_interleaved_texture_count", 2 };
+	c_constant k_facial_animation_track_count = { "k_facial_animation_track_count", 34 };
 	c_constant k_button_presets_count = { "k_button_presets_count", 7 };
 	c_constant k_player_character_type_count = { "k_player_character_type_count", 3 };
 	c_constant k_player_momentum_count = { "k_player_momentum_count", 2 };

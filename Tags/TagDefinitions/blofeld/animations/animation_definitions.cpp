@@ -784,8 +784,8 @@ namespace blofeld
 
 	TAG_BLOCK(model_animation_tag_resource_group, k_max_animations_per_graph*3)
 	{
-		{ _field_long_integer, "reference_count*" },
-		{ _field_pageable, "tag_resource" },
+		{ _field_long_integer, "reference_count*" }, 
+		{ _field_pageable, "tag_resource", &model_animation_tag_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -809,6 +809,18 @@ namespace blofeld
 	TAG_BLOCK(shared_static_data_codec_scale_block, k_max_animations_per_graph * k_max_nodes_per_animation)
 	{
 		{ _field_real, "scale" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(model_animation_tag_resource_member, k_max_animations_per_graph)
+	{
+		{ _field_long_integer, "animation_index" },
+		{ _field_dword_integer, "animation_checksum" },
+		{ _field_short_integer, "frame count*" },
+		{ _field_char_integer, "node count*" },
+		{ _field_char_enum, "movement_data_type*", &frame_info_type_enum },
+		{ _field_struct, "data sizes*!", &packed_data_sizes_struct_struct_definition },
+		{ _field_data, "animation_data*" },
 		{ _field_terminator }
 	};
 
@@ -1034,6 +1046,35 @@ namespace blofeld
 		{ _field_block, "rotations*!", &shared_static_data_codec_rotation_block_block },
 		{ _field_block, "translations*!", &shared_static_data_codec_translation_block_block },
 		{ _field_block, "scale*!", &shared_static_data_codec_scale_block_block },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(model_animation_tag_resource_struct)
+	{
+		{ _field_block, "group_members", &model_animation_tag_resource_member_block },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(packed_data_sizes_struct)
+	{
+		{ _field_long_integer, "static_node_flags!" },
+		{ _field_long_integer, "animated_node_flags!" },
+		{ _field_long_integer, "movement_data!" },
+		{ _field_long_integer, "pill_offset_data!" },
+		{ _field_long_integer, "default_data!" },
+		{ _field_long_integer, "uncompressed_data!" },
+		{ _field_long_integer, "compressed_data!" },
+		{ _field_long_integer, "blend_screen_data!" },
+		{ _field_long_integer, "object_space_offset_data!" },
+		{ _field_long_integer, "ik_chain_event_data!" },
+		{ _field_long_integer, "ik_chain_control_data!" },
+		{ _field_long_integer, "ik_chain_proxy_data!" },
+		{ _field_long_integer, "ik_chain_pole_vector_data!" },
+		{ _field_long_integer, "uncompressed_object_space_data!" },
+		{ _field_long_integer, "fik_anchor_data!" },
+		{ _field_long_integer, "uncompressed_object_space_node_flags!" },
+		{ _field_long_integer, "compressed_event_curve!" },
+		{ _field_long_integer, "compressed_static_pose!" },
 		{ _field_terminator }
 	};
 

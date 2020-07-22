@@ -65,7 +65,7 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 		case _h4_field_type_array:							field = new c_h4_tag_field_array(h4_data, field_definition); break;
 		case _h4_field_type_string:							field = new c_h4_tag_field_string(h4_data, field_definition); break;
 		case _h4_field_type_string_id:						field = new c_h4_tag_field_string_id(h4_data, field_definition); break;
-		case _h4_field_type_pageable:						field = new c_h4_tag_field_pageable(h4_data, field_definition); break;
+		case _h4_field_type_pageable:						field = new c_h4_tag_resource_definition(h4_data, field_definition); break;
 		case _h4_field_type_api_interop:					field = new c_h4_tag_interop_definition(h4_data, field_definition); break;
 		case _h4_field_type_custom:							field = new c_h4_tag_field_custom(h4_data, field_definition); break;
 		default:											field = new t_h4_tag_field<void>(h4_data, field_definition, _h4_tag_field_validation_check_ensure_invalid); break;

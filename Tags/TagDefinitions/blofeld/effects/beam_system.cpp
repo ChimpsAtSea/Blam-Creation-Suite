@@ -13,7 +13,7 @@ namespace blofeld
 
 	TAG_STRUCT(beam_system_gpu_data_struct)
 	{
-		{ _field_block, "runtime gpu_property_block!", & gpu_property_block_block },
+		{ _field_block, "runtime gpu_property_block!", &gpu_property_block_block },
 		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block_block },
 		{ _field_block, "runtime gpu_colors_block!", &gpu_color_block_block },
 		{ _field_terminator }

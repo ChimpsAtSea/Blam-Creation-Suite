@@ -185,7 +185,7 @@ namespace blofeld
 	};
 	TAG_BLOCK(chdt_placement_data_block, 65536)
 	{
-		{ _field_byte_flags, "unknown", & chdt_unknown_definition },
+		{ _field_byte_flags, "unknown", &chdt_unknown_definition },
 		{ _field_char_enum, "anchor", &chdt_anchor_definition },
 		{ _field_short_integer, "unknown" },
 		{ _field_real, "mirror offset x" },
@@ -212,7 +212,7 @@ namespace blofeld
 	};
 	TAG_BLOCK(chdt_animation_data_block, 65536)
 	{
-		{ _field_byte_flags, "animation 1 flags", & chdt_animation_flags_definition },
+		{ _field_byte_flags, "animation 1 flags", &chdt_animation_flags_definition },
 		{ _field_char_enum, "animation 1 function", &chdt_animation_function_definition },
 		{ _field_short_integer, "unknown" },
 		{ _field_tag_reference, "animation 1", &chud_animation_reference },
@@ -236,7 +236,7 @@ namespace blofeld
 	};
 	TAG_BLOCK(chdt_render_data_block, 65536)
 	{
-		{ _field_char_enum, "shader index", & chdt_shader_index_definition },
+		{ _field_char_enum, "shader index", &chdt_shader_index_definition },
 		{ _field_byte_integer, "unknown" },
 		{ _field_byte_integer, "unknown" },
 		{ _field_byte_integer, "unknown" },
@@ -454,7 +454,7 @@ namespace blofeld
 			"As for Placement Data, each index likely refers to each \"HUD Attributes\" index in CHGD to change depending on resolution." },
 		{ _field_explanation, "Render Data Shader Index", "While represented as an enum, it is actually an index to the \"HUD Shaders\" block in CHGD." },
 		{ _field_explanation, "Placement Anchor", "Only select \"Use Parent Widget\" for a Bitmap or Text Widget, otherwise the game will crash." },
-		{ _field_block, "hud widgets", & chdt_hud_widgets_block_block },
+		{ _field_block, "hud widgets", &chdt_hud_widgets_block_block },
 		{ _field_long_integer, "low clip cutoff" },
 		{ _field_long_integer, "low ammo cutoff" },
 		{ _field_long_integer, "age cutoff" },
@@ -679,7 +679,7 @@ namespace blofeld
 	};
 	TAG_BLOCK(chgd_shaders_block, 65536)
 	{
-		{ _field_tag_reference, "vertex shader", & global_vertex_shader_reference },
+		{ _field_tag_reference, "vertex shader", &global_vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &global_pixel_shader_reference },
 		{ _field_terminator }
 	};

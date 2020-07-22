@@ -303,6 +303,38 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(vertex_buffers_block, UNSIGNED_SHORT_MAX)
+	{
+		{ _field_byte_integer, "declaration type*" },
+		{ _field_byte_integer, "stride*" },
+		{ _field_pad, "vertex buffer pad", 2 },
+		{ _field_dword_integer, "count*" },
+		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(index_buffers_block, (8*1024-1))
+	{
+		{ _field_byte_integer, "declaration type*" },
+		{ _field_byte_integer, "stride*" },
+		{ _field_pad, "vertex buffer pad", 2 },
+		{ _field_dword_integer, "count*" },
+		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(render_vertex_buffer_block, UNSIGNED_SHORT_MAX)
+	{
+		{ _field_api_interop, "vertex buffer interop", &render_vertex_buffer_descriptor_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(render_index_buffer_block, (8*1024-1))
+	{
+		{ _field_api_interop, "index buffer interop", &render_index_buffer_descriptor_struct_struct_definition },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(render_geometry_pvs_data_block, 16)
 	{
 		{ _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block_block },
@@ -399,7 +431,7 @@ namespace blofeld
 		{ _field_block, "unknown meshes", &global_render_geometry_unknown_meshes2_block }, // Unknown Meshes
 
 		{ _field_block, "water bounding box block*", &water_bounding_box_block_block },	
-		{ _field_pageable, "api resource" },
+		{ _field_pageable, "api resource", &render_geometry_api_resource_definition_struct_struct_definition },
 
 		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "Optional PVS data", &render_geometry_pvs_data_block_block },
@@ -416,6 +448,15 @@ namespace blofeld
 		{ _field_char_enum, "data type^*", &render_geometry_user_data_type_definition },
 		{ _field_char_integer, "data count*" },
 		{ _field_word_integer, "data size*" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(render_geometry_api_resource_definition_struct)
+	{
+		{ _field_block, "pc vertex buffers*", &vertex_buffers_block_block },
+		{ _field_block, "pc index buffers*", &index_buffers_block_block },
+		{ _field_block, "xenon vertex buffers*", &render_vertex_buffer_block_block },
+		{ _field_block, "xenon index buffers*", &render_index_buffer_block_block },
 		{ _field_terminator }
 	};
 

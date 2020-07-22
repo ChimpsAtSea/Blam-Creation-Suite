@@ -419,7 +419,7 @@ enum e_tag_resource_type
 	_tag_resource_type_bitmap = 4,
 };
 
-struct s_tag_resource_definition
+struct s_h4_tag_resource_definition
 {
 	bpointer32<const char*> name;
 	bigendian_type<e_tag_resource_type> resource_type;
@@ -432,8 +432,8 @@ struct s_tag_resource_definition
 	buint32_t unknown2;
 };
 
-class c_h4_tag_field_pageable :
-	public t_h4_tag_field<s_tag_resource_definition>
+class c_h4_tag_resource_definition :
+	public t_h4_tag_field<s_h4_tag_resource_definition>
 {
 public:
 	const char* const name;
@@ -447,8 +447,9 @@ public:
 	buint32_t const unknown2;
 
 	c_h4_tag_struct* tag_struct;
+	c_h4_tag_resource* tag_resource_definition;
 
-	c_h4_tag_field_pageable(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
+	c_h4_tag_resource_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		name(h4_va_to_pointer(h4_data, definition->name)),
 		resource_type(definition->resource_type),
@@ -459,7 +460,8 @@ public:
 		count(definition->count),
 		unknown1(definition->unknown1),
 		unknown2(definition->unknown2),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition)),
+		tag_resource_definition(c_h4_blamboozle::get_tag_resource_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 

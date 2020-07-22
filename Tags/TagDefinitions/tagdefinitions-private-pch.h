@@ -114,6 +114,9 @@ TAG_STRUCT_FORWARD(tag_array_name) \
 s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(array_count); }, #array_count, CONCAT(tag_array_name, _struct_definition) }; \
 TAG_STRUCT(tag_array_name)
 
+#define TAG_ARRAY_FROM_STRUCT(tag_array_name, array_count, tag_array_struct) \
+s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(array_count); }, #array_count, tag_array_struct }
+
 #define TAG_INTEROP(tag_interop_name, tag_interop_structure) \
 s_tag_interop_definition tag_interop_name = { STRINGIFY(tag_interop_name), __FILE__, __LINE__, tag_interop_structure }
 

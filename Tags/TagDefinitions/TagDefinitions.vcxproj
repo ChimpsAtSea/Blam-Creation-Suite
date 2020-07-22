@@ -290,6 +290,7 @@
     <ClCompile Include="blofeld\sound\sound_scenery_group.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp" />
+    <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
     <ClCompile Include="blofeld\structures\detail_object_definitions.cpp" />
     <ClCompile Include="blofeld\structures\instanced_geometry_definitions.cpp" />
@@ -335,6 +336,7 @@
     <ClInclude Include="blofeld\components\chocolate_mountain_new_definitions.h" />
     <ClInclude Include="blofeld\effects\beam_system.h" />
     <ClInclude Include="blofeld\effects\contrail_system.h" />
+    <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h" />
     <ClInclude Include="blofeld\tag_structs.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />

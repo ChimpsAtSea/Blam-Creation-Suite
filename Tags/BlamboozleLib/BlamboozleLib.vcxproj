@@ -177,6 +177,7 @@
     <ClCompile Include="halo4\h4_blamboozle.cpp" />
     <ClCompile Include="halo4\h4_tag_block.cpp" />
     <ClCompile Include="halo4\h4_tag_reference.cpp" />
+    <ClCompile Include="halo4\h4_tag_resource.cpp" />
     <ClCompile Include="halo4\h4_tag_struct.cpp" />
     <ClCompile Include="halo4\h4_tag_group.cpp" />
     <ClCompile Include="halo5\blamboozle_h5_forge.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="halo4\h4_tag_block.h" />
     <ClInclude Include="halo4\h4_tag_field.h" />
     <ClInclude Include="halo4\h4_tag_reference.h" />
+    <ClInclude Include="halo4\h4_tag_resource.h" />
     <ClInclude Include="halo4\h4_tag_struct.h" />
     <ClInclude Include="halo4\h4_tag_group.h" />
     <ClInclude Include="halo4\halo4.h" />

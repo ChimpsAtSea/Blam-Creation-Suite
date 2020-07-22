@@ -127,6 +127,9 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 		case _cache_file_validator_struct_type_api_interop:
 			ImGui::Text("API_INTEROP START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
 			break;
+		case _cache_file_validator_struct_type_tag_resource:
+			ImGui::Text("TAG_RESOURCE START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
 		default:
 		case _cache_file_validator_struct_type_structure:
 			ImGui::Text("STRUCT START>%s [0x%X]", struct_definition.name, struct_size);
@@ -377,6 +380,68 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				}
 				break;
 			}
+			case blofeld::_field_pageable:
+			{
+				s_tag_resource& tag_resource = *reinterpret_cast<s_tag_resource*>(current_data_position);
+
+				is_struct_valid &= tag_resource.definition_address == 0;
+
+				if (is_struct_valid && tag_resource.resource_handle.valid())
+				{
+					uint32_t index = tag_resource.resource_handle.get_absolute_index();
+					uint32_t id = tag_resource.resource_handle.get_identifier();
+
+					c_tag_group_interface* cache_file_resource_gestalt_group = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
+					if (cache_file_resource_gestalt_group != nullptr && cache_file_resource_gestalt_group->get_tag_interfaces_count() != 0)
+					{
+
+						char* pagable_data = nullptr;
+
+						c_tag_interface* cache_file_resource_gestalt = cache_file_resource_gestalt_group->get_tag_interfaces()[0];
+						if (v_tag_interface<blofeld::haloreach::s_cache_file_resource_gestalt_block_struct>* haloreach_cache_file_resource_gestalt = dynamic_cast<decltype(haloreach_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
+						{
+							blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data_block = haloreach_cache_file_resource_gestalt->resources_block[index];
+							char* data = cache_file.get_tag_data(haloreach_cache_file_resource_gestalt->naive_resource_control_data); // #TODO: virtual tag data [tag_data.get_data()]
+							pagable_data = data + cache_file_resource_data_block.naive_data_offset;
+
+
+
+							debug_point;
+						}
+						else if (v_tag_interface<blofeld::halo3::s_cache_file_resource_gestalt_block_struct>* halo3_cache_file_resource_gestalt = dynamic_cast<decltype(halo3_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
+						{
+
+						}
+						else
+						{
+
+						}
+
+						if (pagable_data != nullptr)
+						{
+							bool is_valid_address = cache_file.is_valid_data_address(pagable_data);
+							is_struct_valid &= is_valid_address;
+
+							if (is_valid_address && current_field->struct_definition)
+							{
+								render_tag_struct_definition(
+									tag_interface,
+									level + 2,
+									pagable_data,
+									*current_field->struct_definition,
+									false,
+									render,
+									is_struct_valid,
+									is_tag_valid,
+									parent_offset + bytes_traversed,
+									_cache_file_validator_struct_type_tag_resource);
+							}
+						}
+					}
+				}
+
+				break;
+			}
 			case blofeld::_field_api_interop:
 			{
 				s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(current_data_position);
@@ -579,6 +644,12 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			break;
 		case _cache_file_validator_struct_type_tag_block:
 			ImGui::Text("BLOCK STRUCT END>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		case _cache_file_validator_struct_type_api_interop:
+			ImGui::Text("API_INTEROP END>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
+		case _cache_file_validator_struct_type_tag_resource:
+			ImGui::Text("TAG_RESOURCE END>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
 			break;
 		default:
 		case _cache_file_validator_struct_type_structure:

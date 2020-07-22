@@ -119,7 +119,7 @@ namespace blofeld
 		{ _field_pad, "runtime pad~", 4 },
 		{ _field_block, "pitch ranges*#pitch ranges allow multiple samples to represent the same sound at different pitches", &sound_pitch_range_block_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block_block },
-		{ _field_pageable, "sound data resource" },
+		{ _field_pageable, "sound data resource", &sound_resource_definition_struct_struct_definition },
 		{ _field_block, "extra info!", &sound_extra_info_block_block },
 		{ _field_block, "language info!", &sound_language_info_block_block },
 		{ _field_terminator }
@@ -146,7 +146,7 @@ namespace blofeld
 		{ _field_pad, "runtime pad~", 4 },
 		{ _field_block, "pitch ranges*#pitch ranges allow multiple samples to represent the same sound at different pitches", &sound_pitch_range_block_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block_block },
-		{ _field_pageable, "sound data resource" },
+		{ _field_pageable, "sound data resource", &sound_resource_definition_struct_struct_definition },
 		{ _field_block, "extra info!", &sound_extra_info_block_block },
 		{ _field_block, "language info!", &sound_language_info_block_block },
 		{ _field_terminator }
@@ -219,7 +219,7 @@ namespace blofeld
 
 	TAG_BLOCK(facial_animation_language_block, k_language_count)
 	{
-		{ _field_pageable, "facial animation resource" },
+		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct_struct_definition },
 		{ _field_long_enum, "language", &sound_language_enum_definition },
 		{ _field_terminator }
 	};
@@ -519,6 +519,24 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(facial_animation_permutation_block, MAXIMUM_PITCH_RANGES_PER_SOUND* MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE)
+	{
+		{ _field_real, "start time" },
+		{ _field_real, "end time" },
+		{ _field_real, "blend in" },
+		{ _field_real, "blend out" },
+		{ _field_block, "facial animation curves", &facial_animation_curve_block_block },
+		{ _field_terminator }
+	};
+
+	TAG_BLOCK(facial_animation_curve_block, k_facial_animation_track_count)
+	{
+		{ _field_long_enum, "facial animation track", &facial_animation_track_enum_definition },
+		{ _field_long_integer, "facial animation curve data offset" },
+		{ _field_long_integer, "facial animation curve data size" },
+		{ _field_terminator }
+	};
+
 	TAG_STRUCT(sound_dialogue_constants_struct_definition)
 	{
 		{ _field_explanation, "named playing fractions", "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares\?)" },
@@ -527,6 +545,19 @@ namespace blofeld
 		{ _field_real, "somewhat" },
 		{ _field_real, "often" },
 		{ _field_pad, "VBEZIIDOF", 24 },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(sound_resource_definition_struct)
+	{
+		{ _field_data, "sample data" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(facial_animation_resource_definition_struct)
+	{
+		{ _field_block, "facial animation permutations", &facial_animation_permutation_block_block },
+		{ _field_data, "compressed facial animation curve data" },
 		{ _field_terminator }
 	};
 

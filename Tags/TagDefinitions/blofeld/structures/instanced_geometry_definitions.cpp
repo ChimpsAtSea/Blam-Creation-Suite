@@ -152,6 +152,46 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(SerializedHavokGeometryDataBlock, 5, SerializedHavokGeometryDataBlock_struct_struct_definition );
 
+	TAG_BLOCK(structure_bsp_instanced_geometry_instances_without_names_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	{
+		{ _field_real, "scale" },
+		{ _field_real_vector_3d, "forward" },
+		{ _field_real_vector_3d, "left" },
+		{ _field_real_vector_3d, "up" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_block_index, "instance definition*" },
+		{ _field_word_flags, "flags", &instanced_geometry_flags },
+		{ _field_long_flags, "Light Channels:", &channelDefinitionFlags },
+		{ _field_short_integer, "mesh_index" },
+		{ _field_short_integer, "compression_index" },
+		{ _field_long_integer, "seam bit vector 0" },
+		{ _field_long_integer, "seam bit vector 1" },
+		{ _field_long_integer, "seam bit vector 2" },
+		{ _field_long_integer, "seam bit vector 3" },
+		{ _field_real, "bounds x0!" },
+		{ _field_real, "bounds x1!" },
+		{ _field_real, "bounds y0!" },
+		{ _field_real, "bounds y1!" },
+		{ _field_real, "bounds z0!" },
+		{ _field_real, "bounds z1!" },
+		{ _field_real_point_3d, "world bounding sphere center!" },
+		{ _field_real, "world bounding sphere radius!" },
+		{ _field_real, "imposter transition complete distance!" },
+		{ _field_real, "imposter brightness!" },
+		{ _field_long_integer, "checksum*" },
+		{ _field_char_enum, "pathfinding policy*", &instanced_geometry_pathfinding_policy_enum },
+		{ _field_char_enum, "lightmapping policy*", &instanced_geometry_lightmapping_policy_enum },
+		{ _field_char_enum, "imposter policy*", &instanced_geometry_imposter_policy_enum },
+		{ _field_pad, "SDFSDFE", 1 },
+		{ _field_char_enum, "streaming priority*", &instanced_geometry_streamingpriority_enum },
+		{ _field_pad, "strpad", 1 },
+		{ _field_short_integer, "cubemap 0 bitmap index" },
+		{ _field_real, "lightmap resolution scale" },
+		{ _field_short_integer, "group_index!" },
+		{ _field_short_integer, "group_list_index!" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
 
 	TAG_STRUCT(structureIOHavokDataBlock_struct)

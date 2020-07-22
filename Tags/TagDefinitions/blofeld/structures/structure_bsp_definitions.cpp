@@ -840,9 +840,9 @@ namespace blofeld
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
 
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_pageable, "tag_resources" },
+		{ _field_pageable, "tag_resources", &structure_bsp_tag_resources_struct_struct_definition },
 
-		{ _field_pageable, "cache_file_resources" },
+		{ _field_pageable, "cache_file_resources", &structure_bsp_cache_file_tag_resources_struct_struct_definition },
 		{ _field_long_integer, "use resource items*" },
 		{ _field_terminator }
 	};
@@ -853,6 +853,26 @@ namespace blofeld
 		{ _field_block, "large collision bsp*", &global_large_collision_bsp_block_block },
 		{ _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block_block },
 		{ _field_block, "Havok Data*", &structureIOHavokDataBlock_block },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(structure_bsp_tag_resources_struct)
+	{
+		{ _field_struct, "resource_items", &structure_bsp_resource_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(structure_bsp_cache_file_tag_resources_struct)
+	{
+		{ _field_block, "large structure surfaces*", &structure_surface_block_block },
+		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block_block },
+		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block_block },
+		{ _field_block, "pathfinding data", &pathfinding_data_block_block },
+		{ _field_block, "instanced geometry instances without names*", &structure_bsp_instanced_geometry_instances_without_names_block_block },
+		{ _field_block, "super node parent mappings*!", &super_node_mappings_block_block },
+		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block_block },
+		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct_struct_definition },
 		{ _field_terminator }
 	};
 

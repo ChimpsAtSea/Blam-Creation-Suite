@@ -8,7 +8,7 @@ namespace blofeld
 
 	TAG_BLOCK(cinematic_sh_light_block, 16)
 	{
-		{ _field_long_flags, "Flags", & cinematic_dynamic_light_flags },
+		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
 		{ _field_custom, "Dynamic Light" },
 		{ _field_custom, "Direction" },
 		{ _field_real, "Direction" },
@@ -23,7 +23,7 @@ namespace blofeld
 
 	TAG_BLOCK(cinematic_dynamic_light_block, 16)
 	{
-		{ _field_long_flags, "Flags", & cinematic_dynamic_light_flags },
+		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
 		{ _field_custom, "Dynamic Light" },
 		{ _field_custom, "Direction" },
 		{ _field_real, "Direction" },

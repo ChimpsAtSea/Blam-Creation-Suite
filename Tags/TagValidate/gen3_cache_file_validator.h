@@ -13,6 +13,7 @@ enum e_cache_file_validator_struct_type
 	_cache_file_validator_struct_type_array,
 	_cache_file_validator_struct_type_tag_block,
 	_cache_file_validator_struct_type_api_interop,
+	_cache_file_validator_struct_type_tag_resource
 };
 
 class c_gen3_cache_file_validator

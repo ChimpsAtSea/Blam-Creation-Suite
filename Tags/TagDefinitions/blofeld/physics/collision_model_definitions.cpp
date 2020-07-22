@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_long_integer, "unknown@" },
 
 		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_pageable, "regions resource" },
+		{ _field_pageable, "regions resource", &collision_model_resource_struct_struct_definition },
 
 		{ _field_terminator }
 	};
@@ -73,12 +73,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK_FROM_STRUCT(collision_model_resource_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION* MAXIMUM_PERMUTATIONS_PER_MODEL_REGION* MAXIMUM_REGIONS_PER_MODEL, collision_model_bsp_struct_struct_definition);
+
 	TAG_STRUCT(collision_model_bsp_struct)
 	{
 		{ _field_short_integer, "node index*" },
 		{ _field_pad, "KXGCEIEI", 2 },
 		{ _field_useless_pad },
 		{ _field_struct, "bsp*", &global_collision_bsp_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(collision_model_resource_struct)
+	{
+		{ _field_block, "bsps", &collision_model_resource_bsp_block_block },
 		{ _field_terminator }
 	};
 

@@ -918,6 +918,9 @@
     <ClCompile Include="blamlib_string_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1860,6 +1863,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_interop_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

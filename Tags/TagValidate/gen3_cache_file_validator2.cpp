@@ -509,8 +509,46 @@ void c_gen3_cache_file_validator2::validate_tag_pageable(
 		return;
 	}
 
+	uint32_t index = tag_resource.resource_handle.get_absolute_index();
+	uint32_t id = tag_resource.resource_handle.get_identifier();
+
+	c_tag_group_interface* cache_file_resource_gestalt_group = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
+	if (cache_file_resource_gestalt_group == nullptr)
+	{
+		return; // throw error?
+	}
+	if (cache_file_resource_gestalt_group->get_tag_interfaces_count() == 0)
+	{
+		return; // throw error?
+	}
+
+	c_tag_interface* cache_file_resource_gestalt = cache_file_resource_gestalt_group->get_tag_interfaces()[0];
+	if (v_tag_interface<blofeld::haloreach::s_cache_file_resource_gestalt_block_struct>* haloreach_cache_file_resource_gestalt = dynamic_cast<decltype(haloreach_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
+	{
+		blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data_block = haloreach_cache_file_resource_gestalt->resources_block[index];
+		char* data = cache_file.get_tag_data(haloreach_cache_file_resource_gestalt->naive_resource_control_data); // #TODO: virtual tag data [tag_data.get_data()]
+		char* pagable_data = data + cache_file_resource_data_block.naive_data_offset;
+
+		traverse_tag_struct(validation_data, pagable_data, struct_definition);
+
+		debug_point;
+	}
+	else if (v_tag_interface<blofeld::halo3::s_cache_file_resource_gestalt_block_struct>* halo3_cache_file_resource_gestalt = dynamic_cast<decltype(halo3_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
+	{
+		return; // throw error?
+	}
+	else
+	{
+		return; // throw error?
+	}
+
+
+	
+
+
+
+
 	debug_point;
-	//throw;
 
 	//uint32_t const struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
 	//uint32_t const struct_count = 1;
@@ -615,28 +653,17 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 		}
 		case blofeld::_field_pageable:
 		{
+			//ASSERT(current_field->struct_definition);
 			if (current_field->struct_definition)
 			{
 				validate_tag_pageable(validation_data, current_data_position, *current_field->struct_definition);
-			}
-			else
-			{
-				//c_console::write_line("TAG> '%s'", validation_data.tag_interface.get_path_with_group_name_cstr());
-				//c_console::write_line("failed to find pageable structure for field %s::'%s'", struct_definition.name, current_field->name);
 			}
 			break;
 		}
 		case blofeld::_field_api_interop:
 		{
-			if (current_field->struct_definition)
-			{
-				validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
-			}
-			else
-			{
-				//c_console::write_line("TAG> '%s'", validation_data.tag_interface.get_path_with_group_name_cstr());
-				//c_console::write_line("failed to find api interop structure for field %s::'%s'", struct_definition.name, current_field->name);
-			}
+			ASSERT(current_field->struct_definition);
+			validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
 			break;
 		}
 		}

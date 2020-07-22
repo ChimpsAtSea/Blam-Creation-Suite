@@ -16,7 +16,7 @@ namespace blofeld
 		{ _field_block, "frame data*", &PCAImportedFrameDatablock_block },
 		{ _field_block, "mesh data*", &PCAImportedMeshDataBlock_block },
 		{ _field_explanation, "Resource Data", "vertex buffers" },
-		{ _field_pageable, "api resource*" },
+		{ _field_pageable, "api resource*", &render_geometry_api_resource_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -34,7 +34,13 @@ namespace blofeld
 		{ _field_long_integer, "PCA Shape Offset*!" },
 		{ _field_long_integer, "PCA coefficient Count*!" },
 		{ _field_explanation, "Resource Data", "coefficients" },
-		{ _field_pageable, "CoefficientResource*" },
+		{ _field_pageable, "CoefficientResource*", &pca_coefficients_resource_definition_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(pca_coefficients_resource_definition_struct)
+	{
+		{ _field_data, "Coefficients" },
 		{ _field_terminator }
 	};
 

@@ -568,6 +568,9 @@ namespace blofeld
 	extern c_constant k_int32_bits_bits;
 	extern c_constant k_model_flag_chunk_count; // based on c_node_flags::k_model_flag_chunk_count but with fixups
 	extern c_constant k_grenade_globals_count;
+	extern c_constant k_interleaved_texture_count;
+	extern c_constant k_facial_animation_track_count;
+
 	
 	struct s_numberof_sizeof
 	{
@@ -1787,8 +1790,9 @@ namespace blofeld
 #define k_int32_bits_bits k_int32_bits_bits(BLOFELD_CONST_ARGS)
 #define k_model_flag_chunk_count k_model_flag_chunk_count(BLOFELD_CONST_ARGS)
 #define k_grenade_globals_count k_grenade_globals_count(BLOFELD_CONST_ARGS)
-
 #define k_flag_chunk_count k_flag_chunk_count(BLOFELD_CONST_ARGS)
+#define k_interleaved_texture_count k_interleaved_texture_count(BLOFELD_CONST_ARGS)
+#define k_facial_animation_track_count k_facial_animation_track_count(BLOFELD_CONST_ARGS)
 
 #endif
 }

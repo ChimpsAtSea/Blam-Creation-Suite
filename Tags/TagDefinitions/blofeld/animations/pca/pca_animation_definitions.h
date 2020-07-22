@@ -13,9 +13,11 @@ namespace blofeld
 	extern s_tag_block_definition PCAImportedFrameDatablock_block;
 	extern s_tag_struct_definition PCAImportedAnimationDataBlock_block_struct;
 	extern s_tag_block_definition PCAImportedAnimationDataBlock_block;
+
+	extern s_tag_struct_definition pca_coefficients_resource_definition_struct_struct_definition;
+
 	extern s_tag_struct_definition PCAImportedMeshDataBlock_block_struct;
 	extern s_tag_block_definition PCAImportedMeshDataBlock_block;
-
 
 	extern c_versioned_string_list pca_animation_tag_flags_strings;
 	extern s_string_list_definition pca_animation_tag_flags;

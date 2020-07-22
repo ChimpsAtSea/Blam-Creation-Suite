@@ -43,19 +43,37 @@ namespace blofeld
 
 	TAG_BLOCK(bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "texture resource" },
+		{ _field_pageable, "texture resource", &bitmap_texture_interop_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(stitchable_bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "texture resource" },
+		{ _field_pageable, "texture resource", &stitchable_bitmap_texture_interop_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(bitmap_texture_interleaved_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "interleaved texture resource" },
+		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(bitmap_texture_interop_resource_struct)
+	{
+		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(stitchable_bitmap_texture_interop_resource_struct)
+	{
+		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(bitmap_texture_interleaved_interop_resource_struct)
+	{
+		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 

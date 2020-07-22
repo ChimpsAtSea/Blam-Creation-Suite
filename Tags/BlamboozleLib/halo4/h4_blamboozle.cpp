@@ -1,5 +1,14 @@
 #include "blamboozlelib-private-pch.h"
 
+std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
+std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
+std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
+std::map<const void*, c_h4_tag_reference*> c_h4_blamboozle::tag_reference_definitions;
+std::map<const void*, c_h4_tag_interop*> c_h4_blamboozle::tag_interop_definitions;
+std::map<const void*, c_h4_tag_resource*> c_h4_blamboozle::tag_resource_definitions;
+
+
+
 #define IMAGE_FILE_MACHINE_POWERPCBE         0x01F2  // IBM PowerPC Big-Endian
 
 const IMAGE_SECTION_HEADER* relative_virtual_address_to_section(DWORD relative_virtual_address, const char* raw_image_data)
@@ -166,12 +175,6 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 	return executable_image_data;
 }
 
-std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
-std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
-std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
-std::map<const void*, c_h4_tag_reference*> c_h4_blamboozle::tag_reference_definitions;
-std::map<const void*, c_h4_tag_interop*> c_h4_blamboozle::tag_interop_definitions;
-
 c_runtime_symbols* c_h4_blamboozle::symbols = nullptr;
 
 c_h4_blamboozle::c_h4_blamboozle(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
@@ -276,6 +279,40 @@ c_h4_tag_interop* c_h4_blamboozle::get_tag_interop_definition(
 
 
 	return tag_interop_definition;
+}
+
+c_h4_tag_resource* c_h4_blamboozle::get_tag_resource_definition(
+	const char* h4_data,
+	const s_h4_tag_resource_definition* definition_header)
+{
+	if (definition_header == nullptr)
+	{
+		return nullptr;
+	}
+	ASSERT(h4_data != nullptr);
+
+	std::map<const void*, c_h4_tag_resource*>::iterator tag_resource_definition_iterator = tag_resource_definitions.find(definition_header);
+
+	if (tag_resource_definition_iterator != tag_resource_definitions.end())
+	{
+		return tag_resource_definition_iterator->second;
+	}
+
+	for (const std::pair<const void*, c_h4_tag_resource*>& tag_resource_key : tag_resource_definitions)
+	{
+		c_h4_tag_resource& tag_resource = *tag_resource_key.second;
+		if (definition_header == tag_resource.tag_resource_definition)
+		{
+			return tag_resource_key.second;
+		}
+	}
+
+	c_h4_tag_resource* tag_resource_definition = reinterpret_cast<c_h4_tag_resource*>(malloc(sizeof(c_h4_tag_resource)));
+	tag_resource_definitions[definition_header] = tag_resource_definition;
+	new(tag_resource_definition) c_h4_tag_resource(h4_data, definition_header);
+
+
+	return tag_resource_definition;
 }
 
 c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(

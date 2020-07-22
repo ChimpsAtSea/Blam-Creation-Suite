@@ -281,6 +281,7 @@
 #include "tag_files\self_tracking\file_self_track.h"
 #include "tag_files\tag_dependency_definitions.h"
 #include "tag_files\tag_group_definitions.h"
+#include "tag_files\tag_vertex_buffers.h"
 #include "text\font_list.h"
 #include "text\text_group.h"
 #include "units\biped_definitions.h"

@@ -17,8 +17,14 @@ namespace blofeld
 	TAG_STRUCT(bink_struct_definition)
 	{
 		{ _field_long_integer, "frame count*" },
-		{ _field_pageable, "bink resource" },
+		{ _field_pageable, "bink resource", &bink_resource_struct_struct_definition },
 		{ _field_tag_reference, "external sound track^", &global_sound_reference },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(bink_resource_struct)
+	{
+		{ _field_data, "bink data" },
 		{ _field_terminator }
 	};
 

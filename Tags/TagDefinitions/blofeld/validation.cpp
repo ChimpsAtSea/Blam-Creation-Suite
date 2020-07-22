@@ -203,8 +203,8 @@ namespace blofeld
 					if (current_field->struct_definition == nullptr)
 					{
 						c_console::write_line_verbose("%s(%i): warning V6000: '%s' '%s':'%s' failed validation. no api interop specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
-						//*block_failed_validation = _validation_result_field_missing_block_definition;
-						//continue;
+						*block_failed_validation = _validation_result_field_missing_block_definition;
+						continue;
 					}
 					break;
 				}

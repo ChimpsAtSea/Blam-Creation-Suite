@@ -186,11 +186,14 @@ namespace blofeld
 		{ _field_short_integer, "resource salt" },
 		{ _field_char_block_index, "resource type index*" },
 		{ _field_char_integer, "control alignment bits" },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_long_integer, "naive data offset" },
+
 		{ _field_long_integer, "control size" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_long_integer, "secondary control size" }, // unknown
-		{ _field_long_integer, "tertiary control size" },  // unknown
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_long_integer, "secondary control size" },
 
 		{ _field_word_flags, "flags", &cache_file_resource_data_flags_definition },
 		{ _field_short_block_index, "page" },
@@ -610,6 +613,8 @@ namespace blofeld
 	{
 		"has highest priority data",
 		"has medium priority data",
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		"has low priority data"
 	};
 	STRING_LIST(cache_file_resource_data_flags_definition, cache_file_resource_data_flags_definition_strings, _countof(cache_file_resource_data_flags_definition_strings));

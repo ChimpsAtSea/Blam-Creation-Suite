@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-	s_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[1804] = 
+	s_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[1814] = 
 	{
 		{ short_block_block_struct, 2 }, // block
 		{ render_method_animated_parameter_block_block_struct, 36 }, // block
@@ -1809,6 +1809,16 @@ namespace blofeld
 		{ cache_file_tag_resource_prediction_molecule_block_block_struct, 8 }, // block
 		{ cache_file_tag_resource_prediction_molecule_keys_block_block_struct, 12 }, // block
 		{ cache_file_resource_gestalt_block_struct, 556 }, // block
+		{ vertex_buffers_block_block_struct, 12 }, // block
+		{ index_buffers_block_block_struct, 12 }, // block
+		{ render_vertex_buffer_block_block_struct, 12 }, // block
+		{ render_index_buffer_block_block_struct, 12 }, // block
+		{ structure_bsp_instanced_geometry_instances_without_names_block_block_struct, 148 }, // block
+		{ collision_model_bsp_struct_struct_definition, 112 },
+		{ render_texture_format_definition_struct_definition, 20 }, // array
+		{ model_animation_tag_resource_member_block_struct, 104 }, // block
+		{ facial_animation_permutation_block_block_struct, 28 }, // block
+		{ facial_animation_curve_block_block_struct, 12 }, // block
 	};
 
 } // namespace blofeld

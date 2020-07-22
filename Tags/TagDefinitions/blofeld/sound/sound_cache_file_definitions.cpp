@@ -155,7 +155,7 @@ namespace blofeld
 
 	TAG_BLOCK(sound_gestalt_facial_animation_block, SHORT_MAX)
 	{
-		{ _field_pageable, "facial animation resource" },
+		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -184,7 +184,7 @@ namespace blofeld
 		{ _field_short_integer, "extra info index" },
 		{ _field_pad, "pad", 2 },
 		{ _field_long_integer, "maximum play time:ms" },
-		{ _field_pageable, "sound data resource" },
+		{ _field_pageable, "sound data resource", &sound_resource_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
