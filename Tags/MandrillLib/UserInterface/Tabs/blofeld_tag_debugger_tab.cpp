@@ -508,8 +508,18 @@ void c_blofeld_tag_debugger_tab::render_field_custom_long_block_index(render_fie
 void c_blofeld_tag_debugger_tab::render_field_data(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	ImGui::Dummy({ result->level * indent_size, 0.0f }); 
+	ImGui::SameLine();
 	render_field_name_and_information(field, result);
+
+	s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(data);
+	const char* format_string = "[size:%i stream_flags:0x%X stream_offset:%i address:0x%X definition:0x%X]";
+	if (show_hex_values)
+	{
+		format_string = "[size:%X stream_flags:0x%X stream_offset:0x%X address:0x%X definition:0x%X]";
+	}
+	ImGui::SameLine();
+	ImGui::Text(format_string, tag_data.size, tag_data.stream_flags, tag_data.stream_offset, tag_data.address, tag_data.definition);
 }
 void c_blofeld_tag_debugger_tab::render_field_vertex_buffer(render_field_callback_args)
 {
@@ -600,9 +610,18 @@ void c_blofeld_tag_debugger_tab::render_field_pageable(render_field_callback_arg
 void c_blofeld_tag_debugger_tab::render_field_api_interop(render_field_callback_args)
 {
 	if (&tag_interface != &this->tag_interface) return;
-	ImGui::Dummy({ result->level * indent_size, 0.0f }); ImGui::SameLine();
+	s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(data);
+	ImGui::Dummy({ result->level * indent_size, 0.0f });
 	render_field_name_and_information(field, result);
+	ImGui::SameLine();
+	const char* format_string = "[descriptor:%i address:0x%X definition_address:0x%X]";
+	if (show_hex_values)
+	{
+		format_string = "[descriptor:0x%X address:0x%X definition_address:0x%X]";
+	}
+	ImGui::Text(format_string, tag_interop.descriptor, tag_interop.address, tag_interop.definition_address);
 }
+
 void c_blofeld_tag_debugger_tab::render_field_terminator(render_field_callback_args)
 {
 	throw; // we shouldn't be rendering this!

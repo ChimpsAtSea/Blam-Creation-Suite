@@ -191,6 +191,22 @@ namespace blofeld
 						continue;
 					}
 					break;
+				case _field_pageable:
+					if (current_field->struct_definition == nullptr)
+					{
+						c_console::write_line_verbose("%s(%i): warning V5000: '%s' '%s':'%s' failed validation. no pageable specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
+						//*block_failed_validation = _validation_result_field_missing_block_definition;
+						//continue;
+					}
+				break;
+				case _field_api_interop:
+					if (current_field->struct_definition == nullptr)
+					{
+						c_console::write_line_verbose("%s(%i): warning V6000: '%s' '%s':'%s' failed validation. no api interop specified.", current_field->filename, current_field->line, field_string, struct_definition.name, current_field->name);
+						//*block_failed_validation = _validation_result_field_missing_block_definition;
+						//continue;
+					}
+					break;
 				}
 
 				//c_blamlib_string_parser field_formatter(current_field, current_field->name, nullptr);
@@ -198,6 +214,7 @@ namespace blofeld
 				//{
 				//	c_console::write_line_verbose("%s(%i): warning V5000: '%s' '%s' failed validation. field type is not pointer.", current_field->filename, current_field->line, field_string, current_field->name);
 				//}
+
 
 			}
 

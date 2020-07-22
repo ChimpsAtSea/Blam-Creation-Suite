@@ -110,7 +110,13 @@ namespace blofeld
 		{ _field_long_integer, "runtime m_constant_per_particle_properties!" },
 		{ _field_long_integer, "runtime m_constant_over_time_properties!" },
 		{ _field_long_integer, "runtime m_used_particle_states!" },
-		{ _field_struct, "runtime m_gpu_data!", &gpu_property_function_color_struct_struct_definition },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "runtime m_gpuData!", &scenario_structured_buffer_interop_reference_struct_definition },
+
+		{ _field_version_not_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
+
 		{ _field_terminator }
 	};
 
@@ -191,17 +197,9 @@ namespace blofeld
 
 	TAG_STRUCT(gpu_property_function_color_struct)
 	{
-		{ _field_version_equal, _engine_type_haloreach, 4 },
-		{ _field_long_integer, "structured scenario interop index" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-
-		{ _field_version_not_equal, _engine_type_haloreach, 3 },
 		{ _field_block, "runtime gpu_property_block!", &gpu_property_block_block },
 		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block_block },
 		{ _field_block, "runtime gpu_colors_block!", &gpu_color_block_block },
-
 		{ _field_terminator }
 	};
 

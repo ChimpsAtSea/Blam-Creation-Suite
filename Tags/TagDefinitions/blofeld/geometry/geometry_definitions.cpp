@@ -361,9 +361,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_STRUCT(structure_design_constant_buffer_interop_reference)
+	{
+		{ _field_data, "data" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(structure_design_constant_buffer_interop, 65536) // assembly
 	{
-		{ _field_api_interop, "constant buffer interop*" },
+		{ _field_api_interop, "constant buffer interop*", &structure_design_constant_buffer_interop_reference_struct_definition },
 		{ _field_terminator }
 	};
 

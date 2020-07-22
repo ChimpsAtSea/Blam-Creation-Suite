@@ -124,6 +124,9 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 		case _cache_file_validator_struct_type_tag_block:
 			ImGui::Text("BLOCK STRUCT START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
 			break;
+		case _cache_file_validator_struct_type_api_interop:
+			ImGui::Text("API_INTEROP START>%s index:%u size:[0x%X]", struct_definition.name, index, struct_size);
+			break;
 		default:
 		case _cache_file_validator_struct_type_structure:
 			ImGui::Text("STRUCT START>%s [0x%X]", struct_definition.name, struct_size);
@@ -158,6 +161,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 		result.float_is_out_of_range = false;
 		result.block_is_out_of_range = false;
 		result.block_struct_is_valid = true;
+		result.missing_api_interop_struct = false;
 		result.is_enum_empty = false;
 		result.field_offset = bytes_traversed;
 		result.absolute_offset = parent_offset + bytes_traversed;
@@ -373,6 +377,41 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				}
 				break;
 			}
+			case blofeld::_field_api_interop:
+			{
+				s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(current_data_position);
+
+				is_struct_valid &= tag_interop.address == 0;
+				is_struct_valid &= tag_interop.definition_address == 0;
+				if (tag_interop.descriptor != 0)
+				{
+					char* data_address = cache_file.get_data_with_page_offset(tag_interop.descriptor);
+					bool is_valid_address = cache_file.is_valid_data_address(data_address);
+					is_struct_valid &= is_valid_address;
+
+					if (is_valid_address && current_field->struct_definition)
+					{
+						render_tag_struct_definition(
+							tag_interface,
+							level + 2,
+							data_address,
+							*current_field->struct_definition,
+							false,
+							render,
+							is_struct_valid,
+							is_tag_valid,
+							parent_offset + bytes_traversed,
+							_cache_file_validator_struct_type_api_interop);
+					}
+				}
+				
+				if (current_field->struct_definition == nullptr)
+				{
+					result.missing_api_interop_struct = true;
+				}
+
+				break;
+			}
 			case blofeld::_field_block:
 			{
 				s_tag_block& tag_block = *reinterpret_cast<s_tag_block*>(current_data_position);
@@ -385,9 +424,8 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				}
 				else
 				{
-					char* data_address_old = cache_file.get_data_with_page_offset(tag_block.address);
 					char* data_address = cache_file.get_tag_block_data(tag_block);
-					is_struct_valid &= cache_file.is_valid_data_address(data_address);
+					is_struct_valid &= (reinterpret_cast<uintptr_t>(data_address) % 4u) == 0u;
 					is_struct_valid &= cache_file.is_valid_data_address(data_address);
 
 					if (is_struct_valid)
@@ -474,6 +512,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			else if (result.block_is_out_of_range) result.validation_state = _validation_state_warning;
 			else if (!result.block_struct_is_valid) result.validation_state = _validation_state_warning;
 			else if (result.is_enum_empty) result.validation_state = _validation_state_warning;
+			else if (result.missing_api_interop_struct) result.validation_state = _validation_state_warning;
 			else if (is_block) result.validation_state = _validation_state_block_valid;
 			else result.validation_state = _validation_state_valid;
 		}

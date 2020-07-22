@@ -24,6 +24,8 @@ namespace blofeld
 
 	extern s_tag_group scenario_required_resource_group;
 
+	extern s_tag_struct_definition scenario_structured_buffer_interop_reference_struct_definition;
+
 	extern s_tag_struct_definition scenario_profiles_block_block_struct;
 	extern s_tag_block_definition scenario_profiles_block_block;
 	extern s_tag_struct_definition performance_template_actor_block_block_struct;

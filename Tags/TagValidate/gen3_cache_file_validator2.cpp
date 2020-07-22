@@ -63,6 +63,7 @@ struct s_memory_region
 	s_memory_region(
 		const blofeld::s_tag_struct_definition* struct_definition,
 		const blofeld::s_tag_block_definition* block_definition,
+		const blofeld::s_tag_array_definition* array_definition,
 		c_tag_interface* tag_interface,
 		const char* name,
 		char* data_start,
@@ -257,13 +258,23 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 				{
 					if (memory_region_a.struct_count > 1)
 					{
+						if (memory_region_a.tag_interface)
+						{
+							c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+						}
 						uint32_t instance_overlap_bytes = overlap_bytes / memory_region_a.struct_count;
 						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes, instance_overlap_bytes);
+						c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 						error_count++;
 					}
 					else
 					{
+						if (memory_region_a.tag_interface)
+						{
+							c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+						}
 						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes);
+						c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 						error_count++;
 					}
 				}
@@ -273,22 +284,28 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 				uint32_t hole_bytes = static_cast<uint32_t>(memory_region_b_start - memory_region_a_end);
 				if (memory_region_a.struct_count > 1)
 				{
+					if (memory_region_a.tag_interface)
+					{
+						c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+					}
 					uint32_t instance_hole_bytes = hole_bytes / memory_region_a.struct_count;
 					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes, instance_hole_bytes);
+					c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 					error_count++;
 				}
 				else
 				{
+					if (memory_region_a.tag_interface)
+					{
+						c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+					}
 					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes);
+					c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);;
 					error_count++;
 				}
 			}
 
-			if (memory_region_a.tag_interface)
-			{
-				c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
-			}
-			//if (error_count > 1000)
+			//if (error_count >= 1000)
 			//{
 			//	c_console::write_line("too many errors exiting validation");
 			//	break;
@@ -318,6 +335,11 @@ s_tag_validation_data* c_gen3_cache_file_validator2::validate_tag_group(c_tag_in
 	return validation_data;
 }
 
+void validate_tag_api_interop(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_struct_definition& struct_definition)
+{
+
+}
+
 void c_gen3_cache_file_validator2::validate_tag_struct(
 	s_tag_validation_data& validation_data,
 	char* const data,
@@ -329,6 +351,7 @@ void c_gen3_cache_file_validator2::validate_tag_struct(
 	s_memory_region* memory_region = new s_memory_region
 	{
 		&struct_definition,
+		nullptr,
 		nullptr,
 		&validation_data.tag_interface,
 		struct_definition.name,
@@ -371,6 +394,7 @@ void c_gen3_cache_file_validator2::validate_tag_block(
 	{
 		&block_definition.struct_definition,
 		&block_definition,
+		nullptr,
 		&validation_data.tag_interface,
 		block_definition.name,
 		start_data,
@@ -385,6 +409,137 @@ void c_gen3_cache_file_validator2::validate_tag_block(
 		traverse_tag_struct(validation_data, current_block_data_position, block_definition.struct_definition);
 		current_block_data_position += struct_size;
 	}
+}
+
+void c_gen3_cache_file_validator2::traverse_tag_array(
+	s_tag_validation_data& validation_data,
+	char* data,
+	const blofeld::s_tag_array_definition& array_definition)
+{
+	ASSERT(data);
+
+	uint32_t struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, array_definition.struct_definition);
+	uint32_t struct_count = array_definition.count(engine_type);
+
+	char* const start_data = data;
+	char* const end_data = start_data + struct_size * struct_count;
+
+	//s_memory_region* memory_region = new s_memory_region
+	//{
+	//	&array_definition.struct_definition,
+	//	nullptr,
+	//	&array_definition,
+	//	&validation_data.tag_interface,
+	//	array_definition.name,
+	//	start_data,
+	//	end_data,
+	//	struct_size,
+	//	struct_count
+	//};
+	//validation_data.unsorted_memory_regions.push_back(memory_region);
+
+	char* current_array_data_position = start_data;
+	for (uint32_t struct_index = 0; struct_index < struct_count; struct_index++)
+	{
+		traverse_tag_struct(validation_data, current_array_data_position, array_definition.struct_definition);
+		current_array_data_position += struct_size;
+	}
+}
+
+void c_gen3_cache_file_validator2::validate_tag_api_interop(
+	s_tag_validation_data& validation_data,
+	char* data,
+	const blofeld::s_tag_struct_definition& struct_definition)
+{
+	s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(data);
+
+	ASSERT(tag_interop.definition_address == 0);
+
+	if (tag_interop.descriptor == 0xFFFFFFFFu)
+	{
+		return;
+	}
+	if (tag_interop.descriptor == 0)
+	{
+		return;
+	}
+
+	uint32_t const struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
+	uint32_t const struct_count = 1;
+
+	char* const start_data = cache_file.get_tag_interop_data(tag_interop);
+	s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(start_data);
+	char* end_data = start_data + struct_size * struct_count;
+
+	ASSERT(start_data);
+
+	s_memory_region* memory_region = new s_memory_region
+	{
+		nullptr,
+		nullptr,
+		nullptr,
+		&validation_data.tag_interface,
+		struct_definition.name,
+		start_data,
+		end_data,
+		struct_size,
+		struct_count
+	};
+	validation_data.unsorted_memory_regions.push_back(memory_region);
+
+	char* current_interop_data_position = start_data;
+	for (uint32_t struct_index = 0; struct_index < struct_count; struct_index++)
+	{
+		traverse_tag_struct(validation_data, current_interop_data_position, struct_definition);
+		current_interop_data_position += struct_size;
+	}
+}
+
+void c_gen3_cache_file_validator2::validate_tag_pageable(
+	s_tag_validation_data& validation_data,
+	char* data,
+	const blofeld::s_tag_struct_definition& struct_definition)
+{
+	s_tag_resource& tag_resource = *reinterpret_cast<s_tag_resource*>(data);
+
+	ASSERT(tag_resource.definition_address == 0);
+
+	if (!tag_resource.resource_handle.valid())
+	{
+		return;
+	}
+
+	debug_point;
+	//throw;
+
+	//uint32_t const struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
+	//uint32_t const struct_count = 1;
+
+	//char* const start_data = cache_file.get_tag_interop_data(tag_resource);
+	//char* end_data = start_data + struct_size * struct_count;
+
+	//ASSERT(start_data);
+
+	//s_memory_region* memory_region = new s_memory_region
+	//{
+	//	nullptr,
+	//	nullptr,
+	//	nullptr,
+	//	&validation_data.tag_interface,
+	//	struct_definition.name,
+	//	start_data,
+	//	end_data,
+	//	struct_size,
+	//	struct_count
+	//};
+	//validation_data.unsorted_memory_regions.push_back(memory_region);
+
+	//char* current_interop_data_position = start_data;
+	//for (uint32_t struct_index = 0; struct_index < struct_count; struct_index++)
+	//{
+	//	traverse_tag_struct(validation_data, current_interop_data_position, struct_definition);
+	//	current_interop_data_position += struct_size;
+	//}
 }
 
 void c_gen3_cache_file_validator2::validate_tag_data(s_tag_validation_data& validation_data, char* const data, const char* field_name)
@@ -405,6 +560,7 @@ void c_gen3_cache_file_validator2::validate_tag_data(s_tag_validation_data& vali
 	char* end_data = start_data + tag_data.size;
 	s_memory_region* memory_region = new s_memory_region
 	{
+		nullptr,
 		nullptr,
 		nullptr,
 		&validation_data.tag_interface,
@@ -437,6 +593,11 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 
 		switch (current_field->field_type)
 		{
+		case blofeld::_field_array:
+		{
+			traverse_tag_array(validation_data, current_data_position, *current_field->array_definition);
+			break;
+		}
 		case blofeld::_field_struct:
 		{
 			traverse_tag_struct(validation_data, current_data_position, *current_field->struct_definition);
@@ -450,6 +611,32 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 		case blofeld::_field_data:
 		{
 			validate_tag_data(validation_data, current_data_position, current_field->name);
+			break;
+		}
+		case blofeld::_field_pageable:
+		{
+			if (current_field->struct_definition)
+			{
+				validate_tag_pageable(validation_data, current_data_position, *current_field->struct_definition);
+			}
+			else
+			{
+				//c_console::write_line("TAG> '%s'", validation_data.tag_interface.get_path_with_group_name_cstr());
+				//c_console::write_line("failed to find pageable structure for field %s::'%s'", struct_definition.name, current_field->name);
+			}
+			break;
+		}
+		case blofeld::_field_api_interop:
+		{
+			if (current_field->struct_definition)
+			{
+				validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
+			}
+			else
+			{
+				//c_console::write_line("TAG> '%s'", validation_data.tag_interface.get_path_with_group_name_cstr());
+				//c_console::write_line("failed to find api interop structure for field %s::'%s'", struct_definition.name, current_field->name);
+			}
 			break;
 		}
 		}

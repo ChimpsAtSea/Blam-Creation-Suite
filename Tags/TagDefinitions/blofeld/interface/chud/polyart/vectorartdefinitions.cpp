@@ -16,8 +16,14 @@ namespace blofeld
 		{ _field_block, "indices*", &polyartIndexBlock_block },
 		{ _field_block, "pc vertex buffers*", &vertexBuffersBlock_block },
 		{ _field_block, "pc index buffers*", &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop*" },
-		{ _field_api_interop, "index buffer interop*" },
+		{ _field_api_interop, "vertex buffer interop*", &vectorartVertexBufferDescriptorStruct_struct_definition },
+		{ _field_api_interop, "index buffer interop*", &polyartIndexBufferDescriptorStruct_struct_definition },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(vectorartVertexBufferDescriptorStruct)
+	{
+		{ _field_data, "vertices*" },
 		{ _field_terminator }
 	};
 

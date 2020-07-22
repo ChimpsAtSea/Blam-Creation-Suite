@@ -891,12 +891,45 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_STRUCT(scenario_structured_buffer_interop_reference)
+	{
+		{ _field_long_integer, "structured scenario interop index" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_long_integer, "unknown@" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(scenario_structured_buffer_interop_effect_dataref)
+	{
+		{ _field_data, "data" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(scenario_structured_buffer_interop_beam_dataref)
+	{
+		{ _field_data, "data" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(scenario_structured_buffer_interop_contrail_dataref)
+	{
+		{ _field_data, "data" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(scenario_structured_buffer_interop_light_volume_dataref)
+	{
+		{ _field_data, "data" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(scenario_structured_buffer_interops_block, 1)
 	{
-		{ _field_api_interop, "effect" },
-		{ _field_api_interop, "beam" },
-		{ _field_api_interop, "contrail" },
-		{ _field_api_interop, "light volume" },
+		{ _field_api_interop, "effect", &scenario_structured_buffer_interop_effect_dataref_struct_definition },
+		{ _field_api_interop, "beam", &scenario_structured_buffer_interop_beam_dataref_struct_definition },
+		{ _field_api_interop, "contrail", &scenario_structured_buffer_interop_contrail_dataref_struct_definition },
+		{ _field_api_interop, "light volume", &scenario_structured_buffer_interop_light_volume_dataref_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -1237,12 +1270,14 @@ namespace blofeld
 		{ _field_tag_reference, "performance throttles", &global_performance_throttles_reference },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_block, "scenario unknown object", &scenario_unknown_object_reference_block }, // #TODO: ai related?
+		{ _field_block, "scenario unknown object", &scenario_unknown_object_reference_block }, // #TODO: ai related? (see ObjectReferenceFrames in tagtool for more information)
 
 		{ _field_block, "ai objectives", &objectives_block_block },
 		{ _field_block, "designer zones", &scenario_designer_zone_block_block },
 		{ _field_block, "zone debugger!", &scenario_zone_debugger_block_definition_block },
 		{ _field_block, "decorators", &scenario_decorator_block_block },
+
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "neuticle palette", &scenario_cheap_particle_system_palette_block_block },
 		{ _field_block, "neuticles", &scenario_cheap_particle_systems_block_block },
 

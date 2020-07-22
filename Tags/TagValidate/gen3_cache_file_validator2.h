@@ -22,6 +22,9 @@ class c_gen3_cache_file_validator2
 		void traverse_tag_struct(s_tag_validation_data& validation_data, char* const data, const blofeld::s_tag_struct_definition& struct_definition);
 		void validate_tag_data(s_tag_validation_data& validation_data, char* const data, const char* field_name);
 		void validate_tag_block(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_block_definition& block_definition);
+		void traverse_tag_array(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_array_definition& array_definition);
+		void validate_tag_api_interop(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_struct_definition& struct_definition);
+		void validate_tag_pageable(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_struct_definition& struct_definition);
 		void validate_tag_struct(s_tag_validation_data& validation_data, char* data, const blofeld::s_tag_struct_definition& struct_definition);
 		void validate_tag_instances();
 private:

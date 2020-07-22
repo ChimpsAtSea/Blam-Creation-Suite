@@ -11,6 +11,14 @@ namespace blofeld
 	};
 	STRING_LIST(beam_system_output_kind, beam_system_output_kind_strings, _countof(beam_system_output_kind_strings));
 
+	TAG_STRUCT(beam_system_gpu_data_struct)
+	{
+		{ _field_block, "runtime gpu_property_block!", & gpu_property_block_block },
+		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block_block },
+		{ _field_block, "runtime gpu_colors_block!", &gpu_color_block_block },
+		{ _field_terminator }
+	};
+
 	TAG_STRUCT(beam_system_unknown_struct)
 	{
 		{ _field_char_integer, "input" },
@@ -64,6 +72,11 @@ namespace blofeld
 		{ _field_dword_integer, "runtime m_constantPerProfileProperties!" },
 		{ _field_dword_integer, "runtime m_usedStates!" },
 		{ _field_dword_integer, "runtime m_maxProfileCount!" },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "runtime m_gpuData!", &scenario_structured_buffer_interop_reference_struct_definition },
+			
+		{ _field_version_not_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
 
 		{ _field_terminator }

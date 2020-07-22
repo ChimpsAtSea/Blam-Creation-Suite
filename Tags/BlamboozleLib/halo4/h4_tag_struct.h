@@ -18,6 +18,9 @@ public:
 	const s_h4_tag_struct_definition* const struct_header;
 	uint32_t const size;
 	const char* const size_string;
+	uint32_t unknown;
+	uint32_t unknown_tag0;
+	uint32_t unknown_tag1;
 	std::vector<c_h4_tag_field*> tag_fields;
 	uint32_t offset;
 

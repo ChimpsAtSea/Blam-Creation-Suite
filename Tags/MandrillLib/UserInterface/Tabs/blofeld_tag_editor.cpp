@@ -1692,6 +1692,29 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		case blofeld::_field_api_interop:
 		{
 			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
+			s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(current_data_position);
+
+			if (current_field->struct_definition == nullptr)
+			{
+				ImGui::Text("ERROR API INTEROP STRUCT UNDEFINED");
+			}
+			else if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(&cache_file))
+			{
+				char* interop_data = gen3_cache_file->get_tag_interop_data(tag_interop);
+				if (interop_data)
+				{
+					render_tag_struct_definition(level + 1, interop_data, *current_field->struct_definition);
+				}
+				else
+				{
+					ImGui::Text("API INTEROP NULL");
+				}
+			}
+			else
+			{
+				ImGui::Text("API Interop Unsupported");
+			}
+
 			break;
 		}
 		}

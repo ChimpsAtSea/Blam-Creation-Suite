@@ -130,6 +130,12 @@ char* c_gen3_cache_file::get_tag_block_data(const s_tag_block& tag_block) const
 	return data;
 }
 
+char* c_gen3_cache_file::get_tag_interop_data(const s_tag_interop& tag_interop) const
+{
+	char* data = get_data_with_page_offset(tag_interop.descriptor);
+	return data;
+}
+
 const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const
 {
 	const char* string_id_str = string_ids_buffer + string_id_indices[index];

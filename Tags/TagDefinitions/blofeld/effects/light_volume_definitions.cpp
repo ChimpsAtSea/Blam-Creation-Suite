@@ -52,7 +52,13 @@ namespace blofeld
 		{ _field_dword_integer, "runtime m_constant_per_profile_properties!" },
 		{ _field_dword_integer, "runtime m_used_states!" },
 		{ _field_dword_integer, "runtime m_max_profile_count!" },
-		{ _field_struct, "runtime m_gpu_data!", &gpu_property_function_color_struct_struct_definition },
+
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "runtime m_gpuData!", &scenario_structured_buffer_interop_reference_struct_definition },
+
+		{ _field_version_not_equal, _engine_type_haloreach, 1 },
+		{ _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
+
 		{ _field_block, "precompiled vertices", &light_volume_precompiled_vert_block_block },
 		{ _field_terminator }
 	};

@@ -16,8 +16,8 @@ namespace blofeld
 		{ _field_block, "indices*", &polyartIndexBlock_block },
 		{ _field_block, "pc vertex buffers*", &vertexBuffersBlock_block },
 		{ _field_block, "pc index buffers*", &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop*" },
-		{ _field_api_interop, "index buffer interop*" },
+		{ _field_api_interop, "vertex buffer interop*", &polyartVertexBufferDescriptorStruct_struct_definition },
+		{ _field_api_interop, "index buffer interop*", &polyartIndexBufferDescriptorStruct_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -28,6 +28,19 @@ namespace blofeld
 		{ _field_real, "near z plane distance" },
 		{ _field_real, "far z plane distance" },
 		{ _field_real_point_3d, "camera position" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(polyartVertexBufferDescriptorStruct)
+	{
+		{ _field_data, "vertices*" },
+		{ _field_long_integer, "vertex type*" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(polyartIndexBufferDescriptorStruct)
+	{
+		{ _field_data, "index_data*" },
 		{ _field_terminator }
 	};
 

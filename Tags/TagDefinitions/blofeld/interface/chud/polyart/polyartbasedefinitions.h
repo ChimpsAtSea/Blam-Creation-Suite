@@ -18,5 +18,8 @@ namespace blofeld
 	extern c_versioned_string_list PolyartVertexFormatTypeEnum_strings;
 	extern s_string_list_definition PolyartVertexFormatTypeEnum;
 
+	extern s_tag_struct_definition polyartVertexBufferDescriptorStruct_struct_definition;
+	extern s_tag_struct_definition polyartIndexBufferDescriptorStruct_struct_definition;
+
 } // namespace blofeld
 

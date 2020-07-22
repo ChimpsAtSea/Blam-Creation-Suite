@@ -9,9 +9,17 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 	struct_header(struct_header),
 	size(struct_header->size),
 	size_string(h4_va_to_pointer(h4_data, struct_header->size_string_address)),
+	unknown(struct_header->unknown),
+	unknown_tag0(struct_header->unknown_tag0),
+	unknown_tag1(struct_header->unknown_tag1),
 	tag_fields(),
 	offset(offset)
 {
+	//ASSERT(alignment == 0);
+	if (unknown)
+	{
+		debug_point;
+	}
 	ASSERT(fields != nullptr);
 
 	const s_h4_tag_field_definition* field_definition = fields;

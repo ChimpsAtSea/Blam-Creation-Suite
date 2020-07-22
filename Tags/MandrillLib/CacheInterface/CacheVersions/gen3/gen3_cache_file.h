@@ -31,6 +31,7 @@ public:
 	bool is_valid_data_address(char* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const final;
+	virtual char* get_tag_interop_data(const s_tag_interop& tag_interop) const final;
 	virtual const char* get_string_id_by_index(uint32_t index) const final;
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const final;
 	virtual const char* get_tag_path(uint32_t tag_index) const final;
