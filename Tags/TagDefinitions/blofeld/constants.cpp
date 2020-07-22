@@ -541,7 +541,15 @@ namespace blofeld
 	c_constant k_maximum_instance_geometry_definitions_per_structure_bsp = { "k_maximum_instance_geometry_definitions_per_structure_bsp", 2048 };
 	c_constant k_maximum_interpolators_per_scenario = { "k_maximum_interpolators_per_scenario", 32 };
 	c_constant k_global_wave_templates_count = { "k_global_wave_templates_count", 128 };
-	c_constant k_language_count = { "k_language_count", 17 };
+	c_constant k_language_count =
+	{
+		"k_numberOfResourcePriorities",
+		{
+			{ _engine_type_not_set, 12 },
+			{ _engine_type_haloreach, 12 },
+			{ _engine_type_gen3_xbox360, 17 },
+		}
+	};
 	c_constant k_maximum_cells_per_squad = { "k_maximum_cells_per_squad", 10 };
 	c_constant k_maximum_palette_choices = { "k_maximum_palette_choices", 8 };
 	c_constant k_spawn_influencer_type_count = { "k_spawn_influencer_type_count", 16 };

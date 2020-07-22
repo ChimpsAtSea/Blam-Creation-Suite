@@ -282,9 +282,9 @@ namespace blofeld
 		{ _field_byte_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
-		//{ undefined ooga booga, "unknown" },
-		//{ undefined ooga booga, "unknown" },
-		//{ undefined ooga booga, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
 		{ _field_block, "unknown", &chdt_unknown_block_block },
 
 		{ _field_terminator }

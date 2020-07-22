@@ -252,30 +252,35 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 		{
 			if (memory_region_a_end > memory_region_b_start)
 			{
-				if (memory_region_a.struct_count > 1)
+				uint32_t overlap_bytes = static_cast<uint32_t>(memory_region_a_end - memory_region_b_start);
+				if (overlap_bytes != memory_region_a.struct_size)
 				{
-					uint32_t overlap_bytes = static_cast<uint32_t>(memory_region_a_end - memory_region_b_start);
-					uint32_t instance_overlap_bytes = overlap_bytes / memory_region_a.struct_count;
-					c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes, instance_overlap_bytes);
-				}
-				else
-				{
-					uint32_t overlap_bytes = static_cast<uint32_t>(memory_region_a_end - memory_region_b_start);
-					c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes);
+					if (memory_region_a.struct_count > 1)
+					{
+						uint32_t instance_overlap_bytes = overlap_bytes / memory_region_a.struct_count;
+						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes, instance_overlap_bytes);
+						error_count++;
+					}
+					else
+					{
+						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes);
+						error_count++;
+					}
 				}
 			}
 			else
 			{
+				uint32_t hole_bytes = static_cast<uint32_t>(memory_region_b_start - memory_region_a_end);
 				if (memory_region_a.struct_count > 1)
 				{
-					uint32_t hole_bytes = static_cast<uint32_t>(memory_region_b_start - memory_region_a_end);
 					uint32_t instance_hole_bytes = hole_bytes / memory_region_a.struct_count;
 					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes, instance_hole_bytes);
+					error_count++;
 				}
 				else
 				{
-					uint32_t hole_bytes = static_cast<uint32_t>(memory_region_b_start - memory_region_a_end);
 					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes);
+					error_count++;
 				}
 			}
 
@@ -283,7 +288,6 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 			{
 				c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
 			}
-			error_count++;
 			//if (error_count > 1000)
 			//{
 			//	c_console::write_line("too many errors exiting validation");
