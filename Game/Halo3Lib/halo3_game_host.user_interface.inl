@@ -48,7 +48,7 @@ FunctionHookEx<gui_screen_provider_offset, void* __fastcall (__int64, int)> gui_
 	switch (id)
 	{
 	// avoid a crash when selecting the `gui_screen_pregame_lobby_matchmaking` via the `main_menu_screen_widget`, should this be in `halo3_game_host.mainmenu.inl`?
-	case 0x100AC: break; // matchmaking
+	case 0x100AC: break; // `pregame_lobby_matchmaking`
 	default:
 		gui_screen = gui_screen_provider(manager, id);
 		break;
