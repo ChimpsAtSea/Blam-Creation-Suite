@@ -13,7 +13,9 @@ static c_halo3_test_command* g_halo3_test_command;
 /* ---------- private prototypes */
 /* ---------- public code */
 
+#include "halo3_game_host.camera.inl"
 #include "halo3_game_host.memory.inl"
+#include "halo3_game_host.scripting.inl"
 #include "halo3_game_host.mainmenu.inl"
 #include "halo3_game_host.shell.inl"
 #include "halo3_game_host.user_interface.inl"
@@ -95,6 +97,8 @@ void c_halo3_game_host::init_runtime_modifications(e_build build)
 	g_halo3_engine_state_command = new c_halo3_engine_state_command();
 	g_halo3_test_command = new c_halo3_test_command();
 
+	halo3_spawn_ai_with_scripts_and_effects.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
+	halo3_enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
 	g_use_30_tick = c_settings::read_boolean(_settings_section_game, "Use30Tick", false);
 	c_settings::write_boolean(_settings_section_game, "Use30Tick", g_use_30_tick);
 

@@ -76,5 +76,11 @@
     <None Include="halo3_game_host.game.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo3_game_host.camera.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="halo3_game_host.scripting.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -53,7 +53,7 @@ uintptr_t hs_syntax_data_offset(e_engine_type engine_type, e_build build)
 }
 hs_syntax_data_array*& g_hs_syntax_data = reference_symbol<hs_syntax_data_array*>("g_hs_syntax_data", hs_syntax_data_offset);
 
-std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type engine_type, e_build build)
+std::vector<uintptr_t> haloreach_spawn_ai_with_scripts_and_effects_offsets(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18076F581, 0x180730287);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18076E341, 0x18072F047);
@@ -70,7 +70,7 @@ std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type e
 	return {};
 }
 // Allows spawning AI via scripts or effects, props to Zeddikins
-c_multi_data_patch<spawn_ai_with_scripts_and_effects_offsets> spawn_ai_with_scripts_and_effects = { 
+c_multi_data_patch<haloreach_spawn_ai_with_scripts_and_effects_offsets> haloreach_spawn_ai_with_scripts_and_effects = { 
 	[](e_engine_type engine_type, e_build build, char* data[], DataPatchPackets& packets)
 	{
 		UINT8 jmp[1] = { 0xEB };

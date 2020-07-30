@@ -8,19 +8,19 @@
 /* ---------- private prototypes */
 /* ---------- public code */
 
-extern uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build);
-extern FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
+extern uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build);
+extern FunctionHookEx<haloreach_player_mapping_get_local_player_offset, int __stdcall ()> haloreach_player_mapping_get_local_player;
 
-extern uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build);
-extern FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> observer_try_and_get_camera;
+extern uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build);
+extern FunctionHookEx<haloreach_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> haloreach_observer_try_and_get_camera;
 
 void haloreach_debug_save_camera()
 {
-	if (!player_mapping_get_local_player.is_hooked()) return;
-	if (!observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
 
-	int local_player = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(local_player);
+	int local_player = haloreach_player_mapping_get_local_player();
+	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(local_player);
 
 	FILE* stream = fopen("camera.txt", "w");
 	if (stream)
@@ -37,12 +37,12 @@ void haloreach_debug_save_camera()
 
 void haloreach_debug_load_camera()
 {
-	if (!player_mapping_get_local_player.is_hooked()) return;
-	if (!observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
 
 
-	int local_player = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(local_player);
+	int local_player = haloreach_player_mapping_get_local_player();
+	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(local_player);
 
 	FILE* stream = fopen("camera.txt", "r");
 	if (stream)

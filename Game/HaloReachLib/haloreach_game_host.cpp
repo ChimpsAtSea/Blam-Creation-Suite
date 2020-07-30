@@ -94,10 +94,10 @@ void c_haloreach_game_host::init_runtime_modifications(e_build build)
 	g_haloreach_engine_state_command = new c_haloreach_engine_state_command();
 	g_haloreach_camera_command = new c_haloreach_camera_command();
 
-	//player_mapping_get_local_player
-	spawn_ai_with_scripts_and_effects.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
+	//haloreach_player_mapping_get_local_player
+	haloreach_spawn_ai_with_scripts_and_effects.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
 	allow_night_vision_in_multiplayer.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
-	enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
+	haloreach_enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
 
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_haloreach, build);
@@ -120,11 +120,11 @@ void c_haloreach_game_host::deinit_runtime_modifications(e_build build)
 
 void c_haloreach_game_host::update_camera_data()
 {
-	if (!player_mapping_get_local_player.is_hooked()) return;
-	if (!observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
 
-	int player_index = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(player_index);
+	int player_index = haloreach_player_mapping_get_local_player();
+	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(player_index);
 	if (observer_camera)
 	{
 		float aspect_ratio = current_host->window.get_aspect_ratio();
@@ -190,12 +190,12 @@ void c_haloreach_game_host::draw_camera_debug_ui()
 	// Main body of the Demo window starts here.
 	if (ImGui::Begin("Camera Debug", &g_is_reach_camera_debug_window_open, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
 	{
-		if (!player_mapping_get_local_player.is_hooked()) ImGui::Text("player_mapping_get_local_player is not hooked");
-		else if (!observer_try_and_get_camera.is_hooked()) ImGui::Text("observer_try_and_get_camera is not hooked");
+		if (!haloreach_player_mapping_get_local_player.is_hooked()) ImGui::Text("haloreach_player_mapping_get_local_player is not hooked");
+		else if (!haloreach_observer_try_and_get_camera.is_hooked()) ImGui::Text("haloreach_observer_try_and_get_camera is not hooked");
 		else
 		{
-			int player_index = player_mapping_get_local_player();
-			s_observer_camera* observer_camera = observer_try_and_get_camera(player_index);
+			int player_index = haloreach_player_mapping_get_local_player();
+			s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(player_index);
 
 			if (observer_camera)
 			{

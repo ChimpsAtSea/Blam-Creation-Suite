@@ -1,5 +1,5 @@
 ﻿
-uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x1805C10B0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x180366030);
@@ -90,19 +90,19 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			c_console::write_line_verbose("ketchup> SUCCEED: player_mapping_get_local_player_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: haloreach_player_mapping_get_local_player_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			c_console::write_line_verbose("ketchup> FAILURE: player_mapping_get_local_player_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: haloreach_player_mapping_get_local_player_offset");
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
+FunctionHookEx<haloreach_player_mapping_get_local_player_offset, int __stdcall ()> haloreach_player_mapping_get_local_player;
 
-uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180624D10);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1804DA0C0);
@@ -189,19 +189,19 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			c_console::write_line_verbose("ketchup> SUCCEED: observer_try_and_get_camera_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: haloreach_observer_try_and_get_camera_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			c_console::write_line_verbose("ketchup> FAILURE: observer_try_and_get_camera_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: haloreach_observer_try_and_get_camera_offset");
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
+FunctionHookEx<haloreach_observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> haloreach_observer_try_and_get_camera;
 
-std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine_type, e_build build)
+std::vector<uintptr_t> haloreach_enable_debug_hud_coordinates_offsets(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x1800DCA8A, 0x1800DCA97);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x1800DDF7A, 0x1800DDF87);
@@ -217,7 +217,7 @@ std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine
 	return {};
 }
 // Enable debug hud coordinates
-c_multi_data_patch<enable_debug_hud_coordinates_offsets> enable_debug_hud_coordinates = {
+c_multi_data_patch<haloreach_enable_debug_hud_coordinates_offsets> haloreach_enable_debug_hud_coordinates = {
 	[](e_engine_type engine_type, e_build build, char *data[], DataPatchPackets &packets)
 	{
 		packets.push_back(MAKE_DATAPATCHPACKET(data[0], 6));
