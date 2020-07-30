@@ -91,7 +91,7 @@ std::vector<uint8_t> external_launch_timeout_patch_bytes(e_engine_type engine_ty
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0xE9, 0x31, 0x01, 0x00, 0x00, 0x90);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0xE9, 0xB3, 0x00, 0x00, 0x00, 0x90);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0xE9, 0xB3, 0x00, 0x00, 0x00, 0x90);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0xE9, 0xB3, 0x00, 0x00, 0x00, 0x90);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0xE9, 0xB3, 0x00, 0x00, 0x00, 0x90);
 	return { };
 }
 c_data_patch<external_launch_timeout_patch_offset> external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
