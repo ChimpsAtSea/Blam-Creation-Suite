@@ -16,6 +16,7 @@ uintptr_t game_time_get_ticks_per_second_constant_offset(e_engine_type engine_ty
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180469ED0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180467DE0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180467ED0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180467ED0);
 	return ~uintptr_t();
 }
 FunctionHookEx<game_time_get_ticks_per_second_constant_offset, float __stdcall()> game_time_get_ticks_per_second_constant = { "game_time_get_ticks_per_second_constant", []()
@@ -28,7 +29,11 @@ FunctionHookEx<game_time_get_ticks_per_second_constant_offset, float __stdcall()
 		if (is_valid(k_physical_base) && k_physical_base)
 		{
 			// #TODO: confirm `engine_time_tick` and `time_per_tick` have the same offset from `k_physical_base`
-			if (c_halo3_game_host::get_game_runtime().get_build() == _build_mcc_1_1698_0_0)
+			e_build build = c_halo3_game_host::get_game_runtime().get_build();
+			switch (build)
+			{
+			case _build_mcc_1_1698_0_0:
+			case _build_mcc_1_1716_0_0:
 			{
 				unsigned long& engine_time_tick = *reinterpret_cast<unsigned long*>(k_physical_base + 0x3F0148);
 				float& time_per_tick = *reinterpret_cast<float*>(k_physical_base + 0x3F014C);
@@ -41,6 +46,8 @@ FunctionHookEx<game_time_get_ticks_per_second_constant_offset, float __stdcall()
 					time_per_tick = 1.0f / engine_time_tick;
 					//debug_point;
 				}
+				break;
+			}
 			}
 		}
 	}

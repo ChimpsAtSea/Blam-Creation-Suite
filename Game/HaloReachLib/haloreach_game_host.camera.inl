@@ -1,6 +1,25 @@
 ﻿
 uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build)
 {
+	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x1805C10B0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x180366030);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x180190190);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x180072F20);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x180073460);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x18006FDF0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18006FDF0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18006FE30);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x1800711A0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180071180);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180071180);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180071180);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180071180);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180071180);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800712E0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800712E0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800712E0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180071C90);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x180071C90);
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -79,30 +98,31 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 			c_console::write_line_verbose("ketchup> FAILURE: player_mapping_get_local_player_offset");
 		}
 	}
-	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x1805C10B0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x180366030);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x180190190);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x180072F20);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x180073460);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x18006FDF0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18006FDF0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18006FE30);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x1800711A0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180071180);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180071180);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180071180);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180071180);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180071180);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800712E0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800712E0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800712E0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180071C90);
 	return ~uintptr_t();
 }
 FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
 
 uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
 {
+	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180624D10);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1804DA0C0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x18029B840);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x1800E6110);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x1800E66A0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x1800E2FA0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x1800E2FA0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x1800E3050);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x1800E4580);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x1800E4560);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x1800E4560);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x1800E4560);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x1800E4560);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1800E4560);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800E46C0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800E46C0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800E46C0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800E5FA0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1800E5FA0);
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -177,24 +197,6 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 			c_console::write_line_verbose("ketchup> FAILURE: observer_try_and_get_camera_offset");
 		}
 	}
-	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180624D10);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1804DA0C0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x18029B840);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x1800E6110);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x1800E66A0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x1800E2FA0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x1800E2FA0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x1800E3050);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x1800E4580);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x1800E4560);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x1800E4560);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x1800E4560);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x1800E4560);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1800E4560);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x1800E46C0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800E46C0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800E46C0);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800E5FA0);
 	return ~uintptr_t();
 }
 FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
@@ -211,6 +213,7 @@ std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1800DE0DA, 0x1800DE0E7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1800DE0DA, 0x1800DE0E7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800DF9EA, 0x1800DF9F7);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1800DF9EA, 0x1800DF9F7);
 	return {};
 }
 // Enable debug hud coordinates

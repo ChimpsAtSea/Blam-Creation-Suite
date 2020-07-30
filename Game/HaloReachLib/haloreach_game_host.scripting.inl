@@ -66,6 +66,7 @@ std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type e
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x18077A971, 0x18073B657);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x18077A971, 0x18073B657);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x18077C531, 0x18073D217);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x18077C531, 0x18073D217);
 	return {};
 }
 // Allows spawning AI via scripts or effects, props to Zeddikins
@@ -94,6 +95,7 @@ uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1805E2AC7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1805E2AC7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1805E4687);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1805E4687);
 	return ~uintptr_t();
 }
 // Allow the use of night vision in multiplayer, props to Zeddikins
@@ -149,6 +151,7 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x180AB4850);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x180AB4840);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180AC7890);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x180AC7890);
 	return ~uintptr_t();
 }
 hs_script_op* (&hs_function_table)[] = reference_symbol<hs_script_op*[]>("hs_function_table", hs_function_table_offset);
@@ -173,6 +176,7 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1801F17D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1801F17D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1801F3110);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1801F3110);
 	return ~uintptr_t();
 }
 
@@ -199,6 +203,7 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1801F0F40);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1801F0F40);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1801F2880);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1801F2880);
 	return ~uintptr_t();
 }
 FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
@@ -236,6 +241,7 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x1801EF0C0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x1801EF0C0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1801F0A00);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1801F0A00);
 	return ~uintptr_t();
 }
 FunctionHookEx<hs_inspect_str_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> hs_inspect_str;
