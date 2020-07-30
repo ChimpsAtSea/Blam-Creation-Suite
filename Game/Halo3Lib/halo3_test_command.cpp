@@ -10,6 +10,7 @@
 void print_mainmenu_ui_globals_test_command();
 void first_person_weapon_offset_test_command();
 void use_30_tick_test_command();
+extern void network_message_types_test_command();
 
 /* ---------- public code */
 
@@ -47,6 +48,10 @@ bool c_halo3_test_command::execute_command(const std::vector<std::string>& argum
 			{
 				use_30_tick_test_command();
 			}
+			else if (!arg1.compare("network_message_types"))
+			{
+				network_message_types_test_command();
+			}
 		}
 		else return false;
 	}
@@ -66,6 +71,7 @@ std::string c_halo3_test_command::get_command_info(const std::string& topic) con
 				"\tprint_mainmenu_ui_globals\n";
 				"\tfirst_person_weapon_offset\n";
 				"\tuse_30_tick\n";
+				"\tnetwork_message_types\n";
 		}
 	}
 	return "";
@@ -86,6 +92,10 @@ std::string c_halo3_test_command::get_command_auto_complete(const std::vector<st
 		else if (!Arguments[1].compare("u"))
 		{
 			return "use_30_tick";
+		}
+		else if (!Arguments[1].compare("n"))
+		{
+			return "network_message_types";
 		}
 	}
 
