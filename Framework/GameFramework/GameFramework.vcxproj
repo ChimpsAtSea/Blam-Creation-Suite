@@ -179,6 +179,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MCC\player_configuration.cpp" />
     <ClCompile Include="Presense\discord_presense_api.cpp" />
     <ClCompile Include="MCC\map_id.cpp" />
     <ClCompile Include="Presense\presense_api.cpp" />

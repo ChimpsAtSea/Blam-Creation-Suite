@@ -96,6 +96,9 @@
     <ClCompile Include="Presense\discord_presense_api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MCC\player_configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h">
