@@ -590,6 +590,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	}
 
 	load_player_configuration_from_file(**player_configuration, build, engine_type);
+	(**player_configuration).waiting_on_file_save = true;
 
 	return true;
 }
@@ -615,5 +616,6 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 	if (player_configuration.waiting_on_file_save)
 	{
 		save_player_configuration_to_file(player_configuration);
+		player_configuration.waiting_on_file_save = false;
 	}
 }
