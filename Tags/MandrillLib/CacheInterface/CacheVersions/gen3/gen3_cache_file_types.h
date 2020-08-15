@@ -77,7 +77,7 @@ namespace gen3
 		unsigned long string_table_indices_offset;
 		unsigned long string_table_offset;
 
-		gen3::e_cache_file_flags unknown_bits = {};
+		gen3::e_cache_file_flags flags = {};
 
 		time64_t timestamp;
 		time64_t scenario_type_timestamps[4];

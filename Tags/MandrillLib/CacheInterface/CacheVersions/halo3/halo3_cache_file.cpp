@@ -66,7 +66,7 @@ uint64_t c_halo3_cache_file::convert_page_offset(uint32_t page_offset) const
 {
 	return (static_cast<uint64_t>(page_offset) * 4ull) - get_base_virtual_address();
 
-	//if (halo3_cache_file_header.unknown_bits & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
+	//if (halo3_cache_file_header.flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
 	//{
 	//	return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - 0x10000000ull);
 	//}
