@@ -8,8 +8,8 @@ public:
 	virtual LPCWSTR GetDescription() = 0;
 	virtual LPCWSTR SetName(LPCWSTR) = 0;
 	virtual LPCWSTR SetDescription(LPCWSTR) = 0;
-	virtual void Function5() = 0;
-	virtual void Function6() = 0;
-	virtual void Function7() = 0;
-	virtual bool CreateFileFromBuffer(LPVOID, size_t *) = 0;
+	virtual bool GetCreationInfo(LPVOID) = 0;
+	virtual bool SetCreationInfo(LPVOID) = 0;
+	virtual LPVOID CopyToGameContext(class GameContext*) = 0;
+	virtual bool CreateFileFromBuffer(LPVOID, size_t*) = 0;
 };
