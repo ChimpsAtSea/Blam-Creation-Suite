@@ -366,7 +366,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		build = c_halo1_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo1_game_host(engine_type, build);
 		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-		c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
 		break;
 	case _engine_type_halo2:
 		build = c_halo2_game_host::get_game_runtime().get_build();
@@ -377,14 +377,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	case _engine_type_halo3:
 		build = c_halo3_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo3_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "00_sandbox-0_010";
-		c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
 		break;
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
 		current_game_host = new c_groundhog_game_host(engine_type, build);
-
-		// commented out `start_as_forge_mode` checkbox due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
 		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
 		break;
@@ -624,17 +622,57 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 		ImGui::EndCombo();
 	}
 
-	if (map_id_to_engine_type(map_id_ref) == _mcc_game_mode_campaign)
+	e_engine_type engine_type = map_id_to_engine_type(map_id_ref);
+	e_mcc_game_mode game_mode = map_id_to_game_mode(map_id_ref);
+
+	if (engine_type != _engine_type_groundhog)
 	{
-		ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
-		ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
-		c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+		if (game_mode == _mcc_game_mode_campaign || game_mode == _mcc_game_mode_firefight)
+		{
+			LPCSTR campaign_difficulty_current = campaign_difficulty_level_to_local_string(g_campaign_difficulty_level);
+			if (ImGui::BeginCombo("###DIFFICULTY", campaign_difficulty_current))
+			{
+				for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
+				{
+					LPCSTR campaign_difficulty = campaign_difficulty_level_to_local_string(difficulty);
+					if (campaign_difficulty)
+					{
+						bool selected = campaign_difficulty == campaign_difficulty_current;
+						if (ImGui::Selectable(campaign_difficulty, &selected))
+						{
+							g_campaign_difficulty_level = static_cast<e_campaign_difficulty_level>(difficulty);
+							c_settings::write_string(_settings_section_launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_campaign_difficulty_level));
+						}
+					}
+				}
+
+				ImGui::EndCombo();
+			}
+		}
 	}
 
-	if (map_id_to_engine_type(map_id_ref) == _mcc_game_mode_multiplayer)
+	if (game_mode == _mcc_game_mode_campaign)
 	{
-		// commented out due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
-		//ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
+		switch (engine_type)
+		{
+		case _engine_type_halo1:
+		case _engine_type_halo2:
+			ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+			ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+			break;
+		}
+	}
+
+	if (game_mode == _mcc_game_mode_multiplayer)
+	{
+		switch (engine_type)
+		{
+		case _engine_type_halo3:
+		case _engine_type_halo4:
+		case _engine_type_groundhog:
+			ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
+			break;
+		}
 	}
 }
 #endif
@@ -875,29 +913,8 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	ASSERT(engine_type != _engine_type_not_set);
 	ASSERT(is_valid(file_name));
 
-	char* game_context_variant_buffer = nullptr;
-	size_t variant_buffer_size = 0;
-
-	std::vector<std::string> files;
-	variant_files_get(engine_type, variant_type, files);
-
-	switch (variant_type)
-	{
-	case _variant_type_game:
-		game_context_variant_buffer = game_context->game_variant_buffer;
-		variant_buffer_size = k_game_variant_buffer_size;
-		break;
-	case _variant_type_map:
-		game_context_variant_buffer = game_context->map_variant_buffer;
-		variant_buffer_size = k_map_variant_buffer_size;
-		break;
-	default:
-		return false;
-	}
-	memset(game_context_variant_buffer, 0, variant_buffer_size);
-
 	std::string selected;
-	for (std::string file : files)
+	for (std::string file : variant_files_get(engine_type, variant_type))
 	{
 		if (!(*file_name) || strstr(file.c_str(), file_name) == 0)
 			continue;
@@ -907,62 +924,37 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* variant_data = nullptr;
 	size_t variant_data_size = 0;
+	IVariantAccessorBase* variant_accessor_base = nullptr;
 
-	char* variant_buffer = nullptr;
-
-	if (selected.empty() || !PathFileExistsA(selected.c_str()) || strstr(selected.c_str(), "/.") != 0)
+	if ((!selected.empty() || PathFileExistsA(selected.c_str())) && filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size) && variant_data_size)
 	{
-		if (!selected.empty())
-		{
-			c_console::write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
-		}
-
-		variant_data = new char[variant_buffer_size];
-		memset(variant_data, 0, variant_buffer_size);
 		switch (variant_type)
 		{
 		case _variant_type_game:
-			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
+			variant_accessor_base = data_access->GameVariantCreateFromFile(variant_data, variant_data_size);
 			break;
 		case _variant_type_map:
-			variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
+			variant_accessor_base = data_access->MapVariantCreateFromFile(variant_data, variant_data_size);
 			break;
-		default:
-			return false;
 		}
-
-		memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
-		delete[] variant_data;
-
-		return true;
 	}
-
-	if (!filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
+	else
 	{
-		c_console::write_line_verbose("Failed to open variant file");
-		return false;
-	}
-	if (variant_data_size == 0)
-	{
-		c_console::write_line_verbose("Variant file was zero sized");
-		return false;
+		c_console::write_line_verbose("Failed to open variant file '%s'", (variant_data_size == 0 ? "variant file was zero sized" : "variant file was not found"));
+
+		switch (variant_type)
+		{
+		case _variant_type_game:
+			variant_accessor_base = data_access->GameVariantCreateDefault(variant_data);
+			break;
+		case _variant_type_map:
+			c_console::write_line_verbose("Creating default variant for '%s'", get_enum_string<const char*, true>(static_cast<e_map_id>(game_context->map_id)));
+			variant_accessor_base = data_access->MapVariantCreateFromMapID(game_context->map_id);
+			break;
+		}
 	}
 
-	switch (variant_type)
-	{
-	case _variant_type_game:
-		variant_buffer = data_access->GameVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
-		break;
-	case _variant_type_map:
-		variant_buffer = data_access->MapVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
-		break;
-	default:
-		return false;
-	}
-
-	size_t variant_size = variant_data_size;
-	variant_size = (variant_size < variant_buffer_size ? variant_size : variant_buffer_size);
-	memcpy(game_context_variant_buffer, variant_buffer, variant_size);
+	variant_accessor_base->CopyToGameContext(game_context);
 	if (is_valid(variant_data))
 	{
 		delete[] variant_data;
@@ -997,10 +989,11 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	return false;
 };
 
-bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_type variant_type, std::vector<std::string>& files)
+std::vector<std::string>& c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_type variant_type)
 {
-	if (!is_valid(files))
-		return false;
+	static std::vector<std::string> files;
+
+	files.clear();
 
 	const char* type_name = "";
 	const char* type_nice_name = "";
@@ -1020,7 +1013,7 @@ bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_typ
 		type_extension = ".mvar";
 		break;
 	default:
-		return false;
+		return files;
 	}
 
 	LPCSTR user_profile_path = get_user_profile_environment_variable();
@@ -1048,5 +1041,5 @@ bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_typ
 		}
 	}
 
-	return true;
+	return files;
 }
