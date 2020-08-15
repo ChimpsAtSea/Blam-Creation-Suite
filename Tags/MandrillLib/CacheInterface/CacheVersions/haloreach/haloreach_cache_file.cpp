@@ -3,11 +3,17 @@
 using namespace gen3;
 using namespace haloreach;
 
-c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath) :
+c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath, long file_version) :
 	c_gen3_cache_file(map_filepath, _engine_type_haloreach, _platform_type_pc),
 	haloreach_cache_file_header(*static_cast<haloreach::s_cache_file_header*>(&cache_file_header)),
 	haloreach_cache_file_tags_header(nullptr)
 {
+	// This check is to prevent a crash with version 13 as the structure of `s_cache_file_header` has changed
+	if (file_version == ~long() || file_version == 13)
+	{
+		return;
+	}
+
 	char* map_data = virtual_memory_container.get_data();
 
 	const s_section_cache& debug_section = get_section(gen3::_cache_file_section_index_debug);

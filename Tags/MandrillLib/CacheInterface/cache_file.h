@@ -8,7 +8,7 @@ public:
 	friend class c_tag_interface;
 	friend class c_tag_group_interface;
 
-	static e_engine_type get_cache_file_engine_type(const wchar_t* filepath);
+	static e_engine_type get_cache_file_engine_type(const wchar_t* filepath, long* file_version);
 	static c_cache_file* create_cache_file(const std::wstring& map_filepath);
 
 protected:

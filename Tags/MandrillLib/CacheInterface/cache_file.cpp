@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
+e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, long* file_version)
 {
 	FILE* file_handle = _wfopen(filepath, L"rb");
 	if (file_handle == nullptr)
@@ -10,14 +10,14 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 
 	_fseeki64(file_handle, 0, SEEK_SET);
 
-	uint32_t header_value;
-	if (!filesystem_read_from_file_handle(file_handle, &header_value, sizeof(header_value)))
+	blamlib::s_cache_file_header header;
+	if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header)))
 	{
 		return _engine_type_not_set; // likely an empty file
 	}
 
 	e_engine_type engine_type = _engine_type_not_set;
-	if (header_value == 'head' || header_value == 'daeh')
+	if (header.header_signature == 'head' || header.header_signature == 'daeh')
 	{
 		uint32_t footer_search_value;
 		do
@@ -56,9 +56,12 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 		default:
 			DEBUG_FATAL_ERROR(L"Unknown map type");
 		}
+
+		*file_version = header.file_version;
 	}
 	else
 	{
+		*file_version = -1;
 		// #TODO: Attempt to identify as a Halo 1 file format
 		if (wcscmp_ic(filepath, L".map") == 0)
 		{
@@ -82,11 +85,12 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 		}
 	}
 
-	e_engine_type engine_type = get_cache_file_engine_type(map_filepath.c_str());
+	long file_version = ~long();
+	e_engine_type engine_type = get_cache_file_engine_type(map_filepath.c_str(), &file_version);
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_cache_file(map_filepath);
+		return new c_haloreach_cache_file(map_filepath, file_version);
 	case _engine_type_halo1:
 		return new c_halo1_cache_file(map_filepath);
 	case _engine_type_halo2:
