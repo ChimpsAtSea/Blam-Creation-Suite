@@ -176,6 +176,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	s_window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
+	c_debug_gui::register_callback(_callback_mode_toggleable, render_pause_menu);
 
 	s_window->on_destroy.register_callback(window_destroy_callback);
 
@@ -203,6 +204,7 @@ void c_game_launcher::deinit_game_launcher()
 	s_window->on_destroy.unregister_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
+	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_pause_menu);
 	s_window->on_window_procedure.unregister_callback(window_procedure);
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::deinit();
@@ -773,118 +775,144 @@ void c_game_launcher::render_main_menu()
 
 void c_game_launcher::render_pause_menu()
 {
-	s_mouse_input->set_mode(_mouse_mode_ui);
+	if (!s_is_game_running) return;
+
+	static bool is_paused = false;
+	while (!is_paused && GetKeyState(VK_ESCAPE) & 0x80)
+	{
+		Sleep(1);
+
+		goto next;
+	}
+	if (!is_paused) return;
+
+next:
+	if (is_paused) s_mouse_input->set_mode(_mouse_mode_ui);
+
+	static IGameEngine* game_engine = current_game_host->get_game_engine();
+	if (!game_engine) return;
 
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
-
+	
 	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(imgui_window_offset, ImGuiCond_Always);
 
-	static bool is_window_open = true;
-	constexpr ImGuiWindowFlags window_flags = 0
-		| ImGuiWindowFlags_MenuBar
-		| ImGuiWindowFlags_NoCollapse
-		| ImGuiWindowFlags_NoTitleBar
-		| ImGuiWindowFlags_NoMove
-		| ImGuiWindowFlags_NoResize
-		| ImGuiWindowFlags_NoSavedSettings;
-	//| ImGuiWindowFlags_AlwaysAutoResize;
+	constexpr ImGuiWindowFlags window_flags =
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoSavedSettings;
 
 	static ImVec2 const grid_button_size = ImVec2((width / 1.5f) / 5, (height / 1.5f) / 16);
 
-	if (!ImGui::Begin("PAUSE MENU", &is_window_open, window_flags))
+	if (!ImGui::Begin("PAUSE MENU", nullptr, window_flags))
 	{
 		// Early out if the window is collapsed, as an optimization.
 		ImGui::End();
 		return;
 	}
 
-	static bool isPaused = false;
-
-	while (!isPaused && GetKeyState(VK_ESCAPE) & 0x80)
+	if (!is_paused)
 	{
-		Sleep(1);
+		game_engine->update_engine_state(_engine_state_pause);
+
+		is_paused = true;
 	}
 
-	//if (s_pHaloReachEngine)
-	//{
-	//	if (!isPaused)
-	//	{
-	//		s_pHaloReachEngine->update_engine_state(_engine_state_pause);
-	//		isPaused = true;
-	//	}
+	if (ImGui::Button("RETURN TO GAME", grid_button_size))
+	{
+		is_paused = false;
+	}
 
-	//	if (ImGui::Button("RETURN TO GAME", grid_button_size) || GetKeyState(VK_ESCAPE) & 0x80)
-	//	{
-	//		isPaused = false;
-	//	}
+	static e_mcc_game_mode game_mode = _mcc_game_mode_none;
+	switch (current_game_host->engine_type)
+	{
+	case _engine_type_haloreach:
+		game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
+		break;
+	case _engine_type_halo1:
+		game_mode = map_id_to_game_mode(g_halo1_map_id);
+		break;
+	case _engine_type_halo2:
+		game_mode = map_id_to_game_mode(g_halo2_map_id);
+		break;
+	case _engine_type_halo3:
+		game_mode = map_id_to_game_mode(g_halo3_map_id);
+		break;
+	case _engine_type_halo3odst:
+		game_mode = map_id_to_game_mode(g_halo3odst_map_id);
+		break;
+	case _engine_type_halo4:
+		game_mode = map_id_to_game_mode(g_halo4_map_id);
+		break;
+	case _engine_type_groundhog:
+		game_mode = map_id_to_game_mode(g_groundhog_map_id);
+		break;
+	}
 
-	//	if (s_currentGameMode == GameMode::GameMode::Campaign)
-	//	{
-	//		if (ImGui::Button("REVERT TO LAST SAVE", grid_button_size))
-	//		{
-	//			s_pHaloReachEngine->update_engine_state(_engine_state_restart_checkpoint);
-	//			isPaused = false;
-	//		}
-	//	}
+	if (game_mode == _mcc_game_mode_campaign)
+	{
+		if (ImGui::Button("REVERT TO LAST SAVE", grid_button_size))
+		{
+			game_engine->update_engine_state(_engine_state_restart_checkpoint);
+			is_paused = false;
+		}
+	}
 
-	//	if (s_currentGameMode == GameMode::GameMode::Multiplayer || s_currentGameMode == GameMode::GameMode::Survival)
-	//	{
-	//		if (ImGui::Button("END ROUND", grid_button_size))
-	//		{
-	//			s_pHaloReachEngine->update_engine_state(_engine_state_round_end);
-	//			isPaused = false;
-	//		}
-	//	}
+	if (game_mode == _mcc_game_mode_multiplayer || game_mode == _mcc_game_mode_firefight)
+	{
+		if (ImGui::Button("END ROUND", grid_button_size))
+		{
+			game_engine->update_engine_state(_engine_state_round_end);
+			is_paused = false;
+		}
+	}
 
-	//	if (s_currentGameMode == GameMode::GameMode::Campaign || s_currentGameMode == GameMode::GameMode::Survival)
-	//	{
-	//		if (ImGui::Button("RESTART GAME", grid_button_size))
-	//		{
-	//			s_pHaloReachEngine->update_engine_state(_engine_state_restart_level);
-	//			isPaused = false;
-	//		}
-	//	}
+	if (game_mode == _mcc_game_mode_campaign || game_mode == _mcc_game_mode_firefight)
+	{
+		if (ImGui::Button("RESTART GAME", grid_button_size))
+		{
+			game_engine->update_engine_state(_engine_state_restart_level);
+			is_paused = false;
+		}
+	}
 
-	//	if (ImGui::Button("RETURN TO MAINMENU", grid_button_size))
-	//	{
-	//		s_pHaloReachEngine->update_engine_state(_engine_state_game_end);
-	//		isPaused = false;
-	//	}
+	if (ImGui::Button("RETURN TO MAINMENU", grid_button_size))
+	{
+		game_engine->update_engine_state(_engine_state_game_end);
+		is_paused = false;
+	}
 
-	//	if (!isPaused)
-	//	{
-	//		s_pHaloReachEngine->update_engine_state(_engine_state_unpause);
-	//		DebugUI::UnregisterCallback(LegacyGameLauncher::DrawPauseMenu);
-	//		MouseInput::SetMode(MouseMode::Exclusive);
-	//		DebugUI::Hide();
-	//	}
-	//}
+	if (!is_paused)
+	{
+		game_engine->update_engine_state(_engine_state_unpause);
+		s_mouse_input->set_mode(_mouse_mode_exclusive);
+	}
 
-	//ImVec2 mouseSensitivity = MouseInput::GetSensitivity();
-	//static float MouseSensitivityX = mouseSensitivity.x;
-	//static float MouseSensitivityY = mouseSensitivity.y;
+	static ImVec2 mouse_sensitivity = {};
+	mouse_sensitivity = s_mouse_input->get_sensitivity();
 
-	//if (ImGui::InputFloat("Mouse Sensitivity X", &MouseSensitivityX, 0.01f, 0.1f, "%.3f"))
-	//{
-	//	if (MouseSensitivityX > 1.0f) MouseSensitivityX = 1.0f;
-	//	if (MouseSensitivityX < 0.0f) MouseSensitivityX = 0.0f;
-	//}
+	if (ImGui::InputFloat("Mouse Sensitivity X", &mouse_sensitivity.x, 0.01f, 0.1f, "%.3f"))
+	{
+		if (mouse_sensitivity.x > 1.0f) mouse_sensitivity.x = 1.0f;
+		if (mouse_sensitivity.x < 0.0f) mouse_sensitivity.x = 0.0f;
+	}
 
-	//if (ImGui::InputFloat("Mouse Sensitivity Y", &MouseSensitivityY, 0.01f, 0.1f, "%.3f"))
-	//{
-	//	if (MouseSensitivityY > 1.0f) MouseSensitivityY = 1.0f;
-	//	if (MouseSensitivityY < 0.0f) MouseSensitivityY = 0.0f;
-	//}
+	if (ImGui::InputFloat("Mouse Sensitivity Y", &mouse_sensitivity.y, 0.01f, 0.1f, "%.3f"))
+	{
+		if (mouse_sensitivity.y > 1.0f) mouse_sensitivity.y = 1.0f;
+		if (mouse_sensitivity.y < 0.0f) mouse_sensitivity.y = 0.0f;
+	}
 
-	//if (MouseSensitivityX != mouseSensitivity.x || MouseSensitivityY != mouseSensitivity.y)
-	//{
-	//	MouseInput::SetSensitivity(MouseSensitivityX, MouseSensitivityY);
-	//}
+	if (mouse_sensitivity.x != mouse_sensitivity.x || mouse_sensitivity.y != mouse_sensitivity.y)
+	{
+		s_mouse_input->set_sensitivity(mouse_sensitivity.x, mouse_sensitivity.y);
+	}
 
 	ImGui::End();
 }
