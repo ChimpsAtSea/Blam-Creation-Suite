@@ -5,7 +5,7 @@ class c_haloreach_cache_file :
 {
 	friend c_cache_file;
 protected:
-	c_haloreach_cache_file(const std::wstring& map_filepath);
+	c_haloreach_cache_file(const std::wstring& map_filepath, long file_version);
 	virtual ~c_haloreach_cache_file();
 
 public:

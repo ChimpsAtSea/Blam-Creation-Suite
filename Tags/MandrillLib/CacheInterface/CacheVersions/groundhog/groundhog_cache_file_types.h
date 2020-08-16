@@ -36,7 +36,7 @@ namespace groundhog
 		uint32_t string_id_indices_offset = 0;
 		uint32_t string_ids_buffer_offset = 0;
 
-		gen3::e_cache_file_flags unknown_bits = {};
+		gen3::e_cache_file_flags flags = {};
 
 		uint64_t timestamp = 0;
 		uint64_t mainmenu_timestamp = 0;
