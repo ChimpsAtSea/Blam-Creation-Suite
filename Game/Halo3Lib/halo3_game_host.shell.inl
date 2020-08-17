@@ -1,6 +1,6 @@
 
 #pragma region Shell Debug
-uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_shell_get_external_host_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180014120);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18000E3C0);
@@ -8,10 +8,10 @@ uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x18000E480);
 	return ~uintptr_t();
 }
-FunctionHookEx<shell_get_external_host_offset, void* __fastcall(void)> shell_get_external_host = { "shell_get_external_host", []()
+FunctionHookEx<halo3_shell_get_external_host_offset, void* __fastcall(void)> halo3_shell_get_external_host = { "halo3_shell_get_external_host", []()
 {
 	debug_point;
-	void* result = shell_get_external_host();
+	void* result = halo3_shell_get_external_host();
 	//result = nullptr;
 	return result;
 } };
