@@ -34,6 +34,7 @@ static bool k_autostart_halo_haloreach = false;
 static bool k_autostart_halo_halo1 = false;
 static bool k_autostart_halo_halo2 = false;
 static bool k_autostart_halo_halo3 = false;
+static bool k_autostart_halo_halo3odst = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
@@ -49,6 +50,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
 	k_autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
+	k_autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
 	k_autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
 	k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
 	k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
@@ -189,6 +191,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		if (k_autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
 		if (k_autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
 		if (k_autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
+		if (k_autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
 		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
 		if (k_autostart_halo_eldorado || k_autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
@@ -470,7 +473,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			case _engine_type_halo3odst:
 				game_context->game_mode = map_id_to_game_mode(g_halo3odst_map_id);
 				game_context->map_id = g_halo3odst_map_id;
-				//data_access = c_halo3odst_game_host::get_data_access();
+				data_access = c_halo3odst_game_host::get_data_access();
 				break;
 			case _engine_type_halo4:
 				game_context->game_mode = map_id_to_game_mode(g_halo4_map_id);

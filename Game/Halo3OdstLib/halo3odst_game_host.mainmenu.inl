@@ -1,0 +1,78 @@
+
+#pragma region MCC Parse Hooks
+uintptr_t game_context_map_id_parse_to_halo3odst_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+FunctionHookEx<game_context_map_id_parse_to_halo3odst_offset, long __fastcall(c_game_context_v3* game_context)> game_context_map_id_parse_to_halo3odst = { "game_context_map_id_parse_to_halo3odst", [](c_game_context_v3* game_context)
+{
+	long result = game_context_map_id_parse_to_halo3odst(game_context);
+	return result == -1l ? game_context->map_id : result;
+} };
+
+uintptr_t mcc_map_id_parse_from_halo3odst_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+FunctionHookEx<mcc_map_id_parse_from_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo3odst = { "mcc_map_id_parse_from_halo3odst", [](long map_id)
+{
+	long result = mcc_map_id_parse_from_halo3odst(map_id);
+	return result == -1l ? map_id : result;
+} };
+
+uintptr_t mcc_map_id_parse_to_halo3odst_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+FunctionHookEx<mcc_map_id_parse_to_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3odst = { "mcc_map_id_parse_to_halo3odst", [](long map_id)
+{
+	long result = mcc_map_id_parse_to_halo3odst(map_id);
+	return result == -1l ? map_id : result;
+} };
+
+uintptr_t mcc_game_mode_parse_to_halo3odst_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+FunctionHookEx<mcc_game_mode_parse_to_halo3odst_offset, long __fastcall(c_game_context_v3* game_context)> mcc_game_mode_parse_to_halo3odst = { "mcc_game_mode_parse_to_halo3odst", [](c_game_context_v3* game_context)
+{
+	long result = mcc_game_mode_parse_to_halo3odst(game_context);
+	return result == 3l ? 2l : result;
+} };
+#pragma endregion
+
+#pragma region Main Menu Patches
+// prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
+// this patch solves to issue of not baing able to load `_scenario_type_mainmenu`
+uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	packet = MAKE_DATAPATCHPACKET(data, 2);
+	nop_address(data, 2);
+} };
+
+// prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
+// this patch solves to issue of the mainmenu turning into a slideshow after (overall_timeout=120000)/(individual_state_timeout=60000) milliseconds
+uintptr_t halo3odst_external_launch_timeout_patch_offset(e_engine_type engine_type, e_build build)
+{
+	return ~uintptr_t();
+}
+
+std::vector<uint8_t> halo3odst_external_launch_timeout_patch_bytes(e_engine_type engine_type, e_build build)
+{
+	// change instruction from `jump not zero` to `jump` and nop the last byte
+	return { };
+}
+c_data_patch<halo3odst_external_launch_timeout_patch_offset> halo3odst_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	std::vector<uint8_t> jmp = halo3odst_external_launch_timeout_patch_bytes(engine_type, build);
+	if (!jmp.empty())
+	{
+		packet = MAKE_DATAPATCHPACKET(jmp.data(), jmp.size());
+		copy_to_address(data, jmp.data(), jmp.size());
+	}
+} };
+#pragma endregion
