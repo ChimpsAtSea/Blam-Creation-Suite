@@ -1008,11 +1008,12 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		}
 	}
 
-	if (is_valid(variant_accessor_base))
+	if (variant_accessor_base != nullptr)
 	{
 		variant_accessor_base->CopyToGameContext(game_context);
 	}
-	if (is_valid(variant_data))
+
+	if (variant_data != nullptr)
 	{
 		delete[] variant_data;
 	}
