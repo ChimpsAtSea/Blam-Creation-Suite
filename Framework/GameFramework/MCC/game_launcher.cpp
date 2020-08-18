@@ -102,6 +102,12 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		g_supported_engine_types.push_back(_engine_type_halo3);
 	}
 
+	if (PathFileExistsA("halo3odst\\halo3odst.dll"))
+	{
+		is_bink2_required = true;
+		g_supported_engine_types.push_back(_engine_type_halo3odst);
+	}
+
 	if (is_bink2_required)
 	{
 		ensure_library_loaded("bink2w64.dll", "MCC\\Binaries\\Win64");
@@ -340,6 +346,7 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 	case _engine_type_halo1:
 	case _engine_type_halo2:
 	case _engine_type_halo3:
+	case _engine_type_halo3odst:
 	case _engine_type_groundhog:
 		launch_mcc_game(engine_type);
 		break;
@@ -836,7 +843,9 @@ next:
 	switch (current_game_host->engine_type)
 	{
 	case _engine_type_haloreach:
+#ifdef _WIN64
 		game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
+#endif
 		break;
 	case _engine_type_halo1:
 		game_mode = map_id_to_game_mode(g_halo1_map_id);
