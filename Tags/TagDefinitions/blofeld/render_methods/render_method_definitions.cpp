@@ -205,6 +205,11 @@ namespace blofeld
 		{ _field_real, "suggested real max" },
 		{ _field_long_integer, "ticks from min to max" },
 
+		{ _field_version_equal, _engine_type_halo3odst, 4 },
+		{ _field_long_integer, "@unknown" },
+		{ _field_long_integer, "@unknown" },
+		{ _field_long_integer, "@unknown" },
+
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_data, "help text" },
 
