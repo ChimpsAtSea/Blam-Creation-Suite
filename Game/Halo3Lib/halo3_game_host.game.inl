@@ -17,6 +17,7 @@ uintptr_t halo3_game_time_get_ticks_per_second_constant_offset(e_engine_type eng
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180467DE0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180467ED0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180467ED0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, ~uintptr_t()); // `ticks_per_second` or `tick_lengrh` was added to game_context in this build
 	return ~uintptr_t();
 }
 FunctionHookEx<halo3_game_time_get_ticks_per_second_constant_offset, float __stdcall()> halo3_game_time_get_ticks_per_second_constant = { "halo3_game_time_get_ticks_per_second_constant", []()
