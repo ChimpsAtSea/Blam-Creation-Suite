@@ -2379,7 +2379,7 @@ public:
 
 private:
 
-#define reference_getter_v1(field_name) \
+#define player_configuration_reference_getter_v1(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2394,7 +2394,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v2(field_name) \
+#define player_configuration_reference_getter_v2(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2408,7 +2408,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v3(field_name) \
+#define player_configuration_reference_getter_v3(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2421,7 +2421,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v4(field_name) \
+#define player_configuration_reference_getter_v4(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2433,7 +2433,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v5(field_name) \
+#define player_configuration_reference_getter_v5(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2444,7 +2444,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v6(field_name) \
+#define player_configuration_reference_getter_v6(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2454,7 +2454,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v7(field_name) \
+#define player_configuration_reference_getter_v7(field_name) \
 	decltype(&field_name) Get##field_name() \
 	{ \
 		switch (player_configuration_version) \
@@ -2464,104 +2464,104 @@ private:
 		return nullptr; \
 	}
 
-	reference_getter_v1(SubtitleSetting);
-	reference_getter_v1(CrosshairLocation);
-	reference_getter_v1(FOVSetting);
-	reference_getter_v2(VehicleFOVSetting);
-	reference_getter_v1(LookControlsInverted);
-	reference_getter_v2(MouseLookControlsInverted);
-	reference_getter_v1(VibrationDisabled);
-	reference_getter_v1(ImpulseTriggersDisabled);
-	reference_getter_v1(AircraftControlsInverted);
-	reference_getter_v2(MouseAircraftControlsInverted);
-	reference_getter_v1(AutoCenterEnabled);
-	reference_getter_v1(CrouchLockEnabled);
-	reference_getter_v2(MKCrouchLockEnabled);
-	reference_getter_v1(ClenchProtectionEnabled);
-	reference_getter_v1(UseFemaleVoice);
-	reference_getter_v1(HoldToZoom);
-	reference_getter_v1(PlayerModelPrimaryColorIndex);
-	reference_getter_v1(PlayerModelSecondaryColorIndex);
-	reference_getter_v1(PlayerModelTertiaryColorIndex);
-	reference_getter_v1(UseEliteModel);
-	reference_getter_v1(LockMaxAspectRatio);
-	reference_getter_v7(UsersSkinsEnabled);
-	reference_getter_v1(PlayerModelPermutation);
-	reference_getter_v2(HelmetIndex);
-	reference_getter_v2(LeftShoulderIndex);
-	reference_getter_v2(RightShoulderIndex);
-	reference_getter_v2(ChestIndex);
-	reference_getter_v2(WristIndex);
-	reference_getter_v2(UtilityIndex);
-	reference_getter_v7(ArmsIndex);
-	reference_getter_v7(LegsIndex);
-	reference_getter_v2(PaintSchemeIndex);
-	reference_getter_v2(VisorColorIndex);
-	reference_getter_v2(SpartanArmorEffectIndex);
-	reference_getter_v2(SpartanBodyIndex);
-	reference_getter_v2(EliteArmorIndex);
-	reference_getter_v2(EliteArmorEffectIndex);
-	reference_getter_v7(EliteHelmetIndex);
-	reference_getter_v7(EliteLeftShoulderIndex);
-	reference_getter_v7(EliteRightShoulderIndex);
-	reference_getter_v7(EliteChestIndex);
-	reference_getter_v7(MaybeEliteWristIndex);
-	reference_getter_v7(MaybeEliteUtilityIndex);
-	reference_getter_v7(EliteArmsIndex);
-	reference_getter_v7(EliteLegsIndex);
-	reference_getter_v2(VoiceIndex);
-	reference_getter_v2(PlayerModelPrimaryColor);
-	reference_getter_v2(PlayerModelSecondaryColor);
-	reference_getter_v2(PlayerModelTertiaryColor);
-	reference_getter_v7(UserSkins);
-	reference_getter_v1(ServiceTag);
-	reference_getter_v1(OnlineMedalFlasher);
-	reference_getter_v1(VerticalLookSensitivity);
-	reference_getter_v1(HorizontalLookSensitivity);
-	reference_getter_v1(LookAcceleration);
-	reference_getter_v1(LookAxialDeadZone);
-	reference_getter_v1(LookRadialDeadZone);
-	reference_getter_v1(ZoomLookSensitivityMultiplier);
-	reference_getter_v1(VehicleLookSensitivityMultiplier);
-	reference_getter_v1(ButtonPreset);
-	reference_getter_v1(StickPreset);
-	reference_getter_v1(LeftyToggle);
-	reference_getter_v1(FlyingCameraTurnSensitivity);
-	reference_getter_v1(FlyingCameraPanning);
-	reference_getter_v1(FlyingCameraSpeed);
-	reference_getter_v1(FlyingCameraThrust);
-	reference_getter_v1(TheaterTurnSensitivity);
-	reference_getter_v1(TheaterPanning);
-	reference_getter_v1(TheaterSpeed);
-	reference_getter_v1(TheaterThrust);
-	reference_getter_v1(SwapTriggersAndBumpers);
-	reference_getter_v1(UseModernAimControl);
-	reference_getter_v1(UseDoublePressJumpToJetpack);
-	reference_getter_v1(EnemyPlayerNameColor);
-	reference_getter_v1(GameEngineTimer);
-	reference_getter_v1(LoadoutSlots);
-	reference_getter_v1(GameSpecific);
-	reference_getter_v1(MouseSensitivity);
-	reference_getter_v1(MouseSmoothing);
-	reference_getter_v1(MouseAcceleration);
-	reference_getter_v1(MouseAccelerationMinRate);
-	reference_getter_v1(MouseAccelerationMaxAccel);
-	reference_getter_v1(MouseAccelerationScale);
-	reference_getter_v1(MouseAccelerationExp);
-	reference_getter_v1(KeyboardMouseButtonPreset);
-	reference_getter_v1(MasterVolume);
-	reference_getter_v1(MusicVolume);
-	reference_getter_v1(SfxVolume);
-	reference_getter_v1(Brightness);
-	reference_getter_v4(WeaponDisplayOffsets)
+	player_configuration_reference_getter_v1(SubtitleSetting);
+	player_configuration_reference_getter_v1(CrosshairLocation);
+	player_configuration_reference_getter_v1(FOVSetting);
+	player_configuration_reference_getter_v2(VehicleFOVSetting);
+	player_configuration_reference_getter_v1(LookControlsInverted);
+	player_configuration_reference_getter_v2(MouseLookControlsInverted);
+	player_configuration_reference_getter_v1(VibrationDisabled);
+	player_configuration_reference_getter_v1(ImpulseTriggersDisabled);
+	player_configuration_reference_getter_v1(AircraftControlsInverted);
+	player_configuration_reference_getter_v2(MouseAircraftControlsInverted);
+	player_configuration_reference_getter_v1(AutoCenterEnabled);
+	player_configuration_reference_getter_v1(CrouchLockEnabled);
+	player_configuration_reference_getter_v2(MKCrouchLockEnabled);
+	player_configuration_reference_getter_v1(ClenchProtectionEnabled);
+	player_configuration_reference_getter_v1(UseFemaleVoice);
+	player_configuration_reference_getter_v1(HoldToZoom);
+	player_configuration_reference_getter_v1(PlayerModelPrimaryColorIndex);
+	player_configuration_reference_getter_v1(PlayerModelSecondaryColorIndex);
+	player_configuration_reference_getter_v1(PlayerModelTertiaryColorIndex);
+	player_configuration_reference_getter_v1(UseEliteModel);
+	player_configuration_reference_getter_v1(LockMaxAspectRatio);
+	player_configuration_reference_getter_v7(UsersSkinsEnabled);
+	player_configuration_reference_getter_v1(PlayerModelPermutation);
+	player_configuration_reference_getter_v2(HelmetIndex);
+	player_configuration_reference_getter_v2(LeftShoulderIndex);
+	player_configuration_reference_getter_v2(RightShoulderIndex);
+	player_configuration_reference_getter_v2(ChestIndex);
+	player_configuration_reference_getter_v2(WristIndex);
+	player_configuration_reference_getter_v2(UtilityIndex);
+	player_configuration_reference_getter_v7(ArmsIndex);
+	player_configuration_reference_getter_v7(LegsIndex);
+	player_configuration_reference_getter_v2(PaintSchemeIndex);
+	player_configuration_reference_getter_v2(VisorColorIndex);
+	player_configuration_reference_getter_v2(SpartanArmorEffectIndex);
+	player_configuration_reference_getter_v2(SpartanBodyIndex);
+	player_configuration_reference_getter_v2(EliteArmorIndex);
+	player_configuration_reference_getter_v2(EliteArmorEffectIndex);
+	player_configuration_reference_getter_v7(EliteHelmetIndex);
+	player_configuration_reference_getter_v7(EliteLeftShoulderIndex);
+	player_configuration_reference_getter_v7(EliteRightShoulderIndex);
+	player_configuration_reference_getter_v7(EliteChestIndex);
+	player_configuration_reference_getter_v7(MaybeEliteWristIndex);
+	player_configuration_reference_getter_v7(MaybeEliteUtilityIndex);
+	player_configuration_reference_getter_v7(EliteArmsIndex);
+	player_configuration_reference_getter_v7(EliteLegsIndex);
+	player_configuration_reference_getter_v2(VoiceIndex);
+	player_configuration_reference_getter_v2(PlayerModelPrimaryColor);
+	player_configuration_reference_getter_v2(PlayerModelSecondaryColor);
+	player_configuration_reference_getter_v2(PlayerModelTertiaryColor);
+	player_configuration_reference_getter_v7(UserSkins);
+	player_configuration_reference_getter_v1(ServiceTag);
+	player_configuration_reference_getter_v1(OnlineMedalFlasher);
+	player_configuration_reference_getter_v1(VerticalLookSensitivity);
+	player_configuration_reference_getter_v1(HorizontalLookSensitivity);
+	player_configuration_reference_getter_v1(LookAcceleration);
+	player_configuration_reference_getter_v1(LookAxialDeadZone);
+	player_configuration_reference_getter_v1(LookRadialDeadZone);
+	player_configuration_reference_getter_v1(ZoomLookSensitivityMultiplier);
+	player_configuration_reference_getter_v1(VehicleLookSensitivityMultiplier);
+	player_configuration_reference_getter_v1(ButtonPreset);
+	player_configuration_reference_getter_v1(StickPreset);
+	player_configuration_reference_getter_v1(LeftyToggle);
+	player_configuration_reference_getter_v1(FlyingCameraTurnSensitivity);
+	player_configuration_reference_getter_v1(FlyingCameraPanning);
+	player_configuration_reference_getter_v1(FlyingCameraSpeed);
+	player_configuration_reference_getter_v1(FlyingCameraThrust);
+	player_configuration_reference_getter_v1(TheaterTurnSensitivity);
+	player_configuration_reference_getter_v1(TheaterPanning);
+	player_configuration_reference_getter_v1(TheaterSpeed);
+	player_configuration_reference_getter_v1(TheaterThrust);
+	player_configuration_reference_getter_v1(SwapTriggersAndBumpers);
+	player_configuration_reference_getter_v1(UseModernAimControl);
+	player_configuration_reference_getter_v1(UseDoublePressJumpToJetpack);
+	player_configuration_reference_getter_v1(EnemyPlayerNameColor);
+	player_configuration_reference_getter_v1(GameEngineTimer);
+	player_configuration_reference_getter_v1(LoadoutSlots);
+	player_configuration_reference_getter_v1(GameSpecific);
+	player_configuration_reference_getter_v1(MouseSensitivity);
+	player_configuration_reference_getter_v1(MouseSmoothing);
+	player_configuration_reference_getter_v1(MouseAcceleration);
+	player_configuration_reference_getter_v1(MouseAccelerationMinRate);
+	player_configuration_reference_getter_v1(MouseAccelerationMaxAccel);
+	player_configuration_reference_getter_v1(MouseAccelerationScale);
+	player_configuration_reference_getter_v1(MouseAccelerationExp);
+	player_configuration_reference_getter_v1(KeyboardMouseButtonPreset);
+	player_configuration_reference_getter_v1(MasterVolume);
+	player_configuration_reference_getter_v1(MusicVolume);
+	player_configuration_reference_getter_v1(SfxVolume);
+	player_configuration_reference_getter_v1(Brightness);
+	player_configuration_reference_getter_v4(WeaponDisplayOffsets)
 
-#undef reference_getter_v1
-#undef reference_getter_v2
-#undef reference_getter_v3
-#undef reference_getter_v4
-#undef reference_getter_v5
-#undef reference_getter_v6
-#undef reference_getter_v7
+#undef player_configuration_reference_getter_v1
+#undef player_configuration_reference_getter_v2
+#undef player_configuration_reference_getter_v3
+#undef player_configuration_reference_getter_v4
+#undef player_configuration_reference_getter_v5
+#undef player_configuration_reference_getter_v6
+#undef player_configuration_reference_getter_v7
 
 	class c_virtual_player_configuration_game_keyboard_mouse_mapping_interface
 	{
