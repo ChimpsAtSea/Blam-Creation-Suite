@@ -56,8 +56,8 @@ uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(e_engine_type engine_t
 }
 c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
 {
-	packet = MAKE_DATAPATCHPACKET(data, 2);
-	nop_address(data, 2);
+	packet = MAKE_DATAPATCHPACKET(data, 6);
+	nop_address(data, 6);
 } };
 
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?

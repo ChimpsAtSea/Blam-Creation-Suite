@@ -24,7 +24,7 @@ e_map_id g_halo2_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3_map_ids;
 e_map_id g_halo3_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3odst_map_ids;
-e_map_id g_halo3odst_map_id = _map_id_halo3odst_mombasa_streets;
+e_map_id g_halo3odst_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo4_map_ids;
 e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
 static std::vector<e_map_id> g_groundhog_map_ids;
@@ -41,6 +41,8 @@ static bool k_autostart_halo_online = false;
 static bool use_remastered_visuals = true;
 static bool use_remastered_music = true;
 static bool start_as_forge_mode = true;
+static bool start_as_firefight_mode = true;
+static signed int g_insertion_point = 0;
 
 void c_game_launcher::init_game_launcher(c_window& window)
 {
@@ -147,6 +149,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	g_halo1_map_ids.push_back(_map_id_mainmenu);
 	g_halo2_map_ids.push_back(_map_id_mainmenu);
 	g_halo3_map_ids.push_back(_map_id_mainmenu);
+	g_halo3odst_map_ids.push_back(_map_id_mainmenu);
 
 	for (long i = 0; i < k_number_of_map_ids; i++)
 	{
@@ -401,7 +404,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	case _engine_type_halo3odst:
 		build = c_halo3odst_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo3odst_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "";// start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_firefight_mode ? "odst_ff_classic" : "";
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
 		break;
 	case _engine_type_groundhog:
@@ -491,7 +494,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				data_access = c_halo3_game_host::get_data_access();
 				break;
 			case _engine_type_halo3odst:
-				game_context->game_mode = map_id_to_game_mode(g_halo3odst_map_id);
+				game_context->game_mode = start_as_firefight_mode ? _mcc_game_mode_firefight : map_id_to_game_mode(g_halo3odst_map_id);
 				game_context->map_id = g_halo3odst_map_id;
 				data_access = c_halo3odst_game_host::get_data_access();
 				break;
@@ -516,6 +519,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					c_haloreach_game_option_selection_legacy::s_launch_map_variant.c_str()
 				);
 			}
+
+			game_context->campaign_insertion_point = g_insertion_point;
 		}
 	}
 
@@ -698,6 +703,32 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 			ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
 			break;
 		}
+	}
+
+	if (engine_type == _engine_type_halo3odst)
+	{
+		std::string selected_insertion_string = std::to_string(g_insertion_point);
+		if (ImGui::BeginCombo("###INSERTION", selected_insertion_string.c_str()))
+		{
+			for (signed int& insertion_point : map_id_to_available_insertion_points(map_id_ref, start_as_firefight_mode))
+			{
+				std::string insertion_string = std::to_string(insertion_point);
+				bool selected = g_insertion_point == insertion_point;
+				if (ImGui::Selectable(insertion_string.c_str(), &selected))
+				{
+					g_insertion_point = insertion_point;
+				}
+			}
+			ImGui::EndCombo();
+		}
+
+		ImGui::Checkbox("Firefight Mode", &start_as_firefight_mode);
+		game_mode = start_as_firefight_mode ? _mcc_game_mode_firefight : game_mode;
+	}
+
+	if (map_id_ref == _map_id_mainmenu)
+	{
+		game_mode = _mcc_game_mode_ui_shell;
 	}
 }
 #endif
@@ -961,10 +992,10 @@ LRESULT c_game_launcher::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LP
 
 bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name)
 {
-	ASSERT(is_valid(game_context));
-	ASSERT(is_valid(data_access));
+	ASSERT(game_context != nullptr);
+	ASSERT(data_access != nullptr);
 	ASSERT(engine_type != _engine_type_not_set);
-	ASSERT(is_valid(file_name));
+	ASSERT(file_name != nullptr);
 
 	std::string selected;
 	for (std::string file : variant_files_get(engine_type, variant_type))

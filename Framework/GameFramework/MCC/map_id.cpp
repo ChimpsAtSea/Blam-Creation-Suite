@@ -474,3 +474,78 @@ e_mcc_game_mode map_id_to_game_mode(e_map_id map_id)
 
 	return _mcc_game_mode_none;
 }
+
+std::vector<signed int>& map_id_to_available_insertion_points(long map_id, bool is_firefight)
+{
+	static std::vector<signed int> vec;
+	if (!vec.empty()) vec.clear();
+
+	if (is_firefight)
+	{
+		switch (map_id)
+		{
+		case _map_id_halo3odst_mombasa_streets: vec = { 7, 8 };
+		case _map_id_halo3odst_tayari_plaza:
+		case _map_id_halo3odst_uplift_reserve: vec = { 4 };
+		case _map_id_halo3odst_kizingo_boulevard: vec = { 5, 6 };
+		case _map_id_halo3odst_oni_alpha_site: vec = { 4, 5 };
+		case _map_id_halo3odst_nmpd_hq: vec = { 5 };
+		case _map_id_halo3odst_data_hive: vec = { 6 };
+		case _map_id_halo3odst_coastal_highway: vec = { 7 };
+		}
+	}
+	else
+	{
+		switch (map_id)
+		{
+		case _map_id_halo3_arrival:
+		case _map_id_halo3_epilogue: vec = { };
+		case _map_id_halo3_tsavo_highway:
+		case _map_id_halo3_the_storm:
+		case _map_id_halo3_floodgate:
+		case _map_id_halo3_cortana:
+		case _map_id_halo3_halo: vec = { 0, 1 };
+		case _map_id_halo3_crows_nest:
+		case _map_id_halo3_the_ark:
+		case _map_id_halo3_the_covenant: vec = { 0, 1, 2 };
+
+		case _map_id_halo3odst_prepare_to_drop:
+		case _map_id_halo3odst_epilogue: vec = { };
+		case _map_id_halo3odst_mombasa_streets: vec = { 0, 1, 2, 3, 4, 5, 6, 7 };
+		case _map_id_halo3odst_tayari_plaza:
+		case _map_id_halo3odst_uplift_reserve:
+		case _map_id_halo3odst_oni_alpha_site:
+		case _map_id_halo3odst_kikowani_station: vec = { 0, 1, 2, 3 };
+		case _map_id_halo3odst_kizingo_boulevard:
+		case _map_id_halo3odst_nmpd_hq: vec = { 0, 1, 2, 3, 4 };
+		case _map_id_halo3odst_data_hive: vec = { 0, 1, 2, 3, 4, 5 };
+		case _map_id_halo3odst_coastal_highway: vec = { 0, 1, 2, 3, 4, 5, 6 };
+
+		case _map_id_haloreach_noble_actual:
+		case _map_id_haloreach_new_alexandria:
+		case _map_id_haloreach_the_pillar_of_autumn_credits: vec = { };
+		case _map_id_haloreach_winter_contingency: vec = { 0, 3, 4 };
+		case _map_id_haloreach_oni_sword_base:
+		case _map_id_haloreach_nightfall:
+		case _map_id_haloreach_long_night_of_solace:
+		case _map_id_haloreach_exodus: vec = { 0, 1, 2 };
+		case _map_id_haloreach_tip_of_the_spear:
+		case _map_id_haloreach_the_pillar_of_autumn: vec = { 0, 2, 4 };
+		case _map_id_haloreach_the_package: vec = { 0, 4, 7 };
+		case _map_id_haloreach_lone_wolf: vec = { 0 };
+
+		case _map_id_halo4_prologue:
+		case _map_id_halo4_epilogue: vec = { };
+		case _map_id_halo4_dawn: vec = { 0, 1 };
+		case _map_id_halo4_requiem: vec = { 0, 5 };
+		case _map_id_halo4_forerunner: vec = { 0, 2, 5, 9 };
+		case _map_id_halo4_infinity: vec = { 0, 3, 6 };
+		case _map_id_halo4_reclaimer:
+		case _map_id_halo4_composer: vec = { 0, 7 };
+		case _map_id_halo4_shutdown: vec = { 0, 3, 4, 5 };
+		case _map_id_halo4_midnight: vec = { 0, 1, 2 };
+		}
+	}
+
+	return vec;
+};
