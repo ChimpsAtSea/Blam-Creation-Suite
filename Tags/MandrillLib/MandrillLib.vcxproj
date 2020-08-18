@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
     <ClInclude Include="Extension\mandrill_extension.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_debugger_tab.h" />
     <ClInclude Include="CustomTools\CustomTools.h" />

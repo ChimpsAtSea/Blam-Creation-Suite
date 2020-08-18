@@ -25,9 +25,7 @@
 #include "CacheVersions\halo3\halo3_cache_file_types.h"
 #include "CacheVersions\halo3\halo3_cache_file.h"
 
-//#include "CacheVersions\halo3odst\halo3odst_cache_file_types.h"
-//#include "CacheVersions\halo3odst\halo3odst_tag_interface.h"
-//#include "CacheVersions\halo3odst\halo3odst_tag_group_interface.h"
+#include "CacheVersions\halo3odst\halo3odst_cache_file_types.h"
 #include "CacheVersions\halo3odst\halo3odst_cache_file.h"
 
 #include "CacheVersions\haloreach\haloreach_cache_file_types.h"

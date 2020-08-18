@@ -33,6 +33,7 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 		const long long  k_haloreach_header_memory_footprint = 0xA000;
 		const long long  k_halo2_header_memory_footprint = 0x1000;
 		const long long  k_halo3_header_memory_footprint = 0x3000;
+		const long long  k_halo3odst_header_memory_footprint = 0x2FFC;
 		const long long  k_halo4_header_memory_footprint = 0x1E000;
 
 		switch (header_size)
@@ -44,6 +45,10 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 		case k_halo3_header_memory_footprint:
 			c_console::write_line_verbose("cache file type halo 3");
 			engine_type = _engine_type_halo3;
+			break;
+		case k_halo3odst_header_memory_footprint:
+			c_console::write_line_verbose("cache file type halo 3 odst");
+			engine_type = _engine_type_halo3odst;
 			break;
 		case k_halo4_header_memory_footprint:
 			c_console::write_line_verbose("cache file type halo 4");
