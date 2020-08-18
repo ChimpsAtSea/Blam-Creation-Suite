@@ -69,6 +69,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	bool is_mopp_required = false;
 	bool is_ati_compress_required = false;
 	bool is_miles_sound_system_required = false;
+	bool is_xaudio2_9redist_required = false;
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
 		is_bink2_required = true;
@@ -105,6 +106,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	if (PathFileExistsA("halo3odst\\halo3odst.dll"))
 	{
 		is_bink2_required = true;
+		is_xaudio2_9redist_required = true;
 		g_supported_engine_types.push_back(_engine_type_halo3odst);
 	}
 
@@ -135,6 +137,10 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	if (is_miles_sound_system_required)
 	{
 		ensure_library_loaded("halo2\\mss64.dll", "..\\halo2");
+	}
+	if (is_xaudio2_9redist_required)
+	{
+		ensure_library_loaded("xaudio2_9redist.dll", "MCC\\Binaries\\Win64");
 	}
 #endif
 
@@ -390,6 +396,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		build = c_halo3_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo3_game_host(engine_type, build);
 		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
+		break;
+	case _engine_type_halo3odst:
+		build = c_halo3odst_game_host::get_game_runtime().get_build();
+		current_game_host = new c_halo3odst_game_host(engine_type, build);
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "";// start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
 		break;
 	case _engine_type_groundhog:
@@ -986,6 +998,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		switch (variant_type)
 		{
 		case _variant_type_game:
+			variant_data = new char[k_game_variant_buffer_size];
 			variant_accessor_base = data_access->GameVariantCreateDefault(variant_data);
 			break;
 		case _variant_type_map:
@@ -995,7 +1008,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		}
 	}
 
-	variant_accessor_base->CopyToGameContext(game_context);
+	if (is_valid(variant_accessor_base))
+	{
+		variant_accessor_base->CopyToGameContext(game_context);
+	}
 	if (is_valid(variant_data))
 	{
 		delete[] variant_data;
