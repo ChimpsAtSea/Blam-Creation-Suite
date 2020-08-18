@@ -420,11 +420,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 	game_context->visual_remaster = use_remastered_visuals;
 	game_context->music_remaster = use_remastered_music;
+	game_context->sfx_remaster = false; // use_remastered_sfx;
 
 	if (!load_save_from_file(game_context, "5EE59DB6.halo3", false))
 	{
 		// #TODO: Make a home for this
-		if (game_context->is_host)
+		if (game_context->is_host == true)
 		{
 			IDataAccess *data_access = nullptr;
 

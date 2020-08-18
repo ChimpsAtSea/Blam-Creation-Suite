@@ -11,6 +11,7 @@ void c_session_manager::create_game_context(e_build build, GameContext** out_gam
 	case _game_context_version_1: c_console::write_line_verbose("Using game context version 1"); break;
 	case _game_context_version_2: c_console::write_line_verbose("Using game context version 2"); break;
 	case _game_context_version_3: c_console::write_line_verbose("Using game context version 3"); break;
+	case _game_context_version_4: c_console::write_line_verbose("Using game context version 4"); break;
 	}
 	*out_game_context = new GameContext(game_context_version);
 	ASSERT(*out_game_context);
@@ -26,7 +27,7 @@ void c_session_manager::create_game_context(e_build build, GameContext** out_gam
 	game_context.peer_count = 1;
 	game_context.player_count = 1;
 	game_context.is_host = true;
-	if (game_context.is_host)
+	if (game_context.is_host == true)
 	{
 		game_context.local = HostAddress; // this is set
 		game_context.host = HostAddress; // this is set
