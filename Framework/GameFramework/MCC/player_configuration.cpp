@@ -135,8 +135,8 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(EliteChestIndex);
 		write_control_to_config(MaybeEliteWristIndex);
 		write_control_to_config(MaybeEliteUtilityIndex);
-		write_control_to_config(MaybeEliteArmsIndex);
-		write_control_to_config(MaybeEliteLegsIndex);
+		write_control_to_config(EliteArmsIndex);
+		write_control_to_config(EliteLegsIndex);
 	}
 
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)

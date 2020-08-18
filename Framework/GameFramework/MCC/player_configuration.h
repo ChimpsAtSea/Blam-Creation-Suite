@@ -2183,8 +2183,8 @@ struct s_player_configuration_v7
 	/* new in this version */ long EliteChestIndex;				 // e_customization_item_v2
 	/* new in this version */ long MaybeEliteWristIndex;		 // e_customization_item_v2
 	/* new in this version */ long MaybeEliteUtilityIndex;		 // e_customization_item_v2
-	/* new in this version */ long MaybeEliteArmsIndex;			 // e_customization_item_v2
-	/* new in this version */ long MaybeEliteLegsIndex;			 // e_customization_item_v2
+	/* new in this version */ long EliteArmsIndex;				 // e_customization_item_v2
+	/* new in this version */ long EliteLegsIndex;				 // e_customization_item_v2
 
 	long VoiceIndex;											 // e_customization_item_v2
 	long PlayerModelPrimaryColor;								 // e_customization_item_v2
@@ -2328,8 +2328,8 @@ public:
 	long& EliteChestIndex;
 	long& MaybeEliteWristIndex;
 	long& MaybeEliteUtilityIndex;
-	long& MaybeEliteArmsIndex;
-	long& MaybeEliteLegsIndex;
+	long& EliteArmsIndex;
+	long& EliteLegsIndex;
 	long& VoiceIndex;
 	long& PlayerModelPrimaryColor;
 	long& PlayerModelSecondaryColor;
@@ -2507,8 +2507,8 @@ private:
 	reference_getter_v7(EliteChestIndex);
 	reference_getter_v7(MaybeEliteWristIndex);
 	reference_getter_v7(MaybeEliteUtilityIndex);
-	reference_getter_v7(MaybeEliteArmsIndex);
-	reference_getter_v7(MaybeEliteLegsIndex);
+	reference_getter_v7(EliteArmsIndex);
+	reference_getter_v7(EliteLegsIndex);
 	reference_getter_v2(VoiceIndex);
 	reference_getter_v2(PlayerModelPrimaryColor);
 	reference_getter_v2(PlayerModelSecondaryColor);
@@ -2668,8 +2668,8 @@ public:
 		EliteChestIndex(*GetEliteChestIndex()),
 		MaybeEliteWristIndex(*GetMaybeEliteWristIndex()),
 		MaybeEliteUtilityIndex(*GetMaybeEliteUtilityIndex()),
-		MaybeEliteArmsIndex(*GetMaybeEliteArmsIndex()),
-		MaybeEliteLegsIndex(*GetMaybeEliteLegsIndex()),
+		EliteArmsIndex(*GetEliteArmsIndex()),
+		EliteLegsIndex(*GetEliteLegsIndex()),
 		VoiceIndex(*GetVoiceIndex()),
 		PlayerModelPrimaryColor(*GetPlayerModelPrimaryColor()),
 		PlayerModelSecondaryColor(*GetPlayerModelSecondaryColor()),
