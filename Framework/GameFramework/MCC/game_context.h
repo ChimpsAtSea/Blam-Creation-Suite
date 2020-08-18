@@ -207,7 +207,7 @@ public:
 
 private:
 
-#define reference_getter(field_name) \
+#define game_context_reference_getter_v1(field_name) \
 	decltype(&field_name) get_##field_name() \
 	{ \
 		switch (game_context_version) \
@@ -219,7 +219,7 @@ private:
 		} \
 		return nullptr; \
 	}
-#define reference_getter_v4(field_name) \
+#define game_context_reference_getter_v4(field_name) \
 	decltype(&field_name) get_##field_name() \
 	{ \
 		switch (game_context_version) \
@@ -229,31 +229,32 @@ private:
 		return nullptr; \
 	}
 
-	//reference_getter(visual_remaster);
-	//reference_getter(music_remaster);
-	//reference_getter(is_host);
-	reference_getter_v4(tick_length);
-	reference_getter(game_mode);
-	reference_getter(map_id);
-	reference_getter(campaign_difficulty_level);
-	reference_getter(campaign_insertion_point);
-	reference_getter(infinity_mission_id);
-	reference_getter(launcher_skull_mask);
-	reference_getter(party);
-	reference_getter(local);
-	reference_getter(peers);
-	reference_getter(peer_count);
-	//reference_getter(players);
-	reference_getter(player_count);
-	reference_getter(host);
-	reference_getter(game_variant_buffer);
-	reference_getter(map_variant_buffer);
-	reference_getter(game_state_header_size);
-	reference_getter(game_state_header);
-	reference_getter(saved_film_path);
-	reference_getter(custom_engine_name);
+	//game_context_reference_getter_v1(visual_remaster);
+	//game_context_reference_getter_v1(music_remaster);
+	//game_context_reference_getter_v1(is_host);
+	game_context_reference_getter_v4(tick_length);
+	game_context_reference_getter_v1(game_mode);
+	game_context_reference_getter_v1(map_id);
+	game_context_reference_getter_v1(campaign_difficulty_level);
+	game_context_reference_getter_v1(campaign_insertion_point);
+	game_context_reference_getter_v1(infinity_mission_id);
+	game_context_reference_getter_v1(launcher_skull_mask);
+	game_context_reference_getter_v1(party);
+	game_context_reference_getter_v1(local);
+	game_context_reference_getter_v1(peers);
+	game_context_reference_getter_v1(peer_count);
+	//game_context_reference_getter_v1(players);
+	game_context_reference_getter_v1(player_count);
+	game_context_reference_getter_v1(host);
+	game_context_reference_getter_v1(game_variant_buffer);
+	game_context_reference_getter_v1(map_variant_buffer);
+	game_context_reference_getter_v1(game_state_header_size);
+	game_context_reference_getter_v1(game_state_header);
+	game_context_reference_getter_v1(saved_film_path);
+	game_context_reference_getter_v1(custom_engine_name);
 
-#undef reference_getter
+#undef game_context_reference_getter_v1
+#undef game_context_reference_getter_v4
 
 	class c_virtual_game_context_players_interface
 	{
