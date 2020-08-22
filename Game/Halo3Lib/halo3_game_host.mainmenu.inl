@@ -67,6 +67,16 @@ c_data_patch<mcc_game_mode_parse_to_halo3_patch_offset> mcc_game_mode_parse_to_h
 #pragma endregion
 
 #pragma region Main Menu Patches
+size_t halo3_enable_mainmenu_scenario_patch_size(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 6);
+	return ~size_t();
+}
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
 // this patch solves to issue of not baing able to load `_scenario_type_mainmenu`
 uintptr_t halo3_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type, e_build build)
@@ -81,8 +91,12 @@ uintptr_t halo3_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type,
 }
 c_data_patch<halo3_enable_mainmenu_scenario_patch_offset> halo3_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
 {
-	packet = MAKE_DATAPATCHPACKET(data, 2);
-	nop_address(data, 2);
+	size_t patch_size = halo3_enable_mainmenu_scenario_patch_size(engine_type, build);
+	if (patch_size != ~size_t())
+	{
+		packet = MAKE_DATAPATCHPACKET(data, patch_size);
+		nop_address(data, patch_size);
+	}
 } };
 
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
