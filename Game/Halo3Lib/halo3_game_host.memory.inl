@@ -55,18 +55,6 @@ uintptr_t halo3_cache_file_tags_header_offset(e_engine_type engine_type, e_build
 }
 halo3::s_cache_file_tags_header*& halo3_cache_file_tags_header = reference_symbol<halo3::s_cache_file_tags_header*>("halo3_cache_file_tags_header", halo3_cache_file_tags_header_offset);
 
-// Props to Camden for this address in build 1.1698.0.0
-uintptr_t halo3_null_tag_definition_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18072FF00);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18073CE50);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x18073B960);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x18073B960);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, ~uintptr_t()); // doesn't exist in this build
-	return ~uintptr_t();
-}
-char& halo3_null_tag_definition = reference_symbol<char>("halo3_null_tag_definition", halo3_null_tag_definition_offset);
-
 uintptr_t halo3_file_table_mapping_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CC9978);
@@ -130,13 +118,13 @@ unsigned long halo3_tag_index_by_name_get(const char* tag_name)
 
 char* halo3_tag_address_get(uint32_t tag_instance_address)
 {
-	if (!is_valid(k_halo3_virtual_to_physical_base) || !tag_instance_address || !is_valid(halo3_null_tag_definition))
+	if (!is_valid(k_halo3_virtual_to_physical_base) || !tag_instance_address)
 	{
 		return nullptr;
 	}
 
 	// Props to Camden for this snippet
-	char* data = tag_instance_address == -1 ? &halo3_null_tag_definition : reinterpret_cast<char*>(k_halo3_virtual_to_physical_base + ((unsigned long long)tag_instance_address * 4));
+	char* data = tag_instance_address == -1 ? nullptr : reinterpret_cast<char*>(k_halo3_virtual_to_physical_base + ((unsigned long long)tag_instance_address * 4));
 	return data;
 }
 
