@@ -3,6 +3,7 @@
 uintptr_t halo3odst_external_launch_state_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180B79E64);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x180B7DF64);
 	return ~uintptr_t();
 }
 long& halo3odst_external_launch_state = reference_symbol<long>("halo3odst_external_launch_state", halo3odst_external_launch_state_offset);
@@ -10,6 +11,7 @@ long& halo3odst_external_launch_state = reference_symbol<long>("halo3odst_extern
 uintptr_t halo3odst_main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180014270);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x180014270);
 	return ~uintptr_t();
 }
 FunctionHookEx<halo3odst_main_game_launch_offset, char __fastcall(__int64 a1, __int64 a2, __int64 a3)> halo3odst_main_game_launch = { "halo3odst_main_game_launch", [](__int64 a1, __int64 a2, __int64 a3)

@@ -4,6 +4,7 @@
 uintptr_t halo3odst_start_menu_screen_patch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1802DF294);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1802DEF74);
 	return ~uintptr_t();
 }
 c_data_patch<halo3odst_start_menu_screen_patch_offset> halo3odst_start_menu_screen_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -17,6 +18,7 @@ c_data_patch<halo3odst_start_menu_screen_patch_offset> halo3odst_start_menu_scre
 uintptr_t halo3odst_settings_menu_patch2_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1802DF3AC);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1802DF08C);
 	return ~uintptr_t();
 }
 c_data_patch<halo3odst_settings_menu_patch2_offset> halo3odst_settings_menu_patch2 = {
