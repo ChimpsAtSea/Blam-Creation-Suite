@@ -30,7 +30,10 @@ namespace blofeld
 	{
 		{ _field_long_flags, "ai flags", &ai_properties_flags },
 		{ _field_string_id, "ai type name#used for combat dialogue, etc." },
+
+		{ _field_version_not_equal, _engine_type_halo3odst },
 		{ _field_string_id, "interaction name#if you checked the consider for interaction flag, type what interaction the AI should do with this object (NYI - you can use any)" },
+
 		{ _field_enum, "ai size", &ai_size_enum },
 		{ _field_enum, "leap jump speed", &global_ai_jump_height_enum },
 		{ _field_terminator }
@@ -91,8 +94,18 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	STRINGS(global_object_attachment_flags)
+	{
+		"gameplay vision mode",
+		"theater vision mode"
+	};
+	STRING_LIST(global_object_attachment_flags, global_object_attachment_flags_strings, _countof(global_object_attachment_flags_strings));
+
 	TAG_BLOCK(global_object_attachment_block, k_maximum_number_of_attachments_per_object)
 	{
+		{ _field_version_equal, _engine_type_halo3odst },
+		{ _field_long_flags, "atlas flags", &global_object_attachment_flags },
+
 		{ _field_tag_reference, "type^", &global_object_attachment_block_type_reference },
 		{ _field_custom },
 		{ _field_old_string_id, "marker" },
