@@ -220,7 +220,10 @@ void c_cache_file_tab::render_impl()
 			c_mandrill_tab* select_tab = next_selected_tab;
 			next_selected_tab = nullptr; // take a copy here as child render calls can set this value
 			//for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
-			for (c_mandrill_tab* tab : children)
+			// ###HACK This is super bad, but the memory is being resized during runtime.
+			// this needs to be replaced with a thread safe linked list
+			std::vector<c_mandrill_tab*> _children = children;
+			for (c_mandrill_tab* tab : _children)
 			{
 				tab->render(tab == select_tab);
 			}
