@@ -41,30 +41,12 @@ void c_gen3_cache_file::init_gen3_cache_file()
 c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type) :
 	c_cache_file(map_filepath, engine_type, platform_type),
 	cache_file_header(*read_cache_file()),
-	string_id_guesstimator(nullptr),
+	string_id_interface(nullptr),
 	validator(nullptr)
 {
 	REFERENCE_ASSERT(cache_file_header);
 
 	char* map_data = virtual_memory_container.get_data();
-
-	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
-	{
-		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
-
-		long mask = cache_file_header.section_table.offset_masks[cache_file_section_index];
-		long offset = cache_file_header.section_table.sections[cache_file_section_index].offset;
-		long size = cache_file_header.section_table.sections[cache_file_section_index].size;
-
-		char* masked_data = reinterpret_cast<char*>(map_data + mask);
-		char* data = masked_data + offset;
-
-		section_cache[cache_file_section_index].mask = mask;
-		section_cache[cache_file_section_index].offset = offset;
-		section_cache[cache_file_section_index].size = size;
-		section_cache[cache_file_section_index].masked_data = masked_data;
-		section_cache[cache_file_section_index].data = data;
-	}
 
 	validator = new c_gen3_cache_file_validator(*this);
 }
@@ -72,6 +54,10 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 c_gen3_cache_file::~c_gen3_cache_file()
 {
 	delete validator;
+	if (string_id_interface != nullptr)
+	{
+		delete string_id_interface;
+	}
 }
 
 bool c_gen3_cache_file::is_loading() const
@@ -87,11 +73,6 @@ uint32_t c_gen3_cache_file::get_tag_count() const
 uint32_t c_gen3_cache_file::get_tag_group_count() const
 {
 	return static_cast<uint32_t>(tag_group_interfaces.size());
-}
-
-uint32_t c_gen3_cache_file::get_string_id_count() const
-{
-	return cache_file_header.string_count;
 }
 
 char* c_gen3_cache_file::get_data_with_page_offset(uint32_t page_offset) const
@@ -145,12 +126,12 @@ const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const
 const char* c_gen3_cache_file::get_string_id(string_id const id, const char* const error_value /*= nullptr*/) const
 {
 	uint32_t index = id.value;
-	if (string_id_guesstimator != nullptr)
+	if (string_id_interface != nullptr)
 	{
-		index = string_id_guesstimator->string_id_to_index(id);
+		index = string_id_interface->string_id_to_index(id);
 	}
 
-	if (index < cache_file_header.string_count)
+	if (index < get_string_id_count())
 	{
 		return get_string_id_by_index(index);
 	}
@@ -180,12 +161,12 @@ const s_section_cache& c_gen3_cache_file::get_section(uint32_t section_index) co
 
 void* c_gen3_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const
 {
-	s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
+	s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_index];
 	return &cache_file_tag_instance;
 }
 
 void* c_gen3_cache_file::get_internal_tag_group_impl(uint32_t group_index) const
 {
-	s_cache_file_tag_group& cache_file_tag_group = cache_file_tag_groups[group_index];
+	s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
 	return &cache_file_tag_group;
 }

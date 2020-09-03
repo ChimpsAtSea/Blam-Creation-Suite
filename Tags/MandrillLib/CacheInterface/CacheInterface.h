@@ -3,7 +3,8 @@
 #include "cache_utilities.h"
 #include "tag_group_interface.h"
 #include "tag_interface.h"
-#include "cache_file_string_id_guesstimator.h"
+#include "string_id_interface.h"
+#include "string_id_guesstimator.h"
 #include "cache_file.h"
 #include "virtual_tag_block.h"
 #include "virtual_tag.h"
@@ -30,6 +31,7 @@
 
 #include "CacheVersions\haloreach\haloreach_cache_file_types.h"
 #include "CacheVersions\haloreach\haloreach_cache_file.h"
+#include "CacheVersions\haloreach\haloreach_string_id_namespace_list.h"
 
 //#include "CacheVersions\eldorado\eldorado_tag_interface.h"
 //#include "CacheVersions\eldorado\eldorado_tag_group_interface.h"

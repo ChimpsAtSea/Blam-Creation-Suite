@@ -3,53 +3,71 @@
 using namespace gen3;
 using namespace haloreach;
 
-c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath, long file_version) :
-	c_gen3_cache_file(map_filepath, _engine_type_haloreach, _platform_type_pc),
-	haloreach_cache_file_header(*static_cast<haloreach::s_cache_file_header*>(&cache_file_header)),
-	haloreach_cache_file_tags_header(nullptr)
+template<typename T> void c_haloreach_cache_file::init(T& cache_file_header)
 {
-	// This check is to prevent a crash with version 13 as the structure of `s_cache_file_header` has changed
-	if (file_version == ~long() || file_version == 13)
-	{
-		return;
-	}
+	init_section_cache<T>(cache_file_header);
 
 	char* map_data = virtual_memory_container.get_data();
 
 	const s_section_cache& debug_section = get_section(gen3::_cache_file_section_index_debug);
 	const s_section_cache& tags_section = get_section(gen3::_cache_file_section_index_tags);
 
-	string_ids_buffer = debug_section.masked_data + haloreach_cache_file_header.string_table_offset;
-	string_id_indices = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header.string_table_indices_offset);
+	string_ids_buffer = debug_section.masked_data + cache_file_header.string_table_offset;
+	string_id_indices = reinterpret_cast<long*>(debug_section.masked_data + cache_file_header.string_table_indices_offset);
 
-	filenames_buffer = debug_section.masked_data + haloreach_cache_file_header.file_table_offset;
-	filename_indices = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header.file_table_indices_offset);
+	filenames_buffer = debug_section.masked_data + cache_file_header.file_table_offset;
+	filename_indices = reinterpret_cast<long*>(debug_section.masked_data + cache_file_header.file_table_indices_offset);
 
 	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_section.masked_data + (cache_file_header.tags_header_address - cache_file_header.virtual_base_address));
 
-	tags_buffer = tags_section.masked_data + haloreach_cache_file_header.tag_buffer_offset;
-	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(haloreach_cache_file_header.tags_header_address));
+	tags_buffer = tags_section.masked_data + cache_file_header.tag_buffer_offset;
+	haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(cache_file_header.tags_header_address));
 
-	string_id_guesstimator = new c_cache_file_string_id_guesstimator(*this);
+	if constexpr (std::is_same<haloreach::s_cache_file_header, T>::value)
+	{
+		string_id_interface = new c_string_id_guesstimator(*this);
+	}
+	else if constexpr (std::is_same<haloreach::s_cache_file_header_v13, T>::value)
+	{
+		string_id_interface = new c_haloreach_string_id_namespace_list();
+	}
 
-	cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_groups.address));
+	gen3_cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_groups.address));
 	for (uint32_t group_index = 0; group_index < haloreach_cache_file_tags_header->tag_groups.count; group_index++)
 	{
-		s_cache_file_tag_group& cache_file_tag_group = cache_file_tag_groups[group_index];
+		s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
 		debug_point;
 
 		tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 	}
 
-	cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_instances.address));
+	gen3_cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_instances.address));
 	for (uint32_t tag_instance = 0; tag_instance < haloreach_cache_file_tags_header->tag_instances.count; tag_instance++)
 	{
-		s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_instance];
+		s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
 		debug_point;
 
 		const char* name = string_ids_buffer + string_id_indices[0];
 
 		tag_interfaces.push_back(new c_gen3_tag_interface(*this, tag_instance));
+	}
+}
+
+c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath) :
+	c_gen3_cache_file(map_filepath, _engine_type_haloreach, _platform_type_pc),
+	haloreach_cache_file_header(nullptr),
+	haloreach_cache_file_header_v13(nullptr),
+	haloreach_cache_file_tags_header(nullptr)
+{
+	if (cache_file_header.file_version <= 12)
+	{
+		haloreach_cache_file_header = static_cast<haloreach::s_cache_file_header*>(&cache_file_header);
+		init(*haloreach_cache_file_header);
+	}
+	else
+	{
+		haloreach_cache_file_header_v13 = static_cast<haloreach::s_cache_file_header_v13*>(&cache_file_header);
+		init(*haloreach_cache_file_header_v13);
 	}
 
 	init_sorted_instance_lists();
@@ -77,9 +95,17 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 c_haloreach_cache_file::~c_haloreach_cache_file()
 {
 	while (is_loading()) {};
-	if (string_id_guesstimator != nullptr)
+}
+
+uint32_t c_haloreach_cache_file::get_string_id_count() const
+{
+	if (cache_file_header.file_version <= 12)
 	{
-		delete string_id_guesstimator;
+		return haloreach_cache_file_header->string_count;
+	}
+	else
+	{
+		return haloreach_cache_file_header_v13->string_count;
 	}
 }
 
@@ -105,12 +131,32 @@ bool c_haloreach_cache_file::save_map()
 
 uint64_t c_haloreach_cache_file::get_base_virtual_address() const
 {
-	return haloreach_cache_file_header.virtual_base_address;
+	if (cache_file_header.file_version <= 12)
+	{
+		return haloreach_cache_file_header->virtual_base_address;
+	}
+	else
+	{
+		return haloreach_cache_file_header_v13->virtual_base_address;
+	}
+}
+
+e_cache_file_flags c_haloreach_cache_file::get_cache_file_flags() const
+{
+	if (cache_file_header.file_version <= 12)
+	{
+		return haloreach_cache_file_header->flags;
+	}
+	else
+	{
+		return haloreach_cache_file_header_v13->flags;
+	}
 }
 
 uint64_t c_haloreach_cache_file::convert_page_offset(uint32_t page_offset) const
 {
-	if (haloreach_cache_file_header.flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
+	e_cache_file_flags flags = get_cache_file_flags();
+	if (flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
 	{
 		return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - 0x10000000ull);
 	}

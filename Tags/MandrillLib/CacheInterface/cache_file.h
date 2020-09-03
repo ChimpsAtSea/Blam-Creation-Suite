@@ -16,6 +16,7 @@ protected:
 public:
 	BCSAPI virtual ~c_cache_file();
 
+	char* get_map_data();
 	virtual bool save_map() = 0;
 	virtual bool is_loading() const = 0;
 	virtual uint64_t get_base_virtual_address() const = 0;

@@ -8,6 +8,8 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	halo3_cache_file_header(*static_cast<halo3::s_cache_file_header*>(&cache_file_header)),
 	halo3_cache_file_tags_header(nullptr)
 {
+	init_section_cache(halo3_cache_file_header);
+
 	char* map_data = virtual_memory_container.get_data();
 
 	string_ids_buffer = map_data + halo3_cache_file_header.string_table_offset;
@@ -19,19 +21,19 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	tags_buffer = map_data + halo3_cache_file_header.tag_buffer_offset;
 	halo3_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(halo3_cache_file_header.tags_header_address));
 
-	cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(halo3_cache_file_tags_header->tag_groups.address));
+	gen3_cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(halo3_cache_file_tags_header->tag_groups.address));
 	for (uint32_t group_index = 0; group_index < halo3_cache_file_tags_header->tag_groups.count; group_index++)
 	{
-		s_cache_file_tag_group& cache_file_tag_group = cache_file_tag_groups[group_index];
+		s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
 		debug_point;
 
 		tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 	}
 
-	cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(halo3_cache_file_tags_header->tag_instances.address));
+	gen3_cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(halo3_cache_file_tags_header->tag_instances.address));
 	for (uint32_t tag_instance = 0; tag_instance < halo3_cache_file_tags_header->tag_instances.count; tag_instance++)
 	{
-		s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_instance];
+		s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
 		debug_point;
 
 		const char* name = string_ids_buffer + string_id_indices[0];
@@ -50,6 +52,11 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 c_halo3_cache_file::~c_halo3_cache_file()
 {
 
+}
+
+uint32_t c_halo3_cache_file::get_string_id_count() const
+{
+	return halo3_cache_file_header.string_count;
 }
 
 bool c_halo3_cache_file::save_map()

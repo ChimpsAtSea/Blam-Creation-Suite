@@ -9,6 +9,7 @@ protected:
 	virtual ~c_halo3odst_cache_file();
 
 public:
+	virtual uint32_t get_string_id_count() const final;
 	virtual bool save_map() final;
 	virtual uint64_t get_base_virtual_address() const final;
 	virtual uint64_t convert_page_offset(uint32_t page_offset) const final;

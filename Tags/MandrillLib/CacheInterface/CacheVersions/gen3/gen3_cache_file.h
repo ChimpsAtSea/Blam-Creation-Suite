@@ -10,7 +10,7 @@ struct s_section_cache
 };
 
 class c_gen3_cache_file_validator;
-class c_cache_file_string_id_guesstimator;
+class c_string_id_guesstimator;
 
 class c_gen3_cache_file :
 	public c_cache_file
@@ -26,7 +26,7 @@ public:
 	virtual bool is_loading() const final;
 	virtual uint32_t get_tag_count() const final;
 	virtual uint32_t get_tag_group_count() const final;
-	virtual uint32_t get_string_id_count() const final;
+	virtual uint32_t get_string_id_count() const = 0;
 	char* get_data_with_page_offset(uint32_t page_offset) const;
 	bool is_valid_data_address(char* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
@@ -58,20 +58,44 @@ public:
 		return tag_group;
 	};
 
+	template<typename t_cache_file_header>
+	inline void init_section_cache(t_cache_file_header& cache_file_header)
+	{
+		char* map_data = get_map_data();
+
+		for (underlying(gen3::e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(gen3::k_number_of_cache_file_sections); cache_file_section_index++)
+		{
+			gen3::e_cache_file_section_index cache_file_section = static_cast<gen3::e_cache_file_section_index>(cache_file_section_index);
+
+			long mask = cache_file_header.section_table.offset_masks[cache_file_section_index];
+			long offset = cache_file_header.section_table.sections[cache_file_section_index].offset;
+			long size = cache_file_header.section_table.sections[cache_file_section_index].size;
+
+			char* masked_data = reinterpret_cast<char*>(map_data + mask);
+			char* data = masked_data + offset;
+
+			section_cache[cache_file_section_index].mask = mask;
+			section_cache[cache_file_section_index].offset = offset;
+			section_cache[cache_file_section_index].size = size;
+			section_cache[cache_file_section_index].masked_data = masked_data;
+			section_cache[cache_file_section_index].data = data;
+		}
+	}
+
 protected:
 	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
 
-	gen3::s_cache_file_header& cache_file_header;
-	gen3::s_cache_file_tag_group* cache_file_tag_groups;
-	gen3::s_cache_file_tag_instance* cache_file_tag_instances;
+	blamlib::s_cache_file_header& cache_file_header;
+	gen3::s_cache_file_tag_group* gen3_cache_file_tag_groups;
+	gen3::s_cache_file_tag_instance* gen3_cache_file_tag_instances;
 	char* string_ids_buffer;
 	long* string_id_indices;
 	char* filenames_buffer;
 	long* filename_indices;
 	char* tags_buffer;
 	s_section_cache section_cache[underlying_cast(gen3::k_number_of_cache_file_sections)];
-	c_cache_file_string_id_guesstimator* string_id_guesstimator;
+	c_string_id_interface* string_id_interface;
 	c_gen3_cache_file_validator* validator;
 };
 

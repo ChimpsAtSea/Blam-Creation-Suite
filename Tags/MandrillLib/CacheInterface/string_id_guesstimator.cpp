@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache_file& cache_file) :
+c_string_id_guesstimator::c_string_id_guesstimator(c_cache_file& cache_file) :
 	cache_file(cache_file),
 	cache_file_string_id_start_index(0),
 	engine_string_id_first_set_end_index(0),
@@ -103,14 +103,32 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 	}
 }
 
-c_cache_file_string_id_guesstimator::~c_cache_file_string_id_guesstimator()
+c_string_id_guesstimator::~c_string_id_guesstimator()
 {
-
-
 
 }
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set0[] =
+uint32_t c_string_id_guesstimator::string_id_to_index(string_id const stringid)
+{
+	uint32_t start_index = 0;
+	if (stringid.set == 0 && stringid.index >= engine_string_id_first_set_end_index)
+	{
+		start_index = cache_file_string_id_start_index;
+	}
+	else
+	{
+		if (stringid.set > _countof(string_id_set_start_indices))
+		{
+			return 0xFFFFFFFF;
+		}
+		start_index = string_id_set_start_indices[stringid.set];
+	}
+
+	uint32_t index = start_index + stringid.index;
+	return index;
+}
+
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set0[] =
 {
 {"", true },
 {"default", true },
@@ -1339,7 +1357,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 { "ai_only", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set1[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set1[] =
 {
 {"primary_label", true },
 {"secondary_label" },
@@ -2980,7 +2998,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 { "unselected", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set2[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set2[] =
 {
 { "alpha_custom_games_disabled", true },
 { "alpha_network_mode_disabled" },
@@ -3201,7 +3219,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "queued_join_failed", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set3[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set3[] =
 {
 { "choice_1", true },
 { "choice_2" },
@@ -3311,7 +3329,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "switch_lobby_remote_players", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set4[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set4[] =
 {
 { "event_tab_up", true },
 { "event_tab_left" },
@@ -3532,7 +3550,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "toast", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set5[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set5[] =
 {
 { "widget_idle", true },
 { "custom_bitmap_crossfade_in" },
@@ -3574,7 +3592,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "widget_unfocused", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set6[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set6[] =
 {
 { "change_channel", true },
 { "directional_blur" },
@@ -3583,7 +3601,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 { "gamma_correct_overlay_mask", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set7[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set7[] =
 {
 { "prop_dummy", true },
 { "prop_abort_input_event_id" },
@@ -5314,7 +5332,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "prop_user_ident", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set8[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set8[] =
 {
 { "active_challenge_details_list_data_component", true },
 { "active_challenges_list_data_component" },
@@ -5686,7 +5704,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 { "film_control_pad_start_dvr_capture_event_handler", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set9[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set9[] =
 {
 { "map_default", true },
 { "frag_grenade" },
@@ -5710,7 +5728,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "teleporter_sent", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set10[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set10[] =
 {
 { "status_none", true },
 { "status_not_pregame" },
@@ -5813,7 +5831,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set11[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set11[] =
 {
 { "default_map_variant_save_name_format", true },
 { "default_map_variant_save_description_format" },
@@ -5841,12 +5859,12 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "default_film_save_description_format_editor", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set12[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set12[] =
 {
 	{}
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set13[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set13[] =
 {
 { "g_all_memexport", true },
 { "g_all_state" },
@@ -5863,7 +5881,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "g_hidden_from_compiler", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set14[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set14[] =
 {
 { "custom", true },
 { "surprise" },
@@ -5908,7 +5926,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "designer_4", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set15[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set15[] =
 {
 { "kill", true },
 { "assist" },
@@ -6009,7 +6027,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "survival_wave_completed_deathless", true },
 };
 
-s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data_set16[] =
+s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set16[] =
 {
 { "key_escape", true },
 { "key_f1" },
@@ -6128,7 +6146,7 @@ s_engine_string_id_guesstimator_data c_cache_file_string_id_guesstimator::engine
 {  "mouse_wheel_down", true },
 };
 
-std::pair<s_engine_string_id_guesstimator_data*, uint32_t> c_cache_file_string_id_guesstimator::engine_string_id_guesstimator_data[17] =
+std::pair<s_engine_string_id_guesstimator_data*, uint32_t> c_string_id_guesstimator::engine_string_id_guesstimator_data[17] =
 {
 	{ engine_string_id_guesstimator_data_set0,		static_cast<uint32_t>(_countof(engine_string_id_guesstimator_data_set0))},
 	{ engine_string_id_guesstimator_data_set1,		static_cast<uint32_t>(_countof(engine_string_id_guesstimator_data_set1))},

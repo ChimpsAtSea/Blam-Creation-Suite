@@ -35,12 +35,17 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 		const long long  k_halo3_header_memory_footprint = 0x3000;
 		const long long  k_halo3odst_header_memory_footprint = 0x2FFC;
 		const long long  k_halo4_header_memory_footprint = 0x1E000;
+		const long long  k_groundhog_header_memory_footprint = 0x1E000;
 
 		switch (header_size)
 		{
 		case k_haloreach_header_memory_footprint:
 			c_console::write_line_verbose("cache file type halo reach");
 			engine_type = _engine_type_haloreach;
+			break;
+		case k_halo2_header_memory_footprint:
+			c_console::write_line_verbose("cache file type halo 2");
+			engine_type = _engine_type_halo2;
 			break;
 		case k_halo3_header_memory_footprint:
 			c_console::write_line_verbose("cache file type halo 3");
@@ -50,14 +55,25 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 			c_console::write_line_verbose("cache file type halo 3 odst");
 			engine_type = _engine_type_halo3odst;
 			break;
-		case k_halo4_header_memory_footprint:
-			c_console::write_line_verbose("cache file type halo 4");
-			engine_type = _engine_type_halo4;
+		//case k_halo4_header_memory_footprint:
+		case k_groundhog_header_memory_footprint:
+		{
+			if (header.file_version == 0) // #TODO assuming same as groundhog
+			{
+				c_console::write_line_verbose("cache file type halo 4");
+				engine_type = _engine_type_halo4;
+			}
+			else if (header.file_version == 12)
+			{
+				c_console::write_line_verbose("cache file type groundhog");
+				engine_type = _engine_type_groundhog;
+			}
+			else
+			{
+				c_console::write_line_verbose("unknown halo 4/groundhog cache file version");
+			}
 			break;
-		case k_halo2_header_memory_footprint:
-			c_console::write_line_verbose("cache file type halo 2");
-			engine_type = _engine_type_halo2;
-			break;
+		}
 		default:
 			DEBUG_FATAL_ERROR(L"Unknown map type");
 		}
@@ -95,7 +111,7 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_cache_file(map_filepath, file_version);
+		return new c_haloreach_cache_file(map_filepath);
 	case _engine_type_halo1:
 		return new c_halo1_cache_file(map_filepath);
 	case _engine_type_halo2:
@@ -135,6 +151,12 @@ c_cache_file::c_cache_file(const std::wstring& map_filepath, e_engine_type engin
 c_cache_file::~c_cache_file()
 {
 	delete& virtual_memory_container;
+}
+
+char* c_cache_file::get_map_data()
+{
+	char* map_data = virtual_memory_container.get_data();
+	return map_data;
 }
 
 uint64_t c_cache_file::convert_virtual_address(uint64_t virtual_address) const

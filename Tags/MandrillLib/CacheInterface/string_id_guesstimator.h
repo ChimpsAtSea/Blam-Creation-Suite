@@ -8,33 +8,14 @@ struct s_engine_string_id_guesstimator_data
 	bool is_reliable;
 };
 
-class c_cache_file_string_id_guesstimator
+class c_string_id_guesstimator :
+	public c_string_id_interface
 {
 public:
-	c_cache_file_string_id_guesstimator(c_cache_file& cache_file);
-	~c_cache_file_string_id_guesstimator();
+	c_string_id_guesstimator(c_cache_file& cache_file);
+	~c_string_id_guesstimator();
 
-	uint32_t string_id_to_index(string_id const stringid)
-	{
-		uint32_t start_index = 0;
-		if (stringid.set == 0 && stringid.index >= engine_string_id_first_set_end_index)
-		{
-			start_index = cache_file_string_id_start_index;
-		}
-		else
-		{
-			if (stringid.set > _countof(string_id_set_start_indices))
-			{
-				return 0xFFFFFFFF;
-			}
-			start_index = string_id_set_start_indices[stringid.set];
-		}
-
-		uint32_t index = start_index + stringid.index;
-		return index;
-	}
-
-
+	virtual uint32_t string_id_to_index(string_id const stringid) override final;
 
 private:
 	uint32_t cache_file_string_id_start_index;
