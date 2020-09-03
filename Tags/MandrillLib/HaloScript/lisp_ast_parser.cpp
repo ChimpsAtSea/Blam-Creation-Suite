@@ -122,7 +122,7 @@ const char* c_lisp_node::traverse(
 		bool is_end_bracket = current_character == ')';
 		if (new_line) line_count++;
 
-		if (search_type != _lisp_node_type_variable && is_open_bracket)
+		if (search_type != _lisp_node_type_variable && search_type != _lisp_node_type_comment && is_open_bracket)
 		{
 			search_type = _lisp_node_type_statement;
 			found_node = true;

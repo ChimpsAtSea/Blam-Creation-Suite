@@ -177,6 +177,9 @@
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\halo_script_editor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\cache_file.cpp">
@@ -300,6 +303,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\halo_script_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

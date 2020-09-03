@@ -13,3 +13,4 @@
 #include "Tabs\blofeld_tag_editor.h"
 #include "Tabs\cache_file_tab.h"
 #include "Tabs\tag_interface_tab.h"
+#include "Tabs\halo_script_editor.h"

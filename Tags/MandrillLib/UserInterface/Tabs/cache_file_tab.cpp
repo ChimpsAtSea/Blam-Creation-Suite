@@ -48,6 +48,13 @@ c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& par
 			open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
 		}
 	}
+
+	std::string haloscript_command_line = c_command_line::get_command_line_arg("-haloscript");
+	if (!haloscript_command_line.empty())
+	{
+		c_halo_script_editor* halo_script_editor = new c_halo_script_editor(cache_file, *this);
+		add_tab(*halo_script_editor);
+	}
 }
 
 c_cache_file_tab::~c_cache_file_tab()

@@ -70,6 +70,7 @@
     <ClInclude Include="UserInterface\Foundation\mandrill_event_queue.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_user_interface.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\halo_script_editor.h" />
     <ClInclude Include="UserInterface\Tabs\tag_interface_tab.h" />
     <ClInclude Include="UserInterface\UserInterface.h" />
     <ClInclude Include="virtual_memory_container.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="UserInterface\Foundation\mandrill_event_queue.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\halo_script_editor.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_interface_tab.cpp" />
     <ClCompile Include="virtual_memory_container.cpp" />
   </ItemGroup>

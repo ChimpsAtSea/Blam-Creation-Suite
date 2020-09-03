@@ -314,7 +314,7 @@ constexpr string_type get_enum_string(e_map_id map_id)
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_the_ark, "The Ark");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_the_covenant, "The Covenant");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_cortana, "Cortana");
-	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_halo, "Calo");
+	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_halo, "Halo");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_extracredit_first_DONOTUSE_OR_REMOVE, "Extracredit First DONOTUSE_OR_REMOVE");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_epilogue, "Epilogue");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo3_construct, "Construct");
