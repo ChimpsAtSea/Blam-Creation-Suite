@@ -19,10 +19,18 @@ namespace blofeld
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ ITEM $$$" },
 		{ _field_long_flags, "flags", &item_definition_flags },
+
+		{ _field_version_platform_include, _platform_type_pc, 4 },
+		{ _field_version_equal, _engine_type_halo3odst, 3 },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+
 		{ _field_short_integer, "OLD message index" },
 		{ _field_short_integer, "sort order" },
 		{ _field_real, "OLD multiplayer on-ground scale" },
 		{ _field_real, "OLD campaign on-ground scale" },
+
 		{ _field_explanation, "NEW hud messages", "everything you need to display shite" },
 		{ _field_string_id, "pickup message" },
 		{ _field_string_id, "swap message" },

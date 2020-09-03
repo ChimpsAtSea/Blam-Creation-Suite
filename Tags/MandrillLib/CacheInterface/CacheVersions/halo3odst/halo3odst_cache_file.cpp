@@ -54,7 +54,22 @@ c_halo3odst_cache_file::~c_halo3odst_cache_file()
 
 bool c_halo3odst_cache_file::save_map()
 {
-	return false;
+	// #TODO: Replace with filesystem API
+
+	FILE* file = _wfopen(get_map_filepath(), L"wb");
+	if (file == nullptr)
+	{
+		MessageBoxA(NULL, "Failed to save map", "File error failed to open for write", 0);
+		return false;
+	}
+
+	size_t map_size = virtual_memory_container.GetSize();
+	char* map_data = virtual_memory_container.get_data();
+
+	fwrite(map_data, 1, map_size, file);
+	fflush(file);
+	fclose(file);
+	return true;
 }
 
 uint64_t c_halo3odst_cache_file::get_base_virtual_address() const
