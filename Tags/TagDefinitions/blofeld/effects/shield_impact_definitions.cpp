@@ -10,6 +10,39 @@ namespace blofeld
 
 	TAG_STRUCT(shield_impact_struct_definition)
 	{
+		// H3, ODST. Based on Assembly definitions.
+		// #TODO: merge shield_impact_struct definition versions
+		{ _field_version_less, _engine_type_haloreach, 27 },
+		{ _field_tag_reference, "Plasma Noise Texture 0", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_tag_reference, "Plasma Noise Texture 1", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_real, "Offset Amount" },
+		{ _field_real, "Tiling Scale" },
+		{ _field_real, "Scroll Speed" },
+		{ _field_explanation, "Layer 1" },
+		{ _field_real, "Edge Sharpness" },
+		{ _field_real, "Edge Radius" },
+		{ _field_real, "Edge Fade" },
+		{ _field_explanation, "Layer 2" },
+		{ _field_real, "Edge Sharpness" },
+		{ _field_real, "Edge Radius" },
+		{ _field_real, "Edge Fade" },
+		{ _field_explanation, "Overshield" },
+		{ _field_real_rgb_color, "Overshield Plasma Edge 1 Color" },
+		{ _field_real, "Overshield Plasma Edge 1 Intensity" },
+		{ _field_real_rgb_color, "Overshield Plasma Edge 2 Color" },
+		{ _field_real, "Overshield Plasma Edge 2 Intensity" },
+		{ _field_real_rgb_color, "Overshield Plasma Color" },
+		{ _field_real, "Overshield Plasma Intensity" },
+		{ _field_explanation, "Default Hit" },
+		{ _field_real_rgb_color, "Hit Plasma Edge 1 Color" },
+		{ _field_real, "Hit Plasma Edge 1 Intensity" },
+		{ _field_real_rgb_color, "Hit Plasma Edge 2 Color" },
+		{ _field_real, "Hit Plasma Edge 2 Intensity" },
+		{ _field_real_rgb_color, "Hit Plasma Color" },
+		{ _field_real, "Hit Plasma Intensity" },
+
+		// Reach, H4
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 48 },
 		{ _field_explanation, "Shield Controls", "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n" },
 		{ _field_word_flags, "flags", &shield_flags },
 		{ _field_short_integer, "version!" },
@@ -64,10 +97,12 @@ namespace blofeld
 		{ _field_tag_reference, "hit blob texture (adds significant cost)", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_custom },
 
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real_quaternion, "edge_scales!" },
 		{ _field_real_quaternion, "edge_offsets!" },
 		{ _field_real_quaternion, "plasma_scales!" },
 		{ _field_real_quaternion, "depth_fade_params!" },
+
 		{ _field_terminator }
 	};
 
