@@ -120,9 +120,24 @@ const char* c_lisp_node::traverse(
 		bool new_line = is_end_of_line(traversal_position, &skip_extra_character);
 		bool is_open_bracket = current_character == '(';
 		bool is_end_bracket = current_character == ')';
+		bool is_searching_comment = search_type == _lisp_node_type_comment || search_type == _lisp_node_type_multi_line_comment;
 		if (new_line) line_count++;
 
-		if (search_type != _lisp_node_type_variable && search_type != _lisp_node_type_comment && is_open_bracket)
+		if (is_searching_comment)
+		{
+			if (search_type == _lisp_node_type_comment && new_line)
+			{
+				search_depth--;
+				finished_searching = true;
+			}
+			else if (search_type == _lisp_node_type_multi_line_comment && (current_character == '*' && next_character == ';'))
+			{
+				skip_extra_character = true;
+				search_depth--;
+				finished_searching = true;
+			}
+		}
+		else if (!is_searching_comment && search_type != _lisp_node_type_variable && is_open_bracket)
 		{
 			search_type = _lisp_node_type_statement;
 			found_node = true;
@@ -132,7 +147,7 @@ const char* c_lisp_node::traverse(
 			}
 			search_depth++;
 		}
-		else if (is_end_bracket)
+		else if (!is_searching_comment && is_end_bracket)
 		{
 			if (search_depth == 0 || search_type == _lisp_node_type_variable)
 			{
@@ -169,17 +184,6 @@ const char* c_lisp_node::traverse(
 				if (IsDebuggerPresent()) throw; // internal compiler error.
 			}
 			search_depth = 1;
-		}
-		else if (search_type == _lisp_node_type_comment && new_line)
-		{
-			search_depth--;
-			finished_searching = true;
-		}
-		else if (search_type == _lisp_node_type_multi_line_comment && (current_character == '*' && next_character == ';'))
-		{
-			skip_extra_character = true;
-			search_depth--;
-			finished_searching = true;
 		}
 		else if (search_type == _lisp_node_type_uninitialized && !whitespace && !new_line)
 		{
