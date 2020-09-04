@@ -600,8 +600,8 @@ void c_game_launcher::init_steaownership()
 {
 #ifdef _WIN64
 	{
-		static const char k_steaappid[] = "976730";
-		bool write_file_fromemory_result = filesystem_write_file_from_memory("steaappid.txt", k_steaappid, strlen(k_steaappid));
+		static const char k_steam_appid[] = "976730";
+		bool write_file_fromemory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
 		ASSERT(write_file_fromemory_result == true);
 	}
 
