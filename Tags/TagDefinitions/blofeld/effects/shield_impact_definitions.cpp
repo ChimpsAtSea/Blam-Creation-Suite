@@ -14,7 +14,7 @@ namespace blofeld
 		// #TODO: merge shield_impact_struct definition versions
 		{ _field_version_less, _engine_type_haloreach, 27 },
 		{ _field_tag_reference, "Plasma Noise Texture 0", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		{ _field_tag_reference, "hPlasma Noise Texture 1", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_tag_reference, "Plasma Noise Texture 1", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		{ _field_real, "Offset Amount" },
 		{ _field_real, "Tiling Scale" },
 		{ _field_real, "Scroll Speed" },
