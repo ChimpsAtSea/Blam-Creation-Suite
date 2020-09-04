@@ -8,12 +8,12 @@ public:
 private:
 	int __unknown0;
 public:
-	int m_mapID;
-	s_blamfile_level_chunk_flags m_flags;
-	wchar_t m_levelName[12][0x20];
-	wchar_t m_levelDescription[12][0x80];
+	int map_id;
+	s_blamfile_level_chunk_flags flags;
+	wchar_t level_name[12][0x20];
+	wchar_t level_description[12][0x80];
 	// dont know how to parse rest of struct
-	char m_imageFileName[0x100];
+	char imageFileName[0x100];
 	char map_path[0x100];
 	char __unknown[0xBB84];
 };

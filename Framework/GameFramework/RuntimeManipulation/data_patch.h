@@ -59,7 +59,7 @@ private:
 	bool is_patched;
 	t_search* search_function;
 	t_search_multi* search_function_multi_entry;
-	DataPatchPackets m_packets;
+	DataPatchPackets packets;
 	s_symbol_file_public* public_symbol;
 	t_apply_packet apply_packet;
 	t_apply_packets apply_packets;

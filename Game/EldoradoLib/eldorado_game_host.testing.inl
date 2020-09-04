@@ -18,7 +18,7 @@ uintptr_t c_stop_watch__start_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x004CF170);
 	return ~uintptr_t();
 }
-FunctionHookEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
+c_function_hook_ex<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
 {
 	RUNONCE(c_console::show_startup_banner());
 	c_console::Update();
@@ -82,7 +82,7 @@ uintptr_t GameShieldInit_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x007648E0);
 	return ~uintptr_t();
 }
-FunctionHookEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
+c_function_hook_ex<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
 {
 	c_console::write_line_verbose("GameShieldInit");
 }};
@@ -159,7 +159,7 @@ uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
 	
 	return ~uintptr_t();
 }
-FunctionHookEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
+c_function_hook_ex<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
 	c_console::write_line_verbose("Hf2pInit_offset");
 	if (c_eldorado_game_host::get_build() == _build_eldorado_1_106708_cert_ms23)
@@ -179,7 +179,7 @@ uintptr_t Hf2pShutdown_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, ~uintptr_t());
 	return ~uintptr_t();
 }
-FunctionHookEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()
+c_function_hook_ex<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()
 {
 	c_console::write_line_verbose("Hf2pShutdown");
 	//ShutdownSoundSystem();
@@ -190,7 +190,7 @@ FunctionHookEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", [](
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x005056D0);
 //	return ~uintptr_t();
 //}
-//FunctionHookEx<GameClient__Shutdown_offset, void __cdecl()> GameClient__Shutdown = { "GameClient__Shutdown", []()
+//c_function_hook_ex<GameClient__Shutdown_offset, void __cdecl()> GameClient__Shutdown = { "GameClient__Shutdown", []()
 //{
 //	c_console::write_line_verbose("GameClient__Shutdown was called");
 //	return GameClient__Shutdown();
@@ -207,7 +207,7 @@ uintptr_t contrail_crash_fix_offset(e_engine_type engine_type, e_build build)
 	//OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x00696690);
 	return ~uintptr_t();
 }
-FunctionHookEx<contrail_crash_fix_offset, int(DWORD *, int)> contrail_crash_fix = { "contrail_crash_fix", [](DWORD* _this, int a2)
+c_function_hook_ex<contrail_crash_fix_offset, int(DWORD *, int)> contrail_crash_fix = { "contrail_crash_fix", [](DWORD* _this, int a2)
 {
 	return contrail_crash_fix(_this, a2);
 } };

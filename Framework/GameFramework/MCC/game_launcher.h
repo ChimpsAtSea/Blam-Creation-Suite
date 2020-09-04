@@ -25,6 +25,7 @@ class c_game_launcher
 public:
 	static void init_game_launcher(c_window& window);
 	static void deinit_game_launcher();
+	static void add_supported_engine(e_engine_type engine_type);
 	static void opus_tick();
 	static void game_exited_callback();
 	static void window_destroy_callback();
@@ -37,7 +38,7 @@ private:
 	static void game_render();
 	static void start_game(e_engine_type engine_type, e_next_launch_mode next_launch_mode);
 	static void launch_game(e_engine_type engine_type);
-	static void check_steam_ownership();
+	static void init_steaownership();
 	static void ensure_library_loaded(const char* library_name, const char* fallback_directory);
 	static void render_pause_menu();
 #ifdef _WINDOWS_

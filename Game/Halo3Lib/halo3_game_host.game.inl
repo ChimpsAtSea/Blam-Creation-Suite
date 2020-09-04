@@ -4,7 +4,7 @@ uintptr_t halo3_engine_shutdown_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802659D0);
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_engine_shutdown_offset, void()> halo3_engine_shutdown = { "halo3_engine_shutdown", []()
+c_function_hook_ex<halo3_engine_shutdown_offset, void()> halo3_engine_shutdown = { "halo3_engine_shutdown", []()
 {
 	//write_stack_back_trace(__FUNCTIONW__, 2);
 	//engine_shutdown();
@@ -19,7 +19,7 @@ uintptr_t halo3_game_time_get_ticks_per_second_constant_offset(e_engine_type eng
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180467ED0);
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_game_time_get_ticks_per_second_constant_offset, float __stdcall()> halo3_game_time_get_ticks_per_second_constant = { "halo3_game_time_get_ticks_per_second_constant", []()
+c_function_hook_ex<halo3_game_time_get_ticks_per_second_constant_offset, float __stdcall()> halo3_game_time_get_ticks_per_second_constant = { "halo3_game_time_get_ticks_per_second_constant", []()
 {
 	float result = halo3_game_time_get_ticks_per_second_constant();
 	//write_stack_back_trace(__FUNCTIONW__, 2);

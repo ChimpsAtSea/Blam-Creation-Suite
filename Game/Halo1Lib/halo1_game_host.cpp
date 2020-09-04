@@ -56,11 +56,11 @@ c_halo1_game_host::~c_halo1_game_host()
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
-	//m_pGameEngine->Destructor();
-	//free(pHaloReachEngine);
-	//free(pHaloReachDataAccess);
+	//game_engine->Destructor();
+	//free(halo_reach_engine);
+	//free(halo_reach_data_access);
 
-	//m_pGameEngine = nullptr;
+	//game_engine = nullptr;
 
 	deinit_runtime_modifications(g_halo1_game_runtime->get_build());
 
@@ -166,14 +166,16 @@ void c_halo1_game_host::deinit_runtime_modifications(e_build build)
 	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo1, build);
 	c_global_reference::deinit_global_reference_tree(_engine_type_halo1, build);
 	end_detours();
+
+
 }
 
 /* ---------- private code */
 
 void c_halo1_game_host::update_camera_data()
 {
-	//if (!player_mapping_get_local_player.m_isHooked) return;
-	//if (!observer_try_and_get_camera.m_isHooked) return;
+	//if (!player_mapping_get_local_player.is_hooked) return;
+	//if (!observer_try_and_get_camera.is_hooked) return;
 
 	//int playerIndex = player_mapping_get_local_player();
 	//s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);

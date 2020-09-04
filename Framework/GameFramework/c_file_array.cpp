@@ -1,6 +1,9 @@
 #include "gameframework-private-pch.h"
 
-c_file_array::c_file_array(std::vector<std::string> file_directories, std::vector<std::string> file_extensions, int (*pReadInfoFunction)(LPCSTR name, std::string* name_out, std::string* description_out, LPCSTR file_path)) :
+c_file_array::c_file_array(
+	std::vector<std::string> file_directories, 
+	std::vector<std::string> file_extensions, 
+	t_read_info_function* read_info) :
 	file_count(0)
 {
 	if (files.empty() || file_count == 0)
@@ -8,24 +11,30 @@ c_file_array::c_file_array(std::vector<std::string> file_directories, std::vecto
 		for (std::string& directory : file_directories)
 		{
 			if (!PathFileExistsA(directory.c_str()))
+			{
 				continue;
+			}
 
 			for (const std::filesystem::directory_entry& directory_entry : std::filesystem::directory_iterator(directory))
 			{
 				for (std::string& pExtension : file_extensions)
 				{
 					if (directory_entry.path().extension().compare(pExtension) != 0)
+					{
 						continue;
+					}
 
-					s_file_info fileInfo;
-					fileInfo.file_path = directory_entry.path().parent_path().string();
-					fileInfo.file_name = directory_entry.path().filename().replace_extension().string();
-					fileInfo.Type = pReadInfoFunction(fileInfo.file_name.c_str(), &fileInfo.name, &fileInfo.description, directory_entry.path().string().c_str());
+					s_file_info file_info;
+					file_info.file_path = directory_entry.path().parent_path().string();
+					file_info.file_name = directory_entry.path().filename().replace_extension().string();
+					file_info.type = read_info(file_info.file_name.c_str(), &file_info.name, &file_info.description, directory_entry.path().string().c_str());
 
-					while (fileInfo.description.find("|n") != std::string::npos)
-						fileInfo.description.replace(fileInfo.description.find("|n"), _countof("|n") - 1, "\n");
+					while (file_info.description.find("|n") != std::string::npos)
+					{
+						file_info.description.replace(file_info.description.find("|n"), _countof("|n") - 1, "\n");
+					}
 
-					files.push_back(fileInfo);
+					files.push_back(file_info);
 
 					c_console::write_line_verbose("Reading %s", directory_entry.path().string().c_str());
 				}
@@ -36,156 +45,152 @@ c_file_array::c_file_array(std::vector<std::string> file_directories, std::vecto
 	}
 }
 
-LPCSTR c_file_array::get_filepath(size_t index)
+const char* c_file_array::get_filepath(size_t index)
 {
-	LPCSTR result = "";
-	if (index >= 0 && index < file_count)
+	if (index < file_count)
 	{
-		result = files[index].file_path.c_str();
+		return files[index].file_path.c_str();
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::get_filepath(LPCSTR pStr)
+const char* c_file_array::get_filepath(const char* string)
 {
-	LPCSTR result = "";
-	for (size_t i = 0; i < file_count; i++)
+	for (s_file_info& file : files)
 	{
-		if (files[i]==pStr)
+		if (file == string)
 		{
-			result = files[i].file_path.c_str();
+			return file.file_path.c_str();
 		}
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::get_filename(size_t index)
+const char* c_file_array::get_filename(size_t index)
 {
-	LPCSTR result = "";
-	if (index >= 0 && index < file_count)
+	if (index < file_count)
 	{
-		result = files[index].file_name.c_str();
+		return files[index].file_name.c_str();
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::get_filename(LPCSTR pStr)
+const char* c_file_array::get_filename(const char* string)
 {
-	LPCSTR result = "";
-	for (size_t i = 0; i < file_count; i++)
+	for (s_file_info& file : files)
 	{
-		if (files[i]==pStr)
+		if (file == string)
 		{
-			result = files[i].file_name.c_str();
+			return file.file_name.c_str();
 		}
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::get_name(size_t index)
+const char* c_file_array::get_name(size_t index)
 {
-	LPCSTR result = "";
-	if (index >= 0 && index < file_count)
+	if (index < file_count)
 	{
-		result = files[index].name.c_str();
+		return files[index].name.c_str();
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::get_name(LPCSTR pStr)
+const char* c_file_array::get_name(const char* string)
 {
-	LPCSTR result = "";
-	if (pStr)
+	if (string)
 	{
-		for (size_t i = 0; i < file_count; i++)
+		for (s_file_info& file : files)
 		{
-			if (files[i] == pStr)
+			if (file == string)
 			{
-				result = files[i].name.c_str();
+				return file.name.c_str();
 			}
 		}
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::GetDesc(size_t index)
+const char* c_file_array::get_description(size_t index)
 {
-	LPCSTR result = "";
-	if (index >= 0 && index < file_count)
+	if (index < file_count)
 	{
-		result = files[index].description.c_str();
+		return files[index].description.c_str();
 	}
 
-	return result;
+	return "";
 }
 
-LPCSTR c_file_array::GetDesc(LPCSTR pStr)
+const char* c_file_array::get_description(const char* string)
 {
-	LPCSTR result = "";
-	for (size_t i = 0; i < file_count; i++)
+	if (string)
 	{
-		if (files[i] == pStr)
+		for (s_file_info& file : files)
 		{
-			result = files[i].description.c_str();
+			if (file == string)
+			{
+				return file.description.c_str();
+			}
 		}
 	}
 
-	return result;
+	return "";
 }
 
-int c_file_array::GetType(size_t index)
+int c_file_array::get_type(size_t index)
 {
-	int result = -1;
-	if (index >= 0 && index < file_count)
+	if (index < file_count)
 	{
-		result = files[index].Type;
+		return files[index].type;
 	}
 
-	return result;
+	return -1;
 }
 
-int c_file_array::GetType(LPCSTR pStr)
+int c_file_array::get_type(const char* string)
 {
-	int result = -1;
-	for (size_t i = 0; i < file_count; i++)
+	if (string)
 	{
-		if (files[i] == pStr)
+		for (s_file_info& file : files)
 		{
-			result = files[i].Type;
+			if (file == string)
+			{
+				return file.type;
+			}
 		}
 	}
 
-	return result;
+	return -1;
 }
 
-bool c_file_array::Match(uint32_t type)
+bool c_file_array::match(uint32_t type)
 {
-	bool result = false;
-	for (size_t i = 0; i < file_count; i++)
+	for (s_file_info& file : files)
 	{
-		if (files[i] == type)
+		if (file == type)
 		{
-			result = true;
+			return true;
 		}
 	}
-	return result;
+
+	return false;
 }
 
-bool c_file_array::Match(LPCSTR pStr)
+bool c_file_array::match(const char* string)
 {
-	bool result = false;
-	for (size_t i = 0; i < file_count; i++)
+	for (s_file_info& file : files)
 	{
-		if (files[i] == pStr)
+		if (file == string)
 		{
-			result = true;
+			return true;
 		}
 	}
-	return result;
+
+	return false;
 }

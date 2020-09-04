@@ -10,11 +10,6 @@ struct FunctionHook<build, offset, R(Args...)> : c_function_hook_base
 public:
 	typedef R(base_type)(Args...);
 
-#ifndef __clang__
-	static_assert(build == _build_not_set || offset >= get_engine_base_address(engine_type), "Offset is out of bounds");
-	static_assert(build == _build_not_set || offset < get_engine_top_address(engine_type, build), "Offset is out of bounds");
-#endif
-
 	__forceinline decltype(auto) operator()(Args... arg)
 	{
 		size_t x = 0; // needed to fix register issue on debug
@@ -24,17 +19,17 @@ public:
 		if constexpr (std::is_same<return_type, void>::value)
 		{
 			base(arg...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 		}
 		else
 		{
 			auto result = base(arg...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 			return result;
 		}
@@ -77,12 +72,12 @@ public:
 
 private:
 
-	base_type*& GetHook()
+	base_type*& get_hook()
 	{
 		return *const_cast<base_type**>(&hook);
 	}
 
-	base_type*& GetBase()
+	base_type*& get_base()
 	{
 		return *const_cast<base_type**>(&base);
 	}

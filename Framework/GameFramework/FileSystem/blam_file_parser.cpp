@@ -1,47 +1,47 @@
 #include "gameframework-private-pch.h"
 
-c_blam_file_parser::c_blam_file_parser(char* pBlamFileData)
-	:m_isLittleEndian(false)
+c_blam_file_parser::c_blam_file_parser(char* blam_file_data)
+	:is_little_endian(false)
 {
-	char* pCurrentMapInfoDataPosition = pBlamFileData;
-	bool endOfFileFound = false;
+	char* current_map_info_data_position = blam_file_data;
+	bool end_of_file_found = false;
 	do
 	{
-		s_blamfile_header* pChunk = reinterpret_cast<s_blamfile_header*>(pCurrentMapInfoDataPosition);
+		s_blamfile_header* chunk = reinterpret_cast<s_blamfile_header*>(current_map_info_data_position);
 
-		switch (pChunk->m_chunkType)
+		switch (chunk->chunk_type)
 		{
-		case '_blf': m_isLittleEndian = true;
+		case '_blf': is_little_endian = true;
 		case bswap('_blf'):
 			break;
-			//case 'levl': m_isLittleEndian = true;
+			//case 'levl': is_little_endian = true;
 			//case bswap('levl'):
 			//{
-			//	s_blamfile_level_chunk* pLevelChunk = static_cast<s_blamfile_level_chunk*>(pChunk);
-			//	int mapID = bswap_auto_endian(m_isLittleEndian, pLevelChunk->mapID);
+			//	s_blamfile_level_chunk* plevel_chunk = static_cast<s_blamfile_level_chunk*>(chunk);
+			//	int map_id = bswap_auto_endian(is_little_endian, plevel_chunk->map_id);
 			//	c_console::write_line_verbose("MapInfoManager> ");
 			//	break;
 			//}
-		case '_eof': m_isLittleEndian = true;
+		case '_eof': is_little_endian = true;
 		case bswap('_eof'):
-			endOfFileFound = true;
+			end_of_file_found = true;
 			break;
 		}
-		int chunkSize = bswap_auto_endian(m_isLittleEndian, pChunk->m_chunkSize);
-		pCurrentMapInfoDataPosition += chunkSize;
+		int chunk_size = bswap_auto_endian(is_little_endian, chunk->chunk_size);
+		current_map_info_data_position += chunk_size;
 
-		m_chunks.emplace_back(pChunk);
+		chunks.emplace_back(chunk);
 
-	} while (!endOfFileFound);
+	} while (!end_of_file_found);
 
-	c_console::write_line_verbose("BlamFileParser> Parsed %i chunks", static_cast<int>(m_chunks.size()));
+	c_console::write_line_verbose("BlamFileParser> Parsed %i chunks", static_cast<int>(chunks.size()));
 }
 
-s_blamfile_header* c_blam_file_parser::getFirstChunkByTypeImpl(blamfile_chunk_type chunk_type)
+s_blamfile_header* c_blam_file_parser::get_first_chunk_by_type_impl(blamfile_chunk_type chunk_type)
 {
-	for (s_blamfile_header*& pCurrentChunk : m_chunks)
+	for (s_blamfile_header*& pCurrentChunk : chunks)
 	{
-		if (pCurrentChunk->m_chunkType == chunk_type)
+		if (pCurrentChunk->chunk_type == chunk_type)
 		{
 			return pCurrentChunk;
 		}
@@ -50,12 +50,12 @@ s_blamfile_header* c_blam_file_parser::getFirstChunkByTypeImpl(blamfile_chunk_ty
 	return nullptr;
 }
 
-s_blamfile_header* c_blam_file_parser::get_first_chunk_by_type(blamfile_chunk_type chunkType)
+s_blamfile_header* c_blam_file_parser::get_first_chunk_by_type(blamfile_chunk_type chunk_type)
 {
-	s_blamfile_header* pResult = getFirstChunkByTypeImpl(chunkType);
+	s_blamfile_header* pResult = get_first_chunk_by_type_impl(chunk_type);
 	if (pResult == nullptr)
 	{
-		pResult = getFirstChunkByTypeImpl(static_cast<blamfile_chunk_type>(bswap(chunkType)));
+		pResult = get_first_chunk_by_type_impl(static_cast<blamfile_chunk_type>(bswap(chunk_type)));
 	}
 	return pResult;
 }

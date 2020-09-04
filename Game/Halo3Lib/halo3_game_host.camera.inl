@@ -9,7 +9,7 @@ uintptr_t halo3_player_mapping_get_local_player_offset(e_engine_type engine_type
 	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_player_mapping_get_local_player_offset, int __stdcall ()> halo3_player_mapping_get_local_player;
+c_function_hook_ex<halo3_player_mapping_get_local_player_offset, int __stdcall ()> halo3_player_mapping_get_local_player;
 
 uintptr_t halo3_observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
 {
@@ -21,7 +21,7 @@ uintptr_t halo3_observer_try_and_get_camera_offset(e_engine_type engine_type, e_
 	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1801F0060); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> halo3_observer_try_and_get_camera;
+c_function_hook_ex<halo3_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> halo3_observer_try_and_get_camera;
 
 std::vector<uintptr_t> halo3_enable_debug_hud_coordinates_offsets(e_engine_type engine_type, e_build build)
 {

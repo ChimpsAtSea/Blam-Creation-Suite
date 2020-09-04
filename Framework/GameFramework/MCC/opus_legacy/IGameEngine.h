@@ -41,7 +41,7 @@ class __IGameEngine;
 class IGameEngine
 {
 public: // instance functions
-	virtual void Free();
+	virtual void free();
 	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, IDXGISwapChain* pSwapchain, IDXGISwapChain* pFallbackSwapchain);
 	virtual HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
 	virtual __int64 __fastcall update_engine_state(e_engine_state status, _QWORD* extraArgument = nullptr);
@@ -185,7 +185,7 @@ public:
 		uint32_t member_9_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_9);
 		uint32_t member_10_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_10);
 
-		_Free = static_cast<decltype(_Free)>(game_engine.__vfptr[free_virtual_function_index]);
+		_free = static_cast<decltype(_free)>(game_engine.__vfptr[free_virtual_function_index]);
 		_InitGraphics = static_cast<decltype(_InitGraphics)>(game_engine.__vfptr[init_graphics_virtual_function_index]);
 		_InitThread = static_cast<decltype(_InitThread)>(game_engine.__vfptr[init_thread_virtual_function_index]);
 		_update_engine_state = static_cast<decltype(_update_engine_state)>(game_engine.__vfptr[update_engine_state_virtual_function_index]);
@@ -197,7 +197,7 @@ public:
 		_Member09 = static_cast<decltype(_Member09)>(game_engine.__vfptr[member_9_virtual_function_index]);
 		_Member10 = static_cast<decltype(_Member10)>(game_engine.__vfptr[member_10_virtual_function_index]);
 
-		DEBUG_ASSERT(_Free != nullptr);
+		DEBUG_ASSERT(_free != nullptr);
 		DEBUG_ASSERT(_InitGraphics != nullptr);
 		DEBUG_ASSERT(_InitThread != nullptr);
 		DEBUG_ASSERT(_update_engine_state != nullptr);
@@ -215,7 +215,7 @@ public:
 
 	}
 
-	typedef __int64 __fastcall FreeFunc(__IGameEngine*);
+	typedef __int64 __fastcall freeFunc(__IGameEngine*);
 	typedef __int64 __fastcall InitGraphicsFunc(
 		__IGameEngine*,
 		ID3D11Device* pDevice,
@@ -235,7 +235,7 @@ public:
 	__IGameEngine& game_engine;
 	e_build build;
 
-	FreeFunc* _Free;
+	freeFunc* _free;
 	InitGraphicsFunc* _InitGraphics;
 	InitThreadFunc* _InitThread;
 	update_engine_stateFunc* _update_engine_state;
@@ -247,7 +247,7 @@ public:
 	Member09Func* _Member09;
 	Member10Func* _Member10;
 
-	__int64 __fastcall Free() { _Free(&game_engine); }
+	__int64 __fastcall free() { _free(&game_engine); }
 	__int64 __fastcall InitGraphics(
 		ID3D11Device* pDevice,
 		ID3D11DeviceContext* pDeviceContext,

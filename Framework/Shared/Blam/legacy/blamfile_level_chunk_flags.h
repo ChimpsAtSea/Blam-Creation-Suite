@@ -5,16 +5,16 @@ struct s_blamfile_level_chunk_flags
 {
 	uint32_t __bit0 : 1;
 	uint32_t __bit1 : 1;
-	uint32_t m_isVisible : 1;
-	uint32_t m_isTheatreEnabled : 1;
-	uint32_t m_isMainMenu : 1;
-	uint32_t m_isCampaign : 1;
-	uint32_t m_isMultiplayer : 1;
-	uint32_t m_isDLC : 1;
+	uint32_t is_visible : 1;
+	uint32_t is_saved_filenabled : 1;
+	uint32_t is_main_menu : 1;
+	uint32_t is_campaign : 1;
+	uint32_t is_multiplayer : 1;
+	uint32_t is_dlc : 1;
 	uint32_t __bit8 : 1;
 	uint32_t __bit9 : 1;
-	uint32_t m_isFirefight : 1;
-	uint32_t m_isCinematic : 1;
+	uint32_t is_firefight : 1;
+	uint32_t is_cinematic : 1;
 	uint32_t __bit12 : 1;
 	uint32_t __bit13 : 1;
 	uint32_t __bit14 : 1;

@@ -11,7 +11,7 @@ uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build buil
 	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18000F9B0); // this build inlined `shell_get_external_host` so this offset is only used in one place
 	return ~uintptr_t();
 }
-FunctionHookEx<shell_get_external_host_offset, void* __fastcall(void)> shell_get_external_host = { "shell_get_external_host", []()
+c_function_hook_ex<shell_get_external_host_offset, void* __fastcall(void)> shell_get_external_host = { "shell_get_external_host", []()
 {
 	debug_point;
 	void* result = shell_get_external_host();
@@ -42,7 +42,7 @@ uintptr_t halo3_main_game_launch_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18000F310);
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_main_game_launch_offset, char __fastcall(__int64 a1, __int64 a2)> halo3_main_game_launch = { "halo3_main_game_launch", [](__int64 a1, __int64 a2)
+c_function_hook_ex<halo3_main_game_launch_offset, char __fastcall(__int64 a1, __int64 a2)> halo3_main_game_launch = { "halo3_main_game_launch", [](__int64 a1, __int64 a2)
 {
 	static const char* external_launch_state_names[] =
 	{

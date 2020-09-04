@@ -2,10 +2,10 @@
 
 
 template<find_offset_func, typename T>
-struct FunctionHookEx;
+struct c_function_hook_ex;
 
 template<find_offset_func find_offset, typename R, typename ...Args>
-struct FunctionHookEx<find_offset, R(Args...)> : c_function_hook_base
+struct c_function_hook_ex<find_offset, R(Args...)> : c_function_hook_base
 {
 public:
 	typedef R(base_type)(Args...);
@@ -20,9 +20,9 @@ public:
 		{
 			_InterlockedIncrement(&reference_counter);
 			base(arg...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 			_InterlockedDecrement(&reference_counter);
 		}
@@ -30,9 +30,9 @@ public:
 		{
 			_InterlockedIncrement(&reference_counter);
 			auto result = base(arg...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 			_InterlockedDecrement(&reference_counter);
 			return result;
@@ -41,7 +41,7 @@ public:
 
 	friend class c_function_hook_base;
 
-	FunctionHookEx()
+	c_function_hook_ex()
 		: c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(nullptr)
 	{
@@ -49,14 +49,14 @@ public:
 	}
 
 	template<typename hook_assignment_type>
-	FunctionHookEx(hook_assignment_type func)
+	c_function_hook_ex(hook_assignment_type func)
 		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
-	FunctionHookEx(R(*func)(Args...))
+	c_function_hook_ex(R(*func)(Args...))
 		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func)
 	{
@@ -64,14 +64,14 @@ public:
 	}
 
 	template<typename hook_assignment_type>
-	FunctionHookEx(const char pName[], hook_assignment_type func)
+	c_function_hook_ex(const char pName[], hook_assignment_type func)
 		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
-	FunctionHookEx(const char pName[], R(*func)(Args...))
+	c_function_hook_ex(const char pName[], R(*func)(Args...))
 		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func)
 	{
@@ -84,12 +84,12 @@ public:
 
 private:
 
-	base_type*& GetHook()
+	base_type*& get_hook()
 	{
 		return *const_cast<base_type**>(&hook);
 	}
 
-	base_type*& GetBase()
+	base_type*& get_base()
 	{
 		return *const_cast<base_type**>(&base);
 	}

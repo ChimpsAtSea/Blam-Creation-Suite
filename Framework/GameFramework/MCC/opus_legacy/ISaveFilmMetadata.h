@@ -3,7 +3,7 @@
 class ISaveFilmMetadata
 {
 public:
-	virtual void Free() = 0;
+	virtual void free() = 0;
 	virtual INT32 Function1() = 0;
 	virtual UINT32 Function2() = 0;
 	virtual INT32 GetID() = 0;

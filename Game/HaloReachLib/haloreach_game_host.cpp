@@ -59,11 +59,11 @@ c_haloreach_game_host::~c_haloreach_game_host()
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
-	//m_pGameEngine->Destructor();
-	//free(pHaloReachEngine);
-	//free(pHaloReachDataAccess);
+	//game_engine->Destructor();
+	//free(halo_reach_engine);
+	//free(halo_reach_data_access);
 
-	//m_pGameEngine = nullptr;
+	//game_engine = nullptr;
 
 	deinit_runtime_modifications(g_haloreach_game_runtime.get_build());
 	g_haloreach_game_runtime.~c_game_runtime();

@@ -181,7 +181,7 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 }
 
 template<typename t_parameter>
-FunctionHookEx<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short *parameters, char execute)> hs_evaluate_arguments;
+c_function_hook_ex<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short *parameters, char execute)> hs_evaluate_arguments;
 
 uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 {
@@ -206,7 +206,7 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1801F2880);
 	return ~uintptr_t();
 }
-FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
+c_function_hook_ex<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
 
 hs_script_op *hs_function_get(short opcode)
 {
@@ -244,7 +244,7 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1801F0A00);
 	return ~uintptr_t();
 }
-FunctionHookEx<hs_inspect_str_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> hs_inspect_str;
+c_function_hook_ex<hs_inspect_str_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> hs_inspect_str;
 
 void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index, char execute)
 {

@@ -128,18 +128,18 @@ bool c_data_patch_base::ApplyPatch()
 
 	if (apply_packet)
 	{
-		m_packets.resize(1);
-		m_packets[0] = DataPatchPacket();
-		apply_packet(engine_type, build, data_addresses[0], m_packets[0]);
+		packets.resize(1);
+		packets[0] = DataPatchPacket();
+		apply_packet(engine_type, build, data_addresses[0], packets[0]);
 
-		ASSERT(m_packets[0].first != nullptr);
+		ASSERT(packets[0].first != nullptr);
 	}
 	else if (apply_packets)
 	{
-		apply_packets(engine_type, build, data_addresses[0], m_packets);
+		apply_packets(engine_type, build, data_addresses[0], packets);
 
-		ASSERT(!m_packets.empty());
-		for (DataPatchPacket& packet : m_packets)
+		ASSERT(!packets.empty());
+		for (DataPatchPacket& packet : packets)
 		{
 			ASSERT(packet.first != nullptr);
 			ASSERT(!packet.second.empty());
@@ -147,10 +147,10 @@ bool c_data_patch_base::ApplyPatch()
 	}
 	else if (apply_packets_multi_entry)
 	{
-		apply_packets_multi_entry(engine_type, build, data_addresses, m_packets);
+		apply_packets_multi_entry(engine_type, build, data_addresses, packets);
 
-		ASSERT(!m_packets.empty());
-		for (DataPatchPacket& packet : m_packets)
+		ASSERT(!packets.empty());
+		for (DataPatchPacket& packet : packets)
 		{
 			ASSERT(packet.first != nullptr);
 			ASSERT(!packet.second.empty());
@@ -177,7 +177,7 @@ bool c_data_patch_base::RevertPatch()
 		c_console::write_line_verbose("Reverting DataPatch: <unknown>");
 	}
 
-	for (DataPatchPacket& packet : m_packets)
+	for (DataPatchPacket& packet : packets)
 	{
 		// revert the patch
 		memcpy(packet.first, packet.second.data(), packet.second.size());

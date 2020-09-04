@@ -3,7 +3,7 @@
 class IVariantAccessorBase
 {
 public:
-	virtual void Free() = 0;
+	virtual void free() = 0;
 	virtual LPCWSTR GetName() = 0;
 	virtual LPCWSTR GetDescription() = 0;
 	virtual LPCWSTR SetName(LPCWSTR) = 0;

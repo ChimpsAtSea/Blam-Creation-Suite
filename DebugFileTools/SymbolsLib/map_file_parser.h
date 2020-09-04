@@ -9,8 +9,8 @@ public:
 
 	void write_output(const wchar_t* output_filepath);
 
-	const char* get_sym_data() const { return symbols_blob.data(); }
-	size_t get_sym_size() const { return symbols_blob.size(); }
+	const char* get_symbol_data() const { return symbols_blob.data(); }
+	size_t get_symbol_size() const { return symbols_blob.size(); }
 
 private:
 	void parse_mapping_file_lines(const wchar_t* mapping_filepath);

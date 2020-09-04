@@ -54,7 +54,7 @@
     <ClInclude Include="ImGuiAddons\imgui_file_browser.h" />
     <ClInclude Include="ImGuiAddons\imgui_text_editor.h" />
     <ClInclude Include="Rendering\box_primitive.h" />
-    <ClInclude Include="Rendering\BoxRenderer.h" />
+    <ClInclude Include="Rendering\box_renderer.h" />
     <ClInclude Include="Rendering\debug_gui.h" />
     <ClInclude Include="Rendering\primitive_render_manager.h" />
     <ClInclude Include="Rendering\render.h" />
@@ -85,7 +85,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Rendering\box_primitive.cpp" />
-    <ClCompile Include="Rendering\BoxRenderer.cpp" />
+    <ClCompile Include="Rendering\box_renderer.cpp" />
     <ClCompile Include="Rendering\debug_gui.cpp" />
     <ClCompile Include="Rendering\primitive_render_manager.cpp" />
     <ClCompile Include="Rendering\render.cpp" />

@@ -55,7 +55,7 @@ uintptr_t halo3_gui_screen_provider_offset(e_engine_type engine_type, e_build bu
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18037AAF0);
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_gui_screen_provider_offset, void* __fastcall (__int64, int)> halo3_gui_screen_provider = { "halo3_gui_screen_provider", [](__int64 manager, int id)
+c_function_hook_ex<halo3_gui_screen_provider_offset, void* __fastcall (__int64, int)> halo3_gui_screen_provider = { "halo3_gui_screen_provider", [](__int64 manager, int id)
 {
 	/* c_gui_screen_manager*, string_id */
 	 void* gui_screen = nullptr;
@@ -83,7 +83,7 @@ uintptr_t halo3_version_number_callback_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x180414880);
 	return ~uintptr_t();
 }
-FunctionHookEx<halo3_version_number_callback_offset, char __fastcall(__int64, wchar_t*, int)> halo3_version_number_callback = { "halo3_version_number_callback", [](__int64 unused, wchar_t* dst, int len)
+c_function_hook_ex<halo3_version_number_callback_offset, char __fastcall(__int64, wchar_t*, int)> halo3_version_number_callback = { "halo3_version_number_callback", [](__int64 unused, wchar_t* dst, int len)
 {
 	swprintf_s(dst, len, L"%s", L"ED 0.7 Sucks! Buy MCC on Steam");
 

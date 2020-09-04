@@ -97,7 +97,7 @@ int WINAPI wWinMain(
 		};
 
 		c_map_file_parser map_file_parser = c_map_file_parser(symbolfile.c_str(), excluded_symbol_libs, _countof(excluded_symbol_libs));
-		update_resource_data(executable.c_str(), _resource_type_symbols_blob, map_file_parser.get_sym_data(), map_file_parser.get_sym_size());
+		update_resource_data(executable.c_str(), _resource_type_symbols_blob, map_file_parser.get_symbol_data(), map_file_parser.get_symbol_size());
 	}
 
 	if (package_shaders)

@@ -48,8 +48,8 @@ void c_map_info_manager::parse_map_info(const std::filesystem::path& filesystem_
 	}
 
 	// store a copy
-	level_info = &map_infos.emplace_back(filesystem_path, file_parser.is_little_endian(), *level_info).get_level_chunk();
+	level_info = &map_infos.emplace_back(filesystem_path, file_parser.get_is_little_endian(), *level_info).get_level_chunk();
 	delete raw_map_info_data;
 
-	c_console::write_line_verbose("MapInfoManager> Parsed level chunk '%S' %i", level_info->m_levelName[0], level_info->m_mapID);
+	c_console::write_line_verbose("MapInfoManager> Parsed level chunk '%S' %i", level_info->level_name[0], level_info->map_id);
 }

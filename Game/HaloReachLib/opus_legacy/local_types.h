@@ -61,7 +61,7 @@ struct UnknownStringType
 //{
 //	_DWORD dword0;
 //	_DWORD dword4;
-//	GameContext m_GameContext;
+//	GameContext game_context;
 //};
 //static_assert(sizeof(GameLauncher) == 0x2B7D0, "");
 

@@ -94,7 +94,7 @@ char* c_gen3_cache_file::get_data_with_page_offset(uint32_t page_offset) const
 bool c_gen3_cache_file::is_valid_data_address(char* data) const
 {
 	char* begin = virtual_memory_container.get_data();
-	char* end = begin + virtual_memory_container.GetSize();
+	char* end = begin + virtual_memory_container.get_size();
 
 	return data >= begin && data < end;
 }

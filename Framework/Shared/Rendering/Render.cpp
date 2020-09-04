@@ -11,13 +11,13 @@ bool c_render::is_directx_custom_init = false;
 ID3D11RenderTargetView* c_render::s_pRenderTargetView = nullptr;
 ID3D11Texture2D* c_render::s_pDepthStencilBuffer = nullptr;
 ID3D11DepthStencilView* c_render::s_pDepthStencilView = nullptr;
-bool c_render::s_resizeEnabled = true;
+bool c_render::s_resize_enabled = true;
 c_window* c_render::s_window = nullptr;
 
-DirectX::XMMATRIX c_render::viewMatrix = {};
-DirectX::XMMATRIX c_render::perspectiveMatrix = {};
-DirectX::XMMATRIX c_render::viewMatrixTransposed = {};
-DirectX::XMMATRIX c_render::perspectiveMatrixTransposed = {};
+DirectX::XMMATRIX c_render::view_matrix = {};
+DirectX::XMMATRIX c_render::perspective_matrix = {};
+DirectX::XMMATRIX c_render::view_matrix_transposed = {};
+DirectX::XMMATRIX c_render::perspective_matrix_transposed = {};
 
 bool c_render::g_allow_resize_at_beginning_of_frame;
 
@@ -42,70 +42,70 @@ void c_render::update_perspective(float fieldOfViewHorizontal, float aspectRatio
 	s_fieldOfViewVertical = atanf(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
 	s_aspectRatio = aspectRatio;
 
-	perspectiveMatrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
-	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
+	perspective_matrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
+	perspective_matrix_transposed = XMMatrixTranspose(perspective_matrix);
 }
 
 void c_render::update_view(
-	float forwardX,
-	float forwardY,
-	float forwardZ,
-	float upX,
-	float upY,
-	float upZ,
-	float positionX,
-	float positionY,
-	float positionZ
+	float forward_x,
+	float forward_y,
+	float forward_z,
+	float up_x,
+	float up_y,
+	float up_z,
+	float position_x,
+	float position_y,
+	float position_z
 )
 {
 	using namespace DirectX;
 
-	XMVECTOR vForward = { forwardX, forwardY, forwardZ };
-	XMVECTOR vUp = { upX, upY, upZ };
-	XMVECTOR vPosition = { positionX, positionY, positionZ };
+	XMVECTOR forward = { forward_x, forward_y, forward_z };
+	XMVECTOR up = { up_x, up_y, up_z };
+	XMVECTOR position = { position_x, position_y, position_z };
 
-	vUp = XMVector3Normalize(vUp);
-	vForward = XMVector3Normalize(vForward);
+	up = XMVector3Normalize(up);
+	forward = XMVector3Normalize(forward);
 
-	viewMatrix = XMMatrixLookAtRH(vPosition, vPosition + vForward, vUp);
-	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
+	view_matrix = XMMatrixLookAtRH(position, position + forward, up);
+	view_matrix_transposed = XMMatrixTranspose(view_matrix);
 }
 
 void c_render::UpdateViewLookAt(
 	float cameraPositionX,
 	float cameraPositionY,
 	float cameraPositionZ,
-	float lookAtPositionX,
-	float lookAtPositionY,
-	float lookAtPositionZ,
-	float upX,
-	float upY,
-	float upZ
+	float look_at_position_x,
+	float look_at_position_y,
+	float look_at_position_z,
+	float up_x,
+	float up_y,
+	float up_z
 )
 {
 	using namespace DirectX;
 
-	XMVECTOR vPosition = { cameraPositionX, cameraPositionY, cameraPositionZ };
-	XMVECTOR vLookAt = { lookAtPositionX, lookAtPositionY, lookAtPositionZ };
-	XMVECTOR vUp = { upX, upY, upZ };
+	XMVECTOR position = { cameraPositionX, cameraPositionY, cameraPositionZ };
+	XMVECTOR look_at_position = { look_at_position_x, look_at_position_y, look_at_position_z };
+	XMVECTOR up = { up_x, up_y, up_z };
 
-	vUp = XMVector3Normalize(vUp);
+	up = XMVector3Normalize(up);
 
-	viewMatrix = XMMatrixLookAtRH(vPosition, vLookAt, vUp);
-	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
+	view_matrix = XMMatrixLookAtRH(position, look_at_position, up);
+	view_matrix_transposed = XMMatrixTranspose(view_matrix);
 }
 
-bool c_render::calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
+bool c_render::calculate_screen_coordinates(float position_x, float position_y, float position_z, float& screen_x, float& screen_y)
 {
 	using namespace DirectX;
 
-	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
+	XMVECTOR pV = { position_x, position_y, position_z, 1.0f };
 	float Height = s_window->get_width_float();
 	float Width = s_window->get_width_float();
 
 	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
-	DirectX::XMMATRIX pProjection = perspectiveMatrix;
-	DirectX::XMMATRIX pView = viewMatrix;
+	DirectX::XMMATRIX pProjection = perspective_matrix;
+	DirectX::XMMATRIX pView = view_matrix;
 
 	DirectX::XMVECTOR  pOut = XMVector3Project(pV, 0, 0, Width, Height, 0, 1, pProjection, pView, pWorld);
 	DirectX::XMFLOAT3 pOut3d;
@@ -113,8 +113,8 @@ bool c_render::calculate_screen_coordinates(float positionX, float positionY, fl
 
 	if (pOut3d.z < 1.0f)
 	{
-		screenX = pOut3d.x;
-		screenY = pOut3d.y;
+		screen_x = pOut3d.x;
+		screen_y = pOut3d.y;
 		return true;
 	}
 	return false;
@@ -263,16 +263,16 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 
 	if (s_pRenderTargetView == nullptr)
 	{
-		ID3D11Texture2D* pBackBuffer = nullptr;
+		ID3D11Texture2D* back_buffer = nullptr;
 
 		// Get the pointer to the back buffer.
-		HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-		ASSERT(SUCCEEDED(getBufferResult));
+		HRESULT get_buffer_result = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&back_buffer);
+		ASSERT(SUCCEEDED(get_buffer_result));
 
-		HRESULT createRenderTargetViewResult = s_device->CreateRenderTargetView(pBackBuffer, NULL, &s_pRenderTargetView);
-		ASSERT(SUCCEEDED(createRenderTargetViewResult));
+		HRESULT create_render_target_view_result = s_device->CreateRenderTargetView(back_buffer, NULL, &s_pRenderTargetView);
+		ASSERT(SUCCEEDED(create_render_target_view_result));
 
-		pBackBuffer->Release();
+		back_buffer->Release();
 
 		ASSERT(s_pRenderTargetView != nullptr);
 	}
@@ -304,29 +304,29 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 
 	}
 
-	static ID3D11BlendState* m_pBlendState = nullptr;
-	if (m_pBlendState == nullptr)
+	static ID3D11BlendState* blend_state = nullptr;
+	if (blend_state == nullptr)
 	{
-		D3D11_BLEND_DESC blendStateDesc = {};
-		blendStateDesc.AlphaToCoverageEnable = FALSE;
-		blendStateDesc.IndependentBlendEnable = FALSE;
-		blendStateDesc.RenderTarget[0].BlendEnable = TRUE;
+		D3D11_BLEND_DESC blend_state_description = {};
+		blend_state_description.AlphaToCoverageEnable = FALSE;
+		blend_state_description.IndependentBlendEnable = FALSE;
+		blend_state_description.RenderTarget[0].BlendEnable = TRUE;
 
 		// dest.rgb = src.rgb * src.a + dest.rgb * (1 - src.a)
-		blendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		blendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-		blendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blend_state_description.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blend_state_description.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blend_state_description.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
 
 		// dest.a = 1 - (1 - src.a) * (1 - dest.a) [the math works out]
-		blendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_INV_DEST_ALPHA;
-		blendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-		blendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blend_state_description.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_INV_DEST_ALPHA;
+		blend_state_description.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+		blend_state_description.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 
-		blendStateDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		blend_state_description.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
 
-		HRESULT createBlendStateResult = s_device->CreateBlendState(&blendStateDesc, &m_pBlendState);
-		ASSERT(SUCCEEDED(createBlendStateResult));
+		HRESULT create_blend_state_result = s_device->CreateBlendState(&blend_state_description, &blend_state);
+		ASSERT(SUCCEEDED(create_blend_state_result));
 	}
 
 	//// Create the texture for the depth buffer using the filled out description.
@@ -369,7 +369,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 		s_device_context->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
 	}
 	s_device_context->OMSetDepthStencilState(s_pDepthStencilState, 0);
-	s_device_context->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
+	s_device_context->OMSetBlendState(blend_state, NULL, 0xffffffff);
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
@@ -423,7 +423,7 @@ void c_render::ResizeEnd()
 
 void c_render::ResizeWindow()
 {
-	if (s_swap_chain && s_resizeEnabled)
+	if (s_swap_chain && s_resize_enabled)
 	{
 		int width = resize_width;
 		int height = resize_height;
@@ -439,11 +439,11 @@ void c_render::ResizeWindow()
 
 			// Get buffer and create a render-target-view.
 			ID3D11Texture2D* buffer;
-			HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
-			ASSERT(SUCCEEDED(getBufferResult));
+			HRESULT get_buffer_result = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
+			ASSERT(SUCCEEDED(get_buffer_result));
 
-			HRESULT createRenderTargetViewResult = s_device->CreateRenderTargetView(buffer, NULL, &s_pRenderTargetView);
-			ASSERT(SUCCEEDED(createRenderTargetViewResult));
+			HRESULT create_render_target_view_result = s_device->CreateRenderTargetView(buffer, NULL, &s_pRenderTargetView);
+			ASSERT(SUCCEEDED(create_render_target_view_result));
 
 			buffer->Release();
 

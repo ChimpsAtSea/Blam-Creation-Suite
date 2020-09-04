@@ -1,7 +1,7 @@
 #pragma once
 
 template<find_offset_func find_offset, typename R, typename ...Args>
-inline bool is_valid(const FunctionHookEx<find_offset, R(Args...)>& functionhookex)
+inline bool is_valid(const c_function_hook_ex<find_offset, R(Args...)>& functionhookex)
 {
 	return functionhookex.base != nullptr;
 }

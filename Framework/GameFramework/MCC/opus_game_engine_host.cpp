@@ -761,22 +761,22 @@ BOOL __fastcall c_opus_game_engine_host::function44(__int64, __int64)
 
 bool __fastcall c_opus_game_engine_host::path_by_type_get(PathType path_type, LPSTR buffer, size_t buffer_length)
 {
-	const char* pEngineName = game_runtime.get_engine_name().c_str();
+	const char* engine_name = game_runtime.get_engine_name().c_str();
 
 	// this implementation is inline with MCC
 	switch (path_type)
 	{
 	case PathType::DebugLogs:
-		sprintf_s(buffer, buffer_length, "opus/%s/DebugLogs/", pEngineName);
+		sprintf_s(buffer, buffer_length, "opus/%s/DebugLogs/", engine_name);
 		return true;
 	case PathType::Config:
-		sprintf_s(buffer, buffer_length, "opus/%s/Config/", pEngineName);
+		sprintf_s(buffer, buffer_length, "opus/%s/Config/", engine_name);
 		return true;
 	case PathType::Temporary:
-		sprintf_s(buffer, buffer_length, "opus/%s/Temporary/", pEngineName);
+		sprintf_s(buffer, buffer_length, "opus/%s/Temporary/", engine_name);
 		return true;
 	case PathType::Root:
-		sprintf_s(buffer, buffer_length, "opus/%s/", pEngineName);
+		sprintf_s(buffer, buffer_length, "opus/%s/", engine_name);
 		return true;
 	}
 
@@ -785,22 +785,22 @@ bool __fastcall c_opus_game_engine_host::path_by_type_get(PathType path_type, LP
 
 bool __fastcall c_opus_game_engine_host::wide_path_by_type_get(PathType path_type, wchar_t* buffer, size_t buffer_length)
 {
-	const char* pEngineName = game_runtime.get_engine_name().c_str();
+	const char* engine_name = game_runtime.get_engine_name().c_str();
 
 	// this implementation is inline with MCC
 	switch (path_type)
 	{
 	case PathType::DebugLogs:
-		swprintf(buffer, buffer_length, L"opus/%S/DebugLogs/", pEngineName);
+		swprintf(buffer, buffer_length, L"opus/%S/DebugLogs/", engine_name);
 		return true;
 	case PathType::Config:
-		swprintf(buffer, buffer_length, L"opus/%S/Config/", pEngineName);
+		swprintf(buffer, buffer_length, L"opus/%S/Config/", engine_name);
 		return true;
 	case PathType::Temporary:
-		swprintf(buffer, buffer_length, L"opus/%S/Temporary/", pEngineName);
+		swprintf(buffer, buffer_length, L"opus/%S/Temporary/", engine_name);
 		return true;
 	case PathType::Root:
-		swprintf(buffer, buffer_length, L"opus/%S/", pEngineName);
+		swprintf(buffer, buffer_length, L"opus/%S/", engine_name);
 		return true;
 	}
 

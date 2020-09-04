@@ -100,7 +100,7 @@ uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<haloreach_player_mapping_get_local_player_offset, int __stdcall ()> haloreach_player_mapping_get_local_player;
+c_function_hook_ex<haloreach_player_mapping_get_local_player_offset, int __stdcall ()> haloreach_player_mapping_get_local_player;
 
 uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
 {
@@ -199,7 +199,7 @@ uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<haloreach_observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> haloreach_observer_try_and_get_camera;
+c_function_hook_ex<haloreach_observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> haloreach_observer_try_and_get_camera;
 
 std::vector<uintptr_t> haloreach_enable_debug_hud_coordinates_offsets(e_engine_type engine_type, e_build build)
 {
