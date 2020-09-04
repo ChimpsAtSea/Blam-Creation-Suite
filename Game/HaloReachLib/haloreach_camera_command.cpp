@@ -16,8 +16,8 @@ extern c_function_hook_ex<haloreach_observer_try_and_get_camera_offset, s_observ
 
 void haloreach_debug_save_camera()
 {
-	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
-	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked) return;
 
 	int local_player = haloreach_player_mapping_get_local_player();
 	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(local_player);
@@ -37,8 +37,8 @@ void haloreach_debug_save_camera()
 
 void haloreach_debug_load_camera()
 {
-	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
-	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked) return;
 
 
 	int local_player = haloreach_player_mapping_get_local_player();
