@@ -120,8 +120,8 @@ void c_haloreach_game_host::deinit_runtime_modifications(e_build build)
 
 void c_haloreach_game_host::update_camera_data()
 {
-	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
-	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked) return;
 
 	int player_index = haloreach_player_mapping_get_local_player();
 	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(player_index);
@@ -190,8 +190,8 @@ void c_haloreach_game_host::draw_camera_debug_ui()
 	// Main body of the Demo window starts here.
 	if (ImGui::Begin("Camera Debug", &g_is_reach_camera_debug_window_open, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
 	{
-		if (!haloreach_player_mapping_get_local_player.is_hooked()) ImGui::Text("haloreach_player_mapping_get_local_player is not hooked");
-		else if (!haloreach_observer_try_and_get_camera.is_hooked()) ImGui::Text("haloreach_observer_try_and_get_camera is not hooked");
+		if (!haloreach_player_mapping_get_local_player.is_hooked) ImGui::Text("haloreach_player_mapping_get_local_player is not hooked");
+		else if (!haloreach_observer_try_and_get_camera.is_hooked) ImGui::Text("haloreach_observer_try_and_get_camera is not hooked");
 		else
 		{
 			int player_index = haloreach_player_mapping_get_local_player();
