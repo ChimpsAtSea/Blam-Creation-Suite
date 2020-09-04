@@ -143,7 +143,7 @@ namespace blofeld
 		{ _field_short_integer, "runtime shield material type!*" },
 		{ _field_short_integer, "runtime indirect material type!*" },
 
-		{ _field_version_less, _engine_type_haloreach },
+		{ _field_version_less, _engine_type_haloreach, 2 },
 		{ _field_real, "@unknown" },
 		{ _field_real, "@unknown" },
 
