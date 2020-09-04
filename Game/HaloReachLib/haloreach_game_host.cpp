@@ -59,11 +59,11 @@ c_haloreach_game_host::~c_haloreach_game_host()
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
-	//m_pGameEngine->Destructor();
-	//free(pHaloReachEngine);
-	//free(pHaloReachDataAccess);
+	//game_engine->Destructor();
+	//free(halo_reach_engine);
+	//free(halo_reach_data_access);
 
-	//m_pGameEngine = nullptr;
+	//game_engine = nullptr;
 
 	deinit_runtime_modifications(g_haloreach_game_runtime.get_build());
 	g_haloreach_game_runtime.~c_game_runtime();
@@ -120,8 +120,8 @@ void c_haloreach_game_host::deinit_runtime_modifications(e_build build)
 
 void c_haloreach_game_host::update_camera_data()
 {
-	if (!haloreach_player_mapping_get_local_player.is_hooked()) return;
-	if (!haloreach_observer_try_and_get_camera.is_hooked()) return;
+	if (!haloreach_player_mapping_get_local_player.is_hooked) return;
+	if (!haloreach_observer_try_and_get_camera.is_hooked) return;
 
 	int player_index = haloreach_player_mapping_get_local_player();
 	s_observer_camera* observer_camera = haloreach_observer_try_and_get_camera(player_index);
@@ -190,8 +190,8 @@ void c_haloreach_game_host::draw_camera_debug_ui()
 	// Main body of the Demo window starts here.
 	if (ImGui::Begin("Camera Debug", &g_is_reach_camera_debug_window_open, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
 	{
-		if (!haloreach_player_mapping_get_local_player.is_hooked()) ImGui::Text("haloreach_player_mapping_get_local_player is not hooked");
-		else if (!haloreach_observer_try_and_get_camera.is_hooked()) ImGui::Text("haloreach_observer_try_and_get_camera is not hooked");
+		if (!haloreach_player_mapping_get_local_player.is_hooked) ImGui::Text("haloreach_player_mapping_get_local_player is not hooked");
+		else if (!haloreach_observer_try_and_get_camera.is_hooked) ImGui::Text("haloreach_observer_try_and_get_camera is not hooked");
 		else
 		{
 			int player_index = haloreach_player_mapping_get_local_player();

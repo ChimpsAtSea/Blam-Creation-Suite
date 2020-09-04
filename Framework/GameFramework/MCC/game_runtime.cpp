@@ -1,56 +1,93 @@
 #include "gameframework-private-pch.h"
 
-c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
-	: m_engine_name(pEngineName)
-	, m_build(build == _build_not_set ? get_library_file_version(pLibFileName) : build)
-	, m_engine_path(pLibFileName)
+c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* engine_name, const char* library_file_name, bool use_existing_loaded_module, e_build _build)
+	: engine_name(engine_name)
+	, build(_build == _build_not_set ? get_library_file_version(library_file_name) : _build)
+	, engine_path(library_file_name)
 {
 
-	if (m_build == _build_not_set)
+	if (build == _build_not_set)
 	{
 		c_console::write_line_verbose("Warning: `c_game_runtime` initialized with `_build_not_set`");
 		return;
 	}
 
-	if (!useExistingLoadedModule)
+	if (!use_existing_loaded_module)
 	{
-		loadLibrary(pLibFileName);
+		loadLibrary(library_file_name);
 
-		m_data_access = nullptr;
-		__int64 createDataAccessResult = create_data_access(&m_data_access);
-		ASSERT(m_data_access != nullptr);
+		data_access = nullptr;
+		__int64 createDataAccessResult = create_data_access(&data_access);
+		ASSERT(data_access != nullptr);
 	}
 	else
 	{
-		m_game_module = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
+		game_module = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
 	}
 }
 
 c_game_runtime::~c_game_runtime()
 {
-	if (m_data_access)
+	if (data_access)
 	{
-		m_data_access->Free();
-		//delete m_data_access;
+		data_access->free();
+		//delete data_access;
 	}
 
-	FreeLibrary(m_game_module);
+	FreeLibrary(game_module);
 }
 
-void c_game_runtime::loadLibrary(const char* pLibFileName)
+__int64 __fastcall c_game_runtime::create_data_access(IDataAccess** data_access)
 {
-	m_game_module = LoadLibraryA(pLibFileName);
-
-	if (m_game_module == NULL)
+	ASSERT(create_data_access_func != nullptr);
+	__IDataAccess* _data_access = nullptr;
+	__int64 result = create_data_access_func(&_data_access);
+	*data_access = nullptr;
+	if (_data_access != nullptr)
 	{
-		c_console::write_line_verbose("Failed to load module `%s`", pLibFileName);
+		*data_access = new IDataAccess(*_data_access, get_build());
 	}
-	ASSERT(m_game_module != NULL);
-	c_console::write_line_verbose("Module '%s' loaded at 0x%p", pLibFileName, m_game_module);
+	return result;
+}
 
-	create_game_engine_func = (t_create_game_engine_func*)GetProcAddress(m_game_module, "CreateGameEngine");
-	create_data_access_func = (t_create_data_access_func*)GetProcAddress(m_game_module, "CreateDataAccess");
-	set_library_settings_func = (t_set_library_settings_func*)GetProcAddress(m_game_module, "SetLibrarySettings");
+signed __int64 __fastcall c_game_runtime::create_game_engine(IGameEngine** game_engine)
+{
+	ASSERT(create_data_access_func != nullptr);
+	__IGameEngine* _game_engine = nullptr;
+	__int64 result = create_game_engine_func(&_game_engine);
+	*game_engine = nullptr;
+	if (_game_engine != nullptr)
+	{
+		*game_engine = new IGameEngine(*_game_engine, get_build());
+	}
+	return result;
+}
+
+errno_t __fastcall c_game_runtime::set_library_settings(wchar_t* source)
+{
+	ASSERT(set_library_settings_func != nullptr);
+	return set_library_settings_func(source);
+}
+
+std::string c_game_runtime::get_engine_name()
+{
+	return engine_name;
+}
+
+void c_game_runtime::loadLibrary(const char* library_file_name)
+{
+	game_module = LoadLibraryA(library_file_name);
+
+	if (game_module == NULL)
+	{
+		c_console::write_line_verbose("Failed to load module `%s`", library_file_name);
+	}
+	ASSERT(game_module != NULL);
+	c_console::write_line_verbose("Module '%s' loaded at 0x%p", library_file_name, game_module);
+
+	create_game_engine_func = (t_create_game_engine_func*)GetProcAddress(game_module, "CreateGameEngine");
+	create_data_access_func = (t_create_data_access_func*)GetProcAddress(game_module, "CreateDataAccess");
+	set_library_settings_func = (t_set_library_settings_func*)GetProcAddress(game_module, "SetLibrarySettings");
 }
 
 e_build c_game_runtime::get_library_file_version(const char* file_path)

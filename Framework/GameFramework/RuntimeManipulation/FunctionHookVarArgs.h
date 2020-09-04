@@ -1,12 +1,12 @@
 #pragma once
 
 
-template<e_engine_type engine_type, e_build build, size_t offset, typename base_type>
+template<e_engine_type _engine_type, e_build _build, size_t _offset, typename base_type>
 struct FunctionHookVarArgs : public c_function_hook_base
 {
 public:
-	static_assert(build == _build_not_set || offset >= get_engine_base_address(engine_type), "Offset is out of bounds");
-	static_assert(build == _build_not_set || offset < get_engine_top_address(engine_type, build), "Offset is out of bounds");
+	static_assert(_build == _build_not_set || _offset >= get_engine_base_address(_engine_type), "_offset is out of bounds");
+	static_assert(_build == _build_not_set || _offset < get_engine_top_address(_engine_type, _build), "_offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
@@ -18,17 +18,17 @@ public:
 		if constexpr (std::is_same<return_type, void>::value)
 		{
 			base(args...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 		}
 		else
 		{
 			auto result = base(args...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 			return result;
 		}
@@ -38,14 +38,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(hook_assignment_type func)
-		:c_function_hook_base(nullptr, engine_type, build, offset, nullptr)
+		:c_function_hook_base(nullptr, _engine_type, _build, _offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(base_type* func)
-		:c_function_hook_base(nullptr, engine_type, build, offset, nullptr)
+		:c_function_hook_base(nullptr, _engine_type, _build, _offset, nullptr)
 		, hook(func)
 	{
 
@@ -53,14 +53,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(const char* pName, hook_assignment_type func)
-		:c_function_hook_base(pName, engine_type, build, offset, nullptr)
+		:c_function_hook_base(pName, _engine_type, _build, _offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(const char* pName, base_type* func)
-		:c_function_hook_base(pName, engine_type, build, offset, nullptr)
+		:c_function_hook_base(pName, _engine_type, _build, _offset, nullptr)
 		, hook(func)
 	{
 
@@ -71,12 +71,12 @@ public:
 
 private:
 
-	base_type*& GetHook()
+	base_type*& get_hook()
 	{
 		return *const_cast<base_type**>(&hook);
 	}
 
-	base_type*& GetBase()
+	base_type*& get_base()
 	{
 		return *const_cast<base_type**>(&base);
 	}

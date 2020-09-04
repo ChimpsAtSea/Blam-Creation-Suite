@@ -71,7 +71,7 @@ public:
 
 	union
 	{
-		s_game_variant GameVariant;
+		s_game_variant game_variant;
 		char variant_buffer[0x1CC00];
 	};
 };

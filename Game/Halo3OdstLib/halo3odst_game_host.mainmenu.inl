@@ -7,7 +7,7 @@ uintptr_t game_context_map_id_parse_to_halo3odst_offset(e_engine_type engine_typ
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1792_0_0, ~uintptr_t());
 	return ~uintptr_t();
 }
-FunctionHookEx<game_context_map_id_parse_to_halo3odst_offset, long __fastcall(c_game_context_v3* game_context)> game_context_map_id_parse_to_halo3odst = { "game_context_map_id_parse_to_halo3odst", [](c_game_context_v3* game_context)
+c_function_hook_ex<game_context_map_id_parse_to_halo3odst_offset, long __fastcall(c_game_context_v3* game_context)> game_context_map_id_parse_to_halo3odst = { "game_context_map_id_parse_to_halo3odst", [](c_game_context_v3* game_context)
 {
 	long result = game_context_map_id_parse_to_halo3odst(game_context);
 	return result == -1l ? game_context->map_id : result;
@@ -20,7 +20,7 @@ uintptr_t mcc_map_id_parse_from_halo3odst_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1792_0_0, 0x180062640);
 	return ~uintptr_t();
 }
-FunctionHookEx<mcc_map_id_parse_from_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo3odst = { "mcc_map_id_parse_from_halo3odst", [](long map_id)
+c_function_hook_ex<mcc_map_id_parse_from_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo3odst = { "mcc_map_id_parse_from_halo3odst", [](long map_id)
 {
 	long result = mcc_map_id_parse_from_halo3odst(map_id);
 	return result == -1l ? map_id : result;
@@ -33,7 +33,7 @@ uintptr_t mcc_map_id_parse_to_halo3odst_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1792_0_0, 0x1800625A0);
 	return ~uintptr_t();
 }
-FunctionHookEx<mcc_map_id_parse_to_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3odst = { "mcc_map_id_parse_to_halo3odst", [](long map_id)
+c_function_hook_ex<mcc_map_id_parse_to_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3odst = { "mcc_map_id_parse_to_halo3odst", [](long map_id)
 {
 	long result = mcc_map_id_parse_to_halo3odst(map_id);
 	return result == -1l ? map_id : result;

@@ -21,7 +21,7 @@ uintptr_t __scrt_common_main_seh_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_halo5, _build_halo5_forge_1_194_6192_2, 0x1410EB6A8);
 	return ~uintptr_t();
 }
-FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh =
+c_function_hook_ex<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh =
 {
 	"__scrt_common_main_seh",
 	[]()

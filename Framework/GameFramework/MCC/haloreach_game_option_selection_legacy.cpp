@@ -12,15 +12,15 @@ std::string format_string(const char* pFormat, ...)
 	return stringBuffer;
 }
 
-e_mcc_game_mode s_currentGameMode = _mcc_game_mode_campaign;
+e_mcc_game_mode g_current_game_mode = _mcc_game_mode_campaign;
 //e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 extern e_campaign_difficulty_level g_campaign_difficulty_level; // #TODO #REFACTOR
 
-c_map_info_manager* c_haloreach_game_option_selection_legacy::s_pMapInfoManager = nullptr;
-const MapInfo* c_haloreach_game_option_selection_legacy::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+c_map_info_manager* c_haloreach_game_option_selection_legacy::g_map_info_manager = nullptr;
+const c_map_info* c_haloreach_game_option_selection_legacy::g_selected_map_info[underlying_cast(k_number_of_selected_game_mode_map_info_indices)] = {};
 
-GameTypeManager* c_haloreach_game_option_selection_legacy::s_pGameTypeManager = nullptr;
-const GameType* c_haloreach_game_option_selection_legacy::s_pSelectedGameType[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+//GameTypeManager* c_haloreach_game_option_selection_legacy::g_game_type_manager = nullptr;
+//const GameType* c_haloreach_game_option_selection_legacy::selected_game_type[underlying_cast(k_number_of_selected_game_mode_map_info_indices)] = {};
 
 // #TODO: Remove these
 std::string c_haloreach_game_option_selection_legacy::s_launch_game_variant = "";
@@ -30,29 +30,29 @@ std::string c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepa
 void c_haloreach_game_option_selection_legacy::Init()
 {
 	// #TODO: Support more games than just Halo Reach
-	s_pMapInfoManager = new c_map_info_manager("haloreach/maps/info");
+	g_map_info_manager = new c_map_info_manager("haloreach/maps/info");
 
 	loadSettings();
 }
 
 void c_haloreach_game_option_selection_legacy::deinit()
 {
-	delete s_pMapInfoManager;
+	delete g_map_info_manager;
 }
 
 void c_haloreach_game_option_selection_legacy::loadSettings()
 {
-	for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
+	for (underlying(e_selected_game_mode_map_info_index) i = 0; i < underlying_cast(k_number_of_selected_game_mode_map_info_indices); i++)
 	{
-		s_pSelectedMapInfo[i] = GetDefaultMapSelection(static_cast<SelectedGameModeMapInfoIndex>(i));
+		g_selected_map_info[i] = GetDefaultMapSelection(static_cast<e_selected_game_mode_map_info_index>(i));
 	}
 
-	char pLaunchGameModeBuffer[256] = {};
-	c_settings::read_string(_settings_section_launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
-	s_currentGameMode = string_to_mcc_game_mode(pLaunchGameModeBuffer);
-	if (s_currentGameMode == _mcc_game_mode_none)
+	char pLaunchgame_modeBuffer[256] = {};
+	c_settings::read_string(_settings_section_launch, "GameMode", pLaunchgame_modeBuffer, sizeof(pLaunchgame_modeBuffer), "");
+	g_current_game_mode = string_to_mcc_game_mode(pLaunchgame_modeBuffer);
+	if (g_current_game_mode == _mcc_game_mode_none)
 	{
-		s_currentGameMode = _mcc_game_mode_campaign;
+		g_current_game_mode = _mcc_game_mode_campaign;
 	}
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
@@ -60,7 +60,7 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 	g_campaign_difficulty_level = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
 
 	LPCSTR pDefaultHopperGameVariant = "";
-	switch (s_currentGameMode)
+	switch (g_current_game_mode)
 	{
 		break;
 	case _mcc_game_mode_campaign:
@@ -101,15 +101,15 @@ void c_haloreach_game_option_selection_legacy::loadSettings()
 
 e_mcc_game_mode c_haloreach_game_option_selection_legacy::get_selected_game_mode()
 {
-	return s_currentGameMode;
+	return g_current_game_mode;
 }
 
-void c_haloreach_game_option_selection_legacy::SelectGameMode()
+void c_haloreach_game_option_selection_legacy::Selectgame_mode()
 {
 	if (c_command_line::has_command_line_arg("-showallmodes"))
 	{
-		const char* selected_mcc_game_mode_string = mcc_game_mode_to_local_string(s_currentGameMode);
-		if (ImGui::BeginCombo("###MODE", selected_mcc_game_mode_string))
+		const char* selected_mcc_game_mode_string = mcc_game_mode_to_local_string(g_current_game_mode);
+		if (ImGui::BeginCombo("Game Mode", selected_mcc_game_mode_string))
 		{
 			for (underlying(e_mcc_game_mode) i = 0; i < k_number_of_mcc_game_modes; i++)
 			{
@@ -119,8 +119,8 @@ void c_haloreach_game_option_selection_legacy::SelectGameMode()
 				bool selected = selected_mcc_game_mode_string == current_mcc_game_mode_string;
 				if (ImGui::Selectable(current_mcc_game_mode_string, &selected))
 				{
-					s_currentGameMode = static_cast<e_mcc_game_mode>(i);
-					c_settings::write_string(_settings_section_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
+					g_current_game_mode = static_cast<e_mcc_game_mode>(i);
+					c_settings::write_string(_settings_section_launch, "game_mode", mcc_game_mode_to_string(g_current_game_mode));
 				}
 			}
 
@@ -129,25 +129,25 @@ void c_haloreach_game_option_selection_legacy::SelectGameMode()
 	}
 	else
 	{
-		LPCSTR s_pCurrentGameModeStr = mcc_game_mode_to_local_string(s_currentGameMode);
-		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
+		LPCSTR s_pCurrentgame_modeStr = mcc_game_mode_to_local_string(g_current_game_mode);
+		if (ImGui::BeginCombo("Game Mode", s_pCurrentgame_modeStr))
 		{
-			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
+			for (uint32_t i = 0; i < k_number_of_selected_game_mode_map_info_indices; i++)
 			{
-				if (static_cast<SelectedGameModeMapInfoIndex>(i) == SelectedGameModeMapInfoIndex::Unknown)
+				if (i == _selected_game_mode_map_info_index_unknown)
 				{
 					continue;
 				}
 
-				e_mcc_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
-				LPCSTR pGameModeStr = mcc_game_mode_to_local_string(gameMode);
-				if (pGameModeStr)
+				e_mcc_game_mode game_mode = selected_game_mode_map_info_index_to_game_mode(static_cast<e_selected_game_mode_map_info_index>(i));
+				LPCSTR pgame_modeStr = mcc_game_mode_to_local_string(game_mode);
+				if (pgame_modeStr)
 				{
-					bool selected = s_pCurrentGameModeStr == pGameModeStr;
-					if (ImGui::Selectable(pGameModeStr, &selected))
+					bool selected = s_pCurrentgame_modeStr == pgame_modeStr;
+					if (ImGui::Selectable(pgame_modeStr, &selected))
 					{
-						s_currentGameMode = gameMode;
-						c_settings::write_string(_settings_section_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
+						g_current_game_mode = game_mode;
+						c_settings::write_string(_settings_section_launch, "game_mode", mcc_game_mode_to_string(g_current_game_mode));
 					}
 				}
 			}
@@ -165,7 +165,7 @@ void c_haloreach_game_option_selection_legacy::Render()
 
 	//ImGui::Separator();
 
-	//if (s_currentGameMode != GameMode::Multiplayer)
+	//if (g_current_game_mode != game_mode::Multiplayer)
 	//{
 	//	ImGui::PushItemWidth((width / 100) * 25 * 0.938f);
 	//}
@@ -173,11 +173,11 @@ void c_haloreach_game_option_selection_legacy::Render()
 	//{
 	//	ImGui::PushItemWidth((width / 100) * 25 * 1.415f);
 	//}
-	SelectGameMode();
+	Selectgame_mode();
 	//ImGui::SameLine();
 	SelectMap();
 
-	//if (s_currentGameMode != GameMode::Multiplayer)
+	//if (g_current_game_mode != game_mode::Multiplayer)
 	//{
 	//	ImGui::SameLine();
 	//}
@@ -186,16 +186,16 @@ void c_haloreach_game_option_selection_legacy::Render()
 
 	//ImGui::Separator();
 
-	SelectGameVariant();
+	select_game_variant();
 	SelectMapVariant();
 }
 
-const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
+const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex)
 {
-	int previousMapID = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
-	for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
+	int previousmap_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_modeMapInfoIndex)], -1);
+	for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 	{
-		if (rMapInfo.GetMapID() == previousMapID)
+		if (rMapInfo.get_map_id() == previousmap_id)
 		{
 			return &rMapInfo;
 		}
@@ -204,12 +204,12 @@ const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(
 	return nullptr;
 }
 
-const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
+const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGameOptionSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex)
 {
-	int previousMapID = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
-	for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
+	int previousmap_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_modeMapInfoIndex)], -1);
+	for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 	{
-		if (rMapInfo.GetMapID() == previousMapID)
+		if (rMapInfo.get_map_id() == previousmap_id)
 		{
 			return &rMapInfo;
 		}
@@ -218,64 +218,57 @@ const MapInfo* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGame
 	return nullptr;
 }
 
-c_haloreach_game_option_selection_legacy::SelectedGameModeMapInfoIndex c_haloreach_game_option_selection_legacy::GameModeToSelectedGameModeMapInfoIndex(e_mcc_game_mode gameMode)
+e_selected_game_mode_map_info_index c_haloreach_game_option_selection_legacy::game_mode_to_selected_game_mode_map_info_index(e_mcc_game_mode game_mode)
 {
-	switch (gameMode)
+	switch (game_mode)
 	{
 	case _mcc_game_mode_campaign:
-		return SelectedGameModeMapInfoIndex::Campaign;
-		break;
+		return _selected_game_mode_map_info_index_campaign;
 	case _mcc_game_mode_multiplayer:
-		return SelectedGameModeMapInfoIndex::Multiplayer;
-		break;
+		return _selected_game_mode_map_info_index_multiplayer;
 	case _mcc_game_mode_firefight:
-		return SelectedGameModeMapInfoIndex::Firefight;
-		break;
+		return _selected_game_mode_map_info_index_firefight;
 	default:
-		return SelectedGameModeMapInfoIndex::Unknown;
-		break;
+		return _selected_game_mode_map_info_index_unknown;
 	}
 }
 
-e_mcc_game_mode c_haloreach_game_option_selection_legacy::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+e_mcc_game_mode c_haloreach_game_option_selection_legacy::selected_game_mode_map_info_index_to_game_mode(e_selected_game_mode_map_info_index selected_game_mode_map_info_index)
 {
-	switch (selectedGameModeMapInfoIndex)
+	switch (selected_game_mode_map_info_index)
 	{
-	case SelectedGameModeMapInfoIndex::Campaign:
+	case _selected_game_mode_map_info_index_campaign:
 		return _mcc_game_mode_campaign;
-		break;
-	case SelectedGameModeMapInfoIndex::Multiplayer:
+	case _selected_game_mode_map_info_index_multiplayer:
 		return _mcc_game_mode_multiplayer;
-		break;
-	case SelectedGameModeMapInfoIndex::Firefight:
+	case _selected_game_mode_map_info_index_firefight:
 		return _mcc_game_mode_firefight;
-		break;
 	default:
 		return _mcc_game_mode_none;
 	}
 }
 
-const MapInfo*& c_haloreach_game_option_selection_legacy::GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+const c_map_info*& c_haloreach_game_option_selection_legacy::get_selected_map_info_by_selected_game_mode_map_info_index(e_selected_game_mode_map_info_index selected_game_mode_map_info_index)
 {
-	const MapInfo*& pSelectedMapInfo = s_pSelectedMapInfo[underlying_cast(selectedGameModeMapInfoIndex)];
-	return pSelectedMapInfo;
+	const c_map_info*& selected_map_info = g_selected_map_info[selected_game_mode_map_info_index];
+	return selected_map_info;
 }
 
-const MapInfo*& c_haloreach_game_option_selection_legacy::GetSelectedMapInfoByGameMode(e_mcc_game_mode gameMode)
+const c_map_info*& c_haloreach_game_option_selection_legacy::get_selected_map_info_by_game_mode(e_mcc_game_mode game_mode)
 {
-	return GetSelectedMapInfoBySelectedGameModeMapInfoIndex(GameModeToSelectedGameModeMapInfoIndex(s_currentGameMode));
+	return get_selected_map_info_by_selected_game_mode_map_info_index(game_mode_to_selected_game_mode_map_info_index(g_current_game_mode));
 }
 
-const MapInfo* c_haloreach_game_option_selection_legacy::get_selected_map_info()
+const c_map_info* c_haloreach_game_option_selection_legacy::get_selected_map_info()
 {
-	return GetSelectedMapInfoByGameMode(s_currentGameMode);
+	return get_selected_map_info_by_game_mode(g_current_game_mode);
 }
 
-const MapInfo* c_haloreach_game_option_selection_legacy::GetFirstSuitableGameModeMapInfo(e_mcc_game_mode gameMode)
+const c_map_info* c_haloreach_game_option_selection_legacy::get_first_suitable_game_modeMapInfo(e_mcc_game_mode game_mode)
 {
-	for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
+	for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 	{
-		if (isMapInfoCompatibleWithGameMode(gameMode, rMapInfo))
+		if (is_map_info_compatible_with_game_mode(game_mode, rMapInfo))
 		{
 			return &rMapInfo;
 		}
@@ -283,43 +276,43 @@ const MapInfo* c_haloreach_game_option_selection_legacy::GetFirstSuitableGameMod
 	return nullptr;
 }
 
-void c_haloreach_game_option_selection_legacy::SaveSelectedMap(e_mcc_game_mode gameMode, const MapInfo* pMapInfo)
+void c_haloreach_game_option_selection_legacy::save_selected_map(e_mcc_game_mode game_mode, const c_map_info* pMapInfo)
 {
-	switch (gameMode)
+	switch (game_mode)
 	{
 	case _mcc_game_mode_campaign:
-		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(_selected_game_mode_map_info_index_campaign)], pMapInfo ? pMapInfo->get_map_id() : -1);
 		break;
 	case _mcc_game_mode_multiplayer:
-		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(_selected_game_mode_map_info_index_multiplayer)], pMapInfo ? pMapInfo->get_map_id() : -1);
 		break;
 	case _mcc_game_mode_firefight:
-		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(_selected_game_mode_map_info_index_firefight)], pMapInfo ? pMapInfo->get_map_id() : -1);
 		break;
 	default:
-		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Unknown)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		c_settings::write_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(_selected_game_mode_map_info_index_unknown)], pMapInfo ? pMapInfo->get_map_id() : -1);
 		break;
 	}
 }
 
-bool c_haloreach_game_option_selection_legacy::isMapInfoCompatibleWithGameMode(e_mcc_game_mode gameMode, const MapInfo& rMapInfo)
+bool c_haloreach_game_option_selection_legacy::is_map_info_compatible_with_game_mode(e_mcc_game_mode game_mode, const c_map_info& rMapInfo)
 {
-	switch (gameMode)
+	switch (game_mode)
 	{
 	case _mcc_game_mode_campaign:
-		if (!rMapInfo.IsCampaign()) return false;
+		if (!rMapInfo.is_campaign()) return false;
 		break;
 	case _mcc_game_mode_multiplayer:
-		if (!rMapInfo.IsMultiplayer()) return false;
+		if (!rMapInfo.is_multiplayer()) return false;
 		break;
 	case _mcc_game_mode_firefight:
-		if (!rMapInfo.IsFirefight()) return false;
+		if (!rMapInfo.is_firefight()) return false;
 		break;
 	}
 	return true;
 }
 
-void c_haloreach_game_option_selection_legacy::RenderHoveredTooltip(const char* pText)
+void c_haloreach_game_option_selection_legacy::render_hovered_tooltip(const char* pText)
 {
 	if (ImGui::IsItemHovered())
 	{
@@ -333,39 +326,39 @@ void c_haloreach_game_option_selection_legacy::RenderHoveredTooltip(const char* 
 
 void c_haloreach_game_option_selection_legacy::SelectMap()
 {
-	const MapInfo*& pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
+	const c_map_info*& selected_map_info = get_selected_map_info_by_game_mode(g_current_game_mode);
 
-	if (!pSelectedMapInfo || pSelectedMapInfo && !isMapInfoCompatibleWithGameMode(s_currentGameMode, *pSelectedMapInfo))
+	if (!selected_map_info || selected_map_info && !is_map_info_compatible_with_game_mode(g_current_game_mode, *selected_map_info))
 	{
-		pSelectedMapInfo = GetFirstSuitableGameModeMapInfo(s_currentGameMode);
-		SaveSelectedMap(s_currentGameMode, pSelectedMapInfo);
+		selected_map_info = get_first_suitable_game_modeMapInfo(g_current_game_mode);
+		save_selected_map(g_current_game_mode, selected_map_info);
 	}
 
-	const char* pSelectedLevelName = "<no level selected>";
-	if (pSelectedMapInfo)
+	const char* pSelectedlevel_name = "<no level selected>";
+	if (selected_map_info)
 	{
-		pSelectedLevelName = pSelectedMapInfo->GetFriendlyName();
+		pSelectedlevel_name = selected_map_info->get_friendly_name();
 	}
 
-	if (ImGui::BeginCombo("###MAP", pSelectedLevelName))
+	if (ImGui::BeginCombo("Map", pSelectedlevel_name))
 	{
 		// #TODO: Make a nice and beautiful interface to this for multi-game
-		for (const MapInfo& rMapInfo : s_pMapInfoManager->map_infos)
+		for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 		{
-			if (!isMapInfoCompatibleWithGameMode(s_currentGameMode, rMapInfo))
+			if (!is_map_info_compatible_with_game_mode(g_current_game_mode, rMapInfo))
 			{
 				continue;
 			}
 
-			bool isSelected = pSelectedMapInfo == &rMapInfo;
-			const char* pCurrentLevelFriendlyName = rMapInfo.GetFriendlyName();
+			bool isSelected = selected_map_info == &rMapInfo;
+			const char* pCurrentLevelfriendly_name = rMapInfo.get_friendly_name();
 
-			if (ImGui::Selectable(pCurrentLevelFriendlyName, &isSelected))
+			if (ImGui::Selectable(pCurrentLevelfriendly_name, &isSelected))
 			{
-				pSelectedMapInfo = &rMapInfo;
-				SaveSelectedMap(s_currentGameMode, pSelectedMapInfo);
+				selected_map_info = &rMapInfo;
+				save_selected_map(g_current_game_mode, selected_map_info);
 			}
-			RenderHoveredTooltip(rMapInfo.GetFriendlyDescription());
+			render_hovered_tooltip(rMapInfo.get_friendly_description());
 		}
 
 		ImGui::EndCombo();
@@ -374,10 +367,10 @@ void c_haloreach_game_option_selection_legacy::SelectMap()
 
 void c_haloreach_game_option_selection_legacy::SelectDifficulty()
 {
-	if (s_currentGameMode == _mcc_game_mode_campaign || s_currentGameMode == _mcc_game_mode_firefight)
+	if (g_current_game_mode == _mcc_game_mode_campaign || g_current_game_mode == _mcc_game_mode_firefight)
 	{
 		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_local_string(g_campaign_difficulty_level);
-		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
+		if (ImGui::BeginCombo("Difficulty", pCurrentDifficultyStr))
 		{
 			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
 			{
@@ -415,16 +408,16 @@ void c_haloreach_game_option_selection_legacy::GetVariantInfo(char* buffer, std:
 	}
 }
 
-int c_haloreach_game_option_selection_legacy::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR filesystem_path)
+int c_haloreach_game_option_selection_legacy::read_game_variant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR filesystem_path)
 {
-	static s_game_variant gameVariant;
-	IDataAccess* pDataAccess = c_haloreach_game_host::get_data_access();
-	ASSERT(pDataAccess != nullptr);
-	load_game_variant(pDataAccess, "haloreach", pName, gameVariant);
+	static s_game_variant game_variant;
+	IDataAccess* data_access = c_haloreach_game_host::get_data_access();
+	ASSERT(data_access != nullptr);
+	load_game_variant(data_access, "haloreach", pName, game_variant);
 
-	int result = gameVariant.game_engine_index;
+	int result = game_variant.game_engine_index;
 
-	GetVariantInfo(gameVariant.game_engine_variant.data, name, desc);
+	GetVariantInfo(game_variant.game_engine_variant.data, name, desc);
 
 	if (!(*name).c_str()[0])
 	{
@@ -436,13 +429,13 @@ int c_haloreach_game_option_selection_legacy::ReadGameVariant(LPCSTR pName, std:
 
 int c_haloreach_game_option_selection_legacy::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	static s_map_variant mapVariant;
-	IDataAccess* pDataAccess = c_haloreach_game_host::get_data_access();
-	ASSERT(pDataAccess != nullptr);
-	load_map_variant(pDataAccess, "haloreach", pName, mapVariant);
+	static s_map_variant map_variant;
+	IDataAccess* data_access = c_haloreach_game_host::get_data_access();
+	ASSERT(data_access != nullptr);
+	load_map_variant(data_access, "haloreach", pName, map_variant);
 
-	int result = *reinterpret_cast<int*>(&mapVariant.data[0x2C]);
-	GetVariantInfo(mapVariant.data, name, desc);
+	int result = *reinterpret_cast<int*>(&map_variant.data[0x2C]);
+	GetVariantInfo(map_variant.data, name, desc);
 
 	return result;
 }
@@ -452,139 +445,160 @@ int c_haloreach_game_option_selection_legacy::ReadSavedFilm(LPCSTR pName, std::s
 	IDataAccess* data_access = c_haloreach_game_host::get_data_access();
 	if (data_access)
 	{
-		char* saved_film_data = nullptr;
-		size_t saved_film_data_size = 0;
+		char* saved_fildata = nullptr;
+		size_t saved_fildata_size = 0;
 
-		if (!filesystem_read_file_to_memory(pPath, reinterpret_cast<void**>(&saved_film_data), &saved_film_data_size))
+		if (!filesystem_read_file_to_memory(pPath, reinterpret_cast<void**>(&saved_fildata), &saved_fildata_size))
 		{
 			c_console::write_line_verbose("Failed to open saved film file");
 			return -1;
 		}
-		if (saved_film_data == 0)
+		if (saved_fildata == 0)
 		{
 			c_console::write_line_verbose("Saved film was zero sized");
 			return -1;
 		}
 
-		ISaveFilmMetadata* save_film_metadata = data_access->SaveFilmMetadataCreateFromFile(saved_film_data, saved_film_data_size);// ->data;
+		ISaveFilmMetadata* save_filmetadata = data_access->save_film_metadata_create_from_file(saved_fildata, saved_fildata_size);// ->data;
 
 		{
-			std::wstring wide(save_film_metadata->GetName());
+			std::wstring wide(save_filmetadata->GetName());
 			*name = std::string(wide.begin(), wide.end());
 		}
 		{
-			std::wstring wide(save_film_metadata->GetDescription());
+			std::wstring wide(save_filmetadata->GetDescription());
 			*desc = std::string(wide.begin(), wide.end());
 		}
 
-		if (is_valid(saved_film_data))
+		if (is_valid(saved_fildata))
 		{
-			delete[] saved_film_data;
+			delete[] saved_fildata;
 		}
 	}
 
 	return -1;
 }
 
-void c_haloreach_game_option_selection_legacy::SelectGameVariant()
+void c_haloreach_game_option_selection_legacy::select_game_variant()
 {
-	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
-	static std::vector<std::string> pfilePaths = {
-		format_string("%s/game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s/hopper_game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/", get_user_profile_environment_variable(), pEngineName/*"haloreach"*/)
+	const char* engine_name = "haloreach"; // #TODO: Set this up properly
+	static std::vector<std::string> file_paths = {
+		format_string("%s/game_variants", engine_name/*"haloreach"*/),
+		format_string("%s/hopper_game_variants", engine_name/*"haloreach"*/),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/", get_user_profile_environment_variable(), engine_name/*"haloreach"*/)
 	};
-	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
-	static LPCSTR pLast = s_launch_game_variant.c_str();
+	static c_file_array file_array = c_file_array(file_paths, { ".bin" }, &read_game_variant);
+	static LPCSTR last = s_launch_game_variant.c_str();
 
-	if (s_currentGameMode == _mcc_game_mode_campaign)
+	if (g_current_game_mode == _mcc_game_mode_campaign)
 	{
 		return;
 	}
 
-	if (ImGui::BeginCombo("###GAME VARIANT", fileArray.get_name(pLast)))
+	if (ImGui::BeginCombo("Game Variant", file_array.get_name(last)))
 	{
-		for (size_t i = 0; i < fileArray.file_count; i++)
+		const char* last_filename = file_array.get_filename(last);
+
+		for (size_t i = 0; i < file_array.file_count; i++)
 		{
-			int shouldShow = s_currentGameMode == _mcc_game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
-			shouldShow |= s_currentGameMode == _mcc_game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
-			shouldShow |= s_currentGameMode == _mcc_game_mode_campaign && fileArray.GetType(i) == _game_engine_type_campaign;
-			shouldShow |= s_currentGameMode == _mcc_game_mode_firefight && fileArray.GetType(i) == _game_engine_type_survival;
+			ImGui::PushID(static_cast<int>(i));
 
-			if (fileArray.get_filename(i) && shouldShow)
+			const int type = file_array.get_type(i);
+			const LPCSTR filename = file_array.get_filename(i);
+
+			int should_show = g_current_game_mode == _mcc_game_mode_multiplayer && type == _game_engine_type_sandbox;
+			should_show |= g_current_game_mode == _mcc_game_mode_multiplayer && type == _game_engine_type_megalo;
+			should_show |= g_current_game_mode == _mcc_game_mode_campaign && type == _game_engine_type_campaign;
+			should_show |= g_current_game_mode == _mcc_game_mode_firefight && type == _game_engine_type_survival;
+
+			if (filename && should_show)
 			{
-				bool selected = fileArray.get_filename(i) == fileArray.get_filename(pLast);
+				bool selected = filename == last_filename;
 
-				std::string pSelectedGameVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
-				if (ImGui::Selectable(pSelectedGameVariantName.c_str(), &selected))
+				c_fixed_string_1024 selected_game_variant_name;
+				const char* name = file_array.get_name(i);
+				selected_game_variant_name.format("%s (%s)", name, filename);
+				if (ImGui::Selectable(selected_game_variant_name.c_str(), &selected))
 				{
-					pLast = fileArray.get_filename(i);
+					last = filename;
 				}
 
-				RenderHoveredTooltip(fileArray.GetDesc(i));
+				render_hovered_tooltip(file_array.get_description(i));
 			}
+
+			ImGui::PopID();
 		}
 
 		ImGui::EndCombo();
 	}
 
-	s_launch_game_variant = pLast;
+	s_launch_game_variant = last;
 }
 
 void c_haloreach_game_option_selection_legacy::SelectMapVariant()
 {
-	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
-	static std::vector<std::string> pfilePaths = {
-		format_string("%s/map_variants", pEngineName/*"haloreach"*/),
-		format_string("%s/map_game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/", get_user_profile_environment_variable(), pEngineName/*"haloreach"*/)
+	const char* engine_name = "haloreach"; // #TODO: Set this up properly
+	static std::vector<std::string> file_paths = {
+		format_string("%s/map_variants", engine_name/*"haloreach"*/),
+		format_string("%s/map_game_variants", engine_name/*"haloreach"*/),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/", get_user_profile_environment_variable(), engine_name/*"haloreach"*/)
 	};
-	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
-	static LPCSTR pLast = s_launch_map_variant.c_str();
+	static c_file_array file_array = c_file_array(file_paths, { ".mvar" }, &ReadMapVariant);
+	static LPCSTR last = s_launch_map_variant.c_str();
 
-	if (s_currentGameMode != _mcc_game_mode_multiplayer)
+	if (g_current_game_mode != _mcc_game_mode_multiplayer)
 	{
 		return;
 	}
 
-	const MapInfo* pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
+	const c_map_info* selected_map_info = get_selected_map_info_by_game_mode(g_current_game_mode);
 
-	LPCSTR lastMapName = fileArray.get_name(pLast);
-	if (!lastMapName || pLast[0] == 0)
+	LPCSTR lastMapName = file_array.get_name(last);
+	if (!lastMapName || last[0] == 0)
 	{
-		pLast = "";
+		last = "";
 		lastMapName = "<Default Variant>";
 	}
-	if (ImGui::BeginCombo("###MAP VARIANT", lastMapName))
+	if (ImGui::BeginCombo("Map Variant", lastMapName))
 	{
 		bool defaultSelected = false;
 		if (ImGui::Selectable("<Default Variant>", &defaultSelected))
 		{
-			pLast = "";
+			last = "";
 		}
 
-		for (size_t i = 0; i < fileArray.file_count; i++)
+		const char* last_filename = file_array.get_filename(last);
+
+		for (size_t i = 0; i < file_array.file_count; i++)
 		{
-			int shouldShow = fileArray.GetType(i) == pSelectedMapInfo->GetMapID();
+			ImGui::PushID(static_cast<int>(i));
 
-			if (fileArray.get_filename(i) && shouldShow)
+			int should_show = file_array.get_type(i) == selected_map_info->get_map_id();
+
+			const char* filename = file_array.get_filename(i);
+
+			if (filename && should_show)
 			{
-				bool selected = fileArray.get_filename(i) == fileArray.get_filename(pLast);
+				bool selected = filename == last_filename;
 
-				std::string pSelectedMapVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
-				if (ImGui::Selectable(pSelectedMapVariantName.c_str(), &selected) && !defaultSelected)
+				c_fixed_string_1024 selected_map_variant_name;
+				const char* name = file_array.get_name(i);
+				selected_map_variant_name.format("%s (%s)", name, filename);
+				if (ImGui::Selectable(selected_map_variant_name.c_str(), &selected) && !defaultSelected)
 				{
-					pLast = fileArray.get_filename(i);
+					last = filename;
 				}
 
-				RenderHoveredTooltip(fileArray.GetDesc(i));
+				render_hovered_tooltip(file_array.get_description(i));
 			}
+
+			ImGui::PopID();
 		}
 
 		ImGui::EndCombo();
 	}
 
-	s_launch_map_variant = pLast;
+	s_launch_map_variant = last;
 }
 
 void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
@@ -597,56 +611,56 @@ void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
 	//	format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/", get_user_profile_environment_variable(), "haloreach")
 	//};
 
-	//static c_file_array fileArray = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
-	//static LPCSTR pLast = "";
+	//static c_file_array file_array = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
+	//static LPCSTR last = "";
 
-	//if (s_launch_saved_film_filepath != fileArray.get_filename(pLast))
+	//if (s_launch_saved_film_filepath != file_array.get_filename(last))
 	//{
-	//	s_launch_saved_film_filepath = fileArray.get_filename(pLast);
+	//	s_launch_saved_film_filepath = file_array.get_filename(last);
 	//}
-	//if (pLast != fileArray.get_filename(pLast))
+	//if (last != file_array.get_filename(last))
 	//{
-	//	pLast = fileArray.get_filename(pLast);
+	//	last = file_array.get_filename(last);
 	//}
 
-	//if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
+	//if (ImGui::BeginCombo("###SAVED FILM", file_array.GetDesc(last)))
 	//{
-	//	for (size_t i = 0; i < fileArray.file_count; i++)
+	//	for (size_t i = 0; i < file_array.file_count; i++)
 	//	{
-	//		if (fileArray.get_name(i))
+	//		if (file_array.get_name(i))
 	//		{
-	//			bool selected = fileArray.get_name(i) == fileArray.get_name(pLast);
+	//			bool selected = file_array.get_name(i) == file_array.get_name(last);
 
-	//			std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
-	//			if (ImGui::Selectable(fileArray.GetDesc(i), &selected))
+	//			std::string pSelectedSavedFilmName = std::string(file_array.GetDesc(i)).append(" (").append(file_array.get_filename(i)).append(")###").append(std::to_string(i));
+	//			if (ImGui::Selectable(file_array.GetDesc(i), &selected))
 	//			{
-	//				pLast = fileArray.get_filename(i);
+	//				last = file_array.get_filename(i);
 	//			}
 
-	//			RenderHoveredTooltip(fileArray.get_name(i));
+	//			render_hovered_tooltip(file_array.get_name(i));
 	//		}
 	//	}
 
 	//	ImGui::EndCombo();
 	//}
 
-	//s_launch_saved_film_filepath = pLast;
+	//s_launch_saved_film_filepath = last;
 }
 
-void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDataAccess, const char* engine_name, const char* pVariantName, s_map_variant& rMapVariant, bool print)
+void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* data_access, const char* engine_name, const char* variant_name, s_map_variant& map_variant, bool print)
 {
-	memset(&rMapVariant, 0, sizeof(rMapVariant));
+	memset(&map_variant, 0, sizeof(map_variant));
 
-	if (pVariantName[0])
+	if (variant_name[0])
 	{
 		static std::string filepath = "";
-		if (!PathFileExistsA((filepath = format_string("%s/hopper_map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/hopper_map_variants/%s.mvar", engine_name, variant_name)).c_str()))
 		{
-			if (!PathFileExistsA((filepath = format_string("%s/map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/map_variants/%s.mvar", engine_name, variant_name)).c_str()))
 			{
-				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, variant_name)).c_str()))
 				{
-					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, variant_name)).c_str()))
 					{
 						filepath = "";
 					}
@@ -675,7 +689,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDa
 				c_console::write_line_verbose("Loading map variant [%s]", filepath.c_str());
 			}
 
-			rMapVariant = pDataAccess->MapVariantCreateFromFile(variant_data, variant_data_size)->MapVariant;
+			map_variant = data_access->map_variant_create_from_file(variant_data, variant_data_size)->map_variant;
 
 			delete[] variant_data;
 			return;
@@ -684,37 +698,37 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDa
 
 	// fallback to use map ID
 	{
-		const MapInfo* pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
+		const c_map_info* selected_map_info = get_selected_map_info_by_game_mode(g_current_game_mode);
 
 		if (print)
 		{
-			c_console::write_line_verbose("Creating map variant for '%s'", pSelectedMapInfo->GetFriendlyName());
+			c_console::write_line_verbose("Creating map variant for '%s'", selected_map_info->get_friendly_name());
 		}
 
-		rMapVariant = pDataAccess->MapVariantCreateFromMapID(pSelectedMapInfo->GetMapID())->MapVariant;
+		map_variant = data_access->map_variant_create_from_map_id(selected_map_info->get_map_id())->map_variant;
 	}
 }
 
-void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pDataAccess, const char* engine_name, const char* pVariantName, s_game_variant& rGameVariant, bool print)
+void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* data_access, const char* engine_name, const char* variant_name, s_game_variant& game_variant, bool print)
 {
-	ASSERT(pDataAccess != nullptr);
+	ASSERT(data_access != nullptr);
 	ASSERT(engine_name != nullptr);
-	ASSERT(pVariantName != nullptr);
+	ASSERT(variant_name != nullptr);
 
-	memset(&rGameVariant, 0, sizeof(rGameVariant));
-	if (pVariantName == nullptr)
+	memset(&game_variant, 0, sizeof(game_variant));
+	if (variant_name == nullptr)
 	{
 		return;
 	}
 
 	static std::string filepath = "";
-	if (!PathFileExistsA((filepath = format_string("%s/hopper_game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+	if (!PathFileExistsA((filepath = format_string("%s/hopper_game_variants/%s.bin", engine_name, variant_name)).c_str()))
 	{
-		if (!PathFileExistsA((filepath = format_string("%s/game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/game_variants/%s.bin", engine_name, variant_name)).c_str()))
 		{
-			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, variant_name)).c_str()))
 			{
-				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, variant_name)).c_str()))
 				{
 					filepath = "";
 				}
@@ -743,10 +757,10 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pD
 			c_console::write_line_verbose("Loading game variant [%s]", filepath.c_str());
 		}
 
-		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(variant_data, variant_data_size);
-		if (game_variant)
+		IGameVariant* game_variant_interface = data_access->game_variant_create_from_file(variant_data, variant_data_size);
+		if (game_variant_interface != nullptr)
 		{
-			rGameVariant = game_variant->GameVariant;
+			game_variant = game_variant_interface->game_variant;
 		}
 		else
 		{
@@ -759,12 +773,12 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pD
 }
 
 // TODO: Test, and fix if broke
-void c_haloreach_game_option_selection_legacy::load_savegame(const char* pGamestateName, GameContext& gameContext)
+void c_haloreach_game_option_selection_legacy::load_savegame(const char* game_state_name, GameContext& game_context)
 {
 	return;
 
 	//char filepath[MAX_PATH + 1];
-	//sprintf(filepath, "%s.hdr", pGamestateName);
+	//sprintf(filepath, "%s.hdr", game_state_name);
 	//filepath[MAX_PATH] = 0;
 
 	//char* pGameStateBuffer = {};
@@ -777,29 +791,29 @@ void c_haloreach_game_option_selection_legacy::load_savegame(const char* pGamest
 	//	memset(pGameStateBuffer, 0x00, filo.buffer_size);
 	//	pGameStateBuffer = filo.buffer;
 
-	//	gameContext.game_mode = _mcc_game_mode_campaign;
-	//	gameContext.game_state_header_size = filo.buffer_size;
-	//	gameContext.game_state_header = pGameStateBuffer;
+	//	game_context.game_mode = _mcc_game_mode_campaign;
+	//	game_context.game_state_header_size = filo.buffer_size;
+	//	game_context.game_state_header = pGameStateBuffer;
 
 	//	filo.close_file();
 	//}
 }
 
-void c_haloreach_game_option_selection_legacy::load_savefilm(const char* pSavedFilmName, GameContext& gameContext)
+void c_haloreach_game_option_selection_legacy::load_savefilm(const char* saved_film_name, GameContext& game_context)
 {
-	if (!pSavedFilmName[0])
+	if (!saved_film_name[0])
 		return;
 
 	static std::string filepath = "";
-	if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
+	if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.film", "haloreach", saved_film_name)).c_str()))
 	{
-		if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.mov", "haloreach", saved_film_name)).c_str()))
 		{
-			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", saved_film_name)).c_str()))
 			{
-				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", saved_film_name)).c_str()))
 				{
-					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", get_user_profile_environment_variable(), "haloreach", saved_film_name)).c_str()))
 					{
 						filepath = "";
 					}
@@ -813,7 +827,7 @@ void c_haloreach_game_option_selection_legacy::load_savefilm(const char* pSavedF
 		c_console::write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
-	gameContext.saved_film_path = filepath.c_str();
+	game_context.saved_film_path = filepath.c_str();
 
 }
 

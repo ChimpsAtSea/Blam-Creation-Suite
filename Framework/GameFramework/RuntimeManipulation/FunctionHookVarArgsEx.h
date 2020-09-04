@@ -5,8 +5,8 @@ template<find_offset_func find_offset, typename base_type>
 struct FunctionHookVarArgsEx : public c_function_hook_base
 {
 public:
-	//static_assert(build == BuildVersion::NotSet || offset >= GetBuildBaseAddress(build), "Offset is out of bounds");
-	//static_assert(build == BuildVersion::NotSet || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
+	//static_assert(build == _build_not_set || offset >= GetBuildBaseAddress(build), "Offset is out of bounds");
+	//static_assert(build == _build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args) const
@@ -18,17 +18,17 @@ public:
 		if constexpr (std::is_same<return_type, void>::value)
 		{
 			base(args...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 		}
 		else
 		{
 			auto result = base(args...);
-			if (m_pCallback)
+			if (callback)
 			{
-				m_pCallback(m_pCallbackUserData);
+				callback(callback_user_data);
 			}
 			return result;
 		}
@@ -71,12 +71,12 @@ public:
 
 private:
 
-	base_type*& GetHook()
+	base_type*& get_hook()
 	{
 		return *const_cast<base_type**>(&hook);
 	}
 
-	base_type*& GetBase()
+	base_type*& get_base()
 	{
 		return *const_cast<base_type**>(&base);
 	}

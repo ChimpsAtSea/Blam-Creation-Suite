@@ -136,11 +136,11 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 
 		ImGui::GetIO().ImeWindowHandle = s_swapChainDescription.OutputWindow;
 
-		ID3D11Texture2D* pBackBuffer = nullptr;
-		s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-		ASSERT(pBackBuffer);
-		s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_mainRenderTargetView);
-		pBackBuffer->Release();
+		ID3D11Texture2D* back_buffer = nullptr;
+		s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&back_buffer);
+		ASSERT(back_buffer);
+		s_pDevice->CreateRenderTargetView(back_buffer, NULL, &s_mainRenderTargetView);
+		back_buffer->Release();
 	}
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	s_mutex.unlock();

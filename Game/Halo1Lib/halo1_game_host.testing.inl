@@ -25,7 +25,7 @@
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x1801FE1B0);
 //	return ~uintptr_t();
 //}
-//FunctionHookEx<sub_1801FE1B0_offset, __int64 __fastcall (int a1, int a2)> sub_1801FE1B0 = { "sub_1801FE1B0", [](int a1, int a2)
+//c_function_hook_ex<sub_1801FE1B0_offset, __int64 __fastcall (int a1, int a2)> sub_1801FE1B0 = { "sub_1801FE1B0", [](int a1, int a2)
 //{
 //	a1 = 3072;
 //	a2 = 1728;

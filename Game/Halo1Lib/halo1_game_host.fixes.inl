@@ -62,7 +62,7 @@ uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_1806F4000_offset, void()> sub_1806F4000 = { "sub_1806F4000", []()
+c_function_hook_ex<sub_1806F4000_offset, void()> sub_1806F4000 = { "sub_1806F4000", []()
 {
 
 	sub_1806F4000();
@@ -133,7 +133,7 @@ uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_1800935B0_offset, __int64 __fastcall (__int64 a1)> sub_1800935B0 = { "sub_1800935B0", [](__int64 a1)
+c_function_hook_ex<sub_1800935B0_offset, __int64 __fastcall (__int64 a1)> sub_1800935B0 = { "sub_1800935B0", [](__int64 a1)
 {
 	uint32_t sub_1806F4000_reference_count = sub_1806F4000.reference_counter;
 	__int64 result = (sub_1806F4000_reference_count > 0) ? __int64(0) : sub_1800935B0(a1);

@@ -133,7 +133,7 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 			ASSERT(data_address != nullptr);
 
 			intptr_t& reference_value = *reinterpret_cast<intptr_t*>(reference_memory_pointer);
-			//if (m_build != BuildVersion::NotSet) // specific game addresses should be verified
+			//if (build != _build_not_set) // specific game addresses should be verified
 			//{
 			//	
 			//	ASSERT(dataAddressValue == targetOffset);

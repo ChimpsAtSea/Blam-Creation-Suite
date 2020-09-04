@@ -2,22 +2,22 @@
 
 struct BoxPrimitiveData
 {
-	float m_positionX = 0.0f;
-	float m_positionY = 0.0f;
-	float m_positionZ = 0.0f;
-	float m_dimensionsX = 0.0f;
-	float m_dimensionsY = 0.0f;
-	float m_dimensionsZ = 0.0f;
-	float m_colorR = 1.0f;
-	float m_colorG = 1.0f;
-	float m_colorB = 1.0f;
-	float m_colorA = 1.0f;
-	//float m_maxX = 0.0f;
-	//float m_maxY = 0.0f;
-	//float m_maxZ = 0.0f;
-	//float m_minX = 0.0f;
-	//float m_minY = 0.0f;
-	//float m_minZ = 0.0f;
+	float position_x = 0.0f;
+	float position_y = 0.0f;
+	float position_z = 0.0f;
+	float dimensions_x = 0.0f;
+	float dimensions_y = 0.0f;
+	float dimensions_z = 0.0f;
+	float color_r = 1.0f;
+	float color_g = 1.0f;
+	float color_b = 1.0f;
+	float color_a = 1.0f;
+	//float maxX = 0.0f;
+	//float maxY = 0.0f;
+	//float maxZ = 0.0f;
+	//float minX = 0.0f;
+	//float minY = 0.0f;
+	//float minZ = 0.0f;
 };
 
 class c_box_primitive : public BoxPrimitiveData
@@ -25,113 +25,113 @@ class c_box_primitive : public BoxPrimitiveData
 public:
 	c_box_primitive();
 	c_box_primitive(
-		float positionX,
-		float positionY,
-		float positionZ,
-		float dimensionsX,
-		float dimensionsY,
-		float dimensionsZ,
-		float colorR,
-		float colorG,
-		float colorB,
-		float colorA
+		float position_x,
+		float position_y,
+		float position_z,
+		float dimensions_x,
+		float dimensions_y,
+		float dimensions_z,
+		float color_r,
+		float color_g,
+		float color_b,
+		float color_a
 	);
 	~c_box_primitive();
 
 	inline void set_color(
-		float colorR,
-		float colorG,
-		float colorB,
-		float colorA
+		float color_r,
+		float color_g,
+		float color_b,
+		float color_a
 	)
 	{
-		m_colorR = colorR;
-		m_colorG = colorG;
-		m_colorB = colorB;
-		m_colorA = colorA;
+		color_r = color_r;
+		color_g = color_g;
+		color_b = color_b;
+		color_a = color_a;
 	}
 
 
-	inline void update_as_centered_box(float positionX, float positionY, float positionZ)
+	inline void update_as_centered_box(float position_x, float position_y, float position_z)
 	{
 		update_as_centered_box(
-			positionX,
-			positionY,
-			positionZ,
-			m_dimensionsX,
-			m_dimensionsY,
-			m_dimensionsZ
+			position_x,
+			position_y,
+			position_z,
+			dimensions_x,
+			dimensions_y,
+			dimensions_z
 		);
 	}
 
 	inline void UpdateAsAABB(float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
 	{
-		m_dimensionsX = maxX - minX;
-		m_dimensionsY = maxY - minY;
-		m_dimensionsZ = maxZ - minZ;
+		dimensions_x = maxX - minX;
+		dimensions_y = maxY - minY;
+		dimensions_z = maxZ - minZ;
 
-		m_positionX = minX - m_dimensionsX * 0.5f;
-		m_positionY = minY - m_dimensionsY * 0.5f;
-		m_positionZ = minZ - m_dimensionsZ * 0.5f;
+		position_x = minX - dimensions_x * 0.5f;
+		position_y = minY - dimensions_y * 0.5f;
+		position_z = minZ - dimensions_z * 0.5f;
 
-		//m_maxX = maxX;
-		//m_maxY = maxY;
-		//m_maxZ = maxZ;
-		//m_minX = minX;
-		//m_minY = minY;
-		//m_minZ = minZ;
+		//maxX = maxX;
+		//maxY = maxY;
+		//maxZ = maxZ;
+		//minX = minX;
+		//minY = minY;
+		//minZ = minZ;
 	}
 
-	inline void update_as_corner_and_extent_box(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
+	inline void update_as_corner_and_extent_box(float position_x, float position_y, float position_z, float dimensions_x, float dimensions_y, float dimensions_z)
 	{
-		m_positionX = positionX + dimensionsX * 0.5f;
-		m_positionY = positionY + dimensionsY * 0.5f;
-		m_positionZ = positionZ + dimensionsZ * 0.5f;
-		m_dimensionsX = dimensionsX;
-		m_dimensionsY = dimensionsY;
-		m_dimensionsZ = dimensionsZ;
+		position_x = position_x + dimensions_x * 0.5f;
+		position_y = position_y + dimensions_y * 0.5f;
+		position_z = position_z + dimensions_z * 0.5f;
+		dimensions_x = dimensions_x;
+		dimensions_y = dimensions_y;
+		dimensions_z = dimensions_z;
 
-		//m_minX = positionX;
-		//m_minY = positionY;
-		//m_minZ = positionZ;
-		//m_maxX = positionX + dimensionsX;
-		//m_maxY = positionY + dimensionsY;
-		//m_maxZ = positionZ + dimensionsZ;
+		//minX = position_x;
+		//minY = position_y;
+		//minZ = position_z;
+		//maxX = position_x + dimensions_x;
+		//maxY = position_y + dimensions_y;
+		//maxZ = position_z + dimensions_z;
 	}
 
-	inline void update_as_centered_box(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
+	inline void update_as_centered_box(float position_x, float position_y, float position_z, float dimensions_x, float dimensions_y, float dimensions_z)
 	{
-		m_positionX = positionX;
-		m_positionY = positionY;
-		m_positionZ = positionZ;
-		m_dimensionsX = dimensionsX;
-		m_dimensionsY = dimensionsY;
-		m_dimensionsZ = dimensionsZ;
+		position_x = position_x;
+		position_y = position_y;
+		position_z = position_z;
+		dimensions_x = dimensions_x;
+		dimensions_y = dimensions_y;
+		dimensions_z = dimensions_z;
 
-		const float halfWidth = dimensionsX * 0.5f;
-		const float halfHeight = dimensionsY * 0.5f;
-		const float halfDepth = dimensionsZ * 0.5f;
+		const float halfWidth = dimensions_x * 0.5f;
+		const float halfHeight = dimensions_y * 0.5f;
+		const float halfDepth = dimensions_z * 0.5f;
 
-		//m_maxX = positionX + halfWidth;
-		//m_maxY = positionY + halfHeight;
-		//m_maxZ = positionZ + halfDepth;
-		//m_minX = positionX - halfWidth;
-		//m_minY = positionY - halfHeight;
-		//m_minZ = positionZ - halfDepth;
+		//maxX = position_x + halfWidth;
+		//maxY = position_y + halfHeight;
+		//maxZ = position_z + halfDepth;
+		//minX = position_x - halfWidth;
+		//minY = position_y - halfHeight;
+		//minZ = position_z - halfDepth;
 	}
 
 
 	inline bool SetIsVisible(bool isVisible)
 	{
-		m_isVisible = isVisible;
+		is_visible = isVisible;
 	}
 
 	inline bool IsVisible() const
 	{
-		return m_isVisible;
+		return is_visible;
 	}
 
 private:
-	bool m_isVisible = true;
+	bool is_visible = true;
 };
 

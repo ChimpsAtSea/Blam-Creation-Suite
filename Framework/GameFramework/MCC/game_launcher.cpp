@@ -10,9 +10,7 @@ bool c_game_launcher::s_is_game_running = false;
 c_opus_game_engine_host* current_game_host = nullptr;
 e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 c_mandrill_user_interface* c_game_launcher::mandrill_user_interface = nullptr;
-
-
-
+uint64_t ownership_mask = ~0ull;
 
 static std::vector<e_engine_type> g_supported_engine_types;
 static e_engine_type g_engine_type = _engine_type_not_set;
@@ -59,7 +57,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 #ifdef _WIN64
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
-	check_steam_ownership();
+	init_steaownership();
 
 	c_console::write_line("checking supported game versions");
 
@@ -75,14 +73,14 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
 		is_bink2_required = true;
-		g_supported_engine_types.push_back(_engine_type_haloreach);
+		add_supported_engine(_engine_type_haloreach);
 	}
 
 	if (PathFileExistsA("halo1\\halo1.dll"))
 	{
 		is_fmod_required = true;
 		is_fmod_event_net_required = true;
-		g_supported_engine_types.push_back(_engine_type_halo1);
+		add_supported_engine(_engine_type_halo1);
 	}
 
 	if (PathFileExistsA("halo2\\halo2.dll"))
@@ -91,25 +89,25 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		is_mopp_required = true;
 		is_ati_compress_required = true;
 		is_miles_sound_system_required = true;
-		g_supported_engine_types.push_back(_engine_type_halo2);
+		add_supported_engine(_engine_type_halo2);
 	}
 
 	if (PathFileExistsA("groundhog\\groundhog.dll"))
 	{
-		g_supported_engine_types.push_back(_engine_type_groundhog);
+		add_supported_engine(_engine_type_groundhog);
 	}
 
 	if (PathFileExistsA("halo3\\halo3.dll"))
 	{
 		is_bink2_required = true;
-		g_supported_engine_types.push_back(_engine_type_halo3);
+		add_supported_engine(_engine_type_halo3);
 	}
 
 	if (PathFileExistsA("halo3odst\\halo3odst.dll"))
 	{
 		is_bink2_required = true;
 		is_xaudio2_9redist_required = true;
-		g_supported_engine_types.push_back(_engine_type_halo3odst);
+		add_supported_engine(_engine_type_halo3odst);
 	}
 
 	if (is_bink2_required)
@@ -230,6 +228,14 @@ void c_game_launcher::deinit_game_launcher()
 	delete s_mouse_input;
 	s_mouse_input = nullptr;
 	s_window = nullptr;
+}
+
+void c_game_launcher::add_supported_engine(e_engine_type engine_type)
+{
+	if (ownership_mask & (1ull << engine_type))
+	{
+		g_supported_engine_types.push_back(engine_type);
+	}
 }
 
 void c_game_launcher::window_destroy_callback()
@@ -448,11 +454,11 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 			if (engine_type == _engine_type_haloreach)
 			{
-				const MapInfo *selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
+				const c_map_info *selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
 				e_mcc_game_mode game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
 
 				game_context->game_mode = game_mode;
-				game_context->map_id = static_cast<e_map_id>(selected_map_info->GetMapID());
+				game_context->map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
 				data_access = c_haloreach_game_host::get_data_access();
 
 				//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
@@ -460,7 +466,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 				{
 					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
-					const char *map_file_name = selected_map_info->GetMafilepath();
+					const char *map_file_name = selected_map_info->get_map_filepath();
 					c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
@@ -532,8 +538,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			void*& game_engine_host_vftable = *reinterpret_cast<void**>(current_game_host);
 			static char data[sizeof(void*) * 1024] = {};
 			memset(data, -1, sizeof(data));
-			constexpr size_t k_num_bytes_to_copy_from_existing_vft = 0;
-			memcpy(data, game_engine_host_vftable, k_num_bytes_to_copy_from_existing_vft);
+			constexpr size_t k_nubytes_to_copy_froexisting_vft = 0;
+			memcpy(data, game_engine_host_vftable, k_nubytes_to_copy_froexisting_vft);
 			game_engine_host_vftable = data;
 		}
 	}
@@ -589,13 +595,14 @@ void c_game_launcher::launch_eldorado_game()
 }
 
 #endif
-void c_game_launcher::check_steam_ownership()
+
+void c_game_launcher::init_steaownership()
 {
 #ifdef _WIN64
 	{
 		static const char k_steam_appid[] = "976730";
-		bool write_file_from_memory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
-		ASSERT(write_file_from_memory_result == true);
+		bool write_file_fromemory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
+		ASSERT(write_file_fromemory_result == true);
 	}
 
 	bool steam_api_init_result = SteamAPI_Init();
@@ -604,6 +611,44 @@ void c_game_launcher::check_steam_ownership()
 		c_console::write_line("Steam failed to initialize.");
 		MessageBoxA(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
+	}
+
+	ISteamUser* steauser = SteamUser();
+	CSteamID steaid = steauser->GetSteamID();
+
+	constexpr AppId_t k_mcc_app_id = 976730;
+	constexpr AppId_t k_haloreach_dlc_id = 1064220;
+	constexpr AppId_t k_halo1_dlc_id = 1064221;
+	constexpr AppId_t k_halo2_dlc_id = 1064270;
+	constexpr AppId_t k_halo3_dlc_id = 1064271;
+	constexpr AppId_t k_halo3odst_dlc_id = 1064272;
+	constexpr AppId_t k_halo4_dlc_id = 1064273;
+	constexpr AppId_t k_groundhog_dlc_id = 1097223;
+
+	ownership_mask = 0;
+	for (uint32_t engine_type = 0; engine_type < k_number_of_engine_types; engine_type++)
+	{
+		switch (engine_type)
+		{
+		case _engine_type_mcc:
+			if (steauser->UserHasLicenseForApp(steaid, k_mcc_app_id)) ownership_mask |= 1ull << _engine_type_mcc;
+		case _engine_type_haloreach:
+			if (steauser->UserHasLicenseForApp(steaid, k_haloreach_dlc_id)) ownership_mask |= 1ull << _engine_type_haloreach;
+		case _engine_type_halo1:
+			if (steauser->UserHasLicenseForApp(steaid, k_halo1_dlc_id)) ownership_mask |= 1ull << _engine_type_halo1;
+		case _engine_type_halo2:
+			if (steauser->UserHasLicenseForApp(steaid, k_halo2_dlc_id)) ownership_mask |= 1ull << _engine_type_halo2;
+		case _engine_type_halo3:
+			if (steauser->UserHasLicenseForApp(steaid, k_halo3_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3;
+		case _engine_type_halo3odst:
+			if (steauser->UserHasLicenseForApp(steaid, k_halo3odst_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3odst;
+		case _engine_type_halo4:
+			if (steauser->UserHasLicenseForApp(steaid, k_halo4_dlc_id)) ownership_mask |= 1ull << _engine_type_halo4;
+		case _engine_type_groundhog:
+			if (steauser->UserHasLicenseForApp(steaid, k_groundhog_dlc_id)) ownership_mask |= 1ull << _engine_type_groundhog;
+		default:
+			ownership_mask |= 1ull << engine_type;
+		}
 	}
 #endif
 }
@@ -1015,10 +1060,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		switch (variant_type)
 		{
 		case _variant_type_game:
-			variant_accessor_base = data_access->GameVariantCreateFromFile(variant_data, variant_data_size);
+			variant_accessor_base = data_access->game_variant_create_from_file(variant_data, variant_data_size);
 			break;
 		case _variant_type_map:
-			variant_accessor_base = data_access->MapVariantCreateFromFile(variant_data, variant_data_size);
+			variant_accessor_base = data_access->map_variant_create_from_file(variant_data, variant_data_size);
 			break;
 		}
 	}
@@ -1030,11 +1075,11 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		{
 		case _variant_type_game:
 			variant_data = new char[k_game_variant_buffer_size];
-			variant_accessor_base = data_access->GameVariantCreateDefault(variant_data);
+			variant_accessor_base = data_access->game_variant_create_default(variant_data);
 			break;
 		case _variant_type_map:
 			c_console::write_line_verbose("Creating default variant for '%s'", get_enum_string<const char*, true>(static_cast<e_map_id>(game_context->map_id)));
-			variant_accessor_base = data_access->MapVariantCreateFromMapID(game_context->map_id);
+			variant_accessor_base = data_access->map_variant_create_from_map_id(game_context->map_id);
 			break;
 		}
 	}

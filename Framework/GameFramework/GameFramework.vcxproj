@@ -187,8 +187,6 @@
     <ClCompile Include="RuntimeManipulation\data_patch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="FileSystem\blam_file_parser.cpp" />
-    <ClCompile Include="FileSystem\GameTypeManager.cpp" />
-    <ClCompile Include="FileSystem\GameType.cpp" />
     <ClCompile Include="MCC\opus_game_engine_host.cpp" />
     <ClCompile Include="MCC\game_runtime.cpp" />
     <ClCompile Include="MCC\haloreach_game_option_selection_legacy.cpp" />
@@ -207,7 +205,7 @@
     <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
     <ClCompile Include="MCC\IGameEngineHost.cpp" />
     <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp" />
-    <ClCompile Include="FileSystem\MapInfo.cpp" />
+    <ClCompile Include="FileSystem\map_info.cpp" />
     <ClCompile Include="FileSystem\map_info_manager.cpp" />
     <ClCompile Include="MCC\mouse_input.cpp" />
     <ClCompile Include="gameframework-private-pch.cpp">
@@ -231,8 +229,6 @@
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="FileSystem\blam_file_parser.h" />
     <ClInclude Include="FileSystem\FileSystem.h" />
-    <ClInclude Include="FileSystem\GameTypeManager.h" />
-    <ClInclude Include="FileSystem\GameType.h" />
     <ClInclude Include="MCC\opus_game_engine_host.h" />
     <ClInclude Include="MCC\game_runtime.h" />
     <ClInclude Include="MCC\haloreach_game_option_selection_legacy.h" />
@@ -253,7 +249,7 @@
     <ClInclude Include="MCC\opus_legacy\IMapVariant.h" />
     <ClInclude Include="MCC\opus_legacy\ISaveFilmMetadata.h" />
     <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h" />
-    <ClInclude Include="FileSystem\MapInfo.h" />
+    <ClInclude Include="FileSystem\map_info.h" />
     <ClInclude Include="FileSystem\map_info_manager.h" />
     <ClInclude Include="MCC\mouse_input.h" />
     <ClInclude Include="ApplicationReflection\referencesymbol.h" />

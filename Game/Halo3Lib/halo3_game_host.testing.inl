@@ -6,7 +6,7 @@ uintptr_t transport_endpoint_bind_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18022C0D0);
 	return ~uintptr_t();
 }
-FunctionHookEx<transport_endpoint_bind_offset, bool __fastcall(__int64 a1, __int64 a2)> transport_endpoint_bind = { "transport_endpoint_bind", [](__int64 a1, __int64 a2)
+c_function_hook_ex<transport_endpoint_bind_offset, bool __fastcall(__int64 a1, __int64 a2)> transport_endpoint_bind = { "transport_endpoint_bind", [](__int64 a1, __int64 a2)
 {
 	bool result = transport_endpoint_bind(a1, a2);
 	return result;
@@ -30,7 +30,7 @@ uintptr_t sendto_with_error_code_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18022C820);
 	return ~uintptr_t();
 }
-FunctionHookEx<sendto_with_error_code_offset, int __fastcall(SOCKET* a1, const char* a2, __int16 a3, __int64 a4)> sendto_with_error_code = { "sendto_with_error_code", [](SOCKET* a1, const char* a2, __int16 a3, __int64 a4)
+c_function_hook_ex<sendto_with_error_code_offset, int __fastcall(SOCKET* a1, const char* a2, __int16 a3, __int64 a4)> sendto_with_error_code = { "sendto_with_error_code", [](SOCKET* a1, const char* a2, __int16 a3, __int64 a4)
 {
 	*(_WORD*)(a4 + 18) = 4;
 	int result = sendto_with_error_code(a1, a2, a3, a4);
@@ -136,7 +136,7 @@ uintptr_t simulation_view_initialize_offset(e_engine_type engine_type, e_build b
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1801F4E50);
 	return ~uintptr_t();
 }
-FunctionHookEx<simulation_view_initialize_offset, char __fastcall(void**, void**, void**, void**, void**, void**, void**, void**)> simulation_view_initialize
+c_function_hook_ex<simulation_view_initialize_offset, char __fastcall(void**, void**, void**, void**, void**, void**, void**, void**)> simulation_view_initialize
 = { "simulation_view_initialize", [](void** link, void** collection, void** a3, void** a4, void** a5, void** a6, void** a7, void** a8)
 {
 	char result = simulation_view_initialize(link, collection, a3, a4, a5, a6, a7, a8);
@@ -155,7 +155,7 @@ uintptr_t network_message_types_initialize_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1801FBD70);
 	return ~uintptr_t();
 }
-FunctionHookEx<network_message_types_initialize_offset, void* __fastcall(void*)> network_message_types_initialize = { "network_message_types_initialize", [](void* collection)
+c_function_hook_ex<network_message_types_initialize_offset, void* __fastcall(void*)> network_message_types_initialize = { "network_message_types_initialize", [](void* collection)
 {
 	void* result = network_message_types_initialize(collection);
 

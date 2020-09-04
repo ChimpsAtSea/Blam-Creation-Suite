@@ -14,39 +14,39 @@ public:
 	static ID3D11RenderTargetView* s_pRenderTargetView;
 	static ID3D11Texture2D* s_pDepthStencilBuffer;
 	static ID3D11DepthStencilView* s_pDepthStencilView;
-	static bool s_resizeEnabled;
+	static bool s_resize_enabled;
 	static c_window* s_window;
 
-	static DirectX::XMMATRIX viewMatrix;
-	static DirectX::XMMATRIX perspectiveMatrix;
-	static DirectX::XMMATRIX viewMatrixTransposed;
-	static DirectX::XMMATRIX perspectiveMatrixTransposed;
+	static DirectX::XMMATRIX view_matrix;
+	static DirectX::XMMATRIX perspective_matrix;
+	static DirectX::XMMATRIX view_matrix_transposed;
+	static DirectX::XMMATRIX perspective_matrix_transposed;
 	static bool g_allow_resize_at_beginning_of_frame;
 
 	static void update_perspective(float fieldOfViewHorizontal, float aspectRatio);
 	static void update_view(
-		float forwardX,
-		float forwardY,
-		float forwardZ,
-		float upX,
-		float upY,
-		float upZ,
-		float positionX,
-		float positionY,
-		float positionZ
+		float forward_x,
+		float forward_y,
+		float forward_z,
+		float up_x,
+		float up_y,
+		float up_z,
+		float position_x,
+		float position_y,
+		float position_z
 	);
 	static void UpdateViewLookAt(
 		float cameraPositionX,
 		float cameraPositionY,
 		float cameraPositionZ,
-		float lookAtPositionX,
-		float lookAtPositionY,
-		float lookAtPositionZ,
-		float upX,
-		float upY,
-		float upZ
+		float look_at_position_x,
+		float look_at_position_y,
+		float look_at_position_z,
+		float up_x,
+		float up_y,
+		float up_z
 	);
-	static bool calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
+	static bool calculate_screen_coordinates(float position_x, float position_y, float position_z, float& screen_x, float& screen_y);
 
 
 	static void create_swapchain(IDXGISwapChain1*& s_swap_chain);
@@ -59,8 +59,8 @@ public:
 	static void ResizeEnd();
 	static void deinit_render();
 	static void ResizeWindow();
-	static void set_resize_enabled(bool resizeEnabled) { s_resizeEnabled = resizeEnabled; }
-	static bool IsResizeEnabled() { return s_resizeEnabled; }
+	static void set_resize_enabled(bool resizeEnabled) { s_resize_enabled = resizeEnabled; }
+	static bool IsResizeEnabled() { return s_resize_enabled; }
 
 private:
 	static void init_directx();

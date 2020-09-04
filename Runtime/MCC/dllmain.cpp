@@ -7,7 +7,7 @@ const char* c_console::g_console_executable_name = "MCC";
 bool s_isHaloReachHooked = false;
 bool s_isHalo1Hooked = false;
 
-bool initThreadIsHooked = false;
+bool init_thread_is_hooked = false;
 void nullsub() {}
 
 extern void init_haloreach(e_engine_type engine_type, e_build build);
@@ -48,7 +48,7 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 			s_isHaloReachHooked = true;
 
 			// reset hook states
-			initThreadIsHooked = false;
+			init_thread_is_hooked = false;
 
 			//haloreach_dll_loaded_callback();
 		}
@@ -61,7 +61,7 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 			s_isHalo1Hooked = true;
 
 			// reset hook states
-			initThreadIsHooked = false;
+			init_thread_is_hooked = false;
 
 			halo1_dll_loaded_callback();
 		}

@@ -71,7 +71,7 @@ bool c_halo3odst_cache_file::save_map()
 		return false;
 	}
 
-	size_t map_size = virtual_memory_container.GetSize();
+	size_t map_size = virtual_memory_container.get_size();
 	char* map_data = virtual_memory_container.get_data();
 
 	fwrite(map_data, 1, map_size, file);

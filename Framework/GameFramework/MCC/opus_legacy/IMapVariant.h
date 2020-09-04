@@ -15,7 +15,7 @@ public:
 
 	union
 	{
-		s_map_variant MapVariant;
+		s_map_variant map_variant;
 		char variant_buffer[0xE800];
 	};
 };

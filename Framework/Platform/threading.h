@@ -33,20 +33,20 @@ class c_atomic_lock
 public:
 	void Lock()
 	{
-		while (InterlockedCompareExchange(&m_lock, 1ul, 0ul) != 0ul) {};
+		while (InterlockedCompareExchange(&lock, 1ul, 0ul) != 0ul) {};
 	}
 
 	bool TryLock()
 	{
-		return InterlockedCompareExchange(&m_lock, 1ul, 0ul) == 0;
+		return InterlockedCompareExchange(&lock, 1ul, 0ul) == 0;
 	}
 
 	void Unlock()
 	{
-		InterlockedDecrement(&m_lock);
+		InterlockedDecrement(&lock);
 	}
 private:
-	volatile unsigned long m_lock;
+	volatile unsigned long lock;
 };
 
 class c_atomic_lock_guard

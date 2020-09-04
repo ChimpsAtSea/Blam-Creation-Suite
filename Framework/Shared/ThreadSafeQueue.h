@@ -5,29 +5,29 @@ class ThreadSafeQueue
 {
 public:
 	ThreadSafeQueue()
-		: m_queue()
-		, m_lock()
+		: queue()
+		, lock()
 	{}
 
 	void Enqueue(T value)
 	{
-		c_atomic_lock_guard lockGuard(m_lock);
-		m_queue.push(value);
+		c_atomic_lock_guard lock_guard(lock);
+		queue.push(value);
 	}
 
-	bool Dequeue(T& rResult)
+	bool Dequeue(T& result)
 	{
-		c_atomic_lock_guard lockGuard(m_lock);
-		if (m_queue.empty())
+		c_atomic_lock_guard lock_guard(lock);
+		if (queue.empty())
 		{
 			return false;
 		}
-		rResult = m_queue.front();
-		m_queue.pop();
+		result = queue.front();
+		queue.pop();
 		return true;
 	}
 
 private:
-	std::queue<T> m_queue;
-	c_atomic_lock m_lock;
+	std::queue<T> queue;
+	c_atomic_lock lock;
 };
