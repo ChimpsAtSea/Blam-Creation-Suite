@@ -34,6 +34,7 @@ c_function_hook_ex<mcc_map_id_parse_from_halo3_offset, long __fastcall(long map_
 	return result == -1l ? map_id : result;
 } };
 
+bool launched_as_mainmenu = false;
 uintptr_t mcc_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802915C0);
@@ -47,6 +48,7 @@ uintptr_t mcc_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build bu
 }
 c_function_hook_ex<mcc_map_id_parse_to_halo3_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3 = { "mcc_map_id_parse_to_halo3", [](long map_id)
 {
+	launched_as_mainmenu = map_id == _map_id_mainmenu;
 	long result = mcc_map_id_parse_to_halo3(map_id);
 	return result == -1l ? map_id : result;
 } };
@@ -139,5 +141,30 @@ c_data_patch<halo3_external_launch_timeout_patch_offset> halo3_external_launch_t
 		packet = MAKE_DATAPATCHPACKET(jmp.data(), jmp.size());
 		copy_to_address(data, jmp.data(), jmp.size());
 	}
+} };
+
+// prevents a crash with the matchmaking lobby
+uintptr_t ui_game_mode_request_change_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1801A3C60);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18019DEC0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804B7070);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1804B7070);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18001C3D0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18001C3D0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18001C7D0);
+	return ~uintptr_t();
+}
+c_function_hook_ex<ui_game_mode_request_change_offset, char __fastcall(int)> ui_game_mode_request_change = { "ui_game_mode_request_change", [](int ui_game_mode)
+{
+	if (launched_as_mainmenu || ui_game_mode == 1)
+	{
+		launched_as_mainmenu = false;
+		ui_game_mode = 0;
+	}
+
+	char result = ui_game_mode_request_change(ui_game_mode);
+
+	return result;
 } };
 #pragma endregion

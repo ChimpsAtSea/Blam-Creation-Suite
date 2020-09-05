@@ -43,32 +43,6 @@ c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
 		nop_address(data, 6);
 	}
 };
-
-uintptr_t halo3_gui_screen_provider_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804BBB50);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BA140);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804BA230);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1804BA230);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18037A3B0);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18037A4E0);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18037AAF0);
-	return ~uintptr_t();
-}
-c_function_hook_ex<halo3_gui_screen_provider_offset, void* __fastcall (__int64, int)> halo3_gui_screen_provider = { "halo3_gui_screen_provider", [](__int64 manager, int id)
-{
-	/* c_gui_screen_manager*, string_id */
-	 void* gui_screen = nullptr;
-	switch (id)
-	{
-	// avoid a crash when selecting the `gui_screen_pregame_lobby_matchmaking` via the `main_menu_screen_widget`, should this be in `halo3_game_host.mainmenu.inl`?
-	case 0x100AC: break; // `pregame_lobby_matchmaking`
-	default:
-		gui_screen = halo3_gui_screen_provider(manager, id);
-		break;
-	}
-	return gui_screen;
-} };
 #pragma endregion
 
 #pragma region miscellaneous ui changes
