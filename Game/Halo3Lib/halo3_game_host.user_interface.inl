@@ -46,6 +46,28 @@ c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
 #pragma endregion
 
 #pragma region miscellaneous ui changes
+bool g_ui_view_disabled = false;
+uintptr_t halo3_ui_view__vftable00_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180483500);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804822E0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1804823D0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1804823D0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x180339290);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x180339380);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18033B350);
+	return ~uintptr_t();
+}
+c_function_hook_ex<halo3_ui_view__vftable00_offset, void __fastcall(__int64)> halo3_ui_view__vftable00 = { "halo3_ui_view__vftable00", [](__int64 this_ptr)
+{
+	if (g_ui_view_disabled)
+	{
+		return;
+	}
+
+	halo3_ui_view__vftable00(this_ptr);
+} };
+
 uintptr_t halo3_version_number_callback_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1805430F0);

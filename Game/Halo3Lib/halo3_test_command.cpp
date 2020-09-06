@@ -11,6 +11,7 @@ void print_mainmenu_ui_globals_test_command();
 void first_person_weapon_offset_test_command();
 void use_30_tick_test_command();
 extern void network_message_types_test_command();
+void toggle_ui_view_test_command();
 
 /* ---------- public code */
 
@@ -52,6 +53,10 @@ bool c_halo3_test_command::execute_command(const std::vector<std::string>& argum
 			{
 				network_message_types_test_command();
 			}
+			else if (!arg1.compare("toggle_ui_view"))
+			{
+				toggle_ui_view_test_command();
+			}
 		}
 		else return false;
 	}
@@ -72,6 +77,7 @@ std::string c_halo3_test_command::get_command_info(const std::string& topic) con
 				"\tfirst_person_weapon_offset\n";
 				"\tuse_30_tick\n";
 				"\tnetwork_message_types\n";
+				"\ttoggle_ui_view\n";
 		}
 	}
 	return "";
@@ -96,6 +102,10 @@ std::string c_halo3_test_command::get_command_auto_complete(const std::vector<st
 		else if (!Arguments[1].compare("n"))
 		{
 			return "network_message_types";
+		}
+		else if (!Arguments[1].compare("t"))
+		{
+			return "toggle_ui_view";
 		}
 	}
 
@@ -238,4 +248,11 @@ void use_30_tick_test_command()
 {
 	g_use_30_tick = !g_use_30_tick;
 	c_console::write_line_verbose("using 30 tick: %s", g_use_30_tick ? "true" : "false");
+}
+
+extern bool g_ui_view_disabled;
+void toggle_ui_view_test_command()
+{
+	g_ui_view_disabled = !g_ui_view_disabled;
+	c_console::write_line_verbose("c_ui_view disabled: %s", g_ui_view_disabled ? "true" : "false");
 }
