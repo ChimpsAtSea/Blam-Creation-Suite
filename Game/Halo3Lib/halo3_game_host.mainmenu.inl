@@ -143,7 +143,6 @@ c_data_patch<halo3_external_launch_timeout_patch_offset> halo3_external_launch_t
 	}
 } };
 
-// prevents a crash with the matchmaking lobby
 uintptr_t ui_game_mode_request_change_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1801A3C60);
@@ -157,14 +156,39 @@ uintptr_t ui_game_mode_request_change_offset(e_engine_type engine_type, e_build 
 }
 c_function_hook_ex<ui_game_mode_request_change_offset, char __fastcall(int)> ui_game_mode_request_change = { "ui_game_mode_request_change", [](int ui_game_mode)
 {
-	if (launched_as_mainmenu || ui_game_mode == 1)
+	static int ui_game_mode_request_change_call_count = 0;
+	ui_game_mode_request_change_call_count++;
+	if (launched_as_mainmenu || ui_game_mode == 1) // if mode equals matchmaking
 	{
-		launched_as_mainmenu = false;
-		ui_game_mode = 0;
+		ui_game_mode = 0; // then mode equals campaign
+		if (ui_game_mode_request_change_call_count > 1)
+		{
+			ui_game_mode = 2; // then mode equals customs
+			launched_as_mainmenu = false;
+		}
 	}
 
-	char result = ui_game_mode_request_change(ui_game_mode);
+	return ui_game_mode_request_change(ui_game_mode);
+} };
 
-	return result;
+uintptr_t preferences_ui_game_mode_change_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180501980);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804FFF90);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180500200);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180500200);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x1803C5180);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x1803C52B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1803C58C0);
+	return ~uintptr_t();
+}
+c_function_hook_ex<preferences_ui_game_mode_change_offset, void* __fastcall(void*, int)> preferences_ui_game_mode_change = { "preferences_ui_game_mode_change", [](void* a1, int ui_game_mode)
+{
+	if (ui_game_mode == 1) // if mode equals matchmaking
+	{
+		ui_game_mode = 2; // then mode equals customs
+	}
+
+	return preferences_ui_game_mode_change(a1, ui_game_mode);
 } };
 #pragma endregion
