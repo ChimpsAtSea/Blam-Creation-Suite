@@ -47,7 +47,7 @@ std::string c_halo3odst_test_command::get_command_info(const std::string& topic)
 			return
 				"test\n"
 				"Usage: test <command>\n"
-				"Commands:\n"
+				"Commands:\n";
 		}
 	}
 	return "";
