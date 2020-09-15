@@ -94,9 +94,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="halo3odst_test_command.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="halo3odst_engine_state_command.h" />
+    <ClInclude Include="halo3odst_test_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />
     <ClInclude Include="halo3odst_game_host.h" />
     <ClInclude Include="halo3odstlib-private-pch.h" />

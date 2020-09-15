@@ -46,7 +46,7 @@ c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
 #pragma endregion
 
 #pragma region miscellaneous ui changes
-bool g_ui_view_disabled = false;
+bool g_halo3_ui_view_disabled = false;
 uintptr_t halo3_ui_view__vftable00_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180483500);
@@ -60,7 +60,7 @@ uintptr_t halo3_ui_view__vftable00_offset(e_engine_type engine_type, e_build bui
 }
 c_function_hook_ex<halo3_ui_view__vftable00_offset, void __fastcall(__int64)> halo3_ui_view__vftable00 = { "halo3_ui_view__vftable00", [](__int64 this_ptr)
 {
-	if (g_ui_view_disabled)
+	if (g_halo3_ui_view_disabled)
 	{
 		return;
 	}

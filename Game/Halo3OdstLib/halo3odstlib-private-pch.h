@@ -14,5 +14,6 @@
 #include "halo3odstlib-public-pch.h"
 
 #include "halo3odst_engine_state_command.h"
+#include "halo3odst_test_command.h"
 
 #endif
