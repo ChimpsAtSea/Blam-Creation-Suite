@@ -10,6 +10,7 @@ uintptr_t halo3_start_menu_screen_patch_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18037FD1B);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18037FE4B);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1803805F6);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180386756);
 	return ~uintptr_t();
 }
 c_data_patch<halo3_start_menu_screen_patch_offset> halo3_start_menu_screen_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -34,6 +35,7 @@ uintptr_t halo3_settings_menu_patch2_offset(e_engine_type engine_type, e_build b
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18037FE41);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18037FF71);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x180380581);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x1803866E1);
 	return ~uintptr_t();
 }
 c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
@@ -56,6 +58,7 @@ uintptr_t halo3_ui_view__vftable00_offset(e_engine_type engine_type, e_build bui
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x180339290);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x180339380);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18033B350);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18033E520);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_ui_view__vftable00_offset, void __fastcall(__int64)> halo3_ui_view__vftable00 = { "halo3_ui_view__vftable00", [](__int64 this_ptr)
@@ -77,6 +80,7 @@ uintptr_t halo3_version_number_callback_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x180414140);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x180414270);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x180414880);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18041A9F0);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_version_number_callback_offset, char __fastcall(__int64, wchar_t*, int)> halo3_version_number_callback = { "halo3_version_number_callback", [](__int64 unused, wchar_t* dst, int len)
@@ -98,6 +102,7 @@ c_function_hook_ex<halo3_version_number_callback_offset, char __fastcall(__int64
 	case _build_mcc_1_1767_0_0:
 	case _build_mcc_1_1778_0_0:
 	case _build_mcc_1_1792_0_0:
+	case _build_mcc_1_1829_0_0:
 		swprintf_s(dst, len, L"%s", build_str);
 		break;
 	}
