@@ -606,13 +606,14 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 	if (is_valid(player_configuration.UsersSkinsEnabled) && player_configuration.UsersSkinsEnabled)
 	{
 		int user_skin_count = 0;
-		if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_8)
+		switch (player_configuration.player_configuration_version)
 		{
-			user_skin_count = sizeof(t_player_configuration_v8::UserSkins) / sizeof(s_user_skin);
-		} 
-		else if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
-		{
+		case _player_configuration_version_7:
 			user_skin_count = sizeof(t_player_configuration_v7::UserSkins) / sizeof(s_user_skin);
+			break;
+		case _player_configuration_version_8:
+			user_skin_count = sizeof(t_player_configuration_v8::UserSkins) / sizeof(s_user_skin);
+			break;
 		}
 
 		for (int i = 0; i < user_skin_count; i++)
