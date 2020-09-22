@@ -167,6 +167,14 @@ public:
 constexpr size_t k_game_context_v4_size = sizeof(c_game_context_v4);
 static_assert_64(k_game_context_v4_size == 0x2B6F8, "c_game_context_v4 invalid size");
 
+enum e_launch_flag
+{
+	_launch_flag_visual_remaster = 0,
+	_launch_flag_music_remaster,
+	_launch_flag_sfx_remaster,
+	_launch_flag_is_host
+};
+
 class GameContext
 {
 private:
@@ -278,6 +286,10 @@ private:
 		}
 	};
 
+#define CHECK_BIT(value, pos) ((value >> pos) & 1U)
+#define SET_BIT(value, pos) (value |= (1U << pos))
+#define CLEAR_BIT(value, pos) (value &= (~(1U<< pos)))
+
 	class c_virtual_game_context_is_host_interface
 	{
 	public:
@@ -294,7 +306,7 @@ private:
 			case _game_context_version_1: parent.game_context_v1.is_host = is_host; return;
 			case _game_context_version_2: parent.game_context_v2.is_host = is_host; return;
 			case _game_context_version_3: parent.game_context_v3.is_host = is_host; return;
-			case _game_context_version_4: parent.game_context_v4.launch_flags ^= is_host ? 8 : ~8; return;
+			case _game_context_version_4: is_host ? SET_BIT(parent.game_context_v4.launch_flags, _launch_flag_is_host) : CLEAR_BIT(parent.game_context_v4.launch_flags, _launch_flag_is_host); return;
 			}
 			throw;
 		}
@@ -307,7 +319,7 @@ private:
 			case _game_context_version_1: return parent.game_context_v1.is_host == is_host;
 			case _game_context_version_2: return parent.game_context_v2.is_host == is_host;
 			case _game_context_version_3: return parent.game_context_v3.is_host == is_host;
-			case _game_context_version_4: return ((parent.game_context_v4.launch_flags & 8) == 8) == is_host;
+			case _game_context_version_4: return CHECK_BIT(parent.game_context_v4.launch_flags, _launch_flag_is_host) == is_host;
 			}
 			throw;
 		}
@@ -329,7 +341,7 @@ private:
 			case _game_context_version_1: parent.game_context_v1.visual_remaster = visual_remaster; return;
 			case _game_context_version_2: parent.game_context_v2.visual_remaster = visual_remaster; return;
 			case _game_context_version_3: parent.game_context_v3.visual_remaster = visual_remaster; return;
-			case _game_context_version_4: /*parent.game_context_v4.launch_flags ^= visual_remaster ? 8 : ~8;*/ return; // #TODO: determine the correct bit
+			case _game_context_version_4: visual_remaster ? SET_BIT(parent.game_context_v4.launch_flags, _launch_flag_visual_remaster) : CLEAR_BIT(parent.game_context_v4.launch_flags, _launch_flag_visual_remaster); return;
 			}
 			throw;
 		}
@@ -342,7 +354,7 @@ private:
 			case _game_context_version_1: return parent.game_context_v1.visual_remaster == visual_remaster;
 			case _game_context_version_2: return parent.game_context_v2.visual_remaster == visual_remaster;
 			case _game_context_version_3: return parent.game_context_v3.visual_remaster == visual_remaster;
-			case _game_context_version_4: return /*((parent.game_context_v4.launch_flags & 8) == 8) ==*/ visual_remaster; // #TODO: determine the correct bit
+			case _game_context_version_4: return CHECK_BIT(parent.game_context_v4.launch_flags, _launch_flag_visual_remaster) == visual_remaster;
 			}
 			throw;
 		}
@@ -364,7 +376,7 @@ private:
 			case _game_context_version_1: parent.game_context_v1.music_remaster = music_remaster; return;
 			case _game_context_version_2: parent.game_context_v2.music_remaster = music_remaster; return;
 			case _game_context_version_3: parent.game_context_v3.music_remaster = music_remaster; return;
-			case _game_context_version_4: /*parent.game_context_v4.launch_flags ^= music_remaster ? 8 : ~8;*/ return; // #TODO: determine the correct bit
+			case _game_context_version_4: music_remaster ? SET_BIT(parent.game_context_v4.launch_flags, _launch_flag_music_remaster) : CLEAR_BIT(parent.game_context_v4.launch_flags, _launch_flag_music_remaster); return;
 			}
 			throw;
 		}
@@ -377,7 +389,7 @@ private:
 			case _game_context_version_1: return parent.game_context_v1.music_remaster == music_remaster;
 			case _game_context_version_2: return parent.game_context_v2.music_remaster == music_remaster;
 			case _game_context_version_3: return parent.game_context_v3.music_remaster == music_remaster;
-			case _game_context_version_4: return /*((parent.game_context_v4.launch_flags & 8) == 8) ==*/ music_remaster; // #TODO: determine the correct bit
+			case _game_context_version_4: return CHECK_BIT(parent.game_context_v4.launch_flags, _launch_flag_music_remaster) == music_remaster;
 			}
 			throw;
 		}
@@ -399,7 +411,7 @@ private:
 			case _game_context_version_1: parent.game_context_v1.sfx_remaster = sfx_remaster; return;
 			case _game_context_version_2: parent.game_context_v2.sfx_remaster = sfx_remaster; return;
 			case _game_context_version_3: parent.game_context_v3.sfx_remaster = sfx_remaster; return;
-			case _game_context_version_4: /*parent.game_context_v4.launch_flags ^= sfx_remaster ? 8 : ~8;*/ return; // #TODO: determine the correct bit
+			case _game_context_version_4: sfx_remaster ? SET_BIT(parent.game_context_v4.launch_flags, _launch_flag_sfx_remaster) : CLEAR_BIT(parent.game_context_v4.launch_flags, _launch_flag_sfx_remaster); return;
 			}
 			throw;
 		}
@@ -412,11 +424,14 @@ private:
 			case _game_context_version_1: return parent.game_context_v1.sfx_remaster == sfx_remaster;
 			case _game_context_version_2: return parent.game_context_v2.sfx_remaster == sfx_remaster;
 			case _game_context_version_3: return parent.game_context_v3.sfx_remaster == sfx_remaster;
-			case _game_context_version_4: return /*((parent.game_context_v4.launch_flags & 8) == 8) ==*/ sfx_remaster; // #TODO: determine the correct bit
+			case _game_context_version_4: return CHECK_BIT(parent.game_context_v4.launch_flags, _launch_flag_sfx_remaster) == sfx_remaster;
 			}
 			throw;
 		}
 	};
+#undef CHECK_BIT
+#undef SET_BIT
+#undef CLEAR_BIT
 public:
 	c_virtual_game_context_players_interface players;
 	c_virtual_game_context_is_host_interface is_host;
