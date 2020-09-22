@@ -78,6 +78,27 @@ c_function_hook_ex<convert_mcc_map_id_to_map_name_offset, const char* __fastcall
 	}
 } };
 
+uintptr_t halo1_ui_string_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x1816678E4);
+	return ~uintptr_t();
+}
+char(&halo1_ui_string)[] = reference_symbol<char[]>("halo1_ui_string", halo1_ui_string_offset);
+
+uintptr_t mcc_map_id_parse_to_halo1_patch_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x180090C59 + 3);
+	return ~uintptr_t();
+}
+c_data_patch<mcc_map_id_parse_to_halo1_patch_offset> mcc_map_id_parse_to_halo1_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	packet = MAKE_DATAPATCHPACKET(data, 4);
+
+	ptrdiff_t ui_string_delta = (uintptr_t)&halo1_ui_string - (uintptr_t)(data + 4);
+
+	copy_to_address(data, &ui_string_delta, 4);
+} };
+
 volatile uint32_t request_console_open = false;
 volatile uint32_t request_console_close = false;
 
