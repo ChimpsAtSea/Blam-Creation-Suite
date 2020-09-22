@@ -7,6 +7,7 @@ size_t halo3_spawn_ai_with_scripts_and_effects_patch_size(e_engine_type engine_t
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 6);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 6);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 6);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 6);
 	return ~size_t();
 }
 uintptr_t halo3_spawn_ai_with_scripts_and_effects_offset(e_engine_type engine_type, e_build build)
@@ -17,6 +18,7 @@ uintptr_t halo3_spawn_ai_with_scripts_and_effects_offset(e_engine_type engine_ty
 	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x1801B8D30);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x1801B8DC0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1801B9290);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x1801BDF10);
 	return ~uintptr_t();
 }
 // Allows spawning AI via scripts or effects, props to Exhibit
