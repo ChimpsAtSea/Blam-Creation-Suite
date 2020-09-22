@@ -581,8 +581,11 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	case _build_mcc_1_1767_0_0:
 	case _build_mcc_1_1778_0_0:
 	case _build_mcc_1_1792_0_0:
-	default:
 		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_7);
+		break;
+	case _build_mcc_1_1829_0_0:
+	default:
+		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_8);
 		break;
 	}
 	*player_configuration = s_player_configuration;
@@ -600,9 +603,19 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 
 void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& player_configuration)
 {
-	if (is_valid(player_configuration.UsersSkinsEnabled) && player_configuration.UsersSkinsEnabled && player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (is_valid(player_configuration.UsersSkinsEnabled) && player_configuration.UsersSkinsEnabled)
 	{
-		for (int i = 0; i < 15; i++)
+		int user_skin_count = 0;
+		if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_8)
+		{
+			user_skin_count = sizeof(t_player_configuration_v8::UserSkins) / sizeof(s_user_skin);
+		} 
+		else if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+		{
+			user_skin_count = sizeof(t_player_configuration_v7::UserSkins) / sizeof(s_user_skin);
+		}
+
+		for (int i = 0; i < user_skin_count; i++)
 		{
 			player_configuration.UserSkins[i] = { 0, 0 };
 		}

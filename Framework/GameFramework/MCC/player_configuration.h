@@ -1274,6 +1274,7 @@ enum class e_customization_item_v3 : long
 	H1S2_WS_FUELRODGUN_BRUTAL,
 	H1S2_WS_FUELRODGUN_HERETIC,
 	H1S2_WS_FUELRODGUN_ZEALOT,
+
 	H1S2_VS_WARTHOG_DEFAULT,
 	H1S2_VS_WARTHOG_HOTROD,
 	H1S2_VS_WARTHOG_PARKRANGER,
@@ -1339,15 +1340,15 @@ enum class e_customization_item_v3 : long
 	H1S2_WS_PISTOL_GOLDEN_MULTIPURPOSE,
 	H1S2_WS_PISTOL_WOODLAND_MULTIPURPOSE,
 	H1S2_WS_PISTOL_DESERT_MULTIPURPOSE,
-	H1S2_WS_PISTOL_GREATJOURNEY_MULTIPURPOS,
+	H1S2_WS_PISTOL_GREATJOURNEY_MULTIPURPOSE,
 	H1S2_WS_PISTOL_BLACKCHERRY_MULTIPURPOSE,
 	H1S2_WS_PISTOL_HAZARDPAY_MULTIPURPOSE,
 	H1S2_WS_PISTOL_TOYSOLDIER_MULTIPURPOSE,
 
 	H1S2_VS_SCORPION_BENGAL_MULTIPURPOSE,
-	H1S2_VS_SCORPION_GRIMREAPER_MULTIPURPOS,
+	H1S2_VS_SCORPION_GRIMREAPER_MULTIPURPOSE,
 	H1S2_VS_SCORPION_ARCTIC_MULTIPURPOSE,
-	H1S2_VS_SCORPION_THEPACKAGE_MULTIPURPOS,
+	H1S2_VS_SCORPION_THEPACKAGE_MULTIPURPOSE,
 
 	H1S2_WS_FUELRODGUN_FP_DEFAULT,
 	H1S2_WS_FUELRODGUN_FP_ULTRA,
@@ -1731,6 +1732,1162 @@ enum class e_customization_item_v3 : long
 	k_customization_item_none = -1
 };
 
+enum class e_customization_item_v4 : long 
+{
+	HR_Helmet_MarkVB_Base,
+	HR_Helmet_MarkVB_UA,
+	HR_Helmet_MarkVB_UAHUL,
+	HR_Helmet_CQC_Base,
+	HR_Helmet_CQC_CBRN,
+	HR_Helmet_CQC_UAHUL,
+	HR_Helmet_ODST_Base,
+	HR_Helmet_ODST_UACNM,
+	HR_Helmet_ODST_CBRNHUL,
+	HR_Helmet_HAZOP_Base,
+	HR_Helmet_HAZOP_CBRNHUL,
+	HR_Helmet_HAZOP_CNMI,
+	HR_Helmet_EOD_Base,
+	HR_Helmet_EOD_CNM,
+	HR_Helmet_EOD_UAHUL,
+	HR_Helmet_Operator_Base,
+	HR_Helmet_Operator_UAHUL,
+	HR_Helmet_Operator_CNM,
+	HR_Helmet_Grenadier_Base,
+	HR_Helmet_Grenadier_UA,
+	HR_Helmet_Grenadier_UAFC,
+	HR_Helmet_AirAssault_Base,
+	HR_Helmet_AirAssault_UACNM,
+	HR_Helmet_AirAssault_FCI,
+	HR_Helmet_Scout_Base,
+	HR_Helmet_Scout_HURS,
+	HR_Helmet_Scout_CBRNCNM,
+	HR_Helmet_EVA_Base,
+	HR_Helmet_EVA_CNM,
+	HR_Helmet_EVA_UAHUL3,
+	HR_Helmet_JFO_Base,
+	HR_Helmet_JFO_HULI,
+	HR_Helmet_JFO_UA,
+	HR_Helmet_Commando_Base,
+	HR_Helmet_Commando_CBRNCNM,
+	HR_Helmet_Commando_UAFCI2,
+	HR_Helmet_EVAC_Base,
+	HR_Helmet_EVAC_CNM,
+	HR_Helmet_EVAC_UAHUL3,
+	HR_Helmet_MjolnirMKV_Base,
+	HR_Helmet_MjolnirMKV_CNM,
+	HR_Helmet_MjolnirMKV_UA,
+	HR_Helmet_Pilot_Base,
+	HR_Helmet_Pilot_HUL3,
+	HR_Helmet_Pilot_UAHUL3,
+	HR_Helmet_Pilot_Haunted,
+	HR_Helmet_Recon_Base,
+	HR_Helmet_Recon_HUL,
+	HR_Helmet_Recon_UAHUL3,
+	HR_Helmet_MjolnirMKVI_Base,
+	HR_Helmet_MjolnirMKVI_FCI2,
+	HR_Helmet_MjolnirMKVI_UAHULI,
+	HR_Helmet_Gungnir_Base,
+	HR_Helmet_Gungnir_HURS,
+	HR_Helmet_Gungnir_CBRN,
+	HR_Helmet_Security_Base,
+	HR_Helmet_Security_UAHUL,
+	HR_Helmet_Security_CBRNCNM,
+	HR_Helmet_MilitaryPolice_Base,
+	HR_Helmet_MilitaryPolice_CBRNHURS,
+	HR_Helmet_MilitaryPolice_HURSCNM,
+	HR_Helmet_CQB_Base,
+	HR_Helmet_CQB_HURSCNM,
+	HR_Helmet_CQB_UAHUL,
+
+	HR_LeftShoulder_Default,
+	HR_LeftShoulder_FJPARA,
+	HR_LeftShoulder_HAZOP,
+	HR_LeftShoulder_JFO,
+	HR_LeftShoulder_Recon,
+	HR_LeftShoulder_UAMultiThreat,
+	HR_LeftShoulder_Jumpjet,
+	HR_LeftShoulder_EVA,
+	HR_LeftShoulder_Gungnir,
+	HR_LeftShoulder_ODST,
+	HR_LeftShoulder_UABaseSecurity,
+	HR_LeftShoulder_CQC,
+	HR_LeftShoulder_Operator,
+	HR_LeftShoulder_Commando,
+	HR_LeftShoulder_Grenadier,
+	HR_LeftShoulder_Sniper,
+	HR_LeftShoulder_MjolnirMarkV,
+	HR_LeftShoulder_Security,
+
+	HR_RightShoulder_Default,
+	HR_RightShoulder_FJPARA,
+	HR_RightShoulder_HAZOP,
+	HR_RightShoulder_JFO,
+	HR_RightShoulder_Recon,
+	HR_RightShoulder_UAMultiThreat,
+	HR_RightShoulder_Jumpjet,
+	HR_RightShoulder_EVA,
+	HR_RightShoulder_Gungnir,
+	HR_RightShoulder_ODST,
+	HR_RightShoulder_UABaseSecurity,
+	HR_RightShoulder_CQC,
+	HR_RightShoulder_Operator,
+	HR_RightShoulder_Commando,
+	HR_RightShoulder_Grenadier,
+	HR_RightShoulder_Sniper,
+	HR_RightShoulder_MjolnirMarkV,
+	HR_RightShoulder_Security,
+
+	HR_Chest_Default,
+	HR_Chest_HPHalo,
+	HR_Chest_UACounterAssault,
+	HR_Chest_TacticalLRP,
+	HR_Chest_UAODST,
+	HR_Chest_TacticalRecon,
+	HR_Chest_CollarGrenadier,
+	HR_Chest_TacticalPatrol,
+	HR_Chest_CollarBreacher,
+	HR_Chest_AssaultSapper,
+	HR_Chest_AssaultCommando,
+	HR_Chest_HPParaFoil,
+	HR_Chest_CollarGrenadierUA,
+	HR_Chest_UABaseSecurityW,
+	HR_Chest_CollarBreacherR,
+	HR_Chest_HPParaFoilR,
+	HR_Chest_AssaultSapperR,
+
+	HR_Wrist_Default,
+	HR_Wrist_UABuckler,
+	HR_Wrist_UABracer,
+	HR_Wrist_TacticalTACPAD,
+	HR_Wrist_TacticalUGPS,
+	HR_Wrist_AssaultBreacher,
+
+	HR_Utility_Default,
+	HR_Utility_UACHOBHAM,
+	HR_Utility_TacticalHardcase,
+	HR_Utility_UANXRA,
+	HR_Utility_TacticalTraumaKit,
+	HR_Utility_TacticalSoftcase,
+
+	HR_VisorColor_Default,
+	HR_VisorColor_Silver,
+	HR_VisorColor_Blue,
+	HR_VisorColor_Black,
+	HR_VisorColor_Gold,
+
+	HR_KneeGuards_Default,
+	HR_KneeGuards_FJPARA,
+	HR_KneeGuards_Gungnir,
+	HR_KneeGuards_Grenadier,
+
+	HR_ArmorEffect_Default,
+	HR_ArmorEffect_BirthdayParty,
+	HR_ArmorEffect_HeartAttack,
+	HR_ArmorEffect_Pestilence,
+	HR_ArmorEffect_InclementWeather,
+	HR_ArmorEffect_Flames,
+	HR_ArmorEffect_BlueFlames,
+
+	HR_FirefightVoice_NobleSix,
+	HR_FirefightVoice_JorgeS052,
+	HR_FirefightVoice_JunS266,
+	HR_FirefightVoice_EmileS239,
+	HR_FirefightVoice_KatS320,
+	HR_FirefightVoice_AuntieDotAI,
+	HR_FirefightVoice_CarterS259,
+	HR_FirefightVoice_GYSGTStacker,
+	HR_FirefightVoice_GYSGTBuck,
+	HR_FirefightVoice_SGTMAJJohnson,
+	HR_FirefightVoice_CortanaAI,
+	HR_FirefightVoice_JohnS117,
+
+	HR_Spartan_Male,
+	HR_Spartan_Female,
+
+	HR_Elite_Minor,
+	HR_Elite_SpecOps,
+	HR_Elite_Ranger,
+	HR_Elite_Ultra,
+	HR_Elite_Zealot,
+	HR_Elite_General,
+	HR_Elite_FieldMarshall,
+	HR_Elite_Officer,
+
+	HR_Color_Steel,
+	HR_Color_Silver,
+	HR_Color_White,
+	HR_Color_Brown,
+	HR_Color_Tan,
+	HR_Color_Khaki,
+	HR_Color_Sage,
+	HR_Color_Olive,
+	HR_Color_Drab,
+	HR_Color_Forest,
+	HR_Color_Green,
+	HR_Color_SeaFoam,
+	HR_Color_Teal,
+	HR_Color_Aqua,
+	HR_Color_Cyan,
+	HR_Color_Blue,
+	HR_Color_Cobalt,
+	HR_Color_Ice,
+	HR_Color_Violet,
+	HR_Color_Orchid,
+	HR_Color_Lavender,
+	HR_Color_Maroon,
+	HR_Color_Brick,
+	HR_Color_Rose,
+	HR_Color_Rust,
+	HR_Color_Coral,
+	HR_Color_Peach,
+	HR_Color_Gold,
+	HR_Color_Yellow,
+	HR_Color_Pale,
+	HR_Chest_UABaseSecurity,
+	HR_Chest_UAMultiThreat,
+	HR_Chest_UAMultiThreatW,
+	HR_Species_Spartan,
+	HR_Species_Elite,
+
+	H1_Color_1,
+	H1_Color_2,
+	H1_Color_3,
+	H1_Color_4,
+	H1_Color_5,
+	H1_Color_6,
+	H1_Color_7,
+	H1_Color_8,
+	H1_Color_9,
+	H1_Color_10,
+	H1_Color_11,
+	H1_Color_12,
+	H1_Color_13,
+	H1_Color_14,
+	H1_Color_15,
+	H1_Color_16,
+	H1_Color_17,
+	H1_Color_18,
+
+	H1S2_WS_PISTOL_DEFAULT,
+	H1S2_WS_PISTOL_GOLDEN,
+	H1S2_WS_PISTOL_WOODLAND,
+	H1S2_WS_PISTOL_DESERT,
+	H1S2_WS_PISTOL_GREATJOURNEY,
+	H1S2_WS_PISTOL_BLACKCHERRY,
+	H1S2_WS_PISTOL_HAZARDPAY,
+	H1S2_WS_PISTOL_TOYSOLDIER,
+	H1S2_WS_ASSAULTRIFLE_DEFAULT,
+	H1S2_WS_ASSAULTRIFLE_GOLDEN,
+	H1S2_WS_ASSAULTRIFLE_WOODLAND,
+	H1S2_WS_ASSAULTRIFLE_DESERT,
+	H1S2_WS_ASSAULTRIFLE_GREATJOURNEY,
+	H1S2_WS_ASSAULTRIFLE_CORROSION,
+	H1S2_WS_ASSAULTRIFLE_SQUIRT,
+	H1S2_WS_ASSAULTRIFLE_LUCKYSHOT,
+	H1S2_WS_PLASMAPISTOL_DEFAULT,
+	H1S2_WS_PLASMAPISTOL_ULTRA,
+	H1S2_WS_PLASMAPISTOL_BRUTAL,
+	H1S2_WS_PLASMAPISTOL_SCHISM,
+	H1S2_WS_PLASMAPISTOL_ZEALOT,
+	H1S2_WS_PLASMARIFLE_DEFAULT,
+	H1S2_WS_PLASMARIFLE_ULTRA,
+	H1S2_WS_PLASMARIFLE_BRUTAL,
+	H1S2_WS_PLASMARIFLE_SCHISM,
+	H1S2_WS_PLASMARIFLE_ZEALOT,
+	H1S2_WS_ROCKETLAUNCHER_DEFAULT,
+	H1S2_WS_ROCKETLAUNCHER_HUNTERSBLOOD,
+	H1S2_WS_ROCKETLAUNCHER_CORROSION,
+	H1S2_WS_ROCKETLAUNCHER_DESERT,
+	H1S2_WS_SNIPERRIFLE_DEFAULT,
+	H1S2_WS_SNIPERRIFLE_GOLDEN,
+	H1S2_WS_SNIPERRIFLE_WOODLAND,
+	H1S2_WS_SNIPERRIFLE_DESERT,
+	H1S2_WS_SNIPERRIFLE_GREATJOURNEY,
+	H1S2_WS_SNIPERRIFLE_AVALANCHE,
+	H1S2_WS_SHOTGUN_DEFAULT,
+	H1S2_WS_SHOTGUN_GOLDEN,
+	H1S2_WS_SHOTGUN_WOODLAND,
+	H1S2_WS_SHOTGUN_DESERT,
+	H1S2_WS_SHOTGUN_GREATJOURNEY,
+	H1S2_WS_SHOTGUN_HUNTERSBLOOD,
+	H1S2_WS_NEEDLER_DEFAULT,
+	H1S2_WS_NEEDLER_ULTRA,
+	H1S2_WS_NEEDLER_BRUTAL,
+	H1S2_WS_NEEDLER_SCHISM,
+	H1S2_WS_NEEDLER_ZEALOT,
+	H1S2_WS_FLAMETHROWER_DEFAULT,
+	H1S2_WS_FLAMETHROWER_DEARJOHN,
+	H1S2_WS_FLAMETHROWER_WHITEHOT,
+	H1S2_WS_FLAMETHROWER_HOTPEPPER,
+	H1S2_WS_FUELRODGUN_DEFAULT,
+	H1S2_WS_FUELRODGUN_ULTRA,
+	H1S2_WS_FUELRODGUN_BRUTAL,
+	H1S2_WS_FUELRODGUN_HERETIC,
+	H1S2_WS_FUELRODGUN_ZEALOT,
+
+	H1S2_VS_WARTHOG_DEFAULT,
+	H1S2_VS_WARTHOG_HOTROD,
+	H1S2_VS_WARTHOG_PARKRANGER,
+	H1S2_VS_WARTHOG_RALLYHOG,
+	H1S2_VS_ROCKETWARTHOG_DEFAULT,
+	H1S2_VS_ROCKETWARTHOG_SUPERSTAR,
+	H1S2_VS_ROCKETWARTHOG_SHARK,
+	H1S2_VS_ROCKETWARTHOG_CLEVERGIRL,
+	H1S2_VS_GHOST_DEFAULT,
+	H1S2_VS_GHOST_BRUTAL,
+	H1S2_VS_GHOST_SCHISM,
+	H1S2_VS_GHOST_ZEALOT,
+	H1S2_VS_GHOST_ULTRA,
+	H1S2_VS_SCORPION_DEFAULT,
+	H1S2_VS_SCORPION_BENGAL,
+	H1S2_VS_SCORPION_GRIMREAPER,
+	H1S2_VS_SCORPION_ARCTIC,
+	H1S2_VS_SCORPION_THEPACKAGE,
+	H1S2_VS_BANSHEE_DEFAULT,
+	H1S2_VS_BANSHEE_BRUTAL,
+	H1S2_VS_BANSHEE_SCHISM,
+	H1S2_VS_BANSHEE_ZEALOT,
+	H1S2_VS_BANSHEE_ULTRA,
+
+	H1S2_VISOR_DEFAULT,
+	H1S2_VISOR_BRONZE,
+	H1S2_VISOR_SILVER,
+	H1S2_VISOR_PLATINUM,
+	H1S2_VISOR_OBSIDIAN,
+	H1S2_VISOR_TRIPPY,
+	H1S2_VISOR_RAINBOW,
+	H1S2_VISOR_PURPLE_PASTEL,
+	H1S2_VISOR_BLUE_PASTEL,
+	H1S2_VISOR_GREEN_PASTEL,
+	H1S2_VISOR_YELLOW_PASTEL,
+	H1S2_VISOR_ORANGE_PASTEL,
+	H1S2_VISOR_RED_PASTEL,
+	H1S2_VISOR_DARK_PURPLE,
+	H1S2_VISOR_DARK_BLUE,
+	H1S2_VISOR_DARK_GREEN,
+	H1S2_VISOR_DARK_YELLOW,
+	H1S2_VISOR_DARK_ORANGE,
+	H1S2_VISOR_DARK_RED,
+	H1S2_VISOR_PURPLE,
+	H1S2_VISOR_BLUE,
+	H1S2_VISOR_GREEN,
+	H1S2_VISOR_YELLOW,
+	H1S2_VISOR_ORANGE,
+	H1S2_VISOR_RED,
+	H1S2_VISOR_PEARL_PURPLE,
+	H1S2_VISOR_PEARL_BLUE,
+	H1S2_VISOR_PEARL_GREEN,
+	H1S2_VISOR_PEARL_YELLOW,
+	H1S2_VISOR_PEARL_ORANGE,
+	H1S2_VISOR_PEARL_RED,
+
+	REFLECTION_BRUTAL,
+	REFLECTION_SCHISM,
+	REFLECTION_ULTRA,
+	REFLECTION_ZEALOT,
+
+	H1S2_WS_PISTOL_DEFAULT_MULTIPURPOSE,
+	H1S2_WS_PISTOL_GOLDEN_MULTIPURPOSE,
+	H1S2_WS_PISTOL_WOODLAND_MULTIPURPOSE,
+	H1S2_WS_PISTOL_DESERT_MULTIPURPOSE,
+	H1S2_WS_PISTOL_GREATJOURNEY_MULTIPURPOSE,
+	H1S2_WS_PISTOL_BLACKCHERRY_MULTIPURPOSE,
+	H1S2_WS_PISTOL_HAZARDPAY_MULTIPURPOSE,
+	H1S2_WS_PISTOL_TOYSOLDIER_MULTIPURPOSE,
+
+	H1S2_VS_SCORPION_BENGAL_MULTIPURPOSE,
+	H1S2_VS_SCORPION_GRIMREAPER_MULTIPURPOSE,
+	H1S2_VS_SCORPION_ARCTIC_MULTIPURPOSE,
+	H1S2_VS_SCORPION_THEPACKAGE_MULTIPURPOSE,
+
+	H1S2_WS_FUELRODGUN_FP_DEFAULT,
+	H1S2_WS_FUELRODGUN_FP_ULTRA,
+	H1S2_WS_FUELRODGUN_FP_BRUTAL,
+	H1S2_WS_FUELRODGUN_FP_HERETIC,
+	H1S2_WS_FUELRODGUN_FP_ZEALOT,
+
+	H1S2_VS_WARTHOG_TIRES_HOTROD,
+	H1S2_VS_WARTHOG_TIRES_PARKRANGER,
+	H1S2_VS_WARTHOG_TIRES_RALLYHOG,
+	H1S2_VS_ROCKETWARTHOG_TIRES_SUPERSTAR,
+	H1S2_VS_ROCKETWARTHOG_TIRES_SHARK,
+	H1S2_VS_ROCKETWARTHOG_TIRES_CLEVERGIRL,
+
+	H2_Color_1,
+	H2_Color_2,
+	H2_Color_3,
+	H2_Color_4,
+	H2_Color_5,
+	H2_Color_6,
+	H2_Color_7,
+	H2_Color_8,
+	H2_Color_9,
+	H2_Color_10,
+	H2_Color_11,
+	H2_Color_12,
+	H2_Color_13,
+	H2_Color_14,
+	H2_Color_15,
+	H2_Color_16,
+	H2_Color_17,
+	H2_Color_18,
+
+	H2A_Color_1,
+	H2A_Color_2,
+	H2A_Color_3,
+	H2A_Color_4,
+	H2A_Color_5,
+	H2A_Color_6,
+	H2A_Color_7,
+	H2A_Color_8,
+	H2A_Color_9,
+	H2A_Color_10,
+	H2A_Color_11,
+	H2A_Color_12,
+	H2A_Color_13,
+	H2A_Color_14,
+	H2A_Color_15,
+	H2A_Color_16,
+	H2A_Color_17,
+	H2A_Color_18,
+	H2A_Color_19,
+	H2A_Color_20,
+	H2A_Color_21,
+	H2A_Color_22,
+	H2A_Color_23,
+	H2A_Color_24,
+	H2A_Color_25,
+	H2A_Color_26,
+	H2A_Color_27,
+	H2A_Color_28,
+	H2A_Color_29,
+
+	H2A_Spartan_Arms_VAR1,
+	H2A_Spartan_Arms_VAR2,
+	H2A_Spartan_Arms_VAR3,
+
+	H2A_Spartan_Chest_VAR1,
+	H2A_Spartan_Chest_VAR2,
+	H2A_Spartan_Chest_VAR3,
+
+	H2A_Spartan_Helmet_VAR1,
+	H2A_Spartan_Helmet_VAR2,
+	H2A_Spartan_Helmet_VAR3,
+
+	H2A_Spartan_LeftShoulder_VAR1,
+	H2A_Spartan_LeftShoulder_VAR2,
+	H2A_Spartan_LeftShoulder_VAR3,
+
+	H2A_Spartan_Legs_VAR1,
+	H2A_Spartan_Legs_VAR2,
+	H2A_Spartan_Legs_VAR3,
+
+	H2A_Spartan_RightShoulder_VAR1,
+	H2A_Spartan_RightShoulder_VAR2,
+	H2A_Spartan_RightShoulder_VAR3,
+
+	H2A_Elite_Arms_VAR1,
+	H2A_Elite_Arms_VAR2,
+	H2A_Elite_Arms_VAR3,
+
+	H2A_Elite_Chest_VAR1,
+	H2A_Elite_Chest_VAR2,
+	H2A_Elite_Chest_VAR3,
+
+	H2A_Elite_Helmet_VAR1,
+	H2A_Elite_Helmet_VAR2,
+	H2A_Elite_Helmet_VAR3,
+
+	H2A_Elite_Legs_VAR1,
+	H2A_Elite_Legs_VAR2,
+	H2A_Elite_Legs_VAR3,
+
+	H2A_VisorColor_Default,
+	H2A_VisorColor_Visor2,
+	H2A_VisorColor_Visor3,
+	H2A_VisorColor_Visor4,
+	H2A_VisorColor_Visor5,
+	H2A_VisorColor_Visor6,
+	H2A_VisorColor_Visor7,
+	H2A_VisorColor_Visor8,
+	H2A_VisorColor_Visor9,
+	H2A_VisorColor_Wetwork,
+	H2A_VisorColor_Operator,
+	H2A_VisorColor_Pioneer,
+	H2A_VisorColor_Pathfinder,
+	H2A_VisorColor_Engineer,
+	H2A_VisorColor_Stalker,
+	H2A_VisorColor_Rogue,
+	H2A_VisorColor_Tracker,
+
+	Voice_Female,
+	Voice_Male,
+
+	H3_CHEST_BUNGIE,
+	H3_CHEST_CQB,
+	H3_CHEST_EOD,
+	H3_CHEST_EVA,
+	H3_CHEST_HAYABUSA,
+	H3_CHEST_KATANA,
+	H3_CHEST_MARK_VI,
+	H3_CHEST_RECON,
+	H3_CHEST_SCOUT,
+	H3_CHEST_SECURITY,
+
+	H3_HELMET_CQB,
+	H3_HELMET_EOD,
+	H3_HELMET_EVA,
+	H3_HELMET_HAYABUSA,
+	H3_HELMET_MARK_V,
+	H3_HELMET_MARK_VI,
+	H3_HELMET_RECON,
+	H3_HELMET_ROGUE,
+	H3_HELMET_SECURITY,
+	H3_HELMET_ODST,
+	H3_HELMET_SCOUT,
+
+	H3_LEFTSHOULDER_CQB,
+	H3_LEFTSHOULDER_EOD,
+	H3_LEFTSHOULDER_EVA,
+	H3_LEFTSHOULDER_HAYABUSA,
+	H3_LEFTSHOULDER_MARK_VI,
+	H3_LEFTSHOULDER_RECON,
+	H3_LEFTSHOULDER_SCOUT,
+	H3_LEFTSHOULDER_SECURITY,
+
+	H3_RIGHTSHOULDER_CQB,
+	H3_RIGHTSHOULDER_EOD,
+	H3_RIGHTSHOULDER_EVA,
+	H3_RIGHTSHOULDER_HAYABUSA,
+	H3_RIGHTSHOULDER_MARK_VI,
+	H3_RIGHTSHOULDER_RECON,
+	H3_RIGHTSHOULDER_SCOUT,
+	H3_RIGHTSHOULDER_SECURITY,
+
+	H3_chest_ASCETIC,
+	H3_helmet_ASCETIC,
+	H3_leftShoulder_ASCETIC,
+	H3_rightShoulder_ASCETIC,
+
+	H3_chest_ASSAULT,
+	H3_helmet_ASSAULT,
+	H3_leftShoulder_ASSAULT,
+	H3_rightShoulder_ASSAULT,
+
+	H3_helmet_COMBAT,
+	H3_leftShoulder_COMBAT,
+	H3_rightShoulder_COMBAT,
+
+	H3_chest_COMMANDO,
+	H3_helmet_COMMANDO,
+	H3_leftShoulder_COMMANDO,
+	H3_rightShoulder_COMMANDO,
+
+	H3_chest_FLIGHT,
+	H3_helmet_FLIGHT,
+	H3_leftShoulder_FLIGHT,
+	H3_rightShoulder_FLIGHT,
+
+	H3_COLOR0_STEEL,
+	H3_COLOR1_SILVER,
+	H3_COLOR2_WHITE,
+	H3_COLOR3_RED,
+	H3_COLOR4_MAUVE,
+	H3_COLOR5_SALMON,
+	H3_COLOR6_ORANGE,
+	H3_COLOR7_CORAL,
+	H3_COLOR8_PEACH,
+	H3_COLOR9_GOLD,
+	H3_COLOR10_YELLOW,
+	H3_COLOR11_PALE,
+	H3_COLOR12_SAGE,
+	H3_COLOR13_GREEN,
+	H3_COLOR14_OLIVE,
+	H3_COLOR15_TEAL,
+	H3_COLOR16_AQUA,
+	H3_COLOR17_CYAN,
+	H3_COLOR18_BLUE,
+	H3_COLOR19_COBALT,
+	H3_COLOR20_SAPHIRE,
+	H3_COLOR21_VIOLET,
+	H3_COLOR22_ORCHID,
+	H3_COLOR23_LAVENDER,
+	H3_COLOR24_CRIMSON,
+	H3_COLOR25_RUBINE,
+	H3_COLOR26_PINK,
+	H3_COLOR27_BROWN,
+	H3_COLOR28_TAN,
+	H3_COLOR29_KHAKI,
+
+	H3S3_WS_SNIPERRIFLE_DEFAULT,
+	H3S3_WS_SNIPERRIFLE_GOLDPLATE,
+	H3S3_WS_SNIPERRIFLE_GLACIERCAMO,
+	H3S3_WS_SNIPERRIFLE_GREENCAMO,
+	H3S3_WS_SNIPERRIFLE_DESERTTAN,
+	H3S3_WS_MAGNUM_DEFAULT,
+	H3S3_WS_MAGNUM_GOLDPLATE,
+	H3S3_WS_MAGNUM_DINOBITE,
+	H3S3_WS_MAGNUM_ORANGE,
+	H3S3_WS_MAGNUM_WORNOUTUNBLUE,
+	H3S3_WS_ASSAULTRIFLE_DEFAULT,
+	H3S3_WS_ASSAULTRIFLE_GOLDPLATE,
+	H3S3_WS_ASSAULTRIFLE_WASTELANDRUST,
+	H3S3_WS_ASSAULTRIFLE_GREENCAMO,
+	H3S3_WS_ASSAULTRIFLE_SUPERSQUIRT,
+	H3S4_WS_SHOTGUN_DEFAULT,
+	H3S4_WS_SHOTGUN_GOLDPLATE,
+	H3S4_WS_SHOTGUN_GREENCAMO,
+	H3S4_WS_SHOTGUN_SAFETYORANGE,
+	H3S4_WS_BATTLERIFLE_DEFAULT,
+	H3S4_WS_BATTLERIFLE_FERNSTENCIL,
+	H3S4_WS_BATTLERIFLE_MEANSTREETSOFNEW,
+	H3S4_WS_BATTLERIFLE_CAMOCOOL,
+	H3S4_WS_BATTLERIFLE_WORNOUTREDHAZARD,
+	H3S4_WS_ROCKETLAUNCHER_DEFAULT,
+	H3S4_WS_ROCKETLAUNCHER_SAFETYORANGE,
+	H3S4_WS_ROCKETLAUNCHER_WASTERLANDRUST,
+	H3S4_WS_SMG_DEFAULT,
+	H3S4_WS_SMG_DIGITALCAMOWARM,
+	H3S4_WS_SMG_TIGERSTRIPES,
+	H3S4_WS_SMG_ROCKNROLL,
+	H3S4_WS_PLASMAPISTOL_DEFAULT,
+	H3S4_WS_PLASMAPISTOL_COVENANTYELLOW,
+	H3S4_WS_PLASMARIFLE_DEFAULT,
+	H3S4_WS_PLASMARIFLE_DEFECTORGREEN,
+	H3S4_WS_NEEDLER_DEFAULT,
+	H3S4_WS_NEEDLER_COVENANTYELLOW,
+	H3S4_WS_FLAMETHROWER_DEFAULT,
+	H3S4_WS_FLAMETHROWER_LAWNMOWERYELLOWANDGREEN,
+	H3S4_WS_FLAMETHROWER_REDHOTPEPPER,
+	H3S4_WS_FUELRODGUN_DEFAULT,
+	H3S4_WS_FUELRODGUN_BANISHEDRED,
+
+	H3_VISOR_DEFAULT,
+	H3_VISOR_BRONZE,
+	H3_VISOR_SILVER,
+	H3_VISOR_PLATINUM,
+	H3_VISOR_OBSIDIAN,
+	H3_VISOR_TRIPPY,
+	H3_VISOR_RAINBOW,
+	H3_VISOR_PURPLE_PASTEL,
+	H3_VISOR_BLUE_PASTEL,
+	H3_VISOR_GREEN_PASTEL,
+	H3_VISOR_YELLOW_PASTEL,
+	H3_VISOR_ORANGE_PASTEL,
+	H3_VISOR_RED_PASTEL,
+	H3_VISOR_DARK_PURPLE,
+	H3_VISOR_DARK_BLUE,
+	H3_VISOR_DARK_GREEN,
+	H3_VISOR_DARK_YELLOW,
+	H3_VISOR_DARK_ORANGE,
+	H3_VISOR_DARK_RED,
+	H3_VISOR_PURPLE,
+	H3_VISOR_BLUE,
+	H3_VISOR_GREEN,
+	H3_VISOR_YELLOW,
+	H3_VISOR_ORANGE,
+	H3_VISOR_RED,
+	H3_VISOR_PEARL_PURPLE,
+	H3_VISOR_PEARL_BLUE,
+	H3_VISOR_PEARL_GREEN,
+	H3_VISOR_PEARL_YELLOW,
+	H3_VISOR_PEARL_ORANGE,
+	H3_VISOR_PEARL_RED,
+
+	ODST_NONE,
+	ODST_ROOKIE,
+	ODST_BUCK,
+	ODST_BUCK_BUGSPLATTERED,
+	ODST_DARE,
+	ODST_DUTCH,
+	ODST_JOHNSON,
+	ODST_MICKEY,
+	ODST_ROMEO,
+	ODST_ROMEO_INJURED,
+	ODST_NONE_WITH_HELMET,
+	ODST_ROOKIE_WITH_HELMET,
+	ODST_BUCK_WITH_HELMET,
+	ODST_BUCK_BUGSPLATTERED_WITH_HELMET,
+	ODST_DARE_WITH_HELMET,
+	ODST_DUTCH_WITH_HELMET,
+	ODST_JOHNSON_WITH_HELMET,
+	ODST_MICKEY_WITH_HELMET,
+	ODST_ROMEO_WITH_HELMET,
+	ODST_ROMEO_INJURED_WITH_HELMET,
+
+	ODST_COLOR_BLACK,
+	ODST_COLOR_GRAY,
+	ODST_COLOR_SNOW,
+	ODST_COLOR_MAROON,
+	ODST_COLOR_BRICK,
+	ODST_COLOR_ROSE,
+	ODST_COLOR_BROWN,
+	ODST_COLOR_WOODLAND,
+	ODST_COLOR_COCOA,
+	ODST_COLOR_TAN,
+	ODST_COLOR_KHAKI,
+	ODST_COLOR_DESERT,
+	ODST_COLOR_CORAL,
+	ODST_COLOR_GOLD,
+	ODST_COLOR_SAND,
+	ODST_COLOR_SAGE,
+	ODST_COLOR_OLIVE,
+	ODST_COLOR_DRAB,
+	ODST_COLOR_FOREST,
+	ODST_COLOR_GREEN,
+	ODST_COLOR_SEA_FOAM,
+	ODST_COLOR_TEAL,
+	ODST_COLOR_AQUA,
+	ODST_COLOR_CYAN,
+	ODST_COLOR_BLUE,
+	ODST_COLOR_COBALT,
+	ODST_COLOR_ICE,
+	ODST_COLOR_VIOLET,
+	ODST_COLOR_LAVENDER,
+	ODST_COLOR_PINK,
+
+	H4_Helmet_Spartan_IV,
+	H4_Helmet_Warrior,
+	H4_Helmet_Scout,
+	H4_Helmet_Soldier,
+	H4_Helmet_Recon,
+	H4_Helmet_Breather,
+	H4_Helmet_EOD,
+	H4_Helmet_Scientist,
+	H4_Helmet_Demo,
+	H4_Helmet_Orbital,
+	H4_Helmet_Air_Assault,
+	H4_Helmet_Cyclops,
+	H4_Helmet_ECM,
+	H4_Helmet_Gungnir1,
+	H4_Helmet_Mongoose,
+	H4_Helmet_Optimus,
+	H4_Helmet_Triclops,
+	H4_Helmet_Unicorn,
+	H4_Helmet_Budokan,
+	H4_Helmet_Utility,
+	H4_Helmet_Pilot,
+	H4_Helmet_Stealth,
+	H4_Helmet_Commando,
+	H4_Helmet_Ninja,
+	H4_Helmet_Iron,
+	H4_Helmet_Ranger,
+	H4_Helmet_Boxhead,
+	H4_Helmet_EVA,
+	H4_Helmet_Engineer,
+	H4_Helmet_Stalker,
+	H4_Helmet_Rogue,
+	H4_Helmet_Tracker,
+	H4_Helmet_Mjolnir,
+	H4_Helmet_Gungnir2,
+	H4_Helmet_Helmet01,
+	H4_Helmet_Helmet02,
+	H4_Helmet_Helmet03,
+	H4_Helmet_Helmet04,
+	H4_Helmet_Air_Assault_Slither,
+	H4_Helmet_Breather_Forest,
+	H4_Helmet_Budokan_Circuit,
+	H4_Helmet_Cyclops_Traffic,
+	H4_Helmet_Demo_Kabuki,
+	H4_Helmet_ECM_Calligraphy,
+	H4_Helmet_Engineer_Tribal,
+	H4_Helmet_EOD_Berserker,
+	H4_Helmet_Gungnir1_Target,
+	H4_Helmet_Mongoose_Terrain,
+	H4_Helmet_Ninja_Chevron,
+	H4_Helmet_Optimus_Fly,
+	H4_Helmet_Orbital_Ancient,
+	H4_Helmet_Ranger_DigitalCammo,
+	H4_Helmet_Recon_Lizard,
+	H4_Helmet_Scientist_Frog,
+	H4_Helmet_Scout_Propeller,
+	H4_Helmet_Soldier_Chevron,
+	H4_Helmet_Warrior_Bubbles,
+	H4_Helmet_Stalker_Octopus,
+	H4_Helmet_Tracker_Drive,
+	H4_Helmet_Triclops_Arachnid,
+	H4_Helmet_Commando_Claw,
+	H4_Helmet_EVA_Yield,
+	H4_Helmet_Gungnir2_Sand,
+	H4_Helmet_Iron_Dragonfly,
+	H4_Helmet_Stealth_Raptor,
+	H4_Helmet_Utility_Strike,
+	H4_Helmet_Boxhead_Pathfinder,
+	H4_Helmet_Pilot_Curves,
+	H4_Helmet_Rogue_Glyph,
+	H4_Helmet_Spartan_IV_Prime,
+	H4_Helmet_DE_Air_Assault_A,
+	H4_Helmet_DE_Budokan_A,
+	H4_Helmet_DE_Demo_A,
+	H4_Helmet_DE_ECM_B,
+	H4_Helmet_DE_Orbital_C,
+	H4_Helmet_DE_Stealth_A,
+	H4_Helmet_DE_Triclops_B,
+	H4_Helmet_DE_Utility_A,
+	H4_Helmet_Ruin,
+	H4_Helmet_Toxic,
+	H4_Helmet_Refractive,
+	H4_Helmet_DE_MarkV,
+	H4_Helmet_DE_ODST,
+	H4_Helmet_DE_Forerunner,
+	H4_Helmet_DE_NFL,
+	H4_Helmet_DE_NFL_Alt,
+
+	H4_Chest_Spartan_IV,
+	H4_Chest_Warrior,
+	H4_Chest_Scout,
+	H4_Chest_Soldier,
+	H4_Chest_Recon,
+	H4_Chest_Breather,
+	H4_Chest_EOD,
+	H4_Chest_Scientist,
+	H4_Chest_Demo,
+	H4_Chest_Orbital,
+	H4_Chest_Air_Assault,
+	H4_Chest_Cyclops,
+	H4_Chest_ECM,
+	H4_Chest_Gungnir1,
+	H4_Chest_Mongoose,
+	H4_Chest_Optimus,
+	H4_Chest_Triclops,
+	H4_Chest_Unicorn,
+	H4_Chest_Budokan,
+	H4_Chest_Utility,
+	H4_Chest_Pilot,
+	H4_Chest_Stealth,
+	H4_Chest_Commando,
+	H4_Chest_Ninja,
+	H4_Chest_Iron,
+	H4_Chest_Ranger,
+	H4_Chest_Boxhead,
+	H4_Chest_EVA,
+	H4_Chest_Engineer,
+	H4_Chest_Stalker,
+	H4_Chest_Mjolnir,
+	H4_Chest_Rogue,
+	H4_Chest_Tracker,
+	H4_Chest_Gungnir2,
+	H4_Chest_Air_Assault_Slither,
+	H4_Chest_Breather_Forest,
+	H4_Chest_Budokan_Circuit,
+	H4_Chest_Cyclops_Traffic,
+	H4_Chest_Demo_Kabuki,
+	H4_Chest_ECM_Calligraphy,
+	H4_Chest_Engineer_Tribal,
+	H4_Chest_EOD_Berserker,
+	H4_Chest_Gungnir1_Target,
+	H4_Chest_Mongoose_Terrain,
+	H4_Chest_Ninja_Chevron,
+	H4_Chest_Optimus_Fly,
+	H4_Chest_Orbital_Ancient,
+	H4_Chest_Ranger_DigitalCammo,
+	H4_Chest_Recon_Lizard,
+	H4_Chest_Scientist_Frog,
+	H4_Chest_Scout_Propeller,
+	H4_Chest_Soldier_Chevron,
+	H4_Chest_Warrior_Bubbles,
+	H4_Chest_Stalker_Octopus,
+	H4_Chest_Tracker_Drive,
+	H4_Chest_Triclops_Arachnid,
+	H4_Chest_Boxhead_Pathfinder,
+	H4_Chest_Commando_Claw,
+	H4_Chest_EVA_Yield,
+	H4_Chest_Gungnir2_Sand,
+	H4_Chest_Iron_Dragonfly,
+	H4_Chest_Stealth_Raptor,
+	H4_Chest_Utility_Strike,
+	H4_Chest_Pilot_Curves,
+	H4_Chest_Rogue_Glyph,
+	H4_Chest_Spartan_IV_Prime,
+	H4_Chest_DE_Air_Assault_A,
+	H4_Chest_DE_Budokan_A,
+	H4_Chest_DE_Demo_A,
+	H4_Chest_DE_ECM_B,
+	H4_Chest_DE_Orbital_C,
+	H4_Chest_DE_Stealth_A,
+	H4_Chest_DE_Triclops_B,
+	H4_Chest_DE_Utility_A,
+	H4_Chest_Ruin,
+	H4_Chest_Toxic,
+	H4_Chest_Refractive,
+	H4_Chest_DE_MarkV,
+	H4_Chest_DE_ODST,
+	H4_Chest_DE_Forerunner,
+	H4_Chest_DE_NFL,
+
+	H4_LeftShoulder_Spartan_IV,
+	H4_LeftShoulder_Warrior,
+	H4_LeftShoulder_Scout,
+	H4_LeftShoulder_Soldier,
+	H4_LeftShoulder_Recon,
+	H4_LeftShoulder_Breather,
+	H4_LeftShoulder_EOD,
+	H4_LeftShoulder_Scientist,
+	H4_LeftShoulder_Demo,
+	H4_LeftShoulder_Orbital,
+	H4_LeftShoulder_Air_Assault,
+	H4_LeftShoulder_Cyclops,
+	H4_LeftShoulder_ECM,
+	H4_LeftShoulder_Gungnir1,
+	H4_LeftShoulder_Mongoose,
+	H4_LeftShoulder_Optimus,
+	H4_LeftShoulder_Triclops,
+	H4_LeftShoulder_Unicorn,
+	H4_LeftShoulder_Budokan,
+	H4_LeftShoulder_Utility,
+	H4_LeftShoulder_Pilot,
+	H4_LeftShoulder_Stealth,
+	H4_LeftShoulder_Commando,
+	H4_LeftShoulder_Ninja,
+	H4_LeftShoulder_Iron,
+	H4_LeftShoulder_Ranger,
+	H4_LeftShoulder_Boxhead,
+	H4_LeftShoulder_EVA,
+	H4_LeftShoulder_Engineer,
+	H4_LeftShoulder_Stalker,
+	H4_LeftShoulder_Mjolnir,
+	H4_LeftShoulder_Rogue,
+	H4_LeftShoulder_Tracker,
+	H4_LeftShoulder_Gungnir2,
+	H4_LeftShoulder_Air_Assault_Slither,
+	H4_LeftShoulder_Breather_Forest,
+	H4_LeftShoulder_Budokan_Circuit,
+	H4_LeftShoulder_Cyclops_Traffic,
+	H4_LeftShoulder_Demo_Kabuki,
+	H4_LeftShoulder_ECM_Calligraphy,
+	H4_LeftShoulder_Engineer_Tribal,
+	H4_LeftShoulder_EOD_Berserker,
+	H4_LeftShoulder_Gungnir1_Target,
+	H4_LeftShoulder_Mongoose_Terrain,
+	H4_LeftShoulder_Ninja_Chevron,
+	H4_LeftShoulder_Optimus_Fly,
+	H4_LeftShoulder_Orbital_Ancient,
+	H4_LeftShoulder_Ranger_DigitalCammo,
+	H4_LeftShoulder_Recon_Lizard,
+	H4_LeftShoulder_Scientist_Frog,
+	H4_LeftShoulder_Scout_Propeller,
+	H4_LeftShoulder_Soldier_Chevron,
+	H4_LeftShoulder_Warrior_Bubbles,
+	H4_LeftShoulder_Stalker_Octopus,
+	H4_LeftShoulder_Tracker_Drive,
+	H4_LeftShoulder_Triclops_Arachnid,
+	H4_LeftShoulder_Boxhead_Pathfinder,
+	H4_LeftShoulder_Commando_Claw,
+	H4_LeftShoulder_EVA_Yield,
+	H4_LeftShoulder_Gungnir2_Sand,
+	H4_LeftShoulder_Iron_Dragonfly,
+	H4_LeftShoulder_Stealth_Raptor,
+	H4_LeftShoulder_Utility_Strike,
+	H4_LeftShoulder_Pilot_Curves,
+	H4_LeftShoulder_Rogue_Glyph,
+	H4_LeftShoulder_Spartan_IV_Prime,
+	H4_LeftShoulder_DE_Air_Assault_A,
+	H4_LeftShoulder_DE_Budokan_A,
+	H4_LeftShoulder_DE_Demo_A,
+	H4_LeftShoulder_DE_ECM_B,
+	H4_LeftShoulder_DE_Orbital_C,
+	H4_LeftShoulder_DE_Stealth_A,
+	H4_LeftShoulder_DE_Triclops_B,
+	H4_LeftShoulder_DE_Utility_A,
+	H4_LeftShoulder_Ruin,
+	H4_LeftShoulder_Toxic,
+	H4_LeftShoulder_Refractive,
+	H4_LeftShoulder_DE_MarkV,
+	H4_LeftShoulder_DE_ODST,
+	H4_LeftShoulder_DE_Forerunner,
+	H4_LeftShoulder_DE_NFL,
+
+	H4_RightShoulder_Spartan_IV,
+	H4_RightShoulder_Warrior,
+	H4_RightShoulder_Scout,
+	H4_RightShoulder_Soldier,
+	H4_RightShoulder_Recon,
+	H4_RightShoulder_Breather,
+	H4_RightShoulder_EOD,
+	H4_RightShoulder_Scientist,
+	H4_RightShoulder_Demo,
+	H4_RightShoulder_Orbital,
+	H4_RightShoulder_Air_Assault,
+	H4_RightShoulder_Cyclops,
+	H4_RightShoulder_ECM,
+	H4_RightShoulder_Gungnir1,
+	H4_RightShoulder_Mongoose,
+	H4_RightShoulder_Optimus,
+	H4_RightShoulder_Triclops,
+	H4_RightShoulder_Unicorn,
+	H4_RightShoulder_Budokan,
+	H4_RightShoulder_Utility,
+	H4_RightShoulder_Pilot,
+	H4_RightShoulder_Stealth,
+	H4_RightShoulder_Commando,
+	H4_RightShoulder_Ninja,
+	H4_RightShoulder_Iron,
+	H4_RightShoulder_Ranger,
+	H4_RightShoulder_Boxhead,
+	H4_RightShoulder_EVA,
+	H4_RightShoulder_Engineer,
+	H4_RightShoulder_Stalker,
+	H4_RightShoulder_Mjolnir,
+	H4_RightShoulder_Rogue,
+	H4_RightShoulder_Tracker,
+	H4_RightShoulder_Gungnir2,
+	H4_RightShoulder_Air_Assault_Slither,
+	H4_RightShoulder_Breather_Forest,
+	H4_RightShoulder_Budokan_Circuit,
+	H4_RightShoulder_Cyclops_Traffic,
+	H4_RightShoulder_Demo_Kabuki,
+	H4_RightShoulder_ECM_Calligraphy,
+	H4_RightShoulder_Engineer_Tribal,
+	H4_RightShoulder_EOD_Berserker,
+	H4_RightShoulder_Gungnir1_Target,
+	H4_RightShoulder_Mongoose_Terrain,
+	H4_RightShoulder_Ninja_Chevron,
+	H4_RightShoulder_Optimus_Fly,
+	H4_RightShoulder_Orbital_Ancient,
+	H4_RightShoulder_Ranger_DigitalCammo,
+	H4_RightShoulder_Recon_Lizard,
+	H4_RightShoulder_Scientist_Frog,
+	H4_RightShoulder_Scout_Propeller,
+	H4_RightShoulder_Soldier_Chevron,
+	H4_RightShoulder_Warrior_Bubbles,
+	H4_RightShoulder_Stalker_Octopus,
+	H4_RightShoulder_Tracker_Drive,
+	H4_RightShoulder_Triclops_Arachnid,
+	H4_RightShoulder_Boxhead_Pathfinder,
+	H4_RightShoulder_Commando_Claw,
+	H4_RightShoulder_EVA_Yield,
+	H4_RightShoulder_Gungnir2_Sand,
+	H4_RightShoulder_Iron_Dragonfly,
+	H4_RightShoulder_Stealth_Raptor,
+	H4_RightShoulder_Utility_Strike,
+	H4_RightShoulder_Pilot_Curves,
+	H4_RightShoulder_Rogue_Glyph,
+	H4_RightShoulder_Spartan_IV_Prime,
+	H4_RightShoulder_DE_Air_Assault_A,
+	H4_RightShoulder_DE_Budokan_A,
+	H4_RightShoulder_DE_Demo_A,
+	H4_RightShoulder_DE_ECM_B,
+	H4_RightShoulder_DE_Orbital_C,
+	H4_RightShoulder_DE_Stealth_A,
+	H4_RightShoulder_DE_Triclops_B,
+	H4_RightShoulder_DE_Utility_A,
+	H4_RightShoulder_Ruin,
+	H4_RightShoulder_Toxic,
+	H4_RightShoulder_Refractive,
+	H4_RightShoulder_DE_MarkV,
+	H4_RightShoulder_DE_ODST,
+	H4_RightShoulder_DE_Forerunner,
+	H4_RightShoulder_DE_NFL,
+
+	H4_Arms_Warrior,
+	H4_Arms_Scout,
+	H4_Arms_Orbital,
+	H4_Arms_Unicorn,
+	H4_Arms_Budokan,
+	H4_Arms_Pilot,
+	H4_Arms_Stealth,
+	H4_Arms_Ninja,
+	H4_Arms_Mjolnir,
+	H4_Arms_Warrior_Prime,
+	H4_Arms_Budokan_Target,
+	H4_Arms_Ninja_Chevron,
+	H4_Arms_Orbital_Ancient,
+	H4_Arms_Pilot_Forest,
+	H4_Arms_Scout_Arachnid,
+	H4_Arms_Stealth_Raptor,
+	H4_Arms_Budokan_Circuit,
+	H4_Arms_DE_Budokan_A,
+	H4_Arms_DE_Orbital_C,
+	H4_Arms_DE_Stealth_A,
+	H4_Arms_Toxic,
+	H4_Arms_Refractive,
+	H4_Arms_DE_MarkV,
+	H4_Arms_DE_ODST,
+	H4_Arms_DE_Forerunner,
+	H4_Arms_DE_NFL,
+
+	H4_Legs_Spartan_IV,
+	H4_Legs_Warrior,
+	H4_Legs_Scout,
+	H4_Legs_ECM,
+	H4_Legs_Unicorn,
+	H4_Legs_Utility,
+	H4_Legs_Stealth,
+	H4_Legs_Ninja,
+	H4_Legs_Mjolnir,
+	H4_Legs_Warrior_Prime,
+	H4_Legs_ECM_Arachnid,
+	H4_Legs_Ninja_Chevron,
+	H4_Legs_Scout_Circuit,
+	H4_Legs_Stealth_Raptor,
+	H4_Legs_Utility_Target,
+	H4_Legs_Warrior_Forest,
+	H4_Legs_Spartan_IV_Salamander,
+	H4_Legs_DE_ECM_B,
+	H4_Legs_DE_Stealth_A,
+	H4_Legs_DE_Utility_A,
+	H4_Legs_Toxic,
+	H4_Legs_Refractive,
+	H4_Legs_DE_MarkV,
+	H4_Legs_DE_ODST,
+	H4_Legs_DE_Forerunner,
+	H4_Legs_DE_NFL,
+
+	H4_Male,
+	H4_Female,
+
+	H4_VisorColor_Default,
+	H4_VisorColor_Visor2,
+	H4_VisorColor_Visor3,
+	H4_VisorColor_Visor4,
+	H4_VisorColor_Visor5,
+	H4_VisorColor_Visor6,
+	H4_VisorColor_Visor7,
+	H4_VisorColor_Visor8,
+	H4_VisorColor_Visor9,
+	H4_VisorColor_Wetwork,
+	H4_VisorColor_Operator,
+	H4_VisorColor_Pioneer,
+	H4_VisorColor_Pathfinder,
+	H4_VisorColor_Engineer,
+	H4_VisorColor_Stalker,
+	H4_VisorColor_Rogue,
+	H4_VisorColor_Tracker,
+
+	H4_Color0_Steel,
+	H4_Color1_Silver,
+	H4_Color2_White,
+	H4_Color3_Brown,
+	H4_Color4_Tan,
+	H4_Color5_Khaki,
+	H4_Color6_Sage,
+	H4_Color7_Olive,
+	H4_Color8_Drab,
+	H4_Color9_Forest,
+	H4_Color10_Green,
+	H4_Color11_SeaFoam,
+	H4_Color12_Teal,
+	H4_Color13_Aqua,
+	H4_Color14_Cyan,
+	H4_Color15_Blue,
+	H4_Color16_Cobalt,
+	H4_Color17_Ice,
+	H4_Color18_Violet,
+	H4_Color19_Orchid,
+	H4_Color20_Lavender,
+	H4_Color21_Maroon,
+	H4_Color22_Brick,
+	H4_Color23_Rose,
+	H4_Color24_Rust,
+	H4_Color25_Coral,
+	H4_Color26_Peach,
+	H4_Color27_Gold,
+	H4_Color28_Yellow,
+
+	k_customization_item_count,
+	k_customization_item_none = -1
+};
+
 struct s_user_skin
 {
 	long ObjectID;
@@ -1967,22 +3124,22 @@ struct s_player_configuration_v2
 	char __padding0[2];
 	long PlayerModelPermutation;
 
-	/* new in this version */ long HelmetIndex;					 // e_customization_item_v1
-	/* new in this version */ long LeftShoulderIndex;			 // e_customization_item_v1
-	/* new in this version */ long RightShoulderIndex;			 // e_customization_item_v1
-	/* new in this version */ long ChestIndex;					 // e_customization_item_v1
-	/* new in this version */ long WristIndex;					 // e_customization_item_v1
-	/* new in this version */ long UtilityIndex;				 // e_customization_item_v1
-	/* new in this version */ long PaintSchemeIndex;			 // e_customization_item_v1
-	/* new in this version */ long VisorColorIndex;				 // e_customization_item_v1
-	/* new in this version */ long SpartanArmorEffectIndex;		 // e_customization_item_v1
-	/* new in this version */ long SpartanBodyIndex;			 // e_customization_item_v1
-	/* new in this version */ long EliteArmorIndex;				 // e_customization_item_v1
-	/* new in this version */ long EliteArmorEffectIndex;		 // e_customization_item_v1
-	/* new in this version */ long VoiceIndex;					 // e_customization_item_v1
-	/* new in this version */ long PlayerModelPrimaryColor;		 // e_customization_item_v1
-	/* new in this version */ long PlayerModelSecondaryColor;	 // e_customization_item_v1
-	/* new in this version */ long PlayerModelTertiaryColor;	 // e_customization_item_v1
+	/* new in this version */ long HelmetIndex;
+	/* new in this version */ long LeftShoulderIndex;
+	/* new in this version */ long RightShoulderIndex;
+	/* new in this version */ long ChestIndex;
+	/* new in this version */ long WristIndex;
+	/* new in this version */ long UtilityIndex;
+	/* new in this version */ long PaintSchemeIndex;
+	/* new in this version */ long VisorColorIndex;
+	/* new in this version */ long SpartanArmorEffectIndex;
+	/* new in this version */ long SpartanBodyIndex;
+	/* new in this version */ long EliteArmorIndex;
+	/* new in this version */ long EliteArmorEffectIndex;
+	/* new in this version */ long VoiceIndex;
+	/* new in this version */ long PlayerModelPrimaryColor;
+	/* new in this version */ long PlayerModelSecondaryColor;
+	/* new in this version */ long PlayerModelTertiaryColor;
 
 	wchar_t ServiceTag[4];
 	long OnlineMedalFlasher;
@@ -2063,22 +3220,22 @@ struct s_player_configuration_v6
 	char __padding0[2];
 	long PlayerModelPermutation;
 
-	/* new in this version */ long HelmetIndex;					 // e_customization_item_v1
-	/* new in this version */ long LeftShoulderIndex;			 // e_customization_item_v1
-	/* new in this version */ long RightShoulderIndex;			 // e_customization_item_v1
-	/* new in this version */ long ChestIndex;					 // e_customization_item_v1
-	/* new in this version */ long WristIndex;					 // e_customization_item_v1
-	/* new in this version */ long UtilityIndex;				 // e_customization_item_v1
-	/* new in this version */ long PaintSchemeIndex;			 // e_customization_item_v1
-	/* new in this version */ long VisorColorIndex;				 // e_customization_item_v1
-	/* new in this version */ long SpartanArmorEffectIndex;		 // e_customization_item_v1
-	/* new in this version */ long SpartanBodyIndex;			 // e_customization_item_v1
-	/* new in this version */ long EliteArmorIndex;				 // e_customization_item_v1
-	/* new in this version */ long EliteArmorEffectIndex;		 // e_customization_item_v1
-	/* new in this version */ long VoiceIndex;					 // e_customization_item_v1
-	/* new in this version */ long PlayerModelPrimaryColor;		 // e_customization_item_v1
-	/* new in this version */ long PlayerModelSecondaryColor;	 // e_customization_item_v1
-	/* new in this version */ long PlayerModelTertiaryColor;	 // e_customization_item_v1
+	long HelmetIndex;
+	long LeftShoulderIndex;
+	long RightShoulderIndex;
+	long ChestIndex;
+	long WristIndex;
+	long UtilityIndex;
+	long PaintSchemeIndex;
+	long VisorColorIndex;
+	long SpartanArmorEffectIndex;
+	long SpartanBodyIndex;
+	long EliteArmorIndex;
+	long EliteArmorEffectIndex;
+	long VoiceIndex;
+	long PlayerModelPrimaryColor;
+	long PlayerModelSecondaryColor;
+	long PlayerModelTertiaryColor;
 
 	wchar_t ServiceTag[4];
 	long OnlineMedalFlasher;
@@ -2130,7 +3287,7 @@ struct s_player_configuration_v6
 	s_weapon_display_offset WeaponDisplayOffsets[5];
 };
 
-template<size_t abstract_button_count>
+template<size_t abstract_button_count, size_t user_skin_count>
 struct s_player_configuration_v7
 {
 	long SubtitleSetting;
@@ -2160,38 +3317,38 @@ struct s_player_configuration_v7
 
 	long PlayerModelPermutation;
 
-	long HelmetIndex;											 // e_customization_item_v2
-	long LeftShoulderIndex;										 // e_customization_item_v2
-	long RightShoulderIndex;									 // e_customization_item_v2
-	long ChestIndex;											 // e_customization_item_v2
-	long WristIndex;											 // e_customization_item_v2
-	long UtilityIndex;											 // e_customization_item_v2
+	long HelmetIndex;
+	long LeftShoulderIndex;
+	long RightShoulderIndex;
+	long ChestIndex;
+	long WristIndex;
+	long UtilityIndex;
 
-	/* new in this version */ long ArmsIndex;					 // e_customization_item_v2
-	/* new in this version */ long LegsIndex;					 // e_customization_item_v2
+	/* new in this version */ long ArmsIndex;
+	/* new in this version */ long LegsIndex;
 
-	long PaintSchemeIndex;										 // e_customization_item_v2
-	long VisorColorIndex;										 // e_customization_item_v2
-	long SpartanArmorEffectIndex;								 // e_customization_item_v2
-	long SpartanBodyIndex;										 // e_customization_item_v2
-	long EliteArmorIndex;										 // e_customization_item_v2
-	long EliteArmorEffectIndex;									 // e_customization_item_v2
+	long PaintSchemeIndex;
+	long VisorColorIndex;
+	long SpartanArmorEffectIndex;
+	long SpartanBodyIndex;
+	long EliteArmorIndex;
+	long EliteArmorEffectIndex;
 
-	/* new in this version */ long EliteHelmetIndex;			 // e_customization_item_v2
-	/* new in this version */ long EliteLeftShoulderIndex;		 // e_customization_item_v2
-	/* new in this version */ long EliteRightShoulderIndex;		 // e_customization_item_v2
-	/* new in this version */ long EliteChestIndex;				 // e_customization_item_v2
-	/* new in this version */ long MaybeEliteWristIndex;		 // e_customization_item_v2
-	/* new in this version */ long MaybeEliteUtilityIndex;		 // e_customization_item_v2
-	/* new in this version */ long EliteArmsIndex;				 // e_customization_item_v2
-	/* new in this version */ long EliteLegsIndex;				 // e_customization_item_v2
+	/* new in this version */ long EliteHelmetIndex;
+	/* new in this version */ long EliteLeftShoulderIndex;
+	/* new in this version */ long EliteRightShoulderIndex;
+	/* new in this version */ long EliteChestIndex;
+	/* new in this version */ long MaybeEliteWristIndex;
+	/* new in this version */ long MaybeEliteUtilityIndex;
+	/* new in this version */ long EliteArmsIndex;
+	/* new in this version */ long EliteLegsIndex;
 
-	long VoiceIndex;											 // e_customization_item_v2
-	long PlayerModelPrimaryColor;								 // e_customization_item_v2
-	long PlayerModelSecondaryColor;								 // e_customization_item_v2
-	long PlayerModelTertiaryColor;								 // e_customization_item_v2
+	long VoiceIndex;
+	long PlayerModelPrimaryColor;
+	long PlayerModelSecondaryColor;
+	long PlayerModelTertiaryColor;
 
-	/* new in this version */ s_user_skin UserSkins[15];
+	/* new in this version */ s_user_skin UserSkins[user_skin_count];
 
 	wchar_t ServiceTag[4];
 	long OnlineMedalFlasher;
@@ -2253,8 +3410,10 @@ using t_player_configuration_v5 = s_player_configuration_v4<k_number_of_abstract
 CHECK_STRUCTURE_SIZE(t_player_configuration_v5, 0x89C);
 using t_player_configuration_v6 = s_player_configuration_v6<k_number_of_abstract_buttons_v5>;
 CHECK_STRUCTURE_SIZE(t_player_configuration_v6, 0x924);
-using t_player_configuration_v7 = s_player_configuration_v7<k_number_of_abstract_buttons_v6>;
+using t_player_configuration_v7 = s_player_configuration_v7<k_number_of_abstract_buttons_v6, 15>;
 CHECK_STRUCTURE_SIZE(t_player_configuration_v7, 0xA6C);
+using t_player_configuration_v8 = s_player_configuration_v7<k_number_of_abstract_buttons_v6, 32>;
+CHECK_STRUCTURE_SIZE(t_player_configuration_v8, 0xAF4);
 
 enum e_player_configuration_version
 {
@@ -2265,6 +3424,7 @@ enum e_player_configuration_version
 	_player_configuration_version_5,
 	_player_configuration_version_6,
 	_player_configuration_version_7,
+	_player_configuration_version_8,
 };
 
 class c_player_configuration
@@ -2279,6 +3439,7 @@ private:
 		t_player_configuration_v5 player_configuration_v5;
 		t_player_configuration_v6 player_configuration_v6;
 		t_player_configuration_v7 player_configuration_v7;
+		t_player_configuration_v8 player_configuration_v8;
 	};
 public:
 	e_player_configuration_version const player_configuration_version;
@@ -2334,7 +3495,7 @@ public:
 	long& PlayerModelPrimaryColor;
 	long& PlayerModelSecondaryColor;
 	long& PlayerModelTertiaryColor;
-	s_user_skin(&UserSkins)[15];
+	//s_user_skin(&UserSkins)[user_skin_count];
 	wchar_t(&ServiceTag)[4];
 	long& OnlineMedalFlasher;
 	float& VerticalLookSensitivity;
@@ -2370,7 +3531,7 @@ public:
 	float& MouseAccelerationScale;
 	float& MouseAccelerationExp;
 	long& KeyboardMouseButtonPreset;
-	//s_custom_key_mapping CustomKeyboardMouseMappings[k_number_of_abstract_buttons];
+	//s_custom_key_mapping(&CustomKeyboardMouseMappings)[abstract_button_count];
 	float& MasterVolume;
 	float& MusicVolume;
 	float& SfxVolume;
@@ -2391,6 +3552,7 @@ private:
 		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2405,6 +3567,7 @@ private:
 		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2418,6 +3581,7 @@ private:
 		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2430,6 +3594,7 @@ private:
 		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2441,6 +3606,7 @@ private:
 		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2451,6 +3617,7 @@ private:
 		{ \
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2460,6 +3627,7 @@ private:
 		switch (player_configuration_version) \
 		{ \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
+		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -2513,7 +3681,6 @@ private:
 	player_configuration_reference_getter_v2(PlayerModelPrimaryColor);
 	player_configuration_reference_getter_v2(PlayerModelSecondaryColor);
 	player_configuration_reference_getter_v2(PlayerModelTertiaryColor);
-	player_configuration_reference_getter_v7(UserSkins);
 	player_configuration_reference_getter_v1(ServiceTag);
 	player_configuration_reference_getter_v1(OnlineMedalFlasher);
 	player_configuration_reference_getter_v1(VerticalLookSensitivity);
@@ -2563,6 +3730,26 @@ private:
 #undef player_configuration_reference_getter_v6
 #undef player_configuration_reference_getter_v7
 
+	class c_virtual_player_configuration_user_skins_interface
+	{
+	public:
+		c_virtual_player_configuration_user_skins_interface(c_player_configuration& parent) :
+			parent(parent)
+		{ }
+
+		c_player_configuration& parent;
+
+		s_user_skin& operator[](size_t abstract_button_index) const
+		{
+			switch (parent.player_configuration_version)
+			{
+			case _player_configuration_version_7: return parent.player_configuration_v7.UserSkins[abstract_button_index];
+			case _player_configuration_version_8: return parent.player_configuration_v8.UserSkins[abstract_button_index];
+			}
+			throw;
+		}
+	};
+
 	class c_virtual_player_configuration_game_keyboard_mouse_mapping_interface
 	{
 	public:
@@ -2583,6 +3770,7 @@ private:
 			case _player_configuration_version_5: return parent.player_configuration_v5.CustomKeyboardMouseMappings[abstract_button_index];
 			case _player_configuration_version_6: return parent.player_configuration_v6.CustomKeyboardMouseMappings[abstract_button_index];
 			case _player_configuration_version_7: return parent.player_configuration_v7.CustomKeyboardMouseMappings[abstract_button_index];
+			case _player_configuration_version_8: return parent.player_configuration_v8.CustomKeyboardMouseMappings[abstract_button_index];
 			}
 			throw;
 		}
@@ -2604,6 +3792,7 @@ private:
 		case _player_configuration_version_6:
 			return k_number_of_abstract_buttons_v5;
 		case _player_configuration_version_7:
+		case _player_configuration_version_8:
 			return k_number_of_abstract_buttons_v6;
 		}
 
@@ -2611,6 +3800,7 @@ private:
 	}
 
 public:
+	c_virtual_player_configuration_user_skins_interface UserSkins;
 	c_virtual_player_configuration_game_keyboard_mouse_mapping_interface CustomKeyboardMouseMappings;
 
 	c_player_configuration(e_player_configuration_version player_configuration_version) :
@@ -2674,7 +3864,7 @@ public:
 		PlayerModelPrimaryColor(*GetPlayerModelPrimaryColor()),
 		PlayerModelSecondaryColor(*GetPlayerModelSecondaryColor()),
 		PlayerModelTertiaryColor(*GetPlayerModelTertiaryColor()),
-		UserSkins(*GetUserSkins()),
+		UserSkins(*this),
 		ServiceTag(*GetServiceTag()),
 		OnlineMedalFlasher(*GetOnlineMedalFlasher()),
 		VerticalLookSensitivity(*GetVerticalLookSensitivity()),
@@ -2724,6 +3914,7 @@ public:
 		memset(&player_configuration_v5, 0, sizeof(player_configuration_v5));
 		memset(&player_configuration_v6, 0, sizeof(player_configuration_v6));
 		memset(&player_configuration_v7, 0, sizeof(player_configuration_v7));
+		memset(&player_configuration_v8, 0, sizeof(player_configuration_v8));
 	}
 };
 
