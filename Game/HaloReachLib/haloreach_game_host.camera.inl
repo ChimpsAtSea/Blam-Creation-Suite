@@ -21,6 +21,7 @@ uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x180071C90);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x180071C90);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -125,6 +126,7 @@ uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800E5FA0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1800E5FA0);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x1800EBB30); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1800EBB30); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -217,6 +219,7 @@ std::vector<uintptr_t> haloreach_enable_debug_hud_coordinates_offsets(e_engine_t
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x1800DF9EA, 0x1800DF9F7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x1800DF9EA, 0x1800DF9F7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x1800E516B, 0x1800E5178); //#TODO: get this offsets, since `player_mapping_get_local_player` was inlined the asm instructions a skewed
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1800E516B, 0x1800E5178);
 	return {};
 }
 // Enable debug hud coordinates

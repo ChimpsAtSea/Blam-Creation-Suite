@@ -66,25 +66,25 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 	write_control_to_config(CrosshairLocation);
 	write_control_to_config(FOVSetting);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(VehicleFOVSetting);
 
 	write_control_to_config(LookControlsInverted);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MouseLookControlsInverted);
 
 	write_control_to_config(VibrationDisabled);
 	write_control_to_config(ImpulseTriggersDisabled);
 	write_control_to_config(AircraftControlsInverted);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MouseAircraftControlsInverted);
 
 	write_control_to_config(AutoCenterEnabled);
 	write_control_to_config(CrouchLockEnabled);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MKCrouchLockEnabled);
 
 	write_control_to_config(ClenchProtectionEnabled);
@@ -96,12 +96,12 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 	write_control_to_config(UseEliteModel);
 	write_control_to_config(LockMaxAspectRatio);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 		write_control_to_config(UsersSkinsEnabled);
 
 	write_control_to_config(PlayerModelPermutation);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(HelmetIndex);
 		write_control_to_config(LeftShoulderIndex);
@@ -111,13 +111,13 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(UtilityIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 	{
 		write_control_to_config(ArmsIndex);
 		write_control_to_config(LegsIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(PaintSchemeIndex);
 		write_control_to_config(VisorColorIndex);
@@ -127,7 +127,7 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(EliteArmorEffectIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 	{
 		write_control_to_config(EliteHelmetIndex);
 		write_control_to_config(EliteLeftShoulderIndex);
@@ -139,7 +139,7 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(EliteLegsIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(VoiceIndex);
 		write_control_to_config(PlayerModelPrimaryColor);
@@ -198,25 +198,25 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 	read_control_from_config(CrosshairLocation, 0l);
 	read_control_from_config(FOVSetting, 90l);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(VehicleFOVSetting, 90l);
 
 	read_control_from_config(LookControlsInverted, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MouseLookControlsInverted, false);
 
 	read_control_from_config(VibrationDisabled, false);
 	read_control_from_config(ImpulseTriggersDisabled, false);
 	read_control_from_config(AircraftControlsInverted, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MouseAircraftControlsInverted, false);
 
 	read_control_from_config(AutoCenterEnabled, false);
 	read_control_from_config(CrouchLockEnabled, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MKCrouchLockEnabled, false);
 
 	read_control_from_config(ClenchProtectionEnabled, false);
@@ -228,12 +228,12 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 	read_control_from_config(UseEliteModel, false);
 	read_control_from_config(LockMaxAspectRatio, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 		read_control_from_config(UsersSkinsEnabled, false);
 
 	read_control_from_config(PlayerModelPermutation, 0l);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		switch (engine_type)
 		{

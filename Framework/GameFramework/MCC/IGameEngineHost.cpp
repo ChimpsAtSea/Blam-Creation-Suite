@@ -545,34 +545,34 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	{
 	case _build_mcc_1_824_0_0:
 	case _build_mcc_1_887_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_1);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_1);
 		break;
 	case _build_mcc_1_1035_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_2);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_2);
 		break;
 	case _build_mcc_1_1186_0_0:
 	case _build_mcc_1_1211_0_0:
 	case _build_mcc_1_1246_0_0:
 	case _build_mcc_1_1270_0_0:
 	case _build_mcc_1_1305_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_3);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_3);
 		break;
 	case _build_mcc_1_1350_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_4);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_4);
 		break;
 	case _build_mcc_1_1367_0_0:
 	case _build_mcc_1_1377_0_0:
 	case _build_mcc_1_1384_0_0:
 	case _build_mcc_1_1387_0_0:
 	case _build_mcc_1_1389_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_5);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_5);
 		break;
 	case _build_mcc_1_1477_0_0:
 	case _build_mcc_1_1499_0_0:
 	case _build_mcc_1_1520_0_0:
 	case _build_mcc_1_1570_0_0:
 	case _build_mcc_1_1619_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_6);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_6);
 		break;
 	case _build_mcc_1_1629_0_0:
 	case _build_mcc_1_1658_0_0:
@@ -581,11 +581,12 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	case _build_mcc_1_1767_0_0:
 	case _build_mcc_1_1778_0_0:
 	case _build_mcc_1_1792_0_0:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_7);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_7);
 		break;
 	case _build_mcc_1_1829_0_0:
+	case _build_mcc_1_1864_0_0:
 	default:
-		s_player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_8);
+		s_player_configuration = new c_player_configuration(_player_configuration_version_8);
 		break;
 	}
 	*player_configuration = s_player_configuration;
@@ -622,7 +623,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 		}
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_4)
 	{
 		for (int i = 0; i < 5; i++)
 		{
