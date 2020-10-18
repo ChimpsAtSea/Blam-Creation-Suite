@@ -10,6 +10,7 @@ uintptr_t halo3_tag_instances_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x180B736B0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180B882B0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180B882B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180B882B0);
 	return ~uintptr_t();
 }
 gen3::s_cache_file_tag_instance*& halo3_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("halo3_tag_instances", halo3_tag_instances_offset);
@@ -26,6 +27,7 @@ uintptr_t k_halo3_virtual_to_physical_base_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18B8E0D78);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18B8F5978);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x18B8F5978);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x18B8F5978);
 	return ~uintptr_t();
 }
 const long long& k_halo3_virtual_to_physical_base = reference_symbol<const long long>("k_halo3_virtual_to_physical_base", k_halo3_virtual_to_physical_base_offset);
@@ -41,6 +43,7 @@ uintptr_t k_halo3_physical_base_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18092E7D0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18093A790);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x18093A790);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x18093A790);
 	return ~uintptr_t();
 }
 const long long& k_halo3_physical_base = reference_symbol<const long long>("k_halo3_physical_base", k_halo3_physical_base_offset);
@@ -56,6 +59,7 @@ uintptr_t halo3_cache_file_header_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18BB1BA28);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18BB30628);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x18BB30628);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x18BB30628);
 	return ~uintptr_t();
 }
 halo3::s_cache_file_header& halo3_cache_file_header = reference_symbol<halo3::s_cache_file_header>("halo3_cache_file_header", halo3_cache_file_header_offset);
@@ -71,6 +75,7 @@ uintptr_t halo3_cache_file_tags_header_offset(e_engine_type engine_type, e_build
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18BB1EA28);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x18BB33628);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x18BB33628);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x18BB33628);
 	return ~uintptr_t();
 }
 halo3::s_cache_file_tags_header*& halo3_cache_file_tags_header = reference_symbol<halo3::s_cache_file_tags_header*>("halo3_cache_file_tags_header", halo3_cache_file_tags_header_offset);
@@ -86,6 +91,7 @@ uintptr_t halo3_file_table_mapping_offset(e_engine_type engine_type, e_build bui
 	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x180B736B8);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180B882B8);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180B882B8);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180B882B8);
 	return ~uintptr_t();
 }
 void*& halo3_file_table_mapping = reference_symbol<void*>("halo3_file_table_mapping", halo3_file_table_mapping_offset);
