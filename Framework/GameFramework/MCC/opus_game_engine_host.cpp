@@ -399,60 +399,124 @@ bool __fastcall c_opus_game_engine_host::function27()
 	return false;
 }
 
-bool __fastcall c_opus_game_engine_host::video_settings_update_handler(VideoSettings* video_settings)
+bool __fastcall c_opus_game_engine_host::game_data_update_handler(char* game_data)
 {
-	DEBUG_ASSERT(video_settings != nullptr);
-
-	video_settings->GeneralSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
-	video_settings->GeneralSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
-
-	// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
-	video_settings->GeneralSettings.TextureResolution = 2;
-	video_settings->GeneralSettings.TextureFilteringQuality = 2;
-	video_settings->GeneralSettings.LightingQuality = 2;
-	video_settings->GeneralSettings.EffectsQuality = 2;
-	video_settings->GeneralSettings.ShadowQuality = 2;
-	video_settings->GeneralSettings.DetailsQuality = 2;
-	video_settings->GeneralSettings.PostProcessingQuality = 2;
-	video_settings->GeneralSettings.AntiAliasing = true;
-
-	// UNLIMITED POWER! *frames*
-	video_settings->GeneralSettings.VSync = false;
-	video_settings->GeneralSettings.FPSLock = false;
-	
-	// the values set are taken from `AppData\LocalLow\MCC\Saved\Config\WindowsNoEditor\GameUserSettings.ini` for "Enhanced Mode",
-	// these values are overrides for the `globals\default.performance_throttles` tag
-	video_settings->PerformanceThrottles.WaterLod = { 1.0f, 0.0f };
-	video_settings->PerformanceThrottles.DecoratorFadeDistance = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.EffectsLODDistanceScale = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.InstanceFadeModifier = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ObjectFadeModifer = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ObjectDetailModifer = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ObjectImposterCutoffModifer = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.DecalFadeDistanceScale = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.StructureInstanceLODModifer = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.CPUDynamicLightMaxCount = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.CPUDynamicLightScale = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.GPUDynamicLightMaxCount = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.GPUDynamicLightScale = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ScreenspaceDynamicLightMaxCount = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ScreenspaceDynamicLightScale = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ShadowGenerateCount = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.ShadowQualityLOD = { 3.0f, 0.0f };
-	video_settings->PerformanceThrottles.DisableObjectPRT = false;
-	video_settings->PerformanceThrottles.DisableFirstPersonShadow = false;
-	video_settings->PerformanceThrottles.DisableDynamicLightingShadows = false;
-	video_settings->PerformanceThrottles.DisablePatchyFog = false;
-	video_settings->PerformanceThrottles.DisableCheapParticles = false;
-	video_settings->PerformanceThrottles.DisableSSAO = false;
-	video_settings->PerformanceThrottles.DisableCHUDTurbulence = false;
-	video_settings->PerformanceThrottles.DisableDecoratorTypeInstances = false;
-	video_settings->PerformanceThrottles.DisableRain = false;
+	DEBUG_ASSERT(game_data != nullptr);
 
 	c_console::write_line_verbose(__FUNCTION__);
 
-	// returning false effectively doubles fps when unlocked
-	return !(video_settings->GeneralSettings.VSync || video_settings->GeneralSettings.FPSLock);
+	if (build >= _build_mcc_1_1896_0_0)
+	{
+		GameDataStructV2* game_data_typed = reinterpret_cast<GameDataStructV2*>(game_data);
+
+		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
+
+		// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
+		game_data_typed->GeneralVideoSettings.TextureResolution = 2;
+		game_data_typed->GeneralVideoSettings.TextureFilteringQuality = 2;
+		game_data_typed->GeneralVideoSettings.LightingQuality = 2;
+		game_data_typed->GeneralVideoSettings.EffectsQuality = 2;
+		game_data_typed->GeneralVideoSettings.ShadowQuality = 2;
+		game_data_typed->GeneralVideoSettings.DetailsQuality = 2;
+		game_data_typed->GeneralVideoSettings.PostProcessingQuality = 2;
+		game_data_typed->GeneralVideoSettings.AntiAliasing = true;
+		game_data_typed->GeneralVideoSettings.MotionBlur = false;
+		game_data_typed->GeneralVideoSettings.Blood = true;
+
+		// UNLIMITED POWER! *frames*
+		game_data_typed->GeneralVideoSettings.VSync = false;
+		game_data_typed->GeneralVideoSettings.FPSLock = false;
+
+		// the values set are taken from `AppData\LocalLow\MCC\Saved\Config\WindowsNoEditor\GameUserSettings.ini` for "Enhanced Mode",
+		// these values are overrides for the `globals\default.performance_throttles` tag
+		game_data_typed->RenderSettings.WaterLod = { 1.0f, 0.0f };
+		game_data_typed->RenderSettings.DecoratorFadeDistance = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.EffectsLODDistanceScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.InstanceFadeModifier = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectFadeModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectDetailModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectImposterCutoffModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.DecalFadeDistanceScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.StructureInstanceLODModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.CPUDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.CPUDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.GPUDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.GPUDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ScreenspaceDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ScreenspaceDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ShadowGenerateCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ShadowQualityLOD = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.FloatingShadowQualityLOD = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.DisableObjectPRT = false;
+		game_data_typed->RenderSettings.DisableFirstPersonShadow = false;
+		game_data_typed->RenderSettings.DisableDynamicLightingShadows = false;
+		game_data_typed->RenderSettings.DisablePatchyFog = false;
+		game_data_typed->RenderSettings.DisableCheapParticles = false;
+		game_data_typed->RenderSettings.DisableSSAO = false;
+		game_data_typed->RenderSettings.DisableCHUDTurbulence = false;
+		game_data_typed->RenderSettings.DisableDecoratorTypeInstances = false;
+		game_data_typed->RenderSettings.DisableRain = false;
+		game_data_typed->RenderSettings.UnknownFlag = false;
+
+		// returning false effectively doubles fps when unlocked
+		return !(game_data_typed->GeneralVideoSettings.VSync || game_data_typed->GeneralVideoSettings.FPSLock);
+	}
+	else
+	{
+		GameDataStructV1* game_data_typed = reinterpret_cast<GameDataStructV1*>(game_data);
+
+		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
+
+		// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
+		game_data_typed->GeneralVideoSettings.TextureResolution = 2;
+		game_data_typed->GeneralVideoSettings.TextureFilteringQuality = 2;
+		game_data_typed->GeneralVideoSettings.LightingQuality = 2;
+		game_data_typed->GeneralVideoSettings.EffectsQuality = 2;
+		game_data_typed->GeneralVideoSettings.ShadowQuality = 2;
+		game_data_typed->GeneralVideoSettings.DetailsQuality = 2;
+		game_data_typed->GeneralVideoSettings.PostProcessingQuality = 2;
+		game_data_typed->GeneralVideoSettings.AntiAliasing = true;
+
+		// UNLIMITED POWER! *frames*
+		game_data_typed->GeneralVideoSettings.VSync = false;
+		game_data_typed->GeneralVideoSettings.FPSLock = false;
+
+		// the values set are taken from `AppData\LocalLow\MCC\Saved\Config\WindowsNoEditor\GameUserSettings.ini` for "Enhanced Mode",
+		// these values are overrides for the `globals\default.performance_throttles` tag
+		game_data_typed->RenderSettings.WaterLod = { 1.0f, 0.0f };
+		game_data_typed->RenderSettings.DecoratorFadeDistance = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.EffectsLODDistanceScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.InstanceFadeModifier = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectFadeModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectDetailModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ObjectImposterCutoffModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.DecalFadeDistanceScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.StructureInstanceLODModifer = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.CPUDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.CPUDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.GPUDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.GPUDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ScreenspaceDynamicLightMaxCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ScreenspaceDynamicLightScale = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ShadowGenerateCount = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.ShadowQualityLOD = { 3.0f, 0.0f };
+		game_data_typed->RenderSettings.DisableObjectPRT = false;
+		game_data_typed->RenderSettings.DisableFirstPersonShadow = false;
+		game_data_typed->RenderSettings.DisableDynamicLightingShadows = false;
+		game_data_typed->RenderSettings.DisablePatchyFog = false;
+		game_data_typed->RenderSettings.DisableCheapParticles = false;
+		game_data_typed->RenderSettings.DisableSSAO = false;
+		game_data_typed->RenderSettings.DisableCHUDTurbulence = false;
+		game_data_typed->RenderSettings.DisableDecoratorTypeInstances = false;
+		game_data_typed->RenderSettings.DisableRain = false;
+
+		// returning false effectively doubles fps when unlocked
+		return !(game_data_typed->GeneralVideoSettings.VSync || game_data_typed->GeneralVideoSettings.FPSLock);
+	}
+
+	return true;
 }
 
 c_player_configuration* __fastcall c_opus_game_engine_host::player_configuration_get(__int64 value)
@@ -841,4 +905,21 @@ __int64 __fastcall c_opus_game_engine_host::function60(__int64 a1)
 
 void __fastcall c_opus_game_engine_host::function61(__int64 a1)
 {
+}
+
+static float function62_unknown;
+float __fastcall c_opus_game_engine_host::function62() // getter
+{
+	return function62_unknown;
+}
+__int64 __fastcall c_opus_game_engine_host::function63(float a1) // setter
+{
+	function62_unknown = a1;
+
+	return 0;
+}
+
+__int64 __fastcall c_opus_game_engine_host::function64(__int64, unsigned int, int, __int64, float*)
+{
+	return 0;
 }

@@ -39,7 +39,7 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_session_membership_update_handler,
 	__game_engine_virtual_function_function26,
 	__game_engine_virtual_function_function27,
-	__game_engine_virtual_function_video_settings_update_handler,
+	__game_engine_virtual_function_game_data_update_handler,
 	__game_engine_virtual_function_player_configuration_get,
 	__game_engine_virtual_function_player_configuration_update_handler,
 	__game_engine_virtual_function_input_update_handler,
@@ -65,6 +65,9 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_function51,
 	__game_engine_virtual_function_function52,
 	__game_engine_virtual_function_function53,
+	__game_engine_virtual_function_function54,
+	__game_engine_virtual_function_function55,
+	__game_engine_virtual_function_function56,
 };
 
 class IGameEngineHost
@@ -135,15 +138,19 @@ public:
 	};
 	CHECK_STRUCTURE_SIZE(s_function22_data, 0x110);
 
-#pragma pack(push, 1)
-	struct VideoSettings
-	{
-		struct GeneralSettings // 0x2C
-		{
-			// SwapChainDesc.BufferDesc.Width;
-			/* 0x00 */	long DesiredScreenWidth;
 
-			// SwapChainDesc.BufferDesc.Height;
+	struct ScaleAndOffsetStruct // 0x8
+	{
+		/* 0x00 */	float Scale;
+		/* 0x04 */	float Offset;
+	};
+	CHECK_STRUCTURE_SIZE(ScaleAndOffsetStruct, 0x8);
+
+	struct GameDataStructV1
+	{
+		struct GeneralVideoSettingsStructV1 // 0x2C
+		{
+			/* 0x00 */	long DesiredScreenWidth;
 			/* 0x04 */	long DesiredScreenHeight;
 
 			/* 0x08 */	long TextureResolution;
@@ -158,35 +165,30 @@ public:
 			/* 0x29 */	bool VSync;
 			/* 0x2A */	bool FPSLock;
 
-			// Assumed, this value is never used
-			/* 0x2B */	char Padding;
+			/* 0x2B */	char Padding;	// Assumed, this value is never used
 		};
+		CHECK_STRUCTURE_SIZE(GeneralVideoSettingsStructV1, 0x2C);
 
-		struct ScaleAndOffset // 0x8
+		struct RenderSettingsStructV1 // 0xAC
 		{
-			/* 0x00 */	float Scale;
-			/* 0x04 */	float Offset;
-		};
+			/* 0x00 */	ScaleAndOffsetStruct WaterLod;
+			/* 0x08 */	ScaleAndOffsetStruct DecoratorFadeDistance;
+			/* 0x10 */	ScaleAndOffsetStruct EffectsLODDistanceScale;
+			/* 0x18 */	ScaleAndOffsetStruct InstanceFadeModifier;
+			/* 0x20 */	ScaleAndOffsetStruct ObjectFadeModifer;
+			/* 0x28 */	ScaleAndOffsetStruct ObjectDetailModifer;
+			/* 0x30 */	ScaleAndOffsetStruct ObjectImposterCutoffModifer;
+			/* 0x38 */	ScaleAndOffsetStruct DecalFadeDistanceScale;
+			/* 0x40 */	ScaleAndOffsetStruct StructureInstanceLODModifer;
+			/* 0x48 */	ScaleAndOffsetStruct CPUDynamicLightMaxCount;
+			/* 0x50 */	ScaleAndOffsetStruct CPUDynamicLightScale;
+			/* 0x58 */	ScaleAndOffsetStruct GPUDynamicLightMaxCount;
+			/* 0x60 */	ScaleAndOffsetStruct GPUDynamicLightScale;
+			/* 0x68 */	ScaleAndOffsetStruct ScreenspaceDynamicLightMaxCount;
+			/* 0x70 */	ScaleAndOffsetStruct ScreenspaceDynamicLightScale;
+			/* 0x78 */	ScaleAndOffsetStruct ShadowGenerateCount;
+			/* 0x80 */	ScaleAndOffsetStruct ShadowQualityLOD;
 
-		struct PerformanceThrottles // 0xAC
-		{
-			/* 0x00 */	ScaleAndOffset WaterLod;
-			/* 0x08 */	ScaleAndOffset DecoratorFadeDistance;
-			/* 0x10 */	ScaleAndOffset EffectsLODDistanceScale;
-			/* 0x18 */	ScaleAndOffset InstanceFadeModifier;
-			/* 0x20 */	ScaleAndOffset ObjectFadeModifer;
-			/* 0x28 */	ScaleAndOffset ObjectDetailModifer;
-			/* 0x30 */	ScaleAndOffset ObjectImposterCutoffModifer;
-			/* 0x38 */	ScaleAndOffset DecalFadeDistanceScale;
-			/* 0x40 */	ScaleAndOffset StructureInstanceLODModifer;
-			/* 0x48 */	ScaleAndOffset CPUDynamicLightMaxCount;
-			/* 0x50 */	ScaleAndOffset CPUDynamicLightScale;
-			/* 0x58 */	ScaleAndOffset GPUDynamicLightMaxCount;
-			/* 0x60 */	ScaleAndOffset GPUDynamicLightScale;
-			/* 0x68 */	ScaleAndOffset ScreenspaceDynamicLightMaxCount;
-			/* 0x70 */	ScaleAndOffset ScreenspaceDynamicLightScale;
-			/* 0x78 */	ScaleAndOffset ShadowGenerateCount;
-			/* 0x80 */	ScaleAndOffset ShadowQualityLOD;
 			/* 0x88 */	long DisableObjectPRT;
 			/* 0x9C */	long DisableFirstPersonShadow;
 			/* 0x90 */	long DisableDynamicLightingShadows;
@@ -197,16 +199,79 @@ public:
 			/* 0xA4 */	long DisableDecoratorTypeInstances;
 			/* 0xA8 */	long DisableRain;
 		};
+		CHECK_STRUCTURE_SIZE(RenderSettingsStructV1, 0xAC);
 
-		/* 0x00 */	GeneralSettings GeneralSettings;
-
-		// Unknown, this buffer is always memset to 0
-		/* 0x2C */	char Unknown[0xA8];
-
-		/* 0xD4 */	PerformanceThrottles PerformanceThrottles;
+		/* 0x00 */	GeneralVideoSettingsStructV1 GeneralVideoSettings;
+		/* 0x2C */	char Unknown[0xA8];	// Unknown, this buffer is always memset to 0
+		/* 0xD4 */	RenderSettingsStructV1 RenderSettings;
 	};
-	CHECK_STRUCTURE_SIZE(VideoSettings, 0x180);
-#pragma pack(pop)
+	CHECK_STRUCTURE_SIZE(GameDataStructV1, 0x180);
+
+	struct GameDataStructV2
+	{
+		struct GeneralVideoSettingsStructV2 // 0x34
+		{
+			/* 0x00 */	long DesiredScreenWidth;
+			/* 0x04 */	long DesiredScreenHeight;
+
+			/* 0x08 */	long TextureResolution;
+			/* 0x0C */	long TextureFilteringQuality;
+			/* 0x10 */	long LightingQuality;
+			/* 0x14 */	long EffectsQuality;
+			/* 0x18 */	long ShadowQuality;
+			/* 0x1C */	long DetailsQuality;
+			/* 0x20 */	long PostProcessingQuality;
+			/* 0x24 */	long WaterQuality;;
+			/* 0x28 */	long WindowMode;
+			/* 0x2C */	bool AntiAliasing;
+			/* 0x2D */	bool MotionBlur;
+			/* 0x2E */	bool Blood;
+			/* 0x2F */	bool VSync;
+			/* 0x30 */	bool FPSLock;
+
+			/* 0x31 */	char Padding[3];	// Assumed, this value is never used
+		};
+		CHECK_STRUCTURE_SIZE(GeneralVideoSettingsStructV2, 0x34);
+
+		struct RenderSettingsStructV2 // 0xB8
+		{
+			/* 0x00 */	ScaleAndOffsetStruct WaterLod;
+			/* 0x08 */	ScaleAndOffsetStruct DecoratorFadeDistance;
+			/* 0x10 */	ScaleAndOffsetStruct EffectsLODDistanceScale;
+			/* 0x18 */	ScaleAndOffsetStruct InstanceFadeModifier;
+			/* 0x20 */	ScaleAndOffsetStruct ObjectFadeModifer;
+			/* 0x28 */	ScaleAndOffsetStruct ObjectDetailModifer;
+			/* 0x30 */	ScaleAndOffsetStruct ObjectImposterCutoffModifer;
+			/* 0x38 */	ScaleAndOffsetStruct DecalFadeDistanceScale;
+			/* 0x40 */	ScaleAndOffsetStruct StructureInstanceLODModifer;
+			/* 0x48 */	ScaleAndOffsetStruct CPUDynamicLightMaxCount;
+			/* 0x50 */	ScaleAndOffsetStruct CPUDynamicLightScale;
+			/* 0x58 */	ScaleAndOffsetStruct GPUDynamicLightMaxCount;
+			/* 0x60 */	ScaleAndOffsetStruct GPUDynamicLightScale;
+			/* 0x68 */	ScaleAndOffsetStruct ScreenspaceDynamicLightMaxCount;
+			/* 0x70 */	ScaleAndOffsetStruct ScreenspaceDynamicLightScale;
+			/* 0x78 */	ScaleAndOffsetStruct ShadowGenerateCount;
+			/* 0x80 */	ScaleAndOffsetStruct ShadowQualityLOD;
+			/* 0x88 */	ScaleAndOffsetStruct FloatingShadowQualityLOD;	// Name not in exe, taken from blofeld definitions
+
+			/* 0x90 */	long DisableObjectPRT;
+			/* 0x94 */	long DisableFirstPersonShadow;
+			/* 0x98 */	long DisableDynamicLightingShadows;
+			/* 0x9C */	long DisablePatchyFog;
+			/* 0xA0 */	long DisableCheapParticles;
+			/* 0xA4 */	long DisableSSAO;
+			/* 0xA8 */	long DisableCHUDTurbulence;
+			/* 0xAC */	long DisableDecoratorTypeInstances;
+			/* 0xB0 */	long DisableRain;
+			/* 0xB4 */	long UnknownFlag;
+		};
+		CHECK_STRUCTURE_SIZE(RenderSettingsStructV2, 0xB8);
+
+		/* 0x00 */	GeneralVideoSettingsStructV2 GeneralVideoSettings;
+		/* 0x34 */	char Unknown[0xA8];	// Unknown, this buffer is always memset to 0
+		/* 0xDC */	RenderSettingsStructV2 RenderSettings;
+	};
+	CHECK_STRUCTURE_SIZE(GameDataStructV2, 0x194);
 
 	struct s_transport_address;
 
@@ -238,7 +303,7 @@ public:
 	/* 25 */ virtual void __fastcall session_membership_update_handler(s_session_membership* session_membership, uint32_t player_count);
 	/* 26 */ virtual bool __fastcall function26();
 	/* 27 */ virtual bool __fastcall function27();
-	/* 28 */ virtual bool __fastcall video_settings_update_handler(VideoSettings* video_settings);
+	/* 28 */ virtual bool __fastcall game_data_update_handler(char* game_data);
 	/* 29 */ virtual c_player_configuration* __fastcall player_configuration_get(__int64 value);
 	/* 30 */ virtual __int64 __fastcall player_configuration_update_handler(wchar_t player_names[4][16], c_player_configuration* player_configuration);
 	/* 31 */ virtual bool __fastcall input_update_handler(_QWORD, InputBuffer* input_buffer);
@@ -264,6 +329,9 @@ public:
 	/* 51 */ virtual __int64 __fastcall function59(__int64 a1, unsigned int a2); /* added in 1629 */
 	/* 52 */ virtual __int64  __fastcall function60(__int64 a1); /* added in 1658 */
 	/* 53 */ virtual void __fastcall function61(__int64 a1); /* added in 1658 */
+	/* 54 */ virtual float __fastcall function62(); /* added in 1896 */
+	/* 55 */ virtual __int64 __fastcall function63(float a1); /* added in 1896 */
+	/* 56 */ virtual __int64 __fastcall function64(__int64, unsigned int, int, __int64, float*); /* added in 1896 */
 
 	/* barrier functions to prevent new versions of games calling our functions */
 	IGameEngineHostCreateBarrierDefinition(50);

@@ -435,6 +435,26 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v6].VirtualKeyCodes[0] = 'Q';
 		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v6].VirtualKeyCodes[0] = VK_OEM_RESET;
 	}
+	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v7)
+	{
+		CustomKeyboardMouseMappings[_abstract_button_toggle_rotation_axes_editor_v7].VirtualKeyCodes[0] = 'O';
+		CustomKeyboardMouseMappings[_abstract_button_show_hide_pannel_theater_v7].VirtualKeyCodes[0] = 'X';
+		CustomKeyboardMouseMappings[_abstract_button_show_hide_interface_theater_v7].VirtualKeyCodes[0] = 'Z';
+		CustomKeyboardMouseMappings[_abstract_button_toggle_first_third_person_view_theater_v7].VirtualKeyCodes[0] = 'C';
+		CustomKeyboardMouseMappings[_abstract_button_camera_focus_theater_v7].VirtualKeyCodes[0] = VK_RBUTTON;
+		CustomKeyboardMouseMappings[_abstract_button_fast_forward_theater_v7].VirtualKeyCodes[0] = VK_RIGHT;
+		CustomKeyboardMouseMappings[_abstract_button_fast_rewind_theater_v7].VirtualKeyCodes[0] = VK_LEFT;
+		CustomKeyboardMouseMappings[_abstract_button_stop_continue_playback_theater_v7].VirtualKeyCodes[0] = VK_RETURN;
+		CustomKeyboardMouseMappings[_abstract_button_playback_speed_up_theater_v7].VirtualKeyCodes[0] = VK_LMENU;
+		CustomKeyboardMouseMappings[_abstract_button_enter_free_camera_mode_theater_v7].VirtualKeyCodes[0] = VK_SPACE;
+		CustomKeyboardMouseMappings[_abstract_button_movement_speed_up_theater_v7].VirtualKeyCodes[0] = VK_LSHIFT;
+		CustomKeyboardMouseMappings[_abstract_button_panning_camera_theater_v7].VirtualKeyCodes[0] = VK_OEM_RESET;
+		CustomKeyboardMouseMappings[_abstract_button_camera_move_up_theater_v7].VirtualKeyCodes[0] = 'Q';
+		CustomKeyboardMouseMappings[_abstract_button_camera_move_down_theater_v7].VirtualKeyCodes[0] = 'E';
+		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v7].VirtualKeyCodes[0] = 'Q';
+		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v7].VirtualKeyCodes[0] = VK_OEM_RESET;
+		CustomKeyboardMouseMappings[_abstract_button_loadout_menu_v7].VirtualKeyCodes[0] = 'L';
+	}
 
 	for (long abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
 	{

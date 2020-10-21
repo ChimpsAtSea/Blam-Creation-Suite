@@ -36,7 +36,7 @@ public:
 	virtual void __fastcall session_membership_update_handler(s_session_membership* session_membership, uint32_t player_count) override;
 	virtual bool __fastcall function26() override;
 	virtual bool __fastcall function27() override;
-	virtual bool __fastcall video_settings_update_handler(VideoSettings* video_settings) override;
+	virtual bool __fastcall game_data_update_handler(char* game_data) override;
 	virtual c_player_configuration* __fastcall player_configuration_get(__int64 value) override;
 	virtual __int64 __fastcall player_configuration_update_handler(wchar_t player_names[4][16], c_player_configuration* player_configuration) override;
 	virtual bool __fastcall input_update_handler(_QWORD, InputBuffer* input_buffer) override;
@@ -62,6 +62,9 @@ public:
 	virtual __int64 __fastcall function59(__int64 a1, unsigned int a2); /* added in 1629 */
 	virtual __int64 __fastcall function60(__int64 a1); /* added in 1658 */
 	virtual void __fastcall function61(__int64 a1); /* added in 1658 */
+	virtual float __fastcall function62(); /* added in 1896 */
+	virtual __int64 __fastcall function63(float a1); /* added in 1896 */
+	virtual __int64 __fastcall function64(__int64, unsigned int, int, __int64, float*); /* added in 1896 */
 
 	// Opus Functionality
 	virtual void render_ui() const = 0;

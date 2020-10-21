@@ -3010,6 +3010,41 @@ enum e_abstract_button : long
 	_abstract_button_previous_grenade_v6,
 	_abstract_button_special_action_v6,
 
+	_abstract_button_loadout_menu_v7 = _abstract_button_lift_editor_v3,
+	_abstract_button_lift_editor_v7,
+	_abstract_button_drop_editor_v7,
+	_abstract_button_grab_object_editor_v7,
+	_abstract_button_boost_editor_v7,
+	_abstract_button_crouch_editor_v7,
+	_abstract_button_delete_object_editor_v7,
+	_abstract_button_create_object_editor_v7,
+	_abstract_button_open_tool_menu_editor_v7,
+	_abstract_button_switch_player_mode_editor_v7,
+	_abstract_button_scope_zoom_editor_v7,
+	_abstract_button_player_lock_for_manipulation_editor_v7,
+	_abstract_button_toggle_rotation_axes_editor_v7,
+	_abstract_button_show_hide_pannel_theater_v7,
+	_abstract_button_show_hide_interface_theater_v7,
+	_abstract_button_toggle_first_third_person_view_theater_v7,
+	_abstract_button_camera_focus_theater_v7,
+	_abstract_button_fast_forward_theater_v7,
+	_abstract_button_fast_rewind_theater_v7,
+	_abstract_button_stop_continue_playback_theater_v7,
+	_abstract_button_playback_speed_up_theater_v7,
+	_abstract_button_enter_free_camera_mode_theater_v7,
+	_abstract_button_movement_speed_up_theater_v7,
+	_abstract_button_panning_camera_theater_v7,
+	_abstract_button_camera_move_up_theater_v7,
+	_abstract_button_camera_move_down_theater_v7,
+	_abstract_button_dual_wield_v7,
+	_abstract_button_duplicate_object_editor_v7,
+	_abstract_button_lock_object_editor_v7,
+	_abstract_button_reset_orientation_editor_v7,
+	_abstract_button_zoom_camera_theater_v7,
+	_abstract_button_reload_secondary_v7,
+	_abstract_button_previous_grenade_v7,
+	_abstract_button_special_action_v7,
+
 	k_number_of_abstract_buttons,
 
 	k_number_of_abstract_buttons_v1 = _abstract_button_equipment_v1 + 1,
@@ -3018,6 +3053,7 @@ enum e_abstract_button : long
 	k_number_of_abstract_buttons_v4 = _abstract_button_movement_speed_up_theater_v4 + 1,
 	k_number_of_abstract_buttons_v5 = _abstract_button_zoom_camera_theater_v5 + 1,
 	k_number_of_abstract_buttons_v6 = _abstract_button_special_action_v6 + 1,
+	k_number_of_abstract_buttons_v7 = _abstract_button_special_action_v7 + 1,
 };
 
 template<size_t abstract_button_count>
@@ -3414,6 +3450,8 @@ using t_player_configuration_v7 = s_player_configuration_v7<k_number_of_abstract
 CHECK_STRUCTURE_SIZE(t_player_configuration_v7, 0xA6C);
 using t_player_configuration_v8 = s_player_configuration_v7<k_number_of_abstract_buttons_v6, 32>;
 CHECK_STRUCTURE_SIZE(t_player_configuration_v8, 0xAF4);
+using t_player_configuration_v9 = s_player_configuration_v7<k_number_of_abstract_buttons_v7, 32>;
+CHECK_STRUCTURE_SIZE(t_player_configuration_v9, 0xB0C);
 
 enum e_player_configuration_version
 {
@@ -3425,6 +3463,7 @@ enum e_player_configuration_version
 	_player_configuration_version_6,
 	_player_configuration_version_7,
 	_player_configuration_version_8,
+	_player_configuration_version_9,
 };
 
 class c_player_configuration
@@ -3440,6 +3479,7 @@ private:
 		t_player_configuration_v6 player_configuration_v6;
 		t_player_configuration_v7 player_configuration_v7;
 		t_player_configuration_v8 player_configuration_v8;
+		t_player_configuration_v9 player_configuration_v9;
 	};
 public:
 	e_player_configuration_version const player_configuration_version;
@@ -3553,6 +3593,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3568,6 +3609,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3582,6 +3624,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3595,6 +3638,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3607,6 +3651,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3618,6 +3663,7 @@ private:
 		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3628,6 +3674,7 @@ private:
 		{ \
 		case _player_configuration_version_7: return &player_configuration_v7.field_name; \
 		case _player_configuration_version_8: return &player_configuration_v8.field_name; \
+		case _player_configuration_version_9: return &player_configuration_v9.field_name; \
 		} \
 		return nullptr; \
 	}
@@ -3745,6 +3792,7 @@ private:
 			{
 			case _player_configuration_version_7: return parent.player_configuration_v7.UserSkins[abstract_button_index];
 			case _player_configuration_version_8: return parent.player_configuration_v8.UserSkins[abstract_button_index];
+			case _player_configuration_version_9: return parent.player_configuration_v9.UserSkins[abstract_button_index];
 			}
 			throw;
 		}
@@ -3771,6 +3819,7 @@ private:
 			case _player_configuration_version_6: return parent.player_configuration_v6.CustomKeyboardMouseMappings[abstract_button_index];
 			case _player_configuration_version_7: return parent.player_configuration_v7.CustomKeyboardMouseMappings[abstract_button_index];
 			case _player_configuration_version_8: return parent.player_configuration_v8.CustomKeyboardMouseMappings[abstract_button_index];
+			case _player_configuration_version_9: return parent.player_configuration_v9.CustomKeyboardMouseMappings[abstract_button_index];
 			}
 			throw;
 		}
@@ -3794,6 +3843,8 @@ private:
 		case _player_configuration_version_7:
 		case _player_configuration_version_8:
 			return k_number_of_abstract_buttons_v6;
+		case _player_configuration_version_9:
+			return k_number_of_abstract_buttons_v7;
 		}
 
 		return k_number_of_abstract_buttons;
@@ -3915,6 +3966,7 @@ public:
 		memset(&player_configuration_v6, 0, sizeof(player_configuration_v6));
 		memset(&player_configuration_v7, 0, sizeof(player_configuration_v7));
 		memset(&player_configuration_v8, 0, sizeof(player_configuration_v8));
+		memset(&player_configuration_v9, 0, sizeof(player_configuration_v9));
 	}
 };
 

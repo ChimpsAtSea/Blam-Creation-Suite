@@ -33,6 +33,7 @@ static bool k_autostart_halo_halo1 = false;
 static bool k_autostart_halo_halo2 = false;
 static bool k_autostart_halo_halo3 = false;
 static bool k_autostart_halo_halo3odst = false;
+static bool k_autostart_halo_halo4 = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
@@ -51,6 +52,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
 	k_autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
 	k_autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
+	k_autostart_halo_halo4 = c_command_line::get_command_line_arg("-autostart") == "halo4";
 	k_autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
 	k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
 	k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
@@ -108,6 +110,11 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		is_bink2_required = true;
 		is_xaudio2_9redist_required = true;
 		add_supported_engine(_engine_type_halo3odst);
+	}
+
+	if (PathFileExistsA("halo4\\halo4.dll"))
+	{
+		add_supported_engine(_engine_type_halo4);
 	}
 
 	if (is_bink2_required)
@@ -205,6 +212,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		if (k_autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
 		if (k_autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
 		if (k_autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
+		if (k_autostart_halo_halo4) start_game(_engine_type_halo4, _next_launch_mode_generic);
 		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
 		if (k_autostart_halo_eldorado || k_autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
@@ -362,6 +370,7 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 	case _engine_type_halo2:
 	case _engine_type_halo3:
 	case _engine_type_halo3odst:
+	case _engine_type_halo4:
 	case _engine_type_groundhog:
 		launch_mcc_game(engine_type);
 		break;
@@ -412,6 +421,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		current_game_host = new c_halo3odst_game_host(engine_type, build);
 		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_firefight_mode ? "odst_ff_classic" : "";
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
+		break;
+	case _engine_type_halo4:
+		build = c_halo4_game_host::get_game_runtime().get_build();
+		current_game_host = new c_halo4_game_host(engine_type, build);
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H4_BASIC_EDITING_132" : "H4_SLAYER_132";
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "h4_ragnarok_squad_default";
 		break;
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
@@ -507,7 +522,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			case _engine_type_halo4:
 				game_context->game_mode = map_id_to_game_mode(g_halo4_map_id);
 				game_context->map_id = g_halo4_map_id;
-				//data_access = c_halo4_game_host::get_data_access();
+				data_access = c_halo4_game_host::get_data_access();
 				break;
 			case _engine_type_groundhog:
 				game_context->game_mode = map_id_to_game_mode(g_groundhog_map_id);

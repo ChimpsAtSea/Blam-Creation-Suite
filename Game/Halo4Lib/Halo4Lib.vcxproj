@@ -106,6 +106,7 @@
     <ClInclude Include="opus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="halo4_game_host.shell.inl" />
     <None Include="halo4_game_host.testing.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

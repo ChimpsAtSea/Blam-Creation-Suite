@@ -55,5 +55,8 @@
     <None Include="halo4_game_host.testing.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo4_game_host.shell.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
