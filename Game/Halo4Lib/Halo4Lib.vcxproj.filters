@@ -61,5 +61,8 @@
     <None Include="halo4_game_host.user_interface.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo4_game_host.mainmenu.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
