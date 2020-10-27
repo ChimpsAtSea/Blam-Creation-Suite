@@ -108,6 +108,7 @@
   <ItemGroup>
     <None Include="halo4_game_host.shell.inl" />
     <None Include="halo4_game_host.testing.inl" />
+    <None Include="halo4_game_host.user_interface.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
