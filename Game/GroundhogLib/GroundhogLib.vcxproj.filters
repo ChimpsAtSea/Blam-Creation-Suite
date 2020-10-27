@@ -58,5 +58,8 @@
     <None Include="groundhog_game_host.memory.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="groundhog_game_host.user_interface.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
