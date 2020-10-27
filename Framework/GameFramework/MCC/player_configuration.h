@@ -3786,13 +3786,13 @@ private:
 
 		c_player_configuration& parent;
 
-		s_user_skin& operator[](size_t abstract_button_index) const
+		s_user_skin& operator[](size_t user_skin_index) const
 		{
 			switch (parent.player_configuration_version)
 			{
-			case _player_configuration_version_7: return parent.player_configuration_v7.UserSkins[abstract_button_index];
-			case _player_configuration_version_8: return parent.player_configuration_v8.UserSkins[abstract_button_index];
-			case _player_configuration_version_9: return parent.player_configuration_v9.UserSkins[abstract_button_index];
+			case _player_configuration_version_7: return parent.player_configuration_v7.UserSkins[user_skin_index];
+			case _player_configuration_version_8: return parent.player_configuration_v8.UserSkins[user_skin_index];
+			case _player_configuration_version_9: return parent.player_configuration_v9.UserSkins[user_skin_index];
 			}
 			throw;
 		}

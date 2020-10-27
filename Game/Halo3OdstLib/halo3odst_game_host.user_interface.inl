@@ -36,3 +36,4 @@ c_data_patch<halo3odst_settings_menu_patch2_offset> halo3odst_settings_menu_patc
 		nop_address(data, 6);
 	}
 };
+#pragma endregion
