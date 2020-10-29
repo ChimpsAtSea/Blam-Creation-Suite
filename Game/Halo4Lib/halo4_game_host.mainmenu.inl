@@ -11,7 +11,6 @@ c_function_hook_ex<mcc_map_id_parse_from_halo4_offset, long __fastcall(long map_
 	return result == -1l ? map_id : result;
 } };
 
-bool launched_as_mainmenu = false;
 uintptr_t mcc_map_id_parse_to_halo4_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x18007DF20);
@@ -19,7 +18,6 @@ uintptr_t mcc_map_id_parse_to_halo4_offset(e_engine_type engine_type, e_build bu
 }
 c_function_hook_ex<mcc_map_id_parse_to_halo4_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo4 = { "mcc_map_id_parse_to_halo4", [](long map_id)
 {
-	launched_as_mainmenu = map_id == _map_id_mainmenu;
 	long result = mcc_map_id_parse_to_halo4(map_id);
 	return result == -1l ? map_id : result;
 } };
