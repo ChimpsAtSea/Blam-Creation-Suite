@@ -291,6 +291,18 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 			read_control_from_config(PlayerModelSecondaryColor, (long)e_customization_item_v1::H2A_Color_1);
 			read_control_from_config(PlayerModelTertiaryColor, (long)e_customization_item_v1::H2A_Color_1);
 			break;
+		case _engine_type_halo4:
+			read_control_from_config(HelmetIndex, (long)e_customization_item_v5::H4_Helmet_EOD);
+			read_control_from_config(LeftShoulderIndex, (long)e_customization_item_v5::H4_LeftShoulder_EOD);
+			read_control_from_config(RightShoulderIndex, (long)e_customization_item_v5::H4_RightShoulder_EOD);
+			read_control_from_config(ChestIndex, (long)e_customization_item_v5::H4_Chest_EOD);
+			read_control_from_config(VisorColorIndex, (long)e_customization_item_v5::H4_Visor_MIDNIGHT);
+			read_control_from_config(SpartanBodyIndex, (long)e_customization_item_v5::H4_Female);
+			read_control_from_config(VoiceIndex, (long)e_customization_item_v5::k_customization_item_none);
+			read_control_from_config(PlayerModelPrimaryColor, (long)e_customization_item_v5::H4_Color22_Brick);
+			read_control_from_config(PlayerModelSecondaryColor, (long)e_customization_item_v5::HR_Color_Cyan);
+			read_control_from_config(PlayerModelTertiaryColor, (long)e_customization_item_v5::HR_Color_Cyan);
+			break;
 		}
 	}
 

@@ -47,6 +47,7 @@ c_data_patch<mcc_game_mode_parse_to_halo4_patch_offset> mcc_game_mode_parse_to_h
 size_t halo4_enable_mainmenu_scenario_patch_size(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 6);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 6);
 	return ~size_t();
 }
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
@@ -54,6 +55,7 @@ size_t halo4_enable_mainmenu_scenario_patch_size(e_engine_type engine_type, e_bu
 uintptr_t halo4_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180104510);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180105888);
 	return ~uintptr_t();
 }
 c_data_patch<halo4_enable_mainmenu_scenario_patch_offset> halo4_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -71,6 +73,7 @@ c_data_patch<halo4_enable_mainmenu_scenario_patch_offset> halo4_enable_mainmenu_
 uintptr_t halo4_external_launch_timeout_patch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180066F6B);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180066F8B);
 	return ~uintptr_t();
 }
 
@@ -78,6 +81,7 @@ std::vector<uint8_t> halo4_external_launch_timeout_patch_bytes(e_engine_type eng
 {
 	// change instruction from `jump not zero` to `jump` and nop the last byte
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0xE9, 0xDB, 0x00, 0x00, 0x00, 0x90);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0xE9, 0xDB, 0x00, 0x00, 0x00, 0x90);
 	return { };
 }
 c_data_patch<halo4_external_launch_timeout_patch_offset> halo4_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
