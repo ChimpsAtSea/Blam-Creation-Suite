@@ -162,6 +162,7 @@ uintptr_t haloreach_external_launch_individual_state_offset(e_engine_type engine
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x180DA1C74);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x180DA1C74);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x180DA1C74);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x180B22274);
 	return ~uintptr_t();
 }
 long& haloreach_external_launch_individual_state = reference_symbol<long>("haloreach_external_launch_individual_state", haloreach_external_launch_individual_state_offset);
@@ -190,6 +191,7 @@ uintptr_t haloreach_main_game_launch_offset(e_engine_type engine_type, e_build b
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x180014F30);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x180014F30);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x180014F30);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x180011058);
 
 	if (engine_type == _engine_type_haloreach)
 	{
@@ -286,6 +288,7 @@ c_function_hook_ex<haloreach_main_game_launch_offset, char __fastcall (__int64 a
 uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x18004CD50);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18003E3E0);
 	if (engine_type == _engine_type_haloreach)
 	{
 		using namespace ketchup;
@@ -344,6 +347,7 @@ c_function_hook_ex<mcc_map_id_parse_to_reach_offset, int __fastcall (int a1)> mc
 uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x18004CF80);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18003E6A0);
 	if (engine_type == _engine_type_haloreach)
 	{
 		using namespace ketchup;
