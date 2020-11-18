@@ -14,19 +14,22 @@ uint64_t ownership_mask = ~0ull;
 
 static std::vector<e_engine_type> g_supported_engine_types;
 static e_engine_type g_engine_type = _engine_type_not_set;
+
 static std::vector<e_map_id> g_haloreach_map_ids;
 static std::vector<e_map_id> g_halo1_map_ids;
-e_map_id g_halo1_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo2_map_ids;
-e_map_id g_halo2_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3_map_ids;
-e_map_id g_halo3_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo3odst_map_ids;
-e_map_id g_halo3odst_map_id = _map_id_mainmenu;
 static std::vector<e_map_id> g_halo4_map_ids;
-e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
 static std::vector<e_map_id> g_groundhog_map_ids;
+
+e_map_id g_halo1_map_id = _map_id_mainmenu;
+e_map_id g_halo2_map_id = _map_id_mainmenu;
+e_map_id g_halo3_map_id = _map_id_mainmenu;
+e_map_id g_halo3odst_map_id = _map_id_mainmenu;
+e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
 e_map_id g_groundhog_map_id = _map_id_groundhog_coagulation;
+
 static bool has_auto_started = false;
 static bool k_autostart_halo_haloreach = false;
 static bool k_autostart_halo_halo1 = false;
@@ -37,10 +40,13 @@ static bool k_autostart_halo_halo4 = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
-static bool use_remastered_visuals = true;
-static bool use_remastered_music = true;
-static bool start_as_forge_mode = true;
-static bool start_as_firefight_mode = true;
+
+static bool use_remastered_visuals = false;
+static bool use_remastered_music = false;
+static bool use_remastered_sfx = false;
+
+static bool start_as_forge_mode = false;
+static bool start_as_firefight_mode = false;
 static signed int g_insertion_point = 0;
 
 void c_game_launcher::init_game_launcher(c_window& window)
@@ -65,32 +71,41 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 	// #TODO: Find a home for this
 
-	bool is_bink2_required = false;
-	bool is_fmod_required = false;
-	bool is_fmod_event_net_required = false;
-	bool is_mopp_required = false;
-	bool is_ati_compress_required = false;
-	bool is_miles_sound_system_required = false;
-	bool is_xaudio2_9redist_required = false;
+	enum e_required_dll
+	{
+		_required_dll_bink2 = 0,
+		_required_dll_fmod,
+		_required_dll_fmod_event_net,
+		_required_dll_mopp,
+		_required_dll_ati_compress,
+		_required_dll_miles_sound_system,
+		_required_dll_xaudio2_9redist,
+
+		k_number_of_required_dlls
+	};
+
+	unsigned long required_dll_mask = 0U;
+
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
-		is_bink2_required = true;
+		required_dll_mask |= 1ul << _required_dll_bink2;
+		required_dll_mask |= 1ul << _required_dll_xaudio2_9redist;
 		add_supported_engine(_engine_type_haloreach);
 	}
 
 	if (PathFileExistsA("halo1\\halo1.dll"))
 	{
-		is_fmod_required = true;
-		is_fmod_event_net_required = true;
+		required_dll_mask |= 1ul << _required_dll_fmod;
+		required_dll_mask |= 1ul << _required_dll_fmod_event_net;
 		add_supported_engine(_engine_type_halo1);
 	}
 
 	if (PathFileExistsA("halo2\\halo2.dll"))
 	{
-		is_bink2_required = true;
-		is_mopp_required = true;
-		is_ati_compress_required = true;
-		is_miles_sound_system_required = true;
+		required_dll_mask |= 1ul << _required_dll_bink2;
+		required_dll_mask |= 1ul << _required_dll_mopp;
+		required_dll_mask |= 1ul << _required_dll_ati_compress;
+		required_dll_mask |= 1ul << _required_dll_miles_sound_system;
 		add_supported_engine(_engine_type_halo2);
 	}
 
@@ -101,14 +116,15 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 	if (PathFileExistsA("halo3\\halo3.dll"))
 	{
-		is_bink2_required = true;
+		required_dll_mask |= 1ul << _required_dll_bink2;
+		required_dll_mask |= 1ul << _required_dll_xaudio2_9redist;
 		add_supported_engine(_engine_type_halo3);
 	}
 
 	if (PathFileExistsA("halo3odst\\halo3odst.dll"))
 	{
-		is_bink2_required = true;
-		is_xaudio2_9redist_required = true;
+		required_dll_mask |= 1ul << _required_dll_bink2;
+		required_dll_mask |= 1ul << _required_dll_xaudio2_9redist;
 		add_supported_engine(_engine_type_halo3odst);
 	}
 
@@ -117,37 +133,37 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		add_supported_engine(_engine_type_halo4);
 	}
 
-	if (is_bink2_required)
+	if ((required_dll_mask >> _required_dll_bink2) & 1ul)
 	{
 		ensure_library_loaded("bink2w64.dll", "MCC\\Binaries\\Win64");
 	}
-	if (is_fmod_required)
+	if ((required_dll_mask >> _required_dll_fmod) & 1ul)
 	{
 		ensure_library_loaded("halo1\\fmodex64.dll", "..\\halo1");
 	}
-	if (is_fmod_event_net_required)
+	if ((required_dll_mask >> _required_dll_fmod_event_net) & 1ul)
 	{
 		ensure_library_loaded("halo1\\fmod_event_net64.dll", "..\\halo1");
 	}
-	if (is_fmod_event_net_required)
+	if ((required_dll_mask >> _required_dll_fmod_event_net) & 1ul)
 	{
 		ensure_library_loaded("halo1\\fmod_event_net64.dll", "..\\halo1");
 	}
-	if (is_mopp_required)
+	if ((required_dll_mask >> _required_dll_mopp) & 1ul)
 	{
 		ensure_library_loaded("halo2\\MOPP.dll", "..\\halo2");
 	}
-	if (is_ati_compress_required)
+	if ((required_dll_mask >> _required_dll_ati_compress) & 1ul)
 	{
 		ensure_library_loaded("halo2\\ATICompressDLL.dll", "..\\halo2");
 	}
-	if (is_miles_sound_system_required)
+	if ((required_dll_mask >> _required_dll_miles_sound_system) & 1ul)
 	{
 		ensure_library_loaded("halo2\\mss64.dll", "..\\halo2");
 	}
-	if (is_xaudio2_9redist_required)
+	if ((required_dll_mask >> _required_dll_xaudio2_9redist) & 1ul)
 	{
-		ensure_library_loaded("xaudio2_9redist.dll", "MCC\\Binaries\\Win64");
+		ensure_library_loaded("xaudio2_9redist.dll", "..\\");
 	}
 #endif
 
@@ -387,161 +403,181 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 	s_is_game_running = false;
 }
 #ifdef _WIN64
-void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
-{
-	ASSERT(current_game_host == nullptr);
 
+c_opus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
+{
 	e_build build = _build_not_set;
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		build = c_haloreach_game_host::get_game_runtime().get_build();
-		current_game_host = new c_haloreach_game_host(engine_type, build);
-		break;
+		return new c_haloreach_game_host(engine_type, c_haloreach_game_host::get_game_runtime().get_build());
 	case _engine_type_halo1:
-		build = c_halo1_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo1_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
-		break;
+		return new c_halo1_game_host(engine_type, c_halo1_game_host::get_game_runtime().get_build());
 	case _engine_type_halo2:
-		build = c_halo2_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo2_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
-		break;
+		return new c_halo2_game_host(engine_type, c_halo2_game_host::get_game_runtime().get_build());
 	case _engine_type_halo3:
-		build = c_halo3_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo3_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
-		break;
+		return new c_halo3_game_host(engine_type, c_halo3_game_host::get_game_runtime().get_build());
 	case _engine_type_halo3odst:
-		build = c_halo3odst_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo3odst_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_firefight_mode ? "odst_ff_classic" : "";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "default_last_resort_012";
-		break;
+		return new c_halo3odst_game_host(engine_type, c_halo3odst_game_host::get_game_runtime().get_build());
 	case _engine_type_halo4:
-		build = c_halo4_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo4_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H4_BASIC_EDITING_132" : "H4_SLAYER_132";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "h4_ragnarok_squad_default";
-		break;
+		return new c_halo4_game_host(engine_type, c_halo4_game_host::get_game_runtime().get_build());
 	case _engine_type_groundhog:
-		build = c_groundhog_game_host::get_game_runtime().get_build();
-		current_game_host = new c_groundhog_game_host(engine_type, build);
-		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
-		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
-		break;
-	default:
-		c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+		return new c_groundhog_game_host(engine_type, c_groundhog_game_host::get_game_runtime().get_build());
+	}
+
+	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	return nullptr;
+}
+
+IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_mode& game_mode, e_map_id& map_id)
+{
+	ASSERT(current_game_host != nullptr);
+
+	c_mandrill_user_interface*& mandrill_user_interface = c_game_launcher::mandrill_user_interface;
+
+	if (engine_type == _engine_type_haloreach)
+	{
+		const c_map_info* selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
+		e_mcc_game_mode selected_game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
+
+		game_mode = selected_game_mode;
+		map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
+
+		//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
+		//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
+
+		{
+			// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
+			const char* map_file_name = selected_map_info->get_map_filepath();
+			c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
+			{
+				wchar_t map_filepath[MAX_PATH + 1] = {};
+				_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
+				mandrill_user_interface->open_cache_file_tab(map_filepath);
+			}
+		}
+
+		return c_haloreach_game_host::get_data_access();
+	}
+
+	switch (engine_type)
+	{
+	case _engine_type_halo1:
+		game_mode = map_id_to_game_mode(g_halo1_map_id);
+		map_id = g_halo1_map_id;
+		//break;
+		return c_halo1_game_host::get_data_access();
+	case _engine_type_halo2:
+		game_mode = map_id_to_game_mode(g_halo2_map_id);
+		map_id = g_halo2_map_id;
+		//break;
+		return c_halo2_game_host::get_data_access();
+	case _engine_type_halo3:
+		game_mode = map_id_to_game_mode(g_halo3_map_id);
+		map_id = g_halo3_map_id;
+		return c_halo3_game_host::get_data_access();
+	case _engine_type_halo3odst:
+		game_mode = start_as_firefight_mode ? _mcc_game_mode_firefight : map_id_to_game_mode(g_halo3odst_map_id);
+		map_id = g_halo3odst_map_id;
+		return c_halo3odst_game_host::get_data_access();
+	case _engine_type_halo4:
+		game_mode = map_id_to_game_mode(g_halo4_map_id);
+		map_id = g_halo4_map_id;
+		return c_halo4_game_host::get_data_access();
+	case _engine_type_groundhog:
+		game_mode = map_id_to_game_mode(g_groundhog_map_id);
+		map_id = g_groundhog_map_id;
+		return c_groundhog_game_host::get_data_access();
+	}
+
+	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	return nullptr;
+}
+
+void default_variants_from_engine_type(e_engine_type engine_type, std::string& game_variant, std::string& map_variant)
+{
+	ASSERT(current_game_host != nullptr);
+
+	switch (engine_type)
+	{
+	case _engine_type_haloreach:
+		game_variant = c_haloreach_game_option_selection_legacy::s_launch_game_variant;
+		map_variant = c_haloreach_game_option_selection_legacy::s_launch_map_variant;
+		return;
+	case _engine_type_halo1:
+		game_variant = "02_team_slayer";
+		//map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
+		return;
+	case _engine_type_halo2:
+		game_variant = "02_team_slayer";
+		//map_variant = "Bloodline"; // map variants don't exist in Halo 2
+		return;
+	case _engine_type_halo3:
+		game_variant = start_as_forge_mode ? "00_sandbox-0_010" : "slayer-0_010";
+		//map_variant = "default_last_resort_012";
+		return;
+	case _engine_type_halo3odst:
+		game_variant = start_as_firefight_mode ? "odst_ff_classic" : "";
+		//map_variant = "default_last_resort_012";
+		return;
+	case _engine_type_halo4:
+		game_variant = start_as_forge_mode ? "H4_BASIC_EDITING_132" : "H4_SLAYER_132";
+		//map_variant = "h4_ragnarok_squad_default";
+		return;
+	case _engine_type_groundhog:
+		game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
+		//map_variant = "Bloodline"; // if left blank a default map variant is created
 		return;
 	}
 
+	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	return;
+}
+
+void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
+{
+	ASSERT(current_game_host == nullptr);
+
+	current_game_host = game_host_from_engine_type(engine_type);
 	ASSERT(current_game_host != nullptr);
-	IGameEngine* game_engine = current_game_host->get_game_engine();
-	ASSERT(game_engine != nullptr);
+
+	std::string game_variant, map_variant;
+	default_variants_from_engine_type(engine_type, game_variant, map_variant);
 
 	// #TODO: Game specific version of this!!!
 
 	for (t_generic_game_event game_event : s_game_startup_events)
 	{
-		game_event(engine_type, build);
+		game_event(engine_type, current_game_host->build);
 	}
 
 	GameContext* game_context = nullptr;
-	c_session_manager::create_game_context(build, &game_context);
+	c_session_manager::create_game_context(current_game_host->build, &game_context);
 	ASSERT(game_context);
 
 	game_context->visual_remaster = use_remastered_visuals;
 	game_context->music_remaster = use_remastered_music;
-	game_context->sfx_remaster = false; // use_remastered_sfx;
+	game_context->sfx_remaster = use_remastered_sfx;
 
 	if (!load_save_from_file(game_context, "5EE59DB6.halo3", false))
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host == true)
 		{
-			IDataAccess *data_access = nullptr;
+			e_mcc_game_mode game_mode = _mcc_game_mode_none;
+			e_map_id map_id = _map_id_none;
+
+			IDataAccess* data_access = data_access_from_engine_type(engine_type, game_mode, map_id);
+			ASSERT(data_access != nullptr);
+
+			game_context->game_mode = game_mode;
+			game_context->map_id = map_id;
 
 			game_context->campaign_difficulty_level = g_campaign_difficulty_level;
-
-			if (engine_type == _engine_type_haloreach)
-			{
-				const c_map_info *selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
-				e_mcc_game_mode game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
-
-				game_context->game_mode = game_mode;
-				game_context->map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
-				data_access = c_haloreach_game_host::get_data_access();
-
-				//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
-				//c_haloreach_game_option_selection_legacy::load_savefilm(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
-
-				{
-					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
-					const char *map_file_name = selected_map_info->get_map_filepath();
-					c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
-					{
-						wchar_t map_filepath[MAX_PATH + 1] = {};
-						_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
-						mandrill_user_interface->open_cache_file_tab(map_filepath);
-					}
-				}
-			}
-
-			switch (engine_type)
-			{
-			case _engine_type_halo1:
-				game_context->game_mode = map_id_to_game_mode(g_halo1_map_id);
-				game_context->map_id = g_halo1_map_id;
-				if (game_context->game_mode == _mcc_game_mode_multiplayer)
-				{
-					data_access = c_halo1_game_host::get_data_access();
-				}
-				break;
-			case _engine_type_halo2:
-				game_context->game_mode = map_id_to_game_mode(g_halo2_map_id);
-				game_context->map_id = g_halo2_map_id;
-				if (game_context->game_mode == _mcc_game_mode_multiplayer)
-				{
-					data_access = c_halo2_game_host::get_data_access();
-				}
-				break;
-			case _engine_type_halo3:
-				game_context->game_mode = map_id_to_game_mode(g_halo3_map_id);
-				game_context->map_id = g_halo3_map_id;
-				data_access = c_halo3_game_host::get_data_access();
-				break;
-			case _engine_type_halo3odst:
-				game_context->game_mode = start_as_firefight_mode ? _mcc_game_mode_firefight : map_id_to_game_mode(g_halo3odst_map_id);
-				game_context->map_id = g_halo3odst_map_id;
-				data_access = c_halo3odst_game_host::get_data_access();
-				break;
-			case _engine_type_halo4:
-				game_context->game_mode = map_id_to_game_mode(g_halo4_map_id);
-				game_context->map_id = g_halo4_map_id;
-				data_access = c_halo4_game_host::get_data_access();
-				break;
-			case _engine_type_groundhog:
-				game_context->game_mode = map_id_to_game_mode(g_groundhog_map_id);
-				game_context->map_id = g_groundhog_map_id;
-				data_access = c_groundhog_game_host::get_data_access();
-				break;
-			}
-
-			if (data_access != nullptr)
-			{
-				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game,
-					c_haloreach_game_option_selection_legacy::s_launch_game_variant.c_str()
-				);
-				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map,
-					c_haloreach_game_option_selection_legacy::s_launch_map_variant.c_str()
-				);
-			}
-
 			game_context->campaign_insertion_point = g_insertion_point;
+
+			load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game, game_variant.c_str());
+			load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map, map_variant.c_str());
 		}
 	}
 
@@ -561,6 +597,9 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 	IGameEngineHost* game_engine_host = current_game_host->GetDynamicGameEngineHost();
 	static HANDLE game_main_thread = NULL;
+
+	IGameEngine* game_engine = current_game_host->get_game_engine();
+	ASSERT(game_engine != nullptr);
 
 	game_engine->Member04(c_render::s_device);
 	game_engine->Member05(game_context->map_id);
@@ -594,7 +633,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 	for (t_generic_game_event game_event : s_game_shutdown_events)
 	{
-		game_event(engine_type, build);
+		game_event(engine_type, current_game_host->build);
 	}
 
 	delete current_game_host;
@@ -749,6 +788,7 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 		case _engine_type_halo2:
 			ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
 			ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+			ImGui::Checkbox("Use Remastered Sfx", &use_remastered_sfx);
 			break;
 		}
 	}
