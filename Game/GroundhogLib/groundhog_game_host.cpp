@@ -13,6 +13,7 @@ static c_groundhog_engine_state_command* g_groundhog_engine_state_command;
 /* ---------- public code */
 
 #include "groundhog_game_host.memory.inl"
+#include "groundhog_game_host.shell.inl"
 #include "groundhog_game_host.user_interface.inl"
 #include "groundhog_game_host.testing.inl"
 
