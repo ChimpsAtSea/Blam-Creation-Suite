@@ -55,5 +55,11 @@
     <None Include="halo2_game_host.testing.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo2_game_host.mainmenu.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="halo2_game_host.fixes.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

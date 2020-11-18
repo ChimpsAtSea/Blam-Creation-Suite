@@ -12,6 +12,8 @@ static c_halo2_engine_state_command* g_halo2_engine_state_command;
 /* ---------- private prototypes */
 /* ---------- public code */
 
+#include "halo2_game_host.fixes.inl"
+#include "halo2_game_host.mainmenu.inl"
 #include "halo2_game_host.testing.inl"
 
 void register_halo2lib()
