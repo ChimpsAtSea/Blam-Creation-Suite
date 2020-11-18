@@ -244,11 +244,6 @@ enum e_tls_offset
 };
 
 // Custom Stuff
-
-extern WORD g_frameLimit;
-extern bool g_pancamEnabled;
-extern int g_controlsLayout;
-extern int g_useController;
 extern bool g_CenteredCrosshair;
 
 // Halo Reach Functions

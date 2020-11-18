@@ -73,5 +73,8 @@
     <None Include="halo1_game_host.fixes.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo1_game_host.mainmenu.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

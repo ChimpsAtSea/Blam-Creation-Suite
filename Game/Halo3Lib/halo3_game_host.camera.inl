@@ -4,9 +4,8 @@ uintptr_t halo3_player_mapping_get_local_player_offset(e_engine_type engine_type
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802ACF20);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1802A74E0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1802A74E0);
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, ~uintptr_t()); // this build inlined `player_mapping_get_local_player`
+	// not available for builds 1767-1871
+	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800FA564);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_player_mapping_get_local_player_offset, int __stdcall ()> halo3_player_mapping_get_local_player;
@@ -16,9 +15,13 @@ uintptr_t halo3_observer_try_and_get_camera_offset(e_engine_type engine_type, e_
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18034C840);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180347260);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180347260);
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x1801EFAA0); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x1801EFB90); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1801F0060); // since `player_mapping_get_local_player` was inlined we won't reference 'observer_try_and_get_camera'
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x1801EFAA0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x1801EFB90);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x1801F0060);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x1801F4CE0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x1801F4CE0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x1801F4CE0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1801808B0);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> halo3_observer_try_and_get_camera;
@@ -28,13 +31,11 @@ std::vector<uintptr_t> halo3_enable_debug_hud_coordinates_offsets(e_engine_type 
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802EEDC3, 0x1802EEDF2);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1802E9563, 0x1802E9592);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1802E9563, 0x1802E9592);
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, ~uintptr_t()); #TODO: get this offsets, since `player_mapping_get_local_player` was inlined the asm instructions a skewed
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, ~uintptr_t()); #TODO: get this offsets, since `player_mapping_get_local_player` was inlined the asm instructions a skewed
-	//OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, ~uintptr_t()); #TODO: get this offsets, since `player_mapping_get_local_player` was inlined the asm instructions a skewed
+	// instructions skewed for builds 1767-1955
 	return {};
 }
 // Enable debug hud coordinates, props to Exhibit
-c_multi_data_patch<halo3_enable_debug_hud_coordinates_offsets> halo3_enable_debug_hud_coordinates = {
+c_multi_data_patch<halo3_enable_debug_hud_coordinates_offsets> halo3_enable_debug_hud_coordinates_patch = {
 	[](e_engine_type engine_type, e_build build, char* data[], DataPatchPackets& packets)
 	{
 		packets.push_back(MAKE_DATAPATCHPACKET(data[0], 2));

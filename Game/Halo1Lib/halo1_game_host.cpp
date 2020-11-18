@@ -18,6 +18,7 @@ static c_halo1_halo_script_command* g_halo1_halo_script_command;
 #include "halo1_game_host.console.inl"
 #include "halo1_game_host.controls_research.inl"
 #include "halo1_game_host.fixes.inl"
+#include "halo1_game_host.mainmenu.inl"
 
 uintptr_t g_keyboard_state_offset(e_engine_type engine_type, e_build build)
 {

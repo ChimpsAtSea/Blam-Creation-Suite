@@ -100,7 +100,7 @@ void c_data_patch_base::destroy_tree()
 
 bool c_data_patch_base::ApplyPatch()
 {
-	if (offsets.empty())
+	if (offsets.empty() || !is_enabled)
 	{
 		return false;
 	}

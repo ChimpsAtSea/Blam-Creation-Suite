@@ -111,6 +111,7 @@
     <None Include="halo1_game_host.console.inl" />
     <None Include="halo1_game_host.controls_research.inl" />
     <None Include="halo1_game_host.fixes.inl" />
+    <None Include="halo1_game_host.mainmenu.inl" />
     <None Include="halo1_game_host.scripting.inl" />
     <None Include="halo1_game_host.testing.inl" />
   </ItemGroup>

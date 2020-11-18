@@ -66,25 +66,25 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 	write_control_to_config(CrosshairLocation);
 	write_control_to_config(FOVSetting);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(VehicleFOVSetting);
 
 	write_control_to_config(LookControlsInverted);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MouseLookControlsInverted);
 
 	write_control_to_config(VibrationDisabled);
 	write_control_to_config(ImpulseTriggersDisabled);
 	write_control_to_config(AircraftControlsInverted);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MouseAircraftControlsInverted);
 
 	write_control_to_config(AutoCenterEnabled);
 	write_control_to_config(CrouchLockEnabled);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		write_control_to_config(MKCrouchLockEnabled);
 
 	write_control_to_config(ClenchProtectionEnabled);
@@ -96,12 +96,12 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 	write_control_to_config(UseEliteModel);
 	write_control_to_config(LockMaxAspectRatio);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 		write_control_to_config(UsersSkinsEnabled);
 
 	write_control_to_config(PlayerModelPermutation);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(HelmetIndex);
 		write_control_to_config(LeftShoulderIndex);
@@ -111,13 +111,13 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(UtilityIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 	{
 		write_control_to_config(ArmsIndex);
 		write_control_to_config(LegsIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(PaintSchemeIndex);
 		write_control_to_config(VisorColorIndex);
@@ -127,7 +127,7 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(EliteArmorEffectIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 	{
 		write_control_to_config(EliteHelmetIndex);
 		write_control_to_config(EliteLeftShoulderIndex);
@@ -139,7 +139,7 @@ void save_player_configuration_to_file(c_player_configuration& player_configurat
 		write_control_to_config(EliteLegsIndex);
 	}
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		write_control_to_config(VoiceIndex);
 		write_control_to_config(PlayerModelPrimaryColor);
@@ -198,25 +198,25 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 	read_control_from_config(CrosshairLocation, 0l);
 	read_control_from_config(FOVSetting, 90l);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(VehicleFOVSetting, 90l);
 
 	read_control_from_config(LookControlsInverted, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MouseLookControlsInverted, false);
 
 	read_control_from_config(VibrationDisabled, false);
 	read_control_from_config(ImpulseTriggersDisabled, false);
 	read_control_from_config(AircraftControlsInverted, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MouseAircraftControlsInverted, false);
 
 	read_control_from_config(AutoCenterEnabled, false);
 	read_control_from_config(CrouchLockEnabled, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 		read_control_from_config(MKCrouchLockEnabled, false);
 
 	read_control_from_config(ClenchProtectionEnabled, false);
@@ -228,12 +228,12 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 	read_control_from_config(UseEliteModel, false);
 	read_control_from_config(LockMaxAspectRatio, false);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_7)
 		read_control_from_config(UsersSkinsEnabled, false);
 
 	read_control_from_config(PlayerModelPermutation, 0l);
 
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		switch (engine_type)
 		{
@@ -290,6 +290,18 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 			read_control_from_config(PlayerModelPrimaryColor, (long)e_customization_item_v1::H2A_Color_1);
 			read_control_from_config(PlayerModelSecondaryColor, (long)e_customization_item_v1::H2A_Color_1);
 			read_control_from_config(PlayerModelTertiaryColor, (long)e_customization_item_v1::H2A_Color_1);
+			break;
+		case _engine_type_halo4:
+			read_control_from_config(HelmetIndex, (long)e_customization_item_v5::H4_Helmet_EOD);
+			read_control_from_config(LeftShoulderIndex, (long)e_customization_item_v5::H4_LeftShoulder_EOD);
+			read_control_from_config(RightShoulderIndex, (long)e_customization_item_v5::H4_RightShoulder_EOD);
+			read_control_from_config(ChestIndex, (long)e_customization_item_v5::H4_Chest_EOD);
+			read_control_from_config(VisorColorIndex, (long)e_customization_item_v5::H4_Visor_MIDNIGHT);
+			read_control_from_config(SpartanBodyIndex, (long)e_customization_item_v5::H4_Female);
+			read_control_from_config(VoiceIndex, (long)e_customization_item_v5::k_customization_item_none);
+			read_control_from_config(PlayerModelPrimaryColor, (long)e_customization_item_v5::H4_Color22_Brick);
+			read_control_from_config(PlayerModelSecondaryColor, (long)e_customization_item_v5::HR_Color_Cyan);
+			read_control_from_config(PlayerModelTertiaryColor, (long)e_customization_item_v5::HR_Color_Cyan);
 			break;
 		}
 	}
@@ -434,6 +446,26 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_camera_move_down_theater_v6].VirtualKeyCodes[0] = 'E';
 		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v6].VirtualKeyCodes[0] = 'Q';
 		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v6].VirtualKeyCodes[0] = VK_OEM_RESET;
+	}
+	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v7)
+	{
+		CustomKeyboardMouseMappings[_abstract_button_toggle_rotation_axes_editor_v7].VirtualKeyCodes[0] = 'O';
+		CustomKeyboardMouseMappings[_abstract_button_show_hide_pannel_theater_v7].VirtualKeyCodes[0] = 'X';
+		CustomKeyboardMouseMappings[_abstract_button_show_hide_interface_theater_v7].VirtualKeyCodes[0] = 'Z';
+		CustomKeyboardMouseMappings[_abstract_button_toggle_first_third_person_view_theater_v7].VirtualKeyCodes[0] = 'C';
+		CustomKeyboardMouseMappings[_abstract_button_camera_focus_theater_v7].VirtualKeyCodes[0] = VK_RBUTTON;
+		CustomKeyboardMouseMappings[_abstract_button_fast_forward_theater_v7].VirtualKeyCodes[0] = VK_RIGHT;
+		CustomKeyboardMouseMappings[_abstract_button_fast_rewind_theater_v7].VirtualKeyCodes[0] = VK_LEFT;
+		CustomKeyboardMouseMappings[_abstract_button_stop_continue_playback_theater_v7].VirtualKeyCodes[0] = VK_RETURN;
+		CustomKeyboardMouseMappings[_abstract_button_playback_speed_up_theater_v7].VirtualKeyCodes[0] = VK_LMENU;
+		CustomKeyboardMouseMappings[_abstract_button_enter_free_camera_mode_theater_v7].VirtualKeyCodes[0] = VK_SPACE;
+		CustomKeyboardMouseMappings[_abstract_button_movement_speed_up_theater_v7].VirtualKeyCodes[0] = VK_LSHIFT;
+		CustomKeyboardMouseMappings[_abstract_button_panning_camera_theater_v7].VirtualKeyCodes[0] = VK_OEM_RESET;
+		CustomKeyboardMouseMappings[_abstract_button_camera_move_up_theater_v7].VirtualKeyCodes[0] = 'Q';
+		CustomKeyboardMouseMappings[_abstract_button_camera_move_down_theater_v7].VirtualKeyCodes[0] = 'E';
+		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v7].VirtualKeyCodes[0] = 'Q';
+		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v7].VirtualKeyCodes[0] = VK_OEM_RESET;
+		CustomKeyboardMouseMappings[_abstract_button_loadout_menu_v7].VirtualKeyCodes[0] = 'L';
 	}
 
 	for (long abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)

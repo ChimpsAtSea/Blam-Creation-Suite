@@ -20,7 +20,9 @@ c_haloreach_game_host* c_haloreach_game_host::current_host = nullptr;
 /* ---------- public code */
 
 #include "haloreach_game_host.camera.inl"
+#include "haloreach_game_host.mainmenu.inl"
 #include "haloreach_game_host.memory.inl"
+#include "haloreach_game_host.shell.inl"
 #include "haloreach_game_host.scripting.inl"
 #include "haloreach_game_host.legacy.inl"
 
@@ -95,9 +97,29 @@ void c_haloreach_game_host::init_runtime_modifications(e_build build)
 	g_haloreach_camera_command = new c_haloreach_camera_command();
 
 	//haloreach_player_mapping_get_local_player
-	haloreach_spawn_ai_with_scripts_and_effects.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
-	allow_night_vision_in_multiplayer.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
+	haloreach_spawn_ai_with_scripts_and_effects_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
+	haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
+	allow_night_vision_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
 	haloreach_enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
+
+
+	if (hs_function_table != nullptr)
+	{
+		if (c_settings::read_boolean(_settings_section_debug, "ReplacePrintScriptEvaluate", true))
+		{
+			hs_script_op* hs_print_function = hs_function_get(0x28);
+			hs_script_op* hs_chud_post_message_function = hs_function_get(build >= _build_mcc_1_1186_0_0 ? 0x509 : 0x508);
+
+			if (c_settings::read_boolean(_settings_section_debug, "PrintToHud", true))
+			{
+				hs_print_function->replace_evaluate(hs_chud_post_message_function->evaluate);
+			}
+			else
+			{
+				hs_print_function->replace_evaluate(hs_print_evaluate);
+			}
+		}
+	}
 
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_haloreach, build);

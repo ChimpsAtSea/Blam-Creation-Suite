@@ -6,6 +6,10 @@ uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x1806F42B0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x1806F4BF0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1716_0_0, 0x1806F4BF0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x180ABE7C0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180ABE7C0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x180ABE7C0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180ABEDA0);
 
 	if (engine_type == _engine_type_halo1 && false)
 	{
@@ -77,6 +81,10 @@ uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x1800935F0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x180093FB0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1716_0_0, 0x180093FB0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x1800BB260);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x1800BB260);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x1800BB260);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x1800BB620);
 
 	if (engine_type == _engine_type_halo1 && false)
 	{

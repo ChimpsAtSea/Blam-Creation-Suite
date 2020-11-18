@@ -16,13 +16,13 @@ public:
 	static void deinit();
 	static e_mcc_game_mode get_selected_game_mode();
 	static const c_map_info* get_selected_map_info();
-	static void Selectgame_mode();
+	static void select_game_mode();
 	static void Render();
 
 	static void load_map_variant(IDataAccess *data_access, const char* engine_name, const char *variant_name, s_map_variant &out_variant, bool print = false);
 	static void load_game_variant(IDataAccess *data_access, const char* engine_name, const char *variant_name, s_game_variant &out_variant, bool print = false);
 	static void load_savegame(const char *filepath, GameContext &game_context);
-	static void load_savefilm(const char *saved_film_name, GameContext &game_context);
+	static void load_saved_film(const char *saved_film_name, GameContext &game_context);
 
 	static std::string s_launch_game_variant;
 	static std::string s_launch_map_variant;
@@ -30,13 +30,13 @@ public:
 public:
 
 	static void loadSettings();
-	static const c_map_info* GetDefaultHaloReachGameOptionSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex);
-	static const c_map_info* GetDefaultMapSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex);
-	static void SelectMap();
-	static void SelectDifficulty();
+	static const c_map_info* GetDefaultHaloReachGameOptionSelection(e_selected_game_mode_map_info_index game_mode_map_info_index);
+	static const c_map_info* GetDefaultMapSelection(e_selected_game_mode_map_info_index game_mode_map_info_index);
+	static void select_map();
+	static void select_difficulty();
 	static void select_game_variant();
-	static void SelectMapVariant();
-	static void SelectSavedFilm();
+	static void select_map_variant();
+	static void select_saved_film();
 
 
 	/* LEGACY */ static void GetVariantInfo(char* buffer, std::string* name, std::string* desc);

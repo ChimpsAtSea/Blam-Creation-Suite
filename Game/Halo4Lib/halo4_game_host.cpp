@@ -12,6 +12,9 @@ static c_halo4_engine_state_command* g_halo4_engine_state_command;
 /* ---------- private prototypes */
 /* ---------- public code */
 
+#include "halo4_game_host.mainmenu.inl"
+#include "halo4_game_host.shell.inl"
+#include "halo4_game_host.user_interface.inl"
 #include "halo4_game_host.testing.inl"
 
 void register_halo4lib()

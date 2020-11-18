@@ -34,6 +34,12 @@ enum e_build : uint64_t
 	_build_mcc_1_1767_0_0 = MAKE_FILE_VERSION(1, 1767, 0, 0),
 	_build_mcc_1_1778_0_0 = MAKE_FILE_VERSION(1, 1778, 0, 0),
 	_build_mcc_1_1792_0_0 = MAKE_FILE_VERSION(1, 1792, 0, 0),
+	_build_mcc_1_1829_0_0 = MAKE_FILE_VERSION(1, 1829, 0, 0),
+	_build_mcc_1_1864_0_0 = MAKE_FILE_VERSION(1, 1864, 0, 0),
+	_build_mcc_1_1871_0_0 = MAKE_FILE_VERSION(1, 1871, 0, 0),
+	_build_mcc_1_1896_0_0 = MAKE_FILE_VERSION(1, 1896, 0, 0),
+	_build_mcc_1_1930_0_0 = MAKE_FILE_VERSION(1, 1930, 0, 0),
+	_build_mcc_1_1955_0_0 = MAKE_FILE_VERSION(1, 1955, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
 	_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
 	_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
@@ -93,6 +99,12 @@ constexpr string_type get_enum_string(e_build build)
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1767_0_0, "MCC 1.1767.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1778_0_0, "MCC 1.1778.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1792_0_0, "MCC 1.1792.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1829_0_0, "MCC 1.1829.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1864_0_0, "MCC 1.1864.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1871_0_0, "MCC 1.1871.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1896_0_0, "MCC 1.1896.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1930_0_0, "MCC 1.1930.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1955_0_0, "MCC 1.1955.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_106708_cert_ms23, "Eldorado 1.106708 cert_ms23");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_155080_cert_ms23, "Eldorado 1.155080 cert_ms23");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_171227_cert_ms23, "Eldorado 1.171227 cert_ms23");
@@ -142,78 +154,8 @@ constexpr string_type build_configuration_string()
 #endif
 }
 
-constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-#ifdef _WIN64
-	case _engine_type_haloreach:
-	case _engine_type_halo1:
-	case _engine_type_halo2:
-	case _engine_type_halo3:
-	case _engine_type_halo3odst:
-	case _engine_type_halo4:
-	case _engine_type_groundhog:
-		return 0x180000000;
-	case _engine_type_halo5:
-	case _engine_type_mcc:
-		return 0x140000000;
-#else
-	case _engine_type_eldorado:
-		return 0x400000;
-#endif
-	}
-	return ~uintptr_t();
-}
-
-constexpr uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build)
-{
-#ifdef _WIN64
-	if (engine_type == _engine_type_mcc || engine_type == _engine_type_halo5)
-	{
-		// #TODO: Calculate the top address.
-		return 0x14FFFFFFF;
-	}
-	else
-	{
-		if (engine_type == _engine_type_haloreach)
-		{
-			switch (build)
-			{
-			case _build_mcc_1_887_0_0:
-				return 0x184925000;
-			case _build_mcc_1_1035_0_0:
-				return 0x18450D000;
-			case _build_mcc_1_1186_0_0:
-				return 0x183985000;
-			case _build_mcc_1_1211_0_0:
-				return 0x183986000;
-			case _build_mcc_1_1246_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1270_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1305_0_0:
-				return 0x18392F000;
-			}
-		}
-		if (build > _build_not_set)
-		{
-			// #TODO: Calculate the top address.
-			return 0x18FFFFFFF;
-		}
-	}
-#else
-	if (engine_type == _engine_type_eldorado)
-	{
-		switch (build)
-		{
-		case _build_eldorado_1_106708_cert_ms23:
-			return 0x06A0B000;
-		}
-	}
-#endif
-	return ~uintptr_t();
-}
+uintptr_t get_engine_base_address(e_engine_type engine_type);
+uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build);
 
 constexpr const char* get_engine_module_filename(e_engine_type engine_type)
 {

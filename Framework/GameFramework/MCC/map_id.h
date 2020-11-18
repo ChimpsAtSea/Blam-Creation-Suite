@@ -402,7 +402,7 @@ constexpr string_type get_enum_string(e_map_id map_id)
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_requiem, "Requiem");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_forerunner, "Forerunner");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_infinity, "Infinity");
-	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_reclaimer, "reclaimer");
+	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_reclaimer, "Reclaimer");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_shutdown, "Shutdown");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_composer, "Composer");
 	enum_string_ex(string_type, pretty_string, map_id, _map_id_halo4_midnight, "Midnight");

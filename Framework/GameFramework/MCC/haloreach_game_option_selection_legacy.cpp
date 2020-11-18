@@ -104,7 +104,7 @@ e_mcc_game_mode c_haloreach_game_option_selection_legacy::get_selected_game_mode
 	return g_current_game_mode;
 }
 
-void c_haloreach_game_option_selection_legacy::Selectgame_mode()
+void c_haloreach_game_option_selection_legacy::select_game_mode()
 {
 	if (c_command_line::has_command_line_arg("-showallmodes"))
 	{
@@ -161,7 +161,7 @@ void c_haloreach_game_option_selection_legacy::Render()
 {
 
 
-	SelectSavedFilm();
+	select_saved_film();
 
 	//ImGui::Separator();
 
@@ -173,29 +173,29 @@ void c_haloreach_game_option_selection_legacy::Render()
 	//{
 	//	ImGui::PushItemWidth((width / 100) * 25 * 1.415f);
 	//}
-	Selectgame_mode();
+	select_game_mode();
 	//ImGui::SameLine();
-	SelectMap();
+	select_map();
 
 	//if (g_current_game_mode != game_mode::Multiplayer)
 	//{
 	//	ImGui::SameLine();
 	//}
-	SelectDifficulty();
+	select_difficulty();
 	//ImGui::PopItemWidth();
 
 	//ImGui::Separator();
 
 	select_game_variant();
-	SelectMapVariant();
+	select_map_variant();
 }
 
-const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex)
+const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultMapSelection(e_selected_game_mode_map_info_index game_mode_map_info_index)
 {
-	int previousmap_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_modeMapInfoIndex)], -1);
+	int previous_map_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_mode_map_info_index)], -1);
 	for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 	{
-		if (rMapInfo.get_map_id() == previousmap_id)
+		if (rMapInfo.get_map_id() == previous_map_id)
 		{
 			return &rMapInfo;
 		}
@@ -204,9 +204,9 @@ const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultMapSelecti
 	return nullptr;
 }
 
-const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGameOptionSelection(e_selected_game_mode_map_info_index game_modeMapInfoIndex)
+const c_map_info* c_haloreach_game_option_selection_legacy::GetDefaultHaloReachGameOptionSelection(e_selected_game_mode_map_info_index game_mode_map_info_index)
 {
-	int previousmap_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_modeMapInfoIndex)], -1);
+	int previousmap_id = c_settings::read_integer(_settings_section_launch, s_kpMapInfoSettingsName[underlying_cast(game_mode_map_info_index)], -1);
 	for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
 	{
 		if (rMapInfo.get_map_id() == previousmap_id)
@@ -324,7 +324,7 @@ void c_haloreach_game_option_selection_legacy::render_hovered_tooltip(const char
 	}
 }
 
-void c_haloreach_game_option_selection_legacy::SelectMap()
+void c_haloreach_game_option_selection_legacy::select_map()
 {
 	const c_map_info*& selected_map_info = get_selected_map_info_by_game_mode(g_current_game_mode);
 
@@ -334,38 +334,38 @@ void c_haloreach_game_option_selection_legacy::SelectMap()
 		save_selected_map(g_current_game_mode, selected_map_info);
 	}
 
-	const char* pSelectedlevel_name = "<no level selected>";
+	const char* selected_level_name = "<no level selected>";
 	if (selected_map_info)
 	{
-		pSelectedlevel_name = selected_map_info->get_friendly_name();
+		selected_level_name = selected_map_info->get_friendly_name();
 	}
 
-	if (ImGui::BeginCombo("Map", pSelectedlevel_name))
+	if (ImGui::BeginCombo("Map", selected_level_name))
 	{
 		// #TODO: Make a nice and beautiful interface to this for multi-game
-		for (const c_map_info& rMapInfo : g_map_info_manager->map_infos)
+		for (const c_map_info& map_info : g_map_info_manager->map_infos)
 		{
-			if (!is_map_info_compatible_with_game_mode(g_current_game_mode, rMapInfo))
+			if (!is_map_info_compatible_with_game_mode(g_current_game_mode, map_info))
 			{
 				continue;
 			}
 
-			bool isSelected = selected_map_info == &rMapInfo;
-			const char* pCurrentLevelfriendly_name = rMapInfo.get_friendly_name();
+			bool selected = selected_map_info == &map_info;
+			const char* current_level_friendly_name = map_info.get_friendly_name();
 
-			if (ImGui::Selectable(pCurrentLevelfriendly_name, &isSelected))
+			if (ImGui::Selectable(current_level_friendly_name, &selected))
 			{
-				selected_map_info = &rMapInfo;
+				selected_map_info = &map_info;
 				save_selected_map(g_current_game_mode, selected_map_info);
 			}
-			render_hovered_tooltip(rMapInfo.get_friendly_description());
+			render_hovered_tooltip(map_info.get_friendly_description());
 		}
 
 		ImGui::EndCombo();
 	}
 }
 
-void c_haloreach_game_option_selection_legacy::SelectDifficulty()
+void c_haloreach_game_option_selection_legacy::select_difficulty()
 {
 	if (g_current_game_mode == _mcc_game_mode_campaign || g_current_game_mode == _mcc_game_mode_firefight)
 	{
@@ -535,7 +535,7 @@ void c_haloreach_game_option_selection_legacy::select_game_variant()
 	s_launch_game_variant = last;
 }
 
-void c_haloreach_game_option_selection_legacy::SelectMapVariant()
+void c_haloreach_game_option_selection_legacy::select_map_variant()
 {
 	const char* engine_name = "haloreach"; // #TODO: Set this up properly
 	static std::vector<std::string> file_paths = {
@@ -601,7 +601,7 @@ void c_haloreach_game_option_selection_legacy::SelectMapVariant()
 	s_launch_map_variant = last;
 }
 
-void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
+void c_haloreach_game_option_selection_legacy::select_saved_film()
 {
 	return;
 
@@ -799,9 +799,9 @@ void c_haloreach_game_option_selection_legacy::load_savegame(const char* game_st
 	//}
 }
 
-void c_haloreach_game_option_selection_legacy::load_savefilm(const char* saved_film_name, GameContext& game_context)
+void c_haloreach_game_option_selection_legacy::load_saved_film(const char* saved_film_name, GameContext& game_context)
 {
-	if (!saved_film_name[0])
+	if (!(*saved_film_name))
 		return;
 
 	static std::string filepath = "";
