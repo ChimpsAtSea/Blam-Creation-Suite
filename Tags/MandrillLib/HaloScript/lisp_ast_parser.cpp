@@ -99,6 +99,7 @@ const char* c_lisp_node::traverse(
 {
 	const char* traversal_position = traversal_start_position;
 	const char* current_node_begin = traversal_position;
+	const char* last_begin_statement_position = nullptr;
 
 	e_lisp_node_type search_type = _lisp_node_type_uninitialized;
 	int32_t search_depth = 0;
@@ -144,6 +145,7 @@ const char* c_lisp_node::traverse(
 			if (search_depth == 0)
 			{
 				current_node_begin = traversal_position;
+				last_begin_statement_position = traversal_position;
 			}
 			search_depth++;
 		}
@@ -166,7 +168,7 @@ const char* c_lisp_node::traverse(
 				}
 			}
 		}
-		else if (search_type == _lisp_node_type_uninitialized && current_character == ';')
+		else if (/*search_type == _lisp_node_type_uninitialized && */current_character == ';')
 		{
 			if (next_character == '*')
 			{
@@ -178,11 +180,11 @@ const char* c_lisp_node::traverse(
 			}
 			found_node = true;
 			current_node_begin = traversal_position;
-			if (search_depth != 0)
-			{
-				errors.push_back({ line_count, 0, _lisp_error_type_unexpected_parser_error_internal_non_zero_search_depth,  "parser error: internal error 'search_depth != 0'" });
-				if (IsDebuggerPresent()) throw; // internal compiler error.
-			}
+			//if (search_depth != 0)
+			//{
+			//	errors.push_back({ line_count, 0, _lisp_error_type_unexpected_parser_error_internal_non_zero_search_depth,  "parser error: internal error 'search_depth != 0'" });
+			//	if (IsDebuggerPresent()) throw; // internal compiler error.
+			//}
 			search_depth = 1;
 		}
 		else if (search_type == _lisp_node_type_uninitialized && !whitespace && !new_line)
@@ -216,7 +218,7 @@ const char* c_lisp_node::traverse(
 	{
 		char error_buffer[512]{};
 		snprintf(error_buffer, _countof(error_buffer) - 1, "syntax error : missing ')' [depth %i]", search_depth);
-		errors.push_back({ line_count_start + 1, 0, _lisp_error_type_missing_end_parenthesis,  error_buffer });
+		errors.push_back({ line_count + 1, 0, _lisp_error_type_missing_end_parenthesis,  error_buffer });
 	}
 	else if (search_type != _lisp_node_type_uninitialized && !finished_searching) // we started searching for something but something else strange happened
 	{
@@ -234,19 +236,27 @@ const char* c_lisp_node::traverse(
 
 		if (search_type == _lisp_node_type_statement)
 		{
-			const char* child_search_position = current_node_begin + 1;
-			const char* const child_search_end = traversal_position - 1;
-
-			std::string statement_data = { child_search_position, child_search_end };
-			LISP_AST_DEBUG({ printf("statement>%s\n", statement_data.c_str()); });
-			new_node->data = statement_data;
-			new_node->line_number = get_line_count(root_start_position, child_search_position);
-
-			do
+			if (*traversal_position)
 			{
-				std::string current_child_search_range_debug = { child_search_position, child_search_end };
-				child_search_position = traverse(root_start_position, child_search_position, child_search_end, current_node, root_arguments, errors LISP_AST_DEBUG(, current_child_search_range_debug));
-			} while (child_search_position < child_search_end);
+				const char* child_search_position = current_node_begin + 1;
+				const char* const child_search_end = traversal_position - 1;
+
+				std::string statement_data = { child_search_position, child_search_end };
+				LISP_AST_DEBUG({ printf("statement>%s\n", statement_data.c_str()); });
+				new_node->data = statement_data;
+				new_node->line_number = get_line_count(root_start_position, child_search_position);
+
+				do
+				{
+					std::string current_child_search_range_debug = { child_search_position, child_search_end };
+					child_search_position = traverse(root_start_position, child_search_position, child_search_end, current_node, root_arguments, errors LISP_AST_DEBUG(, current_child_search_range_debug));
+				} while (child_search_position < child_search_end);
+			}
+			else
+			{
+				uint32_t last_begin_statement_line_count = get_line_count(root_start_position, last_begin_statement_position);
+				errors.push_back({ last_begin_statement_line_count, 0, _lisp_error_type_missing_end_parenthesis, "syntax error : missing ')'" });
+			}
 		}
 		else if (search_type == _lisp_node_type_variable)
 		{
