@@ -73,5 +73,11 @@
     <None Include="haloreach_game_host.camera.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="haloreach_game_host.shell.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="haloreach_game_host.mainmenu.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

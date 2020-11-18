@@ -53,41 +53,74 @@ uintptr_t hs_syntax_data_offset(e_engine_type engine_type, e_build build)
 }
 hs_syntax_data_array*& g_hs_syntax_data = reference_symbol<hs_syntax_data_array*>("g_hs_syntax_data", hs_syntax_data_offset);
 
-std::vector<uintptr_t> haloreach_spawn_ai_with_scripts_and_effects_offsets(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18076F581, 0x180730287);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18076E341, 0x18072F047);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180779781, 0x18073A467);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180779781, 0x18073A467);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180779781, 0x18073A467);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180779781, 0x18073A467);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180779781, 0x18073A467);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x18077A971, 0x18073B657);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x18077A971, 0x18073B657);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x18077A971, 0x18073B657);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x18077C531, 0x18073D217);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x18077C531, 0x18073D217);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x1807800E3, 0x1807470E5);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1807800E3, 0x1807470E5);
-	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1807800E3, 0x1807470E5);
-	//OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1805BCFD0+??, 0x18058D36C); // somewhere in `sub_1805BCFD0`
-	return {};
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x180730287);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18072F047);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x18073A467);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x18073A467);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x18073A467);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x18073A467);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x18073A467);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x18073B657);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x18073B657);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x18073B657);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x18073D217);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x18073D217);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x1807470E5);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1807470E5);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1807470E5);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18058D36C);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18058D30C);
+	return ~uintptr_t();
 }
+
 // Allows spawning AI via scripts or effects, props to Zeddikins
-c_multi_data_patch<haloreach_spawn_ai_with_scripts_and_effects_offsets> haloreach_spawn_ai_with_scripts_and_effects = { 
-	[](e_engine_type engine_type, e_build build, char* data[], DataPatchPackets& packets)
+c_data_patch<haloreach_spawn_ai_with_scripts_and_effects_patch_offset> haloreach_spawn_ai_with_scripts_and_effects_patch = {
+[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	packet = MAKE_DATAPATCHPACKET(data, 6);
+	nop_address(data, 6);
+} };
+
+uintptr_t haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18076F581);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18076E341);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180779781);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180779781);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180779781);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180779781);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180779781);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x18077A971);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x18077A971);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1619_0_0, 0x18077A971);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1698_0_0, 0x18077C531);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x18077C531);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1829_0_0, 0x1807800E3);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1807800E3);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1807800E3);
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1805BCFD0+??);
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1805BCF70+??);
+	return ~uintptr_t();
+}
+
+// Allows spawning AI via scripts or effects in multiplayer, props to Zeddikins
+c_data_patch<haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offset> haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch = {
+[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	if (haloreach_spawn_ai_with_scripts_and_effects_patch_offset(engine_type, build) == ~uintptr_t())
 	{
-		UINT8 jmp[1] = { 0xEB };
+		// if this patch offset doesn't exist you can't spawn ai, so return early
+		return;
+	}
 
-		packets.push_back(MAKE_DATAPATCHPACKET(data[0], sizeof(jmp)));
-		copy_to_address(data[0], jmp, sizeof(jmp));
+	UINT8 jmp[1] = { 0xEB };
+	packet = MAKE_DATAPATCHPACKET(data, sizeof(jmp));
+	copy_to_address(data, jmp, sizeof(jmp));
+} };
 
-		packets.push_back(MAKE_DATAPATCHPACKET(data[1], 6));
-		nop_address(data[1], 6);
-	} 
-};
-
-uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_build build)
+uintptr_t allow_night_vision_in_multiplayer_patch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x1805D66B7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x1805E18D7);
@@ -104,15 +137,17 @@ uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1805E4B79);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1805E4B79);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18004B4F5);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18004B4A5);
 	return ~uintptr_t();
 }
 // Allow the use of night vision in multiplayer, props to Zeddikins
-c_data_patch<allow_night_vision_in_multiplayer_offset> allow_night_vision_in_multiplayer = { 
+c_data_patch<allow_night_vision_in_multiplayer_patch_offset> allow_night_vision_in_multiplayer_patch = {
 [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
 {
 	switch (build)
 	{
 	case _build_mcc_1_1930_0_0:
+	case _build_mcc_1_1955_0_0:
 		packet = MAKE_DATAPATCHPACKET(data, 2);
 		nop_address(data, 2);
 		break;
@@ -129,15 +164,15 @@ struct hs_script_op
 	short return_type;
 	short flags;
 	__int32 __unused4;
-	void(__fastcall *evaluate)(short opcode, unsigned short expression_index, char execute);
-	const char *parameter_info;
+	void(__fastcall* evaluate)(short opcode, unsigned short expression_index, char execute);
+	const char* parameter_info;
 	short parameter_count;
 	short parameter_types;
 
 	void replace_evaluate(LPVOID new_evaluate)
 	{
 		//printf("0x%08llX\n", *(UINT64 *)&evaluate);
-		memcpy_virtual(&evaluate, &new_evaluate, sizeof(void *));
+		memcpy_virtual(&evaluate, &new_evaluate, sizeof(void*));
 		//printf("0x%08llX\n", *(UINT64 *)&evaluate);
 	}
 	void print_parameter_info()
@@ -172,9 +207,10 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x180AC8A10);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x180AC8A10);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1808DB7D0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1808DB7D0);
 	return ~uintptr_t();
 }
-hs_script_op* (&hs_function_table)[] = reference_symbol<hs_script_op*[]>("hs_function_table", hs_function_table_offset);
+hs_script_op* (&hs_function_table)[] = reference_symbol<hs_script_op* []>("hs_function_table", hs_function_table_offset);
 
 uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 {
@@ -201,11 +237,12 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1801FA630);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1801FA630);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017FC24);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017FBC4);
 	return ~uintptr_t();
 }
 
 template<typename t_parameter>
-c_function_hook_ex<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short *parameters, char execute)> hs_evaluate_arguments;
+c_function_hook_ex<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short* parameters, char execute)> hs_evaluate_arguments;
 
 uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 {
@@ -232,21 +269,22 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1801F9C70);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1801F9C70);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017F358);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017F2F8);
 	return ~uintptr_t();
 }
 c_function_hook_ex<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
 
-hs_script_op *hs_function_get(short opcode)
+hs_script_op* hs_function_get(short opcode)
 {
 	REFERENCE_ASSERT(hs_function_table);
 	return hs_function_table[opcode];
 }
 
 template<typename t_parameter>
-t_parameter &hs_macro_function_evaluate(short opcode, unsigned short expression_index, char execute)
+t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_index, char execute)
 {
-	hs_script_op *hs_function = hs_function_get(opcode);
-	return *hs_evaluate_arguments<t_parameter *>(expression_index, hs_function->parameter_count, &hs_function->parameter_types, execute);
+	hs_script_op* hs_function = hs_function_get(opcode);
+	return *hs_evaluate_arguments<t_parameter*>(expression_index, hs_function->parameter_count, &hs_function->parameter_types, execute);
 }
 
 uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
@@ -274,13 +312,14 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1801F80D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1801F80D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017DCD8);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017DC78);
 	return ~uintptr_t();
 }
-c_function_hook_ex<hs_inspect_str_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> hs_inspect_str;
+c_function_hook_ex<hs_inspect_str_offset, char* __fastcall (__int64 unused, int id, char* dst, int len)> hs_inspect_str;
 
 void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index, char execute)
 {
-	int &out_parameter = hs_macro_function_evaluate<int>(opcode, expression_index, execute);
+	int& out_parameter = hs_macro_function_evaluate<int>(opcode, expression_index, execute);
 	if (&out_parameter)
 	{
 		char buf[1024] = {};

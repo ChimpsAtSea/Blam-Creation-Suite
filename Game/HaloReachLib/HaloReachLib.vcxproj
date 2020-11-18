@@ -111,8 +111,10 @@
   <ItemGroup>
     <None Include="haloreach_game_host.camera.inl" />
     <None Include="haloreach_game_host.legacy.inl" />
+    <None Include="haloreach_game_host.mainmenu.inl" />
     <None Include="haloreach_game_host.memory.inl" />
     <None Include="haloreach_game_host.scripting.inl" />
+    <None Include="haloreach_game_host.shell.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

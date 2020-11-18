@@ -22,6 +22,7 @@ uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1716_0_0, 0x180071C90);
 	// not available for builds 1767-1871
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x180059A74);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x180059A24);
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -129,6 +130,7 @@ uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1800EBB30);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1800EBB30);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1800B29E4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1800B2994);
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
@@ -224,6 +226,7 @@ std::vector<uintptr_t> haloreach_enable_debug_hud_coordinates_offsets(e_engine_t
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1864_0_0, 0x1800E516B, 0x1800E5178);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1871_0_0, 0x1800E516B, 0x1800E5178);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1800AED58, 0x1800AED65);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1800AED08, 0x1800AED15);
 	return {};
 }
 // Enable debug hud coordinates
