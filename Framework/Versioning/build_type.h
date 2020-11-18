@@ -154,78 +154,8 @@ constexpr string_type build_configuration_string()
 #endif
 }
 
-constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-#ifdef _WIN64
-	case _engine_type_haloreach:
-	case _engine_type_halo1:
-	case _engine_type_halo2:
-	case _engine_type_halo3:
-	case _engine_type_halo3odst:
-	case _engine_type_halo4:
-	case _engine_type_groundhog:
-		return 0x180000000;
-	case _engine_type_halo5:
-	case _engine_type_mcc:
-		return 0x140000000;
-#else
-	case _engine_type_eldorado:
-		return 0x400000;
-#endif
-	}
-	return ~uintptr_t();
-}
-
-constexpr uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build)
-{
-#ifdef _WIN64
-	if (engine_type == _engine_type_mcc || engine_type == _engine_type_halo5)
-	{
-		// #TODO: Calculate the top address.
-		return 0x14FFFFFFF;
-	}
-	else
-	{
-		if (engine_type == _engine_type_haloreach)
-		{
-			switch (build)
-			{
-			case _build_mcc_1_887_0_0:
-				return 0x184925000;
-			case _build_mcc_1_1035_0_0:
-				return 0x18450D000;
-			case _build_mcc_1_1186_0_0:
-				return 0x183985000;
-			case _build_mcc_1_1211_0_0:
-				return 0x183986000;
-			case _build_mcc_1_1246_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1270_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1305_0_0:
-				return 0x18392F000;
-			}
-		}
-		if (build > _build_not_set)
-		{
-			// #TODO: Calculate the top address.
-			return 0x18FFFFFFF;
-		}
-	}
-#else
-	if (engine_type == _engine_type_eldorado)
-	{
-		switch (build)
-		{
-		case _build_eldorado_1_106708_cert_ms23:
-			return 0x06A0B000;
-		}
-	}
-#endif
-	return ~uintptr_t();
-}
+uintptr_t get_engine_base_address(e_engine_type engine_type);
+uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build);
 
 constexpr const char* get_engine_module_filename(e_engine_type engine_type)
 {

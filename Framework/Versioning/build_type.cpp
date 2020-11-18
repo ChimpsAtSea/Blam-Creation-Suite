@@ -157,3 +157,79 @@ extern std::wstring get_library_product_name(const wchar_t* file_path)
 
 	return L"";
 }
+
+uintptr_t get_engine_base_address(e_engine_type engine_type)
+{
+	static e_engine_type engine_type_prev = _engine_type_not_set;
+	static uintptr_t result = ~uintptr_t();
+
+	if (engine_type != engine_type_prev)
+	{
+		WCHAR Path[MAX_PATH + 1];
+		DWORD dwRet = GetModuleFileName(GetModuleHandleA(get_engine_module_filename(engine_type)), Path, MAX_PATH);
+
+		HANDLE file = CreateFile(Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		if (file != INVALID_HANDLE_VALUE)
+		{
+			HANDLE file_mapping = CreateFileMapping(file, NULL, PAGE_READONLY, 0, 0, NULL);
+			if (file_mapping != 0)
+			{
+				LPVOID file_base_address = MapViewOfFile(file_mapping, FILE_MAP_READ, 0, 0, 0);
+				if (file_base_address != 0)
+				{
+					PIMAGE_DOS_HEADER dos_header = (PIMAGE_DOS_HEADER)file_base_address;
+					if (dos_header->e_magic == IMAGE_DOS_SIGNATURE)
+					{
+						PIMAGE_NT_HEADERS nt_header = (PIMAGE_NT_HEADERS)((UINT64)dos_header + (UINT64)dos_header->e_lfanew);
+						result = nt_header->OptionalHeader.ImageBase;
+					}
+					UnmapViewOfFile(file_base_address);
+				}
+				CloseHandle(file_mapping);
+			}
+			CloseHandle(file);
+		}
+
+		engine_type_prev = engine_type;
+	}
+
+	return result;
+}
+
+uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build)
+{
+	static e_engine_type engine_type_prev = _engine_type_not_set;
+	static uintptr_t result = ~uintptr_t();
+
+	if (engine_type != engine_type_prev)
+	{
+		WCHAR Path[MAX_PATH + 1];
+		DWORD dwRet = GetModuleFileName(GetModuleHandleA(get_engine_module_filename(engine_type)), Path, MAX_PATH);
+
+		HANDLE file = CreateFile(Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		if (file != INVALID_HANDLE_VALUE)
+		{
+			HANDLE file_mapping = CreateFileMapping(file, NULL, PAGE_READONLY, 0, 0, NULL);
+			if (file_mapping != 0)
+			{
+				LPVOID file_base_address = MapViewOfFile(file_mapping, FILE_MAP_READ, 0, 0, 0);
+				if (file_base_address != 0)
+				{
+					PIMAGE_DOS_HEADER dos_header = (PIMAGE_DOS_HEADER)file_base_address;
+					if (dos_header->e_magic == IMAGE_DOS_SIGNATURE)
+					{
+						PIMAGE_NT_HEADERS nt_header = (PIMAGE_NT_HEADERS)((UINT64)dos_header + (UINT64)dos_header->e_lfanew);
+						result = nt_header->OptionalHeader.ImageBase + nt_header->OptionalHeader.SizeOfImage;
+					}
+					UnmapViewOfFile(file_base_address);
+				}
+				CloseHandle(file_mapping);
+			}
+			CloseHandle(file);
+		}
+
+		engine_type_prev = engine_type;
+	}
+
+	return result;
+}
