@@ -38,7 +38,7 @@ private:
 	static void game_render();
 	static void start_game(e_engine_type engine_type, e_next_launch_mode next_launch_mode);
 	static void launch_game(e_engine_type engine_type);
-	static void init_steaownership();
+	static void init_steam_ownership();
 	static void ensure_library_loaded(const char* library_name, const char* fallback_directory);
 	static void render_pause_menu();
 #ifdef _WINDOWS_

@@ -59,7 +59,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 #ifdef _WIN64
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
-	init_steaownership();
+	init_steam_ownership();
 
 	c_console::write_line("checking supported game versions");
 
@@ -553,8 +553,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			void*& game_engine_host_vftable = *reinterpret_cast<void**>(current_game_host);
 			static char data[sizeof(void*) * 1024] = {};
 			memset(data, -1, sizeof(data));
-			constexpr size_t k_nubytes_to_copy_froexisting_vft = 0;
-			memcpy(data, game_engine_host_vftable, k_nubytes_to_copy_froexisting_vft);
+			constexpr size_t k_num_bytes_to_copy_from_existing_vft = 0;
+			memcpy(data, game_engine_host_vftable, k_num_bytes_to_copy_from_existing_vft);
 			game_engine_host_vftable = data;
 		}
 	}
@@ -611,13 +611,13 @@ void c_game_launcher::launch_eldorado_game()
 
 #endif
 
-void c_game_launcher::init_steaownership()
+void c_game_launcher::init_steam_ownership()
 {
 #ifdef _WIN64
 	{
 		static const char k_steam_appid[] = "976730";
-		bool write_file_fromemory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
-		ASSERT(write_file_fromemory_result == true);
+		bool write_file_from_memory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
+		ASSERT(write_file_from_memory_result == true);
 	}
 
 	bool steam_api_init_result = SteamAPI_Init();
@@ -628,8 +628,8 @@ void c_game_launcher::init_steaownership()
 		exit(1);
 	}
 
-	ISteamUser* steauser = SteamUser();
-	CSteamID steaid = steauser->GetSteamID();
+	ISteamUser* steam_user = SteamUser();
+	CSteamID steam_id = steam_user->GetSteamID();
 
 	constexpr AppId_t k_mcc_app_id = 976730;
 	constexpr AppId_t k_haloreach_dlc_id = 1064220;
@@ -646,21 +646,21 @@ void c_game_launcher::init_steaownership()
 		switch (engine_type)
 		{
 		case _engine_type_mcc:
-			if (steauser->UserHasLicenseForApp(steaid, k_mcc_app_id)) ownership_mask |= 1ull << _engine_type_mcc;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_mcc_app_id)) ownership_mask |= 1ull << _engine_type_mcc;
 		case _engine_type_haloreach:
-			if (steauser->UserHasLicenseForApp(steaid, k_haloreach_dlc_id)) ownership_mask |= 1ull << _engine_type_haloreach;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_haloreach_dlc_id)) ownership_mask |= 1ull << _engine_type_haloreach;
 		case _engine_type_halo1:
-			if (steauser->UserHasLicenseForApp(steaid, k_halo1_dlc_id)) ownership_mask |= 1ull << _engine_type_halo1;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_halo1_dlc_id)) ownership_mask |= 1ull << _engine_type_halo1;
 		case _engine_type_halo2:
-			if (steauser->UserHasLicenseForApp(steaid, k_halo2_dlc_id)) ownership_mask |= 1ull << _engine_type_halo2;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_halo2_dlc_id)) ownership_mask |= 1ull << _engine_type_halo2;
 		case _engine_type_halo3:
-			if (steauser->UserHasLicenseForApp(steaid, k_halo3_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_halo3_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3;
 		case _engine_type_halo3odst:
-			if (steauser->UserHasLicenseForApp(steaid, k_halo3odst_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3odst;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_halo3odst_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3odst;
 		case _engine_type_halo4:
-			if (steauser->UserHasLicenseForApp(steaid, k_halo4_dlc_id)) ownership_mask |= 1ull << _engine_type_halo4;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_halo4_dlc_id)) ownership_mask |= 1ull << _engine_type_halo4;
 		case _engine_type_groundhog:
-			if (steauser->UserHasLicenseForApp(steaid, k_groundhog_dlc_id)) ownership_mask |= 1ull << _engine_type_groundhog;
+			if (steam_user->UserHasLicenseForApp(steam_id, k_groundhog_dlc_id)) ownership_mask |= 1ull << _engine_type_groundhog;
 		default:
 			ownership_mask |= 1ull << engine_type;
 		}
