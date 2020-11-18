@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
     <ClInclude Include="CacheInterface\string_id_interface.h" />
     <ClInclude Include="Extension\mandrill_extension.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_string_id_namespace_list.h" />

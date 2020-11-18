@@ -120,7 +120,7 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 
 bool filesystem_write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
 {
-	ASSERT(!IsBadReadPtr(buffer, 1));
+	DEBUG_ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
 	if (buffer_size == 0) return false;
 	ASSERT(buffer != nullptr);
@@ -155,7 +155,7 @@ bool filesystem_write_file_from_memory(const char* filepath, const void* buffer,
 
 bool filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size)
 {
-	ASSERT(!IsBadReadPtr(buffer, 1));
+	DEBUG_ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
 	if (buffer_size == 0) return false;
 	ASSERT(buffer != nullptr);

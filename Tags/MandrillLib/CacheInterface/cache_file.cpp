@@ -58,7 +58,7 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 		//case k_halo4_header_memory_footprint:
 		case k_groundhog_header_memory_footprint:
 		{
-			if (header.file_version == 0) // #TODO assuming same as groundhog
+			if (header.file_version == 12) // #TODO assuming same as groundhog
 			{
 				c_console::write_line_verbose("cache file type halo 4");
 				engine_type = _engine_type_halo4;

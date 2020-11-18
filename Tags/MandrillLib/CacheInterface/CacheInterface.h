@@ -37,6 +37,7 @@
 //#include "CacheVersions\eldorado\eldorado_tag_group_interface.h"
 #include "CacheVersions\eldorado\eldorado_cache_file.h"
 
+#include "CacheVersions\halo4\halo4_cache_file_types.h"
 //#include "CacheVersions\halo4\halo4_tag_interface.h"
 //#include "CacheVersions\halo4\halo4_tag_group_interface.h"
 #include "CacheVersions\halo4\halo4_cache_file.h"

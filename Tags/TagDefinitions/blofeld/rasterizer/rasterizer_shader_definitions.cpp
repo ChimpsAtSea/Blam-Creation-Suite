@@ -90,8 +90,13 @@ namespace blofeld
 
 	TAG_BLOCK(compiled_vertex_shader_block, 10 * k_kilo)
 	{
-		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct_struct_definition },
+		{ _field_struct, "compiled shader splut", & rasterizer_compiled_shader_struct_struct_definition },
 		{ _field_long_integer, "runtime shader ~*!" },
+
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_equal, _engine_type_halo4, 1 },
+		{ _field_pad, "padding", 4 },
+
 		{ _field_terminator }
 	};
 

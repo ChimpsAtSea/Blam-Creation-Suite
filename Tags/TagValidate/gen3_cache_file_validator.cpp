@@ -350,11 +350,12 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 
 				if (tag_reference.group_tag == UINT32_MAX)
 				{
-					is_struct_valid &= tag_reference.name_length == 0;
+					is_struct_valid &= tag_reference.name == 0 || tag_reference.name == 0xCDCDCDCD;
+					is_struct_valid &= tag_reference.name_length == 0 || tag_reference.name_length == 0xCDCDCDCD;
 					is_struct_valid &= tag_reference.index == UINT16_MAX;
 					is_struct_valid &= tag_reference.datum == UINT16_MAX;
 				}
-				else
+				else if(tag_interface.get_cache_file().get_engine_type() <= _engine_type_haloreach)
 				{
 					const char* known_legacy_tag_group_name = get_known_legacy_tag_group_name(tag_reference.group_tag);
 					is_struct_valid = known_legacy_tag_group_name != nullptr;
@@ -370,9 +371,9 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			{
 				s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(current_data_position);
 
-				is_struct_valid &= tag_data.stream_flags == 0;
-				is_struct_valid &= tag_data.stream_offset == 0;
-				is_struct_valid &= tag_data.definition == 0;
+				is_struct_valid &= tag_data.stream_flags == 0 || tag_data.stream_flags == 0xCDCDCDCD;
+				is_struct_valid &= tag_data.stream_offset == 0 || tag_data.stream_offset == 0xCDCDCDCD;
+				is_struct_valid &= tag_data.definition == 0 || tag_data.definition == 0xCDCDCDCD;
 				if (tag_data.size > 0)
 				{
 					char* data_address = cache_file.get_data_with_page_offset(tag_data.address);
@@ -482,7 +483,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				s_tag_block& tag_block = *reinterpret_cast<s_tag_block*>(current_data_position);
 
 				bool is_valid = true;
-				is_struct_valid &= tag_block.definition_address == 0;
+				is_struct_valid &= tag_block.definition_address == 0 || tag_block.definition_address == 0xCDCDCDCD;
 				if (tag_block.count == 0)
 				{
 					is_struct_valid &= tag_block.address == 0;

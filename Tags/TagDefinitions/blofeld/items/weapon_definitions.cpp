@@ -196,6 +196,10 @@ namespace blofeld
 		{ _field_real, "tether transition to linked time:seconds#begins when tethered projectile is LNKED" },
 		{ _field_real, "tether transition from linked time:seconds#begins when tethered projectile becomes non-LNKED" },
 
+		{ _field_real, "test" },
+		{ _field_real, "test" },
+		{ _field_real, "test" },
+
 		{ _field_string_id, "unit stow anchor name" },
 
 		{ _field_version_greater_or_equal, _engine_type_haloreach },

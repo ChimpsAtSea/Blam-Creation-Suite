@@ -106,6 +106,7 @@ namespace blofeld
 		"MAXIMUM_REGIONS_PER_MODEL",
 		{
 			{ _engine_type_not_set, 16 },
+			{ _engine_type_halo4, 32 },
 			{ _engine_type_gen3_xbox360, 32 }
 		}
 	};
