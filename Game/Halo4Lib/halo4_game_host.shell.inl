@@ -4,6 +4,7 @@ uintptr_t halo4_external_launch_state_offset(e_engine_type engine_type, e_build 
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180F1FA7C);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180F20A7C);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x180F20A7C);
 	return ~uintptr_t();
 }
 long& halo4_external_launch_state = reference_symbol<long>("halo4_external_launch_state", halo4_external_launch_state_offset);
@@ -12,6 +13,7 @@ uintptr_t halo4_main_game_launch_offset(e_engine_type engine_type, e_build build
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x18003EBA4);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x18003EBB0);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x18003EBB0);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo4_main_game_launch_offset, char __fastcall(__int64 a1, __int64 a2, __int64 a3)> halo4_main_game_launch = { "halo4_main_game_launch", [](__int64 a1, __int64 a2, __int64 a3)
