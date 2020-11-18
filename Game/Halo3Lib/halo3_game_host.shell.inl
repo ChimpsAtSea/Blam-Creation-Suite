@@ -6,12 +6,15 @@ uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18000E3C0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x18000E480);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x18000E480);
-	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18000F5B0);	// inlined, only one occurrence
-	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18000F5B0);	// inlined, only one occurrence
-	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18000F9B0);	// inlined, only one occurrence
-	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180014550);	// inlined, only one occurrence
-	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180014550);	// inlined, only one occurrence
-	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180014550);	// inlined, only one occurrence
+	#pragma region inlined
+	OFFSET(_engine_type_halo3, _build_mcc_1_1767_0_0, 0x18000F5B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1778_0_0, 0x18000F5B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1792_0_0, 0x18000F9B0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180014550);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180014550);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180014550);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x180012C60);
+	#pragma endregion
 	return ~uintptr_t();
 }
 c_function_hook_ex<shell_get_external_host_offset, void* __fastcall(void)> shell_get_external_host = { "shell_get_external_host", []()
@@ -33,6 +36,7 @@ uintptr_t halo3_external_launch_state_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180B75D0C);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180B75D0C);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180B75D0C);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x18099E90C);
 	return ~uintptr_t();
 }
 long& halo3_external_launch_state = reference_symbol<long>("halo3_external_launch_state", halo3_external_launch_state_offset);
@@ -49,6 +53,7 @@ uintptr_t halo3_main_game_launch_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_halo3, _build_mcc_1_1829_0_0, 0x180013EB0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180013EB0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180013EB0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x180012ABC);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_main_game_launch_offset, char __fastcall(__int64 a1, __int64 a2)> halo3_main_game_launch = { "halo3_main_game_launch", [](__int64 a1, __int64 a2)
