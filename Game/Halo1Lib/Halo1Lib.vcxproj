@@ -88,6 +88,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="halo1_dev_console_command.cpp" />
     <ClCompile Include="halo1_engine_state_command.cpp" />
     <ClCompile Include="halo1_game_host.cpp" />
     <ClCompile Include="halo1lib-private-pch.cpp">
@@ -97,6 +98,7 @@
     <ClCompile Include="halo1_halo_script_command.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="halo1_dev_console_command.h" />
     <ClInclude Include="halo1_engine_state_command.h" />
     <ClInclude Include="halo1_halo_script_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />

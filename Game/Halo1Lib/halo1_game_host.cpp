@@ -9,6 +9,7 @@
 c_game_runtime* c_halo1_game_host::g_halo1_game_runtime;
 static c_halo1_engine_state_command* g_halo1_engine_state_command;
 static c_halo1_halo_script_command* g_halo1_halo_script_command;
+static c_halo1_dev_console_command* g_halo1_dev_console_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -146,6 +147,7 @@ void c_halo1_game_host::init_runtime_modifications(e_build build)
 {
 	g_halo1_engine_state_command = new c_halo1_engine_state_command();
 	g_halo1_halo_script_command = new c_halo1_halo_script_command();
+	g_halo1_dev_console_command = new c_halo1_dev_console_command();
 
 	init_detours();	
 	
@@ -161,6 +163,7 @@ void c_halo1_game_host::deinit_runtime_modifications(e_build build)
 {
 	delete g_halo1_engine_state_command;
 	delete g_halo1_halo_script_command;
+	delete g_halo1_dev_console_command;
 
 	init_detours();
 	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo1, build);
