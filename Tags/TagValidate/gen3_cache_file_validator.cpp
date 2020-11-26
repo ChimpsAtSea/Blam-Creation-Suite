@@ -383,6 +383,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			}
 			case blofeld::_field_pageable:
 			{
+				break;
 				s_tag_resource& tag_resource = *reinterpret_cast<s_tag_resource*>(current_data_position);
 
 				is_struct_valid &= tag_resource.definition_address == 0;
