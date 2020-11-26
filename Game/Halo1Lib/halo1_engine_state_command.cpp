@@ -8,34 +8,34 @@
 /* ---------- private prototypes */
 /* ---------- public code */
 
-void halo1_update_engine_state(IGameEngine* game_engine, const std::string engine_state_str)
+void halo1_engine_state_update(IGameEngine* game_engine, const std::string engine_state_str)
 {
 	if (game_engine != nullptr)
 	{
 		if (!engine_state_str.compare("pause"))
 		{
 			c_console::write_line_verbose("Pausing game");
-			game_engine->update_engine_state(_engine_state_pause);
+			game_engine->EngineStateUpdate(_engine_state_pause);
 		}
 		else if (!engine_state_str.compare("unpause"))
 		{
 			c_console::write_line_verbose("Unpausing game");
-			game_engine->update_engine_state(_engine_state_unpause);
+			game_engine->EngineStateUpdate(_engine_state_unpause);
 		}
 		else if (!engine_state_str.compare("end"))
 		{
 			c_console::write_line_verbose("Ending game");
-			game_engine->update_engine_state(_engine_state_game_end);
+			game_engine->EngineStateUpdate(_engine_state_game_end);
 		}
 		else if (!engine_state_str.compare("restart"))
 		{
 			c_console::write_line_verbose("Restarting level");
-			game_engine->update_engine_state(_engine_state_restart_level);
+			game_engine->EngineStateUpdate(_engine_state_restart_level);
 		}
 		else if (!engine_state_str.compare("revert"))
 		{
 			c_console::write_line_verbose("Restarting checkpoint");
-			game_engine->update_engine_state(_engine_state_restart_checkpoint);
+			game_engine->EngineStateUpdate(_engine_state_restart_checkpoint);
 		}
 
 		return;
@@ -66,7 +66,7 @@ bool c_halo1_engine_state_command::execute_command(const std::vector<std::string
 			const std::string &engine_state = arguments[1];
 
 			c_console::set_text_color(_console_color_info);
-			halo1_update_engine_state(g_game_engine, engine_state);
+			halo1_engine_state_update(g_game_engine, engine_state);
 		}
 		else return false;
 	}

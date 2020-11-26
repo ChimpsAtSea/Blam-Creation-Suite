@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="groundhog_game_host.memory.inl" />
+    <None Include="groundhog_game_host.scripting.inl" />
     <None Include="groundhog_game_host.shell.inl" />
     <None Include="groundhog_game_host.testing.inl" />
     <None Include="groundhog_game_host.user_interface.inl" />

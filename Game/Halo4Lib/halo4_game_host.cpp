@@ -15,6 +15,7 @@ static c_halo4_engine_state_command* g_halo4_engine_state_command;
 #include "halo4_game_host.mainmenu.inl"
 #include "halo4_game_host.shell.inl"
 #include "halo4_game_host.user_interface.inl"
+#include "halo4_game_host.scripting.inl"
 #include "halo4_game_host.testing.inl"
 
 void register_halo4lib()
@@ -56,7 +57,7 @@ void c_halo4_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->update_engine_state(_engine_state_game_end);
+		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
 
 	c_opus_game_engine_host::frame_end(swap_chain, unknown1);

@@ -15,5 +15,6 @@
 
 #include "halo1_engine_state_command.h"
 #include "halo1_halo_script_command.h"
+#include "halo1_dev_console_command.h"
 
 #endif

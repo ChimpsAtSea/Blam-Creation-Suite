@@ -9,6 +9,7 @@
 c_game_runtime* c_halo1_game_host::g_halo1_game_runtime;
 static c_halo1_engine_state_command* g_halo1_engine_state_command;
 static c_halo1_halo_script_command* g_halo1_halo_script_command;
+static c_halo1_dev_console_command* g_halo1_dev_console_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -44,6 +45,11 @@ c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 		g_halo1_engine_state_command->set_game_engine(get_game_engine());
 	}
 
+	if (g_halo1_dev_console_command != nullptr)
+	{
+		g_halo1_dev_console_command->set_game_engine(get_game_engine());
+	}
+
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
@@ -74,7 +80,7 @@ void c_halo1_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->update_engine_state(_engine_state_game_end);
+		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
 
 
@@ -146,6 +152,7 @@ void c_halo1_game_host::init_runtime_modifications(e_build build)
 {
 	g_halo1_engine_state_command = new c_halo1_engine_state_command();
 	g_halo1_halo_script_command = new c_halo1_halo_script_command();
+	g_halo1_dev_console_command = new c_halo1_dev_console_command();
 
 	init_detours();	
 	
@@ -161,6 +168,7 @@ void c_halo1_game_host::deinit_runtime_modifications(e_build build)
 {
 	delete g_halo1_engine_state_command;
 	delete g_halo1_halo_script_command;
+	delete g_halo1_dev_console_command;
 
 	init_detours();
 	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo1, build);
