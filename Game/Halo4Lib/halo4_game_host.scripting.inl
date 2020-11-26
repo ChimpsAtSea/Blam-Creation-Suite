@@ -50,3 +50,15 @@ c_function_hook_ex<halo4_sub_18012F554_offset, __int64 __fastcall(__int64 a1)> h
 
 	return result;
 } };
+
+uintptr_t halo4_hs_print_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x1802741DC);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180275F7C);
+	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x180275FCC);
+	return ~uintptr_t();
+}
+c_function_hook_ex<halo4_hs_print_offset, void __fastcall (const char*)> halo4_hs_print = { "halo4_hs_print", [](const char* str)
+{
+	printf("%s\n", str);
+} };
