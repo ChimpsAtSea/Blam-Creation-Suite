@@ -21,7 +21,11 @@ public:
 	virtual std::string get_command_info(const std::string& topic) const override;
 	virtual std::string get_command_auto_complete(const std::vector<std::string>& Arguments) const override;
 
+	void set_game_engine(IGameEngine* game_engine);
+
 private:
+
+	IGameEngine* g_game_engine;
 };
 
 /* ---------- globals */

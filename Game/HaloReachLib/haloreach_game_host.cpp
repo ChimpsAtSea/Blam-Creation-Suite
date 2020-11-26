@@ -78,7 +78,7 @@ void c_haloreach_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->update_engine_state(_engine_state_game_end);
+		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
 
 	update_camera_data();

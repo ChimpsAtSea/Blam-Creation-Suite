@@ -109,9 +109,8 @@ static void draw_console_debug_gui()
 	}
 	ImGui::End();
 }
-#pragma endregion
 
-#pragma region dev console stuff
+/* This was all for naught `IGameEngine->SendEngineCommand` can send halo script commands if you give it "HS: <command>"
 // Offsets for dev console for build 1.1716.0.0 taken from https://github.com/Scaless/HaloTAS
 // Scaless you're work is kinda epic dude
 
@@ -173,4 +172,5 @@ void halo1_execute_command(const char* command)
 	}
 	debug_point;
 }
+*/
 #pragma endregion

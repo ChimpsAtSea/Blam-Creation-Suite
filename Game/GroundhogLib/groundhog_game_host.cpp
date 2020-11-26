@@ -57,7 +57,7 @@ void c_groundhog_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		get_game_engine()->update_engine_state(_engine_state_game_end);
+		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
 
 	c_opus_game_engine_host::frame_end(swap_chain, unknown1);

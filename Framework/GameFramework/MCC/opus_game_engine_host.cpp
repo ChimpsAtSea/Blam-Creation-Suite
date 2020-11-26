@@ -48,7 +48,7 @@ void c_opus_game_engine_host::frame_end(IDXGISwapChain* swap_chain, _QWORD)
 	{
 		if (game_engine)
 		{
-			game_engine->update_engine_state(_engine_state_game_end);
+			game_engine->EngineStateUpdate(_engine_state_game_end);
 		}
 	}
 
@@ -79,7 +79,7 @@ void c_opus_game_engine_host::engine_state_update_handler(e_engine_state state)
 			break;
 		}
 
-		LegacyGameLauncher::s_pHaloReachEngine->update_engine_state(state);
+		LegacyGameLauncher::s_pHaloReachEngine->EngineStateUpdate(state);
 	}
 	*/
 }
