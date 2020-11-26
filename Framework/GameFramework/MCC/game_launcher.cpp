@@ -679,31 +679,15 @@ void c_game_launcher::init_steam_ownership()
 	constexpr AppId_t k_halo4_dlc_id = 1064273;
 	constexpr AppId_t k_groundhog_dlc_id = 1097223;
 
-	ownership_mask = 0;
-	for (uint32_t engine_type = 0; engine_type < k_number_of_engine_types; engine_type++)
-	{
-		switch (engine_type)
-		{
-		case _engine_type_mcc:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_mcc_app_id)) ownership_mask |= 1ull << _engine_type_mcc;
-		case _engine_type_haloreach:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_haloreach_dlc_id)) ownership_mask |= 1ull << _engine_type_haloreach;
-		case _engine_type_halo1:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_halo1_dlc_id)) ownership_mask |= 1ull << _engine_type_halo1;
-		case _engine_type_halo2:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_halo2_dlc_id)) ownership_mask |= 1ull << _engine_type_halo2;
-		case _engine_type_halo3:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_halo3_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3;
-		case _engine_type_halo3odst:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_halo3odst_dlc_id)) ownership_mask |= 1ull << _engine_type_halo3odst;
-		case _engine_type_halo4:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_halo4_dlc_id)) ownership_mask |= 1ull << _engine_type_halo4;
-		case _engine_type_groundhog:
-			if (steam_user->UserHasLicenseForApp(steam_id, k_groundhog_dlc_id)) ownership_mask |= 1ull << _engine_type_groundhog;
-		default:
-			ownership_mask |= 1ull << engine_type;
-		}
-	}
+	ownership_mask = ~0ull;
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_mcc_app_id)) ownership_mask &= ~(1ull << _engine_type_mcc);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_haloreach_dlc_id)) ownership_mask &= ~(1ull << _engine_type_haloreach);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_halo1_dlc_id)) ownership_mask &= ~(1ull << _engine_type_halo1);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_halo2_dlc_id)) ownership_mask &= ~(1ull << _engine_type_halo2);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_halo3_dlc_id)) ownership_mask &= ~(1ull << _engine_type_halo3);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_halo3odst_dlc_id)) ownership_mask &= ~(1ull << _engine_type_halo3odst);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_halo4_dlc_id)) ownership_mask &= ~(1ull << _engine_type_halo4);
+	if (!steam_user->UserHasLicenseForApp(steam_id, k_groundhog_dlc_id)) ownership_mask &= ~(1ull << _engine_type_groundhog);
 #endif
 }
 
