@@ -124,17 +124,13 @@ e_cache_file_flags c_halo4_cache_file::get_cache_file_flags() const
 uint64_t c_halo4_cache_file::convert_page_offset(uint32_t page_offset) const
 {
 	e_cache_file_flags flags = get_cache_file_flags();
-	if (flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
-	{
-		uint64_t virtual_address = static_cast<uint64_t>(page_offset) * 4ull + 0x10000000ull;
-		return virtual_address - get_base_virtual_address();
-	}
-	else
-	{
-		uint64_t virtual_address = static_cast<uint64_t>(page_offset) * 4ull + 0x50000000ull;
-		virtual_address -= 0x10000;
-		return virtual_address - get_base_virtual_address();
-	}
+	bool use_absolute_addressing = (flags & _cache_file_flag_use_absolute_addressing) != 0;
+	uint64_t address_offset = (use_absolute_addressing ? 0x10000000ull : 0x50000000ull) - 0x10000;
+
+	uint64_t virtual_address = static_cast<uint64_t>(page_offset) * 4ull + address_offset;
+	uint64_t relative_virtual_address = virtual_address - get_base_virtual_address();
+
+	return relative_virtual_address;
 }
 
 
