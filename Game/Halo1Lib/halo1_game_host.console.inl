@@ -1,5 +1,5 @@
 
-
+#pragma region console tests
 uintptr_t hs_doc_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180780830);
@@ -109,5 +109,68 @@ static void draw_console_debug_gui()
 	}
 	ImGui::End();
 }
+#pragma endregion
 
+#pragma region dev console stuff
+// Offsets for dev console for build 1.1716.0.0 taken from https://github.com/Scaless/HaloTAS
+// Scaless you're work is kinda epic dude
 
+// Search for `aRasterizerNear` in IDA to find the offset
+uintptr_t halo1_allow_dev_command_execution_patch_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180A9997F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x18077F7DF);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x18077F85F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x18077F88F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x18077F88F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18077F88F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1520_0_0, 0x18077FD2F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x18077FD2F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x18077FD2F);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x1807811BF);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1716_0_0, 0x1807811BF);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x180B73E17);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180B73E17);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x180B73E17);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180B74417);
+	return ~uintptr_t();
+}
+c_data_patch<halo1_allow_dev_command_execution_patch_offset> halo1_allow_dev_command_execution_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+{
+	uint8_t mov[2] { 0xB0ui8, 0x01ui8 };
+	packet = MAKE_DATAPATCHPACKET(data, sizeof(mov));
+	copy_to_address(data, mov, sizeof(mov));
+} };
+
+// Search for `aMapNameB30` or `aRequestedFunct` in IDA to find the offset
+uintptr_t halo1_execute_dev_command_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180B272D0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x1807ED020);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x1807ECF50);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x1807ECF80);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x1807ECF80);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807ECF80);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1520_0_0, 0x1807ED5A0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1570_0_0, 0x1807ED5A0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1619_0_0, 0x1807ED5A0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1698_0_0, 0x1807EEA70);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1716_0_0, 0x1807EEA70);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x180C0F230);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180C0F230);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x180C0F230);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180C0FA80);
+	return ~uintptr_t();
+}
+c_function_hook_ex<halo1_execute_dev_command_offset, char __fastcall(const char* src, unsigned short a2)> halo1_execute_dev_command;
+
+void halo1_execute_command(const char* command)
+{
+	if (is_valid(halo1_execute_dev_command))
+	{
+		char result = halo1_execute_dev_command(command, 0);
+		debug_point;
+	}
+	debug_point;
+}
+#pragma endregion

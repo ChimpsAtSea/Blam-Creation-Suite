@@ -18,6 +18,7 @@ c_halo1_dev_console_command::~c_halo1_dev_console_command()
 	c_console::unregister_command(k_halo1_dev_console_command_name);
 }
 
+extern void halo1_execute_command(const char* command);
 
 bool c_halo1_dev_console_command::execute_command(const std::vector<std::string>& arguments)
 {
@@ -38,6 +39,7 @@ bool c_halo1_dev_console_command::execute_command(const std::vector<std::string>
 			}
 
 			c_console::set_text_color(_console_color_info);
+			halo1_execute_command(command.c_str());
 		}
 		else return false;
 	}
