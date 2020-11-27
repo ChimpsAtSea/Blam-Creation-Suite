@@ -36,6 +36,31 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK(scenario_lightmap_bsp_data_unknown3_block, 65536)
+	{
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_terminator }
+	};
+
 	TAG_BLOCK(scenario_lightmap_bsp_data_unknown0_block, 65536)
 	{
 		{ _field_long_integer, "unknown" },
@@ -95,8 +120,6 @@ namespace blofeld
 
 		{ _field_block, "clusters", &scenario_lightmap_cluster_data_block },
 		{ _field_block, "instances", &scenario_lightmap_instance_data_block },
-
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "probes", &scenario_lightmap_lightprobe_value_block },
 
 		{ _field_version_greater, _engine_type_haloreach, 12 },
@@ -116,8 +139,20 @@ namespace blofeld
 		{ _field_struct, "imported geometry*", &global_render_geometry_struct_struct_definition },
 		{ _field_block, "per mesh triangle mapping", &triangle_mapping_per_mesh_block_block },
 
-		{ _field_version_greater, _engine_type_haloreach, 7 },
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_equal, _engine_type_halo4, 2 },
+		{ _field_block, "per mesh unknown mapping", &triangle_mapping_per_mesh_block_block },
+		{ _field_block, "@unknown", &g_null_block_block }, // #TODO
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "shadow geometry*", &global_render_geometry_struct_struct_definition },
+
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_equal, _engine_type_halo4, 2 },
+		{ _field_block, "@unknown", &g_null_block_block }, // #TODO
+		{ _field_block, "@unknown", &g_null_block_block }, // #TODO
+
+		{ _field_version_greater, _engine_type_haloreach, 6 },
 		{ _field_struct, "Dynamic Light Shadow Geometry*", &global_render_geometry_struct_struct_definition },
 		{ _field_block, "light instance data", &scenario_lightmap_dynamic_light_instance_block },
 		{ _field_block, "structure light instance data", &scenario_lightmap_structure_light_instance_block },
@@ -127,9 +162,15 @@ namespace blofeld
 
 		{ _field_block, "airprobes", &scenario_lightmap_airprobe_value_block },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_block, "unknown", &scenario_lightmap_bsp_data_unknown0_block_block },
 		{ _field_block, "unknown", &scenario_lightmap_bsp_data_unknown1_block_block },
+			
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_equal, _engine_type_halo4, 2 },
+		{ _field_block, "@unknown", &g_null_block_block },
+		{ _field_block, "unknown", &scenario_lightmap_bsp_data_unknown3_block_block },
 
 		{ _field_block, "errors*", &global_error_report_categories_block_block },
 		{ _field_block, "self_track", &global_self_track_block_block },
@@ -274,6 +315,12 @@ namespace blofeld
 
 	TAG_BLOCK(triangle_mapping_per_mesh_block, (8*1024-1))
 	{
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_version_equal, _engine_type_halo4 },
+		{ _field_api_interop, "mesh" },
+
+		{ _field_version_platform_include, _platform_type_pc },
+		{ _field_version_not_equal, _engine_type_halo4 },
 		{ _field_block, "mesh", &triangle_mapping_block_block },
 		{ _field_terminator }
 	};

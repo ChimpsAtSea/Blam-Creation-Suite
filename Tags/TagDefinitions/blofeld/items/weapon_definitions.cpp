@@ -183,7 +183,7 @@ namespace blofeld
 		{ _field_real_vector_3d, "first person weapon offset" },
 
 		{ _field_version_platform_include, _platform_type_pc, 2 },
-		{ _field_version_equal, _engine_type_halo3 },
+		{ _field_version_greater_or_equal, _engine_type_halo3 },
 		{ _field_real_vector_3d, "centered first person weapon offset" },
 
 		{ _field_real_vector_2d, "first person scope size" },
@@ -195,10 +195,6 @@ namespace blofeld
 		{ _field_real, "weapon ready 1st person animation playback scale#e.g. - 2.0 makes playspeed twice as fast" },
 		{ _field_real, "tether transition to linked time:seconds#begins when tethered projectile is LNKED" },
 		{ _field_real, "tether transition from linked time:seconds#begins when tethered projectile becomes non-LNKED" },
-
-		{ _field_real, "test" },
-		{ _field_real, "test" },
-		{ _field_real, "test" },
 
 		{ _field_string_id, "unit stow anchor name" },
 

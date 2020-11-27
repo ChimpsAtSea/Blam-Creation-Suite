@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_pad, "gosh", 3 },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_real, "angle fade range:degrees" },
 		{ _field_real, "angle fade cutoff:degrees" },

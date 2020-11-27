@@ -10,7 +10,7 @@ namespace blofeld
 	{
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};
@@ -19,7 +19,7 @@ namespace blofeld
 	{
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_long_flags, "render for", &visionModeBipedTeamTypes },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};
@@ -78,7 +78,7 @@ namespace blofeld
 	{
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};

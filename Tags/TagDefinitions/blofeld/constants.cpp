@@ -43,6 +43,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 1 },
 			{ _engine_type_haloreach, 2 },
+			{ _engine_type_halo4, 2 },
 			{ _engine_type_gen3_xbox360, 2 }
 		}
 	};
@@ -53,6 +54,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 2 },
 			{ _engine_type_halo3, 8 },
+			{ _engine_type_halo4, 8 },
 			{ _engine_type_gen3_xbox360, 8 }
 		}
 	};
@@ -529,6 +531,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 32 },
 			{ _engine_type_haloreach, 32 }, // #NOTE: Deduced as the block flags in cache_file_zone_set_zone_usage_block for reach is only 32bits
+			{ _engine_type_halo4, 64 },
 			{ _engine_type_gen3_xbox360, 64 },
 		}
 	};
@@ -550,6 +553,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 12 },
 			{ _engine_type_haloreach, 12 },
+			{ _engine_type_halo4, 17 },
 			{ _engine_type_gen3_xbox360, 17 },
 		}
 	};
@@ -594,6 +598,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 2 },
 			{ _engine_type_haloreach, 2 },
+			{ _engine_type_halo4, 3 },
 			{ _engine_type_gen3_xbox360, 3 },
 		}
 	};
@@ -669,6 +674,7 @@ namespace blofeld
 		{
 			{ _engine_type_not_set, 2 },
 			{ _engine_type_haloreach, 2 },
+			{ _engine_type_halo4, 8 },
 			{ _engine_type_gen3_xbox360, 8 },
 		}
 	};

@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_short_integer, "sort bias#use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_real_vector_2d, "uv tiling:u lengthwise, v crosswise#u is tiles/world unit, v is absolute tiles" },
 		{ _field_real_vector_2d, "uv scrolling:tiles per second" },
@@ -186,7 +186,12 @@ namespace blofeld
 		"random v offset",					// _random_v_offset_bit
 
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		"can render low res"
+		"can render low res",
+
+		{ _field_version_equal, _engine_type_halo4 },
+		"unknown 64",
+		"unknown 128",
+
 	};
 	STRING_LIST(tracerAppearanceFlags, tracerAppearanceFlags_strings, _countof(tracerAppearanceFlags_strings));
 

@@ -24,7 +24,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition runtime_queryable_properties$3_struct_definition;
 	extern s_tag_array_definition runtime_queryable_properties$3_array;
-	extern s_tag_struct_definition material_struct_struct_definition;
 
 	extern c_versioned_string_list layerBlendModeEnum_strings;
 	extern s_string_list_definition layerBlendModeEnum;

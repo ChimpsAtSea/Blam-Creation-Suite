@@ -408,7 +408,9 @@ namespace blofeld
 	TAG_STRUCT(global_render_geometry_struct)
 	{
 		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
+
 		{ _field_long_flags, "runtime flags*!", &render_geometry_flags },
+
 		{ _field_block, "meshes*", &global_mesh_block_block },
 
 		{ _field_version_greater, _engine_type_haloreach, 1 },
@@ -462,34 +464,24 @@ namespace blofeld
 
 	STRINGS(part_flags)
 	{
-		{
-			_engine_type_not_set,
-			_versioned_string_list_mode_new,
-			{
-				"is water surface",
-				"per vertex lightmap part",
-				"debug flag instance part",
-				"subparts has uberlights info",
-				"draw cull distance medium",
-				"draw cull distance close",
-				"draw cull rendering shields",
-				"cannot single pass render",
-				"is transparent",
-				"cannot two pass",
-				"transparent should output depth for DoF#expensive",
-				"do not include in static lightmap",
-				"do not include in PVS generation",
-				"draw cull rendering active camo",
-			}
-		},
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_append,
-			{
-				"bit 15",
-				"bit 16"
-			}
-		}
+		"is water surface",
+		"per vertex lightmap part",
+		"debug flag instance part",
+		"subparts has uberlights info",
+		"draw cull distance medium",
+		"draw cull distance close",
+		"draw cull rendering shields",
+		"cannot single pass render",
+		"is transparent",
+		"cannot two pass",
+		"transparent should output depth for DoF#expensive",
+		"do not include in static lightmap",
+		"do not include in PVS generation",
+		"draw cull rendering active camo",
+
+		{ _field_version_greater, _engine_type_haloreach },
+		"bit 15",
+		"bit 16"
 	};
 	STRING_LIST(part_flags, part_flags_strings, _countof(part_flags_strings));
 

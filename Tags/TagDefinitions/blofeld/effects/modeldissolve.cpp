@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_tag_reference, "knight taint crate", &Tag::Reference<struct crate_definition>::s_defaultDefinition },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 		{ _field_custom },
 		{ _field_terminator }
 	};

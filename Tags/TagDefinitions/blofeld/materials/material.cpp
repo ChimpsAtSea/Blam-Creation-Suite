@@ -101,25 +101,6 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(material_struct)
-	{
-		{ _field_tag_reference, "material shader", &material_shader_reference },
-		{ _field_block, "material parameters", &material_shader_parameter_block_block },
-		{ _field_block, "postprocess definition!", &material_postprocess_block_block },
-		{ _field_string_id, "physics material name" },
-		{ _field_string_id, "physics material name 2" },
-		{ _field_string_id, "physics material name 3" },
-		{ _field_string_id, "physics material name 4" },
-		{ _field_real, "sort offset" },
-		{ _field_char_enum, "alpha blend mode", &alpha_blend_mode_enum },
-		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
-		{ _field_byte_flags, "flags!", &materialFlags },
-		{ _field_byte_flags, "render flags!", &materialRenderFlags },
-		{ _field_char_enum, "Transparent Shadow Policy", &MaterialTransparentShadowPolicyEnum },
-		{ _field_pad, "transparentshadowpad", 3 },
-		{ _field_terminator }
-	};
-
 	STRINGS(layerBlendModeEnum)
 	{
 		"none",
@@ -152,7 +133,10 @@ namespace blofeld
 
 	STRINGS(materialRenderFlags)
 	{
-		"resolve screen before rendering"
+		"resolve screen before rendering",
+
+		{ _field_version_equal, _engine_type_halo4 },
+		"unknown bit 2"
 	};
 	STRING_LIST(materialRenderFlags, materialRenderFlags_strings, _countof(materialRenderFlags_strings));
 

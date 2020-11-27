@@ -415,7 +415,7 @@ namespace blofeld
 		"no child objects in lightmap shadow",
 		"should include model in floating shadow",
 
-		{ _field_version_equal, _engine_type_haloreach, 5 },
+		{ _field_version_greater_or_equal, _engine_type_haloreach, 5 }, // some bits were added for PC
 		"bit 14",
 		"bit 15",
 		"bit 16",

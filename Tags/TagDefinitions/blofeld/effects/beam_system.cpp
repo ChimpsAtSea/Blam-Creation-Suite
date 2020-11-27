@@ -72,13 +72,7 @@ namespace blofeld
 		{ _field_dword_integer, "runtime m_constantPerProfileProperties!" },
 		{ _field_dword_integer, "runtime m_usedStates!" },
 		{ _field_dword_integer, "runtime m_maxProfileCount!" },
-
-		{ _field_version_equal, _engine_type_haloreach, 1 },
-		{ _field_struct, "runtime m_gpuData!", &scenario_structured_buffer_interop_reference_struct_definition },
-			
-		{ _field_version_not_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
-
 		{ _field_terminator }
 	};
 

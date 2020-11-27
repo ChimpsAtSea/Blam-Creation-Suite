@@ -891,15 +891,6 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_structured_buffer_interop_reference)
-	{
-		{ _field_long_integer, "structured scenario interop index" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_long_integer, "unknown@" },
-		{ _field_terminator }
-	};
-
 	TAG_STRUCT(scenario_structured_buffer_interop_effect_dataref)
 	{
 		{ _field_data, "data" },

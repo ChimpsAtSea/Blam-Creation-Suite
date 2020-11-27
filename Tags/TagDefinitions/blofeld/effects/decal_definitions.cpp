@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_custom, "material" },
 		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_struct_struct_definition },
+		{ _field_struct, "actual material\?", &material_block_struct },
 
 		{ _field_custom },
 
