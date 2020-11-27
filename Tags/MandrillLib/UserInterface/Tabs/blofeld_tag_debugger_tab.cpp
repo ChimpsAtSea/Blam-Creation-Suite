@@ -30,7 +30,7 @@ bool c_blofeld_tag_debugger_tab::is_enabled() const
 void c_blofeld_tag_debugger_tab::render_field_name(c_blamlib_string_parser& formatter, const blofeld::s_tag_field& field, s_field_validation_result* result)
 {
 	float start = ImGui::GetCursorPosX();
-	ImGui::Text(formatter.display_name.c_str());
+	ImGui::TextUnformatted(formatter.display_name.c_str());
 	ImGui::SameLine();
 	float end = ImGui::GetCursorPosX();
 	ImGui::Dummy({ __max(0.0f, 300.0f - (end - start)), 0.0f });
@@ -146,12 +146,13 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 	ImGui::Dummy({ level * indent_size, 0.0f });
 	ImGui::SameLine();
 	e_engine_type engine_type = get_cache_file().get_engine_type();
+	e_platform_type platform_type = get_cache_file().get_platform_type();
 	t_raw_value& raw_value = *reinterpret_cast<t_raw_value*>(data);
 	c_fixed_string_256 enum_value;
 	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
-	if (raw_value < field.string_list_definition->count(engine_type))
+	if (raw_value < field.string_list_definition->count(engine_type, platform_type))
 	{
-		enum_value += field.string_list_definition->strings(engine_type)[raw_value];
+		enum_value += field.string_list_definition->strings(engine_type, platform_type)[raw_value];
 	}
 	ImGui::PushItemWidth(350.0f);
 	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);
@@ -595,7 +596,7 @@ void c_blofeld_tag_debugger_tab::render_field_explanation(render_field_callback_
 	{
 		ImGui::Dummy({ result->level * indent_size, 0.0f });
 		ImGui::SameLine();
-		ImGui::Text("%s", field.explanation);
+		ImGui::TextUnformatted(field.explanation);
 	}
 	ImGui::PopStyleColor();
 }
@@ -845,7 +846,7 @@ void c_blofeld_tag_debugger_tab::render_impl()
 	}
 	else
 	{
-		ImGui::Text("Debugging not yet supported for this tag interface");
+		ImGui::TextUnformatted("Debugging not yet supported for this tag interface");
 	}
 
 	ImGui::EndChild();

@@ -125,37 +125,17 @@ namespace blofeld
 
 	STRINGS(particle_main_flags)
 	{
-		{
-			_engine_type_not_set,
-			_versioned_string_list_mode_new,
-			{
-				"dies at rest",
-				"dies on structure collision",
-				"dies in water",
-				"dies in air",
-				"has sweetener",
-				"uses cheap shader"
-			}
-		},
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_append,
-			{
-				"bit 7"
-			}
-		},
-		{
-			_engine_type_gen3_xbox360,
-			_versioned_string_list_mode_new,
-			{
-				"dies at rest",
-				"dies on structure collision",
-				"dies in water",
-				"dies in air",
-				"has sweetener",
-				"uses cheap shader"
-			}
-		}
+		"dies at rest",
+		"dies on structure collision",
+		"dies in water",
+		"dies in air",
+		"has sweetener",
+		"uses cheap shader",
+		{ _field_version_platform_include, _platform_type_pc, 4 },
+		"bit 7",
+		"bit 8",
+		"bit 9",
+		"bit 10",
 	};
 	STRING_LIST(particle_main_flags, particle_main_flags_strings, _countof(particle_main_flags_strings));
 
@@ -175,39 +155,26 @@ namespace blofeld
 		"low res tighter mask#requires depth fade",
 		"never kill verts on GPU (expensive)",
 		"particle velocity relative to camera#makes parallel and perpindicular to velocity behave differently based upon camera motion",
-		"_unknown_particle_appearance_flag_15",
-		"_unknown_particle_appearance_flag_16",
-		"_unknown_particle_appearance_flag_17",
-		"_unknown_particle_appearance_flag_18",
+		{ _field_version_platform_include, _platform_type_pc, 9 },
+		"unknown bit 15",
+		"unknown bit 16",
+		"unknown bit 17",
+		"unknown bit 18",
+		"unknown bit 19",
+		"unknown bit 20",
+		"unknown bit 21",
+		"unknown bit 22",
+		"unknown bit 23",
 	};
 	STRING_LIST(particle_appearance_flags, particle_appearance_flags_strings, _countof(particle_appearance_flags_strings));
 
 	STRINGS(particle_animation_flags)
 	{
-		{
-			_engine_type_not_set,
-			_versioned_string_list_mode_new,
-			{
-				"frame animation one shot",
-				"can animate backwards"
-			}
-		},
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_append,
-			{
-				"bit 3",
-				"bit 4"
-			}
-		},
-		{
-			_engine_type_gen3_xbox360,
-			_versioned_string_list_mode_new,
-			{
-				"frame animation one shot",
-				"can animate backwards"
-			}
-		}
+		"frame animation one shot",
+		"can animate backwards",
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		"bit 3",
+		"bit 4"
 	};
 	STRING_LIST(particle_animation_flags, particle_animation_flags_strings, _countof(particle_animation_flags_strings));
 

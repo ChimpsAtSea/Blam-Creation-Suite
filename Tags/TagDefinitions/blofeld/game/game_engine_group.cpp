@@ -83,7 +83,15 @@ namespace blofeld
 	{
 		{ _field_string_id, "player traits name" },
 		{ _field_string_id, "weapon set name" },
+
+		{ _field_version_less, _engine_type_groundhog },
 		{ _field_string_id, "vehicle set name" },
+
+		{ _field_version_greater_or_equal, _engine_type_groundhog, 4 },
+		{ _field_string_id, "light vehicle set name" },
+		{ _field_string_id, "tank set name" },
+		{ _field_string_id, "aircraft set name" },
+		{ _field_string_id, "turret set name" },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 6 },
 		{ _field_string_id, "overshield powerup traits name" },

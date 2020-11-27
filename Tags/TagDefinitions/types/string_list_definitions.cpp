@@ -75,82 +75,91 @@ namespace blofeld
 	c_versioned_string_list::c_versioned_string_list(std::initializer_list<s_versioned_string_list_value> init_list) :
 		c_versioned_string_list()
 	{
-		for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
+		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
 		{
-			uint32_t current_string_index = 0;
-			uint32_t skip_count = 0;
-			for (const s_versioned_string_list_value& value : init_list)
+			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
 			{
-				if (skip_count > 0)
+				uint32_t current_string_index = 0;
+				uint32_t skip_count = 0;
+				for (const s_versioned_string_list_value& value : init_list)
 				{
-					skip_count--;
-					continue;
-				}
-				if (value.string == nullptr)
-				{
-					if (skip_string_list_value_version(value, static_cast<e_engine_type>(engine_index), _platform_type_not_set, _build_not_set, skip_count))
+					if (skip_count > 0)
 					{
+						skip_count--;
 						continue;
 					}
+					if (value.string == nullptr)
+					{
+						if (skip_string_list_value_version(value, static_cast<e_engine_type>(engine_index), static_cast<e_platform_type>(platform_index), _build_not_set, skip_count))
+						{
+							continue;
+						}
+					}
+
+					if (current_string_index < k_versioned_string_list_table_size)
+					{
+						strings[platform_index][engine_index][current_string_index] = value.string;
+					}
+					current_string_index++;
 				}
 
-				if (current_string_index < k_versioned_string_list_table_size)
-				{
-					strings[engine_index][current_string_index] = value.string;
-				}
-				current_string_index++;
+				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
 			}
-
-			counts[engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
 		}
 	}
 
 	c_versioned_string_list::c_versioned_string_list(std::initializer_list<const char*> init_list) :
 		c_versioned_string_list()
 	{
-		for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
+		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
 		{
-			uint32_t current_string_index = 0;
-			for (const char* string : init_list)
+			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
 			{
-				if (current_string_index < k_versioned_string_list_table_size)
+				uint32_t current_string_index = 0;
+				for (const char* string : init_list)
 				{
-					strings[engine_index][current_string_index] = string;
+					if (current_string_index < k_versioned_string_list_table_size)
+					{
+						strings[platform_index][engine_index][current_string_index] = string;
+					}
+					current_string_index++;
 				}
-				current_string_index++;
-			}
 
-			counts[engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+			}
 		}
 	}
 
 	c_versioned_string_list::c_versioned_string_list(std::initializer_list<std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>> init_lists) :
 		c_versioned_string_list()
 	{
-		for (const std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>& engine_and_init_list : init_lists)
+		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
 		{
-			e_engine_type engine_type = std::get<0>(engine_and_init_list);
-			e_versioned_string_list_mode string_list_mode = std::get<1>(engine_and_init_list);
-			const std::initializer_list<const char*>& init_list = std::get<2>(engine_and_init_list);
-
-			for (uint32_t engine_index = engine_type; engine_index < k_number_of_engine_types; engine_index++)
+			for (const std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>& engine_and_init_list : init_lists)
 			{
-				uint32_t current_string_index = 0;
-				if (string_list_mode == _versioned_string_list_mode_append)
-				{
-					current_string_index = counts[engine_index];
-				}
+				e_engine_type engine_type = std::get<0>(engine_and_init_list);
+				e_versioned_string_list_mode string_list_mode = std::get<1>(engine_and_init_list);
+				const std::initializer_list<const char*>& init_list = std::get<2>(engine_and_init_list);
 
-				for (const char* string : init_list)
+				for (uint32_t engine_index = engine_type; engine_index < k_number_of_engine_types; engine_index++)
 				{
-					if (current_string_index < k_versioned_string_list_table_size)
+					uint32_t current_string_index = 0;
+					if (string_list_mode == _versioned_string_list_mode_append)
 					{
-						strings[engine_index][current_string_index] = string;
+						current_string_index = counts[platform_index][engine_index];
 					}
-					current_string_index++;
-				}
 
-				counts[engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+					for (const char* string : init_list)
+					{
+						if (current_string_index < k_versioned_string_list_table_size)
+						{
+							strings[platform_index][engine_index][current_string_index] = string;
+						}
+						current_string_index++;
+					}
+
+					counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+				}
 			}
 		}
 	}
@@ -158,19 +167,22 @@ namespace blofeld
 	c_versioned_string_list::c_versioned_string_list(const char** strings_list, size_t strings_list_count) :
 		c_versioned_string_list()
 	{
-		for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
+		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
 		{
-			uint32_t current_string_index = 0;
-			for (const char* string : c_range_loop(strings_list, strings_list_count))
+			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
 			{
-				if (current_string_index < k_versioned_string_list_table_size)
+				uint32_t current_string_index = 0;
+				for (const char* string : c_range_loop(strings_list, strings_list_count))
 				{
-					strings[engine_index][current_string_index] = string;
+					if (current_string_index < k_versioned_string_list_table_size)
+					{
+						strings[platform_index][engine_index][current_string_index] = string;
+					}
+					current_string_index++;
 				}
-				current_string_index++;
-			}
 
-			counts[engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+			}
 		}
 	}
 

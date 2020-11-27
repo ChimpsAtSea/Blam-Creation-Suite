@@ -188,9 +188,11 @@ namespace blofeld
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		"can render low res",
 
-		{ _field_version_equal, _engine_type_halo4 },
-		"unknown 64",
-		"unknown 128",
+		{ _field_version_greater_or_equal, _engine_type_halo4, 4 },
+		"unknown bit 7",
+		"unknown bit 8",
+		"unknown bit 9",
+		"unknown bit 10",
 
 	};
 	STRING_LIST(tracerAppearanceFlags, tracerAppearanceFlags_strings, _countof(tracerAppearanceFlags_strings));

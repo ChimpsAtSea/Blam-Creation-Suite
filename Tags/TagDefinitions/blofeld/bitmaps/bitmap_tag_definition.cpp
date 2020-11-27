@@ -27,6 +27,10 @@ namespace blofeld
 		{ _field_long_integer, "hardware format*!" },
 		{ _field_long_integer, "runtime tag base address*!" },
 
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		{ _field_pad, "pad", 4 },
+
 		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },

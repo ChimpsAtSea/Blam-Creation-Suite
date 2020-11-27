@@ -44,6 +44,9 @@ namespace blofeld
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_string_id, "notify overheated message" },
 
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_string_id, "message icon" },
+
 		{ _field_tag_reference, "collision sound", &global_sound_reference },
 		{ _field_block, "predicted bitmaps", &predicted_bitmaps_block_block },
 		{ _field_tag_reference, "detonation damage effect", &global_damage_reference },
@@ -78,7 +81,11 @@ namespace blofeld
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "Tossed Override# Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override.", &object_reference$3 },
 
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_real, "unknown" },
+
 		{ _field_custom },
+
 		{ _field_terminator }
 	};
 

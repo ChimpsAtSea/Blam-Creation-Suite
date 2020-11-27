@@ -235,7 +235,13 @@ namespace blofeld
 		"disable in vision mode",
 		"disable velocity",
 		"disable when zoomed",
-		"continue when offscreen ignores .performance_throttles tag"
+		"continue when offscreen ignores .performance_throttles tag",
+		{ _field_version_platform_include, _platform_type_pc, 5 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 4 },
+		"unknown bit 24",
+		"unknown bit 25",
+		"unknown bit 26",
+		"unknown bit 27",
 	};
 	STRING_LIST(particle_system_flags, particle_system_flags_strings, _countof(particle_system_flags_strings));
 

@@ -8,12 +8,12 @@ enum e_engine_type : uint8_t
 	_engine_type_halo2,
 	_engine_type_halo3,
 	_engine_type_halo3odst,
+	_engine_type_eldorado,
 	_engine_type_haloreach,
 	_engine_type_halo4,
-	_engine_type_groundhog,
-	_engine_type_eldorado,
-	_engine_type_halo5,
 	_engine_type_gen3_xbox360,
+	_engine_type_groundhog,
+	_engine_type_halo5,
 	k_number_of_engine_types
 };
 

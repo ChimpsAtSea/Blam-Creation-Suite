@@ -241,7 +241,17 @@ namespace blofeld
 		"play even on hidden objects",
 		"disable first person parts in blind skull#blind skull hides the first person weapon",
 		"hides associated object on effect deletion#when the effect is deleted, it hides the object it is associated with (for hologram in mp)",
-		"bypass mp throttle#effect can not ignore generated crates or be non-networked"
+		"bypass mp throttle#effect can not ignore generated crates or be non-networked",
+		{ _field_version_platform_include, _platform_type_pc, 9 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 8 },
+		"unknown bit 20",
+		"unknown bit 21",
+		"unknown bit 22",
+		"unknown bit 23",
+		"unknown bit 24",
+		"unknown bit 25",
+		"unknown bit 26",
+		"unknown bit 27",
 	};
 	STRING_LIST(effect_flags, effect_flags_strings, _countof(effect_flags_strings));
 

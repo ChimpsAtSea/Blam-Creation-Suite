@@ -379,11 +379,13 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
 	if (current_string_has_tooltip)
 	{
-		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
+		ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+		ImGui::TextUnformatted(field_formatter.display_name.c_str());
+		ImGui::PopStyleColor();
 	}
 	else
 	{
-		ImGui::Text(field_formatter.display_name.c_str());
+		ImGui::TextUnformatted(field_formatter.display_name.c_str());
 	}
 
 	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
@@ -1113,8 +1115,9 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 
 			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
 			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-			const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+			uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
 			string_list_parsers.reserve(string_list_count);
 
@@ -1163,8 +1166,9 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 	ImGui::NextColumn();
 	{
 		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-		uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-		const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+		uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
 		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(string_list_count));
@@ -1273,8 +1277,9 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		{
 			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
 			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-			const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+			uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+			const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
 			string_list_parsers.reserve(string_list_count);
 
@@ -1309,8 +1314,9 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 	ImGui::NextColumn();
 	{
 		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-		uint32_t const string_list_count = string_list_definition.count(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-		const char** const string_list_values = string_list_definition.strings(engine_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
+		uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
 		ImGui::SetNextItemWidth(350);
 

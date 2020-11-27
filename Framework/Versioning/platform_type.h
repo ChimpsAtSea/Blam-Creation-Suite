@@ -2,12 +2,13 @@
 
 enum e_platform_type : uint8_t
 {
-	_platform_type_not_set = 0,
-	_platform_type_xbox = 1 << 1,
-	_platform_type_xbox_360 = 1 << 2,
-	_platform_type_xbox_one = 1 << 3,
-	_platform_type_pc = 1 << 4,
-	_platform_type_pc_legacy = 1 << 5,
+	_platform_type_not_set,
+	_platform_type_xbox,
+	_platform_type_xbox_360,
+	_platform_type_xbox_one,
+	_platform_type_pc,
+	_platform_type_pc_legacy,
+	k_number_of_platform_types
 };
 
 template<typename string_type, bool pretty_string>

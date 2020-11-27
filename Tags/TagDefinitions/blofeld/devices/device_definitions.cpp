@@ -207,7 +207,10 @@ namespace blofeld
 		"is portal blocker#machines of type \"door\" and all other machines with this flag checked can block a door portal",
 		"is NOT pathfinding mobile",
 		"uses default occlusion bounds!*",
-		"gears repeat motion instead of loop#play animation, reset, play again. No smooth looping and interpolation"
+		"gears repeat motion instead of loop#play animation, reset, play again. No smooth looping and interpolation",
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_greater_or_equal, _engine_type_groundhog, 1 },
+		"unknown bit 8",
 	};
 	STRING_LIST(machine_flags, machine_flags_strings, _countof(machine_flags_strings));
 
@@ -241,7 +244,15 @@ namespace blofeld
 	{
 		"touched by player",
 		"destroyed",
-		"interaction held"
+		"interaction held",
+		{ _field_version_platform_include, _platform_type_pc, 7 },
+		{ _field_version_greater_or_equal, _engine_type_groundhog, 6 },
+		"unknown 3",
+		"unknown 4",
+		"unknown 5",
+		"unknown 6",
+		"unknown 7",
+		"unknown 8",
 	};
 	STRING_LIST(control_triggers, control_triggers_strings, _countof(control_triggers_strings));
 

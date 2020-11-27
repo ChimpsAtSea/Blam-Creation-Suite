@@ -42,7 +42,11 @@ namespace blofeld
 		
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real_fraction, "heat warning threshold#the amount of heat at which a warning will be displayed on the hud" },
-		
+
+		{ _field_version_equal, _engine_type_groundhog, 2 },
+		{ _field_real, "@unknown" },
+		{ _field_real, "@unknown" },
+
 		{ _field_real_fraction, "overheated heat loss per second:[0,1]#the amount of heat lost each second when the weapon is not being fired" },
 		
 		{ _field_version_greater_or_equal, _engine_type_haloreach },
@@ -182,8 +186,9 @@ namespace blofeld
 		
 		{ _field_real_vector_3d, "first person weapon offset" },
 
-		{ _field_version_platform_include, _platform_type_pc, 2 },
-		{ _field_version_greater_or_equal, _engine_type_halo3 },
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_greater_or_equal, _engine_type_halo3, 2 },
+		{ _field_version_not_equal, _engine_type_groundhog, 1 },
 		{ _field_real_vector_3d, "centered first person weapon offset" },
 
 		{ _field_real_vector_2d, "first person scope size" },
@@ -444,10 +449,6 @@ namespace blofeld
 		{ _field_explanation, "firing error", "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n" },
 		{ _field_struct, "firing error", &weapon_barrel_firing_error_struct_struct_definition },
 
-		{ _field_version_less, _engine_type_haloreach, 2 }, // H3
-		{ _field_struct, "turning", &weapon_barrel_turning_struct_struct_definition },
-		{ _field_struct, "dual weapon error", &weapon_barrel_dual_error_struct_struct_definition },
-
 		{ _field_explanation, "projectile", "" },
 		{ _field_enum, "distribution function", &weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
@@ -482,14 +483,15 @@ namespace blofeld
 		{ _field_real_fraction, "CAMPAIGN age generated per round:[0,1]#the amount the weapon ages each time the trigger is fired" },
 		{ _field_real, "overload time:seconds#the next trigger fires this often while holding down this trigger" },
 
-		{ _field_version_less, _engine_type_haloreach, 7 }, //pulled from assembly, probs exists in h2ek definitions(?)
-		{ _field_real_bounds, "angle change per shot" },
-		{ _field_real, "angle change acceleration time" },
-		{ _field_real, "angle change deceleration time" },
-		{ _field_enum, "angle change function", &weapon_barrel_angle_change_functions },
-		{ _field_short_integer, "@unknown" },
-		{ _field_real, "runtime angle change acceleration rate" },
-		{ _field_real, "runtime angle change deceleration rate" },
+		{ _field_version_not_equal, _engine_type_halo4, 8 }, //pulled from assembly, probs exists in h2ek definitions(?)
+		{ _field_explanation, "angle change (recoil)" },
+		{ _field_real_bounds, "angle change per shot" }, // angle change per shot#angle change per shot of the weapon during firing
+		{ _field_real, "angle change acceleration time" }, // acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final angle change per shot
+		{ _field_real, "angle change deceleration time" }, // deceleration time:seconds#the continuous idle time it takes for the weapon to return to its initial angle change per shot
+		{ _field_enum, "angle change function", &weapon_barrel_angle_change_functions }, // angle change function#function used to scale between initial and final angle change per shot
+		{ _field_pad, "YZHBVKFFY", 2 },
+		{ _field_real, "runtime angle change acceleration rate" }, // func data
+		{ _field_real, "runtime angle change deceleration rate" }, // func data
 
 		{ _field_real, "runtime illumination recovery rate!" },
 		{ _field_real, "runtime ejection port recovery rate!" },
@@ -500,6 +502,10 @@ namespace blofeld
 		{ _field_real, "runtime error acceleration rate!" },
 
 		{ _field_real, "runtime error deceleration rate!" },
+
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_real, "runtime dual error deceleration rate!" },
+
 		{ _field_block, "firing effects#firing effects determine what happens when this trigger is fired", &barrel_firing_effect_block_block },
 		{ _field_terminator }
 	};
@@ -680,35 +686,32 @@ namespace blofeld
 	TAG_STRUCT(weapon_barrel_firing_error_struct)
 	{
 		{ _field_version_less, _engine_type_haloreach },
-		{ _field_real, "acceleration time:seconds" },
+		{ _field_real, "acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final error" },
 
 		{ _field_real, "deceleration time:seconds#the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n\'globals@Player information.momentum and sprinting.min weapon error\'" },
 		{ _field_real_bounds, "damage error#the range of angles (in degrees) that a damaged weapon will skew fire" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_angle, "min error look pitch rate#yaw rate is doubled" },
 		{ _field_angle, "full error look pitch rate#yaw rate is doubled" },
 		{ _field_real, "look pitch error power#use to soften or sharpen the rate ding" },
 
-		{ _field_terminator }
-	};
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_explanation, "dual weapon error" },
 
-	TAG_STRUCT(weapon_barrel_turning_struct)
-	{
-		{ _field_real, "base turning speed" },
-		{ _field_real_bounds , "error angle" },
-		{ _field_terminator }
-	};
+		{ _field_version_less, _engine_type_haloreach },
+		{ _field_real, "acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final error" },
 
-	TAG_STRUCT(weapon_barrel_dual_error_struct)
-	{
-		{ _field_real, "acceleration time:seconds" },
-		{ _field_real, "deceleration time:seconds" },
-		{ _field_real, "@unknown" },
-		{ _field_real, "@unknown" },
-		{ _field_real, "minimum error" },
-		{ _field_real_bounds , "error angle" },
-		{ _field_real, "dual wield damage scale" },
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_real, "deceleration time:seconds#the continuous idle time it takes for the weapon to return to its initial error" },
+
+		{ _field_version_less, _engine_type_haloreach },
+		{ _field_pad, "IIJ", 8 },
+
+		{ _field_version_equal, _engine_type_groundhog, 3 },
+		{ _field_angle, "minimum error:degrees" },
+		{ _field_angle_bounds, "error angle:degrees" },
+		{ _field_real_fraction, "dual wield damage scale" },
+
 		{ _field_terminator }
 	};
 
@@ -784,7 +787,11 @@ namespace blofeld
 		"projectile fires in marker direction#projectiles shoot out the marker direction instead of the player\'s aim vector",
 		"skip test for object being outside BSP#Prevents projectile origin from changing when object is outside of BSP; Useful for units that can be placed inside physics.",
 		"only reload if all barrels idle",
-		"only switch weapons if barrel idle#the weapon\'s owner cannot switch weapons unless this barrel is in the idle state"
+		"only switch weapons if barrel idle#the weapon\'s owner cannot switch weapons unless this barrel is in the idle state",
+		{ _field_version_greater_or_equal, _engine_type_halo4, 2 },
+		"unknown bit 20",
+		"unknown bit 21",
+		"unknown bit 22",
 	};
 	STRING_LIST(weapon_barrel_flags, weapon_barrel_flags_strings, _countof(weapon_barrel_flags_strings));
 
@@ -839,7 +846,9 @@ namespace blofeld
 		"sword-charge",
 		"paint-target",
 		"double-latch-tether#projectile is tethered by 1st latch, 2nd releases and detonates it",
-		"charge-with-magazine#like charge, but pays attention to any magazine and will not charge unless magazine is idle and barrel is actually able to fire"
+		"charge-with-magazine#like charge, but pays attention to any magazine and will not charge unless magazine is idle and barrel is actually able to fire",
+		{ _field_version_greater_or_equal, _engine_type_groundhog },
+		"unknown : used with h2a rocket launcher"
 	};
 	STRING_LIST(weapon_trigger_behaviors, weapon_trigger_behaviors_strings, _countof(weapon_trigger_behaviors_strings));
 
@@ -977,21 +986,74 @@ namespace blofeld
 
 	STRINGS(weapon_types)
 	{
-		"undefined",
-		"shotgun",
-		"needler",
-		"plasma pistol",
-		"plasma rifle",
-		"rocket launcher",
-		"energy blade",
-		"splaser",
-		"shield",
-		"scarab gun",
-		"wolverine quad",
-		"flak cannon",
-		"plasma launcher",
-		"laser designator",
-		"sticky detonator"
+		{
+			_engine_type_halo4,
+			_versioned_string_list_mode_new,
+			{
+				"undefined",
+				"shotgun",
+				"needler",
+				"plasma pistol",
+				"plasma rifle",
+				"rocket launcher",
+				"energy blade",
+				"splaser",
+				"shield",
+				"scarab gun",
+				"wolverine quad",
+				"flak cannon",
+				"plasma launcher",
+				"laser designator",
+				"sticky detonator"
+			}
+		},
+		{
+			_engine_type_groundhog,
+			_versioned_string_list_mode_new,
+			{
+				"undefined",
+				"shotgun",
+				"needler",
+				"plasma pistol",
+				"plasma rifle",
+				"rocket launcher",
+				"energy blade",
+				"splaser",
+				"shield",
+				"scarab gun",
+				"wolverine quad",
+				"flak cannon",
+				"plasma launcher",
+				"laser designator",
+				"sticky detonator",
+				"sentinel beam"
+			}
+		},
+		{
+			_engine_type_halo5,
+			_versioned_string_list_mode_new,
+			{
+				"undefined",
+				"shotgun",
+				"needler",
+				"plasma pistol",
+				"plasma rifle",
+				"rocket launcher",
+				"energy blade",
+				"splaser",
+				"shield",
+				"scarab gun",
+				"wolverine quad",
+				"flak cannon",
+				"plasma launcher",
+				"laser designator",
+				"sticky detonator",
+				"cavalier polearm"
+			}
+		}
+
+
+
 	};
 	STRING_LIST(weapon_types, weapon_types_strings, _countof(weapon_types_strings));
 

@@ -118,7 +118,10 @@ namespace blofeld
 		"third person{third person only}",
 		"disable camera falloffs{cinematic}#disables distance and angle falloffs",
 		"only affects attached object",
-		"draw precisely one (ask Bill before you check this)"
+		"draw precisely one (ask Bill before you check this)",
+		{ _field_version_greater_or_equal, _engine_type_groundhog },
+		"unknown bit 8",
+		"unknown bit 9",
 	};
 	STRING_LIST(area_screen_effect_flags_definition, area_screen_effect_flags_definition_strings, _countof(area_screen_effect_flags_definition_strings));
 

@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_tag_reference, "explicit pixel shader^", &explicit_shader_refs_block_explicit_pixel_shader_reference },
 
 		{ _field_version_platform_include, _platform_type_pc, 2 },
-		{ _field_version_not_equal, _engine_type_halo4, 1 },
+		{ _field_version_less, _engine_type_halo4, 1 },
 		{ _field_tag_reference, "explicit compute shader^", &explicit_shader_refs_block_explicit_pixel_shader_reference },
 
 		{ _field_terminator }

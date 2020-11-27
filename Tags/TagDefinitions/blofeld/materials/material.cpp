@@ -134,9 +134,10 @@ namespace blofeld
 	STRINGS(materialRenderFlags)
 	{
 		"resolve screen before rendering",
-
-		{ _field_version_equal, _engine_type_halo4 },
-		"unknown bit 2"
+		{ _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 2 },
+		"unknown bit 2",
+		"unknown bit 3",
 	};
 	STRING_LIST(materialRenderFlags, materialRenderFlags_strings, _countof(materialRenderFlags_strings));
 

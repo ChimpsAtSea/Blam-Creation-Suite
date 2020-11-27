@@ -39,7 +39,7 @@ namespace blofeld
 
 		// unknown Halo 4 PC modification to hkArray/hkArrayBase
 		{ _field_version_platform_include, _platform_type_pc, 3 },
-		{ _field_version_equal, _engine_type_halo4, 2 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 2 },
 		{ _field_long_integer, "@unknown" },
 		{ _field_pad, "padding", 4 },
 
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_version_platform_include, _platform_type_pc, 4 },
 		{ _field_version_equal, _engine_type_haloreach, 1 },
 		{ _field_pad, "padding", 12 }, // alignment
-		{ _field_version_equal, _engine_type_halo4, 1 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_pad, "padding", 4 }, // alignment
 
 		// ## blam specific data below ##

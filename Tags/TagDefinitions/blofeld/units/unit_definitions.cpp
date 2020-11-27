@@ -532,11 +532,15 @@ namespace blofeld
 	{
 		{ _field_string_id, "preferred_gun_node#if found, use this gun marker" },
 		{ _field_custom },
+
+		{ _field_version_equal, _engine_type_groundhog },
+		{ _field_string_id, "preferred_dual_gun_node" },
+
 		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_string_id, "preferred_grenade_marker#if found, use this marker to attach live grenades to" },
-		{ _field_explanation, "Weapon Specific Markers", "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit" },
 
-		{ _field_version_greater, _engine_type_haloreach },
+		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_explanation, "Weapon Specific Markers", "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit" },
 		{ _field_block, "weapon specific markers", &WeaponSpecificMarkersBlock_block },
 
 		{ _field_terminator }

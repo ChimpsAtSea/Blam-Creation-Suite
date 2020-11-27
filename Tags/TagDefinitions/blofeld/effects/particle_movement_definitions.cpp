@@ -71,7 +71,10 @@ namespace blofeld
 		"wind",
 		"turbulence",
 		"global force",
-		"disable swarm collision"
+		"disable swarm collision",
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_greater_or_equal, _engine_type_halo4, 1 },
+		"unknown bit 13"
 	};
 	STRING_LIST(particle_movement_flags, particle_movement_flags_strings, _countof(particle_movement_flags_strings));
 

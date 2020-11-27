@@ -163,11 +163,11 @@ uint32_t c_blofeld_tag_definition_debug_tab::render_tag_struct_definition(int le
 			}
 
 			ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor::ImColor(1.0f, 0.7f, 0.7f));
-			for (uint32_t option_index = 0; option_index < string_list_definition->count(engine_type); option_index++)
+			for (uint32_t option_index = 0; option_index < string_list_definition->count(engine_type, platform_type); option_index++)
 			{
 				ImGui::Dummy({ static_cast<float>(level + 1) * indent, 0.0f  });
 				ImGui::SameLine();
-				ImGui::Text("string> %s", string_list_definition->strings(engine_type)[option_index]);
+				ImGui::Text("string> %s", string_list_definition->strings(engine_type, platform_type)[option_index]);
 			}
 			ImGui::PopStyleColor(1);
 

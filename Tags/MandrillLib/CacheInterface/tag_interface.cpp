@@ -63,6 +63,9 @@ void c_tag_interface::init_virtual_tag_interface()
 		case _engine_type_halo4:
 			virtual_tag_interface = blofeld::halo4::create_virtual_tag_interface(*this, get_group_tag());
 			break;
+		case _engine_type_groundhog:
+			virtual_tag_interface = blofeld::groundhog::create_virtual_tag_interface(*this, get_group_tag());
+			break;
 		}
 	}
 

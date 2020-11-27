@@ -963,7 +963,10 @@ namespace blofeld
 		"mopp codes dirty*!",
 		"serialized havok data converted to target platform!*",
 		"make physical children keyframed",
-		"shrink radius by havok complex radius"
+		"shrink radius by havok complex radius",
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_greater_or_equal, _engine_type_groundhog, 1 },
+		"unknown bit 5"
 	};
 	STRING_LIST(physics_model_flags, physics_model_flags_strings, _countof(physics_model_flags_strings));
 

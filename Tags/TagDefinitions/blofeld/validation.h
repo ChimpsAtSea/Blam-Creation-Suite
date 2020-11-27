@@ -37,9 +37,11 @@ namespace blofeld
 		e_platform_type platform_type, 
 		e_build build, 
 		const s_tag_struct_definition& struct_definition, 
-		e_validation_result* block_failed_validation = nullptr);
-	bool validate_all_definitions();
-	bool validate_gen3_definitions();
+		e_validation_result* block_failed_validation = nullptr,
+		bool disable_platform_independent_warnings = false,
+		std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
+	bool validate_all_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
+	bool validate_gen3_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
 }
 
 

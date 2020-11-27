@@ -516,83 +516,29 @@ namespace blofeld
 
 	STRINGS(new_damage_section_flags_definition)
 	{
-		{
-			_engine_type_not_set,
-			_versioned_string_list_mode_new,
-			{
-				"starts inactive#this section will be initialized with zero health and will be stunned indefinitely",
-				"takes full dmg when object dies",
-				"takes full dmg when obj dstryd",
-				"restored on ressurection",
-				"headshot#takes extra headshot damage when shot",
-				"depletion is permanent",
-				"recharges while dead",
-				"play recharge effect only when empty",
-				"networked (note that primary body and shield are always networked)",
-				"can recharge independently#always a shield layer to recharge even if there is an inner shield layer that is stunned"
-			}
-		},
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_append,
-			{
-				// NOTE: taken from halo5 and used to extend haloreach
-				"depletion tracked by AI characters#on an AI character, depletion of this section is tracked by the AI, stimulus 'tracked_sections_depleted' is set when all of these on a character are depleted",
-				"DEPRECATED DO NOT USE 1!",
-				"DEPRECATED DO NOT USE 2!",
-				"DEPRECATED DO NOT USE 3!",
-				"DEPRECATED DO NOT USE 4!",
-				"DEPRECATED DO NOT USE 5!",
-				"DEPRECATED DO NOT USE 6!",
-				"blocks headshots#headshot obstruction test collides with this damage section",
-				"weak spot#this section is considered a weak spot and is not blocked by trivial collision sections",
-				"trivial collision#test for headshots and weak spot hits through this damage section",
-				"disable additive player damage sound",
-			}
-		},
-		{
-			_engine_type_gen3_xbox360,
-			_versioned_string_list_mode_new,
-			{
-				"starts inactive#this section will be initialized with zero health and will be stunned indefinitely",
-				"takes full dmg when object dies",
-				"takes full dmg when obj dstryd",
-				"restored on ressurection",
-				"headshot#takes extra headshot damage when shot",
-				"depletion is permanent",
-				"recharges while dead",
-				"play recharge effect only when empty",
-				"networked (note that primary body and shield are always networked)",
-				"can recharge independently#always a shield layer to recharge even if there is an inner shield layer that is stunned"
-			}
-		},
-		{
-			_engine_type_halo5,
-			_versioned_string_list_mode_new,
-			{
-				"starts inactive#this section will be initialized with zero health and will be stunned indefinitely",
-				"takes full dmg when object dies",
-				"takes full dmg when obj dstryd",
-				"restored on ressurection",
-				"headshot#takes extra headshot damage when shot",
-				"depletion is permanent",
-				"recharges while dead",
-				"play recharge effect only when empty",
-				"networked (note that primary body and shield are always networked)",
-				"can recharge independently#always a shield layer to recharge even if there is an inner shield layer that is stunned",
-				"depletion tracked by AI characters#on an AI character, depletion of this section is tracked by the AI, stimulus 'tracked_sections_depleted' is set when all of these on a character are depleted",
-				"DEPRECATED DO NOT USE 1!",
-				"DEPRECATED DO NOT USE 2!",
-				"DEPRECATED DO NOT USE 3!",
-				"DEPRECATED DO NOT USE 4!",
-				"DEPRECATED DO NOT USE 5!",
-				"DEPRECATED DO NOT USE 6!",
-				"blocks headshots#headshot obstruction test collides with this damage section",
-				"weak spot#this section is considered a weak spot and is not blocked by trivial collision sections",
-				"trivial collision#test for headshots and weak spot hits through this damage section",
-				"disable additive player damage sound",
-			}
-		}
+		"starts inactive#this section will be initialized with zero health and will be stunned indefinitely",
+		"takes full dmg when object dies",
+		"takes full dmg when obj dstryd",
+		"restored on ressurection",
+		"headshot#takes extra headshot damage when shot",
+		"depletion is permanent",
+		"recharges while dead",
+		"play recharge effect only when empty",
+		"networked (note that primary body and shield are always networked)",
+		"can recharge independently#always a shield layer to recharge even if there is an inner shield layer that is stunned",
+
+		// from halo 5
+		"depletion tracked by AI characters#on an AI character, depletion of this section is tracked by the AI, stimulus 'tracked_sections_depleted' is set when all of these on a character are depleted",
+		"DEPRECATED DO NOT USE 1!",
+		"DEPRECATED DO NOT USE 2!",
+		"DEPRECATED DO NOT USE 3!",
+		"DEPRECATED DO NOT USE 4!",
+		"DEPRECATED DO NOT USE 5!",
+		"DEPRECATED DO NOT USE 6!",
+		"blocks headshots#headshot obstruction test collides with this damage section",
+		"weak spot#this section is considered a weak spot and is not blocked by trivial collision sections",
+		"trivial collision#test for headshots and weak spot hits through this damage section",
+		"disable additive player damage sound",
 	};
 	STRING_LIST(new_damage_section_flags_definition, new_damage_section_flags_definition_strings, _countof(new_damage_section_flags_definition_strings));
 
