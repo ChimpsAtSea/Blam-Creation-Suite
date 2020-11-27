@@ -5,7 +5,7 @@
 
 namespace blofeld
 {
-	using t_tag_field_custom_version_callback = bool(*)(e_engine_type, e_build, uint32_t&);
+	using t_tag_field_custom_version_callback = int32_t(*)(e_engine_type, e_platform_type, e_build);
 
 	struct s_tag_field
 	{
@@ -209,7 +209,8 @@ namespace blofeld
 				break;
 			case _field_version_custom:
 				ASSERT(tag_field._custom_version_callback);
-				skip_versioning_field = tag_field._custom_version_callback(engine_type, build, skip_count);
+				skip_count = tag_field._custom_version_callback(engine_type, platform_type, build);
+				skip_versioning_field = false;
 				break;
 			}
 

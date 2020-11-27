@@ -1,6 +1,7 @@
 #pragma once
 
 BCSAPI bool filesystem_read_from_file_handle(FILE* file_handle, void* destination, size_t size);
+BCSAPI bool filesystem_read_from_file_handle_to_memory(FILE* file_handle, void** buffer, size_t* buffer_size = nullptr);
 BCSAPI bool filesystem_filepath_exists(const char* filepath);
 BCSAPI bool filesystem_filepath_exists(const wchar_t* filepath);
 BCSAPI bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size = nullptr);

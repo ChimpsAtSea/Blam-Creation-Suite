@@ -449,7 +449,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				s_tag_interop& tag_interop = *reinterpret_cast<s_tag_interop*>(current_data_position);
 
 				is_struct_valid &= tag_interop.address == 0;
-				is_struct_valid &= tag_interop.definition_address == 0;
+				is_struct_valid &= tag_interop.definition_address == 0 || tag_interop.definition_address == 0xCDCDCDCD;
 				if (tag_interop.descriptor != 0)
 				{
 					char* data_address = cache_file.get_data_with_page_offset(tag_interop.descriptor);

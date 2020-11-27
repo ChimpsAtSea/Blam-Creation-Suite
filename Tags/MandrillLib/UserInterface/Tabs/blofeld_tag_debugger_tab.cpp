@@ -53,14 +53,49 @@ void c_blofeld_tag_debugger_tab::render_field_name_and_information(const blofeld
 void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
 {
 	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
-	if ((show_hex_values || use_hex) && data_type != ImGuiDataType_Float)
+	if ((show_hex_values || use_hex))
 	{
-		flags |= ImGuiInputTextFlags_CharsHexadecimal;
+		switch (data_type)
+		{
+			case ImGuiDataType_S8:
+			case ImGuiDataType_U8:
+				flags |= ImGuiInputTextFlags_CharsHexadecimal;
+				format = "0x%02X"; 
+				break;
+			case ImGuiDataType_S16:
+			case ImGuiDataType_U16:
+				flags |= ImGuiInputTextFlags_CharsHexadecimal;
+				format = "0x%04X";
+				break;
+			case ImGuiDataType_S32:
+			case ImGuiDataType_U32:
+				flags |= ImGuiInputTextFlags_CharsHexadecimal;
+				format = "0x%08X";
+				break;
+			case ImGuiDataType_S64:
+			case ImGuiDataType_U64:
+				flags |= ImGuiInputTextFlags_CharsHexadecimal;
+				format = "0x%016X";
+				break;
+			default: format = "0x%X"; break;
+		}
+		
 	}
-	if ((show_hex_values_float || use_hex) && data_type == ImGuiDataType_Float)
+	if ((show_hex_values_float || use_hex))
 	{
-		data_type = ImGuiDataType_U32;
-		flags |= ImGuiInputTextFlags_CharsHexadecimal;
+		switch (data_type)
+		{
+		case ImGuiDataType_Float:
+			flags |= ImGuiInputTextFlags_CharsHexadecimal;
+			data_type = ImGuiDataType_U32;
+			format = "0x%08X";
+			break;
+		case ImGuiDataType_Double:
+			flags |= ImGuiInputTextFlags_CharsHexadecimal;
+			data_type = ImGuiDataType_U64;
+			format = "0x%016X";
+			break;
+		}
 	}
 	if (data_type == ImGuiDataType_Float && format == nullptr)
 	{
@@ -827,7 +862,7 @@ void c_blofeld_tag_debugger_tab::render_menu_gui_impl(e_menu_render_type menu_re
 				show_hex_values = !show_hex_values;
 				c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_setting, show_hex_values);
 			}
-			if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
+			if (ImGui::MenuItem(show_hex_values_float ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
 			{
 				show_hex_values_float = !show_hex_values_float;
 				c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, show_hex_values_float);

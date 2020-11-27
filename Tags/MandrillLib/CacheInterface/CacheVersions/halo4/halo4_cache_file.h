@@ -8,6 +8,7 @@ protected:
 	virtual ~c_halo4_cache_file();
 
 public:
+	static constexpr uint32_t page_address_offset = 0x4FFF0000ull;
 	virtual bool save_map() final;
 	virtual uint64_t get_base_virtual_address() const final;
 	virtual uint64_t convert_page_offset(uint32_t page_offset) const final;
@@ -20,4 +21,3 @@ protected:
 	halo4::s_cache_file_header* halo4_cache_file_header;
 	halo4::s_cache_file_tags_header* halo4_cache_file_tags_header;
 };
-

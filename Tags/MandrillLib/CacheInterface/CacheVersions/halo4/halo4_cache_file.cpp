@@ -18,8 +18,6 @@ void c_halo4_cache_file::init(halo4::s_cache_file_header& cache_file_header)
 	filenames_buffer = debug_section.masked_data + cache_file_header.file_table_offset;
 	filename_indices = reinterpret_cast<long*>(debug_section.masked_data + cache_file_header.file_table_indices_offset);
 
-	halo4_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_section.masked_data + (cache_file_header.tags_header_address - cache_file_header.virtual_base_address));
-
 	tags_buffer = tags_section.masked_data + cache_file_header.tag_buffer_offset;
 	halo4_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(cache_file_header.tags_header_address));
 
@@ -125,10 +123,11 @@ uint64_t c_halo4_cache_file::convert_page_offset(uint32_t page_offset) const
 {
 	e_cache_file_flags flags = get_cache_file_flags();
 	bool use_absolute_addressing = (flags & _cache_file_flag_use_absolute_addressing) != 0;
-	uint64_t address_offset = (use_absolute_addressing ? 0x10000000ull : 0x50000000ull) - 0x10000;
+	ASSERT(!use_absolute_addressing); // implement when seen. see Halo Reach
 
-	uint64_t virtual_address = static_cast<uint64_t>(page_offset) * 4ull + address_offset;
-	uint64_t relative_virtual_address = virtual_address - get_base_virtual_address();
+	uint64_t virtual_address = static_cast<uint64_t>(page_offset) * 4ull + page_address_offset;
+	uint64_t base_virtual_address = get_base_virtual_address();
+	uint64_t relative_virtual_address = virtual_address - base_virtual_address;
 
 	return relative_virtual_address;
 }

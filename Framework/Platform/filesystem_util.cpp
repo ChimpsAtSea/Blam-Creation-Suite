@@ -1,35 +1,51 @@
 #include "platform-private-pch.h"
 
-bool filesystem_read_from_file_handle(FILE* file_handle, void* destination, size_t size)
+bool filesystem_read_from_file_handle_to_memory(FILE* file_handle, void** out_buffer, size_t* out_buffer_size)
 {
+	DEBUG_ASSERT(out_buffer);
+	size_t buffer_size = out_buffer_size ? *out_buffer_size : 0;
+
 	const long long read_beginning = _ftelli64(file_handle);
 	_fseeki64(file_handle, 0, SEEK_END);
 	const long long file_end = _ftelli64(file_handle);
 	_fseeki64(file_handle, read_beginning, SEEK_SET);
-	const long long read_end_expected = read_beginning + static_cast<long long>(size);
 
-	if (read_beginning == file_end)
+	size_t max_bytes_to_read = file_end - read_beginning;
+
+	if (out_buffer_size == nullptr)
 	{
-		return false;
+		buffer_size = max_bytes_to_read;
+	}
+	else
+	{
+		buffer_size = __min(max_bytes_to_read, buffer_size);
 	}
 
-	char* output_data = static_cast<char*>(destination);
-
-	const long long read_position = read_beginning;
-	const long long read_end = __min(file_end, read_end_expected);
-	size_t remaining_size = size;
-	for (long long read_position = read_beginning; read_position < read_end;)
+	char* buffer = *reinterpret_cast<char**>(out_buffer);
+	if (buffer == nullptr)
 	{
-		size_t bytes_read = fread(output_data, 1, remaining_size, file_handle);
-		remaining_size -= bytes_read;
-		read_position += static_cast<long long>(bytes_read);
+		buffer = new char[buffer_size];
 	}
 
-	if (read_end_expected > read_end)
+	size_t current_bytes_read = 0;
+	do
 	{
-		return false;
+		current_bytes_read += fread(buffer + current_bytes_read, 1, buffer_size - current_bytes_read, file_handle);
+	} while (current_bytes_read < buffer_size);
+
+	*out_buffer = buffer;
+
+	if (out_buffer_size)
+	{
+		*out_buffer_size = buffer_size;
 	}
+
 	return true;
+}
+
+bool filesystem_read_from_file_handle(FILE* file_handle, void* destination, size_t size)
+{
+	return filesystem_read_from_file_handle_to_memory(file_handle, &destination, &size);
 }
 
 bool filesystem_filepath_exists(const char* filepath)
