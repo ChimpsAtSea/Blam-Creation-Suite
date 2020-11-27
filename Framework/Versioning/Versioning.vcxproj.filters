@@ -27,10 +27,10 @@
     <ClInclude Include="engine_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game_context_version.h">
+    <ClInclude Include="platform_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform_type.h">
+    <ClInclude Include="game_options_version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClCompile Include="build_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game_context_version.cpp">
+    <ClCompile Include="game_options_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

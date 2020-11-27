@@ -443,8 +443,8 @@ IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_
 		game_mode = selected_game_mode;
 		map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
 
-		//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
-		//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
+		//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_options);
+		//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_options);
 
 		{
 			// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
@@ -551,18 +551,18 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		game_event(engine_type, current_game_host->build);
 	}
 
-	GameContext* game_context = nullptr;
-	c_session_manager::create_game_context(current_game_host->build, &game_context);
-	ASSERT(game_context);
+	GameOptions* game_options = nullptr;
+	c_session_manager::create_game_options(current_game_host->build, &game_options);
+	ASSERT(game_options);
 
-	game_context->visual_remaster = use_remastered_visuals;
-	game_context->music_remaster = use_remastered_music;
-	game_context->sfx_remaster = use_remastered_sfx;
+	game_options->visual_remaster = use_remastered_visuals;
+	game_options->music_remaster = use_remastered_music;
+	game_options->sfx_remaster = use_remastered_sfx;
 
-	if (!load_save_from_file(game_context, "5EE59DB6.halo3", false))
+	if (!load_save_from_file(game_options, "5EE59DB6.halo3", false))
 	{
 		// #TODO: Make a home for this
-		if (game_context->is_host == true)
+		if (game_options->is_host == true)
 		{
 			e_mcc_game_mode game_mode = _mcc_game_mode_none;
 			e_map_id map_id = _map_id_none;
@@ -570,14 +570,14 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			IDataAccess* data_access = data_access_from_engine_type(engine_type, game_mode, map_id);
 			ASSERT(data_access != nullptr);
 
-			game_context->game_mode = game_mode;
-			game_context->map_id = map_id;
+			game_options->game_mode = game_mode;
+			game_options->map_id = map_id;
 
-			game_context->campaign_difficulty_level = g_campaign_difficulty_level;
-			game_context->campaign_insertion_point = g_insertion_point;
+			game_options->campaign_difficulty_level = g_campaign_difficulty_level;
+			game_options->campaign_insertion_point = g_insertion_point;
 
-			load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game, game_variant.c_str());
-			load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map, map_variant.c_str());
+			load_variant_from_file(data_access, game_options, engine_type, e_variant_type::_variant_type_game, game_variant.c_str());
+			load_variant_from_file(data_access, game_options, engine_type, e_variant_type::_variant_type_map, map_variant.c_str());
 		}
 	}
 
@@ -601,10 +601,10 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	IGameEngine* game_engine = current_game_host->get_game_engine();
 	ASSERT(game_engine != nullptr);
 
-	game_engine->Member04(c_render::s_device);
-	game_engine->Member05(game_context->map_id);
+	game_engine->PreloadCommonBegin(c_render::s_device);
+	game_engine->PreloadLevelBegin(game_options->map_id);
 	game_engine->InitGraphics(c_render::s_device, c_render::s_device_context, c_render::s_swap_chain, c_render::s_swap_chain);
-	game_main_thread = game_engine->InitThread(game_engine_host, game_context);
+	game_main_thread = game_engine->PlayGame(game_engine_host, game_options);
 
 	s_window->set_post_message_thread_id(game_main_thread);
 
@@ -618,7 +618,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		WaitForSingleObject(game_main_thread, INFINITE);
 	}
 
-	delete game_context;
+	delete game_options;
 
 
 	//HRESULT waitForSingleObjectResult;
@@ -895,9 +895,9 @@ void c_game_launcher::render_main_menu()
 		ImGui::Text("My Game Session");
 		ImGui::Dummy(ImVec2(0.0f, 10.0f));
 		// #TODO: Display session information
-		//for (size_t player_index = 0; player_index < game_context->player_count; player_index++)
+		//for (size_t player_index = 0; player_index < game_options->player_count; player_index++)
 		//{
-		//	ImGui::Text("Player xuid[%llx]", game_context.players[player_index].xbox_user_id);
+		//	ImGui::Text("Player xuid[%llx]", game_options.players[player_index].xbox_user_id);
 		//}
 
 		ImGui::Dummy(ImVec2(0.0f, 50.0f));
@@ -1074,9 +1074,9 @@ LRESULT c_game_launcher::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LP
 	return 0;
 }
 
-bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name)
+bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameOptions* options, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name)
 {
-	ASSERT(game_context != nullptr);
+	ASSERT(options != nullptr);
 	ASSERT(data_access != nullptr);
 	ASSERT(engine_type != _engine_type_not_set);
 	ASSERT(file_name != nullptr);
@@ -1117,15 +1117,15 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 			variant_accessor_base = data_access->game_variant_create_default(variant_data);
 			break;
 		case _variant_type_map:
-			c_console::write_line_verbose("Creating default variant for '%s'", get_enum_string<const char*, true>(static_cast<e_map_id>(game_context->map_id)));
-			variant_accessor_base = data_access->map_variant_create_from_map_id(game_context->map_id);
+			c_console::write_line_verbose("Creating default variant for '%s'", get_enum_string<const char*, true>(static_cast<e_map_id>(options->map_id)));
+			variant_accessor_base = data_access->map_variant_create_from_map_id(options->map_id);
 			break;
 		}
 	}
 
 	if (variant_accessor_base != nullptr)
 	{
-		variant_accessor_base->CopyToGameContext(game_context);
+		variant_accessor_base->PopulateGameOptions(options);
 	}
 
 	if (variant_data != nullptr)
@@ -1136,22 +1136,22 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	return true;
 }
 
-bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file_name, bool should_run)
+bool c_game_launcher::load_save_from_file(GameOptions *options, LPCSTR file_name, bool should_run)
 {
 	if (should_run)
 	{
 		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
 		size_t game_state_header_size = 0;
-		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header, &game_state_header_size))
+		if (filesystem_read_file_to_memory(file_path.c_str(), &options->game_state_header, &game_state_header_size))
 		{
-			game_context->game_state_header_size = game_state_header_size;
-			if (is_valid(game_context->game_state_header) && game_context->game_state_header_size > 0)
+			options->game_state_header_size = game_state_header_size;
+			if (is_valid(options->game_state_header) && options->game_state_header_size > 0)
 			{
 				// take off the last 4 bytes from the size to exclude our added map id
-				game_context->game_state_header_size -= 4;
-				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header[game_context->game_state_header_size]);
-				game_context->game_mode = map_id_to_game_mode(map_id);
-				game_context->map_id = map_id;
+				options->game_state_header_size -= 4;
+				e_map_id map_id = *reinterpret_cast<e_map_id *>(&options->game_state_header[options->game_state_header_size]);
+				options->game_mode = map_id_to_game_mode(map_id);
+				options->map_id = map_id;
 
 				return true;
 			}
