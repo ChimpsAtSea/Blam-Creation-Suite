@@ -37,11 +37,6 @@ c_mandrill_user_interface::~c_mandrill_user_interface()
 
 	is_exiting = true;
 
-	for (c_mandrill_tab& tab : c_reverse_reference_loop(children.data(), children.size()))
-	{
-		delete& tab;
-	}
-
 	delete file_browser;
 }
 
@@ -310,13 +305,12 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 		{
 			if (ImGui::BeginMenu("File"))
 			{
+				
 				//ImGui::MenuItem("New");
-				if (ImGui::MenuItem("Open File", "Ctrl+O"))
+				if (ImGui::MenuItem("View Cache File", "Ctrl+O"))
 				{
 					show_file_dialogue = true;
 				}
-				ImGui::MenuItem("Close");
-				ImGui::Separator();
 				for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 				{
 					tab.render_menu_gui(_menu_render_type_root_file);
@@ -324,7 +318,7 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 				//ImGui::MenuItem("Save Workspace");
 				//ImGui::MenuItem("Load Workspace");
 				//ImGui::Separator();
-				if (ImGui::MenuItem("Exit"))
+				if (ImGui::MenuItem("Exit", "Alt+F4"))
 				{
 					_is_open = false;
 				}

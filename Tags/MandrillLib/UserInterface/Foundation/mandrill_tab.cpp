@@ -15,12 +15,27 @@ c_mandrill_tab::c_mandrill_tab(const char* title, const char* description, c_man
 c_mandrill_tab::~c_mandrill_tab()
 {
 	on_closed.call(*this);
+
+	dispose_children();
+}
+
+void c_mandrill_tab::dispose_children()
+{
+	for (c_mandrill_tab& tab : c_reverse_reference_loop(children.data(), children.size()))
+	{
+		delete& tab;
+	}
+	children.clear();
 }
 
 void c_mandrill_tab::render(bool set_selected)
 {
 	if (!_is_open)
 	{
+		if (parent != nullptr)
+		{
+			parent->remove_tab(*this);
+		}
 		delete this;
 		return;
 	}

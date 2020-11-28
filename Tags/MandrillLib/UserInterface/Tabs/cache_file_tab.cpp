@@ -241,6 +241,16 @@ void c_cache_file_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (menu_render_type == _menu_render_type_root_file && is_selected())
 	{
+		if (ImGui::MenuItem("Close Cache File"))
+		{
+			_is_open = false;
+		}
+		ImGui::Separator();
+
+		ImGui::MenuItem("New Tag");
+		ImGui::MenuItem("Extract Tag");
+		ImGui::Separator();
+
 		c_fixed_string_512 save_string;
 		save_string.format("Save %s", cache_file.get_map_path_utf8());
 		if (ImGui::MenuItem(save_string.c_str(), "Ctrl+S"))

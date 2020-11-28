@@ -39,7 +39,7 @@ bool is_page_offset_with_map_valid(char* map_data, uint32_t page_address_offset)
 	gen3::s_cache_file_tag_instance* tag_instances = reinterpret_cast<gen3::s_cache_file_tag_instance*>(tags_buffer + (tags_header.tag_instances.address - cache_file_header.virtual_base_address));
 
 	uint32_t page_offset_to_first_tag = tag_instances[0].address;
-	uint32_t bytes_to_first_tag = _convert_page_offset(page_offset_to_first_tag, page_address_offset, cache_file_header.virtual_base_address);
+	uint64_t bytes_to_first_tag = _convert_page_offset(page_offset_to_first_tag, page_address_offset, cache_file_header.virtual_base_address);
 
 	bool is_valid = bytes_to_first_tag < cache_file_header.tag_buffer_size;
 

@@ -28,7 +28,7 @@ public:
 		callbacks.erase(function);
 	}
 
-	void unregister_callback(void* key, std::function<t_func> function)
+	void unregister_callback_by_key(void* key)
 	{
 		callbacks.erase(key);
 	}

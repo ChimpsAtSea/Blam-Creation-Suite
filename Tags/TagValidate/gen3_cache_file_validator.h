@@ -16,6 +16,10 @@ enum e_cache_file_validator_struct_type
 	_cache_file_validator_struct_type_tag_resource
 };
 
+#define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
+using t_gen3_cache_file_validator_field_type_render_callbacks = c_callback<void(render_field_callback_args)>;
+using t_gen3_cache_file_validator_field_render_callback = c_callback<void(render_field_callback_args, c_callback<void(render_field_callback_args)>&)>;
+
 class c_gen3_cache_file_validator
 {
 	public:
@@ -49,8 +53,7 @@ private:
 		e_platform_type platform_type;
 
 public:
-#define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
-		c_callback<void(render_field_callback_args)> field_type_render_callbacks[blofeld::k_number_of_blofeld_field_types];
-		c_callback<void(render_field_callback_args, c_callback<void(render_field_callback_args)>&)> field_render_callback;
+		t_gen3_cache_file_validator_field_type_render_callbacks field_type_render_callbacks[blofeld::k_number_of_blofeld_field_types];
+		t_gen3_cache_file_validator_field_render_callback field_render_callback;
 };
 

@@ -41,9 +41,9 @@ protected:
 	static bool show_field_offsets;
 	static bool show_custom_fields;
 	static bool use_absolute_offsets;
-	
 
-	void setup_render_callbacks();
+	void register_render_callbacks();
+	void unregister_render_callbacks();
 #define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
 	void render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback);
 	void render_field_string(render_field_callback_args);

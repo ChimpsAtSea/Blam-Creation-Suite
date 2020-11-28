@@ -16,6 +16,7 @@ public:
 	c_mandrill_tab(const char* title, const char* description, c_mandrill_tab* parent, bool allow_close = true);
 	virtual ~c_mandrill_tab();
 
+	void dispose_children();
 	void render(bool set_selected);
 	void render_menu_gui(e_menu_render_type menu_render_type);
 	void render_file_dialogue_gui();

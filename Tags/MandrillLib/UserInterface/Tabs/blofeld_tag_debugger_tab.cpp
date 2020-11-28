@@ -14,12 +14,12 @@ c_blofeld_tag_debugger_tab::c_blofeld_tag_debugger_tab(c_tag_interface& tag_inte
 	tag_interface(tag_interface),
 	viewport_size()
 {
-	setup_render_callbacks();
+	register_render_callbacks();
 }
 
 c_blofeld_tag_debugger_tab::~c_blofeld_tag_debugger_tab()
 {
-
+	unregister_render_callbacks();
 }
 
 bool c_blofeld_tag_debugger_tab::is_enabled() const
@@ -709,7 +709,7 @@ void c_blofeld_tag_debugger_tab::render_field_half(render_field_callback_args)
 	render_field_scalar_type(ImGuiDataType_Float, 1, result->level, reinterpret_cast<char*>(&half_value), field, result);
 }
 
-void c_blofeld_tag_debugger_tab::setup_render_callbacks()
+void c_blofeld_tag_debugger_tab::register_render_callbacks()
 {
 	using namespace std::placeholders;
 
@@ -799,6 +799,26 @@ void c_blofeld_tag_debugger_tab::setup_render_callbacks()
 	register_validation_callback(blofeld::_field_half, render_field_half);
 
 #undef register_validation_callback
+}
+
+void c_blofeld_tag_debugger_tab::unregister_render_callbacks()
+{
+	c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
+	if (gen3_tag_interface == nullptr)
+	{
+		return;
+	}
+
+	c_gen3_cache_file& gen3_cache_file = gen3_tag_interface->get_cache_file();
+
+	c_gen3_cache_file_validator* validator = &gen3_cache_file.get_cache_file_validator();
+
+	validator->field_render_callback.unregister_callback_by_key(this);
+
+	for (uint32_t field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
+	{
+		validator->field_type_render_callbacks[field_type].unregister_callback_by_key(this);
+	}
 }
 
 void c_blofeld_tag_debugger_tab::render_impl()
