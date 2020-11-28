@@ -224,7 +224,7 @@
     <ClInclude Include="MCC\player_configuration.h" />
     <ClInclude Include="Presense\presense_info.h" />
     <ClInclude Include="session_manager.h" />
-    <ClInclude Include="MCC\game_context.h" />
+    <ClInclude Include="MCC\game_options.h" />
     <ClInclude Include="RuntimeManipulation\data_patch.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="FileSystem\blam_file_parser.h" />

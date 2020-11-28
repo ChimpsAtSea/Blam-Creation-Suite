@@ -1,6 +1,6 @@
 #pragma once
 
-class GameContext;
+class GameOptions;
 
 class c_session_player
 {
@@ -15,6 +15,6 @@ public:
 	c_session_player* host;
 	c_session_player* local_players;
 
-	static void create_game_context(e_build build, GameContext** out_game_context);
+	static void create_game_options(e_build build, GameOptions** out_options);
 };
 

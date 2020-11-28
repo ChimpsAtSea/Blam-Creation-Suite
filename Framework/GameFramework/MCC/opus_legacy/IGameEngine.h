@@ -41,12 +41,12 @@ class __IGameEngine;
 class IGameEngine
 {
 public: // instance functions
-	virtual void free();
-	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, IDXGISwapChain* pSwapchain, IDXGISwapChain* pFallbackSwapchain);
-	virtual HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
+	virtual void Dtor();
+	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* device, ID3D11DeviceContext* device_context, IDXGISwapChain* swapchain, IDXGISwapChain* swapchain_fallback);
+	virtual HANDLE __fastcall PlayGame(class IGameEngineHost* host, GameOptions* options);
 	virtual __int64 __fastcall EngineStateUpdate(e_engine_state status, _QWORD* extraArgument = nullptr);
-	virtual void __fastcall Member04(ID3D11Device* pDevice);
-	virtual void __fastcall Member05(int map_id);
+	virtual void __fastcall PreloadCommonBegin(ID3D11Device* device);
+	virtual void __fastcall PreloadLevelBegin(int map_id);
 	virtual void __fastcall Member06();
 	virtual void __fastcall Member07();
 	virtual void __fastcall Member08();
@@ -56,8 +56,10 @@ public: // instance functions
 	// #INTELLISENSE
 	IGameEngine(__IGameEngine& game_engine, e_build build);
 	
-	DWORD __unknown8;
-	float game_speed;
+private:
+	int m_externalUIActiveCounter;
+	float m_old_film_playback_speed;
+
 	SLIST_HEADER ListHeaders[69];
 };
 
@@ -66,12 +68,12 @@ public: // instance functions
 
 enum IGameEngineVirtualFunctionIndex
 {
-	__game_engine_virtual_function_free,
+	__game_engine_virtual_function_dtor,
 	__game_engine_virtual_function_init_graphics,
-	__game_engine_virtual_function_init_thread,
+	__game_engine_virtual_function_play_game,
 	__game_engine_virtual_function_engine_state_update,
-	__game_engine_virtual_function_member_4,
-	__game_engine_virtual_function_member_5,
+	__game_engine_virtual_function_preload_common_begin,
+	__game_engine_virtual_function_preload_level_begin,
 	__game_engine_virtual_function_member_6,
 	__game_engine_virtual_function_member_7,
 	__game_engine_virtual_function_member_8,
@@ -84,11 +86,11 @@ inline uint32_t get_game_engine_virtual_function_index(e_build build, IGameEngin
 	enum IGameEngineV1VirtualFunctionIndex
 	{
 		__game_engine_v1_virtual_function_init_graphics,
-		__game_engine_v1_virtual_function_init_thread,
+		__game_engine_v1_virtual_function_play_game,
 		__game_engine_v1_virtual_function_engine_state_update,
-		__game_engine_v1_virtual_function_free,
-		__game_engine_v1_virtual_function_member_4,
-		__game_engine_v1_virtual_function_member_5,
+		__game_engine_v1_virtual_function_dtor,
+		__game_engine_v1_virtual_function_preload_common_begin,
+		__game_engine_v1_virtual_function_preload_level_begin,
 		__game_engine_v1_virtual_function_member_6,
 		__game_engine_v1_virtual_function_member_7,
 		__game_engine_v1_virtual_function_member_8,
@@ -98,12 +100,12 @@ inline uint32_t get_game_engine_virtual_function_index(e_build build, IGameEngin
 
 	enum IGameEngineV2VirtualFunctionIndex
 	{
-		__game_engine_v2_virtual_function_free,
+		__game_engine_v2_virtual_function_dtor,
 		__game_engine_v2_virtual_function_init_graphics,
-		__game_engine_v2_virtual_function_init_thread,
+		__game_engine_v2_virtual_function_play_game,
 		__game_engine_v2_virtual_function_engine_state_update,
-		__game_engine_v2_virtual_function_member_4,
-		__game_engine_v2_virtual_function_member_5,
+		__game_engine_v2_virtual_function_preload_common_begin,
+		__game_engine_v2_virtual_function_preload_level_begin,
 		__game_engine_v2_virtual_function_member_6,
 		__game_engine_v2_virtual_function_member_7,
 		__game_engine_v2_virtual_function_member_8,
@@ -116,12 +118,12 @@ inline uint32_t get_game_engine_virtual_function_index(e_build build, IGameEngin
 		// version 2
 		switch (game_engine_virtual_function_index)
 		{
-		case __game_engine_virtual_function_free:					return __game_engine_v2_virtual_function_free;
+		case __game_engine_virtual_function_dtor:					return __game_engine_v2_virtual_function_dtor;
 		case __game_engine_virtual_function_init_graphics:			return __game_engine_v2_virtual_function_init_graphics;
-		case __game_engine_virtual_function_init_thread:			return __game_engine_v2_virtual_function_init_thread;
+		case __game_engine_virtual_function_play_game:				return __game_engine_v2_virtual_function_play_game;
 		case __game_engine_virtual_function_engine_state_update:	return __game_engine_v2_virtual_function_engine_state_update;
-		case __game_engine_virtual_function_member_4:				return __game_engine_v2_virtual_function_member_4;
-		case __game_engine_virtual_function_member_5:				return __game_engine_v2_virtual_function_member_5;
+		case __game_engine_virtual_function_preload_common_begin:	return __game_engine_v2_virtual_function_preload_common_begin;
+		case __game_engine_virtual_function_preload_level_begin:	return __game_engine_v2_virtual_function_preload_level_begin;
 		case __game_engine_virtual_function_member_6:				return __game_engine_v2_virtual_function_member_6;
 		case __game_engine_virtual_function_member_7:				return __game_engine_v2_virtual_function_member_7;
 		case __game_engine_virtual_function_member_8:				return __game_engine_v2_virtual_function_member_8;
@@ -134,12 +136,12 @@ inline uint32_t get_game_engine_virtual_function_index(e_build build, IGameEngin
 		// version 1
 		switch (game_engine_virtual_function_index)
 		{
-		case __game_engine_virtual_function_free:					return __game_engine_v1_virtual_function_free;
+		case __game_engine_virtual_function_dtor:					return __game_engine_v1_virtual_function_dtor;
 		case __game_engine_virtual_function_init_graphics:			return __game_engine_v1_virtual_function_init_graphics;
-		case __game_engine_virtual_function_init_thread:			return __game_engine_v1_virtual_function_init_thread;
+		case __game_engine_virtual_function_play_game:				return __game_engine_v1_virtual_function_play_game;
 		case __game_engine_virtual_function_engine_state_update:	return __game_engine_v1_virtual_function_engine_state_update;
-		case __game_engine_virtual_function_member_4:				return __game_engine_v1_virtual_function_member_4;
-		case __game_engine_virtual_function_member_5:				return __game_engine_v1_virtual_function_member_5;
+		case __game_engine_virtual_function_preload_common_begin:	return __game_engine_v1_virtual_function_preload_common_begin;
+		case __game_engine_virtual_function_preload_level_begin:	return __game_engine_v1_virtual_function_preload_level_begin;
 		case __game_engine_virtual_function_member_6:				return __game_engine_v1_virtual_function_member_6;
 		case __game_engine_virtual_function_member_7:				return __game_engine_v1_virtual_function_member_7;
 		case __game_engine_virtual_function_member_8:				return __game_engine_v1_virtual_function_member_8;
@@ -157,8 +159,8 @@ class __IGameEngine // raw data
 	friend class IGameEngine;
 private:
 	void* (&__vfptr)[32];
-	DWORD __unknown8;
-	float game_speed;
+	int m_externalUIActiveCounter;
+	float m_old_film_playback_speed;
 	SLIST_HEADER ListHeaders[69];
 };
 static_assert_64(sizeof(__IGameEngine) == 0x460, "__IGameEngine is incorrect size");
@@ -173,36 +175,36 @@ public:
 		REFERENCE_ASSERT(game_engine);
 
 
-		uint32_t free_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_free);
+		uint32_t dtor_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_dtor);
 		uint32_t init_graphics_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_init_graphics);
-		uint32_t init_thread_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_init_thread);
+		uint32_t play_game_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_play_game);
 		uint32_t engine_state_update_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_engine_state_update);
-		uint32_t member_4_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_4);
-		uint32_t member_5_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_5);
+		uint32_t preload_common_begin_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_preload_common_begin);
+		uint32_t preload_level_begin_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_preload_level_begin);
 		uint32_t member_6_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_6);
 		uint32_t member_7_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_7);
 		uint32_t member_8_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_8);
 		uint32_t send_engine_command_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_send_engine_command);
 		uint32_t member_10_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_10);
 
-		_free = static_cast<decltype(_free)>(game_engine.__vfptr[free_virtual_function_index]);
+		_Dtor = static_cast<decltype(_Dtor)>(game_engine.__vfptr[dtor_virtual_function_index]);
 		_InitGraphics = static_cast<decltype(_InitGraphics)>(game_engine.__vfptr[init_graphics_virtual_function_index]);
-		_InitThread = static_cast<decltype(_InitThread)>(game_engine.__vfptr[init_thread_virtual_function_index]);
+		_PlayGame = static_cast<decltype(_PlayGame)>(game_engine.__vfptr[play_game_virtual_function_index]);
 		_EngineStateUpdate = static_cast<decltype(_EngineStateUpdate)>(game_engine.__vfptr[engine_state_update_virtual_function_index]);
-		_Member04 = static_cast<decltype(_Member04)>(game_engine.__vfptr[member_4_virtual_function_index]);
-		_Member05 = static_cast<decltype(_Member05)>(game_engine.__vfptr[member_5_virtual_function_index]);
+		_PreloadCommonBegin = static_cast<decltype(_PreloadCommonBegin)>(game_engine.__vfptr[preload_common_begin_virtual_function_index]);
+		_PreloadLevelBegin = static_cast<decltype(_PreloadLevelBegin)>(game_engine.__vfptr[preload_level_begin_virtual_function_index]);
 		_Member06 = static_cast<decltype(_Member06)>(game_engine.__vfptr[member_6_virtual_function_index]);
 		_Member07 = static_cast<decltype(_Member07)>(game_engine.__vfptr[member_7_virtual_function_index]);
 		_Member08 = static_cast<decltype(_Member08)>(game_engine.__vfptr[member_8_virtual_function_index]);
 		_SendEngineCommand = static_cast<decltype(_SendEngineCommand)>(game_engine.__vfptr[send_engine_command_virtual_function_index]);
 		_Member10 = static_cast<decltype(_Member10)>(game_engine.__vfptr[member_10_virtual_function_index]);
 
-		DEBUG_ASSERT(_free != nullptr);
+		DEBUG_ASSERT(_Dtor != nullptr);
 		DEBUG_ASSERT(_InitGraphics != nullptr);
-		DEBUG_ASSERT(_InitThread != nullptr);
+		DEBUG_ASSERT(_PlayGame != nullptr);
 		DEBUG_ASSERT(_EngineStateUpdate != nullptr);
-		DEBUG_ASSERT(_Member04 != nullptr);
-		DEBUG_ASSERT(_Member05 != nullptr);
+		DEBUG_ASSERT(_PreloadCommonBegin != nullptr);
+		DEBUG_ASSERT(_PreloadLevelBegin != nullptr);
 		DEBUG_ASSERT(_Member06 != nullptr);
 		DEBUG_ASSERT(_Member07 != nullptr);
 		DEBUG_ASSERT(_Member08 != nullptr);
@@ -215,17 +217,12 @@ public:
 
 	}
 
-	typedef __int64 __fastcall freeFunc(__IGameEngine*);
-	typedef __int64 __fastcall InitGraphicsFunc(
-		__IGameEngine*,
-		ID3D11Device* pDevice,
-		ID3D11DeviceContext* pDeviceContext,
-		IDXGISwapChain* pSwapchain,
-		IDXGISwapChain* pFallbackSwapchain);
-	typedef HANDLE __fastcall InitThreadFunc(__IGameEngine*, class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
-	typedef __int64 __fastcall EngineStateUpdateFunc(__IGameEngine*, e_engine_state status, _QWORD* extraArgument);
-	typedef void __fastcall Member04Func(__IGameEngine*, ID3D11Device* pDevice);
-	typedef void __fastcall Member05Func(__IGameEngine*, int map_id);
+	typedef __int64 __fastcall DtorFunc(__IGameEngine*);
+	typedef __int64 __fastcall InitGraphicsFunc(__IGameEngine*, ID3D11Device* device, ID3D11DeviceContext* device_context, IDXGISwapChain* swapchain, IDXGISwapChain* swapchain_fallback);
+	typedef HANDLE __fastcall InitThreadFunc(__IGameEngine*, class IGameEngineHost* host, GameOptions* options);
+	typedef __int64 __fastcall EngineStateUpdateFunc(__IGameEngine*, e_engine_state state, _QWORD* extraArgument);
+	typedef void __fastcall PreloadCommonBeginFunc(__IGameEngine*, ID3D11Device* device);
+	typedef void __fastcall PreloadLevelBeginFunc(__IGameEngine*, int map_id);
 	typedef void __fastcall Member06Func(__IGameEngine*);
 	typedef void __fastcall Member07Func(__IGameEngine*);
 	typedef void __fastcall Member08Func(__IGameEngine*);
@@ -235,31 +232,27 @@ public:
 	__IGameEngine& game_engine;
 	e_build build;
 
-	freeFunc* _free;
+	DtorFunc* _Dtor;
 	InitGraphicsFunc* _InitGraphics;
-	InitThreadFunc* _InitThread;
+	InitThreadFunc* _PlayGame;
 	EngineStateUpdateFunc* _EngineStateUpdate;
-	Member04Func* _Member04;
-	Member05Func* _Member05;
+	PreloadCommonBeginFunc* _PreloadCommonBegin;
+	PreloadLevelBeginFunc* _PreloadLevelBegin;
 	Member06Func* _Member06;
 	Member07Func* _Member07;
 	Member08Func* _Member08;
 	SendEngineCommandFunc* _SendEngineCommand;
 	Member10Func* _Member10;
 
-	__int64 __fastcall free() { _free(&game_engine); }
-	__int64 __fastcall InitGraphics(
-		ID3D11Device* pDevice,
-		ID3D11DeviceContext* pDeviceContext,
-		IDXGISwapChain* pSwapchain,
-		IDXGISwapChain* pFallbackSwapchain)
+	__int64 __fastcall Dtor() { _Dtor(&game_engine); }
+	__int64 __fastcall InitGraphics(ID3D11Device* device, ID3D11DeviceContext* device_context, IDXGISwapChain* swapchain, IDXGISwapChain* swapchain_fallback)
 	{
-		return _InitGraphics(&game_engine, pDevice, pDeviceContext, pSwapchain, pFallbackSwapchain);
+		return _InitGraphics(&game_engine, device, device_context, swapchain, swapchain_fallback);
 	}
-	HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext) { return _InitThread(&game_engine, pGameEngineHost, pGameContext); }
-	__int64 __fastcall EngineStateUpdate(e_engine_state status, _QWORD* extraArgument = nullptr) { return _EngineStateUpdate(&game_engine, status, extraArgument); }
-	void __fastcall Member04(ID3D11Device* pDevice) { return _Member04(&game_engine, pDevice); }
-	void __fastcall Member05(int map_id) { return _Member05(&game_engine, map_id); }
+	HANDLE __fastcall PlayGame(class IGameEngineHost* host, GameOptions* options) { return _PlayGame(&game_engine, host, options); }
+	__int64 __fastcall EngineStateUpdate(e_engine_state state, _QWORD* extraArgument = nullptr) { return _EngineStateUpdate(&game_engine, state, extraArgument); }
+	void __fastcall PreloadCommonBegin(ID3D11Device* device) { return _PreloadCommonBegin(&game_engine, device); }
+	void __fastcall PreloadLevelBegin(int map_id) { return _PreloadLevelBegin(&game_engine, map_id); }
 	void __fastcall Member06() { return _Member06(&game_engine); }
 	void __fastcall Member07() { return _Member07(&game_engine); }
 	void __fastcall Member08() { return _Member08(&game_engine); }

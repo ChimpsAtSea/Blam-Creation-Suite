@@ -19,10 +19,10 @@ public:
 	static void select_game_mode();
 	static void Render();
 
-	static void load_map_variant(IDataAccess *data_access, const char* engine_name, const char *variant_name, s_map_variant &out_variant, bool print = false);
-	static void load_game_variant(IDataAccess *data_access, const char* engine_name, const char *variant_name, s_game_variant &out_variant, bool print = false);
-	static void load_savegame(const char *filepath, GameContext &game_context);
-	static void load_saved_film(const char *saved_film_name, GameContext &game_context);
+	static void load_map_variant(IDataAccess* data_access, const char* engine_name, const char* variant_name, s_map_variant& out_variant, bool print = false);
+	static void load_game_variant(IDataAccess* data_access, const char* engine_name, const char* variant_name, s_game_variant& out_variant, bool print = false);
+	static void load_savegame(const char* filepath, GameOptions& options);
+	static void load_saved_film(const char* saved_film_name, GameOptions& options);
 
 	static std::string s_launch_game_variant;
 	static std::string s_launch_map_variant;

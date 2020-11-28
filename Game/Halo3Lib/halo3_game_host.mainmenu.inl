@@ -1,6 +1,6 @@
 
 #pragma region MCC Parse Hooks
-uintptr_t game_context_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build build)
+uintptr_t game_options_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802913C0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18028B920);
@@ -9,10 +9,10 @@ uintptr_t game_context_map_id_parse_to_halo3_offset(e_engine_type engine_type, e
 	// not available for builds 1767-1955
 	return ~uintptr_t();
 }
-c_function_hook_ex<game_context_map_id_parse_to_halo3_offset, long __fastcall(c_game_context_v3* game_context)> game_context_map_id_parse_to_halo3 = { "game_context_map_id_parse_to_halo3", [](c_game_context_v3* game_context)
+c_function_hook_ex<game_options_map_id_parse_to_halo3_offset, long __fastcall(s_game_options_v2*)> game_options_map_id_parse_to_halo3 = { "game_options_map_id_parse_to_halo3", [](s_game_options_v2* options)
 {
-	long result = game_context_map_id_parse_to_halo3(game_context);
-	return result == -1l ? game_context->map_id : result;
+	long result = game_options_map_id_parse_to_halo3(options);
+	return result == -1l ? options->map_id : result;
 } };
 
 uintptr_t mcc_map_id_parse_from_halo3_offset(e_engine_type engine_type, e_build build)
@@ -30,7 +30,7 @@ uintptr_t mcc_map_id_parse_from_halo3_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800E3704);
 	return ~uintptr_t();
 }
-c_function_hook_ex<mcc_map_id_parse_from_halo3_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo3 = { "mcc_map_id_parse_from_halo3", [](long map_id)
+c_function_hook_ex<mcc_map_id_parse_from_halo3_offset, long __fastcall(long)> mcc_map_id_parse_from_halo3 = { "mcc_map_id_parse_from_halo3", [](long map_id)
 {
 	long result = mcc_map_id_parse_from_halo3(map_id);
 	return result == -1l ? map_id : result;
@@ -52,7 +52,7 @@ uintptr_t mcc_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build bu
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800E3554);
 	return ~uintptr_t();
 }
-c_function_hook_ex<mcc_map_id_parse_to_halo3_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3 = { "mcc_map_id_parse_to_halo3", [](long map_id)
+c_function_hook_ex<mcc_map_id_parse_to_halo3_offset, long __fastcall(long)> mcc_map_id_parse_to_halo3 = { "mcc_map_id_parse_to_halo3", [](long map_id)
 {
 	launched_as_mainmenu = map_id == _map_id_mainmenu;
 	long result = mcc_map_id_parse_to_halo3(map_id);

@@ -14,15 +14,15 @@ c_function_hook_ex<mcc_player_configuration_get_offset, c_player_configuration* 
 
 
 
-uintptr_t InitThread_offset(e_engine_type engine_type, e_build build)
+uintptr_t PlayGame_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076240);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180012920);
 	return ~uintptr_t();
 }
-c_function_hook_ex<InitThread_offset, HANDLE __fastcall (void*, class IGameEngineHost* game_engineHost, c_game_context_v3 * pGameContext)> InitThread = { "InitThread", [](void* a1, class IGameEngineHost* game_engineHost, c_game_context_v3* pGameContext)
+c_function_hook_ex<PlayGame_offset, HANDLE __fastcall (IGameEngine*, class IGameEngineHost*, s_game_options_v2*)> PlayGame = { "PlayGame", [](IGameEngine* engine, class IGameEngineHost* host, s_game_options_v2* options)
 {
-	HANDLE result = InitThread(a1, game_engineHost, pGameContext);
+	HANDLE result = PlayGame(engine, host, options);
 	return result;
 } };
 
@@ -32,9 +32,9 @@ uintptr_t sub_180076BA0_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076BA0);
 	return ~uintptr_t();
 }
-c_function_hook_ex<sub_180076BA0_offset, void __fastcall (IGameEngine* thisptr, struct ID3D11Device* pDevice)> sub_180076BA0 = { "sub_180076BA0", [](IGameEngine* thisptr, struct ID3D11Device* pDevice)
+c_function_hook_ex<sub_180076BA0_offset, void __fastcall (IGameEngine*, struct ID3D11Device*)> sub_180076BA0 = { "sub_180076BA0", [](IGameEngine* engine, struct ID3D11Device* device)
 {
-	sub_180076BA0(thisptr, pDevice);
+	sub_180076BA0(engine, device);
 } };
 
 //.text:0000000180076D60; void __fastcall sub_180076D60(struct IGameEngine* a1, int map_id)
@@ -72,14 +72,14 @@ c_function_hook_ex<CreateGameEngine_offset, __int64 __fastcall (QWORD * a1)> Cre
 	return CreateGameEngine(a1);
 } };
 //
-//uintptr_t InitThread_offset(e_engine_type engine_type, e_build build)
+//uintptr_t PlayGame_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18008C550);
 //	return ~uintptr_t();
 //}
-//c_function_hook_ex<InitThread_offset, HANDLE __fastcall (IGameEngine*, IGameEngineHost*, GameContext*)> InitThread = { "InitThread", [](IGameEngine* game_engine, IGameEngineHost* game_engineHost, GameContext* pGameContext)
+//c_function_hook_ex<PlayGame_offset, HANDLE __fastcall (IGameEngine*, IGameEngineHost*, GameContext*)> PlayGame = { "PlayGame", [](IGameEngine* game_engine, IGameEngineHost* game_engineHost, GameContext* pGameContext)
 //{
-//	return InitThread(game_engine, game_engineHost, pGameContext);
+//	return PlayGame(game_engine, game_engineHost, pGameContext);
 //} };
 //
 //

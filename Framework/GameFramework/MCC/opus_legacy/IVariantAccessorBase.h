@@ -10,6 +10,6 @@ public:
 	virtual LPCWSTR SetDescription(LPCWSTR) = 0;
 	virtual bool GetCreationInfo(LPVOID) = 0;
 	virtual bool SetCreationInfo(LPVOID) = 0;
-	virtual LPVOID CopyToGameContext(class GameContext*) = 0;
+	virtual LPVOID PopulateGameOptions(class GameOptions*) = 0;
 	virtual bool CreateFileFromBuffer(LPVOID, size_t*) = 0;
 };

@@ -773,7 +773,7 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* da
 }
 
 // TODO: Test, and fix if broke
-void c_haloreach_game_option_selection_legacy::load_savegame(const char* game_state_name, GameContext& game_context)
+void c_haloreach_game_option_selection_legacy::load_savegame(const char* game_state_name, GameOptions& options)
 {
 	return;
 
@@ -791,15 +791,15 @@ void c_haloreach_game_option_selection_legacy::load_savegame(const char* game_st
 	//	memset(pGameStateBuffer, 0x00, filo.buffer_size);
 	//	pGameStateBuffer = filo.buffer;
 
-	//	game_context.game_mode = _mcc_game_mode_campaign;
-	//	game_context.game_state_header_size = filo.buffer_size;
-	//	game_context.game_state_header = pGameStateBuffer;
+	//	options.game_mode = _mcc_game_mode_campaign;
+	//	options.game_state_header_size = filo.buffer_size;
+	//	options.game_state_header = pGameStateBuffer;
 
 	//	filo.close_file();
 	//}
 }
 
-void c_haloreach_game_option_selection_legacy::load_saved_film(const char* saved_film_name, GameContext& game_context)
+void c_haloreach_game_option_selection_legacy::load_saved_film(const char* saved_film_name, GameOptions& options)
 {
 	if (!(*saved_film_name))
 		return;
@@ -827,7 +827,7 @@ void c_haloreach_game_option_selection_legacy::load_saved_film(const char* saved
 		c_console::write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
-	game_context.saved_film_path = filepath.c_str();
+	options.saved_film_path = filepath.c_str();
 
 }
 
