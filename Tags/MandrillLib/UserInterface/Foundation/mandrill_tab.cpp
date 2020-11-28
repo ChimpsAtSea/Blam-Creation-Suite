@@ -14,9 +14,9 @@ c_mandrill_tab::c_mandrill_tab(const char* title, const char* description, c_man
 
 c_mandrill_tab::~c_mandrill_tab()
 {
-	on_closed.call(*this);
-
 	dispose_children();
+
+	on_closed.call(*this);
 }
 
 void c_mandrill_tab::dispose_children()
