@@ -68,7 +68,7 @@ int WINAPI WinMain(
 		window->update();
 	}
 
-	window->on_update.unregister_callback(&update_callback, update_callback);
+	window->on_update.unregister_callback_by_key(&update_callback);
 	window->on_destroy.unregister_callback(DestroyCallback);
 
 	c_game_launcher::deinit_game_launcher();
