@@ -483,6 +483,7 @@ namespace blofeld
 		{ _field_real_fraction, "CAMPAIGN age generated per round:[0,1]#the amount the weapon ages each time the trigger is fired" },
 		{ _field_real, "overload time:seconds#the next trigger fires this often while holding down this trigger" },
 
+		{ _field_version_platform_include, _platform_type_pc, 9 },
 		{ _field_version_not_equal, _engine_type_halo4, 8 }, //pulled from assembly, probs exists in h2ek definitions(?)
 		{ _field_explanation, "angle change (recoil)" },
 		{ _field_real_bounds, "angle change per shot" }, // angle change per shot#angle change per shot of the weapon during firing
