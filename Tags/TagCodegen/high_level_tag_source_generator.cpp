@@ -298,8 +298,8 @@ void c_high_level_tag_source_generator::generate_source()
 		stream << "\t\t{" << std::endl;
 		stream << "\t\t\tuintptr_t const _field_address = reinterpret_cast<uintptr_t>(&field);" << std::endl;
 		stream << "\t\t\tuintptr_t const _fields_address = reinterpret_cast<uintptr_t>(struct_definition.fields);" << std::endl;
-		stream << "\t\t\tuintptr_t const _bytes_offset = field_address - fields_address;" << std::endl;
-		stream << "\t\t\tuintptr_t const _index = bytes_offset / sizeof(blofeld::s_tag_field);" << std::endl;
+		stream << "\t\t\tuintptr_t const _bytes_offset = _field_address - _fields_address;" << std::endl;
+		stream << "\t\t\tuintptr_t const _index = _bytes_offset / sizeof(blofeld::s_tag_field);" << std::endl;
 		stream << std::endl;
 		stream << "\t\t\tswitch (_index)" << std::endl;
 		stream << "\t\t\t{" << std::endl;
