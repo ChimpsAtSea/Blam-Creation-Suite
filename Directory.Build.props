@@ -11,6 +11,7 @@
     <MultiProcFXC>true</MultiProcFXC>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <OutDir>$(SolutionDir)$(Platform)\$(CustomConfiguration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)\$(CustomConfiguration)\build_temp\$(MSBuildProjectName)\</IntDir>
     <TargetName>$(MSBuildProjectName)</TargetName>

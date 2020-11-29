@@ -7,6 +7,8 @@ namespace blofeld
 
 	extern s_tag_group cookie_purchase_globals_group;
 
+	extern s_tag_struct_definition purchase_player_appearance_effect_firefight_voice_block_block_struct;
+
 	extern s_tag_struct_definition CookiePurchaseAppearanceDefinitionReferenceBlock_block_struct;
 	extern s_tag_block_definition CookiePurchaseAppearanceDefinitionReferenceBlock_block;
 	extern s_tag_struct_definition CookiePurchaseFamilyAppearanceDefinitionBlock_block_struct;

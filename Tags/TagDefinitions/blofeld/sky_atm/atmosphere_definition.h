@@ -9,6 +9,10 @@ namespace blofeld
 	extern s_tag_group sky_atm_parameters_group;
 	extern s_tag_group atmosphere_fog_group;
 
+	extern s_tag_struct_definition sky_atm_parameters_atmosphere_properties_block_struct;
+	extern s_tag_struct_definition sky_atm_parameters_underwater_properties_block_struct;
+	extern s_tag_struct_definition sky_atm_parameters_block_struct;
+
 	extern s_tag_struct_definition soloFogFunctionBlock_block_struct;
 	extern s_tag_block_definition soloFogFunctionBlock_block;
 	extern s_tag_struct_definition atmosphere_definition_block_block_struct;

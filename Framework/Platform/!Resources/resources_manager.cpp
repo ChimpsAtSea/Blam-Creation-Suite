@@ -1,6 +1,47 @@
 #include "platform-private-pch.h"
 #include "resource.h"
 
+c_cached_resource_info* c_cached_resource_info::cached_resource_infos[k_num_resource_types];
+
+c_cached_resource_info::c_cached_resource_info(e_resource_type resource_type) :
+	resource_handle(NULL),
+	resource_memory_handle(NULL),
+	resource_size(0),
+	resource_pointer(NULL)
+{
+	HMODULE instance_handle = c_runtime_util::get_current_module();
+	resource_handle = c_resources_manager::get_resource_handle(resource_type);
+	if (resource_handle == NULL) goto end_init_resource;
+	resource_memory_handle = LoadResource(instance_handle, resource_handle);
+	if (resource_memory_handle == NULL) goto end_init_resource;
+	resource_size = SizeofResource(instance_handle, resource_handle);
+	if (resource_size == 0) goto end_init_resource;
+	resource_pointer = LockResource(resource_memory_handle);
+	if (resource_pointer == nullptr) goto end_init_resource;
+
+end_init_resource:;
+
+}
+
+c_cached_resource_info::~c_cached_resource_info()
+{
+	if (resource_pointer != nullptr)
+	{
+		UnlockResource(resource_pointer);
+	}
+}
+
+c_cached_resource_info& c_cached_resource_info::get_info(e_resource_type resource_type)
+{
+	c_cached_resource_info*& resource_info = cached_resource_infos[resource_type];
+	if (resource_info == nullptr)
+	{
+		resource_info = new c_cached_resource_info(resource_type);
+	}
+
+	return *resource_info;
+}
+
 LPCWSTR c_resources_manager::get_resource_type(e_resource_type type)
 {
 	switch (type)
@@ -30,6 +71,17 @@ LPCWSTR c_resources_manager::get_resource_int_resource(e_resource_type type)
 	return NULL;
 }
 
+const void* c_resources_manager::get_resource(e_resource_type type, size_t* resource_size)
+{
+	c_cached_resource_info& resource_info = c_cached_resource_info::get_info(type);
+
+	if (resource_size)
+	{
+		*resource_size = resource_info.resource_size;
+	}
+	return resource_info.resource_pointer;
+}
+
 HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
 {
 	static HMODULE instance_handle = c_runtime_util::get_current_module();
@@ -40,40 +92,39 @@ HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
 	return FindResourceW(instance_handle, int_resource, get_resource_type(type));
 }
 
-bool c_resources_manager::get_resource(e_resource_type type, char** out_data, size_t* out_data_size, bool null_terminate)
+bool c_resources_manager::copy_resource_to_buffer(e_resource_type type, void*& out_data, size_t* out_data_size, bool null_terminate)
 {
-	*out_data = nullptr;
-	*out_data_size = 0;
-
-	static HMODULE instance_handle = c_runtime_util::get_current_module();
-
-	HRSRC resource_handle = get_resource_handle(type);
-	if (resource_handle == NULL) return false;
-	HGLOBAL resource_memory_handle = LoadResource(instance_handle, resource_handle);
-	if (resource_memory_handle == NULL) return false;
-	DWORD resource_size = SizeofResource(instance_handle, resource_handle);
-	if (resource_size == 0) return false;
-	LPVOID resource_pointer = LockResource(resource_memory_handle);
-	if (resource_pointer == nullptr) return false;
-
-	char* bytes = new char[resource_size + (null_terminate ? 1 : 0)] {};
-	ASSERT(bytes != nullptr);
-	for (DWORD i = 0; i < resource_size; i++)
+	out_data = nullptr;
+	if (out_data_size != nullptr)
 	{
-		bytes[i] = reinterpret_cast<char*>(resource_pointer)[i];
-	}
-	memcpy(bytes, resource_pointer, resource_size);
-	if (null_terminate)
-	{
-		bytes[resource_size] = 0;
+		*out_data_size = 0;
 	}
 
-	UnlockResource(resource_pointer);
-	BOOL free_resource_result = FreeResource(resource_memory_handle);
-	ASSERT(free_resource_result == 0);
+	size_t resource_size = 0;
+	if (const char* resource_data = static_cast<const char*>(get_resource(type, &resource_size)))
+	{
+		size_t buffer_size = resource_size;
+		if (null_terminate)
+		{
+			buffer_size++;
+		}
 
-	*out_data = bytes;
-	*out_data_size = resource_size + (null_terminate ? 1 : 0);
+		char* resource_buffer = new char[buffer_size];
+		if (null_terminate)
+		{
+			resource_buffer[resource_size] = 0;
+		}
 
-	return true;
+		memcpy(resource_buffer, resource_data, resource_size);
+
+		out_data = resource_buffer;
+		if (out_data_size != nullptr)
+		{
+			*out_data_size = buffer_size;
+		}
+		
+		return true;
+	}
+
+	return false;
 }

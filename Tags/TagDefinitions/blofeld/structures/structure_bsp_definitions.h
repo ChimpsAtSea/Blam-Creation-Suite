@@ -14,6 +14,8 @@ namespace blofeld
 	extern s_tag_block_definition scenario_structure_bsp_block;
 	extern s_tag_group scenario_structure_bsp_group;
 
+	extern s_tag_struct_definition haloreach_sbsp_unknown_block_block_struct;
+
 	extern s_tag_block_definition prefab_block_block;
 	extern s_tag_struct_definition structure_edge_to_seam_edge_mapping_block_block_struct;
 	extern s_tag_block_definition structure_edge_to_seam_edge_mapping_block_block;

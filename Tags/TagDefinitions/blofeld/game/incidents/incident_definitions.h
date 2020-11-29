@@ -15,6 +15,8 @@ namespace blofeld
 
 	extern s_tag_group SuppressedIncident_group;
 
+	extern s_tag_struct_definition incident_global_properties_incident_definitions_block_struct;
+
 	extern s_tag_struct_definition suppressed_incident_block_block_struct;
 	extern s_tag_block_definition suppressed_incident_block_block;
 	extern s_tag_struct_definition SuppressedIncidentBlockReferenceDefinition_block_struct;

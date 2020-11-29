@@ -126,12 +126,12 @@ void c_box_renderer::setup_solid_geometry()
 			4,3,7
 		};
 
-		D3D11_BUFFER_DESC bufferDesc = {};
-		bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-		bufferDesc.ByteWidth = sizeof(boxIndices);
-		bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-		bufferDesc.CPUAccessFlags = 0;
-		bufferDesc.MiscFlags = 0;
+		D3D11_BUFFER_DESC shader_binary = {};
+		shader_binary.Usage = D3D11_USAGE_DEFAULT;
+		shader_binary.ByteWidth = sizeof(boxIndices);
+		shader_binary.BindFlags = D3D11_BIND_INDEX_BUFFER;
+		shader_binary.CPUAccessFlags = 0;
+		shader_binary.MiscFlags = 0;
 
 		// Fill in the subresource data.
 		D3D11_SUBRESOURCE_DATA vertexBufferSubResourceData;
@@ -139,7 +139,7 @@ void c_box_renderer::setup_solid_geometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferesult = c_render::s_device->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &solid_index_buffer);
+		HRESULT createBufferesult = c_render::s_device->CreateBuffer(&shader_binary, &vertexBufferSubResourceData, &solid_index_buffer);
 		ASSERT(SUCCEEDED(createBufferesult));
 		ASSERT(solid_index_buffer != nullptr);
 	}
@@ -149,33 +149,33 @@ void c_box_renderer::setup_shaders()
 {
 	if (pixel_shader == nullptr)
 	{
-		char* pShaderBinary = nullptr;
+		void* shader_binary = nullptr;
 		size_t shaderFileLength = 0;
-		if (!c_resources_manager::get_resource(_resource_type_box_pixel_shader, &pShaderBinary, &shaderFileLength))
+		if (!c_resources_manager::copy_resource_to_buffer(_resource_type_box_pixel_shader, shader_binary, &shaderFileLength))
 		{
 			c_console::write_line_verbose("Warning: Failed to find Box pixel shader resource! Attempting to read BoxShaderPS.cso");
-			pShaderBinary = filesystem_read_to_memory_legacy(L"BoxShaderPS.cso", &shaderFileLength);
+			shader_binary = filesystem_read_to_memory_legacy(L"BoxShaderPS.cso", &shaderFileLength);
 		}
-		ASSERT(pShaderBinary != nullptr);
+		ASSERT(shader_binary != nullptr);
 
-		c_render::s_device->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pixel_shader);
+		c_render::s_device->CreatePixelShader(shader_binary, shaderFileLength, NULL, &pixel_shader);
 		ASSERT(pixel_shader != nullptr);
 
-		delete[] pShaderBinary;
+		delete[] shader_binary;
 	}
 
-	char* vertex_shaderBinary = nullptr;
-	size_t vertexShaderBinaryLength = 0;
+	void* vertex_shader_binary = nullptr;
+	size_t vertex_shader_binary_length = 0;
 	if (vertex_shader == nullptr)
 	{
-		if (!c_resources_manager::get_resource(_resource_type_box_vertex_shader, &vertex_shaderBinary, &vertexShaderBinaryLength))
+		if (!c_resources_manager::copy_resource_to_buffer(_resource_type_box_vertex_shader, vertex_shader_binary, &vertex_shader_binary_length))
 		{
 			c_console::write_line_verbose("Warning: Failed to find Box vertex shader resource! Attempting to read BoxShaderVS.cso");
-			vertex_shaderBinary = filesystem_read_to_memory_legacy(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
+			vertex_shader_binary = filesystem_read_to_memory_legacy(L"BoxShaderVS.cso", &vertex_shader_binary_length);
 		}
-		ASSERT(vertex_shaderBinary != nullptr);
+		ASSERT(vertex_shader_binary != nullptr);
 
-		c_render::s_device->CreateVertexShader(vertex_shaderBinary, vertexShaderBinaryLength, NULL, &vertex_shader);
+		c_render::s_device->CreateVertexShader(vertex_shader_binary, vertex_shader_binary_length, NULL, &vertex_shader);
 		ASSERT(vertex_shader != nullptr);
 	}
 
@@ -207,14 +207,14 @@ void c_box_renderer::setup_shaders()
 		inputDescriptions[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputDescriptions[0].InstanceDataStepRate = 0;
 
-		HRESULT createInputLayoutResult = c_render::s_device->CreateInputLayout(inputDescriptions, 1, vertex_shaderBinary, vertexShaderBinaryLength, &vertex_layout);
+		HRESULT createInputLayoutResult = c_render::s_device->CreateInputLayout(inputDescriptions, 1, vertex_shader_binary, vertex_shader_binary_length, &vertex_layout);
 		ASSERT(SUCCEEDED(createInputLayoutResult));
 		ASSERT(vertex_layout != nullptr);
 	}
 
-	if (vertex_shaderBinary != nullptr)
+	if (vertex_shader_binary != nullptr)
 	{
-		delete[] vertex_shaderBinary;
+		delete[] vertex_shader_binary;
 	}
 }
 

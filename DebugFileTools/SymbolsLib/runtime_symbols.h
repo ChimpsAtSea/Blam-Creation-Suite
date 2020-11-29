@@ -4,6 +4,7 @@ class c_runtime_symbols
 {
 public:
 	c_runtime_symbols(char* symbol_file_data, size_t symbol_file_data_size);
+	~c_runtime_symbols();
 
 	static c_runtime_symbols& runtime();
 
@@ -14,10 +15,9 @@ public:
 	s_symbol_file_public* get_public_symbol_by_virtual_address(void* pointer);
 
 protected:
-	bool is_initialized;
 	s_symbol_file_header* symbol_file_header;
-	char* symbol_file_data;
-	size_t symbol_file_data_size;
+	void* symbol_file_buffer;
+	bool is_initialized;
 
 	void init();
 

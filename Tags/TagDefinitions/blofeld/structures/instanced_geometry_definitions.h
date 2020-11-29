@@ -19,6 +19,8 @@ namespace blofeld
 	extern s_tag_struct_definition structureIOHavokDataBlock_struct_struct_definition;
 	extern s_tag_struct_definition SerializedHavokGeometryDataBlock_struct_struct_definition;
 
+	extern s_tag_struct_definition structure_bsp_instanced_geometry_collision_definition_block_block_struct;
+
 	extern c_versioned_string_list instanced_geometry_flags_strings;
 	extern s_string_list_definition instanced_geometry_flags;
 	extern c_versioned_string_list instanced_geometry_imposter_policy_enum_strings;

@@ -17,6 +17,11 @@ namespace blofeld
 
 	extern s_tag_group scenario_wetness_bsp_data_group;
 
+	extern s_tag_struct_definition scenario_lightmap_bsp_data_unknown_block_struct;
+	extern s_tag_struct_definition scenario_lightmap_bsp_data_unknown0_block_block_struct;
+	extern s_tag_struct_definition scenario_lightmap_bsp_data_unknown1_block_block_struct;
+	extern s_tag_struct_definition scenario_lightmap_bsp_data_unknown2_block_block_struct;
+
 	extern s_tag_struct_definition scenario_lightmap_cluster_data_block_struct;
 	extern s_tag_block_definition scenario_lightmap_cluster_data_block;
 	extern s_tag_struct_definition scenario_lightmap_instance_data_block_struct;

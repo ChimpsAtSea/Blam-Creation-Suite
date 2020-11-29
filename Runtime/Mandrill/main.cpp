@@ -147,7 +147,7 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 }
 
-static int run_mandrill()
+static int run_mandrill_api_test()
 {
 	while (g_mandrill_running)
 	{
@@ -186,7 +186,7 @@ int WINAPI wWinMain(
 	if (run_tests(lpCmdLine)) // allow program to exit without running
 	{
 		init_mandrill(hInstance, nShowCmd, lpCmdLine);
-		result = run_mandrill();
+		result = run_mandrill_api_test();
 		deinit_mandrill();
 	}
 	return result;

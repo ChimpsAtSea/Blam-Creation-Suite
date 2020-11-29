@@ -9,6 +9,9 @@ namespace blofeld
 	extern s_tag_block_definition model_block;
 	extern s_tag_group model_group;
 
+	extern s_tag_struct_definition g_model_node_flag_storage_array_struct_definition;
+	extern s_tag_struct_definition model_object_data_block_block_struct;
+	
 	extern s_tag_struct_definition model_variant_state_block_block_struct;
 	extern s_tag_block_definition model_variant_state_block_block;
 	extern s_tag_struct_definition model_variant_permutation_block_block_struct;

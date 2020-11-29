@@ -92,8 +92,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutDir)ResourcesPackager.exe -packagesymbols -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -113,8 +118,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutDir)ResourcesPackager.exe -packagesymbols -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -130,8 +140,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutDir)ResourcesPackager.exe -packagesymbols -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -151,10 +166,16 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutDir)ResourcesPackager.exe -packagesymbols -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="high_level_tag_source_generator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tag_source_generator.cpp" />
     <ClCompile Include="structure_relationship_node.cpp" />
@@ -167,6 +188,7 @@
     <ClCompile Include="virtual_tag_source_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="high_level_tag_source_generator.h" />
     <ClInclude Include="tag_source_generator.h" />
     <ClInclude Include="structure_relationship_node.h" />
     <ClInclude Include="tagcodegen-private-pch.h" />

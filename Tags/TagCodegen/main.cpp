@@ -35,7 +35,24 @@ int create_source_file()
 			{
 				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				virtual_tag_source_generator.generate_header();
+			});
+
+		g.run([&result, engine_and_platform_type]
+			{
+				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				virtual_tag_source_generator.generate_source();
+			});
+
+		g.run([&result, engine_and_platform_type]
+			{
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				high_level_tag_source_generator.generate_header();
+			});
+
+		g.run([&result, engine_and_platform_type]
+			{
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				high_level_tag_source_generator.generate_source();
 			});
 	}
 	g.wait();
@@ -43,8 +60,18 @@ int create_source_file()
 	return result;
 }
 
+#include <SymbolsLib\symbolslib-public-pch.h>
+
 int wmain(int argc, const wchar_t** argv)
 {
+	blofeld::achievements_block_block;
+
+	
+	
+
+
+
+
 	if (!c_command_line::has_command_line_arg("-output"))
 	{
 		return 1;

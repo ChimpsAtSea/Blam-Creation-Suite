@@ -3,6 +3,8 @@
 namespace blofeld
 {
 
+	extern s_tag_struct_definition health_transfers_block_block_struct;
+
 	extern s_tag_struct_definition instantaneous_damage_repsonse_block_block_struct;
 	extern s_tag_block_definition instantaneous_damage_repsonse_block_block;
 	extern s_tag_struct_definition global_damage_section_block_block_struct;

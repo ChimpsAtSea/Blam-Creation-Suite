@@ -6,6 +6,7 @@ namespace blofeld
 	extern c_constant k_maximum_hs_source_files_per_scenario; // 8
 	extern c_constant k_number_of_scenario_ai_types; // 2
 
+	// #TODO: move these
 #ifdef BLOFELD_CONST_ARGS
 #define NUMBER_OF_SCENARIO_RESOURCE_TYPES NUMBER_OF_SCENARIO_RESOURCE_TYPES(BLOFELD_CONST_ARGS)
 #define k_maximum_hs_source_files_per_scenario k_maximum_hs_source_files_per_scenario(BLOFELD_CONST_ARGS)
@@ -23,6 +24,20 @@ namespace blofeld
 	constexpr unsigned long SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
 
 	extern s_tag_group scenario_required_resource_group;
+
+	extern s_tag_struct_definition cluster_sky_index_block_block_struct;
+	extern s_tag_struct_definition scenario_zone_set_bsp_pvs_unknown_block_block_struct;
+	extern s_tag_struct_definition scenario_unknown_block_struct;
+	extern s_tag_struct_definition scenario_resources_reference_block_block_struct;
+	extern s_tag_struct_definition scenario_hs_source_reference_block_block_struct;
+	extern s_tag_struct_definition scenario_ai_resource_reference_block_block_struct;
+	extern s_tag_struct_definition scenario_resources_block_block_struct;
+	extern s_tag_struct_definition scenario_unknown_object_reference_block_struct;
+	extern s_tag_struct_definition scenario_structured_buffer_interops_block_block_struct;
+	extern s_tag_struct_definition scenario_structure_lighting_info_unknown_block0_block_struct;
+	extern s_tag_struct_definition scenario_structure_lighting_info_unknown_block1_block_struct;
+
+
 
 	extern s_tag_struct_definition scenario_profiles_block_block_struct;
 	extern s_tag_block_definition scenario_profiles_block_block;

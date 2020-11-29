@@ -99,9 +99,9 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 				//config.GlyphMinAdvanceX = font_size; // Use if you want to make the icon monospaced
 				config.PixelSnapH = true;
 
-				char* font_resource_data;
+				void* font_resource_data;
 				size_t font_resource_size;
-				bool font_resource_found = c_resources_manager::get_resource(_resource_type_font_cousine_regular, &font_resource_data, &font_resource_size);
+				bool font_resource_found = c_resources_manager::copy_resource_to_buffer(_resource_type_font_cousine_regular, font_resource_data, &font_resource_size);
 				ASSERT(font_resource_found);
 				ASSERT(font_size < INT_MAX);
 				s_imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_resource_data, static_cast<int>(font_resource_size), font_size, &config, imgui_io.Fonts->GetGlyphRangesDefault());
@@ -113,9 +113,9 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 				config.GlyphMinAdvanceX = font_awesome_size * 1.25f; // Use if you want to make the icon monospaced
 				config.PixelSnapH = true;
 
-				char* font_resource_data;
+				void* font_resource_data;
 				size_t font_resource_size;
-				bool font_resource_found = c_resources_manager::get_resource(_resource_type_font_font_awesome, &font_resource_data, &font_resource_size);
+				bool font_resource_found = c_resources_manager::copy_resource_to_buffer(_resource_type_font_font_awesome, font_resource_data, &font_resource_size);
 				ASSERT(font_resource_found);
 				ASSERT(font_size < INT_MAX);
 				static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };

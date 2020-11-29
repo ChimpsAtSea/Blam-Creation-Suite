@@ -40,6 +40,9 @@ namespace blofeld
 
 	extern s_tag_group sound_dialogue_constants_group;
 
+	extern s_tag_struct_definition sound_mix_equalizer_struct_definition;
+	extern s_tag_struct_definition sound_mix_mastering_block_struct;
+
 	extern s_tag_struct_definition StreamingPackBlock_block_struct;
 	extern s_tag_block_definition StreamingPackBlock_block;
 	extern s_tag_struct_definition campaign_unspatialized_sounds_block_block_struct;

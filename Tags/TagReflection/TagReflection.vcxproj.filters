@@ -72,6 +72,33 @@
     <ClInclude Include="halo3\halo3_virtual.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="xbox360_gen3\xbox360_gen3_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="groundhog\groundhog_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo1\halo1_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo2\halo2_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3\halo3_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo3odst\halo3odst_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo4\halo4_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach\haloreach_high_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="high_level_tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tagreflection-private-pch.cpp">
@@ -102,6 +129,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="halo3\halo3_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xbox360_gen3\xbox360_gen3_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="groundhog\groundhog_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo1\halo1_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo2\halo2_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo3\halo3_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo3odst\halo3odst_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo4\halo4_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="haloreach\haloreach_high_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="high_level_tag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

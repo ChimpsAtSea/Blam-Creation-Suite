@@ -67,14 +67,11 @@ int WINAPI wWinMain(
 
 	bool mandrill = c_command_line::has_command_line_arg("-mandrill");
 	bool gameframework = c_command_line::has_command_line_arg("-gameframework");
-	if (!mandrill && !gameframework)
-	{
-		c_console::write_line_verbose("ResourcesPackager> missing argument -mandrill, -gameframework");
-		return 1;
-	}
+	bool package_symbols = c_command_line::has_command_line_arg("-packagesymbols");
+	bool package_shaders = c_command_line::has_command_line_arg("-packageshaders");
 
-	bool package_symbols = gameframework;
-	bool package_shaders = gameframework;
+	package_symbols |= gameframework;
+	package_shaders |= gameframework;
 
 	if (package_symbols)
 	{

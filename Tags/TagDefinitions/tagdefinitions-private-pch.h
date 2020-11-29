@@ -7,6 +7,7 @@
 #include <Platform\platform-public-pch.h>
 #include <Versioning\versioning-public-pch.h>
 #include <Shared\Blam\blamlib-public-pch.h>
+#include <SymbolsLib\symbolslib-public-pch.h>
 
 #include "tagdefinitions-public-pch.h"
 #include "blofeld/gen3_xbox360_validation_data.h"
@@ -53,12 +54,12 @@ s_tag_field CONCAT(tag_fields_name, _fields)[] =
 
 #define TAG_STRUCT(tag_struct_name) \
 TAG_STRUCT_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct_definition)) \
-s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition) = { STRINGIFY(tag_struct_name), STRINGIFY(tag_struct_name), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_definition_fields) }; \
+s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition) = { STRINGIFY(tag_struct_name), STRINGIFY(tag_struct_name), STRINGIFY(CONCAT(tag_struct_name, _struct_definition)), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_definition_fields) }; \
 TAG_FIELDS(CONCAT(tag_struct_name, _struct_definition))
 
 #define TAG_BLOCK_STRUCT(tag_struct_name) \
 TAG_STRUCT_SUFFIX_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct)) \
-s_tag_struct_definition CONCAT(tag_struct_name, _struct) = { STRINGIFY(tag_struct_name)"_struct", STRINGIFY(tag_struct_name)"_struct", __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_fields) }; \
+s_tag_struct_definition CONCAT(tag_struct_name, _struct) = { STRINGIFY(tag_struct_name)"_struct", STRINGIFY(tag_struct_name)"_struct", STRINGIFY(CONCAT(tag_struct_name, _struct)), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_fields) }; \
 TAG_FIELDS(CONCAT(tag_struct_name, _struct))
 
 #define TAG_BLOCK(tag_block_name, block_count) \

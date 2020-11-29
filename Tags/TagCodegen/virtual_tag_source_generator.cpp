@@ -12,44 +12,31 @@ c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type eng
 
 void c_virtual_tag_source_generator::generate_header()
 {
-	std::stringstream hs;
+	std::stringstream stream;
 
 	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
 
-	hs << std::endl;
-	hs << std::endl;
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+	stream << std::endl;
 
-	hs << "namespace blofeld" << std::endl;
-	hs << "{" << std::endl;
-	hs << "\tnamespace " << namespace_name << std::endl;
-	hs << "\t{" << std::endl << std::endl;
+	stream << "namespace blofeld" << std::endl;
+	stream << "{" << std::endl;
+	stream << "\tnamespace " << namespace_name << std::endl;
+	stream << "\t{" << std::endl << std::endl;
 
-
-
-	//hs << "\t\t" << "class c_cache_file;" << std::endl << std::endl;
-	//hs << "\t\t" << "class c_tag_interface { public: c_tag_interface(c_cache_file&, uint32_t tag_index); template<typename T> T* get_data(); };" << std::endl << std::endl;
-	//hs << "\t\t" << "template<typename t_value> class c_virtual_tag_block { public: c_virtual_tag_block(c_cache_file& cache_file, c_tag_interface& tag_interface, c_typed_tag_block<t_value>& tag_block); };" << std::endl << std::endl;
-	//hs << "\t\t" << "class c_virtual_tag { public: c_virtual_tag(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference); };" << std::endl << std::endl;
-
-
-	//hs << "\t\t" << "template<typename T>" << std::endl;
-	//hs << "\t\t" << "class v_tag_interface :" << std::endl;
-	//hs << "\t\t" << "\tpublic c_tag_interface" << std::endl;
-	//hs << "\t\t" << "{" << std::endl;
-	//hs << "\t\t" << "};" << std::endl << std::endl;
-
-	hs << "\t\tc_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);" << std::endl << std::endl;
+	stream << "\t\tc_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		hs << "\t\t" << "template<>" << std::endl;
-		hs << "\t\t" << "class v_tag_interface<s_" << tag_struct_definition->name << "> : " << std::endl;
-		hs << "\t\t\t" << "public c_virtual_tag_interface" << std::endl;
-		hs << "\t\t" << "{" << std::endl;
-		hs << "\t\t\t" << "public:" << std::endl;
-		hs << "\t\t\t" << "v_tag_interface(c_tag_interface& tag_interface);" << std::endl;
-		hs << std::endl;
+		stream << "\t\t" << "template<>" << std::endl;
+		stream << "\t\t" << "class v_tag_interface<s_" << tag_struct_definition->name << "> : " << std::endl;
+		stream << "\t\t\t" << "public c_virtual_tag_interface" << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		stream << "\t\t\t" << "public:" << std::endl;
+		stream << "\t\t\t" << "v_tag_interface(c_tag_interface& tag_interface);" << std::endl;
+		stream << std::endl;
 
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -83,48 +70,48 @@ void c_virtual_tag_source_generator::generate_header()
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_type) << "];";
+				stream << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_type) << "];";
 				break;
 			}
 			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
-				hs << "\t\t\t\t" << "s_" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "s_" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				hs << "\t\t\t\t" << "c_virtual_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "c_virtual_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:
 			{
-				hs << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			default:
 			{
-				const char* field_source_type = c_tag_source_generator::field_type_to_source_type(platform_type, current_field->field_type);
+				const char* field_source_type = c_tag_source_generator::field_type_to_low_level_source_type(platform_type, current_field->field_type);
 				ASSERT(field_source_type != nullptr);
-				hs << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 			}
 			}
-			hs << std::endl;
+			stream << std::endl;
 
 		}
 		field_name_unique_counter.clear();
 
-		hs << "\t\t" << "};" << std::endl;
+		stream << "\t\t" << "};" << std::endl;
 
-		hs << std::endl;
+		stream << std::endl;
 	}
 
-	hs << std::endl << "\t} // end namespace " << namespace_name << std::endl;
-	hs << std::endl << "} // end namespace blofeld" << std::endl;
+	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
+	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 
-	std::string source_code = hs.str();
+	std::string source_code = stream.str();
 	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + "_virtual.h";
 	bool write_output = true;
 	size_t existing_file_size;

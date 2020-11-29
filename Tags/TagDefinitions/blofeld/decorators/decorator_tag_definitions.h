@@ -9,6 +9,8 @@ namespace blofeld
 	extern s_tag_block_definition decorator_set_block;
 	extern s_tag_group decorator_set_group;
 
+	extern s_tag_struct_definition decorator_runtime_cluster_unknown_block_block_struct;
+
 	extern s_tag_struct_definition decorator_set_instance_name_block_block_struct;
 	extern s_tag_block_definition decorator_set_instance_name_block_block;
 	extern s_tag_block_definition global_decorator_type_block_block;
