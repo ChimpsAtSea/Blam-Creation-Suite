@@ -39,6 +39,9 @@ void c_high_level_tag_source_generator::generate_header()
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
+	stream << "\t\tc_high_level_tag* create_high_level_tag(const blofeld::s_tag_group& tag_group, const char* tag_filepath);" << std::endl << std::endl;
+	stream << "\t\tc_high_level_type* create_high_level_item(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
@@ -58,7 +61,7 @@ void c_high_level_tag_source_generator::generate_header()
 		if (tag_group != nullptr)
 		{
 			stream << "\t\t\t\t" << "c_" << tag_struct_definition->name << "(const char* tag_filepath);" << std::endl;
-			stream << "\t\t\t\t" << "c_" << tag_struct_definition->name << "(c_high_level_type& parent);" << std::endl;
+			stream << "\t\t\t\t" << "c_" << tag_struct_definition->name << "();" << std::endl;
 		}
 		else
 		{
@@ -113,7 +116,7 @@ void c_high_level_tag_source_generator::generate_header()
 			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "std::vector<c_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "std::vector<c_" << field_source_type << "*> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:
@@ -202,8 +205,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			const char* field_source_type = current_field->array_definition->struct_definition.name;
 			if (tag_group)
 			{
-				stream << "#NOTIMPLEMENTED" << std::endl;
-				// stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(*this)" << std::endl;
+				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
 			}
 			else
 			{
@@ -219,7 +221,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			const char* field_source_type = current_field->struct_definition->name;
 			if (tag_group)
 			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(*this)" << std::endl;
+				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
 			}
 			else
 			{
@@ -255,6 +257,42 @@ void c_high_level_tag_source_generator::generate_source()
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
+	stream << "\t\t" << "c_high_level_tag* create_high_level_tag(const blofeld::s_tag_group& tag_group, const char* tag_filepath)" << std::endl;
+	stream << "\t\t" << "{" << std::endl;
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	{
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+		if (tag_group == nullptr) continue;
+
+		stream << "\t\t\t" << "if (&tag_group == &" << tag_group->symbol->symbol_name << ")";
+		stream << " " << "return new c_" << tag_struct_definition->name << "(tag_filepath);" << std::endl;
+	}
+	stream << std::endl;
+	stream << "\t\t\t" << "return nullptr;" << std::endl;
+	stream << "\t\t" << "}" << std::endl;
+	stream << std::endl;
+
+	stream << "\t\t" << "c_high_level_type* create_high_level_item(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
+	stream << "\t\t" << "{" << std::endl;
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	{
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+
+		stream << "\t\t\t" << "if (&struct_definition == &" << tag_struct_definition->symbol->symbol_name << ")";
+		if (tag_group != nullptr)
+		{
+			stream << " " << "return new c_" << tag_struct_definition->name << "();" << std::endl;
+		}
+		else
+		{
+			stream << " " << "return new c_" << tag_struct_definition->name << "();" << std::endl;
+		}
+	}
+	stream << std::endl;
+	stream << "\t\t\t" << "return nullptr;" << std::endl;
+	stream << "\t\t" << "}" << std::endl;
+	stream << std::endl;
+
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
@@ -265,7 +303,7 @@ void c_high_level_tag_source_generator::generate_source()
 		{
 			stream << "\t\t" << "c_" << tag_struct_definition->name << "::c_" << tag_struct_definition->name;
 			stream << "(const char* tag_filepath) :" << std::endl;
-			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", tag_filepath, nullptr, " << tag_group->name << "_group)" << std::endl;
+			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", tag_filepath, " << tag_group->name << "_group)" << std::endl;
 			generate_tag_constructor_params(stream, *tag_struct_definition);
 			stream << "\t\t" << "{" << std::endl;
 			stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -273,8 +311,8 @@ void c_high_level_tag_source_generator::generate_source()
 			stream << std::endl;
 
 			stream << "\t\t" << "c_" << tag_struct_definition->name << "::c_" << tag_struct_definition->name;
-			stream << "(c_high_level_type& parent) :" << std::endl;
-			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", nullptr, &parent, " << tag_group->name << "_group)" << std::endl;
+			stream << "() :" << std::endl;
+			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", nullptr, " << tag_group->name << "_group)" << std::endl;
 			generate_tag_constructor_params(stream, *tag_struct_definition);
 			stream << "\t\t" << "{" << std::endl;
 			stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -313,6 +351,7 @@ void c_high_level_tag_source_generator::generate_source()
 			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
 			{
 				current_field += field_skip_count;
+				field_index += field_skip_count;
 				continue;
 			}
 

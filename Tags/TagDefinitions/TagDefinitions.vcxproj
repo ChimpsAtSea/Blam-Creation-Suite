@@ -332,6 +332,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="types\tag_block_definition.cpp" />
+    <ClCompile Include="types\tag_group.cpp" />
     <ClCompile Include="types\tag_struct_definition.cpp" />
   </ItemGroup>
   <ItemGroup>

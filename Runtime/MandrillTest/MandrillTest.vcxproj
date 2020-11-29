@@ -88,7 +88,6 @@
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillapiprototype-private-pch.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Zm500%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,7 +148,6 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillapiprototype-private-pch.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Zm500 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -181,7 +179,6 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mandrillapiprototype-private-pch.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Zm500 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

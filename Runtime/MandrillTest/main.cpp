@@ -84,15 +84,136 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 std::map<c_high_level_tag*, uint32_t> high_level_tags;
 
-static void find_tags(c_high_level_tag* tag)
+static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& tags)
 {
+	using namespace blofeld;
+
 	// #TODO: populate tag struct definition
-	tag->struct_definition;
+
+	for (const s_tag_field* field = type.struct_definition.fields; field->field_type != _field_terminator; field++)
+	{
+		switch (field->field_type)
+		{
+		case _field_struct:
+		{
+			if (c_high_level_type* field_struct = type.get_field_pointer<c_high_level_type>(*field))
+			{
+				find_tags(*field_struct, tags);
+			}
+			break;
+		}
+		case _field_block:
+		{
+			if (std::vector<c_high_level_type*>* block_struct = type.get_field_pointer<std::vector<c_high_level_type*>>(*field))
+			{
+				for (c_high_level_type* block_entry : *block_struct)
+				{
+					find_tags(*block_entry, tags);
+				}
+			}
+			break;
+		}
+		case _field_tag_reference:
+		{
+			if (c_high_level_tag** field_tag = type.get_field_pointer<c_high_level_tag*>(*field))
+			{
+				if (*field_tag != nullptr)
+				{
+					tags.push_back(*field_tag);
+				}
+			}
+			break;
+		}
+		}
+	}
 }
 
 static int run_mandrill_api_test()
 {
+	using namespace blofeld;
 	using namespace blofeld::haloreach;
+
+	c_cache_file& cache_file = *c_cache_file::create_cache_file(L"C:\\!MCC\\haloreach\\maps\\70_boneyard.map");
+	c_tag_group_interface& vehicle_group = *cache_file.get_tag_group_interface_by_group_id(VEHICLE_TAG);
+	c_tag_interface& tag_interface = *vehicle_group.get_tag_interfaces()[0];
+	c_virtual_tag_interface& virtual_tag_interface = *tag_interface.get_virtual_tag_interface();
+	const blofeld::s_tag_group& tag_group = *virtual_tag_interface.tag_interface.get_blofeld_reflection_data();
+
+	c_high_level_tag & vehicle = *blofeld::haloreach::create_high_level_tag(tag_group, "vehicles\\instancetest.vehi");
+	ASSERT(&tag_group.block_definition.struct_definition == &vehicle.struct_definition);
+
+
+	for (const s_tag_field* field = vehicle.struct_definition.fields; field->field_type != _field_terminator; field++)
+	{
+		void* virtual_field = virtual_tag_interface.get_field_pointer(*field);
+		void* high_level_field = vehicle.get_field_pointer(*field);
+
+		if (!high_level_field && !virtual_field)
+		{
+			continue;
+		}
+
+		if (!high_level_field)
+		{
+			// #TODO: No destination
+			continue;
+		}
+
+		if (!virtual_field)
+		{
+			// #TODO: No source
+			continue;
+		}
+
+		switch (field->field_type)
+		{
+		case _field_string:
+		case _field_long_string:
+		case _field_string_id:
+		case _field_old_string_id:
+		case _field_char_integer:
+		case _field_short_integer:
+		case _field_long_integer:
+		case _field_int64_integer:
+		case _field_angle:
+		case _field_char_enum:
+		case _field_enum:
+		case _field_long_enum:
+		case _field_long_flags:
+		case _field_word_flags:
+		case _field_byte_flags:
+		case _field_point_2d:
+		case _field_rectangle_2d:
+		case _field_rgb_color:
+		case _field_argb_color:
+		case _field_real:
+		case _field_real_fraction:
+		case _field_real_point_2d:
+		case _field_real_point_3d:
+		case _field_real_vector_2d:
+		case _field_real_vector_3d:
+		case _field_real_quaternion:
+		case _field_real_euler_angles_2d:
+		case _field_real_euler_angles_3d:
+		case _field_real_plane_2d:
+		case _field_real_plane_3d:
+		case _field_real_rgb_color:
+		case _field_real_argb_color:
+		case _field_real_hsv_color:
+		case _field_real_ahsv_color:
+		case _field_short_bounds:
+		case _field_angle_bounds:
+		case _field_real_bounds:
+		case _field_real_fraction_bounds:
+			memcpy(high_level_field, virtual_field, get_blofeld_field_size(_platform_type_pc, field->field_type));
+		}
+
+	}
+
+
+
+
+
 
 	c_effect_block_struct& effect = *new c_effect_block_struct("fx\\customeffect.effe");
 
@@ -102,11 +223,14 @@ static int run_mandrill_api_test()
 
 	c_weapon_block_struct& weapon = *new c_weapon_block_struct("weapons\\customweapon.weap");
 
-	auto& barrel = weapon.barrels_block.emplace_back();
+	c_weapon_barrels_block_struct& barrel = *weapon.barrels_block.emplace_back(new c_weapon_barrels_block_struct());
 
-	auto& firing_effect = barrel.firing_effects_block.emplace_back();
+	c_barrel_firing_effect_block_block_struct& firing_effect = *barrel.firing_effects_block.emplace_back(new c_barrel_firing_effect_block_block_struct());
 
 	firing_effect.firing_effect = &effect;
+
+	std::vector<c_high_level_tag*> tags;
+	find_tags(weapon, tags);
 
 	return 0;
 }
