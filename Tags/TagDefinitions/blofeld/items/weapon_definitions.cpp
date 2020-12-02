@@ -484,7 +484,7 @@ namespace blofeld
 		{ _field_real, "overload time:seconds#the next trigger fires this often while holding down this trigger" },
 
 		{ _field_version_platform_include, _platform_type_pc, 9 },
-		{ _field_version_not_equal, _engine_type_halo4, 8 }, //pulled from assembly, probs exists in h2ek definitions(?)
+		{ _field_version_greater, _engine_type_halo4, 8 }, //pulled from assembly, probs exists in h2ek definitions(?)
 		{ _field_explanation, "angle change (recoil)" },
 		{ _field_real_bounds, "angle change per shot" }, // angle change per shot#angle change per shot of the weapon during firing
 		{ _field_real, "angle change acceleration time" }, // acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final angle change per shot
@@ -987,74 +987,31 @@ namespace blofeld
 
 	STRINGS(weapon_types)
 	{
-		{
-			_engine_type_halo4,
-			_versioned_string_list_mode_new,
-			{
-				"undefined",
-				"shotgun",
-				"needler",
-				"plasma pistol",
-				"plasma rifle",
-				"rocket launcher",
-				"energy blade",
-				"splaser",
-				"shield",
-				"scarab gun",
-				"wolverine quad",
-				"flak cannon",
-				"plasma launcher",
-				"laser designator",
-				"sticky detonator"
-			}
-		},
-		{
-			_engine_type_groundhog,
-			_versioned_string_list_mode_new,
-			{
-				"undefined",
-				"shotgun",
-				"needler",
-				"plasma pistol",
-				"plasma rifle",
-				"rocket launcher",
-				"energy blade",
-				"splaser",
-				"shield",
-				"scarab gun",
-				"wolverine quad",
-				"flak cannon",
-				"plasma launcher",
-				"laser designator",
-				"sticky detonator",
-				"sentinel beam"
-			}
-		},
-		{
-			_engine_type_halo5,
-			_versioned_string_list_mode_new,
-			{
-				"undefined",
-				"shotgun",
-				"needler",
-				"plasma pistol",
-				"plasma rifle",
-				"rocket launcher",
-				"energy blade",
-				"splaser",
-				"shield",
-				"scarab gun",
-				"wolverine quad",
-				"flak cannon",
-				"plasma launcher",
-				"laser designator",
-				"sticky detonator",
-				"cavalier polearm"
-			}
-		}
+		{ _field_version_greater_or_equal, _engine_type_haloreach },
+		"undefined",
+		"shotgun",
+		"needler",
+		"plasma pistol",
+		"plasma rifle",
+		"rocket launcher",
+		"energy blade",
+		"splaser",
+		"shield",
+		"scarab gun",
+		"wolverine quad",
+		"flak cannon",
+		"plasma launcher",
+		"laser designator",
 
+		{ _field_version_greater_or_equal, _engine_type_halo4 },
+		"sticky detonator",
 
+		{ _field_version_less, _engine_type_halo5, 2 },
+		{ _field_version_greater_or_equal, _engine_type_groundhog },
+		"sentinel beam",
 
+		{ _field_version_greater_or_equal, _engine_type_halo5 },
+		"cavalier polearm",
 	};
 	STRING_LIST(weapon_types, weapon_types_strings, _countof(weapon_types_strings));
 

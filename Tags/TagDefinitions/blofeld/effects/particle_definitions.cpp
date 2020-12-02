@@ -14,13 +14,16 @@ namespace blofeld
 
 	TAG_BLOCK(attachment_block, 4)
 	{
+		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &attachment_flags },
 		{ _field_pad, "gerrrrr", 3 },
+
 		{ _field_tag_reference, "type", &attachment_block_type_reference },
 		{ _field_char_enum, "trigger", &attachment_type_enum },
 		{ _field_byte_integer, "skip fraction:[0-127]#0 will always play, 127 will be extremely rare" },
 		{ _field_char_enum, "primary scale", &game_state_type_enum },
 		{ _field_char_enum, "secondary scale", &game_state_type_enum },
+
 		{ _field_terminator }
 	};
 

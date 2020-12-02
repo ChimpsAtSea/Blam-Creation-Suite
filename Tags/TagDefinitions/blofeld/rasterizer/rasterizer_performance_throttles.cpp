@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_custom },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_real, "unknown" },
+		{ _field_real, "instanced geometry modifier" },
 
 		{ _field_custom, "Dynamic light settings" },
 		{ _field_long_integer, "max forward dynamic lights{max gpu dynamic lights}#will quickly fade gpu lights when we try to render more than this many:0 = off" },
@@ -40,6 +40,11 @@ namespace blofeld
 		{ _field_long_integer, "max shadow casting objects:0 = off" },
 		{ _field_real, "shadow quality lod#scales resolution of object shadows:[0.0 to 1.0]" },
 		{ _field_real, "floating shadow quality lod#scales resolution of floating shadow:[0.0 to 1.0], 0 = off" },
+
+		{ _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_version_equal, _engine_type_haloreach, 1 },
+		{ _field_real, "anisotropic filtering" },
+
 		{ _field_custom },
 		{ _field_terminator }
 	};

@@ -11,7 +11,10 @@ namespace blofeld
 		// #TODO: Verify fields between beginning and unknown for Halo Reach
 
 		{ _field_custom },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_string_id, "name^" },
+
 		{ _field_word_flags, "flags", &lens_flare_reflection_flags_definition },
 		{ _field_short_integer, "bitmap index" },
 
@@ -19,14 +22,14 @@ namespace blofeld
 		{ _field_tag_reference, "bitmap override", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 
 		{ _field_real, "rotation offset:degrees" },
+		{ _field_real, "axis offset:percent#percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side" },
+
+		{ _field_real_bounds, "offset bounds#the axis offset times corona offset is clamped between these values" },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_real_bounds, "radius bounds" },
 		{ _field_real_bounds, "brightness bounds" },
 
-		{ _field_version_greater, _engine_type_haloreach, 3},
-		{ _field_real, "axis offset:percent#percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side" },
-		{ _field_real_bounds, "offset bounds#the axis offset times corona offset is clamped between these values" },
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "radius curve#interpolated by external input", &scalar_function_named_struct_struct_definition },
 
 		{ _field_struct, "scale curve X#interpolated by external input", &scalar_function_named_struct_struct_definition },

@@ -22,9 +22,21 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(player_grade_globals_definition_block, 1, player_grade_globals_definition_struct_definition_struct_definition );
 
+	TAG_BLOCK(player_rank_definition_block, k_maxPlayerGradeCount)
+	{
+		{ _field_block, "player grades", & player_grade_definition_block_block },
+
+		{ _field_terminator }
+	};
+
 	TAG_STRUCT(player_grade_globals_definition_struct_definition)
 	{
+		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_block, "player ranks", &player_rank_definition_block_block },
+
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "player grades", &player_grade_definition_block_block },
+
 		{ _field_terminator }
 	};
 
