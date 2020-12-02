@@ -1,14 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-c_string_id_guesstimator::c_string_id_guesstimator(c_cache_file& cache_file) :
-	cache_file(cache_file),
-	cache_file_string_id_start_index(0),
-	engine_string_id_first_set_end_index(0),
-	engine_string_id_last_set_end_index(0),
-	set_count(0),
-	string_id_set_ranges(),
-	string_id_set_start_indices(),
-	string_id_set_end_indices()
+c_string_id_guesstimator::c_string_id_guesstimator(c_gen3_cache_file& cache_file, uint32_t index_bits, uint32_t namespace_bits, uint32_t length_bits) :
+	c_string_id_interface(cache_file, index_bits, namespace_bits, length_bits)
 {
 	set_count = _countof(engine_string_id_guesstimator_data);
 
@@ -110,22 +103,26 @@ c_string_id_guesstimator::~c_string_id_guesstimator()
 
 uint32_t c_string_id_guesstimator::string_id_to_index(string_id const stringid)
 {
-	uint32_t start_index = 0;
-	if (stringid.set == 0 && stringid.index >= engine_string_id_first_set_end_index)
+	uint32_t const index = (stringid & index_mask);
+	uint32_t const set = (stringid & namespace_mask) >> index_bits;
+	uint32_t const length = (stringid & length_mask) >> length_shift;
+
+	uint32_t index_offset = 0;
+	if (set == 0 && index >= engine_string_id_first_set_end_index)
 	{
-		start_index = cache_file_string_id_start_index;
+		index_offset = cache_file_string_id_start_index;
 	}
 	else
 	{
-		if (stringid.set > _countof(string_id_set_start_indices))
+		if (set > _countof(string_id_set_start_indices))
 		{
 			return 0xFFFFFFFF;
 		}
-		start_index = string_id_set_start_indices[stringid.set];
+		index_offset = string_id_set_start_indices[set];
 	}
 
-	uint32_t index = start_index + stringid.index;
-	return index;
+	uint32_t string_index = index_offset + index;
+	return string_index;
 }
 
 s_engine_string_id_guesstimator_data c_string_id_guesstimator::engine_string_id_guesstimator_data_set0[] =

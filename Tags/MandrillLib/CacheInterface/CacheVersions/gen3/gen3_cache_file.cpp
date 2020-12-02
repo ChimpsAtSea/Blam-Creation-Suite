@@ -41,7 +41,15 @@ void c_gen3_cache_file::init_gen3_cache_file()
 c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type) :
 	c_cache_file(map_filepath, engine_type, platform_type),
 	cache_file_header(*read_cache_file()),
+	string_ids_buffer(nullptr),
+	string_id_indices(nullptr),
+	string_id_namespace_indices(nullptr),
+	string_id_namespace_count(0),
+	filenames_buffer(nullptr),
+	filename_indices(nullptr),
+	tags_buffer(nullptr),
 	string_id_interface(nullptr),
+
 	validator(nullptr)
 {
 	REFERENCE_ASSERT(cache_file_header);
@@ -123,17 +131,17 @@ const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const
 	return string_id_str;
 }
 
-const char* c_gen3_cache_file::get_string_id(string_id const id, const char* const error_value /*= nullptr*/) const
+const char* c_gen3_cache_file::get_string_id(string_id const stringid, const char* const error_value /*= nullptr*/) const
 {
-	uint32_t index = id.value;
+	uint32_t string_index = 0xFFFFFFFF;
 	if (string_id_interface != nullptr)
 	{
-		index = string_id_interface->string_id_to_index(id);
+		string_index = string_id_interface->string_id_to_index(stringid);
 	}
 
-	if (index < get_string_id_count())
+	if (string_index < get_string_id_count())
 	{
-		return get_string_id_by_index(index);
+		return get_string_id_by_index(string_index);
 	}
 	return error_value;
 }

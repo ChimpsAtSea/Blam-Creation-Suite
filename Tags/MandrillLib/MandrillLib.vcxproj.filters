@@ -183,10 +183,16 @@
     <ClInclude Include="CacheInterface\string_id_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_string_id_namespace_list.h">
+    <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h">
+    <ClInclude Include="CacheInterface\cache_cluster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\tag_project.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -317,7 +323,16 @@
     <ClCompile Include="CacheInterface\string_id_guesstimator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_string_id_namespace_list.cpp">
+    <ClCompile Include="CacheInterface\cache_cluster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\tag_project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\string_id_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

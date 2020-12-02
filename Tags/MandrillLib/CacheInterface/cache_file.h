@@ -41,8 +41,8 @@ public:
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const = 0;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const = 0;
 	virtual const char* get_tag_path(uint32_t tag_index) const = 0;
-
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const = 0;
+	virtual void set_cache_cluster(c_cache_cluster* cluster);
 
 	template<typename T>
 	inline T* get_tag_block_data(const c_typed_tag_block<T>& tag_block)

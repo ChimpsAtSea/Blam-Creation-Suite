@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
+    <ClInclude Include="CacheInterface\cache_cluster.h" />
     <ClInclude Include="CacheInterface\string_id_interface.h" />
+    <ClInclude Include="CacheInterface\tag_project.h" />
     <ClInclude Include="Extension\mandrill_extension.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_string_id_namespace_list.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_debugger_tab.h" />
     <ClInclude Include="CustomTools\CustomTools.h" />
     <ClInclude Include="CustomTools\custom_tool_render_model.h" />
@@ -79,8 +81,11 @@
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CacheInterface\cache_cluster.cpp" />
+    <ClCompile Include="CacheInterface\string_id_interface.cpp" />
+    <ClCompile Include="CacheInterface\tag_project.cpp" />
     <ClCompile Include="Extension\mandrill_extension.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_string_id_namespace_list.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_tag_debugger_tab.cpp" />
     <ClCompile Include="CustomTools\custom_tool_render_model.cpp" />
     <ClCompile Include="CustomTools\custom_tool_base.cpp" />

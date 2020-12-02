@@ -340,7 +340,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 			{
 				string_id value = *reinterpret_cast<string_id*>(current_data_position);
 				result.string_id_value = cache_file.get_string_id(value, nullptr);
-				is_struct_valid &= result.string_id_value != nullptr || value.value > 0x8000u;
+				is_struct_valid &= result.string_id_value != nullptr; // || value.value > 0x8000u;
 				break;
 			}
 			case blofeld::_field_pad:

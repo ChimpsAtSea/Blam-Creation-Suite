@@ -25,6 +25,7 @@ protected:
 
 	bool render_primitive(void* data, const blofeld::s_tag_field& field);
 	void render_string(void* data, const blofeld::s_tag_field& field);
+	void render_string_id(void* data, const blofeld::s_tag_field& field);
 	void render_tag_block(void* data, const blofeld::s_tag_field& field);
 	void render_tag_reference(void* data, const blofeld::s_tag_field& field);
 	c_tag_interface& tag_interface;

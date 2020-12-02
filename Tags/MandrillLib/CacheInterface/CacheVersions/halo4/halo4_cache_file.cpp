@@ -57,6 +57,11 @@ c_halo4_cache_file::c_halo4_cache_file(const std::wstring& map_filepath) :
 	halo4_cache_file_header = static_cast<halo4::s_cache_file_header*>(&cache_file_header);
 	init(*halo4_cache_file_header);
 
+	string_id_namespace_indices_vector = { 1585, 2167, 267, 141, 248, 85, 43, 2812, 528, 51, 131, 52, 13, 66, 227 };
+	string_id_namespace_indices = string_id_namespace_indices_vector.data();
+	string_id_namespace_count = string_id_namespace_indices_vector.size();
+	string_id_interface = new c_string_id_namespace_list(*this, 19, 8, 5);
+
 	init_sorted_instance_lists();
 
 	bool tags_valid = true;

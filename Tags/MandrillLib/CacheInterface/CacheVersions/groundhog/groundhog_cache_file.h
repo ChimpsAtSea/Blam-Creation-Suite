@@ -16,6 +16,7 @@ public:
 	virtual uint32_t get_string_id_count() const final;
 
 protected:
+	std::vector<long> string_id_namespace_indices_vector;
 	gen3::e_cache_file_flags get_cache_file_flags() const;
 	void init(groundhog::s_cache_file_header& cache_file_header);
 	groundhog::s_cache_file_header* groundhog_cache_file_header;

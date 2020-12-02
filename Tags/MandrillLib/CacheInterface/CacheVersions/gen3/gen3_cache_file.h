@@ -11,11 +11,15 @@ struct s_section_cache
 
 class c_gen3_cache_file_validator;
 class c_string_id_guesstimator;
+class c_string_id_namespace_list;
 
 class c_gen3_cache_file :
 	public c_cache_file
 {
 	friend c_cache_file;
+	friend c_string_id_interface;
+	friend c_string_id_guesstimator;
+	friend c_string_id_namespace_list;
 protected:
 	gen3::s_cache_file_header* read_cache_file();
 	void init_gen3_cache_file();
@@ -27,7 +31,7 @@ public:
 	virtual uint32_t get_tag_count() const final;
 	virtual uint32_t get_tag_group_count() const final;
 	virtual uint32_t get_string_id_count() const = 0;
-	char* get_data_with_page_offset(uint32_t page_offset) const;
+	virtual char* get_data_with_page_offset(uint32_t page_offset) const;
 	bool is_valid_data_address(char* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const final;
@@ -91,6 +95,8 @@ protected:
 	gen3::s_cache_file_tag_instance* gen3_cache_file_tag_instances;
 	char* string_ids_buffer;
 	long* string_id_indices;
+	long* string_id_namespace_indices;
+	long string_id_namespace_count;
 	char* filenames_buffer;
 	long* filename_indices;
 	char* tags_buffer;

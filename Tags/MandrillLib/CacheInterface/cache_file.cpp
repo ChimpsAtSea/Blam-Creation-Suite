@@ -311,6 +311,11 @@ c_tag_group_interface* const* c_cache_file::get_tag_group_interfaces() const
 	return nullptr;
 }
 
+void c_cache_file::set_cache_cluster(c_cache_cluster* cluster)
+{
+
+}
+
 #pragma optimize( "t", on ) // always prefer fast code here
 
 static bool sort_tag_instance_by_name_with_group_id(c_tag_interface* left_tag_interface, c_tag_interface* right_tag_interface)

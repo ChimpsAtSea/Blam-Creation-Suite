@@ -1,7 +1,5 @@
 #pragma once
 
-class c_cache_file;
-
 struct s_engine_string_id_guesstimator_data
 {
 	const char* string;
@@ -12,7 +10,7 @@ class c_string_id_guesstimator :
 	public c_string_id_interface
 {
 public:
-	c_string_id_guesstimator(c_cache_file& cache_file);
+	c_string_id_guesstimator(c_gen3_cache_file& cache_file, uint32_t index_bits, uint32_t namespace_bits, uint32_t length_bits);
 	~c_string_id_guesstimator();
 
 	virtual uint32_t string_id_to_index(string_id const stringid) override final;
@@ -25,8 +23,6 @@ private:
 	uint32_t string_id_set_ranges[32];
 	uint32_t string_id_set_start_indices[32];
 	uint32_t string_id_set_end_indices[32];
-
-	c_cache_file& cache_file;
 
 	static std::pair<s_engine_string_id_guesstimator_data*, uint32_t> engine_string_id_guesstimator_data[17];
 	static s_engine_string_id_guesstimator_data engine_string_id_guesstimator_data_set0[];

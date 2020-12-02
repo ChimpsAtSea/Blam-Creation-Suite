@@ -500,6 +500,81 @@ void c_blofeld_tag_editor_tab::render_string(void* data, const blofeld::s_tag_fi
 	ImGui::Columns(1);
 }
 
+void c_blofeld_tag_editor_tab::render_string_id(void* data, const blofeld::s_tag_field& field)
+{
+	struct s_string_editor_dynamic_data
+	{
+		s_string_editor_dynamic_data(const blofeld::s_tag_field& field) :
+			is_active(false),
+			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
+		{
+			
+		}
+
+		~s_string_editor_dynamic_data()
+		{
+			delete& string_parser;
+		}
+
+		bool is_active;
+		c_blamlib_string_parser& string_parser; // #TODO: remove
+	};
+	s_string_editor_dynamic_data& dynamic_data = get_dynamic_data<s_string_editor_dynamic_data>(data, field);
+
+	ImGui::Columns(2, nullptr, false);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
+
+	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
+
+	uint32_t& string_id = *static_cast<uint32_t*>(data);
+	const char* string_id_value = cache_file.get_string_id(string_id, nullptr);
+	bool is_valid = string_id_value != nullptr;
+	if (!is_valid) string_id_value = "<invalid string_id>";
+
+	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	if (current_string_has_tooltip)
+	{
+		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
+	}
+	else
+	{
+		ImGui::Text(field_formatter.display_name.c_str());
+	}
+
+	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	{
+		ImGui::SetTooltip(field_formatter.description.c_str());
+	}
+
+	ImGui::NextColumn();
+	{
+		if (dynamic_data.is_active)
+		{
+			ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+			ImGui::PushStyleColor(ImGuiCol_Border, MANDRILL_THEME_HIGH(1.0f));
+		}
+		switch (field.field_type)
+		{
+		case blofeld::_field_string_id:
+			ImGui::SetNextItemWidth(350);
+			ImGui::InputText("##string", const_cast<char*>(string_id_value), 256, ImGuiInputTextFlags_ReadOnly);
+			break;
+		case blofeld::_field_old_string_id:
+			ImGui::SetNextItemWidth(800);
+			ImGui::InputText("##string", const_cast<char*>(string_id_value), 256, ImGuiInputTextFlags_ReadOnly);
+			break;
+		}
+		if (dynamic_data.is_active)
+		{
+			ImGui::PopStyleVar();
+			ImGui::PopStyleColor();
+		}
+		dynamic_data.is_active = ImGui::IsItemActive(); // #TODO: is there a more efficient way to do this?
+	}
+	ImGui::NextColumn();
+	ImGui::Columns(1);
+}
+
 void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag_field& field)
 {
 	s_tag_block& tag_block = *static_cast<s_tag_block*>(data);
@@ -1318,46 +1393,51 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 		const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
-		ImGui::SetNextItemWidth(350);
 
-		c_blamlib_string_parser& selected_string_parser = *dynamic_data.string_list_parsers[value];
-		bool const selected_string_has_tooltip = !selected_string_parser.description.is_empty();
-		if (selected_string_has_tooltip)
+		if (dynamic_data.string_list_parsers.size() != 0)
 		{
-			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
-		}
-		const char* const selected_string_value = value < string_list_count ? selected_string_parser.display_name.c_str() : "<INVALID VALUE>";
-		if (ImGui::BeginCombo("##enum", selected_string_value))
-		{
-			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			ImGui::SetNextItemWidth(350);
+
+			c_blamlib_string_parser& selected_string_parser = *dynamic_data.string_list_parsers[value];
+			bool const selected_string_has_tooltip = !selected_string_parser.description.is_empty();
+			if (selected_string_has_tooltip)
 			{
-				const char* const current_string_value = string_list_values[string_index];
-				c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
-				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
-				if (current_string_has_tooltip)
+				ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+			}
+			const char* const selected_string_value = value < string_list_count ? selected_string_parser.display_name.c_str() : "<INVALID VALUE>";
+			if (ImGui::BeginCombo("##enum", selected_string_value))
+			{
+				for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 				{
-					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
-				}
-				if (ImGui::Selectable(current_string_parser.display_name.c_str()))
-				{
-					value = string_index;
-					enum_value_updated = true;
-				}
-				if (current_string_has_tooltip)
-				{
-					ImGui::PopStyleColor();
-					if (ImGui::IsItemHovered())
+					const char* const current_string_value = string_list_values[string_index];
+					c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
+					bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+					if (current_string_has_tooltip)
 					{
-						ImGui::SetTooltip(current_string_parser.description.c_str());
+						ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+					}
+					if (ImGui::Selectable(current_string_parser.display_name.c_str()))
+					{
+						value = string_index;
+						enum_value_updated = true;
+					}
+					if (current_string_has_tooltip)
+					{
+						ImGui::PopStyleColor();
+						if (ImGui::IsItemHovered())
+						{
+							ImGui::SetTooltip(current_string_parser.description.c_str());
+						}
 					}
 				}
+
+				ImGui::EndCombo();
+			}
+			else if (selected_string_has_tooltip)
+			{
+				ImGui::PopStyleColor();
 			}
 
-			ImGui::EndCombo();
-		}
-		else if (selected_string_has_tooltip)
-		{
-			ImGui::PopStyleColor();
 		}
 	}
 
@@ -1450,15 +1530,9 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 			break;
 
 		case blofeld::_field_string_id:
-		{
-			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
-			break;
-		}
 		case blofeld::_field_old_string_id:
-		{
-			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
+			render_string_id(current_data_position, *current_field);
 			break;
-		}
 
 		case blofeld::_field_char_integer:
 		case blofeld::_field_short_integer:

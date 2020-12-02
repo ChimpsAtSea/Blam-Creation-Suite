@@ -101,9 +101,7 @@
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\
-
-lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.lib zlib.lib imgui.lib TagReflection.lib</Command>
+      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -130,9 +128,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\
-
-lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.lib zlib.lib imgui.lib TagReflection.lib</Command>
+      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,9 +157,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\
-
-lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.lib zlib.lib imgui.lib TagReflection.lib</Command>
+      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -192,9 +186,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\
-
-lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.lib zlib.lib imgui.lib TagReflection.lib</Command>
+      <Command>$(OutDir)ResourcesPackager.exe -mandrill -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
