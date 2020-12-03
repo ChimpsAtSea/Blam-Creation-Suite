@@ -456,9 +456,21 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 
 				is_struct_valid &= tag_interop.address == 0;
 				is_struct_valid &= tag_interop.definition_address == 0 || tag_interop.definition_address == 0xCDCDCDCD;
+
 				if (tag_interop.descriptor != 0)
 				{
-					char* data_address = cache_file.get_data_with_page_offset(tag_interop.descriptor);
+					char* data_address = nullptr;
+
+					if (cache_file.gen3_cache_file_tag_interops != nullptr && tag_interop.descriptor < 0xFFFF)
+					{
+						dword page_address = cache_file.gen3_cache_file_tag_interops[tag_interop.descriptor].page_address;
+						data_address = cache_file.get_data_with_page_offset(page_address);
+					}
+					else
+					{
+						data_address = cache_file.get_data_with_page_offset(tag_interop.descriptor);
+					}
+
 					bool is_valid_address = cache_file.is_valid_data_address(data_address);
 					is_struct_valid &= is_valid_address;
 

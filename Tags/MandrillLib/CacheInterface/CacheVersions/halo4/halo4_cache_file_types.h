@@ -99,9 +99,9 @@ namespace halo4
 
 		int32_t guid[4];
 	};
-	static constexpr size_t k_section_table_offset = offsetof(s_halo4_cache_file_header, s_halo4_cache_file_header::section_table);
-	static constexpr size_t k_virtual_base_address_offset = offsetof(s_halo4_cache_file_header, s_halo4_cache_file_header::virtual_base_address);
-	static constexpr size_t k_xdk_offset = offsetof(s_halo4_cache_file_header, s_halo4_cache_file_header::xdk_version);
+	static constexpr size_t k_section_table_offset = offsetof(s_halo4_cache_file_header, section_table);
+	static constexpr size_t k_virtual_base_address_offset = offsetof(s_halo4_cache_file_header, virtual_base_address);
+	static constexpr size_t k_xdk_offset = offsetof(s_halo4_cache_file_header, xdk_version);
 	static constexpr size_t k_gen3_halo4_cache_file_header_size = sizeof(s_halo4_cache_file_header);
 	//static_assert(k_gen3_halo4_cache_file_header_size == 1260);
 #pragma pack(pop)

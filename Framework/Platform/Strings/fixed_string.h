@@ -7,8 +7,8 @@ class c_fixed_string
 {
 public:
 	template<typename T> struct s_string_conversion_type;
-	template<> struct s_string_conversion_type<char> { typedef typename wchar_t t_type; };
-	template<> struct s_string_conversion_type<wchar_t> { typedef typename char t_type; };
+	template<> struct s_string_conversion_type<char> { typedef wchar_t t_type; };
+	template<> struct s_string_conversion_type<wchar_t> { typedef char t_type; };
 	typedef typename s_string_conversion_type<t_char_type>::t_type t_conversion_char_type;
 
 	static constexpr bool is_char_type = std::is_same<t_char_type, char>::value;

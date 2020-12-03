@@ -128,6 +128,9 @@ static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& t
 	}
 }
 
+#include <high_level_haloreach\highlevel-haloreach-public-pch.h>
+#pragma comment(lib, "HighLevel_HaloReach.lib")
+
 static int run_mandrill_api_test()
 {
 	using namespace blofeld;

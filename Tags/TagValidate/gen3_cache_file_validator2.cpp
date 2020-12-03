@@ -662,8 +662,8 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 		}
 		case blofeld::_field_api_interop:
 		{
-			ASSERT(current_field->struct_definition);
-			validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
+			//ASSERT(current_field->struct_definition);
+			//validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
 			break;
 		}
 		}

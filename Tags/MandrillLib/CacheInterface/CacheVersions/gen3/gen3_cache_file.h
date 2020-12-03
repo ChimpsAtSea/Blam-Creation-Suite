@@ -86,6 +86,7 @@ public:
 		}
 	}
 
+	gen3::s_cache_file_tag_interop* gen3_cache_file_tag_interops;
 protected:
 	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;

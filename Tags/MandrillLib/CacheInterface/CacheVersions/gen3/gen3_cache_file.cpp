@@ -41,6 +41,9 @@ void c_gen3_cache_file::init_gen3_cache_file()
 c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type) :
 	c_cache_file(map_filepath, engine_type, platform_type),
 	cache_file_header(*read_cache_file()),
+	gen3_cache_file_tag_groups(nullptr),
+	gen3_cache_file_tag_instances(nullptr),
+	gen3_cache_file_tag_interops(nullptr),
 	string_ids_buffer(nullptr),
 	string_id_indices(nullptr),
 	string_id_namespace_indices(nullptr),
@@ -49,7 +52,6 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 	filename_indices(nullptr),
 	tags_buffer(nullptr),
 	string_id_interface(nullptr),
-
 	validator(nullptr)
 {
 	REFERENCE_ASSERT(cache_file_header);

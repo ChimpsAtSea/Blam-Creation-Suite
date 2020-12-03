@@ -12,7 +12,11 @@ class c_tag_interface
 	friend c_halo1_tag_group_interface;
 	friend c_virtual_tag_interface;
 protected:
-	non_copyable(c_tag_interface);
+	//c_tag_interface() = default;
+	c_tag_interface(c_tag_interface const&) = delete;
+	c_tag_interface(c_tag_interface&&) = delete;
+	c_tag_interface& operator=(c_tag_interface const&) = delete;
+	c_tag_interface& operator=(c_tag_interface&&) = delete;
 
 	BCSAPI c_tag_interface(c_cache_file& cache_file, uint32_t tag_index);
 	BCSAPI virtual ~c_tag_interface();

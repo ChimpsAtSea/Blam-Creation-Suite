@@ -1,5 +1,37 @@
 #include "tagreflection-private-pch.h"
 
+namespace blofeld
+{
+	namespace halo3
+	{
+		c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);
+	}
+	namespace haloreach
+	{
+		c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);
+	}
+	namespace halo4
+	{
+		c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);
+	}
+	namespace groundhog
+	{
+		c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);
+	}
+}
+
+c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, e_engine_type engine_type, e_platform_type platform_type, e_build build, unsigned long group_tag)
+{
+	switch (engine_type)
+	{
+	case _engine_type_halo3: return blofeld::halo3::create_virtual_tag_interface(tag_interface, group_tag);
+	case _engine_type_haloreach: return blofeld::haloreach::create_virtual_tag_interface(tag_interface, group_tag);
+	case _engine_type_halo4: return blofeld::halo4::create_virtual_tag_interface(tag_interface, group_tag);
+	case _engine_type_groundhog: return blofeld::groundhog::create_virtual_tag_interface(tag_interface, group_tag);
+	}
+	return nullptr;
+}
+
 c_virtual_tag_interface::c_virtual_tag_interface(c_tag_interface& tag_interface) :
 	tag_interface(tag_interface)
 {

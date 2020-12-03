@@ -18,3 +18,5 @@ class v_tag_interface :
 	public c_virtual_tag_interface
 {
 };
+
+c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, e_engine_type engine_type, e_platform_type platform_type, e_build build, unsigned long group_tag);

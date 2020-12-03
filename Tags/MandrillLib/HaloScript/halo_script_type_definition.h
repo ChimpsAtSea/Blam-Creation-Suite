@@ -462,10 +462,10 @@ public:
 		flags_raw |= _hs_type_flag_enum;
 	}
 
-	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, unsigned long tag_group, uint8_t flags = {}) :
+	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, unsigned long _tag_group, uint8_t flags = {}) :
 		c_hs_type_definition(name, opcode, type, underlying_type, flags)
 	{
-		tag_group = tag_group;
+		tag_group = _tag_group;
 		flags_raw |= _hs_type_flag_tag;
 	}
 
@@ -513,17 +513,17 @@ public:
 
 extern const c_hs_type_definition hs_type_definitions[hs_type_count];
 
-const c_hs_type_definition* hs_cast_to_object_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_object_list_types[];			// array terminated with null value
-const c_hs_type_definition* hs_cast_to_object_name_types[];			// array terminated with null value
-const c_hs_type_definition* hs_cast_to_unit_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_vehicle_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_weapon_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_device_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_scenery_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_effect_scenery_types[];		// array terminated with null value
-const c_hs_type_definition* hs_cast_to_player_types[];				// array terminated with null value
-const c_hs_type_definition* hs_cast_to_boolean_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_object_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_object_list_types[];			// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_object_name_types[];			// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_unit_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_vehicle_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_weapon_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_device_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_scenery_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_effect_scenery_types[];		// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_player_types[];				// array terminated with null value
+extern const c_hs_type_definition* hs_cast_to_boolean_types[];				// array terminated with null value
 
 extern const c_hs_enum_value hs_player_definitions[hs_player_count];
 extern const c_hs_enum_value hs_game_difficulty_definitions[hs_game_difficulty_count];

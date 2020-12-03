@@ -8,7 +8,7 @@
 
 #include "tagcodegen-public-pch.h"
 
-#include "tag_source_generator.h"
+#include "low_level_tag_source_generator.h"
 #include "virtual_tag_source_generator.h"
 #include "high_level_tag_source_generator.h"
 #include "structure_relationship_node.h"

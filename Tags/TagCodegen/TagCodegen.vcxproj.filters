@@ -24,13 +24,13 @@
     <ClCompile Include="structure_relationship_node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_source_generator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="virtual_tag_source_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="high_level_tag_source_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="low_level_tag_source_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,13 +44,13 @@
     <ClInclude Include="structure_relationship_node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tag_source_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="virtual_tag_source_generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="high_level_tag_source_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="low_level_tag_source_generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

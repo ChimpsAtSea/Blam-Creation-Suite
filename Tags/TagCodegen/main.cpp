@@ -26,7 +26,7 @@ int create_source_file()
 	{
 		g.run([&result, engine_and_platform_type]
 			{
-				c_tag_source_generator tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_low_level_tag_source_generator tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				tag_source_generator.generate_source();
 				if (tag_source_generator.has_error) result++;
 			});

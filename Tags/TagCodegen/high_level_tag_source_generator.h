@@ -12,5 +12,7 @@ public:
 	void generate_header();
 	void generate_tag_constructor_params(std::stringstream& stream, const blofeld::s_tag_struct_definition& tag_struct_definition);
 	void generate_source();
+
+	static const char* field_type_to_high_level_source_type(e_platform_type platform_type, blofeld::e_field field_type);
 };
 

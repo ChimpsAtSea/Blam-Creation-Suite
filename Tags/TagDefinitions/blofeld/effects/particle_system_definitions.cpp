@@ -189,10 +189,22 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
+	TAG_STRUCT(constant_buffer)
+	{
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
+	};
+
 	TAG_STRUCT(gpu_property_function_color_struct)
 	{
 		{ _field_version_platform_include, _platform_type_pc, 3  },
-		{ _field_api_interop, "runtime gpu data" },
+		{ _field_api_interop, "runtime gpu data", &constant_buffer_struct_definition },
 		{ _field_version_equal, _engine_type_haloreach },
 		{ _field_long_integer, "@unknown" },
 

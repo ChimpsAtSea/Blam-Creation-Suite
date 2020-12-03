@@ -24,6 +24,92 @@ const blofeld::s_tag_group* c_high_level_tag_source_generator::get_tag_struct_ta
 	return nullptr;
 }
 
+const char* c_high_level_tag_source_generator::field_type_to_high_level_source_type(e_platform_type platform_type, blofeld::e_field field_type)
+{
+	switch (field_type)
+	{
+	case _field_string:								return "c_fixed_string_32";
+	case _field_long_string:						return "c_fixed_string_256";
+	case _field_string_id:							return "c_fixed_string_2048";
+	case _field_old_string_id:						return "c_fixed_string_2048";
+	case _field_char_integer:						return "char";
+	case _field_short_integer:						return "short";
+	case _field_long_integer:						return "long";
+	case _field_int64_integer:						return "long long";
+	case _field_angle:								return "angle";
+	case _field_tag:								return "tag";
+	case _field_char_enum:							return "char";
+	case _field_enum:								return "short";
+	case _field_long_enum:							return "long";
+	case _field_long_flags:							return "long";
+	case _field_word_flags:							return "word";
+	case _field_byte_flags:							return "byte";
+	case _field_point_2d:							return "s_point2d";
+	case _field_rectangle_2d:						return "s_rectangle2d";
+	case _field_rgb_color:							return "pixel32";
+	case _field_argb_color:							return "pixel32";
+	case _field_real:								return "real";
+	case _field_real_fraction:						return "real_fraction";
+	case _field_real_point_2d:						return "real_point2d";
+	case _field_real_point_3d:						return "real_point3d";
+	case _field_real_vector_2d:						return "real_vector2d";
+	case _field_real_vector_3d:						return "real_vector3d";
+	case _field_real_quaternion:					return "real_quaternion";
+	case _field_real_euler_angles_2d:				return "real_euler_angles2d";
+	case _field_real_euler_angles_3d:				return "real_euler_angles3d";
+	case _field_real_plane_2d:						return "real_plane2d";
+	case _field_real_plane_3d:						return "real_plane3d";
+	case _field_real_rgb_color:						return "rgb_color";
+	case _field_real_argb_color:					return "argb_color";
+	case _field_real_hsv_color:						return "real_hsv_color";
+	case _field_real_ahsv_color:					return "real_ahsv_color";
+	case _field_short_bounds:						return "short_bounds";
+	case _field_angle_bounds:						return "angle_bounds";
+	case _field_real_bounds:						return "real_bounds";
+	case _field_real_fraction_bounds:				return "real_bounds";
+	case _field_tag_reference:						return "s_tag_reference";
+	case _field_block:								return "s_tag_block";
+	case _field_long_block_flags:					return "long";
+	case _field_word_block_flags:					return "word";
+	case _field_byte_block_flags:					return "byte";
+	case _field_char_block_index:					return "char";
+	case _field_custom_char_block_index:			return "char";
+	case _field_short_block_index:					return "short";
+	case _field_custom_short_block_index:			return "short";
+	case _field_long_block_index:					return "long";
+	case _field_custom_long_block_index:			return "long";
+	case _field_data:								return "s_tag_data";
+	case _field_vertex_buffer:						return "s_tag_d3d_vertex_buffer";
+	case _field_pad:								return nullptr;	// dynamic
+	case _field_useless_pad:						return nullptr;	// dynamic
+	case _field_skip:								return nullptr;	// dynamic
+	case _field_non_cache_runtime_value:			return "long";
+	case _field_explanation:						return nullptr;	// empty
+	case _field_custom:								return nullptr;	// empty
+	case _field_struct:								return nullptr;	// dynamic
+	case _field_array:								return nullptr;	// dynamic
+	case _field_pageable:							return "s_tag_resource";
+	case _field_api_interop:						return "s_tag_interop";
+	case _field_terminator:							return nullptr;	// empty
+	case _field_byte_integer:						return "byte";
+	case _field_word_integer:						return "word";
+	case _field_dword_integer:						return "dword";
+	case _field_qword_integer:						return "qword";
+	case _field_pointer: // #NONSTANDARD
+	{
+		switch (get_platform_pointer_size(platform_type))
+		{
+		case 8: return "long long";
+		case 4: return "long";
+		default: FATAL_ERROR(L"bad pointer size");
+		}
+		break;
+	}
+	case _field_half:						return "short";
+	default: FATAL_ERROR(L"Unknown field type");
+	}
+}
+
 void c_high_level_tag_source_generator::generate_header()
 {
 	std::stringstream stream;
@@ -126,7 +212,7 @@ void c_high_level_tag_source_generator::generate_header()
 			}
 			default:
 			{
-				const char* field_source_type = c_tag_source_generator::field_type_to_high_level_source_type(platform_type, current_field->field_type);
+				const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);
 				ASSERT(field_source_type != nullptr);
 				stream << "\t\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
 			}
@@ -145,7 +231,7 @@ void c_high_level_tag_source_generator::generate_header()
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + "_high_level.h";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.h";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
@@ -243,9 +329,10 @@ void c_high_level_tag_source_generator::generate_source()
 {
 	std::stringstream stream;
 
+	const char* source_namespace_name = engine_type_to_source_name<const char*>(engine_type);
 	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
 
-	stream << "#include <tagreflection-private-pch.h>" << std::endl;
+	stream << "#include <highlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
 	stream << std::endl;
 
 	stream << "#pragma warning(disable : 4065)" << std::endl;
@@ -390,7 +477,7 @@ void c_high_level_tag_source_generator::generate_source()
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + "/" + namespace_name + "_high_level.cpp";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.cpp";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;

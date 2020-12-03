@@ -1,5 +1,7 @@
 #pragma once
 
+struct s_symbol_file_public;
+
 namespace blofeld
 {
 

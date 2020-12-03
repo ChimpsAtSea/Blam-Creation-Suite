@@ -17,4 +17,6 @@
 #include "halo3_engine_state_command.h"
 #include "halo3_test_command.h"
 
+#include "low_level_halo3/lowlevel-halo3-public-pch.h"
+
 #endif

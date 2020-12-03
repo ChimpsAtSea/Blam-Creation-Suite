@@ -11,6 +11,9 @@
 	  <IncludePath>$(SolutionDir)Game\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)Runtime\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)Tags\LowLevel\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)Tags\Virtual\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)Tags\HighLevel\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)Tooling\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)Tooling\Audio\;$(IncludePath)</IncludePath>

@@ -30,6 +30,15 @@ using namespace xxhash;
 using namespace xxhash::literals;
 
 #include "language_util.h"
+
+#ifndef offsetof
+#ifdef __cplusplus
+#define offsetof(s,m) ((::size_t)&reinterpret_cast<char const volatile&>((((s*)0)->m)))
+#else
+#define offsetof(s,m) ((size_t)&(((s*)0)->m))
+#endif
+#endif
+
 #include "threading.h"
 #include "language_runtime.h"
 #include "debug_util.h"

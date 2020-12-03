@@ -177,7 +177,7 @@
   <ItemGroup>
     <ClCompile Include="high_level_tag_source_generator.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="tag_source_generator.cpp" />
+    <ClCompile Include="low_level_tag_source_generator.cpp" />
     <ClCompile Include="structure_relationship_node.cpp" />
     <ClCompile Include="tagcodegen-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -189,7 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="high_level_tag_source_generator.h" />
-    <ClInclude Include="tag_source_generator.h" />
+    <ClInclude Include="low_level_tag_source_generator.h" />
     <ClInclude Include="structure_relationship_node.h" />
     <ClInclude Include="tagcodegen-private-pch.h" />
     <ClInclude Include="tagcodegen-public-pch.h" />
