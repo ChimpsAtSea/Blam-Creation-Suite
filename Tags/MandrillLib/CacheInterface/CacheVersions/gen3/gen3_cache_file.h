@@ -33,7 +33,7 @@ public:
 	virtual uint32_t get_tag_group_count() const final;
 	virtual uint32_t get_string_id_count() const = 0;
 	virtual char* get_data_with_page_offset(uint32_t page_offset) const;
-	bool is_valid_data_address(void* data) const;
+	virtual bool is_valid_data_address(void* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const final;
 	virtual char* get_tag_interop_data(const s_tag_interop& tag_interop) const final;
@@ -42,6 +42,7 @@ public:
 	virtual const char* get_tag_path(uint32_t tag_index) const final;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const;
+	virtual void validate();
 
 	virtual const s_section_cache& get_section(uint32_t section_index) const final;
 	inline const s_section_cache& get_debug_section() const { return get_section(gen3::_cache_file_section_index_debug); };

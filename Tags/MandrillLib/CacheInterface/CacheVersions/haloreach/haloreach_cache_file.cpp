@@ -29,12 +29,12 @@ template<typename T> void c_haloreach_cache_file::init(T& cache_file_header)
 	}
 }
 
-c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath) :
+c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath, c_cache_cluster* cluster) :
 	c_gen3_cache_file(map_filepath, _engine_type_haloreach, _platform_type_pc),
 	haloreach_cache_file_header(nullptr),
 	haloreach_cache_file_header_v13(nullptr),
 	haloreach_cache_file_tags_header(nullptr),
-	cluster(nullptr)
+	cluster(cluster)
 {
 
 	if (cache_file_header.file_version <= 12)
@@ -91,7 +91,7 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 
 			const char* interop_typename = get_string_id(cache_file_resource_gestalt->interop_type_identifiers_block[tag_interop.type].name, "");
 
-			c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
+			//c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
 		}
 
 		//bitmap_texture_interop_resource
@@ -104,18 +104,6 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 
 		DEBUG_ASSERT(cache_file_resource_gestalt->resource_type_identifiers_block.count == 7);
 
-		enum e_resource_type : char
-		{
-			_resource_type_bitmap_texture_interop_resource,
-			_resource_type_render_geometry_api_resource_definition,
-			_resource_type_constant_buffer_resource_definition,
-			_resource_type_sound_resource_definition,
-			_resource_type_model_animation_tag_resource,
-			_resource_type_structure_bsp_tag_resources,
-			_resource_type_structure_bsp_cache_file_tag_resources,
-			_resource_type_invalid = 0xFFi8
-		};
-
 		uint32_t resources_count = cache_file_resource_gestalt->resources_block.count;
 
 		resource_entries = new c_resource_entry * [resources_count] {};
@@ -124,52 +112,48 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 		for (uint32_t resource_index = 0; resource_index < resources_count; resource_index++)
 		{
 			blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data = cache_file_resource_gestalt->resources_block[resource_index];
-			if (cache_file_resource_data.resource_type_index == _resource_type_invalid)
+			if (cache_file_resource_data.resource_type_index == _haloreach_resource_type_invalid)
 			{
 				continue;
 			}
 
 			uint32_t resource_type_index = cache_file_resource_data.resource_type_index;
 			const char* resource_typename = get_string_id(cache_file_resource_gestalt->resource_type_identifiers_block[resource_type_index].name, "");
-			c_console::write_line_verbose("%u '%s'", resource_index, resource_typename);
-
-			char* const naive_resource_control_data = get_tag_data(cache_file_resource_gestalt->naive_resource_control_data); // #TODO: virtual tag data [tag_data.get_data()]
-			char* const data = naive_resource_control_data + cache_file_resource_data.naive_data_offset;
+			//c_console::write_line_verbose("%u '%s'", resource_index, resource_typename);
 
 			switch (resource_type_index)
 			{
-				case _resource_type_bitmap_texture_interop_resource:
+				case _haloreach_resource_type_bitmap_texture_interop_resource:
 				{
-					resource_entries[resource_index] = new c_bitmap_texture_interop_resource_entry(data);
-					//DEBUG_ASSERT(cache_file_resource_data.control_size == c_bitmap_texture_interop_resource_entry::get_data_size());
+					resource_entries[resource_index] = new c_bitmap_texture_interop_resource_entry(resource_index, *this);
 					break;
 				}
-				case _resource_type_render_geometry_api_resource_definition:
+				case _haloreach_resource_type_render_geometry_api_resource_definition:
 				{
 					resource_entries[resource_index] = new c_render_geometry_api_resource_definition_entry();
 					break;
 				}
-				case _resource_type_constant_buffer_resource_definition:
+				case _haloreach_resource_type_constant_buffer_resource_definition:
 				{
 					resource_entries[resource_index] = new c_constant_buffer_resource_definition_entry();
 					break;
 				}
-				case _resource_type_sound_resource_definition:
+				case _haloreach_resource_type_sound_resource_definition:
 				{
 					resource_entries[resource_index] = new c_sound_resource_definition_entry();
 					break;
 				}
-				case _resource_type_model_animation_tag_resource:
+				case _haloreach_resource_type_model_animation_tag_resource:
 				{
 					resource_entries[resource_index] = new c_model_animation_tag_resource_entry();
 					break;
 				}
-				case _resource_type_structure_bsp_tag_resources:
+				case _haloreach_resource_type_structure_bsp_tag_resources:
 				{
 					resource_entries[resource_index] = new c_structure_bsp_tag_resources_entry();
 					break;
 				}
-				case _resource_type_structure_bsp_cache_file_tag_resources:
+				case _haloreach_resource_type_structure_bsp_cache_file_tag_resources:
 				{
 					resource_entries[resource_index] = new c_structure_bsp_cache_file_tag_resources_entry();
 					break;
@@ -184,7 +168,10 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 	}
 
 	init_sorted_instance_lists();
+}
 
+void c_haloreach_cache_file::validate()
+{
 	if (c_command_line::has_command_line_arg("-debug"))
 	{
 		const s_section_cache& tags_section = get_section(_cache_file_section_index_tags);
@@ -236,6 +223,13 @@ void c_haloreach_cache_file::set_cache_cluster(c_cache_cluster* _cluster)
 
 char* c_haloreach_cache_file::get_data_with_page_offset(uint32_t page_offset) const
 {
+	uint32_t cluster_file_index;
+	uint64_t cluster_file_offset;
+	if (cluster != nullptr && cluster->decode_page_address(page_offset, cluster_file_index, cluster_file_offset))
+	{
+		char* data = cluster->cache_files[cluster_file_index]->get_map_data() + cluster_file_offset;
+		return data;
+	}
 	return c_gen3_cache_file::get_data_with_page_offset(page_offset);
 }
 
@@ -285,14 +279,21 @@ e_cache_file_flags c_haloreach_cache_file::get_cache_file_flags() const
 
 uint64_t c_haloreach_cache_file::convert_page_offset(uint32_t page_offset) const
 {
-	e_cache_file_flags flags = get_cache_file_flags();
-	if (flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
+	if (cluster != nullptr && page_offset & 0x80000000) // custom address space for resources. 8GB in size.
 	{
-		return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - 0x10000000ull);
+		throw;
 	}
 	else
 	{
-		return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - 0x50000000ull);
+		e_cache_file_flags flags = get_cache_file_flags();
+		if (flags & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
+		{
+			return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - page_address_offset_absolute);
+		}
+		else
+		{
+			return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - page_address_offset_relative);
+		}
 	}
 }
 

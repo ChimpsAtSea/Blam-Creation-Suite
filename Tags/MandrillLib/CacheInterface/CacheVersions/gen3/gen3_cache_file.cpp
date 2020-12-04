@@ -174,6 +174,11 @@ void c_gen3_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& ou
 
 }
 
+void c_gen3_cache_file::validate()
+{
+
+}
+
 const s_section_cache& c_gen3_cache_file::get_section(uint32_t section_index) const
 {
 	return section_cache[section_index];

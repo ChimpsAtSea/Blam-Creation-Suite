@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
     <ClInclude Include="CacheInterface\cache_cluster.h" />
@@ -83,6 +84,7 @@
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="CacheInterface\cache_cluster.cpp" />
     <ClCompile Include="CacheInterface\string_id_interface.cpp" />
     <ClCompile Include="CacheInterface\tag_project.cpp" />

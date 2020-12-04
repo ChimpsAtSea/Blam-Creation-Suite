@@ -201,6 +201,9 @@
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_entries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\cache_file.cpp">
@@ -345,6 +348,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_entries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -151,7 +151,7 @@ void c_box_renderer::setup_shaders()
 	{
 		void* shader_binary = nullptr;
 		size_t shaderFileLength = 0;
-		if (!c_resources_manager::copy_resource_to_buffer(_resource_type_box_pixel_shader, shader_binary, &shaderFileLength))
+		if (!c_bcs_resources_manager::copy_resource_to_buffer(_bcs_resource_type_box_pixel_shader, shader_binary, &shaderFileLength))
 		{
 			c_console::write_line_verbose("Warning: Failed to find Box pixel shader resource! Attempting to read BoxShaderPS.cso");
 			shader_binary = filesystem_read_to_memory_legacy(L"BoxShaderPS.cso", &shaderFileLength);
@@ -168,7 +168,7 @@ void c_box_renderer::setup_shaders()
 	size_t vertex_shader_binary_length = 0;
 	if (vertex_shader == nullptr)
 	{
-		if (!c_resources_manager::copy_resource_to_buffer(_resource_type_box_vertex_shader, vertex_shader_binary, &vertex_shader_binary_length))
+		if (!c_bcs_resources_manager::copy_resource_to_buffer(_bcs_resource_type_box_vertex_shader, vertex_shader_binary, &vertex_shader_binary_length))
 		{
 			c_console::write_line_verbose("Warning: Failed to find Box vertex shader resource! Attempting to read BoxShaderVS.cso");
 			vertex_shader_binary = filesystem_read_to_memory_legacy(L"BoxShaderVS.cso", &vertex_shader_binary_length);

@@ -2,6 +2,8 @@
 
 class c_virtual_memory_container;
 
+class c_cache_cluster;
+
 class c_cache_file
 {
 public:
@@ -9,7 +11,7 @@ public:
 	friend class c_tag_group_interface;
 
 	static e_engine_type get_cache_file_engine_type(const wchar_t* filepath, long* file_version);
-	static c_cache_file* create_cache_file(const std::wstring& map_filepath);
+	static c_cache_file* create_cache_file(const std::wstring& map_filepath, c_cache_cluster* cache_cluster = nullptr);
 
 protected:
 	BCSAPI c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type);

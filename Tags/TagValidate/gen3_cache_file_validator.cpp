@@ -93,6 +93,23 @@ uint32_t __log2u(uint32_t index)
 	return value;
 }
 
+bool is_valid_data_address(c_gen3_cache_file& cache_file, void* data)
+{
+	bool is_valid_address = cache_file.is_valid_data_address(data);
+	if (is_valid_address)
+	{
+		return true;
+	}
+	if (c_haloreach_cache_file* haloreach_cache_file = dynamic_cast<c_haloreach_cache_file*>(&cache_file))
+	{
+		if (haloreach_cache_file->cluster != nullptr)
+		{
+			is_valid_address = haloreach_cache_file->cluster->is_valid_data_address(data);
+		}
+	}
+	return is_valid_address;
+}
+
 uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 	c_tag_interface& tag_interface,
 	int level,
@@ -383,7 +400,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				if (tag_data.size > 0)
 				{
 					char* data_address = cache_file.get_data_with_page_offset(tag_data.address);
-					is_struct_valid &= cache_file.is_valid_data_address(data_address);
+					is_struct_valid &= is_valid_data_address(cache_file, data_address);
 				}
 				break;
 			}
@@ -428,11 +445,11 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 					}
 
 					c_resource_entry* resource_entry = cache_file.get_resource_entry(index);
-					void* virtual_pagable_data = resource_entry ? resource_entry->get_data() : pagable_data;
+					void* virtual_pagable_data = resource_entry ? resource_entry->get_pageable_data() : pagable_data;
 
 					if (virtual_pagable_data != nullptr)
 					{
-						bool is_valid_address = cache_file.is_valid_data_address(pagable_data);
+						bool is_valid_address = is_valid_data_address(cache_file, pagable_data);
 						is_struct_valid &= is_valid_address;
 
 						if (is_valid_address && current_field->struct_definition)
@@ -477,7 +494,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 
 					char* data_address = cache_file.get_tag_interop_data(tag_interop);
 
-					bool is_valid_address = cache_file.is_valid_data_address(data_address);
+					bool is_valid_address = is_valid_data_address(cache_file, data_address);
 					is_struct_valid &= is_valid_address;
 
 					if (is_valid_address && current_field->struct_definition)
@@ -517,7 +534,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				{
 					char* data_address = cache_file.get_tag_block_data(tag_block);
 					is_struct_valid &= (reinterpret_cast<uintptr_t>(data_address) % 4u) == 0u;
-					is_struct_valid &= cache_file.is_valid_data_address(data_address);
+					is_struct_valid &= is_valid_data_address(cache_file, data_address);
 
 					if (is_struct_valid)
 					{
@@ -527,7 +544,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 						char* start = data_address;
 						char* end = start + (tag_block.count * blofeld::calculate_struct_size(engine_type, platform_type, _build_not_set, current_field->block_definition->struct_definition));
 
-						is_struct_valid &= cache_file.is_valid_data_address(start) && cache_file.is_valid_data_address(end);
+						is_struct_valid &= is_valid_data_address(cache_file, start) && is_valid_data_address(cache_file, end);
 
 						if (is_struct_valid)
 						{
@@ -629,7 +646,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 					for (uint32_t tag_block_index = 0; tag_block_index < __min(tag_block.count, k_max_group_iterations)/* && (is_struct_valid || show_broken_block_data)*/; tag_block_index++)
 					{
 						char* current_block_data = block_data + total_block_bytes_traversed;
-						if (!cache_file.is_valid_data_address(current_block_data))
+						if (!is_valid_data_address(cache_file, current_block_data))
 						{
 							ImGui::Dummy({ level * indent_size, 0.0f }); 
 							ImGui::SameLine();

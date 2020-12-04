@@ -149,7 +149,7 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath, 
 	return engine_type;
 }
 
-c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
+c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath, c_cache_cluster* cache_cluster)
 {
 	for (c_mandrill_extension& extension : c_reference_loop(c_mandrill_extension::get_extensions(), c_mandrill_extension::get_extension_count()))
 	{
@@ -165,7 +165,7 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_cache_file(map_filepath);
+		return new c_haloreach_cache_file(map_filepath, cache_cluster);
 	case _engine_type_halo1:
 		return new c_halo1_cache_file(map_filepath);
 	case _engine_type_halo2:

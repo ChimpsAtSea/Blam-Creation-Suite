@@ -52,12 +52,30 @@ c_cache_cluster::c_cache_cluster(const wchar_t* filepaths[], uint32_t num_files)
 	cache_files.resize(num_files);
 	for (uint32_t i = 0; i < num_files; i++)
 	{
-		g.run([&, i] { cache_files[i] = c_cache_file::create_cache_file(filepaths[i]); });
+		c_cache_file* cache_file = c_cache_file::create_cache_file(filepaths[i], this);
+		cache_files[i] = cache_file;
+		if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(cache_file))
+		{
+			gen3_cache_file->validate();
+		}
+
+		//g.run(
+		//	[filepaths, i, this]
+		//	{ 
+		//		cache_files[i] = c_cache_file::create_cache_file(filepaths[i], this); 
+		//		ASSERT(cache_files[i]);
+		//	}
+		//);
 	}
 	g.wait();
 	for (uint32_t i = 0; i < num_files; i++)
 	{
-		g.run([&, i] { cache_files[i]->set_cache_cluster(this); });
+		g.run(
+			[i, this]
+			{ 
+				cache_files[i]->set_cache_cluster(this); 
+			}
+		);
 	}
 	g.wait();
 	stopwatch.stop();
@@ -77,5 +95,42 @@ c_cache_cluster::~c_cache_cluster()
 	}
 }
 
+uint32_t c_cache_cluster::encode_page_address(uint32_t file_index, uint64_t offset)
+{
+	DEBUG_ASSERT((offset % 4) == 0); // expect 4 byte alignment for the offset
+	DEBUG_ASSERT(file_index < 4); // can only support 4 files with current address schema
 
+	uint32_t custom_bits = 0x80000000;
+	custom_bits |= (file_index << 28u) & 0x60000000;
+	custom_bits |= static_cast<uint32_t>(offset / 4ull) & 0x1FFFFFFF;
 
+	return custom_bits;
+}
+
+bool c_cache_cluster::decode_page_address(uint32_t page_address, uint32_t& file_index, uint64_t& offset)
+{
+	if (page_address & 0x80000000)
+	{
+		uint32_t custom_bits = page_address & 0x7FFFFFFF;
+		file_index = (custom_bits & 0x60000000) >> 28u; // bit 30-31
+		offset = static_cast<uint64_t>(custom_bits & 0x1FFFFFFF) * 4ull; // bit 0-28 (represents 2GB of address space)
+
+		return true;
+	}
+	return false;
+}
+
+bool c_cache_cluster::is_valid_data_address(void* data) const
+{
+	for (c_cache_file* cache_file : cache_files)
+	{
+		if (c_gen3_cache_file* gen3_cache_file = dynamic_cast<c_gen3_cache_file*>(cache_file))
+		{
+			if (gen3_cache_file->is_valid_data_address(data))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}

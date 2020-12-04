@@ -17,7 +17,7 @@ c_runtime_symbols::c_runtime_symbols() :
 	symbol_file_buffer(nullptr),
 	is_initialized(false)
 {
-	if (c_resources_manager::copy_resource_to_buffer(_resource_type_symbols_blob, symbol_file_buffer))
+	if (c_bcs_resources_manager::copy_resource_to_buffer(_bcs_resource_type_symbols_blob, symbol_file_buffer))
 	{
 		symbol_file_header = static_cast<s_symbol_file_header*>(symbol_file_buffer);
 	}

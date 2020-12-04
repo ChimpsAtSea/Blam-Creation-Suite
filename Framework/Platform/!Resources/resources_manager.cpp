@@ -1,16 +1,16 @@
 #include "platform-private-pch.h"
 #include "resource.h"
 
-c_cached_resource_info* c_cached_resource_info::cached_resource_infos[k_num_resource_types];
+c_bcs_cached_resource_info* c_bcs_cached_resource_info::cached_resource_infos[k_num_bcs_resource_types];
 
-c_cached_resource_info::c_cached_resource_info(e_resource_type resource_type) :
+c_bcs_cached_resource_info::c_bcs_cached_resource_info(e_bcs_resource_type resource_type) :
 	resource_handle(NULL),
 	resource_memory_handle(NULL),
 	resource_size(0),
 	resource_pointer(NULL)
 {
 	HMODULE instance_handle = c_runtime_util::get_current_module();
-	resource_handle = c_resources_manager::get_resource_handle(resource_type);
+	resource_handle = c_bcs_resources_manager::get_resource_handle(resource_type);
 	if (resource_handle == NULL) goto end_init_resource;
 	resource_memory_handle = LoadResource(instance_handle, resource_handle);
 	if (resource_memory_handle == NULL) goto end_init_resource;
@@ -23,7 +23,7 @@ end_init_resource:;
 
 }
 
-c_cached_resource_info::~c_cached_resource_info()
+c_bcs_cached_resource_info::~c_bcs_cached_resource_info()
 {
 	if (resource_pointer != nullptr)
 	{
@@ -31,49 +31,49 @@ c_cached_resource_info::~c_cached_resource_info()
 	}
 }
 
-c_cached_resource_info& c_cached_resource_info::get_info(e_resource_type resource_type)
+c_bcs_cached_resource_info& c_bcs_cached_resource_info::get_info(e_bcs_resource_type resource_type)
 {
-	c_cached_resource_info*& resource_info = cached_resource_infos[resource_type];
+	c_bcs_cached_resource_info*& resource_info = cached_resource_infos[resource_type];
 	if (resource_info == nullptr)
 	{
-		resource_info = new c_cached_resource_info(resource_type);
+		resource_info = new c_bcs_cached_resource_info(resource_type);
 	}
 
 	return *resource_info;
 }
 
-LPCWSTR c_resources_manager::get_resource_type(e_resource_type type)
+LPCWSTR c_bcs_resources_manager::get_resource_type(e_bcs_resource_type type)
 {
 	switch (type)
 	{
-	case _resource_type_icon_application:
-	case _resource_type_icon_blam_creation_suite:
-	case _resource_type_icon_mandrill:
+	case _bcs_resource_type_icon_application:
+	case _bcs_resource_type_icon_blam_creation_suite:
+	case _bcs_resource_type_icon_mandrill:
 		return RT_ICON;
 	default:
 		return RT_RCDATA;
 	}
 }
 
-LPCWSTR c_resources_manager::get_resource_int_resource(e_resource_type type)
+LPCWSTR c_bcs_resources_manager::get_resource_int_resource(e_bcs_resource_type type)
 {
 	switch (type)
 	{
-	case _resource_type_icon_application:			return MAKEINTRESOURCEW(IDI_ICON_APPLICATION);
-	case _resource_type_icon_blam_creation_suite:	return MAKEINTRESOURCEW(IDI_ICON_BLAM_CREATION_SUITE);
-	case _resource_type_icon_mandrill:				return MAKEINTRESOURCEW(IDI_ICON_MANDRILL);
-	case _resource_type_font_cousine_regular:		return MAKEINTRESOURCEW(IDR_FONT_COUSING_REGULAR);
-	case _resource_type_font_font_awesome:			return MAKEINTRESOURCEW(IDR_FONT_FONT_AWESOME);
-	case _resource_type_symbols_blob:				return MAKEINTRESOURCEW(IDR_MAPDATABASE);
-	case _resource_type_box_pixel_shader:			return MAKEINTRESOURCEW(IDR_BOXSHADERPS);
-	case _resource_type_box_vertex_shader:			return MAKEINTRESOURCEW(IDR_BOXSHADERVS);
+	case _bcs_resource_type_icon_application:			return MAKEINTRESOURCEW(IDI_ICON_APPLICATION);
+	case _bcs_resource_type_icon_blam_creation_suite:	return MAKEINTRESOURCEW(IDI_ICON_BLAM_CREATION_SUITE);
+	case _bcs_resource_type_icon_mandrill:				return MAKEINTRESOURCEW(IDI_ICON_MANDRILL);
+	case _bcs_resource_type_font_cousine_regular:		return MAKEINTRESOURCEW(IDR_FONT_COUSING_REGULAR);
+	case _bcs_resource_type_font_font_awesome:			return MAKEINTRESOURCEW(IDR_FONT_FONT_AWESOME);
+	case _bcs_resource_type_symbols_blob:				return MAKEINTRESOURCEW(IDR_MAPDATABASE);
+	case _bcs_resource_type_box_pixel_shader:			return MAKEINTRESOURCEW(IDR_BOXSHADERPS);
+	case _bcs_resource_type_box_vertex_shader:			return MAKEINTRESOURCEW(IDR_BOXSHADERVS);
 	}
 	return NULL;
 }
 
-const void* c_resources_manager::get_resource(e_resource_type type, size_t* resource_size)
+const void* c_bcs_resources_manager::get_resource(e_bcs_resource_type type, size_t* resource_size)
 {
-	c_cached_resource_info& resource_info = c_cached_resource_info::get_info(type);
+	c_bcs_cached_resource_info& resource_info = c_bcs_cached_resource_info::get_info(type);
 
 	if (resource_size)
 	{
@@ -82,7 +82,7 @@ const void* c_resources_manager::get_resource(e_resource_type type, size_t* reso
 	return resource_info.resource_pointer;
 }
 
-HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
+HRSRC c_bcs_resources_manager::get_resource_handle(e_bcs_resource_type type)
 {
 	static HMODULE instance_handle = c_runtime_util::get_current_module();
 
@@ -92,7 +92,7 @@ HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
 	return FindResourceW(instance_handle, int_resource, get_resource_type(type));
 }
 
-bool c_resources_manager::copy_resource_to_buffer(e_resource_type type, void*& out_data, size_t* out_data_size, bool null_terminate)
+bool c_bcs_resources_manager::copy_resource_to_buffer(e_bcs_resource_type type, void*& out_data, size_t* out_data_size, bool null_terminate)
 {
 	out_data = nullptr;
 	if (out_data_size != nullptr)
