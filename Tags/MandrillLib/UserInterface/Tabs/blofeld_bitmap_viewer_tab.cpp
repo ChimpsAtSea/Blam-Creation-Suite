@@ -264,11 +264,11 @@ void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 
 
 		HRESULT create_texture_2d_result = c_render::s_device->CreateTexture2D(&desc, &subresource_init_data, &texture);
-		ASSERT(SUCCEEDED(create_texture_2d_result));
-		ASSERT(texture != nullptr);
+		//ASSERT(SUCCEEDED(create_texture_2d_result));
+		//ASSERT(texture != nullptr);
 
 		HRESULT create_shader_resource_view_result = c_render::s_device->CreateShaderResourceView(texture, NULL, &shader_resource_view);
-		ASSERT(SUCCEEDED(create_shader_resource_view_result));
+		//ASSERT(SUCCEEDED(create_shader_resource_view_result));
 	}
 }
 
@@ -296,6 +296,10 @@ void c_blofeld_bitmap_viewer_tab::render_impl()
 	if (shader_resource_view)
 	{
 		ImGui::Image(shader_resource_view, ImVec2(1024, 1024));
+	}
+	else
+	{
+		ImGui::TextUnformatted("Failed to load texture");
 	}
 }
 
