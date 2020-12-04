@@ -42,6 +42,7 @@ public:
 	virtual const char* get_tag_path(uint32_t tag_index) const final;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
 	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const;
+	virtual void init_resources();
 	virtual void validate();
 
 	virtual const s_section_cache& get_section(uint32_t section_index) const final;

@@ -20,11 +20,15 @@ public:
 	virtual uint32_t get_string_id_count() const final;
 	virtual void set_cache_cluster(c_cache_cluster* cluster) final;
 	virtual char* get_data_with_page_offset(uint32_t page_offset) const;
+	virtual void init_resources();
 	virtual void validate();
 
 	c_cache_cluster* cluster;
+	c_haloreach_page_file_manager* page_file_manager;
 
+	c_cache_file* get_shared_cache_file_by_file_index(uint32_t file_index);
 protected:
+
 	gen3::e_cache_file_flags get_cache_file_flags() const;
 	template<typename T> void init(T& cache_file_header);
 	haloreach::s_cache_file_header* haloreach_cache_file_header;

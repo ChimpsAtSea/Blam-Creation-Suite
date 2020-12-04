@@ -120,200 +120,87 @@ const DirectX::DDS_PIXELFORMAT* bitmap_format_to_dds_pixel_format(e_bitmap_forma
 	}
 }
 
-c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent) :
-	c_mandrill_tab("Bitmap Viewer", "Blofeld Bitmap Resource Viewer", &parent, false),
-	tag_interface(tag_interface),
-	cache_file(*dynamic_cast<decltype(&cache_file)>(&tag_interface.get_cache_file())),
-	bitmap_tag(*dynamic_cast<decltype(&bitmap_tag)>(tag_interface.get_virtual_tag_interface())),
-	texture(nullptr)
+void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 {
-	char* dds_file_data = nullptr;
-
-	if (bitmap_tag.bitmaps_block.count)
+	if (bitmap_tag.bitmaps_block.count == 0)
 	{
-		auto& bitmap = bitmap_tag.bitmaps_block[0];
-
-		char* raw_resource_page_data = nullptr;
-		c_bitmap_texture_interop_resource_entry* resource_entry = cache_file.get_resource_entry<c_bitmap_texture_interop_resource_entry>(bitmap_tag.hardware_textures_block[0].texture_resource.resource_handle.get_absolute_index());
-		if (resource_entry)
-		{
-			raw_resource_page_data = cache_file.get_data_with_page_offset(resource_entry->entry.pixel_data.address);
-
-			using namespace blofeld::haloreach;
-
-
-			c_tag_group_interface* cache_file_resource_gestalt_group = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
-			DEBUG_ASSERT(cache_file_resource_gestalt_group != nullptr);
-			DEBUG_ASSERT(cache_file_resource_gestalt_group->get_tag_interfaces_count() == 1);
-			v_tag_interface<s_cache_file_resource_gestalt_block_struct>* cache_file_resource_gestalt = dynamic_cast<decltype(cache_file_resource_gestalt)>(cache_file_resource_gestalt_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
-			DEBUG_ASSERT(cache_file_resource_gestalt != nullptr);
-
-			c_tag_group_interface* cache_file_resource_layout_table_group = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
-			DEBUG_ASSERT(cache_file_resource_layout_table_group != nullptr);
-			DEBUG_ASSERT(cache_file_resource_layout_table_group->get_tag_interfaces_count() == 1);
-			v_tag_interface<s_cache_file_resource_layout_table_block_struct>* cache_file_resource_layout_table = dynamic_cast<decltype(cache_file_resource_layout_table)>(cache_file_resource_layout_table_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
-			DEBUG_ASSERT(cache_file_resource_layout_table != nullptr);
-
-			auto resource_data = &cache_file_resource_gestalt->resources_block[bitmap_tag.hardware_textures_block[0].texture_resource.resource_handle.get_absolute_index()];
-			DEBUG_ASSERT(resource_data->resource_type_index == _haloreach_resource_type_bitmap_texture_interop_resource);
-
-			auto& section = cache_file_resource_layout_table->sections_block[resource_data->page];
-			auto file_page = &cache_file_resource_layout_table->file_pages_block[section.file_page_indexes[0].page_index];
-
-			uint32_t cluster_cache_file_index = -1;
-			if (file_page->shared_file == -1) // local file
-			{
-				cluster_cache_file_index = 2;
-			}
-			else
-			{
-				auto& shared_file = cache_file_resource_layout_table->shared_files_block[file_page->shared_file];
-				const char* dvd_path = shared_file.dvd_relative_path.get_buffer();
-
-				// #TODO: Clean this up, this is super bad!!!!!!!!!!!
-
-				if (_stricmp(dvd_path, "maps\\shared.map") == 0)
-				{
-					cluster_cache_file_index = 0;
-				}
-				else if (_stricmp(dvd_path, "maps\\shared.map") == 0)
-				{
-					cluster_cache_file_index = 1;
-				}
-				else if (_stricmp(dvd_path, "maps\\english.map") == 0)
-				{
-
-				}
-				else DEBUG_ONLY(FATAL_ERROR(L"Unknown resource cache file"));
-			}
-
-			const s_section_cache& resources_section = cache_file.get_resources_section();
-			uint32_t file_offset = resources_section.mask + file_page->file_offset;
-			uint32_t page_offset = cache_file.cluster->encode_page_address(cluster_cache_file_index, file_offset);
-
-			char* new_data = cache_file.get_data_with_page_offset(page_offset);
-			raw_resource_page_data = new_data;
-
-
-
-			char* uncompressed_resource_page_data = nullptr;
-			if (raw_resource_page_data)
-			{
-				uint32_t compressed_size = resource_entry->get_compressed_size();
-				uint32_t uncompressed_size = resource_entry->get_uncompressed_size();
-
-				uncompressed_resource_page_data = new char[uncompressed_size];
-
-				z_stream stream{};
-				stream.avail_out = uncompressed_size;
-				stream.next_out = (Bytef*)uncompressed_resource_page_data;
-				stream.avail_in = compressed_size;
-				stream.next_in = (Bytef*)raw_resource_page_data;
-				int inflateInitResult = inflateInit2(&stream, -15);
-				ASSERT(inflateInitResult >= Z_OK);
-				int inflateResult = inflate(&stream, Z_SYNC_FLUSH);
-				ASSERT(inflateResult >= Z_OK);
-				int inflateEndResult = inflateEnd(&stream);
-				ASSERT(inflateEndResult >= Z_OK);
-			}
-
-			
-
-			if (uncompressed_resource_page_data != nullptr)
-			{
-				char* uncompressed_resource_data = uncompressed_resource_page_data + section.page_offsets[0].offset;
-
-				bool is_linear_format = false;
-				const DirectX::DDS_PIXELFORMAT* dds_pixel_format = bitmap_format_to_dds_pixel_format((e_bitmap_format3)bitmap.format, is_linear_format);
-
-				size_t dds_file_data_size = sizeof(int) + sizeof(DDS_HEADER);
-				if (bitmap.high_res_pixels_size > 0)
-				{
-					dds_file_data_size += bitmap.high_res_pixels_size;
-				}
-				else
-				{
-					dds_file_data_size += bitmap.pixels_size_bytes;
-				}
-
-				dds_file_data = new char[dds_file_data_size] {};
-
-				int& dds_magic = *reinterpret_cast<int*>(dds_file_data);
-				dds_magic = DDS_MAGIC;
-
-				DDS_HEADER& dds_header = *reinterpret_cast<DDS_HEADER*>(&dds_magic + 1);
-				dds_header.size = sizeof(DDS_HEADER);
-				dds_header.flags = DDS_HEADER_FLAGS_TEXTURE | DDS_HEADER_FLAGS_MIPMAP;
-				dds_header.height = bitmap.height / 2;
-				dds_header.width = bitmap.width / 2;
-				dds_header.depth = 0;
-				dds_header.mipMapCount = 1; // #TODO: export other mips
-
-
-				switch ((e_bitmap_format)bitmap.format)
-				{
-				case _bitmap_format_dxn:
-					dds_header.ddspf = DDSPF_BC5_SNORM;
-					break;
-				case _bitmap_format_dxt1:
-					dds_header.ddspf = DDSPF_DXT1;
-					break;
-				case _bitmap_format_dxt3:
-					dds_header.ddspf = DDSPF_DXT3;
-					break;
-				case _bitmap_format_dxt5:
-				default:
-					dds_header.ddspf = DDSPF_DXT5;
-					break;
-				}
-				//dds_header.ddspf = *dds_pixel_format;
-
-				dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
-
-				char* dds_data = reinterpret_cast<char*>(&dds_header + 1);
-
-				if (bitmap.high_res_pixels_size > 0)
-				{
-					if (is_linear_format)
-					{
-						dds_header.flags |= DDS_HEADER_FLAGS_LINEARSIZE;
-						dds_header.pitchOrLinearSize = bitmap.high_res_pixels_size;
-					}
-					else
-					{
-						// #TODO: calculate pitch correctly
-						dds_header.pitchOrLinearSize = (dds_header.ddspf.RGBBitCount * dds_header.width) / 8;
-					}
-
-					memcpy(dds_data, uncompressed_resource_data, bitmap.high_res_pixels_size);
-				}
-				else
-				{
-					if (is_linear_format)
-					{
-						dds_header.flags |= DDS_HEADER_FLAGS_LINEARSIZE;
-						dds_header.pitchOrLinearSize = bitmap.pixels_size_bytes;
-					}
-					else
-					{
-						// #TODO: calculate pitch correctly
-						dds_header.pitchOrLinearSize = (dds_header.ddspf.RGBBitCount * dds_header.width) / 8;
-					}
-
-					memcpy(dds_data, uncompressed_resource_data, bitmap.pixels_size_bytes);
-				}
-			}
-		}
-
-		debug_point;
-
+		return;
 	}
 
-	if (dds_file_data != nullptr)
+	c_bitmap_texture_interop_resource_entry* resource_entry = cache_file.get_resource_entry<c_bitmap_texture_interop_resource_entry>(bitmap_tag.hardware_textures_block[0].texture_resource.resource_handle.get_absolute_index());
+	if (resource_entry == nullptr)
+	{
+		return;
+	}
+
+	s_tag_data* source_tag_data = nullptr;
+	switch (index)
+	{
+	case 0:
+		source_tag_data = &resource_entry->entry.pixel_data;
+		break;
+	case 1:
+		source_tag_data = &resource_entry->entry.high_res_data;
+		break;
+	default: FATAL_ERROR(L"Unsupported bitmap index");
+	}
+	
+	char* pixel_data = cache_file.get_data_with_page_offset(source_tag_data->address);
+	if (pixel_data == nullptr)
+	{
+		return;
+	}
+	uint32_t pixel_data_bytes = source_tag_data->size;
+
+	auto& bitmap = bitmap_tag.bitmaps_block[0];
+
+	char* dds_texture_buffer = new char[sizeof(int) + sizeof(DDS_HEADER) + pixel_data_bytes];
+	{
+		bool is_linear_format = false;
+		const DirectX::DDS_PIXELFORMAT* dds_pixel_format = bitmap_format_to_dds_pixel_format((e_bitmap_format3)bitmap.format, is_linear_format);
+		if (dds_pixel_format == nullptr)
+		{
+			dds_pixel_format = &DDSPF_DXT5;
+		}
+		int& dds_magic = *reinterpret_cast<int*>(dds_texture_buffer);
+		dds_magic = DDS_MAGIC;
+
+		DDS_HEADER& dds_header = *reinterpret_cast<DDS_HEADER*>(&dds_magic + 1);
+		dds_header.size = sizeof(DDS_HEADER);
+		dds_header.flags = DDS_HEADER_FLAGS_TEXTURE | DDS_HEADER_FLAGS_MIPMAP;
+		dds_header.height = bitmap.height;
+		dds_header.width = bitmap.width;
+		dds_header.depth = 0;
+		dds_header.mipMapCount = 1; // #TODO: export other mips
+		dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
+		dds_header.ddspf = *dds_pixel_format;
+
+		if (index == 0)
+		{
+			dds_header.height /= 2;
+			dds_header.width /= 2;
+		}
+
+		if (is_linear_format)
+		{
+			dds_header.flags |= DDS_HEADER_FLAGS_LINEARSIZE;
+			dds_header.pitchOrLinearSize = pixel_data_bytes;
+		}
+		else
+		{
+			// #TODO: calculate pitch correctly
+			dds_header.pitchOrLinearSize = (dds_header.ddspf.RGBBitCount * dds_header.width) / 8;
+		}
+
+		char* dds_pixel_data = reinterpret_cast<char*>(&dds_header + 1);
+		memcpy(dds_pixel_data, pixel_data, pixel_data_bytes);
+	}
+
+	if (dds_texture_buffer != nullptr)
 	{
 		auto& bitmap = bitmap_tag.bitmaps_block[0];
 
-		DDS_HEADER& dds_header = *reinterpret_cast<DDS_HEADER*>(dds_file_data + 4);
+		DDS_HEADER& dds_header = *reinterpret_cast<DDS_HEADER*>(dds_texture_buffer + 4);
 
 		D3D11_TEXTURE2D_DESC desc{};
 		desc.Width = dds_header.width;
@@ -329,6 +216,26 @@ c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_in
 
 		switch ((e_bitmap_format)bitmap.format)
 		{
+		case _bitmap_format_unused_4:
+		case _bitmap_format_unused_5:
+		case _bitmap_format_unused_7:
+			return; // unsupported
+		case _bitmap_format_a8:
+			desc.Format = DXGI_FORMAT_R8_UNORM;
+			break;
+		case _bitmap_format_r5_g6_b5:
+			desc.Format = DXGI_FORMAT_B5G6R5_UNORM;
+			break;
+		case _bitmap_format_a1_r5_g5_b5:
+			desc.Format = DXGI_FORMAT_B5G5R5A1_UNORM;
+			break;
+		case _bitmap_format_a4_r4_g4_b4:
+			desc.Format = DXGI_FORMAT_B4G4R4A4_UNORM;
+			break;
+		case _bitmap_format_x8_r8_g8_b8:
+		case _bitmap_format_a8_r8_g8_b8:
+			desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+			break;
 		case _bitmap_format_dxn:
 			desc.Format = DXGI_FORMAT_BC5_SNORM;
 			break;
@@ -339,9 +246,10 @@ c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_in
 			desc.Format = DXGI_FORMAT_BC2_UNORM;
 			break;
 		case _bitmap_format_dxt5:
-		default:
 			desc.Format = DXGI_FORMAT_BC3_UNORM;
 			break;
+		default:
+			return;
 		}
 
 		size_t num_bytes;
@@ -350,17 +258,31 @@ c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_in
 		ASSERT(SUCCEEDED(get_surface_info_result));
 
 		D3D11_SUBRESOURCE_DATA subresource_init_data{};
-		subresource_init_data.pSysMem = dds_file_data;
+		subresource_init_data.pSysMem = dds_texture_buffer;
 		subresource_init_data.SysMemPitch = static_cast<UINT>(row_bytes);
 		subresource_init_data.SysMemSlicePitch = static_cast<UINT>(num_bytes);
 
-		
+
 		HRESULT create_texture_2d_result = c_render::s_device->CreateTexture2D(&desc, &subresource_init_data, &texture);
 		ASSERT(SUCCEEDED(create_texture_2d_result));
 		ASSERT(texture != nullptr);
 
 		HRESULT create_shader_resource_view_result = c_render::s_device->CreateShaderResourceView(texture, NULL, &shader_resource_view);
 		ASSERT(SUCCEEDED(create_shader_resource_view_result));
+	}
+}
+
+c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent) :
+	c_mandrill_tab("Bitmap Viewer", "Blofeld Bitmap Resource Viewer", &parent, false),
+	tag_interface(tag_interface),
+	cache_file(*dynamic_cast<decltype(&cache_file)>(&tag_interface.get_cache_file())),
+	bitmap_tag(*dynamic_cast<decltype(&bitmap_tag)>(tag_interface.get_virtual_tag_interface())),
+	texture(nullptr)
+{
+	load_bitmap(1);
+	if (shader_resource_view == nullptr)
+	{
+		load_bitmap(0);
 	}
 }
 
@@ -371,8 +293,6 @@ c_blofeld_bitmap_viewer_tab::~c_blofeld_bitmap_viewer_tab()
 
 void c_blofeld_bitmap_viewer_tab::render_impl()
 {
-	ImGui::TextUnformatted("Hello world");
-
 	if (shader_resource_view)
 	{
 		ImGui::Image(shader_resource_view, ImVec2(1024, 1024));

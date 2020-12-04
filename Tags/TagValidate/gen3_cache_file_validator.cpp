@@ -104,7 +104,7 @@ bool is_valid_data_address(c_gen3_cache_file& cache_file, void* data)
 	{
 		if (haloreach_cache_file->cluster != nullptr)
 		{
-			is_valid_address = haloreach_cache_file->cluster->is_valid_data_address(data);
+			is_valid_address = haloreach_cache_file->page_file_manager->is_valid_data_address(data);
 		}
 	}
 	return is_valid_address;

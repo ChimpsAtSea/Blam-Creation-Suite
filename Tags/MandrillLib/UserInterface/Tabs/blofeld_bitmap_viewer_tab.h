@@ -16,6 +16,7 @@ class c_blofeld_bitmap_viewer_tab :
 public:
 	non_copyconstructable(c_blofeld_bitmap_viewer_tab);
 
+	void load_bitmap(uint32_t index);
 	c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent);
 	virtual ~c_blofeld_bitmap_viewer_tab();
 

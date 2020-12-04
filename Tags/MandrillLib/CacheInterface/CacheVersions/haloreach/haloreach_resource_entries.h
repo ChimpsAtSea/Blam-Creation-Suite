@@ -12,18 +12,6 @@ namespace blofeld
 
 class c_haloreach_cache_file;
 
-enum e_haloreach_resource_type : char
-{
-	_haloreach_resource_type_bitmap_texture_interop_resource,
-	_haloreach_resource_type_render_geometry_api_resource_definition,
-	_haloreach_resource_type_constant_buffer_resource_definition,
-	_haloreach_resource_type_sound_resource_definition,
-	_haloreach_resource_type_model_animation_tag_resource,
-	_haloreach_resource_type_structure_bsp_tag_resources,
-	_haloreach_resource_type_structure_bsp_cache_file_tag_resources,
-	_haloreach_resource_type_invalid = 0xFFi8
-};
-
 class c_bitmap_texture_interop_resource_entry :
 	public c_resource_entry
 {

@@ -21,6 +21,7 @@
 //#include "CacheVersions\halo2\halo2_tag_group_interface.h"
 #include "CacheVersions\halo2\halo2_cache_file.h"
 
+#include "CacheVersions\gen3\gen3_resource_page.h"
 #include "CacheVersions\gen3\gen3_resource_entries.h"
 #include "CacheVersions\gen3\gen3_cache_file_types.h"
 #include "CacheVersions\gen3\gen3_tag_interface.h"
@@ -33,6 +34,7 @@
 #include "CacheVersions\halo3odst\halo3odst_cache_file_types.h"
 #include "CacheVersions\halo3odst\halo3odst_cache_file.h"
 
+#include "CacheVersions\haloreach\haloreach_page_file_manager.h"
 #include "CacheVersions\haloreach\haloreach_resource_entries.h"
 #include "CacheVersions\haloreach\haloreach_cache_file_types.h"
 #include "CacheVersions\haloreach\haloreach_cache_file.h"

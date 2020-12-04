@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
@@ -84,6 +86,8 @@
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="CacheInterface\cache_cluster.cpp" />
     <ClCompile Include="CacheInterface\string_id_interface.cpp" />

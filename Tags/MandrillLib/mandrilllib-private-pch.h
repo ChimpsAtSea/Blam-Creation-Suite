@@ -14,7 +14,7 @@
 
 #include "mandrilllib-public-pch.h"
 
-
+#define ZLIB_CONST
 #include <zlib/zlib/zlib.h>
 
 #include <low_level_haloreach/lowlevel-haloreach-public-pch.h>

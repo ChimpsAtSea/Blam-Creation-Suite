@@ -26,7 +26,6 @@ c_bitmap_texture_interop_resource_entry::c_bitmap_texture_interop_resource_entry
 	DEBUG_ASSERT(cache_file_resource_layout_table != nullptr);
 
 	resource_data = &cache_file_resource_gestalt->resources_block[resource_index];
-	DEBUG_ASSERT(resource_data->resource_type_index == _haloreach_resource_type_bitmap_texture_interop_resource);
 
 	char* const naive_resource_control_data = cache_file.get_tag_data(cache_file_resource_gestalt->naive_resource_control_data); // #TODO: virtual tag data [tag_data.get_data()]
 	char* const data = naive_resource_control_data + resource_data->naive_data_offset;
@@ -37,61 +36,31 @@ c_bitmap_texture_interop_resource_entry::c_bitmap_texture_interop_resource_entry
 	if (cache_file.cluster != nullptr)
 	{
 		auto& section = cache_file_resource_layout_table->sections_block[resource_data->page];
-		//DEBUG_ASSERT(section.file_page_indexes[0].page_index != -1);
 
-		if (section.file_page_indexes[0].page_index != -1)
+		uint32_t page_offsets[2] = {};
+		for (uint32_t i = 0; i < 2; i++)
 		{
-			file_page = &cache_file_resource_layout_table->file_pages_block[section.file_page_indexes[0].page_index];
-
-			uint32_t cluster_cache_file_index = -1;
-			if (file_page->shared_file == -1) // local file
+			uint32_t page_index = section.file_page_indexes[i].page_index;
+			if (page_index != -1)
 			{
-				cluster_cache_file_index = 2;
+				file_page = &cache_file_resource_layout_table->file_pages_block[page_index];
+				uint32_t page_offset = cache_file.page_file_manager->encode_page_address(page_index, section.page_offsets[i].offset);
+
+				page_offsets[i] = page_offset;
 			}
-			else
-			{
-				auto& shared_file = cache_file_resource_layout_table->shared_files_block[file_page->shared_file];
-				const char* dvd_path = shared_file.dvd_relative_path.get_buffer();
+		}
+		entry.pixel_data.address = page_offsets[0];
+		entry.high_res_data.address = page_offsets[1];
 
-				// #TODO: Clean this up, this is super bad!!!!!!!!!!!
-
-				if (_stricmp(dvd_path, "maps\\shared.map") == 0)
-				{
-					cluster_cache_file_index = 0;
-				}
-				else if (_stricmp(dvd_path, "maps\\shared.map") == 0)
-				{
-					cluster_cache_file_index = 1;
-				}
-				else if (_stricmp(dvd_path, "maps\\english.map") == 0)
-				{
-
-				}
-				else DEBUG_ONLY(FATAL_ERROR(L"Unknown resource cache file"));
-			}
-
-			if (cluster_cache_file_index != -1)
-			{
-				uint32_t file_offset = file_page->file_offset + section.page_offsets[0].offset;
-				uint32_t page_offset = cache_file.cluster->encode_page_address(cluster_cache_file_index, file_offset);
-
-				entry.pixel_data.address = page_offset;
-				entry.high_res_data.address = page_offset; // #TODO: offset to correct spot
-				entry.d3d_data.descriptor = 0x5EFF44C5;
-				entry.d3d_data.definition_address = 0;
-
-				debug_point;
-			}
-			else
-			{
-
-				debug_point;
-			}
+		if (page_offsets[0] || page_offsets[1])
+		{
+			entry.d3d_data.descriptor = 0x5EFF44C5;
+			entry.d3d_data.definition_address = 0;
 		}
 		else
 		{
-			entry.pixel_data.address = 0xBEEFBEEF;
-			entry.high_res_data.address = 0xBEEFBEEF;
+			entry.pixel_data.address = 0x0EEFBEEF;
+			entry.high_res_data.address = 0x0EEFBEEF;
 		}
 	}
 }
