@@ -17,3 +17,5 @@
 
 #include <zlib/zlib/zlib.h>
 
+#include <low_level_haloreach/lowlevel-haloreach-public-pch.h>
+#include <virtual_haloreach/virtual-haloreach-public-pch.h>

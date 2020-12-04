@@ -387,6 +387,11 @@ void c_gen3_cache_file_validator2::validate_tag_block(
 	uint32_t struct_count = tag_block.count;
 	char* current_block_data_position = cache_file.get_tag_block_data(tag_block);
 	char* start_data = current_block_data_position;
+	if (start_data == nullptr)
+	{
+		c_console::write_line("invalid block access");
+		return;
+	}
 	ASSERT(start_data);
 
 	char* end_data = current_block_data_position + struct_size * struct_count;
@@ -459,15 +464,16 @@ void c_gen3_cache_file_validator2::validate_tag_api_interop(
 	{
 		return;
 	}
-	if (tag_interop.descriptor == 0)
-	{
-		return;
-	}
 
 	uint32_t const struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
 	uint32_t const struct_count = 1;
 
 	char* const start_data = cache_file.get_tag_interop_data(tag_interop);
+	if (start_data == nullptr)
+	{
+		c_console::write_line("invalid interop access");
+		return;
+	}
 	s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(start_data);
 	char* end_data = start_data + struct_size * struct_count;
 
@@ -662,8 +668,8 @@ void c_gen3_cache_file_validator2::traverse_tag_struct(
 		}
 		case blofeld::_field_api_interop:
 		{
-			//ASSERT(current_field->struct_definition);
-			//validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
+			ASSERT(current_field->struct_definition);
+			validate_tag_api_interop(validation_data, current_data_position, *current_field->struct_definition);
 			break;
 		}
 		}

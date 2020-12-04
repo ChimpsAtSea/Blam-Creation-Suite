@@ -43,7 +43,7 @@ namespace gen3
 	struct s_cache_file_tag_interop
 	{
 		dword page_address;
-		long count;
+		long type;
 	};
 	static_assert(sizeof(s_cache_file_tag_interop) == 0x8);
 

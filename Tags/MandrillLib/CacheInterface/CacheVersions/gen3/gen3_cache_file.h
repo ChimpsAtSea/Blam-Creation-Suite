@@ -12,6 +12,7 @@ struct s_section_cache
 class c_gen3_cache_file_validator;
 class c_string_id_guesstimator;
 class c_string_id_namespace_list;
+class c_resource_entry;
 
 class c_gen3_cache_file :
 	public c_cache_file
@@ -32,7 +33,7 @@ public:
 	virtual uint32_t get_tag_group_count() const final;
 	virtual uint32_t get_string_id_count() const = 0;
 	virtual char* get_data_with_page_offset(uint32_t page_offset) const;
-	bool is_valid_data_address(char* data) const;
+	bool is_valid_data_address(void* data) const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const final;
 	virtual char* get_tag_interop_data(const s_tag_interop& tag_interop) const final;
@@ -87,6 +88,18 @@ public:
 	}
 
 	gen3::s_cache_file_tag_interop* gen3_cache_file_tag_interops;
+	long tag_interop_count;
+	c_resource_entry** resource_entries;
+	uint32_t resource_entries_count;
+
+	c_resource_entry* get_resource_entry(uint32_t index) const;
+
+	template<typename T>
+	T* get_resource_entry(uint32_t index) const
+	{
+		return dynamic_cast<T*>(get_resource_entry(index));
+	}
+
 protected:
 	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;

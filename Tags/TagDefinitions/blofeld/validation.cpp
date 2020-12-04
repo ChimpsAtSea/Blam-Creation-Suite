@@ -92,6 +92,16 @@ namespace blofeld
 					next_struct_definition = &current_field->array_definition->struct_definition;
 					break;
 				}
+				case _field_api_interop:
+				{
+					next_struct_definition = current_field->struct_definition;
+					break;
+				}
+				case _field_pageable:
+				{
+					next_struct_definition = current_field->struct_definition;
+					break;
+				}
 				case _field_block:
 					if (recursive_block)
 					{

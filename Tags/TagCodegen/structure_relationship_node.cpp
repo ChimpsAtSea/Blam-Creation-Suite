@@ -36,6 +36,28 @@ void c_structure_relationship_node::populate()
 			child_nodes.emplace_back(&structure_relationship_node);
 			break;
 		}
+		case blofeld::_field_api_interop:
+		{
+			if (current_field->struct_definition) // some of these are not finished
+			{
+				//c_structure_relationship_node& structure_relationship_node = get_node_by_structure(current_field->tag_interop_definition->struct_definition);
+				c_structure_relationship_node& structure_relationship_node = get_node_by_structure(*current_field->struct_definition);
+				child_nodes.emplace_back(&structure_relationship_node);
+			}
+
+			break;
+		}
+		case blofeld::_field_pageable:
+		{
+			if (current_field->struct_definition) // some of these are not finished
+			{
+				//c_structure_relationship_node& structure_relationship_node = get_node_by_structure(current_field->tag_interop_definition->struct_definition);
+				c_structure_relationship_node& structure_relationship_node = get_node_by_structure(*current_field->struct_definition);
+				child_nodes.emplace_back(&structure_relationship_node);
+			}
+
+			break;
+		}
 		}
 		current_field++;
 	}

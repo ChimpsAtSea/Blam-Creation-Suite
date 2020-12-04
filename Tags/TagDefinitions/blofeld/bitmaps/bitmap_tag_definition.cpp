@@ -22,7 +22,10 @@ namespace blofeld
 		{ _field_char_integer, "interleaved texture index" },
 		{ _field_long_integer, "pixels offset!:bytes#DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)" },
 		{ _field_long_integer, "pixels size!:bytes#DO NOT CHANGE (total bytes used by this bitmap)" },
+
+		{ _field_version_greater_or_equal, _engine_type_halo4 },
 		{ _field_long_integer, "medium res pixels size!#DO NOT CHANGE" },
+
 		{ _field_long_integer, "high res pixels size!#DO NOT CHANGE" },
 		{ _field_long_integer, "hardware format*!" },
 		{ _field_long_integer, "runtime tag base address*!" },
@@ -31,7 +34,8 @@ namespace blofeld
 		{ _field_version_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_pad, "pad", 4 },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },

@@ -44,6 +44,7 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 	gen3_cache_file_tag_groups(nullptr),
 	gen3_cache_file_tag_instances(nullptr),
 	gen3_cache_file_tag_interops(nullptr),
+	tag_interop_count(0),
 	string_ids_buffer(nullptr),
 	string_id_indices(nullptr),
 	string_id_namespace_indices(nullptr),
@@ -101,7 +102,7 @@ char* c_gen3_cache_file::get_data_with_page_offset(uint32_t page_offset) const
 	return data;
 }
 
-bool c_gen3_cache_file::is_valid_data_address(char* data) const
+bool c_gen3_cache_file::is_valid_data_address(void* data) const
 {
 	char* begin = virtual_memory_container.get_data();
 	char* end = begin + virtual_memory_container.get_size();
@@ -123,8 +124,17 @@ char* c_gen3_cache_file::get_tag_block_data(const s_tag_block& tag_block) const
 
 char* c_gen3_cache_file::get_tag_interop_data(const s_tag_interop& tag_interop) const
 {
-	char* data = get_data_with_page_offset(tag_interop.descriptor);
-	return data;
+	if (tag_interop.descriptor < tag_interop_count)
+	{
+		uint32_t page_offset = gen3_cache_file_tag_interops[tag_interop.descriptor].page_address;
+		char* data = get_data_with_page_offset(page_offset);
+		return data;
+	}
+	else
+	{
+		char* data = get_data_with_page_offset(tag_interop.descriptor);
+		return data;
+	}
 }
 
 const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const
@@ -167,6 +177,19 @@ void c_gen3_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& ou
 const s_section_cache& c_gen3_cache_file::get_section(uint32_t section_index) const
 {
 	return section_cache[section_index];
+}
+
+c_resource_entry* c_gen3_cache_file::get_resource_entry(uint32_t index) const
+{
+	if (!resource_entries)
+	{
+		return nullptr;
+	}
+	if (index < resource_entries_count)
+	{
+		return resource_entries[index];
+	}
+	return nullptr;
 }
 
 void* c_gen3_cache_file::get_internal_tag_instance_impl(uint32_t tag_index) const

@@ -552,7 +552,7 @@ void c_blofeld_tag_debugger_tab::render_field_data(render_field_callback_args)
 	const char* format_string = "[size:%i stream_flags:0x%X stream_offset:%i address:0x%X definition:0x%X]";
 	if (show_hex_values)
 	{
-		format_string = "[size:%X stream_flags:0x%X stream_offset:0x%X address:0x%X definition:0x%X]";
+		format_string = "[size:0x%X stream_flags:0x%X stream_offset:0x%X address:0x%X definition:0x%X]";
 	}
 	ImGui::SameLine();
 	ImGui::Text(format_string, tag_data.size, tag_data.stream_flags, tag_data.stream_offset, tag_data.address, tag_data.definition);

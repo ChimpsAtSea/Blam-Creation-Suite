@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_real, "tight bounds threshold:[0.0 - 1.0]#This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
 		{ _field_block, "usage override", &bitmap_usage_block_block },
 		{ _field_block, "manual_sequences*", &bitmap_group_sequence_block_def_block },
-		{ _field_explanation, "IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" },
+		{ _field_explanation, "IMPORT DATA", "***************************************************************************************************************************\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n***************************************************************************************************************************" },
 		{ _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
 		{ _field_data, "source data*" },
 		{ _field_data, "processed pixel data*" },
@@ -61,7 +61,12 @@ namespace blofeld
 
 	TAG_STRUCT(bitmap_texture_interop_resource_struct)
 	{
+		{ _field_version_equal, _engine_type_haloreach },
+		{ _field_struct, "texture resource", &render_texture_interop_definition_struct_struct_definition },
+
+		{ _field_version_not_equal, _engine_type_haloreach },
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
+
 		{ _field_terminator }
 	};
 
