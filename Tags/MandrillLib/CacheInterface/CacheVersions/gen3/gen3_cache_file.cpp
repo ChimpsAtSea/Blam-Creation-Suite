@@ -110,7 +110,7 @@ bool c_gen3_cache_file::is_valid_data_address(void* data) const
 	return data >= begin && data < end;
 }
 
-char* c_gen3_cache_file::get_tag_data(s_tag_data& tag_data) const
+char* c_gen3_cache_file::get_tag_data(const s_tag_data& tag_data) const
 {
 	char* data = get_data_with_page_offset(tag_data.address);
 	return data;

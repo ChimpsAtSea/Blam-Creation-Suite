@@ -34,7 +34,7 @@ public:
 	virtual uint32_t get_string_id_count() const = 0;
 	virtual char* get_data_with_page_offset(uint32_t page_offset) const;
 	virtual bool is_valid_data_address(void* data) const;
-	virtual char* get_tag_data(s_tag_data& tag_data) const final;
+	virtual char* get_tag_data(const s_tag_data& tag_data) const final;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const final;
 	virtual char* get_tag_interop_data(const s_tag_interop& tag_interop) const final;
 	virtual const char* get_string_id_by_index(uint32_t index) const final;

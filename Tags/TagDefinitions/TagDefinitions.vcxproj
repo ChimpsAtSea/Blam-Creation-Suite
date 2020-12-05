@@ -291,6 +291,7 @@
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp" />
+    <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
     <ClCompile Include="blofeld\structures\detail_object_definitions.cpp" />
     <ClCompile Include="blofeld\structures\instanced_geometry_definitions.cpp" />

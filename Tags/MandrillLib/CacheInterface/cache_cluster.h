@@ -11,5 +11,6 @@ public:
 	~c_cache_cluster();
 
 	std::vector<c_cache_file*> cache_files;
+	c_cache_file* get_cache_file_by_dvd_path(const char* dvd_path);
 };
 

@@ -128,9 +128,6 @@ static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& t
 	}
 }
 
-#include <high_level_haloreach\highlevel-haloreach-public-pch.h>
-#pragma comment(lib, "HighLevel_HaloReach.lib")
-
 static int run_mandrill_api_test()
 {
 	using namespace blofeld;
@@ -138,150 +135,20 @@ static int run_mandrill_api_test()
 
 	const wchar_t* files[] =
 	{
-		L"C:\\!MCC\\haloreach\\maps\\m70.map",
+		//L"C:\\!MCC\\haloreach\\maps\\m70.map",
 		L"C:\\!MCC\\haloreach\\maps\\m70_a.map", // smallest map
-		L"C:\\!MCC\\haloreach\\maps\\m70_bonus.map",
+		//L"C:\\!MCC\\haloreach\\maps\\m70_bonus.map",
 		L"C:\\!MCC\\haloreach\\maps\\shared.map",
-		//L"C:\\!MCC\\haloreach\\maps\\trainingpreserve.map",
-		L"C:\\!MCC\\haloreach\\maps\\20_sword_slayer.map",
-		//L"C:\\!MCC\\haloreach\\maps\\30_settlement.map",
-		//L"C:\\!MCC\\haloreach\\maps\\35_island.map",
-		//L"C:\\!MCC\\haloreach\\maps\\45_aftship.map",
-		//L"C:\\!MCC\\haloreach\\maps\\45_launch_station.map",
-		//L"C:\\!MCC\\haloreach\\maps\\50_panopticon.map",
-		//L"C:\\!MCC\\haloreach\\maps\\52_ivory_tower.map",
-		//L"C:\\!MCC\\haloreach\\maps\\70_boneyard.map",
 		L"C:\\!MCC\\haloreach\\maps\\campaign.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_beaver_creek.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_damnation.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_ff_halo.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_hangemhigh.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_headlong.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_prisoner.map",
-		//L"C:\\!MCC\\haloreach\\maps\\cex_timberland.map",
-		//L"C:\\!MCC\\haloreach\\maps\\condemned.map",
-		//L"C:\\!MCC\\haloreach\\maps\\dlc_invasion.map",
-		//L"C:\\!MCC\\haloreach\\maps\\dlc_medium.map",
-		//L"C:\\!MCC\\haloreach\\maps\\dlc_slayer.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff_unearthed.map",
-		L"C:\\!MCC\\haloreach\\maps\\ff10_prototype.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff20_courtyard.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff30_waterfront.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff45_corvette.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff50_park.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff60_airview.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff60_icecave.map",
-		//L"C:\\!MCC\\haloreach\\maps\\ff70_holdout.map",
-		L"C:\\!MCC\\haloreach\\maps\\forge_halo.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m05.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m10.map",
-		L"C:\\!MCC\\haloreach\\maps\\m20.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m30.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m35.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m45.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m50.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m52.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m60.map",
 	};
-	c_cache_cluster cache_cluster = c_cache_cluster(files, sizeof(files) / sizeof(*files));
+	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
+	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70_a.map");
+	DEBUG_ASSERT(cache_file != nullptr);
 
+	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
 
-
-
-
-
-	//c_cache_file& cache_file = *c_cache_file::create_cache_file(L"C:\\!MCC\\haloreach\\maps\\70_boneyard.map");
-	//c_tag_group_interface& vehicle_group = *cache_file.get_tag_group_interface_by_group_id(VEHICLE_TAG);
-	//c_tag_interface& tag_interface = *vehicle_group.get_tag_interfaces()[0];
-	//c_virtual_tag_interface& virtual_tag_interface = *tag_interface.get_virtual_tag_interface();
-	//const blofeld::s_tag_group& tag_group = *virtual_tag_interface.tag_interface.get_blofeld_reflection_data();
-
-	//c_high_level_tag & vehicle = *blofeld::haloreach::create_high_level_tag(tag_group, "vehicles\\instancetest.vehi");
-	//ASSERT(&tag_group.block_definition.struct_definition == &vehicle.struct_definition);
-
-	//for (const s_tag_field* field = vehicle.struct_definition.fields; field->field_type != _field_terminator; field++)
-	//{
-	//	void* virtual_field = virtual_tag_interface.get_field_pointer(*field);
-	//	void* high_level_field = vehicle.get_field_pointer(*field);
-
-	//	if (!high_level_field && !virtual_field)
-	//	{
-	//		continue;
-	//	}
-
-	//	if (!high_level_field)
-	//	{
-	//		// #TODO: No destination
-	//		continue;
-	//	}
-
-	//	if (!virtual_field)
-	//	{
-	//		// #TODO: No source
-	//		continue;
-	//	}
-
-	//	switch (field->field_type)
-	//	{
-	//	case _field_string:
-	//	case _field_long_string:
-	//	case _field_string_id:
-	//	case _field_old_string_id:
-	//	case _field_char_integer:
-	//	case _field_short_integer:
-	//	case _field_long_integer:
-	//	case _field_int64_integer:
-	//	case _field_angle:
-	//	case _field_char_enum:
-	//	case _field_enum:
-	//	case _field_long_enum:
-	//	case _field_long_flags:
-	//	case _field_word_flags:
-	//	case _field_byte_flags:
-	//	case _field_point_2d:
-	//	case _field_rectangle_2d:
-	//	case _field_rgb_color:
-	//	case _field_argb_color:
-	//	case _field_real:
-	//	case _field_real_fraction:
-	//	case _field_real_point_2d:
-	//	case _field_real_point_3d:
-	//	case _field_real_vector_2d:
-	//	case _field_real_vector_3d:
-	//	case _field_real_quaternion:
-	//	case _field_real_euler_angles_2d:
-	//	case _field_real_euler_angles_3d:
-	//	case _field_real_plane_2d:
-	//	case _field_real_plane_3d:
-	//	case _field_real_rgb_color:
-	//	case _field_real_argb_color:
-	//	case _field_real_hsv_color:
-	//	case _field_real_ahsv_color:
-	//	case _field_short_bounds:
-	//	case _field_angle_bounds:
-	//	case _field_real_bounds:
-	//	case _field_real_fraction_bounds:
-	//		memcpy(high_level_field, virtual_field, get_blofeld_field_size(_platform_type_pc, field->field_type));
-	//	}
-
-	//}
-
-	//c_effect_block_struct& effect = *new c_effect_block_struct("fx\\customeffect.effe");
-
-	//void* data = effect.get_field_pointer(effect.struct_definition.fields[0]);
-
-	///* create the effect */
-
-	//c_weapon_block_struct& weapon = *new c_weapon_block_struct("weapons\\customweapon.weap");
-
-	//c_weapon_barrels_block_struct& barrel = *weapon.barrels_block.emplace_back(new c_weapon_barrels_block_struct());
-
-	//c_barrel_firing_effect_block_block_struct& firing_effect = *barrel.firing_effects_block.emplace_back(new c_barrel_firing_effect_block_block_struct());
-
-	//firing_effect.firing_effect = &effect;
-
-	//std::vector<c_high_level_tag*> tags;
-	//find_tags(weapon, tags);
+	delete cache_cluster;
+	delete tag_project;
 
 	return 0;
 }

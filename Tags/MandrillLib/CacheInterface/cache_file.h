@@ -35,7 +35,7 @@ public:
 	BCSAPI c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const;
 	BCSAPI c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const;
 	BCSAPI c_tag_group_interface* const* get_tag_group_interfaces() const;
-	virtual char* get_tag_data(s_tag_data& tag_data) const = 0;
+	virtual char* get_tag_data(const s_tag_data& tag_data) const = 0;
 	virtual char* get_tag_block_data(const s_tag_block& tag_block) const = 0;
 	virtual const char* get_string_id_by_index(uint32_t index) const = 0;
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const = 0;

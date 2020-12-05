@@ -930,6 +930,9 @@
     <ClCompile Include="types\tag_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="types\field_type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">

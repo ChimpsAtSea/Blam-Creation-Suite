@@ -189,9 +189,6 @@
     <ClInclude Include="CacheInterface\cache_cluster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\tag_project.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -208,6 +205,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\high_level_cache_file_transplant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\tag_project.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -341,9 +344,6 @@
     <ClCompile Include="CacheInterface\cache_cluster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\tag_project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -363,6 +363,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\high_level_cache_file_transplant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\tag_project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

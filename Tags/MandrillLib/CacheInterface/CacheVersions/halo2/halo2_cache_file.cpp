@@ -46,7 +46,7 @@ uint32_t c_halo2_cache_file::get_string_id_count() const
 	return 0;
 }
 
-char* c_halo2_cache_file::get_tag_data(s_tag_data& tag_data) const
+char* c_halo2_cache_file::get_tag_data(const s_tag_data& tag_data) const
 {
 	return nullptr;
 }

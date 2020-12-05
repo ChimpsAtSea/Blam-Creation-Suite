@@ -126,7 +126,7 @@ void c_high_level_tag_source_generator::generate_header()
 	stream << "\t{" << std::endl << std::endl;
 
 	stream << "\t\tc_high_level_tag* create_high_level_tag(const blofeld::s_tag_group& tag_group, const char* tag_filepath);" << std::endl << std::endl;
-	stream << "\t\tc_high_level_type* create_high_level_item(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+	stream << "\t\tc_high_level_type* create_high_level_type(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
@@ -203,6 +203,11 @@ void c_high_level_tag_source_generator::generate_header()
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
 				stream << "\t\t\t\t" << "std::vector<c_" << field_source_type << "*> " << field_formatter.code_name.c_str() << ";";
+				break;
+			}
+			case _field_data:
+			{
+				stream << "\t\t\t\t" << "std::vector<char> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:
@@ -359,7 +364,7 @@ void c_high_level_tag_source_generator::generate_source()
 	stream << "\t\t" << "}" << std::endl;
 	stream << std::endl;
 
-	stream << "\t\t" << "c_high_level_type* create_high_level_item(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
+	stream << "\t\t" << "c_high_level_type* create_high_level_type(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
@@ -380,6 +385,10 @@ void c_high_level_tag_source_generator::generate_source()
 	stream << "\t\t" << "}" << std::endl;
 	stream << std::endl;
 
+	stream << std::endl;
+	stream << "#ifndef __INTELLISENSE__" << std::endl;
+	stream << std::endl;
+
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
@@ -390,7 +399,7 @@ void c_high_level_tag_source_generator::generate_source()
 		{
 			stream << "\t\t" << "c_" << tag_struct_definition->name << "::c_" << tag_struct_definition->name;
 			stream << "(const char* tag_filepath) :" << std::endl;
-			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", tag_filepath, " << tag_group->name << "_group)" << std::endl;
+			stream << "\t\t\t" << "c_high_level_tag(" << tag_group->symbol->symbol_name << ", tag_filepath, sizeof(c_" << tag_struct_definition->name << "))" << std::endl;
 			generate_tag_constructor_params(stream, *tag_struct_definition);
 			stream << "\t\t" << "{" << std::endl;
 			stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -399,7 +408,7 @@ void c_high_level_tag_source_generator::generate_source()
 
 			stream << "\t\t" << "c_" << tag_struct_definition->name << "::c_" << tag_struct_definition->name;
 			stream << "() :" << std::endl;
-			stream << "\t\t\t" << "c_high_level_tag(" << tag_struct_definition->symbol->symbol_name << ", nullptr, " << tag_group->name << "_group)" << std::endl;
+			stream << "\t\t\t" << "c_high_level_tag(" << tag_group->symbol->symbol_name << ", nullptr, sizeof(c_" << tag_struct_definition->name << "))" << std::endl;
 			generate_tag_constructor_params(stream, *tag_struct_definition);
 			stream << "\t\t" << "{" << std::endl;
 			stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -410,7 +419,7 @@ void c_high_level_tag_source_generator::generate_source()
 		{
 			stream << "\t\t" << "c_" << tag_struct_definition->name << "::c_" << tag_struct_definition->name;
 			stream << "() :" << std::endl;
-			stream << "\t\t\t" << "c_high_level_type(" << tag_struct_definition->symbol->symbol_name << ")" << std::endl;
+			stream << "\t\t\t" << "c_high_level_type(" << tag_struct_definition->symbol->symbol_name << ", sizeof(c_" << tag_struct_definition->name << "))" << std::endl;
 			generate_tag_constructor_params(stream, *tag_struct_definition);
 			stream << "\t\t" << "{" << std::endl;
 			stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -472,6 +481,10 @@ void c_high_level_tag_source_generator::generate_source()
 
 
 	}
+
+	stream << std::endl;
+	stream << "#endif" << std::endl;
+	stream << std::endl;
 
 	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
