@@ -179,6 +179,10 @@ void rhesus_debugger(DWORD process_creation_flags)
 
 bool rhesus_crash_reporter(int& result)
 {
+#ifdef _DEBUG
+	return false; // dont use the crash reporter for debug builds
+#endif
+
 	bool is_debugger_present = IsDebuggerPresent();
 	bool is_rhesus = c_command_line::has_command_line_arg("-rhesus");
 	bool is_rhesus_debug = !is_rhesus && c_command_line::has_command_line_arg("-rhesusdebug");

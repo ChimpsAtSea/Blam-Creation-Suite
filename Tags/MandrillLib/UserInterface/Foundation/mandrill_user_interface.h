@@ -33,9 +33,10 @@ public:
 	c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
+	void create_tag_project(const wchar_t* filepath);
 	void open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
 	void close_cache_file_tab(c_cache_file_tab& tab);
-	void restore_previous_session();
+	void restore_previous_session(bool use_projects);
 	void save_current_session();
 	void render();
 	void render_game_layer();
@@ -50,9 +51,14 @@ public:
 
 	static constexpr const char* k_use_developer_features = "use_developer_features";
 	static constexpr const char* k_show_explorer_bar = "show_explorer_bar";
-
+	static constexpr const char* k_explorer_bar_width = "explorer_bar_width";
+	static constexpr const char* k_previous_open_filepath_setting = "previous_open_filepath";
+	static constexpr const char* k_previous_open_maps_setting = "open_maps";
+	static constexpr const char* k_previous_open_projects_setting = "open_projects";
+	
 	static bool use_developer_features;
 	static bool show_explorer_bar;
+	static float explorer_bar_width;
 
 protected:
 	void mandrill_theme_push();
@@ -70,12 +76,12 @@ protected:
 	bool is_exiting;
 	bool is_game_mode;
 	bool window_open;
-	bool show_file_dialogue;
+	bool show_create_tag_project_file_dialogue;
+	bool show_open_cache_file_dialogue;
 	int mandrill_theme_color_count;
 	int mandrill_theme_var_count;
 	ImGuiAddons::ImGuiFileBrowser* file_browser;
 
-	static constexpr const char* k_previous_open_filepath_setting = "previous_open_filepath";
 public:
 	static t_get_tag_game_memory_callback* s_get_tag_game_memory;
 	static t_get_tag_section_address_callback* s_get_tag_section_address;

@@ -6,9 +6,17 @@ c_high_level_cache_file_transplant::c_high_level_cache_file_transplant(c_cache_c
 	cache_cluster(cache_cluster),
 	cache_file(cache_file)
 {
+	// #TODO: Fix this. See fixes below.
+	//for (uint32_t group_index = 0; group_index < cache_file.get_tag_group_count(); group_index++)
+	//{
+	//	c_tag_group_interface* tag_group_interface = cache_file.get_tag_group_interface(group_index);
+
+	//	get_or_create_group(*tag_group_interface);
+	//}
+
 	for (c_tag_interface& tag_interface : c_reference_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 	{
-		c_high_level_tag* high_level_tag = tag_interface_to_high_level(tag_interface);
+		h_tag* high_level_tag = tag_interface_to_high_level(tag_interface);
 
 		if (high_level_tag == nullptr)
 		{
@@ -23,7 +31,7 @@ c_high_level_cache_file_transplant::c_high_level_cache_file_transplant(c_cache_c
 	{
 		s_tag_pair& tag_pair = tags_and_interface[index];
 
-		c_high_level_tag& high_level_tag = tag_pair.high_level_tag;
+		h_tag& high_level_tag = tag_pair.high_level_tag;
 		c_tag_interface& tag_interface = tag_pair.tag_interface;
 
 		const char* raw_tag_data = tag_interface.get_data();
@@ -42,7 +50,7 @@ c_high_level_cache_file_transplant::~c_high_level_cache_file_transplant()
 
 }
 
-void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high_level, const char* const low_level_data, const blofeld::s_tag_struct_definition& struct_definition)
+void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, const char* const low_level_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	e_engine_type const engine_type = cache_file.get_engine_type();
 	e_platform_type const platform_type = cache_file.get_platform_type();
@@ -119,13 +127,14 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 			case _field_block:
 			{
 				const s_tag_block& tag_block = *reinterpret_cast<decltype(&tag_block)>(current_data_position);
-				std::vector<c_high_level_type*>& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
+				std::vector<h_type*>& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
+				block_storage.reserve(tag_block.count);
 
 				for (uint32_t i = 0; i < tag_block.count; i++)
 				{
 					const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
 
-					c_high_level_type* type = blofeld::haloreach::create_high_level_type(block_struct_definition);
+					h_type* type = blofeld::haloreach::create_high_level_type(block_struct_definition);
 					DEBUG_ASSERT(type != nullptr);
 
 					const char* block_data = cache_file.get_tag_block_data(tag_block);
@@ -135,11 +144,36 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 					block_storage.push_back(type);
 				}
 
+				//if (tag_block.count < 1024)
+				//{
+
+				//}
+				//else
+				//{
+				//	block_storage.resize(tag_block.count);
+				//	h_type** raw_block_storage = block_storage.data();
+
+				//	auto transplant_high_level_block = [this, raw_block_storage, &tag_block, field](uint32_t index)
+				//	{
+				//		const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
+
+				//		h_type* type = blofeld::haloreach::create_high_level_type(block_struct_definition);
+				//		DEBUG_ASSERT(type != nullptr);
+
+				//		const char* block_data = cache_file.get_tag_block_data(tag_block);
+
+				//		transplant_data(*type, block_data, block_struct_definition);
+
+				//		raw_block_storage[index] = type;
+				//	};
+				//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
+				//}
+
 				break;
 			}
 			case _field_struct:
 			{
-				c_high_level_type& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+				h_type& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 				transplant_data(struct_storage, current_data_position, *field->struct_definition);
 				break;
 			}
@@ -151,7 +185,7 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 				uint32_t const array_elements_count = field->array_definition->count(engine_type);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
-					c_high_level_type& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_array_data_position);
+					h_type& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_array_data_position);
 
 					transplant_data(array_storage, raw_array_data_position, field->array_definition->struct_definition);
 
@@ -163,10 +197,10 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 			case _field_tag_reference:
 			{
 				const s_tag_reference& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(current_data_position);
-				c_high_level_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+				h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
 
 				c_tag_interface* tag_reference_tag_interface = cache_file.get_tag_interface(tag_reference.index);
-				c_high_level_tag* tag_reference_high_level_tag = get_high_level_tag_by_tag_interface(tag_reference_tag_interface);
+				h_tag* tag_reference_high_level_tag = get_high_level_tag_by_tag_interface(tag_reference_tag_interface);
 
 				tag_ref_storage = tag_reference_high_level_tag;
 				break;
@@ -175,10 +209,11 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 			{
 				const s_tag_data& tag_data = *reinterpret_cast<decltype(&tag_data)>(current_data_position);
 				std::vector<char>& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
-
+				
 				const char* tag_data_data = cache_file.get_tag_data(tag_data);
 				if (tag_data_data != nullptr)
 				{
+					data_storage.clear();
 					data_storage.insert(data_storage.begin(), tag_data_data, tag_data_data + tag_data.size);
 				}
 				debug_point;
@@ -191,7 +226,7 @@ void c_high_level_cache_file_transplant::transplant_data(c_high_level_type& high
 	}
 }
 
-c_high_level_tag* c_high_level_cache_file_transplant::get_high_level_tag_by_tag_interface(c_tag_interface* tag_interface)
+h_tag* c_high_level_cache_file_transplant::get_high_level_tag_by_tag_interface(c_tag_interface* tag_interface)
 {
 	if (tag_interface == nullptr)
 	{
@@ -213,15 +248,16 @@ c_high_level_tag* c_high_level_cache_file_transplant::get_high_level_tag_by_tag_
 	return nullptr;
 }
 
-c_high_level_tag* c_high_level_cache_file_transplant::tag_interface_to_high_level(c_tag_interface& tag_interface)
+h_tag* c_high_level_cache_file_transplant::tag_interface_to_high_level(c_tag_interface& tag_interface)
 {
 	if (tag_interface.is_null())
 	{
 		return nullptr;
 	}
 
-	c_tag_group_interface* group_interface = tag_interface.get_tag_group_interface();
-	DEBUG_ASSERT(group_interface != nullptr);
+	// #TODO: Fix this, currently returns null.
+	//c_tag_group_interface* group_interface = tag_interface.get_tag_group_interface();
+	//DEBUG_ASSERT(group_interface != nullptr);
 
 	c_virtual_tag_interface* virtual_tag_interface = tag_interface.get_virtual_tag_interface();
 	DEBUG_ASSERT(virtual_tag_interface != nullptr);
@@ -229,9 +265,36 @@ c_high_level_tag* c_high_level_cache_file_transplant::tag_interface_to_high_leve
 	const blofeld::s_tag_group* tag_group = virtual_tag_interface->tag_interface.get_blofeld_reflection_data();
 	DEBUG_ASSERT(tag_group != nullptr);
 
-	const char* filepath = tag_interface.get_path_with_group_name_cstr();
-	c_high_level_tag* high_level_tag = blofeld::haloreach::create_high_level_tag(*tag_group, filepath);
-	DEBUG_ASSERT(high_level_tag);
+	h_group& group = get_or_create_group(*tag_group);
 
-	return high_level_tag;
+	const char* filepath = tag_interface.get_path_with_group_name_cstr();
+	h_tag& high_level_tag = group.create_tag_instance(filepath);
+
+	return &high_level_tag;
+}
+
+h_group& c_high_level_cache_file_transplant::get_or_create_group(/*c_tag_group_interface& group_interface*/ const blofeld::s_tag_group& tag_group)
+{
+	for (s_group_pair& group_pair : groups_and_interface)
+	{
+		if (&tag_group == &group_pair.tag_group)
+		{
+			return group_pair.high_level_group;
+		}
+	}
+
+	// #TODO: Fix this, currently returns null.
+	//const blofeld::s_tag_group* tag_group = group_interface.get_blofeld_tag_group();
+	//DEBUG_ASSERT(tag_group != nullptr);
+
+	e_engine_type const engine_type = cache_file.get_engine_type();
+	e_platform_type const platform_type = cache_file.get_platform_type();
+	e_build const build = _build_not_set;
+
+	h_group* group = new h_group(engine_type, platform_type, build, tag_group);
+
+	s_group_pair group_pair = { /*group_interface*/ tag_group, *group };
+	groups_and_interface.emplace_back(group_pair);
+
+	return *group;
 }
