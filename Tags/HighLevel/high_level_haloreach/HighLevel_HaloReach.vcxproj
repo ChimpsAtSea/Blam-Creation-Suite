@@ -180,7 +180,23 @@
     <ClInclude Include="highlevel-haloreach-public-pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="haloreach_high_level.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor0.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor1.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor10.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor11.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor12.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor13.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor14.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor15.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor2.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor3.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor4.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor5.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor6.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor7.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor8.cpp" />
+    <ClCompile Include="haloreach_high_level.ctor9.cpp" />
+    <ClCompile Include="haloreach_high_level.misc.cpp" />
     <ClCompile Include="highlevel-haloreach-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

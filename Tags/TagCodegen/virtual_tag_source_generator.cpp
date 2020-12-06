@@ -10,7 +10,7 @@ c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type eng
 
 }
 
-void c_virtual_tag_source_generator::generate_header()
+void c_virtual_tag_source_generator::generate_header() const
 {
 	std::stringstream stream;
 
@@ -132,7 +132,7 @@ void c_virtual_tag_source_generator::generate_header()
 	}
 }
 
-void c_virtual_tag_source_generator::generate_source()
+void c_virtual_tag_source_generator::generate_source() const
 {
 	std::stringstream stream;
 

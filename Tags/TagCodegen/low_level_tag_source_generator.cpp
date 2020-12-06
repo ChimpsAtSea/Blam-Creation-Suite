@@ -97,7 +97,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	}
 }
 
-void c_low_level_tag_source_generator::generate_source()
+void c_low_level_tag_source_generator::generate_source() const
 {
 	std::stringstream stream;
 

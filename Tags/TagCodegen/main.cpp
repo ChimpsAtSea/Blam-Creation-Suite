@@ -21,41 +21,104 @@ int create_source_file()
 		{_engine_type_gen3_xbox360,			_platform_type_xbox_360 },
 	};
 
+	c_console::write_line_verbose("Generating tag code");
+	c_stopwatch stopwatch;
+	stopwatch.start();
+
 	tbb::task_group g;
 	for (std::pair<e_engine_type, e_platform_type> engine_and_platform_type : engine_and_platform_types)
 	{
-		g.run([&result, engine_and_platform_type]
+		const char* engine_name = get_enum_string<const char*>(engine_and_platform_type.first);
+
+		g.run([&result, engine_name, engine_and_platform_type]
 			{
-				c_low_level_tag_source_generator tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
-				tag_source_generator.generate_source();
-				if (tag_source_generator.has_error) result++;
+				c_stopwatch stopwatch;
+				stopwatch.start();
+				c_low_level_tag_source_generator low_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating low level header (%s)", engine_name);
+				low_level_tag_source_generator.generate_source();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+				if (low_level_tag_source_generator.has_error)
+				{
+					throw;
+				}
 			});
 
-		g.run([&result, engine_and_platform_type]
+		g.run([&result, engine_name, engine_and_platform_type]
 			{
+				c_stopwatch stopwatch;
+				stopwatch.start();
 				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating virtual level header (%s)", engine_name);
 				virtual_tag_source_generator.generate_header();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating virtual level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_and_platform_type]
+		g.run([&result, engine_name, engine_and_platform_type]
 			{
+				c_stopwatch stopwatch;
+				stopwatch.start();
 				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating high virtual source (%s)", engine_name);
 				virtual_tag_source_generator.generate_source();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating virtual level source (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_and_platform_type]
+		g.run([&result, engine_name, engine_and_platform_type]
 			{
-				h_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_stopwatch stopwatch;
+				stopwatch.start();
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating high level header (%s)", engine_name);
 				high_level_tag_source_generator.generate_header();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_and_platform_type]
+		static constexpr uint32_t source_count = 16;
+		for (uint32_t source_index = 0; source_index < source_count; source_index++)
+		{
+			g.run([&result, engine_name, engine_and_platform_type, source_index]
+				{
+					c_stopwatch stopwatch;
+					stopwatch.start();
+					c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+					c_console::write_line_verbose("Generating high level source ctor:%u (%s)", source_index, engine_name);
+					high_level_tag_source_generator.generate_ctor_source(source_index, source_count);
+					stopwatch.stop();
+					c_console::write_line_verbose("Finished generating high level source ctor:%u (%s) %.2fms", source_index, engine_name, stopwatch.get_miliseconds());
+				});
+		}
+
+		g.run([&result, engine_name, engine_and_platform_type]
 			{
-				h_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
-				high_level_tag_source_generator.generate_source();
+				c_stopwatch stopwatch;
+				stopwatch.start();
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating high level source virtual functions (%s)", engine_name);
+				high_level_tag_source_generator.generate_source_virtual();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating high level source virtual functions (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+			});
+
+		g.run([&result, engine_name, engine_and_platform_type]
+			{
+				c_stopwatch stopwatch;
+				stopwatch.start();
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_console::write_line_verbose("Generating high level source misc (%s)", engine_name);
+				high_level_tag_source_generator.generate_source_misc();
+				stopwatch.stop();
+				c_console::write_line_verbose("Finished generating high level source misc (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 	}
 	g.wait();
+
+	stopwatch.stop();
+	c_console::write_line_verbose("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
 
 	return result;
 }
