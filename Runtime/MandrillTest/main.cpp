@@ -135,14 +135,14 @@ static int run_mandrill_api_test()
 
 	const wchar_t* files[] =
 	{
-		//L"C:\\!MCC\\haloreach\\maps\\m70.map",
-		L"C:\\!MCC\\haloreach\\maps\\m70_a.map", // smallest map
+		L"C:\\!MCC\\haloreach\\maps\\m70.map",
+		//L"C:\\!MCC\\haloreach\\maps\\m70_a.map", // smallest map
 		//L"C:\\!MCC\\haloreach\\maps\\m70_bonus.map",
 		L"C:\\!MCC\\haloreach\\maps\\shared.map",
 		L"C:\\!MCC\\haloreach\\maps\\campaign.map",
 	};
 	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
-	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70_a.map");
+	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70.map");
 	DEBUG_ASSERT(cache_file != nullptr);
 
 	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);

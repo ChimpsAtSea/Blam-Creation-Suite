@@ -107,4 +107,5 @@ c_cache_file* c_cache_cluster::get_cache_file_by_dvd_path(const char* dvd_path)
 			return cache_file;
 		}
 	}
+	return nullptr;
 }

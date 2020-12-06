@@ -107,11 +107,8 @@ c_cache_file* c_haloreach_cache_file::get_shared_cache_file_by_file_index(uint32
 
 	auto& shared_file = cache_file_resource_layout_table->shared_files_block[file_index];
 
-#pragma warning( push )
-#pragma warning( disable : 4703 )
 	c_cache_file* cache_file = cluster->get_cache_file_by_dvd_path(shared_file.dvd_relative_path.get_buffer());
 	return cache_file;
-#pragma warning( pop )
 }
 
 void c_haloreach_cache_file::init_resources()
