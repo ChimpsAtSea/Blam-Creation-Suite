@@ -36,7 +36,7 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 	}
 
 
-	lines_vector.reserve(5000000);
+	lines_vector.reserve(100000000);
 
 	char* pch = strtok(map_file, return_string);
 	while (pch != NULL)
@@ -236,9 +236,9 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 void c_map_file_parser::create_symbols_blob()
 {
 	// #TODO: Replace with fixed array
-	symbols_blob.reserve(32 * 1024 * 1024); // 32MB
+	symbols_blob.reserve(128 * 1024 * 1024); // 128MB
 	std::vector<char> appended_data;
-	appended_data.reserve(128 * 1024 * 1024); // 128MB
+	appended_data.reserve(512 * 1024 * 1024); // 512MB
 
 	size_t const headers_data_size =
 		sizeof(s_symbol_file_header) +
