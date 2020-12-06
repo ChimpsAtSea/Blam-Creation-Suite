@@ -45,13 +45,13 @@ int create_source_file()
 
 		g.run([&result, engine_and_platform_type]
 			{
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				h_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				high_level_tag_source_generator.generate_header();
 			});
 
 		g.run([&result, engine_and_platform_type]
 			{
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				h_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				high_level_tag_source_generator.generate_source();
 			});
 	}

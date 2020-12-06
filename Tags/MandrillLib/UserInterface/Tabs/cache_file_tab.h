@@ -2,7 +2,7 @@
 
 class c_cache_file;
 class c_tag_interface;
-class c_tag_interface_tab;
+class c_virtual_tag_tab;
 
 class c_cache_file_tab : 
 	public c_mandrill_tab
@@ -14,7 +14,7 @@ public:
 	~c_cache_file_tab();
 
 	c_cache_file& get_cache_file() const { return cache_file; }
-	c_tag_interface_tab& open_tag_interface_tab(c_tag_interface& tag_interface);
+	c_virtual_tag_tab& open_tag_interface_tab(c_tag_interface& tag_interface);
 
 protected:
 	virtual void render_impl() override final;
@@ -33,9 +33,6 @@ protected:
 
 	c_fixed_string_1024 search_buffer;
 	c_tag_interface* search_selected_tag_interface;
-
-	static constexpr const char* k_explorer_bar_width = "explorer_bar_width";
-	static float explorer_bar_width;
 
 //
 //

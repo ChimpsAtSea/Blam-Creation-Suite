@@ -5,6 +5,7 @@ t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section
 
 bool c_mandrill_user_interface::use_developer_features = c_settings::read_boolean(_settings_section_mandrill, k_use_developer_features, false);
 bool c_mandrill_user_interface::show_explorer_bar = c_settings::read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
+float c_mandrill_user_interface::explorer_bar_width = c_settings::read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
 
 c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
@@ -13,7 +14,8 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	is_exiting(false),
 	is_game_mode(is_game_mode),
 	window_open(true),
-	show_file_dialogue(false),
+	show_create_tag_project_file_dialogue(false),
+	show_open_cache_file_dialogue(false),
 	on_close(),
 	mandrill_theme_color_count(0),
 	mandrill_theme_var_count(0),
@@ -27,7 +29,8 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	}
 	file_browser = new ImGuiAddons::ImGuiFileBrowser(previous_file_path.c_str());
 
-	restore_previous_session();
+	restore_previous_session(false);
+	restore_previous_session(true);
 	open_cache_file_tab(startup_file);
 }
 
@@ -38,6 +41,66 @@ c_mandrill_user_interface::~c_mandrill_user_interface()
 	is_exiting = true;
 
 	delete file_browser;
+}
+
+void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath)
+{
+	if (filepath == nullptr || !PathFileExistsW(filepath))
+	{
+		return;
+	}
+
+	long file_version = 0;
+	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
+
+	if (engine_type == _engine_type_haloreach)
+	{
+		c_fixed_wide_path directory;
+		LPWSTR filename_position = nullptr;
+		GetFullPathNameW(filepath, directory.capacity(), directory.data, &filename_position);
+		*filename_position = 0;
+
+		c_fixed_wide_path shared = directory;
+		shared += "shared.map";
+		c_fixed_wide_path campaign = directory;
+		campaign += "campaign.map";
+
+		const wchar_t* maps[] =
+		{
+			shared.c_str(),
+			campaign.c_str(),
+			filepath
+		};
+		c_cache_cluster* cache_cluster = new c_cache_cluster(maps, _countof(maps));
+		c_cache_file* cache_file = cache_cluster->cache_files[2];
+
+		c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
+
+		delete cache_cluster;
+
+		c_tag_project_tab* tag_project_tab = new c_tag_project_tab(filepath, *tag_project, *this);
+		tag_project_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
+			{
+				save_current_session();
+			});
+		tag_project_tab->on_tab_removed.register_callback(cache_file, [this](c_mandrill_tab& tab)
+			{
+				save_current_session();
+			});
+		tag_project_tab->on_selected_tree_change.register_callback(cache_file, [this](c_mandrill_tab& callee, c_mandrill_tab& target)
+			{
+				save_current_session();
+			});
+		tag_project_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
+			{
+				if (c_cache_file_tab* cache_file_tab = static_cast<c_cache_file_tab*>(&tab))
+				{
+					close_cache_file_tab(*cache_file_tab);
+				}
+			});
+		add_tab(*tag_project_tab);
+		next_selected_tab = tag_project_tab;
+	}
 }
 
 void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, const char* tag_list)
@@ -133,10 +196,18 @@ void c_mandrill_user_interface::close_cache_file_tab(c_cache_file_tab& tab)
 	delete& cache_file;
 }
 
-void c_mandrill_user_interface::restore_previous_session()
+void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 {
 	c_fixed_wide_string<32 * 1024> open_maps_buffer;
-	c_settings::read_wstring(_settings_section_mandrill, "open_maps", open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
+	if (use_projects)
+	{
+		c_settings::read_wstring(_settings_section_mandrill, k_previous_open_projects_setting, open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
+	}
+	else
+	{
+		c_settings::read_wstring(_settings_section_mandrill, k_previous_open_maps_setting, open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
+	}
+	
 
 	c_fixed_wide_path selected_map_path;
 	c_fixed_string_64k selected_map_tags_list;
@@ -181,13 +252,28 @@ void c_mandrill_user_interface::restore_previous_session()
 			selected_map_path = map_path;
 			selected_map_tags_list = tags_list;
 		}
-		open_cache_file_tab(map_path.c_str(), tags_list.c_str());
+
+		if (use_projects)
+		{
+			create_tag_project(map_path.c_str());
+		}
+		else
+		{
+			open_cache_file_tab(map_path.c_str(), tags_list.c_str());
+		}
 
 		map_path.clear();
 	}
 	if (!selected_map_path.is_empty())
 	{
-		open_cache_file_tab(selected_map_path.c_str(), selected_map_tags_list.c_str());
+		if (use_projects)
+		{
+			create_tag_project(selected_map_path.c_str());
+		}
+		else
+		{
+			open_cache_file_tab(selected_map_path.c_str(), selected_map_tags_list.c_str());
+		}
 	}
 
 	is_session_restored = true;
@@ -201,9 +287,14 @@ void c_mandrill_user_interface::save_current_session()
 	}
 
 	c_fixed_wide_path open_maps_path;
+	c_fixed_wide_path open_projects_path;
 	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 	{
 		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
+		{
+
+		}
+		else if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
 			if (!open_maps_path.is_empty())
 			{
@@ -220,7 +311,7 @@ void c_mandrill_user_interface::save_current_session()
 			uint32_t cache_file_tab_index = 0;
 			for (c_mandrill_tab& cache_file_child_tab : c_reference_loop(cache_file_tab->get_children(), cache_file_tab->get_child_count()))
 			{
-				if (c_tag_interface_tab* tag_interface_tab = dynamic_cast<c_tag_interface_tab*>(&cache_file_child_tab))
+				if (c_virtual_tag_tab* tag_interface_tab = dynamic_cast<c_virtual_tag_tab*>(&cache_file_child_tab))
 				{
 					if (cache_file_tab_index == 0)
 					{
@@ -334,11 +425,15 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				
+				if (ImGui::MenuItem("New Project"))
+				{
+					show_create_tag_project_file_dialogue = true;
+				}
+				ImGui::Separator();
 				//ImGui::MenuItem("New");
 				if (ImGui::MenuItem("View Cache File", "Ctrl+O"))
 				{
-					show_file_dialogue = true;
+					show_open_cache_file_dialogue = true;
 				}
 				for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 				{
@@ -400,15 +495,30 @@ void c_mandrill_user_interface::render_menu_gui_impl(e_menu_render_type menu_ren
 
 void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 {
-	if (show_file_dialogue)
+	if (show_create_tag_project_file_dialogue)
 	{
-		ASSERT(file_browser != nullptr);
+		float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
+		if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
+		{
+			show_create_tag_project_file_dialogue = false;
 
+			const char* selected_file_path = file_browser->get_selected_file_name();
+			if (selected_file_path)
+			{
+				c_fixed_wide_path selected_file_path_buffer;
+				selected_file_path_buffer.format(L"%S", selected_file_path);
+				create_tag_project(selected_file_path_buffer.c_str());
+			}
+		}
+	}
+	else if (show_open_cache_file_dialogue)
+	{
 		float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
 		float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
 		if (file_browser->show_open_file_dialog("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
 		{
-			show_file_dialogue = false;
+			show_open_cache_file_dialogue = false;
 
 			const char* selected_file_path = file_browser->get_selected_file_name();
 			if (selected_file_path)

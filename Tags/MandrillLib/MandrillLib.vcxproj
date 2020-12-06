@@ -22,6 +22,8 @@
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h" />
     <ClInclude Include="CacheInterface\tag_project.h" />
+    <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
@@ -82,7 +84,7 @@
     <ClInclude Include="UserInterface\Foundation\mandrill_user_interface.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_tab.h" />
     <ClInclude Include="UserInterface\Tabs\halo_script_editor.h" />
-    <ClInclude Include="UserInterface\Tabs\tag_interface_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\virtual_tag_tab.h" />
     <ClInclude Include="UserInterface\UserInterface.h" />
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
@@ -90,6 +92,8 @@
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp" />
     <ClCompile Include="CacheInterface\tag_project.cpp" />
+    <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="CacheInterface\cache_cluster.cpp" />
     <ClCompile Include="CacheInterface\string_id_interface.cpp" />
@@ -142,7 +146,7 @@
     <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\halo_script_editor.cpp" />
-    <ClCompile Include="UserInterface\Tabs\tag_interface_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\virtual_tag_tab.cpp" />
     <ClCompile Include="virtual_memory_container.cpp" />
   </ItemGroup>
   <ItemGroup>

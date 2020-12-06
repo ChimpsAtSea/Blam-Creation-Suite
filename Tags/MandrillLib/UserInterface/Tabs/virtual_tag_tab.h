@@ -1,13 +1,13 @@
 #pragma once
 
-class c_tag_interface_tab : 
+class c_virtual_tag_tab : 
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_tag_interface_tab);
+	non_copyconstructable(c_virtual_tag_tab);
 
-	c_tag_interface_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent_tab);
-	virtual ~c_tag_interface_tab();
+	c_virtual_tag_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent_tab);
+	virtual ~c_virtual_tag_tab();
 
 	void game_quick_preview();
 

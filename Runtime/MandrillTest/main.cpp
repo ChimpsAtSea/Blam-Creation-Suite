@@ -82,21 +82,21 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 }
 
-std::map<c_high_level_tag*, uint32_t> high_level_tags;
+std::map<h_tag*, uint32_t> high_level_tags;
 
-static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& tags)
+static void find_tags(h_type& type, std::vector<h_tag*>& tags)
 {
 	using namespace blofeld;
 
 	// #TODO: populate tag struct definition
 
-	for (const s_tag_field* field = type.struct_definition.fields; field->field_type != _field_terminator; field++)
+	for (const s_tag_field* field = type.tag_struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
 		switch (field->field_type)
 		{
 		case _field_struct:
 		{
-			if (c_high_level_type* field_struct = type.get_field_pointer<c_high_level_type>(*field))
+			if (h_type* field_struct = type.get_field_pointer<h_type>(*field))
 			{
 				find_tags(*field_struct, tags);
 			}
@@ -104,9 +104,9 @@ static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& t
 		}
 		case _field_block:
 		{
-			if (std::vector<c_high_level_type*>* block_struct = type.get_field_pointer<std::vector<c_high_level_type*>>(*field))
+			if (std::vector<h_type*>* block_struct = type.get_field_pointer<std::vector<h_type*>>(*field))
 			{
-				for (c_high_level_type* block_entry : *block_struct)
+				for (h_type* block_entry : *block_struct)
 				{
 					find_tags(*block_entry, tags);
 				}
@@ -115,7 +115,7 @@ static void find_tags(c_high_level_type& type, std::vector<c_high_level_tag*>& t
 		}
 		case _field_tag_reference:
 		{
-			if (c_high_level_tag** field_tag = type.get_field_pointer<c_high_level_tag*>(*field))
+			if (h_tag** field_tag = type.get_field_pointer<h_tag*>(*field))
 			{
 				if (*field_tag != nullptr)
 				{

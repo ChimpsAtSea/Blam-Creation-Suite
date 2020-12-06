@@ -1,7 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-float c_cache_file_tab::explorer_bar_width = c_settings::read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
-
 c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent, const char* tag_list) :
 	c_mandrill_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8(), &parent),
 	cache_file(cache_file),
@@ -61,11 +59,11 @@ c_cache_file_tab::~c_cache_file_tab()
 {
 }
 
-c_tag_interface_tab& c_cache_file_tab::open_tag_interface_tab(c_tag_interface& tag_interface)
+c_virtual_tag_tab& c_cache_file_tab::open_tag_interface_tab(c_tag_interface& tag_interface)
 {
 	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 	{
-		if (c_tag_interface_tab* tag_interface_tab = dynamic_cast<c_tag_interface_tab*>(&tab))
+		if (c_virtual_tag_tab* tag_interface_tab = dynamic_cast<c_virtual_tag_tab*>(&tab))
 		{
 			if (&tag_interface_tab->get_tag_interface() == &tag_interface)
 			{
@@ -75,7 +73,7 @@ c_tag_interface_tab& c_cache_file_tab::open_tag_interface_tab(c_tag_interface& t
 		}
 	}
 
-	c_tag_interface_tab* tag_interface_tab = new c_tag_interface_tab(tag_interface, *this);
+	c_virtual_tag_tab* tag_interface_tab = new c_virtual_tag_tab(tag_interface, *this);
 	add_tab(*tag_interface_tab);
 	next_selected_tab = tag_interface_tab;
 
@@ -183,7 +181,7 @@ void c_cache_file_tab::render_impl()
 	if (c_mandrill_user_interface::show_explorer_bar)
 	{
 		ImGui::Columns(2, "##navigation");
-		ImGui::SetColumnOffset(1, explorer_bar_width);
+		ImGui::SetColumnOffset(1, c_mandrill_user_interface::explorer_bar_width);
 		ImGui::Separator();
 		{
 			ImGui::BeginGroup();
@@ -202,12 +200,12 @@ void c_cache_file_tab::render_impl()
 		if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
 		{
 			auto& x = ImGui::GetStyle();
-			explorer_bar_width = ImGui::GetItemRectSize().x + 16.0f;
-			c_settings::write_float(_settings_section_mandrill, k_explorer_bar_width, explorer_bar_width);
+			c_mandrill_user_interface::explorer_bar_width = ImGui::GetItemRectSize().x + 16.0f;
+			c_settings::write_float(_settings_section_mandrill, c_mandrill_user_interface::k_explorer_bar_width, c_mandrill_user_interface::explorer_bar_width);
 		}
-		if (explorer_bar_width < 200.0f)
+		if (c_mandrill_user_interface::explorer_bar_width < 200.0f)
 		{
-			explorer_bar_width = 200.0f + 16.0f;
+			c_mandrill_user_interface::explorer_bar_width = 200.0f + 16.0f;
 		}
 		ImGui::NextColumn();
 	}
@@ -233,8 +231,8 @@ void c_cache_file_tab::render_impl()
 
 		ImGui::EndChild();
 		ImGui::EndGroup();
+		ImGui::Columns(1);
 	}
-	ImGui::Columns(1);
 }
 
 void c_cache_file_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)

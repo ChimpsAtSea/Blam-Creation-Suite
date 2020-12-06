@@ -126,9 +126,6 @@
     <ClInclude Include="UserInterface\UserInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface\Tabs\tag_interface_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserInterface\Tabs\cache_file_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -211,6 +208,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\tag_project.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\tag_project_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\virtual_tag_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -296,9 +302,6 @@
     <ClCompile Include="mandrilllib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface\Tabs\tag_interface_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UserInterface\Tabs\cache_file_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -369,6 +372,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\tag_project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\virtual_tag_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

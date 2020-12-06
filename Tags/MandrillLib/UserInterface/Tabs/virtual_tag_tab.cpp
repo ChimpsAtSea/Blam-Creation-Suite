@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_tag_interface_tab::c_tag_interface_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent_tab) :
+c_virtual_tag_tab::c_virtual_tag_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent_tab) :
 	c_mandrill_tab(tag_interface.get_name_with_group_name_cstr(), tag_interface.get_path_with_group_name_cstr(), &parent_tab),
 	tag_interface(tag_interface)
 {
@@ -31,17 +31,17 @@ c_tag_interface_tab::c_tag_interface_tab(c_tag_interface& tag_interface, c_mandr
 	}
 }
 
-c_tag_interface_tab::~c_tag_interface_tab()
+c_virtual_tag_tab::~c_virtual_tag_tab()
 {
 
 }
 
-void c_tag_interface_tab::game_quick_preview()
+void c_virtual_tag_tab::game_quick_preview()
 {
 
 }
 
-void c_tag_interface_tab::render_impl()
+void c_virtual_tag_tab::render_impl()
 {
 	if (!has_enabled_children())
 	{
@@ -61,7 +61,7 @@ void c_tag_interface_tab::render_impl()
 	}
 }
 
-void c_tag_interface_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
+void c_virtual_tag_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 {
 	if (!_is_selected) return;
 
@@ -86,12 +86,12 @@ void c_tag_interface_tab::render_menu_gui_impl(e_menu_render_type menu_render_ty
 	}
 }
 
-void c_tag_interface_tab::render_file_dialogue_gui_impl()
+void c_virtual_tag_tab::render_file_dialogue_gui_impl()
 {
 
 }
 
-void c_tag_interface_tab::render_game_layer_impl()
+void c_virtual_tag_tab::render_game_layer_impl()
 {
 
 }
