@@ -1,11 +1,18 @@
 #include "tagreflection-private-pch.h"
 
-h_tag::h_tag(h_group* group, const char* tag_name) :
+h_tag::h_tag(h_group* group, const char* tag_filepath) :
 	h_type(),
-	tag_name(tag_name ? tag_name : ""),
+	tag_filepath(),
+	tag_filename(),
 	group(group)
 {
-
+	if (group != nullptr)
+	{
+		DEBUG_ASSERT(tag_filepath != nullptr);
+		this->tag_filepath = tag_filepath;
+		char* tag_filename = PathFindFileNameA(tag_filepath);
+		this->tag_filename = tag_filename;
+	}
 }
 
 h_tag::~h_tag()

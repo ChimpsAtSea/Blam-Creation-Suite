@@ -82,12 +82,12 @@ void c_tag_project_tab::render_tags_list_search()
 		//}
 
 		bool is_active = search_selected_tag_interface == tag;
-		bool selectable_activated = ImGui::Selectable(tag->tag_name.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
+		bool selectable_activated = ImGui::Selectable(tag->tag_filepath.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);
 
 		if (ImGui::IsItemHovered())
 		{
 			ImGui::BeginTooltip();
-			ImGui::Text(tag->tag_name.c_str());
+			ImGui::Text(tag->tag_filepath.c_str());
 			ImGui::EndTooltip();
 		}
 		if (selectable_activated && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
@@ -118,7 +118,7 @@ void c_tag_project_tab::render_tags_list_tree()
 		{
 			for (h_tag* tag : group->tags)
 			{
-				const char* tag_display_with_group_id = tag->tag_name.c_str();
+				const char* tag_display_with_group_id = tag->tag_filepath.c_str();
 
 				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 				if (ImGui::TreeNodeEx(tag, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s", tag_display_with_group_id))

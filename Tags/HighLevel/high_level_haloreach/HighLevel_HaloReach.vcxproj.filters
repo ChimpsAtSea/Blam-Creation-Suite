@@ -80,5 +80,8 @@
     <ClCompile Include="haloreach_high_level.ctor15.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="haloreach_high_level.virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

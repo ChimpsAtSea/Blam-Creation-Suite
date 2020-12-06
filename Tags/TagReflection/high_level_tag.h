@@ -28,12 +28,13 @@ class h_tag :
 	public h_type
 {
 public:
-	h_tag(h_group* group, const char* tag_name);
+	h_tag(h_group* group, const char* tag_filepath);
 	virtual ~h_tag();
 
 	virtual const blofeld::s_tag_group& get_blofeld_group_definition() const = 0;
 
-	c_fixed_path tag_name;
+	c_fixed_path tag_filepath;
+	c_fixed_path tag_filename;
 	h_group* const group;
 };
 

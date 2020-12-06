@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
 c_high_level_tag_tab::c_high_level_tag_tab(h_tag& tag, c_mandrill_tab& parent) :
-	c_mandrill_tab("High Level Tag", "High Level Tag Interface", &parent, false),
+	c_mandrill_tab(tag.tag_filename.c_str(), tag.tag_filepath.c_str(), &parent, false),
 	tag(tag)
 {
 
@@ -19,7 +19,7 @@ h_tag& c_high_level_tag_tab::get_tag() const
 
 void c_high_level_tag_tab::render_impl()
 {
-	ImGui::TextUnformatted(tag.tag_name.c_str());
+	ImGui::TextUnformatted(tag.tag_filepath.c_str());
 }
 
 void c_high_level_tag_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
