@@ -9,9 +9,10 @@ void high_level_tag_dtor(T* tag) {}
 class h_type
 {
 public:
-	h_type(const blofeld::s_tag_struct_definition& tag_struct_definition, uint32_t type_size);
 	virtual ~h_type();
 
+	virtual uint32_t get_type_size() const = 0;
+	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
 	virtual void* get_field_pointer(const blofeld::s_tag_field& field) = 0;
 
 	template<typename T>
@@ -19,9 +20,6 @@ public:
 	{
 		return static_cast<T*>(get_field_pointer(field));
 	}
-
-	const blofeld::s_tag_struct_definition& tag_struct_definition;
-	const uint32_t type_size;
 };
 
 class h_group;
@@ -30,11 +28,12 @@ class h_tag :
 	public h_type
 {
 public:
-	h_tag(const blofeld::s_tag_group& tag_group, h_group* group, const char* tag_name, uint32_t type_size);
+	h_tag(h_group* group, const char* tag_name);
 	virtual ~h_tag();
 
+	virtual const blofeld::s_tag_group& get_blofeld_group_definition() const = 0;
+
 	c_fixed_path tag_name;
-	const blofeld::s_tag_group& tag_group;
 	h_group* const group;
 };
 
@@ -51,4 +50,48 @@ public:
 	e_platform_type const platform_type;
 	e_build const build;
 	const blofeld::s_tag_group& tag_group;
+};
+
+struct h_block
+{
+public:
+	virtual h_type& emplace_back() = 0;
+	virtual h_type* data() = 0;
+	virtual uint32_t type_size() = 0;
+	virtual void reserve(uint32_t count) = 0;
+	virtual void resize(uint32_t count) = 0;
+};
+
+template<typename h_custom_type>
+struct h_typed_block :
+	public std::vector<h_custom_type>,
+	public h_block
+{
+public:
+	virtual h_custom_type& emplace_back() final
+	{
+		auto& value = std::vector<h_custom_type>::emplace_back();
+		return value;
+	}
+
+	virtual h_custom_type* data() final
+	{
+		auto values = std::vector<h_custom_type>::data();
+		return values;
+	}
+
+	virtual uint32_t type_size() final
+	{
+		return h_custom_type::type_size;
+	}
+
+	virtual void reserve(uint32_t count) final
+	{
+		std::vector<h_custom_type>::reserve(count);
+	}
+
+	virtual void resize(uint32_t count) final
+	{
+		std::vector<h_custom_type>::resize(count);
+	}
 };

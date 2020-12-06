@@ -70,3 +70,35 @@ void write_stack_back_trace(LPCWSTR calling_function, DWORD depth, DWORD size)
 	c_console::write_line_verbose("}");
 };
 
+c_stopwatch::c_stopwatch() :
+	time_point_start(),
+	time_point_stop(),
+	_duration()
+{
+
+}
+
+void c_stopwatch::start()
+{
+	time_point_start = std::chrono::high_resolution_clock::now();
+}
+
+void c_stopwatch::stop()
+{
+	time_point_stop = std::chrono::high_resolution_clock::now();
+	_duration = time_point_stop - time_point_start;
+}
+
+float c_stopwatch::get_seconds()
+{
+	double nanoseconds = static_cast<double>(_duration.count());
+	double seconds = nanoseconds / static_cast<double>(std::chrono::nanoseconds::period::den);
+	return static_cast<float>(seconds);
+}
+
+float c_stopwatch::get_miliseconds()
+{
+	double nanoseconds = static_cast<double>(_duration.count());
+	double miliseconds = nanoseconds / static_cast<double>(std::chrono::nanoseconds::period::den / std::chrono::milliseconds::period::den);
+	return static_cast<float>(miliseconds);
+}

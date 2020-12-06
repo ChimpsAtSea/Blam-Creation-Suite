@@ -1,22 +1,14 @@
 #include "tagreflection-private-pch.h"
 
-h_tag::h_tag(const blofeld::s_tag_group& tag_group, h_group* group, const char* tag_name, uint32_t type_size) :
-	h_type(tag_group.block_definition.struct_definition, type_size),
+h_tag::h_tag(h_group* group, const char* tag_name) :
+	h_type(),
 	tag_name(tag_name ? tag_name : ""),
-	tag_group(tag_group),
 	group(group)
 {
 
 }
 
 h_tag::~h_tag()
-{
-
-}
-
-h_type::h_type(const blofeld::s_tag_struct_definition& tag_struct_definition, uint32_t type_size) :
-	tag_struct_definition(tag_struct_definition),
-	type_size(type_size)
 {
 
 }

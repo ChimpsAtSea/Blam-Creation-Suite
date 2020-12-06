@@ -126,48 +126,42 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 			}
 			case _field_block:
 			{
+				const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
 				const s_tag_block& tag_block = *reinterpret_cast<decltype(&tag_block)>(current_data_position);
-				std::vector<h_type*>& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-				block_storage.reserve(tag_block.count);
 
-				for (uint32_t i = 0; i < tag_block.count; i++)
+				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
+				uint32_t const block_struct_size = calculate_struct_size(engine_type, platform_type, build, block_struct_definition);
+				const char* const block_data = cache_file.get_tag_block_data(tag_block);
+
+				if (tag_block.count < 1024)
 				{
-					const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
+					block_storage.reserve(tag_block.count);
 
-					h_type* type = blofeld::haloreach::create_high_level_type(block_struct_definition);
-					DEBUG_ASSERT(type != nullptr);
+					const char* current_block_data_position = block_data;
+					for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
+					{
+						h_type& type = block_storage.emplace_back();
+						transplant_data(type, block_data, block_struct_definition);
 
-					const char* block_data = cache_file.get_tag_block_data(tag_block);
-
-					transplant_data(*type, block_data, block_struct_definition);
-
-					block_storage.push_back(type);
+						current_block_data_position += block_struct_size;
+					}
 				}
+				else
+				{
+					block_storage.resize(tag_block.count);
+					uint32_t high_level_block_type_size = block_storage.type_size();
+					char* high_level_block_storage_data = reinterpret_cast<char*>(block_storage.data());
 
-				//if (tag_block.count < 1024)
-				//{
+					auto transplant_high_level_block = [this, high_level_block_storage_data, high_level_block_type_size, block_data, block_struct_size, block_struct_definition](uint32_t index)
+					{
+						void* current_high_level_block_storage_data = high_level_block_storage_data + high_level_block_type_size * index;
+						const void* current_block_data = block_data + block_struct_size * index;
 
-				//}
-				//else
-				//{
-				//	block_storage.resize(tag_block.count);
-				//	h_type** raw_block_storage = block_storage.data();
-
-				//	auto transplant_high_level_block = [this, raw_block_storage, &tag_block, field](uint32_t index)
-				//	{
-				//		const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
-
-				//		h_type* type = blofeld::haloreach::create_high_level_type(block_struct_definition);
-				//		DEBUG_ASSERT(type != nullptr);
-
-				//		const char* block_data = cache_file.get_tag_block_data(tag_block);
-
-				//		transplant_data(*type, block_data, block_struct_definition);
-
-				//		raw_block_storage[index] = type;
-				//	};
-				//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
-				//}
+						h_type& type = *static_cast<h_type*>(current_high_level_block_storage_data);
+						transplant_data(type, block_data, block_struct_definition);
+					};
+					tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
+				}
 
 				break;
 			}
@@ -189,7 +183,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 
 					transplant_data(array_storage, raw_array_data_position, field->array_definition->struct_definition);
 
-					high_level_array_data_position += array_storage.type_size;
+					high_level_array_data_position += array_storage.get_type_size();
 					raw_array_data_position += field_size;
 				}
 				break;

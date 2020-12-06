@@ -82,52 +82,6 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 }
 
-std::map<h_tag*, uint32_t> high_level_tags;
-
-static void find_tags(h_type& type, std::vector<h_tag*>& tags)
-{
-	using namespace blofeld;
-
-	// #TODO: populate tag struct definition
-
-	for (const s_tag_field* field = type.tag_struct_definition.fields; field->field_type != _field_terminator; field++)
-	{
-		switch (field->field_type)
-		{
-		case _field_struct:
-		{
-			if (h_type* field_struct = type.get_field_pointer<h_type>(*field))
-			{
-				find_tags(*field_struct, tags);
-			}
-			break;
-		}
-		case _field_block:
-		{
-			if (std::vector<h_type*>* block_struct = type.get_field_pointer<std::vector<h_type*>>(*field))
-			{
-				for (h_type* block_entry : *block_struct)
-				{
-					find_tags(*block_entry, tags);
-				}
-			}
-			break;
-		}
-		case _field_tag_reference:
-		{
-			if (h_tag** field_tag = type.get_field_pointer<h_tag*>(*field))
-			{
-				if (*field_tag != nullptr)
-				{
-					tags.push_back(*field_tag);
-				}
-			}
-			break;
-		}
-		}
-	}
-}
-
 static int run_mandrill_api_test()
 {
 	using namespace blofeld;
@@ -144,6 +98,11 @@ static int run_mandrill_api_test()
 	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
 	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70.map");
 	DEBUG_ASSERT(cache_file != nullptr);
+
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
+	//}
 
 	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
 

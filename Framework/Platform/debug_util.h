@@ -13,3 +13,18 @@ enum e_debug_log_mode
 extern e_debug_log_mode g_debug_log_mode;
 
 void write_stack_back_trace(LPCWSTR calling_function, DWORD depth = 0, DWORD size = 1024);
+
+class c_stopwatch
+{
+public:
+	c_stopwatch();
+	void start();
+	void stop();
+	float get_seconds();
+	float get_miliseconds();
+
+private:
+	std::chrono::high_resolution_clock::time_point time_point_start;
+	std::chrono::high_resolution_clock::time_point time_point_stop;
+	std::chrono::high_resolution_clock::duration _duration;
+};

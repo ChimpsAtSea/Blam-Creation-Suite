@@ -138,7 +138,7 @@ void c_haloreach_cache_file::init_resources()
 
 			const char* interop_typename = get_string_id(cache_file_resource_gestalt->interop_type_identifiers_block[tag_interop.type].name, "");
 
-			c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
+			//c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
 		}
 
 		DEBUG_ASSERT(cache_file_resource_gestalt->resource_type_identifiers_block.count == 7);

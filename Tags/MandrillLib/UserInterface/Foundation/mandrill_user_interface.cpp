@@ -129,37 +129,14 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 		}
 	}
 
-	c_cache_file* cache_file = nullptr;
 	long file_version = 0;
 	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
 	if (engine_type == _engine_type_haloreach)
 	{
-		c_fixed_wide_path directory;
-		LPWSTR filename_position = nullptr;
-		GetFullPathNameW(filepath, directory.capacity(), directory.data, &filename_position);
-		*filename_position = 0;
-
-		c_fixed_wide_path shared = directory;
-		shared += "shared.map";
-		c_fixed_wide_path campaign = directory;
-		campaign += "campaign.map";
-
-		const wchar_t* maps[] =
-		{
-			shared.c_str(),
-			campaign.c_str(),
-			filepath
-		};
-		c_cache_cluster* cache_cluster = new c_cache_cluster(maps, _countof(maps));
-		cache_file = cache_cluster->cache_files[2];
-
-		// #TODO: cache_cluster is never destroyed. MEMORYLEAK.
+		create_tag_project(filepath);
+		return;
 	}
-	else
-	{
-		cache_file = c_cache_file::create_cache_file(filepath);
-	}
-	if (cache_file)
+	else if (c_cache_file* cache_file = c_cache_file::create_cache_file(filepath))
 	{
 		c_cache_file_tab* cache_file_tab = new c_cache_file_tab(*cache_file, *this, tag_list);
 		cache_file_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
@@ -183,10 +160,6 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 			});
 		add_tab(*cache_file_tab);
 		next_selected_tab = cache_file_tab;
-	}
-	else
-	{
-		// #TODO: Display an error message that the map failed to open
 	}
 }
 
