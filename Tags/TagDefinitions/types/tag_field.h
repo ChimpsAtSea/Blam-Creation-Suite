@@ -30,11 +30,13 @@ namespace blofeld
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
+
 		e_engine_type _engine_type;
 		e_platform_type _platform_type;
 		e_build _build;
 		uint32_t _version_field_skip_count;
 		t_tag_field_custom_version_callback _custom_version_callback;
+		c_blamlib_string_parser string_parser;
 
 		template<typename A, typename B>
 		s_tag_field(
@@ -54,7 +56,8 @@ namespace blofeld
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
+			_custom_version_callback(nullptr),
+			string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -76,7 +79,8 @@ namespace blofeld
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
+			_custom_version_callback(nullptr),
+			string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -96,7 +100,8 @@ namespace blofeld
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
+			_custom_version_callback(nullptr),
+			string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -115,7 +120,8 @@ namespace blofeld
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr)
+			_custom_version_callback(nullptr),
+			string_parser("")
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -136,7 +142,8 @@ namespace blofeld
 			_platform_type(engine_type_and_build.platform_type),
 			_build(engine_type_and_build.build),
 			_version_field_skip_count(version_field_skip_count),
-			_custom_version_callback(nullptr)
+			_custom_version_callback(nullptr),
+			string_parser(name)
 		{
 			ASSERT(field_type > _field_type_non_standard);
 		}
@@ -156,7 +163,8 @@ namespace blofeld
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
 			_version_field_skip_count(0),
-			_custom_version_callback(custom_version_callback)
+			_custom_version_callback(custom_version_callback),
+			string_parser("")
 		{
 			ASSERT(field_type == _field_version_custom);
 		}

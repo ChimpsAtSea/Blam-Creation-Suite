@@ -126,7 +126,7 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\t{" << std::endl << std::endl;
 
 	stream << "\t\th_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
-	stream << "\t\th_type* create_high_level_type(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+	stream << "\t\h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
@@ -140,7 +140,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		}
 		else
 		{
-			stream << "\t\t\t" << "public h_type" << std::endl;
+			stream << "\t\t\t" << "public h_object" << std::endl;
 		}
 		stream << "\t\t" << "{" << std::endl;
 		stream << "\t\t\t" << "public:" << std::endl;
@@ -394,7 +394,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 			{
 				stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
 				stream << "() :" << std::endl;
-				stream << "\t\t\t" << "h_type()" << std::endl;
+				stream << "\t\t\t" << "h_object()" << std::endl;
 				generate_tag_constructor_params(stream, *tag_struct_definition);
 				stream << "\t\t" << "{" << std::endl;
 				stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -549,7 +549,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << "\t\t" << "}" << std::endl;
 	stream << std::endl;
 
-	stream << "\t\t" << "h_type* create_high_level_type(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
+	stream << "\t\t" << "h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{

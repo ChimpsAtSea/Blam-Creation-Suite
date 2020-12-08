@@ -14,6 +14,7 @@
 #include "Tabs\tag_project_tab.h"
 #include "Tabs\cache_file_tab.h"
 #include "Tabs\high_level_tag_tab.h"
+#include "Tabs\high_level_tag_editor.h"
 #include "Tabs\virtual_tag_tab.h"
 #include "Tabs\halo_script_editor.h"
 #include "Tabs\blofeld_bitmap_viewer_tab.h"

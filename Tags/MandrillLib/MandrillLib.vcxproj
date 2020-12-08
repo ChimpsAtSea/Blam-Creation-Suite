@@ -22,6 +22,7 @@
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h" />
     <ClInclude Include="CacheInterface\tag_project.h" />
+    <ClInclude Include="UserInterface\Tabs\high_level_tag_editor.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp" />
     <ClCompile Include="CacheInterface\tag_project.cpp" />
+    <ClCompile Include="UserInterface\Tabs\high_level_tag_editor.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />

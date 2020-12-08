@@ -6,10 +6,10 @@ void high_level_tag_ctor(T* tag) {}
 template<typename T>
 void high_level_tag_dtor(T* tag) {}
 
-class h_type
+class h_object
 {
 public:
-	virtual ~h_type();
+	virtual ~h_object();
 
 	virtual uint32_t get_type_size() const = 0;
 	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
@@ -25,7 +25,7 @@ public:
 class h_group;
 
 class h_tag :
-	public h_type
+	public h_object
 {
 public:
 	h_tag(h_group* group, const char* tag_filepath);
@@ -56,9 +56,11 @@ public:
 struct h_block
 {
 public:
-	virtual h_type& emplace_back() = 0;
-	virtual h_type* data() = 0;
+	virtual h_object& emplace_back() = 0;
+	virtual h_object* data() = 0;
+	virtual h_object& get(uint32_t index) = 0;
 	virtual uint32_t type_size() = 0;
+	virtual uint32_t size() = 0;
 	virtual void reserve(uint32_t count) = 0;
 	virtual void resize(uint32_t count) = 0;
 };
@@ -75,6 +77,11 @@ public:
 		return value;
 	}
 
+	virtual h_custom_type& get(uint32_t index) final
+	{
+		return std::vector<h_custom_type>::operator [](index);
+	}
+
 	virtual h_custom_type* data() final
 	{
 		auto values = std::vector<h_custom_type>::data();
@@ -84,6 +91,11 @@ public:
 	virtual uint32_t type_size() final
 	{
 		return h_custom_type::type_size;
+	}
+
+	virtual uint32_t size() final
+	{
+		return static_cast<uint32_t>(std::vector<h_custom_type>::size());
 	}
 
 	virtual void reserve(uint32_t count) final

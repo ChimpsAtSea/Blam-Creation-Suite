@@ -31,7 +31,7 @@ c_high_level_tag_tab& c_tag_project_tab::open_tag_interface_tab(h_tag& tag)
 		}
 	}
 
-	c_high_level_tag_tab* high_level_tag_tab = new c_high_level_tag_tab(tag, *this);
+	c_high_level_tag_tab* high_level_tag_tab = new c_high_level_tag_tab(tag_project, tag, *this);
 	add_tab(*high_level_tag_tab);
 	next_selected_tab = high_level_tag_tab;
 

@@ -328,7 +328,7 @@ public:
 		return false;
 	}
 
-	bool is_empty()
+	bool is_empty() const
 	{
 		return *data == 0;
 	}

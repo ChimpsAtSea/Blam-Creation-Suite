@@ -3,7 +3,7 @@
 class c_tag_interface;
 class c_tag_group_interface;
 class h_tag;
-class h_type;
+class h_object;
 class h_group;
 
 class c_high_level_cache_file_transplant
@@ -12,7 +12,7 @@ public:
 	c_high_level_cache_file_transplant(c_cache_cluster& cache_cluster, c_cache_file& cache_file);
 	~c_high_level_cache_file_transplant();
 
-	void transplant_data(h_type& high_level, const char* low_level_data, const blofeld::s_tag_struct_definition& struct_definition);
+	void transplant_data(h_object& high_level, const char* low_level_data, const blofeld::s_tag_struct_definition& struct_definition);
 	h_tag* get_high_level_tag_by_tag_interface(c_tag_interface* tag_interface);
 	h_tag* tag_interface_to_high_level(c_tag_interface& tag_interface);
 	h_group& get_or_create_group(/*c_tag_group_interface& group_interface*/ const blofeld::s_tag_group& tag_group);

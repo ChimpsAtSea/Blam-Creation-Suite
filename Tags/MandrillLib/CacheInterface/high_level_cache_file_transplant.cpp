@@ -50,7 +50,7 @@ c_high_level_cache_file_transplant::~c_high_level_cache_file_transplant()
 
 }
 
-void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, const char* const low_level_data, const blofeld::s_tag_struct_definition& struct_definition)
+void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, const char* const low_level_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	e_engine_type const engine_type = cache_file.get_engine_type();
 	e_platform_type const platform_type = cache_file.get_platform_type();
@@ -140,7 +140,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 					const char* current_block_data_position = block_data;
 					for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
 					{
-						h_type& type = block_storage.emplace_back();
+						h_object& type = block_storage.emplace_back();
 						transplant_data(type, block_data, block_struct_definition);
 
 						current_block_data_position += block_struct_size;
@@ -157,7 +157,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 						void* current_high_level_block_storage_data = high_level_block_storage_data + high_level_block_type_size * index;
 						const void* current_block_data = block_data + block_struct_size * index;
 
-						h_type& type = *static_cast<h_type*>(current_high_level_block_storage_data);
+						h_object& type = *static_cast<h_object*>(current_high_level_block_storage_data);
 						transplant_data(type, block_data, block_struct_definition);
 					};
 					tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
@@ -167,7 +167,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 			}
 			case _field_struct:
 			{
-				h_type& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 				transplant_data(struct_storage, current_data_position, *field->struct_definition);
 				break;
 			}
@@ -179,7 +179,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_type& high_level, con
 				uint32_t const array_elements_count = field->array_definition->count(engine_type);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
-					h_type& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_array_data_position);
+					h_object& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_array_data_position);
 
 					transplant_data(array_storage, raw_array_data_position, field->array_definition->struct_definition);
 
