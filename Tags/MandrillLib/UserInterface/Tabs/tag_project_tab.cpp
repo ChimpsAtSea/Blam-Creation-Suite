@@ -17,6 +17,26 @@ c_tag_project_tab::~c_tag_project_tab()
 
 }
 
+c_tag_project& c_tag_project_tab::get_tag_project() const
+{
+	return tag_project;
+}
+
+void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
+{
+	for (h_tag* tag : tag_project.tags)
+	{
+		bool is_match =
+			_stricmp(tag_name, tag->tag_filepath.c_str()) == 0 ||
+			_stricmp(tag_name, tag->tag_filename.c_str()) == 0;
+		if (is_match)
+		{
+			open_tag_interface_tab(*tag);
+			return;
+		}
+	}
+}
+
 c_high_level_tag_tab& c_tag_project_tab::open_tag_interface_tab(h_tag& tag)
 {
 	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))

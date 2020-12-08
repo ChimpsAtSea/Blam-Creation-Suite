@@ -21,6 +21,10 @@ public:
 	c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag_project, c_mandrill_tab& parent);
 	virtual ~c_tag_project_tab();
 
+	c_tag_project& get_tag_project() const;
+
+	c_fixed_wide_path project_filepath; // #TODO: move
+	void open_tag_by_search_name(const char* tag_name);
 
 protected:
 	static constexpr float k_field_display_name_width = 400.0f;
@@ -40,6 +44,5 @@ protected:
 	c_mandrill_user_interface& user_interface;
 	h_tag* search_selected_tag_interface;
 	c_mandrill_tab* next_selected_tab;
-	c_fixed_wide_path project_filepath;
 	c_fixed_string_1024 search_buffer;
 };

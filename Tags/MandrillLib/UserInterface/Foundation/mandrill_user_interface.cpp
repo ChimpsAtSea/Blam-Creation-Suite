@@ -43,11 +43,24 @@ c_mandrill_user_interface::~c_mandrill_user_interface()
 	delete file_browser;
 }
 
-void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath)
+void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, const char* tag_list)
 {
 	if (filepath == nullptr || !PathFileExistsW(filepath))
 	{
 		return;
+	}
+
+	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+	{
+		if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
+		{
+			const wchar_t* project_filepath = tag_project_tab->project_filepath.c_str();
+			if (wcscmp_ic(project_filepath, filepath) == 0)
+			{
+				next_selected_tab = &tab;
+				return;
+			}
+		}
 	}
 
 	long file_version = 0;
@@ -93,13 +106,48 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath)
 			});
 		tag_project_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
 			{
-				if (c_cache_file_tab* cache_file_tab = static_cast<c_cache_file_tab*>(&tab))
+				if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
 				{
-					close_cache_file_tab(*cache_file_tab);
+					c_tag_project& tag_project = tag_project_tab->get_tag_project();
+					delete& tag_project;
 				}
 			});
 		add_tab(*tag_project_tab);
 		next_selected_tab = tag_project_tab;
+
+		if (tag_list != nullptr) // #TODO parsing function for this?
+		{
+			c_fixed_path selected_tag_name;
+			c_fixed_path tag_name;
+			const char* read_position = tag_list;
+			while (*read_position != 0)
+			{
+				if (*read_position == ';')
+				{
+					read_position++;
+				}
+				while (*read_position && *read_position != ';' && *read_position != ']' && *read_position != '*')
+				{
+					tag_name += *read_position;
+					read_position++;
+				}
+				if (*read_position == '*')
+				{
+					selected_tag_name = tag_name;
+					read_position++;
+				}
+
+				DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
+
+				tag_project_tab->open_tag_by_search_name(tag_name.c_str());
+
+				tag_name.clear();
+			}
+			if (!selected_tag_name.is_empty())
+			{
+				tag_project_tab->open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
+			}
+		}
 	}
 }
 
@@ -120,8 +168,8 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 	{
 		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
-			const wchar_t* cache_file_path = cache_file_tab->get_cache_file().get_map_filepath();
-			if (wcscmp_ic(cache_file_path, filepath) == 0)
+			const wchar_t* cache_filepath = cache_file_tab->get_cache_file().get_map_filepath();
+			if (wcscmp_ic(cache_filepath, filepath) == 0)
 			{
 				next_selected_tab = &tab;
 				return;
@@ -153,20 +201,15 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 			});
 		cache_file_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
 			{
-				if (c_cache_file_tab* cache_file_tab = static_cast<c_cache_file_tab*>(&tab))
+				if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 				{
-					close_cache_file_tab(*cache_file_tab);
+					c_cache_file& cache_file = cache_file_tab->get_cache_file();
+					delete& cache_file;
 				}
 			});
 		add_tab(*cache_file_tab);
 		next_selected_tab = cache_file_tab;
 	}
-}
-
-void c_mandrill_user_interface::close_cache_file_tab(c_cache_file_tab& tab)
-{
-	c_cache_file& cache_file = tab.get_cache_file();
-	delete& cache_file;
 }
 
 void c_mandrill_user_interface::restore_previous_session(bool use_projects)
@@ -228,7 +271,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 
 		if (use_projects)
 		{
-			create_tag_project(map_path.c_str());
+			create_tag_project(map_path.c_str(), selected_map_tags_list.c_str());
 		}
 		else
 		{
@@ -237,11 +280,15 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 
 		map_path.clear();
 	}
-	if (!selected_map_path.is_empty())
+
+	// #TODO: this is a hack. 
+	// store a pointer to the selected tab, and make it selected using the pointer
+	// rather than opening up the tab again
+	if (!selected_map_path.is_empty()) 
 	{
 		if (use_projects)
 		{
-			create_tag_project(selected_map_path.c_str());
+			create_tag_project(selected_map_path.c_str(), selected_map_tags_list.c_str());
 		}
 		else
 		{
@@ -263,9 +310,49 @@ void c_mandrill_user_interface::save_current_session()
 	c_fixed_wide_path open_projects_path;
 	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 	{
-		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
+		if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
 		{
+			c_tag_project& tag_project = tag_project_tab->get_tag_project();
 
+			if (!open_projects_path.is_empty())
+			{
+				open_projects_path += ';';
+			}
+			open_projects_path += tag_project_tab->project_filepath.c_str();
+
+			if (tab.is_selected())
+			{
+				open_projects_path += "*";
+			}
+
+			uint32_t cache_file_tab_index = 0;
+			for (c_mandrill_tab& cache_file_child_tab : c_reference_loop(tag_project_tab->get_children(), tag_project_tab->get_child_count()))
+			{
+				if (c_high_level_tag_tab* high_level_tag_tab = dynamic_cast<c_high_level_tag_tab*>(&cache_file_child_tab))
+				{
+					if (cache_file_tab_index == 0)
+					{
+						open_projects_path += '[';
+					}
+					else
+					{
+						open_projects_path += ';';
+					}
+
+					open_projects_path += high_level_tag_tab->get_tag().tag_filepath.c_str();
+
+					if (high_level_tag_tab->is_selected())
+					{
+						open_projects_path += "*";
+					}
+
+					cache_file_tab_index++;
+				}
+			}
+			if (cache_file_tab_index > 0)
+			{
+				open_projects_path += ']';
+			}
 		}
 		else if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
@@ -312,7 +399,8 @@ void c_mandrill_user_interface::save_current_session()
 		}
 	}
 
-	c_settings::write_wstring(_settings_section_mandrill, "open_maps", open_maps_path.c_str());
+	c_settings::write_wstring(_settings_section_mandrill, k_previous_open_maps_setting, open_maps_path.c_str());
+	c_settings::write_wstring(_settings_section_mandrill, k_previous_open_projects_setting, open_projects_path.c_str());
 }
 
 void c_mandrill_user_interface::render()

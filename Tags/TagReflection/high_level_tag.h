@@ -14,6 +14,7 @@ public:
 	virtual uint32_t get_type_size() const = 0;
 	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
 	virtual void* get_field_pointer(const blofeld::s_tag_field& field) = 0;
+	virtual bool is_field_active(const blofeld::s_tag_field& field) = 0;
 
 	template<typename T>
 	T* get_field_pointer(const blofeld::s_tag_field& field)

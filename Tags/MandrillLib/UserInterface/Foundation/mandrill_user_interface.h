@@ -33,9 +33,8 @@ public:
 	c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
-	void create_tag_project(const wchar_t* filepath);
+	void create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
 	void open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
-	void close_cache_file_tab(c_cache_file_tab& tab);
 	void restore_previous_session(bool use_projects);
 	void save_current_session();
 	void render();

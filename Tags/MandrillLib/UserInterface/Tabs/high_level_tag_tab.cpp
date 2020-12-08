@@ -14,6 +14,11 @@ c_high_level_tag_tab::~c_high_level_tag_tab()
 
 }
 
+c_tag_project& c_high_level_tag_tab::get_tag_project() const
+{
+	return tag_project;
+}
+
 h_tag& c_high_level_tag_tab::get_tag() const
 {
 	return tag;

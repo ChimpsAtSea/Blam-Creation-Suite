@@ -19,6 +19,7 @@ public:
 	c_high_level_tag_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent);
 	virtual ~c_high_level_tag_tab();
 
+	c_tag_project& get_tag_project() const;
 	h_tag& get_tag() const;
 
 protected:

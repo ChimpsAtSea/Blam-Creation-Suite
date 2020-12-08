@@ -1386,12 +1386,12 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 	uint32_t field_index = 0;
 	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 	{
-		void* field_data = object.get_field_pointer(*current_field);
-
-		if (field_data == nullptr)
+		if (!object.is_field_active(*current_field))
 		{
 			continue;
 		}
+
+		void* field_data = object.get_field_pointer(*current_field);
 
 		ImGui::PushID(field_index);
 
@@ -1464,6 +1464,51 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		{
 			h_object& struct_object = *static_cast<h_object*>(field_data);
 			render_object(level + 1, struct_object);
+			break;
+		}
+		case blofeld::_field_explanation:
+		{
+			ImGui::BeginGroup();
+			{
+				ImGui::Dummy({ 0.0f, 10.0f });
+
+				float padding_offset = ImGui::GetStyle().FramePadding.x; /* is there a better way to do this? */
+				ImGui::Dummy({ padding_offset, 0.0f });
+				ImGui::SameLine();
+
+				static const ImVec4 explanation_color = MANDRILL_THEME_COMMENT_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA);
+				const char* display_name = current_field->string_parser.display_name.c_str();
+				ImGui::PushStyleColor(ImGuiCol_Text, explanation_color);
+				if (*display_name)
+				{
+					ImVec2 header_start = ImGui::GetCursorPos();
+					ImGui::TextUnformatted(display_name);
+					ImVec2 header_end = ImGui::GetCursorPos();
+					ImGui::SetCursorPos({ header_start.x + 1, header_start.y + 1 });
+					ImGui::TextUnformatted(display_name);
+					ImGui::SetCursorPos({ header_start.x + 1, header_start.y });
+					ImGui::TextUnformatted(display_name);
+					ImGui::SetCursorPos({ header_start.x, header_start.y + 1 });
+					ImGui::TextUnformatted(display_name);
+					ImGui::SetCursorPos(header_end);
+				}
+				if (current_field->explanation && *current_field->explanation)
+				{
+					ImGui::Dummy({ padding_offset, 0.0f });
+					ImGui::SameLine();
+					ImGui::TextUnformatted(current_field->explanation);
+				}
+				ImGui::PopStyleColor();
+				ImGui::Dummy({ 5.0f, 5.0f });
+			}
+			ImGui::EndGroup();
+			const char* description = current_field->string_parser.description.c_str();
+			if (*description && ImGui::IsItemHovered())
+			{
+				ImGui::BeginTooltipEx(0, ImGuiTooltipFlags_OverridePreviousTooltip);
+				ImGui::TextUnformatted(description);
+				ImGui::EndTooltip();
+			}
 			break;
 		}
 		default:

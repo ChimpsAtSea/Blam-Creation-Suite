@@ -162,6 +162,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		stream << "\t\t\t\t" << "virtual uint32_t get_type_size() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual void* get_field_pointer(const blofeld::s_tag_field& field) final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) final;" << std::endl;
 		stream << std::endl;
 
 		stream << "\t\t\t\t" << "static uint32_t const type_size;" << std::endl;
@@ -175,8 +176,6 @@ void c_high_level_tag_source_generator::generate_header() const
 				current_field += field_skip_count;
 				continue;
 			}
-
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
 			if (current_field->field_type > _field_type_non_standard)
 			{
@@ -193,6 +192,8 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_explanation:
 				continue;
 			}
+
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
 			switch (current_field->field_type)
 			{
@@ -277,8 +278,6 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			continue;
 		}
 
-		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
-
 		if (current_field->field_type > _field_type_non_standard)
 		{
 			continue;
@@ -295,6 +294,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			continue;
 		}
 
+		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
 		switch (current_field->field_type)
 		{
@@ -574,58 +574,102 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << "#ifndef __INTELLISENSE__" << std::endl;
 	stream << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
-
-		stream << "\t\t" << "void* h_" << tag_struct_definition->name << "::get_field_pointer(const blofeld::s_tag_field& field)" << std::endl;
-		stream << "\t\t{" << std::endl;
-		stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
-		stream << std::endl;
-		stream << "\t\t\tswitch (_index)" << std::endl;
-		stream << "\t\t\t{" << std::endl;
-
-
-		field_name_unique_counter.clear();
-		uint32_t field_index = 0;
-		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+		std::map<std::string, int> field_name_unique_counter;
+		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 		{
-			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+
+			stream << "\t\t" << "void* h_" << tag_struct_definition->name << "::get_field_pointer(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t{" << std::endl;
+			stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
+			stream << std::endl;
+			stream << "\t\t\tswitch (_index)" << std::endl;
+			stream << "\t\t\t{" << std::endl;
+
+
+			field_name_unique_counter.clear();
+			uint32_t field_index = 0;
+			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
-				current_field += field_skip_count;
-				field_index += field_skip_count;
-				continue;
+				uint32_t field_skip_count;
+				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				{
+					current_field += field_skip_count;
+					field_index += field_skip_count;
+					continue;
+				}
+
+				if (current_field->field_type > _field_type_non_standard)
+				{
+					continue;
+				}
+
+				switch (current_field->field_type)
+				{
+				case _field_pad:
+				case _field_skip:
+				case _field_useless_pad:
+				case _field_custom:
+				case _field_terminator:
+				case _field_explanation:
+					continue;
+				}
+
+				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+
+				stream << "\t\t\t\tcase " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
 			}
+			stream << "\t\t\t\tdefault: return nullptr;" << std::endl;
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+			stream << "\t\t\t}" << std::endl;
+			stream << std::endl;
 
-			if (current_field->field_type > _field_type_non_standard)
-			{
-				continue;
-			}
-
-			switch (current_field->field_type)
-			{
-			case _field_pad:
-			case _field_skip:
-			case _field_useless_pad:
-			case _field_custom:
-			case _field_terminator:
-			case _field_explanation:
-				continue;
-			}
-
-			stream << "\t\t\t\tcase " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+			stream << "\t\t}" << std::endl;
+			stream << std::endl;
 		}
-		stream << "\t\t\t\tdefault: return nullptr;" << std::endl;
+	}
 
-		stream << "\t\t\t}" << std::endl;
-		stream << std::endl;
+	{
+		std::map<std::string, int> field_name_unique_counter;
+		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+		{
+			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
-		stream << "\t\t}" << std::endl;
-		stream << std::endl;
+			stream << "\t\t" << "bool h_" << tag_struct_definition->name << "::is_field_active(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t{" << std::endl;
+			stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
+			stream << std::endl;
+			stream << "\t\t\tswitch (_index)" << std::endl;
+			stream << "\t\t\t{" << std::endl;
+
+			field_name_unique_counter.clear();
+			uint32_t field_index = 0;
+			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+			{
+				uint32_t field_skip_count;
+				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				{
+					current_field += field_skip_count;
+					field_index += field_skip_count;
+					continue;
+				}
+
+				if (current_field->field_type > _field_type_non_standard)
+				{
+					continue;
+				}
+
+				stream << "\t\t\t\tcase " << field_index << ": return true;" << std::endl;
+			}
+			stream << "\t\t\t\tdefault: return false;" << std::endl;
+
+			stream << "\t\t\t}" << std::endl;
+			stream << std::endl;
+
+			stream << "\t\t}" << std::endl;
+			stream << std::endl;
+		}
 	}
 
 	stream << std::endl;

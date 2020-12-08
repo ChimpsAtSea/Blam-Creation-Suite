@@ -22,17 +22,4 @@ protected:
 
 	c_tag_interface& tag_interface;
 	bool use_live_preview;
-
-//	//void copy_data_recursively(const s_reflection_structure_type_legacy& reflection_type, char* source, char* destination);
-//	void send_to_game();
-//	c_tag_interface& get_tag_interface() const { return tag_interface; };
-//	c_cache_file& get_cache_file() const { return cache_file; };
-//	c_old_mandrill_gui_tab* GetParentTab() const { return parent_tab; };
-//
-//	void RenderButtons();
-//protected:
-//	virtual void render_tab_contents_gui();
-//
-//	c_cache_file& cache_file;
-//	c_old_mandrill_gui_tab* parent_tab;
 };

@@ -219,7 +219,7 @@
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface\Tabs\high_level_tag_editor.h">
+    <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -386,7 +386,7 @@
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface\Tabs\high_level_tag_editor.cpp">
+    <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
