@@ -175,6 +175,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="halo3.enum.h" />
     <ClInclude Include="halo3.h" />
     <ClInclude Include="lowlevel-halo3-private-pch.h" />
     <ClInclude Include="lowlevel-halo3-public-pch.h" />

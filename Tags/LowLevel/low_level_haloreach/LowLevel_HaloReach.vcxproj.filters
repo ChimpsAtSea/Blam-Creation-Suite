@@ -24,6 +24,9 @@
     <ClInclude Include="haloreach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="haloreach.enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lowlevel-haloreach-private-pch.cpp">

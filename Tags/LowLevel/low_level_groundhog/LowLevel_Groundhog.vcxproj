@@ -175,6 +175,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="groundhog.enum.h" />
     <ClInclude Include="groundhog.h" />
     <ClInclude Include="lowlevel-groundhog-private-pch.h" />
     <ClInclude Include="lowlevel-groundhog-public-pch.h" />

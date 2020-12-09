@@ -42,7 +42,8 @@ c_high_level_cache_file_transplant::c_high_level_cache_file_transplant(c_cache_c
 
 		transplant_data(high_level_tag, raw_tag_data, tag_struct_definition);
 	};
-	tbb::parallel_for(0u, static_cast<uint32_t>(tags_and_interface.size()), transplant_high_level_tags);
+	//tbb::parallel_for(0u, static_cast<uint32_t>(tags_and_interface.size()), transplant_high_level_tags);
+	for (uint32_t i = 0; i < tags_and_interface.size(); i++) transplant_high_level_tags(i);
 }
 
 c_high_level_cache_file_transplant::~c_high_level_cache_file_transplant()
@@ -82,9 +83,6 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_long_integer:
 			case _field_int64_integer:
 			case _field_angle:
-			case _field_char_enum:
-			case _field_enum:
-			case _field_long_enum:
 			case _field_long_flags:
 			case _field_word_flags:
 			case _field_byte_flags:
@@ -114,6 +112,24 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			{
 				memcpy(high_level_field_data, current_data_position, field_size);
 				break;
+			}			
+			case _field_char_enum:
+			{
+				uint32_t data = *reinterpret_cast<const char*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
+			}
+			case _field_enum:
+			{
+				uint32_t data = *reinterpret_cast<const short*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
+			}
+			case _field_long_enum:
+			{
+				uint32_t data = *reinterpret_cast<const long*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
 			}
 			case _field_string_id:
 			{
@@ -141,7 +157,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 					for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
 					{
 						h_object& type = block_storage.emplace_back();
-						transplant_data(type, block_data, block_struct_definition);
+						transplant_data(type, current_block_data_position, block_struct_definition);
 
 						current_block_data_position += block_struct_size;
 					}

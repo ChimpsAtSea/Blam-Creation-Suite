@@ -175,6 +175,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="haloreach.enum.h" />
     <ClInclude Include="haloreach.h" />
     <ClInclude Include="lowlevel-haloreach-private-pch.h" />
     <ClInclude Include="lowlevel-haloreach-public-pch.h" />

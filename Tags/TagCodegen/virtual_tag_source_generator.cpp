@@ -93,6 +93,24 @@ void c_virtual_tag_source_generator::generate_header() const
 				stream << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
+			case _field_char_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<blofeld::" << namespace_name << "::e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
+				break;
+			}
+			case _field_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<blofeld::" << namespace_name << "::e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
+				break;
+			}
+			case _field_long_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<blofeld::" << namespace_name << "::e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
+				break;
+			}
 			default:
 			{
 				const char* field_source_type = c_low_level_tag_source_generator::field_type_to_low_level_source_type(platform_type, current_field->field_type);

@@ -2,120 +2,68 @@
 
 using namespace DirectX;
 
-enum e_bitmap_format3
-{
-	_bitmap_format3_a8,
-	_bitmap_format3_y8,
-	_bitmap_format3_ay8,
-	_bitmap_format3_a8y8,
-	_bitmap_format3_unused1,
-	_bitmap_format3_unused2,
-	_bitmap_format3_r5g6b5,
-	_bitmap_format3_unused3,
-	_bitmap_format3_a1r5g5b5,
-	_bitmap_format3_a4r4g4b4,
-	_bitmap_format3_x8r8g8b8,
-	_bitmap_format3_a8r8g8b8,
-	_bitmap_format3_unused4,
-	_bitmap_format3_dxt5_bias_alpha,
-	_bitmap_format3_dxt1,
-	_bitmap_format3_dxt3,
-	_bitmap_format3_dxt5,
-	_bitmap_format3_a4r4g4b4_font,
-	_bitmap_format3_unused7,
-	_bitmap_format3_unused8,
-	_bitmap_format3_software_rgbfp32,
-	_bitmap_format3_unused9,
-	_bitmap_format3_v8u8,
-	_bitmap_format3_g8b8,
-	_bitmap_format3_abgrfp32,
-	_bitmap_format3_abgrfp16,
-	_bitmap_format3_16f_mono,
-	_bitmap_format3_16f_red,
-	_bitmap_format3_q8w8v8u8,
-	_bitmap_format3_a2r10g10b10,
-	_bitmap_format3_a16b16g16r16,
-	_bitmap_format3_v16u16,
-	_bitmap_format3_l16,
-	_bitmap_format3_r16g16,
-	_bitmap_format3_signedr16g16b16a16,
-	_bitmap_format3_dxt3a,
-	_bitmap_format3_dxt5a,
-	_bitmap_format3_dxt3a_1111,
-	_bitmap_format3_dxn,
-	_bitmap_format3_ctx1,
-	_bitmap_format3_dxt3a_alpha,
-	_bitmap_format3_dxt3a_mono,
-	_bitmap_format3_dxt5a_alpha,
-	_bitmap_format3_dxt5a_mono,
-	_bitmap_format3_dxn_mono_alpha,
-	_bitmap_format3_dxt5_red,
-	_bitmap_format3_dxt5_green,
-	_bitmap_format3_dxt5_blue,
-	_bitmap_format3_depth_24
-};
-
-const DirectX::DDS_PIXELFORMAT* bitmap_format_to_dds_pixel_format(e_bitmap_format3 bitmap_format, bool& is_linear_format)
+const DirectX::DDS_PIXELFORMAT* bitmap_format_to_dds_pixel_format(blofeld::haloreach::e_bitmap_formats bitmap_format, bool& is_linear_format)
 {
 	using namespace DirectX;
+	using namespace blofeld::haloreach;
 
 	is_linear_format = false;
 
 	switch (bitmap_format)
 	{
-	case _bitmap_format3_a8:														return &DDSPF_A8;
-	case _bitmap_format3_y8:														return &DDSPF_L8;
-	case _bitmap_format3_ay8:														return &DDSPF_A8L8;
-	case _bitmap_format3_a8y8:														return &DDSPF_A8L8_ALT;
-	case _bitmap_format3_unused1:													return nullptr;
-	case _bitmap_format3_unused2:													return nullptr;
-	case _bitmap_format3_r5g6b5:													return &DDSPF_R5G6B5;
-	case _bitmap_format3_unused3:													return nullptr;
-	case _bitmap_format3_a1r5g5b5:													return &DDSPF_A1R5G5B5;
-	case _bitmap_format3_a4r4g4b4:													return &DDSPF_A4R4G4B4;
-	case _bitmap_format3_x8r8g8b8:													return &DDSPF_X8R8G8B8;
-	case _bitmap_format3_a8r8g8b8:													return &DDSPF_A8R8G8B8;
-	case _bitmap_format3_unused4:													return nullptr;
-	case _bitmap_format3_dxt5_bias_alpha:											return nullptr;
-	case _bitmap_format3_dxt1:							is_linear_format = true;	return &DDSPF_DXT1;
-	case _bitmap_format3_dxt3:							is_linear_format = true;	return &DDSPF_DXT3;
-	case _bitmap_format3_dxt5:							is_linear_format = true;	return &DDSPF_DXT5;
-	case _bitmap_format3_a4r4g4b4_font:												return &DDSPF_A4R4G4B4;
-	case _bitmap_format3_unused7:													return nullptr;
-	case _bitmap_format3_unused8:													return nullptr;
-	case _bitmap_format3_software_rgbfp32:											return nullptr; // #TODO: DX10 header
-	case _bitmap_format3_unused9:													return nullptr;
-	case _bitmap_format3_v8u8:														return &DDSPF_V8U8;
-	case _bitmap_format3_g8b8:														return nullptr; // unknown
-	case _bitmap_format3_abgrfp32:													return nullptr; // DirectX 10
-	case _bitmap_format3_abgrfp16:													return nullptr; // DirectX 10
-	case _bitmap_format3_16f_mono:													return &DDSPF_L16;
-	case _bitmap_format3_16f_red:													return nullptr;
-	case _bitmap_format3_q8w8v8u8:													return &DDSPF_Q8W8V8U8;
-	case _bitmap_format3_a2r10g10b10:												return nullptr; // DirectX 10
-	case _bitmap_format3_a16b16g16r16:												return nullptr; // DirectX 10
-	case _bitmap_format3_v16u16:													return &DDSPF_V16U16;
-	case _bitmap_format3_l16:														return &DDSPF_L16;
-	case _bitmap_format3_r16g16:  // DirectX 10 ?
+	case _bitmap_formats_a8:														return &DDSPF_A8;
+	case _bitmap_formats_y8:														return &DDSPF_L8;
+	case _bitmap_formats_ay8:														return &DDSPF_A8L8;
+	case _bitmap_formats_a8y8:														return &DDSPF_A8L8_ALT;
+	case _bitmap_formats_unused1:													return nullptr;
+	case _bitmap_formats_unused2:													return nullptr;
+	case _bitmap_formats_r5g6b5:													return &DDSPF_R5G6B5;
+	case _bitmap_formats_unused3:													return nullptr;
+	case _bitmap_formats_a1r5g5b5:													return &DDSPF_A1R5G5B5;
+	case _bitmap_formats_a4r4g4b4:													return &DDSPF_A4R4G4B4;
+	case _bitmap_formats_x8r8g8b8:													return &DDSPF_X8R8G8B8;
+	case _bitmap_formats_a8r8g8b8:													return &DDSPF_A8R8G8B8;
+	case _bitmap_formats_unused4:													return nullptr;
+	case _bitmap_formats_dxt5_bias_alpha:											return nullptr;
+	case _bitmap_formats_dxt1:							is_linear_format = true;	return &DDSPF_DXT1;
+	case _bitmap_formats_dxt3:							is_linear_format = true;	return &DDSPF_DXT3;
+	case _bitmap_formats_dxt5:							is_linear_format = true;	return &DDSPF_DXT5;
+	case _bitmap_formats_a4r4g4b4_font:												return &DDSPF_A4R4G4B4;
+	case _bitmap_formats_unused7:													return nullptr;
+	case _bitmap_formats_unused8:													return nullptr;
+	case _bitmap_formats_software_rgbfp32:											return nullptr; // #TODO: DX10 header
+	case _bitmap_formats_unused9:													return nullptr;
+	case _bitmap_formats_v8u8:														return &DDSPF_V8U8;
+	case _bitmap_formats_g8b8:														return nullptr; // unknown
+	case _bitmap_formats_abgrfp32:													return nullptr; // DirectX 10
+	case _bitmap_formats_abgrfp16:													return nullptr; // DirectX 10
+	case _bitmap_formats__16f_mono:													return &DDSPF_L16;
+	case _bitmap_formats__16f_red:													return nullptr;
+	case _bitmap_formats_q8w8v8u8:													return &DDSPF_Q8W8V8U8;
+	case _bitmap_formats_a2r10g10b10:												return nullptr; // DirectX 10
+	case _bitmap_formats_a16b16g16r16:												return nullptr; // DirectX 10
+	case _bitmap_formats_v16u16:													return &DDSPF_V16U16;
+	case _bitmap_formats_l16:														return &DDSPF_L16;
+	case _bitmap_formats_r16g16:  // DirectX 10 ?
 	{
 		static const DDS_PIXELFORMAT DDSPF_R16G16 = { sizeof(DDS_PIXELFORMAT), DDS_RGB,  0, 32, 0xffff0000, 0x0000ffff, 0x00000000, 0x00000000 };
 		return &DDSPF_R16G16;
 	}
-	case _bitmap_format3_signedr16g16b16a16:										return nullptr; // DirectX 10
-	case _bitmap_format3_dxt3a:														return nullptr;
-	case _bitmap_format3_dxt5a:														return nullptr;
-	case _bitmap_format3_dxt3a_1111:												return nullptr;
-	case _bitmap_format3_dxn:							is_linear_format = true;	return &DDSPF_BC5_SNORM;
-	case _bitmap_format3_ctx1:														return nullptr; // Xbox 360
-	case _bitmap_format3_dxt3a_alpha:					is_linear_format = true;	return &DDSPF_DXT3;
-	case _bitmap_format3_dxt3a_mono:					is_linear_format = true;	return &DDSPF_DXT3;
-	case _bitmap_format3_dxt5a_alpha:					is_linear_format = true;	return &DDSPF_DXT5;
-	case _bitmap_format3_dxt5a_mono:					is_linear_format = true;	return &DDSPF_DXT5;
-	case _bitmap_format3_dxn_mono_alpha:											return nullptr;
-	case _bitmap_format3_dxt5_red:													return nullptr;
-	case _bitmap_format3_dxt5_green:												return nullptr;
-	case _bitmap_format3_dxt5_blue:													return nullptr;
-	case _bitmap_format3_depth_24:													return nullptr;
+	case _bitmap_formats_signedr16g16b16a16:										return nullptr; // DirectX 10
+	case _bitmap_formats_dxt3a:														return nullptr;
+	case _bitmap_formats_dxt5a:														return nullptr;
+	case _bitmap_formats_dxt3a_1111:												return nullptr;
+	case _bitmap_formats_dxn:							is_linear_format = true;	return &DDSPF_BC5_SNORM;
+	case _bitmap_formats_ctx1:														return nullptr; // Xbox 360
+	case _bitmap_formats_dxt3a_alpha:					is_linear_format = true;	return &DDSPF_DXT3;
+	case _bitmap_formats_dxt3a_mono:					is_linear_format = true;	return &DDSPF_DXT3;
+	case _bitmap_formats_dxt5a_alpha:					is_linear_format = true;	return &DDSPF_DXT5;
+	case _bitmap_formats_dxt5a_mono:					is_linear_format = true;	return &DDSPF_DXT5;
+	case _bitmap_formats_dxn_mono_alpha:											return nullptr;
+	case _bitmap_formats_dxt5_red:													return nullptr;
+	case _bitmap_formats_dxt5_green:												return nullptr;
+	case _bitmap_formats_dxt5_blue:													return nullptr;
+	case _bitmap_formats_depth_24:													return nullptr;
 	default: throw;
 	}
 }
@@ -157,7 +105,7 @@ void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 	char* dds_texture_buffer = new char[sizeof(int) + sizeof(DDS_HEADER) + pixel_data_bytes];
 	{
 		bool is_linear_format = false;
-		const DirectX::DDS_PIXELFORMAT* dds_pixel_format = bitmap_format_to_dds_pixel_format((e_bitmap_format3)bitmap.format, is_linear_format);
+		const DirectX::DDS_PIXELFORMAT* dds_pixel_format = bitmap_format_to_dds_pixel_format((blofeld::haloreach::e_bitmap_formats)bitmap.format, is_linear_format);
 		if (dds_pixel_format == nullptr)
 		{
 			dds_pixel_format = &DDSPF_DXT5;
@@ -214,42 +162,38 @@ void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 		desc.CPUAccessFlags = 0;
 		desc.MiscFlags = 0;
 
-		switch ((e_bitmap_format)bitmap.format)
+		switch ((blofeld::haloreach::e_bitmap_formats)bitmap.format)
 		{
-		case _bitmap_format_unused_4:
-		case _bitmap_format_unused_5:
-		case _bitmap_format_unused_7:
-			return; // unsupported
-		case _bitmap_format_a8:
+		case blofeld::haloreach::_bitmap_formats_a8:
 			desc.Format = DXGI_FORMAT_R8_UNORM;
 			break;
-		case _bitmap_format_r5_g6_b5:
+		case blofeld::haloreach::_bitmap_formats_r5g6b5:
 			desc.Format = DXGI_FORMAT_B5G6R5_UNORM;
 			break;
-		case _bitmap_format_a1_r5_g5_b5:
+		case blofeld::haloreach::_bitmap_formats_a1r5g5b5:
 			desc.Format = DXGI_FORMAT_B5G5R5A1_UNORM;
 			break;
-		case _bitmap_format_a4_r4_g4_b4:
+		case blofeld::haloreach::_bitmap_formats_a4r4g4b4:
 			desc.Format = DXGI_FORMAT_B4G4R4A4_UNORM;
 			break;
-		case _bitmap_format_x8_r8_g8_b8:
-		case _bitmap_format_a8_r8_g8_b8:
+		case blofeld::haloreach::_bitmap_formats_x8r8g8b8:
+		case blofeld::haloreach::_bitmap_formats_a8r8g8b8:
 			desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 			break;
-		case _bitmap_format_dxn:
+		case blofeld::haloreach::_bitmap_formats_dxn:
 			desc.Format = DXGI_FORMAT_BC5_SNORM;
 			break;
-		case _bitmap_format_dxt1:
+		case blofeld::haloreach::_bitmap_formats_dxt1:
 			desc.Format = DXGI_FORMAT_BC1_UNORM;
 			break;
-		case _bitmap_format_dxt3:
+		case blofeld::haloreach::_bitmap_formats_dxt3:
 			desc.Format = DXGI_FORMAT_BC2_UNORM;
 			break;
-		case _bitmap_format_dxt5:
+		case blofeld::haloreach::_bitmap_formats_dxt5:
 			desc.Format = DXGI_FORMAT_BC3_UNORM;
 			break;
 		default:
-			return;
+			return; // unsupported
 		}
 
 		size_t num_bytes;

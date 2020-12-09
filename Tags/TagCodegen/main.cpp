@@ -6,6 +6,7 @@ int create_source_file()
 {
 	c_structure_relationship_node::create_structure_relationships();
 	c_structure_relationship_node::create_sorted_tag_struct_definitions();
+	c_structure_relationship_node::create_sorted_tag_enum_definitions();
 
 	int result = 0;
 
@@ -36,7 +37,8 @@ int create_source_file()
 				stopwatch.start();
 				c_low_level_tag_source_generator low_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
 				c_console::write_line_verbose("Generating low level header (%s)", engine_name);
-				low_level_tag_source_generator.generate_source();
+				low_level_tag_source_generator.generate_header();
+				low_level_tag_source_generator.generate_enum_header();
 				stopwatch.stop();
 				c_console::write_line_verbose("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 				if (low_level_tag_source_generator.has_error)

@@ -24,6 +24,9 @@
     <ClInclude Include="halo3odst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo3odst.enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lowlevel-halo3odst-private-pch.cpp">

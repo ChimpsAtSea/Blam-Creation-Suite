@@ -24,6 +24,9 @@
     <ClInclude Include="lowlevel-xbox360gen3-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="xbox360_gen3.enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lowlevel-xbox360gen3-private-pch.cpp">

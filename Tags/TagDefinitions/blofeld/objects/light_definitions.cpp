@@ -34,13 +34,12 @@ namespace blofeld
 
 	TAG_STRUCT(light_struct_definition)
 	{
-		// #Todo: move all commented field groups into their own structs 
-
-		{ _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct_struct_definition },
-		{ _field_terminator },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _field_version_less_or_equal, _engine_type_haloreach, 50 }, // #WARN Don't forget to adjust this if changes are made!!
+
+		{ _field_version_equal, _engine_type_haloreach, 3 },
 		{ _field_word_flags, "flags", &light_definition_flags }, // #todo test
 		{ _field_short_integer, "unused" },
 		{ _field_long_enum, "light type:#geometry shape of light.", &midnight_light_type_enum_definition }, // #todo test

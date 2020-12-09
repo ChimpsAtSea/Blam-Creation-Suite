@@ -24,6 +24,9 @@
     <ClInclude Include="halo3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo3.enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lowlevel-halo3-private-pch.cpp">

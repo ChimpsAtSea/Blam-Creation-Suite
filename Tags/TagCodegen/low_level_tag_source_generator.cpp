@@ -97,7 +97,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	}
 }
 
-void c_low_level_tag_source_generator::generate_source() const
+void c_low_level_tag_source_generator::generate_header() const
 {
 	std::stringstream stream;
 
@@ -112,7 +112,6 @@ void c_low_level_tag_source_generator::generate_source() const
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl;
 	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
-
 
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
@@ -268,6 +267,24 @@ void c_low_level_tag_source_generator::generate_source() const
 
 				break;
 			}
+			case _field_char_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
+				break;
+			}
+			case _field_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
+				break;
+			}
+			case _field_long_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
+				break;
+			}
 			default:
 			{
 				const char* field_source_type = field_type_to_low_level_source_type(platform_type, current_field->field_type);
@@ -333,6 +350,79 @@ void c_low_level_tag_source_generator::generate_source() const
 
 	std::string source_code = stream.str();
 	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".h";
+	bool write_output = true;
+	size_t existing_file_size;
+	const char* existing_file_data;
+	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
+	{
+		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
+		{
+			write_output = false;
+		}
+		delete[] existing_file_data;
+	}
+
+	if (write_output)
+	{
+		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
+		ASSERT(filesystem_write_file_from_memory_result);
+	}
+}
+
+void c_low_level_tag_source_generator::generate_enum_header() const
+{
+	std::stringstream stream;
+
+	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+
+	stream << "#pragma once" << std::endl;
+	stream << std::endl;
+	stream << std::endl;
+
+	stream << "namespace blofeld" << std::endl;
+	stream << "{" << std::endl;
+	stream << "\tnamespace " << namespace_name << std::endl;
+	stream << "\t{" << std::endl;
+	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
+
+	std::map<std::string, int> string_list_value_unique_counter;
+	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions)
+	{
+		string_list_value_unique_counter.clear();
+
+		uint32_t count = string_list_definition->count(engine_type, platform_type);
+		const char** strings = string_list_definition->strings(engine_type, platform_type);
+
+		stream << "\t\t" << "enum e_" << string_list_definition->name << " : long" << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+
+		for (uint32_t string_index = 0; string_index < count; string_index++)
+		{
+			const char* string = strings[string_index];
+			c_blamlib_string_parser string_parser = c_blamlib_string_parser(string, false, &string_list_value_unique_counter);
+
+			stream << "\t\t\t" << " // " << string_parser.display_name.c_str() << std::endl;
+
+			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
+			if (!string_parser.description.is_empty())
+			{
+				stream << " /* " << string_parser.description.c_str() << " */" << std::endl;
+				stream << std::endl;
+			}
+			stream << std::endl;
+		}
+
+		stream << "\t\t" << "};" << std::endl;
+		stream << std::endl;
+
+	}
+
+	stream << "#pragma pack(pop)" << std::endl;
+	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
+	stream << std::endl << "} // end namespace blofeld" << std::endl;
+
+	std::string source_code = stream.str();
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".enum.h";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;

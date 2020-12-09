@@ -225,6 +225,14 @@ void c_high_level_tag_source_generator::generate_header() const
 				stream << "\t\t\t\t" << "h_tag* " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
+			case _field_char_enum:
+			case _field_enum:
+			case _field_long_enum:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				stream << "\t\t\t" << "e_" << string_list.name << " " << field_formatter.code_name.data << ";";
+				break;
+			}
 			default:
 			{
 				const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);

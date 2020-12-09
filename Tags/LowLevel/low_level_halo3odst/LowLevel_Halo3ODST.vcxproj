@@ -175,6 +175,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="halo3odst.enum.h" />
     <ClInclude Include="halo3odst.h" />
     <ClInclude Include="lowlevel-halo3odst-private-pch.h" />
     <ClInclude Include="lowlevel-halo3odst-public-pch.h" />

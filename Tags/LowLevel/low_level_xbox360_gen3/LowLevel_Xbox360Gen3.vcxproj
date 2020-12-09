@@ -177,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="lowlevel-xbox360gen3-private-pch.h" />
     <ClInclude Include="lowlevel-xbox360gen3-public-pch.h" />
+    <ClInclude Include="xbox360_gen3.enum.h" />
     <ClInclude Include="xbox360_gen3.h" />
   </ItemGroup>
   <ItemGroup>

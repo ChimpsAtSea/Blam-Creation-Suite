@@ -403,6 +403,7 @@ imgui.ini
 *Settings.ini
 Tags/HighLevel/high_level_*/*_high_level.*.cpp
 Tags/HighLevel/high_level_*/*_high_level.h
+Tags/LowLevel/low_level_*/*.enum.h
 Tags/LowLevel/low_level_groundhog/groundhog.h
 Tags/LowLevel/low_level_halo1/halo1.h
 Tags/LowLevel/low_level_halo2/halo2.h
