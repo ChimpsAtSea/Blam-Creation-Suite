@@ -261,6 +261,28 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const blofeld::s_
 			ImGui::SetNextItemWidth(800.0f);
 			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, data, 4);
 		}
+		else if constexpr (field_type == _field_string)
+		{
+			ImGui::SetNextItemWidth(350.0f);
+			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 32);
+		}
+		else if constexpr (field_type == _field_long_string)
+		{
+			ImGui::SetNextItemWidth(350.0f);
+			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 256);
+		}
+		else if constexpr (field_type == _field_string_id)
+		{
+			ImGui::SetNextItemWidth(350.0f);
+			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 2048);
+		}
+		else if constexpr (field_type == _field_old_string_id)
+		{
+			// not really sure what the correct representation of this is...
+
+			ImGui::SetNextItemWidth(350.0f);
+			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S32, data);
+		}
 	}
 	ImGui::Columns(1);
 
@@ -1448,6 +1470,10 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 			}
 			break;
 		}
+		case _field_string:			render_primitive<_field_string>(field_data, *current_field); break;
+		case _field_long_string:	render_primitive<_field_long_string>(field_data, *current_field); break;
+		case _field_string_id:		render_primitive<_field_string_id>(field_data, *current_field); break;
+		case _field_old_string_id:	render_primitive<_field_old_string_id>(field_data, *current_field); break;
 		case _field_tag_reference:
 		{
 			h_tag*& tag_reference = *static_cast<h_tag**>(field_data);
