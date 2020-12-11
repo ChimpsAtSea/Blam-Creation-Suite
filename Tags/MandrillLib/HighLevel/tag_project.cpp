@@ -33,3 +33,15 @@ c_tag_project::~c_tag_project()
 		delete tag;
 	}
 }
+
+h_group* c_tag_project::get_group_by_group_tag(tag group_tag) const
+{
+	for (h_group* group : groups)
+	{
+		if (group->tag_group.group_tag == group_tag)
+		{
+			return group;
+		}
+	}
+	return nullptr;
+}

@@ -371,6 +371,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 			}
 		}
 	}
+	stream << std::endl;
 
 	stream << "namespace blofeld" << std::endl;
 	stream << "{" << std::endl;

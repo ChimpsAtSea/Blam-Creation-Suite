@@ -1,8 +1,8 @@
 #pragma once
 
-class c_haloreach_cache_file;
 class h_tag;
 class c_high_level_tag_tab;
+class c_high_level_tag_editor_tab;
 
 namespace blofeld
 {
@@ -16,6 +16,9 @@ class c_tag_project_tab :
 	public c_mandrill_tab
 {
 public:
+	friend class c_high_level_tag_tab;
+	friend class c_high_level_tag_editor_tab;
+
 	non_copyconstructable(c_tag_project_tab);
 
 	c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag_project, c_mandrill_tab& parent);
