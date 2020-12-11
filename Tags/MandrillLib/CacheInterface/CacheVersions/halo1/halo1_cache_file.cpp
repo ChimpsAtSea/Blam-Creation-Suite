@@ -72,8 +72,6 @@ void c_halo1_cache_file::read_cache_file()
 		// UNCOMPRESS HERE!
 
 		current_data_position += compressed_chunk.uncompressed_size;
-
-		debug_point;
 	}
 
 	delete[] compressed_map_data;

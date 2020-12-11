@@ -152,7 +152,8 @@ void c_blofeld_tag_debugger_tab::render_field_enum_type(int level, char* data, c
 	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
 	if (raw_value < field.string_list_definition->count(engine_type, platform_type))
 	{
-		enum_value += field.string_list_definition->strings(engine_type, platform_type)[raw_value];
+		const c_blamlib_string_parser& string_parser = *field.string_list_definition->strings(engine_type, platform_type)[raw_value];
+		enum_value += string_parser.display_name.c_str();
 	}
 	ImGui::PushItemWidth(350.0f);
 	ImGui::InputText("", enum_value.str(), 256, ImGuiInputTextFlags_ReadOnly);

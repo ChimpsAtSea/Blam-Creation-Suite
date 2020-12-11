@@ -44,8 +44,6 @@ c_function_hook_ex<halo4_sub_18012F554_offset, __int64 __fastcall(__int64 a1)> h
 				printf("_hs_function_table[0x%02X] = 0x%llX\n", i, (uint64_t)halo4_hs_function_table[i]);
 			}
 		}
-
-		debug_point;
 	}
 
 	return result;

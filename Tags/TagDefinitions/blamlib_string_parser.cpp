@@ -22,9 +22,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	is_index(false),
 	is_pointer(false)
 {
-	//name = "air reverb gain*!^{reverb gain}*!^:dB*!^[   -100  ]#how much reverb applies to this sound class";
-	static int y = 0;
-	//c_console::write_line_verbose("%i %s", y, name);
 	if (string.is_empty())
 	{
 		return;
@@ -77,7 +74,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	if (is_block && !code_name.ends_with("_block")) // #TODO: remove
 	{
 		code_name += "_block";
-		debug_point;
 	}
 	else if (!units.is_empty() && units.size() < 6)
 	{
@@ -95,7 +91,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	{
 		code_name.shrink(code_name.size() - 1);
 		code_name += "percent";
-		debug_point;
 	}
 	if (code_name.starts_with_numeric())
 	{
@@ -125,9 +120,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 			code_name.format("%s$%i", temp.data, unique_field_count);
 		}
 	}
-
-	debug_point;
-	y++;
 }
 
 void c_blamlib_string_parser::cleanup_code_name()

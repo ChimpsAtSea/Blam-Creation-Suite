@@ -70,8 +70,6 @@ c_function_hook_ex<sub_1806F4000_offset, void()> sub_1806F4000 = { "sub_1806F400
 {
 
 	sub_1806F4000();
-	debug_point;
-
 } };
 
 uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)

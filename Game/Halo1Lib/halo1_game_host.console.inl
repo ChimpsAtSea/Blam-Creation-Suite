@@ -168,9 +168,7 @@ void halo1_execute_command(const char* command)
 	if (is_valid(halo1_execute_dev_command))
 	{
 		char result = halo1_execute_dev_command(command, 0);
-		debug_point;
 	}
-	debug_point;
 }
 */
 #pragma endregion

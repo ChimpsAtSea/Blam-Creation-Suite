@@ -83,8 +83,6 @@ uint32_t c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local
 					block_bytes_traversed += block_structure_size;
 				}
 			}
-
-			debug_point;
 			break;
 		}
 		}
@@ -96,8 +94,6 @@ uint32_t c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local
 	}
 	structure_size;
 	//offset += structure_size;
-
-	debug_point;
 
 	ASSERT(bytes_traversed == structure_size);
 
@@ -1182,30 +1178,14 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 	struct s_flags_dynamic_data
 	{
 		s_flags_dynamic_data(c_cache_file& cache_file, uint64_t value, const blofeld::s_tag_field& field) :
-			bools(),
-			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
+			bools()
 		{
 			represented_value = ~value; // force update
 			update(value);
-
-			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
-			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-			const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-
-			string_list_parsers.reserve(string_list_count);
-
-			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
-			{
-				const char* const current_string_value = string_list_values[string_index];
-				string_list_parsers.push_back(new c_blamlib_string_parser(current_string_value));
-			}
 		}
 
 		~s_flags_dynamic_data()
 		{
-			delete& string_parser;
 		}
 
 		void update(uint64_t value)
@@ -1222,8 +1202,6 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 
 		bool bools[64];
 		uint64_t represented_value;
-		c_blamlib_string_parser& string_parser; // #TODO: remove
-		std::vector<c_blamlib_string_parser*> string_list_parsers; // #TODO: remove
 	};
 	s_flags_dynamic_data& dynamic_data = get_dynamic_data<s_flags_dynamic_data, c_cache_file&>(data, cache_file, value, field);
 	dynamic_data.update(value);
@@ -1236,14 +1214,14 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(dynamic_data.string_parser.display_name.c_str());
+		ImGui::Text(field.string_parser.display_name.c_str());
 	}
 	ImGui::NextColumn();
 	{
 		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 		uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-		const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const c_blamlib_string_parser** const string_parsers = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
 		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(string_list_count));
@@ -1252,8 +1230,7 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 		{
 			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const char* const string_list_value = string_list_values[string_index];
-				c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
+				const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
 				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
 				if (current_string_has_tooltip)
 				{
@@ -1305,10 +1282,10 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 		}
 	}
 
-	if (!dynamic_data.string_parser.units.is_empty())
+	if (!field.string_parser.units.is_empty())
 	{
 		ImGui::SameLine();
-		ImGui::Text(dynamic_data.string_parser.units.c_str());
+		ImGui::Text(field.string_parser.units.c_str());
 
 		//const char* type_name = blofeld::field_to_string(field.field_type);
 		//ImGui::Text(type_name);
@@ -1344,38 +1321,6 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 	DEBUG_ONLY(default: throw);
 	}
 
-	struct s_enum_dynamic_data
-	{
-		s_enum_dynamic_data(c_cache_file& cache_file, const blofeld::s_tag_field& field) :
-			field_formatter(*new c_blamlib_string_parser(field.name, false, nullptr)),
-			string_list_parsers()
-		{
-			const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
-			e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-			uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-			const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-
-			string_list_parsers.reserve(string_list_count);
-
-			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
-			{
-				const char* const current_string_value = string_list_values[string_index];
-				string_list_parsers.push_back(new c_blamlib_string_parser(current_string_value));
-			}
-		}
-
-		~s_enum_dynamic_data()
-		{
-			delete& field_formatter;
-		}
-
-		
-		c_blamlib_string_parser& field_formatter; // #TODO: remove
-		std::vector<c_blamlib_string_parser*> string_list_parsers; // #TODO: remove
-	};
-	s_enum_dynamic_data& dynamic_data = get_dynamic_data<s_enum_dynamic_data, c_cache_file&>(data, cache_file, field);
-
 	ImGui::PushID(data);
 
 	bool enum_value_updated = false;
@@ -1384,21 +1329,20 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1000);
 	{
-		ImGui::Text(dynamic_data.field_formatter.display_name.c_str());
+		ImGui::Text(field.string_parser.display_name.c_str());
 	}
 	ImGui::NextColumn();
 	{
 		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 		uint32_t const string_list_count = string_list_definition.count(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
-		const char** const string_list_values = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+		const c_blamlib_string_parser** const string_parsers = string_list_definition.strings(engine_type, platform_type); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 
-
-		if (dynamic_data.string_list_parsers.size() != 0)
+		if (string_list_count > 0)
 		{
 			ImGui::SetNextItemWidth(350);
 
-			c_blamlib_string_parser& selected_string_parser = *dynamic_data.string_list_parsers[value];
+			const c_blamlib_string_parser& selected_string_parser = *string_parsers[value];
 			bool const selected_string_has_tooltip = !selected_string_parser.description.is_empty();
 			if (selected_string_has_tooltip)
 			{
@@ -1409,8 +1353,7 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 			{
 				for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 				{
-					const char* const current_string_value = string_list_values[string_index];
-					c_blamlib_string_parser& current_string_parser = *dynamic_data.string_list_parsers[string_index];
+					const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
 					bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
 					if (current_string_has_tooltip)
 					{
@@ -1458,10 +1401,10 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		}
 	}
 
-	if (!dynamic_data.field_formatter.units.is_empty())
+	if (!field.string_parser.units.is_empty())
 	{
 		ImGui::SameLine();
-		ImGui::Text(dynamic_data.field_formatter.units.c_str());
+		ImGui::Text(field.string_parser.units.c_str());
 
 		//const char* type_name = blofeld::field_to_string(field.field_type);
 		//ImGui::Text(type_name);

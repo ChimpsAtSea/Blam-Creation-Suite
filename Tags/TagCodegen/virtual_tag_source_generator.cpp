@@ -181,8 +181,6 @@ void c_virtual_tag_source_generator::generate_source() const
 
 		stream << "\t\t\t" << "case " << tag_group_name.data << ": return new v_tag_interface<s_" << tag_struct_definition.name << ">(tag_interface);" << std::endl;
 
-		debug_point;
-
 	}
 
 	stream << "\t\t\t" << "}" << std::endl << std::endl;

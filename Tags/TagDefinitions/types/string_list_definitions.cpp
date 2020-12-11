@@ -98,7 +98,7 @@ namespace blofeld
 
 					if (current_string_index < k_versioned_string_list_table_size)
 					{
-						strings[platform_index][engine_index][current_string_index] = value.string;
+						strings[platform_index][engine_index][current_string_index] = new c_blamlib_string_parser(value.string);
 					}
 					current_string_index++;
 				}
@@ -120,7 +120,7 @@ namespace blofeld
 				{
 					if (current_string_index < k_versioned_string_list_table_size)
 					{
-						strings[platform_index][engine_index][current_string_index] = string;
+						strings[platform_index][engine_index][current_string_index] = new c_blamlib_string_parser(string);
 					}
 					current_string_index++;
 				}
@@ -153,7 +153,7 @@ namespace blofeld
 					{
 						if (current_string_index < k_versioned_string_list_table_size)
 						{
-							strings[platform_index][engine_index][current_string_index] = string;
+							strings[platform_index][engine_index][current_string_index] = new c_blamlib_string_parser(string);
 						}
 						current_string_index++;
 					}
@@ -176,7 +176,7 @@ namespace blofeld
 				{
 					if (current_string_index < k_versioned_string_list_table_size)
 					{
-						strings[platform_index][engine_index][current_string_index] = string;
+						strings[platform_index][engine_index][current_string_index] = new c_blamlib_string_parser(string);
 					}
 					current_string_index++;
 				}

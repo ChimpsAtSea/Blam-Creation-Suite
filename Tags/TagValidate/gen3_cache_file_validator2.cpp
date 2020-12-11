@@ -314,8 +314,6 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 
 	}
 	c_console::write_line("found %u memory region errors", error_count);
-
-	debug_point;
 }
 
 s_tag_validation_data* c_gen3_cache_file_validator2::validate_tag_group(c_tag_interface& tag_interface, char* data, const blofeld::s_tag_struct_definition& struct_definition)
@@ -536,8 +534,6 @@ void c_gen3_cache_file_validator2::validate_tag_pageable(
 		char* pagable_data = data + cache_file_resource_data_block.naive_data_offset;
 
 		traverse_tag_struct(validation_data, pagable_data, struct_definition);
-
-		debug_point;
 	}
 	else if (v_tag_interface<blofeld::halo3::s_cache_file_resource_gestalt_block_struct>* halo3_cache_file_resource_gestalt = dynamic_cast<decltype(halo3_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
 	{
@@ -547,14 +543,6 @@ void c_gen3_cache_file_validator2::validate_tag_pageable(
 	{
 		return; // throw error?
 	}
-
-
-	
-
-
-
-
-	debug_point;
 
 	//uint32_t const struct_size = calculate_struct_size(engine_type, platform_type, _build_not_set, struct_definition);
 	//uint32_t const struct_count = 1;

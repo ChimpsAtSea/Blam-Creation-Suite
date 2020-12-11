@@ -337,8 +337,6 @@ void c_low_level_tag_source_generator::generate_header() const
 
 		stream << std::endl;
 
-		debug_point;
-
 
 	}
 
@@ -391,15 +389,15 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 		string_list_value_unique_counter.clear();
 
 		uint32_t count = string_list_definition->count(engine_type, platform_type);
-		const char** strings = string_list_definition->strings(engine_type, platform_type);
+		const c_blamlib_string_parser** string_parsers = string_list_definition->strings(engine_type, platform_type);
 
 		stream << "\t\t" << "enum e_" << string_list_definition->name << " : long" << std::endl;
 		stream << "\t\t" << "{" << std::endl;
 
 		for (uint32_t string_index = 0; string_index < count; string_index++)
 		{
-			const char* string = strings[string_index];
-			c_blamlib_string_parser string_parser = c_blamlib_string_parser(string, false, &string_list_value_unique_counter);
+			const c_blamlib_string_parser& original_string_parser = *string_parsers[string_index];
+			c_blamlib_string_parser string_parser = c_blamlib_string_parser(original_string_parser.string.c_str(), false, &string_list_value_unique_counter);
 
 			stream << "\t\t\t" << " // " << string_parser.display_name.c_str() << std::endl;
 

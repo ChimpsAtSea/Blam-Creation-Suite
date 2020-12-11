@@ -126,7 +126,7 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\t{" << std::endl << std::endl;
 
 	stream << "\t\th_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
-	stream << "\t\h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+	stream << "\t\th_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
@@ -200,7 +200,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "h_" << field_source_type << " (" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_type) << "];";
+				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_struct:
@@ -217,7 +217,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			}
 			case _field_data:
 			{
-				stream << "\t\t\t\t" << "std::vector<char> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:

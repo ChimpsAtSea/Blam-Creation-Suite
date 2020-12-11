@@ -15,17 +15,16 @@ c_string_id_interface::c_string_id_interface(c_gen3_cache_file& cache_file, uint
 	{
 		index_mask = (index_mask << 1) | 1;
 	}
-	index_mask << (0);
+
 	for (uint32_t i = 0; i < namespace_bits; i++)
 	{
 		namespace_mask = (namespace_mask << 1) | 1;
 	}
-	namespace_mask << (index_bits);
+
 	for (uint32_t i = 0; i < length_bits; i++)
 	{
 		length_mask = (length_mask << 1) | 1;
 	}
-	length_bits << (index_bits + namespace_bits);
 
 	for (uint32_t current_set = 1; current_set < cache_file.string_id_namespace_count; current_set++) // #TODO: pre calculate this table
 	{

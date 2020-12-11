@@ -195,8 +195,6 @@ void c_haloreach_cache_file::init_resources()
 			{
 				FATAL_ERROR(L"Unknown resource type");
 			}
-
-			debug_point;
 		}
 
 	}
@@ -366,6 +364,4 @@ void c_haloreach_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_
 			tag_data = start;
 		}
 	}
-
-	debug_point;
 }

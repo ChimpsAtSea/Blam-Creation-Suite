@@ -66,9 +66,9 @@ namespace blofeld
 		}
 
 		uint32_t counts[k_number_of_platform_types][k_number_of_engine_types];
-		const char* strings[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+		const c_blamlib_string_parser* strings[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
 
-		const char* (& get_strings(e_engine_type engine_type, e_platform_type platform_type))[k_versioned_string_list_table_size]
+		const c_blamlib_string_parser* (& get_strings(e_engine_type engine_type, e_platform_type platform_type))[k_versioned_string_list_table_size]
 		{
 			  return strings[platform_type][engine_type];
 		}
@@ -91,7 +91,7 @@ namespace blofeld
 		}
 
 		inline uint32_t count(e_engine_type engine_type, e_platform_type platform_type) const { return string_list.get_count(engine_type, platform_type); }
-		inline const char* (&strings(e_engine_type engine_type, e_platform_type platform_type) const)[k_versioned_string_list_table_size]{ return string_list.get_strings(engine_type, platform_type); }
+		inline const c_blamlib_string_parser* (&strings(e_engine_type engine_type, e_platform_type platform_type) const)[k_versioned_string_list_table_size]{ return string_list.get_strings(engine_type, platform_type); }
 
 		const char* name;
 		//uint32_t count;

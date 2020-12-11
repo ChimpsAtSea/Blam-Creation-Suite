@@ -43,7 +43,5 @@ c_multi_data_patch<halo3_enable_debug_hud_coordinates_offsets> halo3_enable_debu
 
 		packets.push_back(MAKE_DATAPATCHPACKET(data[1], 6));
 		nop_address(data[1], 6);
-
-		debug_point;
 	}
 };

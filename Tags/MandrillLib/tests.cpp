@@ -13,7 +13,6 @@ void test_mandrill_cache_file_blofeld_validation(const wchar_t* cache_filepath)
 		test_cache_file->get_raw_tag_memory_region(tag_interface.get_index(), region_size, region_data);
 		if (region_size == 0) continue;
 		c_console::write_line_verbose("%s is approximately %u bytes", tag_interface.get_path_with_group_id_cstr(), static_cast<uint32_t>(region_size));
-		debug_point;
 	}
 
 	delete test_cache_file;

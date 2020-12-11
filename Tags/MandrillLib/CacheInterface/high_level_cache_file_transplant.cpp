@@ -189,17 +189,16 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			}
 			case _field_array:
 			{
+				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 				const char* raw_array_data_position = current_data_position;
-				char* high_level_array_data_position = static_cast<char*>(high_level_field_data);
 
 				uint32_t const array_elements_count = field->array_definition->count(engine_type);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
-					h_object& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_array_data_position);
+					h_object& array_element_storage = array_storage[array_index];
 
-					transplant_data(array_storage, raw_array_data_position, field->array_definition->struct_definition);
+					transplant_data(array_element_storage, raw_array_data_position, field->array_definition->struct_definition);
 
-					high_level_array_data_position += array_storage.get_type_size();
 					raw_array_data_position += field_size;
 				}
 				break;
@@ -226,7 +225,6 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 					data_storage.clear();
 					data_storage.insert(data_storage.begin(), tag_data_data, tag_data_data + tag_data.size);
 				}
-				debug_point;
 				break;
 			}
 			}

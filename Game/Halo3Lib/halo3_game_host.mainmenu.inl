@@ -165,8 +165,6 @@ c_data_patch<halo3_external_launch_timeout_patch_offset> halo3_external_launch_t
 
 		copy_to_address(data, jump, sizeof(jump));
 	}
-
-	debug_point;
 } };
 
 uintptr_t ui_game_mode_request_change_offset(e_engine_type engine_type, e_build build)

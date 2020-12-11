@@ -19,7 +19,6 @@ uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build buil
 }
 c_function_hook_ex<shell_get_external_host_offset, void* __fastcall(void)> shell_get_external_host = { "shell_get_external_host", []()
 {
-	debug_point;
 	void* result = shell_get_external_host();
 	//result = nullptr;
 	return result;

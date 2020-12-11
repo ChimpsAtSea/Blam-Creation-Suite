@@ -36,7 +36,6 @@ void c_groundhog_cache_file::init(groundhog::s_cache_file_header& cache_file_hea
 	for (uint32_t group_index = 0; group_index < groundhog_cache_file_tags_header->tag_groups.count; group_index++)
 	{
 		s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
-		debug_point;
 
 		tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 	}
@@ -45,7 +44,6 @@ void c_groundhog_cache_file::init(groundhog::s_cache_file_header& cache_file_hea
 	for (uint32_t tag_instance = 0; tag_instance < groundhog_cache_file_tags_header->tag_instances.count; tag_instance++)
 	{
 		s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
-		debug_point;
 
 		tag_interfaces.push_back(new c_gen3_tag_interface(*this, tag_instance));
 	}
@@ -61,7 +59,7 @@ c_groundhog_cache_file::c_groundhog_cache_file(const std::wstring& map_filepath)
 
 	string_id_namespace_indices_vector = { 1587, 2198, 267, 141, 248, 85, 43, 2832, 530, 52, 131, 52, 13, 66, 235 };
 	string_id_namespace_indices = string_id_namespace_indices_vector.data();
-	string_id_namespace_count = string_id_namespace_indices_vector.size();
+	string_id_namespace_count = static_cast<uint32_t>(string_id_namespace_indices_vector.size());
 	string_id_interface = new c_string_id_namespace_list(*this, 19, 8, 5);
 
 	init_sorted_instance_lists();
@@ -168,6 +166,4 @@ void c_groundhog_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_
 			tag_data = start;
 		}
 	}
-
-	debug_point;
 }

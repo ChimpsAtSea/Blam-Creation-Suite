@@ -100,7 +100,5 @@ c_data_patch<halo4_external_launch_timeout_patch_offset> halo4_external_launch_t
 
 		copy_to_address(data, jump, sizeof(jump));
 	}
-
-	debug_point;
 } };
 #pragma endregion

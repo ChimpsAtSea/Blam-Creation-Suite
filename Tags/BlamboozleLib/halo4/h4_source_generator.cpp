@@ -90,7 +90,6 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			if (tag_struct_container->is_block) continue; // these are created manually through c_h4_tag_block_container
 			create_tag_struct_header(hs, *tag_struct_container);
 			create_tag_struct_source(ss, *tag_struct_container);
-			debug_point;
 		}
 		if (!source_file->tag_structs.empty()) hs << std::endl;
 

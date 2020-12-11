@@ -428,10 +428,6 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 								blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data_block = haloreach_cache_file_resource_gestalt->resources_block[index];
 								char* data = cache_file.get_tag_data(haloreach_cache_file_resource_gestalt->naive_resource_control_data); // #TODO: virtual tag data [tag_data.get_data()]
 								pagable_data = data + cache_file_resource_data_block.naive_data_offset;
-
-
-
-								debug_point;
 							}
 							else if (v_tag_interface<blofeld::halo3::s_cache_file_resource_gestalt_block_struct>* halo3_cache_file_resource_gestalt = dynamic_cast<decltype(halo3_cache_file_resource_gestalt)>(cache_file_resource_gestalt->get_virtual_tag_interface()))
 							{
@@ -756,7 +752,6 @@ void c_gen3_cache_file_validator::validate_tag_instance(c_gen3_tag_interface& ta
 			is_tag_valid,
 			0,
 			_cache_file_validator_struct_type_structure);
-		debug_point;
 	}
 	else
 	{

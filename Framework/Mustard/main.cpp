@@ -582,8 +582,6 @@ __declspec(dllexport) int main()
 
 			auto x = GetProcAddress(loaded_executable_module, MAKEINTRESOURCEA(5908));
 			auto y = GetProcAddress(loaded_executable_module, "?Init@Noesis@@YAXPEBD0@Z");
-			
-			debug_point;
 		}
 	}
 #endif

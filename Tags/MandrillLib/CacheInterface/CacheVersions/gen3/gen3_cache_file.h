@@ -90,7 +90,7 @@ public:
 	}
 
 	gen3::s_cache_file_tag_interop* gen3_cache_file_tag_interops;
-	long tag_interop_count;
+	uint32_t tag_interop_count;
 	c_resource_entry** resource_entries;
 	uint32_t resource_entries_count;
 
@@ -112,7 +112,7 @@ protected:
 	char* string_ids_buffer;
 	long* string_id_indices;
 	long* string_id_namespace_indices;
-	long string_id_namespace_count;
+	uint32_t string_id_namespace_count;
 	char* filenames_buffer;
 	long* filename_indices;
 	char* tags_buffer;

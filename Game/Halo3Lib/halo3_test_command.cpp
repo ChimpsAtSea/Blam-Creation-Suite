@@ -149,14 +149,12 @@ void print_mainmenu_ui_globals_test_command()
 							const char* mainmenu_ui_globals_name = halo3_tag_name_get(mainmenu_ui_globals_index);
 							const char* mainmenu_ui_globals_group_short_name = group.string;
 							c_console::write_line_verbose("mainmenu ui globals: '%s.%s'", mainmenu_ui_globals_name, mainmenu_ui_globals_group_short_name);
-							debug_point;
 						}
 					}
 				}
 				else
 				{
 					c_console::write_line_verbose("no mainmenu ui globals tag exists or has the wrong group tag");
-					debug_point;
 				}
 			}
 		}
@@ -239,8 +237,6 @@ void first_person_weapon_offset_test_command()
 	real_vector3d& machinegun_turret_integrated_centered = first_person_weapon_offset_get<true>("objects\\weapons\\turret\\machinegun_turret\\machinegun_turret_integrated");
 	real_vector3d& missile_pod_lowered = first_person_weapon_offset_get<false>("objects\\weapons\\turret\\missile_pod\\missile_pod");
 	real_vector3d& missile_pod_centered = first_person_weapon_offset_get<true>("objects\\weapons\\turret\\missile_pod\\missile_pod");
-
-	debug_point;
 }
 
 extern bool g_use_30_tick;

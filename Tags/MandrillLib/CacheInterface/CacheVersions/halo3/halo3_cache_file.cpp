@@ -25,7 +25,6 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	for (uint32_t group_index = 0; group_index < halo3_cache_file_tags_header->tag_groups.count; group_index++)
 	{
 		s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
-		debug_point;
 
 		tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 	}
@@ -34,7 +33,6 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	for (uint32_t tag_instance = 0; tag_instance < halo3_cache_file_tags_header->tag_instances.count; tag_instance++)
 	{
 		s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
-		debug_point;
 
 		const char* name = string_ids_buffer + string_id_indices[0];
 

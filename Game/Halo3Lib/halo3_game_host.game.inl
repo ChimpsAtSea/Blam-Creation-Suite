@@ -44,7 +44,6 @@ c_function_hook_ex<halo3_game_time_get_ticks_per_second_constant_offset, float _
 					// if the values are set, we set them to 30 and float(1/30) respectively
 					engine_time_tick = 30;
 					time_per_tick = 1.0f / engine_time_tick;
-					//debug_point;
 				}
 				break;
 			}

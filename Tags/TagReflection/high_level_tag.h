@@ -23,6 +23,12 @@ public:
 	}
 };
 
+class h_data :
+	public std::vector<char>
+{
+public:
+};
+
 class h_group;
 
 class h_tag :
@@ -36,7 +42,7 @@ public:
 
 	c_fixed_path tag_filepath;
 	c_fixed_path tag_filename;
-	h_group* const group;
+	h_group* group;
 };
 
 class h_group
@@ -54,16 +60,65 @@ public:
 	const blofeld::s_tag_group& tag_group;
 };
 
-struct h_block
+class h_enumerable
+{
+public:
+	virtual h_object& operator[](uint32_t index) = 0;
+	virtual h_object& get(uint32_t index) = 0;
+	virtual h_object* data() = 0;
+	virtual uint32_t type_size() = 0;
+	virtual uint32_t size() = 0;
+	virtual uint32_t data_size() = 0;
+};
+
+template<typename h_custom_type, uint32_t _size>
+struct h_typed_array :
+	public std::array<h_custom_type, _size>,
+	public h_enumerable
+{
+public:
+	virtual h_custom_type & operator[](uint32_t index) final
+	{
+		return std::array<h_custom_type, _size>::operator [](index);
+	}
+
+	virtual h_custom_type & get(uint32_t index) final
+	{
+		return std::array<h_custom_type, _size>::operator [](index);
+	}
+
+	virtual h_custom_type * data() final
+	{
+		return std::array<h_custom_type, _size>::data();
+	}
+
+	virtual uint32_t type_size() final
+	{
+		return h_custom_type::type_size;
+	}
+
+	virtual uint32_t size() final
+	{
+		return _size;
+	}
+
+	virtual uint32_t data_size() final
+	{
+		return _size * sizeof(h_custom_type);
+	}
+};
+
+class h_block :
+	public h_enumerable
 {
 public:
 	virtual h_object& emplace_back() = 0;
-	virtual h_object* data() = 0;
-	virtual h_object& get(uint32_t index) = 0;
-	virtual uint32_t type_size() = 0;
-	virtual uint32_t size() = 0;
+	virtual h_object& emplace_back(const h_object& value) = 0;
 	virtual void reserve(uint32_t count) = 0;
 	virtual void resize(uint32_t count) = 0;
+	virtual void insert_hole(uint32_t index, uint32_t count) = 0;
+	virtual void remove(uint32_t index) = 0;
+	virtual void clear() = 0;
 };
 
 template<typename h_custom_type>
@@ -72,10 +127,9 @@ struct h_typed_block :
 	public h_block
 {
 public:
-	virtual h_custom_type& emplace_back() final
+	virtual h_custom_type& operator[](uint32_t index) final
 	{
-		auto& value = std::vector<h_custom_type>::emplace_back();
-		return value;
+		return std::vector<h_custom_type>::operator [](index);
 	}
 
 	virtual h_custom_type& get(uint32_t index) final
@@ -99,6 +153,27 @@ public:
 		return static_cast<uint32_t>(std::vector<h_custom_type>::size());
 	}
 
+	virtual uint32_t data_size() final
+	{
+		return static_cast<uint32_t>(std::vector<h_custom_type>::size() * sizeof(h_custom_type));
+	}
+
+	virtual h_custom_type& emplace_back() final
+	{
+		return std::vector<h_custom_type>::emplace_back();
+	}
+
+	virtual h_custom_type& emplace_back(const h_object& value) final
+	{
+#ifdef _DEBUG
+		const h_custom_type* typed_value = dynamic_cast<const h_custom_type*>(&value);
+		DEBUG_ASSERT(typed_value != nullptr);
+#else
+		const h_custom_type* typed_value = static_cast<const h_custom_type*>(&value);
+#endif
+		return std::vector<h_custom_type>::emplace_back(*typed_value);
+	}
+
 	virtual void reserve(uint32_t count) final
 	{
 		std::vector<h_custom_type>::reserve(count);
@@ -107,5 +182,20 @@ public:
 	virtual void resize(uint32_t count) final
 	{
 		std::vector<h_custom_type>::resize(count);
+	}
+
+	virtual void insert_hole(uint32_t index, uint32_t count) final
+	{
+		std::vector<h_custom_type>::insert(std::vector<h_custom_type>::begin() + index, count, h_custom_type());
+	}
+
+	virtual void remove(uint32_t index) final
+	{
+		std::vector<h_custom_type>::erase(std::vector<h_custom_type>::begin() + index);
+	}
+
+	virtual void clear() final
+	{
+		std::vector<h_custom_type>::clear();
 	}
 };
