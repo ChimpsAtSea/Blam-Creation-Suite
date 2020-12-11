@@ -1,10 +1,13 @@
 #pragma once
 
-template<typename T>
-void high_level_tag_ctor(T* tag) {}
+//template<typename T>
+//void high_level_tag_ctor(T* tag) {}
+//
+//template<typename T>
+//void high_level_tag_dtor(T* tag) {}
 
-template<typename T>
-void high_level_tag_dtor(T* tag) {}
+#define high_level_tag_ctor(...)
+#define high_level_tag_dtor(...)
 
 class h_object
 {
@@ -127,75 +130,114 @@ struct h_typed_block :
 	public h_block
 {
 public:
-	virtual h_custom_type& operator[](uint32_t index) final
-	{
-		return std::vector<h_custom_type>::operator [](index);
-	}
-
-	virtual h_custom_type& get(uint32_t index) final
-	{
-		return std::vector<h_custom_type>::operator [](index);
-	}
-
-	virtual h_custom_type* data() final
-	{
-		auto values = std::vector<h_custom_type>::data();
-		return values;
-	}
-
-	virtual uint32_t type_size() final
-	{
-		return h_custom_type::type_size;
-	}
-
-	virtual uint32_t size() final
-	{
-		return static_cast<uint32_t>(std::vector<h_custom_type>::size());
-	}
-
-	virtual uint32_t data_size() final
-	{
-		return static_cast<uint32_t>(std::vector<h_custom_type>::size() * sizeof(h_custom_type));
-	}
-
-	virtual h_custom_type& emplace_back() final
-	{
-		return std::vector<h_custom_type>::emplace_back();
-	}
-
-	virtual h_custom_type& emplace_back(const h_object& value) final
-	{
-#ifdef _DEBUG
-		const h_custom_type* typed_value = dynamic_cast<const h_custom_type*>(&value);
-		DEBUG_ASSERT(typed_value != nullptr);
-#else
-		const h_custom_type* typed_value = static_cast<const h_custom_type*>(&value);
-#endif
-		return std::vector<h_custom_type>::emplace_back(*typed_value);
-	}
-
-	virtual void reserve(uint32_t count) final
-	{
-		std::vector<h_custom_type>::reserve(count);
-	}
-
-	virtual void resize(uint32_t count) final
-	{
-		std::vector<h_custom_type>::resize(count);
-	}
-
-	virtual void insert_hole(uint32_t index, uint32_t count) final
-	{
-		std::vector<h_custom_type>::insert(std::vector<h_custom_type>::begin() + index, count, h_custom_type());
-	}
-
-	virtual void remove(uint32_t index) final
-	{
-		std::vector<h_custom_type>::erase(std::vector<h_custom_type>::begin() + index);
-	}
-
-	virtual void clear() final
-	{
-		std::vector<h_custom_type>::clear();
-	}
+	virtual h_custom_type& operator[](uint32_t index) final;
+	virtual h_custom_type& get(uint32_t index) final;
+	virtual h_custom_type* data() final;
+	virtual uint32_t type_size() final;
+	virtual uint32_t size() final;
+	virtual uint32_t data_size() final;
+	virtual h_custom_type& emplace_back() final;
+	virtual h_custom_type& emplace_back(const h_object& value) final;
+	virtual void reserve(uint32_t count) final;
+	virtual void resize(uint32_t count) final;
+	virtual void insert_hole(uint32_t index, uint32_t count) final;
+	virtual void remove(uint32_t index) final;
+	virtual void clear() final;
 };
+																																							
+#ifdef _DEBUG																																				
+#define k_typed_block_func_impl_debug 1																														
+#else																																						
+#define k_typed_block_func_impl_debug 0																														
+#endif																																						
+#define h_typed_block_func_impl(h_custom_type)																												\
+template<>																																					\
+h_custom_type& h_typed_block<h_custom_type>::operator[](uint32_t index)																						\
+{																																							\
+	return std::vector<h_custom_type>::operator [](index);																									\
+}																																							\
+																																							\
+template<>																																					\
+h_custom_type& h_typed_block<h_custom_type>::get(uint32_t index)																							\
+{																																							\
+	return std::vector<h_custom_type>::operator [](index);																									\
+}																																							\
+																																							\
+template<>																																					\
+h_custom_type* h_typed_block<h_custom_type>::data()																											\
+{																																							\
+	auto values = std::vector<h_custom_type>::data();																										\
+	return values;																																			\
+}																																							\
+																																							\
+template<>																																					\
+uint32_t h_typed_block<h_custom_type>::type_size()																											\
+{																																							\
+	return h_custom_type::type_size;																														\
+}																																							\
+																																							\
+template<>																																					\
+uint32_t h_typed_block<h_custom_type>::size()																												\
+{																																							\
+	return static_cast<uint32_t>(std::vector<h_custom_type>::size());																						\
+}																																							\
+																																							\
+template<>																																					\
+uint32_t h_typed_block<h_custom_type>::data_size()																											\
+{																																							\
+	return static_cast<uint32_t>(std::vector<h_custom_type>::size() * sizeof(h_custom_type));																\
+}																																							\
+																																							\
+template<>																																					\
+h_custom_type& h_typed_block<h_custom_type>::emplace_back()																									\
+{																																							\
+	return std::vector<h_custom_type>::emplace_back();																										\
+}																																							\
+																																							\
+template<>																																					\
+h_custom_type& h_typed_block<h_custom_type>::emplace_back(const h_object& value)																			\
+{																																							\
+	if constexpr (k_typed_block_func_impl_debug)																											\
+	{																																						\
+		const h_custom_type* typed_value = dynamic_cast<const h_custom_type*>(&value);																		\
+		DEBUG_ASSERT(typed_value != nullptr);																												\
+		return std::vector<h_custom_type>::emplace_back(*typed_value);																						\
+	}																																						\
+	else																																					\
+	{																																						\
+		const h_custom_type* typed_value = static_cast<const h_custom_type*>(&value);																		\
+		return std::vector<h_custom_type>::emplace_back(*typed_value);																						\
+	}																																						\
+}																																							\
+																																							\
+template<>																																					\
+void h_typed_block<h_custom_type>::reserve(uint32_t count)																									\
+{																																							\
+	std::vector<h_custom_type>::reserve(count);																												\
+}																																							\
+																																							\
+template<>																																					\
+void h_typed_block<h_custom_type>::resize(uint32_t count)																									\
+{																																							\
+	std::vector<h_custom_type>::resize(count);																												\
+}																																							\
+																																							\
+template<>																																					\
+void h_typed_block<h_custom_type>::insert_hole(uint32_t index, uint32_t count)																				\
+{																																							\
+	std::vector<h_custom_type>::insert(std::vector<h_custom_type>::begin() + index, count, h_custom_type());												\
+}																																							\
+																																							\
+template<>																																					\
+void h_typed_block<h_custom_type>::remove(uint32_t index)																									\
+{																																							\
+	std::vector<h_custom_type>::erase(std::vector<h_custom_type>::begin() + index);																			\
+}																																							\
+																																							\
+template<>																																					\
+void h_typed_block<h_custom_type>::clear()																													\
+{																																							\
+	std::vector<h_custom_type>::clear();																													\
+}																																								
+
+

@@ -1133,7 +1133,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	if (field.string_list_definition == nullptr)
 	{
 		ImGui::Text("Flag field fail. String list definition is null!");
-		return;
+		return false;
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
@@ -1234,7 +1234,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	if (field.string_list_definition == nullptr)
 	{
 		ImGui::Text("Flag field fail. String list definition is null!");
-		return;
+		return false;
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 

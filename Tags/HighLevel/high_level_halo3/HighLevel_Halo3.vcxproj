@@ -72,15 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>C:\Program Files\LLVM\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>C:\Program Files\LLVM\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>C:\Program Files\LLVM\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>C:\Program Files\LLVM\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -175,29 +179,77 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="halo3_high_level.h" />
+    <ClInclude Include="generated\halo3_high_level.h" />
     <ClInclude Include="highlevel-halo3-private-pch.h" />
     <ClInclude Include="highlevel-halo3-public-pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="halo3_high_level.ctor0.cpp" />
-    <ClCompile Include="halo3_high_level.ctor1.cpp" />
-    <ClCompile Include="halo3_high_level.ctor10.cpp" />
-    <ClCompile Include="halo3_high_level.ctor11.cpp" />
-    <ClCompile Include="halo3_high_level.ctor12.cpp" />
-    <ClCompile Include="halo3_high_level.ctor13.cpp" />
-    <ClCompile Include="halo3_high_level.ctor14.cpp" />
-    <ClCompile Include="halo3_high_level.ctor15.cpp" />
-    <ClCompile Include="halo3_high_level.ctor2.cpp" />
-    <ClCompile Include="halo3_high_level.ctor3.cpp" />
-    <ClCompile Include="halo3_high_level.ctor4.cpp" />
-    <ClCompile Include="halo3_high_level.ctor5.cpp" />
-    <ClCompile Include="halo3_high_level.ctor6.cpp" />
-    <ClCompile Include="halo3_high_level.ctor7.cpp" />
-    <ClCompile Include="halo3_high_level.ctor8.cpp" />
-    <ClCompile Include="halo3_high_level.ctor9.cpp" />
-    <ClCompile Include="halo3_high_level.misc.cpp" />
-    <ClCompile Include="halo3_high_level.virtual.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor0.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor1.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor10.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor11.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor12.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor13.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor14.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor15.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor16.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor17.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor18.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor19.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor2.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor20.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor21.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor22.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor23.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor24.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor25.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor26.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor27.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor28.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor29.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor3.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor30.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor31.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor32.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor33.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor34.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor35.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor36.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor37.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor38.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor39.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor4.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor40.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor41.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor42.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor43.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor44.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor45.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor46.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor47.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor48.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor49.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor5.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor50.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor51.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor52.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor53.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor54.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor55.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor56.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor57.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor58.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor59.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor6.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor60.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor61.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor62.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor63.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor7.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor8.cpp" />
+    <ClCompile Include="generated\halo3_high_level.ctor9.cpp" />
+    <ClCompile Include="generated\halo3_high_level.misc.cpp" />
+    <ClCompile Include="generated\halo3_high_level.virtual.cpp" />
     <ClCompile Include="highlevel-halo3-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

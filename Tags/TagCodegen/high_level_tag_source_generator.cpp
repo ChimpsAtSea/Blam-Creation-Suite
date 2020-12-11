@@ -230,7 +230,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_long_enum:
 			{
 				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				stream << "\t\t\t" << "e_" << string_list.name << " " << field_formatter.code_name.data << ";";
+				stream << "\t\t\t\t" << "e_" << string_list.name << " " << field_formatter.code_name.data << ";";
 				break;
 			}
 			default:
@@ -254,7 +254,7 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.h";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.h";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
@@ -361,6 +361,17 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << "#pragma warning(error : 4172)" << std::endl;
 	stream << std::endl;
 
+	{
+		uint32_t structure_index = 0;
+		for (const blofeld::s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_block_struct_definitions)
+		{
+			if ((structure_index++ % source_count) == source_index)
+			{
+				stream << "h_typed_block_func_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+			}
+		}
+	}
+
 	stream << "namespace blofeld" << std::endl;
 	stream << "{" << std::endl;
 	stream << "\tnamespace " << namespace_name << std::endl;
@@ -370,48 +381,50 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << "#ifndef __INTELLISENSE__" << std::endl;
 	stream << std::endl;
 
-	std::map<std::string, int> field_name_unique_counter;
-	uint32_t structure_index = 0;
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		if ((structure_index % source_count) == source_index)
+		std::map<std::string, int> field_name_unique_counter;
+		uint32_t structure_index = 0;
+		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 		{
-			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
-
-			if (tag_group != nullptr)
+			if ((structure_index % source_count) == source_index)
 			{
-				stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
-				stream << "(h_group& group, const char* tag_filepath) :" << std::endl;
-				stream << "\t\t\t" << "h_tag(&group, tag_filepath)" << std::endl;
-				generate_tag_constructor_params(stream, *tag_struct_definition);
-				stream << "\t\t" << "{" << std::endl;
-				stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
-				stream << "\t\t" << "}" << std::endl;
-				stream << std::endl;
+				const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
-				stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
-				stream << "() :" << std::endl;
-				stream << "\t\t\t" << "h_tag(nullptr, nullptr)" << std::endl;
-				generate_tag_constructor_params(stream, *tag_struct_definition);
-				stream << "\t\t" << "{" << std::endl;
-				stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
-				stream << "\t\t" << "}" << std::endl;
-				stream << std::endl;
+				if (tag_group != nullptr)
+				{
+					stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
+					stream << "(h_group& group, const char* tag_filepath) :" << std::endl;
+					stream << "\t\t\t" << "h_tag(&group, tag_filepath)" << std::endl;
+					generate_tag_constructor_params(stream, *tag_struct_definition);
+					stream << "\t\t" << "{" << std::endl;
+					stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
+					stream << "\t\t" << "}" << std::endl;
+					stream << std::endl;
+
+					stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
+					stream << "() :" << std::endl;
+					stream << "\t\t\t" << "h_tag(nullptr, nullptr)" << std::endl;
+					generate_tag_constructor_params(stream, *tag_struct_definition);
+					stream << "\t\t" << "{" << std::endl;
+					stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
+					stream << "\t\t" << "}" << std::endl;
+					stream << std::endl;
+				}
+				else
+				{
+					stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
+					stream << "() :" << std::endl;
+					stream << "\t\t\t" << "h_object()" << std::endl;
+					generate_tag_constructor_params(stream, *tag_struct_definition);
+					stream << "\t\t" << "{" << std::endl;
+					stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
+					stream << "\t\t" << "}" << std::endl;
+					stream << std::endl;
+				}
 			}
-			else
-			{
-				stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
-				stream << "() :" << std::endl;
-				stream << "\t\t\t" << "h_object()" << std::endl;
-				generate_tag_constructor_params(stream, *tag_struct_definition);
-				stream << "\t\t" << "{" << std::endl;
-				stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
-				stream << "\t\t" << "}" << std::endl;
-				stream << std::endl;
-			}
+
+			structure_index++;
 		}
-
-		structure_index++;
 	}
 
 	stream << std::endl;
@@ -422,7 +435,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
@@ -503,7 +516,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.virtual.cpp";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.virtual.cpp";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
@@ -688,7 +701,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/" + namespace_name + "_high_level.misc.cpp";
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.misc.cpp";
 	bool write_output = true;
 	size_t existing_file_size;
 	const char* existing_file_data;
