@@ -2,10 +2,10 @@
 ## What is Blam Creation Suite?
 The Blam Creation Suite is a repository of tools for the purpose of creating custom content for the compilation of titles in Halo: The Master Chief Collection. This project is managed by the Assault on the Control you can find out more about this project and Halo modding at the official website [assaultonthecontrolroom.com](https://assaultonthecontrolroom.com) or join our [Discord](https://discord.gg/ksvhEQD) channel.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/tjha8f9o6brbbc4k/branch/master?svg=true)](https://ci.appveyor.com/project/Assault-on-the-Control-Room/Blam-Creation-Suite/branch/master) [![Discord](https://img.shields.io/discord/598260526480359454?label=Discord)](https://discord.gg/ksvhEQD)
+[![Build status](https://ci.appveyor.com/api/projects/status/tjha8f9o6brbbc4k/branch/master?svg=true)](https://ci.appveyor.com/project/ChimpMods/Blam-Creation-Suite/branch/master) [![Discord](https://img.shields.io/discord/598260526480359454?label=Discord)](https://discord.gg/ksvhEQD)
 
 ## Download/Continuous Integration
-You can find the latest builds available for download on the [AppVeyor Continuous Integration]([https://ci.appveyor.com/project/Assault-on-the-Control-Room/Blam-Creation-Suite/branch/master/artifacts](https://ci.appveyor.com/project/Assault-on-the-Control-Room/Blam-Creation-Suite/branch/master/artifacts))
+You can find the latest builds available for download on the [AppVeyor Continuous Integration]([https://ci.appveyor.com/project/ChimpMods/Blam-Creation-Suite/branch/master/artifacts](https://ci.appveyor.com/project/ChimpMods/Blam-Creation-Suite/branch/master/artifacts))
 
 ## Engineering Overview
 Blam Creation Suite is made up of a collection of tools and a very wide variety of programming expertise is spread throughout each project. The project structure is designed around engine, tooling, and library modules written in C++ and is designed to have no binary dependencies.
