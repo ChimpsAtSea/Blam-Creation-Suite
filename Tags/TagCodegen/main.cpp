@@ -7,7 +7,8 @@ int create_source_file()
 	c_structure_relationship_node::create_structure_relationships();
 	c_structure_relationship_node::create_sorted_tag_struct_definitions();
 	c_structure_relationship_node::create_sorted_tag_enum_definitions();
-
+	c_structure_relationship_node::create_sorted_tag_block_definitions();
+	
 	int result = 0;
 
 	std::pair<e_engine_type, e_platform_type> const engine_and_platform_types[] =
@@ -80,7 +81,7 @@ int create_source_file()
 				c_console::write_line_verbose("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		static constexpr uint32_t source_count = 16;
+		static constexpr uint32_t source_count = 64;
 		for (uint32_t source_index = 0; source_index < source_count; source_index++)
 		{
 			g.run([&result, engine_name, engine_and_platform_type, source_index]

@@ -398,7 +398,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	bool is_open = static_cast<bool>(storage->GetInt(is_open_id, 1));
 	bool is_inserting = static_cast<bool>(storage->GetInt(is_inserting_id));
 	float content_width = storage->GetFloat(content_width_id, k_min_block_width);
-	int32_t index = static_cast<uint32_t>(storage->GetInt(index_id));
+	int32_t index = storage->GetInt(index_id);
 	bool is_disabled = count == 0;
 
 #define clamp_rollover(value, max) \
@@ -746,355 +746,189 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	ImGui::PopID();
 }
 
-void c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, const s_tag_field& field)
+bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, const s_tag_field& field)
 {
-	//using namespace blofeld;
+	bool result = false;
 
-	//bool result = false;
-	//ImGui::Columns(2, nullptr, false);
-	//ImGui::SetColumnWidth(0, k_field_display_name_width);
-	//{
-	//	bool const has_description = !field.string_parser.description.is_empty();
+	ImGui::PushID(&field);
+	ImGuiID const tag_group_id = ImGui::GetID("tag_group");
 
-	//	if (has_description)
-	//	{
-	//		ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
-	//	}
+	ImGuiStorage* storage = ImGui::GetStateStorage();
+	::tag group_tag = storage->GetInt(tag_group_id, blofeld::INVALID_TAG);
 
-	//	ImGui::TextUnformatted(field.string_parser.display_name.c_str());
+	h_group* group = nullptr;
+	if (tag_reference != nullptr)
+	{
+		group = tag_reference->group;
+		group_tag = group->tag_group.group_tag;
+	}
+	else
+	{
+		group = tag_project.get_group_by_group_tag(group_tag);
+	}
 
-	//	if (has_description)
-	//	{
-	//		if (ImGui::IsItemHovered())
-	//		{
-	//			ImGui::SetTooltip(field.string_parser.description.c_str());
-	//		}
-	//		ImGui::PopStyleColor();
-	//	}
+	ImGui::Columns(2, nullptr, false);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
+	{
+		bool const has_description = !field.string_parser.description.is_empty();
 
-	//}
-	//ImGui::NextColumn();
-	//{
-	//	ImGui::SetNextItemWidth(250);
-	//	bool combo_active = ImGui::BeginCombo("##tag_tag_group", group_name);
-	//	if (tag_group_interface && ImGui::IsItemHovered())
-	//	{
-	//		ImGui::SetTooltip(group_name);
-	//	}
-	//	if (combo_active)
-	//	{
-	//		if (ImGui::Selectable("(null)", tag_group_interface == nullptr))
-	//		{
-	//			tag_reference.group_tag = INVALID_TAG;
-	//			tag_reference.name = 0;
-	//			tag_reference.name_length = 0;
-	//			tag_reference.index = UINT16_MAX;
-	//			tag_reference.datum = UINT16_MAX;
-	//			tag_group_interface = nullptr;
-	//		}
+		if (has_description)
+		{
+			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+		}
 
-	//		if (tag_reference_definition.group_tag != INVALID_TAG)
-	//		{
-	//			for (c_tag_group_interface& current_tag_group_interface : c_reference_loop(cache_file.get_tag_group_interfaces(), cache_file.get_tag_group_count()))
-	//			{
-	//				if (current_tag_group_interface.get_group_tag() != tag_reference_definition.group_tag)
-	//				{
-	//					continue;
-	//				}
+		ImGui::TextUnformatted(field.string_parser.display_name.c_str());
 
-	//				bool is_selected = &current_tag_group_interface == tag_group_interface;
+		if (has_description)
+		{
+			if (ImGui::IsItemHovered())
+			{
+				ImGui::SetTooltip(field.string_parser.description.c_str());
+			}
+			ImGui::PopStyleColor();
+		}
 
-	//				const char* current_group_name = current_tag_group_interface.get_full_name();
-	//				if (ImGui::Selectable(current_group_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = &current_tag_group_interface;
-	//					tag_reference.group_tag = current_tag_group_interface.get_group_tag();
-	//					tag_reference.name = 0;
-	//					tag_reference.name_length = 0;
-	//					tag_reference.index = UINT16_MAX;
-	//					tag_reference.datum = UINT16_MAX;
-	//				}
-	//			}
-	//		}
-	//		else if (const unsigned long* const group_tags = tag_reference_definition.group_tags)
-	//		{
-	//			for (const unsigned long* current_group_tag = group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
-	//			{
-	//				for (c_tag_group_interface& current_tag_group_interface : c_reference_loop(cache_file.get_tag_group_interfaces(), cache_file.get_tag_group_count()))
-	//				{
-	//					if (current_tag_group_interface.get_group_tag() != *current_group_tag)
-	//					{
-	//						continue;
-	//					}
+	}
+	ImGui::NextColumn();
+	{
+		ImGui::SetNextItemWidth(350);
 
-	//					bool is_selected = &current_tag_group_interface == tag_group_interface;
+		const char* group_name = "(null)";
+		if (group != nullptr)
+		{
+			group_name = group->tag_group.name;
+		}
+		bool combo_active = ImGui::BeginCombo("##tag_tag_group", group_name);
+		if (combo_active)
+		{
+			if (ImGui::Selectable("(null)", group == nullptr))
+			{
+				if (tag_reference != nullptr)
+				{
+					tag_reference = nullptr;
+					result = true;
+				}
+				group = nullptr;
+			}
 
-	//					const char* current_group_name = current_tag_group_interface.get_full_name();
-	//					if (ImGui::Selectable(current_group_name, is_selected) && !is_selected)
-	//					{
-	//						tag_group_interface = &current_tag_group_interface;
-	//						tag_reference.group_tag = current_tag_group_interface.get_group_tag();
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = UINT16_MAX;
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
+			for (h_group* current_group : tag_project.groups)
+			{
+				bool is_selected = group == current_group;
+				if (ImGui::Selectable(current_group->tag_group.name, is_selected))
+				{
+					if (!is_selected)
+					{
+						if (tag_reference != nullptr)
+						{
+							tag_reference = nullptr; // #TODO: determine inheritance
+							result = true;
+						}
+						group = current_group;
+					}
+				}
+			}
 
-	//					break;
-	//				}
-	//			}
-	//		}
-	//		else
-	//		{
-	//			for (c_tag_group_interface& current_tag_group_interface : c_reference_loop(cache_file.get_tag_group_interfaces(), cache_file.get_tag_group_count()))
-	//			{
-	//				bool is_selected = &current_tag_group_interface == tag_group_interface;
+			ImGui::EndCombo();
+		}
+	}
+	ImGui::SameLine();
+	{
+		ImGui::SetNextItemWidth(700);
 
-	//				const char* current_group_name = current_tag_group_interface.get_full_name();
-	//				if (ImGui::Selectable(current_group_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = &current_tag_group_interface;
-	//					tag_reference.group_tag = current_tag_group_interface.get_group_tag();
-	//					tag_reference.name = 0;
-	//					tag_reference.name_length = 0;
-	//					tag_reference.index = UINT16_MAX;
-	//					tag_reference.datum = UINT16_MAX;
-	//				}
-	//			}
-	//		}
+		const char* tag_instance_name = "";
+		if (tag_reference != nullptr)
+		{
+			tag_instance_name = tag_reference->tag_filepath.c_str();
+		}
 
-	//		ImGui::EndCombo();
-	//	}
-	//}
-	//ImGui::SameLine();
-	//{
-	//	ImGui::SetNextItemWidth(700);
+		bool combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
+		if (*tag_instance_name && ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip(tag_instance_name);
+		}
+		if (combo_active)
+		{
+			std::vector<h_tag*>& tags = (group == nullptr) ? tag_project.tags : group->tags;
 
-	//	const char* tag_instance_name = "";
-	//	c_tag_interface* current_interface = nullptr;
-	//	if (tag_group_interface)
-	//	{
-	//		current_interface = cache_file.get_tag_interface(tag_reference.index);
-	//		if (current_interface)
-	//		{
-	//			tag_instance_name = current_interface->get_path_with_group_name_cstr();
-	//		}
-	//	}
+			for (h_tag* tag : tags)
+			{
+				bool is_selected = tag_reference == tag;
+				const char* current_name = tag->tag_filepath.c_str();
+				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
+				{
+					if (tag_reference != tag)
+					{
+						tag_reference = tag;
+						result = true;
+					}
+					group = tag->group;
+				}
+			}
 
-	//	bool combo_active = ImGui::BeginCombo("##tag_path", tag_instance_name);
-	//	if (*tag_instance_name && ImGui::IsItemHovered())
-	//	{
-	//		ImGui::SetTooltip(tag_instance_name);
-	//	}
-	//	if (combo_active)
-	//	{
-	//		if (tag_group_interface)
-	//		{
-	//			for (c_tag_interface& current_tag_interface : c_reference_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
-	//			{
-	//				if (current_tag_interface.is_null())
-	//				{
-	//					continue;
-	//				}
-	//				if (current_tag_interface.get_tag_group_interface() != tag_group_interface)
-	//				{
-	//					continue;
-	//				}
+			ImGui::EndCombo();
+		}
+	}
+	ImGui::SameLine();
+	{
+		bool reference_is_null = tag_reference == nullptr;
+		if (reference_is_null)
+		{
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		}
 
-	//				const char* current_name = current_tag_interface.get_path_with_group_name_cstr();
-	//				bool is_selected = &current_tag_interface == current_interface;
-	//				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = current_tag_interface.get_tag_group_interface();
-	//					if (tag_group_interface)
-	//					{
-	//						tag_reference.group_tag = tag_group_interface->get_group_tag();
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = current_tag_interface.get_index();
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//					else
-	//					{
-	//						c_console::write_line("failed to set tag reference, tag group was null");
+		if (ImGui::Button("Open"))
+		{
+			if (!reference_is_null)
+			{
+				if (c_tag_project_tab* tag_project_tab = search_parent_tab_type<c_tag_project_tab>())
+				{
+					tag_project_tab->open_tag_interface_tab(*tag_reference);
+				}
+			}
+		}
+		else if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Opens this tag in a new tab");
+		}
 
-	//						tag_reference.group_tag = INVALID_TAG;
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = UINT16_MAX;
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//				}
-	//			}
-	//		}
-	//		else if (tag_reference_definition.group_tag != INVALID_TAG)
-	//		{
-	//			for (c_tag_interface& current_tag_interface : c_reference_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
-	//			{
-	//				if (current_tag_interface.is_null())
-	//				{
-	//					continue;
-	//				}
-	//				if (current_tag_interface.get_tag_group_interface()->get_group_tag() != tag_reference_definition.group_tag)
-	//				{
-	//					continue;
-	//				}
+		//ImGui::SameLine();
+		//ImGui::Button("Import");
 
-	//				const char* current_name = current_tag_interface.get_path_with_group_name_cstr();
-	//				bool is_selected = &current_tag_interface == current_interface;
-	//				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = current_tag_interface.get_tag_group_interface();
-	//					if (tag_group_interface)
-	//					{
-	//						tag_reference.group_tag = tag_group_interface->get_group_tag();
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = current_tag_interface.get_index();
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//					else
-	//					{
-	//						c_console::write_line("failed to set tag reference, tag group was null");
+		ImGui::SameLine();
+		ImGui::Dummy({ 20.0f, 0.0f });
 
-	//						tag_reference.group_tag = INVALID_TAG;
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = UINT16_MAX;
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//				}
-	//			}
-	//		}
-	//		else if (const unsigned long* const group_tags = tag_reference_definition.group_tags)
-	//		{
-	//			for (c_tag_interface& current_tag_interface : c_reference_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
-	//			{
-	//				if (current_tag_interface.is_null())
-	//				{
-	//					continue;
-	//				}
-	//				for (const unsigned long* current_group_tag = group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
-	//				{
-	//					if (current_tag_interface.get_tag_group_interface()->get_group_tag() == *current_group_tag)
-	//					{
-	//						goto is_valid_type;
-	//					}
-	//				}
-	//				continue;
-	//			is_valid_type:
+		ImGui::SameLine();
+		if (ImGui::Button("Clear"))
+		{
+			if (tag_reference != nullptr)
+			{
+				tag_reference = nullptr;
+				result = true;
+			}
+			group = nullptr;
+		}
+		else if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Nulls this tag reference");
+		}
 
-	//				const char* current_name = current_tag_interface.get_path_with_group_name_cstr();
-	//				bool is_selected = &current_tag_interface == current_interface;
-	//				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = current_tag_interface.get_tag_group_interface();
-	//					if (tag_group_interface)
-	//					{
-	//						tag_reference.group_tag = tag_group_interface->get_group_tag();
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = current_tag_interface.get_index();
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//					else
-	//					{
-	//						c_console::write_line("failed to set tag reference, tag group was null");
+		if (reference_is_null)
+		{
+			ImGui::PopItemFlag();
+		}
+	}
+	ImGui::Columns(1);
 
-	//						tag_reference.group_tag = INVALID_TAG;
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = UINT16_MAX;
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//				}
-	//			}
-	//		}
-	//		else
-	//		{
-	//			for (c_tag_interface& current_tag_interface : c_reference_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
-	//			{
-	//				const char* current_name = current_tag_interface.get_path_with_group_name_cstr();
-	//				bool is_selected = &current_tag_interface == current_interface;
-	//				if (ImGui::Selectable(current_name, is_selected) && !is_selected)
-	//				{
-	//					tag_group_interface = current_tag_interface.get_tag_group_interface();
-	//					if (tag_group_interface)
-	//					{
-	//						tag_reference.group_tag = tag_group_interface->get_group_tag();
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = current_tag_interface.get_index();
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//					else
-	//					{
-	//						c_console::write_line("failed to set tag reference, tag group was null");
+	group_tag = blofeld::INVALID_TAG;
+	if (group != nullptr)
+	{
+		group_tag = group->tag_group.group_tag;
+	}
+	storage->SetInt(tag_group_id, static_cast<int>(group_tag));
 
-	//						tag_reference.group_tag = INVALID_TAG;
-	//						tag_reference.name = 0;
-	//						tag_reference.name_length = 0;
-	//						tag_reference.index = UINT16_MAX;
-	//						tag_reference.datum = UINT16_MAX;
-	//					}
-	//				}
-	//			}
-	//		}
+	ImGui::PopID();
 
-	//		ImGui::EndCombo();
-	//	}
-	//}
-	//ImGui::SameLine();
-	//{
-	//	if (tag_reference.index == UINT16_MAX)
-	//	{
-	//		ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-	//	}
-
-	//	if (ImGui::Button("Open"))
-	//	{
-	//		if (tag_reference.index != UINT16_MAX)
-	//		{
-	//			if (c_tag_interface* tag_interface = cache_file.get_tag_interface(tag_reference.index))
-	//			{
-	//				if (c_cache_file_tab* cache_file_tab = search_parent_tab_type<c_cache_file_tab>())
-	//				{
-	//					cache_file_tab->open_tag_interface_tab(*tag_interface);
-	//				}
-	//			}
-	//		}
-	//	}
-	//	else if (ImGui::IsItemHovered())
-	//	{
-	//		ImGui::SetTooltip("Opens this tag in a new tab");
-	//	}
-
-	//	//ImGui::SameLine();
-	//	//ImGui::Button("Import");
-
-	//	ImGui::SameLine();
-	//	ImGui::Dummy({ 20.0f, 0.0f });
-
-	//	ImGui::SameLine();
-	//	if (ImGui::Button("Clear"))
-	//	{
-	//		tag_reference.group_tag = INVALID_TAG;
-	//		tag_reference.name = 0;
-	//		tag_reference.name_length = 0;
-	//		tag_reference.index = UINT16_MAX;
-	//		tag_reference.datum = UINT16_MAX;
-	//	}
-	//	else if (ImGui::IsItemHovered())
-	//	{
-	//		ImGui::SetTooltip("Nulls this tag reference");
-	//	}
-
-	//	if (tag_reference.index == UINT16_MAX)
-	//	{
-	//		ImGui::PopItemFlag();
-	//	}
-	//}
-	//ImGui::Columns(1);
+	return result;
 }
 
 void c_high_level_tag_editor_tab::render_data(h_data& data, const blofeld::s_tag_field& field)
@@ -1133,7 +967,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	if (field.string_list_definition == nullptr)
 	{
 		ImGui::Text("Flag field fail. String list definition is null!");
-		return;
+		return false;
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
@@ -1234,7 +1068,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	if (field.string_list_definition == nullptr)
 	{
 		ImGui::Text("Flag field fail. String list definition is null!");
-		return;
+		return false;
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 

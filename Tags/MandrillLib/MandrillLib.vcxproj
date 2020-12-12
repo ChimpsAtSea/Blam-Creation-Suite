@@ -21,7 +21,8 @@
   <ItemGroup>
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h" />
-    <ClInclude Include="CacheInterface\tag_project.h" />
+    <ClInclude Include="HighLevel\HighLevel.h" />
+    <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
@@ -30,7 +31,7 @@
     <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h" />
     <ClInclude Include="CacheInterface\cache_cluster.h" />
     <ClInclude Include="CacheInterface\string_id_interface.h" />
-    <ClInclude Include="CacheInterface\high_level_cache_file_transplant.h" />
+    <ClInclude Include="HighLevel\high_level_cache_file_transplant.h" />
     <ClInclude Include="Extension\mandrill_extension.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_resource_entries.h" />
@@ -92,14 +93,14 @@
   <ItemGroup>
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp" />
-    <ClCompile Include="CacheInterface\tag_project.cpp" />
+    <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="CacheInterface\cache_cluster.cpp" />
     <ClCompile Include="CacheInterface\string_id_interface.cpp" />
-    <ClCompile Include="CacheInterface\high_level_cache_file_transplant.cpp" />
+    <ClCompile Include="HighLevel\high_level_cache_file_transplant.cpp" />
     <ClCompile Include="Extension\mandrill_extension.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_resource_entries.cpp" />

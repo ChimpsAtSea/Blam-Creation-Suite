@@ -1,7 +1,10 @@
 #pragma once
 
+class c_cache_file;
+class c_cache_cluster;
 class c_tag_interface;
 class c_tag_group_interface;
+
 class h_tag;
 class h_object;
 class h_group;

@@ -21,7 +21,7 @@
     <ClInclude Include="highlevel-halo1-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo1_high_level.h">
+    <ClInclude Include="generated\halo1_high_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,58 +29,202 @@
     <ClCompile Include="highlevel-halo1-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.misc.cpp">
+    <ClCompile Include="generated\halo1_high_level.virtual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor0.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor1.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor2.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor3.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor4.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor5.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor6.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor7.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor8.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor9.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor9.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor10.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor11.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor12.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor12.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor13.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor13.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor14.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor14.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.ctor15.cpp">
+    <ClCompile Include="generated\halo1_high_level.ctor15.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1_high_level.virtual.cpp">
+    <ClCompile Include="generated\halo1_high_level.misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor17.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor18.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor19.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor20.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor21.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor22.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor23.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor24.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor25.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor26.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor27.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor28.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor30.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor31.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor33.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor34.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor35.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor36.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor37.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor38.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor39.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor40.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor41.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor42.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor43.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor44.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor45.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor46.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor47.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor48.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor49.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor50.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor51.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor52.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor53.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor54.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor55.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor56.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor57.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor58.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor59.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor60.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor61.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor62.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\halo1_high_level.ctor63.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
