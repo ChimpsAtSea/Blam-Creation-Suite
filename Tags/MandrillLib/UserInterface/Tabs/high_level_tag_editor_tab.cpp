@@ -307,17 +307,10 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 256);
 		}
-		else if constexpr (field_type == _field_string_id)
+		else if constexpr (field_type == _field_string_id | _field_old_string_id)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 2048);
-		}
-		else if constexpr (field_type == _field_old_string_id)
-		{
-			// not really sure what the correct representation of this is...
-
-			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S32, data);
 		}
 		else if constexpr (field_type == _field_real_euler_angles_2d)
 		{
