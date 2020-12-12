@@ -18,7 +18,7 @@ uint32_t c_string_id_namespace_list::string_id_to_index(string_id const stringid
 	uint32_t const length = (stringid & length_mask) >> length_shift;
 
 	uint32_t index_offset = 0;
-	if (set == 0 && index >= cache_file.string_id_namespace_indices[0])
+	if (set == 0 && index >= static_cast<uint32_t>(cache_file.string_id_namespace_indices[0]))
 	{
 		index_offset = first_custom_index;
 	}

@@ -82,6 +82,37 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 }
 
+#include <high_level_haloreach/highlevel-haloreach-public-pch.h>
+
+class c_test
+{
+public:
+	static void callback(void* userdata, const c_data_change_notification& notification)
+	{
+		reinterpret_cast<c_test*>(userdata)->callback(notification);
+	}
+
+	void callback(const c_data_change_notification& notification)
+	{
+		if (notification.userdata != this)
+		{
+			debug_point;
+		}
+	}
+
+	c_test(c_tag_project* tag_project)
+	{
+		blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project->tags[8]);
+		scenario->add_notification_listener(callback, this);
+
+		h_notification_system::push_value(this);
+
+		scenario->campaign_id = 200;
+
+		h_notification_system::pop_value();
+	}
+};
+
 static int run_mandrill_api_test()
 {
 	using namespace blofeld;
@@ -99,14 +130,11 @@ static int run_mandrill_api_test()
 	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70.map");
 	DEBUG_ASSERT(cache_file != nullptr);
 
-	//for (int i = 0; i < 20; i++)
-	//{
-	//	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
-	//}
-
 	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
-
 	delete cache_cluster;
+
+	c_test test(tag_project);
+
 	delete tag_project;
 
 	return 0;

@@ -1252,7 +1252,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_tag_reference:
 		{
 			h_tag*& tag_reference = *static_cast<h_tag**>(field_data);
-			render_tag_reference(tag_reference, *current_field);
+			data_modified = render_tag_reference(tag_reference, *current_field);
 			break;
 		}
 		case _field_data:
@@ -1332,7 +1332,10 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 
 		if (data_modified)
 		{
-			object;
+			c_data_change_notification notification = {};
+			notification.field = current_field;
+			notification.type = &object;
+			object.notify_data_change(notification);
 		}
 
 		ImGui::PopID();

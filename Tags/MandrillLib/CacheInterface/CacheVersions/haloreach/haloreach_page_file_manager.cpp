@@ -92,7 +92,7 @@ bool c_haloreach_page_file_manager::decode_page_address(uint32_t custom_bits, ui
 	{
 		uint32_t page_address = custom_bits & 0x7FFFFFFF;
 
-		uint32_t num_resource_pages = resource_pages.size();
+		uint32_t num_resource_pages = static_cast<uint32_t>(resource_pages.size());
 		for (uint32_t file_page_index = 0; file_page_index < num_resource_pages; file_page_index++)
 		{
 			const s_resource_page_entry& resource_page_entry = resource_pages[file_page_index];

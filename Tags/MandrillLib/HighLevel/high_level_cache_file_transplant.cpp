@@ -217,7 +217,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_data:
 			{
 				const s_tag_data& tag_data = *reinterpret_cast<decltype(&tag_data)>(current_data_position);
-				std::vector<char>& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
+				h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
 				
 				const char* tag_data_data = cache_file.get_tag_data(tag_data);
 				if (tag_data_data != nullptr)

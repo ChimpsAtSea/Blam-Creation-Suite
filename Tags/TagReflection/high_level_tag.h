@@ -9,7 +9,60 @@
 #define high_level_tag_ctor(...)
 #define high_level_tag_dtor(...)
 
-class h_object
+class h_type;
+class h_object;
+
+class h_notification_system
+{
+private:
+	static constexpr int32_t stack_size = 1024;
+	static void* stack[stack_size];
+	static int32_t index;
+
+public:
+	static void push_value(void* userdata);
+	static void pop_value();
+	static void* get_value();
+};
+
+class c_data_change_notification
+{
+public:
+	c_data_change_notification();
+	c_data_change_notification(void* userdata);
+
+	h_type* type;
+	const blofeld::s_tag_field* field;
+	void* userdata;
+};
+
+using s_notification_listener_func = void (*)(void* userdata, const c_data_change_notification& notification);
+
+struct s_notification_listener
+{
+	s_notification_listener_func callback;
+	void* userdata;
+	s_notification_listener* next;
+};
+
+class h_type
+{
+public:
+	h_type();
+	virtual ~h_type();
+
+	void set_parent(h_type* parent);
+	void add_notification_listener(s_notification_listener_func callback, void* userdata);
+	void remove_notification_listener(s_notification_listener_func callback, void* userdata);
+	void notify_data_change(const c_data_change_notification& notification);
+
+protected:
+	h_type* parent;
+	s_notification_listener* notification_listeners;
+};
+
+class h_object :
+	public h_type
 {
 public:
 	virtual ~h_object();
@@ -26,8 +79,50 @@ public:
 	}
 };
 
+template<typename type, typename parent_type, uint32_t field_index>
+class h_field
+{
+public:
+	explicit h_field() : value() {};
+
+	type& operator=(const type& new_value);
+
+protected:
+	type value;
+};
+
+#define h_field_func_impl(field_type, parent_type, _field_index, _field_name)										\
+field_type& h_field<field_type, parent_type, _field_index>::operator=(field_type const& new_value)					\
+{																													\
+	uint32_t _field_offset = offsetof(parent_type, _field_name);													\
+	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);					\
+																													\
+	if constexpr (/*std::is_pointer<field_type>::value ||*/ std::is_arithmetic<field_type>::value)					\
+	{																												\
+		if (value != new_value)																						\
+		{																											\
+			auto _old_value = value;																				\
+			value = new_value;																						\
+																													\
+			c_data_change_notification _notification;															\
+																													\
+			_type->notify_data_change(_notification);																\
+		}																											\
+	}																												\
+	else																											\
+	{																												\
+		value = new_value;																							\
+																													\
+		c_data_change_notification _notification;																\
+																													\
+		_type->notify_data_change(_notification);																	\
+	}																												\
+	return value;																									\
+}	
+
 class h_data :
-	public std::vector<char>
+	public std::vector<char>,
+	public h_type
 {
 public:
 };
@@ -48,7 +143,8 @@ public:
 	h_group* group;
 };
 
-class h_group
+class h_group :
+	public h_type
 {
 public:
 	h_group(e_engine_type engine_type, e_platform_type platform_type, e_build build, const blofeld::s_tag_group& tag_group);
@@ -63,7 +159,8 @@ public:
 	const blofeld::s_tag_group& tag_group;
 };
 
-class h_enumerable
+class h_enumerable :
+	public h_type
 {
 public:
 	virtual h_object& operator[](uint32_t index) = 0;
