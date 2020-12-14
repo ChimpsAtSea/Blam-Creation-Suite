@@ -84,13 +84,86 @@ int WINAPI wWinMain(
 
 		const char* excluded_symbol_libs[] =
 		{
-			"Shared",
-			"MandrillLib",
-			"MandrillGen",
-			"imgui",
 			"tbb_static",
-			"gameframework",
-			"detours"
+			"pugixml",
+			"discord-rpc",
+			"syelog",
+			"steam_api64",
+			"detours",
+
+			"Blamboozle",
+			"BlamboozleLib",
+			"blamlib",
+			"FSBDump",
+			"FSBLib",
+			"GameFramework",
+
+			//"EldoradoLib",
+			//"GroundhogLib",
+			//"Halo1Lib",
+			//"Halo2Lib",
+			//"Halo3Lib",
+			//"Halo3OdstLib",
+			//"Halo4Lib",
+			//"Halo5Lib",
+			//"HaloReachLib",
+
+			"HighLevel_Groundhog",
+			"HighLevel_Halo1",
+			"HighLevel_Halo2",
+			"HighLevel_Halo3",
+			"HighLevel_Halo3ODST",
+			"HighLevel_Halo4",
+			"HighLevel_HaloReach",
+			"HighLevel_Xbox360Gen3",
+			"imgui",
+			"ImGUIUIPrototype",
+			"Ketchup",
+			"LowLevel_Groundhog",
+			"LowLevel_Halo1",
+			"LowLevel_Halo2",
+			"LowLevel_Halo3",
+			"LowLevel_Halo3ODST",
+			"LowLevel_Halo4",
+			"LowLevel_HaloReach",
+			"LowLevel_Xbox360Gen3",
+			"Mandrill",
+			"MandrillLib",
+			"MandrillSDK",
+			"MandrillTest",
+			"MCC",
+			"Mustard",
+			"NoesisGUI",
+
+			"Opus",
+			"Platform",
+
+			"ResourcesPackager",
+			"Rhesus",
+			"Shared",
+
+			"SymbolsLib",
+
+			"SymbolsPreprocessor",
+			"TagCodegen",
+			//"TagDefinitions",
+			"TagDefinitionsUnitTest",
+			"TagDefinitionsValidate",
+			"TagReflection",
+			"TagValidate",
+
+			"Versioning",
+
+			"Virtual_Groundhog",
+			"Virtual_Halo1",
+			"Virtual_Halo2",
+			"Virtual_Halo3",
+			"Virtual_Halo3ODST",
+			"Virtual_Halo4",
+			"Virtual_HaloReach",
+			"Virtual_Xbox360Gen3",
+
+			"zlib"
 		};
 
 		c_map_file_parser map_file_parser = c_map_file_parser(symbolfile.c_str(), excluded_symbol_libs, _countof(excluded_symbol_libs));
