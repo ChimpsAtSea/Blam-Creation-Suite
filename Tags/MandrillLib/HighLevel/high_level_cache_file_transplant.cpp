@@ -77,7 +77,6 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			{
 			case _field_string:
 			case _field_long_string:
-			case _field_old_string_id:
 			case _field_char_integer:
 			case _field_short_integer:
 			case _field_long_integer:
@@ -131,6 +130,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}
+			case _field_old_string_id:
 			case _field_string_id:
 			{
 				if (const char* string_id_value = cache_file.get_string_id(*reinterpret_cast<const string_id*>(current_data_position)))
