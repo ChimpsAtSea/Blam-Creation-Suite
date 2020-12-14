@@ -1,7 +1,7 @@
 #include "tagreflection-private-pch.h"
 
 h_tag::h_tag(h_group* group, const char* tag_filepath) :
-	h_object(),
+	h_object(nullptr),
 	tag_filepath(),
 	tag_filename(),
 	group(group)
@@ -15,7 +15,21 @@ h_tag::h_tag(h_group* group, const char* tag_filepath) :
 	}
 }
 
+h_tag::h_tag(h_type* parent) :
+	h_object(parent),
+	tag_filepath(),
+	tag_filename(),
+	group(nullptr)
+{
+}
+
 h_tag::~h_tag()
+{
+
+}
+
+h_object::h_object(h_type* parent) :
+	h_type(parent)
 {
 
 }
@@ -94,18 +108,25 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 	return *tag;
 }
 
-h_type::h_type() :
-	parent(nullptr)
+h_type::h_type(h_type* parent) :
+	parent(parent),
+	notification_listeners(nullptr)
 {
 
 }
 
 h_type::~h_type()
 {
-
+	s_notification_listener* notification_listener = notification_listeners;
+	while (notification_listener)
+	{
+		s_notification_listener* next_notification_listener = notification_listener->next;
+		delete notification_listener;
+		notification_listener = next_notification_listener;
+	}
 }
 
-void h_type::set_parent(h_type* _parent)
+void h_type::_set_parent(h_type* _parent)
 {
 	parent = _parent;
 }
@@ -144,6 +165,28 @@ void h_type::remove_notification_listener(s_notification_listener_func callback,
 
 void h_type::notify_data_change(const c_data_change_notification& notification)
 {
+#if 0
+	// #TODO: #INVESTIGATE: benchmark how much of an impact that this functionality has
+
+	/*
+	This could use a while loop instead of a recursive function call like so
+	*/
+
+	/*
+	Could add recursive support for c_data_change_notification by using alloca???
+	*/
+
+	h_type* current_type = this;
+	do
+	{
+		for (s_notification_listener* notification_listener = current_type->notification_listeners; notification_listener != nullptr; notification_listener = notification_listener->next)
+		{
+			notification_listener->callback(notification_listener->userdata, notification);
+		}
+	} while (current_type = current_type->parent);
+
+#else
+
 	for (s_notification_listener* notification_listener = notification_listeners; notification_listener != nullptr; notification_listener = notification_listener->next)
 	{
 		notification_listener->callback(notification_listener->userdata, notification);
@@ -152,6 +195,8 @@ void h_type::notify_data_change(const c_data_change_notification& notification)
 	{
 		parent->notify_data_change(notification);
 	}
+
+#endif
 }
 
 void* h_notification_system::stack[h_notification_system::stack_size] = {};
@@ -185,6 +230,18 @@ c_data_change_notification::c_data_change_notification(void* userdata) :
 	type(nullptr),
 	field(nullptr),
 	userdata(userdata)
+{
+
+}
+
+h_block::h_block(h_type* parent) :
+	h_enumerable(parent)
+{
+
+}
+
+h_enumerable::h_enumerable(h_type* parent) :
+	h_type(parent)
 {
 
 }

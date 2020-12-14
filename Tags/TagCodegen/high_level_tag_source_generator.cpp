@@ -67,8 +67,8 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
 	case _field_real_fraction_bounds:				return "real_bounds";
-	case _field_tag_reference:						return "s_tag_reference";
-	case _field_block:								return "s_tag_block";
+	case _field_tag_reference:						return "h_tag*";
+	case _field_block:								return "h_block";
 	case _field_long_block_flags:					return "long";
 	case _field_word_block_flags:					return "word";
 	case _field_byte_block_flags:					return "byte";
@@ -78,7 +78,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_custom_short_block_index:			return "short";
 	case _field_long_block_index:					return "long";
 	case _field_custom_long_block_index:			return "long";
-	case _field_data:								return "s_tag_data";
+	case _field_data:								return "h_data";
 	case _field_vertex_buffer:						return "s_tag_d3d_vertex_buffer";
 	case _field_pad:								return nullptr;	// dynamic
 	case _field_useless_pad:						return nullptr;	// dynamic
@@ -144,14 +144,16 @@ void c_high_level_tag_source_generator::generate_header() const
 		}
 		stream << "\t\t" << "{" << std::endl;
 		stream << "\t\t\t" << "public:" << std::endl;
+		stream << "\t\t\t\t" << "friend class std::vector<h_" << tag_struct_definition->name << ">;" << std::endl;
+		
 		if (tag_group != nullptr)
 		{
 			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
-			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "();" << std::endl;
+			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		else
 		{
-			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "();" << std::endl;
+			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		stream << std::endl;
 
@@ -202,34 +204,28 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				//stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << "> " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << "> " << field_formatter.code_name.c_str() << ";";
+				//stream << "\t\t\t\t" << "h_field<h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
-				//stream << "\t\t\t\t" << "h_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<h_" << field_source_type << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+				//stream << "\t\t\t\t" << "h_field<h_" << field_source_type << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				//stream << "\t\t\t\t" << "h_typed_block<h_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<h_typed_block<h_" << field_source_type << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_typed_block<h_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+				//stream << "\t\t\t\t" << "h_field<h_typed_block<h_" << field_source_type << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_data:
 			{
-				//stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<h_data, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
-			}
-			case _field_tag_reference:
-			{
-				//stream << "\t\t\t\t" << "h_tag* " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<h_tag*, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
+				//stream << "\t\t\t\t" << "h_field<h_data, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_char_enum:
@@ -322,11 +318,11 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			const char* field_source_type = current_field->array_definition->struct_definition.name;
 			if (tag_group)
 			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
+				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 			}
 			else
 			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
+				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 			}
 			
 			break;
@@ -345,6 +341,11 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
 			}
 
+			break;
+		}
+		case _field_block:
+		{
+			stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 			break;
 		}
 		default:
@@ -370,20 +371,34 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << "#pragma warning(error : 4172)" << std::endl;
 	stream << std::endl;
 
+	stream << std::endl;
+	stream << "#ifndef __INTELLISENSE__" << std::endl;
+	stream << std::endl;
+
 	{
 		uint32_t structure_index = 0;
 		for (const blofeld::s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_block_struct_definitions)
 		{
 			if ((structure_index++ % source_count) == source_index)
 			{
-				stream << "h_typed_block_func_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_ctor_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_array_operator_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_get_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_data_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_type_size_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_size_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_data_size_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_emplace_back_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_emplace_back_alt_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_reserve_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_resize_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_insert_hole_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_remove_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << "_h_typed_block_clear_impl(blofeld::" << namespace_name << "::h_" << struct_definition->name << ");" << std::endl;
+				stream << std::endl;
 			}
 		}
 	}
-	stream << std::endl;
-
-	stream << std::endl;
-	stream << "#ifndef __INTELLISENSE__" << std::endl;
 	stream << std::endl;
 
 	stream << "namespace blofeld" << std::endl;
@@ -412,8 +427,8 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					stream << std::endl;
 
 					stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
-					stream << "() :" << std::endl;
-					stream << "\t\t\t" << "h_tag(nullptr, nullptr)" << std::endl;
+					stream << "(h_type* parent) :" << std::endl;
+					stream << "\t\t\t" << "h_tag(parent)" << std::endl;
 					generate_tag_constructor_params(stream, *tag_struct_definition);
 					stream << "\t\t" << "{" << std::endl;
 					stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;
@@ -423,8 +438,8 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 				else
 				{
 					stream << "\t\t" << "h_" << tag_struct_definition->name << "::h_" << tag_struct_definition->name;
-					stream << "() :" << std::endl;
-					stream << "\t\t\t" << "h_object()" << std::endl;
+					stream << "(h_type* parent) :" << std::endl;
+					stream << "\t\t\t" << "h_object(parent)" << std::endl;
 					generate_tag_constructor_params(stream, *tag_struct_definition);
 					stream << "\t\t" << "{" << std::endl;
 					stream << "\t\t\t" << "high_level_tag_ctor(this);" << std::endl;

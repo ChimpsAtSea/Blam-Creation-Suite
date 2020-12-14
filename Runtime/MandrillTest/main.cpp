@@ -102,13 +102,27 @@ public:
 
 	c_test(c_tag_project* tag_project)
 	{
-		blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project->tags[8]);
-		scenario->add_notification_listener(callback, this);
-
 		h_notification_system::push_value(this);
 
-		scenario->campaign_id = 200;
+		if (blofeld::haloreach::h_cache_file_resource_layout_table_block_struct* cache_file_resource_layout_table = dynamic_cast<decltype(cache_file_resource_layout_table)>(tag_project->tags[2]))
+		{
+			debug_point;
 
+			cache_file_resource_layout_table->add_notification_listener(callback, this);
+
+			cache_file_resource_layout_table->sections_block[0].page_offsets[0].offset = 100;
+		}
+
+		if (blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project->tags[8]))
+		{
+			debug_point;
+
+			scenario->add_notification_listener(callback, this);
+
+			scenario->campaign_id = 200;
+			scenario->skies_block[0].cloud_scale = 2.0f;
+		}
+		
 		h_notification_system::pop_value();
 	}
 };
@@ -120,14 +134,14 @@ static int run_mandrill_api_test()
 
 	const wchar_t* files[] =
 	{
-		L"C:\\!MCC\\haloreach\\maps\\m70.map",
+		L"C:\\!MCC\\haloreach\\maps\\20_sword_slayer.map",
 		//L"C:\\!MCC\\haloreach\\maps\\m70_a.map", // smallest map
 		//L"C:\\!MCC\\haloreach\\maps\\m70_bonus.map",
 		L"C:\\!MCC\\haloreach\\maps\\shared.map",
 		L"C:\\!MCC\\haloreach\\maps\\campaign.map",
 	};
 	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
-	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70.map");
+	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\20_sword_slayer.map");
 	DEBUG_ASSERT(cache_file != nullptr);
 
 	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);

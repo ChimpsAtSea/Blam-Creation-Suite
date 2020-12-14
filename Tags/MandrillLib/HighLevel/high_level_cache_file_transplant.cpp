@@ -165,15 +165,12 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 				else
 				{
 					block_storage.resize(tag_block.count);
-					uint32_t high_level_block_type_size = block_storage.type_size();
-					char* high_level_block_storage_data = reinterpret_cast<char*>(block_storage.data());
 
-					auto transplant_high_level_block = [this, high_level_block_storage_data, high_level_block_type_size, block_data, block_struct_size, block_struct_definition](uint32_t index)
+					auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
 					{
-						void* current_high_level_block_storage_data = high_level_block_storage_data + high_level_block_type_size * index;
 						const void* current_block_data = block_data + block_struct_size * index;
 
-						h_object& type = *static_cast<h_object*>(current_high_level_block_storage_data);
+						h_object& type = block_storage.get(index);
 						transplant_data(type, block_data, block_struct_definition);
 					};
 					tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
