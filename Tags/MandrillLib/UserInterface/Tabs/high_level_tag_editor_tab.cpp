@@ -307,7 +307,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 256);
 		}
-		else if constexpr (field_type == _field_string_id | _field_old_string_id)
+		else if constexpr (field_type == _field_string_id || field_type == _field_old_string_id)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 2048);
