@@ -8,7 +8,7 @@ public:
 	c_virtual_tag_interface(c_tag_interface& tag_interface);
 	virtual ~c_virtual_tag_interface();
 
-	void* get_field_pointer(const blofeld::s_tag_field& field);
+	void* get_field_data(const blofeld::s_tag_field& field);
 
 	c_tag_interface& tag_interface;
 };

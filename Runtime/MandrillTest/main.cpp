@@ -110,7 +110,7 @@ public:
 
 			cache_file_resource_layout_table->add_notification_listener(callback, this);
 
-			cache_file_resource_layout_table->sections_block[0].page_offsets[0].offset = 100;
+			//cache_file_resource_layout_table->sections_block[0].page_offsets[0].offset = 100;
 		}
 
 		if (blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project->tags[8]))
@@ -119,8 +119,8 @@ public:
 
 			scenario->add_notification_listener(callback, this);
 
-			scenario->campaign_id = 200;
-			scenario->skies_block[0].cloud_scale = 2.0f;
+			//scenario->campaign_id = 200;
+			//scenario->skies_block[0].cloud_scale = 2.0f;
 		}
 		
 		h_notification_system::pop_value();
@@ -132,24 +132,47 @@ static int run_mandrill_api_test()
 	using namespace blofeld;
 	using namespace blofeld::haloreach;
 
+#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
+
 	const wchar_t* files[] =
 	{
-		L"C:\\!MCC\\haloreach\\maps\\20_sword_slayer.map",
-		//L"C:\\!MCC\\haloreach\\maps\\m70_a.map", // smallest map
-		//L"C:\\!MCC\\haloreach\\maps\\m70_bonus.map",
-		L"C:\\!MCC\\haloreach\\maps\\shared.map",
-		L"C:\\!MCC\\haloreach\\maps\\campaign.map",
+		REACH_FOLDER L"maps\\20_sword_slayer.map",
+		//REACH_FOLDER L"maps\\m70_a.map", // smallest map
+		//REACH_FOLDER L"maps\\m70_bonus.map",
+		REACH_FOLDER L"maps\\shared.map",
+		REACH_FOLDER L"maps\\campaign.map",
 	};
 	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
 	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\20_sword_slayer.map");
 	DEBUG_ASSERT(cache_file != nullptr);
 
 	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
+
+	// c_test test(tag_project);
+
+	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project);
+
+	{
+		c_stopwatch stopwatch;
+		stopwatch.start();
+		cache_compiler->compile(REACH_FOLDER L"maps\\custom.map" DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
+		stopwatch.stop();
+		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
+	}
+
 	delete cache_cluster;
-
-	c_test test(tag_project);
-
+	delete cache_compiler;
 	delete tag_project;
+
+	{
+		c_stopwatch stopwatch;
+		stopwatch.start();
+		c_cache_file* new_cache_file = c_cache_file::create_cache_file(REACH_FOLDER L"maps\\custom.map");
+		stopwatch.stop();
+		c_console::write_line_verbose("Loaded generated map in %.2fms", stopwatch.get_miliseconds());
+		debug_point;
+	}
+	
 
 	return 0;
 }

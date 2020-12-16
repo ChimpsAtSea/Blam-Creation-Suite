@@ -56,6 +56,12 @@ namespace blofeld
 	extern s_tag_group shader_water_group;
 	constexpr unsigned long SHADER_WATERFALL_TAG = 'rmwf';
 
+	extern s_tag_group shader_beam_group;
+	constexpr unsigned long SHADER_BEAM_TAG = 'rmb';
+
+	extern s_tag_group shader_contrail_group;
+	constexpr unsigned long SHADER_CONTRAIL_TAG = 'rmc';
+
 	extern s_tag_group shader_waterfall_group;
 
 	extern s_tag_block_definition shader_particle_block_block;
@@ -71,6 +77,8 @@ namespace blofeld
 	extern s_tag_block_definition shader_mux_material_block_block;
 	extern s_tag_block_definition shader_mux_block_block;
 	extern s_tag_block_definition shader_block_block;
+	extern s_tag_block_definition shader_beam_block_block;
+	extern s_tag_block_definition shader_contrail_block_block;
 	extern s_tag_block_definition shader_skin_block_block;
 	extern s_tag_block_definition shader_screen_block_block;
 	extern s_tag_block_definition shader_terrain_block_block;
@@ -91,6 +99,8 @@ namespace blofeld
 	extern s_tag_struct_definition shader_mux_material_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_mux_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_beam_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_contrail_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_skin_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_screen_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition shader_terrain_struct_definition_struct_definition; // tag group

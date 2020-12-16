@@ -161,13 +161,15 @@ void c_high_level_tag_source_generator::generate_header() const
 		{
 			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
 		}
-		stream << "\t\t\t\t" << "virtual uint32_t get_type_size() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual uint32_t get_high_level_type_size() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual uint32_t get_low_level_type_size() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual void* get_field_pointer(const blofeld::s_tag_field& field) final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) final;" << std::endl;
 		stream << std::endl;
 
-		stream << "\t\t\t\t" << "static uint32_t const type_size;" << std::endl;
+		stream << "\t\t\t\t" << "static uint32_t const high_level_type_size;" << std::endl;
+		stream << "\t\t\t\t" << "static uint32_t const low_level_type_size;" << std::endl;
 		stream << std::endl;
 
 		uint32_t field_index = 0;
@@ -602,7 +604,10 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
-		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
+		uint32_t low_level_type_size = calculate_struct_size(engine_type, platform_type, build, *tag_struct_definition);
+
+		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::high_level_type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
+		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
 		stream << std::endl;
 
 		if (tag_group != nullptr)
@@ -620,9 +625,15 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 
-		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_type_size() const" << std::endl;
+		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_high_level_type_size() const" << std::endl;
 		stream << "\t\t{" << std::endl;
-		stream << "\t\t\treturn type_size;" << std::endl;
+		stream << "\t\t\treturn high_level_type_size;" << std::endl;
+		stream << "\t\t}" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_low_level_type_size() const" << std::endl;
+		stream << "\t\t{" << std::endl;
+		stream << "\t\t\treturn low_level_type_size;" << std::endl;
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 	}
@@ -720,7 +731,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		{
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
-			stream << "\t\t" << "void* h_" << tag_struct_definition->name << "::get_field_pointer(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t" << "void* h_" << tag_struct_definition->name << "::get_field_data(const blofeld::s_tag_field& field)" << std::endl;
 			stream << "\t\t{" << std::endl;
 			stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
 			stream << std::endl;

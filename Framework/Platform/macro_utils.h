@@ -23,7 +23,7 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 } } while(0)
 
 #ifdef _DEBUG
-#define DEBUG_ONLY(...) do { __VA_ARGS__; } while (0)
+#define DEBUG_ONLY(...) __VA_ARGS__
 #else
 #define DEBUG_ONLY(...)
 #endif

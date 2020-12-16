@@ -291,6 +291,7 @@
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp" />
+    <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
     <ClCompile Include="blofeld\structures\detail_object_definitions.cpp" />
@@ -642,6 +643,7 @@
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
     <ClInclude Include="tagdefinitions-public-pch.h" />
+    <ClInclude Include="tag_group_info.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />
     <ClInclude Include="types\engine_type_and_platform_and_build.h" />

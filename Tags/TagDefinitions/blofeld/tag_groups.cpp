@@ -282,6 +282,8 @@ namespace blofeld
 		&chud_group,
 		&chud_globals_group,
 		&chocolate_mountain_new_group,
+		&shader_beam_group,
+		&shader_contrail_group,
 		nullptr
 	};
 

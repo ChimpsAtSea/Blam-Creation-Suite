@@ -933,6 +933,9 @@
     <ClCompile Include="types\field_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tag_group_info.haloreach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1878,6 +1881,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_group_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,7 @@ template<typename T> void c_haloreach_cache_file::init(T& cache_file_header)
 	{
 		tags_buffer = tags_section.masked_data + cache_file_header.tag_buffer_offset;
 		haloreach_cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_virtual_address(cache_file_header.tags_header_address));
+		debug_point;
 	}
 }
 
@@ -65,10 +66,28 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 		for (uint32_t group_index = 0; group_index < haloreach_cache_file_tags_header->tag_groups.count; group_index++)
 		{
 			s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[group_index];
+
+			//const char* group_name = this->get_string_id(cache_file_tag_group.name);
+
+			//uint32_t a = _byteswap_ulong(cache_file_tag_group.group_tags[0]);
+			//uint32_t b = _byteswap_ulong(cache_file_tag_group.group_tags[1]);
+			//uint32_t c = _byteswap_ulong(cache_file_tag_group.group_tags[2]);
+
+			//if ((a & 0xFF) == 0) a >>= 8;
+			//if ((b & 0xFF) == 0) b >>= 8;
+			//if ((c & 0xFF) == 0) c >>= 8;
+			//if ((a & 0xFF) == 0) a >>= 8;
+			//if ((b & 0xFF) == 0) b >>= 8;
+			//if ((c & 0xFF) == 0) c >>= 8;
+
+			//const char* name = get_known_legacy_tag_group_name(cache_file_tag_group.group_tags[0]);
+			//c_console::write_line("%s\t\"%.4s'\t\"%.4s'\t\"%.4s'", name, &a, &b, &c);
+
 			tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 		}
 
 		gen3_cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_instances.address));
+		tag_interfaces.reserve(haloreach_cache_file_tags_header->tag_instances.count);
 		for (uint32_t tag_instance = 0; tag_instance < haloreach_cache_file_tags_header->tag_instances.count; tag_instance++)
 		{
 			s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
@@ -114,90 +133,98 @@ c_cache_file* c_haloreach_cache_file::get_shared_cache_file_by_file_index(uint32
 void c_haloreach_cache_file::init_resources()
 {
 	const s_section_cache& tags_section = get_section(_cache_file_section_index_tags);
-	if (tags_section.size > 0)
+	if (tags_section.size == 0)
 	{
-		using namespace blofeld::haloreach;
-
-		c_tag_group_interface* cache_file_resource_gestalt_group = get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
-		DEBUG_ASSERT(cache_file_resource_gestalt_group != nullptr);
-		DEBUG_ASSERT(cache_file_resource_gestalt_group->get_tag_interfaces_count() == 1);
-		v_tag_interface<s_cache_file_resource_gestalt_block_struct>* cache_file_resource_gestalt = dynamic_cast<decltype(cache_file_resource_gestalt)>(cache_file_resource_gestalt_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
-		DEBUG_ASSERT(cache_file_resource_gestalt != nullptr);
-
-		c_tag_group_interface* cache_file_resource_layout_table_group = get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
-		DEBUG_ASSERT(cache_file_resource_layout_table_group != nullptr);
-		DEBUG_ASSERT(cache_file_resource_layout_table_group->get_tag_interfaces_count() == 1);
-		v_tag_interface<s_cache_file_resource_layout_table_block_struct>* cache_file_resource_layout_table = dynamic_cast<decltype(cache_file_resource_layout_table)>(cache_file_resource_layout_table_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
-		DEBUG_ASSERT(cache_file_resource_layout_table != nullptr);
-
-		gen3_cache_file_tag_interops = reinterpret_cast<s_cache_file_tag_interop*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_interop_table.address));
-		tag_interop_count = haloreach_cache_file_tags_header->tag_interop_table.count;
-		for (uint32_t interop_index = 0; interop_index < haloreach_cache_file_tags_header->tag_interop_table.count; interop_index++)
-		{
-			s_cache_file_tag_interop& tag_interop = gen3_cache_file_tag_interops[interop_index];
-
-			const char* interop_typename = get_string_id(cache_file_resource_gestalt->interop_type_identifiers_block[tag_interop.type].name, "");
-
-			//c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
-		}
-
-		DEBUG_ASSERT(cache_file_resource_gestalt->resource_type_identifiers_block.count == 7);
-
-		uint32_t resources_count = cache_file_resource_gestalt->resources_block.count;
-
-		resource_entries = new c_resource_entry * [resources_count] {};
-		resource_entries_count = resources_count;
-
-		page_file_manager = new c_haloreach_page_file_manager(*this);
-
-		// #TODO: convert strings to string id's to avoid expensive strcmp below
-
-		for (uint32_t resource_index = 0; resource_index < resources_count; resource_index++)
-		{
-			blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data = cache_file_resource_gestalt->resources_block[resource_index];
-			if (cache_file_resource_data.resource_type_index == -1i8)
-			{
-				continue;
-			}
-
-			uint32_t resource_type_index = cache_file_resource_data.resource_type_index;
-			const char* resource_typename = get_string_id(cache_file_resource_gestalt->resource_type_identifiers_block[resource_type_index].name, "");
-
-			if (_stricmp(resource_typename, "bitmap_texture_interop_resource") == 0)
-			{
-				resource_entries[resource_index] = new c_bitmap_texture_interop_resource_entry(resource_index, *this);
-			}
-			else if (_stricmp(resource_typename, "render_geometry_api_resource_definition") == 0)
-			{
-				resource_entries[resource_index] = new c_render_geometry_api_resource_definition_entry();
-			}
-			else if (_stricmp(resource_typename, "constant_buffer_resource_definition") == 0)
-			{
-				resource_entries[resource_index] = new c_constant_buffer_resource_definition_entry();
-			}
-			else if (_stricmp(resource_typename, "sound_resource_definition") == 0)
-			{
-				resource_entries[resource_index] = new c_sound_resource_definition_entry();
-			}
-			else if (_stricmp(resource_typename, "model_animation_tag_resource") == 0)
-			{
-				resource_entries[resource_index] = new c_model_animation_tag_resource_entry();
-			}
-			else if (_stricmp(resource_typename, "structure_bsp_tag_resources") == 0)
-			{
-				resource_entries[resource_index] = new c_structure_bsp_tag_resources_entry();
-			}
-			else if (_stricmp(resource_typename, "structure_bsp_cache_file_tag_resources") == 0)
-			{
-				resource_entries[resource_index] = new c_structure_bsp_cache_file_tag_resources_entry();
-			}
-			else
-			{
-				FATAL_ERROR(L"Unknown resource type");
-			}
-		}
-
+		return;
 	}
+
+	const s_section_cache& resources_section = get_section(_cache_file_section_index_resource);
+	if (resources_section.size == 0)
+	{
+		return;
+	}
+
+	using namespace blofeld::haloreach;
+
+	c_tag_group_interface* cache_file_resource_gestalt_group = get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
+	DEBUG_ASSERT(cache_file_resource_gestalt_group != nullptr);
+	DEBUG_ASSERT(cache_file_resource_gestalt_group->get_tag_interfaces_count() == 1);
+	v_tag_interface<s_cache_file_resource_gestalt_block_struct>* cache_file_resource_gestalt = dynamic_cast<decltype(cache_file_resource_gestalt)>(cache_file_resource_gestalt_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
+	DEBUG_ASSERT(cache_file_resource_gestalt != nullptr);
+
+	c_tag_group_interface* cache_file_resource_layout_table_group = get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
+	DEBUG_ASSERT(cache_file_resource_layout_table_group != nullptr);
+	DEBUG_ASSERT(cache_file_resource_layout_table_group->get_tag_interfaces_count() == 1);
+	v_tag_interface<s_cache_file_resource_layout_table_block_struct>* cache_file_resource_layout_table = dynamic_cast<decltype(cache_file_resource_layout_table)>(cache_file_resource_layout_table_group->get_tag_interfaces()[0]->get_virtual_tag_interface());
+	DEBUG_ASSERT(cache_file_resource_layout_table != nullptr);
+
+	gen3_cache_file_tag_interops = reinterpret_cast<s_cache_file_tag_interop*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_interop_table.address));
+	tag_interop_count = haloreach_cache_file_tags_header->tag_interop_table.count;
+	for (uint32_t interop_index = 0; interop_index < haloreach_cache_file_tags_header->tag_interop_table.count; interop_index++)
+	{
+		s_cache_file_tag_interop& tag_interop = gen3_cache_file_tag_interops[interop_index];
+
+		const char* interop_typename = get_string_id(cache_file_resource_gestalt->interop_type_identifiers_block[tag_interop.type].name, "");
+
+		//c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
+	}
+
+	DEBUG_ASSERT(cache_file_resource_gestalt->resource_type_identifiers_block.count == 7);
+
+	uint32_t resources_count = cache_file_resource_gestalt->resources_block.count;
+
+	resource_entries = new c_resource_entry * [resources_count] {};
+	resource_entries_count = resources_count;
+
+	page_file_manager = new c_haloreach_page_file_manager(*this);
+
+	// #TODO: convert strings to string id's to avoid expensive strcmp below
+
+	for (uint32_t resource_index = 0; resource_index < resources_count; resource_index++)
+	{
+		blofeld::haloreach::s_cache_file_resource_data_block_block_struct& cache_file_resource_data = cache_file_resource_gestalt->resources_block[resource_index];
+		if (cache_file_resource_data.resource_type_index == -1i8)
+		{
+			continue;
+		}
+
+		uint32_t resource_type_index = cache_file_resource_data.resource_type_index;
+		const char* resource_typename = get_string_id(cache_file_resource_gestalt->resource_type_identifiers_block[resource_type_index].name, "");
+
+		if (_stricmp(resource_typename, "bitmap_texture_interop_resource") == 0)
+		{
+			resource_entries[resource_index] = new c_bitmap_texture_interop_resource_entry(resource_index, *this);
+		}
+		else if (_stricmp(resource_typename, "render_geometry_api_resource_definition") == 0)
+		{
+			resource_entries[resource_index] = new c_render_geometry_api_resource_definition_entry();
+		}
+		else if (_stricmp(resource_typename, "constant_buffer_resource_definition") == 0)
+		{
+			resource_entries[resource_index] = new c_constant_buffer_resource_definition_entry();
+		}
+		else if (_stricmp(resource_typename, "sound_resource_definition") == 0)
+		{
+			resource_entries[resource_index] = new c_sound_resource_definition_entry();
+		}
+		else if (_stricmp(resource_typename, "model_animation_tag_resource") == 0)
+		{
+			resource_entries[resource_index] = new c_model_animation_tag_resource_entry();
+		}
+		else if (_stricmp(resource_typename, "structure_bsp_tag_resources") == 0)
+		{
+			resource_entries[resource_index] = new c_structure_bsp_tag_resources_entry();
+		}
+		else if (_stricmp(resource_typename, "structure_bsp_cache_file_tag_resources") == 0)
+		{
+			resource_entries[resource_index] = new c_structure_bsp_cache_file_tag_resources_entry();
+		}
+		else
+		{
+			FATAL_ERROR(L"Unknown resource type");
+		}
+	}
+
 }
 
 void c_haloreach_cache_file::validate()

@@ -85,15 +85,16 @@ public:
 	h_object(h_type* parent = nullptr);
 	virtual ~h_object();
 
-	virtual uint32_t get_type_size() const = 0;
+	virtual uint32_t get_high_level_type_size() const = 0;
+	virtual uint32_t get_low_level_type_size() const = 0;
 	virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const = 0;
-	virtual void* get_field_pointer(const blofeld::s_tag_field& field) = 0;
+	virtual void* get_field_data(const blofeld::s_tag_field& field) = 0;
 	virtual bool is_field_active(const blofeld::s_tag_field& field) = 0;
 
 	template<typename T>
-	T* get_field_pointer(const blofeld::s_tag_field& field)
+	T* get_field_data(const blofeld::s_tag_field& field)
 	{
-		return static_cast<T*>(get_field_pointer(field));
+		return static_cast<T*>(get_field_data(field));
 	}
 
 	//protected:
@@ -200,7 +201,8 @@ public:
 	virtual h_object& operator[](uint32_t index) = 0;
 	virtual h_object& get(uint32_t index) = 0;
 	virtual const h_object* data() = 0;
-	virtual uint32_t type_size() = 0;
+	virtual uint32_t get_high_level_type_size() const = 0;
+	virtual uint32_t get_low_level_type_size() const = 0;
 	virtual uint32_t size() = 0;
 	virtual uint32_t data_size() = 0;
 
@@ -240,9 +242,14 @@ public:
 		return std::array<h_custom_type, _size>::data();
 	}
 
-	virtual uint32_t type_size() final
+	virtual uint32_t get_high_level_type_size() const final
 	{
-		return h_custom_type::type_size;
+		return h_custom_type::high_level_type_size;
+	}
+
+	virtual uint32_t get_low_level_type_size() const final
+	{
+		return h_custom_type::low_level_type_size;
 	}
 
 	virtual uint32_t size() final
@@ -288,7 +295,8 @@ public:
 	virtual h_custom_type& operator[](uint32_t index) final;
 	virtual h_custom_type& get(uint32_t index) final;
 	virtual const h_custom_type* data() final;
-	virtual uint32_t type_size() final;
+	virtual uint32_t get_high_level_type_size() const final;
+	virtual uint32_t get_low_level_type_size() const final;
 	virtual uint32_t size() final;
 	virtual uint32_t data_size() final;
 	virtual h_custom_type& emplace_back() final;
@@ -328,7 +336,7 @@ h_custom_type& h_typed_block<h_custom_type>::get(uint32_t index)																
 
 #define _h_typed_block_data_impl(h_custom_type)																											\
 template<>																																				\
-const h_custom_type* h_typed_block<h_custom_type>::data()																										\
+const h_custom_type* h_typed_block<h_custom_type>::data()																								\
 {																																						\
 	auto values = std::vector<h_custom_type>::data();																									\
 	return values;																																		\
@@ -336,9 +344,15 @@ const h_custom_type* h_typed_block<h_custom_type>::data()																							
 
 #define _h_typed_block_type_size_impl(h_custom_type)																									\
 template<>																																				\
-uint32_t h_typed_block<h_custom_type>::type_size()																										\
+uint32_t h_typed_block<h_custom_type>::get_high_level_type_size() const																					\
 {																																						\
-	return h_custom_type::type_size;																													\
+	return h_custom_type::high_level_type_size;																											\
+}																																						\
+																																						\
+template<>																																				\
+uint32_t h_typed_block<h_custom_type>::get_low_level_type_size() const																					\
+{																																						\
+	return h_custom_type::low_level_type_size;																											\
 }																																						
 
 #define _h_typed_block_size_impl(h_custom_type)																											\
@@ -359,7 +373,7 @@ uint32_t h_typed_block<h_custom_type>::data_size()																										\
 template<>																																				\
 h_custom_type& h_typed_block<h_custom_type>::emplace_back()																								\
 {																																						\
-	return std::vector<h_custom_type>::emplace_back(this);																									\
+	return std::vector<h_custom_type>::emplace_back(this);																								\
 }																																						
 
 #define _h_typed_block_emplace_back_alt_impl(h_custom_type)																								\

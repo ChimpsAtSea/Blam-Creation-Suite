@@ -67,7 +67,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			continue;
 		}
 
-		void* high_level_field_data = high_level.get_field_pointer(*field);
+		void* high_level_field_data = high_level.get_field_data(*field);
 
 		uint32_t field_size = get_blofeld_field_size(*field, engine_type, platform_type, build);
 
@@ -114,19 +114,19 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			}			
 			case _field_char_enum:
 			{
-				uint32_t data = *reinterpret_cast<const char*>(current_data_position);
+				int32_t data = *reinterpret_cast<const char*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}
 			case _field_enum:
 			{
-				uint32_t data = *reinterpret_cast<const short*>(current_data_position);
+				int32_t data = *reinterpret_cast<const short*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}
 			case _field_long_enum:
 			{
-				uint32_t data = *reinterpret_cast<const long*>(current_data_position);
+				int32_t data = *reinterpret_cast<const long*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}

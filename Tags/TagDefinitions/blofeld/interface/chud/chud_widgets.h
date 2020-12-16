@@ -6,6 +6,7 @@ namespace blofeld
 	constexpr unsigned long CHUD_WIDGET_PLACEMENT_DATA_TAG = 'wpdt';
 	constexpr unsigned long CHUD_WIDGET_RENDER_DATA_TAG = 'wrdt';
 	constexpr unsigned long CHUD_WIDGET_STATE_DATA_TAG = 'wsdt';
+	constexpr unsigned long CHUD_WIDGET_DATASOURCE_TAG = 'wdst';
 
 	extern s_tag_block_definition wsdt_data_block_block;
 	extern s_tag_struct_definition wsdt_data_block_block_struct;

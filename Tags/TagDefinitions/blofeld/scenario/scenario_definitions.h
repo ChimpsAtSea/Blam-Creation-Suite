@@ -13,6 +13,30 @@ namespace blofeld
 #define k_number_of_scenario_ai_types k_number_of_scenario_ai_types(BLOFELD_CONST_ARGS)
 #endif
 
+	constexpr unsigned long SCENARIO_AI_RESOURCE_TAG = 'ai**';
+	constexpr unsigned long SCENARIO_BIPEDS_RESOURCE_TAG = '*ipd';
+	constexpr unsigned long SCENARIO_CINEMATICS_RESOURCE_TAG = 'cin*';
+	constexpr unsigned long SCENARIO_CLUSTER_DATA_RESOURCE_TAG = 'clu*';
+	constexpr unsigned long SCENARIO_COMMENTS_RESOURCE_TAG = '/**/';
+	constexpr unsigned long SCENARIO_CREATURE_RESOURCE_TAG = '*rea';
+	constexpr unsigned long SCENARIO_CUBEMAP_RESOURCE_TAG = 'cub*';
+	constexpr unsigned long SCENARIO_DECALS_RESOURCE_TAG = 'dec*';
+	constexpr unsigned long SCENARIO_DECORATORS_RESOURCE_TAG = 'dc*s';
+	constexpr unsigned long SCENARIO_DEVICES_RESOURCE_TAG = 'dgr*';
+	constexpr unsigned long SCENARIO_DUMPLINGS_RESOURCE_TAG = 'dmp*';
+	constexpr unsigned long SCENARIO_EFFECT_SCENERY_RESOURCE_TAG = '*fsc';
+	constexpr unsigned long SCENARIO_EQUIPMENT_RESOURCE_TAG = '*qip';
+	constexpr unsigned long SCENARIO_LIGHTS_RESOURCE_TAG = '*igh';
+	constexpr unsigned long SCENARIO_PERFORMANCES_RESOURCE_TAG = 'prf*';
+	constexpr unsigned long SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
+	constexpr unsigned long SCENARIO_SCENERY_RESOURCE_TAG = '*cen';
+	constexpr unsigned long SCENARIO_SKY_REFERENCES_RESOURCE_TAG = 'sky*';
+	constexpr unsigned long SCENARIO_SOUND_SCENERY_RESOURCE_TAG = '*sce';
+	constexpr unsigned long SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG = 'sslt';
+	constexpr unsigned long SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG = 'trg*';
+	constexpr unsigned long SCENARIO_VEHICLES_RESOURCE_TAG = '*ehi';
+	constexpr unsigned long SCENARIO_WEAPONS_RESOURCE_TAG = '*eap';
+
 	constexpr unsigned long PERFORMANCE_TEMPLATE_TAG = 'pfmc';
 
 	extern s_tag_struct_definition performance_template_block_struct;
@@ -21,7 +45,6 @@ namespace blofeld
 	constexpr unsigned long SCENARIO_TAG = 'scnr';
 
 	extern s_tag_group scenario_group;
-	constexpr unsigned long SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
 
 	extern s_tag_group scenario_required_resource_group;
 

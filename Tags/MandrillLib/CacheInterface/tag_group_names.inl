@@ -2,6 +2,7 @@
 static std::pair<int, const char*> tag_group_names[] =
 {
 	{'rmc' , "shader_contrail"}										,
+	{'rmb' , "shader_beam"}										,
 	{'rmp' , "shader_particle"}										,
 	{'$#!+', "cache_file_sound"}									,
 	{'*cen', "scenario_scenery_resource"}							,

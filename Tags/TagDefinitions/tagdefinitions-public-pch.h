@@ -18,3 +18,5 @@
 #include "blofeld/tag_structs.h"
 #endif
 #include "blofeld/validation.h"
+
+#include "tag_group_info.h"

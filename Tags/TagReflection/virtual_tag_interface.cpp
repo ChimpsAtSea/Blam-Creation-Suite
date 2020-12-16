@@ -43,7 +43,7 @@ c_virtual_tag_interface::~c_virtual_tag_interface()
 
 }
 
-void* c_virtual_tag_interface::get_field_pointer(const blofeld::s_tag_field& field)
+void* c_virtual_tag_interface::get_field_data(const blofeld::s_tag_field& field)
 {
 	using namespace blofeld;
 

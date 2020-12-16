@@ -1186,7 +1186,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 			continue;
 		}
 
-		void* field_data = object.get_field_pointer(*current_field);
+		void* field_data = object.get_field_data(*current_field);
 
 		ImGui::PushID(field_index);
 

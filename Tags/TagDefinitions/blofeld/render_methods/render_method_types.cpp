@@ -38,7 +38,11 @@ namespace blofeld
 
 	TAG_GROUP_INHERIT_FROM_BLOCK(shader_water, SHADER_WATER_TAG, render_method, RENDER_METHOD_TAG, shader_water_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(shader_waterfall, SHADER_WATERFALL_TAG, render_method, RENDER_METHOD_TAG, shader_waterfall_block_block );
+	TAG_GROUP_INHERIT_FROM_BLOCK(shader_waterfall, SHADER_WATERFALL_TAG, render_method, RENDER_METHOD_TAG, shader_waterfall_block_block);
+
+	TAG_GROUP_INHERIT_FROM_BLOCK(shader_beam, SHADER_BEAM_TAG, render_method, RENDER_METHOD_TAG, shader_beam_block_block);
+
+	TAG_GROUP_INHERIT_FROM_BLOCK(shader_contrail, SHADER_CONTRAIL_TAG, render_method, RENDER_METHOD_TAG, shader_contrail_block_block);
 
 	TAG_BLOCK_FROM_STRUCT(shader_particle_block, 1, shader_particle_struct_definition_struct_definition );
 
@@ -74,7 +78,11 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(shader_water_block, 1, shader_water_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(shader_waterfall_block, 1, shader_waterfall_struct_definition_struct_definition );
+	TAG_BLOCK_FROM_STRUCT(shader_waterfall_block, 1, shader_waterfall_struct_definition_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(shader_beam_block, 1, shader_beam_struct_definition_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(shader_contrail_block, 1, shader_contrail_struct_definition_struct_definition);
 
 	TAG_STRUCT(shader_particle_struct_definition)
 	{
@@ -181,6 +189,20 @@ namespace blofeld
 	TAG_STRUCT(shader_struct_definition)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition_struct_definition },
+		{ _field_string_id, "material name" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(shader_beam_struct_definition)
+	{
+		{ _field_struct, "render_method", & render_method_struct_definition_struct_definition },
+		{ _field_string_id, "material name" },
+		{ _field_terminator }
+	};
+
+	TAG_STRUCT(shader_contrail_struct_definition)
+	{
+		{ _field_struct, "render_method", & render_method_struct_definition_struct_definition },
 		{ _field_string_id, "material name" },
 		{ _field_terminator }
 	};
