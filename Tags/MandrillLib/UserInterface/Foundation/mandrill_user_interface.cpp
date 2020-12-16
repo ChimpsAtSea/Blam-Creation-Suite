@@ -151,6 +151,35 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, cons
 	}
 }
 
+void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, const char* tag_list)
+{
+	if (filepath == nullptr || !PathFileExistsW(filepath))
+	{
+		return;
+	}
+
+	if (!filesystem_filepath_exists(filepath))
+	{
+		c_console::write_line("failed to open %s", filepath);
+		return;
+	}
+
+	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+	{
+		if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
+		{
+			// #TODO
+		}
+	}
+
+	long file_version = 0;
+	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
+	if (engine_type == _engine_type_haloreach)
+	{
+		create_tag_project(filepath);
+	}
+}
+
 void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, const char* tag_list)
 {
 	if (filepath == nullptr || !PathFileExistsW(filepath))
@@ -177,14 +206,7 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 		}
 	}
 
-	long file_version = 0;
-	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
-	if (engine_type == _engine_type_haloreach)
-	{
-		create_tag_project(filepath);
-		return;
-	}
-	else if (c_cache_file* cache_file = c_cache_file::create_cache_file(filepath))
+	if (c_cache_file* cache_file = c_cache_file::create_cache_file(filepath))
 	{
 		c_cache_file_tab* cache_file_tab = new c_cache_file_tab(*cache_file, *this, tag_list);
 		cache_file_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
@@ -271,7 +293,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 
 		if (use_projects)
 		{
-			create_tag_project(map_path.c_str(), selected_map_tags_list.c_str());
+			open_tag_project_tab(map_path.c_str(), selected_map_tags_list.c_str());
 		}
 		else
 		{
@@ -288,7 +310,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 	{
 		if (use_projects)
 		{
-			create_tag_project(selected_map_path.c_str(), selected_map_tags_list.c_str());
+			open_tag_project_tab(selected_map_path.c_str(), selected_map_tags_list.c_str());
 		}
 		else
 		{
@@ -569,7 +591,7 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 			{
 				c_fixed_wide_path selected_file_path_buffer;
 				selected_file_path_buffer.format(L"%S", selected_file_path);
-				create_tag_project(selected_file_path_buffer.c_str());
+				open_tag_project_tab(selected_file_path_buffer.c_str());
 			}
 		}
 	}

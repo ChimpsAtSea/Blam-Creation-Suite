@@ -1342,13 +1342,18 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		{
 			ImGui::SetNextItemWidth(350);
 
-			const c_blamlib_string_parser& selected_string_parser = *string_parsers[value];
-			bool const selected_string_has_tooltip = !selected_string_parser.description.is_empty();
-			if (selected_string_has_tooltip)
+			const char* const selected_string_value = "<INVALID VALUE>";
+			bool selected_string_has_tooltip = false;
+			if (value < string_list_count)
 			{
-				ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+				const c_blamlib_string_parser& selected_string_parser = *string_parsers[value];
+				selected_string_has_tooltip = !selected_string_parser.description.is_empty();
+				if (selected_string_has_tooltip)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+				}
 			}
-			const char* const selected_string_value = value < string_list_count ? selected_string_parser.display_name.c_str() : "<INVALID VALUE>";
+
 			if (ImGui::BeginCombo("##enum", selected_string_value))
 			{
 				for (uint32_t string_index = 0; string_index < string_list_count; string_index++)

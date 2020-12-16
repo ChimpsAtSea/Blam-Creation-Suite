@@ -102,3 +102,19 @@ float c_stopwatch::get_miliseconds()
 	double miliseconds = nanoseconds / static_cast<double>(std::chrono::nanoseconds::period::den / std::chrono::milliseconds::period::den);
 	return static_cast<float>(miliseconds);
 }
+
+c_task_timer::c_task_timer(const char* _task_name) :
+	stopwatch(),
+	task_name()
+{
+	strncpy(task_name, _task_name, __min(strlen(_task_name), sizeof(task_name) - 1));
+	stopwatch.start();
+}
+
+c_task_timer::~c_task_timer()
+{
+	stopwatch.stop();
+	c_console::write_line_verbose("%s completed in %.2fms", task_name, stopwatch.get_miliseconds());
+}
+
+

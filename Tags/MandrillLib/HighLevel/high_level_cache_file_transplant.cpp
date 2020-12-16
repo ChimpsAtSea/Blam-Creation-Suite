@@ -149,7 +149,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 				uint32_t const block_struct_size = calculate_struct_size(engine_type, platform_type, build, block_struct_definition);
 				const char* const block_data = cache_file.get_tag_block_data(tag_block);
 
-				if (tag_block.count < 1024)
+				//if (tag_block.count < 1024)
 				{
 					block_storage.reserve(tag_block.count);
 
@@ -162,19 +162,19 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 						current_block_data_position += block_struct_size;
 					}
 				}
-				else
-				{
-					block_storage.resize(tag_block.count);
+				//else
+				//{
+				//	block_storage.resize(tag_block.count);
 
-					auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
-					{
-						const void* current_block_data = block_data + block_struct_size * index;
+				//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
+				//	{
+				//		const void* current_block_data = block_data + block_struct_size * index;
 
-						h_object& type = block_storage.get(index);
-						transplant_data(type, block_data, block_struct_definition);
-					};
-					tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
-				}
+				//		h_object& type = block_storage.get(index);
+				//		transplant_data(type, block_data, block_struct_definition);
+				//	};
+				//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
+				//}
 
 				break;
 			}

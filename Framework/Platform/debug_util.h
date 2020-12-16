@@ -28,3 +28,20 @@ private:
 	std::chrono::high_resolution_clock::time_point time_point_stop;
 	std::chrono::high_resolution_clock::duration _duration;
 };
+
+class c_task_timer
+{
+public:
+	c_task_timer(const char* task_name);
+	~c_task_timer();
+
+protected:
+	c_stopwatch stopwatch;
+	char task_name[128];
+};
+
+#ifdef __INTELLISENSE__
+#define TASK_TIMER(name)
+#else
+#define TASK_TIMER(name) c_task_timer CONCAT(__task_timer, __LINE__) (name)
+#endif

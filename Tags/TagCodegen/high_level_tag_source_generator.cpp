@@ -133,6 +133,24 @@ void c_high_level_tag_source_generator::generate_header() const
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
+		uint32_t blofeld_field_list_size = 1;
+		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
+			if (current_field->field_type > _field_type_non_standard)
+			{
+				continue;
+			}
+
+			blofeld_field_list_size++;
+		}
+
 		stream << "\t\t" << "class h_" << tag_struct_definition->name << " : " << std::endl;
 		if (tag_group != nullptr)
 		{
@@ -163,13 +181,19 @@ void c_high_level_tag_source_generator::generate_header() const
 		}
 		stream << "\t\t\t\t" << "virtual uint32_t get_high_level_type_size() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual uint32_t get_low_level_type_size() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data) final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const final;" << std::endl;
+
 		stream << std::endl;
 
 		stream << "\t\t\t\t" << "static uint32_t const high_level_type_size;" << std::endl;
 		stream << "\t\t\t\t" << "static uint32_t const low_level_type_size;" << std::endl;
+		stream << "\t\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_size << "];" << std::endl;
+
 		stream << std::endl;
 
 		uint32_t field_index = 0;
@@ -604,10 +628,52 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
+		uint32_t blofeld_field_list_count = 1;
+		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
+			if (current_field->field_type > _field_type_non_standard)
+			{
+				continue;
+			}
+
+			blofeld_field_list_count++;
+		}
+
 		uint32_t low_level_type_size = calculate_struct_size(engine_type, platform_type, build, *tag_struct_definition);
 
 		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::high_level_type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
 		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
+		stream << "\t\t" << "const blofeld::s_tag_field* const h_" << tag_struct_definition->name << "::blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << "\t\t" << "{" << std::endl;
+		{
+			uint32_t field_index = 0;
+			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+			{
+				uint32_t field_skip_count;
+				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				{
+					current_field += field_skip_count;
+					field_index += field_skip_count;
+					continue;
+				}
+
+				if (current_field->field_type > _field_type_non_standard)
+				{
+					continue;
+				}
+
+				stream << "\t\t\t" << tag_struct_definition->symbol->symbol_name << ".fields" << " + " << field_index << "," << std::endl;
+			}
+		}
+		stream << "\t\t\t" << "nullptr" << std::endl;
+		stream << "\t\t" << "};" << std::endl;
 		stream << std::endl;
 
 		if (tag_group != nullptr)
@@ -619,12 +685,6 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			stream << std::endl;
 		}
 
-		stream << "\t\t" << "const blofeld::s_tag_struct_definition& h_" << tag_struct_definition->name << "::get_blofeld_struct_definition() const" << std::endl;
-		stream << "\t\t{" << std::endl;
-		stream << "\t\t\treturn " << tag_struct_definition->symbol->symbol_name << ";" << std::endl;
-		stream << "\t\t}" << std::endl;
-		stream << std::endl;
-
 		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_high_level_type_size() const" << std::endl;
 		stream << "\t\t{" << std::endl;
 		stream << "\t\t\treturn high_level_type_size;" << std::endl;
@@ -634,6 +694,28 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_low_level_type_size() const" << std::endl;
 		stream << "\t\t{" << std::endl;
 		stream << "\t\t\treturn low_level_type_size;" << std::endl;
+		stream << "\t\t}" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "const blofeld::s_tag_struct_definition& h_" << tag_struct_definition->name << "::get_blofeld_struct_definition() const" << std::endl;
+		stream << "\t\t{" << std::endl;
+		stream << "\t\t\treturn " << tag_struct_definition->symbol->symbol_name << ";" << std::endl;
+		stream << "\t\t}" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "const blofeld::s_tag_field* const* h_" << tag_struct_definition->name << "::get_blofeld_field_list() const" << std::endl;
+		stream << "\t\t{" << std::endl;
+		stream << "\t\t\treturn blofeld_field_list;" << std::endl;
+		stream << "\t\t}" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "void h_" << tag_struct_definition->name << "::copy_from_memory(const void* data)" << std::endl;
+		stream << "\t\t{" << std::endl;
+		stream << "\t\t}" << std::endl;
+		stream << std::endl;
+
+		stream << "\t\t" << "void h_" << tag_struct_definition->name << "::copy_to_memory(void* data) const" << std::endl;
+		stream << "\t\t{" << std::endl;
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 	}
@@ -787,7 +869,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		{
 			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
-			stream << "\t\t" << "bool h_" << tag_struct_definition->name << "::is_field_active(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t" << "bool h_" << tag_struct_definition->name << "::is_field_active(const blofeld::s_tag_field& field) const" << std::endl;
 			stream << "\t\t{" << std::endl;
 			stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
 			stream << std::endl;

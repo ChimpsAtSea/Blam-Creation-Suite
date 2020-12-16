@@ -20,9 +20,15 @@ class c_haloreach_cache_compiler
 public:
 	c_haloreach_cache_compiler(c_tag_project& tag_project);
 	~c_haloreach_cache_compiler();
-	uint32_t calculate_size(h_object& object);
-	void compile_tag(h_tag& tag, char* tag_data);
+	uint32_t calculate_size(h_tag& tag);
+	void calculate_object_memory_footprint(uint32_t& memory_footprint, h_object& object);
+	uint16_t get_tag_index(const h_tag* tag) const;
+	void compile_tag(const h_tag& tag, char* tag_data);
+	void compile_object(const h_object& object, char* tag_data, char*& tag_allocation_postion);
 	void create_tag_groups();
+	void init_tags();
+	void create_tag_file_table();
+	void compile_tags();
 	void compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file));
 
 
@@ -30,7 +36,10 @@ protected:
 
 	static constexpr uint64_t virtual_base_address = 0x00000001cb780000;
 	static constexpr uint32_t page_address_offset_relative = 0x50000000ull;
+	static constexpr uint32_t block_memory_alignment = 0x4u;
+	static constexpr uint32_t tag_memory_alignment = 0x4u;
 
+	uint32_t get_tag_pointer_relative_offset(const char* tag_data);
 	static uint32_t encode_page_offset(uint64_t virtual_address);
 	static uint64_t decode_page_offset(uint32_t page_offset);
 
@@ -49,7 +58,7 @@ protected:
 	// tag data
 
 	char* tag_data_buffer;
-	uint32_t total_tag_data_size;
+	uint32_t tag_data_data_size;
 	uint32_t tag_data_buffer_size;
 
 	struct s_tag_data_entry
@@ -61,9 +70,11 @@ protected:
 		uint32_t tag_file_table_offset;
 		uint32_t tag_file_table_index;
 		char* tag_file_table_entry;
+		uint32_t tag_group_index;
 		c_fixed_path path;
 	};
-	std::vector<s_tag_data_entry> tag_data_entries;
+	s_tag_data_entry* tag_data_entries;
+	uint32_t tag_data_entry_count;
 
 	// tag instances
 
@@ -71,7 +82,8 @@ protected:
 	uint32_t tag_instances_buffer_size;
 	uint32_t tag_instance_count;
 
-	char* tag_file_table_buffer;
+	char* tag_file_table_buffer; 
+	uint32_t tag_file_table_data_size;
 	uint32_t tag_file_table_buffer_size;
 	char* tag_file_table_indices_buffer;
 	uint32_t tag_file_table_indices_buffer_size;

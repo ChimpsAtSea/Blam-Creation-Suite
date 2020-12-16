@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+#define align_value(value, alignment) (((value) + ((alignment) - 1)) & ~((alignment) - 1))
+
 namespace cache_compiler
 {
 	constexpr tag k_cache_header_signature = 'head';
@@ -148,9 +150,10 @@ c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_projec
 	tag_groups_buffer(),
 	tag_groups(),
 	tag_data_buffer(),
-	total_tag_data_size(),
+	tag_data_data_size(),
 	tag_data_buffer_size(),
 	tag_data_entries(),
+	tag_data_entry_count(),
 	tag_instances_buffer(),
 	tag_instances_buffer_size(),
 	tag_instance_count(),
@@ -178,68 +181,115 @@ void write(const void* _buffer, size_t size, FILE* stream)
 	}
 }
 
-uint32_t c_haloreach_cache_compiler::calculate_size(h_object& object)
+uint32_t c_haloreach_cache_compiler::calculate_size(h_tag& tag)
 {
-	uint32_t tag_size = object.get_low_level_type_size();
+	uint32_t tag_size = tag.get_low_level_type_size();
+	calculate_object_memory_footprint(tag_size, tag);
+	return tag_size;
+}
 
-	for (const blofeld::s_tag_field* field = object.get_blofeld_struct_definition().fields; field->field_type != blofeld::_field_terminator; field++)
+void c_haloreach_cache_compiler::calculate_object_memory_footprint(uint32_t& memory_footprint, h_object& object)
+{
+	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
-		uint32_t field_skip_count;
-		if (blofeld::skip_tag_field_version(*field, tag_project.engine_type, tag_project.platform_type, tag_project.build, field_skip_count))
-		{
-			field += field_skip_count;
-			continue;
-		}
+		const blofeld::s_tag_field& field = **field_pointer;
 
-		void* field_data = object.get_field_data(*field);
-
-		switch (field->field_type)
+		switch (field.field_type)
 		{
 		case blofeld::_field_block:
 		{
-			h_block& child_block = *static_cast<h_block*>(field_data);
+			h_block& block_storage = *static_cast<h_block*>(object.get_field_data(field));
+			uint32_t type_size = block_storage.get_low_level_type_size();
+			uint32_t block_data_size = type_size * block_storage.size();
+			memory_footprint += align_value(block_data_size, block_memory_alignment);
+
+			for (uint32_t object_index = 0; object_index < block_storage.size(); object_index++)
+			{
+				h_object& object = block_storage.get(object_index);
+				calculate_object_memory_footprint(memory_footprint, object);
+			}
+
+			debug_point;
+			break;
+		}
+		case blofeld::_field_data:
+		{
+			h_data& data_storage = *static_cast<h_data*>(object.get_field_data(field));
+			uint32_t data_size = data_storage.size();
+			memory_footprint += align_value(data_size, block_memory_alignment);
 			debug_point;
 			break;
 		}
 		case blofeld::_field_array:
 		{
-			h_enumerable& child_array = *static_cast<h_enumerable*>(field_data);
+			h_enumerable& child_array = *static_cast<h_enumerable*>(object.get_field_data(field));
+
+			for (uint32_t object_index = 0; object_index < child_array.size(); object_index++)
+			{
+				h_object& object = child_array.get(object_index);
+				calculate_object_memory_footprint(memory_footprint, object);
+			}
+
 			debug_point;
 			break;
 		}
 		case blofeld::_field_struct:
 		{
-			h_object& child_object = *static_cast<h_object*>(field_data);
+			h_object& child_object = *static_cast<h_object*>(object.get_field_data(field));
+
+			calculate_object_memory_footprint(memory_footprint, child_object);
+
 			debug_point;
 			break;
 		}
 		}
 	}
-
-	return tag_size;
 }
 
-void c_haloreach_cache_compiler::compile_tag(h_tag& tag, char* tag_data)
+uint16_t c_haloreach_cache_compiler::get_tag_index(const h_tag* tag) const
+{
+	if (tag == nullptr)
+	{
+		return ~0ui16;
+	}
+
+	for (uint32_t tag_index = 0; tag_index < tag_data_entry_count; tag_index++)
+	{
+		s_tag_data_entry& tag_data_entry = tag_data_entries[tag_index];
+
+		if (&tag_data_entry.tag == tag)
+		{
+			return static_cast<uint16_t>(tag_data_entry.tag_file_table_index);
+		}
+
+		debug_point;
+	}
+	throw;
+}
+
+void c_haloreach_cache_compiler::compile_tag(const h_tag& tag, char* tag_data)
+{
+	char* tag_allocation_postion = tag_data;
+	tag_allocation_postion += tag.get_low_level_type_size();
+	compile_object(tag, tag_data, tag_allocation_postion);
+}
+
+void c_haloreach_cache_compiler::compile_object(const h_object& object, char* object_data, char*& tag_allocation_postion)
 {
 	using namespace blofeld;
 
-	char* current_data_position = tag_data;
-	for (const blofeld::s_tag_field* field = tag.get_blofeld_struct_definition().fields; field->field_type != blofeld::_field_terminator; field++)
+	char* current_data_position = object_data;
+	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
-		uint32_t field_skip_count;
-		if (blofeld::skip_tag_field_version(*field, tag_project.engine_type, tag_project.platform_type, tag_project.build, field_skip_count))
-		{
-			field += field_skip_count;
-			continue;
-		}
+		const blofeld::s_tag_field& field = **field_pointer;
 
-		const void* high_level_field_data = tag.get_field_data(*field);
+		const void* high_level_field_data = object.get_field_data(field);
 
-		uint32_t field_size = get_blofeld_field_size(*field, tag_project.engine_type, tag_project.platform_type, tag_project.build);
+		uint32_t field_size = get_blofeld_field_size(field, tag_project.engine_type, tag_project.platform_type, tag_project.build);
 
 		if (high_level_field_data != nullptr)
 		{
-			switch (field->field_type)
+			switch (field.field_type)
 			{
 			case _field_string:
 			case _field_long_string:
@@ -310,98 +360,129 @@ void c_haloreach_cache_compiler::compile_tag(h_tag& tag, char* tag_data)
 
 				break;
 			}
-			//case _field_block:
-			//{
-			//	const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
-			//	const s_tag_block& tag_block = *reinterpret_cast<decltype(&tag_block)>(current_data_position);
+			case _field_block:
+			{
+				s_tag_block& tag_block = *reinterpret_cast<decltype(&tag_block)>(current_data_position);
+				const h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
 
-			//	h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-			//	uint32_t const block_struct_size = calculate_struct_size(engine_type, platform_type, build, block_struct_definition);
-			//	const char* const block_data = cache_file.get_tag_block_data(tag_block);
+				if (block_storage.size() == 0)
+				{
+					tag_block.count = 0;
+					tag_block.address = 0;
+					tag_block.definition_address = 0;
+				}
+				else
+				{
+					uint32_t type_size = block_storage.get_low_level_type_size();
+					uint32_t block_data_size = type_size * block_storage.size();
 
-			//	if (tag_block.count < 1024)
-			//	{
-			//		block_storage.reserve(tag_block.count);
+					char* const tag_block_data = tag_allocation_postion;
+					tag_allocation_postion += align_value(block_data_size, block_memory_alignment);
 
-			//		const char* current_block_data_position = block_data;
-			//		for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
-			//		{
-			//			h_object& type = block_storage.emplace_back();
-			//			transplant_data(type, current_block_data_position, block_struct_definition);
+					uint32_t relative_offset = get_tag_pointer_relative_offset(tag_block_data);
+					uint32_t page_offset = encode_page_offset(relative_offset);
 
-			//			current_block_data_position += block_struct_size;
-			//		}
-			//	}
-			//	else
-			//	{
-			//		block_storage.resize(tag_block.count);
+					tag_block.count = static_cast<uint32_t>(block_storage.size());
+					tag_block.address = page_offset;
+					tag_block.definition_address = 0;
 
-			//		auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
-			//		{
-			//			const void* current_block_data = block_data + block_struct_size * index;
+					char* current_tag_block_data_position = tag_block_data;
+					for (uint32_t block_index = 0; block_index < block_storage.size(); block_index++)
+					{
+						const h_object& block_object = block_storage.get(block_index);
 
-			//			h_object& type = block_storage.get(index);
-			//			transplant_data(type, block_data, block_struct_definition);
-			//		};
-			//		tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
-			//	}
+						compile_object(block_object, current_tag_block_data_position, tag_allocation_postion);
 
-			//	break;
-			//}
-			//case _field_struct:
-			//{
-			//	h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
-			//	transplant_data(struct_storage, current_data_position, *field->struct_definition);
-			//	break;
-			//}
-			//case _field_array:
-			//{
-			//	h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
-			//	const char* raw_array_data_position = current_data_position;
+						current_tag_block_data_position += type_size;
+					}
+				}
 
-			//	uint32_t const array_elements_count = field->array_definition->count(engine_type);
-			//	for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
-			//	{
-			//		h_object& array_element_storage = array_storage[array_index];
+				break;
+			}
+			case _field_struct:
+			{
+				const h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+				compile_object(struct_storage, current_data_position, tag_allocation_postion);
+				debug_point;
+				break;
+			}
+			case _field_array:
+			{
+				const h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
+				const char* raw_array_data_position = current_data_position;
 
-			//		transplant_data(array_element_storage, raw_array_data_position, field->array_definition->struct_definition);
+				uint32_t const array_elements_count = array_storage.size();
+				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
+				{
+					const h_object& array_element_storage = array_storage[array_index];
 
-			//		raw_array_data_position += field_size;
-			//	}
-			//	break;
-			//}
-			//case _field_tag_reference:
-			//{
-			//	const s_tag_reference& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(current_data_position);
-			//	h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+					compile_object(array_element_storage, current_data_position, tag_allocation_postion);
 
-			//	c_tag_interface* tag_reference_tag_interface = cache_file.get_tag_interface(tag_reference.index);
-			//	h_tag* tag_reference_high_level_tag = get_high_level_tag_by_tag_interface(tag_reference_tag_interface);
+					raw_array_data_position += field_size;
+				}
+				break;
+			}
+			case _field_tag_reference:
+			{
+				s_tag_reference& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(current_data_position);
+				const h_tag* const& tag_reference_storage = *reinterpret_cast<decltype(&tag_reference_storage)>(high_level_field_data);
 
-			//	tag_ref_storage = tag_reference_high_level_tag;
-			//	break;
-			//}
-			//case _field_data:
-			//{
-			//	const s_tag_data& tag_data = *reinterpret_cast<decltype(&tag_data)>(current_data_position);
-			//	h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
+				if (tag_reference_storage != nullptr)
+				{
+					tag_reference.group_tag = blofeld::INVALID_TAG;
+					tag_reference.index = get_tag_index(tag_reference_storage);
+					tag_reference.datum = 0; // #TODO
+				}
+				else
+				{
+					tag_reference.group_tag = blofeld::INVALID_TAG;
+					tag_reference.index = ~0ui16;
+					tag_reference.datum = ~0ui16;
+				}
+				tag_reference.name = 0;
+				tag_reference.name_length = 0;
+				break;
+			}
+			case _field_data:
+			{
+				s_tag_data& tag_data = *reinterpret_cast<decltype(&tag_data)>(current_data_position);
+				const h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
 
-			//	const char* tag_data_data = cache_file.get_tag_data(tag_data);
-			//	if (tag_data_data != nullptr)
-			//	{
-			//		data_storage.clear();
-			//		data_storage.insert(data_storage.begin(), tag_data_data, tag_data_data + tag_data.size);
-			//	}
-			//	break;
-			//}
+				if (data_storage.size() == 0)
+				{
+					tag_data.size = 0;
+					tag_data.stream_flags = 0;
+					tag_data.stream_offset = 0;
+					tag_data.address = 0;
+					tag_data.definition = 0;
+				}
+				else
+				{
+					uint32_t block_data_size = data_storage.size();
+
+					char* const tag_data_data = tag_allocation_postion;
+					tag_allocation_postion += align_value(block_data_size, block_memory_alignment);
+
+					uint32_t relative_offset = get_tag_pointer_relative_offset(tag_data_data);
+					uint32_t page_offset = encode_page_offset(relative_offset);
+
+					tag_data.size = static_cast<uint32_t>(data_storage.size());
+					tag_data.stream_flags = 0;
+					tag_data.stream_offset = 0;
+					tag_data.address = page_offset;
+					tag_data.definition = 0;
+
+					memcpy(tag_data_data, data_storage.data(), block_data_size);
+				}
+
+				break;
+			}
 			}
 		}
 
 		current_data_position += field_size;
 	}
 }
-
-#define align_value(value, alignment) (((value) + ((alignment) - 1)) & ~((alignment) - 1))
 
 class c_debug_string_manager
 {
@@ -414,6 +495,8 @@ public:
 
 void c_haloreach_cache_compiler::create_tag_groups()
 {
+	TASK_TIMER(__FUNCTION__);
+
 	using namespace blofeld;
 
 	{
@@ -439,6 +522,97 @@ void c_haloreach_cache_compiler::create_tag_groups()
 	}
 }
 
+void c_haloreach_cache_compiler::init_tags()
+{
+	TASK_TIMER(__FUNCTION__);
+
+	tag_data_entry_count = static_cast<uint32_t>(tag_project.tags.size());
+	tag_data_entries = reinterpret_cast<s_tag_data_entry*>(new char[sizeof(s_tag_data_entry) * tag_data_entry_count]{});
+
+	uint32_t file_index = 0;
+	for (h_tag* tag : tag_project.tags)
+	{
+		uint32_t tag_data_size = calculate_size(*tag);
+		ASSERT((tag_data_size % 4) == 0);
+
+		uint32_t tag_group_index = ~0u;
+		for (uint32_t _tag_group_index = 0; _tag_group_index < tag_group_count; _tag_group_index++)
+		{
+			if (tag_groups[_tag_group_index].group_tags[0] == tag->group->tag_group.group_tag) // #TODO: this is kinda crazy?
+			{
+				tag_group_index = _tag_group_index;
+			}
+		}
+		ASSERT(tag_group_index != ~0u);
+
+		s_tag_data_entry& data_entry = *new(tag_data_entries + file_index) s_tag_data_entry
+		{
+			*tag,
+			tag_data_data_size,
+			tag_data_size,
+			nullptr,
+			tag_file_table_data_size,
+			file_index,
+			nullptr,
+			tag_group_index,
+			tag->tag_filepath
+		};
+
+		PathRemoveExtensionA(data_entry.path.data);
+
+		tag_file_table_data_size += data_entry.path.size() + 1;
+		tag_data_data_size += tag_data_size;
+		file_index++;
+	}
+}
+
+void c_haloreach_cache_compiler::create_tag_file_table()
+{
+	TASK_TIMER(__FUNCTION__);
+
+	tag_file_table_buffer_size = align_value(tag_file_table_data_size, 0x1000);
+	tag_file_table_buffer = new char[tag_file_table_buffer_size] {};
+
+	tag_file_table_indices_count = static_cast<uint32_t>(tag_project.tags.size());
+	tag_file_table_indices_buffer_size = align_value(tag_file_table_indices_count * sizeof(uint32_t), 0x1000);
+	tag_file_table_indices_buffer = new char[tag_file_table_indices_buffer_size] {};
+	uint32_t* tag_file_table_indices = new(tag_file_table_indices_buffer) uint32_t[tag_file_table_indices_count]{};
+
+	for (uint32_t tag_index = 0; tag_index < tag_data_entry_count; tag_index++)
+	{
+		s_tag_data_entry& tag_data_entry = tag_data_entries[tag_index];
+
+		tag_data_entry.tag_file_table_entry = tag_file_table_buffer + tag_data_entry.tag_file_table_offset;
+		tag_file_table_indices[tag_data_entry.tag_file_table_index] = tag_data_entry.tag_file_table_offset;
+		strcpy(tag_data_entry.tag_file_table_entry, tag_data_entry.path.data);
+
+		debug_point;
+	}
+}
+
+void c_haloreach_cache_compiler::compile_tags()
+{
+	TASK_TIMER(__FUNCTION__);
+
+	tag_data_buffer_size = align_value(tag_data_data_size, 0x1000);
+	tag_data_buffer = new char[tag_data_buffer_size] {};
+
+	tag_instance_count = static_cast<uint32_t>(tag_project.tags.size());
+	tag_instances_buffer_size = tag_instance_count * sizeof(s_cache_file_tag_instance);
+	tag_instances_buffer = new char[tag_instances_buffer_size] {};
+
+	for (uint32_t tag_index = 0; tag_index < tag_data_entry_count; tag_index++)
+	{
+		s_tag_data_entry& tag_data_entry = tag_data_entries[tag_index];
+
+		tag_data_entry.tag_data = tag_data_buffer + tag_data_entry.tag_data_offset;
+
+		compile_tag(tag_data_entry.tag, tag_data_entry.tag_data); // #TODO: multithread?
+
+		debug_point;
+	}
+}
+
 void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file))
 {
 	using namespace blofeld;
@@ -447,67 +621,13 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	vector.insert(vector.end(), reinterpret_cast<const char*>(data), reinterpret_cast<const char*>(data) + (size))
 
 	create_tag_groups();
+	init_tags();
+	create_tag_file_table();
+	compile_tags();
 
 	debug_point;
 
 
-
-	{
-		uint32_t total_file_table_size = 0;
-		tag_data_entries.reserve(tag_project.tags.size());
-
-		uint32_t file_index = 0;
-		for (h_tag* tag : tag_project.tags)
-		{
-			uint32_t tag_data_size = calculate_size(*tag);
-			ASSERT((tag_data_size % 4) == 0);
-
-			s_tag_data_entry data_entry =
-			{
-				*tag,
-				total_tag_data_size,
-				tag_data_size,
-				nullptr,
-				total_file_table_size,
-				file_index,
-				nullptr,
-				tag->tag_filepath
-			};
-			PathRemoveExtensionA(data_entry.path.data);
-			tag_data_entries.push_back(data_entry);
-
-			total_file_table_size += data_entry.path.size() + 1;
-			total_tag_data_size += tag_data_size;
-			file_index++;
-		}
-
-		tag_data_buffer_size = align_value(total_tag_data_size, 0x1000);
-		tag_data_buffer = new char[tag_data_buffer_size] {};
-
-		tag_instance_count = static_cast<uint32_t>(tag_project.tags.size());
-		tag_instances_buffer_size = tag_instance_count * sizeof(s_cache_file_tag_instance);
-		tag_instances_buffer = new char[tag_instances_buffer_size] {};
-
-		tag_file_table_buffer_size = align_value(total_file_table_size, 0x1000);
-		tag_file_table_buffer = new char[tag_file_table_buffer_size] {};
-
-		tag_file_table_indices_count = static_cast<uint32_t>(tag_project.tags.size());
-		tag_file_table_indices_buffer_size = align_value(tag_file_table_indices_count * sizeof(uint32_t), 0x1000);
-		tag_file_table_indices_buffer = new char[tag_file_table_indices_buffer_size] {};
-		uint32_t* tag_file_table_indices = new(tag_file_table_indices_buffer) uint32_t[tag_file_table_indices_count]{};
-
-		for (s_tag_data_entry& tag_data_entry : tag_data_entries)
-		{
-			tag_data_entry.tag_data = tag_data_buffer + tag_data_entry.tag_data_offset;
-			tag_data_entry.tag_file_table_entry = tag_file_table_buffer + tag_data_entry.tag_file_table_offset;
-			tag_file_table_indices[tag_data_entry.tag_file_table_index] = tag_data_entry.tag_file_table_offset;
-
-			compile_tag(tag_data_entry.tag, tag_data_entry.tag_data); // #TODO: multithread?
-			strcpy(tag_data_entry.tag_file_table_entry, tag_data_entry.path.data);
-
-			debug_point;
-		}
-	}
 
 	blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project.tags[8]);
 	DEBUG_ASSERT(scenario != nullptr);
@@ -568,28 +688,19 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 
 				{
 					s_cache_file_tag_instance* tag_instances = new(tag_instances_buffer) s_cache_file_tag_instance[tag_instance_count]{};
-					for (s_tag_data_entry& tag_data_entry : tag_data_entries)
+					for (uint32_t tag_index = 0; tag_index < tag_data_entry_count; tag_index++)
 					{
-						uint32_t tag_group_index = ~0u;
-						for (uint32_t _tag_group_index = 0; _tag_group_index < tag_group_count; _tag_group_index++)
-						{
-							if (tag_groups[_tag_group_index].group_tags[0] == tag_data_entry.tag.group->tag_group.group_tag) // #TODO: this is kinda crazy?
-							{
-								tag_group_index = _tag_group_index;
-							}
-						}
-						ASSERT(tag_group_index != ~0u);
-
+						s_tag_data_entry& tag_data_entry = tag_data_entries[tag_index];
 
 						uint32_t instance_index = tag_data_entry.tag_file_table_index;
 						s_cache_file_tag_instance& tag_instance = tag_instances[instance_index];
 						tag_instance.identifier = static_cast<uint16_t>(instance_index + 0xe175u);
 						tag_instance.address = encode_page_offset(tag_data_entry.tag_data_offset);
-						tag_instance.group_index = tag_group_index;
+						tag_instance.group_index = tag_data_entry.tag_group_index;
 
 						uint32_t reconstructed_address = decode_page_offset(tag_instance.address);
 						DEBUG_ASSERT(reconstructed_address == tag_data_entry.tag_data_offset);
-						
+
 						debug_point;
 					}
 				}
@@ -599,7 +710,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 				tags_header.tag_groups.address = get_tag_section_virtual_address(tags_section_tag_groups_offset);
 
 				cache_file_metadata.info.tag_buffer_offset = tags_section_tag_data_offset;
-				cache_file_metadata.info.tag_buffer_size = total_tag_data_size;
+				cache_file_metadata.info.tag_buffer_size = tag_data_data_size;
 
 				section_data[i].insert(section_data[i].end(), tag_data_buffer, tag_data_buffer + tag_data_buffer_size);
 				section_data[i].insert(section_data[i].end(), tags_header_buffer, tags_header_buffer + tags_header_buffer_size);
@@ -689,6 +800,12 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	}
 	fclose(file);
 
+}
+
+uint32_t c_haloreach_cache_compiler::get_tag_pointer_relative_offset(const char* tag_data)
+{
+	uint32_t relative_offset = static_cast<uint32_t>(tag_data - tag_data_buffer);
+	return relative_offset;
 }
 
 uint32_t c_haloreach_cache_compiler::encode_page_offset(uint64_t virtual_address)
