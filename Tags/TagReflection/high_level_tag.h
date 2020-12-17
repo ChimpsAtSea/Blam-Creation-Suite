@@ -12,6 +12,8 @@
 class h_type;
 class h_object;
 
+using h_string_id = c_fixed_string_2048;
+
 class h_notification_system
 {
 private:

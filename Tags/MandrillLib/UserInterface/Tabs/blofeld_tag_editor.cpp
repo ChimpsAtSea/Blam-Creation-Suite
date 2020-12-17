@@ -1342,11 +1342,12 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		{
 			ImGui::SetNextItemWidth(350);
 
-			const char* const selected_string_value = "<INVALID VALUE>";
+			const char* selected_string_value = "<INVALID VALUE>";
 			bool selected_string_has_tooltip = false;
 			if (value < string_list_count)
 			{
 				const c_blamlib_string_parser& selected_string_parser = *string_parsers[value];
+				selected_string_value = selected_string_parser.display_name.c_str();
 				selected_string_has_tooltip = !selected_string_parser.description.is_empty();
 				if (selected_string_has_tooltip)
 				{

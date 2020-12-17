@@ -8,5 +8,6 @@ public:
 	~c_string_id_namespace_list();
 
 	virtual uint32_t string_id_to_index(string_id const stringid) override final;
+	virtual uint32_t string_id_to_index(uint32_t index, uint32_t set, uint32_t length) final;
 };
 

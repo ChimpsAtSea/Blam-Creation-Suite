@@ -55,6 +55,7 @@ c_haloreach_page_file_manager::c_haloreach_page_file_manager(c_haloreach_cache_f
 
 		current_page_offset = resource_page_entry.page_address_end + 1024; // add an extra barrier of 4KiB to prevent traversal
 	}
+
 }
 
 c_haloreach_page_file_manager::~c_haloreach_page_file_manager()

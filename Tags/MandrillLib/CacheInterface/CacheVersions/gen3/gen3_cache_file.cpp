@@ -47,7 +47,7 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 	tag_interop_count(0),
 	string_ids_buffer(nullptr),
 	string_id_indices(nullptr),
-	string_id_namespace_indices(nullptr),
+	string_id_namespace_table(nullptr),
 	string_id_namespace_count(0),
 	filenames_buffer(nullptr),
 	filename_indices(nullptr),

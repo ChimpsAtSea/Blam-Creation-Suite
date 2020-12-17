@@ -53,10 +53,30 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 		const s_section_cache& debug_section = get_section(_cache_file_section_index_debug);
 		if (debug_section.size > 0)
 		{
-			string_id_namespace_indices = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header_v13->string_ids_namespace_table_offset);
+			string_id_namespace_table = reinterpret_cast<long*>(debug_section.masked_data + haloreach_cache_file_header_v13->string_ids_namespace_table_offset);
 			string_id_namespace_count = haloreach_cache_file_header_v13->string_ids_namespace_table_count;
 		}
 		string_id_interface = new c_string_id_namespace_list(*this, 17, 8, 7);
+	}
+
+	if (c_command_line::has_command_line_arg("-printstringidnamespace"))
+	{
+		for (uint32_t set = 0; set < string_id_namespace_count; set++)
+		{
+			uint32_t set_count = string_id_namespace_table[set] & 0x1FFFF;
+
+			for (uint32_t index = 0; index < set_count; index++)
+			{
+				uint32_t string_index = reinterpret_cast<c_string_id_namespace_list*>(string_id_interface)->string_id_to_index(set, index, 0);
+
+				const char* string = get_string_id_by_index(string_index);
+
+				c_console::write_line("%u %u %s", set, index, string);
+
+			}
+
+			debug_point;
+		}
 	}
 
 	const s_section_cache& tags_section = get_section(_cache_file_section_index_tags);

@@ -219,7 +219,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	s_window->on_destroy.register_callback(window_destroy_callback);
 
 	ASSERT(mandrill_user_interface == nullptr);
-	mandrill_user_interface = new c_mandrill_user_interface(*s_window, true);
+	//mandrill_user_interface = new c_mandrill_user_interface(*s_window, true);
 
 	if (!has_auto_started)
 	{
@@ -337,7 +337,10 @@ void c_game_launcher::update()
 
 void c_game_launcher::game_render()
 {
-	mandrill_user_interface->render_game_layer();
+	if (mandrill_user_interface != nullptr)
+	{
+		mandrill_user_interface->render_game_layer();
+	}
 	c_primitive_render_manager::render();
 }
 
@@ -446,6 +449,7 @@ IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_
 		//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_options);
 		//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_options);
 
+		if(mandrill_user_interface != nullptr)
 		{
 			// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
 			const char* map_file_name = selected_map_info->get_map_filepath();

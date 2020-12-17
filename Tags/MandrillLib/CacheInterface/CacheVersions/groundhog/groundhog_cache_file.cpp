@@ -57,9 +57,9 @@ c_groundhog_cache_file::c_groundhog_cache_file(const std::wstring& map_filepath)
 	groundhog_cache_file_header = static_cast<groundhog::s_cache_file_header*>(&cache_file_header);
 	init(*groundhog_cache_file_header);
 
-	string_id_namespace_indices_vector = { 1587, 2198, 267, 141, 248, 85, 43, 2832, 530, 52, 131, 52, 13, 66, 235 };
-	string_id_namespace_indices = string_id_namespace_indices_vector.data();
-	string_id_namespace_count = static_cast<uint32_t>(string_id_namespace_indices_vector.size());
+	string_id_namespace_table_vector = { 1587, 2198, 267, 141, 248, 85, 43, 2832, 530, 52, 131, 52, 13, 66, 235 };
+	string_id_namespace_table = string_id_namespace_table_vector.data();
+	string_id_namespace_count = static_cast<uint32_t>(string_id_namespace_table_vector.size());
 	string_id_interface = new c_string_id_namespace_list(*this, 19, 8, 5);
 
 	init_sorted_instance_lists();

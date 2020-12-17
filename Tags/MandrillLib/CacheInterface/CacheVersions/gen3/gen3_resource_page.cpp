@@ -19,11 +19,11 @@ c_gen3_resource_page::c_gen3_resource_page(c_gen3_cache_file& cache_file, const 
 		stream.avail_in = raw_size;
 		stream.next_in = reinterpret_cast<const Bytef*>(raw_data);
 		int inflate_init_result = inflateInit2(&stream, -15);
-		ASSERT(inflate_init_result >= Z_OK);
+		//ASSERT(inflate_init_result >= Z_OK);
 		int inflate_result = inflate(&stream, Z_SYNC_FLUSH);
-		ASSERT(inflate_result >= Z_OK);
+		//ASSERT(inflate_result >= Z_OK);
 		int inflate_end_result = inflateEnd(&stream);
-		ASSERT(inflate_end_result >= Z_OK);
+		//ASSERT(inflate_end_result >= Z_OK);
 	}
 }
 

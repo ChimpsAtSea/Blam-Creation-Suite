@@ -122,6 +122,7 @@ static void load_plugins()
 
 static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {
+
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
 #ifdef _DEBUG
 	const wchar_t* k_window_title = L"Mandrill Debug";
@@ -133,6 +134,44 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 	window = new c_window(instance_handle, k_window_title, L"mandrill", _window_icon_mandrill, show_cmd);
 	c_render::init_render(window, instance_handle, true);
+
+	{
+		using namespace blofeld;
+		using namespace blofeld::haloreach;
+
+#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
+
+		const wchar_t* files[] =
+		{
+			REACH_FOLDER L"maps\\20_sword_slayer.map",
+			//REACH_FOLDER L"maps\\m70_a.map", // smallest map
+			//REACH_FOLDER L"maps\\m70_bonus.map",
+			REACH_FOLDER L"maps\\shared.map",
+			REACH_FOLDER L"maps\\campaign.map",
+		};
+		c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
+		c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\20_sword_slayer.map");
+		DEBUG_ASSERT(cache_file != nullptr);
+
+		c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
+
+		// c_test test(tag_project);
+
+		c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project);
+
+		{
+			c_stopwatch stopwatch;
+			stopwatch.start();
+			cache_compiler->compile(REACH_FOLDER L"maps\\custom.map" DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
+			stopwatch.stop();
+			c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
+		}
+
+		delete cache_cluster;
+		delete cache_compiler;
+		delete tag_project;
+	}
+
 	load_plugins();
 	mandrill_user_interface = new c_mandrill_user_interface(*window, false, launch_filepath_command_line_argument);
 

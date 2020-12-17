@@ -225,7 +225,10 @@
     <ClInclude Include="HighLevel\HighLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="haloreach_cache_compiler.h">
+    <ClInclude Include="HighLevel\haloreach_cache_compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighLevel\string_id_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -395,7 +398,10 @@
     <ClCompile Include="HighLevel\high_level_cache_file_transplant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="haloreach_cache_compiler.cpp">
+    <ClCompile Include="HighLevel\haloreach_cache_compiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighLevel\string_id_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -144,6 +144,7 @@ using namespace cache_compiler;
 
 c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_project) :
 	tag_project(tag_project),
+	string_id_manager(*new c_string_id_manager(17, 8, 7)),
 	cache_file_metadata(*new s_cache_file_metadata()),
 	tag_group_count(),
 	tag_groups_buffer_size(),
@@ -161,14 +162,29 @@ c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_projec
 	tag_file_table_buffer_size(),
 	tag_file_table_indices_buffer(),
 	tag_file_table_indices_buffer_size(),
-	tag_file_table_indices_count()
+	tag_file_table_indices_count(),
+	resources_buffer(),
+	resources_data_size(),
+	resources_buffer_size(),
+	string_ids_count(),
+	string_ids_indices_buffer(),
+	string_ids_indices_data_size(),
+	string_ids_indices_buffer_size(),
+	string_ids_buffer(),
+	string_ids_data_size(),
+	string_ids_buffer_size(),
+	string_id_namespace_count(),
+	string_id_namespaces_buffer(),
+	string_id_namespaces_data_size(),
+	string_id_namespaces_buffer_size()
 {
-
+	string_id_manager.init_haloreach();
 }
 
 c_haloreach_cache_compiler::~c_haloreach_cache_compiler()
 {
 	delete& cache_file_metadata;
+	delete& string_id_manager;
 }
 
 void write(const void* _buffer, size_t size, FILE* stream)
@@ -324,6 +340,22 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_angle_bounds:
 			case _field_real_bounds:
 			case _field_real_fraction_bounds:
+			case _field_tag:
+			case _field_long_block_flags:
+			case _field_word_block_flags:
+			case _field_byte_block_flags:
+			case _field_char_block_index:
+			case _field_custom_char_block_index:
+			case _field_short_block_index:
+			case _field_custom_short_block_index:
+			case _field_long_block_index:
+			case _field_custom_long_block_index:
+			case _field_byte_integer:
+			case _field_word_integer:
+			case _field_dword_integer:
+			case _field_qword_integer:
+			case _field_pointer:
+			case _field_half:
 			{
 				memcpy(current_data_position, high_level_field_data, field_size);
 				break;
@@ -349,14 +381,10 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_old_string_id:
 			case _field_string_id:
 			{
-				//if (const char* string_id_value = cache_file.get_string_id(*reinterpret_cast<const string_id*>(current_data_position)))
-				//{
-				//	c_fixed_string_2048& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
-				//	string_id_storage = string_id_value;
-				//}
-
 				string_id& stringid = *reinterpret_cast<string_id*>(current_data_position);
-				stringid = 0;
+				const h_string_id& stringid_storage = *reinterpret_cast<decltype(&stringid_storage)>(high_level_field_data);
+				stringid = string_id_manager.commit_string(stringid_storage.c_str());
+				DEBUG_ASSERT(stringid_storage.is_empty() || stringid != 0);
 
 				break;
 			}
@@ -409,16 +437,16 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_array:
 			{
 				const h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
-				const char* raw_array_data_position = current_data_position;
+				char* raw_array_data_position = current_data_position;
 
 				uint32_t const array_elements_count = array_storage.size();
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
 					const h_object& array_element_storage = array_storage[array_index];
 
-					compile_object(array_element_storage, current_data_position, tag_allocation_postion);
+					compile_object(array_element_storage, raw_array_data_position, tag_allocation_postion);
 
-					raw_array_data_position += field_size;
+					raw_array_data_position += array_element_storage.get_low_level_type_size();
 				}
 				break;
 			}
@@ -429,9 +457,9 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 
 				if (tag_reference_storage != nullptr)
 				{
-					tag_reference.group_tag = blofeld::INVALID_TAG;
+					tag_reference.group_tag = tag_reference_storage->group->tag_group.group_tag; // #TODO: kinda hacky
 					tag_reference.index = get_tag_index(tag_reference_storage);
-					tag_reference.datum = 0; // #TODO
+					tag_reference.datum = static_cast<uint16_t>(tag_reference.index + 0xe175u);
 				}
 				else
 				{
@@ -477,21 +505,25 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 
 				break;
 			}
+			case _field_vertex_buffer:
+			case _field_pad:
+			case _field_useless_pad:
+			case _field_skip:
+			case _field_non_cache_runtime_value:
+			case _field_explanation:
+			case _field_custom:
+			case _field_pageable:
+			case _field_api_interop:
+			case _field_terminator:
+			{
+				// #TODO
+			}
 			}
 		}
 
 		current_data_position += field_size;
 	}
 }
-
-class c_debug_string_manager
-{
-public:
-	uint32_t commit_string(const char* value)
-	{
-
-	}
-};
 
 void c_haloreach_cache_compiler::create_tag_groups()
 {
@@ -517,7 +549,7 @@ void c_haloreach_cache_compiler::create_tag_groups()
 			tag_group.group_tags[0] = tag_group_info.group_tag;
 			tag_group.group_tags[1] = tag_group_info.parents[0] != nullptr ? tag_group_info.parents[0]->group_tag : blofeld::INVALID_TAG;
 			tag_group.group_tags[2] = tag_group_info.parents[1] != nullptr ? tag_group_info.parents[1]->group_tag : blofeld::INVALID_TAG;
-
+			tag_group.name = string_id_manager.commit_string(tag_group_info.group_name);
 		}
 	}
 }
@@ -613,6 +645,100 @@ void c_haloreach_cache_compiler::compile_tags()
 	}
 }
 
+void c_haloreach_cache_compiler::compile_string_ids()
+{
+	string_ids_count = 0;
+	string_ids_data_size = 0;
+
+	for (uint32_t set_index = 0; set_index < c_string_id_manager::k_num_sets; set_index++)
+	{
+		uint32_t engine_set_count = string_id_manager.engine_set_counts[set_index];
+		uint32_t set_count = static_cast<uint32_t>(string_id_manager.string_ids[set_index].size());
+
+		string_ids_count += set_count;
+
+		for (std::string& str : string_id_manager.string_ids[set_index])
+		{
+			string_ids_data_size += static_cast<uint32_t>(str.size() + 1u);
+		}
+	}
+
+	string_ids_indices_data_size = string_ids_count * sizeof(uint32_t);
+	string_ids_indices_buffer_size = align_value(string_ids_indices_data_size, 0x10000);
+	string_ids_indices_buffer = new char[string_ids_indices_buffer_size] {};
+
+	string_ids_buffer_size = align_value(string_ids_data_size, 0x10000);
+	string_ids_buffer = new char[string_ids_buffer_size] {};
+
+	uint32_t* string_indices = new(string_ids_indices_buffer) uint32_t[string_ids_count]{};
+	uint32_t current_string_index = 0;
+	uint32_t current_buffer_position = 0;
+	for (uint32_t set_index = 0; set_index < c_string_id_manager::k_num_sets; set_index++)
+	{
+		uint32_t engine_set_count = string_id_manager.engine_set_counts[set_index];
+
+		for (uint32_t string_index = 0; string_index < engine_set_count; string_index++)
+		{
+			std::string& str = string_id_manager.string_ids[set_index][string_index];
+
+			uint32_t string_size = static_cast<uint32_t>(str.size() + 1u);
+
+			strcpy(string_ids_buffer + current_buffer_position, str.data());
+
+			string_indices[current_string_index] = current_buffer_position;
+
+			current_string_index++;
+			current_buffer_position += string_size;
+		}
+	}
+
+	uint32_t user_ids_begin = string_id_manager.engine_set_counts[0];
+	uint32_t user_ids_end = string_id_manager.string_ids[0].size();
+	for (uint32_t string_index = user_ids_begin; string_index < user_ids_end; string_index++)
+	{
+		std::string& str = string_id_manager.string_ids[0][string_index];
+
+		uint32_t string_size = static_cast<uint32_t>(str.size() + 1u);
+
+		strcpy(string_ids_buffer + current_buffer_position, str.data());
+
+		string_indices[current_string_index] = current_buffer_position;
+
+		current_string_index++;
+		current_buffer_position += string_size;
+	}
+	DEBUG_ASSERT(current_buffer_position == string_ids_data_size);
+
+	string_id_namespace_count = 0;
+	for (uint32_t set_index = 0; set_index < c_string_id_manager::k_num_sets; set_index++)
+	{
+		uint32_t engine_set_count = string_id_manager.engine_set_counts[set_index];
+		if (engine_set_count > 0)
+		{
+			string_id_namespace_count = set_index + 1;
+		}
+	}
+
+	string_id_namespaces_data_size = string_id_namespace_count * sizeof(uint32_t);
+	string_id_namespaces_buffer_size = align_value(string_id_namespaces_data_size, 0x10000);
+	string_id_namespaces_buffer = new char[string_id_namespaces_buffer_size] {};
+
+	uint32_t* string_id_namespaces = new(string_id_namespaces_buffer) uint32_t[string_id_namespace_count]{};
+
+	for (uint32_t set_index = 0; set_index < string_id_namespace_count; set_index++)
+	{
+		uint32_t engine_set_count = string_id_manager.engine_set_counts[set_index];
+		string_id_namespaces[set_index] = engine_set_count;
+	}
+}
+
+void c_haloreach_cache_compiler::compile_resources()
+{
+	//resources_data_size = 1024u * 1024u * 768;
+	//resources_buffer_size = align_value(resources_data_size, 0x10000);
+	//resources_buffer = new char[resources_buffer_size] {};
+}
+
 void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file))
 {
 	using namespace blofeld;
@@ -624,6 +750,8 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	init_tags();
 	create_tag_file_table();
 	compile_tags();
+	compile_string_ids();
+	compile_resources();
 
 	debug_point;
 
@@ -653,6 +781,9 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	uint32_t tags_section_tag_instances_offset;
 	uint32_t debug_section_file_table_offset;
 	uint32_t debug_section_file_table_indices_offset;
+	uint32_t debug_section_string_ids_offset;
+	uint32_t debug_section_string_id_indices_offset;
+	uint32_t debug_section_string_id_namespaces_offset;
 
 	{
 		uint32_t total_cache_file_data = sizeof(s_cache_file_metadata);
@@ -664,6 +795,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 			{
 			case gen3::_cache_file_section_index_resource:
 			{
+				section_data[i].insert(section_data[i].end(), resources_buffer, resources_buffer + resources_buffer_size);
 				break;
 			}
 			case gen3::_cache_file_section_index_localization:
@@ -723,15 +855,29 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 			{
 				debug_section_file_table_offset = total_cache_file_data;
 				debug_section_file_table_indices_offset = debug_section_file_table_offset + tag_file_table_buffer_size;
-				uint32_t debug_section_unused_next_offset = debug_section_file_table_indices_offset + tag_file_table_indices_buffer_size;
+				debug_section_string_ids_offset = debug_section_file_table_indices_offset + tag_file_table_indices_buffer_size;
+				debug_section_string_id_indices_offset = debug_section_string_ids_offset + string_ids_buffer_size;
+				debug_section_string_id_namespaces_offset = debug_section_string_id_indices_offset + string_ids_indices_buffer_size;
+				uint32_t debug_section_unused_next_offset = debug_section_string_id_namespaces_offset + string_id_namespaces_buffer_size;
 
 				cache_file_metadata.info.file_count = tag_file_table_indices_count;
 				cache_file_metadata.info.file_table_offset = debug_section_file_table_offset;
 				cache_file_metadata.info.file_table_length = tag_file_table_buffer_size;
 				cache_file_metadata.info.file_table_indices_offset = debug_section_file_table_indices_offset;
 
+				cache_file_metadata.info.string_count = string_ids_count;
+				cache_file_metadata.info.string_table_length = string_ids_data_size;
+				cache_file_metadata.info.string_table_indices_offset = debug_section_string_id_indices_offset;
+				cache_file_metadata.info.string_table_offset = debug_section_string_ids_offset;
+
+				cache_file_metadata.info.string_ids_namespace_table_count = string_id_namespace_count;
+				cache_file_metadata.info.string_ids_namespace_table_offset = debug_section_string_id_namespaces_offset;
+
 				section_data[i].insert(section_data[i].end(), tag_file_table_buffer, tag_file_table_buffer + tag_file_table_buffer_size);
 				section_data[i].insert(section_data[i].end(), tag_file_table_indices_buffer, tag_file_table_indices_buffer + tag_file_table_indices_buffer_size);
+				section_data[i].insert(section_data[i].end(), string_ids_buffer, string_ids_buffer + string_ids_buffer_size);
+				section_data[i].insert(section_data[i].end(), string_ids_indices_buffer, string_ids_indices_buffer + string_ids_indices_buffer_size);
+				section_data[i].insert(section_data[i].end(), string_id_namespaces_buffer, string_id_namespaces_buffer + string_id_namespaces_buffer_size);
 
 				break;
 			}

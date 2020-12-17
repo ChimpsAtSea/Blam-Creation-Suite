@@ -108,6 +108,22 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_angle_bounds:
 			case _field_real_bounds:
 			case _field_real_fraction_bounds:
+			case _field_tag:
+			case _field_long_block_flags:
+			case _field_word_block_flags:
+			case _field_byte_block_flags:
+			case _field_char_block_index:
+			case _field_custom_char_block_index:
+			case _field_short_block_index:
+			case _field_custom_short_block_index:
+			case _field_long_block_index:
+			case _field_custom_long_block_index:
+			case _field_byte_integer:
+			case _field_word_integer:
+			case _field_dword_integer:
+			case _field_qword_integer:
+			case _field_pointer:
+			case _field_half:
 			{
 				memcpy(high_level_field_data, current_data_position, field_size);
 				break;
@@ -135,7 +151,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			{
 				if (const char* string_id_value = cache_file.get_string_id(*reinterpret_cast<const string_id*>(current_data_position)))
 				{
-					c_fixed_string_2048& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 					string_id_storage = string_id_value;
 				}
 				break;
@@ -196,7 +212,7 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 
 					transplant_data(array_element_storage, raw_array_data_position, field->array_definition->struct_definition);
 
-					raw_array_data_position += field_size;
+					raw_array_data_position += array_element_storage.get_low_level_type_size();
 				}
 				break;
 			}

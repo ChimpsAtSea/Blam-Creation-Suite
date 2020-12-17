@@ -3,6 +3,7 @@
 DEBUG_ONLY(class c_haloreach_cache_file);
 
 class h_object;
+class c_string_id_manager;
 
 namespace cache_compiler
 {
@@ -29,6 +30,8 @@ public:
 	void init_tags();
 	void create_tag_file_table();
 	void compile_tags();
+	void compile_string_ids();
+	void compile_resources();
 	void compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file));
 
 
@@ -44,6 +47,7 @@ protected:
 	static uint64_t decode_page_offset(uint32_t page_offset);
 
 	c_tag_project& tag_project;
+	c_string_id_manager& string_id_manager;
 
 	cache_compiler::s_cache_file_metadata& cache_file_metadata;
 	std::vector<char> section_data[4];
@@ -88,5 +92,27 @@ protected:
 	char* tag_file_table_indices_buffer;
 	uint32_t tag_file_table_indices_buffer_size;
 	uint32_t tag_file_table_indices_count;
+
+	// resources
+
+	char* resources_buffer;
+	uint32_t resources_data_size;
+	uint32_t resources_buffer_size;
+
+	// string_ids
+
+	uint32_t string_ids_count;
+	char* string_ids_indices_buffer;
+	uint32_t string_ids_indices_data_size;
+	uint32_t string_ids_indices_buffer_size;
+
+	char* string_ids_buffer;
+	uint32_t string_ids_data_size;
+	uint32_t string_ids_buffer_size;
+
+	uint32_t string_id_namespace_count;
+	char* string_id_namespaces_buffer;
+	uint32_t string_id_namespaces_data_size;
+	uint32_t string_id_namespaces_buffer_size;
 
 };

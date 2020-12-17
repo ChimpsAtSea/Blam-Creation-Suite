@@ -111,7 +111,7 @@ protected:
 	gen3::s_cache_file_tag_instance* gen3_cache_file_tag_instances;
 	char* string_ids_buffer;
 	long* string_id_indices;
-	long* string_id_namespace_indices;
+	long* string_id_namespace_table;
 	uint32_t string_id_namespace_count;
 	char* filenames_buffer;
 	long* filename_indices;

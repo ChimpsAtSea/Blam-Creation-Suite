@@ -21,9 +21,10 @@
   <ItemGroup>
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h" />
-    <ClInclude Include="haloreach_cache_compiler.h" />
+    <ClInclude Include="HighLevel\haloreach_cache_compiler.h" />
     <ClInclude Include="HighLevel\HighLevel.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
+    <ClInclude Include="HighLevel\string_id_manager.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
@@ -94,8 +95,9 @@
   <ItemGroup>
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp" />
-    <ClCompile Include="haloreach_cache_compiler.cpp" />
+    <ClCompile Include="HighLevel\haloreach_cache_compiler.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
+    <ClCompile Include="HighLevel\string_id_manager.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />

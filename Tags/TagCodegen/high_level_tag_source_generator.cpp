@@ -30,8 +30,8 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	{
 	case _field_string:								return "c_fixed_string_32";
 	case _field_long_string:						return "c_fixed_string_256";
-	case _field_string_id:							return "c_fixed_string_2048";
-	case _field_old_string_id:						return "c_fixed_string_2048";
+	case _field_string_id:							return "h_string_id";
+	case _field_old_string_id:						return "h_string_id";
 	case _field_char_integer:						return "char";
 	case _field_short_integer:						return "short";
 	case _field_long_integer:						return "long";
