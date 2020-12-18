@@ -47,7 +47,7 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 	}
 	else
 	{
-		haloreach_cache_file_header_v13 = static_cast<haloreach::s_cache_file_header_v13*>(&cache_file_header);
+		haloreach_cache_file_header_v13 = reinterpret_cast<haloreach::s_cache_file_header_v13*>(&cache_file_header);
 		init(*haloreach_cache_file_header_v13);
 
 		const s_section_cache& debug_section = get_section(_cache_file_section_index_debug);
@@ -105,6 +105,8 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 
 			tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 		}
+
+		auto tag_global_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_global_instance.address));
 
 		gen3_cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_instances.address));
 		tag_interfaces.reserve(haloreach_cache_file_tags_header->tag_instances.count);
@@ -186,7 +188,7 @@ void c_haloreach_cache_file::init_resources()
 
 		const char* interop_typename = get_string_id(cache_file_resource_gestalt->interop_type_identifiers_block[tag_interop.type].name, "");
 
-		//c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
+		c_console::write_line_verbose("0x%08X %u '%s'", tag_interop.page_address, tag_interop.type, interop_typename);
 	}
 
 	DEBUG_ASSERT(cache_file_resource_gestalt->resource_type_identifiers_block.count == 7);

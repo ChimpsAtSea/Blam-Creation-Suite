@@ -102,7 +102,7 @@ public:
 		return dynamic_cast<T*>(get_resource_entry(index));
 	}
 
-protected:
+public:
 	virtual void* get_internal_tag_instance_impl(uint32_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
 

@@ -1179,86 +1179,83 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 
 	constexpr float indent = 25.0f;
 	uint32_t field_index = 0;
-	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; (current_field++, field_index++))
+	for (const s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
-		if (!object.is_field_active(*current_field))
-		{
-			continue;
-		}
+		const s_tag_field& field = **field_pointer;
 
-		void* field_data = object.get_field_data(*current_field);
+		void* field_data = object.get_field_data(field);
 
 		ImGui::PushID(field_index);
 
 		bool data_modified = false;
 
-		switch (current_field->field_type)
+		switch (field.field_type)
 		{
-		case _field_char_integer:					data_modified = render_primitive<_field_char_integer>(field_data, *current_field); break;
-		case _field_short_integer:					data_modified = render_primitive<_field_short_integer>(field_data, *current_field); break;
-		case _field_long_integer:					data_modified = render_primitive<_field_long_integer>(field_data, *current_field); break;
-		case _field_int64_integer:					data_modified = render_primitive<_field_int64_integer>(field_data, *current_field); break;
-		case _field_byte_integer:					data_modified = render_primitive<_field_byte_integer>(field_data, *current_field); break;
-		case _field_word_integer:					data_modified = render_primitive<_field_word_integer>(field_data, *current_field); break;
-		case _field_dword_integer:					data_modified = render_primitive<_field_dword_integer>(field_data, *current_field); break;
-		case _field_qword_integer:					data_modified = render_primitive<_field_qword_integer>(field_data, *current_field); break;
-		case _field_real:							data_modified = render_primitive<_field_real>(field_data, *current_field); break;
-		case _field_real_fraction:					data_modified = render_primitive<_field_real_fraction>(field_data, *current_field); break;
-		case _field_real_point_2d:					data_modified = render_primitive<_field_real_point_2d>(field_data, *current_field); break;
-		case _field_real_point_3d:					data_modified = render_primitive<_field_real_point_3d>(field_data, *current_field); break;
-		case _field_real_vector_2d:					data_modified = render_primitive<_field_real_vector_2d>(field_data, *current_field); break;
-		case _field_real_vector_3d:					data_modified = render_primitive<_field_real_vector_3d>(field_data, *current_field); break;
-		case _field_real_quaternion:				data_modified = render_primitive<_field_real_quaternion>(field_data, *current_field); break;
-		case _field_real_plane_2d:					data_modified = render_primitive<_field_real_plane_2d>(field_data, *current_field); break;
-		case _field_real_plane_3d:					data_modified = render_primitive<_field_real_plane_3d>(field_data, *current_field); break;
-		case _field_real_rgb_color:					data_modified = render_primitive<_field_real_rgb_color>(field_data, *current_field); break;
-		case _field_real_argb_color:				data_modified = render_primitive<_field_real_argb_color>(field_data, *current_field); break;
-		case _field_real_hsv_color:					data_modified = render_primitive<_field_real_hsv_color>(field_data, *current_field); break;
-		case _field_real_ahsv_color:				data_modified = render_primitive<_field_real_ahsv_color>(field_data, *current_field); break;
-		case _field_short_bounds:					data_modified = render_primitive<_field_short_bounds>(field_data, *current_field); break;
-		case _field_real_bounds:					data_modified = render_primitive<_field_real_bounds>(field_data, *current_field); break;
-		case _field_real_fraction_bounds:			data_modified = render_primitive<_field_real_fraction_bounds>(field_data, *current_field); break;
-		case _field_byte_block_flags:				data_modified = render_primitive<_field_byte_block_flags>(field_data, *current_field); break;
-		case _field_word_block_flags:				data_modified = render_primitive<_field_word_block_flags>(field_data, *current_field); break;
-		case _field_long_block_flags:				data_modified = render_primitive<_field_long_block_flags>(field_data, *current_field); break;
-		case _field_char_block_index:				data_modified = render_primitive<_field_char_block_index>(field_data, *current_field); break;
-		case _field_short_block_index:				data_modified = render_primitive<_field_short_block_index>(field_data, *current_field); break;
-		case _field_long_block_index:				data_modified = render_primitive<_field_long_block_index>(field_data, *current_field); break;
-		case _field_custom_char_block_index:		data_modified = render_primitive<_field_custom_char_block_index>(field_data, *current_field); break;
-		case _field_custom_short_block_index:		data_modified = render_primitive<_field_custom_short_block_index>(field_data, *current_field); break;
-		case _field_custom_long_block_index:		data_modified = render_primitive<_field_custom_long_block_index>(field_data, *current_field); break;
-		case _field_pointer:						data_modified = render_primitive<_field_pointer>(field_data, *current_field); break;
-		case _field_angle:							data_modified = render_primitive<_field_angle>(field_data, *current_field); break;
-		case _field_real_euler_angles_2d:			data_modified = render_primitive<_field_real_euler_angles_2d>(field_data, *current_field); break;
-		case _field_real_euler_angles_3d:			data_modified = render_primitive<_field_real_euler_angles_3d>(field_data, *current_field); break;
-		case _field_angle_bounds:					data_modified = render_primitive<_field_angle_bounds>(field_data, *current_field); break;
-		case _field_string:							data_modified = render_primitive<_field_string>(field_data, *current_field); break;
-		case _field_long_string:					data_modified = render_primitive<_field_long_string>(field_data, *current_field); break;
-		case _field_string_id:						data_modified = render_primitive<_field_string_id>(field_data, *current_field); break;
-		case _field_old_string_id:					data_modified = render_primitive<_field_old_string_id>(field_data, *current_field); break;
-		case _field_byte_flags:						data_modified = render_flags_definition(field_data, *current_field); break;
-		case _field_word_flags:						data_modified = render_flags_definition(field_data, *current_field); break;
-		case _field_long_flags:						data_modified = render_flags_definition(field_data, *current_field); break;
-		case _field_char_enum:						data_modified = render_enum_definition(field_data, *current_field); break;
-		case _field_enum:							data_modified = render_enum_definition(field_data, *current_field); break;
-		case _field_long_enum:						data_modified = render_enum_definition(field_data, *current_field); break;
+		case _field_char_integer:					data_modified = render_primitive<_field_char_integer>(field_data, field); break;
+		case _field_short_integer:					data_modified = render_primitive<_field_short_integer>(field_data, field); break;
+		case _field_long_integer:					data_modified = render_primitive<_field_long_integer>(field_data, field); break;
+		case _field_int64_integer:					data_modified = render_primitive<_field_int64_integer>(field_data, field); break;
+		case _field_byte_integer:					data_modified = render_primitive<_field_byte_integer>(field_data, field); break;
+		case _field_word_integer:					data_modified = render_primitive<_field_word_integer>(field_data, field); break;
+		case _field_dword_integer:					data_modified = render_primitive<_field_dword_integer>(field_data, field); break;
+		case _field_qword_integer:					data_modified = render_primitive<_field_qword_integer>(field_data, field); break;
+		case _field_real:							data_modified = render_primitive<_field_real>(field_data, field); break;
+		case _field_real_fraction:					data_modified = render_primitive<_field_real_fraction>(field_data, field); break;
+		case _field_real_point_2d:					data_modified = render_primitive<_field_real_point_2d>(field_data, field); break;
+		case _field_real_point_3d:					data_modified = render_primitive<_field_real_point_3d>(field_data, field); break;
+		case _field_real_vector_2d:					data_modified = render_primitive<_field_real_vector_2d>(field_data, field); break;
+		case _field_real_vector_3d:					data_modified = render_primitive<_field_real_vector_3d>(field_data, field); break;
+		case _field_real_quaternion:				data_modified = render_primitive<_field_real_quaternion>(field_data, field); break;
+		case _field_real_plane_2d:					data_modified = render_primitive<_field_real_plane_2d>(field_data, field); break;
+		case _field_real_plane_3d:					data_modified = render_primitive<_field_real_plane_3d>(field_data, field); break;
+		case _field_real_rgb_color:					data_modified = render_primitive<_field_real_rgb_color>(field_data, field); break;
+		case _field_real_argb_color:				data_modified = render_primitive<_field_real_argb_color>(field_data, field); break;
+		case _field_real_hsv_color:					data_modified = render_primitive<_field_real_hsv_color>(field_data, field); break;
+		case _field_real_ahsv_color:				data_modified = render_primitive<_field_real_ahsv_color>(field_data, field); break;
+		case _field_short_bounds:					data_modified = render_primitive<_field_short_bounds>(field_data, field); break;
+		case _field_real_bounds:					data_modified = render_primitive<_field_real_bounds>(field_data, field); break;
+		case _field_real_fraction_bounds:			data_modified = render_primitive<_field_real_fraction_bounds>(field_data, field); break;
+		case _field_byte_block_flags:				data_modified = render_primitive<_field_byte_block_flags>(field_data, field); break;
+		case _field_word_block_flags:				data_modified = render_primitive<_field_word_block_flags>(field_data, field); break;
+		case _field_long_block_flags:				data_modified = render_primitive<_field_long_block_flags>(field_data, field); break;
+		case _field_char_block_index:				data_modified = render_primitive<_field_char_block_index>(field_data, field); break;
+		case _field_short_block_index:				data_modified = render_primitive<_field_short_block_index>(field_data, field); break;
+		case _field_long_block_index:				data_modified = render_primitive<_field_long_block_index>(field_data, field); break;
+		case _field_custom_char_block_index:		data_modified = render_primitive<_field_custom_char_block_index>(field_data, field); break;
+		case _field_custom_short_block_index:		data_modified = render_primitive<_field_custom_short_block_index>(field_data, field); break;
+		case _field_custom_long_block_index:		data_modified = render_primitive<_field_custom_long_block_index>(field_data, field); break;
+		case _field_pointer:						data_modified = render_primitive<_field_pointer>(field_data, field); break;
+		case _field_angle:							data_modified = render_primitive<_field_angle>(field_data, field); break;
+		case _field_real_euler_angles_2d:			data_modified = render_primitive<_field_real_euler_angles_2d>(field_data, field); break;
+		case _field_real_euler_angles_3d:			data_modified = render_primitive<_field_real_euler_angles_3d>(field_data, field); break;
+		case _field_angle_bounds:					data_modified = render_primitive<_field_angle_bounds>(field_data, field); break;
+		case _field_string:							data_modified = render_primitive<_field_string>(field_data, field); break;
+		case _field_long_string:					data_modified = render_primitive<_field_long_string>(field_data, field); break;
+		case _field_string_id:						data_modified = render_primitive<_field_string_id>(field_data, field); break;
+		case _field_old_string_id:					data_modified = render_primitive<_field_old_string_id>(field_data, field); break;
+		case _field_byte_flags:						data_modified = render_flags_definition(field_data, field); break;
+		case _field_word_flags:						data_modified = render_flags_definition(field_data, field); break;
+		case _field_long_flags:						data_modified = render_flags_definition(field_data, field); break;
+		case _field_char_enum:						data_modified = render_enum_definition(field_data, field); break;
+		case _field_enum:							data_modified = render_enum_definition(field_data, field); break;
+		case _field_long_enum:						data_modified = render_enum_definition(field_data, field); break;
 		case _field_tag_reference:
 		{
 			h_tag*& tag_reference = *static_cast<h_tag**>(field_data);
-			data_modified = render_tag_reference(tag_reference, *current_field);
+			data_modified = render_tag_reference(tag_reference, field);
 			break;
 		}
 		case _field_data:
 		{
 			h_data& data = *static_cast<h_data*>(field_data);
-			render_data(data, *current_field);
+			render_data(data, field);
 			break;
 		}
 		case _field_block:
 		case _field_array:
 		{
 			h_enumerable& enumerable = *static_cast<h_enumerable*>(field_data);
-			render_enumerable(enumerable, *current_field);
+			render_enumerable(enumerable, field);
 			break;
 		}
 		case _field_struct:
@@ -1278,7 +1275,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 				ImGui::SameLine();
 
 				static const ImVec4 explanation_color = MANDRILL_THEME_COMMENT_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA);
-				const char* display_name = current_field->string_parser.display_name.c_str();
+				const char* display_name = field.string_parser.display_name.c_str();
 				ImGui::PushStyleColor(ImGuiCol_Text, explanation_color);
 				if (*display_name)
 				{
@@ -1293,17 +1290,17 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 					ImGui::TextUnformatted(display_name);
 					ImGui::SetCursorPos(header_end);
 				}
-				if (current_field->explanation && *current_field->explanation)
+				if (field.explanation && field.explanation)
 				{
 					ImGui::Dummy({ padding_offset, 0.0f });
 					ImGui::SameLine();
-					ImGui::TextUnformatted(current_field->explanation);
+					ImGui::TextUnformatted(field.explanation);
 				}
 				ImGui::PopStyleColor();
 				ImGui::Dummy({ 5.0f, 5.0f });
 			}
 			ImGui::EndGroup();
-			const char* description = current_field->string_parser.description.c_str();
+			const char* description = field.string_parser.description.c_str();
 			if (*description && ImGui::IsItemHovered())
 			{
 				ImGui::BeginTooltipEx(0, ImGuiTooltipFlags_OverridePreviousTooltip);
@@ -1319,14 +1316,14 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_custom:
 			break;
 		default:
-			ImGui::Text("Unknown type for field '%s'", current_field->name);
+			ImGui::Text("Unknown type for field '%s'", field.name);
 			break;
 		}
 
 		if (data_modified)
 		{
 			c_data_change_notification notification = {};
-			notification.field = current_field;
+			notification.field = &field;
 			notification.type = &object;
 			object.notify_data_change(notification);
 		}

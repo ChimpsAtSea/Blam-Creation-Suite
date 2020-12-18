@@ -240,6 +240,29 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 				}
 				break;
 			}
+			case _field_pageable:
+			{
+				const s_tag_resource& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(current_data_position);
+				s_tag_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+				
+				resource_storage = tag_resource;
+				break;
+			}
+			case _field_vertex_buffer:
+			{
+				throw; // currently unused
+			}
+			case _field_pad:
+			case _field_useless_pad:
+			case _field_skip:
+			case _field_non_cache_runtime_value:
+			case _field_explanation:
+			case _field_custom:
+			case _field_api_interop:
+			case _field_terminator:
+			{
+
+			}
 			}
 		}
 

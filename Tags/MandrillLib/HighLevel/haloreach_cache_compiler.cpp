@@ -8,16 +8,14 @@ namespace cache_compiler
 	constexpr tag k_cache_footer_signature = 'foot';
 
 #pragma pack(push, 1)
-	struct s_cache_file_header
+	struct s_cache_file_metadata
 	{
 		tag header_signature;
 		long file_version;
 		long file_length;
 		long file_compressed_length;
-	};
 
-	struct s_cache_file_info
-	{
+
 		uint64_t tags_header_address = 0;
 
 		unsigned long tag_buffer_offset;
@@ -29,13 +27,13 @@ namespace cache_compiler
 		e_scenario_type scenario_type = _scenario_type_none;
 		e_scenario_load_type load_type = _scenario_load_none;
 
-		unsigned char : 8;
+		unsigned char __unknown0;
 		char tracked_build;
-		unsigned char : 8;
-		unsigned char : 8;
+		unsigned char __unknown1;
+		unsigned char __unknown2;
 
-		unsigned long : 32;
-		unsigned long : 32;
+		unsigned long __unknown3;
+		unsigned long __unknown4;
 
 		unsigned long string_count;
 		unsigned long string_table_length;
@@ -61,18 +59,18 @@ namespace cache_compiler
 
 		unsigned long checksum;
 
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
-		unsigned long : 32;
+		unsigned long __unknown5;
+		unsigned long __unknown6;
+		unsigned long __unknown7;
+		unsigned long __unknown8;
+		unsigned long __unknown9;
+		unsigned long __unknown10;
+		unsigned long __unknown11;
+		unsigned long __unknown12;
 
 		unsigned long long virtual_base_address;
 		unsigned long xdk_version;
-		unsigned long : 32;
+		unsigned long __unknown13;
 
 		s_basic_buffer64 tag_post_link_buffer = {};
 		s_basic_buffer64 tag_language_dependent_read_only_buffer = {};
@@ -99,15 +97,13 @@ namespace cache_compiler
 		} section_table;
 
 		int32_t guid[4];
-	};
 
-	struct s_cache_file_metadata
-	{
-		s_cache_file_header header;
-		s_cache_file_info info;
+
 		char _padding[0x9B10];
 		tag footer;
 	};
+	static_assert(sizeof(s_cache_file_metadata) == 40960);
+	static constexpr size_t x = offsetof(s_cache_file_metadata, __unknown2);
 
 #pragma pack(pop)
 
@@ -138,7 +134,21 @@ namespace cache_compiler
 		uint32_t address;
 	};
 	static_assert(sizeof(s_cache_file_tag_instance) == 0x8);
+
+	struct s_cache_file_tag_global_instance
+	{
+		uint32_t group_tag;
+		long definition_index;
+	};
+	static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
 }
+
+struct s_cache_file_tag_interop
+{
+	dword page_address;
+	long type;
+};
+static_assert(sizeof(s_cache_file_tag_interop) == 0x8);
 
 using namespace cache_compiler;
 
@@ -158,6 +168,14 @@ c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_projec
 	tag_instances_buffer(),
 	tag_instances_buffer_size(),
 	tag_instance_count(),
+	tag_global_instances_buffer(),
+	tag_global_instances_data_size(),
+	tag_global_instances_buffer_size(),
+	tag_global_instances_count(),
+	tag_api_interops_buffer(),
+	tag_api_interops_data_size(),
+	tag_api_interops_buffer_size(),
+	tag_api_interops_count(),
 	tag_file_table_buffer(),
 	tag_file_table_buffer_size(),
 	tag_file_table_indices_buffer(),
@@ -166,6 +184,9 @@ c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_projec
 	resources_buffer(),
 	resources_data_size(),
 	resources_buffer_size(),
+	localization_buffer(),
+	localization_data_size(),
+	localization_buffer_size(),
 	string_ids_count(),
 	string_ids_indices_buffer(),
 	string_ids_indices_data_size(),
@@ -505,6 +526,14 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 
 				break;
 			}
+			case _field_pageable:
+			{
+				s_tag_resource& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(current_data_position);
+				const s_tag_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+
+				tag_resource = resource_storage;
+				break;
+			}
 			case _field_vertex_buffer:
 			case _field_pad:
 			case _field_useless_pad:
@@ -512,7 +541,6 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_non_cache_runtime_value:
 			case _field_explanation:
 			case _field_custom:
-			case _field_pageable:
 			case _field_api_interop:
 			case _field_terminator:
 			{
@@ -568,10 +596,12 @@ void c_haloreach_cache_compiler::init_tags()
 		ASSERT((tag_data_size % 4) == 0);
 
 		uint32_t tag_group_index = ~0u;
+		cache_compiler::s_cache_file_tag_group* tag_group = nullptr;
 		for (uint32_t _tag_group_index = 0; _tag_group_index < tag_group_count; _tag_group_index++)
 		{
 			if (tag_groups[_tag_group_index].group_tags[0] == tag->group->tag_group.group_tag) // #TODO: this is kinda crazy?
 			{
+				tag_group = &tag_groups[_tag_group_index];
 				tag_group_index = _tag_group_index;
 			}
 		}
@@ -586,6 +616,7 @@ void c_haloreach_cache_compiler::init_tags()
 			tag_file_table_data_size,
 			file_index,
 			nullptr,
+			tag_group,
 			tag_group_index,
 			tag->tag_filepath
 		};
@@ -753,6 +784,19 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	compile_string_ids();
 	compile_resources();
 
+	auto& resource_section = cache_file->get_resources_section();
+	resources_data_size = resource_section.size;
+	resources_buffer_size = align_value(resources_data_size, 0x10000);
+	resources_buffer = new char[resources_buffer_size] {};
+	memcpy(resources_buffer, resource_section.data, resources_data_size);
+
+	auto& localization_section = cache_file->get_localization_section();
+	localization_data_size = localization_section.size;
+	localization_buffer_size = align_value(localization_data_size, 0x10000);
+	localization_buffer = new char[localization_buffer_size] {};
+	memcpy(localization_buffer, localization_section.data, localization_data_size);
+
+
 	debug_point;
 
 
@@ -765,7 +809,6 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	s_cache_file_tags_header& tags_header = *reinterpret_cast<s_cache_file_tags_header*>(tags_header_buffer);
 
 
-	uint32_t tags_section_file_offset = 0;
 
 	struct s_section_info
 	{
@@ -775,10 +818,16 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	};
 	s_section_info section_infos[gen3::k_number_of_cache_file_sections] = {};
 
+#define get_tag_section_virtual_address(offset) (virtual_base_address + (offset - tags_section_file_offset))
+	uint32_t tags_section_file_offset;
+
 	uint32_t tags_section_tag_data_offset;
 	uint32_t tags_section_tags_header_offset;
 	uint32_t tags_section_tag_groups_offset;
 	uint32_t tags_section_tag_instances_offset;
+	uint32_t tags_section_tag_global_instances_offset;
+	uint32_t tags_section_api_interops_offset;
+
 	uint32_t debug_section_file_table_offset;
 	uint32_t debug_section_file_table_indices_offset;
 	uint32_t debug_section_string_ids_offset;
@@ -800,23 +849,24 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 			}
 			case gen3::_cache_file_section_index_localization:
 			{
+				section_data[i].insert(section_data[i].end(), localization_buffer, localization_buffer + localization_buffer_size);
 				break;
 			}
 			case gen3::_cache_file_section_index_tags:
 			{
-#define get_tag_section_virtual_address(offset) (virtual_base_address + (offset - tags_section_base))
+				tags_section_file_offset = total_cache_file_data;
 
-				uint32_t tags_section_base = total_cache_file_data;
-				tags_section_tag_data_offset = tags_section_base;
-				tags_section_tags_header_offset = tags_section_tag_data_offset + tag_data_buffer_size;
-				tags_section_tag_groups_offset = tags_section_tags_header_offset + tags_header_buffer_size;
+				//tags_section_tag_data_offset = tags_section_file_offset;
+				//tags_section_tags_header_offset = tags_section_tag_data_offset + tag_data_buffer_size;
+
+				tags_section_tags_header_offset = tags_section_file_offset;
+				tags_section_tag_data_offset = tags_section_tags_header_offset + tags_header_buffer_size;
+
+				tags_section_tag_groups_offset = tags_section_tag_data_offset + tag_data_buffer_size;
 				tags_section_tag_instances_offset = tags_section_tag_groups_offset + tag_groups_buffer_size;
-				uint32_t tags_section_unused_next_offset = tags_section_tag_instances_offset + tag_instances_buffer_size;
-
-				tags_header.checksum = 'poop';
-
-				tags_header.tag_instances.count = tag_instance_count;
-				tags_header.tag_instances.address = get_tag_section_virtual_address(tags_section_tag_instances_offset);
+				tags_section_tag_global_instances_offset = tags_section_tag_instances_offset + tag_instances_buffer_size;
+				tags_section_api_interops_offset = tags_section_tag_global_instances_offset + tag_global_instances_buffer_size;
+				uint32_t tags_section_unused_next_offset = tags_section_api_interops_offset + tag_api_interops_buffer_size;
 
 				{
 					s_cache_file_tag_instance* tag_instances = new(tag_instances_buffer) s_cache_file_tag_instance[tag_instance_count]{};
@@ -837,17 +887,89 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 					}
 				}
 
+				{
+					tag_global_instances_count = 7;
+					tag_global_instances_data_size = tag_global_instances_count * sizeof(s_cache_file_tag_global_instance);
+					tag_global_instances_buffer_size = align_value(tag_global_instances_data_size, 0x10000);
+					tag_global_instances_buffer = new char[tag_global_instances_buffer_size] {};
+
+					s_cache_file_tag_global_instance* tag_global_instances = new(tag_global_instances_buffer) s_cache_file_tag_global_instance[tag_global_instances_count]{};
+					for (uint32_t tag_index = 0; tag_index < tag_global_instances_count; tag_index++)
+					{
+						s_tag_data_entry& tag_data_entry = tag_data_entries[tag_index];
+
+						uint32_t instance_index = tag_data_entry.tag_file_table_index;
+						s_cache_file_tag_global_instance& global_tag_instance = tag_global_instances[instance_index];
+						global_tag_instance.definition_index = tag_index;
+						global_tag_instance.group_tag = tag_data_entry.tag_group->group_tags[0]; // #TODO: is this hacky?
+
+						debug_point;
+					}
+				}
+
+				{
+					tag_api_interops_count = cache_file->haloreach_cache_file_tags_header->tag_interop_table.count;
+
+
+					tag_api_interops_data_size = tag_api_interops_count * (sizeof(s_cache_file_tag_interop) + 0x1000);
+					tag_api_interops_buffer_size = align_value(tag_api_interops_data_size, 0x10000);
+					tag_api_interops_buffer = new char[tag_api_interops_buffer_size] {};
+
+					char* const tag_api_interops_data_begin = tag_api_interops_buffer + tag_api_interops_count * sizeof(s_cache_file_tag_interop);
+					char* const tag_api_interops_indices_begin = tag_api_interops_buffer;
+
+					// #HACK #FIXME
+					s_cache_file_tag_interop* existing_interops = reinterpret_cast<s_cache_file_tag_interop*>(cache_file->tags_buffer + cache_file->convert_virtual_address(cache_file->haloreach_cache_file_tags_header->tag_interop_table.address));
+
+					s_cache_file_tag_interop* interop_table = new(tag_api_interops_indices_begin) s_cache_file_tag_interop[tag_api_interops_count]{};
+					for (uint32_t interop_index = 0; interop_index < tag_data_entry_count; interop_index++)
+					{
+						s_cache_file_tag_interop& interop = interop_table[interop_index];
+
+						char* const tag_api_interops_data_pointer = tag_api_interops_data_begin + interop_index * 0x1000;
+
+						uint32_t relative_offset = get_tag_pointer_relative_offset(tag_api_interops_data_pointer);
+						uint32_t page_offset = encode_page_offset(relative_offset);
+
+						interop.type = existing_interops[interop_index].type;
+						interop.page_address = page_offset;
+					}
+
+					for (uint32_t interop_index = 0; interop_index < tag_data_entry_count; interop_index++)
+					{
+
+						// does this need anything???
+
+					}
+				}
+
+
+				tags_header.checksum = 'poop';
+				tags_header.tags_signature = 'tags';
+
+				tags_header.tag_instances.count = tag_instance_count;
+				tags_header.tag_instances.address = get_tag_section_virtual_address(tags_section_tag_instances_offset);
 
 				tags_header.tag_groups.count = tag_group_count;
 				tags_header.tag_groups.address = get_tag_section_virtual_address(tags_section_tag_groups_offset);
 
-				cache_file_metadata.info.tag_buffer_offset = tags_section_tag_data_offset;
-				cache_file_metadata.info.tag_buffer_size = tag_data_data_size;
+				tags_header.tag_global_instance.count = tag_global_instances_count;
+				tags_header.tag_global_instance.address = get_tag_section_virtual_address(tags_section_tag_global_instances_offset);
 
-				section_data[i].insert(section_data[i].end(), tag_data_buffer, tag_data_buffer + tag_data_buffer_size);
+				tags_header.tag_interop_table.count = tag_api_interops_count;
+				tags_header.tag_interop_table.address = get_tag_section_virtual_address(tags_section_api_interops_offset);
+
+				//section_data[i].insert(section_data[i].end(), tag_data_buffer, tag_data_buffer + tag_data_buffer_size);
+				//section_data[i].insert(section_data[i].end(), tags_header_buffer, tags_header_buffer + tags_header_buffer_size);
 				section_data[i].insert(section_data[i].end(), tags_header_buffer, tags_header_buffer + tags_header_buffer_size);
+				section_data[i].insert(section_data[i].end(), tag_data_buffer, tag_data_buffer + tag_data_buffer_size);
 				section_data[i].insert(section_data[i].end(), tag_groups_buffer, tag_groups_buffer + tag_groups_buffer_size);
 				section_data[i].insert(section_data[i].end(), tag_instances_buffer, tag_instances_buffer + tag_instances_buffer_size);
+				section_data[i].insert(section_data[i].end(), tag_global_instances_buffer, tag_global_instances_buffer + tag_global_instances_buffer_size);
+				section_data[i].insert(section_data[i].end(), tag_api_interops_buffer, tag_api_interops_buffer + tag_api_interops_buffer_size);
+
+				cache_file_metadata.tag_buffer_offset = tags_section_file_offset;
+				cache_file_metadata.tag_buffer_size = static_cast<uint32_t>(section_data[i].size());
 
 				break;
 			}
@@ -860,18 +982,18 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 				debug_section_string_id_namespaces_offset = debug_section_string_id_indices_offset + string_ids_indices_buffer_size;
 				uint32_t debug_section_unused_next_offset = debug_section_string_id_namespaces_offset + string_id_namespaces_buffer_size;
 
-				cache_file_metadata.info.file_count = tag_file_table_indices_count;
-				cache_file_metadata.info.file_table_offset = debug_section_file_table_offset;
-				cache_file_metadata.info.file_table_length = tag_file_table_buffer_size;
-				cache_file_metadata.info.file_table_indices_offset = debug_section_file_table_indices_offset;
+				cache_file_metadata.file_count = tag_file_table_indices_count;
+				cache_file_metadata.file_table_offset = debug_section_file_table_offset;
+				cache_file_metadata.file_table_length = tag_file_table_data_size;
+				cache_file_metadata.file_table_indices_offset = debug_section_file_table_indices_offset;
 
-				cache_file_metadata.info.string_count = string_ids_count;
-				cache_file_metadata.info.string_table_length = string_ids_data_size;
-				cache_file_metadata.info.string_table_indices_offset = debug_section_string_id_indices_offset;
-				cache_file_metadata.info.string_table_offset = debug_section_string_ids_offset;
+				cache_file_metadata.string_count = string_ids_count;
+				cache_file_metadata.string_table_length = string_ids_data_size;
+				cache_file_metadata.string_table_indices_offset = debug_section_string_id_indices_offset;
+				cache_file_metadata.string_table_offset = debug_section_string_ids_offset;
 
-				cache_file_metadata.info.string_ids_namespace_table_count = string_id_namespace_count;
-				cache_file_metadata.info.string_ids_namespace_table_offset = debug_section_string_id_namespaces_offset;
+				cache_file_metadata.string_ids_namespace_table_count = string_id_namespace_count;
+				cache_file_metadata.string_ids_namespace_table_offset = debug_section_string_id_namespaces_offset;
 
 				section_data[i].insert(section_data[i].end(), tag_file_table_buffer, tag_file_table_buffer + tag_file_table_buffer_size);
 				section_data[i].insert(section_data[i].end(), tag_file_table_indices_buffer, tag_file_table_indices_buffer + tag_file_table_indices_buffer_size);
@@ -899,42 +1021,46 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 		cache_file_metadata.footer = k_cache_footer_signature;
 	}
 	{
-		cache_file_metadata.info.scenario_type = _scenario_type_multiplayer;
+		cache_file_metadata.scenario_type = _scenario_type_multiplayer;
 
 		//time_t now = time(NULL);
 		//struct tm* t = localtime(&now);
 		//strftime(info.build, sizeof(info.build), "Mandrill - %b %d %Y %T", t);
-		strcpy(cache_file_metadata.info.build, "Oct 15 2020 18:23:50");
+		strcpy(cache_file_metadata.build, "Oct 15 2020 18:23:50");
 
 		c_fixed_path name = scenario->tag_filename;
 		PathRemoveExtensionA(name.data);
 		c_fixed_path scenario_path = scenario->tag_filepath;
 		PathRemoveExtensionA(scenario_path.data);
-		snprintf(cache_file_metadata.info.name, sizeof(cache_file_metadata.info.name), "%s", name.c_str());
-		snprintf(cache_file_metadata.info.scenario_path, sizeof(cache_file_metadata.info.scenario_path), "%s", scenario_path.c_str());
+		snprintf(cache_file_metadata.name, sizeof(cache_file_metadata.name), "%s", name.c_str());
+		snprintf(cache_file_metadata.scenario_path, sizeof(cache_file_metadata.scenario_path), "%s", scenario_path.c_str());
 
-		cache_file_metadata.info.virtual_base_address = 0x00000001cb780000; // taken from 20_sword_slayer
+		cache_file_metadata.flags = static_cast<gen3::e_cache_file_flags>(4);
+		cache_file_metadata.virtual_base_address = virtual_base_address; // taken from 20_sword_slayer
 
-		cache_file_metadata.info.tags_header_address = cache_file_metadata.info.virtual_base_address + (tags_section_tags_header_offset - tags_section_tag_data_offset);
+		cache_file_metadata.tags_header_address = get_tag_section_virtual_address(tags_section_tags_header_offset);
 	}
 	{
-		cache_file_metadata.header.header_signature = k_cache_header_signature;
-		cache_file_metadata.header.file_version = 13;
-		cache_file_metadata.header.file_length = sizeof(cache_file_metadata);
-		cache_file_metadata.header.file_compressed_length = 0;
+		cache_file_metadata.header_signature = k_cache_header_signature;
+		cache_file_metadata.file_version = 13;
+		cache_file_metadata.file_length = sizeof(cache_file_metadata);
+		cache_file_metadata.file_compressed_length = 0;
+		cache_file_metadata.__unknown0 = 1;
+		cache_file_metadata.__unknown1 = 1;
+		cache_file_metadata.__unknown2 = 4;
 
 		for (uint32_t i = 0; i < gen3::k_number_of_cache_file_sections; i++)
 		{
-			cache_file_metadata.header.file_length += cache_file_metadata.info.section_table.sections[i].size;
+			cache_file_metadata.file_length += cache_file_metadata.section_table.sections[i].size;
 		}
 
 		for (uint32_t i = 0; i < gen3::k_number_of_cache_file_sections; i++)
 		{
 			s_section_info& section_info = section_infos[i];
 
-			cache_file_metadata.info.section_table.sections[i].offset = section_info.section_offset_from_header;
-			cache_file_metadata.info.section_table.sections[i].size = section_info.section_size;
-			cache_file_metadata.info.section_table.offset_masks[i] = 0;
+			cache_file_metadata.section_table.sections[i].offset = section_info.section_offset_from_header;
+			cache_file_metadata.section_table.sections[i].size = section_info.section_size;
+			cache_file_metadata.section_table.offset_masks[i] = 0;
 		}
 	}
 

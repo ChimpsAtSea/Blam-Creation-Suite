@@ -74,6 +74,7 @@ protected:
 		uint32_t tag_file_table_offset;
 		uint32_t tag_file_table_index;
 		char* tag_file_table_entry;
+		cache_compiler::s_cache_file_tag_group* tag_group;
 		uint32_t tag_group_index;
 		c_fixed_path path;
 	};
@@ -85,6 +86,22 @@ protected:
 	char* tag_instances_buffer;
 	uint32_t tag_instances_buffer_size;
 	uint32_t tag_instance_count;
+
+	// global tag instances
+
+	char* tag_global_instances_buffer;
+	uint32_t tag_global_instances_data_size;
+	uint32_t tag_global_instances_buffer_size;
+	uint32_t tag_global_instances_count;
+
+	// api interops
+
+	char* tag_api_interops_buffer;
+	uint32_t tag_api_interops_data_size;
+	uint32_t tag_api_interops_buffer_size;
+	uint32_t tag_api_interops_count;
+
+	// file table
 
 	char* tag_file_table_buffer; 
 	uint32_t tag_file_table_data_size;
@@ -98,6 +115,12 @@ protected:
 	char* resources_buffer;
 	uint32_t resources_data_size;
 	uint32_t resources_buffer_size;
+
+	// localization
+
+	char* localization_buffer;
+	uint32_t localization_data_size;
+	uint32_t localization_buffer_size;
 
 	// string_ids
 

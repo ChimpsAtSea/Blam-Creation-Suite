@@ -45,6 +45,8 @@ c_gen3_cache_file::c_gen3_cache_file(const std::wstring& map_filepath, e_engine_
 	gen3_cache_file_tag_instances(nullptr),
 	gen3_cache_file_tag_interops(nullptr),
 	tag_interop_count(0),
+	resource_entries(),
+	resource_entries_count(),
 	string_ids_buffer(nullptr),
 	string_id_indices(nullptr),
 	string_id_namespace_table(nullptr),

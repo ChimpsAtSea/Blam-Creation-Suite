@@ -27,7 +27,7 @@ public:
 	c_haloreach_page_file_manager* page_file_manager;
 
 	c_cache_file* get_shared_cache_file_by_file_index(uint32_t file_index);
-protected:
+public:
 
 	gen3::e_cache_file_flags get_cache_file_flags() const;
 	template<typename T> void init(T& cache_file_header);
