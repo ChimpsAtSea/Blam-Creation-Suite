@@ -8,7 +8,7 @@ std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_start
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_shutdown_events;
 bool c_game_launcher::s_is_game_running = false;
 c_opus_game_engine_host* current_game_host = nullptr;
-e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
+e_campaign_difficulty_level difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 c_mandrill_user_interface* c_game_launcher::mandrill_user_interface = nullptr;
 uint64_t ownership_mask = ~0ull;
 
@@ -31,15 +31,15 @@ e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
 e_map_id g_groundhog_map_id = _map_id_groundhog_coagulation;
 
 static bool has_auto_started = false;
-static bool k_autostart_halo_haloreach = false;
-static bool k_autostart_halo_halo1 = false;
-static bool k_autostart_halo_halo2 = false;
-static bool k_autostart_halo_halo3 = false;
-static bool k_autostart_halo_halo3odst = false;
-static bool k_autostart_halo_halo4 = false;
-static bool k_autostart_halo_groundhog = false;
-static bool k_autostart_halo_eldorado = false;
-static bool k_autostart_halo_online = false;
+static bool autostart_halo_haloreach = false;
+static bool autostart_halo_halo1 = false;
+static bool autostart_halo_halo2 = false;
+static bool autostart_halo_halo3 = false;
+static bool autostart_halo_halo3odst = false;
+static bool autostart_halo_halo4 = false;
+static bool autostart_halo_groundhog = false;
+static bool autostart_halo_eldorado = false;
+static bool autostart_halo_online = false;
 
 static bool use_remastered_visuals = false;
 static bool use_remastered_music = false;
@@ -53,15 +53,15 @@ void c_game_launcher::init_game_launcher(c_window& window)
 {
 	s_window = &window;
 	s_mouse_input = new c_mouse_input(*s_window);
-	k_autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
-	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
-	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
-	k_autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
-	k_autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
-	k_autostart_halo_halo4 = c_command_line::get_command_line_arg("-autostart") == "halo4";
-	k_autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
-	k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
-	k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
+	 autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+	 autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
+	 autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
+	 autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
+	 autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
+	 autostart_halo_halo4 = c_command_line::get_command_line_arg("-autostart") == "halo4";
+	 autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
+	 autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
+	 autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
 
 #ifdef _WIN64
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
@@ -223,14 +223,14 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 	if (!has_auto_started)
 	{
-		if (k_autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
-		if (k_autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
-		if (k_autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
-		if (k_autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
-		if (k_autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
-		if (k_autostart_halo_halo4) start_game(_engine_type_halo4, _next_launch_mode_generic);
-		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
-		if (k_autostart_halo_eldorado || k_autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
+		if ( autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
+		if ( autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
+		if ( autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
+		if ( autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
+		if ( autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
+		if ( autostart_halo_halo4) start_game(_engine_type_halo4, _next_launch_mode_generic);
+		if ( autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
+		if ( autostart_halo_eldorado || autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
 
 	c_console::write_line_verbose("and here we go...");
@@ -505,8 +505,8 @@ void default_variants_from_engine_type(e_engine_type engine_type, std::string& g
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		game_variant = c_haloreach_game_option_selection_legacy::s_launch_game_variant;
-		map_variant = c_haloreach_game_option_selection_legacy::s_launch_map_variant;
+		game_variant = c_haloreach_game_option_selection_legacy::hopper_game_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
+		map_variant = c_haloreach_game_option_selection_legacy::hopper_map_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
 		return;
 	case _engine_type_halo1:
 		game_variant = "02_team_slayer";
@@ -577,7 +577,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			game_options->game_mode = game_mode;
 			game_options->map_id = map_id;
 
-			game_options->campaign_difficulty_level = g_campaign_difficulty_level;
+			game_options->campaign_difficulty_level = difficulty_level;
 			game_options->campaign_insertion_point = g_insertion_point;
 
 			load_variant_from_file(data_access, game_options, engine_type, e_variant_type::_variant_type_game, game_variant.c_str());
@@ -746,7 +746,7 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 	{
 		if (game_mode == _mcc_game_mode_campaign || game_mode == _mcc_game_mode_firefight)
 		{
-			LPCSTR campaign_difficulty_current = campaign_difficulty_level_to_local_string(g_campaign_difficulty_level);
+			LPCSTR campaign_difficulty_current = campaign_difficulty_level_to_local_string(difficulty_level);
 			if (ImGui::BeginCombo("###DIFFICULTY", campaign_difficulty_current))
 			{
 				for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
@@ -757,8 +757,8 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 						bool selected = campaign_difficulty == campaign_difficulty_current;
 						if (ImGui::Selectable(campaign_difficulty, &selected))
 						{
-							g_campaign_difficulty_level = static_cast<e_campaign_difficulty_level>(difficulty);
-							c_settings::write_string(_settings_section_launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_campaign_difficulty_level));
+							difficulty_level = static_cast<e_campaign_difficulty_level>(difficulty);
+							c_settings::write_string(_settings_section_launch, "DifficultyLevel", campaign_difficulty_level_to_string(difficulty_level));
 						}
 					}
 				}
