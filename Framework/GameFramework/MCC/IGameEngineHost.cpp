@@ -658,9 +658,14 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 		break;
 	case _build_mcc_1_1896_0_0:
 	case _build_mcc_1_1930_0_0:
-	case _build_mcc_1_1955_0_0:
-	default:
 		s_player_configuration = new c_player_configuration(_player_configuration_version_9);
+		break;
+	case _build_mcc_1_1955_0_0:
+		s_player_configuration = new c_player_configuration(_player_configuration_version_10);
+		break;
+	case _build_mcc_1_2028_0_0:
+	default:
+		s_player_configuration = new c_player_configuration(_player_configuration_version_11);
 		break;
 	}
 	*player_configuration = s_player_configuration;
@@ -688,6 +693,8 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 			break;
 		case _player_configuration_version_8:
 		case _player_configuration_version_9:
+		case _player_configuration_version_10:
+		case _player_configuration_version_11:
 			user_skin_count = sizeof(t_player_configuration_v8::UserSkins) / sizeof(s_user_skin);
 			break;
 		}
@@ -702,7 +709,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			player_configuration.WeaponDisplayOffsets[i] = { 5.f, 5.f };
+			player_configuration.WeaponDisplayOffsets[i] = { .5f, .5f };
 		}
 	}
 

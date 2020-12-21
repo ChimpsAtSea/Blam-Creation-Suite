@@ -23,6 +23,7 @@ static std::vector<e_map_id> g_halo3odst_map_ids;
 static std::vector<e_map_id> g_halo4_map_ids;
 static std::vector<e_map_id> g_groundhog_map_ids;
 
+e_map_id g_haloreach_map_id = _map_id_haloreach_sword_base;
 e_map_id g_halo1_map_id = _map_id_mainmenu;
 e_map_id g_halo2_map_id = _map_id_mainmenu;
 e_map_id g_halo3_map_id = _map_id_mainmenu;
@@ -49,19 +50,23 @@ static bool start_as_forge_mode = false;
 static bool start_as_firefight_mode = false;
 static signed int g_insertion_point = 0;
 
+static bool g_use_mapinfo = true;
+
 void c_game_launcher::init_game_launcher(c_window& window)
 {
+	g_use_mapinfo = !(c_command_line::get_command_line_arg("-mapinfo") == "false");
+
 	s_window = &window;
 	s_mouse_input = new c_mouse_input(*s_window);
-	 autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
-	 autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
-	 autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
-	 autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
-	 autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
-	 autostart_halo_halo4 = c_command_line::get_command_line_arg("-autostart") == "halo4";
-	 autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
-	 autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
-	 autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
+	autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+	autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
+	autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
+	autostart_halo_halo3 = c_command_line::get_command_line_arg("-autostart") == "halo3";
+	autostart_halo_halo3odst = c_command_line::get_command_line_arg("-autostart") == "halo3odst";
+	autostart_halo_halo4 = c_command_line::get_command_line_arg("-autostart") == "halo4";
+	autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
+	autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
+	autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
 
 #ifdef _WIN64
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
@@ -208,7 +213,10 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 	c_game_launcher::load_settings();
 #ifdef _WIN64
-	c_haloreach_game_option_selection_legacy::Init();
+	if (g_use_mapinfo)
+	{
+		c_haloreach_game_option_selection_legacy::Init();
+	}
 #endif
 	s_window->on_window_procedure.register_callback(window_procedure);
 	s_window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
@@ -223,14 +231,14 @@ void c_game_launcher::init_game_launcher(c_window& window)
 
 	if (!has_auto_started)
 	{
-		if ( autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
-		if ( autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
-		if ( autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
-		if ( autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
-		if ( autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
-		if ( autostart_halo_halo4) start_game(_engine_type_halo4, _next_launch_mode_generic);
-		if ( autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
-		if ( autostart_halo_eldorado || autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
+		if (autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
+		if (autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
+		if (autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
+		if (autostart_halo_halo3) start_game(_engine_type_halo3, _next_launch_mode_generic);
+		if (autostart_halo_halo3odst) start_game(_engine_type_halo3odst, _next_launch_mode_generic);
+		if (autostart_halo_halo4) start_game(_engine_type_halo4, _next_launch_mode_generic);
+		if (autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
+		if (autostart_halo_eldorado || autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
 
 	c_console::write_line_verbose("and here we go...");
@@ -247,7 +255,10 @@ void c_game_launcher::deinit_game_launcher()
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_pause_menu);
 	s_window->on_window_procedure.unregister_callback(window_procedure);
 #ifdef _WIN64
-	c_haloreach_game_option_selection_legacy::deinit();
+	if (g_use_mapinfo)
+	{
+		c_haloreach_game_option_selection_legacy::deinit();
+	}
 #endif
 	delete s_mouse_input;
 	s_mouse_input = nullptr;
@@ -350,7 +361,10 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 	g_next_launch_mode = next_launch_mode;
 
 #ifdef _WIN64
-	c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath = "";
+	if (g_use_mapinfo)
+	{
+		c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath = "";
+	}
 #endif
 	has_auto_started = true;
 	g_next_launch_mode = _next_launch_mode_generic;
@@ -359,7 +373,10 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 
 void c_game_launcher::render_ui()
 {
-	mandrill_user_interface->render();
+	if (mandrill_user_interface != nullptr)
+	{
+		mandrill_user_interface->render();
+	}
 	if (s_is_game_running)
 	{
 		current_game_host->render_ui();
@@ -432,49 +449,28 @@ c_opus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
 	return nullptr;
 }
 
-IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_mode& game_mode, e_map_id& map_id)
+using t_custom_map_override_callback = IDataAccess * (*)(e_mcc_game_mode& game_mode, e_map_id& map_id);
+
+IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_mode& game_mode, e_map_id& map_id, t_custom_map_override_callback override_cb = nullptr)
 {
 	ASSERT(current_game_host != nullptr);
 
-	c_mandrill_user_interface*& mandrill_user_interface = c_game_launcher::mandrill_user_interface;
-
-	if (engine_type == _engine_type_haloreach)
-	{
-		const c_map_info* selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
-		e_mcc_game_mode selected_game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
-
-		game_mode = selected_game_mode;
-		map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
-
-		//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_options);
-		//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_options);
-
-		if(mandrill_user_interface != nullptr)
-		{
-			// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
-			const char* map_file_name = selected_map_info->get_map_filepath();
-			c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
-			{
-				wchar_t map_filepath[MAX_PATH + 1] = {};
-				_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
-				mandrill_user_interface->open_cache_file_tab(map_filepath);
-			}
-		}
-
-		return c_haloreach_game_host::get_data_access();
-	}
+	if (override_cb)
+		return override_cb(game_mode, map_id);
 
 	switch (engine_type)
 	{
+	case _engine_type_haloreach:
+		game_mode = map_id_to_game_mode(g_haloreach_map_id);
+		map_id = g_haloreach_map_id;
+		return c_haloreach_game_host::get_data_access();
 	case _engine_type_halo1:
 		game_mode = map_id_to_game_mode(g_halo1_map_id);
 		map_id = g_halo1_map_id;
-		//break;
 		return c_halo1_game_host::get_data_access();
 	case _engine_type_halo2:
 		game_mode = map_id_to_game_mode(g_halo2_map_id);
 		map_id = g_halo2_map_id;
-		//break;
 		return c_halo2_game_host::get_data_access();
 	case _engine_type_halo3:
 		game_mode = map_id_to_game_mode(g_halo3_map_id);
@@ -505,9 +501,17 @@ void default_variants_from_engine_type(e_engine_type engine_type, std::string& g
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		game_variant = c_haloreach_game_option_selection_legacy::hopper_game_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
-		map_variant = c_haloreach_game_option_selection_legacy::hopper_map_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
+	{
+		if (g_use_mapinfo)
+		{
+			game_variant = c_haloreach_game_option_selection_legacy::hopper_game_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
+			map_variant = c_haloreach_game_option_selection_legacy::hopper_map_variant[c_haloreach_game_option_selection_legacy::get_selected_game_mode()].c_str();
+			return;
+		}
+
+		game_variant = start_as_forge_mode ? "00_basic_editing_054" : "slayer_team_classic_054";
 		return;
+	}
 	case _engine_type_halo1:
 		game_variant = "02_team_slayer";
 		//map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
@@ -571,7 +575,38 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			e_mcc_game_mode game_mode = _mcc_game_mode_none;
 			e_map_id map_id = _map_id_none;
 
-			IDataAccess* data_access = data_access_from_engine_type(engine_type, game_mode, map_id);
+			t_custom_map_override_callback override_cb = nullptr;
+			if (engine_type == _engine_type_haloreach && g_use_mapinfo)
+			{
+				override_cb = [](e_mcc_game_mode& game_mode, e_map_id& map_id) -> IDataAccess*
+				{
+					c_mandrill_user_interface*& mandrill_user_interface = c_game_launcher::mandrill_user_interface;
+
+					const c_map_info* selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
+					e_mcc_game_mode selected_game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
+
+					//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_options);
+					//c_haloreach_game_option_selection_legacy::load_saved_film(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_options);
+
+					if (mandrill_user_interface != nullptr)
+					{
+						// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
+						const char* map_file_name = selected_map_info->get_map_filepath();
+						c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
+						{
+							wchar_t map_filepath[MAX_PATH + 1] = {};
+							_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
+							mandrill_user_interface->open_cache_file_tab(map_filepath);
+						}
+					}
+
+					game_mode = selected_game_mode;
+					map_id = static_cast<e_map_id>(selected_map_info->get_map_id());
+					return c_haloreach_game_host::get_data_access();
+				};
+			}
+
+			IDataAccess* data_access = data_access_from_engine_type(engine_type, game_mode, map_id, override_cb);
 			ASSERT(data_access != nullptr);
 
 			game_options->game_mode = game_mode;
@@ -783,6 +818,11 @@ void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 
 	if (game_mode == _mcc_game_mode_multiplayer)
 	{
+		if (engine_type == _engine_type_haloreach && !g_use_mapinfo)
+		{
+			ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
+		}
+
 		switch (engine_type)
 		{
 		case _engine_type_halo3:
@@ -861,7 +901,18 @@ void c_game_launcher::render_main_menu()
 		switch (g_engine_type)
 		{
 #ifdef _WIN64
-		case _engine_type_haloreach:	c_haloreach_game_option_selection_legacy::Render(); break;
+		case _engine_type_haloreach:
+		{
+			if (g_use_mapinfo)
+			{
+				c_haloreach_game_option_selection_legacy::Render();
+			}
+			else
+			{
+				display_map_in_ui(g_haloreach_map_ids, g_haloreach_map_id);
+			}
+			break;
+		}
 		case _engine_type_halo1:		display_map_in_ui(g_halo1_map_ids, g_halo1_map_id); break;
 		case _engine_type_halo2:		display_map_in_ui(g_halo2_map_ids, g_halo2_map_id); break;
 		case _engine_type_halo3:		display_map_in_ui(g_halo3_map_ids, g_halo3_map_id); break;
@@ -974,10 +1025,19 @@ next:
 	static e_mcc_game_mode game_mode = _mcc_game_mode_none;
 	switch (current_game_host->engine_type)
 	{
-	case _engine_type_haloreach:
 #ifdef _WIN64
-		game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
-#endif
+	case _engine_type_haloreach:
+	{
+		if (g_use_mapinfo)
+		{
+			game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
+		}
+		else
+		{
+			game_mode = map_id_to_game_mode(g_haloreach_map_id);
+		}
+	}
+	break;
 		break;
 	case _engine_type_halo1:
 		game_mode = map_id_to_game_mode(g_halo1_map_id);
@@ -997,6 +1057,7 @@ next:
 	case _engine_type_groundhog:
 		game_mode = map_id_to_game_mode(g_groundhog_map_id);
 		break;
+#endif
 	}
 
 	if (game_mode == _mcc_game_mode_campaign)

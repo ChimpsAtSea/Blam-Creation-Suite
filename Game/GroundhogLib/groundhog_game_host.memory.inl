@@ -12,6 +12,7 @@ uintptr_t groundhog_tag_instances_offset(e_engine_type engine_type, e_build buil
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1864_0_0, 0x1815819C8);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1871_0_0, 0x1815819C8);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1955_0_0, 0x1811FCDF8);
+	OFFSET(_engine_type_groundhog, _build_mcc_1_2028_0_0, 0x1811FCDF8);
 	return ~uintptr_t();
 }
 gen3::s_cache_file_tag_instance*& groundhog_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("groundhog_tag_instances", groundhog_tag_instances_offset);
@@ -29,6 +30,7 @@ uintptr_t groundhog_tag_address_table_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1864_0_0, 0x1835B8780);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1871_0_0, 0x1835B8780);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1955_0_0, 0x1832D7E20);
+	OFFSET(_engine_type_groundhog, _build_mcc_1_2028_0_0, 0x1832D7E00);
 	return ~uintptr_t();
 }
 uint32_t* (&groundhog_tag_address_table)[] = reference_symbol<uint32_t* []>("groundhog_tag_address_table", groundhog_tag_address_table_offset);
@@ -46,6 +48,7 @@ uintptr_t groundhog_cache_file_global_loaded_state_offset(e_engine_type engine_t
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1864_0_0, 0x1815008D0);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1871_0_0, 0x1815008D0);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1955_0_0, 0x18117BD00);
+	OFFSET(_engine_type_groundhog, _build_mcc_1_2028_0_0, 0x18117BD00);
 	return ~uintptr_t();
 }
 char*& groundhog_cache_file_global_loaded_state = reference_symbol<char*>("groundhog_cache_file_global_loaded_state", groundhog_cache_file_global_loaded_state_offset);
