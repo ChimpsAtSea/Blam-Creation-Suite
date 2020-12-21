@@ -28,6 +28,7 @@ uintptr_t mcc_map_id_parse_from_halo3_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180122F50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180122F50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800E3704);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1800E5D40);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_from_halo3_offset, long __fastcall(long)> mcc_map_id_parse_from_halo3 = { "mcc_map_id_parse_from_halo3", [](long map_id)
@@ -50,6 +51,7 @@ uintptr_t mcc_map_id_parse_to_halo3_offset(e_engine_type engine_type, e_build bu
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180122D50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180122D50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800E3554);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1800E5B90);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_to_halo3_offset, long __fastcall(long)> mcc_map_id_parse_to_halo3 = { "mcc_map_id_parse_to_halo3", [](long map_id)
@@ -72,6 +74,7 @@ uintptr_t mcc_game_mode_parse_to_halo3_patch_offset(e_engine_type engine_type, e
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x180014188 + 1);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x180014188 + 1);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x180011FE5);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1800143C5);
 	return ~uintptr_t();
 }
 c_data_patch<mcc_game_mode_parse_to_halo3_patch_offset> mcc_game_mode_parse_to_halo3_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -103,6 +106,7 @@ size_t halo3_enable_mainmenu_scenario_patch_size(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 6);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 6);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 2);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 2);
 	return ~size_t();
 }
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
@@ -120,6 +124,7 @@ uintptr_t halo3_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type,
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x18017A495);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x18017A495);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x180122AEA);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x180125372);
 	return ~uintptr_t();
 }
 c_data_patch<halo3_enable_mainmenu_scenario_patch_offset> halo3_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -147,6 +152,7 @@ uintptr_t halo3_external_launch_timeout_patch_offset(e_engine_type engine_type, 
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x1800F25E1);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x1800F25E1);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800BE4E0);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1800C0AC4);
 	return ~uintptr_t();
 }
 c_data_patch<halo3_external_launch_timeout_patch_offset> halo3_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -201,6 +207,7 @@ c_function_hook_ex<ui_game_mode_request_change_offset, char __fastcall(int)> ui_
 uintptr_t ui_game_mode_request_change_inlined_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x18003A468);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x18003C978);
 	return ~uintptr_t();
 }
 c_function_hook_ex<ui_game_mode_request_change_inlined_offset, char __fastcall(void*, int)> ui_game_mode_request_change_inlined = { "ui_game_mode_request_change_inlined", [](void* a1, int ui_game_mode)
@@ -233,6 +240,7 @@ uintptr_t preferences_ui_game_mode_change_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo3, _build_mcc_1_1864_0_0, 0x1803CBA30);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x1803CBA30);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1802E5BFC);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1802E882C);
 	return ~uintptr_t();
 }
 c_function_hook_ex<preferences_ui_game_mode_change_offset, void* __fastcall(void*, int)> preferences_ui_game_mode_change = { "preferences_ui_game_mode_change", [](void* a1, int ui_game_mode)
