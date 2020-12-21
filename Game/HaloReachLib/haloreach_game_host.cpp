@@ -99,9 +99,12 @@ void c_haloreach_game_host::init_runtime_modifications(e_build build)
 	//haloreach_player_mapping_get_local_player
 	haloreach_spawn_ai_with_scripts_and_effects_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
 	haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "SpawnAiWithScriptsAndEffects", true));
-	allow_night_vision_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
+	//allow_night_vision_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
 	haloreach_enable_debug_hud_coordinates.set_enabled(c_settings::read_boolean(_settings_section_debug, "PanCamEnabled", true));
 
+	//#TODO: fix the crash for builds 1955 and 2028
+	//allow_night_vision_in_multiplayer_patch.set_enabled(c_settings::read_boolean(_settings_section_debug, "AllowNightVisionInMultiplayer", true));
+	allow_night_vision_in_multiplayer_patch.set_enabled(false);
 
 	if (hs_function_table != nullptr)
 	{
