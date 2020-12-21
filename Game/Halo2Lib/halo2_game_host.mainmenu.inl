@@ -20,6 +20,7 @@ uintptr_t halo2_map_info_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo2, _build_mcc_1_1864_0_0, 0x180A48940);
 	OFFSET(_engine_type_halo2, _build_mcc_1_1871_0_0, 0x180A48940);
 	OFFSET(_engine_type_halo2, _build_mcc_1_1955_0_0, 0x180A48940);
+	OFFSET(_engine_type_halo2, _build_mcc_1_2028_0_0, 0x180A48940);
 	return ~uintptr_t();
 }
 s_halo2_map_info(&halo2_map_info_table)[40] = reference_symbol<s_halo2_map_info[40]>("halo2_map_info_table", halo2_map_info_table_offset);
