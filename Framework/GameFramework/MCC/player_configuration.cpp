@@ -352,7 +352,7 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[i].AbstractButton = i;
 	}
 
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v1)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_2)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_jump_v1].VirtualKeyCodes[0] = VK_SPACE;
 		CustomKeyboardMouseMappings[_abstract_button_switch_grenade_v1].VirtualKeyCodes[0] = 'G';
@@ -389,11 +389,11 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_magnify_zoom_v1].VirtualKeyCodes[0] = 'Z';
 		CustomKeyboardMouseMappings[_abstract_button_equipment_v1].VirtualKeyCodes[0] = VK_LSHIFT;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v2)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_3)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_fire_secondary_v2].VirtualKeyCodes[0] = VK_LSHIFT;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v3)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_4)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_lift_editor_v3].VirtualKeyCodes[0] = 'R';
 		CustomKeyboardMouseMappings[_abstract_button_drop_editor_v3].VirtualKeyCodes[0] = 'F';
@@ -416,11 +416,11 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_playback_speed_up_theater_v3].VirtualKeyCodes[0] = VK_LMENU;
 		CustomKeyboardMouseMappings[_abstract_button_enter_free_camera_mode_theater_v3].VirtualKeyCodes[0] = VK_SPACE;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v4)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_5)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_movement_speed_up_theater_v4].VirtualKeyCodes[0] = VK_LSHIFT;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v5)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_6)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_panning_camera_theater_v5].VirtualKeyCodes[0] = VK_OEM_RESET;
 		CustomKeyboardMouseMappings[_abstract_button_camera_move_up_theater_v5].VirtualKeyCodes[0] = 'Q';
@@ -428,7 +428,7 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v5].VirtualKeyCodes[0] = 'Q';
 		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v5].VirtualKeyCodes[0] = VK_OEM_RESET;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v6)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_8)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_toggle_rotation_axes_editor_v6].VirtualKeyCodes[0] = 'O';
 		CustomKeyboardMouseMappings[_abstract_button_show_hide_pannel_theater_v6].VirtualKeyCodes[0] = 'X';
@@ -447,7 +447,7 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v6].VirtualKeyCodes[0] = 'Q';
 		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v6].VirtualKeyCodes[0] = VK_OEM_RESET;
 	}
-	if (player_configuration.abstract_button_count >= k_number_of_abstract_buttons_v7)
+	if (player_configuration.player_configuration_version >= _player_configuration_version_9)
 	{
 		CustomKeyboardMouseMappings[_abstract_button_toggle_rotation_axes_editor_v7].VirtualKeyCodes[0] = 'O';
 		CustomKeyboardMouseMappings[_abstract_button_show_hide_pannel_theater_v7].VirtualKeyCodes[0] = 'X';
@@ -466,6 +466,15 @@ void load_player_configuration_from_file(c_player_configuration& player_configur
 		CustomKeyboardMouseMappings[_abstract_button_dual_wield_v7].VirtualKeyCodes[0] = 'Q';
 		CustomKeyboardMouseMappings[_abstract_button_zoom_camera_theater_v7].VirtualKeyCodes[0] = VK_OEM_RESET;
 		CustomKeyboardMouseMappings[_abstract_button_loadout_menu_v7].VirtualKeyCodes[0] = 'L';
+	}
+	if (player_configuration.player_configuration_version >= _player_configuration_version_10)
+	{
+		CustomKeyboardMouseMappings[_abstract_button_loadout_menu_v8].VirtualKeyCodes[0] = 'L';
+	}
+	if (player_configuration.player_configuration_version >= _player_configuration_version_11)
+	{
+		CustomKeyboardMouseMappings[_abstract_button_activate_waypoint_v9].VirtualKeyCodes[0] = 'P';
+		CustomKeyboardMouseMappings[_abstract_button_activate_waypoint_alt_v9].VirtualKeyCodes[0] = 'P';
 	}
 
 	for (long abstract_button_index = 0; abstract_button_index < player_configuration.abstract_button_count; abstract_button_index++)
