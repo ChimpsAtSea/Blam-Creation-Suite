@@ -133,6 +133,100 @@ static void load_plugins()
 #include <low_level_haloreach/lowlevel-haloreach-public-pch.h>
 #include <virtual_haloreach/virtual-haloreach-public-pch.h>
 
+#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
+
+
+c_haloreach_cache_compiler* cache_compilers[3];
+c_tag_project* tag_projects[3];
+c_cache_cluster* cache_clusters[3];
+c_cache_file* cache_files[3];
+
+static void pre_build_map(uint32_t index)
+{
+	uint32_t map_id;
+	const char* relative_test_file;
+	const wchar_t* test_file;
+	{
+		uint32_t map_ids[] =
+		{
+			9999,
+			9998,
+			9997
+		};
+
+		const wchar_t* test_files[] =
+		{
+				REACH_FOLDER L"maps\\20_sword_slayer.map",
+				REACH_FOLDER L"maps\\m70_a.map", // smallest map
+				REACH_FOLDER L"maps\\m60.map", // biggest map
+		};
+
+		const char* relative_test_files[] =
+		{
+				"maps\\20_sword_slayer.map",
+				"maps\\m70_a.map",
+				"maps\\m60.map",
+		};
+
+		map_id = map_ids[index];
+		relative_test_file = relative_test_files[index];
+		test_file = test_files[index];
+	}
+
+	const wchar_t* cluster_files[] =
+	{
+			test_file,
+			REACH_FOLDER L"maps\\shared.map",
+			REACH_FOLDER L"maps\\campaign.map",
+	};
+
+	using namespace blofeld;
+	using namespace blofeld::haloreach;
+
+	cache_clusters[index] = new c_cache_cluster(cluster_files, sizeof(cluster_files) / sizeof(*cluster_files));
+	cache_files[index] = cache_clusters[index]->get_cache_file_by_dvd_path(relative_test_file);
+	DEBUG_ASSERT(cache_files[index] != nullptr);
+
+	c_tag_group_interface* scenario_group = cache_files[index]->get_tag_group_interface_by_group_id(blofeld::SCENARIO_TAG);
+	c_tag_interface* tag_interface = scenario_group->get_tag_interfaces()[0];
+	c_virtual_tag_interface* virtual_tag_interface = tag_interface->get_virtual_tag_interface();
+	v_tag_interface<blofeld::haloreach::s_scenario_struct_definition>* scenario = dynamic_cast<decltype(scenario)>(virtual_tag_interface);
+	scenario->map_id = map_id;
+
+	tag_projects[index] = new c_tag_project(*cache_clusters[index], *cache_files[index]);
+}
+
+static void build_map(uint32_t index)
+{
+	const wchar_t* output_file;
+	{
+		const wchar_t* output_files[] =
+		{
+				REACH_FOLDER L"maps\\custom.map",
+				REACH_FOLDER L"maps\\custom2.map", // smallest map
+				REACH_FOLDER L"maps\\custom3.map", // biggest map
+		};
+
+		output_file = output_files[index];
+	}
+
+	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index]);
+
+	{
+		c_stopwatch stopwatch;
+		stopwatch.start();
+		cache_compilers[index]->compile(output_file DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_files[index])));
+		stopwatch.stop();
+		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
+	}
+
+	c_haloreach_cache_file* cache_file = (c_haloreach_cache_file*)c_cache_file::create_cache_file(output_file);
+
+	delete cache_clusters[index];
+	delete cache_compilers[index];
+	delete tag_projects[index];
+}
+
 static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {
 
@@ -148,48 +242,10 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 	window = new c_window(instance_handle, k_window_title, L"mandrill", _window_icon_mandrill, show_cmd);
 	c_render::init_render(window, instance_handle, true);
 
-	{
-		using namespace blofeld;
-		using namespace blofeld::haloreach;
-
-#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
-
-		const wchar_t* files[] =
-		{
-			//REACH_FOLDER L"maps\\20_sword_slayer.map",
-			//REACH_FOLDER L"maps\\m70_a.map", // smallest map
-			REACH_FOLDER L"maps\\m70_bonus.map",
-			REACH_FOLDER L"maps\\shared.map",
-			REACH_FOLDER L"maps\\campaign.map",
-		};
-		c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
-		c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\m70_bonus.map");
-		DEBUG_ASSERT(cache_file != nullptr);
-
-		c_tag_group_interface* scenario_group = cache_file->get_tag_group_interface_by_group_id(blofeld::SCENARIO_TAG);
-		c_tag_interface* tag_interface = scenario_group->get_tag_interfaces()[0];
-		c_virtual_tag_interface* virtual_tag_interface = tag_interface->get_virtual_tag_interface();
-		v_tag_interface<blofeld::haloreach::s_scenario_struct_definition>* scenario = dynamic_cast<decltype(scenario)>(virtual_tag_interface);
-		scenario->map_id = 9998;
-
-		c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
-
-		// c_test test(tag_project);
-
-		c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project);
-
-		{
-			c_stopwatch stopwatch;
-			stopwatch.start();
-			cache_compiler->compile(REACH_FOLDER L"maps\\custom2.map" DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
-			stopwatch.stop();
-			c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
-		}
-
-		delete cache_cluster;
-		delete cache_compiler;
-		delete tag_project;
-	}
+	tbb::parallel_for(0u, 2u, pre_build_map);
+	build_map(0); // 20_sword_slayer.map
+	//build_map(1); // m70_a.map
+	//build_map(2); // m60.map
 
 	load_plugins();
 	mandrill_user_interface = new c_mandrill_user_interface(*window, false, launch_filepath_command_line_argument);

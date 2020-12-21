@@ -14,10 +14,14 @@ c_gen3_tag_interface::c_gen3_tag_interface(c_gen3_cache_file& cache_file, uint32
 		return;
 	}
 
-	char* tags_buffer = cache_file.get_tags_buffer();
+	const s_section_cache& tags_section = cache_file.get_tags_section();
+	DEBUG_ASSERT(tags_section.size > 0);
 	uint64_t tag_data_offset = cache_file.convert_page_offset(cache_file_tag_instance.address);
-	tag_data = reinterpret_cast<char*>(tags_buffer + tag_data_offset);
+
+	char* tags_buffer = cache_file.get_tags_buffer();
+	tag_data = reinterpret_cast<char*>(tags_section.data + tag_data_offset);
 	DEBUG_ASSERT(!IsBadReadPtr(tag_data, 1));
+	
 
 	filepath = cache_file.get_tag_path(tag_index);
 	filepath_with_group_id = filepath + "." + tag_group_interface->get_short_name();

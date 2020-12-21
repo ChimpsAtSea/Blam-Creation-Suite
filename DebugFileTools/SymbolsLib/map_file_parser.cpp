@@ -25,34 +25,47 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 		throw;
 	}
 
-	const char* return_string = "\n";
-	if (strstr(map_file, "\r\n"))
-	{
-		return_string = "\r\n";
-	}
-	else if (strstr(map_file, "\n\r"))
-	{
-		return_string = "\n\r";
-	}
+	lines_vector.reserve(0x10000000);
 
-
-	lines_vector.reserve(100000000);
-
-	char* pch = strtok(map_file, return_string);
-	while (pch != NULL)
+	char* current_read_position = map_file;
+	char* const end_read_position = map_file + map_file_size;
+	while (current_read_position < end_read_position)
 	{
-		const char* line = pch;
-		while (*line == ' ') // clear prefix spaces
+		constexpr uint32_t iteration_lines_count = 64 * 1024;
+		uint32_t lines_count = 0;
+		char* lines_tmp[iteration_lines_count];
+		while (current_read_position < end_read_position && lines_count < iteration_lines_count)
 		{
-			line++;
-		}
-		if (*line) // skip empty lines
-		{
-			lines_vector.push_back(line);
-		}
+			//while (*current_read_position == ' ' || *current_read_position == '\r' || *current_read_position == '\n')
+			while (*current_read_position <= 33) // control characters + space
+			{
+				current_read_position++; // clear prefix spaces
+			}
+			lines_tmp[lines_count] = current_read_position;
+			lines_count++;
 
-		pch = strtok(NULL, return_string); // get next line
+			while (current_read_position < end_read_position)
+			{
+				if (*current_read_position < 32) // control characters
+				{
+					*current_read_position = 0;
+					current_read_position++;
+					if (current_read_position < end_read_position && *current_read_position < 32) // control characters
+					{
+						*current_read_position = 0;
+						current_read_position++;
+					}
+					break;
+				}
+				else
+				{
+					current_read_position++;
+				}
+			}
+		}
+		lines_vector.insert(lines_vector.end(), (char**)lines_tmp, (char**)lines_tmp + lines_count);
 	}
+
 	lines_vector.push_back("");
 
 	lines = lines_vector.data();
@@ -60,6 +73,7 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 
 void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t excluded_libs_count)
 {
+	uint32_t thread_count = GetActiveProcessorCount(0);
 	uint64_t current_line = 0;
 	temp_header.binary_name = lines[current_line++];
 	temp_header.timestamp_string = lines[current_line++];
@@ -88,80 +102,95 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 	{
 		current_line++;
 
-		const char* public_symbol_string = lines[current_line];
-		while (strstr(public_symbol_string, ":") == &public_symbol_string[4]) // is 4th character ':'
+		uint64_t lines_start = current_line;
 		{
-			s_symbol_file_public_temp& temp_public = temp_header.public_symbols.emplace_back();
-			char overflow[4]; // if this is used, throw an error by checking the count
-
-			int count = sscanf(
-				public_symbol_string,
-				"%x:%x %2047s%llx" // section_index, rva, symbol_name, rva_plus_base
-				"%255s%255s%255s%255s" // auxillary
-				"%255s%255s%255s%255s" // auxillary
-				"%255s%255s%255s%255s" // auxillary
-				"%255s%255s%255s%255s" // auxillary
-				"%3s", // overflow
-				&temp_public.section_index,
-				&temp_public.rva,
-				&temp_public.mangled_symbol_name_buffer,
-				&temp_public.rva_plus_base,
-				&temp_public.auxillary[0], &temp_public.auxillary[1], &temp_public.auxillary[2], &temp_public.auxillary[3],
-				&temp_public.auxillary[3], &temp_public.auxillary[4], &temp_public.auxillary[6], &temp_public.auxillary[7],
-				&temp_public.auxillary[8], &temp_public.auxillary[9], &temp_public.auxillary[10], &temp_public.auxillary[11],
-				&temp_public.auxillary[12], &temp_public.auxillary[13], &temp_public.auxillary[14], &temp_public.auxillary[15],
-				&overflow);
-			ASSERT(count >= 5);
-			ASSERT(count <= 20); // if the overflow buffer is hit, the value will be >19
-
-			//const char* flags[15];
-			//int flags_count = 0;
-			//for (int argument_index = 4; argument_index < count; (argument_index++, flags_count++))
-			//{
-			//	flags[flags_count] = auxillary[flags_count];
-			//}
-
-			const char* lib_and_object_str = temp_public.auxillary[count - 5];
-			*temp_public.lib_and_object = 0;
-			strncat(temp_public.lib_and_object, lib_and_object_str, _countof(temp_public.lib_and_object) - 1);
-
-			bool ignore = false;
-			for (size_t excluded_lib_index = 0; excluded_lib_index < excluded_libs_count; excluded_lib_index++)
+			const char* public_symbol_string = lines[current_line];
+			while (strstr(public_symbol_string, ":") == &public_symbol_string[4]) // is 4th character ':'
 			{
-				const char* excluded_lib = excluded_libs[excluded_lib_index];
-				if (*temp_public.lib_and_object == *excluded_lib && strstr(temp_public.lib_and_object, excluded_libs[excluded_lib_index]) != nullptr)
-				{
-					ignore = true;
-					break;
-				}
+				public_symbol_string = lines[++current_line];
 			}
-			if (!ignore)
+		}
+		uint64_t lines_end = current_line;
+
+		tbb::parallel_for(lines_start, lines_end, 
+			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
-				const char* mangled_symbol_name = temp_public.mangled_symbol_name_buffer;
-				if (*mangled_symbol_name != '?')
+				const char* public_symbol_string = lines[line_index];
+
+				bool ignore = false;
+				for (size_t excluded_lib_index = 0; excluded_lib_index < excluded_libs_count; excluded_lib_index++)
 				{
-					const char* new_mangled_symbol_name = strstr(mangled_symbol_name + 1, "?");
-					if (new_mangled_symbol_name) // mangled c names can be empty
+					const char* excluded_lib = excluded_libs[excluded_lib_index];
+					//if (*temp_public.lib_and_object == *excluded_lib && strstr(temp_public.lib_and_object, excluded_libs[excluded_lib_index]) != nullptr)
+					//{
+					//	ignore = true;
+					//	break;
+					//}
+					if (strstr(public_symbol_string, excluded_lib) != nullptr)
 					{
-						mangled_symbol_name = new_mangled_symbol_name;
+						ignore = true;
+						break;
 					}
 				}
+				if (!ignore)
+				{
+					s_symbol_file_public_temp temp_public = {};
+
+					char overflow[4]; // if this is used, throw an error by checking the count
+
+					int count = sscanf(
+						public_symbol_string,
+						"%x:%x %2047s%llx" // section_index, rva, symbol_name, rva_plus_base
+						"%255s%255s%255s%255s" // auxillary
+						"%255s%255s%255s%255s" // auxillary
+						"%255s%255s%255s%255s" // auxillary
+						"%255s%255s%255s%255s" // auxillary
+						"%3s", // overflow
+						&temp_public.section_index,
+						&temp_public.rva,
+						&temp_public.mangled_symbol_name_buffer,
+						&temp_public.rva_plus_base,
+						&temp_public.auxillary[0], &temp_public.auxillary[1], &temp_public.auxillary[2], &temp_public.auxillary[3],
+						&temp_public.auxillary[3], &temp_public.auxillary[4], &temp_public.auxillary[6], &temp_public.auxillary[7],
+						&temp_public.auxillary[8], &temp_public.auxillary[9], &temp_public.auxillary[10], &temp_public.auxillary[11],
+						&temp_public.auxillary[12], &temp_public.auxillary[13], &temp_public.auxillary[14], &temp_public.auxillary[15],
+						&overflow);
+					ASSERT(count >= 5);
+					ASSERT(count <= 20); // if the overflow buffer is hit, the value will be >19
+
+					//const char* flags[15];
+					//int flags_count = 0;
+					//for (int argument_index = 4; argument_index < count; (argument_index++, flags_count++))
+					//{
+					//	flags[flags_count] = auxillary[flags_count];
+					//}
+
+					const char* lib_and_object_str = temp_public.auxillary[count - 5];
+					*temp_public.lib_and_object = 0;
+					strncat(temp_public.lib_and_object, lib_and_object_str, _countof(temp_public.lib_and_object) - 1);
+
+					const char* mangled_symbol_name = temp_public.mangled_symbol_name_buffer;
+					if (*mangled_symbol_name != '?')
+					{
+						const char* new_mangled_symbol_name = strstr(mangled_symbol_name + 1, "?");
+						if (new_mangled_symbol_name) // mangled c names can be empty
+						{
+							mangled_symbol_name = new_mangled_symbol_name;
+						}
+					}
 
 #ifndef _DEBUG
-				DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name) - 1, UNDNAME_COMPLETE);
-				temp_public.complete_symbol_name[complete_symbol_name_length] = 0;
+					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name) - 1, UNDNAME_COMPLETE);
+					temp_public.complete_symbol_name[complete_symbol_name_length] = 0;
 #endif
+					temp_header.mutex.lock();
+					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name) - 1, UNDNAME_NAME_ONLY);
+					temp_public.symbol_name[symbol_name_length] = 0;
 
-				DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name) - 1, UNDNAME_NAME_ONLY);
-				temp_public.symbol_name[symbol_name_length] = 0;
-			}
-			else
-			{
-				temp_header.public_symbols.pop_back();
-			}
-
-			public_symbol_string = lines[++current_line];
-		}
+					temp_header.public_symbols.emplace_back(temp_public);
+					temp_header.mutex.unlock();
+				}
+			});
 	}
 
 	const char* entry_point_at_search_string = lines[current_line];
@@ -177,59 +206,75 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 	{
 		current_line++;
 
-		const char* static_symbol_string = lines[current_line];
-		while (strstr(static_symbol_string, ":") == &static_symbol_string[4]) // is 4th character ':'
+		uint64_t lines_start = current_line;
 		{
-			s_symbol_file_static_temp& temp_static = temp_header.static_symbols.emplace_back();
-
-			int count = sscanf(
-				static_symbol_string,
-				"%x:%x %2047s%llx%255s",
-				&temp_static.section_index,
-				&temp_static.rva,
-				&temp_static.mangled_symbol_name_buffer,
-				&temp_static.rva_plus_base,
-				&temp_static.lib_and_object);
-			ASSERT(count == 5);
-
-			bool ignore = false;
-			for (size_t excluded_lib_index = 0; excluded_lib_index < excluded_libs_count; excluded_lib_index++)
+			const char* static_symbol_string = lines[current_line];
+			while (strstr(static_symbol_string, ":") == &static_symbol_string[4]) // is 4th character ':'
 			{
-				const char* excluded_lib = excluded_libs[excluded_lib_index];
-				if (*temp_static.lib_and_object == *excluded_lib && strstr(temp_static.lib_and_object, excluded_libs[excluded_lib_index]) != nullptr)
-				{
-					ignore = true;
-					break;
-				}
+				static_symbol_string = lines[++current_line];
 			}
-			if (!ignore)
+		}
+		uint64_t lines_end = current_line;
+
+
+		tbb::parallel_for(lines_start, lines_end,
+			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
-				const char* mangled_symbol_name = temp_static.mangled_symbol_name_buffer;
-				ASSERT(*mangled_symbol_name);
-				if (*mangled_symbol_name != '?')
+				const char* static_symbol_string = lines[line_index];
+
+				bool ignore = false;
+				for (size_t excluded_lib_index = 0; excluded_lib_index < excluded_libs_count; excluded_lib_index++)
 				{
-					const char* new_mangled_symbol_name = strstr(mangled_symbol_name + 1, "?");
-					if (new_mangled_symbol_name) // mangled c names can be empty
+					const char* excluded_lib = excluded_libs[excluded_lib_index];
+					//if (*temp_static.lib_and_object == *excluded_lib && strstr(temp_static.lib_and_object, excluded_libs[excluded_lib_index]) != nullptr)
+					//{
+					//	ignore = true;
+					//	break;
+					//}
+					if (strstr(static_symbol_string, excluded_lib) != nullptr)
 					{
-						mangled_symbol_name = new_mangled_symbol_name;
+						ignore = true;
+						break;
 					}
 				}
+				if (!ignore)
+				{
+					s_symbol_file_static_temp temp_static = {};
+
+					int count = sscanf(
+						static_symbol_string,
+						"%x:%x %2047s%llx%255s",
+						&temp_static.section_index,
+						&temp_static.rva,
+						&temp_static.mangled_symbol_name_buffer,
+						&temp_static.rva_plus_base,
+						&temp_static.lib_and_object);
+					ASSERT(count == 5);
+
+					const char* mangled_symbol_name = temp_static.mangled_symbol_name_buffer;
+					ASSERT(*mangled_symbol_name);
+					if (*mangled_symbol_name != '?')
+					{
+						const char* new_mangled_symbol_name = strstr(mangled_symbol_name + 1, "?");
+						if (new_mangled_symbol_name) // mangled c names can be empty
+						{
+							mangled_symbol_name = new_mangled_symbol_name;
+						}
+					}
 
 #ifndef _DEBUG
-				DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.complete_symbol_name, _countof(temp_static.complete_symbol_name) - 1, UNDNAME_COMPLETE);
-				temp_static.complete_symbol_name[complete_symbol_name_length] = 0;
+					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.complete_symbol_name, _countof(temp_static.complete_symbol_name) - 1, UNDNAME_COMPLETE);
+					temp_static.complete_symbol_name[complete_symbol_name_length] = 0;
 #endif
+					temp_header.mutex.lock();
+					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.symbol_name, _countof(temp_static.symbol_name) - 1, UNDNAME_NAME_ONLY);
+					temp_static.symbol_name[symbol_name_length] = 0;
 
-				DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.symbol_name, _countof(temp_static.symbol_name) - 1, UNDNAME_NAME_ONLY);
-				temp_static.symbol_name[symbol_name_length] = 0;
-			}
-			else
-			{
-				temp_header.static_symbols.pop_back();
-			}
+					temp_header.static_symbols.emplace_back(temp_static);
+					temp_header.mutex.unlock();
+				}
+			});
 
-			static_symbol_string = lines[++current_line];
-		}
 	}
 }
 
