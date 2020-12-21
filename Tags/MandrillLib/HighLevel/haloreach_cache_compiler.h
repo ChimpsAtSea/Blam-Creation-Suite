@@ -19,7 +19,7 @@ namespace cache_compiler
 class c_haloreach_cache_compiler
 {
 public:
-	c_haloreach_cache_compiler(c_tag_project& tag_project);
+	c_haloreach_cache_compiler(c_tag_project& tag_project DEBUG_ONLY(, c_haloreach_cache_file* cache_file));
 	~c_haloreach_cache_compiler();
 	uint32_t calculate_size(h_tag& tag);
 	void calculate_object_memory_footprint(uint32_t& memory_footprint, h_object& object);
@@ -36,14 +36,15 @@ public:
 	void compile_tag_instances();
 	void pre_compile_global_tag_instances();
 	void compile_global_tag_instances();
-	void pre_compile_interops(DEBUG_ONLY(c_haloreach_cache_file* cache_file));
-	void compile_interops(DEBUG_ONLY(c_haloreach_cache_file* cache_file));
+	void pre_compile_interops();
+	void compile_interops();
 
 
-	void compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file));
+	void compile(const wchar_t* filepath);
 
 
 protected:
+	DEBUG_ONLY(c_haloreach_cache_file* cache_file);
 
 	//static constexpr uint64_t virtual_base_address = 0x00000001C9C40000;
 	//static constexpr uint64_t virtual_base_address = 0x00000001bcf98000;

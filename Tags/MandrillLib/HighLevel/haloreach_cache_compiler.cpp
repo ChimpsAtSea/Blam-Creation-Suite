@@ -155,7 +155,8 @@ static_assert(sizeof(s_cache_file_tag_interop) == 0x8);
 
 using namespace cache_compiler;
 
-c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_project) :
+c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_project DEBUG_ONLY(, c_haloreach_cache_file* _cache_file)) :
+	DEBUG_ONLY(cache_file(_cache_file),)
 	tag_project(tag_project),
 	string_id_manager(*new c_string_id_manager(17, 8, 7)),
 	cache_file_metadata(*new s_cache_file_metadata()),
@@ -844,7 +845,7 @@ void c_haloreach_cache_compiler::compile_global_tag_instances()
 	}
 }
 
-void c_haloreach_cache_compiler::pre_compile_interops(DEBUG_ONLY(c_haloreach_cache_file* cache_file))
+void c_haloreach_cache_compiler::pre_compile_interops()
 {
 	tag_api_interops_count = cache_file->haloreach_cache_file_tags_header->tag_interop_table.count;
 
@@ -855,7 +856,7 @@ void c_haloreach_cache_compiler::pre_compile_interops(DEBUG_ONLY(c_haloreach_cac
 
 }
 
-void c_haloreach_cache_compiler::compile_interops(DEBUG_ONLY(c_haloreach_cache_file* cache_file))
+void c_haloreach_cache_compiler::compile_interops()
 {
 	char* const tag_api_interops_data_begin = tag_api_interops_buffer + tag_api_interops_count * sizeof(s_cache_file_tag_interop);
 	char* const tag_api_interops_indices_begin = tag_api_interops_buffer;
@@ -885,7 +886,7 @@ void c_haloreach_cache_compiler::compile_interops(DEBUG_ONLY(c_haloreach_cache_f
 	}
 }
 
-void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_haloreach_cache_file* cache_file))
+void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 {
 	using namespace blofeld;
 	using namespace blofeld::haloreach;
@@ -919,7 +920,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	create_tag_file_table();
 	pre_compile_tags();
 	pre_compile_global_tag_instances();
-	pre_compile_interops(cache_file);
+	pre_compile_interops();
 	compile_resources();
 
 
@@ -935,10 +936,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 	localization_buffer = new char[localization_buffer_size] {};
 	memcpy(localization_buffer, localization_section.data, localization_data_size);
 
-
 	debug_point;
-
-
 
 	blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project.tags[8]);
 	DEBUG_ASSERT(scenario != nullptr);
@@ -1030,7 +1028,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath DEBUG_ONLY(, c_
 				compile_tags();
 				compile_tag_instances();
 				compile_global_tag_instances();
-				compile_interops(cache_file);
+				compile_interops();
 
 				tags_header.checksum = 'poop';
 				tags_header.tags_signature = 'tags';
