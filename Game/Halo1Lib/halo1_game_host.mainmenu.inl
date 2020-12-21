@@ -31,6 +31,7 @@ uintptr_t halo1_ui_string_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x1816678E4);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x1816678E4);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x1816688E4);
+	OFFSET(_engine_type_halo1, _build_mcc_1_2028_0_0, 0x1816688E4);
 	return ~uintptr_t();
 }
 char(&halo1_ui_string)[] = reference_symbol<char[]>("halo1_ui_string", halo1_ui_string_offset);
@@ -41,6 +42,7 @@ uintptr_t mcc_map_id_parse_to_halo1_patch_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180090C59 + 3);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x180090C59 + 3);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180090B79 + 3);
+	OFFSET(_engine_type_halo1, _build_mcc_1_2028_0_0, 0x180090BD9 + 3);
 	return ~uintptr_t();
 }
 c_data_patch<mcc_map_id_parse_to_halo1_patch_offset> mcc_map_id_parse_to_halo1_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)

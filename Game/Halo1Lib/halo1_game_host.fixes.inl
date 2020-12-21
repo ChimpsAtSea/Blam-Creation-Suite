@@ -10,6 +10,7 @@ uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180ABE7C0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x180ABE7C0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180ABEDA0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_2028_0_0, 0x180ABEEE0);
 
 	if (engine_type == _engine_type_halo1 && false)
 	{
@@ -83,6 +84,7 @@ uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x1800BB260);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1871_0_0, 0x1800BB260);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x1800BB620);
+	OFFSET(_engine_type_halo1, _build_mcc_1_2028_0_0, 0x1800BB690);
 
 	if (engine_type == _engine_type_halo1 && false)
 	{
