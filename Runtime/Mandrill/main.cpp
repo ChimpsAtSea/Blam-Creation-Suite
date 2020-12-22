@@ -210,12 +210,12 @@ static void build_map(uint32_t index)
 		output_file = output_files[index];
 	}
 
-	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index]);
+	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index] DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_files[index])));
 
 	{
 		c_stopwatch stopwatch;
 		stopwatch.start();
-		cache_compilers[index]->compile(output_file DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_files[index])));
+		cache_compilers[index]->compile(output_file);
 		stopwatch.stop();
 		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
 	}

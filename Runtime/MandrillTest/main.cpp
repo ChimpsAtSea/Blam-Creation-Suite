@@ -150,12 +150,12 @@ static int run_mandrill_api_test()
 
 	// c_test test(tag_project);
 
-	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project);
+	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
 
 	{
 		c_stopwatch stopwatch;
 		stopwatch.start();
-		cache_compiler->compile(REACH_FOLDER L"maps\\custom.map" DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
+		cache_compiler->compile(REACH_FOLDER L"maps\\custom.map");
 		stopwatch.stop();
 		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
 	}
