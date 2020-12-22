@@ -413,13 +413,13 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			}
 			case _field_enum:
 			{
-				short data = *reinterpret_cast<const int32_t*>(current_data_position);
+				short data = *reinterpret_cast<const int32_t*>(high_level_field_data);
 				memcpy(current_data_position, &data, sizeof(data));
 				break;
 			}
 			case _field_long_enum:
 			{
-				long data = *reinterpret_cast<const int32_t*>(current_data_position);
+				long data = *reinterpret_cast<const int32_t*>(high_level_field_data);
 				memcpy(current_data_position, &data, sizeof(data));
 				break;
 			}
