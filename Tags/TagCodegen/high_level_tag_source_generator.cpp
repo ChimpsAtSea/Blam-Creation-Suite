@@ -88,7 +88,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
-	case _field_pageable:							return "s_tag_resource";
+	case _field_pageable:							return "h_resource";
 	case _field_api_interop:						return "s_tag_interop";
 	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";

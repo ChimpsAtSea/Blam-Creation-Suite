@@ -85,6 +85,7 @@ protected:
 		char* tag_data;
 		uint32_t tag_file_table_offset;
 		uint32_t tag_file_table_index;
+		uint32_t tag_file_table_datum_index;
 		char* tag_file_table_entry;
 		cache_compiler::s_cache_file_tag_group* tag_group;
 		uint32_t tag_group_index;
@@ -102,10 +103,10 @@ protected:
 
 	// global tag instances
 
-	char* tag_global_instances_buffer;
-	uint32_t tag_global_instances_data_size;
-	uint32_t tag_global_instances_buffer_size;
-	uint32_t tag_global_instances_count;
+	char* tag_global_entries_buffer;
+	uint32_t tag_global_entries_data_size;
+	uint32_t tag_global_entries_buffer_size;
+	uint32_t tag_global_entries_count;
 
 	// api interops
 

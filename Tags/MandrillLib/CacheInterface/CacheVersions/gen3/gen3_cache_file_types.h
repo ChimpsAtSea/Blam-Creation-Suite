@@ -36,7 +36,8 @@ namespace gen3
 	struct s_cache_file_tag_global_instance
 	{
 		uint32_t group_tag;
-		long definition_index;
+		uint16_t tag_index;
+		uint16_t identifier;
 	};
 	static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
 

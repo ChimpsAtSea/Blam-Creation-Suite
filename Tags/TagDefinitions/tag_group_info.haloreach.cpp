@@ -248,6 +248,18 @@ namespace blofeld
 		s_tag_group_info wave_template_group = { blofeld::WAVE_TEMPLATE_TAG, "wave_template" };
 		s_tag_group_info weather_globals_group = { blofeld::WEATHER_GLOBALS_TAG, "weather_globals" };
 		s_tag_group_info wind_group = { blofeld::WIND_TAG, "wind" };
+		
+		s_tag_group_info* haloreach_global_tag_groups[] =
+		{
+			&rasterizer_cache_file_globals_group,
+			&global_cache_file_pixel_shaders_group,
+			&cache_file_resource_layout_table_group,
+			&sound_cache_file_gestalt_group,
+			&cache_file_resource_gestalt_group,
+			&scenario_group,
+			&globals_group,
+			nullptr
+		};
 
 		s_tag_group_info* haloreach_tag_groups[] =
 		{

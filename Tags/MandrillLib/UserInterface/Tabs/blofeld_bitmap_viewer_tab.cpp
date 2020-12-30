@@ -221,7 +221,8 @@ c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_in
 	tag_interface(tag_interface),
 	cache_file(*dynamic_cast<decltype(&cache_file)>(&tag_interface.get_cache_file())),
 	bitmap_tag(*dynamic_cast<decltype(&bitmap_tag)>(tag_interface.get_virtual_tag_interface())),
-	texture(nullptr)
+	texture(nullptr),
+	shader_resource_view(nullptr)
 {
 	load_bitmap(1);
 	if (shader_resource_view == nullptr)

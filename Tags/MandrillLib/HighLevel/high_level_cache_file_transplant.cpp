@@ -243,9 +243,9 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_pageable:
 			{
 				const s_tag_resource& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(current_data_position);
-				s_tag_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+				h_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
 				
-				resource_storage = tag_resource;
+				resource_storage._original_resource = tag_resource;
 				break;
 			}
 			case _field_vertex_buffer:

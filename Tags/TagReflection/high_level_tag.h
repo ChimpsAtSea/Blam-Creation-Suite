@@ -80,6 +80,16 @@ protected:
 	s_notification_listener* notification_listeners;
 };
 
+class h_resource :
+	public h_type
+{
+public:
+	h_resource(h_type* parent = nullptr);
+	virtual ~h_resource();
+
+	s_tag_resource _original_resource;
+};
+
 class h_object :
 	public h_type
 {

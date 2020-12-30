@@ -93,13 +93,13 @@ void c_tag_project_tab::render_tags_list_search()
 		//	? tag_interface.get_path_with_group_name_cstr()
 		//	: tag_interface.get_name_with_group_name_cstr();
 
-		//if (!search_buffer.is_empty())
-		//{
-		//	if (strstr(tag_path_group_name, search_buffer.c_str()) == nullptr && strstr(tag_path_group_id, search_buffer.c_str()) == nullptr)
-		//	{
-		//		continue;
-		//	}
-		//}
+		if (!search_buffer.is_empty())
+		{
+			if (strstr(tag->tag_filepath.data, search_buffer.c_str()) == nullptr)
+			{
+				continue;
+			}
+		}
 
 		bool is_active = search_selected_tag_interface == tag;
 		bool selectable_activated = ImGui::Selectable(tag->tag_filepath.c_str(), is_active, ImGuiSelectableFlags_AllowDoubleClick);

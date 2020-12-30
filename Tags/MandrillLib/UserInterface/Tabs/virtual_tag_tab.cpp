@@ -11,11 +11,11 @@ c_virtual_tag_tab::c_virtual_tag_tab(c_tag_interface& tag_interface, c_mandrill_
 	//	add_tab(*mandrill_bitmap_gui_tab);
 	//}
 
-	//if (v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>* bitmap_tag = dynamic_cast<decltype(bitmap_tag)>(tag_interface.get_virtual_tag_interface()))
-	//{
-	//	c_blofeld_bitmap_viewer_tab* bitmap_viewer_tab = new c_blofeld_bitmap_viewer_tab(tag_interface, *this);
-	//	add_tab(*bitmap_viewer_tab);
-	//}
+	if (v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>* bitmap_tag = dynamic_cast<decltype(bitmap_tag)>(tag_interface.get_virtual_tag_interface()))
+	{
+		c_blofeld_bitmap_viewer_tab* bitmap_viewer_tab = new c_blofeld_bitmap_viewer_tab(tag_interface, *this);
+		add_tab(*bitmap_viewer_tab);
+	}
 
 	const blofeld::s_tag_group* blofeld_reflection = tag_interface.get_blofeld_reflection_data();
 	if (blofeld_reflection)

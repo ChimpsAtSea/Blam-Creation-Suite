@@ -97,8 +97,8 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 		char* neutral_read_only_buffer = reinterpret_cast<char*>(tags_buffer + convert_virtual_address(haloreach_cache_file_header_v13->tag_language_neutral_read_only_buffer.elements));
 
 		debug_point;
-
 	}
+
 	if (tags_section.size > 0)
 	{
 		gen3_cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_groups.address));
@@ -125,14 +125,27 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath,
 			tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
 		}
 
-		auto tag_global_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_global_instance.address));
-
 		gen3_cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->tag_instances.address));
 		tag_interfaces.reserve(haloreach_cache_file_tags_header->tag_instances.count);
 		for (uint32_t tag_instance = 0; tag_instance < haloreach_cache_file_tags_header->tag_instances.count; tag_instance++)
 		{
 			s_cache_file_tag_instance& cache_file_tag_instance = gen3_cache_file_tag_instances[tag_instance];
 			tag_interfaces.push_back(new c_gen3_tag_interface(*this, tag_instance));
+		}
+	}
+
+	if (tags_section.size > 0)
+	{
+		s_cache_file_tag_global_instance* tag_global_instances = reinterpret_cast<s_cache_file_tag_global_instance*>(tags_buffer + convert_virtual_address(haloreach_cache_file_tags_header->global_tag_instances.address));
+
+		for (uint32_t global_tag_index = 0; global_tag_index < haloreach_cache_file_tags_header->global_tag_instances.count; global_tag_index++)
+		{
+			s_cache_file_tag_global_instance& tag_global_instance = tag_global_instances[global_tag_index];
+			//s_cache_file_tag_group& cache_file_tag_group = gen3_cache_file_tag_groups[];
+			// tag_global_instance.tag_index
+
+			const char* name = get_known_legacy_tag_group_name(tag_global_instance.group_tag);
+			c_console::write_line("global_tag_name: '%s'", name);
 		}
 	}
 

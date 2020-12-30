@@ -115,7 +115,7 @@ namespace haloreach
 	{
 		gen3::s_section<gen3::s_cache_file_tag_group> tag_groups;
 		gen3::s_section<gen3::s_cache_file_tag_instance> tag_instances;
-		gen3::s_section<gen3::s_cache_file_tag_global_instance> tag_global_instance;
+		gen3::s_section<gen3::s_cache_file_tag_global_instance> global_tag_instances;
 		gen3::s_section<gen3::s_cache_file_tag_interop> tag_interop_table;
 		long : 32;
 		dword checksum;
