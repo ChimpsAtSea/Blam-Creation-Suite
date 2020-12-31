@@ -46,11 +46,9 @@ public:
 protected:
 	DEBUG_ONLY(c_haloreach_cache_file* cache_file);
 
-	//static constexpr uint64_t virtual_base_address = 0x00000001C9C40000;
-	//static constexpr uint64_t virtual_base_address = 0x00000001bcf98000;
 	static constexpr uint32_t page_address_offset_relative = 0x50000000ull;
-	static constexpr uint32_t block_memory_alignment = 0x4u;
-	static constexpr uint32_t tag_memory_alignment = 0x4u;
+	static constexpr uint32_t block_memory_alignment = 16;
+	static constexpr uint32_t tag_memory_alignment = 16;
 
 	uint32_t get_tag_pointer_relative_offset(const char* tag_data);
 	uint32_t encode_page_offset(uint64_t virtual_address);

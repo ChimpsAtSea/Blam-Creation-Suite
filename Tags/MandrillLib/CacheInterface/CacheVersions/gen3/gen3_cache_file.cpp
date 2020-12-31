@@ -145,7 +145,7 @@ const char* c_gen3_cache_file::get_string_id_by_index(uint32_t index) const
 	return string_id_str;
 }
 
-const char* c_gen3_cache_file::get_string_id(string_id const stringid, const char* const error_value /*= nullptr*/) const
+const char* c_gen3_cache_file::get_string_id(string_id const stringid, const char* const error_value) const
 {
 	uint32_t string_index = 0xFFFFFFFF;
 	if (string_id_interface != nullptr)
@@ -153,7 +153,8 @@ const char* c_gen3_cache_file::get_string_id(string_id const stringid, const cha
 		string_index = string_id_interface->string_id_to_index(stringid);
 	}
 
-	if (string_index < get_string_id_count())
+	uint32_t string_id_count = get_string_id_count();
+	if (string_index < string_id_count)
 	{
 		return get_string_id_by_index(string_index);
 	}

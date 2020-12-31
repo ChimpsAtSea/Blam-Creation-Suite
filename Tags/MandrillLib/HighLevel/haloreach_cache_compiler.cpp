@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-#define align_value(value, alignment) (((value) + ((alignment) - 1)) & ~((alignment) - 1))
+#define align_value(value, alignment) (((value) + ((alignment) - static_cast<std::remove_reference<decltype(value)>::type>(1))) & ~((alignment) - static_cast<std::remove_reference<decltype(value)>::type>(1)))
 
 #define DEBUG_PADDING 128
 
@@ -228,9 +228,23 @@ void write(const void* _buffer, size_t size, FILE* stream)
 
 uint32_t c_haloreach_cache_compiler::calculate_size(h_tag& tag)
 {
-	uint32_t tag_size = tag.get_low_level_type_size();
+	uint32_t tag_size = 0;
+#if DEBUG_PADDING > 0
+	tag_size = align_value(tag_size, tag_memory_alignment); // debug alignment
+	tag_size += DEBUG_PADDING;
+#endif
+
+	tag_size = align_value(tag_size, tag_memory_alignment); // base struct alignment
+	tag_size += tag.get_low_level_type_size();
+	tag_size = align_value(tag_size, block_memory_alignment); // block memory alignment
 	calculate_object_memory_footprint(tag_size, tag);
-	tag_size += DEBUG_PADDING * 2;
+	tag_size = align_value(tag_size, tag_memory_alignment); // tag alignment
+
+#if DEBUG_PADDING > 0
+	tag_size = align_value(tag_size, tag_memory_alignment); // debug alignment
+	tag_size += DEBUG_PADDING;
+#endif
+
 	return tag_size;
 }
 
@@ -245,25 +259,36 @@ void c_haloreach_cache_compiler::calculate_object_memory_footprint(uint32_t& mem
 		case blofeld::_field_block:
 		{
 			h_block& block_storage = *static_cast<h_block*>(object.get_field_data(field));
-			uint32_t type_size = block_storage.get_low_level_type_size();
-			uint32_t block_data_size = type_size * block_storage.size();
-			memory_footprint += align_value(block_data_size, block_memory_alignment);
-
-			for (uint32_t object_index = 0; object_index < block_storage.size(); object_index++)
+			if (block_storage.size() > 0)
 			{
-				h_object& object = block_storage.get(object_index);
-				calculate_object_memory_footprint(memory_footprint, object);
-			}
+				uint32_t type_size = block_storage.get_low_level_type_size();
+				uint32_t block_data_size = type_size * block_storage.size();
 
-			debug_point;
+				memory_footprint = align_value(memory_footprint, block_memory_alignment);
+				memory_footprint += align_value(block_data_size, block_memory_alignment);
+
+				for (uint32_t object_index = 0; object_index < block_storage.size(); object_index++)
+				{
+					h_object& object = block_storage.get(object_index);
+					calculate_object_memory_footprint(memory_footprint, object);
+				}
+
+				debug_point;
+			}
 			break;
 		}
 		case blofeld::_field_data:
 		{
 			h_data& data_storage = *static_cast<h_data*>(object.get_field_data(field));
-			uint32_t data_size = data_storage.size();
-			memory_footprint += align_value(data_size, block_memory_alignment);
-			debug_point;
+			if (data_storage.size() > 0)
+			{
+				uint32_t data_size = static_cast<uint32_t>(data_storage.size());
+
+				memory_footprint = align_value(memory_footprint, block_memory_alignment);
+				memory_footprint += align_value(data_size, block_memory_alignment);
+
+				debug_point;
+			}
 			break;
 		}
 		case blofeld::_field_array:
@@ -316,21 +341,30 @@ uint16_t c_haloreach_cache_compiler::get_tag_index(const h_tag* tag) const
 void c_haloreach_cache_compiler::compile_tag(const h_tag& tag, char* tag_data, uint32_t tag_data_size)
 {
 	char* tag_allocation_postion = tag_data;
+
 #if DEBUG_PADDING > 0
+	tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), tag_memory_alignment)); // debug alignment
 	c_fixed_string<DEBUG_PADDING>& header = *reinterpret_cast<c_fixed_string<DEBUG_PADDING>*>(tag_allocation_postion);
 	tag_allocation_postion += sizeof(header);
 	header.format(">>==BEGIN TAG [%s]==", tag.tag_filename.c_str());
 	memset(header.data + header.size(), '<<', sizeof(header) - header.size());
 #endif
+
+	tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), tag_memory_alignment)); // base struct alignment
 	char* allocated_tag_data = tag_allocation_postion;
 	tag_allocation_postion += tag.get_low_level_type_size();
+	tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), block_memory_alignment)); // block memory alignment
 	compile_object(tag, allocated_tag_data, tag_allocation_postion);
+	tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), tag_memory_alignment)); // tag alignment
+
 #if DEBUG_PADDING > 0
+	tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), tag_memory_alignment)); // debug alignment
 	c_fixed_string<DEBUG_PADDING>& footer = *reinterpret_cast<c_fixed_string<DEBUG_PADDING>*>(tag_allocation_postion);
 	tag_allocation_postion += sizeof(footer);
 	footer.format("<<==END TAG [%s]==", tag.tag_filename.c_str());
 	memset(footer.data + footer.size(), '<<', sizeof(footer) - footer.size());
 #endif
+
 	intptr_t used_data_size = tag_allocation_postion - tag_data;
 	DEBUG_ASSERT(used_data_size == tag_data_size);
 }
@@ -465,6 +499,7 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 					uint32_t type_size = block_storage.get_low_level_type_size();
 					uint32_t block_data_size = type_size * block_storage.size();
 
+					tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), block_memory_alignment));
 					char* const tag_block_data = tag_allocation_postion;
 					tag_allocation_postion += align_value(block_data_size, block_memory_alignment);
 
@@ -547,8 +582,9 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 				}
 				else
 				{
-					uint32_t block_data_size = data_storage.size();
+					uint32_t block_data_size = static_cast<uint32_t>(data_storage.size());
 
+					tag_allocation_postion = reinterpret_cast<char*>(align_value(reinterpret_cast<uintptr_t>(tag_allocation_postion), block_memory_alignment));
 					char* const tag_data_data = tag_allocation_postion;
 					tag_allocation_postion += align_value(block_data_size, block_memory_alignment);
 
@@ -574,6 +610,15 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 				tag_resource = resource_storage._original_resource;
 				break;
 			}
+			case _field_api_interop:
+			{
+				s_tag_interop& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(current_data_position);
+				const s_tag_interop& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
+
+				tag_interop = interop_storage;
+
+				break;
+			}
 			case _field_vertex_buffer:
 			case _field_pad:
 			case _field_useless_pad:
@@ -581,7 +626,6 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_non_cache_runtime_value:
 			case _field_explanation:
 			case _field_custom:
-			case _field_api_interop:
 			case _field_terminator:
 			{
 				// #TODO
@@ -665,7 +709,7 @@ void c_haloreach_cache_compiler::init_tags()
 
 		PathRemoveExtensionA(data_entry.path.data);
 
-		tag_file_table_data_size += data_entry.path.size() + 1;
+		tag_file_table_data_size += static_cast<uint32_t>(data_entry.path.size()) + 1;
 		tag_data_data_size += tag_data_size;
 		file_index++;
 	}
@@ -772,7 +816,7 @@ void c_haloreach_cache_compiler::compile_string_ids()
 	}
 
 	uint32_t user_ids_begin = string_id_manager.engine_set_counts[0];
-	uint32_t user_ids_end = string_id_manager.string_ids[0].size();
+	uint32_t user_ids_end = static_cast<uint32_t>(string_id_manager.string_ids[0].size());
 	for (uint32_t string_index = user_ids_begin; string_index < user_ids_end; string_index++)
 	{
 		std::string& str = string_id_manager.string_ids[0][string_index];
@@ -821,6 +865,8 @@ void c_haloreach_cache_compiler::compile_resources()
 	resources_buffer = new char[resources_buffer_size] {};
 	memcpy(resources_buffer, resource_section.data, resources_data_size);
 
+
+#if 0
 	auto resource_layout_table_group = cache_file->get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
 	DEBUG_ASSERT(resource_layout_table_group != nullptr);
 	auto resource_layout_table_tag = resource_layout_table_group->get_tag_interfaces()[0];
@@ -828,12 +874,12 @@ void c_haloreach_cache_compiler::compile_resources()
 	auto resource_layout_table = dynamic_cast<v_tag_interface<s_cache_file_resource_layout_table_block_struct>*>(resource_layout_table_tag->get_virtual_tag_interface());
 	DEBUG_ASSERT(resource_layout_table != nullptr);
 
-	struct s_resource_fixup_info
-	{
-		uint32_t section_offset;
-	};
-	std::vector<s_resource_fixup_info> resource_fixups;
-	resource_fixups.resize(resource_layout_table->file_pages_block.count);
+	//struct s_resource_fixup_info
+	//{
+	//	uint32_t section_offset;
+	//};
+	//std::vector<s_resource_fixup_info> resource_fixups;
+	//resource_fixups.resize(resource_layout_table->file_pages_block.count);
 
 	char* map_data = cache_file->get_map_data();
 	char* resources_data = cache_file->get_resources_section().data;
@@ -841,15 +887,34 @@ void c_haloreach_cache_compiler::compile_resources()
 
 	for (uint32_t file_page_index = 0; file_page_index < resource_layout_table->file_pages_block.count; file_page_index++)
 	{
-		s_resource_fixup_info& resource_fixup = resource_fixups[file_page_index];
-		
+		//s_resource_fixup_info& resource_fixup = resource_fixups[file_page_index];
+
 		auto& file_page = resource_layout_table->file_pages_block[file_page_index];
 
 		if (file_page.shared_file == -1)
 		{
-			resource_fixup.section_offset = file_page.file_offset - resource_section_file_offset;
+			//resource_fixup.section_offset = file_page.file_offset - resource_section_file_offset;
+			file_page.file_offset += 1337;
 			debug_point;
 		}
+	}
+#endif
+
+	{
+		h_group* resource_layout_table_group = tag_project.get_group_by_group_tag(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
+		DEBUG_ASSERT(resource_layout_table_group != nullptr);
+		DEBUG_ASSERT(resource_layout_table_group->tags.size() > 0);
+		h_cache_file_resource_layout_table_block_struct* cache_file_resource_layout_table = dynamic_cast<h_cache_file_resource_layout_table_block_struct*>(resource_layout_table_group->tags.front());
+		DEBUG_ASSERT(cache_file_resource_layout_table != nullptr);
+
+		for (auto& file_page : cache_file_resource_layout_table->file_pages_block)
+		{
+			if (file_page.shared_file == -1)
+			{
+				file_page.file_offset.value += 40960;
+				debug_point;
+			}
+}
 	}
 }
 
@@ -867,8 +932,8 @@ void c_haloreach_cache_compiler::compile_tag_instances()
 		tag_instance.address = encode_page_offset(tag_data_entry.tag_data_offset + DEBUG_PADDING);
 		tag_instance.group_index = tag_data_entry.tag_group_index;
 
-		uint32_t reconstructed_address = decode_page_offset(tag_instance.address);
-		DEBUG_ASSERT(reconstructed_address == (tag_data_entry.tag_data_offset + DEBUG_PADDING));
+		uint64_t reconstructed_address = decode_page_offset(tag_instance.address);
+		DEBUG_ASSERT(reconstructed_address == static_cast<uint64_t>(tag_data_entry.tag_data_offset + DEBUG_PADDING));
 
 		debug_point;
 	}
@@ -1003,6 +1068,20 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 	globals_tag->language_pack11 = {};
 	globals_tag->language_pack12 = {};
 
+	blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project.tags[8]);
+	DEBUG_ASSERT(scenario != nullptr);
+
+	scenario->hs_syntax_datums_block.clear();
+	scenario->scripts_block.clear();
+	scenario->globals_block.clear();
+	//scenario->soft_ceilings_block.clear();
+	//scenario->trigger_volumes_block.clear();
+	//scenario->scenario_kill_triggers_block.clear();
+	//scenario->scenario_safe_zone_triggers_block.clear();
+	//scenario->scenario_requisition_triggers_block.clear();
+	//scenario->scenario_requisition_triggers_block.clear();
+	//scenario->scenario_location_name_triggers_block.clear();
+
 #define push_to_vector(vector, data, size) \
 	vector.insert(vector.end(), reinterpret_cast<const char*>(data), reinterpret_cast<const char*>(data) + (size))
 
@@ -1020,16 +1099,9 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 	localization_buffer = new char[localization_buffer_size] {};
 	memcpy(localization_buffer, localization_section.data, localization_data_size);
 
-	debug_point;
-
-	blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project.tags[8]);
-	DEBUG_ASSERT(scenario != nullptr);
-
 	uint32_t tags_header_buffer_size = align_value(sizeof(s_cache_file_tags_header), 0x10000);
 	char* tags_header_buffer = new char[tags_header_buffer_size] {};
 	s_cache_file_tags_header& tags_header = *reinterpret_cast<s_cache_file_tags_header*>(tags_header_buffer);
-
-
 
 	struct s_section_info
 	{
@@ -1047,6 +1119,7 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 	uint32_t tags_section_tag_instances_offset;
 	uint32_t tags_section_tag_global_instances_offset;
 	uint32_t tags_section_api_interops_offset;
+	uint32_t tags_section_structured_buffer_interops_offset;
 
 	uint32_t debug_section_file_table_offset;
 	uint32_t debug_section_file_table_indices_offset;
@@ -1064,8 +1137,8 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 	gen3::e_cache_file_section_index cache_file_section_indirection[gen3::k_number_of_cache_file_sections] =
 	{
 		gen3::_cache_file_section_index_resource,
-		gen3::_cache_file_section_index_localization,
 		gen3::_cache_file_section_index_tags,
+		gen3::_cache_file_section_index_localization,
 		gen3::_cache_file_section_index_debug,
 	};
 	{
@@ -1089,6 +1162,44 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 			}
 			case gen3::_cache_file_section_index_tags:
 			{
+				uint32_t structured_buffer_interop_buffer_size = 0;
+				char* structured_buffer_interop_buffer = nullptr;
+				{
+					auto scenario_group = cache_file->get_tag_group_interface_by_group_id(blofeld::SCENARIO_TAG);
+					DEBUG_ASSERT(scenario_group != nullptr);
+					auto scenario_tag = scenario_group->get_tag_interfaces()[0];
+					DEBUG_ASSERT(scenario_tag != nullptr);
+					auto scenario = dynamic_cast<v_tag_interface<s_scenario_struct_definition>*>(scenario_tag->get_virtual_tag_interface());
+					DEBUG_ASSERT(scenario != nullptr);
+
+					auto structured_buffer_interops = scenario->structured_buffer_interops_block[0];
+
+					uint32_t page_offsets[4] =
+					{
+						structured_buffer_interops.effect.descriptor,
+						structured_buffer_interops.beam.descriptor,
+						structured_buffer_interops.contrail.descriptor,
+						structured_buffer_interops.light_volume.descriptor,
+					};
+
+					structured_buffer_interop_buffer_size = align_value(sizeof(s_tag_data) * 4, 0x1000);
+					uint32_t buffer_offsets[4] = {};
+					for (uint32_t interop_index = 0; interop_index < 4; interop_index++)
+					{
+						uint32_t interop_tag_data_page_offset = page_offsets[interop_index];
+						s_tag_data& interop_tag_data = *reinterpret_cast<s_tag_data*>(cache_file->get_data_with_page_offset(interop_tag_data_page_offset));
+
+						uint32_t buffer_size = align_value(interop_tag_data.size, 0x1000);
+						buffer_offsets[interop_index] = structured_buffer_interop_buffer_size;
+						structured_buffer_interop_buffer_size += buffer_size;
+					}
+
+					structured_buffer_interop_buffer_size = align_value(structured_buffer_interop_buffer_size, 0x10000);
+					structured_buffer_interop_buffer = new char[structured_buffer_interop_buffer_size] {};
+
+					debug_point;
+				}
+
 				tags_section_begin_file_offset = total_cache_file_data;
 				tags_section_tag_data_offset = tags_section_begin_file_offset;
 				tags_section_tags_header_offset = tags_section_tag_data_offset + tag_data_buffer_size;
@@ -1096,7 +1207,8 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 				tags_section_tag_instances_offset = tags_section_tag_groups_offset + tag_groups_buffer_size;
 				tags_section_tag_global_instances_offset = tags_section_tag_instances_offset + tag_instances_buffer_size;
 				tags_section_api_interops_offset = tags_section_tag_global_instances_offset + tag_global_entries_buffer_size;
-				uint32_t const tags_section_end_file_offset = tags_section_api_interops_offset + tag_api_interops_buffer_size;
+				tags_section_structured_buffer_interops_offset = tags_section_api_interops_offset + tag_api_interops_buffer_size;
+				uint32_t const tags_section_end_file_offset = tags_section_structured_buffer_interops_offset + structured_buffer_interop_buffer_size;
 
 				uint32_t const tags_section_size = tags_section_end_file_offset - tags_section_begin_file_offset;
 
@@ -1108,6 +1220,62 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 				uint64_t file_bottom_address = file_top_address - tags_section_size;
 
 				virtual_base_address = file_bottom_address;
+
+				{
+					auto v_scenario_group = cache_file->get_tag_group_interface_by_group_id(blofeld::SCENARIO_TAG);
+					DEBUG_ASSERT(v_scenario_group != nullptr);
+					auto v_scenario_tag = v_scenario_group->get_tag_interfaces()[0];
+					DEBUG_ASSERT(v_scenario_tag != nullptr);
+					auto v_scenario = dynamic_cast<v_tag_interface<s_scenario_struct_definition>*>(v_scenario_tag->get_virtual_tag_interface());
+					DEBUG_ASSERT(v_scenario != nullptr);
+
+					auto structured_buffer_interops = v_scenario->structured_buffer_interops_block[0];
+					uint32_t const structured_buffer_interops_page_offsets[4] =
+					{
+						structured_buffer_interops.effect.descriptor,
+						structured_buffer_interops.beam.descriptor,
+						structured_buffer_interops.contrail.descriptor,
+						structured_buffer_interops.light_volume.descriptor,
+					};
+
+					uint32_t const dataref_section_offset = tags_section_structured_buffer_interops_offset;
+
+					char* structured_buffer_interop_datarefs = structured_buffer_interop_buffer;
+					s_tag_data (&datarefs)[4] = *reinterpret_cast<decltype(&datarefs)>(structured_buffer_interop_datarefs);
+
+					char* structured_buffer_interop_data_position = structured_buffer_interop_datarefs + align_value(sizeof(s_tag_data) * 4, 0x1000);
+
+					uint32_t buffer_section_offset = dataref_section_offset + align_value(sizeof(s_tag_data) * 4, 0x1000);
+					for (uint32_t interop_index = 0; interop_index < 4; interop_index++)
+					{
+						uint32_t structured_buffer_interops_page_offset = structured_buffer_interops_page_offsets[interop_index];
+						s_tag_data& structured_buffer_interop_tag_data = *reinterpret_cast<s_tag_data*>(cache_file->get_data_with_page_offset(structured_buffer_interops_page_offset));
+
+						char* interop_data = cache_file->get_data_with_page_offset(structured_buffer_interop_tag_data.address);
+						memcpy(structured_buffer_interop_data_position, interop_data, structured_buffer_interop_tag_data.size);
+
+						datarefs[interop_index].size = structured_buffer_interop_tag_data.size;
+						datarefs[interop_index].address = encode_page_offset(buffer_section_offset - tags_section_begin_file_offset);
+
+						uint32_t buffer_size = align_value(structured_buffer_interop_tag_data.size, 0x1000);
+						structured_buffer_interop_data_position += buffer_size;
+						buffer_section_offset += buffer_size;
+
+						uint32_t dataref_page_offset = encode_page_offset(dataref_section_offset - tags_section_begin_file_offset + sizeof(s_tag_data) * interop_index);;
+						switch (interop_index)
+						{
+						case 0: scenario->structured_buffer_interops_block[0].effect.value.descriptor = dataref_page_offset; break;
+						case 1: scenario->structured_buffer_interops_block[0].beam.value.descriptor = dataref_page_offset; break;
+						case 2: scenario->structured_buffer_interops_block[0].contrail.value.descriptor = dataref_page_offset; break;
+						case 3: scenario->structured_buffer_interops_block[0].light_volume.value.descriptor = dataref_page_offset; break;
+						}
+					}
+
+					DEBUG_ASSERT(buffer_section_offset <= tags_section_end_file_offset);
+
+					debug_point;
+				}
+
 
 				compile_tags();
 				compile_tag_instances();
@@ -1135,6 +1303,8 @@ void c_haloreach_cache_compiler::compile(const wchar_t* filepath)
 				section_data[section_index].insert(section_data[section_index].end(), tag_instances_buffer, tag_instances_buffer + tag_instances_buffer_size);
 				section_data[section_index].insert(section_data[section_index].end(), tag_global_entries_buffer, tag_global_entries_buffer + tag_global_entries_buffer_size);
 				section_data[section_index].insert(section_data[section_index].end(), tag_api_interops_buffer, tag_api_interops_buffer + tag_api_interops_buffer_size);
+				section_data[section_index].insert(section_data[section_index].end(), structured_buffer_interop_buffer, structured_buffer_interop_buffer + structured_buffer_interop_buffer_size);
+
 
 				const char* debug_tags_section_tag_data_offset = section_data[section_index].data() + tags_section_tag_data_offset - tags_section_begin_file_offset;
 				const char* debug_tags_section_tags_header_offset = section_data[section_index].data() + tags_section_tags_header_offset - tags_section_begin_file_offset;

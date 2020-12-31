@@ -561,6 +561,15 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						stream << "h_field_func_impl(h_tag*, blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
 						break;
 					}
+					case _field_long_flags:
+					case _field_word_flags:
+					case _field_byte_flags:
+					{
+						const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+						stream << "using t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << " = c_flags<blofeld::" << namespace_name << "::e_" << string_list.name << ", dword>;" << std::endl;
+						stream << "h_field_func_impl(t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+						break;
+					}
 					case _field_char_enum:
 					case _field_enum:
 					case _field_long_enum:

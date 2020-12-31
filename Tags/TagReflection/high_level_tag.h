@@ -122,15 +122,25 @@ template<typename field_type, typename parent_type, uint32_t _field_index>
 class h_field
 {
 public:
-	explicit h_field() : value() {};
+	explicit h_field();
 
 	field_type& operator=(const field_type& new_value);
+	bool operator==(const field_type& new_value) const; // #TODO: is it okay to assume the compiler is optimizing here?
 
-protected:
+public:
 	field_type value;
 };
 
 #define h_field_func_impl(field_type, parent_type, _field_index, _field_name)										\
+template<>																											\
+h_field<field_type, parent_type, _field_index>::h_field() : value() {}												\
+																													\
+bool h_field<field_type, parent_type, _field_index>::operator==(field_type const& new_value) const					\
+{																													\
+	bool is_same = memcmp(&value, &new_value, sizeof(value)) == 0;													\
+	return is_same;																									\
+}																													\
+																													\
 field_type& h_field<field_type, parent_type, _field_index>::operator=(field_type const& new_value)					\
 {																													\
 	uint32_t _field_offset = offsetof(parent_type, _field_name);													\

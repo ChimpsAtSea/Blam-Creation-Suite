@@ -66,8 +66,10 @@ namespace blofeld
 
 
 	c_versioned_string_list::c_versioned_string_list() :
-		counts(),
-		strings()
+		storage(new s_string_list_storage()),
+		counts(storage->counts),
+		strings(storage->strings),
+		string_lists(storage->string_lists)
 	{
 
 	}

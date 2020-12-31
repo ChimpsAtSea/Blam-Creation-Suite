@@ -259,8 +259,16 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			{
 				const s_tag_resource& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(current_data_position);
 				h_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
-				
+
 				resource_storage._original_resource = tag_resource;
+				break;
+			}
+			case _field_api_interop:
+			{
+				const s_tag_interop& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(current_data_position);
+				s_tag_interop& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
+
+				interop_storage = tag_interop;
 				break;
 			}
 			case _field_vertex_buffer:
@@ -273,7 +281,6 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_non_cache_runtime_value:
 			case _field_explanation:
 			case _field_custom:
-			case _field_api_interop:
 			case _field_terminator:
 			{
 

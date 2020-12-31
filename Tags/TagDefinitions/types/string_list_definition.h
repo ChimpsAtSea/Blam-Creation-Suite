@@ -8,7 +8,7 @@ namespace blofeld
 		_versioned_string_list_mode_append,
 	};
 
-	static constexpr uint32_t k_versioned_string_list_table_size = 512;
+	static constexpr uint32_t k_versioned_string_list_table_size = 896;
 
 	struct s_versioned_string_list_value
 	{
@@ -65,9 +65,17 @@ namespace blofeld
 
 		}
 
-		uint32_t counts[k_number_of_platform_types][k_number_of_engine_types];
-		const char* strings[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
-		const c_blamlib_string_parser* string_lists[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+		struct s_string_list_storage
+		{
+			uint32_t counts[k_number_of_platform_types][k_number_of_engine_types];
+			const char* strings[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+			const c_blamlib_string_parser* string_lists[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+		};
+		s_string_list_storage* storage;
+		uint32_t(&counts)[k_number_of_platform_types][k_number_of_engine_types];
+		const char* (&strings)[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+		const c_blamlib_string_parser* (&string_lists)[k_number_of_platform_types][k_number_of_engine_types][k_versioned_string_list_table_size];
+
 
 		const c_blamlib_string_parser* (& get_strings(e_engine_type engine_type, e_platform_type platform_type))[k_versioned_string_list_table_size]
 		{
