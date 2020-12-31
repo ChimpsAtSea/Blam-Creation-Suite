@@ -144,4 +144,5 @@ void c_blamlib_string_parser::cleanup_code_name()
 	code_name.remove(',');
 	code_name.remove('\'');
 	code_name.remove(';');
+	code_name.remove('\"');
 }

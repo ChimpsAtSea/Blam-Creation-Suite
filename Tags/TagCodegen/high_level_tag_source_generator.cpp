@@ -163,7 +163,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		stream << "\t\t" << "{" << std::endl;
 		stream << "\t\t\t" << "public:" << std::endl;
 		stream << "\t\t\t\t" << "friend class std::vector<h_" << tag_struct_definition->name << ">;" << std::endl;
-		
+
 		if (tag_group != nullptr)
 		{
 			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
@@ -252,6 +252,17 @@ void c_high_level_tag_source_generator::generate_header() const
 			{
 				stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
 				//stream << "\t\t\t\t" << "h_field<h_data, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				break;
+			}
+			case _field_long_flags:
+			case _field_word_flags:
+			case _field_byte_flags:
+			{
+				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+				//const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);
+				//ASSERT(field_source_type != nullptr);
+
+				stream << "\t\t\t\t" << "h_field<c_flags<e_" << string_list.name << ", dword>, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_char_enum:
@@ -350,7 +361,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			{
 				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
 			}
-			
+
 			break;
 		}
 		case _field_struct:
@@ -518,7 +529,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
-					
+
 					switch (current_field->field_type)
 					{
 					case _field_array:

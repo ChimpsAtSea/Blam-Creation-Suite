@@ -82,9 +82,6 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_long_integer:
 			case _field_int64_integer:
 			case _field_angle:
-			case _field_long_flags:
-			case _field_word_flags:
-			case _field_byte_flags:
 			case _field_point_2d:
 			case _field_rectangle_2d:
 			case _field_rgb_color:
@@ -127,22 +124,40 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			{
 				memcpy(high_level_field_data, current_data_position, field_size);
 				break;
-			}			
+			}
 			case _field_char_enum:
 			{
-				int32_t data = *reinterpret_cast<const char*>(current_data_position);
+				long data = *reinterpret_cast<const char*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}
 			case _field_enum:
 			{
-				int32_t data = *reinterpret_cast<const short*>(current_data_position);
+				long data = *reinterpret_cast<const short*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}
 			case _field_long_enum:
 			{
-				int32_t data = *reinterpret_cast<const long*>(current_data_position);
+				long data = *reinterpret_cast<const long*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
+			}
+			case _field_byte_flags:
+			{
+				dword data = *reinterpret_cast<const byte*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
+			}
+			case _field_word_flags:
+			{
+				dword data = *reinterpret_cast<const word*>(current_data_position);
+				memcpy(high_level_field_data, &data, sizeof(data));
+				break;
+			}
+			case _field_long_flags:
+			{
+				dword data = *reinterpret_cast<const dword*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 				break;
 			}

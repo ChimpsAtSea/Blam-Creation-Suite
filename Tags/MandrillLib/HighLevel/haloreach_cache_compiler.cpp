@@ -360,9 +360,6 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			case _field_long_integer:
 			case _field_int64_integer:
 			case _field_angle:
-			case _field_long_flags:
-			case _field_word_flags:
-			case _field_byte_flags:
 			case _field_point_2d:
 			case _field_rectangle_2d:
 			case _field_rgb_color:
@@ -408,19 +405,37 @@ void c_haloreach_cache_compiler::compile_object(const h_object& object, char* ob
 			}
 			case _field_char_enum:
 			{
-				char data = *reinterpret_cast<const int32_t*>(high_level_field_data);
+				char data = static_cast<char>(*reinterpret_cast<const long*>(high_level_field_data));
 				memcpy(current_data_position, &data, sizeof(data));
 				break;
 			}
 			case _field_enum:
 			{
-				short data = *reinterpret_cast<const int32_t*>(high_level_field_data);
+				short data = static_cast<short>(*reinterpret_cast<const long*>(high_level_field_data));
 				memcpy(current_data_position, &data, sizeof(data));
 				break;
 			}
 			case _field_long_enum:
 			{
-				long data = *reinterpret_cast<const int32_t*>(high_level_field_data);
+				long data = *reinterpret_cast<const long*>(high_level_field_data);
+				memcpy(current_data_position, &data, sizeof(data));
+				break;
+			}
+			case _field_byte_flags:
+			{
+				byte data = static_cast<byte>(*reinterpret_cast<const dword*>(high_level_field_data));
+				memcpy(current_data_position, &data, sizeof(data));
+				break;
+			}
+			case _field_word_flags:
+			{
+				word data = static_cast<word>(*reinterpret_cast<const dword*>(high_level_field_data));
+				memcpy(current_data_position, &data, sizeof(data));
+				break;
+			}
+			case _field_long_flags:
+			{
+				dword data = *reinterpret_cast<const dword*>(high_level_field_data);
 				memcpy(current_data_position, &data, sizeof(data));
 				break;
 			}
