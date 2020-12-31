@@ -74,7 +74,7 @@ protected:
 public:
 	c_flags()
 	{
-		m_stored = reinterpret_cast<t_storage>(0);
+		m_stored = static_cast<t_storage>(0);
 	}
 
     c_flags(const t_storage &value)
