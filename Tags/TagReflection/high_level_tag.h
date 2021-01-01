@@ -137,7 +137,7 @@ h_field<field_type, parent_type, _field_index>::h_field() : value() {}										
 																													\
 bool h_field<field_type, parent_type, _field_index>::operator==(field_type const& new_value) const					\
 {																													\
-	bool is_same = memcmp(&value, &new_value, sizeof(value)) == 0;													\
+	bool is_same = &this->value == &new_value || memcmp(&value, &new_value, sizeof(value)) == 0;					\
 	return is_same;																									\
 }																													\
 																													\

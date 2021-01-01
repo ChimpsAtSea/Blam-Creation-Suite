@@ -1425,6 +1425,39 @@ float constexpr pi = 3.14159265359f;
 float constexpr degrees_to_radians = pi / 180.0f;
 float constexpr radians_to_degrees = 180.0f / pi;
 
+void c_blofeld_tag_editor_tab::render_data(s_tag_data& data, const blofeld::s_tag_field& field)
+{
+	ImGui::PushID(&field);
+	{
+		ImGui::Columns(2, NULL, false);
+		ImGui::SetColumnWidth(0, 400);
+		ImGui::SetColumnWidth(1, 900);
+		{
+			ImGui::TextUnformatted(field.string_parser.display_name.c_str());
+		}
+		ImGui::NextColumn();
+		{
+			MemoryEditor memory_editor;
+
+			ImGui::Dummy(ImVec2(0.0f, 3.0f));
+			if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
+			{
+				uint32_t data_size = data.size;
+				char* data_data = cache_file.get_tag_data(data);
+				if (data_data)
+				{
+					memory_editor.DrawContents(data_data, data_size);
+				}
+			}
+			ImGui::EndChild();
+			ImGui::Dummy(ImVec2(0.0f, 3.0f));
+		}
+		ImGui::Columns(1);
+	}
+
+	ImGui::PopID();
+}
+
 uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	if (&struct_definition == &blofeld::object_struct_definition_struct_definition)
@@ -1575,7 +1608,8 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 		}
 		case blofeld::_field_data:
 		{
-			ImGui::Text("0x%X 0x%X %s %s", bytes_traversed, field_size, field_typename, current_field->name ? current_field->name : "");
+			s_tag_data& src_tag_data = *reinterpret_cast<s_tag_data*>(current_data_position);
+			render_data(src_tag_data, *current_field);
 			break;
 		}
 		case blofeld::_field_vertex_buffer:

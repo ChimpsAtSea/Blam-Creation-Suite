@@ -25,7 +25,7 @@ public:
 	void calculate_object_memory_footprint(uint32_t& memory_footprint, h_object& object);
 	uint16_t get_tag_index(const h_tag* tag) const;
 	void compile_tag(const h_tag& tag, char* tag_data, uint32_t tag_data_size);
-	void compile_object(const h_object& object, char* tag_data, char*& tag_allocation_postion);
+	void compile_object(const h_tag& tag, const h_object& object, char* tag_data, char*& tag_allocation_postion);
 	void create_tag_groups();
 	void init_tags();
 	void create_tag_file_table();
@@ -112,6 +112,11 @@ protected:
 	uint32_t tag_api_interops_data_size;
 	uint32_t tag_api_interops_buffer_size;
 	uint32_t tag_api_interops_count;
+
+	uint32_t effect_structured_buffer_api_interop_page_offset;
+	uint32_t beam_structured_buffer_api_interop_page_offset;
+	uint32_t contrail_structured_buffer_api_interop_page_offset;
+	uint32_t light_volume_structured_buffer_api_interop_page_offset;
 
 	// file table
 
