@@ -266,9 +266,38 @@ void c_high_level_cache_file_transplant::transplant_data(h_object& high_level, c
 			case _field_api_interop:
 			{
 				const s_tag_interop& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(current_data_position);
-				s_tag_interop& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
+				h_interop& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
 
-				interop_storage = tag_interop;
+				interop_storage._original_interop = tag_interop;
+				interop_storage._interop_fixup_index = -1;
+
+				if (c_haloreach_cache_file* haloreach_cache_file = dynamic_cast<decltype(haloreach_cache_file)>(&cache_file))
+				{
+					using namespace blofeld::haloreach;
+					using namespace cache_compiler;
+
+					uint32_t tag_interop_page_offset = haloreach_cache_file->calculate_page_offset_from_pointer(current_data_position);
+
+					auto cache_file_tag_interop_type_fixups = reinterpret_cast<s_cache_file_tag_interop_type_fixup*>(haloreach_cache_file->tags_buffer + haloreach_cache_file->convert_virtual_address(haloreach_cache_file->haloreach_cache_file_tags_header->tag_interop_table.address));
+					uint32_t tag_interop_count = haloreach_cache_file->haloreach_cache_file_tags_header->tag_interop_table.count;
+					for (uint32_t interop_type_fixup_index = 0; interop_type_fixup_index < tag_interop_count; interop_type_fixup_index++)
+					{
+						s_cache_file_tag_interop_type_fixup& cache_file_tag_interop_type_fixup = cache_file_tag_interop_type_fixups[interop_type_fixup_index];
+
+						if (cache_file_tag_interop_type_fixup.page_address == tag_interop_page_offset)
+						{
+							interop_storage._interop_fixup_index = interop_type_fixup_index;
+							debug_point;
+						}
+
+					}
+				}
+
+				if (interop_storage._interop_fixup_index == -1)
+				{
+					debug_point;
+				}
+
 				break;
 			}
 			case _field_vertex_buffer:

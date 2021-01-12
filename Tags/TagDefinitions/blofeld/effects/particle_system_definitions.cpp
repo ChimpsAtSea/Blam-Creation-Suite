@@ -189,19 +189,6 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(constant_buffer2)
-	{
-		{ _field_data, "unknown" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(constant_buffer)
-	{
-		{ _field_api_interop, "A", &constant_buffer2_struct_definition },
-		//{ _field_api_interop, "B", &constant_buffer2_struct_definition },
-		{ _field_terminator }
-	};
-
 	TAG_STRUCT(gpu_property_function_color_struct)
 	{
 		{ _field_version_platform_include, _platform_type_pc, 3  },

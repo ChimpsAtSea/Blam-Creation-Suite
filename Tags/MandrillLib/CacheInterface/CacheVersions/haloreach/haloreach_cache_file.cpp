@@ -356,6 +356,17 @@ uint32_t c_haloreach_cache_file::get_string_id_count() const
 	}
 }
 
+uint32_t c_haloreach_cache_file::calculate_page_offset_from_pointer(const char* tag_data) const
+{
+	intptr_t offset = tag_data - get_tags_section().data;
+	uint64_t virtual_base_address = get_base_virtual_address();
+
+	DEBUG_ASSERT(virtual_base_address != 0);
+	uint32_t page_offset = static_cast<uint32_t>(((offset)+(virtual_base_address - page_address_offset_relative)) / 4ull);
+	DEBUG_ASSERT((page_offset & 0xF0000000) != 0xF0000000); // internally used for custom address schema
+	return page_offset;
+}
+
 void c_haloreach_cache_file::set_cache_cluster(c_cache_cluster* _cluster)
 {
 	cluster = _cluster;

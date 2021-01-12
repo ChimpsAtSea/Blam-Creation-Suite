@@ -41,8 +41,5 @@ namespace blofeld
 	extern c_versioned_string_list visible_emitter_flags_strings;
 	extern s_string_list_definition visible_emitter_flags;
 
-	extern s_tag_struct_definition constant_buffer_struct_definition;
-	extern s_tag_struct_definition constant_buffer2_struct_definition;
-
 } // namespace blofeld
 

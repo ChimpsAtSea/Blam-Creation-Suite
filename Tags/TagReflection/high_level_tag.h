@@ -90,6 +90,17 @@ public:
 	s_tag_resource _original_resource;
 };
 
+class h_interop :
+	public h_type
+{
+public:
+	h_interop(h_type* parent = nullptr);
+	virtual ~h_interop();
+
+	s_tag_interop _original_interop;
+	uint32_t _interop_fixup_index;
+};
+
 class h_object :
 	public h_type
 {

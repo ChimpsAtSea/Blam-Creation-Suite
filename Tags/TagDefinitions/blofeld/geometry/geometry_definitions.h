@@ -4,9 +4,10 @@ namespace blofeld
 {
 	extern s_tag_struct_definition global_render_geometry_unknown_meshes_block_struct;
 	extern s_tag_struct_definition global_render_geometry_unknown_meshes2_block_struct;
-	extern s_tag_struct_definition structure_design_constant_buffer_interop_block_struct;
+	extern s_tag_struct_definition constant_buffer_interops_block_struct;
+	extern s_tag_block_definition constant_buffer_interops_block;
 
-	extern s_tag_struct_definition structure_design_constant_buffer_interop_reference_struct_definition;
+	extern s_tag_struct_definition constant_buffer_struct_definition;
 
 	extern s_tag_struct_definition part_block_block_struct;
 	extern s_tag_block_definition part_block_block;

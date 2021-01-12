@@ -891,36 +891,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_structured_buffer_interop_effect_dataref)
+	TAG_STRUCT(structured_buffer)
 	{
 		{ _field_data, "data" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(scenario_structured_buffer_interop_beam_dataref)
-	{
-		{ _field_data, "data" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(scenario_structured_buffer_interop_contrail_dataref)
-	{
-		{ _field_data, "data" },
-		{ _field_terminator }
-	};
-
-	TAG_STRUCT(scenario_structured_buffer_interop_light_volume_dataref)
-	{
-		{ _field_data, "data" },
+		{ _field_long_integer, "entry size" },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_structured_buffer_interops_block, 1)
 	{
-		{ _field_api_interop, "effect", &scenario_structured_buffer_interop_effect_dataref_struct_definition },
-		{ _field_api_interop, "beam", &scenario_structured_buffer_interop_beam_dataref_struct_definition },
-		{ _field_api_interop, "contrail", &scenario_structured_buffer_interop_contrail_dataref_struct_definition },
-		{ _field_api_interop, "light volume", &scenario_structured_buffer_interop_light_volume_dataref_struct_definition },
+		{ _field_api_interop, "effect", &structured_buffer_struct_definition },
+		{ _field_api_interop, "beam", &structured_buffer_struct_definition },
+		{ _field_api_interop, "contrail", &structured_buffer_struct_definition },
+		{ _field_api_interop, "light volume", &structured_buffer_struct_definition },
 		{ _field_terminator }
 	};
 

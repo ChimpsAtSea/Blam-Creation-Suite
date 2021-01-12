@@ -393,15 +393,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_design_constant_buffer_interop_reference)
+	TAG_STRUCT(constant_buffer)
 	{
-		{ _field_data, "data" },
+		{ _field_long_integer, "unknown" },
+		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_design_constant_buffer_interop, 65536) // assembly
+	TAG_BLOCK(constant_buffer_interops, 65536) // assembly
 	{
-		{ _field_api_interop, "constant buffer interop*", &structure_design_constant_buffer_interop_reference_struct_definition },
+		{ _field_api_interop, "constant buffer interop*", &constant_buffer_struct_definition },
 		{ _field_terminator }
 	};
 
@@ -440,7 +441,7 @@ namespace blofeld
 		{ _field_block, "shapeNames*", &shapeNameBlock_block },
 
 		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_block, "constant buffer interop", &structure_design_constant_buffer_interop_block }, // assembly
+		{ _field_block, "constant buffer interop", &constant_buffer_interops_block }, // assembly
 
 		{ _field_version_platform_include, _platform_type_pc, 3 },
 		{ _field_version_greater_or_equal, _engine_type_halo4, 2 },

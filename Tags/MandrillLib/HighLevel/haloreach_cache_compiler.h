@@ -3,7 +3,9 @@
 DEBUG_ONLY(class c_haloreach_cache_file);
 
 class h_object;
+class h_interop;
 class c_string_id_manager;
+class h_structured_buffer_container;
 
 namespace cache_compiler
 {
@@ -15,6 +17,227 @@ namespace cache_compiler
 	struct s_cache_file_tag_instance;
 }
 
+
+namespace cache_compiler
+{
+	constexpr tag k_cache_header_signature = 'head';
+	constexpr tag k_cache_footer_signature = 'foot';
+
+	enum e_cache_file_flags : uint32_t
+	{
+		_cache_file_flag_use_absolute_addressing = 1u << 0u,
+	};
+
+	enum e_cache_file_section_index
+	{
+		_cache_file_section_index_debug,
+		_cache_file_section_index_resource,
+		_cache_file_section_index_tags,
+		_cache_file_section_index_localization,
+		k_number_of_cache_file_sections
+	};
+
+#pragma pack(push, 1)
+	struct s_cache_file_metadata
+	{
+		tag header_signature;
+		long file_version;
+		long file_length;
+		long file_compressed_length;
+
+
+		uint64_t tags_header_address = 0;
+
+		unsigned long tag_buffer_offset;
+		unsigned long tag_buffer_size;
+
+		char source_file[256] = "";
+		char build[32] = "";
+
+		e_scenario_type scenario_type = _scenario_type_none;
+		e_scenario_load_type load_type = _scenario_load_none;
+
+		unsigned char __unknown0;
+		char tracked_build;
+		unsigned char __unknown1;
+		unsigned char __unknown2;
+
+		unsigned long __unknown3;
+		unsigned long __unknown4;
+
+		unsigned long string_count;
+		unsigned long string_table_length;
+		unsigned long string_table_indices_offset;
+		unsigned long string_table_offset;
+		unsigned long string_ids_namespace_table_count;
+		unsigned long string_ids_namespace_table_offset;
+
+		e_cache_file_flags flags = {};
+
+		time64_t timestamp;
+		time64_t scenario_type_timestamps[4];
+
+		char name[32];
+		unsigned long __unknown1B4;
+		char scenario_path[256];
+		long minor_version;
+
+		unsigned long file_count;
+		unsigned long file_table_offset;
+		unsigned long file_table_length;
+		unsigned long file_table_indices_offset;
+
+		unsigned long checksum;
+
+		unsigned long __unknown5;
+		unsigned long __unknown6;
+		unsigned long __unknown7;
+		unsigned long __unknown8;
+		unsigned long __unknown9;
+		unsigned long __unknown10;
+		unsigned long __unknown11;
+		unsigned long __unknown12;
+
+		unsigned long long virtual_base_address;
+		unsigned long xdk_version;
+		unsigned long __unknown13;
+
+		s_basic_buffer64 tag_post_link_buffer = {};
+		s_basic_buffer64 tag_language_dependent_read_only_buffer = {};
+		s_basic_buffer64 tag_language_dependent_read_write_buffer = {};
+		s_basic_buffer64 tag_language_neutral_read_write_buffer = {};
+		s_basic_buffer64 tag_language_neutral_write_combined_buffer = {};
+		s_basic_buffer64 tag_language_neutral_read_only_buffer = {};
+
+		unsigned long SHA1_A[5];
+		unsigned long SHA1_B[5];
+		unsigned long SHA1_C[5];
+		unsigned long RSA[64];
+
+		unsigned long GUID[4];
+
+		struct
+		{
+			long offset_masks[k_number_of_cache_file_sections];
+			struct
+			{
+				long offset;
+				long size;
+			} sections[k_number_of_cache_file_sections];
+		} section_table;
+
+		int32_t guid[4];
+
+
+		char _padding[0x9B10];
+		tag footer;
+	};
+	static_assert(sizeof(s_cache_file_metadata) == 40960);
+	static constexpr size_t x = offsetof(s_cache_file_metadata, __unknown2);
+	static constexpr size_t y = offsetof(s_cache_file_metadata, tag_post_link_buffer);
+	static constexpr size_t z = offsetof(s_cache_file_metadata, section_table);
+
+	// 1200
+
+#pragma pack(pop)
+
+
+	struct s_cache_file_tag_interop_type_fixup
+	{
+		dword page_address;
+		long type_index;
+	};
+	static_assert(sizeof(s_cache_file_tag_interop_type_fixup) == 0x8);
+
+	struct s_cache_file_tag_group
+	{
+		unsigned long group_tags[3];
+		unsigned long name;
+	};
+	static_assert(sizeof(s_cache_file_tag_group) == 0x10);
+
+	struct s_cache_file_tag_instance
+	{
+		uint16_t group_index;
+		uint16_t identifier;
+		uint32_t address;
+	};
+	static_assert(sizeof(s_cache_file_tag_instance) == 0x8);
+
+	struct s_cache_file_tag_global_instance
+	{
+		uint32_t group_tag;
+		uint16_t tag_index;
+		uint16_t identifier;
+	};
+	static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
+
+	template <typename t_type>
+	struct s_section
+	{
+		uint32_t count = 0;
+		uint32_t post_count_signature = k_cache_file_tags_section_signature;
+		qword address = 0;
+	};
+
+	struct s_cache_file_tags_header
+	{
+		s_section<s_cache_file_tag_group> tag_groups;
+		s_section<s_cache_file_tag_instance> tag_instances;
+		s_section<s_cache_file_tag_global_instance> tag_global_instance;
+		s_section<s_cache_file_tag_interop_type_fixup> tag_interop_table;
+		long : 32;
+		dword checksum;
+		unsigned long tags_signature;
+	};
+	static constexpr size_t k_cache_file_tags_header = sizeof(s_cache_file_tags_header);
+	static_assert(k_cache_file_tags_header == 0x50);
+}
+
+enum e_tag_interop_type
+{
+	_tag_interop_type_d3d_vertex_buffer,
+	_tag_interop_type_d3d_index_buffer,
+	_tag_interop_type_d3d_texture,
+	_tag_interop_type_d3d_texture_interleaved,
+	_tag_interop_type_d3d_vertex_shader,
+	_tag_interop_type_d3d_pixel_shader,
+	_tag_interop_type_constant_buffer,
+	_tag_interop_type_structured_buffer,
+	k_num_interop_types
+};
+
+struct h_cache_file_tag_interop_vtable
+{
+	const char* name;
+	uint32_t size;
+	uint32_t alignment_bits;
+};
+
+extern h_cache_file_tag_interop_vtable d3d_vertex_buffer_interop_vtable;
+extern h_cache_file_tag_interop_vtable d3d_index_buffer_interop_vtable;
+extern h_cache_file_tag_interop_vtable d3d_texture_interop_vtable;
+extern h_cache_file_tag_interop_vtable d3d_texture_interleaved_interop_vtable;
+extern h_cache_file_tag_interop_vtable d3d_vertex_shader_interop_vtable;
+extern h_cache_file_tag_interop_vtable d3d_pixel_shader_interop_vtable;
+extern h_cache_file_tag_interop_vtable constant_buffer_interop_vtable;
+extern h_cache_file_tag_interop_vtable structured_buffer_interop_vtable;
+extern h_cache_file_tag_interop_vtable* cache_file_tag_interop_vtable[k_num_interop_types];
+
+class c_interop_container
+{
+public:
+	c_interop_container(e_tag_interop_type interop_type) :
+		interop_type(interop_type),
+		interop_vtable(cache_file_tag_interop_vtable[interop_type])
+	{
+
+	}
+
+	virtual uint32_t get_data_size() const = 0;
+	e_tag_interop_type interop_type;
+	h_cache_file_tag_interop_vtable* interop_vtable;
+};
 
 class c_haloreach_cache_compiler
 {
@@ -62,6 +285,23 @@ protected:
 
 	uint64_t virtual_base_address;
 
+	// subsections
+	uint32_t tags_section_begin_file_offset;
+	uint32_t tags_section_tag_data_offset;
+	uint32_t tags_section_tags_header_offset;
+	uint32_t tags_section_tag_groups_offset;
+	uint32_t tags_section_tag_instances_offset;
+	uint32_t tags_section_tag_global_instances_offset;
+	uint32_t tags_section_api_interop_fixups_offset;
+	uint32_t tags_section_api_interop_data_offset;
+	uint32_t tags_section_structured_buffer_interops_offset;
+
+	uint32_t debug_section_file_table_offset;
+	uint32_t debug_section_file_table_indices_offset;
+	uint32_t debug_section_string_ids_offset;
+	uint32_t debug_section_string_id_indices_offset;
+	uint32_t debug_section_string_id_namespaces_offset;
+
 	// tag groups
 
 	uint32_t tag_group_count;
@@ -108,15 +348,20 @@ protected:
 
 	// api interops
 
+	std::map<const h_interop*, uint32_t> interop_page_offsets;
+	h_structured_buffer_container* effect_structured_buffer;
+	h_structured_buffer_container* beam_structured_buffer;
+	h_structured_buffer_container* contrail_structured_buffer;
+	h_structured_buffer_container* light_volume_structured_buffer;
+	std::vector<c_interop_container*> interop_containers;
+
 	char* tag_api_interops_buffer;
 	uint32_t tag_api_interops_data_size;
 	uint32_t tag_api_interops_buffer_size;
+	char* tag_api_interop_fixups_buffer;
+	uint32_t tag_api_interop_fixups_data_size;
+	uint32_t tag_api_interop_fixups_buffer_size;
 	uint32_t tag_api_interops_count;
-
-	uint32_t effect_structured_buffer_api_interop_page_offset;
-	uint32_t beam_structured_buffer_api_interop_page_offset;
-	uint32_t contrail_structured_buffer_api_interop_page_offset;
-	uint32_t light_volume_structured_buffer_api_interop_page_offset;
 
 	// file table
 
