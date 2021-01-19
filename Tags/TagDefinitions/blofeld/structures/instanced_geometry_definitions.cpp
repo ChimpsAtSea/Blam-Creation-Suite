@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(global_render_model_instance_placement_block, k_maximum_instance_placements_per_render_model)
+	V5_TAG_BLOCK(global_render_model_instance_placement_block, k_maximum_instance_placements_per_render_model)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_long_block_index, "node_index*" },
@@ -16,7 +16,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_instanced_geometry_collision_definition_block, 65536) // assembly
+	V5_TAG_BLOCK(structure_bsp_instanced_geometry_collision_definition_block, 65536) // assembly
 	{
 		{ _field_real, "unknown@" },
 		{ _field_real, "unknown@" },
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_instanced_geometry_instances_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(structure_bsp_instanced_geometry_instances_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
@@ -132,13 +132,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_instanced_geometry_instances_names_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(structure_bsp_instanced_geometry_instances_names_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_instanced_geometry_definition_block, k_maximum_instance_geometry_definitions_per_structure_bsp)
+	V5_TAG_BLOCK(structure_bsp_instanced_geometry_definition_block, k_maximum_instance_geometry_definitions_per_structure_bsp)
 	{
 		{ _field_long_integer, "checksum*" },
 		{ _field_long_flags, "flags*", &instanced_geometry_definition_flags },
@@ -150,9 +150,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(SerializedHavokGeometryDataBlock, 5, SerializedHavokGeometryDataBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(SerializedHavokGeometryDataBlock, 5, SerializedHavokGeometryDataBlock_struct_struct_definition );
 
-	TAG_BLOCK(structure_bsp_instanced_geometry_instances_without_names_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(structure_bsp_instanced_geometry_instances_without_names_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
@@ -192,9 +192,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
 
-	TAG_STRUCT(structureIOHavokDataBlock_struct)
+	V5_TAG_STRUCT(structureIOHavokDataBlock_struct)
 	{
 		{ _field_long_integer, "version*" },
 		{ _field_long_integer, "RuntimeDeserializedBody Pointer*!" },
@@ -207,7 +207,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
+	V5_TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
 	{
 		{ _field_data, "Serialized Havok Data*" },
 		{ _field_data, "Serialized Static Havok Data*" },

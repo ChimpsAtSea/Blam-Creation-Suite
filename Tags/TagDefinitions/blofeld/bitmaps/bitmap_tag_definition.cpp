@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(bitmap_data_block_def, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+	V5_TAG_BLOCK(bitmap_data_block_def, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
 		{ _field_short_integer, "width*:pixels#DO NOT CHANGE" },
 		{ _field_short_integer, "height*:pixels#DO NOT CHANGE" },

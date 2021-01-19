@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(scenario_interpolator, SCENARIO_INTERPOLATOR_TAG, scenario_interpolator_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario_interpolator, SCENARIO_INTERPOLATOR_TAG, scenario_interpolator_block_block );
 
-	TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario)
+	V5_TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario)
 	{
 		{ _field_word_flags, "flags", &scenario_interpolator_flags },
 		{ _field_pad, "SCBP1", 2 },
@@ -21,9 +21,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
 
-	TAG_STRUCT(scenario_interpolator_struct_definition)
+	V5_TAG_STRUCT(scenario_interpolator_struct_definition)
 	{
 		{ _field_block, "interpolators", &scenario_interpolator_data_block_block },
 		{ _field_terminator }

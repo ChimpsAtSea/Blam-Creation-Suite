@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block );
 
-	TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
+	V5_TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 	{
 		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
 		{ _field_string_id, "Name^" },
@@ -19,9 +19,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
 
-	TAG_STRUCT(self_illumination_struct_definition)
+	V5_TAG_STRUCT(self_illumination_struct_definition)
 	{
 		{ _field_block, "States", &self_illumination_state_block },
 		{ _field_terminator }

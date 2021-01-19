@@ -4,51 +4,51 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(door_encoded_pas_block, k_maximum_audibility_door_count*2*((((k_maximum_rooms_per_game)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	V5_TAG_BLOCK(door_encoded_pas_block, k_maximum_audibility_door_count*2*((((k_maximum_rooms_per_game)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(room_door_portal_encoded_pas_block, k_maximum_rooms_per_game*((((k_maximum_audibility_door_count)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	V5_TAG_BLOCK(room_door_portal_encoded_pas_block, k_maximum_rooms_per_game*((((k_maximum_audibility_door_count)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_deafening_encoded_pas_block, (((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	V5_TAG_BLOCK(ai_deafening_encoded_pas_block, (((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(encoded_room_distances_block, (k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)
+	V5_TAG_BLOCK(encoded_room_distances_block, (k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)
 	{
 		{ _field_char_integer, "encoded data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_portal_to_door_occluder_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(game_portal_to_door_occluder_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_long_integer, "first door occluder index" },
 		{ _field_long_integer, "door occluder count" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp_cluster_to_room_bounds, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(bsp_cluster_to_room_bounds, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_long_integer, "first room index" },
 		{ _field_long_integer, "room index count" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp_cluster_to_room_indices, k_maximum_audibility_room_count)
+	V5_TAG_BLOCK(bsp_cluster_to_room_indices, k_maximum_audibility_room_count)
 	{
 		{ _field_short_integer, "room index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_audibility_block, k_maximum_scenario_zone_set_count)
+	V5_TAG_BLOCK(game_audibility_block, k_maximum_scenario_zone_set_count)
 	{
 		{ _field_long_integer, "door portal count" },
 		{ _field_long_integer, "room count" },

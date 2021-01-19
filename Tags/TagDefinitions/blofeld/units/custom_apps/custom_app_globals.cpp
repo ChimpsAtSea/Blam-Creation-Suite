@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(custom_app_globals, CUSTOM_APP_GLOBALS_TAG, custom_app_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(custom_app_globals, CUSTOM_APP_GLOBALS_TAG, custom_app_globals_block_block );
 
-	TAG_BLOCK(custom_app_damage_modifier_block, k_maximum_custom_app_damage_modifier_count)
+	V5_TAG_BLOCK(custom_app_damage_modifier_block, k_maximum_custom_app_damage_modifier_count)
 	{
 		{ _field_string_id, "damage type^" },
 		{ _field_explanation, "damage resistance", "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"." },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(custom_app_block, k_maximum_custom_app_count)
+	V5_TAG_BLOCK(custom_app_block, k_maximum_custom_app_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "headerText" },
@@ -31,9 +31,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(custom_app_globals_block, 1, custom_app_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(custom_app_globals_block, 1, custom_app_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(custom_app_globals_struct_definition)
+	V5_TAG_STRUCT(custom_app_globals_struct_definition)
 	{
 		{ _field_long_integer, "maximum active apps:(-1 = unlimited)" },
 		{ _field_explanation, "Update Frequency", "The players can enter the Custom App menu at any time during a game and change their apps.  This enum determines when those changes take effect, in terms of gameplay effects." },

@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_GROUP(formation, FORMATION_TAG)
+	V5_TAG_GROUP(formation, FORMATION_TAG)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "primitives", &formation_primitive_definition_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(formation_point_definition, k_max_points_per_primitive)
+	V5_TAG_BLOCK(formation_point_definition, k_max_points_per_primitive)
 	{
 		{ _field_explanation, "", "" },
 		{ _field_angle, "angle" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(formation_primitive_definition, k_max_primitives_per_formation)
+	V5_TAG_BLOCK(formation_primitive_definition, k_max_primitives_per_formation)
 	{
 		{ _field_explanation, "", "" },
 		{ _field_word_flags, "flags", &formation_primitive_flags },

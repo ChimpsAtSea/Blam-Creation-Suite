@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(material, MATERIAL_TAG)
+	V5_TAG_GROUP(material, MATERIAL_TAG)
 	{
 		{ _field_tag_reference, "material shader", &material_shader_reference },
 		{ _field_block, "material parameters", &material_shader_parameter_block_block },
@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_postprocess_texture_block, c_material::k_maximum_postprocess_textures)
+	V5_TAG_BLOCK(material_postprocess_texture_block, c_material::k_maximum_postprocess_textures)
 	{
 		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
 		{ _field_byte_integer, "address mode" },
@@ -37,20 +37,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(real_vector4d_block$3, k_kilo)
+	V5_TAG_BLOCK(real_vector4d_block$3, k_kilo)
 	{
 		{ _field_real_vector_3d, "vector" },
 		{ _field_real, "vector w" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(int_block$3, k_kilo)
+	V5_TAG_BLOCK(int_block$3, k_kilo)
 	{
 		{ _field_long_integer, "int value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(functionParameterBlock, k_uint8_max)
+	V5_TAG_BLOCK(functionParameterBlock, k_uint8_max)
 	{
 		{ _field_byte_integer, "function index" },
 		{ _field_byte_integer, "render phase mask" },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(externParameterBlock, k_uint8_max)
+	V5_TAG_BLOCK(externParameterBlock, k_uint8_max)
 	{
 		{ _field_byte_integer, "extern index" },
 		{ _field_byte_integer, "extern register" },
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_postprocess_block, 1)
+	V5_TAG_BLOCK(material_postprocess_block, 1)
 	{
 		{ _field_block, "textures", &material_postprocess_texture_block_block },
 		{ _field_block, "texture constants", &real_vector4d_block$3_block },

@@ -4,27 +4,27 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(lightmap_model_globals, LIGHTMAP_MODEL_GLOBALS_TAG, lightmap_model_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(lightmap_model_globals, LIGHTMAP_MODEL_GLOBALS_TAG, lightmap_model_globals_block_block );
 
-	TAG_GROUP_FROM_BLOCK(lightmapper_globals, LIGHTMAPPER_GLOBALS_TAG, lightmapper_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(lightmapper_globals, LIGHTMAPPER_GLOBALS_TAG, lightmapper_globals_block_block );
 
-	TAG_BLOCK(lightmap_model_reference_block, SHORT_MAX)
+	V5_TAG_BLOCK(lightmap_model_reference_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "Model Reference", &model_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(lightmap_model_globals_block, 1, lightmap_model_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(lightmap_model_globals_block, 1, lightmap_model_globals_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(lightmapper_globals_block, 1, lightmapper_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(lightmapper_globals_block, 1, lightmapper_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(lightmap_model_globals_struct_definition)
+	V5_TAG_STRUCT(lightmap_model_globals_struct_definition)
 	{
 		{ _field_block, "Lightmapped Models", &lightmap_model_reference_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(lightmapper_globals_struct_definition)
+	V5_TAG_STRUCT(lightmapper_globals_struct_definition)
 	{
 		{ _field_long_integer, "Version!" },
 		{ _field_custom, "GLOBAL QUALITY SETTINGS" },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_lightmap_global_settings_struct)
+	V5_TAG_STRUCT(global_lightmap_global_settings_struct)
 	{
 		{ _field_long_flags, "Global flags", &lightmap_global_flags },
 		{ _field_long_enum, "Mode", &lightmap_mode_enum },
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_lightmap_local_settings_struct)
+	V5_TAG_STRUCT(global_lightmap_local_settings_struct)
 	{
 		{ _field_long_flags, "Local flags", &lightmap_local_flags },
 		{ _field_real, "Skydome amplification factor" },
@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_lightmap_ao_settings_struct)
+	V5_TAG_STRUCT(global_lightmap_ao_settings_struct)
 	{
 		{ _field_real, "Radius{Offset}" },
 		{ _field_real, "Falloff Power" },
@@ -80,7 +80,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_lightmap_global_illumination_falloff_settings_struct)
+	V5_TAG_STRUCT(global_lightmap_global_illumination_falloff_settings_struct)
 	{
 		{ _field_real, "Falloff Begin" },
 		{ _field_real, "Falloff End" },
@@ -90,7 +90,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_lightmap_local_override_settings_struct)
+	V5_TAG_STRUCT(global_lightmap_local_override_settings_struct)
 	{
 		{ _field_long_integer, "High Quality Average Jitter Samples" },
 		{ _field_long_integer, "Per Vertex Supersample Count" },

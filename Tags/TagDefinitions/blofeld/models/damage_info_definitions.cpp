@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(instantaneous_damage_repsonse_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
+	V5_TAG_BLOCK(instantaneous_damage_repsonse_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
 	{
 		{ _field_enum, "response type", &damage_response_type_enum_definition },
 		{ _field_explanation, "Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free" },
@@ -56,7 +56,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
+	V5_TAG_BLOCK(global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_explanation, "damage section flags", "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields" },
@@ -74,7 +74,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_damage_nodes_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(global_damage_nodes_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_short_integer, "runtime damage part!*" },
 		{ _field_pad, "EOT", 2 },
@@ -82,7 +82,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_seat_region_setting_block, 1)
+	V5_TAG_BLOCK(damage_seat_region_setting_block, 1)
 	{
 		{ _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
 		{ _field_string_id, "damage region name" },
@@ -100,7 +100,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_seat_info_block, MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL)
+	V5_TAG_BLOCK(damage_seat_info_block, MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL)
 	{
 		{ _field_string_id, "seat label^" },
 		{ _field_real_fraction, "direct damage scale#0==no damage, 1==full damage" },
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_constraint_info_block, MAXIMUM_DAMAGE_CONSTRAINT_INFOS_PER_MODEL)
+	V5_TAG_BLOCK(damage_constraint_info_block, MAXIMUM_DAMAGE_CONSTRAINT_INFOS_PER_MODEL)
 	{
 		{ _field_string_id, "physics model constraint name" },
 		{ _field_string_id, "damage constraint name" },
@@ -122,7 +122,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_damage_info_block, 1)
+	V5_TAG_BLOCK(global_damage_info_block, 1)
 	{
 		{ _field_long_flags, "flags", &model_damage_info_flags_definition },
 		{ _field_string_id, "global indirect material name#absorbes AOE or child damage" },
@@ -158,20 +158,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_section_recharge_speed_curve_block, 1)
+	V5_TAG_BLOCK(damage_section_recharge_speed_curve_block, 1)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_section_segmented_recharge_fraction, 16)
+	V5_TAG_BLOCK(damage_section_segmented_recharge_fraction, 16)
 	{
 		{ _field_real_fraction, "vitality percentage:[0.1]#recharge will stop once this percentage of vitality is reached." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_response_region_transition_block, 16)
+	V5_TAG_BLOCK(damage_response_region_transition_block, 16)
 	{
 		{ _field_string_id, "region" },
 		{ _field_enum, "new state", &model_state_enum_definition },
@@ -179,7 +179,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_transfer_block, MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL)
+	V5_TAG_BLOCK(damage_transfer_block, MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL)
 	{
 		{ _field_long_flags, "flags", &damage_transfer_flags_definition },
 		{ _field_real, "transfer amount" },
@@ -189,13 +189,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(seat_ejection_block, 8)
+	V5_TAG_BLOCK(seat_ejection_block, 8)
 	{
 		{ _field_string_id, "seat label^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(new_instantaneous_damage_response_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
+	V5_TAG_BLOCK(new_instantaneous_damage_response_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
 	{
 		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
 
@@ -229,7 +229,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_section_rendering_paramters, 1)
+	V5_TAG_BLOCK(damage_section_rendering_paramters, 1)
 	{
 		{ _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
 		{ _field_tag_reference, "1st person impact parameters", &global_shield_parameters_reference },
@@ -256,7 +256,7 @@ namespace blofeld
 	};
 	STRING_LIST(transfer_function_enum_definition, transfer_function_enum_definition_strings, _countof(transfer_function_enum_definition_strings));
 
-	TAG_BLOCK(health_transfers_block, 65536) // assembly #NOTE: where did this information come from?
+	V5_TAG_BLOCK(health_transfers_block, 65536) // assembly #NOTE: where did this information come from?
 	{
 		{ _field_long_flags, "flags", &health_transfers_flags_definition },
 		{ _field_real, "transfer amount" },
@@ -266,7 +266,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(new_global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
+	V5_TAG_BLOCK(new_global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
@@ -307,7 +307,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_body_parameters_struct)
+	V5_TAG_STRUCT(damage_body_parameters_struct)
 	{
 		{ _field_real, "maximum vitality" },
 		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
@@ -317,7 +317,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_shield_parameters_struct)
+	V5_TAG_STRUCT(damage_shield_parameters_struct)
 	{
 		{ _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" },
 		{ _field_string_id, "global shield material name" },
@@ -336,19 +336,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(instantaneous_response_damage_effect_struct)
+	V5_TAG_STRUCT(instantaneous_response_damage_effect_struct)
 	{
 		{ _field_tag_reference, "transition damage effect", &global_damage_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
+	V5_TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
 	{
 		{ _field_string_id, "damage effect marker name" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(model_damage_info_struct)
+	V5_TAG_STRUCT(model_damage_info_struct)
 	{
 		{ _field_explanation, "Damage Info", "" },
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },

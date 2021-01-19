@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(part_block, BYTE_MAX)
+	V5_TAG_BLOCK(part_block, BYTE_MAX)
 	{
 		{ _field_short_block_index, "render method index^*" },
 		{ _field_short_block_index, "transparent sorting index*" },
@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(subpart_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(subpart_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_version_less, _engine_type_haloreach, 2 },
 		{ _field_short_integer, "index start*" },
@@ -51,13 +51,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(instance_index_word_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(instance_index_word_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_short_integer, "instance index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_instance_bucket_block, (2*1024))
+	V5_TAG_BLOCK(global_instance_bucket_block, (2*1024))
 	{
 		{ _field_short_integer, "mesh index*" },
 		{ _field_short_integer, "definition index*" },
@@ -65,20 +65,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(indices_word_block, 2147483647L)
+	V5_TAG_BLOCK(indices_word_block, 2147483647L)
 	{
 		{ _field_short_integer, "word*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vertexKeyBlock, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
+	V5_TAG_BLOCK(vertexKeyBlock, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
 		{ _field_long_integer, "key1*" },
 		{ _field_long_integer, "key2*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_mesh_block, (8*1024-1))
+	V5_TAG_BLOCK(global_mesh_block, (8*1024-1))
 	{
 		{ _field_block, "parts*", &part_block_block },
 		{ _field_block, "subparts*", &subpart_block_block },
@@ -117,13 +117,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PCAMeshIndexBlock, (8*1024-1))
+	V5_TAG_BLOCK(PCAMeshIndexBlock, (8*1024-1))
 	{
 		{ _field_long_block_index, "mesh index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(compression_info_block, 1+UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(compression_info_block, 1+UNSIGNED_SHORT_MAX)
 	{
 		{ _field_word_flags, "compression flags*", &compression_flags },
 		{ _field_pad, "JOJOBOMO", 2 },
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sorting_position_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(sorting_position_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_real_plane_3d, "plane*" },
 		{ _field_real_point_3d, "position*" },
@@ -148,14 +148,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_data_block, 64)
+	V5_TAG_BLOCK(user_data_block, 64)
 	{
 		{ _field_struct, "user data header*", &global_render_geometry_user_data_header_struct_struct_definition },
 		{ _field_data, "user data*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_vertex_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
+	V5_TAG_BLOCK(raw_vertex_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
 		{ _field_real_point_3d, "position*" },
 		{ _field_real_point_2d, "texcoord*" },
@@ -170,26 +170,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(indices_dword_block, 2147483647L)
+	V5_TAG_BLOCK(indices_dword_block, 2147483647L)
 	{
 		{ _field_long_integer, "dword*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_water_append_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(raw_water_append_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_real_point_2d, "base texcoord*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_water_block, 1024)
+	V5_TAG_BLOCK(raw_water_block, 1024)
 	{
 		{ _field_block, "raw water indices*", &indices_word_block_block },
 		{ _field_block, "raw water vertices*", &raw_water_append_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_imposter_brdf_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(raw_imposter_brdf_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_real_rgb_color, "diffuse" },
 		{ _field_real_rgb_color, "ambient" },
@@ -201,7 +201,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_instance_imposter_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(raw_instance_imposter_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_dword_integer, "color" },
@@ -209,7 +209,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_blendshape_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
+	V5_TAG_BLOCK(raw_blendshape_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
 		{ _field_real_vector_3d, "position*" },
 		{ _field_real_vector_3d, "normal*" },
@@ -217,7 +217,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_mesh_raw_data_block, (8*1024-1))
+	V5_TAG_BLOCK(per_mesh_raw_data_block, (8*1024-1))
 	{
 		{ _field_block, "raw vertices*", &raw_vertex_block_block },
 		{ _field_block, "raw indices*", &indices_word_block_block },
@@ -233,44 +233,44 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(node_map_byte_block, BYTE_MAX)
+	V5_TAG_BLOCK(node_map_byte_block, BYTE_MAX)
 	{
 		{ _field_char_integer, "node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_mesh_node_map_block, (8*1024-1))
+	V5_TAG_BLOCK(per_mesh_node_map_block, (8*1024-1))
 	{
 		{ _field_block, "node map*", &node_map_byte_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_mesh_subpart_visibility_block, 64)
+	V5_TAG_BLOCK(per_mesh_subpart_visibility_block, 64)
 	{
 		{ _field_block, "bounding_sphere*", &sorting_position_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_instance_prt_data_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(per_instance_prt_data_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_data, "mesh pca data*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_mesh_prt_data_block, (8*1024-1))
+	V5_TAG_BLOCK(per_mesh_prt_data_block, (8*1024-1))
 	{
 		{ _field_data, "mesh pca data*" },
 		{ _field_block, "per instance prt data", &per_instance_prt_data_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(raw_texcoord_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
+	V5_TAG_BLOCK(raw_texcoord_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
 		{ _field_real_point_2d, "texcoord*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(per_instance_lightmap_texcoords_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(per_instance_lightmap_texcoords_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_block, "texture coordinates", &raw_vertex_block_block },
 
@@ -282,7 +282,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(water_bounding_box_block, (8*1024-1))
+	V5_TAG_BLOCK(water_bounding_box_block, (8*1024-1))
 	{
 		{ _field_short_integer, "mesh index" },
 		{ _field_short_integer, "part index" },
@@ -291,19 +291,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_geometry_pvs_data_visibility_value_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(render_geometry_pvs_data_visibility_value_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_dword_integer, "Value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_geometry_pvs_data_visibility_index_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(render_geometry_pvs_data_visibility_index_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_word_integer, "Index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vertex_buffers_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(vertex_buffers_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_byte_integer, "declaration type*" },
 		{ _field_byte_integer, "stride*" },
@@ -313,7 +313,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(index_buffers_block, (8*1024-1))
+	V5_TAG_BLOCK(index_buffers_block, (8*1024-1))
 	{
 		{ _field_byte_integer, "declaration type*" },
 		{ _field_byte_integer, "stride*" },
@@ -323,19 +323,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_vertex_buffer_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(render_vertex_buffer_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_api_interop, "vertex buffer interop", &render_vertex_buffer_descriptor_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_index_buffer_block, (8*1024-1))
+	V5_TAG_BLOCK(render_index_buffer_block, (8*1024-1))
 	{
 		{ _field_api_interop, "index buffer interop", &render_index_buffer_descriptor_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_geometry_pvs_data_block, 16)
+	V5_TAG_BLOCK(render_geometry_pvs_data_block, 16)
 	{
 		{ _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block_block },
 		{ _field_block, "Per-block visibility offset array", &render_geometry_pvs_data_visibility_index_block_block },
@@ -349,7 +349,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(shapeNameBlock, 8192)
+	V5_TAG_BLOCK(shapeNameBlock, 8192)
 	{
 		{ _field_long_integer, "key*" },
 		{ _field_long_string, "name*" },
@@ -380,33 +380,33 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_render_geometry_unknown_meshes2, 65536)
+	V5_TAG_BLOCK(global_render_geometry_unknown_meshes2, 65536)
 	{
 		{ _field_short_integer, "unknown" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_render_geometry_unknown_meshes, 65536)
+	V5_TAG_BLOCK(global_render_geometry_unknown_meshes, 65536)
 	{
 		{ _field_data, "unknown" },
 		{ _field_block, "unknown", &global_render_geometry_unknown_meshes2_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(constant_buffer)
+	V5_TAG_STRUCT(constant_buffer)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(constant_buffer_interops, 65536) // assembly
+	V5_TAG_BLOCK(constant_buffer_interops, 65536) // assembly
 	{
 		{ _field_api_interop, "constant buffer interop*", &constant_buffer_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_render_geometry_struct)
+	V5_TAG_STRUCT(global_render_geometry_struct)
 	{
 		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
 
@@ -451,7 +451,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_render_geometry_user_data_header_struct)
+	V5_TAG_STRUCT(global_render_geometry_user_data_header_struct)
 	{
 		{ _field_char_enum, "data type^*", &render_geometry_user_data_type_definition },
 		{ _field_char_integer, "data count*" },
@@ -459,7 +459,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_geometry_api_resource_definition_struct)
+	V5_TAG_STRUCT(render_geometry_api_resource_definition_struct)
 	{
 		{ _field_block, "pc vertex buffers*", &vertex_buffers_block_block },
 		{ _field_block, "pc index buffers*", &index_buffers_block_block },

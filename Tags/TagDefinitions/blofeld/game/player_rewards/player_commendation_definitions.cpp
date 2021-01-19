@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(commendation_aggregator_list, COMMENDATION_AGGREGATOR_LIST_TAG, commendation_aggregator_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(commendation_aggregator_list, COMMENDATION_AGGREGATOR_LIST_TAG, commendation_aggregator_list_block_block );
 
-	TAG_GROUP_FROM_BLOCK(commendation_globals_definition, COMMENDATION_GLOBALS_DEFINITION_TAG, commendation_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(commendation_globals_definition, COMMENDATION_GLOBALS_DEFINITION_TAG, commendation_globals_definition_block_block );
 
-	TAG_BLOCK(commendationRewardBlock, eCT_count)
+	V5_TAG_BLOCK(commendationRewardBlock, eCT_count)
 	{
 		{ _field_char_enum, "currency type#Type of currency given by this reward.", &currencyTypeEnumDefinition },
 		{ _field_pad, "CRB_PAD1", 1 },
@@ -16,9 +16,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(commendationAggregatorDependent, CommendationAggregatorDependent::k_commendationDependentMaxCount, commendationAggregatorDependent_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(commendationAggregatorDependent, CommendationAggregatorDependent::k_commendationDependentMaxCount, commendationAggregatorDependent_struct_struct_definition );
 
-	TAG_BLOCK(commendationAggregator, CommendationAggregator::k_commendationAggregatorMaxCount)
+	V5_TAG_BLOCK(commendationAggregator, CommendationAggregator::k_commendationAggregatorMaxCount)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description text" },
@@ -31,9 +31,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(commendation_aggregator_list_block, 1, commendation_aggregator_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(commendation_aggregator_list_block, 1, commendation_aggregator_list_struct_definition_struct_definition );
 
-	TAG_BLOCK(commendationLevelBlock, CommendationLevel::k_maximumCommendationLevels)
+	V5_TAG_BLOCK(commendationLevelBlock, CommendationLevel::k_maximumCommendationLevels)
 	{
 		{ _field_string_id, "level name^" },
 		{ _field_short_integer, "progress ticks to level#number of ticks to reach this level" },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(commendationBlock, CommendationDefinition::k_maximumCommendationDefinitions)
+	V5_TAG_BLOCK(commendationBlock, CommendationDefinition::k_maximumCommendationDefinitions)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description" },
@@ -88,15 +88,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(commendation_globals_definition_block, 1, commendation_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(commendation_globals_definition_block, 1, commendation_globals_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(commendation_aggregator_list_struct_definition)
+	V5_TAG_STRUCT(commendation_aggregator_list_struct_definition)
 	{
 		{ _field_block, "lists", &commendationAggregator_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(commendationAggregatorDependent_struct)
+	V5_TAG_STRUCT(commendationAggregatorDependent_struct)
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
 		{ _field_pad, "PAD1", 3 },
@@ -104,7 +104,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(commendation_globals_definition_struct_definition)
+	V5_TAG_STRUCT(commendation_globals_definition_struct_definition)
 	{
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
 

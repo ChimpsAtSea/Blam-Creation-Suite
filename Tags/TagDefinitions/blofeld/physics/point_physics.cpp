@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(point_physics, POINT_PHYSICS_TAG, point_physics_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(point_physics, POINT_PHYSICS_TAG, point_physics_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(point_physics_block, 1, point_physics_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(point_physics_block, 1, point_physics_struct_definition_struct_definition );
 
-	TAG_STRUCT(point_physics_struct_definition)
+	V5_TAG_STRUCT(point_physics_struct_definition)
 	{
 		{ _field_long_flags, "flags", &point_physics_definition_flags },
 		{ _field_real, "runtime mass over radius cubed!" },

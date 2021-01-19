@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(particle_emitter_custom_points, PARTICLE_EMITTER_CUSTOM_POINTS_TAG, particle_emitter_custom_points_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(particle_emitter_custom_points, PARTICLE_EMITTER_CUSTOM_POINTS_TAG, particle_emitter_custom_points_block_block );
 
-	TAG_BLOCK(particle_emitter_custom_point_block, s_particle_emitter_custom_points::k_maximum_points)
+	V5_TAG_BLOCK(particle_emitter_custom_point_block, s_particle_emitter_custom_points::k_maximum_points)
 	{
 		{ _field_short_integer, "position_x" },
 		{ _field_short_integer, "position_y" },
@@ -18,9 +18,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(particle_emitter_custom_points_block, 1, particle_emitter_custom_points_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(particle_emitter_custom_points_block, 1, particle_emitter_custom_points_struct_definition_struct_definition );
 
-	TAG_STRUCT(particle_emitter_custom_points_struct_definition)
+	V5_TAG_STRUCT(particle_emitter_custom_points_struct_definition)
 	{
 		{ _field_custom, "import" },
 		{ _field_explanation, "PARTICLE POINTS", "Explanation goes here.\nWoo....\n" },

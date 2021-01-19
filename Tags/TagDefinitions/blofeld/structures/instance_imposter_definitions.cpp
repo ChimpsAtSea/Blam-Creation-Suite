@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(instance_imposter_definition, INSTANCE_IMPOSTER_DEFINITION_TAG, instance_imposter_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(instance_imposter_definition, INSTANCE_IMPOSTER_DEFINITION_TAG, instance_imposter_definition_block_block );
 
-	TAG_BLOCK(instance_imposter_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(instance_imposter_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_short_integer, "group index" },
 		{ _field_char_integer, "subpart_index" },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(instance_imposter_checksum_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(instance_imposter_checksum_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "import checksum" },
@@ -32,9 +32,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(instance_imposter_definition_block, 1, instance_imposter_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(instance_imposter_definition_block, 1, instance_imposter_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(instance_imposter_definition_struct_definition)
+	V5_TAG_STRUCT(instance_imposter_definition_struct_definition)
 	{
 		{ _field_long_flags, "flags", &instance_imposter_flags_definition },
 		{ _field_string_id, "bsp name" },

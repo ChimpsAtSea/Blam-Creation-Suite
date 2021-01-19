@@ -4,18 +4,18 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(armormod_globals, ARMORMOD_GLOBALS_TAG, armormod_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(armormod_globals, ARMORMOD_GLOBALS_TAG, armormod_globals_block_block );
 
-	TAG_BLOCK(aural_enhancement_audio_settings_block, 1)
+	V5_TAG_BLOCK(aural_enhancement_audio_settings_block, 1)
 	{
 		{ _field_real, "frequency#beeps per second" },
 		{ _field_real, "duty cycle pct" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(armormod_globals_block, 1, armormod_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(armormod_globals_block, 1, armormod_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(armormod_globals_struct_definition)
+	V5_TAG_STRUCT(armormod_globals_struct_definition)
 	{
 		{ _field_explanation, "explode on death", "" },
 		{ _field_tag_reference, "projectile#spawned by Explode On Death armormod", &projectile_reference },

@@ -4,7 +4,6 @@ struct s_symbol_file_public;
 
 namespace blofeld
 {
-
 	struct s_tag_block_definition
 	{
 		s_tag_block_definition(

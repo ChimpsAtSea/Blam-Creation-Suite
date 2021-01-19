@@ -1,0 +1,47 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	constexpr unsigned long CAMERA_FX_SETTINGS_TAG = 'cfxs';
+	extern s_tag_group camera_fx_settings_group; // camera_fx_settings_block
+	extern s_tag_block_definition camera_fx_settings_block;
+	extern s_tag_struct_definition camera_fx_settings; // camera_fx_settings_block
+
+
+	extern s_tag_struct_definition camera_fx_exposure_struct;
+	extern s_tag_struct_definition camera_fx_exposure_sensitivity_struct;
+	extern s_tag_struct_definition camera_fx_bloom_highlight_struct;
+	extern s_tag_struct_definition camera_fx_bloom_inherent_struct;
+	extern s_tag_struct_definition camera_fx_bloom_self_illum_struct;
+	extern s_tag_struct_definition camera_fx_bloom_intensity_struct;
+	extern s_tag_struct_definition camera_fx_bloom_large_color_struct;
+	extern s_tag_struct_definition camera_fx_bloom_medium_color_struct;
+	extern s_tag_struct_definition camera_fx_bloom_small_color_struct;
+	extern s_tag_struct_definition camera_fx_bling_intensity_struct;
+	extern s_tag_struct_definition camera_fx_bling_size_struct;
+	extern s_tag_struct_definition camera_fx_bling_angle_struct;
+	extern s_tag_struct_definition camera_fx_bling_count_struct;
+	extern s_tag_struct_definition camera_fx_self_illum_preferred_struct;
+	extern s_tag_struct_definition camera_fx_self_illum_scale_struct;
+	extern s_tag_struct_definition camera_fx_color_grading_struct;
+	extern s_tag_struct_definition camera_fx_filmic_tone_curve_struct;
+
+	extern c_versioned_string_list camera_fx_parameter_flags_auto_adjust_strings;
+	extern s_string_list_definition camera_fx_parameter_flags_auto_adjust;
+	extern c_versioned_string_list camera_fx_parameter_flags_no_auto_adjust_strings;
+	extern s_string_list_definition camera_fx_parameter_flags_no_auto_adjust;
+	extern c_versioned_string_list camera_fx_parameter_flags_enabled_strings;
+	extern s_string_list_definition camera_fx_parameter_flags_enabled;
+	extern c_versioned_string_list camera_fx_parameter_flags_bling_spikes_strings;
+	extern s_string_list_definition camera_fx_parameter_flags_bling_spikes;
+
+	extern s_tag_reference_definition global_camera_fx_settings_reference;
+
+} // namespace macaque
+
+} // namespace blofeld
+

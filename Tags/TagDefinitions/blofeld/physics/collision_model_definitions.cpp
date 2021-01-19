@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(collision_model, COLLISION_MODEL_TAG)
+	V5_TAG_GROUP(collision_model, COLLISION_MODEL_TAG)
 	{
 		{ _field_long_integer, "import_info_checksum*!" },
 		{ _field_block, "errors*", &global_error_report_categories_block_block },
@@ -24,15 +24,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_model_material_block, MAXIMUM_MATERIALS_PER_MODEL)
+	V5_TAG_BLOCK(collision_model_material_block, MAXIMUM_MATERIALS_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(collision_model_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION, collision_model_bsp_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(collision_model_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION, collision_model_bsp_struct_struct_definition );
 
-	TAG_BLOCK(collision_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(collision_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "name^*" },
 
@@ -46,14 +46,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(collision_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_block, "permutations*", &collision_model_permutation_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_model_pathfinding_sphere_block, MAXIMUM_PATHFINDING_SPHERES_PER_COLLISION_MODEL)
+	V5_TAG_BLOCK(collision_model_pathfinding_sphere_block, MAXIMUM_PATHFINDING_SPHERES_PER_COLLISION_MODEL)
 	{
 		{ _field_short_block_index, "node*" },
 		{ _field_word_flags, "flags", &pathfinding_sphere_flags },
@@ -63,7 +63,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_model_node_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(collision_model_node_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_pad, "PFPPD", 2 },
@@ -73,9 +73,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(collision_model_resource_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION* MAXIMUM_PERMUTATIONS_PER_MODEL_REGION* MAXIMUM_REGIONS_PER_MODEL, collision_model_bsp_struct_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(collision_model_resource_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION* MAXIMUM_PERMUTATIONS_PER_MODEL_REGION* MAXIMUM_REGIONS_PER_MODEL, collision_model_bsp_struct_struct_definition);
 
-	TAG_STRUCT(collision_model_bsp_struct)
+	V5_TAG_STRUCT(collision_model_bsp_struct)
 	{
 		{ _field_short_integer, "node index*" },
 		{ _field_pad, "KXGCEIEI", 2 },
@@ -84,7 +84,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(collision_model_resource_struct)
+	V5_TAG_STRUCT(collision_model_resource_struct)
 	{
 		{ _field_block, "bsps", &collision_model_resource_bsp_block_block },
 		{ _field_terminator }

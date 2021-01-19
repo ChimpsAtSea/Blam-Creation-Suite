@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(spring_acceleration, SPRING_ACCELERATION_TAG, spring_acceleration_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(spring_acceleration, SPRING_ACCELERATION_TAG, spring_acceleration_block_block );
 
-	TAG_BLOCK(spring_linear_acceleration_block, k_dimensions_in_3d_count)
+	V5_TAG_BLOCK(spring_linear_acceleration_block, k_dimensions_in_3d_count)
 	{
 		{ _field_real, "acceleration range:world units" },
 		{ _field_real, "inverse acceleration range:world units*!" },
@@ -34,9 +34,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(spring_acceleration_block, 1, spring_acceleration_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(spring_acceleration_block, 1, spring_acceleration_struct_definition_struct_definition );
 
-	TAG_STRUCT(spring_acceleration_struct_definition)
+	V5_TAG_STRUCT(spring_acceleration_struct_definition)
 	{
 		{ _field_block, "linear acceleartions", &spring_linear_acceleration_block_block },
 		{ _field_short_block_index, "x-axis" },

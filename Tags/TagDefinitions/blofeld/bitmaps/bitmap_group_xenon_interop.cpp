@@ -5,7 +5,7 @@ namespace blofeld
 {
 	TAG_ARRAY_FROM_STRUCT(render_interleaved_texture_array_definition, k_interleaved_texture_count, render_texture_format_definition_struct_definition);
 
-	TAG_STRUCT(render_texture_interop_definition_struct)
+	V5_TAG_STRUCT(render_texture_interop_definition_struct)
 	{
 		{ _field_data, "pixel data*" },
 
@@ -39,7 +39,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_texture_interleaved_interop_definition_struct)
+	V5_TAG_STRUCT(render_texture_interleaved_interop_definition_struct)
 	{
 		{ _field_data, "pixel data*" },
 
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_texture_format_definition)
+	V5_TAG_STRUCT(render_texture_format_definition)
 	{
 		{ _field_short_integer, "width*" },
 		{ _field_short_integer, "height*" },

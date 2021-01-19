@@ -1,0 +1,40 @@
+#include <tagdefinitions-private-pch.h>
+#include <macaque_field_type_override.h>
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	TAG_GROUP(
+		entity_group,
+		ENTITY_TAG,
+		&object_group,
+		OBJECT_TAG,
+		entity_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		entity_block,
+		"entity_block",
+		1,
+		entity_struct_definition);
+
+	#define ENTITY_STRUCT_DEFINITION_ID { 0xC09EE68E, 0xC51440C4, 0x84421DAA, 0xB13D1D3E }
+	TAG_STRUCT(
+		entity_struct_definition,
+		"entity_struct_definition",
+		"EntityDefinitionInternal",
+		ENTITY_STRUCT_DEFINITION_ID)
+	{
+		{ _field_struct, "object", &object_struct_definition },
+		FIELD_CUSTOM("$$$ ENTITY $$$", _custom_field_function_group_begin),
+		{ _field_real, "Entity Placeholder" },
+		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_terminator }
+	};
+
+} // namespace macaque
+
+} // namespace blofeld
+

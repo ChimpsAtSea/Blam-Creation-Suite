@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(sound_looping, SOUND_LOOPING_TAG, sound_looping_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_looping, SOUND_LOOPING_TAG, sound_looping_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(sound_looping_block, 1, sound_looping_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_looping_block, 1, sound_looping_struct_definition_struct_definition );
 
-	TAG_STRUCT(sound_looping_struct_definition)
+	V5_TAG_STRUCT(sound_looping_struct_definition)
 	{
 		{ _field_long_flags, "flags", &looping_sound_flags },
 		{ _field_real_bounds, "marty\'s music time:seconds" },

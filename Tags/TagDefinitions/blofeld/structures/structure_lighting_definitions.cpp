@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, scenario_structure_lighting_info_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, scenario_structure_lighting_info_block_block );
 
-	TAG_BLOCK(structure_lighting_generic_light_definition_block, SHORT_MAX)
+	V5_TAG_BLOCK(structure_lighting_generic_light_definition_block, SHORT_MAX)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 18 },
 		{ _field_long_integer, "unknown" },
@@ -49,7 +49,7 @@ namespace blofeld
 	TAG_REFERENCE(structure_lighting_generic_light_instance_unknown_reference1);
 	TAG_REFERENCE(structure_lighting_generic_light_instance_unknown_reference3);
 
-	TAG_BLOCK(structure_lighting_generic_light_instance_block, SHORT_MAX)
+	V5_TAG_BLOCK(structure_lighting_generic_light_instance_block, SHORT_MAX)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_int64_integer, "Light Definition ID!" },
@@ -87,7 +87,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(screen_space_light_shader_override_block, SHORT_MAX)
+	V5_TAG_BLOCK(screen_space_light_shader_override_block, SHORT_MAX)
 	{
 		{ _field_real_rgb_color, "specular color normal" },
 		{ _field_real, "specular steepness" },
@@ -99,17 +99,17 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structureLightingCinematicObjectBlock, SHORT_MAX)
+	V5_TAG_BLOCK(structureLightingCinematicObjectBlock, SHORT_MAX)
 	{
 		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(structureLightingCinematicLightInstanceBlock, SHORT_MAX, structureLightingCinematicLightInstanceBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(structureLightingCinematicLightInstanceBlock, SHORT_MAX, structureLightingCinematicLightInstanceBlock_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(scenario_structure_lighting_info_block, 1, scenario_structure_lighting_info_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_structure_lighting_info_block, 1, scenario_structure_lighting_info_struct_definition_struct_definition );
 
-	TAG_BLOCK(scenario_structure_lighting_info_unknown_block0, 65536)
+	V5_TAG_BLOCK(scenario_structure_lighting_info_unknown_block0, 65536)
 	{
 		{ _field_real, "unknown" },
 		{ _field_real_rgb_color, "unknown" },
@@ -122,7 +122,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_structure_lighting_info_unknown_block1, 65536)
+	V5_TAG_BLOCK(scenario_structure_lighting_info_unknown_block1, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "unknown" },
@@ -130,7 +130,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
+	V5_TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
 	{
 		{ _field_long_integer, "import info checksum" },
 		{ _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block_block },
@@ -153,7 +153,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structureLightingCinematicLightInstanceBlock_struct)
+	V5_TAG_STRUCT(structureLightingCinematicLightInstanceBlock_struct)
 	{
 		{ _field_int64_integer, "Light Instance ID!" },
 		{ _field_long_block_index, "Light Definition Index" },

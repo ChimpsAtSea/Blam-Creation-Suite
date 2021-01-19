@@ -4,29 +4,29 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cloth, CLOTH_TAG, cloth_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cloth, CLOTH_TAG, cloth_block_block );
 
-	TAG_BLOCK(collision_sphere_block, k_maximum_collision_spheres_per_cloth)
+	V5_TAG_BLOCK(collision_sphere_block, k_maximum_collision_spheres_per_cloth)
 	{
 		{ _field_string_id, "object marker name" },
 		{ _field_real, "radius" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cloth_vertices_block, k_maximum_vertices_per_cloth)
+	V5_TAG_BLOCK(cloth_vertices_block, k_maximum_vertices_per_cloth)
 	{
 		{ _field_real_point_3d, "initial position*" },
 		{ _field_real_vector_2d, "uv*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cloth_indices_block, k_maximum_indices_per_cloth)
+	V5_TAG_BLOCK(cloth_indices_block, k_maximum_indices_per_cloth)
 	{
 		{ _field_short_integer, "index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cloth_links_block, k_maximum_links_per_cloth)
+	V5_TAG_BLOCK(cloth_links_block, k_maximum_links_per_cloth)
 	{
 		{ _field_real, "default_distance*" },
 		{ _field_long_integer, "index1*" },
@@ -35,9 +35,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cloth_block, 1, cloth_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cloth_block, 1, cloth_struct_definition_struct_definition );
 
-	TAG_STRUCT(cloth_struct_definition)
+	V5_TAG_STRUCT(cloth_struct_definition)
 	{
 		{ _field_long_flags, "flags", &cloth_flags },
 		{ _field_string_id, "marker attachment name" },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cloth_properties)
+	V5_TAG_STRUCT(cloth_properties)
 	{
 		{ _field_enum, "Integration type*", &cloth_integration_enum },
 		{ _field_short_integer, "Number iterations#[1-8] sug 1" },

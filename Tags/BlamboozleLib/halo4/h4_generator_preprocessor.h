@@ -49,11 +49,12 @@ public:
 class c_h4_tag_block_container
 {
 public:
-	c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, bool is_tag);
+	c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, c_h4_tag_group_container* tag_group_container, bool defined_by_tag_group);
 	bool operator ==(const c_h4_tag_block_container& container) const;
 
 	c_h4_tag_block& tag_block;
 	c_h4_tag_struct_container* tag_struct_container;
+	c_h4_tag_group_container* const tag_group_container;
 	std::string name;
 	std::string symbol_name;
 	std::string name_uppercase;
@@ -65,19 +66,28 @@ public:
 class c_h4_tag_struct_container
 {
 public:
-	c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array, bool is_interop, bool is_resource);
+	c_h4_tag_struct_container(
+		c_h4_tag_struct& tag_struct, 
+		c_h4_generator_preprocessor& preprocessor,
+		c_h4_tag_block_container* block_container, 
+		bool is_tag_group, 
+		bool is_block, 
+		bool is_array, 
+		bool is_interop, 
+		bool is_resource);
 	bool operator ==(const c_h4_tag_struct_container& container) const;
 
-	c_h4_tag_block_container* tag_block_container;
+	c_h4_tag_block_container* const tag_block_container;
 	c_h4_tag_struct& tag_struct;
 	std::string name;
 	std::string symbol_name;
 	std::string name_uppercase;
-	bool is_block;
-	bool is_array;
-	bool is_interop;
-	bool is_resource;
-	bool is_tag_group;
+	std::string struct_name;
+	bool const is_block;
+	bool const is_array;
+	bool const is_interop;
+	bool const is_resource;
+	bool const is_tag_group;
 	bool has_traversed;
 };
 
@@ -119,8 +129,8 @@ public:
 	c_h4_tag_reference_container* find_existing_tag_reference_container(c_h4_tag_reference& tag_reference);
 	c_h4_source_file& get_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor);
 
-	c_h4_tag_block_container& traverse_tag_blocks(c_h4_tag_block& tag_block, bool is_tag = false, bool traverse = true);
-	c_h4_tag_struct_container& traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool is_array, bool is_interop, bool is_resource, bool traverse);
+	c_h4_tag_block_container& traverse_tag_blocks(c_h4_tag_block& tag_block, c_h4_tag_group_container* group_container, bool is_tag, bool defined_by_tag_group, bool traverse);
+	c_h4_tag_struct_container& traverse_tag_structs(c_h4_tag_struct& tag_struct, c_h4_tag_block_container* block_container, bool is_tag, bool is_block, bool is_array, bool is_interop, bool is_resource, bool traverse);
 
 	void process_tag_block_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct);
 	void process_tag_struct_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct);

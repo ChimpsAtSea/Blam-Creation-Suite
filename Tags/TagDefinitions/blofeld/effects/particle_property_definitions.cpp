@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(particle_property_real_point3d_struct_new)
+	V5_TAG_STRUCT(particle_property_real_point3d_struct_new)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
 		{ _field_char_enum, "Range Variable", &game_state_type_enum },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(particle_property_real_euler_angles2d_struct_new)
+	V5_TAG_STRUCT(particle_property_real_euler_angles2d_struct_new)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
 		{ _field_char_enum, "Range Variable", &game_state_type_enum },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(particle_property_scalar_struct_new)
+	V5_TAG_STRUCT(particle_property_scalar_struct_new)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
 		{ _field_char_enum, "Range Variable", &game_state_type_enum },
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(particle_property_real_vector3d_struct_new)
+	V5_TAG_STRUCT(particle_property_real_vector3d_struct_new)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
 		{ _field_char_enum, "Range Variable", &game_state_type_enum },
@@ -67,7 +67,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(particle_property_color_struct_new)
+	V5_TAG_STRUCT(particle_property_color_struct_new)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
 		{ _field_char_enum, "Range Variable", &game_state_type_enum },

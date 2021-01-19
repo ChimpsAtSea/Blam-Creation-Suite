@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(global_self_track_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(global_self_track_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_string, "time" },
 		{ _field_string, "machine" },

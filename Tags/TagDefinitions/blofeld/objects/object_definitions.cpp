@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(object, OBJECT_TAG, object_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(object, OBJECT_TAG, object_block_block );
 
-	TAG_BLOCK(sidecarBlock, 1)
+	V5_TAG_BLOCK(sidecarBlock, 1)
 	{
 		{ _field_long_string, "sidecar path*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_early_mover_obb_block, 1)
+	V5_TAG_BLOCK(object_early_mover_obb_block, 1)
 	{
 		{ _field_string_id, "node name#empty mean object space" },
 		{ _field_long_integer, "runtime node index*!" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_ai_properties_block, 1)
+	V5_TAG_BLOCK(object_ai_properties_block, 1)
 	{
 		{ _field_long_flags, "ai flags", &ai_properties_flags },
 		{ _field_string_id, "ai type name#used for combat dialogue, etc." },
@@ -39,7 +39,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_function_interpolation_block, 2)
+	V5_TAG_BLOCK(object_function_interpolation_block, 2)
 	{
 		{ _field_long_enum, "interpolation mode", &object_function_interpolation_mode_enum },
 		{ _field_real, "linear travel time:s#used by constant velocity" },
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_function_block, k_maximum_object_functions)
+	V5_TAG_BLOCK(object_function_block, k_maximum_object_functions)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
 		{ _field_string_id, "import name#if you leave this field blank then you can set this function\'s input value with the hs_function object_set_function_variable" },
@@ -73,20 +73,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_runtime_interpolator_functions_block, k_maximum_object_functions)
+	V5_TAG_BLOCK(object_runtime_interpolator_functions_block, k_maximum_object_functions)
 	{
 		{ _field_long_integer, "runtime interpolator to object function mapping*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(objectFunctionSwitchFunctionBlock, ObjectFunctionSwitchDefinition::Function::k_maxCount)
+	V5_TAG_BLOCK(objectFunctionSwitchFunctionBlock, ObjectFunctionSwitchDefinition::Function::k_maxCount)
 	{
 		{ _field_real_bounds, "selection bounds#if the switch function is between these values, this function will be picked" },
 		{ _field_string_id, "function name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(objectFunctionSwitchBlock, ObjectFunctionSwitchDefinition::k_maxCount)
+	V5_TAG_BLOCK(objectFunctionSwitchBlock, ObjectFunctionSwitchDefinition::k_maxCount)
 	{
 		{ _field_string_id, "switch function name" },
 		{ _field_string_id, "export name" },
@@ -101,7 +101,7 @@ namespace blofeld
 	};
 	STRING_LIST(global_object_attachment_flags, global_object_attachment_flags_strings, _countof(global_object_attachment_flags_strings));
 
-	TAG_BLOCK(global_object_attachment_block, k_maximum_number_of_attachments_per_object)
+	V5_TAG_BLOCK(global_object_attachment_block, k_maximum_number_of_attachments_per_object)
 	{
 		{ _field_version_equal, _engine_type_halo3odst },
 		{ _field_long_flags, "atlas flags", &global_object_attachment_flags },
@@ -117,14 +117,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_widget_block, MAXIMUM_WIDGETS_PER_OBJECT)
+	V5_TAG_BLOCK(object_widget_block, MAXIMUM_WIDGETS_PER_OBJECT)
 	{
 		{ _field_tag_reference, "type", &object_widget_block_type_reference },
 		{ _field_useless_pad },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_change_color_initial_permutation, MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_INITIAL_PERMUTATIONS)
+	V5_TAG_BLOCK(object_change_color_initial_permutation, MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_INITIAL_PERMUTATIONS)
 	{
 		{ _field_real, "weight" },
 		{ _field_real_rgb_color, "color lower bound" },
@@ -133,7 +133,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_change_color_function, MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_FUNCTIONS)
+	V5_TAG_BLOCK(object_change_color_function, MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_FUNCTIONS)
 	{
 		{ _field_pad, "TJJWBYNU", 4 },
 		{ _field_long_flags, "scale flags", &global_rgb_interpolation_flags },
@@ -144,7 +144,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_change_colors, k_object_change_color_count)
+	V5_TAG_BLOCK(object_change_colors, k_object_change_color_count)
 	{
 		{ _field_useless_pad },
 		{ _field_block, "initial permutations", &object_change_color_initial_permutation_block },
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_object_block, k_maximum_multiplayer_object_blocks)
+	V5_TAG_BLOCK(multiplayer_object_block, k_maximum_multiplayer_object_blocks)
 	{
 		{ _field_explanation, "GAME ENGINE INCLUSION", "Set which game engines you desire this object to appear in" },
 
@@ -240,7 +240,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_spawn_effects_block, 1)
+	V5_TAG_BLOCK(object_spawn_effects_block, 1)
 	{
 		{ _field_explanation, "Spawn Effects", "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created." },
 		{ _field_tag_reference, "multiplayer spawn effect#effect played when this object spawns in MP games", &global_effect_reference },
@@ -249,9 +249,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(object_block, 1, object_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(object_block, 1, object_struct_definition_struct_definition );
 
-	TAG_STRUCT(object_struct_definition)
+	V5_TAG_STRUCT(object_struct_definition)
 	{
 		{ _field_custom, "OBJECT" },
 		{ _field_short_integer, "runtime object type!" },
@@ -349,7 +349,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(object_abandonment_struct)
+	V5_TAG_STRUCT(object_abandonment_struct)
 	{
 		{ _field_real, "Vitality Limit To Start Countdown" },
 		{ _field_real, "Countdown Time In Seconds" },

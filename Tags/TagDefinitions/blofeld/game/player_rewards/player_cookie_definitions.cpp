@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(reward_globals_definition, REWARD_GLOBALS_DEFINITION_TAG, reward_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(reward_globals_definition, REWARD_GLOBALS_DEFINITION_TAG, reward_globals_definition_block_block );
 
-	TAG_BLOCK(rewardDefinitionBlock, RewardGlobalDefinition::k_maximum_count)
+	V5_TAG_BLOCK(rewardDefinitionBlock, RewardGlobalDefinition::k_maximum_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_char_enum, "type", &rewardTypeEnum },
@@ -15,9 +15,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(reward_globals_definition_block, 1, reward_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(reward_globals_definition_block, 1, reward_globals_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(reward_globals_definition_struct_definition)
+	V5_TAG_STRUCT(reward_globals_definition_struct_definition)
 	{
 		{ _field_block, "reward definitions{cookie awards}", &rewardDefinitionBlock_block },
 		{ _field_terminator }

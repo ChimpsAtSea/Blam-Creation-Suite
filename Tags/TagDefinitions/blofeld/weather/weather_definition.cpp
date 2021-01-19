@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(rain_definition, RAIN_DEFINITION_TAG, rain_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(rain_definition, RAIN_DEFINITION_TAG, rain_definition_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(rain_definition_block, 1, rain_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(rain_definition_block, 1, rain_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(rain_definition_struct_definition)
+	V5_TAG_STRUCT(rain_definition_struct_definition)
 	{
 		{ _field_long_integer, "version!#INTERNAL TAG USE ONLY DO NOT CHANGE" },
 		{ _field_real, "rain amount:[0,1]#fade control for all rain effects" },

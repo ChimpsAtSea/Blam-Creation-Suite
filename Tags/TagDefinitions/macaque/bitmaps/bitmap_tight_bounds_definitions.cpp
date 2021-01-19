@@ -1,0 +1,25 @@
+#include <tagdefinitions-private-pch.h>
+#include <macaque_field_type_override.h>
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	#define BITMAP_TIGHT_BOUNDS_BLOCK_DEF_ID { 0x999753DF, 0x8AB54C19, 0xBDEDB3D3, 0x2D83450D }
+	TAG_BLOCK(
+		bitmap_tight_bounds_block_def_block,
+		"bitmap_tight_bounds_block_def",
+		(4 * k_maxTightBoundsSets),
+		"real_point2d",
+		BITMAP_TIGHT_BOUNDS_BLOCK_DEF_ID)
+	{
+		{ _field_real_point_2d, "uv" },
+		{ _field_terminator }
+	};
+
+} // namespace macaque
+
+} // namespace blofeld
+

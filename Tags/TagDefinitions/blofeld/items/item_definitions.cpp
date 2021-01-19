@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(item, ITEM_TAG, object, OBJECT_TAG, item_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(item, ITEM_TAG, object, OBJECT_TAG, item_block_block );
 
-	TAG_BLOCK(predicted_bitmaps_block, 8)
+	V5_TAG_BLOCK(predicted_bitmaps_block, 8)
 	{
 		{ _field_tag_reference, "bitmap", &global_bitmap_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(item_block, 1, item_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(item_block, 1, item_struct_definition_struct_definition );
 
-	TAG_STRUCT(item_struct_definition)
+	V5_TAG_STRUCT(item_struct_definition)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ ITEM $$$" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(pca_animation, PCA_ANIMATION_TAG)
+	V5_TAG_GROUP(pca_animation, PCA_ANIMATION_TAG)
 	{
 		{ _field_explanation, "Links", "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually" },
 		{ _field_tag_reference, "RenderModel*", &render_model_reference$6 },
@@ -20,13 +20,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PCAImportedFrameDatablock, 64 * k_meg)
+	V5_TAG_BLOCK(PCAImportedFrameDatablock, 64 * k_meg)
 	{
 		{ _field_data, "Coefficients" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PCAImportedAnimationDataBlock, k_max_animations_per_graph)
+	V5_TAG_BLOCK(PCAImportedAnimationDataBlock, k_max_animations_per_graph)
 	{
 		{ _field_string_id, "Name^*" },
 		{ _field_long_integer, "Offset*" },
@@ -38,13 +38,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(pca_coefficients_resource_definition_struct)
+	V5_TAG_STRUCT(pca_coefficients_resource_definition_struct)
 	{
 		{ _field_data, "Coefficients" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PCAImportedMeshDataBlock, (8*1024-1))
+	V5_TAG_BLOCK(PCAImportedMeshDataBlock, (8*1024-1))
 	{
 		{ _field_long_integer, "render mesh index*" },
 		{ _field_long_integer, "vertices per shape*" },

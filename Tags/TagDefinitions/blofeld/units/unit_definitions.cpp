@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(unit, UNIT_TAG, object, OBJECT_TAG, unit_block_block);
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(unit, UNIT_TAG, object, OBJECT_TAG, unit_block_block);
 
-	TAG_BLOCK(unit_screen_effect_block, 4)
+	V5_TAG_BLOCK(unit_screen_effect_block, 4)
 	{
 		{ _field_tag_reference, "screen effect^", &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
+	V5_TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
 	{
 		{ _field_tag_reference, "track", &global_camera_track_reference },
 
@@ -22,7 +22,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unit_camera_acceleration_displacement_block, 1)
+	V5_TAG_BLOCK(unit_camera_acceleration_displacement_block, 1)
 	{
 		{ _field_real, "maximum camera velocity:wu/s#how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don\'t set this too low.\n0 defaults to infinite." },
 		{ _field_explanation, "", "For each of the following functions, if 1 instance of the block is specified, the offsets are symmetric.\nIf 2 instances are specified, then the first instance is used for positive displacement and the second is used for negative displacement." },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(WeaponSpecificMarkersBlock, WEAPON_SPECIFIC_MARKERS_COUNT)
+	V5_TAG_BLOCK(WeaponSpecificMarkersBlock, WEAPON_SPECIFIC_MARKERS_COUNT)
 	{
 		{ _field_string_id, "complete weapon name^" },
 		{ _field_string_id, "weapon class" },
@@ -44,7 +44,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unit_postures_block, MAXIMUM_POSTURES_PER_UNIT)
+	V5_TAG_BLOCK(unit_postures_block, MAXIMUM_POSTURES_PER_UNIT)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_useless_pad },
@@ -52,7 +52,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(dialogue_variant_block, MAXIMUM_DIALOGUE_VARIANTS_PER_UNIT)
+	V5_TAG_BLOCK(dialogue_variant_block, MAXIMUM_DIALOGUE_VARIANTS_PER_UNIT)
 	{
 		{ _field_short_integer, "variant number#variant number to use this dialogue with (must match the suffix in the permutations on the unit\'s model)" },
 		{ _field_pad, "BQCVEMF", 2 },
@@ -61,14 +61,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(powered_seat_block, k_powered_seats_count)
+	V5_TAG_BLOCK(powered_seat_block, k_powered_seats_count)
 	{
 		{ _field_real, "driver powerup time:seconds" },
 		{ _field_real, "driver powerdown time:seconds" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SentryPropertiesBlock, 1)
+	V5_TAG_BLOCK(SentryPropertiesBlock, 1)
 	{
 		{ _field_byte_flags, "behavior", &sentryTurretBehaviorFlagDefinition },
 		{ _field_pad, "flagPad", 3 },
@@ -89,7 +89,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unit_weapon_block, MAXIMUM_INITIAL_WEAPONS_PER_UNIT)
+	V5_TAG_BLOCK(unit_weapon_block, MAXIMUM_INITIAL_WEAPONS_PER_UNIT)
 	{
 		{ _field_tag_reference, "weapon^", &weapon_reference },
 
@@ -133,7 +133,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(boarding_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
+	V5_TAG_BLOCK(boarding_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
 	{
 		{ _field_short_block_index, "seat^" },
 		{ _field_pad, "PAD", 2 },
@@ -142,13 +142,13 @@ namespace blofeld
 
 	TAG_REFERENCE(hud_screen_reference, CUI_SCREEN_TAG);
 
-	TAG_BLOCK(hud_screen_reference_block, 65536)
+	V5_TAG_BLOCK(hud_screen_reference_block, 65536)
 	{
 		{ _field_tag_reference, "hud screen reference", &hud_screen_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unit_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
+	V5_TAG_BLOCK(unit_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
 	{
 		{ _field_long_flags, "flags", &unit_seat_flags },
 
@@ -247,19 +247,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(unit_block, 1, unit_struct_definition_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(unit_block, 1, unit_struct_definition_struct_definition);
 
 	TAG_REFERENCE(integrated_light_toggle_reference, blofeld::INVALID_TAG);
 
 	TAG_REFERENCE(unit_hud_interface_reference);
 
-	TAG_BLOCK(unit_hud_interfaces_block, 65536)
+	V5_TAG_BLOCK(unit_hud_interfaces_block, 65536)
 	{
 		{ _field_tag_reference, "Unit HUD Interface", &unit_hud_interface_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_struct_definition)
+	V5_TAG_STRUCT(unit_struct_definition)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ UNIT $$$" },
@@ -474,12 +474,12 @@ namespace blofeld
 	};
 
 
-	TAG_BLOCK(halo3_unit_camera_struct_unknown, 0x10000u)
+	V5_TAG_BLOCK(halo3_unit_camera_struct_unknown, 0x10000u)
 	{
 		{_field_terminator}
 	};
 
-	TAG_STRUCT(unit_camera_struct)
+	V5_TAG_STRUCT(unit_camera_struct)
 	{
 		{ _field_custom, "Unit Camera" },
 		{ _field_word_flags, "flags", &unit_camera_flags_definition },
@@ -516,7 +516,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_camera_acceleration_displacement_function_struct)
+	V5_TAG_STRUCT(unit_camera_acceleration_displacement_function_struct)
 	{
 		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input },
 		{ _field_pad, "blah", 3 },
@@ -528,7 +528,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_additional_node_names_struct)
+	V5_TAG_STRUCT(unit_additional_node_names_struct)
 	{
 		{ _field_string_id, "preferred_gun_node#if found, use this gun marker" },
 		{ _field_custom },
@@ -546,7 +546,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_boarding_melee_struct)
+	V5_TAG_STRUCT(unit_boarding_melee_struct)
 	{
 		{ _field_tag_reference, "boarding melee damage", &global_damage_reference },
 		{ _field_tag_reference, "boarding melee response", &global_damage_reference },
@@ -570,7 +570,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_boost_struct)
+	V5_TAG_STRUCT(unit_boost_struct)
 	{
 		{ _field_tag_reference, "boost collision damage", &collision_damage_reference$2 },
 
@@ -602,14 +602,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_lipsync_scales_struct)
+	V5_TAG_STRUCT(unit_lipsync_scales_struct)
 	{
 		{ _field_real_fraction, "attack weight" },
 		{ _field_real_fraction, "decay weight" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(unit_birth_struct)
+	V5_TAG_STRUCT(unit_birth_struct)
 	{
 		{ _field_short_block_index, "seat^" },
 		{ _field_pad, "PAD", 2 },

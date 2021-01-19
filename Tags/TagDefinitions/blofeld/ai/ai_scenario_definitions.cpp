@@ -4,20 +4,20 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(character_palette_block, 64)
+	V5_TAG_BLOCK(character_palette_block, 64)
 	{
 		{ _field_tag_reference, "reference^", &character_reference$6 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_recording_reference_block, 128)
+	V5_TAG_BLOCK(ai_recording_reference_block, 128)
 	{
 		{ _field_string, "recording name^" },
 		{ _field_pad, "INYRGOR", 8 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(big_battle_creature_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(big_battle_creature_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "reference^", &big_battle_creature_reference },
 		{ _field_terminator }

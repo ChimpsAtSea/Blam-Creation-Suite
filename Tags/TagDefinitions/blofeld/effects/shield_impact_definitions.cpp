@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(shield_impact, SHIELD_IMPACT_TAG, shield_impact_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(shield_impact, SHIELD_IMPACT_TAG, shield_impact_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(shield_impact_block, 1, shield_impact_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(shield_impact_block, 1, shield_impact_struct_definition_struct_definition );
 
-	TAG_STRUCT(shield_impact_struct_definition)
+	V5_TAG_STRUCT(shield_impact_struct_definition)
 	{
 		// H3, ODST. Based on Assembly definitions.
 		// #TODO: merge shield_impact_struct definition versions
@@ -106,7 +106,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(shield_color_function_struct)
+	V5_TAG_STRUCT(shield_color_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(shield_scalar_function_struct)
+	V5_TAG_STRUCT(shield_scalar_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

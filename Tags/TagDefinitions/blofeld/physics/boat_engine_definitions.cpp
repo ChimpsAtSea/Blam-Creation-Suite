@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(boat_engine_definition_block, 1)
+	V5_TAG_BLOCK(boat_engine_definition_block, 1)
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		{ _field_pad, "blah", 3 },

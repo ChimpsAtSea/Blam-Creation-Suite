@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(trigger_references, 10)
+	V5_TAG_BLOCK(trigger_references, 10)
 	{
 		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
 		{ _field_short_block_index, "trigger^" },
@@ -12,7 +12,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(secondary_set_trigger_block, 1)
+	V5_TAG_BLOCK(secondary_set_trigger_block, 1)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		{ _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(order_ending_block, 12)
+	V5_TAG_BLOCK(order_ending_block, 12)
 	{
 		{ _field_short_block_index, "next order^" },
 		{ _field_enum, "combination rule", &combination_rules_enum },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(orders_block, 300)
+	V5_TAG_BLOCK(orders_block, 300)
 	{
 		{ _field_custom },
 		{ _field_string, "name^" },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(order_completion_condition, 5)
+	V5_TAG_BLOCK(order_completion_condition, 5)
 	{
 		{ _field_enum, "rule type^", &condition_type_enum },
 		{ _field_short_block_index, "squad" },
@@ -75,7 +75,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triggers_block, 256)
+	V5_TAG_BLOCK(triggers_block, 256)
 	{
 		{ _field_custom },
 		{ _field_string, "name^" },

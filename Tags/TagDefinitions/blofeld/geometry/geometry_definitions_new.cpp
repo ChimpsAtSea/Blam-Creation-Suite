@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(global_geometry_material_block, MAXIMUM_MATERIALS_PER_GEOMETRY)
+	V5_TAG_BLOCK(global_geometry_material_block, MAXIMUM_MATERIALS_PER_GEOMETRY)
 	{
 		{ _field_tag_reference, "render method^*", &global_geometry_material_block_render_method_reference },
 		{ _field_long_integer, "imported material index*" },

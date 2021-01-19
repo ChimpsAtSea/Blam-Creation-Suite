@@ -4,27 +4,27 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(armor_modifier_block, k_maximum_material_types)
+	V5_TAG_BLOCK(armor_modifier_block, k_maximum_material_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real, "damage multiplier" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_group_block, k_maximum_material_types)
+	V5_TAG_BLOCK(damage_group_block, k_maximum_material_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "armor modifiers", &armor_modifier_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_globals_damage_block, s_damage_globals_definition::k_numBlockElements)
+	V5_TAG_BLOCK(game_globals_damage_block, s_damage_globals_definition::k_numBlockElements)
 	{
 		{ _field_block, "damage groups", &damage_group_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_globals_block, 1)
+	V5_TAG_BLOCK(damage_globals_block, 1)
 	{
 		{ _field_tag_reference, "falling damage", &global_damage_reference },
 		{ _field_tag_reference, "jumping damage", &global_damage_reference },
@@ -52,7 +52,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(shield_boost_block, 1)
+	V5_TAG_BLOCK(shield_boost_block, 1)
 	{
 		{ _field_explanation, "shield boosting", "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source" },
 		{ _field_real, "shield boost decay#amount of shield-boost to decay per second" },
@@ -61,7 +61,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_decay_struct)
+	V5_TAG_STRUCT(damage_decay_struct)
 	{
 		{ _field_real, "current damage decay delay:seconds#current damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)" },
 		{ _field_real, "current damage decay time:seconds#amount of time it would take for 100% current damage to decay to 0" },

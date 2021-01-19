@@ -4,22 +4,22 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(character, CHARACTER_TAG, character_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(character, CHARACTER_TAG, character_block_block );
 
-	TAG_BLOCK(character_voice_region_permutation_filter_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(character_voice_region_permutation_filter_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "permutation name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_voice_region_filter_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(character_voice_region_filter_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "region name^" },
 		{ _field_block, "permutation filters", &character_voice_region_permutation_filter_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_voice_block, k_maximum_variants_per_model)
+	V5_TAG_BLOCK(character_voice_block, k_maximum_variants_per_model)
 	{
 		{ _field_tag_reference, "dialogue^", &dialogue_reference$2 },
 		{ _field_string_id, "designator*" },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_variants_block, k_maximum_variants_per_model)
+	V5_TAG_BLOCK(character_variants_block, k_maximum_variants_per_model)
 	{
 		{ _field_string_id, "variant name^" },
 		{ _field_short_integer, "variant index*" },
@@ -38,20 +38,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_voice_properties_block, c_character_voice_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_voice_properties_block, c_character_voice_properties_internal::k_block_count)
 	{
 		{ _field_block, "voices", &character_voice_block_block },
 		{ _field_string_id, "default dialogue effect id#gets applied if the vocalization has no dialogue effect id." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(disallowed_weapons_for_trading_block, 32)
+	V5_TAG_BLOCK(disallowed_weapons_for_trading_block, 32)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_general_block, c_character_general_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_general_block, c_character_general_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "general flags", &general_flags },
 		{ _field_enum, "type", &actor_type_enum },
@@ -74,20 +74,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_proto_spawn_block, c_character_proto_spawn_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_proto_spawn_block, c_character_proto_spawn_properties_internal::k_block_count)
 	{
 		{ _field_enum, "Proto Spawn Type #Can be used to automatically setup a character to be spawned by another character.", &proto_spawn_type_enum },
 		{ _field_pad, "post-proto-spawn-padding", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_interact_block, c_character_interact_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_interact_block, c_character_interact_properties_internal::k_block_count)
 	{
 		{ _field_real, "default maximum object interact range:wu" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_emotions_situational_danger_block, NUMBER_OF_PROP_CLASSES)
+	V5_TAG_BLOCK(character_emotions_situational_danger_block, NUMBER_OF_PROP_CLASSES)
 	{
 		{ _field_enum, "highest prop class^#The prop class that this block is describing", &prop_class_enum },
 		{ _field_pad, "obligatory pad", 2 },
@@ -95,7 +95,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_emotions_block, c_character_emotions_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_emotions_block, c_character_emotions_properties_internal::k_block_count)
 	{
 		{ _field_block, "situational danger", &character_emotions_situational_danger_block_block },
 		{ _field_real, "perceived danger increase half-life:seconds#How many seconds until it rises up to half between its current and target value" },
@@ -103,7 +103,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_vitality_block, c_character_vitality_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_vitality_block, c_character_vitality_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "vitality flags", &vitality_flags },
 		{ _field_real, "normal body vitality#maximum body vitality of our unit" },
@@ -134,7 +134,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_placement_block, c_character_placement_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_placement_block, c_character_placement_properties_internal::k_block_count)
 	{
 		{ _field_pad, "YJQV", 4 },
 		{ _field_real, "few upgrade chance (easy)" },
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_perception_block, c_character_perception_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_perception_block, c_character_perception_properties_internal::k_block_count)
 	{
 		{ _field_enum, "perception_mode^", &actor_perception_mode_definition },
 		{ _field_word_flags, "flags", &perception_flags },
@@ -188,13 +188,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_target_block, c_character_target_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_target_block, c_character_target_properties_internal::k_block_count)
 	{
 		{ _field_real, "player preference:[0-1]#How interested in the player I am on a scale of 0-1" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_look_block, c_character_look_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_look_block, c_character_look_properties_internal::k_block_count)
 	{
 		{ _field_real_euler_angles_2d, "maximum aiming deviation:degrees#how far we can turn our weapon" },
 		{ _field_real_euler_angles_2d, "maximum looking deviation:degrees#how far we can turn our head" },
@@ -211,7 +211,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(characterHopDefinitionBlock, 1)
+	V5_TAG_BLOCK(characterHopDefinitionBlock, 1)
 	{
 		{ _field_custom, "Default" },
 		{ _field_struct, "Default", &character_hop_struct_struct_definition },
@@ -225,14 +225,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_hopping_block, 1)
+	V5_TAG_BLOCK(character_hopping_block, 1)
 	{
 		{ _field_long_flags, "Hopping Flags", &hopping_flags },
 		{ _field_block, "Hopping Definition", &characterHopDefinitionBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(movement_stationary_pause_block, 8)
+	V5_TAG_BLOCK(movement_stationary_pause_block, 8)
 	{
 		{ _field_explanation, "Inertial pause settings", "These values tell the actor to remain stationary for the specified number of ticks if he changes his direction of movement by at least \'change angle\'. Specifying an angle of 0 means pause this much every time you get to your destination." },
 		{ _field_angle, "direction change angle:degrees" },
@@ -240,14 +240,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(movement_throttle_block, 16)
+	V5_TAG_BLOCK(movement_throttle_block, 16)
 	{
 		{ _field_real, "distance:wus#If AI needs to move at greater or equal to this distance, they will move at the given throttle" },
 		{ _field_real, "throttle scale:[0-1]#Throttle scale between minimum and maximum throttle" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(movement_throttle_control_block, NUMBER_OF_ACTOR_COMBAT_STATUS_LEVELS)
+	V5_TAG_BLOCK(movement_throttle_control_block, NUMBER_OF_ACTOR_COMBAT_STATUS_LEVELS)
 	{
 		{ _field_enum, "combat status#When combat status is bigger or equal to this combat status, use the throttle settings below.", &combat_status_enum_definition },
 		{ _field_word_flags, "flags", &movement_throttle_control_flags },
@@ -255,7 +255,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_movement_block, 1)
+	V5_TAG_BLOCK(character_movement_block, 1)
 	{
 		{ _field_long_flags, "movement flags", &movement_flags },
 		{ _field_real, "pathfinding radius" },
@@ -322,7 +322,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_throttle_style_block, c_character_throttle_style_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_throttle_style_block, c_character_throttle_style_properties_internal::k_block_count)
 	{
 		{ _field_string_id, "style name^" },
 		{ _field_real_fraction, "desired throttle:[0,1]" },
@@ -334,7 +334,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(movement_mapping_block, k_max_movement_variants)
+	V5_TAG_BLOCK(movement_mapping_block, k_max_movement_variants)
 	{
 		{ _field_real, "chance" },
 		{ _field_explanation, "MAPPING", "Movement type -> stance" },
@@ -356,14 +356,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_movement_set_block, k_max_movement_sets)
+	V5_TAG_BLOCK(character_movement_set_block, k_max_movement_sets)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "variants", &movement_mapping_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_flocking_block, c_character_flocking_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_flocking_block, c_character_flocking_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "Jaime, don\'t touch this", "Ever." },
 		{ _field_real, "deceleration distance" },
@@ -374,7 +374,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_swarm_block, c_character_swarm_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_swarm_block, c_character_swarm_properties_internal::k_block_count)
 	{
 		{ _field_short_integer, "scatter killed count#After the given number of deaths, the swarm scatters" },
 		{ _field_pad, "PEVUDXUKY", 2 },
@@ -392,7 +392,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(evaluator_definition_block, k_fp_evaluator_count)
+	V5_TAG_BLOCK(evaluator_definition_block, k_fp_evaluator_count)
 	{
 		{ _field_explanation, "EVALUATOR", "The firing point evaluation properties for a single evaluator. Treat with great care and respect." },
 		{ _field_long_enum, "evaluator^", &evaluator_enum },
@@ -402,7 +402,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_firing_point_evaluator_block, c_character_firing_point_evaluation_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_firing_point_evaluator_block, c_character_firing_point_evaluation_properties_internal::k_block_count)
 	{
 		{ _field_long_enum, "mode^", &evaluation_modes },
 		{ _field_custom },
@@ -411,13 +411,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_ready_block, c_character_ready_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_ready_block, c_character_ready_properties_internal::k_block_count)
 	{
 		{ _field_real_bounds, "ready time bounds#Character will pause for given time before engaging threat" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_engage_block, c_character_engage_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_engage_block, c_character_engage_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "flags", &engage_flags },
 		{ _field_real_bounds, "Reposition bounds:s#How long should I remain at a firing position before moving\? (0 values will use the default values of 6 and 7 seconds)" },
@@ -445,7 +445,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_charge_difficulty_limits_block, k_campaign_difficulty_levels_count)
+	V5_TAG_BLOCK(character_charge_difficulty_limits_block, k_campaign_difficulty_levels_count)
 	{
 		{ _field_explanation, "Difficulty Limits", "Per difficulty values to limit the number of guys in particular behaviours" },
 		{ _field_short_integer, "max kamikaze count#How many guys in a single clump can be kamikazing at one time" },
@@ -454,7 +454,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_charge_block, c_character_charge_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_charge_block, c_character_charge_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "Charge flags", &charge_flags },
 		{ _field_real, "melee consider range" },
@@ -505,7 +505,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_evasion_block, c_character_evasion_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_evasion_block, c_character_evasion_properties_internal::k_block_count)
 	{
 		{ _field_real, "Evasion danger threshold#Consider evading when immediate danger surpasses threshold" },
 		{ _field_real, "Evasion delay timer#Wait at least this delay between evasions" },
@@ -515,7 +515,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_cover_block, c_character_cover_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_cover_block, c_character_cover_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "cover flags", &cover_flags },
 		{ _field_real_bounds, "hide behind cover time:seconds#how long we stay behind cover after seeking cover" },
@@ -545,7 +545,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_retreat_block, c_character_retreat_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_retreat_block, c_character_retreat_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "Retreat flags", &character_retreat_flags },
 		{ _field_real, "Shield threshold#When shield vitality drops below given amount, retreat is triggered by low_shield_retreat_impulse" },
@@ -567,7 +567,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_search_block, c_character_search_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_search_block, c_character_search_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "Search flags", &character_search_flags },
 		{ _field_real_bounds, "search time" },
@@ -583,7 +583,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_presearch_block, c_character_presearch_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_presearch_block, c_character_presearch_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "Pre-search flags", &generic_flags },
 		{ _field_real_bounds, "max presearch time:seconds#Presearch turns off after the given time" },
@@ -599,7 +599,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_idle_block, c_character_idle_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_idle_block, c_character_idle_properties_internal::k_block_count)
 	{
 		{ _field_pad, "ZTG", 4 },
 		{ _field_real_bounds, "idle pose delay time:seconds#time range for delays between idle poses" },
@@ -607,7 +607,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_vocalization_block, c_character_vocalization_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_vocalization_block, c_character_vocalization_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "Skip Fraction", "For vocalization with priority < react, multiplies the skip fraction in the dialogue globals tag.\nFor priorities > react, multiplies the vocalization WEIGHT (i.e. the desire of that character to vocalize RELATIVE to other characters in the scene).\nThus if you hurt the arbiter, say, he\'s still going to yell at you, no matter what, and if you kill somebody and nobody else is there to witness it, he will yell at you.\nAs always, 0 means speak normally, 1 means skip everything (don\'t say shit)" },
 		{ _field_real, "character skip fraction:[0,1]" },
@@ -616,14 +616,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_vehicle_boarding_block, s_character_vehicle_boarding_properties::k_block_count)
+	V5_TAG_BLOCK(character_vehicle_boarding_block, s_character_vehicle_boarding_properties::k_block_count)
 	{
 		{ _field_tag_reference, "vehicle^", &unit_reference$2 },
 		{ _field_long_flags, "flags", &vehicle_boarding_flags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_boarding_block, c_character_boarding_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_boarding_block, c_character_boarding_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "flags", &boarding_flags },
 		{ _field_real, "max distance:wus#maximum distance from entry point that we will consider boarding" },
@@ -635,14 +635,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_kungfu_block, c_character_kungfu_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_kungfu_block, c_character_kungfu_properties_internal::k_block_count)
 	{
 		{ _field_real, "kungfu override distance:wus#If the player is within this distance, open fire, even if your task is kungfu-fight disallowed" },
 		{ _field_real, "kungfu cover danger threshold#If you are kungfu disallowed and your danger is above this level, take cover" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_bunker_block, c_character_bunker_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_bunker_block, c_character_bunker_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "DEFAULT TIMINGS", "" },
 		{ _field_struct, "default", &character_bunker_timings_struct_struct_definition },
@@ -655,7 +655,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_guardian_block, c_character_guardian_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_guardian_block, c_character_guardian_properties_internal::k_block_count)
 	{
 		{ _field_real, "surge time:seconds#length of time for which the guardian surges" },
 		{ _field_real, "surge delay time:seconds#minimum enforced delay between surges" },
@@ -666,14 +666,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_combatform_block, c_character_combatform_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_combatform_block, c_character_combatform_properties_internal::k_block_count)
 	{
 		{ _field_real, "berserk distance:wu#distance at which combatform will be forced into berserk" },
 		{ _field_real, "berserk chance#chance of berserking this second" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_engineer_block, c_character_engineer_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_engineer_block, c_character_engineer_properties_internal::k_block_count)
 	{
 		{ _field_real, "death height:wu#try and rise this amount before dying" },
 		{ _field_real, "death rise time:seconds#spend this time rising" },
@@ -690,7 +690,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_inspect_block, c_character_inspect_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_inspect_block, c_character_inspect_properties_internal::k_block_count)
 	{
 		{ _field_real, "stop distance:wu#distance from object at which to stop and turn on the inspection light" },
 		{ _field_real_bounds, "inspect time:seconds#time which we should inspect each object for" },
@@ -698,7 +698,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_scarab_block, c_character_scarab_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_scarab_block, c_character_scarab_properties_internal::k_block_count)
 	{
 		{ _field_real, "fighting min distance:wus#When target within this distance, the scarab will back up" },
 		{ _field_real, "fighting max distance:wus#When target outside this distance, the scarab will chase" },
@@ -708,7 +708,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_weapons_block, c_character_weapon_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_weapons_block, c_character_weapon_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "weapons flags", &weapon_flags },
 		{ _field_tag_reference, "weapon^", &weapon_reference$2 },
@@ -762,7 +762,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_firing_pattern_block, 2+(k_num_ai_trait_weapon-2))
+	V5_TAG_BLOCK(character_firing_pattern_block, 2+(k_num_ai_trait_weapon-2))
 	{
 		{ _field_real, "rate of fire#how many times per second we pull the trigger (zero = continuously held down)" },
 		{ _field_real, "target tracking:[0,1]#how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position" },
@@ -781,14 +781,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_firing_pattern_properties_block, c_character_firing_pattern_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_firing_pattern_properties_block, c_character_firing_pattern_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "weapon^", &weapon_reference$2 },
 		{ _field_block, "firing patterns", &character_firing_pattern_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_grenades_block, c_character_grenade_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_grenades_block, c_character_grenade_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "grenades flags", &grenades_flags },
 		{ _field_enum, "grenade type#type of grenades that we throw^", &global_grenade_type_enum },
@@ -814,7 +814,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_vehicle_block, c_character_vehicle_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_vehicle_block, c_character_vehicle_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "unit^", &unit_reference$2 },
 		{ _field_tag_reference, "style^", &style_reference },
@@ -916,7 +916,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_flying_movement_block, c_character_flying_movement_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_flying_movement_block, c_character_flying_movement_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "vehicle^", &unit_reference$2 },
 		{ _field_custom },
@@ -979,7 +979,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_morph_block, c_character_morph_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_morph_block, c_character_morph_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "ranged character", &character_reference$3 },
 		{ _field_tag_reference, "tank character", &character_reference$3 },
@@ -1019,7 +1019,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_equipment_usage_block, k_character_equipment_usage_when_count)
+	V5_TAG_BLOCK(character_equipment_usage_block, k_character_equipment_usage_when_count)
 	{
 		{ _field_explanation, "Equipment Use", "How should I use this equipment\?" },
 		{ _field_enum, "use when^#When should we use this equipment\?", &character_equipment_usage_when_enum },
@@ -1030,7 +1030,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_equipment_block, 8)
+	V5_TAG_BLOCK(character_equipment_block, 8)
 	{
 		{ _field_explanation, "Equipment", "Create one of these for each equipment type that you would like a character to be able to use. If you specify a relative drop chance of greater than zero then the character will use and drop this type of equipment with that (relative) chance. If you leave the equipment field empty, then there will be that (relative) chance of using and dropping no equipment at all." },
 		{ _field_tag_reference, "equipment#The equipment item that is to be usable", &equipment_reference },
@@ -1040,7 +1040,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_stimuli_response_block, k_max_character_stimuli_responses)
+	V5_TAG_BLOCK(character_stimuli_response_block, k_max_character_stimuli_responses)
 	{
 		{ _field_explanation, "Stimulus Response", "Here you can define a character tag which will be applied on top of this one when the named stimulus is present on a character.In the case of multiple stimulus with character tag responses being present, the first listed will be used." },
 		{ _field_string_id, "stimulus name^" },
@@ -1048,7 +1048,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_activity_object_block, 32)
+	V5_TAG_BLOCK(character_activity_object_block, 32)
 	{
 		{ _field_string_id, "activity name" },
 		{ _field_tag_reference, "crate", &crate_reference$3 },
@@ -1059,7 +1059,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_pain_screen_block, c_character_pain_screen_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_pain_screen_block, c_character_pain_screen_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "Pain Reactions", "" },
 		{ _field_real, "pain screen duration:seconds#The duration of the pain function\n0 defaults to 0.5" },
@@ -1073,7 +1073,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_bishop_block, c_character_bishop_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_bishop_block, c_character_bishop_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "junk collect effect", &effect_reference },
 		{ _field_tag_reference, "junk attack effect", &effect_reference },
@@ -1112,7 +1112,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_combotron_parent_block, c_character_combotron_parent_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_combotron_parent_block, c_character_combotron_parent_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "combotron parent props", "" },
 		{ _field_real_bounds, "socket cooldown (seconds)#for each socket, this is the time to wait after desocketing before socketing something else into it" },
@@ -1125,7 +1125,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_combotron_child_block, c_character_combotron_child_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_combotron_child_block, c_character_combotron_child_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "combotron child props (anything that can socket into a rook)", "" },
 		{ _field_long_flags, "flags", &rook_flags },
@@ -1139,7 +1139,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_handle_dismemberment_block, c_character_handle_dismemberment_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_handle_dismemberment_block, c_character_handle_dismemberment_properties_internal::k_block_count)
 	{
 		{ _field_explanation, "dismemberment props", "" },
 		{ _field_string_id, "headshot freakout animation (animation string)" },
@@ -1149,7 +1149,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_cover_fight_block, c_character_cover_fight_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_cover_fight_block, c_character_cover_fight_properties_internal::k_block_count)
 	{
 		{ _field_real_bounds, "Cover fight min / max (in world units)#Character will prefer to use cover fighting between min/max distances" },
 		{ _field_real_bounds, "Wanted cover time(in seconds)#How much time do we want to spend before assessing other actions/spots." },
@@ -1173,14 +1173,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_emerge_block, c_character_emerge_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_emerge_block, c_character_emerge_properties_internal::k_block_count)
 	{
 		{ _field_tag_reference, "Wall effect", &effect_reference },
 		{ _field_tag_reference, "Floor effect", &effect_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(dynamic_task_block, c_character_dynamic_task_properties_internal::k_block_count)
+	V5_TAG_BLOCK(dynamic_task_block, c_character_dynamic_task_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "Agent Filter Flags #Limits dynamic tasks that can be assigned to this AI.", &agent_filter_flags },
 		{ _field_long_flags, "Task Generation Flags #Controls which tasks can be generated by this AI.", &task_generation_flags },
@@ -1195,7 +1195,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_advance_block, c_character_advance_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_advance_block, c_character_advance_properties_internal::k_block_count)
 	{
 		{ _field_real_fraction, "Initiate Chance #Chance per second that actor will initiate an advance when able." },
 		{ _field_long_flags, "advance flags", &advance_flags },
@@ -1223,7 +1223,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_cover_evasion_block, c_character_cover_evasion_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_cover_evasion_block, c_character_cover_evasion_properties_internal::k_block_count)
 	{
 		{ _field_real, "Initiate Danger Threshold #Danger level needed to trigger behavior." },
 		{ _field_real, "Abort Danger Threshold #Danger level that will cause behavior to be aborted." },
@@ -1237,7 +1237,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_pack_stalk_block, c_character_pack_stalk_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_pack_stalk_block, c_character_pack_stalk_properties_internal::k_block_count)
 	{
 		{ _field_real, "Min Wander Distance #Minimum distance pack must move when search for new cover position." },
 		{ _field_real, "Outside Area Border #Distance target must be from pack\'s assigned area before stalk triggers." },
@@ -1246,7 +1246,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_fight_circle_block, c_character_fight_circle_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_fight_circle_block, c_character_fight_circle_properties_internal::k_block_count)
 	{
 		{ _field_real_bounds, "Strafe Time #Time spent facing the player and strafing after reaching a position." },
 		{ _field_real_bounds, "Extra Firing Time #Time after strafe that trigger is held down." },
@@ -1259,7 +1259,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_hamstring_charge_block, c_character_hamstring_charge_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_hamstring_charge_block, c_character_hamstring_charge_properties_internal::k_block_count)
 	{
 		{ _field_angle, "Flank Angle #Angle from player facing where charge will begin." },
 		{ _field_real, "Flank Distance #Distance from player before dropping into charge." },
@@ -1272,7 +1272,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_forerunner_block, c_character_forerunner_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_forerunner_block, c_character_forerunner_properties_internal::k_block_count)
 	{
 		{ _field_long_flags, "forerunner flags", &forerunner_flags },
 		{ _field_real, "order minion charge chance #Chance lackeys are ordered to charge when shield depleted." },
@@ -1284,7 +1284,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_gravity_jump_block, c_character_gravity_jump_properties_internal::k_block_count)
+	V5_TAG_BLOCK(character_gravity_jump_block, c_character_gravity_jump_properties_internal::k_block_count)
 	{
 		{ _field_real, "Retreat Radius #Look for destination point within this distance." },
 		{ _field_real, "Float Time #Time spent at top of leap." },
@@ -1297,9 +1297,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(character_block, 1, character_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(character_block, 1, character_struct_definition_struct_definition );
 
-	TAG_STRUCT(character_struct_definition)
+	V5_TAG_STRUCT(character_struct_definition)
 	{
 		{ _field_long_flags, "Character flags", &character_flags },
 		{ _field_tag_reference, "parent character", &character_reference$3 },
@@ -1385,7 +1385,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(active_camo_perception_properties)
+	V5_TAG_STRUCT(active_camo_perception_properties)
 	{
 		{ _field_real_fraction, "partial invis amount:[0,1]#this amount of active camouflage makes a target \'partially invisible\'" },
 		{ _field_real, "partial invis vision distance:world units#maximum vision distance for partially invisible targets. 0= unlimited" },
@@ -1396,7 +1396,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(character_hop_struct)
+	V5_TAG_STRUCT(character_hop_struct)
 	{
 		{ _field_real, "Min hop distance#Pathing shorter than this, no hopping" },
 		{ _field_real, "Min hop distance to path end#Pathing shorter than this, no hopping to end of path" },
@@ -1406,7 +1406,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(SmoothThrottleStruct)
+	V5_TAG_STRUCT(SmoothThrottleStruct)
 	{
 		{ _field_custom, "Smooth Throttle" },
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
@@ -1423,7 +1423,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(SmoothStoppingStruct)
+	V5_TAG_STRUCT(SmoothStoppingStruct)
 	{
 		{ _field_custom, "Smooth Stopping" },
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
@@ -1437,7 +1437,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(character_bunker_timings_struct)
+	V5_TAG_STRUCT(character_bunker_timings_struct)
 	{
 		{ _field_real_bounds, "open time:seconds#How long we should open for" },
 		{ _field_real, "closed min time:seconds#How long we must stay closed for before opening or peeking again" },

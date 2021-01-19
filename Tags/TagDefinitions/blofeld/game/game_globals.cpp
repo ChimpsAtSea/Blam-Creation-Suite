@@ -4,23 +4,23 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(globals, GLOBALS_TAG, globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(globals, GLOBALS_TAG, globals_block_block );
 
-	TAG_GROUP_FROM_BLOCK(patch_globals, PATCH_GLOBALS_TAG, patch_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(patch_globals, PATCH_GLOBALS_TAG, patch_globals_block_block );
 
-	TAG_BLOCK(havok_cleanup_resources_block, 1)
+	V5_TAG_BLOCK(havok_cleanup_resources_block, 1)
 	{
 		{ _field_tag_reference, "object cleanup effect", &global_effect_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_block, NUMBER_OF_GLOBAL_SOUNDS)
+	V5_TAG_BLOCK(sound_block, NUMBER_OF_GLOBAL_SOUNDS)
 	{
 		{ _field_tag_reference, "sound (OBSOLETE)", &sound_block_sound_OBSOLETE_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(soft_ceiling_globals_block, 1)
+	V5_TAG_BLOCK(soft_ceiling_globals_block, 1)
 	{
 		{ _field_real, "biped spring constant" },
 		{ _field_real, "biped normal damping" },
@@ -32,25 +32,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheat_weapons_block, 20)
+	V5_TAG_BLOCK(cheat_weapons_block, 20)
 	{
 		{ _field_tag_reference, "weapon^", &global_item_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheat_powerups_block, 20)
+	V5_TAG_BLOCK(cheat_powerups_block, 20)
 	{
 		{ _field_tag_reference, "powerup^", &global_equipment_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_color_block, k_player_color_index_count)
+	V5_TAG_BLOCK(multiplayer_color_block, k_player_color_index_count)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(visor_color_block, 32)
+	V5_TAG_BLOCK(visor_color_block, 32)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real_rgb_color, "tertiary color" },
@@ -58,13 +58,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(globals_block, 1, globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(globals_block, 1, globals_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(patch_globals_block, 1, patch_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(patch_globals_block, 1, patch_globals_struct_definition_struct_definition );
 
 	TAG_REFERENCE(haloreach_unknown_globals_reference);
 
-	TAG_STRUCT(globals_struct_definition)
+	V5_TAG_STRUCT(globals_struct_definition)
 	{
 		{ _field_pad, "YJLTWDSL", 172 },
 		{ _field_long_enum, "language", &language_enum },
@@ -203,14 +203,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(elite_specular_color_struct)
+	V5_TAG_STRUCT(elite_specular_color_struct)
 	{
 		{ _field_real_rgb_color, "tertiary color" },
 		{ _field_real_rgb_color, "quaternary color" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(patch_globals_struct_definition)
+	V5_TAG_STRUCT(patch_globals_struct_definition)
 	{
 		{ _field_struct, "language pack1!", &language_pack_definition_struct_definition },
 		{ _field_struct, "language pack2!", &language_pack_definition_struct_definition },
@@ -254,7 +254,7 @@ namespace blofeld
 	};
 	STRING_LIST(language_enum, language_enum_strings, _countof(language_enum_strings));
 
-	TAG_BLOCK(grenade_globals_block, k_grenade_globals_count)
+	V5_TAG_BLOCK(grenade_globals_block, k_grenade_globals_count)
 	{
 		{ _field_short_integer, "maximum count" },
 		{ _field_pad, "pad@", 2 },

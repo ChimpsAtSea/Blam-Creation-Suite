@@ -4,30 +4,30 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(game_performance_throttle, GAME_PERFORMANCE_THROTTLE_TAG, game_performance_throttle_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_performance_throttle, GAME_PERFORMANCE_THROTTLE_TAG, game_performance_throttle_block_block );
 
-	TAG_BLOCK(game_performance_throttle_entries_block, 32)
+	V5_TAG_BLOCK(game_performance_throttle_entries_block, 32)
 	{
 		{ _field_struct, "filter", &game_performance_throttle_filter_struct_struct_definition },
 		{ _field_struct, "profile", &game_performance_throttle_profile_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_performance_throttle_block, 1, game_performance_throttle_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_performance_throttle_block, 1, game_performance_throttle_struct_definition_struct_definition );
 
-	TAG_STRUCT(game_performance_throttle_struct_definition)
+	V5_TAG_STRUCT(game_performance_throttle_struct_definition)
 	{
 		{ _field_block, "entries", &game_performance_throttle_entries_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_performance_throttle_filter_struct)
+	V5_TAG_STRUCT(game_performance_throttle_filter_struct)
 	{
 		{ _field_long_integer, "minimum player count" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_performance_throttle_profile_struct)
+	V5_TAG_STRUCT(game_performance_throttle_profile_struct)
 	{
 		{ _field_long_integer, "maximum havok proxy count" },
 		{ _field_long_integer, "maximum ragdoll count" },

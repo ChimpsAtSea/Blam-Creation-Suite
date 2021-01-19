@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(structure_manifest_bsp_block, k_maximum_structure_manifest_items_count)
+	V5_TAG_BLOCK(structure_manifest_bsp_block, k_maximum_structure_manifest_items_count)
 	{
 		{ _field_struct, "build identifer*", &structure_manifest_build_identifier_struct_struct_definition },
 		{ _field_struct, "parent build identifer*", &structure_manifest_build_identifier_struct_struct_definition },
@@ -12,7 +12,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_manifest_build_identifier_struct)
+	V5_TAG_STRUCT(structure_manifest_build_identifier_struct)
 	{
 		{ _field_long_integer, "manifest_id0*!" },
 		{ _field_long_integer, "manifest_id1*!" },
@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_manifest_struct)
+	V5_TAG_STRUCT(structure_manifest_struct)
 	{
 		{ _field_explanation, "build identifer", "" },
 		{ _field_struct, "build identifer*", &structure_manifest_build_identifier_struct_struct_definition },

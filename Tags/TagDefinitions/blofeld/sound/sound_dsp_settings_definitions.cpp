@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(sound_radio_settings, SOUND_RADIO_SETTINGS_TAG)
+	V5_TAG_GROUP(sound_radio_settings, SOUND_RADIO_SETTINGS_TAG)
 	{
 		{ _field_explanation, "mix settings", "" },
 		{ _field_long_enum, "mix", &radio_mix_setting_definition },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_equalizer_band_settings_block, k_maximum_sound_equalizer_bands)
+	V5_TAG_BLOCK(sound_equalizer_band_settings_block, k_maximum_sound_equalizer_bands)
 	{
 		{ _field_long_enum, "type^", &equalizer_band_type_definition },
 		{ _field_custom, "frequency:Hz" },
@@ -27,7 +27,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_sound_lowpass_block)
+	V5_TAG_STRUCT(global_sound_lowpass_block)
 	{
 		{ _field_custom, "cutoff frequency:Hz" },
 		{ _field_real, "cutoff frequency:Hz" },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_sound_reverb_block)
+	V5_TAG_STRUCT(global_sound_reverb_block)
 	{
 		{ _field_custom, "room intensity:dB#intensity of the room effect" },
 		{ _field_real, "room intensity:dB#intensity of the room effect" },
@@ -76,7 +76,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_sound_look_up_table_distortion_block)
+	V5_TAG_STRUCT(global_sound_look_up_table_distortion_block)
 	{
 		{ _field_custom, "table size" },
 		{ _field_long_integer, "table size" },
@@ -86,7 +86,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_sound_equalizer_block)
+	V5_TAG_STRUCT(global_sound_equalizer_block)
 	{
 		{ _field_custom, "input gain:dB" },
 		{ _field_real, "input gain:dB" },

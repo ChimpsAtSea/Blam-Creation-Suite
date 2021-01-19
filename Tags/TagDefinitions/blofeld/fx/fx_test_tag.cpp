@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(fx_test, FX_TEST_TAG, fx_test_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(fx_test, FX_TEST_TAG, fx_test_block_block );
 
-	TAG_BLOCK(fx_property_default_block, s_fx_test::k_max_defaults)
+	V5_TAG_BLOCK(fx_property_default_block, s_fx_test::k_max_defaults)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fx_property_block, s_fx_test::k_max_properties)
+	V5_TAG_BLOCK(fx_property_block, s_fx_test::k_max_properties)
 	{
 		{ _field_string, "name^" },
 		{ _field_long_flags, "flags", &fx_property_flags },
@@ -32,15 +32,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(fx_test_block, 1, fx_test_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(fx_test_block, 1, fx_test_struct_definition_struct_definition );
 
-	TAG_STRUCT(fx_test_struct_definition)
+	V5_TAG_STRUCT(fx_test_struct_definition)
 	{
 		{ _field_block, "properties", &fx_property_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(fx_test_scalar_function_struct)
+	V5_TAG_STRUCT(fx_test_scalar_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

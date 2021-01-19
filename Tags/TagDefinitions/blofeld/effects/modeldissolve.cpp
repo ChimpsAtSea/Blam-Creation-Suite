@@ -4,24 +4,24 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(model_dissolve_definition, MODEL_DISSOLVE_DEFINITION_TAG, model_dissolve_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(model_dissolve_definition, MODEL_DISSOLVE_DEFINITION_TAG, model_dissolve_definition_block_block );
 
-	TAG_BLOCK(modelDissolveDataBlock, ModelDissolveDefinition::eTT_count)
+	V5_TAG_BLOCK(modelDissolveDataBlock, ModelDissolveDefinition::eTT_count)
 	{
 		{ _field_tag_reference, "model dissolve data", &Tag::Reference<struct ModelDissolveDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(modelDissolvePerRegionTimeOffsetBlock, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(modelDissolvePerRegionTimeOffsetBlock, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "region name^" },
 		{ _field_real, "region time offset" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(model_dissolve_definition_block, 1, model_dissolve_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(model_dissolve_definition_block, 1, model_dissolve_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(model_dissolve_definition_struct_definition)
+	V5_TAG_STRUCT(model_dissolve_definition_struct_definition)
 	{
 		{ _field_byte_flags, "flags", &modelDissolveFlags },
 		{ _field_char_enum, "particle spawn position", &modelDissolveParticleSpawnPosition },

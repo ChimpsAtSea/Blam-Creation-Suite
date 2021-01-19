@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block );
 
-	TAG_BLOCK(light_volume_precompiled_vert_block, c_light_volume_definition::k_max_precompiled_profiles)
+	V5_TAG_BLOCK(light_volume_precompiled_vert_block, c_light_volume_definition::k_max_precompiled_profiles)
 	{
 		{ _field_word_integer, "r" },
 		{ _field_word_integer, "g" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(light_volume_definition_block, c_light_volume_system_definition::k_max_light_volume)
+	V5_TAG_BLOCK(light_volume_definition_block, c_light_volume_system_definition::k_max_light_volume)
 	{
 		{ _field_custom },
 		{ _field_string_id, "light_volume name^" },
@@ -57,15 +57,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
 
-	TAG_STRUCT(light_volume_system_struct_definition)
+	V5_TAG_STRUCT(light_volume_system_struct_definition)
 	{
 		{ _field_block, "light_volumes", &light_volume_definition_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(light_volume_property_real)
+	V5_TAG_STRUCT(light_volume_property_real)
 	{
 		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum },
@@ -79,7 +79,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(light_volume_property_real_rgb_color)
+	V5_TAG_STRUCT(light_volume_property_real_rgb_color)
 	{
 		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum },

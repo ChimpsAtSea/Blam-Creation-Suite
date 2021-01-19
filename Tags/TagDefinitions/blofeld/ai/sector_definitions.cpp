@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(pathfinding, PATHFINDING_TAG)
+	V5_TAG_GROUP(pathfinding, PATHFINDING_TAG)
 	{
 		{ _field_block, "bsp pathfinding data", &pathfinding_data_block_block },
 		{ _field_block, "mobileNavMeshes*~", &MobileNavMeshBlock_block },
@@ -17,7 +17,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(FaceUserDataBlock, 256*1024)
+	V5_TAG_BLOCK(FaceUserDataBlock, 256*1024)
 	{
 		{ _field_short_integer, "m_flags*~" },
 		{ _field_pad, "pad", 2 },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pathfinding_data_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(pathfinding_data_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_long_integer, "runtimeNavMesh*~!" },
 		{ _field_long_integer, "runtimeNavGraph*~!" },
@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(MobileNavMeshBlock, MAX_NUM_MOBILE_NAVMESHES)
+	V5_TAG_BLOCK(MobileNavMeshBlock, MAX_NUM_MOBILE_NAVMESHES)
 	{
 		{ _field_long_integer, "runtimeNavMesh*~!" },
 		{ _field_long_integer, "runtimeNavGraph*~!" },
@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(NavVolumeBlock, MAX_NUM_NAV_VOLUMES)
+	V5_TAG_BLOCK(NavVolumeBlock, MAX_NUM_NAV_VOLUMES)
 	{
 		{ _field_short_integer, "zoneIndex*~" },
 		{ _field_short_integer, "areaIndex*~" },
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(NavClimbBlock, MAX_NUM_NAV_CLIMBS)
+	V5_TAG_BLOCK(NavClimbBlock, MAX_NUM_NAV_CLIMBS)
 	{
 		{ _field_long_integer, "runtimeNavMesh*~!" },
 		{ _field_long_integer, "runtimeNavGraph*~!" },
@@ -80,7 +80,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_edge_block, 4*1024)
+	V5_TAG_BLOCK(user_edge_block, 4*1024)
 	{
 		{ _field_real_vector_3d, "m_x*~" },
 		{ _field_real, "havok w m_x*~!" },

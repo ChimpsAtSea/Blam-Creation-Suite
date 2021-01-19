@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(light_rig, LIGHT_RIG_TAG, light_rig_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(light_rig, LIGHT_RIG_TAG, light_rig_block_block );
 
-	TAG_BLOCK(directionalLightRigBlock, lightRigDirectionalCount)
+	V5_TAG_BLOCK(directionalLightRigBlock, lightRigDirectionalCount)
 	{
 		{ _field_long_flags, "Location", &lightRigLocation },
 		{ _field_custom, "Theta" },
@@ -18,9 +18,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(light_rig_block, 1, light_rig_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(light_rig_block, 1, light_rig_struct_definition_struct_definition );
 
-	TAG_BLOCK(scriptableLightRigBlock, e_scriptableLightRigMax)
+	V5_TAG_BLOCK(scriptableLightRigBlock, e_scriptableLightRigMax)
 	{
 		{ _field_explanation, "Scriptable Light Rig", "" },
 		{ _field_string_id, "string^" },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(light_rig_struct_definition)
+	V5_TAG_STRUCT(light_rig_struct_definition)
 	{
 		{ _field_explanation, "Character Light Rig", "" },
 		{ _field_custom, "Environment vmf lobe weight" },

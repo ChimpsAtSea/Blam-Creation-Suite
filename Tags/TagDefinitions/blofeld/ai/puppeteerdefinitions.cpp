@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_BLOCK_FROM_STRUCT(PuppetPathPointBlock, MAX_POINTS_PER_PATH, PuppetPathPointStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetPathPointBlock, MAX_POINTS_PER_PATH, PuppetPathPointStruct_struct_definition );
 
-	TAG_BLOCK(PuppetActionBlock, MAX_ACTIONS_PER_PUPPET)
+	V5_TAG_BLOCK(PuppetActionBlock, MAX_ACTIONS_PER_PUPPET)
 	{
 		{ _field_struct, "header", &PuppetActionHeaderStruct_struct_definition },
 		{ _field_struct, "animation", &PuppetActionAnimationStruct_struct_definition },
@@ -27,7 +27,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PuppetSubActionBranchElementBlock, MAX_BRANCHES_PER_SUB_ACTION)
+	V5_TAG_BLOCK(PuppetSubActionBranchElementBlock, MAX_BRANCHES_PER_SUB_ACTION)
 	{
 		{ _field_long_integer, "targetAction" },
 		{ _field_string_id, "conditionScriptName" },
@@ -35,13 +35,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PuppetScriptTextBlock, MAX_BRANCHES_PER_SUB_ACTION)
+	V5_TAG_BLOCK(PuppetScriptTextBlock, MAX_BRANCHES_PER_SUB_ACTION)
 	{
 		{ _field_long_string, "scriptText" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PuppetSubActionBlock, MAX_SUB_ACTIONS_PER_PUPPET)
+	V5_TAG_BLOCK(PuppetSubActionBlock, MAX_SUB_ACTIONS_PER_PUPPET)
 	{
 		{ _field_struct, "header", &PuppetSubActionHeaderStruct_struct_definition },
 		{ _field_struct, "point", &PuppetSubActionPointStruct_struct_definition },
@@ -66,13 +66,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SubTracksBlock, MAX_SUB_TRACKS)
+	V5_TAG_BLOCK(SubTracksBlock, MAX_SUB_TRACKS)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PuppetBlock, MAX_PUPPETS_PER_SHOW)
+	V5_TAG_BLOCK(PuppetBlock, MAX_PUPPETS_PER_SHOW)
 	{
 		{ _field_struct, "header", &PuppetHeaderStruct_struct_definition },
 		{ _field_block, "actions", &PuppetActionBlock_block },
@@ -87,29 +87,29 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(PuppetHeaderBlock, MAX_PUPPETS_PER_SHOW, PuppetHeaderStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetHeaderBlock, MAX_PUPPETS_PER_SHOW, PuppetHeaderStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetActionHeaderBlock, MAX_ACTIONS_PER_SHOW, PuppetActionHeaderStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetActionHeaderBlock, MAX_ACTIONS_PER_SHOW, PuppetActionHeaderStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetSubActionHeaderBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionHeaderStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetSubActionHeaderBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionHeaderStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetAnimationBlock, MAX_ACTIONS_PER_SHOW, PuppetActionAnimationStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetAnimationBlock, MAX_ACTIONS_PER_SHOW, PuppetActionAnimationStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetPathBlock, MAX_ACTIONS_PER_SHOW, PuppetActionPathStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetPathBlock, MAX_ACTIONS_PER_SHOW, PuppetActionPathStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetPointBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionPointStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetPointBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionPointStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetBranchBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionBranchStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetBranchBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionBranchStruct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(PuppetScriptBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionScriptStruct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(PuppetScriptBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionScriptStruct_struct_definition );
 
-	TAG_BLOCK(CommentsBlock, 65536)
+	V5_TAG_BLOCK(CommentsBlock, 65536)
 	{
 		{ _field_char_integer, "char" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PuppetShowsBlock, MAXIMUM_PERFORMANCES_PER_SCENARIO)
+	V5_TAG_BLOCK(PuppetShowsBlock, MAXIMUM_PERFORMANCES_PER_SCENARIO)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "designerZone" },
@@ -134,7 +134,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetHeaderStruct)
+	V5_TAG_STRUCT(PuppetHeaderStruct)
 	{
 		{ _field_byte_flags, "flags", &PuppetFlagsDefinition },
 		{ _field_char_enum, "indexType~", &PuppetIndexTypeEnum },
@@ -156,7 +156,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetPathPointStruct)
+	V5_TAG_STRUCT(PuppetPathPointStruct)
 	{
 		{ _field_char_enum, "type", &PuppetPathPointTypeEnum },
 		{ _field_byte_flags, "flags", &PuppetPathPointFlagsDefinition },
@@ -170,7 +170,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetActionHeaderStruct)
+	V5_TAG_STRUCT(PuppetActionHeaderStruct)
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "id" },
@@ -183,7 +183,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetActionAnimationStruct)
+	V5_TAG_STRUCT(PuppetActionAnimationStruct)
 	{
 		{ _field_string_id, "name" },
 		{ _field_struct, "position", &PuppetPathPointStruct_struct_definition },
@@ -199,14 +199,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetActionPathStruct)
+	V5_TAG_STRUCT(PuppetActionPathStruct)
 	{
 		{ _field_real, "throttle" },
 		{ _field_block, "points", &PuppetPathPointBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetSubActionHeaderStruct)
+	V5_TAG_STRUCT(PuppetSubActionHeaderStruct)
 	{
 		{ _field_char_enum, "type", &PuppetSubActionTypeEnum },
 		{ _field_char_enum, "startType", &SubActionTimeTypeEnum },
@@ -226,7 +226,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetSubActionPointStruct)
+	V5_TAG_STRUCT(PuppetSubActionPointStruct)
 	{
 		{ _field_struct, "point", &PuppetPathPointStruct_struct_definition },
 		{ _field_tag_reference, "asset", &PuppetSubActionPointStruct_asset_reference },
@@ -235,13 +235,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetSubActionBranchStruct)
+	V5_TAG_STRUCT(PuppetSubActionBranchStruct)
 	{
 		{ _field_block, "elements", &PuppetSubActionBranchElementBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PuppetSubActionScriptStruct)
+	V5_TAG_STRUCT(PuppetSubActionScriptStruct)
 	{
 		{ _field_string_id, "scriptName" },
 		{ _field_long_integer, "script~" },

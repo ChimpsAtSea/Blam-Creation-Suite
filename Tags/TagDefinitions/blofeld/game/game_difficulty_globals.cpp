@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(difficulty_block, 1)
+	V5_TAG_BLOCK(difficulty_block, 1)
 	{
 		{ _field_explanation, "health", "scale values for enemy health and damage settings" },
 		{ _field_real, "easy enemy damage#enemy damage multiplier on easy difficulty" },
@@ -131,7 +131,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(coop_difficulty_block, 1)
+	V5_TAG_BLOCK(coop_difficulty_block, 1)
 	{
 		{ _field_explanation, "vitality", "scale values for enemy health and shield settings" },
 		{ _field_real, "two-player shield recharge delay#multiplier on enemy shield recharge delay with two coop players" },

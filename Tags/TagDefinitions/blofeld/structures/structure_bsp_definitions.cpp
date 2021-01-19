@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	TAG_STRUCT(scenario_bsp_nav)
+	V5_TAG_STRUCT(scenario_bsp_nav)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_short_block_index, "reference frame" }, // assembly
@@ -16,7 +16,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(haloreach_sbsp_unknown_block, 65536)
+	V5_TAG_BLOCK(haloreach_sbsp_unknown_block, 65536)
 	{
 		{ _field_real, "unknown@" },
 		{ _field_real, "unknown@" },
@@ -51,9 +51,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block );
 
-	TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
+	V5_TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	{
 		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_struct, "build identifier*", &structure_manifest_build_identifier_struct_struct_definition },
@@ -229,16 +229,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(prefab_block, 1, prefab_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(prefab_block, 1, prefab_struct_definition_struct_definition );
 
-	TAG_BLOCK(structure_edge_to_seam_edge_mapping_block, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
+	V5_TAG_BLOCK(structure_edge_to_seam_edge_mapping_block, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
 	{
 		{ _field_short_integer, "seam_index*!" },
 		{ _field_short_integer, "seam_edge_index*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_collision_materials_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_collision_materials_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
 	{
 		{ _field_tag_reference, "render method{old shader}*^", &structure_collision_materials_block_render_method_reference },
 
@@ -252,13 +252,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_leaf_block, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
+	V5_TAG_BLOCK(structure_bsp_leaf_block, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		{ _field_byte_integer, "cluster*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_super_node_aabbs_block, (k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count)
+	V5_TAG_BLOCK(structure_super_node_aabbs_block, (k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count)
 	{
 		{ _field_real, "x0" },
 		{ _field_real, "x1" },
@@ -269,7 +269,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(super_node_mappings_block, (k_bsp3d_maximum_super_node_count))
+	V5_TAG_BLOCK(super_node_mappings_block, (k_bsp3d_maximum_super_node_count))
 	{
 		{ _field_short_integer, "parent_super_node_index!*" },
 		{ _field_char_integer, "parent_internal_node_index!*" },
@@ -283,45 +283,45 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(super_node_recursable_masks_block, (k_bsp3d_maximum_super_node_count))
+	V5_TAG_BLOCK(super_node_recursable_masks_block, (k_bsp3d_maximum_super_node_count))
 	{
 		{ _field_short_integer, "mask!*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_super_node_traversal_geometry_indices_block, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
+	V5_TAG_BLOCK(structure_super_node_traversal_geometry_indices_block, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
 	{
 		{ _field_short_integer, "index!*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_super_node_traversal_geometry_block, k_short_max)
+	V5_TAG_BLOCK(structure_super_node_traversal_geometry_block, k_short_max)
 	{
 		{ _field_block, "portal_indices!*", &structure_super_node_traversal_geometry_indices_block_block },
 		{ _field_block, "seam_indices!*", &structure_super_node_traversal_geometry_indices_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_surface_block, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
+	V5_TAG_BLOCK(structure_surface_block, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
 	{
 		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index*" },
 		{ _field_long_integer, "structure_surface_to_triangle_mapping_count*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_surface_to_triangle_mapping_block, (8*((true) ? SHORT_MAX<<3 : SHORT_MAX)))
+	V5_TAG_BLOCK(structure_surface_to_triangle_mapping_block, (8*((true) ? SHORT_MAX<<3 : SHORT_MAX)))
 	{
 		{ _field_dword_integer, "manual byteswarp1*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_portal_vertex_block, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
+	V5_TAG_BLOCK(structure_bsp_cluster_portal_vertex_block, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
 	{
 		{ _field_real_point_3d, "point*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_portal_block, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_cluster_portal_block, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
 	{
 		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block_struct_definition },
@@ -336,7 +336,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_detail_object_data_block, 1)
+	V5_TAG_BLOCK(structure_bsp_detail_object_data_block, 1)
 	{
 		{ _field_block, "cells", &global_detail_object_cells_block_block },
 		{ _field_block, "instances", &global_detail_object_block_block },
@@ -347,32 +347,32 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_portal_index_block, MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER)
+	V5_TAG_BLOCK(structure_bsp_cluster_portal_index_block, MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER)
 	{
 		{ _field_short_integer, "portal index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(seam_indices_block_definition, k_structure_seam_maximum_seam_count)
+	V5_TAG_BLOCK(seam_indices_block_definition, k_structure_seam_maximum_seam_count)
 	{
 		{ _field_char_integer, "seam index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheap_light_marker_ref_block, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(cheap_light_marker_ref_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_short_block_index, "cheap light reference reference" },
 		{ _field_pad, "WHATIZZIT", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pvs_bound_object_identifiers_block, k_maximum_scenario_object_datum_count)
+	V5_TAG_BLOCK(pvs_bound_object_identifiers_block, k_maximum_scenario_object_datum_count)
 	{
 		{ _field_struct, "object ID*!", &scenario_object_id_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pvs_bound_object_references_block, k_maximum_scenario_object_datum_count)
+	V5_TAG_BLOCK(pvs_bound_object_references_block, k_maximum_scenario_object_datum_count)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_real_point_3d, "unknown#position?" },
@@ -381,7 +381,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_explanation, "CLUSTER INFO", "" },
 		{ _field_real_bounds, "bounds x*" },
@@ -466,7 +466,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_material_lighting_info_block, SHORT_MAX)
+	V5_TAG_BLOCK(structure_material_lighting_info_block, SHORT_MAX)
 	{
 		{ _field_real, "emissive power" },
 		{ _field_real_rgb_color, "emissive color" },
@@ -479,20 +479,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_sky_owner_cluster_block, MAXIMUM_SKIES_PER_SCENARIO)
+	V5_TAG_BLOCK(structure_bsp_sky_owner_cluster_block, MAXIMUM_SKIES_PER_SCENARIO)
 	{
 		{ _field_short_integer, "cluster owner*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_conveyor_surface_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_conveyor_surface_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
 	{
 		{ _field_real_vector_3d, "u" },
 		{ _field_real_vector_3d, "v" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_cookie_cutter_definition, k_kilo)
+	V5_TAG_BLOCK(structure_cookie_cutter_definition, k_kilo)
 	{
 		{ _field_custom, "Cookie Cutter" },
 		{ _field_struct, "collision model", &global_collision_bsp_struct_struct_definition },
@@ -500,7 +500,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_marker_block, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_marker_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_char_enum, "marker type*", &structure_marker_type_enum },
 		{ _field_pad, "pad", 3 },
@@ -510,19 +510,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_marker_light_palette, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_marker_light_palette, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_tag_reference, "light tag", &light_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_marker_light_index, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_marker_light_index, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "palette index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_runtime_decal_block, MAXIMUM_DECALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_runtime_decal_block, MAXIMUM_DECALS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "decal palette index!" },
 
@@ -555,7 +555,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_environment_object_palette_block, MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_environment_object_palette_block, MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE)
 	{
 		{ _field_tag_reference, "definition^", &object_reference$8 },
 		{ _field_tag_reference, "model", &render_model_reference$9 },
@@ -563,7 +563,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_environment_object_block, MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_environment_object_block, MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE)
 	{
 		{ _field_string, "name^" },
 		{ _field_real_quaternion, "rotation" },
@@ -586,20 +586,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(index_list_block, 4 * k_kilo)
+	V5_TAG_BLOCK(index_list_block, 4 * k_kilo)
 	{
 		{ _field_word_integer, "index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_instance_cluster_definition, k_maximum_cluster_to_instance_group_block_size)
+	V5_TAG_BLOCK(structure_instance_cluster_definition, k_maximum_cluster_to_instance_group_block_size)
 	{
 		{ _field_long_flags, "flags", &structure_instance_cluster_flags },
 		{ _field_block, "instance group indices", &index_list_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_instance_group_definition, 4 * k_kilo)
+	V5_TAG_BLOCK(structure_instance_group_definition, 4 * k_kilo)
 	{
 		{ _field_real_point_3d, "center" },
 		{ _field_real, "radius" },
@@ -615,7 +615,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_instance_imposter_info_block, k_maximum_instance_geometry_instances_per_structure_bsp)
+	V5_TAG_BLOCK(structure_instance_imposter_info_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_integer, "imposter policy" },
@@ -624,13 +624,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(runtime_decorator_set_block, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
+	V5_TAG_BLOCK(runtime_decorator_set_block, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "decorator set reference*", &global_decorator_set_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp_preplaced_decal_set_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(bsp_preplaced_decal_set_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
 	{
 		{ _field_long_integer, "decal definition index!" },
 		{ _field_char_integer, "location bsp 0!" },
@@ -647,7 +647,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp_preplaced_decal_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
+	V5_TAG_BLOCK(bsp_preplaced_decal_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "index start" },
 		{ _field_short_integer, "index count" },
@@ -660,7 +660,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(transparent_planes_block, 32*k_kilo)
+	V5_TAG_BLOCK(transparent_planes_block, 32*k_kilo)
 	{
 		{ _field_short_integer, "section index" },
 		{ _field_short_integer, "part index" },
@@ -668,7 +668,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_debug_info_render_line_block, SHORT_MAX)
+	V5_TAG_BLOCK(structure_bsp_debug_info_render_line_block, SHORT_MAX)
 	{
 		{ _field_enum, "type*", &structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code*" },
@@ -679,13 +679,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_debug_info_indices_block, SHORT_MAX)
+	V5_TAG_BLOCK(structure_bsp_debug_info_indices_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_debug_info_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_cluster_debug_info_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_word_flags, "errors*", &structure_bsp_debug_info_cluster_error_flags },
 		{ _field_word_flags, "warnings*", &structure_bsp_debug_info_cluster_warning_flags },
@@ -698,7 +698,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_fog_plane_debug_info_block, MAXIMUM_FOG_PLANES_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_fog_plane_debug_info_block, MAXIMUM_FOG_PLANES_PER_STRUCTURE)
 	{
 		{ _field_long_integer, "fog zone index*" },
 		{ _field_pad, "WZGH", 24 },
@@ -709,7 +709,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_fog_zone_debug_info_block, MAXIMUM_FOG_ZONES_PER_STRUCTURE)
+	V5_TAG_BLOCK(structure_bsp_fog_zone_debug_info_block, MAXIMUM_FOG_ZONES_PER_STRUCTURE)
 	{
 		{ _field_long_integer, "media index:scenario fog plane*" },
 		{ _field_long_integer, "base fog plane index*" },
@@ -721,7 +721,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_debug_info_block, 1)
+	V5_TAG_BLOCK(structure_bsp_debug_info_block, 1)
 	{
 		{ _field_pad, "BRQYEF", 64 },
 		{ _field_block, "clusters*", &structure_bsp_cluster_debug_info_block_block },
@@ -730,7 +730,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(widget_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(widget_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "marker index*" },
 		{ _field_pad, "gnlao", 2 },
@@ -738,7 +738,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheap_light_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(cheap_light_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "marker index*" },
 		{ _field_pad, "ldajk", 2 },
@@ -746,13 +746,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_raw_resources, 1)
+	V5_TAG_BLOCK(structure_bsp_raw_resources, 1)
 	{
 		{ _field_struct, "raw_items", &structure_bsp_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_external_instanced_geometry_references_block, k_external_instanced_geometry_max)
+	V5_TAG_BLOCK(structure_external_instanced_geometry_references_block, k_external_instanced_geometry_max)
 	{
 		{ _field_tag_reference, "prefab reference", &prefab_reference },
 		{ _field_string_id, "name*^" },
@@ -782,7 +782,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_bsp_obb_volume_block, 4096)
+	V5_TAG_BLOCK(structure_bsp_obb_volume_block, 4096)
 	{
 		{ _field_real_point_3d, "origin" },
 		{ _field_real_vector_3d, "axis 1" },
@@ -792,13 +792,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(AnimGraphDependencyBlock, 256)
+	V5_TAG_BLOCK(AnimGraphDependencyBlock, 256)
 	{
 		{ _field_tag_reference, "graph", &model_animation_graph_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structureBspFxMarkerBlock, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structureBspFxMarkerBlock, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_string, "marker name^" },
 		{ _field_real_quaternion, "rotation*" },
@@ -807,7 +807,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structureMetadataLightConeMarkerBlock, MAXIMUM_MARKERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(structureMetadataLightConeMarkerBlock, MAXIMUM_MARKERS_PER_STRUCTURE)
 	{
 		{ _field_string, "marker name^" },
 		{ _field_real_quaternion, "rotation" },
@@ -821,13 +821,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(prefab_struct_definition)
+	V5_TAG_STRUCT(prefab_struct_definition)
 	{
 		{ _field_tag_reference, "bsp reference", &scenario_structure_bsp_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
+	V5_TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
 	{
 		{ _field_real_point_3d, "center*!" },
 		{ _field_real_vector_3d, "extents*!" },
@@ -835,7 +835,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_bsp_resource_interface)
+	V5_TAG_STRUCT(structure_bsp_resource_interface)
 	{
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
 
@@ -847,7 +847,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_bsp_resource_struct)
+	V5_TAG_STRUCT(structure_bsp_resource_struct)
 	{
 		{ _field_block, "collision bsp*", &global_collision_bsp_block_block },
 		{ _field_block, "large collision bsp*", &global_large_collision_bsp_block_block },
@@ -856,13 +856,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_bsp_tag_resources_struct)
+	V5_TAG_STRUCT(structure_bsp_tag_resources_struct)
 	{
 		{ _field_struct, "resource_items", &structure_bsp_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_bsp_cache_file_tag_resources_struct)
+	V5_TAG_STRUCT(structure_bsp_cache_file_tag_resources_struct)
 	{
 		{ _field_block, "large structure surfaces*", &structure_surface_block_block },
 		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block_block },

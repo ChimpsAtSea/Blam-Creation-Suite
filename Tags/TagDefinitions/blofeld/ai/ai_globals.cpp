@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(ai_globals, AI_GLOBALS_TAG, ai_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(ai_globals, AI_GLOBALS_TAG, ai_globals_block_block );
 
-	TAG_BLOCK(ai_globals_gravemind_block, 1)
+	V5_TAG_BLOCK(ai_globals_gravemind_block, 1)
 	{
 		{ _field_real, "min retreat time:secs" },
 		{ _field_real, "ideal retreat time:secs" },
@@ -14,26 +14,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
+	V5_TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
 	{
 		{ _field_tag_reference, "formation^", &formation_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
+	V5_TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
 	{
 		{ _field_tag_reference, "squad_template^", &squad_template_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
+	V5_TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
 	{
 		{ _field_string_id, "sub folder name^" },
 		{ _field_block, "templates", &ai_globals_squad_template_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
+	V5_TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
 	{
 		{ _field_string_id, "folder name^" },
 		{ _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block_block },
@@ -41,20 +41,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_performance_template_block, k_global_performance_templates_count)
+	V5_TAG_BLOCK(ai_globals_performance_template_block, k_global_performance_templates_count)
 	{
 		{ _field_tag_reference, "thespian_template^", &performance_template_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
+	V5_TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
 	{
 		{ _field_string_id, "sub folder name^" },
 		{ _field_block, "templates", &ai_globals_performance_template_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
+	V5_TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
 	{
 		{ _field_string_id, "folder name^" },
 		{ _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block_block },
@@ -62,13 +62,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_custom_stimuli_block, k_max_custom_stimuli_count)
+	V5_TAG_BLOCK(ai_globals_custom_stimuli_block, k_max_custom_stimuli_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
+	V5_TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
 	{
 		{ _field_explanation, "Vision Traits", "Traits that affect the AI\'s vision" },
 		{ _field_real, "vision distance scale#Scale the distance at which an AI can see their target." },
@@ -76,14 +76,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
+	V5_TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
 	{
 		{ _field_explanation, "Sound Traits", "Traits that affect the AI\'s sound awareness" },
 		{ _field_real, "hearing distance scale#Scale the character\'s hearing distance." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
+	V5_TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
 	{
 		{ _field_explanation, "Luck Traits", "Traits that affect the AI\'s luck" },
 		{ _field_real, "evasion chance scale#Scale the chance of evading fire." },
@@ -100,7 +100,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
+	V5_TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
 	{
 		{ _field_explanation, "Grenade Traits", "Traits that affect the AI\'s grenade use" },
 		{ _field_real, "velocity scale#Scale the velocity at which AI throws grenades" },
@@ -113,7 +113,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ai_globals_data_block, 1)
+	V5_TAG_BLOCK(ai_globals_data_block, 1)
 	{
 		{ _field_real, "AI infantry-on-AI weapon damage scale:[0,1]#Global scale on weapon damage made by AI on other AI" },
 		{ _field_real, "AI vehicle-on-AI weapon damage scale:[0,1]#Global scale on weapon damage made by AI in a vehicle on other AI" },
@@ -211,9 +211,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(ai_globals_block, 1, ai_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(ai_globals_block, 1, ai_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(ai_globals_struct_definition)
+	V5_TAG_STRUCT(ai_globals_struct_definition)
 	{
 		{ _field_block, "data", &ai_globals_data_block_block },
 		{ _field_terminator }

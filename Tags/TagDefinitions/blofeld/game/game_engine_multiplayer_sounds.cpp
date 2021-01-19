@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(sound_response, SOUND_RESPONSE_TAG, sound_response_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_response, SOUND_RESPONSE_TAG, sound_response_block_block );
 
-	TAG_GROUP_FROM_BLOCK(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG, sound_incident_response_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG, sound_incident_response_block_block );
 
-	TAG_BLOCK(sound_response_permutation_block, 10)
+	V5_TAG_BLOCK(sound_response_permutation_block, 10)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_combine_response_block, 10)
+	V5_TAG_BLOCK(sound_combine_response_block, 10)
 	{
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "response behavior", &sound_combine_response_flags },
@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_response_data_block, 10)
+	V5_TAG_BLOCK(sound_response_data_block, 10)
 	{
 		{ _field_string_id, "name" },
 		{ _field_string_id, "channel" },
@@ -39,9 +39,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(sound_response_block, 1, sound_response_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_response_block, 1, sound_response_struct_definition_struct_definition );
 
-	TAG_BLOCK(sound_incident_response_data_block, 10)
+	V5_TAG_BLOCK(sound_incident_response_data_block, 10)
 	{
 		{ _field_byte_flags, "audience", &sound_audience_flags },
 		{ _field_byte_flags, "excluded audience", &sound_audience_flags },
@@ -51,15 +51,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(sound_incident_response_block, 1, sound_incident_response_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_incident_response_block, 1, sound_incident_response_struct_definition_struct_definition );
 
-	TAG_STRUCT(sound_response_struct_definition)
+	V5_TAG_STRUCT(sound_response_struct_definition)
 	{
 		{ _field_block, "responses", &sound_response_data_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_incident_response_struct_definition)
+	V5_TAG_STRUCT(sound_incident_response_struct_definition)
 	{
 		{ _field_block, "responses", &sound_incident_response_data_block_block },
 		{ _field_terminator }

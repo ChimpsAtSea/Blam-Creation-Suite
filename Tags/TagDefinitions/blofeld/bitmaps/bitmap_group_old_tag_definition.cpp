@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(bitmap_group_sprite_block_def, MAXIMUM_SPRITES_PER_SEQUENCE)
+	V5_TAG_BLOCK(bitmap_group_sprite_block_def, MAXIMUM_SPRITES_PER_SEQUENCE)
 	{
 		{ _field_short_integer, "bitmap index*" },
 		{ _field_pad, "D", 2 },
@@ -17,7 +17,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bitmap_group_sequence_block_def, MAXIMUM_SEQUENCES_PER_BITMAP_GROUP)
+	V5_TAG_BLOCK(bitmap_group_sequence_block_def, MAXIMUM_SEQUENCES_PER_BITMAP_GROUP)
 	{
 		{ _field_string, "name^" },
 		{ _field_short_integer, "first bitmap index*" },

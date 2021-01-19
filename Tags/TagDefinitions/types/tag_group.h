@@ -16,7 +16,6 @@ namespace blofeld
 			const s_tag_group* const parent_tag_group
 		);
 
-
 		const char* const name;
 		unsigned long const group_tag;
 		unsigned long const parent_group_tag;

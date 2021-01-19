@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(scenery, SCENERY_TAG, object, OBJECT_TAG, scenery_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(scenery, SCENERY_TAG, object, OBJECT_TAG, scenery_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(scenery_block, 1, scenery_group_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenery_block, 1, scenery_group_struct_definition );
 
-	TAG_STRUCT(scenery_group)
+	V5_TAG_STRUCT(scenery_group)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_explanation, "Pathfinding", "Indicate whether, by default, we should create pathfinding data for this type of scenery" },

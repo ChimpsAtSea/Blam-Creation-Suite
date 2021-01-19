@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(particle, PARTICLE_TAG, particle_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(particle, PARTICLE_TAG, particle_block_block );
 
-	TAG_BLOCK(gpu_variants_block, sizeof(c_particle_definition::s_gpu_data::s_frames)/sizeof(real_vector4d))
+	V5_TAG_BLOCK(gpu_variants_block, sizeof(c_particle_definition::s_gpu_data::s_frames)/sizeof(real_vector4d))
 	{
 		{ _field_array, "runtime m_count!", &gpu_single_constant_register_array_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(attachment_block, 4)
+	V5_TAG_BLOCK(attachment_block, 4)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &attachment_flags },
@@ -27,13 +27,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gpu_sprite_block, 1)
+	V5_TAG_BLOCK(gpu_sprite_block, 1)
 	{
 		{ _field_array, "runtime gpu_sprite_array!", &gpu_single_constant_register_array_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(particle_block, 1, particle_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(particle_block, 1, particle_struct_definition_struct_definition );
 
 	TAG_ARRAY(gpu_single_constant_register_array, sizeof(real_vector4d)/sizeof(real))
 	{
@@ -43,7 +43,7 @@ namespace blofeld
 
 	TAG_REFERENCE(particle_struct_unknown_reference);
 
-	TAG_STRUCT(particle_struct_definition)
+	V5_TAG_STRUCT(particle_struct_definition)
 	{
 		{ _field_custom },
 		{ _field_long_flags, "main flags", &particle_main_flags },
@@ -119,7 +119,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(gpu_data_struct$2)
+	V5_TAG_STRUCT(gpu_data_struct$2)
 	{
 		{ _field_block, "runtime m_sprite!", &gpu_sprite_block_block },
 		{ _field_block, "runtime m_frames!", &gpu_variants_block_block },

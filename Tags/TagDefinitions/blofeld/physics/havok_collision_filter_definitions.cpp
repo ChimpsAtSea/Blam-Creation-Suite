@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block );
 
-	TAG_BLOCK(havok_collision_filter_group_block, k_havok_group_count)
+	V5_TAG_BLOCK(havok_collision_filter_group_block, k_havok_group_count)
 	{
 		{ _field_long_flags, "filter", &collision_filter_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
 
-	TAG_STRUCT(havok_collision_filter_struct_definition)
+	V5_TAG_STRUCT(havok_collision_filter_struct_definition)
 	{
 		{ _field_explanation, "specify what each group collides with", "" },
 		{ _field_block, "groups", &havok_collision_filter_group_block_block },
@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_group_filter_filter_struct)
+	V5_TAG_STRUCT(havok_group_filter_filter_struct)
 	{
 		{ _field_pointer, "hkReferencedObject vtable*~!" },
 		{ _field_short_integer, "size*~!" },

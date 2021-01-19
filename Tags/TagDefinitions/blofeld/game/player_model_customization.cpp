@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG, player_model_customization_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG, player_model_customization_globals_block_block );
 
-	TAG_BLOCK(customized_model_player_bits_block, k_maximum_number_of_model_customization_bits_per_selection)
+	V5_TAG_BLOCK(customized_model_player_bits_block, k_maximum_number_of_model_customization_bits_per_selection)
 	{
 		{ _field_string_id, "region name^" },
 		{ _field_string_id, "permutation name" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
+	V5_TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
 	{
 		{ _field_string_id, "selection name^" },
 
@@ -26,9 +26,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(player_model_customization_globals_block, 1, player_model_customization_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(player_model_customization_globals_block, 1, player_model_customization_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(player_model_customization_globals_struct_definition)
+	V5_TAG_STRUCT(player_model_customization_globals_struct_definition)
 	{
 		{ _field_tag_reference, "spartan render model#used for string list generation", &render_model_reference$7 },
 		{ _field_tag_reference, "elite render model!", &render_model_reference$7 },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(jetwash_definition_block, k_maximum_jetwash_points_per_object)
+	V5_TAG_BLOCK(jetwash_definition_block, k_maximum_jetwash_points_per_object)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker name^" },

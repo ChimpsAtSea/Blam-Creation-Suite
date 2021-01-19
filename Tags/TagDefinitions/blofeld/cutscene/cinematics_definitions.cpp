@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(cinematic, CINEMATIC_TAG)
+	V5_TAG_GROUP(cinematic, CINEMATIC_TAG)
 	{
 		{ _field_custom, "custom playback" },
 		{ _field_struct, "cinematic playback!", &cinematic_playback_data_block_struct_definition },
@@ -38,11 +38,11 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(cinematic_scene, CINEMATIC_SCENE_TAG, cinematic_scene_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cinematic_scene, CINEMATIC_SCENE_TAG, cinematic_scene_block_block );
 
-	TAG_GROUP_FROM_BLOCK(cinematic_scene_data, CINEMATIC_SCENE_DATA_TAG, cinematic_scene_data_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cinematic_scene_data, CINEMATIC_SCENE_DATA_TAG, cinematic_scene_data_block_block );
 
-	TAG_GROUP(cinematic_transition, CINEMATIC_TRANSITION_TAG)
+	V5_TAG_GROUP(cinematic_transition, CINEMATIC_TRANSITION_TAG)
 	{
 		{ _field_custom, "fade out from game" },
 		{ _field_struct, "fade out from game struct", &cinematic_transition_element_block_struct_definition },
@@ -62,14 +62,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_playback_data_block, MAX_CINEMATIC_SCENE_COUNT)
+	V5_TAG_BLOCK(cinematic_shot_playback_data_block, MAX_CINEMATIC_SCENE_COUNT)
 	{
 		{ _field_array, "shot flags!", &g_cinematicShotFlagArray_array },
 
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_scene_reference_block, MAX_CINEMATIC_SCENE_COUNT)
+	V5_TAG_BLOCK(cinematic_scene_reference_block, MAX_CINEMATIC_SCENE_COUNT)
 	{
 		{ _field_tag_reference, "scene", &cinematic_scene_reference },
 
@@ -79,7 +79,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scene_object_attachment_block, 10000)
+	V5_TAG_BLOCK(scene_object_attachment_block, 10000)
 	{
 		{ _field_byte_flags, "flags", &scene_object_attachment_flags },
 		{ _field_pad, "VKJSLKHF", 3 },
@@ -92,7 +92,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_scene_object_block, 10000)
+	V5_TAG_BLOCK(cinematic_scene_object_block, 10000)
 	{
 		{ _field_string_id, "name*^" },
 
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_lighting_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_lighting_block, 10000)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_lighting_flags_definition },
 		{ _field_tag_reference, "lighting", &global_new_cinematic_lighting_reference },
@@ -134,13 +134,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_clip_subject_block, k_maximum_scene_shot_clip_subject_count)
+	V5_TAG_BLOCK(cinematic_shot_clip_subject_block, k_maximum_scene_shot_clip_subject_count)
 	{
 		{ _field_long_block_index, "index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_clip_block, k_maximum_scene_shot_clip_plane_count)
+	V5_TAG_BLOCK(cinematic_shot_clip_block, k_maximum_scene_shot_clip_plane_count)
 	{
 		{ _field_real_point_3d, "plane center" },
 		{ _field_real_point_3d, "plane direction" },
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_music_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_music_block, 10000)
 	{
 		{ _field_long_flags, "flags", &music_flags_enum },
 		{ _field_tag_reference, "music/foley", &global_sound_and_looping_sound_reference },
@@ -161,7 +161,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_object_function_keyframe_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_object_function_keyframe_block, 10000)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_object_function_flags },
 		{ _field_custom, "frame" },
@@ -171,7 +171,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_object_function_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_object_function_block, 10000)
 	{
 		{ _field_long_block_index, "object" },
 		{ _field_string_id, "function name" },
@@ -179,7 +179,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_screen_effect_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_screen_effect_block, 10000)
 	{
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_custom, "frame" },
@@ -194,7 +194,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_user_input_constraints_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_user_input_constraints_block, 10000)
 	{
 		{ _field_custom, "frame" },
 		{ _field_long_integer, "frame" },
@@ -204,7 +204,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematicShotTextureMovieBlock, 10000)
+	V5_TAG_BLOCK(cinematicShotTextureMovieBlock, 10000)
 	{
 		{ _field_long_flags, "flags", &textureMovieFlags },
 		{ _field_custom, "frame" },
@@ -213,7 +213,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_block, MAX_CINEMATIC_SHOT_COUNT)
+	V5_TAG_BLOCK(cinematic_shot_block, MAX_CINEMATIC_SHOT_COUNT)
 	{
 		{ _field_custom, "loop now" },
 		{ _field_custom, "Header" },
@@ -274,17 +274,17 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematicStructureLightingBlock, 32)
+	V5_TAG_BLOCK(cinematicStructureLightingBlock, 32)
 	{
 		{ _field_tag_reference, "structure lighting info^", &structure_lighting_bsp_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cinematic_scene_block, 1, cinematic_scene_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cinematic_scene_block, 1, cinematic_scene_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cinematicSceneDataObjectBlock, 10000, cinematicSceneDataObjectBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cinematicSceneDataObjectBlock, 10000, cinematicSceneDataObjectBlock_struct_struct_definition );
 
-	TAG_BLOCK(cinematic_shot_dialogue_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_dialogue_block, 10000)
 	{
 		{ _field_tag_reference, "dialogue*", &global_sound_reference },
 		{ _field_tag_reference, "female dialogue*", &global_sound_reference },
@@ -299,7 +299,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_effect_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_effect_block, 10000)
 	{
 		{ _field_byte_flags, "flags", &cinematic_shot_effect_flags },
 		{ _field_char_enum, "state", &sceneShotEffectState },
@@ -323,7 +323,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_custom_script_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_custom_script_block, 10000)
 	{
 		{ _field_byte_flags, "flags!", &cinematic_shot_custom_script_flags },
 		{ _field_pad, "CMVOIRLKSD", 3 },
@@ -335,26 +335,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_frame_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_frame_block, 10000)
 	{
 		{ _field_struct, "camera frame", &camera_frame_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_frame_dynamic_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_frame_dynamic_block, 10000)
 	{
 		{ _field_struct, "dynamic camera frame", &camera_frame_dynamic_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_frame_constant_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_frame_constant_block, 10000)
 	{
 		{ _field_long_integer, "frame index" },
 		{ _field_struct, "constant camera frame", &camera_frame_constant_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematicDataShotBlock, MAX_CINEMATIC_SHOT_COUNT)
+	V5_TAG_BLOCK(cinematicDataShotBlock, MAX_CINEMATIC_SHOT_COUNT)
 	{
 		{ _field_block, "dialogue", &cinematic_shot_dialogue_block_block },
 		{ _field_block, "effects", &cinematic_shot_effect_block_block },
@@ -366,20 +366,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_extra_camera_frame_block, 10000)
+	V5_TAG_BLOCK(cinematic_extra_camera_frame_block, 10000)
 	{
 		{ _field_long_flags, "flags", &cinematic_extra_camera_frame_flags },
 		{ _field_struct, "frame data", &camera_frame_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_extra_camera_shot_block, 10000)
+	V5_TAG_BLOCK(cinematic_extra_camera_shot_block, 10000)
 	{
 		{ _field_block, "frame data", &cinematic_extra_camera_frame_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_shot_extra_camera_block, 10000)
+	V5_TAG_BLOCK(cinematic_shot_extra_camera_block, 10000)
 	{
 		{ _field_string_id, "name" },
 		{ _field_string_id, "type" },
@@ -387,16 +387,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cinematic_scene_data_block, 1, cinematic_scene_data_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cinematic_scene_data_block, 1, cinematic_scene_data_struct_definition_struct_definition );
 
-	TAG_BLOCK(cinematic_transition_global_gain_block, 1)
+	V5_TAG_BLOCK(cinematic_transition_global_gain_block, 1)
 	{
 		{ _field_real, "gain:dB^" },
 		{ _field_long_integer, "time:hs_ticks" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_transition_sound_class_gain_block, 8)
+	V5_TAG_BLOCK(cinematic_transition_sound_class_gain_block, 8)
 	{
 		{ _field_char_enum, "class^", &sound_class_enum },
 		{ _field_pad, "pad", 3 },
@@ -405,19 +405,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_transition_sound_reference_block, 4)
+	V5_TAG_BLOCK(cinematic_transition_sound_reference_block, 4)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_transition_looping_sound_reference_block, 4)
+	V5_TAG_BLOCK(cinematic_transition_looping_sound_reference_block, 4)
 	{
 		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_transition_looping_sound_state_block, 4)
+	V5_TAG_BLOCK(cinematic_transition_looping_sound_state_block, 4)
 	{
 		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
 		{ _field_real, "scale" },
@@ -426,7 +426,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_characters_block, 16)
+	V5_TAG_BLOCK(cinematic_characters_block, 16)
 	{
 		{ _field_string_id, "character name^" },
 		{ _field_real_rgb_color, "subtitle color" },
@@ -434,7 +434,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematics_globals_block, 1)
+	V5_TAG_BLOCK(cinematics_globals_block, 1)
 	{
 		{ _field_tag_reference, "cinematic anchor reference", &scenery_reference },
 		{ _field_real, "cinematic film aperture" },
@@ -455,9 +455,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_cutscene_title_block, k_maximum_scenario_cutscene_titles, scenario_cutscene_title_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_cutscene_title_block, k_maximum_scenario_cutscene_titles, scenario_cutscene_title_struct_struct_definition );
 
-	TAG_BLOCK(scenario_cinematics_block, MAXIMUM_SCENARIO_CINEMATICS)
+	V5_TAG_BLOCK(scenario_cinematics_block, MAXIMUM_SCENARIO_CINEMATICS)
 	{
 		{ _field_byte_flags, "flags", &scenario_cinematics_flags },
 		{ _field_pad, "SDJLKANF", 3 },
@@ -471,7 +471,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_playback_data_block)
+	V5_TAG_STRUCT(cinematic_playback_data_block)
 	{
 		{ _field_long_block_flags, "scenes!" },
 		{ _field_long_block_flags, "scenes expanded!" },
@@ -483,7 +483,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_and_zone_set_struct)
+	V5_TAG_STRUCT(scenario_and_zone_set_struct)
 	{
 
 		{ _field_version_greater, _engine_type_haloreach, 1 },
@@ -494,13 +494,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_custom_script_block)
+	V5_TAG_STRUCT(cinematic_custom_script_block)
 	{
 		{ _field_data, "script{ }" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_scene_struct_definition)
+	V5_TAG_STRUCT(cinematic_scene_struct_definition)
 	{
 		{ _field_custom, "loop now" },
 		{ _field_string_id, "name^" },
@@ -532,7 +532,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_scene_data_struct_definition)
+	V5_TAG_STRUCT(cinematic_scene_data_struct_definition)
 	{
 		{ _field_block, "objects*", &cinematicSceneDataObjectBlock_block },
 		{ _field_block, "shots*", &cinematicDataShotBlock_block },
@@ -541,7 +541,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematicSceneDataObjectBlock_struct)
+	V5_TAG_STRUCT(cinematicSceneDataObjectBlock_struct)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_string_id, "identifier*" },
@@ -552,14 +552,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_frame_struct)
+	V5_TAG_STRUCT(camera_frame_struct)
 	{
 		{ _field_struct, "dynamic data", &camera_frame_dynamic_struct_struct_definition },
 		{ _field_struct, "constant data", &camera_frame_constant_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_frame_dynamic_struct)
+	V5_TAG_STRUCT(camera_frame_dynamic_struct)
 	{
 		{ _field_real_point_3d, "camera position*" },
 		{ _field_real_vector_3d, "camera forward*" },
@@ -567,7 +567,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_frame_constant_struct)
+	V5_TAG_STRUCT(camera_frame_constant_struct)
 	{
 		{ _field_real, "focal length*" },
 		{ _field_long_integer, "depth of field*" },
@@ -586,7 +586,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_transition_element_block)
+	V5_TAG_STRUCT(cinematic_transition_element_block)
 	{
 		{ _field_struct, "global fade", &cinematic_transition_global_fade_block_struct_definition },
 		{ _field_block, "sound global gain", &cinematic_transition_global_gain_block_block },
@@ -599,14 +599,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cinematic_transition_global_fade_block)
+	V5_TAG_STRUCT(cinematic_transition_global_fade_block)
 	{
 		{ _field_real_rgb_color, "fade_color^" },
 		{ _field_long_integer, "fade time:hs_ticks" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_cutscene_title_struct)
+	V5_TAG_STRUCT(scenario_cutscene_title_struct)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real_fraction_bounds, "text bounds X" },

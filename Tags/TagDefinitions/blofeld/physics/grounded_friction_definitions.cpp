@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(grounded_friction, GROUNDED_FRICTION_TAG, grounded_friction_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(grounded_friction, GROUNDED_FRICTION_TAG, grounded_friction_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(grounded_friction_block, 1, grounded_friction_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(grounded_friction_block, 1, grounded_friction_struct_definition_struct_definition );
 
-	TAG_STRUCT(grounded_friction_struct_definition)
+	V5_TAG_STRUCT(grounded_friction_struct_definition)
 	{
 		{ _field_explanation, "GROUNDED FRICTION", "Defines friction to be applied to grounded things (rolling or sliding) relative to the time they\'ve been rolling/sliding. Friction of 1.0 will stop them completely in a single tick.  Friction of 0.0 is the same as no friction at all.  The on-ground timer used to access this graph resets if the object leaves the ground for any period of time (bounces, is blown off the ground, etc). \n\nFOR EXAMPLE: Set up the graph as a \"Curve\", set the range to 0-1 (using the boxes at the top and bottom of the right-hand side of the graph), and set the domain min and max to 0 and 5, respectively. Set the maximum slope for friction to 90 (vertical walls).  The in-game result is that any object using this grounded friction will have friction of 0 (no friction) applied the instant they stop bouncing and start rolling/sliding, and that friction will ramp up (using the curve you provided) to 1 over the course of 5 seconds.  After 5 seconds of sliding/rolling, the object will come to a stop, no matter what (even if it\'s sliding down an 85 degree slope, because you set the maximum slope for friction to 90).  See daldridge or Sage w/ further questions." },
 		{ _field_struct, "Friction over time", &scalar_function_named_struct_struct_definition },

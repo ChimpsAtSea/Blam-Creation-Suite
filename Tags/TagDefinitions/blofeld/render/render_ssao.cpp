@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(ssao_definition, SSAO_DEFINITION_TAG, ssao_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(ssao_definition, SSAO_DEFINITION_TAG, ssao_definition_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(ssao_definition_block, 1, ssao_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(ssao_definition_block, 1, ssao_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(ssao_definition_struct_definition)
+	V5_TAG_STRUCT(ssao_definition_struct_definition)
 	{
 		{ _field_char_enum, "downsample*", &ssao_downsample_enum_definition },
 		{ _field_char_enum, "ssao type*", &ssao_type_enum_definition },

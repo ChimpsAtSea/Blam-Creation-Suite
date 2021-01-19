@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(hologramLightingGlobalsBlock, 1)
+	V5_TAG_BLOCK(hologramLightingGlobalsBlock, 1)
 	{
 		{ _field_custom, "HOLOGRAM FUNCTIONS" },
 		{ _field_string_id, "Intensity" },
@@ -21,9 +21,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(hologramLightingBlock, 1, hologramLightingBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(hologramLightingBlock, 1, hologramLightingBlock_struct_struct_definition );
 
-	TAG_STRUCT(hologramLightFunctions)
+	V5_TAG_STRUCT(hologramLightFunctions)
 	{
 		{ _field_string_id, "Intensity" },
 		{ _field_string_id, "Forward" },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(hologramLightingBlock_struct)
+	V5_TAG_STRUCT(hologramLightingBlock_struct)
 	{
 		{ _field_custom, "HOLOGRAM" },
 		{ _field_custom, "Intensity" },
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(hologramLight)
+	V5_TAG_STRUCT(hologramLight)
 	{
 		{ _field_custom, "Hologram Light" },
 		{ _field_custom, "Direction" },

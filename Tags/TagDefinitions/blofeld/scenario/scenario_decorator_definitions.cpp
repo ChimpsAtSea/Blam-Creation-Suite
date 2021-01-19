@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(decorator_palette, MAXIMUM_DECORATOR_PALETTES_PER_SCENARIO)
+	V5_TAG_BLOCK(decorator_palette, MAXIMUM_DECORATOR_PALETTES_PER_SCENARIO)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_short_block_index, "decorator set 0" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_decorator_placement_block, MAXIMUM_DECORATOR_PLACEMENTS_PER_SET)
+	V5_TAG_BLOCK(global_decorator_placement_block, MAXIMUM_DECORATOR_PLACEMENTS_PER_SET)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_byte_integer, "type index" },
@@ -44,14 +44,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(decorator_scenario_set_block, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
+	V5_TAG_BLOCK(decorator_scenario_set_block, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "decorator set^", &global_decorator_set_reference },
 		{ _field_block, "placements*", &global_decorator_placement_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_decorator_block, 1)
+	V5_TAG_BLOCK(scenario_decorator_block, 1)
 	{
 		{ _field_struct, "brush", &decorator_brush_struct_struct_definition },
 		{ _field_long_integer, "decorator count*" },
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(decorator_brush_struct)
+	V5_TAG_STRUCT(decorator_brush_struct)
 	{
 		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition },
 		{ _field_long_enum, "middle button brush", &decorator_right_brush_type_enum_definition },

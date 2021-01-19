@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(antenna, ANTENNA_TAG, antenna_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(antenna, ANTENNA_TAG, antenna_block_block );
 
-	TAG_BLOCK(antenna_vertex_block, MAXIMUM_NUMBER_OF_ANTENNA_VERTICES)
+	V5_TAG_BLOCK(antenna_vertex_block, MAXIMUM_NUMBER_OF_ANTENNA_VERTICES)
 	{
 		{ _field_real_euler_angles_2d, "angles#direction toward next vertex!" },
 		{ _field_real, "length:world units#distance between this vertex and the next" },
@@ -19,9 +19,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(antenna_block, 1, antenna_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(antenna_block, 1, antenna_struct_definition_struct_definition );
 
-	TAG_STRUCT(antenna_struct_definition)
+	V5_TAG_STRUCT(antenna_struct_definition)
 	{
 		{ _field_old_string_id, "attachment marker name#the marker name where the antenna should be attached" },
 		{ _field_tag_reference, "bitmaps", &bitmap_reference$4 },

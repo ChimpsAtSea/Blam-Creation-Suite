@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(fluid_dynamics, FLUID_DYNAMICS_TAG, fluid_dynamics_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(fluid_dynamics, FLUID_DYNAMICS_TAG, fluid_dynamics_block_block );
 
-	TAG_BLOCK(fluid_dynamics_squirter_block, MAXIMUM_SQUIRTERS_PER_FLUID_DYNAMICS)
+	V5_TAG_BLOCK(fluid_dynamics_squirter_block, MAXIMUM_SQUIRTERS_PER_FLUID_DYNAMICS)
 	{
 		{ _field_point_2d, "grid location" },
 		{ _field_skip, "JKISKKJS", 48 },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fluid_dynamics_inflow_block, MAXIMUM_INFLOWS_PER_FLUID_DYNAMICS)
+	V5_TAG_BLOCK(fluid_dynamics_inflow_block, MAXIMUM_INFLOWS_PER_FLUID_DYNAMICS)
 	{
 		{ _field_point_2d, "grid location" },
 		{ _field_real, "inflow rate#particles/sec" },
@@ -23,21 +23,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fluid_dynamics_outflow_block, MAXIMUM_OUTFLOWS_PER_FLUID_DYNAMICS)
+	V5_TAG_BLOCK(fluid_dynamics_outflow_block, MAXIMUM_OUTFLOWS_PER_FLUID_DYNAMICS)
 	{
 		{ _field_point_2d, "grid location" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fluid_dynamics_obstacle_block, MAXIMUM_OBSTACLES_PER_FLUID_DYNAMICS)
+	V5_TAG_BLOCK(fluid_dynamics_obstacle_block, MAXIMUM_OBSTACLES_PER_FLUID_DYNAMICS)
 	{
 		{ _field_point_2d, "2x2 grid location" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(fluid_dynamics_block, 1, fluid_dynamics_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(fluid_dynamics_block, 1, fluid_dynamics_struct_definition_struct_definition );
 
-	TAG_STRUCT(fluid_dynamics_struct_definition)
+	V5_TAG_STRUCT(fluid_dynamics_struct_definition)
 	{
 		{ _field_long_flags, "flags", &fluid_dynamics_flags },
 		{ _field_string_id, "marker attachment name" },
@@ -76,7 +76,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(g_single_scalar_function_evaluation_struct)
+	V5_TAG_STRUCT(g_single_scalar_function_evaluation_struct)
 	{
 		{ _field_real, "input" },
 		{ _field_custom },

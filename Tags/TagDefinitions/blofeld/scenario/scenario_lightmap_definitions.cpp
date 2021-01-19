@@ -5,7 +5,7 @@ namespace blofeld
 {
 	TAG_REFERENCE(scenario_lightmap_group_unknown_reference);
 
-	TAG_BLOCK(scenario_lightmap_bsp_data_unknown2_block, 65536)
+	V5_TAG_BLOCK(scenario_lightmap_bsp_data_unknown2_block, 65536)
 	{
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
@@ -22,7 +22,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_bsp_data_unknown1_block, 65536)
+	V5_TAG_BLOCK(scenario_lightmap_bsp_data_unknown1_block, 65536)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_real, "unknown" },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_bsp_data_unknown0_block, 65536)
+	V5_TAG_BLOCK(scenario_lightmap_bsp_data_unknown0_block, 65536)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
@@ -53,14 +53,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_bsp_data_unknown, 65536)
+	V5_TAG_BLOCK(scenario_lightmap_bsp_data_unknown, 65536)
 	{
 		{ _field_short_integer, "vertex buffer index" },
 		{ _field_short_integer, "unknown" },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(scenario_lightmap_bsp_data, SCENARIO_LIGHTMAP_BSP_DATA_TAG)
+	V5_TAG_GROUP(scenario_lightmap_bsp_data, SCENARIO_LIGHTMAP_BSP_DATA_TAG)
 	{
 		{ _field_word_flags, "flags", &scenario_lightmap_bsp_flags },
 		{ _field_short_integer, "bsp reference index" },
@@ -143,16 +143,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(scenario_lightmap, SCENARIO_LIGHTMAP_TAG)
+	V5_TAG_GROUP(scenario_lightmap, SCENARIO_LIGHTMAP_TAG)
 	{
 		{ _field_long_integer, "job guid" },
 		{ _field_block, "lightmap BSP references", &scenario_lightmap_bsp_data_reference_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(scenario_wetness_bsp_data, SCENARIO_WETNESS_BSP_DATA_TAG, scenario_wetness_bsp_data_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario_wetness_bsp_data, SCENARIO_WETNESS_BSP_DATA_TAG, scenario_wetness_bsp_data_block_block );
 
-	TAG_BLOCK(scenario_lightmap_cluster_data, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(scenario_lightmap_cluster_data, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_short_integer, "lightprobe texture array index" },
 		{ _field_short_integer, "pervertex block index" },
@@ -160,7 +160,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_instance_data, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(scenario_lightmap_instance_data, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_short_integer, "lightprobe texture array index" },
 		{ _field_short_integer, "pervertex block index" },
@@ -182,7 +182,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_lightprobe_value, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(scenario_lightmap_lightprobe_value, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 10 },
 		{ _field_real_quaternion, "unknown" },
@@ -203,13 +203,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_instance_index_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(scenario_lightmap_instance_index_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "Indices" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_global_perpixel_padding_data, 1024 * 1024)
+	V5_TAG_BLOCK(scenario_lightmap_global_perpixel_padding_data, 1024 * 1024)
 	{
 		{ _field_long_integer, "x" },
 		{ _field_long_integer, "y" },
@@ -218,20 +218,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_rasterized_chart_source, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_rasterized_chart_source, 2147483647L)
 	{
 		{ _field_long_integer, "streamIndex" },
 		{ _field_long_integer, "vertexIndex" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_rasterized_chart_element, 1024 * 1024 * 4)
+	V5_TAG_BLOCK(scenario_lightmap_rasterized_chart_element, 1024 * 1024 * 4)
 	{
 		{ _field_byte_integer, "composite" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_rasterized_chart_data, 1024 * 1024)
+	V5_TAG_BLOCK(scenario_lightmap_rasterized_chart_data, 1024 * 1024)
 	{
 		{ _field_long_integer, "width" },
 		{ _field_long_integer, "height" },
@@ -245,13 +245,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_new_ao_data_block, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_new_ao_data_block, 2147483647L)
 	{
 		{ _field_char_integer, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_adjacent_bounce_vertex_block, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_adjacent_bounce_vertex_block, 2147483647L)
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_short_integer, "color_r" },
@@ -261,19 +261,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_adjacent_bounce_index_block, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_adjacent_bounce_index_block, 2147483647L)
 	{
 		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangle_mapping_block, 2147483647L)
+	V5_TAG_BLOCK(triangle_mapping_block, 2147483647L)
 	{
 		{ _field_long_integer, "word*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangle_mapping_per_mesh_block, (8*1024-1))
+	V5_TAG_BLOCK(triangle_mapping_per_mesh_block, (8*1024-1))
 	{
 		{ _field_version_platform_include, _platform_type_pc },
 		{ _field_version_greater_or_equal, _engine_type_halo4 },
@@ -286,14 +286,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_dynamic_light_instance_data_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(scenario_lightmap_dynamic_light_instance_data_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "Index" },
 		{ _field_long_integer, "Shadow Geometry Mesh Index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_dynamic_light_instance, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_dynamic_light_instance, 2147483647L)
 	{
 		{ _field_real, "Min Depth" },
 		{ _field_long_integer, "Light Instance Checksum" },
@@ -301,26 +301,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_structure_light_instance, 2147483647L)
+	V5_TAG_BLOCK(scenario_lightmap_structure_light_instance, 2147483647L)
 	{
 		{ _field_long_integer, "Shadow Geometry Mesh Index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(s_scenario_lightmap_silhouette_vertex, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(s_scenario_lightmap_silhouette_vertex, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(s_scenario_lightmap_silhouette_edge, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(s_scenario_lightmap_silhouette_edge, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "First index" },
 		{ _field_long_integer, "Second index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(s_scenario_lightmap_silhouette_group, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(s_scenario_lightmap_silhouette_group, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "First edge" },
 		{ _field_long_integer, "Edge count" },
@@ -331,7 +331,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_airprobe_value, k_max_airprobes_per_scenario)
+	V5_TAG_BLOCK(scenario_lightmap_airprobe_value, k_max_airprobes_per_scenario)
 	{
 		{ _field_real_point_3d, "airprobe position" },
 		{ _field_string_id, "airprobe name^" },
@@ -356,32 +356,32 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lightmap_bsp_data_reference_block, LONG_BITS)
+	V5_TAG_BLOCK(scenario_lightmap_bsp_data_reference_block, LONG_BITS)
 	{
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "wetness bsp reference", &scenario_wetness_bsp_data_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(wentness_bit_vector, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(wentness_bit_vector, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "bits" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(wentness_byte_vector, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(wentness_byte_vector, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_char_integer, "bytes" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cluster_wetness_offset_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(cluster_wetness_offset_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "cluster offset" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(instance_wetness_instance_block, UNSIGNED_SHORT_MAX)
+	V5_TAG_BLOCK(instance_wetness_instance_block, UNSIGNED_SHORT_MAX)
 	{
 		{ _field_long_integer, "cluster offset" },
 		{ _field_char_integer, "single probe" },
@@ -390,7 +390,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
 
 	TAG_ARRAY(dual_vmf_terms, k_dual_vmf_basis_real_coefficients_count)
 	{
@@ -398,7 +398,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_wetness_bsp_data_struct_definition)
+	V5_TAG_STRUCT(scenario_wetness_bsp_data_struct_definition)
 	{
 		{ _field_short_integer, "bsp reference index" },
 		{ _field_pad, "LHWCHFX", 2 },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(big_battle_creature, BIG_BATTLE_CREATURE_TAG)
+	V5_TAG_GROUP(big_battle_creature, BIG_BATTLE_CREATURE_TAG)
 	{
 		{ _field_custom, "CREATURE" },
 		{ _field_long_flags, "flags", &creature_definition_flags },
@@ -35,17 +35,17 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(creature, CREATURE_TAG, object, OBJECT_TAG, creature_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(creature, CREATURE_TAG, object, OBJECT_TAG, creature_block_block );
 
-	TAG_BLOCK(creature_scalar_timing_block, 1)
+	V5_TAG_BLOCK(creature_scalar_timing_block, 1)
 	{
 		{ _field_struct, "function_curve", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(creature_block, 1, creature_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(creature_block, 1, creature_struct_definition_struct_definition );
 
-	TAG_STRUCT(creature_struct_definition)
+	V5_TAG_STRUCT(creature_struct_definition)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ CREATURE $$$" },

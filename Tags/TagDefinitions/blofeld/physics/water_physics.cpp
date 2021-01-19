@@ -4,16 +4,16 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(water_physics_drag_properties, WATER_PHYSICS_DRAG_PROPERTIES_TAG, water_physics_drag_properties_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(water_physics_drag_properties, WATER_PHYSICS_DRAG_PROPERTIES_TAG, water_physics_drag_properties_block_block );
 
-	TAG_BLOCK(water_physics_material_override, k_maximum_material_types)
+	V5_TAG_BLOCK(water_physics_material_override, k_maximum_material_types)
 	{
 		{ _field_string_id, "material^" },
 		{ _field_struct, "drag", &water_physics_drag_properties_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(water_physics_hull_surface_definition_block, s_water_physics_model::k_maximum_hull_surfaces_count)
+	V5_TAG_BLOCK(water_physics_hull_surface_definition_block, s_water_physics_model::k_maximum_hull_surfaces_count)
 	{
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
 		{ _field_pad, "pad0", 2 },
@@ -24,9 +24,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(water_physics_drag_properties_block, 1, water_physics_drag_properties_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(water_physics_drag_properties_block, 1, water_physics_drag_properties_struct_definition_struct_definition );
 
-	TAG_STRUCT(water_physics_drag_properties_struct)
+	V5_TAG_STRUCT(water_physics_drag_properties_struct)
 	{
 		{ _field_custom, "Pressure" },
 		{ _field_struct, "pressure", &physics_force_function_struct_struct_definition },
@@ -39,7 +39,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(physics_force_function_struct)
+	V5_TAG_STRUCT(physics_force_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "velocity to pressure", &mapping_function_struct_definition },
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(water_physics_drag_properties_struct_definition)
+	V5_TAG_STRUCT(water_physics_drag_properties_struct_definition)
 	{
 		{ _field_struct, "drag", &water_physics_drag_properties_struct_struct_definition },
 		{ _field_terminator }

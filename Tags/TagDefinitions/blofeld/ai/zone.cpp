@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(NavMeshAttachmentBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES)
+	V5_TAG_BLOCK(NavMeshAttachmentBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES)
 	{
 		{ _field_dword_integer, "navMeshUID" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(flight_reference_block, k_max_flight_references_per_area)
+	V5_TAG_BLOCK(flight_reference_block, k_max_flight_references_per_area)
 	{
 		{ _field_short_integer, "flight hint index" },
 		{ _field_short_integer, "point index" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(area_sector_point_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(area_sector_point_block, k_maximum_points_per_sector)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
@@ -27,7 +27,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(areas_block, k_max_areas_per_zone)
+	V5_TAG_BLOCK(areas_block, k_max_areas_per_zone)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_custom },
@@ -83,7 +83,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(zone_block, k_max_zones_per_map)
+	V5_TAG_BLOCK(zone_block, k_max_zones_per_map)
 	{
 		{ _field_custom },
 		{ _field_custom },
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(NavMeshAttachmentsStruct)
+	V5_TAG_STRUCT(NavMeshAttachmentsStruct)
 	{
 		{ _field_block, "attachments", &NavMeshAttachmentBlock_block },
 		{ _field_terminator }

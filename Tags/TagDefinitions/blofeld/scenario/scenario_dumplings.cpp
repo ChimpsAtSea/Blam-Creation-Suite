@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(dumpling_point_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(dumpling_point_block, k_maximum_points_per_sector)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_atmosphere_dumpling_block, s_scenario_atmosphere_dumpling::k_maximum_scenario_atmosphere_dumplings)
+	V5_TAG_BLOCK(scenario_atmosphere_dumpling_block, s_scenario_atmosphere_dumpling::k_maximum_scenario_atmosphere_dumplings)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct_struct_definition },
 		{ _field_short_block_index, "atmosphere" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_weather_dumpling_block, s_scenario_weather_dumpling::k_maximum_scenario_weather_dumplings)
+	V5_TAG_BLOCK(scenario_weather_dumpling_block, s_scenario_weather_dumpling::k_maximum_scenario_weather_dumplings)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct_struct_definition },
 		{ _field_short_block_index, "weather" },
@@ -27,7 +27,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_dumpling_struct)
+	V5_TAG_STRUCT(scenario_dumpling_struct)
 	{
 		{ _field_block, "inner points", &dumpling_point_block_block },
 		{ _field_block, "outer points", &dumpling_point_block_block },

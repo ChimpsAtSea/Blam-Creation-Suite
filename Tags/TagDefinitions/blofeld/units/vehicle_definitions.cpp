@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block);
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block);
 
-	TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition);
 
-	TAG_BLOCK(phantom_shapes_block, 1) //0x3C0 Don't hurt me, I beg you. #TODO: populate this havok structure
+	V5_TAG_BLOCK(phantom_shapes_block, 1) //0x3C0 Don't hurt me, I beg you. #TODO: populate this havok structure
 	{
 		{ _field_long_integer, "Unknown" },
 		{ _field_long_integer, "Unknown" },
@@ -253,7 +253,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(human_jeep_block, 1)
+	V5_TAG_BLOCK(human_jeep_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -272,7 +272,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(human_plane_block, 1)
+	V5_TAG_BLOCK(human_plane_block, 1)
 	{
 		{ _field_explanation, "velocity control variables", "" },
 		{ _field_real, "maximum forward speed" },
@@ -312,7 +312,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(wolverine_block, 1)
+	V5_TAG_BLOCK(wolverine_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -329,7 +329,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(alien_scout_block, 1)
+	V5_TAG_BLOCK(alien_scout_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
@@ -365,7 +365,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(alien_fighter_block, 1)
+	V5_TAG_BLOCK(alien_fighter_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -398,7 +398,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(turret_block, 1)
+	V5_TAG_BLOCK(turret_block, 1)
 	{
 		{ _field_word_flags, "flags", &turret_flags },
 		{ _field_pad, "pad", 2 },
@@ -409,7 +409,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mantis_block, 1)
+	V5_TAG_BLOCK(mantis_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -445,7 +445,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vtol_speed_interpolated_block, 2)
+	V5_TAG_BLOCK(vtol_speed_interpolated_block, 2)
 	{
 		{ _field_real, "rotor damping#maxes out around 30" },
 		{ _field_real, "maximum left acceleration" },
@@ -458,7 +458,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vtol_block, 1)
+	V5_TAG_BLOCK(vtol_block, 1)
 	{
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
 		{ _field_custom },
@@ -530,7 +530,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(chopper_block, 1)
+	V5_TAG_BLOCK(chopper_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -554,7 +554,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(guardian_block, 1)
+	V5_TAG_BLOCK(guardian_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_real, "maximum forward speed" },
@@ -570,7 +570,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(jackal_glider_block, 1)
+	V5_TAG_BLOCK(jackal_glider_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
@@ -622,7 +622,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(boat_block, 1)
+	V5_TAG_BLOCK(boat_block, 1)
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		{ _field_pad, "blah", 3 },
@@ -637,7 +637,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(space_fighter_block, 1)
+	V5_TAG_BLOCK(space_fighter_block, 1)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition },
@@ -724,7 +724,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(revenant_block, 1)
+	V5_TAG_BLOCK(revenant_block, 1)
 	{
 		{ _field_struct, "tank block", &human_tank_struct_struct_definition },
 		{ _field_explanation, "velocity control variables", "" },
@@ -746,7 +746,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SoundRTPCBlock, k_maxSoundRTPCBlocks)
+	V5_TAG_BLOCK(SoundRTPCBlock, k_maxSoundRTPCBlocks)
 	{
 		{ _field_long_block_index, "Attachment Index#Sound attachment to affect" },
 		{ _field_string_id, "Function#Function to drive the RTPC" },
@@ -755,7 +755,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SoundSweetenerBlock, k_maxSoundSweetenerBlocks)
+	V5_TAG_BLOCK(SoundSweetenerBlock, k_maxSoundSweetenerBlocks)
 	{
 		{ _field_string_id, "Function#Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -764,7 +764,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_transitions_block, k_max_vehicle_physics_transitions)
+	V5_TAG_BLOCK(physics_transitions_block, k_max_vehicle_physics_transitions)
 	{
 		{ _field_real, "transition velocity:wu/s#speed at which flight model transition occurs" },
 		{ _field_real, "velocity threshold side: 0 or 1#0 if velocity should be smaller than transition value, else 1" },
@@ -775,9 +775,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition);
 
-	TAG_STRUCT(vehicle_group)
+	V5_TAG_STRUCT(vehicle_group)
 	{
 		{ _field_struct, "unit", &unit_struct_definition_struct_definition },
 		{ _field_custom, "$$$ VEHICLE $$$" },
@@ -845,7 +845,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(vehicle_physics_types_struct)
+	V5_TAG_STRUCT(vehicle_physics_types_struct)
 	{
 		{ _field_custom },
 		{ _field_block, "type-human_tank", &human_tank_block_block },
@@ -880,7 +880,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(human_tank_struct)
+	V5_TAG_STRUCT(human_tank_struct)
 	{
 		{ _field_angle, "forward arc#outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." },
 		{ _field_angle, "perpendicular forward arc#this is the value of forward arc when turned sideways.  We interpolate from forward arc to this value when camera becomes perpendicular to the vehicle" },
@@ -922,7 +922,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(vehicle_steering_control_struct)
+	V5_TAG_STRUCT(vehicle_steering_control_struct)
 	{
 		{ _field_explanation, "steering overdampening", "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n" },
 		{ _field_real, "overdampen cusp angle:degrees" },
@@ -930,7 +930,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(vehicle_turning_control_struct)
+	V5_TAG_STRUCT(vehicle_turning_control_struct)
 	{
 		{ _field_explanation, "turning", "" },
 		{ _field_real, "maximum left turn" },
@@ -939,7 +939,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(steering_animation_struct)
+	V5_TAG_STRUCT(steering_animation_struct)
 	{
 		{ _field_explanation, "steering animation and interpolation\n", "This data controls the depiction of steering \nthrough animation - not the vehicles ability to turn\ninterpolation scale= how much we interpolate between steering poses.\nmax angle= max animated steering angle change allowed per tick.\n" },
 		{ _field_real, "interpolation scale#1= heavy interp. of steering animations" },
@@ -947,7 +947,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(engine_function_struct)
+	V5_TAG_STRUCT(engine_function_struct)
 	{
 		{ _field_string_id, "object function damage region#this is the name of the region by which we gauge the overall damage of the vehicle" },
 		{ _field_real, "min anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" },
@@ -957,14 +957,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(vtol_descent_function_struct)
+	V5_TAG_STRUCT(vtol_descent_function_struct)
 	{
 		{ _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition },
 		{ _field_real, "max downward speed:wu/s" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(flight_surface_struct)
+	V5_TAG_STRUCT(flight_surface_struct)
 	{
 		{ _field_char_enum, "offset axis", &dimensions_enum },
 		{ _field_char_enum, "pivot axis", &dimensions_enum },
@@ -981,7 +981,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(jackal_glider_drag_struct)
+	V5_TAG_STRUCT(jackal_glider_drag_struct)
 	{
 		{ _field_explanation, "drag", "drag= k*SQR(q*velocity) + constant deceleration" },
 		{ _field_real, "q" },

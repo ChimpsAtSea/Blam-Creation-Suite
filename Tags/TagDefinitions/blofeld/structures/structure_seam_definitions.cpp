@@ -4,22 +4,22 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(structure_seams, STRUCTURE_SEAMS_TAG, structure_seams_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(structure_seams, STRUCTURE_SEAMS_TAG, structure_seams_block_block );
 
-	TAG_BLOCK(structure_seam_edge_mapping_block, k_structure_seam_maximum_edges_count)
+	V5_TAG_BLOCK(structure_seam_edge_mapping_block, k_structure_seam_maximum_edges_count)
 	{
 		{ _field_long_integer, "structure edge index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_cluster_mapping_block, k_structure_seam_maximum_clusters_on_seam_count)
+	V5_TAG_BLOCK(structure_seam_cluster_mapping_block, k_structure_seam_maximum_clusters_on_seam_count)
 	{
 		{ _field_long_integer, "cluster_index*" },
 		{ _field_real_point_3d, "cluster center*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_mapping_block, k_structure_seam_maximum_seam_count)
+	V5_TAG_BLOCK(structure_seam_mapping_block, k_structure_seam_maximum_seam_count)
 	{
 		{ _field_struct, "seams identifier*!", &structure_seam_identifier_struct_struct_definition },
 		{ _field_block, "edge mapping*", &structure_seam_edge_mapping_block_block },
@@ -27,13 +27,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_original_vertex_plane_normals_block, 1024)
+	V5_TAG_BLOCK(structure_seam_original_vertex_plane_normals_block, 1024)
 	{
 		{ _field_real_vector_3d, "triangle normal*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_original_vertex_block, k_structure_seam_maximum_points_count)
+	V5_TAG_BLOCK(structure_seam_original_vertex_block, k_structure_seam_maximum_points_count)
 	{
 		{ _field_real_point_3d, "original vertex*!" },
 		{ _field_long_integer, "final point index*!" },
@@ -41,19 +41,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_final_planes_block, k_structure_seam_maximum_planes_count)
+	V5_TAG_BLOCK(structure_seam_final_planes_block, k_structure_seam_maximum_planes_count)
 	{
 		{ _field_real_plane_3d, "plane*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_final_points_block, k_structure_seam_maximum_points_count)
+	V5_TAG_BLOCK(structure_seam_final_points_block, k_structure_seam_maximum_points_count)
 	{
 		{ _field_real_point_3d, "final point*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_final_triangles_block, k_structure_seam_maximum_triangles_count)
+	V5_TAG_BLOCK(structure_seam_final_triangles_block, k_structure_seam_maximum_triangles_count)
 	{
 		{ _field_long_integer, "final plane*!" },
 		{ _field_short_block_index, "final point0*!" },
@@ -63,14 +63,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_final_edges_block, k_structure_seam_maximum_edges_count)
+	V5_TAG_BLOCK(structure_seam_final_edges_block, k_structure_seam_maximum_edges_count)
 	{
 		{ _field_short_block_index, "final point0*!" },
 		{ _field_short_block_index, "final point1*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_seam_block, k_structure_seam_maximum_seam_count)
+	V5_TAG_BLOCK(structure_seam_block, k_structure_seam_maximum_seam_count)
 	{
 		{ _field_struct, "identifier*!", &structure_seam_identifier_struct_struct_definition },
 		{ _field_struct, "original*!", &structure_seam_original_geometry_struct_struct_definition },
@@ -78,9 +78,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(structure_seams_block, 1, structure_seams_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(structure_seams_block, 1, structure_seams_struct_definition_struct_definition );
 
-	TAG_STRUCT(structure_seam_identifier_struct)
+	V5_TAG_STRUCT(structure_seam_identifier_struct)
 	{
 		{ _field_long_integer, "seam_id0*!" },
 		{ _field_long_integer, "seam_id1*!" },
@@ -89,7 +89,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_seams_struct_definition)
+	V5_TAG_STRUCT(structure_seams_struct_definition)
 	{
 		{ _field_struct, "structure manifest*", &structure_manifest_struct_struct_definition },
 		{ _field_explanation, "This tag defines the geometry between seam connected structures bsp.", "" },
@@ -100,13 +100,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_seam_original_geometry_struct)
+	V5_TAG_STRUCT(structure_seam_original_geometry_struct)
 	{
 		{ _field_block, "original vertices*!", &structure_seam_original_vertex_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structure_seam_final_geometry_struct)
+	V5_TAG_STRUCT(structure_seam_final_geometry_struct)
 	{
 		{ _field_block, "planes*!", &structure_seam_final_planes_block_block },
 		{ _field_block, "points*!", &structure_seam_final_points_block_block },

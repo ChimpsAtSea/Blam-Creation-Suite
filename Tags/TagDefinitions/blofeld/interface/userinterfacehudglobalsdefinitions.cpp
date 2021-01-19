@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(user_interface_hud_globals_definition, USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG, user_interface_hud_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(user_interface_hud_globals_definition, USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG, user_interface_hud_globals_definition_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(user_interface_hud_globals_definition_block, 1, user_interface_hud_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(user_interface_hud_globals_definition_block, 1, user_interface_hud_globals_definition_struct_definition_struct_definition );
 
 	TAG_ARRAY(screen_transform_basis_array_definition, 9)
 	{
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
+	V5_TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
 	{
 		{ _field_explanation, "Motion sensor globals", "Misc settings for the motion sensor" },
 		{ _field_byte_flags, "flags", &HUDMotionSensorGlobalsFlags },

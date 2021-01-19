@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(sound_environment, SOUND_ENVIRONMENT_TAG)
+	V5_TAG_GROUP(sound_environment, SOUND_ENVIRONMENT_TAG)
 	{
 		{ _field_explanation, "Reverb Settings", "" },
 		{ _field_struct, "reverb settings", &global_sound_reverb_block_struct_definition },

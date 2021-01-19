@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(sound_response_definition_block, 10)
+	V5_TAG_BLOCK(sound_response_definition_block, 10)
 	{
 		{ _field_struct, "sound_response_definition_struct", &sound_response_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_event_block, k_maximum_game_engine_event_responses)
+	V5_TAG_BLOCK(game_engine_event_block, k_maximum_game_engine_event_responses)
 	{
 		{ _field_string_id, "name{incident}^" },
 		{ _field_char_enum, "audience^", &game_engine_event_audience_enum_definition },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_response_definition_struct)
+	V5_TAG_STRUCT(sound_response_definition_struct)
 	{
 		{ _field_byte_flags, "sound flags", &game_engine_sound_response_flags_definition },
 		{ _field_pad, "AGQD", 3 },

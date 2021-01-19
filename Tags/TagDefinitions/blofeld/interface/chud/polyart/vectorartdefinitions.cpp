@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(vectorart_asset, VECTORART_ASSET_TAG)
+	V5_TAG_GROUP(vectorart_asset, VECTORART_ASSET_TAG)
 	{
 		{ _field_char_enum, "runtime flags*!", &g_polyartAssetStateFlags },
 		{ _field_pad, "MERP", 3 },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(vectorartVertexBufferDescriptorStruct)
+	V5_TAG_STRUCT(vectorartVertexBufferDescriptorStruct)
 	{
 		{ _field_data, "vertices*" },
 		{ _field_terminator }

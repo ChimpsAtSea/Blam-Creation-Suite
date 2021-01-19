@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP(wave_template, WAVE_TEMPLATE_TAG)
+	V5_TAG_GROUP(wave_template, WAVE_TEMPLATE_TAG)
 	{
 		{ _field_block, "squad specifications", &wave_squad_specification_struct_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(wave_squad_specification_struct, k_max_squad_specifications_per_wave, wave_squad_specification_struct_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(wave_squad_specification_struct, k_max_squad_specifications_per_wave, wave_squad_specification_struct_struct_struct_definition );
 
-	TAG_STRUCT(wave_squad_specification_struct_struct)
+	V5_TAG_STRUCT(wave_squad_specification_struct_struct)
 	{
 		{ _field_tag_reference, "squad template^", &squad_template_reference$2 },
 		{ _field_struct, "spawn conditions", &ai_spawn_conditions_struct_struct_definition },

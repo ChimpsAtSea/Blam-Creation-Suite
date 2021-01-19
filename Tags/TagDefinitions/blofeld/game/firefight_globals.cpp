@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(firefight_globals, FIREFIGHT_GLOBALS_TAG)
+	V5_TAG_GROUP(firefight_globals, FIREFIGHT_GLOBALS_TAG)
 	{
 		{ _field_block, "wave templates", &firefightWaveTemplatesBlock_block },
 		{ _field_tag_reference, "co-op spawning", &global_coop_spawning_globals_reference },
@@ -13,9 +13,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(firefightWaveTemplatesBlock, FirefightWaveTemplateDefinition::k_maximumAIWaveTemplates, firefightWaveTemplatesBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(firefightWaveTemplatesBlock, FirefightWaveTemplateDefinition::k_maximumAIWaveTemplates, firefightWaveTemplatesBlock_struct_struct_definition );
 
-	TAG_STRUCT(firefightWaveTemplatesBlock_struct)
+	V5_TAG_STRUCT(firefightWaveTemplatesBlock_struct)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "wave template", &wave_template_reference },

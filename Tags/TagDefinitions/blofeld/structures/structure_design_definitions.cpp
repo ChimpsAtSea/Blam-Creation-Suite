@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	TAG_GROUP(structure_design, STRUCTURE_DESIGN_TAG)
+	V5_TAG_GROUP(structure_design, STRUCTURE_DESIGN_TAG)
 	{
 		{ _field_struct, "build identifier*", &structure_manifest_build_identifier_struct_struct_definition },
 		{ _field_struct, "parent build identifier*", &structure_manifest_build_identifier_struct_struct_definition },

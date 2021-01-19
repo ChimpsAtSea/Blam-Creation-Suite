@@ -4,23 +4,23 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(style, STYLE_TAG, style_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(style, STYLE_TAG, style_block_block );
 
-	TAG_BLOCK(style_palette_block, 50)
+	V5_TAG_BLOCK(style_palette_block, 50)
 	{
 		{ _field_tag_reference, "reference^", &style_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
+	V5_TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
 	{
 		{ _field_string, "behavior name*^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
 
-	TAG_STRUCT(style_struct_definition)
+	V5_TAG_STRUCT(style_struct_definition)
 	{
 		{ _field_string, "name^" },
 		{ _field_explanation, "Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag." },

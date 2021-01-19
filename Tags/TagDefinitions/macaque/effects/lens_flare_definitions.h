@@ -1,0 +1,43 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	constexpr unsigned long LENS_FLARE_TAG = 'lens';
+	extern s_tag_group lens_flare_group; // lens_flare_block
+
+
+	extern s_tag_block_definition lens_flare_block;
+	extern s_tag_block_definition lens_flare_reflection_block;
+	extern s_tag_struct_definition lens_flare_reflection_block_struct_definition; // lens_flare_reflection_block
+	extern s_tag_block_definition lens_flare_scalar_animation_block;
+	extern s_tag_struct_definition lens_flare_scalar_animation_block_struct_definition; // lens_flare_scalar_animation_block
+	extern s_tag_block_definition lens_flare_color_animation_block;
+	extern s_tag_struct_definition lens_flare_color_animation_block_struct_definition; // lens_flare_color_animation_block
+
+	extern s_tag_struct_definition lens_flare_struct_definition; // tag group
+	extern s_tag_struct_definition lens_flare_color_function_struct;
+
+	extern c_versioned_string_list lens_flare_reflection_flags_definition_strings;
+	extern s_string_list_definition lens_flare_reflection_flags_definition;
+	extern c_versioned_string_list lens_flare_flags_definition_strings;
+	extern s_string_list_definition lens_flare_flags_definition;
+	extern c_versioned_string_list lens_flare_occlusion_offset_enum_definition_strings;
+	extern s_string_list_definition lens_flare_occlusion_offset_enum_definition;
+	extern c_versioned_string_list lens_flare_corona_rotation_function_enum_definition_strings;
+	extern s_string_list_definition lens_flare_corona_rotation_function_enum_definition;
+	extern c_versioned_string_list output_mod_enum_strings;
+	extern s_string_list_definition output_mod_enum;
+	extern c_versioned_string_list lens_flare_animation_flags_definition_strings;
+	extern s_string_list_definition lens_flare_animation_flags_definition;
+
+	extern s_tag_reference_definition global_lens_flare_reference;
+	extern s_tag_reference_definition globalLensFlareReferenceNonResourceDependency;
+
+} // namespace macaque
+
+} // namespace blofeld
+

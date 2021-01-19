@@ -2,29 +2,70 @@
 
 class c_h4_tag_struct;
 
+struct b_h4_tag_memory_attributes
+{
+	bigendian_type<e_h4_tag_memory_type> memory_type;
+	bigendian_type<e_h4_tag_memory_usage_bit> usage_flags;
+};
+
+struct s_h4_tag_persistent_identifier
+{
+	bint32_t data[4];
+};
+
+struct s_h4_byte_swap_definition
+{
+	buint32_t _unknown[7];
+};
+
 struct s_h4_tag_struct_definition
 {
-	bpointer32<const char*> display_name;
+	bpointer32<const char*> pretty_name;
 	bpointer32<const char*> name;
 	bpointer32<const char*> filepath;
 	buint32_t line_number;
-	GUID _unknownguid;
+	s_h4_tag_persistent_identifier persistent_identifier;
 	bpointer32<void*> fields_address;
 	buint32_t size;
 	bpointer32<const char*> size_string_address;
-	buint32_t unknown;
-	buint32_t unknown_tag0;
-	buint32_t unknown_tag1;
-	buint32_t unknown0;
-	buint32_t unknown1;
+	buint32_t alignment_bits;
+	buint32_t legacy_struct_tag[3];
+	buint32_t legacy_version;
 	bpointer32<void*> unknown2;
 	buint32_t unknown3;
 	bpointer32<void*> unknown4;
 	buint32_t unknown5;
 	bpointer32<void*> tag_struct_vtable;
-	uint64_t procedures_table_size;
-	uint32_t _unknown[44];
+	buint64_t procedures_table_size;
+	buint32_t _unknown1[8];
+	buint32_t exploded_struct_size;
+	buint32_t _unknown2[1];
+	b_h4_tag_memory_attributes memory_attributes;
+	buint32_t _unknown3;
+	s_h4_byte_swap_definition byte_swap_definition;
+	s_h4_byte_swap_definition cache_file_byte_swap_definition;
+	buint32_t _unknown4;
+	bigendian_type<e_h4_runtime_flags_bit> runtime_flags;
+	buint32_t _unknown5;
+	buint32_t cache_file_size;
+	buint32_t _unknown6[10];
+	bpointer32<void*> descendent_definition;
+	buint32_t _unknown7[2];
 };
+static_assert_64(offsetof(s_h4_tag_struct_definition, legacy_struct_tag) == 48);
+static_assert_64(offsetof(s_h4_tag_struct_definition, legacy_version) == 60);
+static_assert_64(offsetof(s_h4_tag_struct_definition, exploded_struct_size) == 128);
+static_assert_64(offsetof(s_h4_tag_struct_definition, memory_attributes) == 136);
+static_assert_64(offsetof(s_h4_tag_struct_definition, byte_swap_definition) == 148);
+static_assert_64(offsetof(s_h4_tag_struct_definition, cache_file_byte_swap_definition) == 176);
+static_assert_64(offsetof(s_h4_tag_struct_definition, runtime_flags) == 208);
+static_assert_64(offsetof(s_h4_tag_struct_definition, cache_file_size) == 216);
+static_assert_64(offsetof(s_h4_tag_struct_definition, descendent_definition) == 260);
+
+static constexpr size_t z = offsetof(s_h4_tag_struct_definition, byte_swap_definition);
+static constexpr size_t y = offsetof(s_h4_tag_struct_definition, cache_file_byte_swap_definition);
+static constexpr size_t x = offsetof(s_h4_tag_struct_definition, runtime_flags);
+
 
 struct s_h4_tag_field_definition
 {
@@ -191,7 +232,7 @@ public:
 		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition, field_definition->definition_address))
 	{
 		uint32_t definition_address = field_definition->definition_address;
-		const char* field_set_display_name = h4_va_to_pointer(h4_data, definition->display_name);
+		const char* field_set_display_name = h4_va_to_pointer(h4_data, definition->pretty_name);
 		const char* field_set_name = h4_va_to_pointer(h4_data, definition->name);
 
 		

@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(render_water_ripple, RENDER_WATER_RIPPLE_TAG, render_water_ripple_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_water_ripple, RENDER_WATER_RIPPLE_TAG, render_water_ripple_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(render_water_ripple_block, 1, render_water_ripple_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_water_ripple_block, 1, render_water_ripple_struct_definition_struct_definition );
 
-	TAG_STRUCT(render_water_ripple_struct_definition)
+	V5_TAG_STRUCT(render_water_ripple_struct_definition)
 	{
 		{ _field_explanation, "TYPE FLAGS", "" },
 		{ _field_long_flags, "flags", &ripple_behavior_flags },

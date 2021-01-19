@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(game_mode_flags_struct)
+	V5_TAG_STRUCT(game_mode_flags_struct)
 	{
 		{ _field_byte_flags, "game mode", &game_type_enum_definition },
 		{ _field_byte_flags, "matchmaking type", &game_matchmaking_flags_definition },

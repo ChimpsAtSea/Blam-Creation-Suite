@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(mopp_code_data_definition_block, 16*(1024*1024))
+	V5_TAG_BLOCK(mopp_code_data_definition_block, 16*(1024*1024))
 	{
 		{ _field_byte_integer, "mopp data*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mopp_code_definition_block, SHORT_MAX) // hkpMoppCode see hkpMoppCode.h
+	V5_TAG_BLOCK(mopp_code_definition_block, SHORT_MAX) // hkpMoppCode see hkpMoppCode.h
 	{
 		// hkBaseObject
 		{ _field_pointer, "field pointer skip!~", nullptr, 'nuke' }, // vftbl

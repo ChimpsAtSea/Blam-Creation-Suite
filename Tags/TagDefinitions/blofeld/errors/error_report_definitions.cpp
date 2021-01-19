@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(error_report_vertices_block, MAXIMUM_VERTICES_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_vertices_block, MAXIMUM_VERTICES_PER_ERROR_REPORT)
 	{
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
 		{ _field_real_argb_color, "color*" },
@@ -12,7 +12,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_report_vectors_block, MAXIMUM_VECTORS_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_vectors_block, MAXIMUM_VECTORS_PER_ERROR_REPORT)
 	{
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
 		{ _field_real_argb_color, "color*" },
@@ -21,28 +21,28 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_report_lines_block, MAXIMUM_LINES_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_lines_block, MAXIMUM_LINES_PER_ERROR_REPORT)
 	{
 		{ _field_array, "points*", &error_report_line_point_array_array },
 		{ _field_real_argb_color, "color*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_report_triangles_block, MAXIMUM_TRIANGLES_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_triangles_block, MAXIMUM_TRIANGLES_PER_ERROR_REPORT)
 	{
 		{ _field_array, "points*", &error_report_triangle_point_array_array },
 		{ _field_real_argb_color, "color*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_report_quads_block, MAXIMUM_QUADS_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_quads_block, MAXIMUM_QUADS_PER_ERROR_REPORT)
 	{
 		{ _field_array, "points*", &error_report_quad_point_array_array },
 		{ _field_real_argb_color, "color*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_report_comments_block, MAXIMUM_COMMENTS_PER_ERROR_REPORT)
+	V5_TAG_BLOCK(error_report_comments_block, MAXIMUM_COMMENTS_PER_ERROR_REPORT)
 	{
 		{ _field_data, "text*" },
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(error_reports_block, MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY)
+	V5_TAG_BLOCK(error_reports_block, MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY)
 	{
 		{ _field_char_enum, "type*", &error_report_types },
 		{ _field_char_enum, "source*", &error_report_source },
@@ -74,7 +74,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_error_report_categories_block, MAXIMUM_ERROR_REPORT_CATEGORIES)
+	V5_TAG_BLOCK(global_error_report_categories_block, MAXIMUM_ERROR_REPORT_CATEGORIES)
 	{
 		{ _field_long_string, "name^*" },
 		{ _field_enum, "report type*", &error_report_types },
@@ -116,7 +116,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(error_report_point_definition)
+	V5_TAG_STRUCT(error_report_point_definition)
 	{
 		{ _field_real_point_3d, "position*" },
 		{ _field_array, "node indices*", &error_point_node_index_array_array },

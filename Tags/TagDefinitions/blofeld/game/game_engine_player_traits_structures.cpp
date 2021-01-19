@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(player_traits_vitality_block, 1)
+	V5_TAG_BLOCK(player_traits_vitality_block, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
@@ -48,7 +48,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_traits_weapons_block, 1)
+	V5_TAG_BLOCK(player_traits_weapons_block, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_weapons_float_flags },
@@ -125,7 +125,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_traits_movement_block, 1)
+	V5_TAG_BLOCK(player_traits_movement_block, 1)
 	{
 
 		{ _field_version_greater, _engine_type_haloreach },
@@ -158,7 +158,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_traits_appearance_block, 1)
+	V5_TAG_BLOCK(player_traits_appearance_block, 1)
 	{
 		{ _field_char_enum, "active camo", &player_trait_active_camo },
 		{ _field_char_enum, "waypoint", &player_trait_waypoint },
@@ -181,7 +181,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_traits_sensors_block, 1)
+	V5_TAG_BLOCK(player_traits_sensors_block, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
@@ -211,7 +211,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_player_traits_block, 1)
+	V5_TAG_BLOCK(game_engine_player_traits_block, 1)
 	{
 		{ _field_block, "vitality traits", &player_traits_vitality_block_block },
 		{ _field_block, "weapon traits", &player_traits_weapons_block_block },
@@ -221,7 +221,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_player_traits_list_block, 64)
+	V5_TAG_BLOCK(game_engine_player_traits_list_block, 64)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "vitality traits", &player_traits_vitality_block_block },

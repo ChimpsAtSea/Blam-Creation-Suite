@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(material_shader_bank, MATERIAL_SHADER_BANK_TAG)
+	V5_TAG_GROUP(material_shader_bank, MATERIAL_SHADER_BANK_TAG)
 	{
 		{ _field_block, "compiled vertex shaders*", &compiled_vertex_shader_block_block },
 		{ _field_block, "compiled vertex shader hashes*", &compiled_shader_hash_block_block },
@@ -14,13 +14,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(compiled_shader_hash_block, kshaderBlockCount)
+	V5_TAG_BLOCK(compiled_shader_hash_block, kshaderBlockCount)
 	{
 		{ _field_long_integer, "hash" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vertexShaderUniqueBindingInfoBlock, kshaderBlockCount)
+	V5_TAG_BLOCK(vertexShaderUniqueBindingInfoBlock, kshaderBlockCount)
 	{
 		{ _field_long_integer, "VertexType" },
 		{ _field_long_integer, "EntryPoint" },

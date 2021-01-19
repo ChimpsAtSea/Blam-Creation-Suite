@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP(sound_classes, SOUND_CLASSES_TAG)
+	V5_TAG_GROUP(sound_classes, SOUND_CLASSES_TAG)
 	{
 		{ _field_block, "sound classes", &sound_class_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_class_block, NUMBER_OF_SOUND_CLASSES)
+	V5_TAG_BLOCK(sound_class_block, NUMBER_OF_SOUND_CLASSES)
 	{
 		{ _field_short_integer, "max sounds per tag [1,16]#maximum number of sounds playing per individual sound tag" },
 		{ _field_short_integer, "max sounds per object per tag [1,16]{max sounds per object [1,16]}#maximum number of sounds per individual sound tag playing on an object" },

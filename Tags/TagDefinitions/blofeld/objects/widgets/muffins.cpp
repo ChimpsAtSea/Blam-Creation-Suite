@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(muffin, MUFFIN_TAG)
+	V5_TAG_GROUP(muffin, MUFFIN_TAG)
 	{
 		{ _field_custom, "link to render model" },
 		{ _field_tag_reference, "render model*", &render_model_reference$5 },
@@ -15,13 +15,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(muffin_permutation_name_block, SHORT_MAX)
+	V5_TAG_BLOCK(muffin_permutation_name_block, SHORT_MAX)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(muffin_marker_block, SHORT_MAX)
+	V5_TAG_BLOCK(muffin_marker_block, SHORT_MAX)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_word_integer, "muffinage chance:percent [0 - 100]#how often muffins will appear on this marker" },
@@ -29,9 +29,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(global_muffin_type_block, 16, global_muffin_type_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(global_muffin_type_block, 16, global_muffin_type_struct_struct_definition );
 
-	TAG_STRUCT(global_muffin_type_struct)
+	V5_TAG_STRUCT(global_muffin_type_struct)
 	{
 		{ _field_short_block_index, "mesh^" },
 		{ _field_word_flags, "flags", &muffin_type_flags_definition },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(muffin_scalar_function_struct)
+	V5_TAG_STRUCT(muffin_scalar_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },

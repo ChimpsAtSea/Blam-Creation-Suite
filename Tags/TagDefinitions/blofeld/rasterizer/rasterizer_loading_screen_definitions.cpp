@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block );
+	V5_TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block );
 
-	TAG_BLOCK(vertexBlock, 77824)
+	V5_TAG_BLOCK(vertexBlock, 77824)
 	{
 		{ _field_real_point_3d, "point*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(loadScreenBlock, 1)
+	V5_TAG_BLOCK(loadScreenBlock, 1)
 	{
 		{ _field_long_flags, "flags", &loadscreenFlags },
 		{ _field_explanation, "Model parameters", "" },

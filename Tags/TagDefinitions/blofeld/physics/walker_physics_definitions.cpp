@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(walker_physics_leg_block, s_walker_physics_definition::k_maximum_leg_count)
+	V5_TAG_BLOCK(walker_physics_leg_block, s_walker_physics_definition::k_maximum_leg_count)
 	{
 		{ _field_explanation, "walker physics", "" },
 		{ _field_char_enum, "leg group", &walker_physics_leg_group_enum },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(walker_physics_struct)
+	V5_TAG_STRUCT(walker_physics_struct)
 	{
 		{ _field_real_vector_3d, "maximum leg motion#in WU, how far can we displace the legs in x,y,z each step" },
 		{ _field_real, "maximum turn#in degrees, how much can this walker turn in one step" },

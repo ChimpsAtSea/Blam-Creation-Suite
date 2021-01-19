@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cellular_automata, CELLULAR_AUTOMATA_TAG, cellular_automata_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cellular_automata, CELLULAR_AUTOMATA_TAG, cellular_automata_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(cellular_automata_block, 1, cellular_automata_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cellular_automata_block, 1, cellular_automata_struct_definition_struct_definition );
 
-	TAG_STRUCT(cellular_automata_struct_definition)
+	V5_TAG_STRUCT(cellular_automata_struct_definition)
 	{
 		{ _field_explanation, "parameters", "" },
 		{ _field_short_integer, "updates per second:Hz" },

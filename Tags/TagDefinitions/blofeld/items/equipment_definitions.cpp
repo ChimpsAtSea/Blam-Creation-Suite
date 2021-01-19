@@ -4,21 +4,21 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(equipment, EQUIPMENT_TAG, item, ITEM_TAG, equipment_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(equipment, EQUIPMENT_TAG, item, ITEM_TAG, equipment_block_block );
 
-	TAG_BLOCK(optionalUnitCameraBlock, 1)
+	V5_TAG_BLOCK(optionalUnitCameraBlock, 1)
 	{
 		{ _field_struct, "unit camera", &unit_camera_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeMultiplayerPowerupBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeMultiplayerPowerupBlock, 1)
 	{
 		{ _field_long_enum, "flavor", &multiplayer_powerup_flavor },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSpawnerBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSpawnerBlock, 1)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2},
 		{ _field_tag_reference, "spawned object", &object_reference$4 },
@@ -38,7 +38,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeAiSpawnerBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeAiSpawnerBlock, 1)
 	{
 		{ _field_real, "spawn radius#distance from players eyeball on the z-plane that this effect spawns" },
 		{ _field_real, "spawn z offset#z-offset of effect spawn" },
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeProximityMineBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeProximityMineBlock, 1)
 	{
 		{ _field_tag_reference, "explosion effect", &global_effect_reference },
 		{ _field_tag_reference, "explosion damage effect", &global_damage_reference },
@@ -61,7 +61,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeMotionTrackerNoiseBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeMotionTrackerNoiseBlock, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &equipmentAbilityType_MotionTrackerNoise_flags },
@@ -73,7 +73,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentEffectWithThresholdBlock, 10)
+	V5_TAG_BLOCK(equipmentEffectWithThresholdBlock, 10)
 	{
 		{ _field_real, "threshold energy burned^:0-1#how much energy you have to burn to play this effect" },
 		{ _field_real, "energy adjustment:-1 to 1#how much energy to add when playing this effect" },
@@ -81,7 +81,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeInvincibilityBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeInvincibilityBlock, 1)
 	{
 		{ _field_string_id, "invincibility material" },
 		{ _field_short_integer, "invincibility material type*!" },
@@ -100,7 +100,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeTreeOfLifeBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeTreeOfLifeBlock, 1)
 	{
 		{ _field_long_flags, "flags", &equipmentAbilityType_treeoflife_flags },
 		{ _field_string_id, "origin marker" },
@@ -108,7 +108,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeShapeshifterBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeShapeshifterBlock, 1)
 	{
 		{ _field_string_id, "region name" },
 		{ _field_string_id, "inactive permutation name" },
@@ -116,7 +116,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypePlayerTraitFieldBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypePlayerTraitFieldBlock, 1)
 	{
 		{ _field_skip, "radius", 4 },
 		{ _field_block, "active player traits", &game_engine_player_traits_block_block },
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(aiEquipmentTraitAppearanceBlock, 1)
+	V5_TAG_BLOCK(aiEquipmentTraitAppearanceBlock, 1)
 	{
 		{ _field_explanation, "Appearance Traits", "Traits that affect the AI\'s appearance" },
 		{ _field_char_enum, "active camo setting", &player_trait_active_camo },
@@ -132,20 +132,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(aiEquipmentTraitsBlock, 1)
+	V5_TAG_BLOCK(aiEquipmentTraitsBlock, 1)
 	{
 		{ _field_block, "appearance traits", &aiEquipmentTraitAppearanceBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeAiTraitFieldBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeAiTraitFieldBlock, 1)
 	{
 		{ _field_block, "active ai equipment traits", &aiEquipmentTraitsBlock_block },
 		{ _field_block, "inactive ai equipment traits", &aiEquipmentTraitsBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeRepulsorFieldBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeRepulsorFieldBlock, 1)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "radius:wu" },
@@ -153,7 +153,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeStasisFieldBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeStasisFieldBlock, 1)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "radius:wu" },
@@ -169,7 +169,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeBallLightningBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeBallLightningBlock, 1)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "start radius:wu" },
@@ -180,7 +180,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeDaddyBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeDaddyBlock, 1)
 	{
 		{ _field_tag_reference, "child object", &object_reference$4 },
 		{ _field_word_flags, "flags", &equipmentAbilityTypeDaddyVisibleFlags },
@@ -200,19 +200,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeLaserDesignationBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeLaserDesignationBlock, 1)
 	{
 		{ _field_real, "unused!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSuperJumpBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSuperJumpBlock, 1)
 	{
 		{ _field_struct, "energy to jump", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeAmmoPackBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeAmmoPackBlock, 1)
 	{
 		{ _field_real, "energy change per clip added" },
 		{ _field_long_integer, "extra frags" },
@@ -226,7 +226,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypePowerFistBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypePowerFistBlock, 1)
 	{
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
 		{ _field_tag_reference, "melee response", &global_damage_effect_or_response_definition_reference },
@@ -235,13 +235,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeHealthPackBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeHealthPackBlock, 1)
 	{
 		{ _field_struct, "health given over energy used", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityPartCowCatcherBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityPartCowCatcherBlock, 1)
 	{
 		{ _field_real, "cow catcher height#world units" },
 		{ _field_real, "cow catcher front width#world units, the width of the flat front portion of the cow-catcher" },
@@ -252,7 +252,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeJetPackBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeJetPackBlock, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeJetPackFlags },
@@ -285,7 +285,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeHologramBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeHologramBlock, 1)
 	{
 		{ _field_real, "hologram duration:s" },
 		{ _field_long_enum, "havok filter group", &collision_filter_enum },
@@ -307,13 +307,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSpecialWeaponBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSpecialWeaponBlock, 1)
 	{
 		{ _field_tag_reference, "weapon", &global_weapon_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSpecialMoveBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSpecialMoveBlock, 1)
 	{
 		{ _field_string_id, "forward" },
 		{ _field_string_id, "left" },
@@ -330,7 +330,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeEngineerShieldsBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeEngineerShieldsBlock, 1)
 	{
 		{ _field_real, "radius" },
 		{ _field_string_id, "shield name" },
@@ -338,13 +338,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSprintBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSprintBlock, 1)
 	{
 		{ _field_pad, "haha", 1 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeTeleporterBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeTeleporterBlock, 1)
 	{
 		{ _field_explanation, "Teleporter", "This causes you to warp forward.  It\'ll trace the path with an effect at the specified speed, then spawn you at the end of it." },
 		{ _field_byte_flags, "flags", &teleporterFlags },
@@ -376,7 +376,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeAutoTurretBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeAutoTurretBlock, 1)
 	{
 		{ _field_byte_flags, "flags", &equipment_auto_turret_flags },
 		{ _field_pad, "atf", 3 },
@@ -404,7 +404,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeVisionModeBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeVisionModeBlock, 1)
 	{
 		{ _field_byte_flags, "Flags", &equipmentVisionModeFlags },
 		{ _field_pad, "vmbf", 3 },
@@ -415,7 +415,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeShieldProjectorBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeShieldProjectorBlock, 1)
 	{
 		{ _field_real, "Lifetime #Number of seconds a projected shield will remain active." },
 		{ _field_real, "Recharge Time #Number of seconds between shield projections." },
@@ -431,7 +431,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeProjectileCollectorBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeProjectileCollectorBlock, 1)
 	{
 		{ _field_real_fraction, "Chance to Collect #Percent chance (0-1) that collector has to collect each grenade.  Will only attempt to collect each grenade once." },
 		{ _field_real_bounds, "Collect Cooldown #Number of seconds collector must wait between successful collections." },
@@ -446,7 +446,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeRemoteStrikeBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeRemoteStrikeBlock, 1)
 	{
 		{ _field_tag_reference, "weapon", &object_reference$4 },
 		{ _field_real, "max velocity" },
@@ -458,14 +458,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentHackerDrainLevel, EquipmentAbilityTypeEquipmentHacker::DrainLevel::k_maxLevels)
+	V5_TAG_BLOCK(equipmentHackerDrainLevel, EquipmentAbilityTypeEquipmentHacker::DrainLevel::k_maxLevels)
 	{
 		{ _field_real, "Cutoff distance#Targets within this distance will be affected by this multiplier." },
 		{ _field_real, "Drain multiplier#Multiplied by the base drain per second." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeEquipmentHackerBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeEquipmentHackerBlock, 1)
 	{
 		{ _field_byte_flags, "Flags", &equipmentHackerFlags },
 		{ _field_pad, "grue", 3 },
@@ -478,7 +478,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeRemoteVehicleBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeRemoteVehicleBlock, 1)
 	{
 		{ _field_tag_reference, "hologram spawner#reference the equipment that will spawn the hologram that will pilot the remote vehicle", &object_reference$4 },
 		{ _field_tag_reference, "vehicle#reference the remote vehicle to be created", &object_reference$4 },
@@ -487,27 +487,27 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeSuicideBombBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeSuicideBombBlock, 1)
 	{
 		{ _field_tag_reference, "explosion damage effect", &global_damage_reference },
 		{ _field_tag_reference, "explosion effect", &global_effect_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentAbilityTypeActiveShieldBlock, 1)
+	V5_TAG_BLOCK(equipmentAbilityTypeActiveShieldBlock, 1)
 	{
 		{ _field_byte_flags, "flags", &activeShieldFlags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(unknown_equipment_ability, 65536)
+	V5_TAG_BLOCK(unknown_equipment_ability, 65536)
 	{
 		{_field_terminator}
 	};
 
-	TAG_BLOCK_FROM_STRUCT(equipmentAbilityDatum, k_equipmentMaxAbilityCount, equipmentAbilityDatum_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(equipmentAbilityDatum, k_equipmentMaxAbilityCount, equipmentAbilityDatum_struct_definition);
 
-	TAG_STRUCT(equipmentAbilityDatum)
+	V5_TAG_STRUCT(equipmentAbilityDatum)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 21 },
 		{ _field_custom, "Timers" },
@@ -593,7 +593,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(EquipmentSoundRTPCBlock, k_maxEquipmentSoundRTPCBlocks)
+	V5_TAG_BLOCK(EquipmentSoundRTPCBlock, k_maxEquipmentSoundRTPCBlocks)
 	{
 		{ _field_long_block_index, "Attachment Index#Sound attachment to affect" },
 		{ _field_string_id, "Function#Function to drive the RTPC" },
@@ -602,7 +602,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(EquipmentSoundSweetenerBlock, k_maxEquipmentSoundSweetenerBlocks)
+	V5_TAG_BLOCK(EquipmentSoundSweetenerBlock, k_maxEquipmentSoundSweetenerBlocks)
 	{
 		{ _field_string_id, "Function#Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -611,9 +611,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(equipment_block, 1, equipment_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(equipment_block, 1, equipment_struct_definition_struct_definition );
 
-	TAG_STRUCT(equipment_struct_definition)
+	V5_TAG_STRUCT(equipment_struct_definition)
 	{
 		{ _field_struct, "item", &item_struct_definition_struct_definition },
 		{ _field_custom, "$$$ EQUIPMENT $$$" },

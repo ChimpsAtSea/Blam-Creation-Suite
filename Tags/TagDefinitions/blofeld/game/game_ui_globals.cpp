@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(interface_tag_references, 1)
+	V5_TAG_BLOCK(interface_tag_references, 1)
 	{
 		{ _field_tag_reference, "spinner bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "obsolete2", &global_bitmap_reference },

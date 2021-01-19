@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(camo, CAMO_TAG, camo_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(camo, CAMO_TAG, camo_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(camo_block, 1, camo_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(camo_block, 1, camo_struct_definition_struct_definition );
 
-	TAG_STRUCT(camo_struct_definition)
+	V5_TAG_STRUCT(camo_struct_definition)
 	{
 		{ _field_explanation, "Active Camo Controls", "" },
 		{ _field_word_flags, "Flags", &camo_flags },
@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camo_scalar_function_struct)
+	V5_TAG_STRUCT(camo_scalar_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

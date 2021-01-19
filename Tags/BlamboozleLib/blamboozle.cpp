@@ -17,7 +17,7 @@ uint64_t make_tool_version_runtime(uint64_t library_file_version, const wchar_t*
 
 int blamboozle_run()
 {
-	std::wstring output_directory = c_command_line::get_command_line_warg("blamboozle-output");
+	std::wstring output_directory = c_command_line::get_command_line_warg("-blamboozle-output");
 	if (output_directory.empty())
 	{
 		c_console::write_line_verbose("No output directory specified");
@@ -25,10 +25,10 @@ int blamboozle_run()
 		return 1;
 	}
 
-	std::wstring halo1_guerilla_file = c_command_line::get_command_line_warg("blamboozle-halo1-guerilla");
-	std::wstring halo2_guerilla_file = c_command_line::get_command_line_warg("blamboozle-halo2-guerilla");
-	std::wstring halo5_forge_file = c_command_line::get_command_line_warg("blamboozle-halo5-forge");
-	std::wstring halo4_midnight_tags_test = c_command_line::get_command_line_warg("blamboozle-halo4-tag-test");
+	std::wstring halo1_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo1-guerilla");
+	std::wstring halo2_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo2-guerilla");
+	std::wstring halo5_forge_file = c_command_line::get_command_line_warg("-blamboozle-halo5-forge");
+	std::wstring halo4_midnight_tags_test = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test");
 
 	if (
 		halo1_guerilla_file.empty() && 

@@ -4,19 +4,19 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(mapVariantPaletteDependencyBlock, k_maximum_simultaneous_tag_instances)
+	V5_TAG_BLOCK(mapVariantPaletteDependencyBlock, k_maximum_simultaneous_tag_instances)
 	{
 		{ _field_tag, "tag" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(resourceHandleBlock, k_maximum_simultaneous_tag_instances)
+	V5_TAG_BLOCK(resourceHandleBlock, k_maximum_simultaneous_tag_instances)
 	{
 		{ _field_long_integer, "resourceHandle" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(map_variant_object_variant_block, k_maximum_object_variants_per_map_variant_palette_entry)
+	V5_TAG_BLOCK(map_variant_object_variant_block, k_maximum_object_variants_per_map_variant_palette_entry)
 	{
 		{ _field_string_id, "display name^" },
 		{ _field_tag_reference, "object", &object_reference$9 },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(map_variant_palette_entry_block, k_maximum_map_variant_palette_entries)
+	V5_TAG_BLOCK(map_variant_palette_entry_block, k_maximum_map_variant_palette_entries)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "variants", &map_variant_object_variant_block_block },
@@ -42,7 +42,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(map_variant_palette_block, k_maximum_map_variant_palettes)
+	V5_TAG_BLOCK(map_variant_palette_block, k_maximum_map_variant_palettes)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(map_variant_legacy_build_info_block, k_maximum_map_variant_palettes)
+	V5_TAG_BLOCK(map_variant_legacy_build_info_block, k_maximum_map_variant_palettes)
 	{
 		{ _field_long_integer, "unknown" },				
 		{ _field_long_integer, "quota count" },			
@@ -70,13 +70,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(map_variant_legacy_palette_info_block, k_maximum_map_variant_palettes)
+	V5_TAG_BLOCK(map_variant_legacy_palette_info_block, k_maximum_map_variant_palettes)
 	{
 		{ _field_block, "builds", &map_variant_legacy_build_info_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(mapVariantResourceManifest)
+	V5_TAG_STRUCT(mapVariantResourceManifest)
 	{
 		{ _field_block, "attachedResourceOwners", &mapVariantPaletteDependencyBlock_block },
 		{ _field_block, "topLevelResourceOwners", &mapVariantPaletteDependencyBlock_block },

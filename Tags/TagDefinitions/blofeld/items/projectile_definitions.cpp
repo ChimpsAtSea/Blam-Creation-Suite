@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(KillCamCameraParamter_block, 1, KillCamCameraParamter_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(KillCamCameraParamter_block, 1, KillCamCameraParamter_struct_definition_struct_definition );
 
-	TAG_BLOCK(old_projectile_material_response_block, k_maximum_material_responses)
+	V5_TAG_BLOCK(old_projectile_material_response_block, k_maximum_material_responses)
 	{
 		{ _field_explanation, "default result", "(if the potential result, below, fails to happen)" },
 
@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(projectile_material_response_block, k_maximum_material_responses)
+	V5_TAG_BLOCK(projectile_material_response_block, k_maximum_material_responses)
 	{
 		{ _field_explanation, "matching criteria", "" },
 		{ _field_string_id, "material name" },
@@ -74,7 +74,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(brute_grenade_block, 1)
+	V5_TAG_BLOCK(brute_grenade_block, 1)
 	{
 		{ _field_angle, "minimum angular vel#degrees/sec" },
 		{ _field_angle, "maximum angular vel#degrees/sec" },
@@ -91,13 +91,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fire_bomb_grenade_block, 1)
+	V5_TAG_BLOCK(fire_bomb_grenade_block, 1)
 	{
 		{ _field_real, "projection offset" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(conical_projection_block, 1)
+	V5_TAG_BLOCK(conical_projection_block, 1)
 	{
 		{ _field_explanation, "conical_projection: AKA shotgun", "projectile_count = yaw_count*pitch_count\nThis block has no effect if _projectile_disable_instantaneous_first_tick is set or projectile has not been fired from a weapon." },
 		{ _field_short_integer, "yaw count" },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ProjectileSoundRTPCBlock, k_maxProjectileSoundRTPCBlocks)
+	V5_TAG_BLOCK(ProjectileSoundRTPCBlock, k_maxProjectileSoundRTPCBlocks)
 	{
 		{ _field_long_block_index, "Attachment Index#Sound attachment to affect - leave empty for main body" },
 		{ _field_string_id, "Function#Function to drive the RTPC" },
@@ -115,9 +115,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(projectile_block, 1, projectile_group_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(projectile_block, 1, projectile_group_struct_definition );
 
-	TAG_STRUCT(KillCamCameraParamter_struct_definition)
+	V5_TAG_STRUCT(KillCamCameraParamter_struct_definition)
 	{
 		{ _field_real, "distance from camera" },
 		{ _field_real, "height above object" },
@@ -125,7 +125,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(projectile_group)
+	V5_TAG_STRUCT(projectile_group)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ PROJECTILE $$$" },
@@ -248,13 +248,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(super_detonation_damage_struct)
+	V5_TAG_STRUCT(super_detonation_damage_struct)
 	{
 		{ _field_tag_reference, "super detonation damage", &global_damage_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(angular_velocity_lower_bound_struct)
+	V5_TAG_STRUCT(angular_velocity_lower_bound_struct)
 	{
 		{ _field_angle, "guided angular velocity (lower):degrees per second" },
 		{ _field_terminator }

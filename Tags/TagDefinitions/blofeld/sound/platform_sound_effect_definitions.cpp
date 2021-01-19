@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP(sound_effect_collection, SOUND_EFFECT_COLLECTION_TAG)
+	V5_TAG_GROUP(sound_effect_collection, SOUND_EFFECT_COLLECTION_TAG)
 	{
 		{ _field_block, "sound effects", &platform_sound_playback_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(platform_sound_playback_lowpass_block, 1)
+	V5_TAG_BLOCK(platform_sound_playback_lowpass_block, 1)
 	{
 		{ _field_real, "attack:seconds" },
 		{ _field_real, "release:seconds" },
@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(platform_sound_playback_component_block, k_maximum_number_of_platform_sound_playback_components)
+	V5_TAG_BLOCK(platform_sound_playback_component_block, k_maximum_number_of_platform_sound_playback_components)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
 		{ _field_real, "gain:dB#additional attenuation to sound" },
@@ -26,14 +26,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(platform_sound_playback_block, 128)
+	V5_TAG_BLOCK(platform_sound_playback_block, 128)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_struct, "playback", &platform_sound_playback_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(platform_sound_playback_struct)
+	V5_TAG_STRUCT(platform_sound_playback_struct)
 	{
 		{ _field_long_flags, "flags", &platform_sound_effect_flags_definition },
 		{ _field_tag_reference, "radio effect", &global_sound_radio_settings_reference },

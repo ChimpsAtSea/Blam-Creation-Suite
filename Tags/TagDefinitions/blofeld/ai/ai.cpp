@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(ai_spawn_conditions_struct)
+	V5_TAG_STRUCT(ai_spawn_conditions_struct)
 	{
 		{ _field_word_flags, "difficulty flags", &global_campaign_difficulty_enum },
 		{ _field_pad, "post-difficulty-flags-padding", 2 },

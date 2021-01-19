@@ -5,7 +5,7 @@ namespace blofeld
 {
 	// animation data
 
-	TAG_BLOCK(wadt_data_block, 65536)
+	V5_TAG_BLOCK(wadt_data_block, 65536)
 	{
 		{ _field_byte_flags, "animation 1 flags", &wadt_flags_definition },
 		{ _field_char_enum, "animation 1 function", &wadt_function_enum_definition },
@@ -34,9 +34,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_widget_animation_data, CHUD_WIDGET_ANIMATION_DATA_TAG, wadt_block_block);
-	TAG_BLOCK_FROM_STRUCT(wadt_block, 1, wadt_struct_definition_struct_definition);
-	TAG_STRUCT(wadt_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_widget_animation_data, CHUD_WIDGET_ANIMATION_DATA_TAG, wadt_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(wadt_block, 1, wadt_struct_definition_struct_definition);
+	V5_TAG_STRUCT(wadt_struct_definition)
 	{
 		{ _field_block, "animation data", &wadt_data_block_block },
 		{ _field_terminator }
@@ -53,7 +53,7 @@ namespace blofeld
 	
 	// placement data
 
-	TAG_BLOCK(wpdt_data_block, 65536)
+	V5_TAG_BLOCK(wpdt_data_block, 65536)
 	{
 		{ _field_byte_flags, "unknown", &wpdt_unknown_flags_definition },
 		{ _field_char_enum, "anchor", &wpdt_anchor_enum_definition },
@@ -67,9 +67,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_widget_placement_data, CHUD_WIDGET_PLACEMENT_DATA_TAG, wpdt_block_block);
-	TAG_BLOCK_FROM_STRUCT(wpdt_block, 1, wpdt_struct_definition_struct_definition);
-	TAG_STRUCT(wpdt_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_widget_placement_data, CHUD_WIDGET_PLACEMENT_DATA_TAG, wpdt_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(wpdt_block, 1, wpdt_struct_definition_struct_definition);
+	V5_TAG_STRUCT(wpdt_struct_definition)
 	{
 		{ _field_block, "placement data", &wpdt_data_block_block },
 		{ _field_terminator }
@@ -80,7 +80,7 @@ namespace blofeld
 
 	// render data
 
-	TAG_BLOCK(wrdt_data_block, 65536)
+	V5_TAG_BLOCK(wrdt_data_block, 65536)
 	{
 		{ _field_char_enum, "shader index", &wrdt_shader_index_enum_definition },
 		{ _field_byte_integer, "unknown" },
@@ -113,9 +113,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_widget_render_data, CHUD_WIDGET_RENDER_DATA_TAG, wrdt_block_block);
-	TAG_BLOCK_FROM_STRUCT(wrdt_block, 1, wrdt_struct_definition_struct_definition);
-	TAG_STRUCT(wrdt_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_widget_render_data, CHUD_WIDGET_RENDER_DATA_TAG, wrdt_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(wrdt_block, 1, wrdt_struct_definition_struct_definition);
+	V5_TAG_STRUCT(wrdt_struct_definition)
 	{
 		{ _field_block, "render data", &wrdt_data_block_block },
 		{ _field_terminator }
@@ -126,7 +126,7 @@ namespace blofeld
 
 	// state data
 
-	TAG_BLOCK(wsdt_triggers_block, 65536)
+	V5_TAG_BLOCK(wsdt_triggers_block, 65536)
 	{
 		{ _field_byte_integer, "unknown" },
 		{ _field_byte_integer, "unknown" },
@@ -136,13 +136,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(wsdt_states_block, 65536)
+	V5_TAG_BLOCK(wsdt_states_block, 65536)
 	{
 		{ _field_block, "triggers", &wsdt_triggers_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(wsdt_data_block, 65536)
+	V5_TAG_BLOCK(wsdt_data_block, 65536)
 	{
 		{ _field_block, "states 1", &wsdt_states_block_block },
 		{ _field_block, "states 2", &wsdt_states_block_block },
@@ -157,9 +157,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_widget_state_data, CHUD_WIDGET_STATE_DATA_TAG, wsdt_block_block);
-	TAG_BLOCK_FROM_STRUCT(wsdt_block, 1, wsdt_struct_definition_struct_definition);
-	TAG_STRUCT(wsdt_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_widget_state_data, CHUD_WIDGET_STATE_DATA_TAG, wsdt_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(wsdt_block, 1, wsdt_struct_definition_struct_definition);
+	V5_TAG_STRUCT(wsdt_struct_definition)
 	{
 		{ _field_block, "state data", &wsdt_data_block_block },
 		{ _field_terminator }

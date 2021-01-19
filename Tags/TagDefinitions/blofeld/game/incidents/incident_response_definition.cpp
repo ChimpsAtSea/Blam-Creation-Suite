@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(game_incident_daily_challenge_to_increment_block, MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK)
+	V5_TAG_BLOCK(game_incident_daily_challenge_to_increment_block, MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK)
 	{
 		{ _field_string_id, "daily challenge^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_fanfare_block, 1)
+	V5_TAG_BLOCK(specialized_incident_fanfare_block, 1)
 	{
 		{ _field_long_integer, "priority#0 is highest prioroty" },
 		{ _field_char_enum, "queue type", &incident_fanfare_queue_type },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_incident_response_block, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK)
+	V5_TAG_BLOCK(game_incident_response_block, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK)
 	{
 		{ _field_custom, "allowed game modes" },
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition },

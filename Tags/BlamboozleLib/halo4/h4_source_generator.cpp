@@ -47,10 +47,12 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 
 		hs << "#pragma once" << std::endl << std::endl;
 		ss << "#include <tagdefinitions-private-pch.h>" << std::endl;
-		ss << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
+		ss << "#include <macaque_field_type_override.h>" << std::endl << std::endl;
 
 		hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 		ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+		hs << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
+		ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 		for (c_h4_tag_group_container* group_container : source_file->tag_groups)
 		{
@@ -62,7 +64,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		uint32_t num_tag_blocks = 0;
 		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
 		{
-			if (tag_block_container->defined_by_tag_group) continue; // these are created manually through c_h4_tag_group_container
+			if (tag_block_container->defined_by_tag_group) continue; // already called by tag group code
 			if (tag_block_container->tag_block.is_block)
 			{
 				num_tag_blocks++;
@@ -105,8 +107,10 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			create_tag_reference_header(hs, *tag_reference_container);
 			create_tag_reference_source(ss, *tag_reference_container);
 		}
-		if(!source_file->tag_references.empty()) hs << std::endl;
+		if (!source_file->tag_references.empty()) hs << std::endl;
 
+		hs << "} // namespace macaque" << std::endl << std::endl;
+		ss << "} // namespace macaque" << std::endl << std::endl;
 		hs << "} // namespace blofeld" << std::endl << std::endl;
 		ss << "} // namespace blofeld" << std::endl << std::endl;
 	}
@@ -135,48 +139,48 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream hs;
 			create_tag_groups_header(hs);
 			std::string header_code = hs.str();
-			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
-			ASSERT(blofeld_header_write_file_result);
+			bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			ASSERT(macaque_header_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\tag_groups.cpp";
 			std::stringstream ss;
 			create_tag_groups_source(ss);
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 		{
 			std::string header_output_filepath = output_directory + "\\tag_structs.h";
 			std::stringstream hs;
 			create_tag_structs_header(hs);
 			std::string header_code = hs.str();
-			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
-			ASSERT(blofeld_header_write_file_result);
+			bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			ASSERT(macaque_header_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\tag_structs.cpp";
 			std::stringstream ss;
 			create_tag_structs_source(ss);
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 		{
 			std::string header_output_filepath = output_directory + "\\halo4_validation_data.h";
 			std::stringstream hs;
 			create_validation_header(hs);
 			std::string header_code = hs.str();
-			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
-			ASSERT(blofeld_header_write_file_result);
+			bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			ASSERT(macaque_header_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\halo4_validation_data.cpp";
 			std::stringstream ss;
 			create_validation_source(ss);
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\constants.txt";
@@ -197,8 +201,8 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			}
 			ss << std::endl;
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\manual_tag_references.h";
@@ -206,27 +210,30 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 
 			ss << "#pragma once" << std::endl << std::endl;
 			ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+			ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 			for (c_h4_tag_reference_container* reference_container : preprocessor.tag_reference_containers)
 			{
 				if (reference_container->is_template)
 				{
-					
+
 				}
 			}
 			ss << std::endl;
+			ss << "} // namespace macaque" << std::endl << std::endl;
 			ss << "} // namespace blofeld" << std::endl << std::endl;
 
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 		{
 			std::string source_output_filepath = output_directory + "\\manual_tag_references.cpp";
 			std::stringstream ss;
 
 			ss << "#include <tagdefinitions-private-pch.h>" << std::endl;
-			ss << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
+			ss << "#include <macaque_field_type_override.h>" << std::endl << std::endl;
 			ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+			ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 			for (c_h4_tag_reference_container* reference_container : preprocessor.tag_reference_containers)
 			{
 				if (reference_container->is_template)
@@ -235,11 +242,12 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 				}
 			}
 			ss << std::endl;
+			ss << "} // namespace macaque" << std::endl << std::endl;
 			ss << "} // namespace blofeld" << std::endl << std::endl;
 
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
-			ASSERT(blofeld_source_write_file_result);
+			bool macaque_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(macaque_source_write_file_result);
 		}
 	}
 }
@@ -273,9 +281,11 @@ void c_h4_source_generator::create_tag_groups_header(std::stringstream& hs)
 	}
 	hs << std::endl;
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	hs << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	hs << "\textern const s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "];" << std::endl;
 
+	hs << "} // namespace macaque" << std::endl << std::endl;
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
 }
@@ -285,6 +295,7 @@ void c_h4_source_generator::create_tag_groups_source(std::stringstream& ss)
 	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	ss << "const s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "] = " << std::endl;
 	ss << "{" << std::endl;
@@ -298,6 +309,7 @@ void c_h4_source_generator::create_tag_groups_source(std::stringstream& ss)
 	ss << "};" << std::endl;
 	ss << std::endl;
 
+	ss << "} // namespace macaque" << std::endl << std::endl;
 	ss << "} // namespace blofeld" << std::endl << std::endl;
 }
 
@@ -306,9 +318,11 @@ void c_h4_source_generator::create_tag_structs_header(std::stringstream& hs)
 	hs << "#pragma once" << std::endl << std::endl;
 
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	hs << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	hs << "\textern const s_tag_struct_definition* tag_struct_definitions[" << preprocessor.tag_struct_containers.size() << "];" << std::endl;
 
+	hs << "} // namespace macaque" << std::endl << std::endl;
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
 }
@@ -318,6 +332,7 @@ void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
 	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	ss << "\tconst s_tag_struct_definition* tag_struct_definitions[" << preprocessor.tag_struct_containers.size() << "] = " << std::endl;
 	ss << "\t{" << std::endl;
@@ -325,38 +340,28 @@ void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
 	{
 		c_h4_tag_block_container* tag_block_container = tag_struct_container->tag_block_container;
 
-		if(tag_struct_container->is_array)
+		if (tag_struct_container->is_array)
 		{
-			if (tag_struct_container->tag_block_container)
-			{
-				ss << "\t\t&" << tag_struct_container->tag_block_container->name << "_struct_definition, // array" << std::endl;
-			}
-			else
-			{
-				ss << "\t\t&" << tag_struct_container->name << "_struct_definition, // array" << std::endl;
-			}
-		}
-		else if (tag_block_container && !tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
-		{
-			ss << "\t\t&" << tag_block_container->name << "_block_struct, // block" << std::endl;
-		}
-		else if (tag_struct_container->is_block)
-		{
-			ss << "\t\t&" << tag_struct_container->symbol_name << "_block_struct, // block" << std::endl;
+			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // array" << std::endl;
 		}
 		else if (tag_struct_container->is_tag_group)
 		{
-			ss << "\t\t&" << tag_struct_container->name << "_struct_definition, // tag group" << std::endl;
+			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // group" << std::endl;
+		}
+		else if (tag_struct_container->is_block)
+		{
+			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // block" << std::endl;
 		}
 		else
 		{
-			ss << "\t\t&" << tag_struct_container->name << "_struct_definition," << std::endl;
+			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << "," << std::endl;
 		}
-		
+
 	}
 	ss << "\t};" << std::endl;
 	ss << std::endl;
 
+	ss << "} // namespace macaque" << std::endl << std::endl;
 	ss << "} // namespace blofeld" << std::endl << std::endl;
 }
 
@@ -365,9 +370,11 @@ void c_h4_source_generator::create_validation_header(std::stringstream& hs)
 	hs << "#pragma once" << std::endl << std::endl;
 
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	hs << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	hs << "\textern s_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
 
+	hs << "} // namespace macaque" << std::endl << std::endl;
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
 }
@@ -377,39 +384,37 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+	ss << "namespace macaque" << std::endl << "{" << std::endl << std::endl;
 
 	ss << "\ts_tag_struct_validation_data gen3_xbox360_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
 	ss << "\t{" << std::endl;
 	for (c_h4_tag_block_container* tag_block_container : preprocessor.tag_block_containers)
 	{
 		c_h4_tag_struct_container& tag_struct_container = *tag_block_container->tag_struct_container;
-		c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 		c_h4_tag_block& tag_block = tag_block_container->tag_block;
+		c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
 		if (tag_block.is_array)
 		{
-			ss << "\t\t{ " << tag_block.name << "_struct_definition, " << tag_struct.size << " }, // array" << std::endl;
-		}
-		else if (!tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
-		{
-			ss << "\t\t{ " << tag_block_container->name << "_block_struct, " << tag_struct.size << " }, // block" << std::endl;
-		}
-		else if (tag_struct_container.is_block)
-		{
-			ss << "\t\t{ " << tag_struct_container.symbol_name << "_block_struct, " << tag_struct.size << " }, // block" << std::endl;
+			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // array" << std::endl;
 		}
 		else if (tag_struct_container.is_tag_group)
 		{
-			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }, // group" << std::endl;
+			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // group" << std::endl;
+		}
+		else if (tag_block.is_block)
+		{
+			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // block" << std::endl;
 		}
 		else
 		{
-			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }," << std::endl;
+			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }," << std::endl;
 		}
 	}
 	ss << "\t};" << std::endl;
 	ss << std::endl;
 
+	ss << "} // namespace macaque" << std::endl << std::endl;
 	ss << "} // namespace blofeld" << std::endl << std::endl;
 }
 
@@ -427,69 +432,66 @@ std::string parse_tag_group_string(const tag_group& group_tag)
 void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& group_container)
 {
 	c_h4_tag_block_container& tag_block_container = *group_container.tag_block_container;
+	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
 	c_h4_tag_group& tag_group = group_container.tag_group;
-	c_h4_tag_struct& tag_struct = tag_group.tag_block.tag_struct;
 
 	//hs << "extern const unsigned long " << group_container.name_uppercase << "_TAG;" << std::endl;
-	hs << "\tconstexpr unsigned long " << group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
+	hs << "\tconstexpr unsigned long " << group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl;
+	hs << "\textern s_tag_group " << group_container.symbol_name << "; // " << tag_block_container.symbol_name << std::endl;
+
 	if (group_container.define_tag_group_block_and_fields)
 	{
-		hs << "\textern s_tag_struct_definition " << tag_block_container.symbol_name << "_struct;" << std::endl;
-		hs << "\textern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
+		create_tag_block_header(hs, *group_container.tag_block_container);
 	}
-	hs << "\textern s_tag_group " << tag_group.name << "_group;" << std::endl;
 
+	hs << std::endl;
 }
 
 void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_tag_group_container& group_container)
 {
 	c_h4_tag_group& tag_group = group_container.tag_group;
 	c_h4_tag_struct& tag_struct = tag_group.tag_block.tag_struct;
-	c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(tag_group.tag_block);
+	c_h4_tag_block_container& tag_block_container = *preprocessor.find_existing_tag_block_container(tag_group.tag_block);
+	c_h4_tag_block& tag_block = tag_block_container.tag_block;
+	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
 
 	//ss << "const unsigned long " << group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
 
-	if (tag_group.parent_group_tag.value == 0xFFFFFFFF)
-	{
-		if (group_container.define_tag_group_block_and_fields)
-		{
-			ss << "\tTAG_GROUP(" << group_container.name << ", " << group_container.name_uppercase << "_TAG)" << std::endl;
-		}
-		else
-		{
-			ss << "\tTAG_GROUP_FROM_BLOCK(" << group_container.name << ", " << group_container.name_uppercase << "_TAG, " << tag_block_container->symbol_name << " );" << std::endl;
-		}
-	}
-	else
-	{
-		c_h4_tag_group_container* parent_group_container = preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
-		ASSERT(parent_group_container);
-		c_h4_tag_group& parent_tag_group = parent_group_container->tag_group;
-
-		if (group_container.define_tag_group_block_and_fields)
-		{
-			ss << "\tTAG_GROUP_INHERIT(" << group_container.name << ", " << group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_group_container->name_uppercase << "_TAG)" << std::endl;
-		}
-		else
-		{
-			ss << "\tTAG_GROUP_INHERIT_FROM_BLOCK(" << group_container.name << ", " << group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_group_container->name_uppercase << "_TAG, " << tag_block_container->symbol_name << " );" << std::endl;
-		}
-	}
 
 	if (group_container.define_tag_group_block_and_fields)
 	{
-		ss << "\t{" << std::endl;
-		generate_tag_fields_source(ss, tag_struct.tag_fields);
-		ss << "\t};" << std::endl;
+		create_tag_block_source(ss, *group_container.tag_block_container);
 	}
 
+	if (tag_group.parent_group_tag.value == 0xFFFFFFFF)
+	{
+		ss << "\tTAG_GROUP(" << std::endl;
+		ss << "\t\t" << group_container.symbol_name << "," << std::endl;
+		ss << "\t\t" << group_container.name_uppercase << "_TAG," << std::endl;
+		ss << "\t\tnullptr," << std::endl;
+		ss << "\t\tINVALID_TAG," << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << " );" << std::endl;
+	}
+	else
+	{
+		c_h4_tag_group_container& parent_group_container = *preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
+		REFERENCE_ASSERT(parent_group_container);
+		c_h4_tag_group& parent_tag_group = parent_group_container.tag_group;
+
+		ss << "\tTAG_GROUP(" << std::endl;
+		ss << "\t\t" << group_container.symbol_name << "," << std::endl;
+		ss << "\t\t" << group_container.name_uppercase << "_TAG," << std::endl;
+		ss << "\t\t&" << parent_group_container.symbol_name << "," << std::endl;
+		ss << "\t\t" << parent_group_container.name_uppercase << "_TAG," << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << " );" << std::endl;
+	}
 
 	ss << std::endl;
 }
 
 void c_h4_source_generator::create_tag_enum_header(std::stringstream& hs, c_h4_tag_enum_container& tag_enum_container)
 {
-	hs << "\textern const char* " << tag_enum_container.name << "_strings[];" << std::endl;
+	hs << "\textern c_versioned_string_list " << tag_enum_container.name << "_strings;" << std::endl;
 	hs << "\textern s_string_list_definition " << tag_enum_container.name << ";" << std::endl;
 }
 
@@ -510,7 +512,7 @@ void c_h4_source_generator::create_tag_enum_source(std::stringstream& ss, c_h4_t
 		{
 			const char* option = tag_enum.options[i];
 			std::string escaped_option = escape_string(option);
-			if (i != tag_enum.options.size() -1)
+			if (i != tag_enum.options.size() - 1)
 			{
 				ss << "\t\t\"" << escaped_option << "\"," << std::endl;
 			}
@@ -538,17 +540,13 @@ void c_h4_source_generator::create_tag_enum_source(std::stringstream& ss, c_h4_t
 
 void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
 {
-	c_h4_tag_block& tag_block = tag_block_container.tag_block;
-	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
+	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
 
-	if (!tag_block_container.defined_by_tag_group && tag_block_container.use_tag_block_definition)
-	{
-		//hs << "extern s_tag_struct_definition " << tag_block_container.tag_struct_container->name << "_block_struct;" << std::endl;
-		hs << "\textern s_tag_struct_definition " << tag_block_container.name << "_block_struct;" << std::endl;
-	}
 	hs << "\textern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
-
-
+	if (/*!tag_block_container.defined_by_tag_group && */tag_block_container.use_tag_block_definition)
+	{
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << "; // " << tag_block_container.symbol_name << std::endl;
+	}
 }
 void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container)
 {
@@ -558,7 +556,40 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 
 	if (tag_block_container.use_tag_block_definition)
 	{
-		ss << "\tTAG_BLOCK(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ")" << std::endl;
+		char persistent_identifier_buffer[256];
+		snprintf(
+			persistent_identifier_buffer,
+			256,
+			"0x%08X, 0x%08X, 0x%08X, 0x%08X",
+			tag_struct.persistent_identifier.data[0],
+			tag_struct.persistent_identifier.data[1],
+			tag_struct.persistent_identifier.data[2],
+			tag_struct.persistent_identifier.data[3]);
+
+		char persistent_identifier_name_buffer[256];
+		snprintf(
+			persistent_identifier_name_buffer,
+			256,
+			"%s_id",
+			tag_struct_container.name.c_str());
+		for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
+		{
+			*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
+		}
+
+		ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
+		ss << "\tTAG_BLOCK(" << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
+		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
+		ss << "\t\t" << tag_block.maximum_element_count_string  << "," << std::endl;
+		ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+		ss << "\t\t" << persistent_identifier_name_buffer;
+		if (tag_struct_container.tag_struct.alignment_bits)
+		{
+			ss << "," << std::endl;
+			ss << "\t\t" << tag_struct_container.tag_struct.alignment_bits;
+		}
+		ss << ")" << std::endl;
 		ss << "\t{" << std::endl;
 		generate_tag_fields_source(ss, tag_struct.tag_fields);
 		ss << "\t};" << std::endl;
@@ -566,27 +597,22 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 	}
 	else
 	{
-		if (tag_struct_container.is_block)
-		{
-			ss << "\tTAG_BLOCK_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_block_struct );" << std::endl;
-		}
-		else
-		{
-			ss << "\tTAG_BLOCK_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_struct_definition );" << std::endl;
-		}
-
+		ss << "\tTAG_BLOCK_FROM_STRUCT(" << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
+		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
+		ss << "\t\t" << tag_block.maximum_element_count_string << "," << std::endl;
+		ss << "\t\t" << tag_struct_container.symbol_name << ");" << std::endl;
 		ss << std::endl;
 	}
 }
 
 void c_h4_source_generator::create_tag_array_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
 {
-	c_h4_tag_block& tag_block = tag_block_container.tag_block;
-	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
+	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
 
 	if (!tag_block_container.defined_by_tag_group && tag_block_container.use_tag_block_definition)
 	{
-		hs << "\textern s_tag_struct_definition " << tag_block_container.name << "_struct_definition;" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << ";" << std::endl;
 	}
 	hs << "\textern s_tag_array_definition " << tag_block_container.symbol_name << ";" << std::endl;
 
@@ -608,14 +634,7 @@ void c_h4_source_generator::create_tag_array_source(std::stringstream& ss, c_h4_
 	}
 	else
 	{
-		if (tag_struct_container.is_block)
-		{
-			ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_block_struct );" << std::endl;
-		}
-		else
-		{
-			ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_struct_definition );" << std::endl;
-		}
+		ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << ");" << std::endl;
 
 		ss << std::endl;
 	}
@@ -627,35 +646,64 @@ void c_h4_source_generator::create_tag_struct_header(std::stringstream& hs, c_h4
 
 	if (tag_struct_container.is_array)
 	{
-		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition; // array" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << "; // array" << std::endl;
 	}
 	else if (tag_struct_container.is_block)
 	{
-		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_block_struct; // block" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << "; // block" << std::endl;
 	}
 	else if (tag_struct_container.is_tag_group)
 	{
-		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition; // tag group" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << "; // tag group" << std::endl;
 		//hs << "\textern s_tag_struct_definition " << tag_struct_container.source_name << "; // tag group" << std::endl;
 	}
 	else
 	{
-		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition;" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.symbol_name << ";" << std::endl;
 	}
-
-
 
 }
 void c_h4_source_generator::create_tag_struct_source(std::stringstream& ss, c_h4_tag_struct_container& tag_struct_container)
 {
 	c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
-	ss << "\tTAG_STRUCT(" << tag_struct_container.name << ")" << std::endl;
+	char persistent_identifier_buffer[256];
+	snprintf(
+		persistent_identifier_buffer,
+		256,
+		"0x%08X, 0x%08X, 0x%08X, 0x%08X",
+		tag_struct.persistent_identifier.data[0],
+		tag_struct.persistent_identifier.data[1],
+		tag_struct.persistent_identifier.data[2],
+		tag_struct.persistent_identifier.data[3]);
+
+	char persistent_identifier_name_buffer[256];
+	snprintf(
+		persistent_identifier_name_buffer,
+		256,
+		"%s_id",
+		tag_struct_container.name.c_str());
+	for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
+	{
+		*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
+	}
+
+	ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
+	ss << "\tTAG_STRUCT(" << std::endl;
+	ss << "\t\t" << tag_struct_container.name << "," << std::endl;
+	ss << "\t\t\"" << tag_struct_container.tag_struct.pretty_name << "\"" << "," << std::endl;
+	ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+	ss << "\t\t" << persistent_identifier_name_buffer;
+	if (tag_struct_container.tag_struct.alignment_bits)
+	{
+		ss << "," << std::endl;
+		ss << "\t\t" << tag_struct_container.tag_struct.alignment_bits;
+	}
+	ss << ")" << std::endl;
 	ss << "\t{" << std::endl;
 	generate_tag_fields_source(ss, tag_struct.tag_fields);
 	ss << "\t};" << std::endl;
 	ss << std::endl;
-
 }
 
 void c_h4_source_generator::create_tag_reference_header(std::stringstream& hs, c_h4_tag_reference_container& tag_reference_container)
@@ -694,14 +742,14 @@ void c_h4_source_generator::create_tag_reference_source(std::stringstream& ss, c
 	{
 		return;
 	}
-		
-//_h4_tag_reference_flag_not_a_dependency,
-//_h4_tag_reference_flag_dont_resolve_in_editor,
-//_h4_tag_reference_flag_resolved_manually,
-//_h4_tag_reference_flag_resolved_by_game,
-//_h4_tag_reference_flag_not_a_resource_dependency,
-//_h4_tag_reference_flag_dependency_for_cache_file_sharing,
-//_h4_tag_reference_flag_reference_ignored_by_bundle_builder
+
+	//_h4_tag_reference_flag_not_a_dependency,
+	//_h4_tag_reference_flag_dont_resolve_in_editor,
+	//_h4_tag_reference_flag_resolved_manually,
+	//_h4_tag_reference_flag_resolved_by_game,
+	//_h4_tag_reference_flag_not_a_resource_dependency,
+	//_h4_tag_reference_flag_dependency_for_cache_file_sharing,
+	//_h4_tag_reference_flag_reference_ignored_by_bundle_builder
 
 	std::stringstream flags_stream;
 	if (tag_reference_container.tag_reference.flags.test(_h4_tag_reference_flag_not_a_dependency))
@@ -859,23 +907,24 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_data:
 		case _h4_field_type_vertex_buffer:
 		case _h4_field_type_non_cache_runtime_value:
-		case _h4_field_type_custom:
 		case _h4_field_type_terminator:
 		case _h4_field_type_byte_integer:
 		case _h4_field_type_word_integer:
 		case _h4_field_type_dword_integer:
 		case _h4_field_type_qword_integer:
 		case _h4_field_type_useless_pad:
+		{
+			union
+			{
+				uint64_t value;
+				char string[8];
+			};
+			value = _byteswap_ulong(tag_field->tool_tag);
+
 			if (tag_field->name)
 			{
 				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
 				{
-					union
-					{
-						uint64_t value;
-						char string[8];
-					};
-					value = _byteswap_ulong(tag_field->tool_tag);
 					ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", nullptr, '" << string << "' }," << std::endl;
 				}
 				else
@@ -887,12 +936,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			{
 				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
 				{
-					union
-					{
-						uint64_t value;
-						char string[8];
-					};
-					value = _byteswap_ulong(tag_field->tool_tag);
 					ss << "\t\t{ " << field_generic_type_name << ", nullptr, nullptr, '" << string << "' }," << std::endl;
 				}
 				else
@@ -901,6 +944,41 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				}
 			}
 			break;
+		}
+		case _h4_field_type_custom:
+		{
+
+			const char* custom_field_type = "";
+			if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
+			{
+				custom_field_type = h4_custom_field_type_to_generic_custom_field_type(static_cast<e_h4_custom_field_type>(tag_field->tool_tag));
+			}
+			
+			if (tag_field->name)
+			{
+				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
+				{
+					ss << "\t\tFIELD_CUSTOM(\"" << field_name << "\", " << custom_field_type << ")," << std::endl;
+				}
+				else
+				{
+					ss << "\t\tFIELD_CUSTOM(\"" << field_name << "\", 0)," << std::endl;
+				}
+			}
+			else
+			{
+				if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
+				{
+					ss << "\t\tFIELD_CUSTOM(nullptr, " << custom_field_type << ")," << std::endl;
+				}
+				else
+				{
+					ss << "\t\tFIELD_CUSTOM(nullptr, 0)," << std::endl;
+				}
+			}
+
+			break;
+		}
 		case _h4_field_type_pageable:
 		{
 			c_h4_tag_resource_definition* resource_field = dynamic_cast<c_h4_tag_resource_definition*>(tag_field);
@@ -986,15 +1064,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(*struct_field->tag_struct);
 			ASSERT(tag_struct_container);
 
-
-			if (tag_struct_container->is_block)
-			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << "_block_struct }," << std::endl;
-			}
-			else
-			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << "_struct_definition }," << std::endl;
-			}
+			ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << " }," << std::endl;
 
 			break;
 		}

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(unit_trick_definition_block, k_maximum_trick_definitions_per_unit)
+	V5_TAG_BLOCK(unit_trick_definition_block, k_maximum_trick_definitions_per_unit)
 	{
 		{ _field_string_id, "animation name^" },
 		{ _field_char_enum, "activation type", &unit_trick_activation_type_enum },

@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(weather_globals, WEATHER_GLOBALS_TAG, weather_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(weather_globals, WEATHER_GLOBALS_TAG, weather_globals_block_block );
 
-	TAG_BLOCK(global_textures_refs_block, BYTE_MAX)
+	V5_TAG_BLOCK(global_textures_refs_block, BYTE_MAX)
 	{
 		{ _field_tag_reference, "texture", &global_bitmap_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(weather_globals_block, 1, weather_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(weather_globals_block, 1, weather_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(weather_globals_struct_definition)
+	V5_TAG_STRUCT(weather_globals_struct_definition)
 	{
 		{ _field_explanation, "global textures", "0: ............... random noise\n" },
 		{ _field_block, "global textures", &global_textures_refs_block_block },
@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(rain_ripple_setting_block)
+	V5_TAG_STRUCT(rain_ripple_setting_block)
 	{
 		{ _field_tag_reference, "rain ripple texture", &global_bitmap_reference },
 		{ _field_real, "group period time:seconds" },

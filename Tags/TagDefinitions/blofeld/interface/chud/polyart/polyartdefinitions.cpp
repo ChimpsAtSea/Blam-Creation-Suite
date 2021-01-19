@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(polyart_asset, POLYART_ASSET_TAG)
+	V5_TAG_GROUP(polyart_asset, POLYART_ASSET_TAG)
 	{
 		{ _field_byte_flags, "runtime flags*!", &g_polyartAssetStateFlags },
 		{ _field_char_enum, "Polyart vertex type", &PolyartVertexFormatTypeEnum },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(polyartCameraBlock, 1)
+	V5_TAG_BLOCK(polyartCameraBlock, 1)
 	{
 		{ _field_real, "horizontal fov" },
 		{ _field_real, "vertical fov" },
@@ -31,14 +31,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(polyartVertexBufferDescriptorStruct)
+	V5_TAG_STRUCT(polyartVertexBufferDescriptorStruct)
 	{
 		{ _field_data, "vertices*" },
 		{ _field_long_integer, "vertex type*" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(polyartIndexBufferDescriptorStruct)
+	V5_TAG_STRUCT(polyartIndexBufferDescriptorStruct)
 	{
 		{ _field_data, "index_data*" },
 		{ _field_terminator }

@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(collision_damage, COLLISION_DAMAGE_TAG, collision_damage_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(collision_damage, COLLISION_DAMAGE_TAG, collision_damage_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(collision_damage_block, 1, collision_damage_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(collision_damage_block, 1, collision_damage_struct_definition_struct_definition );
 
-	TAG_STRUCT(collision_damage_struct_definition)
+	V5_TAG_STRUCT(collision_damage_struct_definition)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Flags", &collisionDamageFlags },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(collision_damage_function)
+	V5_TAG_STRUCT(collision_damage_function)
 	{
 		{ _field_custom },
 		{ _field_struct, "mapping", &mapping_function_struct_definition },

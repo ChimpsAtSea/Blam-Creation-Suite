@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(input_mapping_function_block, 1)
+	V5_TAG_BLOCK(input_mapping_function_block, 1)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gamepad_stick_info_block, 1)
+	V5_TAG_BLOCK(gamepad_stick_info_block, 1)
 	{
 		{ _field_char_enum, "input shape", &input_mapping_shape_enum },
 		{ _field_pad, "F", 3 },
@@ -22,20 +22,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(controller_input_block, 1)
+	V5_TAG_BLOCK(controller_input_block, 1)
 	{
 		{ _field_real, "axial dead zone" },
 		{ _field_real, "radial dead zone" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(controller_mapping_reference_block, k_button_presets_count)
+	V5_TAG_BLOCK(controller_mapping_reference_block, k_button_presets_count)
 	{
 		{ _field_tag_reference, "mapping", &global_controller_mapping_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_control_block, 1)
+	V5_TAG_BLOCK(player_control_block, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_block, "controller button mappings", &controller_mapping_reference_block_block },

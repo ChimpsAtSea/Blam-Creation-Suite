@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG, multiplayer_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG, multiplayer_globals_block_block );
 
-	TAG_BLOCK(spawn_influence_weight_falloff_function_block, 1)
+	V5_TAG_BLOCK(spawn_influence_weight_falloff_function_block, 1)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(teamDefinitionBlock, k_multiplayer_team_game_team_count)
+	V5_TAG_BLOCK(teamDefinitionBlock, k_multiplayer_team_game_team_count)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_real_rgb_color, "color" },
@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(requisition_palette_block, k_infinity_requisition_palette_maximum_count)
+	V5_TAG_BLOCK(requisition_palette_block, k_infinity_requisition_palette_maximum_count)
 	{
 		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
 		{ _field_tag_reference, "name", &requisition_palette_block_name_reference },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(requisition_constants_block, 1)
+	V5_TAG_BLOCK(requisition_constants_block, 1)
 	{
 		{ _field_real, "FTL bonus fraction#multiplier to apply to money earned by minions to also give to the fireteam leader" },
 		{ _field_explanation, "AWARD AMOUNTS", "These are requisition award amounts for various thing players can get money for" },
@@ -77,7 +77,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_universal_block, 1)
+	V5_TAG_BLOCK(multiplayer_universal_block, 1)
 	{
 		{ _field_tag_reference, "random player names", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "team names", &global_multilingual_unicode_string_list_reference },
@@ -95,19 +95,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sounds_block, k_maximum_multiplayer_sounds)
+	V5_TAG_BLOCK(sounds_block, k_maximum_multiplayer_sounds)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(looping_sounds_block, k_maximum_multiplayer_sounds)
+	V5_TAG_BLOCK(looping_sounds_block, k_maximum_multiplayer_sounds)
 	{
 		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(multiplayer_constants_unknown_struct)
+	V5_TAG_STRUCT(multiplayer_constants_unknown_struct)
 	{
 		{ _field_real, "unknown0" },
 		{ _field_real, "unknown4" },
@@ -120,7 +120,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_constants_weapon_block, 65536)
+	V5_TAG_BLOCK(multiplayer_constants_weapon_block, 65536)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference },
 		{ _field_real, "unknown0" },
@@ -130,7 +130,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_constants_vehicle_block, 65536)
+	V5_TAG_BLOCK(multiplayer_constants_vehicle_block, 65536)
 	{
 		{ _field_tag_reference, "vehicle", &vehicle_reference },
 		{ _field_real, "unknown0" },
@@ -140,7 +140,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_constants_projectile_block, 65536)
+	V5_TAG_BLOCK(multiplayer_constants_projectile_block, 65536)
 	{
 		{ _field_tag_reference, "projectile", &projectile_reference },
 		{ _field_real, "unknown0" },
@@ -149,7 +149,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_constants_block, 1)
+	V5_TAG_BLOCK(multiplayer_constants_block, 1)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 14 },
 		{ _field_struct, "unknown0", &multiplayer_constants_unknown_struct_struct_definition },
@@ -195,7 +195,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_status_response_block, k_maximum_status_response_count)
+	V5_TAG_BLOCK(game_engine_status_response_block, k_maximum_status_response_count)
 	{
 		{ _field_word_flags, "flags", &game_engine_status_flags_definition },
 		{ _field_pad, "FAW", 2 },
@@ -208,7 +208,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_unknown_block, 65536)
+	V5_TAG_BLOCK(multiplayer_unknown_block, 65536)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_long_integer, "unknown" },
@@ -236,7 +236,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multiplayer_runtime_block, 1)
+	V5_TAG_BLOCK(multiplayer_runtime_block, 1)
 	{
 		{ _field_tag_reference, "editor biped", &unit_reference$4 },
 		{ _field_tag_reference, "editor helper", &object_reference$7 },
@@ -283,15 +283,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(multiplayer_globals_block, 1, multiplayer_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(multiplayer_globals_block, 1, multiplayer_globals_struct_definition_struct_definition );
 
-	TAG_BLOCK(multiplayer_color_block$3, 32)
+	V5_TAG_BLOCK(multiplayer_color_block$3, 32)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(multiplayer_globals_struct_definition)
+	V5_TAG_STRUCT(multiplayer_globals_struct_definition)
 	{
 		{ _field_block, "universal", &multiplayer_universal_block_block },
 		{ _field_block, "runtime", &multiplayer_runtime_block_block },

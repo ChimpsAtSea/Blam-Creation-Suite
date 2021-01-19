@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(biped, BIPED_TAG, unit, UNIT_TAG, biped_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(biped, BIPED_TAG, unit, UNIT_TAG, biped_block_block );
 
-	TAG_BLOCK(biped_camera_height_block, 16)
+	V5_TAG_BLOCK(biped_camera_height_block, 16)
 	{
 		{ _field_string_id, "weapon class^" },
 		{ _field_real, "standing height:wu" },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(biped_wall_proximity_block, k_maximum_biped_proximity_feelers)
+	V5_TAG_BLOCK(biped_wall_proximity_block, k_maximum_biped_proximity_feelers)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker name^" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(biped_movement_gate_block, 16)
+	V5_TAG_BLOCK(biped_movement_gate_block, 16)
 	{
 		{ _field_real, "period:seconds" },
 		{ _field_real, "z offset:world units" },
@@ -38,7 +38,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(contact_point_block, k_contact_point_count)
+	V5_TAG_BLOCK(contact_point_block, k_contact_point_count)
 	{
 		{ _field_useless_pad },
 		{ _field_custom },
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(biped_grab_object_animation_set_block, k_max_biped_grab_object_animation_sets)
+	V5_TAG_BLOCK(biped_grab_object_animation_set_block, k_max_biped_grab_object_animation_sets)
 	{
 		{ _field_string_id, "animation set name^" },
 		{ _field_string_id, "attach marker#The marker on the biped to which we attach the grabbed object." },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(BipedSoundRTPCBlock, k_maxBipedSoundRTPCBlocks)
+	V5_TAG_BLOCK(BipedSoundRTPCBlock, k_maxBipedSoundRTPCBlocks)
 	{
 		{ _field_long_block_index, "Attachment Index#Sound attachment to affect - leave empty for main body" },
 		{ _field_string_id, "Function#Function to drive the RTPC" },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(BipedSoundSweetenerBlock, k_maxBipedSoundSweetenerBlocks)
+	V5_TAG_BLOCK(BipedSoundSweetenerBlock, k_maxBipedSoundSweetenerBlocks)
 	{
 		{ _field_string_id, "Function#Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(BipedAimingJointFixupBlock, k_maximum_aiming_fixup_joints)
+	V5_TAG_BLOCK(BipedAimingJointFixupBlock, k_maximum_aiming_fixup_joints)
 	{
 		{ _field_string_id, "rotation_node^:bone to rotate to align marker" },
 		{ _field_custom },
@@ -83,9 +83,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(biped_block, 1, biped_group_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(biped_block, 1, biped_group_struct_definition );
 
-	TAG_STRUCT(biped_group)
+	V5_TAG_STRUCT(biped_group)
 	{
 		{ _field_struct, "unit", &unit_struct_definition_struct_definition },
 		{ _field_custom, "$$$ BIPED $$$" },
@@ -226,7 +226,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(biped_leaping_data_struct)
+	V5_TAG_STRUCT(biped_leaping_data_struct)
 	{
 		{ _field_custom, "wall-leaping" },
 		{ _field_explanation, "wall-leaping fields", "" },
@@ -243,7 +243,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(biped_vaulting_data_struct)
+	V5_TAG_STRUCT(biped_vaulting_data_struct)
 	{
 		{ _field_custom, "vaulting" },
 		{ _field_explanation, "vaulting fields", "The cost of the vault check is scaled by max horizontal distance divided by min object size.  Try to keep that number reasonably low." },
@@ -256,7 +256,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(biped_grab_biped_data_struct)
+	V5_TAG_STRUCT(biped_grab_biped_data_struct)
 	{
 		{ _field_custom, "grab biped" },
 		{ _field_explanation, "grab biped fields", "Allows a biped to grab and be grabbed by other bipeds." },
@@ -267,7 +267,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(biped_grab_object_data_struct)
+	V5_TAG_STRUCT(biped_grab_object_data_struct)
 	{
 		{ _field_custom, "grab object" },
 		{ _field_explanation, "grab object fields", "Allows a biped to grab and throw crate objects." },
@@ -276,7 +276,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(biped_ground_fitting_data_struct)
+	V5_TAG_STRUCT(biped_ground_fitting_data_struct)
 	{
 		{ _field_custom, "ground fitting" },
 		{ _field_explanation, "ground fitting data", "" },
@@ -351,7 +351,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(BipedMovementHipLeaningStruct)
+	V5_TAG_STRUCT(BipedMovementHipLeaningStruct)
 	{
 		{ _field_custom, "Movement Hip Leaning" },
 		{ _field_explanation, "Movement Hip Leaning", "Allows a biped to lean based on movement." },

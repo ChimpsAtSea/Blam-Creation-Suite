@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(object_type_drag_properties_block, NUMBER_OF_OBJECT_TYPES)
+	V5_TAG_BLOCK(object_type_drag_properties_block, NUMBER_OF_OBJECT_TYPES)
 	{
 		{ _field_tag_reference, "drag properties", &water_physics_drag_properties_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(underwater_proxies_block, k_maximum_material_types)
+	V5_TAG_BLOCK(underwater_proxies_block, k_maximum_material_types)
 	{
 		{ _field_explanation, "when this material is encounted under a material of this type ...", "" },
 		{ _field_string_id, "underwater material" },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(materials_block, k_maximum_editable_material_types)
+	V5_TAG_BLOCK(materials_block, k_maximum_editable_material_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "parent name" },
@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(runtime_materials_block, k_maximum_material_types)
+	V5_TAG_BLOCK(runtime_materials_block, k_maximum_material_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "parent name" },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(wet_proxies_struct)
+	V5_TAG_STRUCT(wet_proxies_struct)
 	{
 		{ _field_explanation, "when rained on, we report this material", "" },
 		{ _field_string_id, "wet material" },
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(material_physics_properties_struct)
+	V5_TAG_STRUCT(material_physics_properties_struct)
 	{
 		{ _field_long_integer, "flags!" },
 		{ _field_real, "friction" },
@@ -88,7 +88,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(materials_sweeteners_struct)
+	V5_TAG_STRUCT(materials_sweeteners_struct)
 	{
 		{ _field_tag_reference, "sound sweetener (small)", &global_sound_reference },
 		{ _field_tag_reference, "sound sweetener (medium)", &global_sound_reference },

@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(megalogamengine_sounds, MEGALOGAMENGINE_SOUNDS_TAG, megalogamengine_sounds_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(megalogamengine_sounds, MEGALOGAMENGINE_SOUNDS_TAG, megalogamengine_sounds_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(megalogamengine_sounds_block, 1, megalogamengine_sounds_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(megalogamengine_sounds_block, 1, megalogamengine_sounds_struct_definition_struct_definition );
 
-	TAG_STRUCT(megalogamengine_sounds_struct_definition)
+	V5_TAG_STRUCT(megalogamengine_sounds_struct_definition)
 	{
 		{ _field_tag_reference, "slayer", &global_sound_reference },
 		{ _field_tag_reference, "ctf", &global_sound_reference },

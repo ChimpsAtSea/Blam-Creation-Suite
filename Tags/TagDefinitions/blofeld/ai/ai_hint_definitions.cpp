@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(user_hint_line_segment_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_line_segment_block, k_max_hint_geometries)
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_parallelogram_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_parallelogram_block, k_max_hint_geometries)
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
@@ -31,13 +31,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hint_vertex_block, (1024))
+	V5_TAG_BLOCK(hint_vertex_block, (1024))
 	{
 		{ _field_real_point_3d, "point*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_jump_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_jump_block, k_max_hint_geometries)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_enum, "hint type", &hint_type_enum },
@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_climb_block, k_max_climb_hints)
+	V5_TAG_BLOCK(user_hint_climb_block, k_max_climb_hints)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 7 },
 		{ _field_enum, "hint type", &hint_type_enum },
@@ -73,7 +73,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_well_point_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_well_point_block, k_max_hint_geometries)
 	{
 		{ _field_enum, "type", &user_hint_well_point_type_enum },
 		{ _field_pad, "CNXLP", 2 },
@@ -83,28 +83,28 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_well_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_well_block, k_max_hint_geometries)
 	{
 		{ _field_long_flags, "flags", &user_hint_well_geometry_flags },
 		{ _field_block, "points", &user_hint_well_point_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_flight_point_block, k_max_points_per_flight_hint)
+	V5_TAG_BLOCK(user_hint_flight_point_block, k_max_points_per_flight_hint)
 	{
 		{ _field_real_vector_3d, "point" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_flight_block, k_max_flight_hints_per_bsp)
+	V5_TAG_BLOCK(user_hint_flight_block, k_max_flight_hints_per_bsp)
 	{
 		{ _field_block, "points", &user_hint_flight_point_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(user_hint_volume_avoidance, k_max_avoidance_volumes_per_bsp, user_hint_volume_avoidance_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(user_hint_volume_avoidance, k_max_avoidance_volumes_per_bsp, user_hint_volume_avoidance_struct_struct_definition );
 
-	TAG_BLOCK(user_hint_spline_control_point_block, k_max_control_points_per_spline_hint)
+	V5_TAG_BLOCK(user_hint_spline_control_point_block, k_max_control_points_per_spline_hint)
 	{
 		{ _field_word_flags, "flags", &user_hint_spline_segment_flags },
 		{ _field_pad, "post-flags-pad", 2 },
@@ -114,7 +114,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_spline_intersect_point_block, 2)
+	V5_TAG_BLOCK(user_hint_spline_intersect_point_block, 2)
 	{
 		{ _field_short_block_index, "volume index" },
 		{ _field_pad, "post-volume-index-pad", 2 },
@@ -123,7 +123,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_spline_block, k_max_spline_hints_per_bsp)
+	V5_TAG_BLOCK(user_hint_spline_block, k_max_spline_hints_per_bsp)
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "radius:wus" },
@@ -135,7 +135,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_sector_point_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(user_hint_sector_point_block, k_maximum_points_per_sector)
 	{
 		{ _field_real_point_3d, "point" },
 		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
@@ -143,13 +143,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hint_object_id_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(hint_object_id_block, k_maximum_points_per_sector)
 	{
 		{ _field_struct, "object ID*!", &scenario_object_id_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_cookie_cutter_block, k_max_cookie_cutters)
+	V5_TAG_BLOCK(user_hint_cookie_cutter_block, k_max_cookie_cutters)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_pointer, "hkaiVolume vtable*~!" },
@@ -176,7 +176,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_navmesh_area_block, k_max_navmesh_areas)
+	V5_TAG_BLOCK(user_hint_navmesh_area_block, k_max_navmesh_areas)
 	{
 		{ _field_pointer, "hkaiVolume vtable*~!" },
 		{ _field_short_integer, "size*~!" },
@@ -206,39 +206,39 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_giant_sector_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_giant_sector_block, k_max_hint_geometries)
 	{
 		{ _field_block, "points", &user_hint_sector_point_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_giant_rail_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_giant_rail_block, k_max_hint_geometries)
 	{
 		{ _field_short_block_index, "geometry index*" },
 		{ _field_pad, "JLOU", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_giant_block, 1)
+	V5_TAG_BLOCK(user_hint_giant_block, 1)
 	{
 		{ _field_block, "giant sector hints", &user_hint_giant_sector_block_block },
 		{ _field_block, "giant rail hints", &user_hint_giant_rail_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_flood_sector_block, k_max_hint_geometries)
+	V5_TAG_BLOCK(user_hint_flood_sector_block, k_max_hint_geometries)
 	{
 		{ _field_block, "points", &user_hint_sector_point_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_flood_block, 1)
+	V5_TAG_BLOCK(user_hint_flood_block, 1)
 	{
 		{ _field_block, "flood sector hints", &user_hint_flood_sector_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(user_hint_block, 1)
+	V5_TAG_BLOCK(user_hint_block, 1)
 	{
 		{ _field_block, "line segment geometry", &user_hint_line_segment_block_block },
 		{ _field_block, "parallelogram geometry", &user_hint_parallelogram_block_block },
@@ -258,13 +258,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(special_movement_block, 1)
+	V5_TAG_BLOCK(special_movement_block, 1)
 	{
 		{ _field_long_flags, "Special movement 1", &special_movement_flags },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(user_hint_volume_avoidance_struct)
+	V5_TAG_STRUCT(user_hint_volume_avoidance_struct)
 	{
 		{ _field_long_enum, "type", &user_hint_avoidance_volume_enum },
 		{ _field_real_point_3d, "origin{center}" },

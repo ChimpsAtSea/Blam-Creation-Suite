@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_BLOCK_FROM_STRUCT(scenario_acoustics_palette_block_definition, k_maximum_cluster_sound_palette_entries_per_structure, scenario_acoustics_palette_block_definition_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_acoustics_palette_block_definition, k_maximum_cluster_sound_palette_entries_per_structure, scenario_acoustics_palette_block_definition_struct_struct_definition );
 
-	TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
+	V5_TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
 	{
 		{ _field_block, "points", &acoustic_sector_point_block_block },
 		{ _field_real_plane_3d, "top plane!" },
@@ -29,7 +29,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
+	V5_TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
 	{
 		{ _field_real_point_3d, "center!" },
 		{ _field_real_point_3d, "forward!" },
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
+	V5_TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_explanation, "SOUND ENVIRONMENT", "" },
@@ -63,7 +63,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_acoustics_environment_definition)
+	V5_TAG_STRUCT(scenario_acoustics_environment_definition)
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 
@@ -75,7 +75,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_acoustics_ambience_definition)
+	V5_TAG_STRUCT(scenario_acoustics_ambience_definition)
 	{
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
 		{ _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale.", &global_looping_sound_reference },
@@ -103,14 +103,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_acoustic_location_definition)
+	V5_TAG_STRUCT(scenario_acoustic_location_definition)
 	{
 		{ _field_short_block_index, "sector index*!" },
 		{ _field_struct, "cluster reference*!", &scenario_acoustic_cluster_reference_definition_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_acoustic_cluster_reference_definition)
+	V5_TAG_STRUCT(scenario_acoustic_cluster_reference_definition)
 	{
 		{ _field_char_integer, "bsp index*!" },
 		{ _field_byte_integer, "cluster index*!" },

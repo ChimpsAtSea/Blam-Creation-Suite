@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(game_globals_grenade_list, GAME_GLOBALS_GRENADE_LIST_TAG, game_globals_grenade_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_globals_grenade_list, GAME_GLOBALS_GRENADE_LIST_TAG, game_globals_grenade_list_block_block );
 
-	TAG_BLOCK(GameGlobalsGrenadeBlock, eUGT_count)
+	V5_TAG_BLOCK(GameGlobalsGrenadeBlock, eUGT_count)
 	{
 		{ _field_short_integer, "maximum count" },
 		{ _field_pad, "CXVLKJE", 2 },
@@ -30,9 +30,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
 
-	TAG_STRUCT(game_globals_grenade_list_struct_definition)
+	V5_TAG_STRUCT(game_globals_grenade_list_struct_definition)
 	{
 		{ _field_block, "grenades", &GameGlobalsGrenadeBlock_block },
 		{ _field_terminator }

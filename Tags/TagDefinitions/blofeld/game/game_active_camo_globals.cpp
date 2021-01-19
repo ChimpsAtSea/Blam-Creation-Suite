@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(active_camo_level_definition_block, k_number_of_active_camo_levels)
+	V5_TAG_BLOCK(active_camo_level_definition_block, k_number_of_active_camo_levels)
 	{
 		{ _field_real, "grenade throw penalty:0..1#reduces camo value by this much when throwing a grenade" },
 		{ _field_real, "melee penalty:0..1#reduces camo by this much when meleeing" },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(active_camo_globals_block, 1)
+	V5_TAG_BLOCK(active_camo_globals_block, 1)
 	{
 		{ _field_real, "biped speed reference:wu/s#for bipeds, the speed at which you are on the far right of the \'speed to max camo\' graph" },
 		{ _field_real, "vehicle speed reference:wu/s#for vehicles, the speed at which you are on the far right of the \'speed to max camo\' graph" },

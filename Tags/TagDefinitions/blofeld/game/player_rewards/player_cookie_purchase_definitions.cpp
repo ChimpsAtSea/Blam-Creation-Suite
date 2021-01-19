@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cookie_purchase_globals, COOKIE_PURCHASE_GLOBALS_TAG, cookie_purchase_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cookie_purchase_globals, COOKIE_PURCHASE_GLOBALS_TAG, cookie_purchase_globals_block_block );
 
-	TAG_BLOCK(CookiePurchaseAppearanceDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
+	V5_TAG_BLOCK(CookiePurchaseAppearanceDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseAppearanceDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseFamilyAppearanceDefinitionBlock, k_max_cookie_purchase_families)
+	V5_TAG_BLOCK(CookiePurchaseFamilyAppearanceDefinitionBlock, k_max_cookie_purchase_families)
 	{
 		{ _field_string_id, "display title^#If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
 		{ _field_string_id, "display_description" },
@@ -22,13 +22,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseLoadoutDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
+	V5_TAG_BLOCK(CookiePurchaseLoadoutDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseLoadoutDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseFamilyLoadoutDefinitionBlock, k_max_cookie_purchase_families)
+	V5_TAG_BLOCK(CookiePurchaseFamilyLoadoutDefinitionBlock, k_max_cookie_purchase_families)
 	{
 		{ _field_string_id, "display title^#If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
 		{ _field_string_id, "display_description" },
@@ -38,13 +38,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseOrdnanceDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
+	V5_TAG_BLOCK(CookiePurchaseOrdnanceDefinitionReferenceBlock, k_max_cookie_purchase_family_items)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseOrdnanceDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseFamilyOrdnanceDefinitionBlock, k_max_cookie_purchase_families)
+	V5_TAG_BLOCK(CookiePurchaseFamilyOrdnanceDefinitionBlock, k_max_cookie_purchase_families)
 	{
 		{ _field_string_id, "display title^#If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
 		{ _field_string_id, "display_description" },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_appearance_effect_model_permutation_block, 1)
+	V5_TAG_BLOCK(purchase_player_appearance_effect_model_permutation_block, 1)
 	{
 		{ _field_char_enum, "model_region#See player customization globals, linked from globals.globals.", &player_model_customization_area_enum },
 		{ _field_pad, "pad1", 3 },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_appearance_effect_non_model_permutation_block, 2)
+	V5_TAG_BLOCK(purchase_player_appearance_effect_non_model_permutation_block, 2)
 	{
 		{ _field_char_enum, "non_model_region#See player customization globals, linked from globals.globals.", &player_non_model_customization_area_enum },
 		{ _field_pad, "pad1", 3 },
@@ -70,31 +70,31 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_appearance_effect_visor_tint_block, 1)
+	V5_TAG_BLOCK(purchase_player_appearance_effect_visor_tint_block, 1)
 	{
 		{ _field_string_id, "visor color name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_appearance_effect_emblem_index_block, k_maxEmblemIndicesPerItem)
+	V5_TAG_BLOCK(purchase_player_appearance_effect_emblem_index_block, k_maxEmblemIndicesPerItem)
 	{
 		{ _field_char_integer, "emblem index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_appearance_effect_firefight_voice_block, 65536)
+	V5_TAG_BLOCK(purchase_player_appearance_effect_firefight_voice_block, 65536)
 	{
 		{ _field_string_id, "voice name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePlayerAppearancePoseBlock, 1)
+	V5_TAG_BLOCK(PurchasePlayerAppearancePoseBlock, 1)
 	{
 		{ _field_string_id, "pose name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseAppearanceDefinitionBlock, k_max_cookie_purchase_total_appearance_items)
+	V5_TAG_BLOCK(CookiePurchaseAppearanceDefinitionBlock, k_max_cookie_purchase_total_appearance_items)
 	{
 		{ _field_string_id, "purchase id" },
 		{ _field_string_id, "display name^" },
@@ -130,13 +130,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseExternalUnlockableBlockAppearanceDefinition, (sizeof(dword)*k_byte_bits))
+	V5_TAG_BLOCK(CookiePurchaseExternalUnlockableBlockAppearanceDefinition, (sizeof(dword)*k_byte_bits))
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseAppearanceDefinitionReferenceBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_item_block, 1)
+	V5_TAG_BLOCK(purchase_player_item_block, 1)
 	{
 		{ _field_char_enum, "item_category#From the global multiplayer object list.", &player_item_category_enum },
 		{ _field_pad, "pad1", 3 },
@@ -146,26 +146,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_app_block, 1)
+	V5_TAG_BLOCK(purchase_player_app_block, 1)
 	{
 		{ _field_string_id, "object_name^#This must match an item in the custom app globals." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_loadout_slot_block, 1)
+	V5_TAG_BLOCK(purchase_player_loadout_slot_block, 1)
 	{
 		{ _field_byte_integer, "slot_count^#Total slots you\'re allowed." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_player_app_mod_slot_block, 1)
+	V5_TAG_BLOCK(purchase_player_app_mod_slot_block, 1)
 	{
 		{ _field_byte_integer, "app_count^#Total apps you\'re allowed (from 0 to 2)." },
 		{ _field_byte_integer, "mod_count^#Total mods you\'re allowed (from 0 to 1)." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseLoadoutDefinitionBlock, k_max_cookie_purchase_total_loadout_items)
+	V5_TAG_BLOCK(CookiePurchaseLoadoutDefinitionBlock, k_max_cookie_purchase_total_loadout_items)
 	{
 		{ _field_string_id, "purchase id" },
 		{ _field_string_id, "display name^" },
@@ -188,25 +188,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseExternalUnlockableBlockLoadoutDefinition, (sizeof(dword)*k_byte_bits))
+	V5_TAG_BLOCK(CookiePurchaseExternalUnlockableBlockLoadoutDefinition, (sizeof(dword)*k_byte_bits))
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseLoadoutDefinitionReferenceBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePlayerOrdnanceItemBlock, 1)
+	V5_TAG_BLOCK(PurchasePlayerOrdnanceItemBlock, 1)
 	{
 		{ _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePlayerOrdnanceSlotBlock, 1)
+	V5_TAG_BLOCK(PurchasePlayerOrdnanceSlotBlock, 1)
 	{
 		{ _field_byte_integer, "slot_count^#Total slots you\'re allowed." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseOrdnanceDefinitionBlock, k_max_cookie_purchase_total_ordnance_items)
+	V5_TAG_BLOCK(CookiePurchaseOrdnanceDefinitionBlock, k_max_cookie_purchase_total_ordnance_items)
 	{
 		{ _field_string_id, "purchase id" },
 		{ _field_string_id, "display name^" },
@@ -228,15 +228,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CookiePurchaseExternalUnlockableBlockOrdnanceDefinition, (sizeof(dword)*k_byte_bits))
+	V5_TAG_BLOCK(CookiePurchaseExternalUnlockableBlockOrdnanceDefinition, (sizeof(dword)*k_byte_bits))
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseOrdnanceDefinitionReferenceBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cookie_purchase_globals_block, 1, cookie_purchase_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cookie_purchase_globals_block, 1, cookie_purchase_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(cookie_purchase_globals_struct_definition)
+	V5_TAG_STRUCT(cookie_purchase_globals_struct_definition)
 	{
 		{ _field_custom, "Purchase Families" },
 		{ _field_block, "Helmet purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
@@ -299,7 +299,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchasePlayerAppearanceStruct)
+	V5_TAG_STRUCT(PurchasePlayerAppearanceStruct)
 	{
 		{ _field_block, "permutations", &purchase_player_appearance_effect_model_permutation_block_block },
 		{ _field_block, "armor effects permutations", &purchase_player_appearance_effect_non_model_permutation_block_block },
@@ -314,7 +314,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchasePlayerLoadoutStruct)
+	V5_TAG_STRUCT(PurchasePlayerLoadoutStruct)
 	{
 		{ _field_block, "items", &purchase_player_item_block_block },
 		{ _field_block, "apps", &purchase_player_app_block_block },
@@ -323,7 +323,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchasePlayerOrdnanceStruct)
+	V5_TAG_STRUCT(PurchasePlayerOrdnanceStruct)
 	{
 		{ _field_block, "ordnance items", &PurchasePlayerOrdnanceItemBlock_block },
 		{ _field_block, "ordnance slots", &PurchasePlayerOrdnanceSlotBlock_block },

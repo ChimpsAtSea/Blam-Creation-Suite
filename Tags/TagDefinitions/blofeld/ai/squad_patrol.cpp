@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(squad_patrol_member_block, k_max_members_per_squad_patrol)
+	V5_TAG_BLOCK(squad_patrol_member_block, k_max_members_per_squad_patrol)
 	{
 		{ _field_short_block_index, "squad^" },
 		{ _field_pad, "post-squad-pad", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squad_patrol_point_block, k_max_points_per_squad_patrol)
+	V5_TAG_BLOCK(squad_patrol_point_block, k_max_points_per_squad_patrol)
 	{
 		{ _field_short_block_index, "objective^" },
 		{ _field_pad, "post-objective-pad", 2 },
@@ -26,14 +26,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squad_patrol_waypoint_block, k_max_squad_patrol_waypoints_per_transition)
+	V5_TAG_BLOCK(squad_patrol_waypoint_block, k_max_squad_patrol_waypoints_per_transition)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squad_patrol_transition_block, k_max_squad_patrol_transitions)
+	V5_TAG_BLOCK(squad_patrol_transition_block, k_max_squad_patrol_transitions)
 	{
 		{ _field_short_block_index, "point1" },
 		{ _field_short_block_index, "point2" },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squad_patrol_block, k_max_squad_patrols_per_map)
+	V5_TAG_BLOCK(squad_patrol_block, k_max_squad_patrols_per_map)
 	{
 		{ _field_custom },
 		{ _field_string_id, "name^" },

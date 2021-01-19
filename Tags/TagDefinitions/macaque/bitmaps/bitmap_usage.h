@@ -1,0 +1,39 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	extern s_tag_block_definition bitmap_usage_block;
+	extern s_tag_struct_definition bitmap_usage_block_struct_definition; // bitmap_usage_block
+
+
+	extern c_versioned_string_list bitmap_usage_global_enum_strings;
+	extern s_string_list_definition bitmap_usage_global_enum;
+	extern c_versioned_string_list bitmap_usage_flags_def_strings;
+	extern s_string_list_definition bitmap_usage_flags_def;
+	extern c_versioned_string_list bitmap_usage_slicer_def_strings;
+	extern s_string_list_definition bitmap_usage_slicer_def;
+	extern c_versioned_string_list bitmap_usage_dicer_flags_def_strings;
+	extern s_string_list_definition bitmap_usage_dicer_flags_def;
+	extern c_versioned_string_list bitmap_usage_packer_def_strings;
+	extern s_string_list_definition bitmap_usage_packer_def;
+	extern c_versioned_string_list bitmap_usage_packer_flags_def_strings;
+	extern s_string_list_definition bitmap_usage_packer_flags_def;
+	extern c_versioned_string_list bitmap_usage_downsample_filter_def_strings;
+	extern s_string_list_definition bitmap_usage_downsample_filter_def;
+	extern c_versioned_string_list bitmap_smallest_mip_def_strings;
+	extern s_string_list_definition bitmap_smallest_mip_def;
+	extern c_versioned_string_list bitmap_usage_downsample_flags_def_strings;
+	extern s_string_list_definition bitmap_usage_downsample_flags_def;
+	extern c_versioned_string_list bitmap_usage_swizzle_def_strings;
+	extern s_string_list_definition bitmap_usage_swizzle_def;
+	extern c_versioned_string_list bitmap_usage_format_def_strings;
+	extern s_string_list_definition bitmap_usage_format_def;
+
+} // namespace macaque
+
+} // namespace blofeld
+

@@ -33,19 +33,25 @@ bool c_command_line::has_command_line_arg(const char* pArgument)
 
 std::string c_command_line::get_command_line_arg(const char* command)
 {
-	static LPSTR command_line = GetCommandLineA();
+	static LPSTR const command_line = GetCommandLineA();
 
-	const char* command_start = strstr(command_line, command);
-	if (command_start)
+	uint32_t command_length = strlen(command);
+
+	const char* command_start = command_line;
+	while (command_start = strstr(command_start, command))
 	{
-		const char* command_value_start = command_start + strlen(command);
+		const char* command_value_start = command_start + command_length;
 
 		if (*command_value_start == ':')
 		{
 			std::string command_line_remainder = command_value_start + 1;
-			return command_line_remainder.substr(0, command_line_remainder.find(' '));
+			command_line_remainder = command_line_remainder.substr(0, command_line_remainder.find(' '));
+			return command_line_remainder;
 		}
+
+		command_start = command_value_start;
 	}
+
 	return "";
 }
 

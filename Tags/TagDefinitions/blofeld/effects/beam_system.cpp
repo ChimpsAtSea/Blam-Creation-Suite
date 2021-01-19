@@ -11,7 +11,7 @@ namespace blofeld
 	};
 	STRING_LIST(beam_system_output_kind, beam_system_output_kind_strings, _countof(beam_system_output_kind_strings));
 
-	TAG_STRUCT(beam_system_gpu_data_struct)
+	V5_TAG_STRUCT(beam_system_gpu_data_struct)
 	{
 		{ _field_block, "runtime gpu_property_block!", &gpu_property_block_block },
 		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block_block },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(beam_system_unknown_struct)
+	V5_TAG_STRUCT(beam_system_unknown_struct)
 	{
 		{ _field_char_integer, "input" },
 		{ _field_char_integer, "input range" },
@@ -34,7 +34,7 @@ namespace blofeld
 	TAG_REFERENCE(beam_render_method_definition_reference, blofeld::RENDER_METHOD_DEFINITION_TAG);
 	TAG_REFERENCE(beam_render_method_reference);
 
-	TAG_BLOCK(beam_system_entry, 65536)
+	V5_TAG_BLOCK(beam_system_entry, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_explanation, "Render Method" },
@@ -76,7 +76,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(beam_system, BEAM_SYSTEM_TAG)
+	V5_TAG_GROUP(beam_system, BEAM_SYSTEM_TAG)
 	{
 		{ _field_block, "beam system", &beam_system_entry_block },
 		{ _field_terminator }

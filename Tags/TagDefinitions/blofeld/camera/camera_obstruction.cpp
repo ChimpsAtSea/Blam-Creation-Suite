@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(camera_obstruction_struct)
+	V5_TAG_STRUCT(camera_obstruction_struct)
 	{
 		{ _field_real_fraction, "cylinder fraction#controls how far from the focus point the outer raycasts start.  0 == cone, 1 == cylinder" },
 		{ _field_angle, "obstruction test angle:degrees#how wide of a cone to test" },

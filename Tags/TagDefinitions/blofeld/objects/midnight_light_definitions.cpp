@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(midnight_light_struct)
+	V5_TAG_STRUCT(midnight_light_struct)
 	{
 		{ _field_long_integer, "Version!" },
 		{ _field_explanation, "Dynamic/Static Shared Light Parameters", "" },

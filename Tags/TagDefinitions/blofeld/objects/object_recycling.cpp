@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(garbage_collection_block, 1)
+	V5_TAG_BLOCK(garbage_collection_block, 1)
 	{
 		{ _field_explanation, "Garbage Times", "time before the game considers that following entities as garbage" },
 		{ _field_real, "Dropped item:seconds" },

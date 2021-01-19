@@ -4,45 +4,45 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(style_sheet_list, STYLE_SHEET_LIST_TAG, style_sheet_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(style_sheet_list, STYLE_SHEET_LIST_TAG, style_sheet_list_block_block );
 
-	TAG_BLOCK(UserInterfaceStyleSheetFontIdBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetFontIdBlock, 1)
 	{
 		{ _field_long_enum, "font id", &global_font_id_enum_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetTextCaseBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetTextCaseBlock, 1)
 	{
 		{ _field_long_enum, "text case", &text_case_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetJustificationBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetJustificationBlock, 1)
 	{
 		{ _field_long_enum, "justification", &justification_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetAlignmentBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetAlignmentBlock, 1)
 	{
 		{ _field_long_enum, "alignment", &alignment_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetScaleBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetScaleBlock, 1)
 	{
 		{ _field_real, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetFixedHeightBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetFixedHeightBlock, 1)
 	{
 		{ _field_real, "height" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetsFontBlock, k_maximumNumberOfStyleSheets)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetsFontBlock, k_maximumNumberOfStyleSheets)
 	{
 		{ _field_string_id, "style sheet name^" },
 		{ _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
@@ -54,19 +54,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetDropShadowStyleBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetDropShadowStyleBlock, 1)
 	{
 		{ _field_long_enum, "drop shadow style", &drop_shadow_style_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetColorBlock, 1)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetColorBlock, 1)
 	{
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetsVisualBlock, k_maximumNumberOfStyleSheets)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetsVisualBlock, k_maximumNumberOfStyleSheets)
 	{
 		{ _field_string_id, "style sheet name^" },
 		{ _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
@@ -78,7 +78,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetLanguagesBlock, k_language_count)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetLanguagesBlock, k_language_count)
 	{
 		{ _field_long_enum, "language^", &style_sheet_language_enum_definition },
 		{ _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
@@ -86,7 +86,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetGradientBlock, 32)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetGradientBlock, 32)
 	{
 		{ _field_string_id, "gradient name^" },
 		{ _field_real_argb_color, "color1" },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetDropshadowBlock, 32)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetDropshadowBlock, 32)
 	{
 		{ _field_string_id, "dropshadow name^" },
 		{ _field_real_argb_color, "color" },
@@ -112,7 +112,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceStyleSheetOuterGlowBlock, 32)
+	V5_TAG_BLOCK(UserInterfaceStyleSheetOuterGlowBlock, 32)
 	{
 		{ _field_string_id, "outer glow name^" },
 		{ _field_real_argb_color, "color" },
@@ -121,9 +121,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(style_sheet_list_block, 1, style_sheet_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(style_sheet_list_block, 1, style_sheet_list_struct_definition_struct_definition );
 
-	TAG_STRUCT(style_sheet_list_struct_definition)
+	V5_TAG_STRUCT(style_sheet_list_struct_definition)
 	{
 		{ _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block },
 		{ _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block },

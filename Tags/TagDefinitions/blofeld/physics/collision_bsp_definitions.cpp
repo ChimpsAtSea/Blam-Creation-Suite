@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(bsp3d_nodes_block, ((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
+	V5_TAG_BLOCK(bsp3d_nodes_block, ((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		{ _field_int64_integer, "node data designator!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp3d_kd_supdernodes_block, (k_bsp3d_maximum_super_node_count))
+	V5_TAG_BLOCK(bsp3d_kd_supdernodes_block, (k_bsp3d_maximum_super_node_count))
 	{
 		{ _field_real, "plane 0*!" },
 		{ _field_real, "plane 1*!" },
@@ -47,22 +47,22 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planes_block, ((((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))>(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))?(((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits))))):(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))))
+	V5_TAG_BLOCK(planes_block, ((((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))>(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))?(((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits))))):(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))))
 	{
 		{ _field_real_plane_3d, "plane*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(leaves_block, ((false) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))), collision_leaf_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(leaves_block, ((false) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))), collision_leaf_struct_struct_definition );
 
-	TAG_BLOCK(bsp2d_references_block, ((false) ? 2147483647L>>2 : 196608))
+	V5_TAG_BLOCK(bsp2d_references_block, ((false) ? 2147483647L>>2 : 196608))
 	{
 		{ _field_short_integer, "plane*" },
 		{ _field_short_integer, "bsp2d node*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bsp2d_nodes_block, ((false) ? 2147483647L>>2 : SHORT_MAX))
+	V5_TAG_BLOCK(bsp2d_nodes_block, ((false) ? 2147483647L>>2 : SHORT_MAX))
 	{
 		{ _field_real_plane_2d, "plane*" },
 		{ _field_short_integer, "left child*" },
@@ -70,7 +70,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(surfaces_block, ((false) ? SHORT_MAX<<3 : SHORT_MAX))
+	V5_TAG_BLOCK(surfaces_block, ((false) ? SHORT_MAX<<3 : SHORT_MAX))
 	{
 		{ _field_word_integer, "plane index*" },
 		{ _field_word_integer, "first edge*" },
@@ -82,7 +82,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(edges_block, ((false) ? 2621440 : UNSIGNED_SHORT_MAX))
+	V5_TAG_BLOCK(edges_block, ((false) ? 2621440 : UNSIGNED_SHORT_MAX))
 	{
 		{ _field_word_integer, "start vertex*" },
 		{ _field_word_integer, "end vertex*" },
@@ -93,7 +93,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vertices_block, ((false) ? 1310720 : 131072))
+	V5_TAG_BLOCK(vertices_block, ((false) ? 1310720 : 131072))
 	{
 		{ _field_real_point_3d, "point*" },
 		{ _field_word_integer, "first edge*" },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_collision_bsp_block, 1)
+	V5_TAG_BLOCK(global_collision_bsp_block, 1)
 	{
 		{ _field_block, "bsp3d nodes*", &bsp3d_nodes_block_block },
 		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_bsp3d_nodes_block, ((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
+	V5_TAG_BLOCK(large_bsp3d_nodes_block, ((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		{ _field_long_integer, "plane*" },
 		{ _field_long_integer, "back child*" },
@@ -123,7 +123,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_leaves_block, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
+	V5_TAG_BLOCK(large_leaves_block, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		{ _field_word_flags, "flags*", &leaf_flags },
 		{ _field_short_integer, "bsp2d reference count*" },
@@ -131,14 +131,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_bsp2d_references_block, ((true) ? 2147483647L>>2 : 196608))
+	V5_TAG_BLOCK(large_bsp2d_references_block, ((true) ? 2147483647L>>2 : 196608))
 	{
 		{ _field_long_integer, "plane*" },
 		{ _field_long_integer, "bsp2d node*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_bsp2d_nodes_block, ((true) ? 2147483647L>>2 : SHORT_MAX))
+	V5_TAG_BLOCK(large_bsp2d_nodes_block, ((true) ? 2147483647L>>2 : SHORT_MAX))
 	{
 		{ _field_real_plane_2d, "plane*" },
 		{ _field_long_integer, "left child*" },
@@ -146,7 +146,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_surfaces_block, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
+	V5_TAG_BLOCK(large_surfaces_block, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
 	{
 		{ _field_long_integer, "plane index*" },
 		{ _field_long_integer, "first edge*" },
@@ -158,7 +158,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_edges_block, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
+	V5_TAG_BLOCK(large_edges_block, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
 	{
 		{ _field_long_integer, "start vertex*" },
 		{ _field_long_integer, "end vertex*" },
@@ -169,7 +169,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(large_vertices_block, ((true) ? 1310720 : 131072))
+	V5_TAG_BLOCK(large_vertices_block, ((true) ? 1310720 : 131072))
 	{
 		{ _field_real_point_3d, "point*" },
 		{ _field_long_integer, "first edge*" },
@@ -177,7 +177,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_large_collision_bsp_block, 1)
+	V5_TAG_BLOCK(global_large_collision_bsp_block, 1)
 	{
 		{ _field_block, "bsp3d nodes*", &large_bsp3d_nodes_block_block },
 		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block },
@@ -191,7 +191,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_collision_bsp_struct)
+	V5_TAG_STRUCT(global_collision_bsp_struct)
 	{
 		{ _field_block, "bsp3d nodes*", &bsp3d_nodes_block_block },
 		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block },
@@ -205,7 +205,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(collision_leaf_struct)
+	V5_TAG_STRUCT(collision_leaf_struct)
 	{
 		{ _field_byte_flags, "flags*", &leaf_flags },
 		{ _field_pad, "pad", 1 },

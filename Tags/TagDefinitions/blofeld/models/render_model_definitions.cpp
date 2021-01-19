@@ -4,16 +4,16 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block );
 
 
 
-	TAG_BLOCK(render_model_unknown_struct_unknown_block, 65536)
+	V5_TAG_BLOCK(render_model_unknown_struct_unknown_block, 65536)
 	{
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_model_unknown_sky_struct2)
+	V5_TAG_STRUCT(render_model_unknown_sky_struct2)
 	{
 		{ _field_real, "unknown" }, 
 		{ _field_real, "unknown" }, 
@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_model_unknown_struct)
+	V5_TAG_STRUCT(render_model_unknown_struct)
 	{
 		{ _field_block, "sky light unknown", &render_model_unknown_struct_unknown_block_block },
 		{ _field_struct, "sh sky red", &render_model_unknown_sky_struct2_struct_definition },
@@ -50,7 +50,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(render_model, RENDER_MODEL_TAG)
+	V5_TAG_GROUP(render_model, RENDER_MODEL_TAG)
 	{
 		{ _field_string_id, "name*" },
 		{ _field_word_flags, "flags*", &render_model_flags_definition },
@@ -89,9 +89,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG, render_model_lightmap_atlas_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG, render_model_lightmap_atlas_block_block );
 
-	TAG_BLOCK(imposter_mode_node_block, k_kilo)
+	V5_TAG_BLOCK(imposter_mode_node_block, k_kilo)
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
@@ -105,7 +105,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(render_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_short_integer, "mesh index*" },
@@ -121,16 +121,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(render_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_block, "permutations*", &render_model_permutation_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(imposter_model_block, 1, imposter_model_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(imposter_model_block, 1, imposter_model_struct_definition_struct_definition );
 
-	TAG_BLOCK(render_model_node_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(render_model_node_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_short_block_index, "parent node*" },
@@ -167,7 +167,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_model_marker_block, MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP)
+	V5_TAG_BLOCK(render_model_marker_block, MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP)
 	{
 		{ _field_char_integer, "region index*" },
 		{ _field_char_integer, "permutation index*" },
@@ -180,27 +180,27 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_model_marker_group_block, MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL)
+	V5_TAG_BLOCK(render_model_marker_group_block, MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_block, "markers*", &render_model_marker_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(instance_node_map_mapping_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(instance_node_map_mapping_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_short_integer, "instance_node map region node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(volume_samples_block, k_max_volume_samples_per_render_model)
+	V5_TAG_BLOCK(volume_samples_block, k_max_volume_samples_per_render_model)
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_array, "radiance transfer matrix*", &radiance_transfer_matrix_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(default_node_orientations_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(default_node_orientations_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_real_quaternion, "rotation*" },
 		{ _field_real_point_3d, "translation*" },
@@ -208,20 +208,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(RenderModelNodeIndexBlock, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(RenderModelNodeIndexBlock, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_short_block_index, "node index^*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(RenderModelBoneGroupBlock, MAXIMUM_BONE_GROUPS_PER_MODEL)
+	V5_TAG_BLOCK(RenderModelBoneGroupBlock, MAXIMUM_BONE_GROUPS_PER_MODEL)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_block, "bones*", &RenderModelNodeIndexBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(render_model_lightmap_atlas_block, 1, render_model_lightmap_atlas_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_model_lightmap_atlas_block, 1, render_model_lightmap_atlas_struct_definition_struct_definition );
 
 	TAG_ARRAY(radiance_transfer_matrix, 9*9)
 	{
@@ -229,7 +229,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(imposter_model_struct_definition)
+	V5_TAG_STRUCT(imposter_model_struct_definition)
 	{
 		{ _field_string_id, "name*" },
 		{ _field_short_integer, "quality" },
@@ -243,7 +243,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_model_lightmap_atlas_struct_definition)
+	V5_TAG_STRUCT(render_model_lightmap_atlas_struct_definition)
 	{
 		{ _field_struct, "atlas geometry*", &global_render_geometry_struct_struct_definition },
 		{ _field_real, "world scale ratio" },

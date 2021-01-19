@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block_block );
 
-	TAG_BLOCK(hs_references_block, k_maximum_hs_references_per_context)
+	V5_TAG_BLOCK(hs_references_block, k_maximum_hs_references_per_context)
 	{
 		{ _field_tag_reference, "reference*^", &hs_references_block_reference_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
+	V5_TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 	{
 		{ _field_string, "name*" },
 		{ _field_data, "source*" },
@@ -20,14 +20,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_script_parameters_block, k_maximum_hs_parameters_per_script)
+	V5_TAG_BLOCK(hs_script_parameters_block, k_maximum_hs_parameters_per_script)
 	{
 		{ _field_string, "name^*" },
 		{ _field_long_enum, "return type*", &hs_types_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
+	V5_TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
 	{
 		{ _field_string_id, "name^*" },
 		{ _field_enum, "script type*", &hs_script_types_enum },
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_globals_block, k_maximum_hs_globals_per_context)
+	V5_TAG_BLOCK(hs_globals_block, k_maximum_hs_globals_per_context)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_string, "name" },
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(HSInstancedVariablesBlock, k_maximum_hs_instanced_variables_per_context)
+	V5_TAG_BLOCK(HSInstancedVariablesBlock, k_maximum_hs_instanced_variables_per_context)
 	{
 		{ _field_string_id, "name*" },
 		{ _field_long_enum, "type*", &hs_types_enum },
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_unit_seat_block, k_maximum_hs_unit_seat_mappings)
+	V5_TAG_BLOCK(hs_unit_seat_block, k_maximum_hs_unit_seat_mappings)
 	{
 		{ _field_long_integer, "unit definition tag index!" },
 		{ _field_long_integer, "unit seats!" },
@@ -76,7 +76,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
+	V5_TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 8 },
 		{ _field_short_integer, "datum header~" },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(HSImportManifestEntryBlock, k_maximum_hs_scripts_per_context)
+	V5_TAG_BLOCK(HSImportManifestEntryBlock, k_maximum_hs_scripts_per_context)
 	{
 		{ _field_string_id, "script name*" },
 		{ _field_long_integer, "argCount*" },
@@ -109,7 +109,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(HSImportManifestBlock, 128)
+	V5_TAG_BLOCK(HSImportManifestBlock, 128)
 	{
 		{ _field_tag, "callee tag*" },
 		{ _field_block, "script table*", &HSImportManifestEntryBlock_block },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(rewardBlock, eCT_count)
+	V5_TAG_BLOCK(rewardBlock, eCT_count)
 	{
 		{ _field_char_enum, "currency type#Type of currency given by this reward.", &currencyTypeEnumDefinition },
 		{ _field_pad, "PJB1", 1 },

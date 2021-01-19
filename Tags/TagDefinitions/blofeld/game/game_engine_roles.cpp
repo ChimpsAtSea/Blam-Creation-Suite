@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(player_role_block, k_maximum_number_of_game_engine_roles)
+	V5_TAG_BLOCK(player_role_block, k_maximum_number_of_game_engine_roles)
 	{
 		{ _field_string_id, "role name^" },
 		{ _field_long_flags, "flags!", &player_role_flags },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_team_role_block, k_multiplayer_team_game_team_count)
+	V5_TAG_BLOCK(global_team_role_block, k_multiplayer_team_game_team_count)
 	{
 		{ _field_long_flags, "flags!", &team_role_flags },
 		{ _field_enum, "team^!", &global_multiplayer_team_designator_enum_definition },

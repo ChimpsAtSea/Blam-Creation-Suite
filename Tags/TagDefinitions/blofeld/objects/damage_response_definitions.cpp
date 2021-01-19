@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(damage_response_definition, DAMAGE_RESPONSE_DEFINITION_TAG, damage_response_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(damage_response_definition, DAMAGE_RESPONSE_DEFINITION_TAG, damage_response_definition_block_block );
 
-	TAG_BLOCK(damage_response_global_sound_effect_block, 1)
+	V5_TAG_BLOCK(damage_response_global_sound_effect_block, 1)
 	{
 		{ _field_string_id, "effect name" },
 		{ _field_custom },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_response_class_block, 2)
+	V5_TAG_BLOCK(damage_response_class_block, 2)
 	{
 		{ _field_enum, "type", &damage_response_class_type_enum },
 		{ _field_word_flags, "flags", &damage_response_class_flags },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(area_control_block, 1)
+	V5_TAG_BLOCK(area_control_block, 1)
 	{
 		{ _field_explanation, "AREA CONTROL", "Higher level scale controls for camera shake, camera impulse and rumble." },
 		{ _field_word_flags, "flags", &area_control_flags },
@@ -56,16 +56,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(damage_response_definition_block, 1, damage_response_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(damage_response_definition_block, 1, damage_response_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(damage_response_definition_struct_definition)
+	V5_TAG_STRUCT(damage_response_definition_struct_definition)
 	{
 		{ _field_block, "classes", &damage_response_class_block_block },
 		{ _field_block, "area control", &area_control_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_response_directional_flash_struct)
+	V5_TAG_STRUCT(damage_response_directional_flash_struct)
 	{
 		{ _field_real, "indicator duration" },
 
@@ -85,21 +85,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_response_motion_sensor_ping)
+	V5_TAG_STRUCT(damage_response_motion_sensor_ping)
 	{
 		{ _field_short_integer, "ping duration:ticks" },
 		{ _field_short_integer, "ping scale" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(area_control_scalar_function_struct)
+	V5_TAG_STRUCT(area_control_scalar_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(area_control_scalar_object_function_struct)
+	V5_TAG_STRUCT(area_control_scalar_object_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

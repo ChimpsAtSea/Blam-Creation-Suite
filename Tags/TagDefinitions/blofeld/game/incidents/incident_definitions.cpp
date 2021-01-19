@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG, incident_global_properties_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG, incident_global_properties_definition_block_block );
 
-	TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
+	V5_TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "unknown" },
@@ -15,9 +15,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(SuppressedIncident, SUPPRESSEDINCIDENT_TAG, SuppressedIncident_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(SuppressedIncident, SUPPRESSEDINCIDENT_TAG, SuppressedIncident_block_block );
 
-	TAG_BLOCK(suppressed_incident_block, 1000)
+	V5_TAG_BLOCK(suppressed_incident_block, 1000)
 	{
 		{ _field_string_id, "incident name^" },
 		{ _field_byte_flags, "suppression type", &suppressed_incident_flags },
@@ -25,26 +25,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SuppressedIncidentBlockReferenceDefinition, 8)
+	V5_TAG_BLOCK(SuppressedIncidentBlockReferenceDefinition, 8)
 	{
 		{ _field_tag_reference, "suppression block", &SuppressedIncidentGroupReference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_kill_implement_block, 50)
+	V5_TAG_BLOCK(specialized_incident_kill_implement_block, 50)
 	{
 		{ _field_char_enum, "damage reporting type^", &global_damage_reporting_enum_definition },
 		{ _field_pad, "ACNUIEHF", 3 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_object_riding_in_vehicle_properties_block, 10)
+	V5_TAG_BLOCK(specialized_incident_object_riding_in_vehicle_properties_block, 10)
 	{
 		{ _field_long_enum, "vehicle type", &vehicle_type_enum },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_object_properties_block, 10)
+	V5_TAG_BLOCK(specialized_incident_object_properties_block, 10)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 4},
 		{ _field_word_flags, "flags", &specialized_incident_kill_bucket_flags },
@@ -63,14 +63,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_special_kill_type_block, 10)
+	V5_TAG_BLOCK(specialized_incident_special_kill_type_block, 10)
 	{
 		{ _field_char_enum, "special kill type^", &specialized_incident_special_kill_type_enum },
 		{ _field_pad, "CVUIHEN", 3 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specializedIncidentGameOverBlock, 1)
+	V5_TAG_BLOCK(specializedIncidentGameOverBlock, 1)
 	{
 		{ _field_word_flags, "flags", &specializedIncidentGameOverFlags },
 		{ _field_short_integer, "minimum game length:seconds" },
@@ -79,13 +79,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specializedIncidentRandomOrdnanceBlock, 16)
+	V5_TAG_BLOCK(specializedIncidentRandomOrdnanceBlock, 16)
 	{
 		{ _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specializedIncidentCustomDataFilterBlock, 1)
+	V5_TAG_BLOCK(specializedIncidentCustomDataFilterBlock, 1)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
 		{ _field_pad, "PAD1", 3 },
@@ -93,7 +93,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specializedIncidentDistanceFilterBlock, 1)
+	V5_TAG_BLOCK(specializedIncidentDistanceFilterBlock, 1)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
 		{ _field_pad, "PAD1", 3 },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(specialized_incident_block, 1)
+	V5_TAG_BLOCK(specialized_incident_block, 1)
 	{
 		{ _field_string_id, "base incident^" },
 
@@ -122,7 +122,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(incident_accumulator_child_incident_block, 60)
+	V5_TAG_BLOCK(incident_accumulator_child_incident_block, 60)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
 		{ _field_pad, "VLHSJNRE", 3 },
@@ -136,7 +136,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(incident_accumulator_block, 1)
+	V5_TAG_BLOCK(incident_accumulator_block, 1)
 	{
 		{ _field_char_enum, "aggregation type", &incident_accumulator_aggregation_method_enum },
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
@@ -145,7 +145,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(incident_sum_accumulator_child_incident_block, 60)
+	V5_TAG_BLOCK(incident_sum_accumulator_child_incident_block, 60)
 	{
 		{ _field_string_id, "incident name" },
 		{ _field_string_id, "reset incident name" },
@@ -153,7 +153,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(incident_sum_accumulator_block, 1)
+	V5_TAG_BLOCK(incident_sum_accumulator_block, 1)
 	{
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
@@ -163,7 +163,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(incident_definition_block, s_incident_definition::k_maximum_incidents_per_definition)
+	V5_TAG_BLOCK(incident_definition_block, s_incident_definition::k_maximum_incidents_per_definition)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_custom, "PROPERTIES" },
@@ -190,17 +190,17 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(incident_global_properties_definition_block, 1, incident_global_properties_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(incident_global_properties_definition_block, 1, incident_global_properties_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(SuppressedIncident_block, 1, SuppressedIncident_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(SuppressedIncident_block, 1, SuppressedIncident_struct_definition_struct_definition );
 
-	TAG_BLOCK(incident_global_properties_incident_definitions, 65536)
+	V5_TAG_BLOCK(incident_global_properties_incident_definitions, 65536)
 	{
 		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(incident_global_properties_definition_struct_definition)
+	V5_TAG_STRUCT(incident_global_properties_definition_struct_definition)
 	{
 		{ _field_real, "campaign multikill time:s" },
 		{ _field_real, "survival multikill time:s" },
@@ -240,7 +240,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(SuppressedIncident_struct_definition)
+	V5_TAG_STRUCT(SuppressedIncident_struct_definition)
 	{
 		{ _field_block, "suppressed incidents", &suppressed_incident_block_block },
 		{ _field_terminator }

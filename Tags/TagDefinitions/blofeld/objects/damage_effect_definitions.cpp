@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(damage_effect, DAMAGE_EFFECT_TAG, damage_effect_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(damage_effect, DAMAGE_EFFECT_TAG, damage_effect_block_block );
 
-	TAG_BLOCK(custom_damage_response_label_block, 8)
+	V5_TAG_BLOCK(custom_damage_response_label_block, 8)
 	{
 		{ _field_string_id, "custom label#label used to control what damage response will fire.^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_effect_sound_block, 4)
+	V5_TAG_BLOCK(damage_effect_sound_block, 4)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_word_flags, "damage types", &damage_effect_sound_type_flags },
@@ -20,9 +20,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(damage_effect_block, 1, damage_effect_group_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(damage_effect_block, 1, damage_effect_group_struct_definition );
 
-	TAG_STRUCT(damage_effect_group)
+	V5_TAG_STRUCT(damage_effect_group)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "area of effect behavior equipment#if a reference is here, area of effect damage will attach the equipment to the target", &behavior_object_reference },
@@ -147,7 +147,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(damage_outer_cone_angle_struct)
+	V5_TAG_STRUCT(damage_outer_cone_angle_struct)
 	{
 		{ _field_angle, "dmg outer cone angle" },
 		{ _field_terminator }

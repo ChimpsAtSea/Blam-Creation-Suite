@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock_block );
+	V5_TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock_block );
 
-	TAG_BLOCK(progressionGlobalsBlock, 1)
+	V5_TAG_BLOCK(progressionGlobalsBlock, 1)
 	{
 		{ _field_long_integer, "ordnance points gained on killing another player" },
 		{ _field_long_integer, "ordnance points gained on killing an NPC" },

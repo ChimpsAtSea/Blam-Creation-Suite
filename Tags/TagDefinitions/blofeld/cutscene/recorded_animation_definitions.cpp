@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(recorded_animation_block, MAXIMUM_RECORDED_ANIMATIONS_PER_MAP)
+	V5_TAG_BLOCK(recorded_animation_block, MAXIMUM_RECORDED_ANIMATIONS_PER_MAP)
 	{
 		{ _field_string, "name^" },
 		{ _field_char_integer, "version*" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(breakable_surface_key_table_block, (SHORT_MAX))
+	V5_TAG_BLOCK(breakable_surface_key_table_block, (SHORT_MAX))
 	{
 		{ _field_short_integer, "instanced geometry index!*" },
 		{ _field_byte_integer, "breakable surface set index!*" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(soft_surfaces_definition_block, 1)
+	V5_TAG_BLOCK(soft_surfaces_definition_block, 1)
 	{
 		{ _field_pad, "CLASS_NONE", 4 },
 		{ _field_real, "class biped#max - .2f" },
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_soft_ceiling_triangle_block, k_maximum_structure_soft_ceiling_triangles)
+	V5_TAG_BLOCK(structure_soft_ceiling_triangle_block, k_maximum_structure_soft_ceiling_triangles)
 	{
 		{ _field_real_plane_3d, "plane!*" },
 		{ _field_real_point_3d, "bounding sphere center!*" },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_soft_ceiling_block, k_maximum_structure_soft_ceilings_count)
+	V5_TAG_BLOCK(structure_soft_ceiling_block, k_maximum_structure_soft_ceilings_count)
 	{
 		{ _field_string_id, "name*!" },
 		{ _field_enum, "type!*", &soft_ceiling_type_enum },
@@ -50,19 +50,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_water_groups_block, k_maximum_structure_water_groups)
+	V5_TAG_BLOCK(structure_water_groups_block, k_maximum_structure_water_groups)
 	{
 		{ _field_string_id, "name*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_water_instance_planes_block, k_maximum_structure_water_instance_planes)
+	V5_TAG_BLOCK(structure_water_instance_planes_block, k_maximum_structure_water_instance_planes)
 	{
 		{ _field_real_plane_3d, "plane*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_water_instance_debug_triangles_block, k_maximum_structure_water_instance_debug_triangles)
+	V5_TAG_BLOCK(structure_water_instance_debug_triangles_block, k_maximum_structure_water_instance_debug_triangles)
 	{
 		{ _field_real_point_3d, "point0*!" },
 		{ _field_real_point_3d, "point1*!" },
@@ -70,7 +70,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_water_instances_block, k_maximum_structure_water_instances)
+	V5_TAG_BLOCK(structure_water_instances_block, k_maximum_structure_water_instances)
 	{
 		{ _field_short_block_index, "group*!" },
 		{ _field_pad, "PAD0", 2 },
@@ -85,7 +85,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_structure_physics_struct)
+	V5_TAG_STRUCT(global_structure_physics_struct)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_block, "collision mopp code block!*", &mopp_code_definition_block_block },
@@ -99,7 +99,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_structure_physics_design_struct)
+	V5_TAG_STRUCT(global_structure_physics_design_struct)
 	{
 		{ _field_long_integer, "importer version*!" },
 		{ _field_block, "soft ceiling mopp code block!*", &mopp_code_definition_block_block },

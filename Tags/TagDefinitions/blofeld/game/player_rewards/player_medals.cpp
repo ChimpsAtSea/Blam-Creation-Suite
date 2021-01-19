@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(game_medal_globals, GAME_MEDAL_GLOBALS_TAG, game_medal_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_medal_globals, GAME_MEDAL_GLOBALS_TAG, game_medal_globals_block_block );
 
-	TAG_BLOCK(gameMedalTiers, GameMedalTierDefinition::k_maximumGameMedalTierDefinitions)
+	V5_TAG_BLOCK(gameMedalTiers, GameMedalTierDefinition::k_maximumGameMedalTierDefinitions)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_medal_block, s_game_medal_definition::k_maximum_game_medal_definitions)
+	V5_TAG_BLOCK(game_medal_block, s_game_medal_definition::k_maximum_game_medal_definitions)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "description" },
@@ -42,9 +42,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_medal_globals_block, 1, game_medal_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_medal_globals_block, 1, game_medal_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(game_medal_globals_struct_definition)
+	V5_TAG_STRUCT(game_medal_globals_struct_definition)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "tiers", &gameMedalTiers_block },

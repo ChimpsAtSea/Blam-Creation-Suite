@@ -1,0 +1,20 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	constexpr unsigned long RASTERIZER_CACHE_FILE_GLOBALS_TAG = 'draw';
+	extern s_tag_group rasterizer_cache_file_globals_group; // rasterizer_cache_file_globals_block
+
+
+	extern s_tag_block_definition rasterizer_cache_file_globals_block;
+
+	extern s_tag_struct_definition rasterizer_cache_file_globals_struct_definition; // tag group
+
+} // namespace macaque
+
+} // namespace blofeld
+

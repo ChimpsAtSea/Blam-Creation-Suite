@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(effect_globals, EFFECT_GLOBALS_TAG, effect_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(effect_globals, EFFECT_GLOBALS_TAG, effect_globals_block_block );
 
-	TAG_BLOCK(effect_component_holdback_block, k_effect_priority_max)
+	V5_TAG_BLOCK(effect_component_holdback_block, k_effect_priority_max)
 	{
 		{ _field_long_enum, "priority type^*", &global_effect_priority_enum },
 		{ _field_explanation, "SET ONE OF THE FOLLOWING", "Whichever is larger will be used" },
@@ -16,7 +16,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_component_holdbacks_block, k_effect_holdback_type_max)
+	V5_TAG_BLOCK(effect_component_holdbacks_block, k_effect_holdback_type_max)
 	{
 		{ _field_long_enum, "holdback type^*", &effect_holdback_type_enum },
 		{ _field_dword_integer, "overall budget*#from code" },
@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_global_spawn_effects_block, 1)
+	V5_TAG_BLOCK(effect_global_spawn_effects_block, 1)
 	{
 		{ _field_tag_reference, "biped spawn effect", &global_effect_reference },
 		{ _field_tag_reference, "vehicle spawn effect", &global_effect_reference },
@@ -36,9 +36,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(effect_globals_block, 1, effect_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(effect_globals_block, 1, effect_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(effect_globals_struct_definition)
+	V5_TAG_STRUCT(effect_globals_struct_definition)
 	{
 		{ _field_explanation, "EFFECT HOLDBACKS", "ALLOCATIONS ON THE MAIN THREAD\ntype_effect:                     Number of effect slots\ntype_event:                      Number of event slots\ntype_location:                   Number of location slots\ntype_lightprobe:                 Number of lightprobe slots\n\nTHREAD MESSAGES\ntype_effect_message:             Number of main-->render messages\n                                 Most effect components require 2 messages + 1 x number of locations\ntype_effect_reverse_message:     Number of render-->main messages (attached effects to particles)\n                                 Holdback not implemented due to complexity.\n\nALLOCATIONS ON THE RENDER THREAD\ntracer system\t\t              Number of instances\ntracer location\t\t          Number of instances * markers\ntracer\t\t\t                  Number of instances * markers * tag-block-entries\ntracer profile row\t\t\t      x16 = Number of tracer profiles\n\ntype_decal_system                Number of instances\ntype_decal                       Number of instances * tag-block-entries\ntype_decal_vertex                Number of decal vertices\ntype_decal_index                 Number of decal indices\n\ntype_light_volume_system         Number of instances\ntype_light_volume_location       Number of instances * markers\ntype_light_volume                Number of instances * markers * tag-block-entries\ntype_light_volume_profile_row    x16 =Number of light_volume profiles\n\ntype_particle_system             Number of instances\ntype_particle_location           Number of instances * markers\ntype_particle_emitter            Number of instances * markers * tag-block-entries\ntype_cpu_particle                Number of cpu particles\ntype_gpu_particle_row            x16 =Number of gpu particles (includes cpu particles)\n\nSPAWNS TO THE GPU\ntype_particle_queue              Number of particles created in a frame (includes cpu particles)\ntracer queue\t\t              Number of tracer profiles created in a frame\n" },
 		{ _field_block, "holdbacks", &effect_component_holdbacks_block_block },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(polyartVertexBlock, k_chudPolyArtVertexMaxCount)
+	V5_TAG_BLOCK(polyartVertexBlock, k_chudPolyArtVertexMaxCount)
 	{
 		{ _field_short_integer, "half x*" },
 		{ _field_short_integer, "half y*" },
@@ -15,17 +15,17 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(polyartIndexBlock, PolyartIndex::k_chudPolyArtIndexMaxCount)
+	V5_TAG_BLOCK(polyartIndexBlock, PolyartIndex::k_chudPolyArtIndexMaxCount)
 	{
 		{ _field_short_integer, "index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(vertexBuffersBlock, 1, vertexBuffersBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(vertexBuffersBlock, 1, vertexBuffersBlock_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(indexBuffersBlock, 1, indexBuffersBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(indexBuffersBlock, 1, indexBuffersBlock_struct_struct_definition );
 
-	TAG_STRUCT(vertexBuffersBlock_struct)
+	V5_TAG_STRUCT(vertexBuffersBlock_struct)
 	{
 		{ _field_byte_integer, "declaration type*" },
 		{ _field_byte_integer, "stride*" },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(indexBuffersBlock_struct)
+	V5_TAG_STRUCT(indexBuffersBlock_struct)
 	{
 		{ _field_byte_integer, "declaration type*" },
 		{ _field_byte_integer, "stride*" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(collision_kd_hierarchy_static_hash_table_data_block, k_short_max)
+	V5_TAG_BLOCK(collision_kd_hierarchy_static_hash_table_data_block, k_short_max)
 	{
 		{ _field_long_integer, "node index!" },
 		{ _field_long_integer, "key a!" },
@@ -13,13 +13,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_kd_hierarchy_static_hash_table_short_block, k_short_max)
+	V5_TAG_BLOCK(collision_kd_hierarchy_static_hash_table_short_block, k_short_max)
 	{
 		{ _field_short_integer, "index!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_kd_hierarchy_static_hash_table_headers_block, k_short_max)
+	V5_TAG_BLOCK(collision_kd_hierarchy_static_hash_table_headers_block, k_short_max)
 	{
 		{ _field_word_flags, "cull flags!", &collision_kd_hierarchy_static_hash_table_cull_flags },
 		{ _field_short_integer, "instance index!" },
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_kd_hierarchy_static_nodes_block, k_short_max)
+	V5_TAG_BLOCK(collision_kd_hierarchy_static_nodes_block, k_short_max)
 	{
 		{ _field_block, "render only headers!", &collision_kd_hierarchy_static_hash_table_headers_block_block },
 		{ _field_block, "collidable headers!", &collision_kd_hierarchy_static_hash_table_headers_block_block },
@@ -41,20 +41,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(collision_kd_hierarchy_static_in_use_masks_block, (k_bsp3d_maximum_super_node_count))
+	V5_TAG_BLOCK(collision_kd_hierarchy_static_in_use_masks_block, (k_bsp3d_maximum_super_node_count))
 	{
 		{ _field_long_integer, "mask!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(super_node_mappings_block$3, k_short_max)
+	V5_TAG_BLOCK(super_node_mappings_block$3, k_short_max)
 	{
 		{ _field_array, "indices!", &super_node_mapping_index_array_array },
 		{ _field_pad, "pad", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cluster_table_block, k_short_max)
+	V5_TAG_BLOCK(cluster_table_block, k_short_max)
 	{
 		{ _field_block, "super node mappings", &super_node_mappings_block$3_block },
 		{ _field_terminator }
@@ -66,7 +66,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(collision_kd_hierarchy_static_struct)
+	V5_TAG_STRUCT(collision_kd_hierarchy_static_struct)
 	{
 		{ _field_long_integer, "hash total_count!" },
 		{ _field_block, "hash data", &collision_kd_hierarchy_static_hash_table_data_block_block },

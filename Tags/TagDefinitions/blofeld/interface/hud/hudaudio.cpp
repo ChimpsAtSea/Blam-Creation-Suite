@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
+	V5_TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
 		{ _field_long_flags, "latched to", &hud_sound_cue_flags },
@@ -12,7 +12,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hud_unit_sound_block, 1)
+	V5_TAG_BLOCK(hud_unit_sound_block, 1)
 	{
 		{ _field_block, "Hud audio cues", &hud_unit_sound_cue_block_block },
 		{ _field_custom, "health thresholds" },

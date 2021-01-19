@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(giant, GIANT_TAG, unit, UNIT_TAG, giant_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(giant, GIANT_TAG, unit, UNIT_TAG, giant_block_block );
 
-	TAG_BLOCK(giant_buckle_parameters_block, k_giant_buckle_total_types)
+	V5_TAG_BLOCK(giant_buckle_parameters_block, k_giant_buckle_total_types)
 	{
 		{ _field_explanation, "timing controls", "" },
 		{ _field_real, "lower time:seconds to reach ground" },
@@ -38,9 +38,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(giant_block, 1, giant_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(giant_block, 1, giant_struct_definition_struct_definition );
 
-	TAG_STRUCT(giant_struct_definition)
+	V5_TAG_STRUCT(giant_struct_definition)
 	{
 		{ _field_struct, "unit", &unit_struct_definition_struct_definition },
 		{ _field_custom, "$$$ GIANT $$$" },

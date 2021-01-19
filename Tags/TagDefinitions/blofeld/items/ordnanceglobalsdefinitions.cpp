@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG, game_globals_ordnance_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG, game_globals_ordnance_list_block_block );
 
-	TAG_GROUP_FROM_BLOCK(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG, scenario_ordnance_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG, scenario_ordnance_list_block_block );
 
-	TAG_BLOCK(GameGlobalsOrdnanceBlock, k_maximumNumberOfMultiplayerOrdnanceSelections)
+	V5_TAG_BLOCK(GameGlobalsOrdnanceBlock, k_maximumNumberOfMultiplayerOrdnanceSelections)
 	{
 		{ _field_string_id, "ordnance name^" },
 		{ _field_string, "ordnance internal name!" },
@@ -23,14 +23,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(OrdnanceRemappingBlock, 128)
+	V5_TAG_BLOCK(OrdnanceRemappingBlock, 128)
 	{
 		{ _field_string_id, "from^#This must match one of the global ordnance objects." },
 		{ _field_string_id, "to^#This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(OrdnanceRemappingVariantBlock, 64)
+	V5_TAG_BLOCK(OrdnanceRemappingVariantBlock, 64)
 	{
 		{ _field_string_id, "name" },
 		{ _field_string, "internal name!" },
@@ -38,30 +38,30 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_globals_ordnance_list_block, 1, game_globals_ordnance_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_globals_ordnance_list_block, 1, game_globals_ordnance_list_struct_definition_struct_definition );
 
-	TAG_BLOCK(RandomOrdnanceItemBlock, k_maximum_random_ordnance_items)
+	V5_TAG_BLOCK(RandomOrdnanceItemBlock, k_maximum_random_ordnance_items)
 	{
 		{ _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PlayerOrdnanceItemBlock, 8)
+	V5_TAG_BLOCK(PlayerOrdnanceItemBlock, 8)
 	{
 		{ _field_string, "ordnance name^#This must match one of the global ordnance objects." },
 		{ _field_real, "ordnance frequency#chance that an ordnance from this group will be chosen" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PlayerOrdnanceGroupBlock, 3)
+	V5_TAG_BLOCK(PlayerOrdnanceGroupBlock, 3)
 	{
 		{ _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_ordnance_list_block, 1, scenario_ordnance_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_ordnance_list_block, 1, scenario_ordnance_list_struct_definition_struct_definition );
 
-	TAG_STRUCT(game_globals_ordnance_list_struct_definition)
+	V5_TAG_STRUCT(game_globals_ordnance_list_struct_definition)
 	{
 		{ _field_real, "ordnance map width:world units" },
 		{ _field_real, "random ordnance fanfare duration:seconds" },
@@ -72,7 +72,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_ordnance_list_struct_definition)
+	V5_TAG_STRUCT(scenario_ordnance_list_struct_definition)
 	{
 		{ _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock_block },
 		{ _field_block, "Player ordnance drop groups", &PlayerOrdnanceGroupBlock_block },

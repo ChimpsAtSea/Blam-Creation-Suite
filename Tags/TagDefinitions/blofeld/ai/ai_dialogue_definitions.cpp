@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG, ai_dialogue_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG, ai_dialogue_globals_block_block );
 
-	TAG_BLOCK(default_stimulus_suppressor_block, 4)
+	V5_TAG_BLOCK(default_stimulus_suppressor_block, 4)
 	{
 		{ _field_string_id, "stimulus^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(response_block, 20)
+	V5_TAG_BLOCK(response_block, 20)
 	{
 		{ _field_string_id, "vocalization name" },
 		{ _field_word_flags, "flags", &response_flags },
@@ -22,7 +22,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vocalization_definitions_block, 500)
+	V5_TAG_BLOCK(vocalization_definitions_block, 500)
 	{
 		{ _field_string_id, "vocalization^" },
 		{ _field_short_block_index, "parent index*" },
@@ -56,7 +56,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vocalization_patterns_block, 1000)
+	V5_TAG_BLOCK(vocalization_patterns_block, 1000)
 	{
 		{ _field_enum, "dialogue type", &dialogue_names_enum },
 		{ _field_short_integer, "vocalization index" },
@@ -95,29 +95,29 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(dialogue_data_block, k_dialogue_type_count)
+	V5_TAG_BLOCK(dialogue_data_block, k_dialogue_type_count)
 	{
 		{ _field_short_integer, "start index (postprocess)*" },
 		{ _field_short_integer, "length (postprocess)*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(involuntary_data_block, 100)
+	V5_TAG_BLOCK(involuntary_data_block, 100)
 	{
 		{ _field_short_integer, "involuntary vocalization index*" },
 		{ _field_pad, "JXIFX", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(predicted_data_block, 32)
+	V5_TAG_BLOCK(predicted_data_block, 32)
 	{
 		{ _field_long_integer, "predicted vocalization index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(ai_dialogue_globals_block, 1, ai_dialogue_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(ai_dialogue_globals_block, 1, ai_dialogue_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(ai_dialogue_globals_struct_definition)
+	V5_TAG_STRUCT(ai_dialogue_globals_struct_definition)
 	{
 		{ _field_explanation, "Global timing", "" },
 		{ _field_real_bounds, "strike delay bounds:secs" },

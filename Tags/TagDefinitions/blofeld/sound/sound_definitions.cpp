@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	TAG_STRUCT(sound_mix_equalizer)
+	V5_TAG_STRUCT(sound_mix_equalizer)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_real, "base db" },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sound_mix_mastering, SOUND_MIX_MASTERING_TAG)
+	V5_TAG_GROUP(sound_mix_mastering, SOUND_MIX_MASTERING_TAG)
 	{
 		{ _field_long_integer, "unknown@" },
 		{ _field_short_integer, "unknown" },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(soundbank, SOUNDBANK_TAG)
+	V5_TAG_GROUP(soundbank, SOUNDBANK_TAG)
 	{
 		{ _field_long_flags, "flags", &SoundBankDefinitionFlags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
@@ -65,14 +65,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sound_global_propagation, SOUND_GLOBAL_PROPAGATION_TAG)
+	V5_TAG_GROUP(sound_global_propagation, SOUND_GLOBAL_PROPAGATION_TAG)
 	{
 		{ _field_explanation, "underwater propagation globals", "" },
 		{ _field_struct, "underwater propagation", &sound_propagation_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_group)
+	V5_TAG_STRUCT(sound_group)
 	{
 		{_field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_struct, "playback", &cache_file_sound_struct_definition_struct_definition },
@@ -95,10 +95,10 @@ namespace blofeld
 
 		{ _field_terminator }
 	};
-	TAG_BLOCK_FROM_STRUCT(sound_group, 1, sound_group_struct_definition);
-	TAG_GROUP_FROM_BLOCK(sound, SOUND_TAG, sound_group_block);
+	V5_TAG_BLOCK_FROM_STRUCT(sound_group, 1, sound_group_struct_definition);
+	V5_TAG_GROUP_FROM_BLOCK(sound, SOUND_TAG, sound_group_block);
 
-	TAG_GROUP(sound_old, SOUND_OLD_TAG)
+	V5_TAG_GROUP(sound_old, SOUND_OLD_TAG)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
@@ -125,7 +125,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sound2, SOUND2_TAG)
+	V5_TAG_GROUP(sound2, SOUND2_TAG)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
 		{ _field_long_flags, "import flags!", &sound_import_flags },
@@ -152,7 +152,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sound_mix, SOUND_MIX_TAG)
+	V5_TAG_GROUP(sound_mix, SOUND_MIX_TAG)
 	{
 		{ _field_struct, "default transmission settings", &sound_transmission_definition_struct_struct_definition },
 		{ _field_explanation, "first person left side mix", "for first person sounds to the left of you" },
@@ -170,22 +170,22 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(sound_dialogue_constants, SOUND_DIALOGUE_CONSTANTS_TAG, sound_dialogue_constants_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_dialogue_constants, SOUND_DIALOGUE_CONSTANTS_TAG, sound_dialogue_constants_block_block );
 
-	TAG_BLOCK(StreamingPackBlock, k_maximum_streaming_packs)
+	V5_TAG_BLOCK(StreamingPackBlock, k_maximum_streaming_packs)
 	{
 		{ _field_long_flags, "flags", &StreamingPackBlockFlags },
 		{ _field_string, "Streaming pck file#Name of the stream pack file" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(campaign_unspatialized_sounds_block, k_maximum_campaign_unspatialized_sounds)
+	V5_TAG_BLOCK(campaign_unspatialized_sounds_block, k_maximum_campaign_unspatialized_sounds)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_globals_block, 1)
+	V5_TAG_BLOCK(sound_globals_block, 1)
 	{
 		{ _field_tag_reference, "sound classes", &sound_classes_reference },
 		{ _field_tag_reference, "sound effects", &global_sound_effect_collection_reference },
@@ -209,24 +209,24 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SoundBankBlock, k_maximumSoundBanksPerTag)
+	V5_TAG_BLOCK(SoundBankBlock, k_maximumSoundBanksPerTag)
 	{
 		{ _field_string_id, "Sound bank name#Name of the main sound bank." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(deterministicSpeechEventBlock, MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE, deterministicSpeechEventBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(deterministicSpeechEventBlock, MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE, deterministicSpeechEventBlock_struct_struct_definition );
 
-	TAG_BLOCK(facial_animation_language_block, k_language_count)
+	V5_TAG_BLOCK(facial_animation_language_block, k_language_count)
 	{
 		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct_struct_definition },
 		{ _field_long_enum, "language", &sound_language_enum_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(soundLipSyncInfoBlock, 1, soundLipSyncInfoBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(soundLipSyncInfoBlock, 1, soundLipSyncInfoBlock_struct_struct_definition );
 
-	TAG_BLOCK(sound_promotion_rule_block, k_maximum_promotion_rules_per_sound)
+	V5_TAG_BLOCK(sound_promotion_rule_block, k_maximum_promotion_rules_per_sound)
 	{
 		{ _field_short_block_index, "pitch range^" },
 		{ _field_short_integer, "maximum playing count" },
@@ -236,13 +236,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_promotion_runtime_timer_block, k_maximum_promotion_rules_per_sound)
+	V5_TAG_BLOCK(sound_promotion_runtime_timer_block, k_maximum_promotion_rules_per_sound)
 	{
 		{ _field_long_integer, "timer storage~!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_permutation_chunk_block, UNSIGNED_SHORT_MAX*4)
+	V5_TAG_BLOCK(sound_permutation_chunk_block, UNSIGNED_SHORT_MAX*4)
 	{
 		{ _field_long_integer, "file offset*" },
 		{ _field_long_integer, "encoded size and flags~!" },
@@ -252,14 +252,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_permutation_languages_block, k_language_count)
+	V5_TAG_BLOCK(sound_permutation_languages_block, k_language_count)
 	{
 		{ _field_long_integer, "uncompressed sample count" },
 		{ _field_block, "chunks", &sound_permutation_chunk_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_permutations_block, MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE)
+	V5_TAG_BLOCK(sound_permutations_block, MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE)
 	{
 		{ _field_custom },
 		{ _field_string_id, "name*^#name of the file from which this sample was imported" },
@@ -276,7 +276,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_pitch_range_block, MAXIMUM_PITCH_RANGES_PER_SOUND)
+	V5_TAG_BLOCK(sound_pitch_range_block, MAXIMUM_PITCH_RANGES_PER_SOUND)
 	{
 		{ _field_string_id, "name*#the name of the imported pitch range directory" },
 		{ _field_explanation, "pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored." },
@@ -294,13 +294,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_platform_sound_playback_block, 1)
+	V5_TAG_BLOCK(sound_platform_sound_playback_block, 1)
 	{
 		{ _field_struct, "playback definition", &platform_sound_playback_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_permutation_marker_block, MAXIMUM_MARKERS_PER_PERMUTATION)
+	V5_TAG_BLOCK(sound_permutation_marker_block, MAXIMUM_MARKERS_PER_PERMUTATION)
 	{
 		{ _field_long_integer, "marker id*" },
 		{ _field_string_id, "name^*" },
@@ -309,7 +309,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_xma2_seek_table_block, MAXIMUM_SOUND_DATA_SIZE/k_kilo)
+	V5_TAG_BLOCK(sound_xma2_seek_table_block, MAXIMUM_SOUND_DATA_SIZE/k_kilo)
 	{
 		{ _field_long_integer, "block relative sample start*" },
 		{ _field_long_integer, "block relative sample end" },
@@ -320,7 +320,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_permutation_raw_info_block, 2*k_language_count)
+	V5_TAG_BLOCK(sound_permutation_raw_info_block, 2*k_language_count)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_long_integer, "unknown" },
@@ -341,7 +341,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_definition_language_permutation_info_block, MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE*2)
+	V5_TAG_BLOCK(sound_definition_language_permutation_info_block, MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE*2)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "unknown" },
@@ -354,7 +354,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_extra_info_block, 1)
+	V5_TAG_BLOCK(sound_extra_info_block, 1)
 	{
 		{ _field_block, "language permutation info", &sound_definition_language_permutation_info_block_block },
 
@@ -370,11 +370,11 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(sound_dialogue_constants_block, 1, sound_dialogue_constants_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_dialogue_constants_block, 1, sound_dialogue_constants_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(sound_pitch_range_distances_block, SHORT_MAX, sound_distance_parameters_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_pitch_range_distances_block, SHORT_MAX, sound_distance_parameters_struct_struct_definition );
 
-	TAG_STRUCT(sound_distance_parameters_struct)
+	V5_TAG_STRUCT(sound_distance_parameters_struct)
 	{
 		{ _field_explanation, "attenuation distances", "these settings vary how the sound fades as you move closer or further away from it." },
 		{ _field_real, "don\'t obstruct distance:world units#don\'t obstruct below this distance" },
@@ -388,7 +388,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_propagation_definition_struct)
+	V5_TAG_STRUCT(sound_propagation_definition_struct)
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
@@ -399,7 +399,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(soundLipSyncInfoBlock_struct)
+	V5_TAG_STRUCT(soundLipSyncInfoBlock_struct)
 	{
 		{ _field_long_integer, "number of usable facial animations" },
 		{ _field_block, "deterministic event info", &deterministicSpeechEventBlock_block },
@@ -407,7 +407,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(deterministicSpeechEventBlock_struct)
+	V5_TAG_STRUCT(deterministicSpeechEventBlock_struct)
 	{
 		{ _field_long_flags, "flags", &SpeechEventInfoFlags },
 		{ _field_string_id, "voice file path" },
@@ -416,7 +416,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_playback_parameters_struct)
+	V5_TAG_STRUCT(sound_playback_parameters_struct)
 	{
 		{ _field_long_integer, "internal flags!" },
 		{ _field_real_fraction, "skip fraction#fraction of requests to play this sound that will be ignored (0 means always play.)" },
@@ -442,7 +442,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_scale_modifiers_struct)
+	V5_TAG_STRUCT(sound_scale_modifiers_struct)
 	{
 		{ _field_explanation, "scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)" },
 		{ _field_real_bounds, "gain modifier:dB" },
@@ -451,7 +451,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_promotion_parameters_struct)
+	V5_TAG_STRUCT(sound_promotion_parameters_struct)
 	{
 		{ _field_block, "promotion rules", &sound_promotion_rule_block_block },
 		{ _field_block, "runtime timers!", &sound_promotion_runtime_timer_block_block },
@@ -461,7 +461,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_transmission_definition_struct)
+	V5_TAG_STRUCT(sound_transmission_definition_struct)
 	{
 		{ _field_explanation, "default obstruction settings", "" },
 		{ _field_struct, "obstruction settings", &global_sound_lowpass_block_struct_definition },
@@ -470,21 +470,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_stereo_mix_struct)
+	V5_TAG_STRUCT(sound_stereo_mix_struct)
 	{
 		{ _field_real, "left stereo gain:dB" },
 		{ _field_real, "right stereo gain:dB" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_surround_mix_struct)
+	V5_TAG_STRUCT(sound_surround_mix_struct)
 	{
 		{ _field_real, "front speaker gain:dB" },
 		{ _field_real, "rear speaker gain:dB" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_global_mix_struct)
+	V5_TAG_STRUCT(sound_global_mix_struct)
 	{
 		{ _field_real, "mono unspatialized gain:dB" },
 		{ _field_real, "stereo to 3d gain:dB" },
@@ -512,14 +512,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_center_mix_struct)
+	V5_TAG_STRUCT(sound_center_mix_struct)
 	{
 		{ _field_real, "front speaker gain:dB" },
 		{ _field_real, "center speaker gain:dB" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(facial_animation_permutation_block, MAXIMUM_PITCH_RANGES_PER_SOUND* MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE)
+	V5_TAG_BLOCK(facial_animation_permutation_block, MAXIMUM_PITCH_RANGES_PER_SOUND* MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE)
 	{
 		{ _field_real, "start time" },
 		{ _field_real, "end time" },
@@ -529,7 +529,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(facial_animation_curve_block, k_facial_animation_track_count)
+	V5_TAG_BLOCK(facial_animation_curve_block, k_facial_animation_track_count)
 	{
 		{ _field_long_enum, "facial animation track", &facial_animation_track_enum_definition },
 		{ _field_long_integer, "facial animation curve data offset" },
@@ -537,7 +537,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_dialogue_constants_struct_definition)
+	V5_TAG_STRUCT(sound_dialogue_constants_struct_definition)
 	{
 		{ _field_explanation, "named playing fractions", "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares\?)" },
 		{ _field_real, "almost never" },
@@ -548,13 +548,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_resource_definition_struct)
+	V5_TAG_STRUCT(sound_resource_definition_struct)
 	{
 		{ _field_data, "sample data" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(facial_animation_resource_definition_struct)
+	V5_TAG_STRUCT(facial_animation_resource_definition_struct)
 	{
 		{ _field_block, "facial animation permutations", &facial_animation_permutation_block_block },
 		{ _field_data, "compressed facial animation curve data" },

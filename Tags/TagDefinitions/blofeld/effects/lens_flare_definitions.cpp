@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(lens_flare, LENS_FLARE_TAG, lens_flare_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(lens_flare, LENS_FLARE_TAG, lens_flare_block_block );
 
-	TAG_BLOCK(lens_flare_reflection_block, k_maximum_reflections_per_lens_flare)
+	V5_TAG_BLOCK(lens_flare_reflection_block, k_maximum_reflections_per_lens_flare)
 	{
 		// #TODO: Verify fields between beginning and unknown for Halo Reach
 
@@ -53,21 +53,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(lens_flare_scalar_animation_block, 1)
+	V5_TAG_BLOCK(lens_flare_scalar_animation_block, 1)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(lens_flare_color_animation_block, 1)
+	V5_TAG_BLOCK(lens_flare_color_animation_block, 1)
 	{
 		{ _field_struct, "color animation", &lens_flare_color_function_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(lens_flare_block, 1, lens_flare_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(lens_flare_block, 1, lens_flare_struct_definition_struct_definition );
 
-	TAG_STRUCT(lens_flare_struct_definition)
+	V5_TAG_STRUCT(lens_flare_struct_definition)
 	{
 		{ _field_explanation, "LENS FLARE", "" },
 		{ _field_angle, "falloff angle:degrees" },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(lens_flare_color_function_struct)
+	V5_TAG_STRUCT(lens_flare_color_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

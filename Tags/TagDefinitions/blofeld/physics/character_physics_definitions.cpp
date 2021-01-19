@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(character_physics_struct)
+	V5_TAG_STRUCT(character_physics_struct)
 	{
 		{ _field_long_flags, "flags", &character_physics_flags },
 		{ _field_real, "height standing" },
@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(character_physics_ground_struct)
+	V5_TAG_STRUCT(character_physics_ground_struct)
 	{
 		{ _field_angle, "maximum slope angle:degrees" },
 		{ _field_angle, "downhill falloff angle:degrees" },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(character_physics_flying_struct)
+	V5_TAG_STRUCT(character_physics_flying_struct)
 	{
 		{ _field_angle, "bank angle:degrees#angle at which we bank left/right when sidestepping or turning while moving forwards" },
 		{ _field_real, "bank apply time:seconds#time it takes us to apply a bank" },

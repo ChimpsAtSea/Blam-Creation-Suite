@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(detail_object_collection, DETAIL_OBJECT_COLLECTION_TAG, detail_object_collection_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(detail_object_collection, DETAIL_OBJECT_COLLECTION_TAG, detail_object_collection_block_block );
 
-	TAG_BLOCK(detail_object_type_block, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
+	V5_TAG_BLOCK(detail_object_type_block, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
 	{
 		{ _field_string, "name^" },
 		{ _field_char_integer, "sequence index:[0,15]" },
@@ -25,9 +25,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(detail_object_collection_block, 1, detail_object_collection_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(detail_object_collection_block, 1, detail_object_collection_struct_definition_struct_definition );
 
-	TAG_BLOCK(global_detail_object_cells_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
+	V5_TAG_BLOCK(global_detail_object_cells_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "cell x!*" },
 		{ _field_short_integer, "cell y!*" },
@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_detail_object_block, MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE)
+	V5_TAG_BLOCK(global_detail_object_block, MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE)
 	{
 		{ _field_char_integer, "position x!*" },
 		{ _field_char_integer, "position y!*" },
@@ -50,13 +50,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_detail_object_counts_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE*MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(global_detail_object_counts_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE*MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
 	{
 		{ _field_short_integer, "count!*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_z_reference_vector_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
+	V5_TAG_BLOCK(global_z_reference_vector_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 	{
 		{ _field_real, "z reference i!*" },
 		{ _field_real, "z reference j!*" },
@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(detail_object_collection_struct_definition)
+	V5_TAG_STRUCT(detail_object_collection_struct_definition)
 	{
 		{ _field_enum, "collection type", &detail_object_collection_type_enum_definition },
 		{ _field_pad, "YN", 2 },

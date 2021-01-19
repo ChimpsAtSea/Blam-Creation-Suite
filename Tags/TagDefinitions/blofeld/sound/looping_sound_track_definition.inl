@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(looping_sound_track_block, MAXIMUM_TRACKS_PER_LOOPING_SOUND)
+	V5_TAG_BLOCK(looping_sound_track_block, MAXIMUM_TRACKS_PER_LOOPING_SOUND)
 	{
 		{ _field_string_id, "name^!" },
 		{ _field_word_flags, "flags", &looping_sound_track_flags },

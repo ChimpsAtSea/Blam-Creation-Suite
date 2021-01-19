@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(player_momentum_data_block, k_player_momentum_count)
+	V5_TAG_BLOCK(player_momentum_data_block, k_player_momentum_count)
 	{
 		{ _field_byte_flags, "flag", &MomentumFlag },
 		{ _field_pad, "PAD", 3 },
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_information_block, k_player_character_type_count)
+	V5_TAG_BLOCK(player_information_block, k_player_character_type_count)
 	{
 		{ _field_real, "walking speed:world units per second" },
 		{ _field_real, "run forward:world units per second" },
@@ -76,7 +76,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(firstPersonpHiddenBodyRegionsBlock, 32)
+	V5_TAG_BLOCK(firstPersonpHiddenBodyRegionsBlock, 32)
 	{
 		{ _field_string_id, "hidden region^" },
 		{ _field_byte_flags, "flags", &FpBodyRegionFlags },
@@ -84,7 +84,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(player_representation_block, k_player_character_type_count)
+	V5_TAG_BLOCK(player_representation_block, k_player_character_type_count)
 	{
 		{ _field_byte_flags, "flags", &player_representation_flags },
 		{ _field_pad, "pad", 3 },

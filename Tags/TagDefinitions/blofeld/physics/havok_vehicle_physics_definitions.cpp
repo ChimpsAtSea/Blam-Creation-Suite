@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(anti_gravity_point_definition_block, k_maximum_anti_gravity_points_per_vehicle_physics_definition)
+	V5_TAG_BLOCK(anti_gravity_point_definition_block, k_maximum_anti_gravity_points_per_vehicle_physics_definition)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker name^" },
@@ -54,7 +54,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(friction_point_definition_block, k_maximum_friction_points_per_vehicle_physics_definition)
+	V5_TAG_BLOCK(friction_point_definition_block, k_maximum_friction_points_per_vehicle_physics_definition)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker name^" },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_vehicle_physics_struct)
+	V5_TAG_STRUCT(havok_vehicle_physics_struct)
 	{
 		{ _field_long_flags, "flags*", &havok_vehicle_physics_definition_flags },
 		{ _field_custom },

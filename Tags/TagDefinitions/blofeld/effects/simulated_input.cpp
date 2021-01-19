@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(simulated_input, SIMULATED_INPUT_TAG, simulated_input_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(simulated_input, SIMULATED_INPUT_TAG, simulated_input_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(simulated_input_block, 1, simulated_input_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(simulated_input_block, 1, simulated_input_struct_definition_struct_definition );
 
-	TAG_STRUCT(simulated_input_struct_definition)
+	V5_TAG_STRUCT(simulated_input_struct_definition)
 	{
 		{ _field_explanation, "Simulated Input (SI)", "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)" },
 		{ _field_explanation, "Impulse", "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input." },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(simulated_input_stick_struct)
+	V5_TAG_STRUCT(simulated_input_stick_struct)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags", &simulated_input_flags },

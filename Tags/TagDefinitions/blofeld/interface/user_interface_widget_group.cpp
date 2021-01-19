@@ -4,21 +4,21 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(InfinityUIImages, INFINITYUIIMAGES_TAG, InfinityUIImages_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(InfinityUIImages, INFINITYUIIMAGES_TAG, InfinityUIImages_block_block );
 
-	TAG_GROUP_FROM_BLOCK(pgcr_enemy_to_category_mapping_definition, PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_TAG, pgcr_enemy_to_category_mapping_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(pgcr_enemy_to_category_mapping_definition, PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_TAG, pgcr_enemy_to_category_mapping_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(pgcr_damage_type_image_mapping_definition, PGCR_DAMAGE_TYPE_IMAGE_MAPPING_DEFINITION_TAG, pgcr_damage_type_image_mapping_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(pgcr_damage_type_image_mapping_definition, PGCR_DAMAGE_TYPE_IMAGE_MAPPING_DEFINITION_TAG, pgcr_damage_type_image_mapping_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(portrait_poses_definition, PORTRAIT_POSES_DEFINITION_TAG, portrait_poses_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(portrait_poses_definition, PORTRAIT_POSES_DEFINITION_TAG, portrait_poses_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(user_interface_sounds_definition, USER_INTERFACE_SOUNDS_DEFINITION_TAG, user_interface_sounds_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(user_interface_sounds_definition, USER_INTERFACE_SOUNDS_DEFINITION_TAG, user_interface_sounds_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(user_interface_globals_definition, USER_INTERFACE_GLOBALS_DEFINITION_TAG, user_interface_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(user_interface_globals_definition, USER_INTERFACE_GLOBALS_DEFINITION_TAG, user_interface_globals_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(user_interface_shared_globals_definition, USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG, user_interface_shared_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(user_interface_shared_globals_definition, USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG, user_interface_shared_globals_definition_block_block );
 
-	TAG_BLOCK(InfinityMissionImagesDefinition, k_infinityMaximumMissionsPerSeason)
+	V5_TAG_BLOCK(InfinityMissionImagesDefinition, k_infinityMaximumMissionsPerSeason)
 	{
 		{ _field_tag_reference, "card image^", &global_bitmap_reference },
 		{ _field_tag_reference, "detail image", &global_bitmap_reference },
@@ -27,7 +27,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(InfinityMissionSeasonImagesDefinition, k_infinityMaximumSeasonCount)
+	V5_TAG_BLOCK(InfinityMissionSeasonImagesDefinition, k_infinityMaximumSeasonCount)
 	{
 		{ _field_explanation, "Season Images", "This block should contain a season\'s worth of Infinity mission images" },
 		{ _field_long_integer, "season number^" },
@@ -36,16 +36,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(InfinityUIImages_block, 1, InfinityUIImages_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(InfinityUIImages_block, 1, InfinityUIImages_struct_definition_struct_definition );
 
-	TAG_BLOCK(pgcr_player_to_category_entry_block, k_pgcr_maximum_number_of_player_entries_per_category)
+	V5_TAG_BLOCK(pgcr_player_to_category_entry_block, k_pgcr_maximum_number_of_player_entries_per_category)
 	{
 		{ _field_char_enum, "player type", &pgcr_player_type_enum },
 		{ _field_pad, "pad0", 3 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pgcr_enemy_to_category_entry_block, k_pgcr_maximum_number_of_ai_entries_per_category)
+	V5_TAG_BLOCK(pgcr_enemy_to_category_entry_block, k_pgcr_maximum_number_of_ai_entries_per_category)
 	{
 		{ _field_char_enum, "character type", &campaign_metagame_bucket_type_with_none_enum },
 		{ _field_char_enum, "character class", &campaign_metagame_bucket_class_with_none_enum },
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pgcr_enemy_to_category_list_block, k_pgcr_maximum_number_of_categories_per_bucket)
+	V5_TAG_BLOCK(pgcr_enemy_to_category_list_block, k_pgcr_maximum_number_of_categories_per_bucket)
 	{
 		{ _field_string_id, "category display name^" },
 		{ _field_short_integer, "sprite index" },
@@ -64,9 +64,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(pgcr_enemy_to_category_mapping_definition_block, 1, pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(pgcr_enemy_to_category_mapping_definition_block, 1, pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK(pgcr_damage_type_image_block, k_damage_reporting_type_count)
+	V5_TAG_BLOCK(pgcr_damage_type_image_block, k_damage_reporting_type_count)
 	{
 		{ _field_long_enum, "damage type^", &global_damage_reporting_enum_definition },
 		{ _field_string_id, "display name" },
@@ -76,9 +76,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(pgcr_damage_type_image_mapping_definition_block, 1, pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(pgcr_damage_type_image_mapping_definition_block, 1, pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK(gui_portrait_pose_block, k_maxPortraitPoses)
+	V5_TAG_BLOCK(gui_portrait_pose_block, k_maxPortraitPoses)
 	{
 		{ _field_string_id, "pose name^" },
 		{ _field_string_id, "animation name" },
@@ -87,11 +87,11 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(portrait_poses_definition_block, 1, portrait_poses_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(portrait_poses_definition_block, 1, portrait_poses_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(user_interface_sounds_definition_block, 1, user_interface_sounds_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(user_interface_sounds_definition_block, 1, user_interface_sounds_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK(cui_component_screen_reference_block_definition, k_maximum_number_of_screen_widgets)
+	V5_TAG_BLOCK(cui_component_screen_reference_block_definition, k_maximum_number_of_screen_widgets)
 	{
 		
 		{ _field_version_greater, _engine_type_halo3, 2 },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cui_overlay_camera_block_definition, k_cui_max_overlay_count)
+	V5_TAG_BLOCK(cui_overlay_camera_block_definition, k_cui_max_overlay_count)
 	{
 		{ _field_string_id, "resolution name" },
 		{ _field_char_enum, "pivot corner", &cui_camera_pivot_corner_enum_definition },
@@ -113,7 +113,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cui_player_model_camera_settings_definition, s_cui_player_model_camera_settings_definition::k_maximum_count)
+	V5_TAG_BLOCK(cui_player_model_camera_settings_definition, s_cui_player_model_camera_settings_definition::k_maximum_count)
 	{
 		{ _field_explanation, "Camera Settings", "These are model-viewing camera parameters that you can control\n* FOV is the field of view used by the texture camera\n  if left 0, a suitable default FOV is used\n* Initial Radial Offset is the initial radial distance of the camera from the target model\n* Final Radial Offset is the final radial distance of the camera from the target model\n* Camera Radial Step Size is the incremental change in input to the radial transition function per tick\n* Initial Vertical Offset is the initial vertical distance of the camera from the target\'s center\n* Final Vertical Offset is the final vertical distance of the camera from the target\'s center\n* Camera Vertical Step Size is the incremental change in input to the vertical transition function per tick\n* Camera Rotational Step Size is the incremental change in camera rotation per game tick\n* The Transition Functions are used to control the camera zoom with controller input\n  if left empty, a linear interpolation is used for camera zoom" },
 		{ _field_string_id, "name" },
@@ -130,7 +130,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cui_player_model_controller_settings_definition, s_cui_player_model_control_settings_definition::k_maximum_count)
+	V5_TAG_BLOCK(cui_player_model_controller_settings_definition, s_cui_player_model_control_settings_definition::k_maximum_count)
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "zoom speed:wu per tick" },
@@ -143,21 +143,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cui_player_model_transition_settings_definition, s_cui_player_model_transition_settings_definition::k_maximum_count)
+	V5_TAG_BLOCK(cui_player_model_transition_settings_definition, s_cui_player_model_transition_settings_definition::k_maximum_count)
 	{
 		{ _field_custom },
 		{ _field_struct, "camera transition function", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cui_active_roster_settings_block, s_cui_active_roster_settings_definition::k_max_count)
+	V5_TAG_BLOCK(cui_active_roster_settings_block, s_cui_active_roster_settings_definition::k_max_count)
 	{
 		{ _field_custom },
 		{ _field_struct, "analog scroll function", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(campaign_state_screen_script_block_definition, s_campaign_state_screen_script::k_max_count)
+	V5_TAG_BLOCK(campaign_state_screen_script_block_definition, s_campaign_state_screen_script::k_max_count)
 	{
 		{ _field_long_integer, "map ID" },
 		{ _field_string_id, "screen script name" },
@@ -165,7 +165,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(UserInterfaceGameScreenSequenceStepDefinition, UserInterfaceGameScreenSequenceStep::k_maxCount)
+	V5_TAG_BLOCK(UserInterfaceGameScreenSequenceStepDefinition, UserInterfaceGameScreenSequenceStep::k_maxCount)
 	{
 		{ _field_byte_flags, "flags", &UIGameStartSequenceFlagsDefinition },
 		{ _field_pad, "UMPKIU", 3 },
@@ -175,29 +175,29 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SwapTagReferenceDefinition, SwapTagReferences::k_maxCount)
+	V5_TAG_BLOCK(SwapTagReferenceDefinition, SwapTagReferences::k_maxCount)
 	{
 		{ _field_tag_reference, "original tag^", &SwapTagReferenceDefinition_original_tag_reference },
 		{ _field_tag_reference, "replacement tag", &SwapTagReferenceDefinition_original_tag_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(user_interface_globals_definition_block, 1, user_interface_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(user_interface_globals_definition_block, 1, user_interface_globals_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK(color_presets_block, s_color_preset::k_maximum_color_presets)
+	V5_TAG_BLOCK(color_presets_block, s_color_preset::k_maximum_color_presets)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(color_list_block, ((k_player_color_index_count)>(k_multiplayer_team_game_team_count+1)?(k_player_color_index_count):(k_multiplayer_team_game_team_count+1)))
+	V5_TAG_BLOCK(color_list_block, ((k_player_color_index_count)>(k_multiplayer_team_game_team_count+1)?(k_player_color_index_count):(k_multiplayer_team_game_team_count+1)))
 	{
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(tint_colors_block, 1)
+	V5_TAG_BLOCK(tint_colors_block, 1)
 	{
 		{ _field_block, "text player", &color_list_block_block },
 		{ _field_block, "text team", &color_list_block_block },
@@ -215,7 +215,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gui_alert_description_block, s_gui_alert_description::k_maximum_gui_error_types_count)
+	V5_TAG_BLOCK(gui_alert_description_block, s_gui_alert_description::k_maximum_gui_error_types_count)
 	{
 		{ _field_string_id, "error name^" },
 		{ _field_byte_flags, "flags", &gui_alert_flags },
@@ -227,7 +227,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gui_dialog_description_block, s_gui_dialog_description::k_maximum_gui_dialog_types_count)
+	V5_TAG_BLOCK(gui_dialog_description_block, s_gui_dialog_description::k_maximum_gui_dialog_types_count)
 	{
 		{ _field_string_id, "dialog name^" },
 		{ _field_word_flags, "flags", &gui_dialog_flags },
@@ -244,41 +244,41 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pgcr_incident_block, s_cui_pgcr_incident::k_maximum_count)
+	V5_TAG_BLOCK(pgcr_incident_block, s_cui_pgcr_incident::k_maximum_count)
 	{
 		{ _field_string_id, "incident name^" },
 		{ _field_long_integer, "maximum stat count*#number of times this can happen before the PGCR stops tracking them" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(user_interface_shared_globals_definition_block, 1, user_interface_shared_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(user_interface_shared_globals_definition_block, 1, user_interface_shared_globals_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(InfinityUIImages_struct_definition)
+	V5_TAG_STRUCT(InfinityUIImages_struct_definition)
 	{
 		{ _field_block, "seasons", &InfinityMissionSeasonImagesDefinition_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(pgcr_enemy_to_category_mapping_definition_struct_definition)
+	V5_TAG_STRUCT(pgcr_enemy_to_category_mapping_definition_struct_definition)
 	{
 		{ _field_block, "character categories", &pgcr_enemy_to_category_list_block_block },
 		{ _field_block, "vehicle categories", &pgcr_enemy_to_category_list_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(pgcr_damage_type_image_mapping_definition_struct_definition)
+	V5_TAG_STRUCT(pgcr_damage_type_image_mapping_definition_struct_definition)
 	{
 		{ _field_block, "damage type mapping", &pgcr_damage_type_image_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(portrait_poses_definition_struct_definition)
+	V5_TAG_STRUCT(portrait_poses_definition_struct_definition)
 	{
 		{ _field_block, "portrait poses", &gui_portrait_pose_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(user_interface_sounds_definition_struct_definition)
+	V5_TAG_STRUCT(user_interface_sounds_definition_struct_definition)
 	{
 		{ _field_custom, "Controller Input Events" },
 		{ _field_tag_reference, "tab up", &global_sound_reference },
@@ -381,7 +381,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(user_interface_globals_definition_struct_definition)
+	V5_TAG_STRUCT(user_interface_globals_definition_struct_definition)
 	{
 		
 		{ _field_version_greater, _engine_type_haloreach },
@@ -435,7 +435,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(user_interface_shared_globals_definition_struct_definition)
+	V5_TAG_STRUCT(user_interface_shared_globals_definition_struct_definition)
 	{
 		{ _field_explanation, "UI Rendering Globals", "miscellaneous rendering globals, more below..." },
 		{ _field_short_integer, "inc. text update period:milliseconds" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(rasterizer_constant_block, c_rasterizer_constant_table_definition::k_max_constants)
+	V5_TAG_BLOCK(rasterizer_constant_block, c_rasterizer_constant_table_definition::k_max_constants)
 	{
 		{ _field_string_id, "constant name^" },
 		{ _field_word_integer, "register start*" },
@@ -13,7 +13,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_rasterizer_constant_table_struct)
+	V5_TAG_STRUCT(global_rasterizer_constant_table_struct)
 	{
 		{ _field_block, "constants*", &rasterizer_constant_block_block },
 

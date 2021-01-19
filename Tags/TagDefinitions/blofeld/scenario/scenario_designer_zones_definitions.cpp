@@ -4,127 +4,127 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(scenarioDesignerZoneTagReferenceBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count)
+	V5_TAG_BLOCK(scenarioDesignerZoneTagReferenceBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count)
 	{
 		{ _field_tag_reference, "tag^", &scenarioDesignerZoneTagReferenceBlock_tag_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(biped_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(biped_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vehicle_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(vehicle_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(weapon_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipment_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(equipment_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(machine_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(machine_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(terminal_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(terminal_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(control_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(control_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(dispenser_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(dispenser_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(sound_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(crate_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(crate_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(creature_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(creature_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(giant_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(giant_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(effect_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_block_index_flags_block, 64)
+	V5_TAG_BLOCK(character_block_index_flags_block, 64)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(spawner_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(spawner_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(budget_reference_block_index_flags_block, k_maximum_hs_references_per_context)
+	V5_TAG_BLOCK(budget_reference_block_index_flags_block, k_maximum_hs_references_per_context)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bink_block_index_flags_block, MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(bink_block_index_flags_block, MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioDesignerResourceDependenciesBlock, 16*1024)
+	V5_TAG_BLOCK(scenarioDesignerResourceDependenciesBlock, 16*1024)
 	{
 		{ _field_tag_reference, "tag^", &scenarioDesignerResourceDependenciesBlock_tag_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_designer_zone_block, k_maximum_designer_zone_count)
+	V5_TAG_BLOCK(scenario_designer_zone_block, k_maximum_designer_zone_count)
 	{
 		{ _field_string_id, "name^" },
 

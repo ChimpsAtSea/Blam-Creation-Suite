@@ -1,0 +1,30 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	extern s_tag_block_definition game_audibility_block;
+	extern s_tag_struct_definition game_audibility_block_struct_definition; // game_audibility_block
+	extern s_tag_block_definition door_encoded_pas_block;
+	extern s_tag_struct_definition door_encoded_pas_block_struct_definition; // door_encoded_pas_block
+	extern s_tag_block_definition room_door_portal_encoded_pas_block;
+	extern s_tag_struct_definition room_door_portal_encoded_pas_block_struct_definition; // room_door_portal_encoded_pas_block
+	extern s_tag_block_definition ai_deafening_encoded_pas_block;
+	extern s_tag_struct_definition ai_deafening_encoded_pas_block_struct_definition; // ai_deafening_encoded_pas_block
+	extern s_tag_block_definition encoded_room_distances_block;
+	extern s_tag_struct_definition encoded_room_distances_block_struct_definition; // encoded_room_distances_block
+	extern s_tag_block_definition game_portal_to_door_occluder_block;
+	extern s_tag_struct_definition game_portal_to_door_occluder_block_struct_definition; // game_portal_to_door_occluder_block
+	extern s_tag_block_definition bsp_cluster_to_room_bounds_block;
+	extern s_tag_struct_definition bsp_cluster_to_room_bounds_block_struct_definition; // bsp_cluster_to_room_bounds_block
+	extern s_tag_block_definition bsp_cluster_to_room_indices_block;
+	extern s_tag_struct_definition bsp_cluster_to_room_indices_block_struct_definition; // bsp_cluster_to_room_indices_block
+
+
+} // namespace macaque
+
+} // namespace blofeld
+

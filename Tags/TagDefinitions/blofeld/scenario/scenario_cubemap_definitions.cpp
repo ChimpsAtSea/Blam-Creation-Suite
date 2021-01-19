@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(cubemap_reference_points_block, k_max_cubemap_reference_point_count)
+	V5_TAG_BLOCK(cubemap_reference_points_block, k_max_cubemap_reference_point_count)
 	{
 		{ _field_real_point_3d, "reference point" },
 		{ _field_long_integer, "point index!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(structure_cluster_cubemap, k_max_cubemaps_per_cluster)
+	V5_TAG_BLOCK(structure_cluster_cubemap, k_max_cubemaps_per_cluster)
 	{
 		{ _field_short_integer, "scenario cubemap index" },
 		{ _field_short_integer, "cubemap bitmap index" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cubemap_block, k_max_cubemaps_per_scenario)
+	V5_TAG_BLOCK(scenario_cubemap_block, k_max_cubemaps_per_scenario)
 	{
 		{ _field_custom },
 		{ _field_string_id, "name" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(decorator_set, DECORATOR_SET_TAG)
+	V5_TAG_GROUP(decorator_set, DECORATOR_SET_TAG)
 	{
 		{ _field_custom, "link to render model" },
 		{ _field_explanation, "Render models:", "" },
@@ -67,15 +67,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(decorator_set_instance_name_block, SHORT_MAX)
+	V5_TAG_BLOCK(decorator_set_instance_name_block, SHORT_MAX)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
 
-	TAG_BLOCK(decorator_runtime_cluster_unknown_block, 65536)
+	V5_TAG_BLOCK(decorator_runtime_cluster_unknown_block, 65536)
 	{
 		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "unknown" },
@@ -84,7 +84,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
+	V5_TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
 	{
 		{ _field_word_integer, "decorator placement count*" },
 		{ _field_byte_integer, "decorator set index*" },
@@ -101,7 +101,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_decorator_type_struct)
+	V5_TAG_STRUCT(global_decorator_type_struct)
 	{
 		{ _field_long_integer, "index!" },
 		{ _field_long_block_index, "mesh^" },

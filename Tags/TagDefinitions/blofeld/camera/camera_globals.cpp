@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(camera_block, 1)
+	V5_TAG_BLOCK(camera_block, 1)
 	{
 		{ _field_tag_reference, "default unit camera track", &global_camera_track_reference },
 		{ _field_explanation, "SANDBOX", "" },

@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(particleman, PARTICLEMAN_TAG, particleman_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(particleman, PARTICLEMAN_TAG, particleman_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(particleman_block, 1, particleman_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(particleman_block, 1, particleman_struct_definition_struct_definition );
 
-	TAG_STRUCT(particleman_struct_definition)
+	V5_TAG_STRUCT(particleman_struct_definition)
 	{
 		{ _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
 		{ _field_enum, "Shape", &particleize_shape_enum },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(particleize_scalar_function_struct)
+	V5_TAG_STRUCT(particleize_scalar_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },

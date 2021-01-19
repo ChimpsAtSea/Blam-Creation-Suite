@@ -1,0 +1,25 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	extern s_tag_block_definition material_shader_parameter_block;
+	extern s_tag_struct_definition material_shader_parameter_block_struct_definition; // material_shader_parameter_block
+	extern s_tag_block_definition material_shader_function_parameter_block;
+	extern s_tag_struct_definition material_shader_function_parameter_block_struct_definition; // material_shader_function_parameter_block
+
+
+	extern c_versioned_string_list material_shader_parameter_type_enum_strings;
+	extern s_string_list_definition material_shader_parameter_type_enum;
+	extern c_versioned_string_list material_animated_parameter_type_enum_strings;
+	extern s_string_list_definition material_animated_parameter_type_enum;
+	extern c_versioned_string_list materialFunctionOutputModEnum_strings;
+	extern s_string_list_definition materialFunctionOutputModEnum;
+
+} // namespace macaque
+
+} // namespace blofeld
+

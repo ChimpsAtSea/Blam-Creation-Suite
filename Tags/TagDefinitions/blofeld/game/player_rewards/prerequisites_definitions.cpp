@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(purchase_prerequisite_grade_definition_block, 1)
+	V5_TAG_BLOCK(purchase_prerequisite_grade_definition_block, 1)
 	{
 		{ _field_long_integer, "enlistment index" },
 		{ _field_long_integer, "minimum grade" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_prerequisite_commendation_definition_block, 1)
+	V5_TAG_BLOCK(purchase_prerequisite_commendation_definition_block, 1)
 	{
 		{ _field_string_id, "commendation id^#This must match one of the commendation names." },
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
@@ -20,38 +20,38 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock, 20)
+	V5_TAG_BLOCK(PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock, 20)
 	{
 		{ _field_struct, "item reference", &PurchaseAppearanceDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock, 20)
+	V5_TAG_BLOCK(PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock, 20)
 	{
 		{ _field_struct, "item reference", &PurchaseLoadoutDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock, 20)
+	V5_TAG_BLOCK(PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock, 20)
 	{
 		{ _field_struct, "item reference", &PurchaseOrdnanceDefinitionReferenceStruct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_prerequisites_unlockable_definition_block, 10)
+	V5_TAG_BLOCK(purchase_prerequisites_unlockable_definition_block, 10)
 	{
 		{ _field_string_id, "unlockable name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(purchase_prerequisites_offer_definition_block, 10)
+	V5_TAG_BLOCK(purchase_prerequisites_offer_definition_block, 10)
 	{
 		{ _field_char_enum, "offer type^", &MarketplaceOfferTypeEnum },
 		{ _field_pad, "pad1", 3 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
+	V5_TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_string_id, "prerequisite purchased item error string" }, // moved
@@ -84,21 +84,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchaseAppearanceDefinitionReferenceStruct)
+	V5_TAG_STRUCT(PurchaseAppearanceDefinitionReferenceStruct)
 	{
 		{ _field_short_block_index, "item reference^" },
 		{ _field_pad, "pad1", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchaseLoadoutDefinitionReferenceStruct)
+	V5_TAG_STRUCT(PurchaseLoadoutDefinitionReferenceStruct)
 	{
 		{ _field_short_block_index, "item reference^" },
 		{ _field_pad, "pad1", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PurchaseOrdnanceDefinitionReferenceStruct)
+	V5_TAG_STRUCT(PurchaseOrdnanceDefinitionReferenceStruct)
 	{
 		{ _field_short_block_index, "item reference^" },
 		{ _field_pad, "pad1", 2 },

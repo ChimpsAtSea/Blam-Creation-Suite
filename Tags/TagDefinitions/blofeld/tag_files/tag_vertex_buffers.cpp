@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_STRUCT(render_vertex_buffer_descriptor_struct)
+	V5_TAG_STRUCT(render_vertex_buffer_descriptor_struct)
 	{
 		{ _field_long_integer, "vertex count*" },
 		{ _field_short_integer, "declaration*" },
@@ -13,7 +13,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_index_buffer_descriptor_struct)
+	V5_TAG_STRUCT(render_index_buffer_descriptor_struct)
 	{
 		{ _field_long_integer, "primitive type*" },
 		{ _field_char_integer, "is index32*" },

@@ -4,16 +4,16 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG, game_completion_rewards_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG, game_completion_rewards_globals_block_block );
 
-	TAG_BLOCK(game_completion_rewards_falloff_point_block, s_game_completion_rewards_globals::k_max_falloff_curve_points)
+	V5_TAG_BLOCK(game_completion_rewards_falloff_point_block, s_game_completion_rewards_globals::k_max_falloff_curve_points)
 	{
 		{ _field_short_integer, "start time#minutes into the game after which this new reward rate applies" },
 		{ _field_short_integer, "amount per minute{cookies per minute}#points awarded per minute once the given time is reached" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_completion_rewards_definition_block, eCT_count)
+	V5_TAG_BLOCK(game_completion_rewards_definition_block, eCT_count)
 	{
 		{ _field_long_integer, "initial amount per minute{initial cookies per minute}#base amount of reward given for each minute of play up until the start of the falloff curve" },
 
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_completion_rewards_difficulty_block, 1)
+	V5_TAG_BLOCK(game_completion_rewards_difficulty_block, 1)
 	{
 		{ _field_block, "easy matchmaking#this block is used for easy matchmade games", &game_completion_rewards_definition_block_block },
 		{ _field_block, "normal matchmaking#this block is used for normal matchmade games", &game_completion_rewards_definition_block_block },
@@ -41,7 +41,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_completion_rewards_multiplayer_block, 1)
+	V5_TAG_BLOCK(game_completion_rewards_multiplayer_block, 1)
 	{
 		{ _field_block, "matchmaking#this block is used for matchmade games", &game_completion_rewards_definition_block_block },
 		{ _field_block, "custom#this block is used for custom games", &game_completion_rewards_definition_block_block },
@@ -54,9 +54,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_completion_rewards_globals_block, 1, game_completion_rewards_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_completion_rewards_globals_block, 1, game_completion_rewards_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(game_completion_rewards_globals_struct_definition)
+	V5_TAG_STRUCT(game_completion_rewards_globals_struct_definition)
 	{
 		{ _field_block, "campaign#rewards given for playing campaign games online", &game_completion_rewards_difficulty_block_block },
 		{ _field_block, "firefight#rewards given for playing firefight games online", &game_completion_rewards_difficulty_block_block },

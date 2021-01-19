@@ -4,22 +4,22 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(rasterizer_globals, RASTERIZER_GLOBALS_TAG, rasterizer_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(rasterizer_globals, RASTERIZER_GLOBALS_TAG, rasterizer_globals_block_block );
 
-	TAG_BLOCK(default_textures_refs_block, 32)
+	V5_TAG_BLOCK(default_textures_refs_block, 32)
 	{
 		{ _field_long_flags, "options", &global_bitmap_flags },
 		{ _field_tag_reference, "default bitmaps", &bitmap_reference$11 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_textures_refs_block, 16)
+	V5_TAG_BLOCK(material_textures_refs_block, 16)
 	{
 		{ _field_tag_reference, "material textures", &global_bitmap_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(explicit_shader_refs_block, 256)
+	V5_TAG_BLOCK(explicit_shader_refs_block, 256)
 	{
 		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_string_id, "name" },
@@ -34,9 +34,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(rasterizer_globals_block, 1, rasterizer_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(rasterizer_globals_block, 1, rasterizer_globals_struct_definition_struct_definition );
 
-	TAG_STRUCT(rasterizer_globals_struct_definition)
+	V5_TAG_STRUCT(rasterizer_globals_struct_definition)
 	{
 		{ _field_explanation, "default bitmaps:", "0:  ............... default 2D texture (white)\n1:  ............... default normal map (no bump)\n2:  ............... default cube map (error pattern)\n3:  ............... color bars\n4:  ............... black 2D texture\n5:  ............... transparent black 2D texture\n6:  ............... gray 2D texture\n7:  ............... auto exposure weight\n8:  ............... auto exposure weight (4x3)\n9:  ............... stencil dither pattern\n10: ............... smooth noise warp\n11: ............... ripple pattern\n12: ............... rain ripple\n13: ............... unsigned noise\n14: ............... MLAA area map\n15: ............... red 2D texture\n16: ............... green 2D texture\n17: ............... blue 2D texture\n18: ............... cyan 2D texture\n19: ............... dxt5 atlas texture\n20: ............... dxn atlas texture\n" },
 		{ _field_block, "default bitmaps", &default_textures_refs_block_block },

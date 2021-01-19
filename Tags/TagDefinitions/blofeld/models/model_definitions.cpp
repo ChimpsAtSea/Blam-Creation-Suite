@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(model, MODEL_TAG)
+	V5_TAG_GROUP(model, MODEL_TAG)
 	{
 		{ _field_explanation, "MODEL", "" },
 		{ _field_custom },
@@ -127,7 +127,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_state_block, MAXIMUM_STATES_PER_MODEL_PERMUTATION)
+	V5_TAG_BLOCK(model_variant_state_block, MAXIMUM_STATES_PER_MODEL_PERMUTATION)
 	{
 		{ _field_string_id, "permutation name" },
 		{ _field_char_integer, "runtime permutation index!" },
@@ -142,7 +142,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(model_variant_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "permutation name^" },
 		{ _field_char_integer, "runtime permutation index!" },
@@ -155,7 +155,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_region_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(model_variant_region_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "region name^:must match region name in render_model" },
 		{ _field_char_integer, "runtime region index!" },
@@ -167,7 +167,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_object_block, k_maximum_objects_per_model_variant)
+	V5_TAG_BLOCK(model_variant_object_block, k_maximum_objects_per_model_variant)
 	{
 		{ _field_custom },
 		{ _field_string_id, "parent marker^" },
@@ -188,7 +188,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_muted_node_block, k_maximum_muted_nodes_per_model_variant)
+	V5_TAG_BLOCK(model_variant_muted_node_block, k_maximum_muted_nodes_per_model_variant)
 	{
 		{ _field_string_id, "node name^:must match node name in render_model" },
 		{ _field_terminator }
@@ -201,7 +201,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_variant_block, k_maximum_variants_per_model)
+	V5_TAG_BLOCK(model_variant_block, k_maximum_variants_per_model)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_array, "runtime variant region indices!", &runtime_region_index_array_array },
@@ -218,13 +218,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(region_name_block, k_kilo)
+	V5_TAG_BLOCK(region_name_block, k_kilo)
 	{
 		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_instance_group_member_block, k_maximum_members_per_instance_group)
+	V5_TAG_BLOCK(model_instance_group_member_block, k_maximum_members_per_instance_group)
 	{
 		{ _field_long_block_index, "subgroup#if this member is chosen, this subgroup will be chosen as well" },
 		{ _field_string_id, "instances#instance name, a partial name will choose all matching instances, leave blank for NONE" },
@@ -236,7 +236,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(global_model_instance_group_block, k_maximum_instance_groups_per_model)
+	V5_TAG_BLOCK(global_model_instance_group_block, k_maximum_instance_groups_per_model)
 	{
 		{ _field_string_id, "name^#name of this instance group" },
 		{ _field_long_enum, "choice#how to choose members", &model_instance_group_choice_enum },
@@ -245,7 +245,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_material_block_new, MAXIMUM_MATERIALS_PER_MODEL)
+	V5_TAG_BLOCK(model_material_block_new, MAXIMUM_MATERIALS_PER_MODEL)
 	{
 		{ _field_string_id, "material name*" },
 		{ _field_pad, "unused flags", 2 },
@@ -258,7 +258,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_target_block_old, MAXIMUM_MODEL_TARGETS_PER_MODEL)
+	V5_TAG_BLOCK(model_target_block_old, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker name^#multiple markers become multiple spheres of the same radius" },
@@ -272,7 +272,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_target_block_new, MAXIMUM_MODEL_TARGETS_PER_MODEL)
+	V5_TAG_BLOCK(model_target_block_new, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 	{
 		{ _field_byte_flags, "flags", &model_target_flags_definition },
 		{ _field_pad, "MTBNP1", 3 },
@@ -288,7 +288,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_byte_flags, "flags*", &model_permutation_flags_definition },
@@ -298,7 +298,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_region_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_char_integer, "collision region index*" },
@@ -308,7 +308,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_node_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(model_node_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_short_block_index, "parent node*" },
@@ -325,7 +325,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_object_data_block, 65535)
+	V5_TAG_BLOCK(model_object_data_block, 65535)
 	{
 		{ _field_short_integer, "type" }, // lazy fucker
 		{ _field_short_integer, "@unknown" },
@@ -334,7 +334,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_game_mode_render_model_override, k_maximum_model_game_mode_types)
+	V5_TAG_BLOCK(model_game_mode_render_model_override, k_maximum_model_game_mode_types)
 	{
 		{ _field_enum, "game mode^", &model_game_mode_types },
 		{ _field_pad, "BL", 2 },
@@ -342,21 +342,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_self_shadow_region_cast_override_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(model_self_shadow_region_cast_override_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "region" },
 		{ _field_string_id, "shadow cast permutation#leave blank for none" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_self_shadow_region_receive_override_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(model_self_shadow_region_receive_override_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "region" },
 		{ _field_long_enum, "shadow type", &model_prt_shadow_receive_mode_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_occlusion_sphere_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(model_occlusion_sphere_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker 1 name" },
@@ -380,7 +380,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(model_target_lock_on_data_struct)
+	V5_TAG_STRUCT(model_target_lock_on_data_struct)
 	{
 		{ _field_explanation, "lock-on fields", "" },
 

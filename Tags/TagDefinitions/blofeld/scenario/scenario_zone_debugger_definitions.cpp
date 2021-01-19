@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_BLOCK_FROM_STRUCT(scenario_zone_debugger_block_definition, 1, scenario_zone_debugger_block_definition_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_zone_debugger_block_definition, 1, scenario_zone_debugger_block_definition_struct_struct_definition );
 
-	TAG_STRUCT(scenario_zone_debugger_block_definition_struct)
+	V5_TAG_STRUCT(scenario_zone_debugger_block_definition_struct)
 	{
 		{ _field_long_block_flags, "active designer zones" },
 		{ _field_terminator }

@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cheap_particle_emitter, CHEAP_PARTICLE_EMITTER_TAG, cheap_particle_emitter_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cheap_particle_emitter, CHEAP_PARTICLE_EMITTER_TAG, cheap_particle_emitter_block_block );
 
-	TAG_GROUP_FROM_BLOCK(cheap_particle_type_library, CHEAP_PARTICLE_TYPE_LIBRARY_TAG, cheap_particle_type_library_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cheap_particle_type_library, CHEAP_PARTICLE_TYPE_LIBRARY_TAG, cheap_particle_type_library_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(cheap_particle_emitter_block, 1, cheap_particle_emitter_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cheap_particle_emitter_block, 1, cheap_particle_emitter_struct_definition_struct_definition );
 
-	TAG_BLOCK(cheap_particle_type_block, s_cheap_particle_type::k_maximum_types)
+	V5_TAG_BLOCK(cheap_particle_type_block, s_cheap_particle_type::k_maximum_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_custom, "physics" },
@@ -48,13 +48,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheap_particle_bitmap_reference_block, s_cheap_particle_type_library::k_max_textures)
+	V5_TAG_BLOCK(cheap_particle_bitmap_reference_block, s_cheap_particle_type_library::k_max_textures)
 	{
 		{ _field_tag_reference, "bitmap^", &bitmap_reference$5 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cheapParticleTurbulenceTypeBlock, CheapParticleTurbulenceType::k_maxTypes)
+	V5_TAG_BLOCK(cheapParticleTurbulenceTypeBlock, CheapParticleTurbulenceType::k_maxTypes)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "turbulence:texture used to turbulate particles", &bitmap_reference$5 },
@@ -65,9 +65,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cheap_particle_type_library_block, 1, cheap_particle_type_library_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cheap_particle_type_library_block, 1, cheap_particle_type_library_struct_definition_struct_definition );
 
-	TAG_STRUCT(cheap_particle_emitter_struct_definition)
+	V5_TAG_STRUCT(cheap_particle_emitter_struct_definition)
 	{
 		{ _field_word_flags, "flags", &cheap_particle_emitter_flags },
 		{ _field_word_integer, "version!" },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cheap_particle_scalar_object_function_struct)
+	V5_TAG_STRUCT(cheap_particle_scalar_object_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cheap_particle_type_library_struct_definition)
+	V5_TAG_STRUCT(cheap_particle_type_library_struct_definition)
 	{
 		{ _field_custom, "compile" },
 		{ _field_block, "types", &cheap_particle_type_block_block },

@@ -4,14 +4,14 @@
 namespace blofeld
 {
 
-	TAG_GROUP(squad_template, SQUAD_TEMPLATE_TAG)
+	V5_TAG_GROUP(squad_template, SQUAD_TEMPLATE_TAG)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "cell templates", &cell_template_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squad_groups_block, k_max_squad_groups_per_map)
+	V5_TAG_BLOCK(squad_groups_block, k_max_squad_groups_per_map)
 	{
 		{ _field_string, "name^" },
 		{ _field_short_block_index, "parent" },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(patrol_point_block, 32)
+	V5_TAG_BLOCK(patrol_point_block, 32)
 	{
 		{ _field_custom_short_block_index, "point^" },
 		{ _field_word_flags, "flags", &patrol_point_flags },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(spawn_formation_block, k_maximum_spawn_formations_per_squad)
+	V5_TAG_BLOCK(spawn_formation_block, k_maximum_spawn_formations_per_squad)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_string_id, "name^" },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(spawn_points_block, k_maximum_spawn_points_per_squad)
+	V5_TAG_BLOCK(spawn_points_block, k_maximum_spawn_points_per_squad)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_string_id, "name^" },
@@ -106,7 +106,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_palette_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(character_palette_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_block_index, "character type^" },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_palette_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(weapon_palette_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_block_index, "weapon type^" },
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipment_palette_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(equipment_palette_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_block_index, "equipment type^" },
@@ -133,7 +133,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
+	V5_TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
 	{
 		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
 		{ _field_string_id, "name^" },
@@ -158,7 +158,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(squads_block, k_maximum_squads_per_map)
+	V5_TAG_BLOCK(squads_block, k_maximum_squads_per_map)
 	{
 		{ _field_custom },
 		{ _field_string, "name^" },
@@ -180,7 +180,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(character_ref_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(character_ref_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_tag_reference, "character type^", &character_reference$7 },
@@ -189,7 +189,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_tag_reference, "weapon type^", &weapon_reference$8 },
@@ -198,7 +198,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
+	V5_TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_tag_reference, "equipment type^", &equipment_reference$4 },
@@ -207,7 +207,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cell_template_block, k_maximum_cells_per_squad)
+	V5_TAG_BLOCK(cell_template_block, k_maximum_cells_per_squad)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
@@ -226,7 +226,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(squad_definition_internal_struct)
+	V5_TAG_STRUCT(squad_definition_internal_struct)
 	{
 		{ _field_block, "cells", &cell_block_block },
 		{ _field_terminator }

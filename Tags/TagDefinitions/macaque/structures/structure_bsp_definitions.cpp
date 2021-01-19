@@ -1,0 +1,1142 @@
+#include <tagdefinitions-private-pch.h>
+#include <macaque_field_type_override.h>
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	TAG_GROUP(
+		prefab_group,
+		PREFAB_TAG,
+		nullptr,
+		INVALID_TAG,
+		prefab_block );
+
+	#define SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID { 0x5043D2DD, 0xE3624E5A, 0xBB518106, 0x4E2109D4 }
+	TAG_BLOCK(
+		scenario_structure_bsp_block,
+		"scenario_structure_bsp_block",
+		1,
+		"structure_bsp",
+		SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID)
+	{
+		{ _field_struct, "build identifier*", &structure_manifest_build_identifier_struct },
+		{ _field_struct, "parent build identifier*", &structure_manifest_build_identifier_struct },
+		{ _field_long_integer, "import info checksum*" },
+		{ _field_tag_reference, "structure lighting_info^", &structure_lighting_bsp_reference },
+		{ _field_long_integer, "import version*!" },
+		{ _field_tag_reference, "structure meta data*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
+		{ _field_word_flags, "flags*!", &structure_bsp_flags_definition },
+		{ _field_word_flags, "content policy flags*!", &structure_bsp_content_policy_flag },
+		{ _field_word_flags, "failed content policy flags*!", &structure_bsp_content_policy_flag },
+		{ _field_pad, "faild policy pad*!", 2 },
+		{ _field_block, "seam identifiers*!", &structure_seam_mapping_block },
+		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "collision materials*", &structure_collision_materials_block },
+		{ _field_block, "leaves*!", &structure_bsp_leaf_block },
+		{ _field_block, "super aabbs*!", &structure_super_node_aabbs_block },
+		{ _field_block, "super node parent mappings*!", &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct },
+		{ _field_real_bounds, "world bounds x*" },
+		{ _field_real_bounds, "world bounds y*" },
+		{ _field_real_bounds, "world bounds z*" },
+		{ _field_block, "large structure surfaces*", &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "cluster portals*", &structure_bsp_cluster_portal_block },
+		{ _field_block, "detail objects*", &structure_bsp_detail_object_data_block },
+		{ _field_block, "clusters*", &structure_bsp_cluster_block },
+		{ _field_block, "materials*", &global_geometry_material_block },
+		{ _field_block, "emissive materials*", &structure_material_lighting_info_block },
+		{ _field_block, "sky owner cluster*", &structure_bsp_sky_owner_cluster_block },
+		{ _field_block, "conveyor surfaces*", &structure_bsp_conveyor_surface_block },
+		{ _field_block, "breakable surface sets*", &breakable_surface_set_block },
+		{ _field_block, "pathfinding data", &pathfinding_data_block },
+		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
+		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
+		{ _field_data, "sound PAS data*" },
+		{ _field_block, "markers*", &structure_bsp_marker_block },
+		{ _field_block, "marker light palette*", &structure_bsp_marker_light_palette_block },
+		{ _field_block, "marker light palette index*", &structure_bsp_marker_light_index_block },
+		{ _field_block, "runtime decals*", &structure_bsp_runtime_decal_block },
+		{ _field_block, "(DEPRECATED) environment object palette*", &structure_bsp_environment_object_palette_block },
+		{ _field_block, "(DEPRECATED) environment objects*", &structure_bsp_environment_object_block },
+		{ _field_pad, "IMISWXUG", 4 },
+		{ _field_block, "leaf map leaves*", &global_map_leaf_block },
+		{ _field_block, "leaf map connections*", &global_leaf_connection_block },
+		{ _field_block, "errors*", &global_error_report_categories_block },
+		{ _field_block, "cluster to instance group mopps", &mopp_code_definition_block },
+		{ _field_block, "instance group to instance mopps", &mopp_code_definition_block },
+		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
+		{ _field_block, "instance group to instance spheres", &structure_instance_group_definition_block },
+		{ _field_block, "instanced geometry instances*", &structure_bsp_instanced_geometry_instances_block },
+		{ _field_block, "instanced geometry instance names*", &structure_bsp_instanced_geometry_instances_names_block },
+		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
+		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
+		{ _field_long_integer, "Instance Geometry Tag Instance Count!" },
+		FIELD_CUSTOM("decorator info", _custom_field_function_group_begin),
+		{ _field_block, "decorator sets*", &runtime_decorator_set_block },
+		{ _field_struct, "decorator instance buffer!*", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM("decals info", _custom_field_function_group_begin),
+		{ _field_block, "preplaced decal sets*", &bsp_preplaced_decal_set_reference_block },
+		{ _field_block, "preplaced decals*", &bsp_preplaced_decal_reference_block },
+		{ _field_struct, "preplaced decal geometry!*", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_block, "acoustics sound clusters!", &structure_bsp_sound_cluster_block },
+		{ _field_block, "transparent planes*", &transparent_planes_block },
+		{ _field_block, "debug info*", &structure_bsp_debug_info_block },
+		{ _field_struct, "structure_physics*", &global_structure_physics_struct },
+		{ _field_struct, "render geometry*", &global_render_geometry_struct },
+		{ _field_block, "widget references", &widget_reference_block },
+		{ _field_block, "cheap light references", &cheap_light_reference_block },
+		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
+		FIELD_CUSTOM("Any Platform Temporary Storage", _custom_field_function_group_begin),
+		{ _field_block, "Any Platform Temp Havok Data*!", &structureIOHavokDataBlock_block },
+		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
+		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
+		{ _field_long_integer, "base material count*!" },
+		{ _field_block, "obb volume list", &structure_bsp_obb_volume_block },
+		{ _field_block, "scripted dependencies", &hs_references_block },
+		{ _field_block, "pupAnimations*!", &AnimGraphDependencyBlock_block },
+		{ _field_terminator }
+	};
+
+	TAG_GROUP(
+		scenario_structure_bsp_group,
+		SCENARIO_STRUCTURE_BSP_TAG,
+		nullptr,
+		INVALID_TAG,
+		scenario_structure_bsp_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		prefab_block,
+		"prefab_block",
+		1,
+		prefab_struct_definition);
+
+	#define STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID { 0x5E7D4A2C, 0x49134181, 0xB2652E00, 0xABA99982 }
+	TAG_BLOCK(
+		structure_edge_to_seam_edge_mapping_block,
+		"structure_edge_to_seam_edge_mapping_block",
+		((true) ? 2621440 : UNSIGNED_SHORT_MAX),
+		"s_structure_edge_to_seam_edge_mapping",
+		STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID)
+	{
+		{ _field_short_integer, "seam_index*!" },
+		{ _field_short_integer, "seam_edge_index*!" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_COLLISION_MATERIALS_BLOCK_ID { 0x9B46AC25, 0x4F274C73, 0xA712E380, 0x4CCC324B }
+	TAG_BLOCK(
+		structure_collision_materials_block,
+		"structure_collision_materials_block",
+		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
+		"structure_collision_material",
+		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
+	{
+		{ _field_tag_reference, "render method{old shader}*^", &structure_collision_materials_block_render_method_reference },
+		{ _field_string_id, "override material name" },
+		{ _field_short_integer, "runtime global material index!" },
+		{ _field_short_block_index, "conveyor surface index*" },
+		{ _field_short_block_index, "seam mapping index*" },
+		{ _field_word_flags, "flags*", &structure_collision_materialg_flags },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_LEAF_BLOCK_ID { 0xB611DF65, 0xC92C4779, 0x8227AAFA, 0x52126166 }
+	TAG_BLOCK(
+		structure_bsp_leaf_block,
+		"structure_bsp_leaf_block",
+		((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))),
+		"structure_bsp_leaf_block",
+		STRUCTURE_BSP_LEAF_BLOCK_ID)
+	{
+		{ _field_byte_integer, "cluster*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SUPER_NODE_AABBS_BLOCK_ID { 0xABAAAA8A, 0x32044161, 0x3467CA2F, 0xAD4716BF }
+	TAG_BLOCK(
+		structure_super_node_aabbs_block,
+		"structure_super_node_aabbs_block",
+		(k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count,
+		"real_rectangle3d",
+		STRUCTURE_SUPER_NODE_AABBS_BLOCK_ID)
+	{
+		{ _field_real, "x0" },
+		{ _field_real, "x1" },
+		{ _field_real, "y0" },
+		{ _field_real, "y1" },
+		{ _field_real, "z0" },
+		{ _field_real, "z1" },
+		{ _field_terminator }
+	};
+
+	#define SUPER_NODE_MAPPINGS_BLOCK_ID { 0x61AA468A, 0x0A044161, 0xB167CA2F, 0xCB2716BF }
+	TAG_BLOCK(
+		super_node_mappings_block,
+		"super_node_mappings_block",
+		(k_bsp3d_maximum_super_node_count),
+		"s_structure_super_node_mapping",
+		SUPER_NODE_MAPPINGS_BLOCK_ID)
+	{
+		{ _field_short_integer, "parent_super_node_index!*" },
+		{ _field_char_integer, "parent_internal_node_index!*" },
+		{ _field_byte_flags, "flags!*", &structure_super_node_mapping_flags },
+		{ _field_long_integer, "has_traversal_geometry_mask!*" },
+		{ _field_short_block_index, "first_traversal_geometry_index!*" },
+		{ _field_short_block_index, "first_aabb_index!*" },
+		{ _field_long_integer, "aabb_mask!*" },
+		{ _field_short_block_index, "non_terminal_traversal_geometry_index!*" },
+		{ _field_pad, "pad", 2 },
+		{ _field_terminator }
+	};
+
+	#define SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID { 0x61AB468A, 0xCA044161, 0xB167CAAF, 0x1B2716BF }
+	TAG_BLOCK(
+		super_node_recursable_masks_block,
+		"super_node_recursable_masks_block",
+		(k_bsp3d_maximum_super_node_count),
+		"word",
+		SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID)
+	{
+		{ _field_short_integer, "mask!*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID { 0x61AAAB8A, 0x10044161, 0xC167CA2F, 0xCB4716BF }
+	TAG_BLOCK(
+		structure_super_node_traversal_geometry_block,
+		"structure_super_node_traversal_geometry_block",
+		k_short_max,
+		"s_structure_super_node_traversal_geometry",
+		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID)
+	{
+		{ _field_block, "portal_indices!*", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_block, "seam_indices!*", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_INDICES_BLOCK_ID { 0x61AAAA8A, 0x80044161, 0x3167CA2F, 0xCD4716BF }
+	TAG_BLOCK(
+		structure_super_node_traversal_geometry_indices_block,
+		"structure_super_node_traversal_geometry_indices_block",
+		((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)),
+		"short",
+		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_INDICES_BLOCK_ID)
+	{
+		{ _field_short_integer, "index!*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SURFACE_BLOCK_ID { 0xE0159FC4, 0xC9AB45E9, 0xB1B58400, 0x24345098 }
+	TAG_BLOCK(
+		structure_surface_block,
+		"structure_surface_block",
+		((true) ? SHORT_MAX<<3 : SHORT_MAX),
+		"structure_surface_block",
+		STRUCTURE_SURFACE_BLOCK_ID)
+	{
+		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index*" },
+		{ _field_long_integer, "structure_surface_to_triangle_mapping_count*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_STRUCT_ID { 0x8E1D81A7, 0xAC1146C3, 0x126EDAC7, 0xB65E2B07 }
+	TAG_BLOCK(
+		structure_surface_to_triangle_mapping_block,
+		"structure_surface_to_triangle_mapping_block",
+		(8*((true) ? SHORT_MAX<<3 : SHORT_MAX)),
+		"structure_surface_to_triangle_mapping",
+		STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_STRUCT_ID)
+	{
+		{ _field_dword_integer, "manual byteswarp1*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID { 0x515C51A4, 0x87494090, 0x95104547, 0x3C6C550F }
+	TAG_BLOCK(
+		structure_bsp_cluster_portal_block,
+		"structure_bsp_cluster_portal_block",
+		MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE,
+		"cluster_portal",
+		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID)
+	{
+		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block },
+		{ _field_short_integer, "back cluster*" },
+		{ _field_short_integer, "front cluster*" },
+		{ _field_long_integer, "plane index*" },
+		{ _field_real_point_3d, "centroid*" },
+		{ _field_real, "bounding radius*" },
+		{ _field_long_flags, "flags*", &structure_bsp_cluster_portal_flags_definition },
+		{ _field_block, "vertices*", &structure_bsp_cluster_portal_vertex_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID { 0xCE56A99F, 0x1DD34CA8, 0xAA366F5F, 0xF8F748EC }
+	TAG_BLOCK(
+		structure_bsp_cluster_portal_vertex_block,
+		"structure_bsp_cluster_portal_vertex_block",
+		MAXIMUM_VERTICES_PER_CLUSTER_PORTAL,
+		"real_point3d",
+		STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID)
+	{
+		{ _field_real_point_3d, "point*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_ID { 0x20D0C285, 0xB61244F7, 0x996ED157, 0x181CA371 }
+	TAG_BLOCK(
+		structure_bsp_detail_object_data_block,
+		"structure_bsp_detail_object_data_block",
+		1,
+		"structure_detail_object_data",
+		STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_ID)
+	{
+		{ _field_block, "cells", &global_detail_object_cells_block },
+		{ _field_block, "instances", &global_detail_object_block },
+		{ _field_block, "counts", &global_detail_object_counts_block },
+		{ _field_block, "z reference vectors", &global_z_reference_vector_block },
+		{ _field_pad, "KXILLD", 1 },
+		{ _field_pad, "EDFPN", 3 },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID { 0x443EB808, 0xF3A4493E, 0xAAB7DADD, 0x79F9A8DE }
+	TAG_BLOCK(
+		structure_bsp_cluster_block,
+		"structure_bsp_cluster_block",
+		MAXIMUM_CLUSTERS_PER_STRUCTURE,
+		"structure_cluster",
+		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
+	{
+		{ _field_explanation, "CLUSTER INFO", "" },
+		{ _field_real_bounds, "bounds x*" },
+		{ _field_real_bounds, "bounds y*" },
+		{ _field_real_bounds, "bounds z*" },
+		{ _field_pad, "DING", 1 },
+		{ _field_char_integer, "atmosphere index*" },
+		{ _field_char_integer, "camera fx index*" },
+		{ _field_char_integer, "weather index*" },
+		{ _field_short_block_index, "acoustics*" },
+		{ _field_short_integer, "acoustics sound cluster index" },
+		{ _field_short_integer, "runtime first decal index!" },
+		{ _field_short_integer, "runtime decal cound!" },
+		{ _field_word_flags, "flags", &structure_cluster_flags },
+		{ _field_pad, "ERERRFQ", 2 },
+		{ _field_block, "predicted resources*", &g_null_block },
+		{ _field_block, "portals*", &structure_bsp_cluster_portal_index_block },
+		{ _field_short_integer, "mesh index*" },
+		{ _field_short_integer, "instance imposter cluster mopp index" },
+		{ _field_block, "seam indices*!", &seam_indices_block_definition_block },
+		{ _field_block, "decorator groups*", &decorator_runtime_cluster_block },
+		{ _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block },
+		{ _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block },
+		{ _field_block, "pvs bound object references*!", &pvs_bound_object_references_block },
+		{ _field_block, "cluster cubemaps", &structure_cluster_cubemap_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID { 0x8C1C3A41, 0x400B4519, 0x95B2C6B8, 0x710AC715 }
+	TAG_BLOCK(
+		structure_bsp_cluster_portal_index_block,
+		"structure_bsp_cluster_portal_index_block",
+		MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER,
+		"short",
+		STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID)
+	{
+		{ _field_short_integer, "portal index*" },
+		{ _field_terminator }
+	};
+
+	#define SEAM_INDICES_BLOCK_DEFINITION_ID { 0x4DD47B87, 0x293440E9, 0x95732E53, 0xECAD8B62 }
+	TAG_BLOCK(
+		seam_indices_block_definition_block,
+		"seam_indices_block_definition",
+		k_structure_seam_maximum_seam_count,
+		"char",
+		SEAM_INDICES_BLOCK_DEFINITION_ID)
+	{
+		{ _field_char_integer, "seam index*" },
+		{ _field_terminator }
+	};
+
+	#define CHEAP_LIGHT_MARKER_REF_BLOCK_ID { 0x4AFFFB87, 0xCAAA40E9, 0x9BBBFE53, 0x0CCC8B62 }
+	TAG_BLOCK(
+		cheap_light_marker_ref_block,
+		"cheap_light_marker_ref_block",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"s_cheap_light_marker_reference_reference",
+		CHEAP_LIGHT_MARKER_REF_BLOCK_ID)
+	{
+		{ _field_short_block_index, "cheap light reference reference" },
+		{ _field_pad, "WHATIZZIT", 2 },
+		{ _field_terminator }
+	};
+
+	#define PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID { 0x4AB47B87, 0xCD3440E9, 0x957EFE53, 0x01AD8B62 }
+	TAG_BLOCK(
+		pvs_bound_object_identifiers_block,
+		"pvs_bound_object_identifiers_block",
+		k_maximum_scenario_object_datum_count,
+		"c_object_identifier",
+		PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID)
+	{
+		{ _field_struct, "object ID*!", &scenario_object_id_struct },
+		{ _field_terminator }
+	};
+
+	#define PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID { 0xAAB47B87, 0xCD3AA0E9, 0x9BBEFE53, 0x01AD8BCC }
+	TAG_BLOCK(
+		pvs_bound_object_references_block,
+		"pvs_bound_object_references_block",
+		k_maximum_scenario_object_datum_count,
+		"s_scenario_object_reference",
+		PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID)
+	{
+		{ _field_struct, "scenario object reference*!", &scenario_object_reference_struct },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID { 0x9DD3CC89, 0xB8374B30, 0xBD6F5C2D, 0xDA247EA0 }
+	TAG_BLOCK(
+		structure_material_lighting_info_block,
+		"structure_material_lighting_info_block",
+		SHORT_MAX,
+		"s_structure_material_lighting_info",
+		STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID)
+	{
+		{ _field_real, "emissive power" },
+		{ _field_real_rgb_color, "emissive color" },
+		{ _field_real, "emissive quality" },
+		{ _field_real, "emissive focus" },
+		{ _field_long_flags, "flags", &structure_material_lighting_info_flags },
+		{ _field_real, "attenuation falloff" },
+		{ _field_real, "attenuation cutoff" },
+		{ _field_real, "bounce ratio" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID { 0x5CDBBAA5, 0x15CB4A6C, 0xA0F28010, 0xC976FB69 }
+	TAG_BLOCK(
+		structure_bsp_sky_owner_cluster_block,
+		"structure_bsp_sky_owner_cluster_block",
+		MAXIMUM_SKIES_PER_SCENARIO,
+		"short",
+		STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID)
+	{
+		{ _field_short_integer, "cluster owner*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID { 0xCD0C6613, 0x20BF49D0, 0x9379FD49, 0xA1729B48 }
+	TAG_BLOCK(
+		structure_bsp_conveyor_surface_block,
+		"structure_bsp_conveyor_surface_block",
+		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
+		"structure_conveyor_surface",
+		STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID)
+	{
+		{ _field_real_vector_3d, "u" },
+		{ _field_real_vector_3d, "v" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_COOKIE_CUTTER_DEFINITION_ID { 0x24E4D315, 0xF5FA4BA3, 0x96C80371, 0x7A6F48AC }
+	TAG_BLOCK(
+		structure_cookie_cutter_definition_block,
+		"structure_cookie_cutter_definition",
+		k_kilo,
+		"s_structure_cookie_cutter",
+		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
+	{
+		FIELD_CUSTOM("Cookie Cutter", _custom_field_function_group_begin),
+		{ _field_struct, "collision model", &global_collision_bsp_struct },
+		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_MARKER_BLOCK_ID { 0xE4B2C51D, 0xF2C84524, 0x8F67A353, 0x3E9F7017 }
+	TAG_BLOCK(
+		structure_bsp_marker_block,
+		"structure_bsp_marker_block",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"structure_marker",
+		STRUCTURE_BSP_MARKER_BLOCK_ID)
+	{
+		{ _field_char_enum, "marker type*", &structure_marker_type_enum },
+		{ _field_pad, "pad", 3 },
+		{ _field_string, "marker parameter*" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "position*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID { 0xA008D181, 0x9612449F, 0x96D5E611, 0xE4355D97 }
+	TAG_BLOCK(
+		structure_bsp_marker_light_palette_block,
+		"structure_bsp_marker_light_palette",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"s_tag_reference",
+		STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID)
+	{
+		{ _field_tag_reference, "light tag", &light_reference },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_MARKER_LIGHT_INDEX_ID { 0xCBAC4327, 0xB7F94CF8, 0x9E42DAEC, 0xFA79FFA7 }
+	TAG_BLOCK(
+		structure_bsp_marker_light_index_block,
+		"structure_bsp_marker_light_index",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"short",
+		STRUCTURE_BSP_MARKER_LIGHT_INDEX_ID)
+	{
+		{ _field_short_integer, "palette index" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID { 0x617C468A, 0x8AC44161, 0xB167C76F, 0x152716BF }
+	TAG_BLOCK(
+		structure_bsp_runtime_decal_block,
+		"structure_bsp_runtime_decal_block",
+		MAXIMUM_DECALS_PER_STRUCTURE,
+		"scenario_decal",
+		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID)
+	{
+		{ _field_short_integer, "decal palette index!" },
+		{ _field_pad, "post-decal-palette-index-pad", 2 },
+		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
+		{ _field_real_quaternion, "rotation*" },
+		{ _field_real_point_3d, "position*" },
+		{ _field_real, "scale_x(scale}*" },
+		{ _field_real, "scale_y*" },
+		{ _field_real, "cull angle" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID { 0x37D2FC4A, 0x2E6243F8, 0xB235BEDE, 0x7776BE11 }
+	TAG_BLOCK(
+		structure_bsp_environment_object_palette_block,
+		"structure_bsp_environment_object_palette_block",
+		MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE,
+		"structure_environment_object_palette_entry",
+		STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID)
+	{
+		{ _field_tag_reference, "definition^", &object_reference$8 },
+		{ _field_tag_reference, "model", &render_model_reference$9 },
+		{ _field_long_integer, "GVEYN!" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID { 0x1CDF634D, 0xFD90476F, 0x9133F1DA, 0xCC1B247F }
+	TAG_BLOCK(
+		structure_bsp_environment_object_block,
+		"structure_bsp_environment_object_block",
+		MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE,
+		"structure_environment_object",
+		STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID)
+	{
+		{ _field_string, "name^" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "translation" },
+		{ _field_real, "scale" },
+		{ _field_short_block_index, "palette_index" },
+		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
+		{ _field_pad, "QHUGQ", 1 },
+		{ _field_long_integer, "unique id*" },
+		{ _field_tag, "exported object type" },
+		{ _field_string_id, "scenario object name" },
+		{ _field_string_id, "variant name" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_INSTANCE_CLUSTER_DEFINITION_ID { 0xB125B7FC, 0xF9B846A3, 0x91E9DFCF, 0x3E1978AB }
+	TAG_BLOCK(
+		structure_instance_cluster_definition_block,
+		"structure_instance_cluster_definition",
+		k_maximum_cluster_to_instance_group_block_size,
+		"s_structure_instance_cluster",
+		STRUCTURE_INSTANCE_CLUSTER_DEFINITION_ID)
+	{
+		{ _field_long_flags, "flags", &structure_instance_cluster_flags },
+		{ _field_block, "instance group indices", &index_list_block },
+		{ _field_terminator }
+	};
+
+	#define INDEX_LIST_BLOCK_ID { 0x46A289B9, 0x00CD4938, 0xBAAECC17, 0x5E24C7BA }
+	TAG_BLOCK(
+		index_list_block,
+		"index_list_block",
+		4 * k_kilo,
+		"word",
+		INDEX_LIST_BLOCK_ID)
+	{
+		{ _field_word_integer, "index" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_INSTANCE_GROUP_DEFINITION_ID { 0x690AAB9C, 0x68A24457, 0xB5BCABD7, 0x3411A2B6 }
+	TAG_BLOCK(
+		structure_instance_group_definition_block,
+		"structure_instance_group_definition",
+		4 * k_kilo,
+		"s_structure_instance_group",
+		STRUCTURE_INSTANCE_GROUP_DEFINITION_ID)
+	{
+		{ _field_real_point_3d, "center" },
+		{ _field_real, "radius" },
+		{ _field_short_integer, "cluster count" },
+		{ _field_word_flags, "flags", &structure_instance_group_flags },
+		{ _field_real, "maximum imposter distance*" },
+		{ _field_real, "minimum centrifugal distance from group center*" },
+		{ _field_real, "minimum imposter distance squared*" },
+		{ _field_block, "instance indices", &index_list_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_INSTANCE_IMPOSTER_INFO_BLOCK_ID { 0x4B11C756, 0x848E464C, 0x8723247D, 0x98DBB91E }
+	TAG_BLOCK(
+		structure_instance_imposter_info_block,
+		"structure_instance_imposter_info_block",
+		k_maximum_instance_geometry_instances_per_structure_bsp,
+		"s_structure_instance_imposter_info",
+		STRUCTURE_INSTANCE_IMPOSTER_INFO_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_char_integer, "imposter policy" },
+		{ _field_pad, "parasdd", 3 },
+		{ _field_real, "transition distance" },
+		{ _field_terminator }
+	};
+
+	#define RUNTIME_DECORATOR_SET_BLOCK_ID { 0xEBC8164A, 0x583140C6, 0xBB8277A0, 0x58357ADA }
+	TAG_BLOCK(
+		runtime_decorator_set_block,
+		"runtime_decorator_set_block",
+		MAXIMUM_DECORATOR_SETS_PER_SCENARIO,
+		"s_tag_reference",
+		RUNTIME_DECORATOR_SET_BLOCK_ID)
+	{
+		{ _field_tag_reference, "decorator set reference*", &global_decorator_set_reference },
+		{ _field_terminator }
+	};
+
+	#define BSP_PREPLACED_DECAL_SET_REFERENCE_BLOCK_ID { 0xA3345A30, 0xF7654F6F, 0xAE72426D, 0x15740B0B }
+	TAG_BLOCK(
+		bsp_preplaced_decal_set_reference_block,
+		"bsp_preplaced_decal_set_reference_block",
+		MAXIMUM_DECALS_PER_STRUCTURE,
+		"s_bsp_preplaced_decal_set_reference",
+		BSP_PREPLACED_DECAL_SET_REFERENCE_BLOCK_ID)
+	{
+		{ _field_long_integer, "decal definition index!" },
+		{ _field_char_integer, "location bsp 0!" },
+		{ _field_byte_integer, "location cluster 0!" },
+		{ _field_char_integer, "location bsp 1!" },
+		{ _field_byte_integer, "location cluster 1!" },
+		{ _field_char_integer, "location bsp 2!" },
+		{ _field_byte_integer, "location cluster 2!" },
+		{ _field_char_integer, "location bsp 3!" },
+		{ _field_byte_integer, "location cluster 3!" },
+		{ _field_real_point_3d, "center*" },
+		{ _field_short_integer, "first decal ref index!" },
+		{ _field_short_integer, "decal ref count!" },
+		{ _field_terminator }
+	};
+
+	#define BSP_PREPLACED_DECAL_REFERENCE_BLOCK_ID { 0xE6FD463F, 0xE03645F2, 0xAB632862, 0x08D637AB }
+	TAG_BLOCK(
+		bsp_preplaced_decal_reference_block,
+		"bsp_preplaced_decal_reference_block",
+		MAXIMUM_DECALS_PER_STRUCTURE,
+		"s_bsp_preplaced_decal_reference",
+		BSP_PREPLACED_DECAL_REFERENCE_BLOCK_ID)
+	{
+		{ _field_short_integer, "index start" },
+		{ _field_short_integer, "index count" },
+		{ _field_short_integer, "vertex start" },
+		{ _field_short_integer, "vertex count" },
+		{ _field_short_integer, "definition block index" },
+		{ _field_pad, "paddddg", 2 },
+		{ _field_real_point_2d, "spirit corner" },
+		{ _field_real_vector_2d, "spirit size" },
+		{ _field_terminator }
+	};
+
+	#define TRANSPARENT_PLANES_BLOCK_ID { 0xB66CE451, 0x57AE4DC8, 0xB204270D, 0x07A9412F }
+	TAG_BLOCK(
+		transparent_planes_block,
+		"transparent_planes_block",
+		32*k_kilo,
+		"s_transparent_plane",
+		TRANSPARENT_PLANES_BLOCK_ID)
+	{
+		{ _field_short_integer, "section index" },
+		{ _field_short_integer, "part index" },
+		{ _field_real_plane_3d, "plane" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID { 0x8FF53A43, 0xE3814420, 0x81140052, 0xAB9DFEA6 }
+	TAG_BLOCK(
+		structure_bsp_debug_info_block,
+		"structure_bsp_debug_info_block",
+		1,
+		"s_structure_debug_info",
+		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
+	{
+		{ _field_pad, "BRQYEF", 64 },
+		{ _field_block, "clusters*", &structure_bsp_cluster_debug_info_block },
+		{ _field_block, "fog planes*", &structure_bsp_fog_plane_debug_info_block },
+		{ _field_block, "fog zones*", &structure_bsp_fog_zone_debug_info_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID { 0xB5A0AC69, 0x26934359, 0x9CA55C27, 0x431EC06E }
+	TAG_BLOCK(
+		structure_bsp_cluster_debug_info_block,
+		"structure_bsp_cluster_debug_info_block",
+		MAXIMUM_CLUSTERS_PER_STRUCTURE,
+		"s_structure_cluster_debug_info",
+		STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID)
+	{
+		{ _field_word_flags, "errors*", &structure_bsp_debug_info_cluster_error_flags },
+		{ _field_word_flags, "warnings*", &structure_bsp_debug_info_cluster_warning_flags },
+		{ _field_pad, "KHWRB", 28 },
+		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "fog plane indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "visible fog plane indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "vis-fog omission cluster indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "containing fog zone indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID { 0x288FF283, 0x1AB747CD, 0x84A91A1A, 0x49EB05F1 }
+	TAG_BLOCK(
+		structure_bsp_debug_info_render_line_block,
+		"structure_bsp_debug_info_render_line_block",
+		SHORT_MAX,
+		"s_structure_debug_info_render_line",
+		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
+	{
+		{ _field_enum, "type*", &structure_bsp_debug_info_render_line_type_enum },
+		{ _field_short_integer, "code*" },
+		{ _field_short_integer, "pad thai*" },
+		{ _field_pad, "BNQS", 2 },
+		{ _field_real_point_3d, "point 0*" },
+		{ _field_real_point_3d, "point 1*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID { 0x5E7D4A5C, 0x49B34181, 0xB5652E00, 0x9BA99982 }
+	TAG_BLOCK(
+		structure_bsp_debug_info_indices_block,
+		"structure_bsp_debug_info_indices_block",
+		SHORT_MAX,
+		"long",
+		STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID)
+	{
+		{ _field_long_integer, "index*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID { 0xF78A15DF, 0xDCC84AD0, 0xA18E7B16, 0x621BC70B }
+	TAG_BLOCK(
+		structure_bsp_fog_plane_debug_info_block,
+		"structure_bsp_fog_plane_debug_info_block",
+		MAXIMUM_FOG_PLANES_PER_STRUCTURE,
+		"s_structure_fog_plane_debug_info",
+		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
+	{
+		{ _field_long_integer, "fog zone index*" },
+		{ _field_pad, "WZGH", 24 },
+		{ _field_long_integer, "connected plane designator*" },
+		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "intersected cluster indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "inf. extent cluster indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID { 0x54513BD1, 0x61374DCB, 0x950FF95C, 0x72B662D5 }
+	TAG_BLOCK(
+		structure_bsp_fog_zone_debug_info_block,
+		"structure_bsp_fog_zone_debug_info_block",
+		MAXIMUM_FOG_ZONES_PER_STRUCTURE,
+		"s_structure_fog_zone_debug_info",
+		STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID)
+	{
+		{ _field_long_integer, "media index:scenario fog plane*" },
+		{ _field_long_integer, "base fog plane index*" },
+		{ _field_pad, "RB", 24 },
+		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "immersed cluster indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "bounding fog plane indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "collision fog plane indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_terminator }
+	};
+
+	#define WIDGET_REFERENCE_BLOCK_ID { 0xFE7DCA2C, 0x49136A81, 0xB9652900, 0xABAA5A82 }
+	TAG_BLOCK(
+		widget_reference_block,
+		"widget_reference_block",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"s_widget_marker_reference",
+		WIDGET_REFERENCE_BLOCK_ID)
+	{
+		{ _field_short_integer, "marker index*" },
+		{ _field_pad, "gnlao", 2 },
+		{ _field_tag_reference, "widget ref*", &leaf_system_reference },
+		{ _field_terminator }
+	};
+
+	#define CHEAP_LIGHT_REFERENCE_BLOCK_ID { 0xFE62CAFA, 0x49536A8C, 0xB9E5A93F, 0xA9AA1AAB }
+	TAG_BLOCK(
+		cheap_light_reference_block,
+		"cheap_light_reference_block",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"s_cheap_light_marker_reference",
+		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
+	{
+		{ _field_short_integer, "marker index*" },
+		{ _field_pad, "ldajk", 2 },
+		{ _field_tag_reference, "cheap light*", &cheap_light_reference },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_RAW_RESOURCES_ID { 0x3A39EBF4, 0xA1FA4120, 0x8CA7C0AC, 0x54DCAE26 }
+	TAG_BLOCK(
+		structure_bsp_raw_resources_block,
+		"structure_bsp_raw_resources",
+		1,
+		"s_structure_bsp_resources",
+		STRUCTURE_BSP_RAW_RESOURCES_ID)
+	{
+		{ _field_struct, "raw_items", &structure_bsp_resource_struct },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_EXTERNAL_INSTANCED_GEOMETRY_REFERENCES_BLOCK_ID { 0x87C8EF26, 0xE9354157, 0x85B70AF5, 0x447B03B8 }
+	TAG_BLOCK(
+		structure_external_instanced_geometry_references_block,
+		"structure_external_instanced_geometry_references_block",
+		k_external_instanced_geometry_max,
+		"structure_external_instanced_geometry_reference",
+		STRUCTURE_EXTERNAL_INSTANCED_GEOMETRY_REFERENCES_BLOCK_ID)
+	{
+		{ _field_tag_reference, "prefab reference", &prefab_reference },
+		{ _field_string_id, "name*^" },
+		{ _field_real, "scale" },
+		{ _field_real_vector_3d, "forward" },
+		{ _field_real_vector_3d, "left" },
+		{ _field_real_vector_3d, "up" },
+		{ _field_real_point_3d, "position" },
+		{ _field_short_integer, "mesh count!" },
+		{ _field_short_integer, "mesh block index!" },
+		{ _field_short_integer, "light count!" },
+		{ _field_short_integer, "light instance block index!" },
+		{ _field_short_integer, "dynamic object count!" },
+		{ _field_short_integer, "dynamic object block index!" },
+		{ _field_word_flags, "override flags", &instanced_geometry_flags },
+		{ _field_pad, "SDFSDEE", 2 },
+		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
+		{ _field_char_enum, "override lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
+		{ _field_char_enum, "override imposter policy", &instanced_geometry_imposter_policy_enum },
+		{ _field_char_enum, "override streaming priority*", &instanced_geometry_streamingpriority_enum },
+		{ _field_real, "override lightmap resolution scale" },
+		{ _field_real, "override imposter transition distance" },
+		{ _field_real, "override imposter brightness" },
+		{ _field_real, "override light channel flags" },
+		{ _field_word_flags, "instance flags Mask", &instanced_geometry_flags },
+		{ _field_word_flags, "instance policy mask", &prefabOverrideFlags },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_OBB_VOLUME_BLOCK_ID { 0x7B8CD005, 0x85E1496D, 0xAE545C18, 0x4F842706 }
+	TAG_BLOCK(
+		structure_bsp_obb_volume_block,
+		"structure_bsp_obb_volume_block",
+		4096,
+		"s_structure_bsp_obb_volume",
+		STRUCTURE_BSP_OBB_VOLUME_BLOCK_ID)
+	{
+		{ _field_real_point_3d, "origin" },
+		{ _field_real_vector_3d, "axis 1" },
+		{ _field_real_vector_3d, "axis 2" },
+		{ _field_real_vector_3d, "axis 3" },
+		{ _field_dword_integer, "type" },
+		{ _field_terminator }
+	};
+
+	#define ANIMGRAPHDEPENDENCYBLOCK_ID { 0x39127510, 0x2A154795, 0xB625EF56, 0x00B30C28 }
+	TAG_BLOCK(
+		AnimGraphDependencyBlock_block,
+		"AnimGraphDependencyBlock",
+		256,
+		"AnimGraphDependency",
+		ANIMGRAPHDEPENDENCYBLOCK_ID)
+	{
+		{ _field_tag_reference, "graph", &model_animation_graph_reference$2 },
+		{ _field_terminator }
+	};
+
+	#define STRUCTUREBSPFXMARKERBLOCK_ID { 0x025D71C3, 0x50534BF1, 0xB1331C99, 0x25EAA551 }
+	TAG_BLOCK(
+		structureBspFxMarkerBlock_block,
+		"structureBspFxMarkerBlock",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"structureFxMarker",
+		STRUCTUREBSPFXMARKERBLOCK_ID)
+	{
+		{ _field_string, "marker name^" },
+		{ _field_real_quaternion, "rotation*" },
+		{ _field_real_point_3d, "position*" },
+		{ _field_tag_reference, "optional attached effect", &structureBspFxMarkerBlock_optional_attached_effect_reference },
+		{ _field_terminator }
+	};
+
+	#define STRUCTUREMETADATALIGHTCONEMARKERBLOCK_ID { 0x54973095, 0x6F2344DD, 0xA012514D, 0x3DC2A5F7 }
+	TAG_BLOCK(
+		structureMetadataLightConeMarkerBlock_block,
+		"structureMetadataLightConeMarkerBlock",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"structureMetadataLightConeMarker",
+		STRUCTUREMETADATALIGHTCONEMARKERBLOCK_ID)
+	{
+		{ _field_string, "marker name^" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "position" },
+		{ _field_real, "length" },
+		{ _field_real, "width" },
+		{ _field_real, "intensity" },
+		{ _field_real_argb_color, "light color" },
+		{ _field_tag_reference, "light cone tag", &Tag::Reference<struct LightConeDefinition>::s_defaultDefinition },
+		{ _field_tag_reference, "intensity curve", &Tag::Reference<class c_function_definition>::s_defaultDefinition },
+		{ _field_terminator }
+	};
+
+	#define PREFAB_STRUCT_DEFINITION_ID { 0xE161B79D, 0x69904839, 0xBCB1689B, 0x7197C39E }
+	TAG_STRUCT(
+		prefab_struct_definition,
+		"prefab_struct_definition",
+		"structure_prefab",
+		PREFAB_STRUCT_DEFINITION_ID)
+	{
+		{ _field_tag_reference, "bsp reference", &scenario_structure_bsp_reference },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID { 0x224A23F3, 0x3B5842F1, 0x421067FE, 0x3C5CE7F2 }
+	TAG_STRUCT(
+		structure_bsp_cluster_portal_oriented_bounds_block,
+		"structure_bsp_cluster_portal_oriented_bounds_block",
+		"cluster_portal::s_oriented_bounds",
+		STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID)
+	{
+		{ _field_real_point_3d, "center*!" },
+		{ _field_real_vector_3d, "extents*!" },
+		{ _field_real_quaternion, "orientation*!" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_RESOURCE_INTERFACE_ID { 0xB024FA19, 0x92E24683, 0xB26BDF83, 0x52E5E222 }
+	TAG_STRUCT(
+		structure_bsp_resource_interface,
+		"structure_bsp_resource_interface",
+		"c_structure_bsp_resource_interface",
+		STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
+	{
+		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
+		{ _field_pageable, "tag_resources", &structure_bsp_tag_resources_struct },
+		{ _field_pageable, "cache_file_resources", &structure_bsp_cache_file_tag_resources_struct },
+		{ _field_long_integer, "use resource items*" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_RESOURCE_STRUCT_ID { 0x03A9EF85, 0x2F7A473A, 0x8A86F093, 0x2DE335AF }
+	TAG_STRUCT(
+		structure_bsp_resource_struct,
+		"structure_bsp_resource_struct",
+		"s_structure_bsp_resources",
+		STRUCTURE_BSP_RESOURCE_STRUCT_ID)
+	{
+		{ _field_block, "collision bsp*", &global_collision_bsp_block },
+		{ _field_block, "large collision bsp*", &global_large_collision_bsp_block },
+		{ _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block },
+		{ _field_block, "Havok Data*", &structureIOHavokDataBlock_block },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID { 0x72D3359D, 0x5BCF4E28, 0xA26904A5, 0xD923E60C }
+	TAG_STRUCT(
+		structure_bsp_tag_resources_struct,
+		"structure_bsp_tag_resources_struct",
+		"s_structure_bsp_resources",
+		STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID)
+	{
+		{ _field_struct, "resource_items", &structure_bsp_resource_struct },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID { 0xF94BEACC, 0xEDAB423F, 0x82675E23, 0xFA14A1AD }
+	TAG_STRUCT(
+		structure_bsp_cache_file_tag_resources_struct,
+		"structure_bsp_cache_file_tag_resources_struct",
+		"s_structure_bsp_cache_file_resources",
+		STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID)
+	{
+		{ _field_block, "large structure surfaces*", &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "pathfinding data", &pathfinding_data_block },
+		{ _field_block, "instanced geometry instances without names*", &structure_bsp_instanced_geometry_instances_without_names_block },
+		{ _field_block, "super node parent mappings*!", &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct },
+		{ _field_terminator }
+	};
+
+	STRINGS(structure_material_lighting_info_flags)
+	{
+		"reserved{use attenuation}",
+		"power per unit area",
+		"use shader gel"
+	};
+	STRING_LIST(structure_material_lighting_info_flags, structure_material_lighting_info_flags_strings, _countof(structure_material_lighting_info_flags_strings));
+
+	STRINGS(structure_bsp_cluster_portal_flags_definition)
+	{
+		"ai can\'t hear through this shit",
+		"one-way",
+		"door",
+		"no-way",
+		"one-way-reversed",
+		"no one can hear through this"
+	};
+	STRING_LIST(structure_bsp_cluster_portal_flags_definition, structure_bsp_cluster_portal_flags_definition_strings, _countof(structure_bsp_cluster_portal_flags_definition_strings));
+
+	STRINGS(structure_cluster_flags)
+	{
+		"one way portal",
+		"door portal",
+		"postprocessed geometry",
+		"is the sky",
+		"decorators are lit"
+	};
+	STRING_LIST(structure_cluster_flags, structure_cluster_flags_strings, _countof(structure_cluster_flags_strings));
+
+	STRINGS(structure_collision_materialg_flags)
+	{
+		"is seam"
+	};
+	STRING_LIST(structure_collision_materialg_flags, structure_collision_materialg_flags_strings, _countof(structure_collision_materialg_flags_strings));
+
+	STRINGS(structure_marker_type_enum)
+	{
+		"none",
+		"cheap light",
+		"falling leaf generator",
+		"light",
+		"sky (unused)",
+		"model"
+	};
+	STRING_LIST(structure_marker_type_enum, structure_marker_type_enum_strings, _countof(structure_marker_type_enum_strings));
+
+	STRINGS(environmentObjectFlagsDefinition)
+	{
+		"scripts always run"
+	};
+	STRING_LIST(environmentObjectFlagsDefinition, environmentObjectFlagsDefinition_strings, _countof(environmentObjectFlagsDefinition_strings));
+
+	STRINGS(structure_super_node_mapping_flags)
+	{
+		"above"
+	};
+	STRING_LIST(structure_super_node_mapping_flags, structure_super_node_mapping_flags_strings, _countof(structure_super_node_mapping_flags_strings));
+
+	STRINGS(structure_bsp_debug_info_cluster_error_flags)
+	{
+		"multiple fog planes",
+		"fog zone collision",
+		"fog zone immersion"
+	};
+	STRING_LIST(structure_bsp_debug_info_cluster_error_flags, structure_bsp_debug_info_cluster_error_flags_strings, _countof(structure_bsp_debug_info_cluster_error_flags_strings));
+
+	STRINGS(structure_bsp_debug_info_cluster_warning_flags)
+	{
+		"multiple visible fog planes",
+		"visible fog cluster omission",
+		"fog plane missed render-bsp"
+	};
+	STRING_LIST(structure_bsp_debug_info_cluster_warning_flags, structure_bsp_debug_info_cluster_warning_flags_strings, _countof(structure_bsp_debug_info_cluster_warning_flags_strings));
+
+	STRINGS(structure_bsp_debug_info_render_line_type_enum)
+	{
+		"fog plane boundary edge",
+		"fog plane internal edge",
+		"fog zone floodfill",
+		"fog zone cluster centroid",
+		"fog zone cluster geometry",
+		"fog zone portal centroid",
+		"fog zone portal geometry"
+	};
+	STRING_LIST(structure_bsp_debug_info_render_line_type_enum, structure_bsp_debug_info_render_line_type_enum_strings, _countof(structure_bsp_debug_info_render_line_type_enum_strings));
+
+	STRINGS(structure_bsp_flags_definition)
+	{
+		"has instance groups",
+		"surface to triangle mapping remapped*",
+		"external references converted to io",
+		"structure mopp needs rebuilt",
+		"structure prefab materials need postprocessing",
+		"serialized havok data converted to target platform"
+	};
+	STRING_LIST(structure_bsp_flags_definition, structure_bsp_flags_definition_strings, _countof(structure_bsp_flags_definition_strings));
+
+	STRINGS(structure_bsp_content_policy_flag)
+	{
+		"has working pathfinding",
+		"convex decomposition enabled"
+	};
+	STRING_LIST(structure_bsp_content_policy_flag, structure_bsp_content_policy_flag_strings, _countof(structure_bsp_content_policy_flag_strings));
+
+	STRINGS(structure_instance_cluster_flags)
+	{
+		"optimized mopp"
+	};
+	STRING_LIST(structure_instance_cluster_flags, structure_instance_cluster_flags_strings, _countof(structure_instance_cluster_flags_strings));
+
+	STRINGS(structure_instance_group_flags)
+	{
+		"contains card imposters",
+		"contains poly imposters",
+		"is decorator type",
+		"optimized mopp"
+	};
+	STRING_LIST(structure_instance_group_flags, structure_instance_group_flags_strings, _countof(structure_instance_group_flags_strings));
+
+	STRINGS(prefabOverrideFlags)
+	{
+		"override pathfinding policy",
+		"override lightmapping policy",
+		"override lmposter policy",
+		"override lightmap resolution policy",
+		"override imposter transition distance policy",
+		"override light channel flags policy",
+		"override imposter brightness"
+	};
+	STRING_LIST(prefabOverrideFlags, prefabOverrideFlags_strings, _countof(prefabOverrideFlags_strings));
+
+	TAG_REFERENCE(structure_lighting_bsp_reference, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG);
+
+} // namespace macaque
+
+} // namespace blofeld
+

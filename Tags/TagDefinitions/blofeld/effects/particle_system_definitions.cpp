@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(emitterGlobalForceBlock, 4)
+	V5_TAG_BLOCK(emitterGlobalForceBlock, 4)
 	{
 		{ _field_struct, "global force", &effect_global_force_struct_definition_struct_definition },
 		{ _field_real_vector_3d, "offset" },
@@ -12,32 +12,32 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emitterClipSphereBlock, 1)
+	V5_TAG_BLOCK(emitterClipSphereBlock, 1)
 	{
 		{ _field_real_vector_3d, "offset" },
 		{ _field_real, "radius" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gpu_property_block, k_max_gpu_properties)
+	V5_TAG_BLOCK(gpu_property_block, k_max_gpu_properties)
 	{
 		{ _field_array, "runtime gpu_property_sub_array!", &gpu_property_sub_array_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gpu_function_block, k_max_gpu_functions)
+	V5_TAG_BLOCK(gpu_function_block, k_max_gpu_functions)
 	{
 		{ _field_array, "runtime gpu_function_sub_array!", &gpu_function_sub_array_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gpu_color_block, k_max_gpu_colors)
+	V5_TAG_BLOCK(gpu_color_block, k_max_gpu_colors)
 	{
 		{ _field_array, "runtime gpu_color_sub_array!", &gpu_color_sub_array_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(particle_system_emitter_definition_block, c_particle_system_definition::k_maximum_emitters_per_definition)
+	V5_TAG_BLOCK(particle_system_emitter_definition_block, c_particle_system_definition::k_maximum_emitters_per_definition)
 	{
 		{ _field_custom },
 		{ _field_string_id, "emitter name^" },
@@ -114,7 +114,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(particle_system_definition_block_new, c_particle_system_definition::k_maximum_particle_systems_per_block)
+	V5_TAG_BLOCK(particle_system_definition_block_new, c_particle_system_definition::k_maximum_particle_systems_per_block)
 	{
 		{ _field_custom },
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
@@ -189,7 +189,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(gpu_property_function_color_struct)
+	V5_TAG_STRUCT(gpu_property_function_color_struct)
 	{
 		{ _field_version_platform_include, _platform_type_pc, 3  },
 		{ _field_api_interop, "runtime gpu data", &constant_buffer_struct_definition },

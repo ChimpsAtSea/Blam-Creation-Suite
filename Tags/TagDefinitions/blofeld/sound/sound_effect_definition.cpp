@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG, sound_effect_template_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG, sound_effect_template_block_block );
 
-	TAG_BLOCK(sound_effect_template_parameter_block, k_maximum_number_of_sound_effect_parameters)
+	V5_TAG_BLOCK(sound_effect_template_parameter_block, k_maximum_number_of_sound_effect_parameters)
 	{
 		{ _field_string_id, "name" },
 		{ _field_enum, "type", &sound_effect_template_type_enum_definition },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_effect_templates_block, k_maximum_number_of_sound_effect_templates)
+	V5_TAG_BLOCK(sound_effect_templates_block, k_maximum_number_of_sound_effect_templates)
 	{
 		{ _field_string_id, "dsp effect" },
 		{ _field_explanation, "WARNING", "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING" },
@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_effect_template_additional_sound_input_block, 1)
+	V5_TAG_BLOCK(sound_effect_template_additional_sound_input_block, 1)
 	{
 		{ _field_string_id, "dsp effect" },
 		{ _field_custom },
@@ -42,9 +42,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(sound_effect_template_block, 1, sound_effect_template_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_effect_template_block, 1, sound_effect_template_struct_definition_struct_definition );
 
-	TAG_STRUCT(sound_effect_template_struct_definition)
+	V5_TAG_STRUCT(sound_effect_template_struct_definition)
 	{
 		{ _field_block, "template collection", &sound_effect_templates_block_block },
 		{ _field_string_id, "internal dsp effect name{input effect name}" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(area_reference_block, k_maximum_areas_per_task)
+	V5_TAG_BLOCK(area_reference_block, k_maximum_areas_per_task)
 	{
 		{ _field_enum, "area type", &zone_set_type_enum },
 		{ _field_byte_flags, "flags", &zone_set_flags },
@@ -19,14 +19,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(opposing_objective_block, k_maximum_opposing_objectives)
+	V5_TAG_BLOCK(opposing_objective_block, k_maximum_opposing_objectives)
 	{
 		{ _field_short_block_index, "objective" },
 		{ _field_pad, "pad0", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(script_fragment_block, 1)
+	V5_TAG_BLOCK(script_fragment_block, 1)
 	{
 		{ _field_string_id, "script name*" },
 		{ _field_long_string, "script source" },
@@ -35,16 +35,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(task_direction_point_block, k_max_points_per_task_direction)
+	V5_TAG_BLOCK(task_direction_point_block, k_max_points_per_task_direction)
 	{
 		{ _field_real_point_3d, "point0" },
 		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(task_direction_block_v2, 1, task_direction_block_v2_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(task_direction_block_v2, 1, task_direction_block_v2_struct_struct_definition );
 
-	TAG_BLOCK(tasks_block, k_maximum_tasks_per_objective)
+	V5_TAG_BLOCK(tasks_block, k_maximum_tasks_per_objective)
 	{
 		{ _field_word_flags, "flags", &task_flags_definition },
 		{ _field_word_flags, "inhibit groups", &inhibit_behavior_flags },
@@ -90,7 +90,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(objectives_block, k_maximum_objectives_per_map)
+	V5_TAG_BLOCK(objectives_block, k_maximum_objectives_per_map)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "opposing objectives", &opposing_objective_block_block },
@@ -102,7 +102,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(task_direction_block_v2_struct)
+	V5_TAG_STRUCT(task_direction_block_v2_struct)
 	{
 		{ _field_block, "points", &task_direction_point_block_block },
 		{ _field_terminator }

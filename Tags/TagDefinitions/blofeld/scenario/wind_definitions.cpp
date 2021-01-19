@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(wind, WIND_TAG)
+	V5_TAG_GROUP(wind, WIND_TAG)
 	{
 		{ _field_explanation, "WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n" },
 		{ _field_struct, "direction", &wind_scalar_function_struct_struct_definition },
@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(wind_scalar_function_struct)
+	V5_TAG_STRUCT(wind_scalar_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },

@@ -4,18 +4,18 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(camera_shake, CAMERA_SHAKE_TAG, camera_shake_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(camera_shake, CAMERA_SHAKE_TAG, camera_shake_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(camera_shake_block, 1, camera_shake_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(camera_shake_block, 1, camera_shake_struct_definition_struct_definition );
 
-	TAG_BLOCK(global_camera_impulse_block, 1)
+	V5_TAG_BLOCK(global_camera_impulse_block, 1)
 	{
 		{ _field_custom },
 		{ _field_struct, "mapping", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_shake_struct_definition)
+	V5_TAG_STRUCT(camera_shake_struct_definition)
 	{
 		{ _field_explanation, "camera impulse", "" },
 		{ _field_struct, "camera impulse", &camera_impulse_struct_struct_definition },
@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_impulse_struct)
+	V5_TAG_STRUCT(camera_impulse_struct)
 	{
 		{ _field_real, "impulse duration:seconds" },
 		{ _field_custom },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_shake_struct)
+	V5_TAG_STRUCT(camera_shake_struct)
 	{
 		{ _field_real, "shake duration:seconds#the effect will last for this duration." },
 		{ _field_explanation, "procedural camera shake", "" },

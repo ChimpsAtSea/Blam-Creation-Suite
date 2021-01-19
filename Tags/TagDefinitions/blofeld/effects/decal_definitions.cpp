@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block );
 
-	TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
+	V5_TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
 	{
 		{ _field_string_id, "decal name^" },
 		{ _field_long_flags, "flags", &decal_flags },
@@ -42,9 +42,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
 
-	TAG_STRUCT(decal_system_struct_definition)
+	V5_TAG_STRUCT(decal_system_struct_definition)
 	{
 		{ _field_long_flags, "flags", &decal_system_flags },
 		{ _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(bitmap, BITMAP_TAG)
+	V5_TAG_GROUP(bitmap, BITMAP_TAG)
 	{
 		{ _field_custom, "show bitmap" },
 		{ _field_explanation, "IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n" },
@@ -41,25 +41,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+	V5_TAG_BLOCK(bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
 		{ _field_pageable, "texture resource", &bitmap_texture_interop_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(stitchable_bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+	V5_TAG_BLOCK(stitchable_bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
 		{ _field_pageable, "texture resource", &stitchable_bitmap_texture_interop_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(bitmap_texture_interleaved_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+	V5_TAG_BLOCK(bitmap_texture_interleaved_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
 		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(bitmap_texture_interop_resource_struct)
+	V5_TAG_STRUCT(bitmap_texture_interop_resource_struct)
 	{
 		{ _field_version_equal, _engine_type_haloreach },
 		{ _field_struct, "texture resource", &render_texture_interop_definition_struct_struct_definition },
@@ -70,13 +70,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(stitchable_bitmap_texture_interop_resource_struct)
+	V5_TAG_STRUCT(stitchable_bitmap_texture_interop_resource_struct)
 	{
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(bitmap_texture_interleaved_interop_resource_struct)
+	V5_TAG_STRUCT(bitmap_texture_interleaved_interop_resource_struct)
 	{
 		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct_struct_definition },
 		{ _field_terminator }

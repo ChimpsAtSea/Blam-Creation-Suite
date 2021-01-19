@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(flock, FLOCK_TAG, flock_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(flock, FLOCK_TAG, flock_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(flock_block, 1, flock_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(flock_block, 1, flock_struct_definition_struct_definition );
 
-	TAG_BLOCK(flock_palette_block, k_max_flock_instances_per_map)
+	V5_TAG_BLOCK(flock_palette_block, k_max_flock_instances_per_map)
 	{
 		{ _field_tag_reference, "reference^", &flock_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(flock_source_block, k_max_sources_per_flock)
+	V5_TAG_BLOCK(flock_source_block, k_max_sources_per_flock)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_flags, "source flags", &flock_source_flags },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(flock_destination_block, k_max_destinations_per_flock)
+	V5_TAG_BLOCK(flock_destination_block, k_max_destinations_per_flock)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_enum, "type^", &destination_type_enum },
@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(flock_instance_block, k_max_flock_instances_per_map)
+	V5_TAG_BLOCK(flock_instance_block, k_max_flock_instances_per_map)
 	{
 		{ _field_string_id, "flock name^" },
 		{ _field_short_block_index, "flock definition" },
@@ -64,7 +64,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(flock_struct_definition)
+	V5_TAG_STRUCT(flock_struct_definition)
 	{
 		{ _field_explanation, "Simple flocking", "" },
 		{ _field_real, "forward weight{forward scale}:[0..1]#weight given to boid\'s desire to fly straight ahead" },

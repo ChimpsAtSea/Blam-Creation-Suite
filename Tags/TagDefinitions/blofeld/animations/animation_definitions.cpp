@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(frame_event_list, FRAME_EVENT_LIST_TAG, frame_event_list_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(frame_event_list, FRAME_EVENT_LIST_TAG, frame_event_list_block_block );
 
-	TAG_GROUP(model_animation_graph, MODEL_ANIMATION_GRAPH_TAG)
+	V5_TAG_GROUP(model_animation_graph, MODEL_ANIMATION_GRAPH_TAG)
 	{
 		{ _field_struct, "definitions", &animation_graph_definitions_struct_struct_definition },
 		{ _field_struct, "content", &animation_graph_contents_struct_struct_definition },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_graph_sound_reference_block, k_max_sound_references_per_graph)
+	V5_TAG_BLOCK(animation_graph_sound_reference_block, k_max_sound_references_per_graph)
 	{
 		{ _field_tag_reference, "sound^", &global_sound_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
@@ -33,7 +33,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_graph_effect_reference_block, k_max_effect_references_per_graph)
+	V5_TAG_BLOCK(animation_graph_effect_reference_block, k_max_effect_references_per_graph)
 	{
 		{ _field_tag_reference, "effect^", &global_effect_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(import_frame_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(import_frame_event_block, k_max_frame_events)
 	{
 		{ _field_string_id, "event name*" },
 		{ _field_string_id, "animation name!*" },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sound_event_block_extended, k_max_frame_events)
+	V5_TAG_BLOCK(animation_sound_event_block_extended, k_max_frame_events)
 	{
 		{ _field_short_block_index, "frame event" },
 		{ _field_pad, "pad", 2 },
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_effects_event_block_extended, k_max_frame_events)
+	V5_TAG_BLOCK(animation_effects_event_block_extended, k_max_frame_events)
 	{
 		{ _field_short_block_index, "frame event" },
 		{ _field_pad, "pad", 2 },
@@ -82,7 +82,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_dialogue_event_block_extended, k_max_frame_events)
+	V5_TAG_BLOCK(animation_dialogue_event_block_extended, k_max_frame_events)
 	{
 		{ _field_short_block_index, "frame event" },
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_script_event_block_extended, k_max_frame_events)
+	V5_TAG_BLOCK(animation_script_event_block_extended, k_max_frame_events)
 	{
 		{ _field_short_block_index, "frame event" },
 		{ _field_short_integer, "frame offset#If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
@@ -99,7 +99,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(import_animation_event_block, 2*k_max_animations_per_graph)
+	V5_TAG_BLOCK(import_animation_event_block, 2*k_max_animations_per_graph)
 	{
 		{ _field_string_id, "animation name^*!" },
 		{ _field_long_integer, "animation frame count^*!" },
@@ -114,23 +114,23 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(frame_event_list_block, 1, frame_event_list_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(frame_event_list_block, 1, frame_event_list_struct_definition_struct_definition );
 
-	TAG_BLOCK(animation_usage_block, k_animation_node_usage_count)
+	V5_TAG_BLOCK(animation_usage_block, k_animation_node_usage_count)
 	{
 		{ _field_enum, "usage^", &animation_usage_enumeration },
 		{ _field_short_block_index, "node to use" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_node_mask_entry_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(animation_node_mask_entry_block, k_max_nodes_per_animation)
 	{
 		{ _field_short_block_index, "node^" },
 		{ _field_pad, "anbfp", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_node_mask_block, k_animation_maximum_node_mask_count)
+	V5_TAG_BLOCK(animation_node_mask_block, k_animation_maximum_node_mask_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "nodes", &animation_node_mask_entry_block_block },
@@ -138,21 +138,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_function_block, k_animation_maximum_function_count)
+	V5_TAG_BLOCK(animation_function_block, k_animation_maximum_function_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mode_or_stance_alias_block, k_animation_maximum_mode_or_stance_aliases)
+	V5_TAG_BLOCK(mode_or_stance_alias_block, k_animation_maximum_mode_or_stance_aliases)
 	{
 		{ _field_string_id, "mode or stance" },
 		{ _field_string_id, "alias" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_animation_variant_block, k_animation_maximum_model_variants)
+	V5_TAG_BLOCK(model_animation_variant_block, k_animation_maximum_model_variants)
 	{
 		{ _field_string_id, "variant name^" },
 		{ _field_long_flags, "variant flags", &model_animation_variant_flags },
@@ -160,7 +160,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_graph_node_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(animation_graph_node_block, k_max_nodes_per_animation)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_short_block_index, "next sibling node index*" },
@@ -178,14 +178,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_blend_screen_block, k_animation_maximum_blend_screens)
+	V5_TAG_BLOCK(animation_blend_screen_block, k_animation_maximum_blend_screens)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_struct, "aiming screen*", &animation_aiming_screen_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(foot_tracking_member_block, k_max_tracked_feet)
+	V5_TAG_BLOCK(foot_tracking_member_block, k_max_tracked_feet)
 	{
 		{ _field_custom },
 		{ _field_string_id, "foot marker name^" },
@@ -198,14 +198,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_frame_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(animation_frame_event_block, k_max_frame_events)
 	{
 		{ _field_enum, "type", &frame_event_type_new },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sound_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(animation_sound_event_block, k_max_frame_events)
 	{
 		{ _field_short_block_index, "sound" },
 		{ _field_short_integer, "frame" },
@@ -214,7 +214,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_effect_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(animation_effect_event_block, k_max_frame_events)
 	{
 		{ _field_short_block_index, "effect" },
 		{ _field_short_integer, "frame" },
@@ -225,14 +225,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_dialogue_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(animation_dialogue_event_block, k_max_frame_events)
 	{
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
 		{ _field_short_integer, "frame" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_script_event_block, k_max_frame_events)
+	V5_TAG_BLOCK(animation_script_event_block, k_max_frame_events)
 	{
 		{ _field_string_id, "script name" },
 		{ _field_short_integer, "frame" },
@@ -240,7 +240,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_space_node_data_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(object_space_node_data_block, k_max_nodes_per_animation)
 	{
 		{ _field_short_block_index, "node index{node_index}^" },
 		{ _field_word_flags, "flags*", &object_space_node_flags },
@@ -248,7 +248,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(foot_lock_cycle_block, k_max_cycles_per_tracked_foot)
+	V5_TAG_BLOCK(foot_lock_cycle_block, k_max_cycles_per_tracked_foot)
 	{
 		{ _field_short_integer, "start locking" },
 		{ _field_short_integer, "locked" },
@@ -258,7 +258,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(foot_tracking_block, k_max_tracked_feet)
+	V5_TAG_BLOCK(foot_tracking_block, k_max_tracked_feet)
 	{
 		{ _field_short_block_index, "foot" },
 		{ _field_pad, "f00t2", 2 },
@@ -266,31 +266,31 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(object_space_offset_node_block, k_max_object_space_offset_node_count)
+	V5_TAG_BLOCK(object_space_offset_node_block, k_max_object_space_offset_node_count)
 	{
 		{ _field_short_block_index, "object space offset node^" },
 		{ _field_pad, "wsonbp", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(fik_anchor_node_block, k_max_fik_anchor_node_count)
+	V5_TAG_BLOCK(fik_anchor_node_block, k_max_fik_anchor_node_count)
 	{
 		{ _field_short_block_index, "anchor node^" },
 		{ _field_pad, "dse", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(animation_ik_chain_events, k_animation_maximum_ik_chain_events, animation_ik_chain_events_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(animation_ik_chain_events, k_animation_maximum_ik_chain_events, animation_ik_chain_events_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(animation_ik_chain_proxies, k_animation_maximum_ik_chain_proxies, animation_ik_chain_proxies_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(animation_ik_chain_proxies, k_animation_maximum_ik_chain_proxies, animation_ik_chain_proxies_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(animation_facial_wrinkle_events, k_animation_maximum_facial_wrinkle_events, animation_facial_wrinkle_events_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(animation_facial_wrinkle_events, k_animation_maximum_facial_wrinkle_events, animation_facial_wrinkle_events_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(animation_extended_events, k_animation_maximum_extended_events, animation_extended_events_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(animation_extended_events, k_animation_maximum_extended_events, animation_extended_events_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(animation_object_functions, k_animation_maximum_object_functions, animation_object_functions_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(animation_object_functions, k_animation_maximum_object_functions, animation_object_functions_struct_struct_definition );
 
-	TAG_BLOCK(shared_model_animation_block, 1)
+	V5_TAG_BLOCK(shared_model_animation_block, 1)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_short_integer, "frame count*" },
@@ -358,7 +358,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_pool_block, k_max_animations_per_graph)
+	V5_TAG_BLOCK(animation_pool_block, k_max_animations_per_graph)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_custom },
@@ -382,7 +382,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(new_animation_blend_screen_block, k_animation_maximum_blend_screens)
+	V5_TAG_BLOCK(new_animation_blend_screen_block, k_animation_maximum_blend_screens)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_flags, "flags", &blend_screen_definition_flags },
@@ -404,7 +404,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(new_animation_function_overlay_block, k_animation_maximum_function_overlays)
+	V5_TAG_BLOCK(new_animation_function_overlay_block, k_animation_maximum_function_overlays)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_flags, "flags", &function_overlay_definition_flags },
@@ -419,7 +419,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(blend_screen_item_definition_block, k_animation_maximum_mixing_board_pose_overlays)
+	V5_TAG_BLOCK(blend_screen_item_definition_block, k_animation_maximum_mixing_board_pose_overlays)
 	{
 		{ _field_short_block_index, "blend screen^" },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
@@ -428,14 +428,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(function_overlay_item_definition_block, k_animation_maximum_function_overlays)
+	V5_TAG_BLOCK(function_overlay_item_definition_block, k_animation_maximum_function_overlays)
 	{
 		{ _field_short_block_index, "function overlay^" },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(overlay_group_definition_block, k_animation_maximum_overlay_groups)
+	V5_TAG_BLOCK(overlay_group_definition_block, k_animation_maximum_overlay_groups)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "blend screens{blend screen}|CCBBAA", &blend_screen_item_definition_block_block },
@@ -443,7 +443,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_gait_block, k_animation_maximum_gaits)
+	V5_TAG_BLOCK(animation_gait_block, k_animation_maximum_gaits)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "slow gait name" },
@@ -454,21 +454,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_gait_item_block, k_animation_maximum_gaits)
+	V5_TAG_BLOCK(animation_gait_item_block, k_animation_maximum_gaits)
 	{
 		{ _field_short_block_index, "animation gait^" },
 		{ _field_pad, "agibfap", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_gait_group_block, k_animation_maximum_gait_groups)
+	V5_TAG_BLOCK(animation_gait_group_block, k_animation_maximum_gait_groups)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "animation gaits", &animation_gait_item_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ik_block, k_max_ik_points)
+	V5_TAG_BLOCK(animation_ik_block, k_max_ik_points)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "source marker#the marker name on this object where the point of attachment is" },
@@ -478,21 +478,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ik_set_item, k_max_ik_points_per_set)
+	V5_TAG_BLOCK(animation_ik_set_item, k_max_ik_points_per_set)
 	{
 		{ _field_short_block_index, "ik point^" },
 		{ _field_word_flags, "flags", &animation_ik_set_item_flags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ik_set, k_max_ik_sets)
+	V5_TAG_BLOCK(animation_ik_set, k_max_ik_sets)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "ik points|CCBBAA", &animation_ik_set_item_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ik_chain_block, k_animation_maximum_ik_chains)
+	V5_TAG_BLOCK(animation_ik_chain_block, k_animation_maximum_ik_chains)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_enum, "type", &animation_ik_chain_type_enumeration },
@@ -504,14 +504,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(PCAGroupSettingsBlock, k_max_animations_per_graph)
+	V5_TAG_BLOCK(PCAGroupSettingsBlock, k_max_animations_per_graph)
 	{
 		{ _field_string_id, "Group Name^" },
 		{ _field_long_integer, "Desired Mesh Count" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_entry_block, k_max_animations_per_block)
+	V5_TAG_BLOCK(animation_entry_block, k_max_animations_per_block)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
@@ -520,26 +520,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_region_block, k_total_damage_regions)
+	V5_TAG_BLOCK(damage_region_block, k_total_damage_regions)
 	{
 		{ _field_struct, "animation*", &animation_index_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_direction_block, k_total_damage_directions)
+	V5_TAG_BLOCK(damage_direction_block, k_total_damage_directions)
 	{
 		{ _field_block, "regions*|AABBCC", &damage_region_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(damage_animation_block, k_max_death_and_damage_actions)
+	V5_TAG_BLOCK(damage_animation_block, k_max_death_and_damage_actions)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_block, "directions*|AABBCC", &damage_direction_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_transition_destination_block, k_max_transition_animations)
+	V5_TAG_BLOCK(animation_transition_destination_block, k_max_transition_animations)
 	{
 		{ _field_string_id, "mode name#name of the mode this transition ends in" },
 		{ _field_string_id, "state name#name of the state this transition ends in" },
@@ -547,20 +547,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_transition_source_block, k_max_animations_per_block)
+	V5_TAG_BLOCK(animation_transition_source_block, k_max_animations_per_block)
 	{
 		{ _field_string_id, "state name^#name of the state this transition starts in" },
 		{ _field_block, "destinations", &animation_transition_destination_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_velocity_boundaries_block, 1)
+	V5_TAG_BLOCK(animation_velocity_boundaries_block, 1)
 	{
 		{ _field_array, "velocity boundary entries!", &animation_velocity_boundaries_array },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_set_block, k_max_animation_sets)
+	V5_TAG_BLOCK(animation_set_block, k_max_animation_sets)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
@@ -575,7 +575,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_type_block, k_max_weapon_types)
+	V5_TAG_BLOCK(weapon_type_block, k_max_weapon_types)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
@@ -584,7 +584,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ik_block_v1, k_max_ik_points)
+	V5_TAG_BLOCK(animation_ik_block_v1, k_max_ik_points)
 	{
 		{ _field_custom },
 		{ _field_string_id, "marker#the marker name on the object being attached" },
@@ -593,7 +593,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ranged_animation_entry_block, k_max_animations_per_block)
+	V5_TAG_BLOCK(ranged_animation_entry_block, k_max_animations_per_block)
 	{
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
 		{ _field_short_block_index, "ik set" },
@@ -603,13 +603,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangulation_point_block, k_max_triangulation_tag_points)
+	V5_TAG_BLOCK(triangulation_point_block, k_max_triangulation_tag_points)
 	{
 		{ _field_real_vector_2d, "point" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangulation_triangle_block, k_max_triangulation_tag_triangles)
+	V5_TAG_BLOCK(triangulation_triangle_block, k_max_triangulation_tag_triangles)
 	{
 		{ _field_byte_integer, "vertex1" },
 		{ _field_byte_integer, "vertex2" },
@@ -621,14 +621,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangulation_entry_block, 1)
+	V5_TAG_BLOCK(triangulation_entry_block, 1)
 	{
 		{ _field_block, "points", &triangulation_point_block_block },
 		{ _field_block, "triangles", &triangulation_triangle_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_ranged_action_block, k_max_ranged_actions)
+	V5_TAG_BLOCK(animation_ranged_action_block, k_max_ranged_actions)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_block, "animations", &ranged_animation_entry_block_block },
@@ -640,7 +640,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sync_action_same_type_participant, k_max_sync_action_participants)
+	V5_TAG_BLOCK(animation_sync_action_same_type_participant, k_max_sync_action_participants)
 	{
 		{ _field_long_flags, "flags", &animation_sync_action_flags_definition },
 		{ _field_struct, "animation", &animation_index_struct_struct_definition },
@@ -655,14 +655,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sync_action_other_type_participant, k_max_sync_action_participants)
+	V5_TAG_BLOCK(animation_sync_action_other_type_participant, k_max_sync_action_participants)
 	{
 		{ _field_long_flags, "flags", &animation_sync_action_other_type_flags_definition },
 		{ _field_tag_reference, "object type", &animation_sync_action_other_type_participant_object_type_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sync_action_block, k_max_sync_actions)
+	V5_TAG_BLOCK(animation_sync_action_block, k_max_sync_actions)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "same type participants", &animation_sync_action_same_type_participant_block },
@@ -670,14 +670,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_sync_action_group_block, k_max_sync_action_groups)
+	V5_TAG_BLOCK(animation_sync_action_group_block, k_max_sync_action_groups)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "sync actions", &animation_sync_action_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_class_block, k_max_weapon_classes)
+	V5_TAG_BLOCK(weapon_class_block, k_max_weapon_classes)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
@@ -689,14 +689,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(foot_tracking_defaults, k_max_tracked_feet)
+	V5_TAG_BLOCK(foot_tracking_defaults, k_max_tracked_feet)
 	{
 		{ _field_short_block_index, "foot" },
 		{ _field_enum, "default state", &foot_tracking_default_values },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_mode_block, k_max_modes_per_graph)
+	V5_TAG_BLOCK(animation_mode_block, k_max_modes_per_graph)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
@@ -708,7 +708,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vehicle_suspension_block, k_max_vehicle_suspensions)
+	V5_TAG_BLOCK(vehicle_suspension_block, k_max_vehicle_suspensions)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_struct, "animation*", &animation_index_struct_struct_definition },
@@ -728,7 +728,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(function_overlay_animation_block, k_max_function_overlays_per_graph)
+	V5_TAG_BLOCK(function_overlay_animation_block, k_max_function_overlays_per_graph)
 	{
 		{ _field_string_id, "label^" },
 		{ _field_struct, "animation*", &animation_index_struct_struct_definition },
@@ -739,19 +739,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(inherited_animation_node_map_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(inherited_animation_node_map_block, k_max_nodes_per_animation)
 	{
 		{ _field_short_integer, "local node" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(inherited_animation_node_map_flag_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(inherited_animation_node_map_flag_block, k_max_nodes_per_animation)
 	{
 		{ _field_long_integer, "local node flags" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(inherited_animation_block, k_max_animation_inheritence_levels)
+	V5_TAG_BLOCK(inherited_animation_block, k_max_animation_inheritence_levels)
 	{
 		{ _field_tag_reference, "inherited graph*", &model_animation_graph_reference },
 		{ _field_block, "node map*", &inherited_animation_node_map_block_block },
@@ -764,14 +764,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_class_lookup_block, k_max_weapon_types)
+	V5_TAG_BLOCK(weapon_class_lookup_block, k_max_weapon_types)
 	{
 		{ _field_string_id, "weapon name^" },
 		{ _field_string_id, "weapon class" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(additional_node_data_block, k_max_nodes_per_animation)
+	V5_TAG_BLOCK(additional_node_data_block, k_max_nodes_per_animation)
 	{
 		{ _field_string_id, "node name^" },
 		{ _field_real_quaternion, "default rotation*" },
@@ -782,14 +782,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_animation_tag_resource_group, k_max_animations_per_graph*3)
+	V5_TAG_BLOCK(model_animation_tag_resource_group, k_max_animations_per_graph*3)
 	{
 		{ _field_long_integer, "reference_count*" }, 
 		{ _field_pageable, "tag_resource", &model_animation_tag_resource_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(shared_static_data_codec_rotation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+	V5_TAG_BLOCK(shared_static_data_codec_rotation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
 	{
 		{ _field_short_integer, "i" },
 		{ _field_short_integer, "j" },
@@ -798,7 +798,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(shared_static_data_codec_translation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+	V5_TAG_BLOCK(shared_static_data_codec_translation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
 	{
 		{ _field_real, "x" },
 		{ _field_real, "y" },
@@ -806,13 +806,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(shared_static_data_codec_scale_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+	V5_TAG_BLOCK(shared_static_data_codec_scale_block, k_max_animations_per_graph * k_max_nodes_per_animation)
 	{
 		{ _field_real, "scale" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_animation_tag_resource_member, k_max_animations_per_graph)
+	V5_TAG_BLOCK(model_animation_tag_resource_member, k_max_animations_per_graph)
 	{
 		{ _field_long_integer, "animation_index" },
 		{ _field_dword_integer, "animation_checksum" },
@@ -836,7 +836,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(frame_event_list_struct_definition)
+	V5_TAG_STRUCT(frame_event_list_struct_definition)
 	{
 		{ _field_explanation, "IMPORTANT TAG NOTES", "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n" },
 		{ _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block_block },
@@ -845,7 +845,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_graph_definitions_struct)
+	V5_TAG_STRUCT(animation_graph_definitions_struct)
 	{
 		{ _field_explanation, "GRAPH DATA", "" },
 		{ _field_tag_reference, "parent animation graph", &model_animation_graph_reference },
@@ -890,7 +890,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_aiming_screen_struct)
+	V5_TAG_STRUCT(animation_aiming_screen_struct)
 	{
 		{ _field_angle, "right yaw per frame" },
 		{ _field_angle, "left yaw per frame" },
@@ -903,7 +903,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(shared_animation_reference_block)
+	V5_TAG_STRUCT(shared_animation_reference_block)
 	{
 		{ _field_tag_reference, "graph reference!", &model_animation_graph_reference },
 		{ _field_short_block_index, "shared animation index!" },
@@ -911,7 +911,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(quantized_orientation_struct)
+	V5_TAG_STRUCT(quantized_orientation_struct)
 	{
 		{ _field_short_integer, "rotation x*" },
 		{ _field_short_integer, "rotation y*" },
@@ -922,7 +922,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_ik_chain_events_struct)
+	V5_TAG_STRUCT(animation_ik_chain_events_struct)
 	{
 		{ _field_explanation, "REFERENCE IK CHAIN INFO", "" },
 		{ _field_string_id, "chain name" },
@@ -943,7 +943,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_ik_chain_proxies_struct)
+	V5_TAG_STRUCT(animation_ik_chain_proxies_struct)
 	{
 		{ _field_long_integer, "id" },
 		{ _field_custom },
@@ -953,7 +953,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_facial_wrinkle_events_struct)
+	V5_TAG_STRUCT(animation_facial_wrinkle_events_struct)
 	{
 		{ _field_explanation, "REFERENCE FACIAL WRINKLE EVENT INFO", "" },
 		{ _field_string_id, "wrinkle name" },
@@ -969,7 +969,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_extended_events_struct)
+	V5_TAG_STRUCT(animation_extended_events_struct)
 	{
 		{ _field_explanation, "IMPORTED EXTENDED DATA EVENT INFO", "" },
 		{ _field_string_id, "name" },
@@ -981,7 +981,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_object_functions_struct)
+	V5_TAG_STRUCT(animation_object_functions_struct)
 	{
 		{ _field_string_id, "real_name!*" },
 		{ _field_long_enum, "name", &animation_object_function_name },
@@ -991,14 +991,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_index_struct)
+	V5_TAG_STRUCT(animation_index_struct)
 	{
 		{ _field_short_integer, "graph index!" },
 		{ _field_short_block_index, "animation" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(PCAAnimationDataStruct)
+	V5_TAG_STRUCT(PCAAnimationDataStruct)
 	{
 		{ _field_explanation, "Group Settings", "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field" },
 		{ _field_block, "PCA Groups", &PCAGroupSettingsBlock_block },
@@ -1009,7 +1009,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_graph_contents_struct)
+	V5_TAG_STRUCT(animation_graph_contents_struct)
 	{
 		{ _field_explanation, "MODE-n-STATE GRAPH", "" },
 		{ _field_short_block_index, "default gait group|CCAABB" },
@@ -1021,7 +1021,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(model_animation_runtime_data_struct)
+	V5_TAG_STRUCT(model_animation_runtime_data_struct)
 	{
 		{ _field_explanation, "RUN-TIME DATA", "" },
 		{ _field_block, "inheritence list*|BBAAAA", &inherited_animation_block_block },
@@ -1033,14 +1033,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_codec_data_struct)
+	V5_TAG_STRUCT(animation_codec_data_struct)
 	{
 		{ _field_explanation, "CODEC-SPECIFIC DATA", "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit." },
 		{ _field_struct, "shared_static_codec*!", &shared_static_data_codec_graph_data_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(shared_static_data_codec_graph_data_struct)
+	V5_TAG_STRUCT(shared_static_data_codec_graph_data_struct)
 	{
 		{ _field_explanation, "Shared Static Codec", "" },
 		{ _field_block, "rotations*!", &shared_static_data_codec_rotation_block_block },
@@ -1049,13 +1049,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(model_animation_tag_resource_struct)
+	V5_TAG_STRUCT(model_animation_tag_resource_struct)
 	{
 		{ _field_block, "group_members", &model_animation_tag_resource_member_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(packed_data_sizes_struct)
+	V5_TAG_STRUCT(packed_data_sizes_struct)
 	{
 		{ _field_long_integer, "static_node_flags!" },
 		{ _field_long_integer, "animated_node_flags!" },

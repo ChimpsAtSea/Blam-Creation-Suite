@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	TAG_BLOCK(sky_atm_parameters_atmosphere_properties, 65536)
+	V5_TAG_BLOCK(sky_atm_parameters_atmosphere_properties, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "Flags", &atmosphere_flags },
@@ -36,14 +36,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sky_atm_parameters_underwater_properties, 65536)
+	V5_TAG_BLOCK(sky_atm_parameters_underwater_properties, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(sky_atm_parameters, SKY_ATM_PARAMETERS_TAG)
+	V5_TAG_GROUP(sky_atm_parameters, SKY_ATM_PARAMETERS_TAG)
 	{
 		{ _field_tag_reference, "fog bitmap", &global_bitmap_reference },
 		{ _field_real, "unknown" },
@@ -60,16 +60,16 @@ namespace blofeld
 	};
 
 
-	TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block_block );
 
-	TAG_BLOCK(soloFogFunctionBlock, 1)
+	V5_TAG_BLOCK(soloFogFunctionBlock, 1)
 	{
 		{ _field_custom },
 		{ _field_struct, "mapping", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(atmosphere_definition_block, k_max_atmosphere_settings)
+	V5_TAG_BLOCK(atmosphere_definition_block, k_max_atmosphere_settings)
 	{
 		{ _field_word_flags, "Flags", &atmosphere_flags },
 		{ _field_byte_integer, "Version!" },
@@ -122,7 +122,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(solo_fog_parameters_struct_definition)
+	V5_TAG_STRUCT(solo_fog_parameters_struct_definition)
 	{
 		{ _field_real, "base height:world units" },
 		{ _field_real, "fog height:world units" },
@@ -137,7 +137,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(fog_light_struct_definition)
+	V5_TAG_STRUCT(fog_light_struct_definition)
 	{
 		{ _field_real, "pitch angle [-90 to 90]:degree" },
 		{ _field_real, "yaw angle [0 to 360]:degree" },
@@ -150,14 +150,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(VolumeFogParametersDefinition)
+	V5_TAG_STRUCT(VolumeFogParametersDefinition)
 	{
 		{ _field_real_rgb_color, "volume fog color" },
 		{ _field_real, "volume fog color intensity" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(LightShaftParametersDefinition)
+	V5_TAG_STRUCT(LightShaftParametersDefinition)
 	{
 		{ _field_real_rgb_color, "light shaft tint color" },
 		{ _field_real, "light shaft intensity" },

@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(curve_scalar, CURVE_SCALAR_TAG, curve_scalar_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(curve_scalar, CURVE_SCALAR_TAG, curve_scalar_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(curve_scalar_block, 1, curve_scalar_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(curve_scalar_block, 1, curve_scalar_struct_definition_struct_definition );
 
-	TAG_STRUCT(mapping_function)
+	V5_TAG_STRUCT(mapping_function)
 	{
 		{ _field_custom },
 		{ _field_data, "data" },
@@ -16,14 +16,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scalar_function_named_struct_default_one)
+	V5_TAG_STRUCT(scalar_function_named_struct_default_one)
 	{
 		{ _field_custom },
 		{ _field_struct, "function", &mapping_function_default_one_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(mapping_function_default_one)
+	V5_TAG_STRUCT(mapping_function_default_one)
 	{
 		{ _field_custom },
 		{ _field_data, "data" },
@@ -31,20 +31,20 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scalar_function_named_struct)
+	V5_TAG_STRUCT(scalar_function_named_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "function", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(curve_scalar_struct_definition)
+	V5_TAG_STRUCT(curve_scalar_struct_definition)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(color_function_named_struct)
+	V5_TAG_STRUCT(color_function_named_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "function", &mapping_function_struct_definition },

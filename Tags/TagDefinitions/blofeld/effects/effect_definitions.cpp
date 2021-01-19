@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(effect, EFFECT_TAG)
+	V5_TAG_GROUP(effect, EFFECT_TAG)
 	{
 		{ _field_long_flags, "flags", &effect_flags },
 		{ _field_dword_integer, "fixed random seed#If this is non-zero, the effect will usually be exactly repeatable" },
@@ -42,7 +42,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_locations_block, k_maximum_effect_locations_count)
+	V5_TAG_BLOCK(effect_locations_block, k_maximum_effect_locations_count)
 	{
 		{ _field_explanation, "MARKER NAMES", "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n" },
 		{ _field_custom },
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_part_block, k_maximum_effect_parts_per_event_count)
+	V5_TAG_BLOCK(effect_part_block, k_maximum_effect_parts_per_event_count)
 	{
 		{ _field_enum, "create in", &effect_environments },
 		{ _field_enum, "violence mode", &effect_dispositions },
@@ -86,7 +86,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_accelerations_block, k_maximum_effect_accelerations_per_event_count)
+	V5_TAG_BLOCK(effect_accelerations_block, k_maximum_effect_accelerations_per_event_count)
 	{
 		{ _field_enum, "create in", &effect_environments },
 		{ _field_enum, "violence mode", &effect_dispositions },
@@ -98,7 +98,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_event_block, k_maximum_effect_events_count)
+	V5_TAG_BLOCK(effect_event_block, k_maximum_effect_events_count)
 	{
 		{ _field_string_id, "event name^" },
 		{ _field_word_flags, "flags", &event_flags },
@@ -120,7 +120,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_looping_sound_block, k_maximum_effect_looping_sounds_count)
+	V5_TAG_BLOCK(effect_looping_sound_block, k_maximum_effect_looping_sounds_count)
 	{
 		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
 		{ _field_short_block_index, "location" },
@@ -128,7 +128,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(effect_conical_distribution_block, 1)
+	V5_TAG_BLOCK(effect_conical_distribution_block, 1)
 	{
 		{ _field_explanation, "conical_projection: AKA shotgun", "projectile_count = yaw_count*pitch_count" },
 		{ _field_short_integer, "yaw count" },

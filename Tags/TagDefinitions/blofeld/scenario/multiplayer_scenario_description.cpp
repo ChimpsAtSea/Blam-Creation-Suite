@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG, multiplayer_scenario_description_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG, multiplayer_scenario_description_block_block );
 
-	TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
+	V5_TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 	{
 		{ _field_explanation, "net map info", "these provide the info required by the UI to load a net map" },
 		{ _field_tag_reference, "descriptive bitmap", &global_bitmap_reference },
@@ -16,9 +16,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(multiplayer_scenario_description_block, 1, multiplayer_scenario_description_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(multiplayer_scenario_description_block, 1, multiplayer_scenario_description_struct_definition_struct_definition );
 
-	TAG_STRUCT(multiplayer_scenario_description_struct_definition)
+	V5_TAG_STRUCT(multiplayer_scenario_description_struct_definition)
 	{
 		{ _field_block, "multiplayer scenarios", &scenario_description_block_block },
 		{ _field_terminator }

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(dialogue, DIALOGUE_TAG)
+	V5_TAG_GROUP(dialogue, DIALOGUE_TAG)
 	{
 		{ _field_tag_reference, "global dialogue info", &global_dialogue_reference },
 		{ _field_long_flags, "flags", &dialogue_flags },
@@ -13,7 +13,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vocalization_stimuli_block_definition, 6)
+	V5_TAG_BLOCK(vocalization_stimuli_block_definition, 6)
 	{
 		{ _field_word_flags, "flags", &vocalization_stimulus_flags },
 		{ _field_pad, "AN", 2 },
@@ -22,7 +22,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_references_block, 500)
+	V5_TAG_BLOCK(sound_references_block, 500)
 	{
 		{ _field_string_id, "vocalization^" },
 		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block },

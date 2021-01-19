@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(controller_mapping, CONTROLLER_MAPPING_TAG, controller_mapping_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(controller_mapping, CONTROLLER_MAPPING_TAG, controller_mapping_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(controller_mapping_block, 1, controller_mapping_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(controller_mapping_block, 1, controller_mapping_struct_definition_struct_definition );
 
-	TAG_STRUCT(controller_mapping_struct_definition)
+	V5_TAG_STRUCT(controller_mapping_struct_definition)
 	{
 		{ _field_long_integer, "auto zoom out ticks#set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },
 		{ _field_explanation, "Start/Back", "Start and Back buttons are not remappable and do not appear in this list." },

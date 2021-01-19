@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG, challenge_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG, challenge_globals_definition_block_block );
 
-	TAG_BLOCK(challenge_block, k_maximum_challenges_per_category)
+	V5_TAG_BLOCK(challenge_block, k_maximum_challenges_per_category)
 	{
 		{ _field_string_id, "challenge_name^" },
 		{ _field_string_id, "display_string#in the UI, name and description" },
@@ -42,7 +42,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(challenge_category_block, k_roomEnoughToConvertAllExistingCategories)
+	V5_TAG_BLOCK(challenge_category_block, k_roomEnoughToConvertAllExistingCategories)
 	{
 		{ _field_string_id, "category_name^" },
 		{ _field_char_enum, "challenge category^", &challenge_category_enum_definition },
@@ -51,9 +51,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(challenge_globals_definition_block, 1, challenge_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(challenge_globals_definition_block, 1, challenge_globals_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(challenge_globals_definition_struct_definition)
+	V5_TAG_STRUCT(challenge_globals_definition_struct_definition)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalChallengeAggregatorList>::s_defaultDefinition },

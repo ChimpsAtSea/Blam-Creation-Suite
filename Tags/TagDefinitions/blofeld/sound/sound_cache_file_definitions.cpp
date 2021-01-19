@@ -4,13 +4,13 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cache_file_sound, CACHE_FILE_SOUND_TAG, cache_file_sound_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cache_file_sound, CACHE_FILE_SOUND_TAG, cache_file_sound_block_block );
 
-	TAG_GROUP_FROM_BLOCK(sound_cache_file_gestalt, SOUND_CACHE_FILE_GESTALT_TAG, sound_cache_file_gestalt_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(sound_cache_file_gestalt, SOUND_CACHE_FILE_GESTALT_TAG, sound_cache_file_gestalt_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_sound_block, 1, cache_file_sound_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_sound_block, 1, cache_file_sound_struct_definition_struct_definition );
 
-	TAG_BLOCK(sound_gestalt_codec_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_codec_block, SHORT_MAX)
 	{
 		{ _field_char_enum, "sample rate*", &sound_sample_rate_enum },
 		{ _field_char_enum, "encoding*", &sound_encoding_enum },
@@ -18,25 +18,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_playback_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_playback_block, SHORT_MAX)
 	{
 		{ _field_struct, "playback!", &sound_playback_parameters_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_scale_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_scale_block, SHORT_MAX)
 	{
 		{ _field_struct, "scale!", &sound_scale_modifiers_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_import_names_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_import_names_block, SHORT_MAX)
 	{
 		{ _field_string_id, "import name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_pitch_range_parameters_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_pitch_range_parameters_block, SHORT_MAX)
 	{
 		{ _field_short_integer, "natural pitch:cents" },
 		{ _field_short_integer, "PAD" },
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_pitch_ranges_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_pitch_ranges_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "name^" },
 		{ _field_short_block_index, "parameters" },
@@ -56,7 +56,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_permutations_block, k_maximum_sound_cache_file_gestalt_permutations)
+	V5_TAG_BLOCK(sound_gestalt_permutations_block, k_maximum_sound_cache_file_gestalt_permutations)
 	{
 		{ _field_short_block_index, "name^" },
 		{ _field_short_integer, "encoded skip fraction" },
@@ -75,7 +75,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_permutation_languages_block, k_maximum_sound_cache_file_gestalt_permutation_languages)
+	V5_TAG_BLOCK(sound_gestalt_permutation_languages_block, k_maximum_sound_cache_file_gestalt_permutation_languages)
 	{
 		{ _field_long_integer, "permutation index" },
 		{ _field_long_integer, "english uncompressed sample count" },
@@ -135,39 +135,39 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_custom_playback_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_custom_playback_block, SHORT_MAX)
 	{
 		{ _field_struct, "playback definition", &platform_sound_playback_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_runtime_permutation_bit_vector_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_runtime_permutation_bit_vector_block, SHORT_MAX)
 	{
 		{ _field_char_integer, "runtime permutation bit vector~!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_promotions_block, 127 + 1)
+	V5_TAG_BLOCK(sound_gestalt_promotions_block, 127 + 1)
 	{
 		{ _field_struct, "runtime promotion storage~!", &sound_promotion_parameters_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_facial_animation_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_facial_animation_block, SHORT_MAX)
 	{
 		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(sound_gestalt_layer_markers_block, SHORT_MAX)
+	V5_TAG_BLOCK(sound_gestalt_layer_markers_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "sample offset" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(sound_cache_file_gestalt_block, 1, sound_cache_file_gestalt_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(sound_cache_file_gestalt_block, 1, sound_cache_file_gestalt_struct_definition_struct_definition );
 
-	TAG_STRUCT(cache_file_sound_struct_definition)
+	V5_TAG_STRUCT(cache_file_sound_struct_definition)
 	{
 		{ _field_word_flags, "flags", &sound_definition_flags },
 		{ _field_char_enum, "sound class*", &sound_class_enum },
@@ -188,7 +188,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
+	V5_TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "unknown" },

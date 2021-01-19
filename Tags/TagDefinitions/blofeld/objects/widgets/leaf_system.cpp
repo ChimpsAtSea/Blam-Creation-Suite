@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(leaf_system, LEAF_SYSTEM_TAG, leaf_system_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(leaf_system, LEAF_SYSTEM_TAG, leaf_system_block_block );
 
-	TAG_BLOCK(leaf_type_block, k_maximum_leaf_type_definitions)
+	V5_TAG_BLOCK(leaf_type_block, k_maximum_leaf_type_definitions)
 	{
 		{ _field_short_integer, "bitmap sprite index#assumes sequence 0. if no sprites uses full bitmap" },
 		{ _field_pad, "UNAX", 2 },
@@ -25,9 +25,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(leaf_system_block, 1, leaf_system_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(leaf_system_block, 1, leaf_system_struct_definition_struct_definition );
 
-	TAG_STRUCT(leaf_system_struct_definition)
+	V5_TAG_STRUCT(leaf_system_struct_definition)
 	{
 		{ _field_long_flags, "flags!", &leaf_flags },
 		{ _field_string_id, "marker attach name" },

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(camera_fx_settings, CAMERA_FX_SETTINGS_TAG)
+	V5_TAG_GROUP(camera_fx_settings, CAMERA_FX_SETTINGS_TAG)
 	{
 		{ _field_custom },
 		{ _field_struct, "exposure", &camera_fx_exposure_struct_struct_definition },
@@ -34,7 +34,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_exposure_struct)
+	V5_TAG_STRUCT(camera_fx_exposure_struct)
 	{
 		{ _field_custom },
 		{ _field_explanation, "EXPOSURE", "Controls the brightness of the scene, like exposure time on your camera.\nThe actual exposure always blends towards the target exposure.\nWith auto-exposure on, the target exposure is calculated relative to the brightness of what is on screen.\n" },
@@ -53,7 +53,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_exposure_sensitivity_struct)
+	V5_TAG_STRUCT(camera_fx_exposure_sensitivity_struct)
 	{
 		{ _field_explanation, "AUTO EXPOSURE SENSITIVITY", "How sensitive auto exposure is to small bright patches on the screen (like the sun)" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_highlight_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_highlight_struct)
 	{
 		{ _field_explanation, "HIGHLIGHT BLOOM", "These parameters control bloom off the highlights (really bright stuff)" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -73,7 +73,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_inherent_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_inherent_struct)
 	{
 		{ _field_explanation, "INHERENT BLOOM", "These parameters control bloom off everything (bright and dark)" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -84,7 +84,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_self_illum_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_self_illum_struct)
 	{
 		{ _field_explanation, "SELF-ILLUM BLOOM", "These parameters control off of self-illum pixels" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -95,7 +95,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_intensity_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_intensity_struct)
 	{
 		{ _field_explanation, "BLOOM INTENSITY", "These parameters control how bright the bloom is, relative to the underlying scene" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -106,7 +106,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_large_color_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_large_color_struct)
 	{
 		{ _field_explanation, "BLOOM LARGE COLOR", "These parameters control the color of the large bloom" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_medium_color_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_medium_color_struct)
 	{
 		{ _field_explanation, "BLOOM MEDIUM COLOR", "These parameters control the color of the medium bloom" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -124,7 +124,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bloom_small_color_struct)
+	V5_TAG_STRUCT(camera_fx_bloom_small_color_struct)
 	{
 		{ _field_explanation, "BLOOM SMALL COLOR", "These parameters control the color of the small bloom" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -133,7 +133,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bling_intensity_struct)
+	V5_TAG_STRUCT(camera_fx_bling_intensity_struct)
 	{
 		{ _field_word_flags, "flags!", &camera_fx_parameter_flags_no_auto_adjust },
 		{ _field_pad, "QREWRER", 2 },
@@ -143,7 +143,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bling_size_struct)
+	V5_TAG_STRUCT(camera_fx_bling_size_struct)
 	{
 		{ _field_word_flags, "flags!", &camera_fx_parameter_flags_no_auto_adjust },
 		{ _field_pad, "LSDFPO", 2 },
@@ -153,7 +153,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bling_angle_struct)
+	V5_TAG_STRUCT(camera_fx_bling_angle_struct)
 	{
 		{ _field_word_flags, "flags!", &camera_fx_parameter_flags_no_auto_adjust },
 		{ _field_pad, "ILJS", 2 },
@@ -163,14 +163,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_bling_count_struct)
+	V5_TAG_STRUCT(camera_fx_bling_count_struct)
 	{
 		{ _field_word_flags, "flags!", &camera_fx_parameter_flags_bling_spikes },
 		{ _field_short_integer, "bling spikes!" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_self_illum_preferred_struct)
+	V5_TAG_STRUCT(camera_fx_self_illum_preferred_struct)
 	{
 		{ _field_explanation, "SELF ILLUM EXPOSURE", "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -181,7 +181,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_self_illum_scale_struct)
+	V5_TAG_STRUCT(camera_fx_self_illum_scale_struct)
 	{
 		{ _field_explanation, "SELF ILLUM CHANGE", "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -192,7 +192,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_color_grading_struct)
+	V5_TAG_STRUCT(camera_fx_color_grading_struct)
 	{
 		{ _field_explanation, "Color Grading", "set the color grading texture" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -201,7 +201,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(camera_fx_filmic_tone_curve_struct)
+	V5_TAG_STRUCT(camera_fx_filmic_tone_curve_struct)
 	{
 		{ _field_explanation, "Filmic Tone Curve", "set the values for the filmic tone curve" },
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_enabled },

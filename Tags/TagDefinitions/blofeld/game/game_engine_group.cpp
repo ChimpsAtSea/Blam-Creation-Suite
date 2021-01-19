@@ -4,17 +4,17 @@
 namespace blofeld
 {
 
-	TAG_GROUP(GameEngineFirefightVariantTag, GAMEENGINEFIREFIGHTVARIANTTAG_TAG)
+	V5_TAG_GROUP(GameEngineFirefightVariantTag, GAMEENGINEFIREFIGHTVARIANTTAG_TAG)
 	{
 		{ _field_struct, "variant", &gameEngineFirefightVariantDefinition_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(game_engine_globals, GAME_ENGINE_GLOBALS_TAG, game_engine_globals_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_engine_globals, GAME_ENGINE_GLOBALS_TAG, game_engine_globals_block_block );
 
-	TAG_GROUP_FROM_BLOCK(game_engine_settings_definition, GAME_ENGINE_SETTINGS_DEFINITION_TAG, game_engine_settings_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(game_engine_settings_definition, GAME_ENGINE_SETTINGS_DEFINITION_TAG, game_engine_settings_definition_block_block );
 
-	TAG_BLOCK(game_engine_miscellaneous_options_block, 1)
+	V5_TAG_BLOCK(game_engine_miscellaneous_options_block, 1)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_byte_flags, "flags", &game_engine_miscellaneous_options_flags },
@@ -38,7 +38,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_prototype_options_block, 1)
+	V5_TAG_BLOCK(game_engine_prototype_options_block, 1)
 	{
 		{ _field_char_integer, "prototype mode" },
 		{ _field_char_integer, "promethean energy kill percent" },
@@ -49,7 +49,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_respawn_options_block, 1)
+	V5_TAG_BLOCK(game_engine_respawn_options_block, 1)
 	{
 		{ _field_word_flags, "flags", &game_engine_respawn_options_flags },
 		{ _field_char_integer, "lives per round" },
@@ -73,13 +73,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_social_options_block, 1)
+	V5_TAG_BLOCK(game_engine_social_options_block, 1)
 	{
 		{ _field_long_flags, "flags", &game_engine_social_options_flags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_map_override_options_block, 1)
+	V5_TAG_BLOCK(game_engine_map_override_options_block, 1)
 	{
 		{ _field_string_id, "player traits name" },
 		{ _field_string_id, "weapon set name" },
@@ -128,7 +128,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_team_options_block, 1)
+	V5_TAG_BLOCK(game_engine_team_options_block, 1)
 	{
 		{ _field_char_enum, "model override type", &game_engine_team_options_model_override_type },
 		{ _field_char_enum, "designator switch type", &game_engine_team_options_designator_switch_type },
@@ -137,13 +137,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(gameEngineOrdnanceOptionsBlock, 1)
+	V5_TAG_BLOCK(gameEngineOrdnanceOptionsBlock, 1)
 	{
 		{ _field_byte_flags, "flags", &gameEngineOrdnanceOptionsFlags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(GameEngineFirefightWavePropertiesBlock, k_firefightWavesPerGoal)
+	V5_TAG_BLOCK(GameEngineFirefightWavePropertiesBlock, k_firefightWavesPerGoal)
 	{
 		{ _field_string_id, "squad type^#survival_mode_get_wave_squad" },
 		{ _field_char_enum, "Delivery type", &FirefightWaveDeliveryMethod },
@@ -159,7 +159,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(GameEngineFirefightPlayerGoalPropertiesBlock, k_firefightMaxPlayerGoals)
+	V5_TAG_BLOCK(GameEngineFirefightPlayerGoalPropertiesBlock, k_firefightMaxPlayerGoals)
 	{
 		{ _field_char_enum, "Player Goal", &FirefightGoal },
 		{ _field_char_integer, "Lives" },
@@ -182,16 +182,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_engine_globals_block, 1, game_engine_globals_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_engine_globals_block, 1, game_engine_globals_struct_definition_struct_definition );
 
-	TAG_BLOCK(game_engine_ai_traits_list_block, 64)
+	V5_TAG_BLOCK(game_engine_ai_traits_list_block, 64)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_struct, "ai traits", &game_engine_ai_traits_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_sandbox_variant_block, 32)
+	V5_TAG_BLOCK(game_engine_sandbox_variant_block, 32)
 	{
 		{ _field_string_id, "localizable name^" },
 		{ _field_string_id, "localizable description" },
@@ -216,19 +216,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_survival_set_properties_block, 10)
+	V5_TAG_BLOCK(game_engine_survival_set_properties_block, 10)
 	{
 		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(survival_wave_squad_block, k_maximum_survival_possible_wave_squads)
+	V5_TAG_BLOCK(survival_wave_squad_block, k_maximum_survival_possible_wave_squads)
 	{
 		{ _field_string_id, "squad type^#survival_mode_get_wave_squad" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_survival_round_properties_block, k_survival_full_rounds_per_set)
+	V5_TAG_BLOCK(game_engine_survival_round_properties_block, k_survival_full_rounds_per_set)
 	{
 		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
 		{ _field_custom, "initial wave" },
@@ -243,7 +243,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_survival_custom_skull_block, k_maximum_survival_custom_skulls)
+	V5_TAG_BLOCK(game_engine_survival_custom_skull_block, k_maximum_survival_custom_skulls)
 	{
 		{ _field_string_id, "spartan player traits" },
 		{ _field_string_id, "elite player traits" },
@@ -251,7 +251,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_survival_variant_block, 32)
+	V5_TAG_BLOCK(game_engine_survival_variant_block, 32)
 	{
 		{ _field_string_id, "localizable name^" },
 		{ _field_string_id, "localizable description" },
@@ -307,13 +307,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(GameEngineFirefightVariantShellBlock, 128)
+	V5_TAG_BLOCK(GameEngineFirefightVariantShellBlock, 128)
 	{
 		{ _field_tag_reference, "variant", &GameEngineFirefightVariantReference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(game_engine_campaign_variant_block, 32)
+	V5_TAG_BLOCK(game_engine_campaign_variant_block, 32)
 	{
 		{ _field_string_id, "localizable name^" },
 		{ _field_string_id, "localizable description" },
@@ -328,7 +328,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(game_engine_settings_definition_block, 1, game_engine_settings_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(game_engine_settings_definition_block, 1, game_engine_settings_definition_struct_definition_struct_definition );
 
 	TAG_ARRAY(game_engine_team_options_team_block, k_multiplayer_team_game_team_count)
 	{
@@ -347,7 +347,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(gameEngineFirefightVariantDefinition)
+	V5_TAG_STRUCT(gameEngineFirefightVariantDefinition)
 	{
 		{ _field_string_id, "localizable name^" },
 		{ _field_string_id, "localizable description" },
@@ -389,7 +389,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_engine_globals_struct_definition)
+	V5_TAG_STRUCT(game_engine_globals_struct_definition)
 	{
 		{ _field_tag_reference, "game engine settings", &game_engine_settings_definition_reference },
 		{ _field_tag_reference, "game engine text", &global_multilingual_unicode_string_list_reference },
@@ -397,7 +397,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_engine_settings_definition_struct_definition)
+	V5_TAG_STRUCT(game_engine_settings_definition_struct_definition)
 	{
 		{ _field_explanation, "Game Engine Settings", "This contains the definitions for the built-in custom multiplayer game variants" },
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
@@ -410,7 +410,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_engine_ai_traits_struct)
+	V5_TAG_STRUCT(game_engine_ai_traits_struct)
 	{
 		{ _field_char_enum, "vision traits", &ai_trait_vision_settings },
 		{ _field_char_enum, "sound traits", &ai_trait_sound_settings },
@@ -426,7 +426,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_engine_survival_wave_properties_struct)
+	V5_TAG_STRUCT(game_engine_survival_wave_properties_struct)
 	{
 		{ _field_byte_flags, "flags", &survival_wave_properties_flags },
 		{ _field_char_enum, "wave selection type", &survival_wave_squad_advance_type_enum },
@@ -435,7 +435,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(game_engine_survival_bonus_wave_properties_struct)
+	V5_TAG_STRUCT(game_engine_survival_bonus_wave_properties_struct)
 	{
 		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
 		{ _field_short_integer, "duration:s" },

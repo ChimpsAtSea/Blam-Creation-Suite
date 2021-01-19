@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(CompositeDeadZoneDefinition, MAX_DEAD_ZONES_PER_COMPOSITE_AXIS)
+	V5_TAG_BLOCK(CompositeDeadZoneDefinition, MAX_DEAD_ZONES_PER_COMPOSITE_AXIS)
 	{
 		{ _field_real_bounds, "bounds" },
 		{ _field_real, "rate" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CompositeAxisDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
+	V5_TAG_BLOCK(CompositeAxisDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
 	{
 		{ _field_string_id, "name*!^" },
 		{ _field_string_id, "animation source*" },
@@ -34,13 +34,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CompositeEntryValueDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
+	V5_TAG_BLOCK(CompositeEntryValueDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
 	{
 		{ _field_real, "value^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CompositeEntryDefinition, MAX_ENTRIES_PER_COMPOSITE)
+	V5_TAG_BLOCK(CompositeEntryDefinition, MAX_ENTRIES_PER_COMPOSITE)
 	{
 		{ _field_string_id, "source^" },
 		{ _field_block, "values*", &CompositeEntryValueDefinition_block },
@@ -51,13 +51,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SyncKeyBlock, Composite::MAX_SYNC_KEYS)
+	V5_TAG_BLOCK(SyncKeyBlock, Composite::MAX_SYNC_KEYS)
 	{
 		{ _field_enum, "key*^", &frame_event_type_new },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(CompositePhaseSetDefinition, MAX_PHASE_SETS_PER_COMPOSITE)
+	V5_TAG_BLOCK(CompositePhaseSetDefinition, MAX_PHASE_SETS_PER_COMPOSITE)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_string_id, "timing source" },
@@ -74,15 +74,15 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(StringBlock, k_kilo)
+	V5_TAG_BLOCK(StringBlock, k_kilo)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(g_compositeTag, MAX_COMPOSITES_PER_GRAPH, g_compositeTag_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(g_compositeTag, MAX_COMPOSITES_PER_GRAPH, g_compositeTag_struct_struct_definition );
 
-	TAG_STRUCT(g_compositeTag_struct)
+	V5_TAG_STRUCT(g_compositeTag_struct)
 	{
 		{ _field_string_id, "name*^" },
 		{ _field_block, "axes*", &CompositeAxisDefinition_block },

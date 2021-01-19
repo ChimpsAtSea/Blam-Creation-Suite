@@ -4,25 +4,25 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(device_control, DEVICE_CONTROL_TAG, device, DEVICE_TAG, device_control_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(device_control, DEVICE_CONTROL_TAG, device, DEVICE_TAG, device_control_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(device, DEVICE_TAG, object, OBJECT_TAG, device_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(device, DEVICE_TAG, object, OBJECT_TAG, device_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(device_dispenser, DEVICE_DISPENSER_TAG, device, DEVICE_TAG, device_dispenser_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(device_dispenser, DEVICE_DISPENSER_TAG, device, DEVICE_TAG, device_dispenser_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(device_machine, DEVICE_MACHINE_TAG, device, DEVICE_TAG, device_machine_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(device_machine, DEVICE_MACHINE_TAG, device, DEVICE_TAG, device_machine_block_block );
 
-	TAG_GROUP_INHERIT_FROM_BLOCK(device_terminal, DEVICE_TERMINAL_TAG, device, DEVICE_TAG, device_terminal_block_block );
+	V5_TAG_GROUP_INHERIT_FROM_BLOCK(device_terminal, DEVICE_TERMINAL_TAG, device, DEVICE_TAG, device_terminal_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(device_control_block, 1, device_control_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(device_control_block, 1, device_control_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(device_block, 1, device_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(device_block, 1, device_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(device_dispenser_block, 1, device_dispenser_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(device_dispenser_block, 1, device_dispenser_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(device_machine_block, 1, device_machine_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(device_machine_block, 1, device_machine_struct_definition_struct_definition );
 
-	TAG_BLOCK(terminal_page_block_definition, _terminal_definition::k_max_page_count)
+	V5_TAG_BLOCK(terminal_page_block_definition, _terminal_definition::k_max_page_count)
 	{
 		{ _field_short_integer, "bitmap sequence index" },
 		{ _field_short_integer, "bitmap sprite index" },
@@ -30,9 +30,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(device_terminal_block, 1, device_terminal_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(device_terminal_block, 1, device_terminal_struct_definition_struct_definition );
 
-	TAG_STRUCT(device_control_struct_definition)
+	V5_TAG_STRUCT(device_control_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
 		{ _field_custom, "$$$ CONTROL $$$" },
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(device_struct_definition)
+	V5_TAG_STRUCT(device_struct_definition)
 	{
 		{ _field_struct, "object", &object_struct_definition_struct_definition },
 		{ _field_custom, "$$$ DEVICE $$$" },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(device_dispenser_struct_definition)
+	V5_TAG_STRUCT(device_dispenser_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
 		{ _field_custom, "DISPENSER" },
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(device_machine_struct_definition)
+	V5_TAG_STRUCT(device_machine_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
 		{ _field_explanation, "$$$ MACHINE $$$", "" },
@@ -157,7 +157,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(device_terminal_struct_definition)
+	V5_TAG_STRUCT(device_terminal_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
 		{ _field_explanation, "$$$ TERMINAL $$$", "" },

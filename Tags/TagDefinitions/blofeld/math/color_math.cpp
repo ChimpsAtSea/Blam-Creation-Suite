@@ -10,7 +10,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(half_rgb_lightprobe_struct)
+	V5_TAG_STRUCT(half_rgb_lightprobe_struct)
 	{
 		{ _field_array, "red sh terms", &half_sh_terms_array },
 		{ _field_array, "green sh terms", &half_sh_terms_array },

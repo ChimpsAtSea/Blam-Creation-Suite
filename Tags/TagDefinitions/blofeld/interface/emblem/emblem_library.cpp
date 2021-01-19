@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block );
 
-	TAG_BLOCK(emblem_bitmap_list, s_emblem_library::k_max_bitmap_list_count)
+	V5_TAG_BLOCK(emblem_bitmap_list, s_emblem_library::k_max_bitmap_list_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_short_integer, "bitmap index#the index of the bitmap in the bitmap group" },
@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emblem_shape_list, s_emblem_library::k_max_shape_list_count)
+	V5_TAG_BLOCK(emblem_shape_list, s_emblem_library::k_max_shape_list_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_short_block_index, "bitmap" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emblem_front_list, s_emblem_library::k_max_front_emblem_count)
+	V5_TAG_BLOCK(emblem_front_list, s_emblem_library::k_max_front_emblem_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_explanation, "Layer 0 (foreground)", "Composed of two shapes\n" },
@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emblem_back_list, s_emblem_library::k_max_back_emblem_count)
+	V5_TAG_BLOCK(emblem_back_list, s_emblem_library::k_max_back_emblem_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_explanation, "Layer 2 (background)", "\n" },
@@ -48,7 +48,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emblem_runtime_front_list, s_emblem_library::k_max_front_emblem_count)
+	V5_TAG_BLOCK(emblem_runtime_front_list, s_emblem_library::k_max_front_emblem_count)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name0" },
@@ -87,7 +87,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(emblem_runtime_back_list, s_emblem_library::k_max_back_emblem_count)
+	V5_TAG_BLOCK(emblem_runtime_back_list, s_emblem_library::k_max_back_emblem_count)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "name" },
@@ -107,9 +107,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
 
-	TAG_STRUCT(emblem_library_struct_definition)
+	V5_TAG_STRUCT(emblem_library_struct_definition)
 	{
 		{ _field_explanation, "Emblem Library", "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n" },
 		{ _field_short_integer, "version!" },
@@ -132,7 +132,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(emblem_transform)
+	V5_TAG_STRUCT(emblem_transform)
 	{
 		{ _field_real_point_2d, "scale" },
 		{ _field_real_point_2d, "shear" },
@@ -143,7 +143,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(emblem_layer)
+	V5_TAG_STRUCT(emblem_layer)
 	{
 		{ _field_explanation, "Shape 0", "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n" },
 		{ _field_short_block_index, "shape 0" },

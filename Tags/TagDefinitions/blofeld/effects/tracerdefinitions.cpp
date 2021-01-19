@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(tracer_system, TRACER_SYSTEM_TAG, tracer_system_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(tracer_system, TRACER_SYSTEM_TAG, tracer_system_block_block );
 
-	TAG_BLOCK(tracerDefinitionBlock, TracerSystemDefinition::k_maxTracers)
+	V5_TAG_BLOCK(tracerDefinitionBlock, TracerSystemDefinition::k_maxTracers)
 	{
 		{ _field_custom },
 		{ _field_string_id, "tracer name^" },
@@ -55,9 +55,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(tracer_system_block, 1, tracer_system_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(tracer_system_block, 1, tracer_system_struct_definition_struct_definition );
 
-	TAG_STRUCT(tracer_system_struct_definition)
+	V5_TAG_STRUCT(tracer_system_struct_definition)
 	{
 		{ _field_long_flags, "tracer system flags", &tracerSystemFlags },
 		{ _field_explanation, "far lod", "These don\'t actually do anything unless you use \"tracer lod\" in one of your curves." },
@@ -69,7 +69,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(tracerProperty_real_Struct)
+	V5_TAG_STRUCT(tracerProperty_real_Struct)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
@@ -83,7 +83,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(tracerProperty_real_vector3d_Struct)
+	V5_TAG_STRUCT(tracerProperty_real_vector3d_Struct)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
@@ -99,7 +99,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(tracerProperty_real_point2d_Struct)
+	V5_TAG_STRUCT(tracerProperty_real_point2d_Struct)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
@@ -115,7 +115,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(tracerProperty_real_rgb_color_Struct)
+	V5_TAG_STRUCT(tracerProperty_real_rgb_color_Struct)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
 		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },

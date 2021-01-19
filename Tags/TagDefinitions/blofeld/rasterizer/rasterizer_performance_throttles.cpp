@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block );
 
-	TAG_BLOCK(performane_throttle_block, 7)
+	V5_TAG_BLOCK(performane_throttle_block, 7)
 	{
 		{ _field_long_flags, "flags", &performance_throttle_flags },
 		{ _field_real, "water tessellation scale" },
@@ -49,9 +49,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
 
-	TAG_STRUCT(performance_throttles_struct_definition)
+	V5_TAG_STRUCT(performance_throttles_struct_definition)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_long_integer, "unknown" },

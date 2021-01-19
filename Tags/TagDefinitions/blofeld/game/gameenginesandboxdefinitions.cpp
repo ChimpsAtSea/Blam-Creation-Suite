@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(forge_globals, FORGE_GLOBALS_TAG)
+	V5_TAG_GROUP(forge_globals, FORGE_GLOBALS_TAG)
 	{
 		{ _field_block, "forge colors", &forge_color_block_block },
 		{ _field_explanation, "Magnets", "Forge magnet parameters" },
@@ -28,7 +28,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(forge_color_block, k_forge_named_color_count)
+	V5_TAG_BLOCK(forge_color_block, k_forge_named_color_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real_rgb_color, "color" },

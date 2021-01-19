@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block );
 
-	TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
+	V5_TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 	{
 		{ _field_string_id, "name#the string id of the name of this enlistment" },
 		{ _field_string_id, "description#the string id of the description of this enlistment" },
@@ -26,9 +26,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
 
-	TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
+	V5_TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
 	{
 		{ _field_explanation, "Enlistments", "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!" },
 		{ _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block },

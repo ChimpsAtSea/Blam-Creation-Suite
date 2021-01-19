@@ -4,15 +4,15 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block );
 
-	TAG_BLOCK(single_achievement_restricted_level_block, s_single_achivement_restricted_level_definition::k_maximum_count)
+	V5_TAG_BLOCK(single_achievement_restricted_level_block, s_single_achivement_restricted_level_definition::k_maximum_count)
 	{
 		{ _field_string_id, "level name^#Compared to map name in scenario" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
+	V5_TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_char_enum, "type", &global_achievement_enum },
@@ -22,9 +22,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
 
-	TAG_STRUCT(achievements_struct_definition)
+	V5_TAG_STRUCT(achievements_struct_definition)
 	{
 		{ _field_block, "achievement", &single_achievement_definition_block_block },
 		{ _field_terminator }

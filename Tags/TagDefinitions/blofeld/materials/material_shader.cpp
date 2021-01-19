@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(material_shader, MATERIAL_SHADER_TAG)
+	V5_TAG_GROUP(material_shader, MATERIAL_SHADER_TAG)
 	{
 		{ _field_long_flags, "flags!", &material_shader_flags },
 		{ _field_block, "source shader files!", &material_shader_source_file_block_block },
@@ -18,33 +18,33 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_shader_source_file_block, MATERIAL_SHADER_MAX_SOURCE_FILES)
+	V5_TAG_BLOCK(material_shader_source_file_block, MATERIAL_SHADER_MAX_SOURCE_FILES)
 	{
 		{ _field_long_string, "shader path^" },
 		{ _field_data, "shader data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(compiled_effects_block, k_number_of_platforms)
+	V5_TAG_BLOCK(compiled_effects_block, k_number_of_platforms)
 	{
 		{ _field_data, "compiled effect data" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(compiled_vertex_shader_refererence_block, k_number_of_vertex_types + 8)
+	V5_TAG_BLOCK(compiled_vertex_shader_refererence_block, k_number_of_vertex_types + 8)
 	{
 		{ _field_long_integer, "hash" },
 		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_vertex_shader_entry_point_block, k_number_of_entry_points + 8)
+	V5_TAG_BLOCK(material_vertex_shader_entry_point_block, k_number_of_entry_points + 8)
 	{
 		{ _field_block, "vertex type shader indices", &compiled_vertex_shader_refererence_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(compiled_pixel_shader_refererence_block, k_number_of_entry_points + 8)
+	V5_TAG_BLOCK(compiled_pixel_shader_refererence_block, k_number_of_entry_points + 8)
 	{
 		{ _field_long_integer, "hash" },
 		{ _field_long_integer, "index" },

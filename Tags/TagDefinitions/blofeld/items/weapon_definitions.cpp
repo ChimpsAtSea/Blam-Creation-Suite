@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
+	V5_TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
 	{
 		{ _field_struct, "item", &item_struct_definition_struct_definition },
 		{ _field_custom, "$$$ WEAPON $$$" },
@@ -226,7 +226,7 @@ namespace blofeld
 	TAG_REFERENCE(player_melee_response_reference, INVALID_TAG);
 	TAG_REFERENCE(lunge_melee_explosive_response_reference, INVALID_TAG);
 
-	TAG_STRUCT(melee_damage_parameters_block)
+	V5_TAG_STRUCT(melee_damage_parameters_block)
 	{ 
 		{ _field_explanation, "melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target" },
 		{ _field_version_less_or_equal, _engine_type_halo3odst, 2 },
@@ -254,9 +254,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(melee_damage_parameters_block, k_melee_damage_class_count, melee_damage_parameters_block_struct_definition);
+	V5_TAG_BLOCK_FROM_STRUCT(melee_damage_parameters_block, k_melee_damage_class_count, melee_damage_parameters_block_struct_definition);
 
-	TAG_BLOCK(globalAimAssistBlock, 3)
+	V5_TAG_BLOCK(globalAimAssistBlock, 3)
 	{
 		{ _field_real, "autoaim stick time:seconds#the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in" },
 		{ _field_angle, "autoaim stick angle:degrees#the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior." },
@@ -275,7 +275,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(globalAimSwimBlock, 3)
+	V5_TAG_BLOCK(globalAimSwimBlock, 3)
 	{
 		{ _field_explanation, "x axis curve", "" },
 		{ _field_real, "x period:seconds" },
@@ -293,7 +293,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_first_person_interface_block, k_first_person_interface_count)
+	V5_TAG_BLOCK(weapon_first_person_interface_block, k_first_person_interface_count)
 	{
 		{ _field_tag_reference, "first person model", &render_model_reference$10 },
 		{ _field_tag_reference, "first person animations", &model_animation_graph_reference$4 },
@@ -305,7 +305,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(magazine_objects, MAXIMUM_NUMBER_OF_MAGAZINE_OBJECTS_PER_MAGAZINE)
+	V5_TAG_BLOCK(magazine_objects, MAXIMUM_NUMBER_OF_MAGAZINE_OBJECTS_PER_MAGAZINE)
 	{
 		{ _field_short_integer, "rounds" },
 		{ _field_pad, "DTDPY", 2 },
@@ -313,7 +313,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(magazines, MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON)
+	V5_TAG_BLOCK(magazines, MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON)
 	{
 		{ _field_long_flags, "flags", &magazine_flags },
 		{ _field_short_integer, "rounds recharged:per second" },
@@ -342,13 +342,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_trigger_charging_fire_fraction, MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER)
+	V5_TAG_BLOCK(weapon_trigger_charging_fire_fraction, MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER)
 	{
 		{ _field_real_fraction, "charge fraction^:[0.1]#charging fraction at which the weapon should additionally fire a shot." },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_triggers, k_weapon_trigger_count)
+	V5_TAG_BLOCK(weapon_triggers, k_weapon_trigger_count)
 	{
 		{ _field_long_flags, "flags", &weapon_trigger_definition_flags },
 		{ _field_enum, "input", &weapon_trigger_inputs },
@@ -373,25 +373,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(projectileDistributionCustomVector, k_projectile_maximum_custom_vectors)
+	V5_TAG_BLOCK(projectileDistributionCustomVector, k_projectile_maximum_custom_vectors)
 	{
 		{ _field_real_point_2d, "Point offset^:[-1.1]#x-y offset - +x is right, +y is up" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_barrel_function_block, 1)
+	V5_TAG_BLOCK(weapon_barrel_function_block, 1)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_barrel_first_person_offset_block, k_first_person_weapon_offset_type_count)
+	V5_TAG_BLOCK(weapon_barrel_first_person_offset_block, k_first_person_weapon_offset_type_count)
 	{
 		{ _field_real_point_3d, "first person offset:world units#+x is forward, +z is up, +y is left" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(barrel_firing_effect_block, k_weapon_barrel_effect_count)
+	V5_TAG_BLOCK(barrel_firing_effect_block, k_weapon_barrel_effect_count)
 	{
 		{ _field_short_integer, "shot count lower bound#the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound#the maximum number of times this firing effect will be used, once it has been chosen" },
@@ -422,7 +422,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_barrels, k_weapon_barrel_count)
+	V5_TAG_BLOCK(weapon_barrels, k_weapon_barrel_count)
 	{
 		{ _field_long_flags, "flags", &weapon_barrel_flags },
 		{ _field_explanation, "firing", "" },
@@ -511,7 +511,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weaponScaleshotLevelStruct, WeaponScaleshotLevelDefinition::k_maxLevels)
+	V5_TAG_BLOCK(weaponScaleshotLevelStruct, WeaponScaleshotLevelDefinition::k_maxLevels)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotLevelFlags },
 		{ _field_real, "minimum power level^#the minimum power at which this scaleshot level kicks in" },
@@ -522,7 +522,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weaponScaleshotStruct, 1)
+	V5_TAG_BLOCK(weaponScaleshotStruct, 1)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotFlags },
 		{ _field_real, "power per shot#the amount of scaleshot power you get when this weapon is fired" },
@@ -533,7 +533,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weapon_screen_effect_block, 4)
+	V5_TAG_BLOCK(weapon_screen_effect_block, 4)
 	{
 		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
 		{ _field_pad, "LKSZJFSE", 3 },
@@ -541,7 +541,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(WeaponSoundRTPCBlock, k_maxWeaponSoundRTPCBlocks)
+	V5_TAG_BLOCK(WeaponSoundRTPCBlock, k_maxWeaponSoundRTPCBlocks)
 	{
 		{ _field_long_block_index, "Attachment Index#Sound attachment to affect - leave empty for main body" },
 		{ _field_string_id, "Function#Function to drive the RTPC" },
@@ -550,7 +550,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(WeaponSoundSweetenerBlock, k_maxWeaponSoundSweetenerBlocks)
+	V5_TAG_BLOCK(WeaponSoundSweetenerBlock, k_maxWeaponSoundSweetenerBlocks)
 	{
 		{ _field_string_id, "Function#Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -559,7 +559,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(aim_assist_struct)
+	V5_TAG_STRUCT(aim_assist_struct)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 2},
 		{ _field_real, "autoaim stick time:seconds!#the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in" },
@@ -587,7 +587,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(WeaponBarrelIronSightsStruct)
+	V5_TAG_STRUCT(WeaponBarrelIronSightsStruct)
 	{
 		{ _field_real, "spread multiplier#multiplies the spread error - use < 1.0 for more accuracy" },
 		{ _field_real, "movement multiplier#multipliers player maximum move speed" },
@@ -596,7 +596,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_interface_struct)
+	V5_TAG_STRUCT(weapon_interface_struct)
 	{
 		{ _field_explanation, "interface", "" },
 		{ _field_struct, "shared interface", &weapon_shared_interface_struct_struct_definition },
@@ -607,13 +607,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_shared_interface_struct)
+	V5_TAG_STRUCT(weapon_shared_interface_struct)
 	{
 		{ _field_pad, "PWGUS", 16 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_trigger_autofire_struct)
+	V5_TAG_STRUCT(weapon_trigger_autofire_struct)
 	{
 		{ _field_explanation, "AUTOFIRE", "" },
 		{ _field_real, "autofire time" },
@@ -623,7 +623,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_trigger_charging_struct)
+	V5_TAG_STRUCT(weapon_trigger_charging_struct)
 	{
 		{ _field_explanation, "CHARGING", "" },
 		{ _field_real, "charging time:seconds#the amount of time it takes for this trigger to become fully charged" },
@@ -658,7 +658,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_barrel_firing_parameters_struct)
+	V5_TAG_STRUCT(weapon_barrel_firing_parameters_struct)
 	{
 		{ _field_real_bounds, "rounds per second#the number of firing effects created per second" },
 
@@ -684,7 +684,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_barrel_firing_error_struct)
+	V5_TAG_STRUCT(weapon_barrel_firing_error_struct)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_real, "acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final error" },
@@ -716,7 +716,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_struct)
+	V5_TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_struct)
 	{
 		{ _field_custom, "accuracy penalties" },
 		{ _field_real, "reload penalty#percentage accuracy lost when reloading" },
@@ -734,7 +734,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_function_struct)
+	V5_TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_function_struct)
 	{
 		{ _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired", &weapon_barrel_function_block_block },
 		{ _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position", &weapon_barrel_function_block_block },
@@ -744,7 +744,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(weapon_barrel_damage_effect_struct)
+	V5_TAG_STRUCT(weapon_barrel_damage_effect_struct)
 	{
 		{ _field_tag_reference, "damage effect", &global_damage_reference },
 		{ _field_terminator }

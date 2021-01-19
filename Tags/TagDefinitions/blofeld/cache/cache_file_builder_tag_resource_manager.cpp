@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(cache_file_resource_layout_table, CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG)
+	V5_TAG_GROUP(cache_file_resource_layout_table, CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG)
 	{
 		{ _field_block, "codec identifiers*", &cache_file_codec_identifier_block_block },
 		{ _field_block, "shared files", &cache_file_shared_file_block_block },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP(cache_file_resource_gestalt, CACHE_FILE_RESOURCE_GESTALT_TAG)
+	V5_TAG_GROUP(cache_file_resource_gestalt, CACHE_FILE_RESOURCE_GESTALT_TAG)
 	{
 		{ _field_enum, "scenario type", &scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &scenario_flags },
@@ -82,7 +82,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_codec_identifier_block, k_maximum_cache_file_codecs)
+	V5_TAG_BLOCK(cache_file_codec_identifier_block, k_maximum_cache_file_codecs)
 	{
 		{ _field_long_integer, "identifier part 0" },
 		{ _field_long_integer, "identifier part 1" },
@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_shared_file_block, k_maximum_cache_file_shared_files)
+	V5_TAG_BLOCK(cache_file_shared_file_block, k_maximum_cache_file_shared_files)
 	{
 		{ _field_long_string, "dvd relative path^" },
 		{ _field_word_flags, "flags", &cache_file_shared_file_flags_definition },
@@ -100,23 +100,23 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_resource_file_page_block, UNSIGNED_SHORT_MAX, cache_file_resource_page_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_resource_file_page_block, UNSIGNED_SHORT_MAX, cache_file_resource_page_struct_struct_definition );
 
-	TAG_BLOCK(cache_file_resource_streaming_subpage_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_streaming_subpage_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "memory offset" },
 		{ _field_long_integer, "memory size" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_streaming_subpage_table_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_streaming_subpage_table_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "total memory size" },
 		{ _field_block, "streaming subpages", &cache_file_resource_streaming_subpage_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_section_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_section_block, SHORT_MAX)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_array, "page offsets", &location_offsets_array_definition_array }, // moved
@@ -130,7 +130,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_type_identifier_block, k_maximum_cache_file_tag_resource_types)
+	V5_TAG_BLOCK(cache_file_resource_type_identifier_block, k_maximum_cache_file_tag_resource_types)
 	{
 		{ _field_long_integer, "identifier part 0" },
 		{ _field_long_integer, "identifier part 1" },
@@ -150,7 +150,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_interop_type_identifier_block, k_maximum_cache_file_tag_resource_types)
+	V5_TAG_BLOCK(cache_file_interop_type_identifier_block, k_maximum_cache_file_tag_resource_types)
 	{
 		{ _field_long_integer, "identifier part 0" },
 		{ _field_long_integer, "identifier part 1" },
@@ -160,27 +160,27 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_fixup_location_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_fixup_location_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "encoded fixup location*" },
 		{ _field_long_integer, "encoded fixup value*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_interop_location_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_interop_location_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "encoded interop location*" },
 		{ _field_long_block_index, "interop type index^*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_priority_data_block, k_numberOfResourcePriorities)
+	V5_TAG_BLOCK(cache_file_resource_priority_data_block, k_numberOfResourcePriorities)
 	{
 		{ _field_long_integer, "naive data offset" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_data_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_data_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "owner tag^*", &g_non_traversed_reference_definition },
 		{ _field_short_integer, "resource salt" },
@@ -207,13 +207,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resources_bitvector_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_tag_resources_bitvector_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "32 bits" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_usage_block, k_maximum_cache_file_tag_resource_types)
+	V5_TAG_BLOCK(cache_file_tag_resource_usage_block, k_maximum_cache_file_tag_resource_types)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_array, "page sizes", &resource_usage_page_size_array_definition_array },
@@ -223,13 +223,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_zone_resource_visit_node_link_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_zone_resource_visit_node_link_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "child tag^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_zone_resource_visit_node_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_zone_resource_visit_node_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "parent tag^" },
 		{ _field_pad, "sdfasfas", 2 },
@@ -237,19 +237,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_designer_zone_block, k_maximum_designer_zone_count, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_designer_zone_block, k_maximum_designer_zone_count, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_global_zone_block, 1, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_global_zone_block, 1, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_tag_zone_block, SHORT_MAX, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_tag_zone_block, SHORT_MAX, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_bsp_zone_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_bsp_zone_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_cinematic_zone_block, MAXIMUM_SCENARIO_CINEMATICS, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_cinematic_zone_block, MAXIMUM_SCENARIO_CINEMATICS, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_full_zone_sets_block, k_maximum_scenario_zone_set_count, cache_file_tag_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cache_file_full_zone_sets_block, k_maximum_scenario_zone_set_count, cache_file_tag_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK(cache_file_zone_set_zone_usage_block, k_maximum_scenario_zone_set_count)
+	V5_TAG_BLOCK(cache_file_zone_set_zone_usage_block, k_maximum_scenario_zone_set_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_flags, "flags", &scenario_zone_set_flags_definition },
@@ -270,26 +270,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_bsp_reference_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(cache_file_bsp_reference_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "bsp^", &g_non_traversed_reference_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_owner_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_owner_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "resource owner^", &g_non_traversed_reference_definition },
 		{ _field_long_integer, "actual tag index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_owner_reference_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_owner_reference_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "tag^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_model_variant_usage_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_model_variant_usage_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "model^" },
 		{ _field_pad, "sdfasfas", 2 },
@@ -298,13 +298,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_model_variant_usage_reference_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_model_variant_usage_reference_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "model variant^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_character_usage_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_character_usage_block, SHORT_MAX)
 	{
 		{ _field_short_block_index, "model^" },
 		{ _field_pad, "sdfasfas", 2 },
@@ -312,13 +312,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_bsp_attachment_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_bsp_attachment_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "attachment^", &g_non_traversed_reference_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_bsp_game_attachments_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(cache_file_bsp_game_attachments_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_block, "static", &cache_file_bsp_attachment_block_block },
 		{ _field_block, "persistent", &cache_file_bsp_attachment_block_block },
@@ -326,25 +326,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(debug_cache_file_model_variant_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(debug_cache_file_model_variant_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(debug_cache_file_combat_dialogue_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(debug_cache_file_combat_dialogue_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(debug_cache_file_tag_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(debug_cache_file_tag_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
 
-	TAG_BLOCK(resource_category_block, k_maximum_categories_per_resource)
+	V5_TAG_BLOCK(resource_category_block, k_maximum_categories_per_resource)
 	{
 		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_debug_resource_definition_block, k_maximum_cache_file_tag_resource_types)
+	V5_TAG_BLOCK(cache_file_debug_resource_definition_block, k_maximum_cache_file_tag_resource_types)
 	{
 		{ _field_block, "categories", &resource_category_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_resource_layout_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_resource_layout_block, SHORT_MAX)
 	{
 		{ _field_array, "memory sizes", &resource_layout_memory_size_array_definition_array },
 		{ _field_array, "compressed sizes", &resource_layout_compressed_size_array_definition_array },
@@ -359,7 +359,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_named_value_block, k_maximum_categories_per_resource*k_maximum_category_rows_per_resource)
+	V5_TAG_BLOCK(cache_file_tag_resource_named_value_block, k_maximum_categories_per_resource*k_maximum_category_rows_per_resource)
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_enum, "type", &named_value_type_enum },
@@ -370,19 +370,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_properties_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_tag_resource_properties_block, SHORT_MAX)
 	{
 		{ _field_block, "named values", &cache_file_tag_resource_named_value_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_parentage_reference_block, k_maximum_tag_parentages_count)
+	V5_TAG_BLOCK(cache_file_tag_parentage_reference_block, k_maximum_tag_parentages_count)
 	{
 		{ _field_long_block_index, "link^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_parentage_block, k_maximum_tag_parentages_count)
+	V5_TAG_BLOCK(cache_file_tag_parentage_block, k_maximum_tag_parentages_count)
 	{
 		{ _field_tag_reference, "tag", &g_non_traversed_reference_definition },
 		{ _field_word_flags, "flags", &cache_file_tag_parentage_flags_definition },
@@ -392,13 +392,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_prediction_quantum_block, 60*k_kilo)
+	V5_TAG_BLOCK(cache_file_tag_resource_prediction_quantum_block, 60*k_kilo)
 	{
 		{ _field_long_integer, "internal resource handle" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_prediction_atom_block, k_maximum_simultaneous_tag_instances)
+	V5_TAG_BLOCK(cache_file_tag_resource_prediction_atom_block, k_maximum_simultaneous_tag_instances)
 	{
 		{ _field_short_integer, "index salt" },
 		{ _field_word_integer, "prediction quantum count" },
@@ -406,13 +406,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_prediction_molecule_atom_reference_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_tag_resource_prediction_molecule_atom_reference_block, SHORT_MAX)
 	{
 		{ _field_long_integer, "prediction atom handle" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_prediction_molecule_block, SHORT_MAX)
+	V5_TAG_BLOCK(cache_file_tag_resource_prediction_molecule_block, SHORT_MAX)
 	{
 		{ _field_word_integer, "prediction atom count" },
 		{ _field_short_block_index, "first prediction atom index" },
@@ -421,7 +421,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cache_file_tag_resource_prediction_molecule_keys_block, c_tag_resource_prediction_table_base::k_maximum_mapped_molecules)
+	V5_TAG_BLOCK(cache_file_tag_resource_prediction_molecule_keys_block, c_tag_resource_prediction_table_base::k_maximum_mapped_molecules)
 	{
 		{ _field_long_integer, "index a" },
 		{ _field_long_integer, "index b" },
@@ -477,7 +477,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cache_file_resource_page_struct)
+	V5_TAG_STRUCT(cache_file_resource_page_struct)
 	{
 		{ _field_short_integer, "header salt at runtime" },
 		{ _field_byte_flags, "flags", &cache_file_tag_resource_page_flags },
@@ -493,7 +493,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(resource_checksum_struct)
+	V5_TAG_STRUCT(resource_checksum_struct)
 	{
 		{ _field_long_integer, "checksum" },
 		{ _field_array, "entire hash", &resource_hash_definition_array },
@@ -502,7 +502,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cache_file_tag_zone_manifest_struct)
+	V5_TAG_STRUCT(cache_file_tag_zone_manifest_struct)
 	{
 		{ _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block_block },
 
@@ -545,7 +545,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(debug_cache_file_zone_manifest_struct)
+	V5_TAG_STRUCT(debug_cache_file_zone_manifest_struct)
 	{
 		{ _field_struct, "cache zone manifest", &cache_file_tag_zone_manifest_struct_struct_definition },
 		{ _field_long_integer, "disk size" },
@@ -554,7 +554,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cache_file_tag_resource_prediction_table)
+	V5_TAG_STRUCT(cache_file_tag_resource_prediction_table)
 	{
 		{ _field_block, "prediction quanta", &cache_file_tag_resource_prediction_quantum_block_block },
 		{ _field_block, "prediction atoms", &cache_file_tag_resource_prediction_atom_block_block },

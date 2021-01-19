@@ -4,21 +4,21 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(render_method, RENDER_METHOD_TAG, render_method_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_method, RENDER_METHOD_TAG, render_method_block_block );
 
-	TAG_GROUP_FROM_BLOCK(render_method_definition, RENDER_METHOD_DEFINITION_TAG, render_method_definition_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_method_definition, RENDER_METHOD_DEFINITION_TAG, render_method_definition_block_block );
 
-	TAG_GROUP_FROM_BLOCK(render_method_option, RENDER_METHOD_OPTION_TAG, render_method_option_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_method_option, RENDER_METHOD_OPTION_TAG, render_method_option_block_block );
 
-	TAG_GROUP_FROM_BLOCK(render_method_template, RENDER_METHOD_TEMPLATE_TAG, render_method_template_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(render_method_template, RENDER_METHOD_TEMPLATE_TAG, render_method_template_block_block );
 
-	TAG_BLOCK(short_block, k_kilo)
+	V5_TAG_BLOCK(short_block, k_kilo)
 	{
 		{ _field_short_integer, "short" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_animated_parameter_block, k_kilo)
+	V5_TAG_BLOCK(render_method_animated_parameter_block, k_kilo)
 	{
 		{ _field_long_enum, "type^", &render_method_animated_parameter_type_enum },
 		{ _field_string_id, "input name" },
@@ -30,7 +30,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_parameter_block, c_render_method::k_maximum_parameters)
+	V5_TAG_BLOCK(render_method_parameter_block, c_render_method::k_maximum_parameters)
 	{
 		{ _field_string_id, "parameter name^" },
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
@@ -49,7 +49,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_postprocess_texture_block, c_render_method::k_maximum_postprocess_textures)
+	V5_TAG_BLOCK(render_method_postprocess_texture_block, c_render_method::k_maximum_postprocess_textures)
 	{
 		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
 		{ _field_short_integer, "bitmap index" },
@@ -61,26 +61,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(real_vector4d_block, k_kilo)
+	V5_TAG_BLOCK(real_vector4d_block, k_kilo)
 	{
 		{ _field_real_vector_3d, "vector" },
 		{ _field_real, "vector w" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(int_block, k_kilo)
+	V5_TAG_BLOCK(int_block, k_kilo)
 	{
 		{ _field_long_integer, "int value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(tag_block_index_block, k_kilo)
+	V5_TAG_BLOCK(tag_block_index_block, k_kilo)
 	{
 		{ _field_struct, "block index", &tag_block_index_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_postprocess_pass_block, k_kilo)
+	V5_TAG_BLOCK(render_method_postprocess_pass_block, k_kilo)
 	{
 		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
 		{ _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" },
@@ -88,7 +88,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_routing_info_block, c_render_method_template::k_maximum_routing_info)
+	V5_TAG_BLOCK(render_method_routing_info_block, c_render_method_template::k_maximum_routing_info)
 	{
 		{ _field_word_integer, "destination index#D3D constant index or sampler index" },
 		{ _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" },
@@ -96,7 +96,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_postprocess_block, 1)
+	V5_TAG_BLOCK(render_method_postprocess_block, 1)
 	{
 		{ _field_tag_reference, "shader template", &render_method_template_reference },
 		{ _field_block, "textures", &render_method_postprocess_texture_block_block },
@@ -118,7 +118,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_locked_parameter_block, c_render_method_option::k_maximum_parameters)
+	V5_TAG_BLOCK(render_method_locked_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
 		{ _field_string_id, "parameter name" },
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
@@ -126,9 +126,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
 
-	TAG_BLOCK(render_method_options_block, c_render_method_definition::k_maximum_category_options)
+	V5_TAG_BLOCK(render_method_options_block, c_render_method_definition::k_maximum_category_options)
 	{
 		{ _field_string_id, "option name" },
 		{ _field_tag_reference, "option", &render_method_option_reference },
@@ -137,7 +137,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_category_block, c_render_method_definition::k_maximum_categories)
+	V5_TAG_BLOCK(render_method_category_block, c_render_method_definition::k_maximum_categories)
 	{
 		{ _field_string_id, "category name" },
 		{ _field_block, "options", &render_method_options_block_block },
@@ -146,13 +146,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_pass_category_dependencies, 1)
+	V5_TAG_BLOCK(render_method_pass_category_dependencies, 1)
 	{
 		{ _field_short_block_index, "category" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_pass_block, k_kilo)
+	V5_TAG_BLOCK(render_method_pass_block, k_kilo)
 	{
 		{ _field_word_flags, "flags", &render_method_pass_flags },
 		{ _field_pad, "nothing", 2 },
@@ -164,23 +164,23 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_entry_points_block, c_render_method_definition::k_maximum_entry_points)
+	V5_TAG_BLOCK(render_method_entry_points_block, c_render_method_definition::k_maximum_entry_points)
 	{
 		{ _field_long_enum, "entry point", &entry_point_enum },
 		{ _field_block, "passes", &render_method_pass_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vertex_types_block, k_number_of_vertex_types)
+	V5_TAG_BLOCK(vertex_types_block, k_number_of_vertex_types)
 	{
 		{ _field_enum, "vertex type", &vertex_types_names_enum },
 		{ _field_pad, "blahasdf", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(render_method_definition_block, 1, render_method_definition_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_method_definition_block, 1, render_method_definition_struct_definition_struct_definition );
 
-	TAG_BLOCK(render_method_option_parameter_block, c_render_method_option::k_maximum_parameters)
+	V5_TAG_BLOCK(render_method_option_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
 		{ _field_string_id, "parameter name" },
 
@@ -216,9 +216,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(render_method_option_block, 1, render_method_option_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_method_option_block, 1, render_method_option_struct_definition_struct_definition );
 
-	TAG_BLOCK(render_method_template_pass_block, c_render_method_template::k_maximum_passes)
+	V5_TAG_BLOCK(render_method_template_pass_block, c_render_method_template::k_maximum_passes)
 	{
 		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
 		{ _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" },
@@ -240,13 +240,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_template_constant_table_block, 254)
+	V5_TAG_BLOCK(render_method_template_constant_table_block, 254)
 	{
 		{ _field_string_id, "parameter name" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(render_method_template_platform_block, 1)
+	V5_TAG_BLOCK(render_method_template_platform_block, 1)
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
@@ -261,7 +261,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
 
 	TAG_ARRAY(runtime_queryable_properties, s_render_method_postprocess_definition::k_runtime_queryable_properties_count)
 	{
@@ -269,7 +269,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_method_struct_definition)
+	V5_TAG_STRUCT(render_method_struct_definition)
 	{
 		{ _field_custom },
 		{ _field_tag_reference, "definition*", &render_method_definition_reference },
@@ -294,13 +294,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(tag_block_index_struct)
+	V5_TAG_STRUCT(tag_block_index_struct)
 	{
 		{ _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_method_definition_struct_definition)
+	V5_TAG_STRUCT(render_method_definition_struct_definition)
 	{
 		{ _field_tag_reference, "global options", &render_method_option_reference },
 		{ _field_block, "categories", &render_method_category_block_block },
@@ -315,13 +315,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_method_option_struct_definition)
+	V5_TAG_STRUCT(render_method_option_struct_definition)
 	{
 		{ _field_block, "parameters", &render_method_option_parameter_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(render_method_template_struct_definition)
+	V5_TAG_STRUCT(render_method_template_struct_definition)
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },

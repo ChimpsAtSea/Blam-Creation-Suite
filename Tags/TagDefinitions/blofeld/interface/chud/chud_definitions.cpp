@@ -5,13 +5,13 @@ namespace blofeld
 {
 	TAG_REFERENCE(unknown_reference);
 
-	TAG_BLOCK(chad_size_block, 65536)
+	V5_TAG_BLOCK(chad_size_block, 65536)
 	{
 		{ _field_block, "animation", &chad_size_animation_block_block },
 		{ _field_data, "unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_texture_coords_animation_block, 65536)
+	V5_TAG_BLOCK(chad_texture_coords_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -25,13 +25,13 @@ namespace blofeld
 		{ _field_real, "movement 2 y" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_color_block, 65536)
+	V5_TAG_BLOCK(chad_color_block, 65536)
 	{
 		{ _field_block, "animation", &chad_color_animation_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_position_animation_block, 65536)
+	V5_TAG_BLOCK(chad_position_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -44,7 +44,7 @@ namespace blofeld
 		{ _field_real, "position z" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_alpha_animation_block, 65536)
+	V5_TAG_BLOCK(chad_alpha_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_real, "alpha" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_rotation_animation_block, 65536)
+	V5_TAG_BLOCK(chad_rotation_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -68,7 +68,7 @@ namespace blofeld
 		{ _field_angle, "z angle" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_ammo_counter_block, 65536)
+	V5_TAG_BLOCK(chad_ammo_counter_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -79,7 +79,7 @@ namespace blofeld
 		{ _field_real, "boot progress fraction" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_color_animation_block, 65536)
+	V5_TAG_BLOCK(chad_color_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -89,13 +89,13 @@ namespace blofeld
 
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_ammo_counter_boot_block, 65536)
+	V5_TAG_BLOCK(chad_ammo_counter_boot_block, 65536)
 	{
 		{ _field_block, "ammo counter", &chad_ammo_counter_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_size_animation_block, 65536)
+	V5_TAG_BLOCK(chad_size_animation_block, 65536)
 	{
 		{ _field_version_less, _engine_type_haloreach },
 		{ _field_long_integer, "frame number" },
@@ -107,34 +107,34 @@ namespace blofeld
 		{ _field_real, "stretch y" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_position_block, 65536)
+	V5_TAG_BLOCK(chad_position_block, 65536)
 	{
 		{ _field_block, "animation", &chad_position_animation_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_rotation_block, 65536)
+	V5_TAG_BLOCK(chad_rotation_block, 65536)
 	{
 		{ _field_block, "animation", &chad_rotation_animation_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_alpha_block, 65536)
+	V5_TAG_BLOCK(chad_alpha_block, 65536)
 	{
 		{ _field_block, "animation", &chad_alpha_animation_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chad_texture_coords_block, 65536)
+	V5_TAG_BLOCK(chad_texture_coords_block, 65536)
 	{
 		{ _field_block, "animation", &chad_texture_coords_animation_block_block },
 		{ _field_data, "function" },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_TAG, chad_block_block);
-	TAG_BLOCK_FROM_STRUCT(chad_block, 1, chad_struct_definition_struct_definition)
-	TAG_STRUCT(chad_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_TAG, chad_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(chad_block, 1, chad_struct_definition_struct_definition)
+	V5_TAG_STRUCT(chad_struct_definition)
 	{
 		{ _field_byte_flags, "flags", &chad_flags_definition },
 		{ _field_byte_integer, "unknown" },
@@ -162,7 +162,7 @@ namespace blofeld
 	TAG_REFERENCE(chud_animation_reference, CHUD_ANIMATION_TAG);
 
 
-	TAG_BLOCK(chdt_compiled_widget_data_block, 65536)
+	V5_TAG_BLOCK(chdt_compiled_widget_data_block, 65536)
 	{
 		{ _field_char_enum, "special hud type", &chdt_special_hud_type_definition },
 		{ _field_byte_flags, "unknown", &chdt_unknown_definition },
@@ -209,7 +209,7 @@ namespace blofeld
 		{ _field_short_integer, "28" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_triggers_block, 65536)
+	V5_TAG_BLOCK(chdt_triggers_block, 65536)
 	{
 		{ _field_byte_flags, "flag", &chdt_flag_definition },
 
@@ -219,12 +219,12 @@ namespace blofeld
 		{ _field_long_integer, "trigger index" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_yesno_states_block, 65536)
+	V5_TAG_BLOCK(chdt_yesno_states_block, 65536)
 	{
 		{ _field_block, "triggers", &chdt_triggers_block_block },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_placement_data_block, 65536)
+	V5_TAG_BLOCK(chdt_placement_data_block, 65536)
 	{
 		{ _field_byte_flags, "unknown", &chdt_unknown_definition },
 		{ _field_char_enum, "anchor", &chdt_anchor_definition },
@@ -237,7 +237,7 @@ namespace blofeld
 		{ _field_real, "scale y" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_state_data_block, 65536)
+	V5_TAG_BLOCK(chdt_state_data_block, 65536)
 	{
 		{ _field_block, "'yes' states", &chdt_yesno_states_block_block },
 		{ _field_block, "unknown states", &chdt_yesno_states_block_block },
@@ -251,7 +251,7 @@ namespace blofeld
 		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_animation_data_block, 65536)
+	V5_TAG_BLOCK(chdt_animation_data_block, 65536)
 	{
 		{ _field_byte_flags, "animation 1 flags", &chdt_animation_flags_definition },
 		{ _field_char_enum, "animation 1 function", &chdt_animation_function_definition },
@@ -275,7 +275,7 @@ namespace blofeld
 		{ _field_tag_reference, "animation 5", &chud_animation_reference },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_render_data_block, 65536)
+	V5_TAG_BLOCK(chdt_render_data_block, 65536)
 	{
 		{ _field_char_enum, "shader index", &chdt_shader_index_definition },
 		{ _field_byte_integer, "unknown" },
@@ -307,7 +307,7 @@ namespace blofeld
 		{ _field_short_integer, "unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_unknown_block, 65536)
+	V5_TAG_BLOCK(chdt_unknown_block, 65536)
 	{
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
@@ -315,7 +315,7 @@ namespace blofeld
 		{ _field_real, "unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_datasource_block, 65536)
+	V5_TAG_BLOCK(chdt_datasource_block, 65536)
 	{
 		{ _field_byte_integer, "unknown" },
 		{ _field_byte_integer, "unknown" },
@@ -330,7 +330,7 @@ namespace blofeld
 
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_bitmap_widgets_block, 65536)
+	V5_TAG_BLOCK(chdt_bitmap_widgets_block, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_enum, "special hud type", &chdt_special_hud_type_definition },
@@ -356,7 +356,7 @@ namespace blofeld
 		{ _field_rectangle_2d, "manual texture coordinates#this defines the visible rectangle for the bitmap if the bit of the same name is set. for ammo counters, l/r should be a multiple of 8, and t/b a multiple of 12." },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_text_widgets_block, 65536)
+	V5_TAG_BLOCK(chdt_text_widgets_block, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_enum, "special hud type", &chdt_special_hud_type_definition },
@@ -428,7 +428,7 @@ namespace blofeld
 		{ _field_string_id, "string" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chdt_hud_widgets_block, 65536)
+	V5_TAG_BLOCK(chdt_hud_widgets_block, 65536)
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_enum, "special hud type", &chdt_special_hud_type_definition },
@@ -484,9 +484,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud, CHUD_TAG, chud_block_block);
-	TAG_BLOCK_FROM_STRUCT(chud_block, 1, chud_struct_definition_struct_definition);
-	TAG_STRUCT(chud_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_TAG, chud_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(chud_block, 1, chud_struct_definition_struct_definition);
+	V5_TAG_STRUCT(chud_struct_definition)
 	{
 		{ _field_explanation, "Reach HUDs Are Annoying", "The inputs are not defined where they were for Halo 3, but instead are in the \"Compiled Widget Data\" block at the bottom, along with the 3 blocks within \"State Data\"."
 			"...Unless the State Data block is part of HUD Widgets not Bitmap / Text Widgets, which THOSE states are defined at the bottom of the HUD Widgets block."
@@ -506,14 +506,14 @@ namespace blofeld
 	TAG_REFERENCE(chud_reference, CHUD_TAG);
 
 
-	TAG_BLOCK(chgd_hud_sounds_block, 65536)
+	V5_TAG_BLOCK(chgd_hud_sounds_block, 65536)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_long_flags, "latched to", &latched_to_flags_definition },
 		{ _field_real, "Scale" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_hud_attributes_block, 65536)
+	V5_TAG_BLOCK(chgd_hud_attributes_block, 65536)
 	{
 		{ _field_byte_flags, "resolution flags", &resolution_flags_definition },
 		{ _field_byte_integer, "unknown" },
@@ -587,7 +587,7 @@ namespace blofeld
 		{ _field_long_integer, "notification line count modifier" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_waypoint_blips_block, 65536)
+	V5_TAG_BLOCK(chgd_waypoint_blips_block, 65536)
 	{
 		{ _field_string_id, "title" },
 		{ _field_string_id, "description" },
@@ -598,7 +598,7 @@ namespace blofeld
 		{ _field_real_argb_color, "secondary color" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_hud_globals_block, 65536)
+	V5_TAG_BLOCK(chgd_hud_globals_block, 65536)
 	{
 		{ _field_long_enum, "biped", &biped_enum_definition },
 		{ _field_real_argb_color, "0 [HUD disabled]" },
@@ -718,13 +718,13 @@ namespace blofeld
 		{ _field_block, "waypoint blips", &chgd_waypoint_blips_block_block },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_shaders_block, 65536)
+	V5_TAG_BLOCK(chgd_shaders_block, 65536)
 	{
 		{ _field_tag_reference, "vertex shader", &global_vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &global_pixel_shader_reference },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_unknown_block, 65536)
+	V5_TAG_BLOCK(chgd_unknown_block, 65536)
 	{
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
@@ -744,7 +744,7 @@ namespace blofeld
 		{ _field_real, "unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_player_training_data_block, 65536)
+	V5_TAG_BLOCK(chgd_player_training_data_block, 65536)
 	{
 		{ _field_string_id, "Display String" },
 		{ _field_short_integer, "Max Display Time" },
@@ -756,16 +756,16 @@ namespace blofeld
 		{ _field_short_integer, "Unknown" },
 		{ _field_terminator }
 	};
-	TAG_BLOCK(chgd_state_triggers_block, 65536)
+	V5_TAG_BLOCK(chgd_state_triggers_block, 65536)
 	{
 		{ _field_long_integer, "trigger index" },
 		{ _field_string, "type" },
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_TAG, chgd_block_block);
-	TAG_BLOCK_FROM_STRUCT(chgd_block, 1, chgd_struct_definition_struct_definition);
-	TAG_STRUCT(chgd_struct_definition)
+	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_TAG, chgd_block_block);
+	V5_TAG_BLOCK_FROM_STRUCT(chgd_block, 1, chgd_struct_definition_struct_definition);
+	V5_TAG_STRUCT(chgd_struct_definition)
 	{
 		{ _field_block, "hud globals", &chgd_hud_globals_block_block },
 		{ _field_block, "shaders", &chgd_shaders_block_block },

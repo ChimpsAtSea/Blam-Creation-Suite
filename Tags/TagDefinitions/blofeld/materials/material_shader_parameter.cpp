@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
+	V5_TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 	{
 		{ _field_long_enum, "type^", &material_animated_parameter_type_enum },
 		{ _field_string_id, "input name" },
@@ -19,7 +19,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
+	V5_TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 	{
 		{ _field_string_id, "parameter name^*" },
 		{ _field_long_enum, "parameter type*", &material_shader_parameter_type_enum },

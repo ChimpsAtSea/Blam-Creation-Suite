@@ -4,54 +4,54 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(planar_fog_parameters, PLANAR_FOG_PARAMETERS_TAG, planar_fog_parameters_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(planar_fog_parameters, PLANAR_FOG_PARAMETERS_TAG, planar_fog_parameters_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(planar_fog_parameters_block, 1, planar_fog_parameters_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(planar_fog_parameters_block, 1, planar_fog_parameters_struct_definition_struct_definition );
 
-	TAG_BLOCK(planar_fog_reference_definition_block, k_short_max)
+	V5_TAG_BLOCK(planar_fog_reference_definition_block, k_short_max)
 	{
 		{ _field_short_integer, "structure design index*" },
 		{ _field_short_integer, "fog index*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_cluster_visibility_definition_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(planar_fog_cluster_visibility_definition_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_block, "attached fogs*", &planar_fog_reference_definition_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_structure_visibility_definition_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(planar_fog_structure_visibility_definition_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_block, "cluster visiblity*", &planar_fog_cluster_visibility_definition_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_zone_set_visibility_definition_block, 1)
+	V5_TAG_BLOCK(planar_fog_zone_set_visibility_definition_block, 1)
 	{
 		{ _field_block, "structure visiblity*", &planar_fog_structure_visibility_definition_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_vertex_block, s_planar_fog_definition::k_maximum_triangle_count*k_vertices_per_triangle_count)
+	V5_TAG_BLOCK(planar_fog_vertex_block, s_planar_fog_definition::k_maximum_triangle_count*k_vertices_per_triangle_count)
 	{
 		{ _field_real_point_3d, "position*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_triangle_planes_block, s_planar_fog_definition::k_maximum_triangle_count)
+	V5_TAG_BLOCK(planar_fog_triangle_planes_block, s_planar_fog_definition::k_maximum_triangle_count)
 	{
 		{ _field_real_plane_3d, "plane*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_triangle_block, k_short_max)
+	V5_TAG_BLOCK(planar_fog_triangle_block, k_short_max)
 	{
 		{ _field_block, "planes*", &planar_fog_triangle_planes_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(planar_fog_definition_block, s_planer_fog_set_definition::k_maximum_planar_fog_count)
+	V5_TAG_BLOCK(planar_fog_definition_block, s_planer_fog_set_definition::k_maximum_planar_fog_count)
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "appearance settings", &global_planar_fog_reference },
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(planar_fog_parameters_struct_definition)
+	V5_TAG_STRUCT(planar_fog_parameters_struct_definition)
 	{
 		{ _field_word_flags, "flags", &planar_fog_flags },
 		{ _field_pad, "ABCDadf", 2 },
@@ -94,7 +94,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(planar_fog_set_definition_struct)
+	V5_TAG_STRUCT(planar_fog_set_definition_struct)
 	{
 		{ _field_block, "planar fogs", &planar_fog_definition_block_block },
 		{ _field_block, "mopp code*!", &mopp_code_definition_block_block },

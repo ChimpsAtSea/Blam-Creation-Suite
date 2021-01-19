@@ -4,11 +4,11 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(light, LIGHT_TAG, light_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(light, LIGHT_TAG, light_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(light_block, 1, light_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(light_block, 1, light_struct_definition_struct_definition );
 
-	TAG_STRUCT(light_color_function_struct)
+	V5_TAG_STRUCT(light_color_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(light_scalar_function_struct)
+	V5_TAG_STRUCT(light_scalar_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(light_struct_definition)
+	V5_TAG_STRUCT(light_struct_definition)
 	{
 		{ _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct_struct_definition },

@@ -4,19 +4,19 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(cui_logic, CUI_LOGIC_TAG, cui_logic_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cui_logic, CUI_LOGIC_TAG, cui_logic_block_block );
 
-	TAG_GROUP_FROM_BLOCK(cui_screen, CUI_SCREEN_TAG, cui_screen_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cui_screen, CUI_SCREEN_TAG, cui_screen_block_block );
 
-	TAG_GROUP_FROM_BLOCK(cui_static_data, CUI_STATIC_DATA_TAG, cui_static_data_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(cui_static_data, CUI_STATIC_DATA_TAG, cui_static_data_block_block );
 
-	TAG_BLOCK(template_instantiation_block_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(template_instantiation_block_definition, k_cui_max_component_count)
 	{
 		{ _field_tag_reference, "screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(component_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(component_definition, k_cui_max_component_count)
 	{
 		{ _field_string_id, "type" },
 		{ _field_string_id, "name^" },
@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(component_index_block_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(component_index_block_definition, k_cui_max_component_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_short_block_index, "component definition index" },
@@ -34,28 +34,28 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_long_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_long_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_real_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_real_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_string_id_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_string_id_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(propertyComponentPtrValue, 8*k_kilo)
+	V5_TAG_BLOCK(propertyComponentPtrValue, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "value" },
@@ -64,35 +64,35 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_tag_reference_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_tag_reference_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "value", &property_tag_reference_value_value_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_text_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_text_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_string, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_argb_color_value, 8*k_kilo)
+	V5_TAG_BLOCK(property_argb_color_value, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_real_argb_color, "value" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(component_properties_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(component_properties_definition, k_cui_max_component_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_struct, "property values", &properties_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_property_keyframe_real_value, 8*k_kilo)
+	V5_TAG_BLOCK(animation_property_keyframe_real_value, 8*k_kilo)
 	{
 		{ _field_long_integer, "duration:milliseconds#the amount of time from the previous keyframe to this keyframe" },
 		{ _field_real, "value#the value when the current time is on this keyframe" },
@@ -100,7 +100,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_component_real_property, 8*k_kilo)
+	V5_TAG_BLOCK(animation_component_real_property, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_enum, "composition", &animation_property_composition_type },
@@ -111,7 +111,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_property_keyframe_argb_color_value, 8*k_kilo)
+	V5_TAG_BLOCK(animation_property_keyframe_argb_color_value, 8*k_kilo)
 	{
 		{ _field_long_integer, "duration:milliseconds#the amount of time from the previous keyframe to this keyframe" },
 		{ _field_real_argb_color, "color#the value when the current time is on this keyframe" },
@@ -119,7 +119,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_component_argb_color_property, 8*k_kilo)
+	V5_TAG_BLOCK(animation_component_argb_color_property, 8*k_kilo)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_enum, "composition", &animation_property_composition_type },
@@ -130,7 +130,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_component_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(animation_component_definition, k_cui_max_component_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_integer, "total milliseconds" },
@@ -139,7 +139,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_definition, k_cui_max_animation_count)
+	V5_TAG_BLOCK(animation_definition, k_cui_max_animation_count)
 	{
 		{ _field_string_id, "name^" },
 
@@ -153,7 +153,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(overlay_definition, k_cui_max_overlay_count)
+	V5_TAG_BLOCK(overlay_definition, k_cui_max_overlay_count)
 	{
 		{ _field_string_id, "resolution" },
 		{ _field_string_id, "theme" },
@@ -162,7 +162,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_editor_only_definition, k_cui_max_property_count)
+	V5_TAG_BLOCK(property_editor_only_definition, k_cui_max_property_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_byte_flags, "flags", &editor_property_info_flags },
@@ -170,21 +170,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(component_editor_only_definition, k_cui_max_component_count)
+	V5_TAG_BLOCK(component_editor_only_definition, k_cui_max_component_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "properties editor only", &property_editor_only_definition_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(animation_editor_only_definition, k_cui_max_animation_count)
+	V5_TAG_BLOCK(animation_editor_only_definition, k_cui_max_animation_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_block, "components editor only", &component_editor_only_definition_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(overlay_editor_only_definition, k_cui_max_overlay_count)
+	V5_TAG_BLOCK(overlay_editor_only_definition, k_cui_max_overlay_count)
 	{
 		{ _field_string_id, "resolution" },
 		{ _field_string_id, "theme" },
@@ -195,7 +195,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(property_binding, k_cui_max_property_binding_count)
+	V5_TAG_BLOCK(property_binding, k_cui_max_property_binding_count)
 	{
 		{ _field_word_flags, "flags", &property_binding_flags },
 		{ _field_enum, "conversion function", &binding_conversion_function_enum_definition },
@@ -206,7 +206,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(binding_conversion_long_comparison_block_definition, k_cui_max_property_binding_count)
+	V5_TAG_BLOCK(binding_conversion_long_comparison_block_definition, k_cui_max_property_binding_count)
 	{
 		{ _field_string_id, "target component name" },
 		{ _field_string_id, "target property name" },
@@ -216,7 +216,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(static_data_column, 128)
+	V5_TAG_BLOCK(static_data_column, 128)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_enum, "type", &property_type },
@@ -224,9 +224,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(static_data_row, 256, properties_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(static_data_row, 256, properties_struct_struct_definition );
 
-	TAG_BLOCK(static_data_table, 128)
+	V5_TAG_BLOCK(static_data_table, 128)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "mock data for component#a component on this screen that gets replaced in simulation with this data table" },
@@ -234,7 +234,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(expression_step, s_cui_expression_step_definition::k_maximum_step_count)
+	V5_TAG_BLOCK(expression_step, s_cui_expression_step_definition::k_maximum_step_count)
 	{
 		{ _field_char_enum, "step type^", &step_type },
 		{ _field_char_enum, "operator", &step_operator },
@@ -245,7 +245,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(expression, 128)
+	V5_TAG_BLOCK(expression, 128)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_string, "expression text" },
@@ -253,26 +253,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(encapsulatedProperties, k_cuiMaxEncapsulationCount)
+	V5_TAG_BLOCK(encapsulatedProperties, k_cuiMaxEncapsulationCount)
 	{
 		{ _field_string_id, "encapsulation name^" },
 		{ _field_block, "properties", &static_data_column_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cui_logic_block, 1, cui_logic_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cui_logic_block, 1, cui_logic_struct_definition_struct_definition );
 
-	TAG_BLOCK(string_file_references, 16)
+	V5_TAG_BLOCK(string_file_references, 16)
 	{
 		{ _field_tag_reference, "string list", &global_multilingual_unicode_string_list_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cui_screen_block, 1, cui_screen_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cui_screen_block, 1, cui_screen_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(cui_static_data_block, 1, cui_static_data_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(cui_static_data_block, 1, cui_static_data_struct_definition_struct_definition );
 
-	TAG_STRUCT(cui_logic_struct_definition)
+	V5_TAG_STRUCT(cui_logic_struct_definition)
 	{
 		{ _field_string_id, "logic name" },
 		{ _field_tag_reference, "string list", &global_multilingual_unicode_string_list_reference },
@@ -280,7 +280,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cui_system)
+	V5_TAG_STRUCT(cui_system)
 	{
 		{ _field_block, "template instantiations", &template_instantiation_block_definition_block },
 		{ _field_block, "components", &component_definition_block },
@@ -298,7 +298,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(properties_struct)
+	V5_TAG_STRUCT(properties_struct)
 	{
 		{ _field_block, "long properties", &property_long_value_block },
 		{ _field_block, "real properties", &property_real_value_block },
@@ -313,21 +313,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(animation_scalar_function)
+	V5_TAG_STRUCT(animation_scalar_function)
 	{
 		{ _field_custom },
 		{ _field_struct, "scalar function", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(static_data_struct)
+	V5_TAG_STRUCT(static_data_struct)
 	{
 		{ _field_block, "columns", &static_data_column_block },
 		{ _field_block, "rows", &static_data_row_block },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cui_screen_struct_definition)
+	V5_TAG_STRUCT(cui_screen_struct_definition)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_tag_reference, "string list", &global_multilingual_unicode_string_list_reference },
@@ -341,7 +341,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(cui_static_data_struct_definition)
+	V5_TAG_STRUCT(cui_static_data_struct_definition)
 	{
 		{ _field_struct, "static data", &static_data_struct_struct_definition },
 		{ _field_terminator }

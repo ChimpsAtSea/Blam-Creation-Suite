@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(SpawnSettings, SPAWNSETTINGS_TAG, SpawnSettings_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(SpawnSettings, SPAWNSETTINGS_TAG, SpawnSettings_block_block );
 
-	TAG_BLOCK(influencerSpawnSettingsBlock, k_spawn_influencer_type_count)
+	V5_TAG_BLOCK(influencerSpawnSettingsBlock, k_spawn_influencer_type_count)
 	{
 		{ _field_long_flags, "Flags", &InfluencerSpawnSettingsFlagsDefinition },
 		{ _field_real, "Minimum Influence:Only used if \'Pin\' flag is set" },
@@ -14,7 +14,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(weaponSpawnInfluenceBlock, 48)
+	V5_TAG_BLOCK(weaponSpawnInfluenceBlock, 48)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference$9 },
 		{ _field_real, "full weight range:wu" },
@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(vehicleSpawnInfluenceBlock, k_vehicle_spawn_influencer_maximum_count)
+	V5_TAG_BLOCK(vehicleSpawnInfluenceBlock, k_vehicle_spawn_influencer_maximum_count)
 	{
 		{ _field_tag_reference, "vehicle", &vehicle_reference$4 },
 		{ _field_real, "box width:wu" },
@@ -36,7 +36,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(projectileSpawnInfluenceBlock, k_projectile_spawn_influencer_maximum_count)
+	V5_TAG_BLOCK(projectileSpawnInfluenceBlock, k_projectile_spawn_influencer_maximum_count)
 	{
 		{ _field_tag_reference, "projectile", &projectile_reference$3 },
 		{ _field_real, "lead time:seconds" },
@@ -45,16 +45,16 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(equipmentSpawnInfluenceBlock, k_equipment_spawn_influencer_maximum_count)
+	V5_TAG_BLOCK(equipmentSpawnInfluenceBlock, k_equipment_spawn_influencer_maximum_count)
 	{
 		{ _field_tag_reference, "equipment", &equipment_reference$5 },
 		{ _field_real, "weight" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(SpawnSettings_block, 1, SpawnSettings_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(SpawnSettings_block, 1, SpawnSettings_struct_definition_struct_definition );
 
-	TAG_STRUCT(SpawnSettings_struct_definition)
+	V5_TAG_STRUCT(SpawnSettings_struct_definition)
 	{
 		{ _field_real, "minimum spawn time:seconds#Absolute floor.  Used to put a few-frame delay between death and instaspawn.  Will not override longer minimum times." },
 		{ _field_real, "min acceptable spawn score#spawns with a score lower than this will never be used" },

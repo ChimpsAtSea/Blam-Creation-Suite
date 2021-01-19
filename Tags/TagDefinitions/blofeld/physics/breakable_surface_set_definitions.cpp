@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(breakable_surface_set_block, k_maximum_breakable_surface_sets)
+	V5_TAG_BLOCK(breakable_surface_set_block, k_maximum_breakable_surface_sets)
 	{
 		{ _field_array, "supported bitfield!", &supported_bitfield_array },
 		{ _field_terminator }

@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(physics_model, PHYSICS_MODEL_TAG, physics_model_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(physics_model, PHYSICS_MODEL_TAG, physics_model_block_block );
 
-	TAG_BLOCK(spheres_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(spheres_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct_struct_definition },
@@ -20,7 +20,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pills_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(pills_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct_struct_definition },
@@ -35,7 +35,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(lists_block, k_maximum_rigid_bodies_per_physics_model)
+	V5_TAG_BLOCK(lists_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2_struct_definition },
 
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(list_shapes_block, k_maximum_list_shapes_per_physics_model)
+	V5_TAG_BLOCK(list_shapes_block, k_maximum_list_shapes_per_physics_model)
 	{
 		{ _field_struct, "shape reference", &havok_shape_reference_struct_struct_definition },
 		{ _field_long_integer, "collision filter*" },
@@ -78,7 +78,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_damped_spring_motor_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(physics_model_damped_spring_motor_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "maximum force#0 defaults to k_real_max" },
@@ -89,7 +89,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_position_motor_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(physics_model_position_motor_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "maximum force" },
@@ -102,7 +102,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(phantom_types_block, k_maximum_phantom_types_per_physics_model)
+	V5_TAG_BLOCK(phantom_types_block, k_maximum_phantom_types_per_physics_model)
 	{
 		{ _field_long_flags, "flags", &PhantomFlagsV2 },
 		{ _field_real, "brittle timer:seconds#objects in this phantom volume will be set to brittle collision damage for this amount of time." },
@@ -141,13 +141,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_powered_chain_nodes_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(physics_model_powered_chain_nodes_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_short_block_index, "node" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_powered_chain_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(physics_model_powered_chain_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_enum, "constraint type", &rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "constraint index" },
@@ -157,14 +157,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_powered_chains_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(physics_model_powered_chains_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_block, "nodes", &physics_model_powered_chain_nodes_block_block },
 		{ _field_block, "constraints", &physics_model_powered_chain_constraints_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_ragdoll_motors_block, 1)
+	V5_TAG_BLOCK(physics_model_ragdoll_motors_block, 1)
 	{
 		{ _field_explanation, "twist", "" },
 		{ _field_struct, "twist motor", &physics_model_motor_reference_struct_struct_definition },
@@ -175,13 +175,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_limited_hinge_motors_block, 1)
+	V5_TAG_BLOCK(physics_model_limited_hinge_motors_block, 1)
 	{
 		{ _field_struct, "motor", &physics_model_motor_reference_struct_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_constraint_edge_constraint_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(physics_model_constraint_edge_constraint_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_enum, "type*!", &rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "index*!" },
@@ -192,7 +192,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(physics_model_node_constraint_edge_block, k_maximum_node_constraint_edges_per_physics_model)
+	V5_TAG_BLOCK(physics_model_node_constraint_edge_block, k_maximum_node_constraint_edges_per_physics_model)
 	{
 		{ _field_short_integer, "runtime material type a!" },
 		{ _field_short_integer, "runtime material type b!" },
@@ -204,7 +204,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(rigid_bodies_block, k_maximum_rigid_bodies_per_physics_model)
+	V5_TAG_BLOCK(rigid_bodies_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_short_block_index, "node*" },
 		{ _field_short_block_index, "region*" },
@@ -273,7 +273,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(materials_block$3, k_maximum_materials_per_physics_model)
+	V5_TAG_BLOCK(materials_block$3, k_maximum_materials_per_physics_model)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_byte_flags, "flags", &physics_material_flags },
@@ -286,7 +286,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(multi_spheres_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(multi_spheres_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "sphere rep shape", &havok_shape_struct_struct_definition },
@@ -296,7 +296,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(boxes_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(boxes_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "box shape", &havok_convex_shape_struct_struct_definition },
@@ -311,7 +311,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(triangles_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(triangles_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "triangle shape", &havok_convex_shape_struct_struct_definition },
@@ -330,7 +330,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(polyhedra_block, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(polyhedra_block, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_struct, "polyhedron shape", &havok_convex_shape_struct_struct_definition },
@@ -378,7 +378,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(polyhedron_four_vectors_block, k_maximum_four_vectors_per_physics_model)
+	V5_TAG_BLOCK(polyhedron_four_vectors_block, k_maximum_four_vectors_per_physics_model)
 	{
 		{ _field_real_vector_3d, "four vectors x*" },
 		{ _field_real, "havok w four vectors x*!" },
@@ -389,14 +389,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(polyhedron_plane_equations_block, k_maximum_plane_equations_per_physics_model)
+	V5_TAG_BLOCK(polyhedron_plane_equations_block, k_maximum_plane_equations_per_physics_model)
 	{
 		{ _field_real_vector_3d, "plane equations*!" },
 		{ _field_real, "havok w plane equations*!!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mass_distributions_block, k_maximum_inertia_tensors_per_physics_model)
+	V5_TAG_BLOCK(mass_distributions_block, k_maximum_inertia_tensors_per_physics_model)
 	{
 		{ _field_real_vector_3d, "center of mass*" },
 		{ _field_real, "havok w center of mass*!" },
@@ -409,7 +409,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(mopps_block, k_maximum_rigid_bodies_per_physics_model) // #NOTE: same as mopp_bv_tree_shape_struct
+	V5_TAG_BLOCK(mopps_block, k_maximum_rigid_bodies_per_physics_model) // #NOTE: same as mopp_bv_tree_shape_struct
 	{
 		{ _field_struct, "base", &havok_shape_struct_2010_2_struct_definition },
 		{ _field_pad, "m_bvTreeType", 1 },
@@ -447,14 +447,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(hinge_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(hinge_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "JENFOXHY", 4 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ragdoll_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(ragdoll_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "OVIM", 4 },
@@ -468,27 +468,27 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(rigid_body_indices_block, k_maximum_rigid_bodies_per_physics_model)
+	V5_TAG_BLOCK(rigid_body_indices_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_short_block_index, "rigid body^*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(permutations_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+	V5_TAG_BLOCK(permutations_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_block, "rigid bodies", &rigid_body_indices_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(regions_block, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_BLOCK(regions_block, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_block, "permutations", &permutations_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(nodes_block, MAXIMUM_NODES_PER_MODEL)
+	V5_TAG_BLOCK(nodes_block, MAXIMUM_NODES_PER_MODEL)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_word_flags, "flags", &nodes_flags },
@@ -498,14 +498,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(point_to_path_curve_point_block, 1024)
+	V5_TAG_BLOCK(point_to_path_curve_point_block, 1024)
 	{
 		{ _field_real_point_3d, "position*!" },
 		{ _field_real, "t value*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(point_to_path_curve_block, k_maximum_rigid_bodies_per_physics_model)
+	V5_TAG_BLOCK(point_to_path_curve_block, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_short_block_index, "node index*!" },
@@ -514,7 +514,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(limited_hinge_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(limited_hinge_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "TC", 4 },
@@ -524,14 +524,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ball_and_socket_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(ball_and_socket_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "UPDLSKB", 4 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(stiff_spring_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(stiff_spring_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "KGB", 4 },
@@ -539,7 +539,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(prismatic_constraints_block, k_maximum_constraints_per_physics_model)
+	V5_TAG_BLOCK(prismatic_constraints_block, k_maximum_constraints_per_physics_model)
 	{
 		{ _field_struct, "constraint bodies*!", &constraint_bodies_struct_struct_definition },
 		{ _field_pad, "XVEPD", 4 },
@@ -549,7 +549,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(phantoms_block, k_maximum_phantoms_per_physics_model)
+	V5_TAG_BLOCK(phantoms_block, k_maximum_phantoms_per_physics_model)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
 		{ _field_struct, "bv shape", &havok_shape_struct_2010_2_struct_definition },
@@ -574,7 +574,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(MoppSerializedHavokDataBlock, k_maximum_rigid_bodies_per_physics_model)
+	V5_TAG_BLOCK(MoppSerializedHavokDataBlock, k_maximum_rigid_bodies_per_physics_model)
 	{
 		{ _field_struct, "base", &havok_primitive_struct_struct_definition },
 		{ _field_long_integer, "version*" },
@@ -584,13 +584,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(RigidBodySerializedShapesBlock, k_maximum_shapes_per_physics_model)
+	V5_TAG_BLOCK(RigidBodySerializedShapesBlock, k_maximum_shapes_per_physics_model)
 	{
 		{ _field_block, "Mopp Serialized Havok Data", &MoppSerializedHavokDataBlock_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(physics_model_block, 1, physics_model_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(physics_model_block, 1, physics_model_struct_definition_struct_definition );
 
 	TAG_ARRAY(multi_sphere_vector_storage, 8)
 	{
@@ -599,7 +599,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_primitive_struct)
+	V5_TAG_STRUCT(havok_primitive_struct)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_char_block_index, "material*" },
@@ -617,7 +617,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_convex_shape_struct)
+	V5_TAG_STRUCT(havok_convex_shape_struct)
 	{
 		{ _field_struct, "base", &havok_shape_struct_struct_definition },
 		{ _field_real, "radius*!" },
@@ -628,7 +628,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_shape_struct)
+	V5_TAG_STRUCT(havok_shape_struct)
 	{
 		// hkBaseObject
 		{ _field_pointer, "field pointer skip!~" },
@@ -653,7 +653,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_convex_translate_shape_struct)
+	V5_TAG_STRUCT(havok_convex_translate_shape_struct)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
 		{ _field_pointer, "field pointer skip!~" },
@@ -664,14 +664,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_shape_reference_struct)
+	V5_TAG_STRUCT(havok_shape_reference_struct)
 	{
 		{ _field_enum, "shape type*", &shape_enum },
 		{ _field_custom_short_block_index, "shape*" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_shape_collection_struct_2010_2)
+	V5_TAG_STRUCT(havok_shape_collection_struct_2010_2)
 	{
 		{ _field_struct, "base", &havok_shape_struct_2010_2_struct_definition },
 		{ _field_pointer, "field pointer skip!~" },
@@ -685,7 +685,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_shape_struct_2010_2)
+	V5_TAG_STRUCT(havok_shape_struct_2010_2)
 	{
 		// hkBaseObject
 		{ _field_pointer, "field pointer skip!~" },
@@ -707,7 +707,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(physics_model_struct_definition)
+	V5_TAG_STRUCT(physics_model_struct_definition)
 	{
 		{ _field_long_flags, "flags", &physics_model_flags },
 		{ _field_real, "mass scale#scales the mass of each rigid body.  If you leave this field as 0, then it will be calculated from the total mass below." },
@@ -756,14 +756,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(physics_model_motor_reference_struct)
+	V5_TAG_STRUCT(physics_model_motor_reference_struct)
 	{
 		{ _field_enum, "motor type", &physics_model_motor_types_enum },
 		{ _field_custom_short_block_index, "index" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(havok_convex_transform_shape_struct)
+	V5_TAG_STRUCT(havok_convex_transform_shape_struct)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct_struct_definition },
 		{ _field_pointer, "field pointer skip!~" },
@@ -780,7 +780,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(constraint_bodies_struct)
+	V5_TAG_STRUCT(constraint_bodies_struct)
 	{
 		{ _field_string_id, "name^*!" },
 		{ _field_short_block_index, "node a*!" },

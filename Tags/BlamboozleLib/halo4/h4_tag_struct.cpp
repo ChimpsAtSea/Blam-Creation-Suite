@@ -1,26 +1,34 @@
 #include "blamboozlelib-private-pch.h"
 
 c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, uint32_t offset) :
+	pretty_name(h4_va_to_pointer(h4_data, struct_header->pretty_name)),
 	name(h4_va_to_pointer(h4_data, struct_header->name)),
-	display_name(h4_va_to_pointer(h4_data, struct_header->display_name)),
 	filepath(h4_va_to_pointer(h4_data, struct_header->filepath)),
 	line_number(struct_header->line_number),
 	fields(h4_va_to_pointer<s_h4_tag_field_definition>(h4_data, struct_header->fields_address)),
 	struct_header(struct_header),
 	size(struct_header->size),
 	size_string(h4_va_to_pointer(h4_data, struct_header->size_string_address)),
-	unknown(struct_header->unknown),
-	unknown_tag0(struct_header->unknown_tag0),
-	unknown_tag1(struct_header->unknown_tag1),
+	alignment_bits(struct_header->alignment_bits),
+	legacy_struct_tag{ struct_header->legacy_struct_tag[0] , struct_header->legacy_struct_tag[1] , struct_header->legacy_struct_tag[2] },
 	tag_fields(),
-	offset(offset)
+	offset(offset),
+	runtime_flags(struct_header->runtime_flags),
+	memory_attributes{ struct_header->memory_attributes.memory_type, struct_header->memory_attributes.usage_flags },
+	persistent_identifier
+	{ 
+		struct_header->persistent_identifier.data[0], 
+		struct_header->persistent_identifier.data[1], 
+		struct_header->persistent_identifier.data[2], 
+		struct_header->persistent_identifier.data[3] 
+	}
 {
-	//ASSERT(alignment == 0);
-	if (unknown)
+	ASSERT(fields != nullptr);
+
+	if (alignment_bits != 0)
 	{
 		debug_point;
 	}
-	ASSERT(fields != nullptr);
 
 	const s_h4_tag_field_definition* field_definition = fields;
 	uint32_t field_index = 0;
@@ -76,5 +84,4 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 		field_index++;
 		field_type = field_definition->field_type;
 	}
-
 }

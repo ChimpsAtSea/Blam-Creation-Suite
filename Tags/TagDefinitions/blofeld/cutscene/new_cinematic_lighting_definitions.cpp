@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
 
-	TAG_BLOCK(cinematic_sh_light_block, 16)
+	V5_TAG_BLOCK(cinematic_sh_light_block, 16)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
 		{ _field_custom, "Dynamic Light" },
@@ -21,7 +21,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cinematic_dynamic_light_block, 16)
+	V5_TAG_BLOCK(cinematic_dynamic_light_block, 16)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
 		{ _field_custom, "Dynamic Light" },
@@ -34,9 +34,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
 
-	TAG_STRUCT(new_cinematic_lighting_struct_definition)
+	V5_TAG_STRUCT(new_cinematic_lighting_struct_definition)
 	{
 		{ _field_version_greater_or_equal, _engine_type_haloreach, 38 },
 		{ _field_custom, "Cinematic Lighting" },

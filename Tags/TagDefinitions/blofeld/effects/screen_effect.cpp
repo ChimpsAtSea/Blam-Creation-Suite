@@ -4,9 +4,9 @@
 namespace blofeld
 {
 
-	TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block );
 
-	TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effects_per_tag)
+	V5_TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effects_per_tag)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_word_flags, "flags", &area_screen_effect_flags_definition },
@@ -65,9 +65,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
 
-	TAG_STRUCT(area_screen_effect_struct_definition)
+	V5_TAG_STRUCT(area_screen_effect_struct_definition)
 	{
 		{ _field_word_flags, "global flags", &area_screen_effect_global_flags_definition },
 		{ _field_word_flags, "global hidden flags!", &area_screen_effect_global_hidden_flags_definition },
@@ -75,14 +75,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(screen_effect_scalar_function_struct)
+	V5_TAG_STRUCT(screen_effect_scalar_function_struct)
 	{
 		{ _field_custom },
 		{ _field_struct, "Mapping", &mapping_function_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(screen_effect_scalar_object_function_struct)
+	V5_TAG_STRUCT(screen_effect_scalar_object_function_struct)
 	{
 		{ _field_string_id, "Input Variable!" },
 		{ _field_string_id, "Range Variable!" },

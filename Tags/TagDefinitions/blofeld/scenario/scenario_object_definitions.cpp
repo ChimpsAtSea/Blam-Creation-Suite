@@ -4,19 +4,19 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(scenario_object_node_orientations_bit_vector_block, 2*(((((MAXIMUM_NODES_PER_MODEL)+(k_int32_bits-1))>>k_int32_bits_bits))*sizeof(int32)))
+	V5_TAG_BLOCK(scenario_object_node_orientations_bit_vector_block, 2*(((((MAXIMUM_NODES_PER_MODEL)+(k_int32_bits-1))>>k_int32_bits_bits))*sizeof(int32)))
 	{
 		{ _field_byte_integer, "data*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_object_node_orientations_orientations_block, MAXIMUM_NODES_PER_MODEL*7)
+	V5_TAG_BLOCK(scenario_object_node_orientations_orientations_block, MAXIMUM_NODES_PER_MODEL*7)
 	{
 		{ _field_short_integer, "number*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_object_node_orientations_block, 1)
+	V5_TAG_BLOCK(scenario_object_node_orientations_block, 1)
 	{
 		{ _field_short_integer, "node count*!" },
 		{ _field_pad, "paddington", 2 },
@@ -25,13 +25,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scriptListBlock, k_maximum_hs_source_files_per_context)
+	V5_TAG_BLOCK(scriptListBlock, k_maximum_hs_source_files_per_context)
 	{
 		{ _field_string_id, "script name^" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(commandLinkBlock, CommandDispatcher::MAX_LINKS)
+	V5_TAG_BLOCK(commandLinkBlock, CommandDispatcher::MAX_LINKS)
 	{
 		{ _field_long_enum, "Trigger^", &internal_event_enum_definition },
 		{ _field_long_block_index, "Target" },
@@ -41,14 +41,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(pathfinding_object_index_list_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(pathfinding_object_index_list_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_short_integer, "bsp index" },
 		{ _field_short_integer, "pathfinding object index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_scenery_block, MAXIMUM_SCENERY_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_scenery_block, MAXIMUM_SCENERY_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -61,13 +61,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &scenery_reference$4 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_biped_block, MAXIMUM_BIPED_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_biped_block, MAXIMUM_BIPED_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -83,13 +83,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_biped_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_biped_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &biped_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_vehicle_block, MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_vehicle_block, MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -106,13 +106,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_vehicle_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_vehicle_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &vehicle_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_equipment_block, MAXIMUM_EQUIPMENT_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_equipment_block, MAXIMUM_EQUIPMENT_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -124,13 +124,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_equipment_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_equipment_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &equipment_reference$3 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_weapon_block, MAXIMUM_WEAPON_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_weapon_block, MAXIMUM_WEAPON_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -143,13 +143,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_weapon_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_weapon_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &weapon_reference$7 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(device_group_block, MAXIMUM_DEVICE_GROUPS_PER_SCENARIO)
+	V5_TAG_BLOCK(device_group_block, MAXIMUM_DEVICE_GROUPS_PER_SCENARIO)
 	{
 		{ _field_string, "name^" },
 		{ _field_real, "initial value:[0,1]" },
@@ -159,7 +159,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_machine_block, MAXIMUM_MACHINE_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_machine_block, MAXIMUM_MACHINE_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -173,13 +173,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_machine_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_machine_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &device_machine_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_terminal_block, MAXIMUM_TERMINAL_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_terminal_block, MAXIMUM_TERMINAL_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -192,13 +192,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_terminal_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_terminal_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &device_terminal_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_control_block, MAXIMUM_CONTROL_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_control_block, MAXIMUM_CONTROL_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -212,13 +212,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_control_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_control_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &device_control_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ScenarioDispenserBlock, MAXIMUM_DISPENSER_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(ScenarioDispenserBlock, MAXIMUM_DISPENSER_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -232,13 +232,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(ScenarioDispenserPaletteBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(ScenarioDispenserPaletteBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &device_dispenser_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_sound_scenery_block, MAXIMUM_SOUND_SCENERY_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_sound_scenery_block, MAXIMUM_SOUND_SCENERY_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -249,13 +249,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_sound_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_sound_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &sound_scenery_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_giant_block, MAXIMUM_GIANT_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_giant_block, MAXIMUM_GIANT_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -268,13 +268,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_giant_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_giant_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &giant_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_effect_scenery_block, MAXIMUM_EFFECT_SCENERY_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_effect_scenery_block, MAXIMUM_EFFECT_SCENERY_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -289,13 +289,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_effect_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_effect_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &effect_scenery_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_spawner_block, MAXIMUM_SPAWNER_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_spawner_block, MAXIMUM_SPAWNER_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -308,13 +308,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_spawner_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_spawner_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &spawner_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_requisition_palette_block, MAXIMUM_REQUISITION_MENU_SIZE)
+	V5_TAG_BLOCK(scenario_requisition_palette_block, MAXIMUM_REQUISITION_MENU_SIZE)
 	{
 		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
 		{ _field_tag_reference, "name^", &scenario_requisition_palette_block_name_reference },
@@ -342,7 +342,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_crate_block, MAXIMUM_CRATE_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_crate_block, MAXIMUM_CRATE_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -355,13 +355,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_crate_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_crate_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &crate_reference$6 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_creature_block, MAXIMUM_CREATURE_DATUMS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_creature_block, MAXIMUM_CREATURE_DATUMS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "type" },
@@ -371,13 +371,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_creature_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_creature_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
 		{ _field_tag_reference, "name^", &creature_reference$2 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_object_id_struct)
+	V5_TAG_STRUCT(scenario_object_id_struct)
 	{
 		{ _field_long_integer, "unique id*" },
 		{ _field_short_block_index, "origin bsp index*" },
@@ -386,14 +386,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_object_reference_struct)
+	V5_TAG_STRUCT(scenario_object_reference_struct)
 	{
 		{ _field_short_integer, "object index*" },
 		{ _field_short_integer, "scenario object index*" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_object_datum_struct)
+	V5_TAG_STRUCT(scenario_object_datum_struct)
 	{
 		{ _field_custom },
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
@@ -444,7 +444,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_object_parent_struct)
+	V5_TAG_STRUCT(scenario_object_parent_struct)
 	{
 		{ _field_pad, "der", 2 },
 		{ _field_short_block_index, "parent object#if an object with this name exists, we attach to it as a child" },
@@ -454,7 +454,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_object_permutation_struct)
+	V5_TAG_STRUCT(scenario_object_permutation_struct)
 	{
 		{ _field_string_id, "variant name" },
 		{ _field_byte_flags, "active change colors", &scenario_object_active_change_color_flags },
@@ -466,7 +466,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_scenery_datum_struct_v4)
+	V5_TAG_STRUCT(scenario_scenery_datum_struct_v4)
 	{
 		{ _field_custom },
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
@@ -477,7 +477,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_multiplayer_object_struct)
+	V5_TAG_STRUCT(scenario_multiplayer_object_struct)
 	{
 		{ _field_version_less_or_equal, _engine_type_haloreach, 23 },
 		{ _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
@@ -536,14 +536,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_unit_struct)
+	V5_TAG_STRUCT(scenario_unit_struct)
 	{
 		{ _field_real, "body vitality:[0,1]" },
 		{ _field_long_flags, "flags", &scenario_unit_datum_flags },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_vehicle_datum_struct)
+	V5_TAG_STRUCT(scenario_vehicle_datum_struct)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_pad, "post-pathfinding", 2 },
@@ -551,13 +551,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_equipment_datum_struct)
+	V5_TAG_STRUCT(scenario_equipment_datum_struct)
 	{
 		{ _field_long_flags, "equipment flags", &scenario_equipment_flags_definition },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_weapon_datum_struct)
+	V5_TAG_STRUCT(scenario_weapon_datum_struct)
 	{
 		{ _field_short_integer, "rounds left" },
 		{ _field_short_integer, "rounds loaded" },
@@ -565,7 +565,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_device_struct)
+	V5_TAG_STRUCT(scenario_device_struct)
 	{
 		{ _field_short_block_index, "power group" },
 		{ _field_short_block_index, "position group" },
@@ -573,7 +573,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_machine_struct_v3)
+	V5_TAG_STRUCT(scenario_machine_struct_v3)
 	{
 		{ _field_long_flags, "flags", &scenario_machine_flags },
 		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
@@ -582,13 +582,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_terminal_struct)
+	V5_TAG_STRUCT(scenario_terminal_struct)
 	{
 		{ _field_long_integer, "pah pah" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_control_struct)
+	V5_TAG_STRUCT(scenario_control_struct)
 	{
 		{ _field_long_flags, "flags", &scenario_control_flags },
 		{ _field_short_integer, "DON\'T TOUCH THIS!*" },
@@ -598,14 +598,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(ScenarioDispenserStruct)
+	V5_TAG_STRUCT(ScenarioDispenserStruct)
 	{
 		{ _field_byte_flags, "flags", &ScenarioDispenserFlags },
 		{ _field_pad, "pad", 3 },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(sound_scenery_datum_struct)
+	V5_TAG_STRUCT(sound_scenery_datum_struct)
 	{
 		{ _field_long_enum, "volume type", &sound_volume_type_enumeration },
 		{ _field_real, "height" },
@@ -615,7 +615,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_giant_datum_struct)
+	V5_TAG_STRUCT(scenario_giant_datum_struct)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_pad, "post-pathfinding", 2 },
@@ -623,25 +623,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_effect_scenery_datum_struct)
+	V5_TAG_STRUCT(scenario_effect_scenery_datum_struct)
 	{
 		{ _field_real, "effect size scale" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(ScenarioEntityStruct)
+	V5_TAG_STRUCT(ScenarioEntityStruct)
 	{
 		{ _field_real, "Entity Placeholder" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(ScenarioSpawnerStruct)
+	V5_TAG_STRUCT(ScenarioSpawnerStruct)
 	{
 		{ _field_real, "Spawner Placeholder" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_crate_datum_struct)
+	V5_TAG_STRUCT(scenario_crate_datum_struct)
 	{
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_pad, "post-path-policy", 2 },

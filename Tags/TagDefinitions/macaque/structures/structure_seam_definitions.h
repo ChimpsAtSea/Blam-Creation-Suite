@@ -1,0 +1,43 @@
+#pragma once
+
+namespace blofeld
+{
+
+namespace macaque
+{
+
+	constexpr unsigned long STRUCTURE_SEAMS_TAG = 'stse';
+	extern s_tag_group structure_seams_group; // structure_seams_block
+
+
+	extern s_tag_block_definition structure_seams_block;
+	extern s_tag_block_definition structure_seam_mapping_block;
+	extern s_tag_struct_definition structure_seam_mapping_block_struct_definition; // structure_seam_mapping_block
+	extern s_tag_block_definition structure_seam_edge_mapping_block;
+	extern s_tag_struct_definition structure_seam_edge_mapping_block_struct_definition; // structure_seam_edge_mapping_block
+	extern s_tag_block_definition structure_seam_cluster_mapping_block;
+	extern s_tag_struct_definition structure_seam_cluster_mapping_block_struct_definition; // structure_seam_cluster_mapping_block
+	extern s_tag_block_definition structure_seam_block;
+	extern s_tag_struct_definition structure_seam_block_struct_definition; // structure_seam_block
+	extern s_tag_block_definition structure_seam_original_vertex_block;
+	extern s_tag_struct_definition structure_seam_original_vertex_block_struct_definition; // structure_seam_original_vertex_block
+	extern s_tag_block_definition structure_seam_original_vertex_plane_normals_block;
+	extern s_tag_struct_definition structure_seam_original_vertex_plane_normals_block_struct_definition; // structure_seam_original_vertex_plane_normals_block
+	extern s_tag_block_definition structure_seam_final_planes_block;
+	extern s_tag_struct_definition structure_seam_final_planes_block_struct_definition; // structure_seam_final_planes_block
+	extern s_tag_block_definition structure_seam_final_points_block;
+	extern s_tag_struct_definition structure_seam_final_points_block_struct_definition; // structure_seam_final_points_block
+	extern s_tag_block_definition structure_seam_final_triangles_block;
+	extern s_tag_struct_definition structure_seam_final_triangles_block_struct_definition; // structure_seam_final_triangles_block
+	extern s_tag_block_definition structure_seam_final_edges_block;
+	extern s_tag_struct_definition structure_seam_final_edges_block_struct_definition; // structure_seam_final_edges_block
+
+	extern s_tag_struct_definition structure_seams_struct_definition; // tag group
+	extern s_tag_struct_definition structure_seam_identifier_struct;
+	extern s_tag_struct_definition structure_seam_original_geometry_struct;
+	extern s_tag_struct_definition structure_seam_final_geometry_struct;
+
+} // namespace macaque
+
+} // namespace blofeld
+

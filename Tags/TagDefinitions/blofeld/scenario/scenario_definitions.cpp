@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_GROUP(performance_template, PERFORMANCE_TEMPLATE_TAG)
+	V5_TAG_GROUP(performance_template, PERFORMANCE_TEMPLATE_TAG)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "script name#The name of a custom script used to drive the performance. If none is given, a default script is uses that goes through the lines in sequence" },
@@ -14,11 +14,11 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_GROUP_FROM_BLOCK(scenario, SCENARIO_TAG, scenario_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario, SCENARIO_TAG, scenario_block_block );
 
-	TAG_GROUP_FROM_BLOCK(scenario_required_resource, SCENARIO_REQUIRED_RESOURCE_TAG, scenario_required_resource_block_block );
+	V5_TAG_GROUP_FROM_BLOCK(scenario_required_resource, SCENARIO_REQUIRED_RESOURCE_TAG, scenario_required_resource_block_block );
 
-	TAG_BLOCK(scenario_profiles_block, MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_profiles_block, MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK)
 	{
 		{ _field_string, "name^" },
 		{ _field_real_fraction, "starting health damage:[0,1]" },
@@ -59,7 +59,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(performance_template_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
+	V5_TAG_BLOCK(performance_template_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
 	{
 		{ _field_long_flags, "flags", &scenario_performance_actor_flags_definition },
 		{ _field_string_id, "Actor name^" },
@@ -72,7 +72,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_script_fragment_block, MAXIMUM_SCRIPT_FRAGMENTS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_script_fragment_block, MAXIMUM_SCRIPT_FRAGMENTS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_enum, "fragment placement", &scenario_performance_fragment_placement_definition },
 		{ _field_enum, "fragment type", &scenario_performance_fragment_type_definition },
@@ -81,7 +81,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_point_interaction_block, MAXIMUM_POINT_INTERACTIONS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_point_interaction_block, MAXIMUM_POINT_INTERACTIONS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_long_flags, "interaction type", &scenario_performance_line_point_interaction_type_definition },
 		{ _field_custom_short_block_index, "point" },
@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_animation_block, MAXIMUM_ANIMATIONS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_animation_block, MAXIMUM_ANIMATIONS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_word_flags, "flags", &scenario_performance_line_animation_flags_definition },
 		{ _field_pad, "pad0", 2 },
@@ -104,14 +104,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_sync_action_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
+	V5_TAG_BLOCK(scenario_performance_line_sync_action_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
 	{
 		{ _field_custom_short_block_index, "Actor type" },
 		{ _field_pad, "pad", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_sync_action_block, MAXIMUM_SYNC_ACTIONS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_sync_action_block, MAXIMUM_SYNC_ACTIONS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_string_id, "sync action name" },
 		{ _field_real, "probability" },
@@ -121,7 +121,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_scenery_sync_action_block, MAXIMUM_SCENERY_SYNC_ACTIONS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_scenery_sync_action_block, MAXIMUM_SCENERY_SYNC_ACTIONS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_string_id, "scenery object name" },
 		{ _field_string_id, "sync action name" },
@@ -133,14 +133,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_dialog_block, MAXIMUM_DIALOG_LINES_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_dialog_block, MAXIMUM_DIALOG_LINES_PER_PERFORMANCE_LINE)
 	{
 		{ _field_string_id, "dialog" },
 		{ _field_real, "probability" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_sound_block, MAXIMUM_SOUNDS_PER_PERFORMANCE_LINE)
+	V5_TAG_BLOCK(scenario_performance_line_sound_block, MAXIMUM_SOUNDS_PER_PERFORMANCE_LINE)
 	{
 		{ _field_tag_reference, "sound effect", &global_sound_reference },
 		{ _field_custom_short_block_index, "attach to point" },
@@ -149,7 +149,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_line_block, MAXIMUM_LINES_PER_PERFORMANCE)
+	V5_TAG_BLOCK(scenario_performance_line_block, MAXIMUM_LINES_PER_PERFORMANCE)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_custom_short_block_index, "Actor" },
@@ -167,7 +167,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(performance_template_point_block, 32)
+	V5_TAG_BLOCK(performance_template_point_block, 32)
 	{
 		{ _field_string_id, "Point name^" },
 		{ _field_real_vector_3d, "Relative Position#The offset of the performance point from the center of the performance" },
@@ -175,19 +175,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioBspReferenceBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenarioBspReferenceBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "structure design^", &structureBspReferenceNonDependency },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_child_references_block, MAXIMUM_CHILD_SCENARIOS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_child_references_block, MAXIMUM_CHILD_SCENARIOS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "tag^", &Tag::Reference<struct Scenario>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_structure_bsp_reference_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_structure_bsp_reference_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "structure bsp^", &structure_bsp_reference_non_resolving },
 		{ _field_tag_reference, "local structure bsp^*!", &structure_bsp_reference_non_resolving },
@@ -234,14 +234,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_design_reference_block, MAXIMUM_STRUCTURE_DESIGNS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_design_reference_block, MAXIMUM_STRUCTURE_DESIGNS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "structure design^", &structure_design_reference },
 		{ _field_tag_reference, "local structure design^*!", &structure_design_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_sky_reference_block, MAXIMUM_SKIES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_sky_reference_block, MAXIMUM_SKIES_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "sky", &scenery_reference$3 },
 		{ _field_real, "cloud scale#mapping to the world unit" },
@@ -260,38 +260,38 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_bsp_checksum_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_zone_set_bsp_checksum_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_dword_integer, "bsp checksum*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_cluster_pvs_bit_vector_block, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	V5_TAG_BLOCK(scenario_zone_set_cluster_pvs_bit_vector_block, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
 		{ _field_dword_integer, "dword*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_bsp_bits_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_zone_set_bsp_bits_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_block, "bits*!", &scenario_zone_set_cluster_pvs_bit_vector_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_cluster_pvs_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_zone_set_cluster_pvs_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_block, "cluster pvs bit vectors*!", &scenario_zone_set_bsp_bits_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_cluster_reference_block, MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_zone_set_cluster_reference_block, MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_char_integer, "bsp index*!" },
 		{ _field_byte_integer, "cluster index*!" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_bsp_seam_cluster_mappings_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_zone_set_bsp_seam_cluster_mappings_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_block, "root clusters*!", &scenario_zone_set_cluster_reference_block_block },
 		{ _field_block, "attached clusters*!", &scenario_zone_set_cluster_reference_block_block },
@@ -299,19 +299,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(cluster_sky_index_block, 65536)
+	V5_TAG_BLOCK(cluster_sky_index_block, 65536)
 	{
 		{ _field_char_block_index, "sky index" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_bsp_pvs_unknown_block, 65536)
+	V5_TAG_BLOCK(scenario_zone_set_bsp_pvs_unknown_block, 65536)
 	{
 		{ _field_long_integer, "unknown" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_bsp_pvs_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_zone_set_bsp_pvs_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_block, "cluster pvs*!", &scenario_zone_set_cluster_pvs_block_block },
 		{ _field_block, "cluster pvs doors closed*!", &scenario_zone_set_cluster_pvs_block_block },
@@ -325,7 +325,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_pvs_block, k_maximum_scenario_zone_set_count+1)
+	V5_TAG_BLOCK(scenario_zone_set_pvs_block, k_maximum_scenario_zone_set_count+1)
 	{
 		{ _field_dword_integer, "structure bsp mask*!" },
 		{ _field_short_integer, "version*!" },
@@ -336,7 +336,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_budget_override_block, 1)
+	V5_TAG_BLOCK(scenario_zone_set_budget_override_block, 1)
 	{
 		{ _field_long_integer, "env bitmap:megs" },
 		{ _field_long_integer, "env object bitmap:megs" },
@@ -345,13 +345,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_lipsync_block, SHORT_MAX)
+	V5_TAG_BLOCK(scenario_zone_set_lipsync_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "dummy", &sound_reference$3 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_zone_set_block, k_maximum_scenario_zone_set_count)
+	V5_TAG_BLOCK(scenario_zone_set_block, k_maximum_scenario_zone_set_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_string, "name string*!" },
@@ -385,7 +385,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_lighting_zone_set_block, k_maximum_scenario_zone_set_count)
+	V5_TAG_BLOCK(scenario_lighting_zone_set_block, k_maximum_scenario_zone_set_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_long_block_flags, "rendered bsp flags" },
@@ -393,7 +393,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_function_block, MAXIMUM_FUNCTIONS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_function_block, MAXIMUM_FUNCTIONS_PER_SCENARIO)
 	{
 		{ _field_long_flags, "flags", &scenario_function_flags },
 		{ _field_string, "name^" },
@@ -423,7 +423,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(editor_comment_block, MAXIMUM_EDITOR_COMMENTS)
+	V5_TAG_BLOCK(editor_comment_block, MAXIMUM_EDITOR_COMMENTS)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_long_enum, "type!", &editor_comment_type_enum_definition },
@@ -432,7 +432,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(dont_use_me_scenario_environment_object_block, MAXIMUM_ENVIRONMENT_OBJECTS_PER_SCENARIO)
+	V5_TAG_BLOCK(dont_use_me_scenario_environment_object_block, MAXIMUM_ENVIRONMENT_OBJECTS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "bsp*" },
@@ -445,7 +445,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_object_names_block, MAXIMUM_OBJECT_NAMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_object_names_block, MAXIMUM_OBJECT_NAMES_PER_SCENARIO)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_custom_short_block_index, "object_type!" },
@@ -453,21 +453,21 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioAttachedEffectsBlock, ScenarioAttachedEffect::k_maxLoopingEffectsAllowed)
+	V5_TAG_BLOCK(scenarioAttachedEffectsBlock, ScenarioAttachedEffect::k_maxLoopingEffectsAllowed)
 	{
 		{ _field_long_integer, "cutscene flag index" },
 		{ _field_tag_reference, "effect reference^", &globalEffectReferenceNonResourceDependency },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioAttachedLensFlaresBlock, ScenarioAttachedEffect::k_maxLensFlaresAllowed)
+	V5_TAG_BLOCK(scenarioAttachedLensFlaresBlock, ScenarioAttachedEffect::k_maxLensFlaresAllowed)
 	{
 		{ _field_long_integer, "cutscene flag index" },
 		{ _field_tag_reference, "lens flare reference^", &globalLensFlareReferenceNonResourceDependency },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioAttachedLightConesBlock, ScenarioAttachedLightCone::k_maxLightConesAllowed)
+	V5_TAG_BLOCK(scenarioAttachedLightConesBlock, ScenarioAttachedLightCone::k_maxLightConesAllowed)
 	{
 		{ _field_long_integer, "cutscene flag index" },
 		{ _field_tag_reference, "light cone reference^", &Tag::Reference<struct LightConeDefinition>::s_defaultDefinition },
@@ -478,7 +478,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_soft_ceilings_block, MAXIMUM_SCENARIO_SOFT_CEILINGS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_soft_ceilings_block, MAXIMUM_SCENARIO_SOFT_CEILINGS_PER_SCENARIO)
 	{
 		{ _field_word_flags, "flags", &scenario_soft_ceiling_flags_definition },
 		{ _field_word_flags, "runtime flags*!", &scenario_soft_ceiling_flags_definition },
@@ -488,7 +488,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_players_block, MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK)
+	V5_TAG_BLOCK(scenario_players_block, MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK)
 	{
 		{ _field_real_point_3d, "position" },
 
@@ -504,14 +504,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(trigger_volume_point_block, k_maximum_points_per_sector)
+	V5_TAG_BLOCK(trigger_volume_point_block, k_maximum_points_per_sector)
 	{
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(trigger_volume_runtime_triangles_block, k_maximum_points_per_sector-2)
+	V5_TAG_BLOCK(trigger_volume_runtime_triangles_block, k_maximum_points_per_sector-2)
 	{
 		{ _field_real_plane_3d, "plane 0*!" },
 		{ _field_real_plane_3d, "plane 1*!" },
@@ -525,9 +525,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_trigger_volume_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO, scenario_trigger_volume_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_trigger_volume_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO, scenario_trigger_volume_struct_struct_definition );
 
-	TAG_BLOCK(scenario_zone_set_switch_trigger_volume_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_zone_set_switch_trigger_volume_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_word_flags, "flags", &scenario_zone_set_switch_trigger_volume_flags_definition },
 		{ _field_short_block_index, "begin zone set" },
@@ -536,7 +536,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_decals_block, MAXIMUM_DECALS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_decals_block, MAXIMUM_DECALS_PER_SCENARIO)
 	{
 		{ _field_custom },
 		{ _field_short_block_index, "decal palette index" },
@@ -560,7 +560,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_decal_palette_block, MAXIMUM_DECAL_PALETTES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_decal_palette_block, MAXIMUM_DECAL_PALETTES_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "reference^", &decal_system_reference }, 
 
@@ -570,14 +570,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_detail_object_collection_palette_block, MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_detail_object_collection_palette_block, MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
 	{
 		{ _field_tag_reference, "name^", &global_detail_object_collection_reference },
 		{ _field_pad, "XBMYUIKEJ", 32 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cutscene_flag_block, MAXIMUM_CUTSCENE_FLAGS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_cutscene_flag_block, MAXIMUM_CUTSCENE_FLAGS_PER_SCENARIO)
 	{
 		{ _field_pad, "MMNGQBXC", 4 },
 		{ _field_string_id, "name^" },
@@ -594,7 +594,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cutscene_camera_point_block, MAXIMUM_CUTSCENE_CAMERA_POINTS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_cutscene_camera_point_block, MAXIMUM_CUTSCENE_CAMERA_POINTS_PER_SCENARIO)
 	{
 		{ _field_word_flags, "flags", &scenario_cutscene_camera_flags },
 		{ _field_enum, "type", &scenario_cutscene_camera_types },
@@ -613,7 +613,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_kill_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_kill_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_byte_flags, "flags", &kill_volume_flags },
@@ -621,7 +621,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_safe_zone_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_safe_zone_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_byte_flags, "flags", &kill_volume_flags },
@@ -629,34 +629,34 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(trigger_volume_mopp_code_block, 1)
+	V5_TAG_BLOCK(trigger_volume_mopp_code_block, 1)
 	{
 		{ _field_long_integer, "trigger volume checksum" },
 		{ _field_block, "mopp code*!", &mopp_code_definition_block_block },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_requisition_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_requisition_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_word_flags, "flags", &scenario_requisition_trigger_volume_flags_definition },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_location_name_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_location_name_trigger_volumes_block, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_string, "name" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioUnsafeSpawnZoneTriggerVolumesBlock, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenarioUnsafeSpawnZoneTriggerVolumesBlock, MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO)
 	{
 		{ _field_short_block_index, "trigger volume" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_atmosphere_palette_block, MAXIMUM_ATMOSPHERE_PALETTE_ENTRIES_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_atmosphere_palette_block, MAXIMUM_ATMOSPHERE_PALETTE_ENTRIES_PER_STRUCTURE)
 	{
 		{ _field_string_id, "name!" },
 		{ _field_word_integer, "Atmosphere Setting Index!" },
@@ -665,7 +665,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_camera_fx_palette_block, MAXIMUM_CAMERA_FX_PALETTE_ENTRIES_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_camera_fx_palette_block, MAXIMUM_CAMERA_FX_PALETTE_ENTRIES_PER_STRUCTURE)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "cluster camera_fx tag:if empty, uses default#if empty, uses default", &global_camera_fx_settings_reference },
@@ -680,48 +680,48 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_weather_palette_block, MAXIMUM_WEATHER_PALETTE_ENTRIES_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_weather_palette_block, MAXIMUM_WEATHER_PALETTE_ENTRIES_PER_STRUCTURE)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "rain", &global_rain_definition_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_points_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_cluster_points_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_real_point_3d, "centroid*" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_acoustics_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_cluster_acoustics_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_short_block_index, "type^" },
 		{ _field_pad, "XQQ", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_atmosphere_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_cluster_atmosphere_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_short_block_index, "type^" },
 		{ _field_pad, "XQQ", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_camera_fx_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_cluster_camera_fx_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_short_block_index, "type^" },
 		{ _field_pad, "XQQ", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_weather_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	V5_TAG_BLOCK(scenario_cluster_weather_properties_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
 		{ _field_short_block_index, "type^" },
 		{ _field_pad, "XQQ", 2 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cluster_data_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_cluster_data_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
 		{ _field_tag_reference, "bsp^*", &structure_bsp_reference_non_resolving },
 		{ _field_long_integer, "bsp checksum*" },
@@ -734,26 +734,26 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_spawn_data_block, 1)
+	V5_TAG_BLOCK(scenario_spawn_data_block, 1)
 	{
 		{ _field_real, "game object reset height" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(SoundSubtitleBlock, MAXIMUM_SUBTITLES_PER_SCENARIO)
+	V5_TAG_BLOCK(SoundSubtitleBlock, MAXIMUM_SUBTITLES_PER_SCENARIO)
 	{
 		{ _field_long_integer, "tag_index" },
 		{ _field_string_id, "subtitleName" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cheap_particle_system_palette_block, s_scenario_cheap_particle_emitter_palette_entry::k_maximum_scenario_cheap_particle_system_palette_entries)
+	V5_TAG_BLOCK(scenario_cheap_particle_system_palette_block, s_scenario_cheap_particle_emitter_palette_entry::k_maximum_scenario_cheap_particle_system_palette_entries)
 	{
 		{ _field_tag_reference, "definition^", &cheap_particle_emitter_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cheap_particle_systems_block, s_scenario_cheap_particle_system::k_maximum_scenario_cheap_particle_systems)
+	V5_TAG_BLOCK(scenario_cheap_particle_systems_block, s_scenario_cheap_particle_system::k_maximum_scenario_cheap_particle_systems)
 	{
 		{ _field_short_block_index, "palette index^" },
 		{ _field_pad, "VLKSJLER", 2 },
@@ -762,14 +762,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_cinematic_lighting_palette_block, k_maximum_scenario_cinematic_lighting_palette_entry_count)
+	V5_TAG_BLOCK(scenario_cinematic_lighting_palette_block, k_maximum_scenario_cinematic_lighting_palette_entry_count)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "cinematic_lighting_tag", &global_new_cinematic_lighting_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_airprobes_block, k_max_airprobes_per_scenario)
+	V5_TAG_BLOCK(scenario_airprobes_block, k_max_airprobes_per_scenario)
 	{
 		{ _field_real_point_3d, "airprobe position" },
 		{ _field_string_id, "airprobe name^" },
@@ -777,19 +777,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_budget_references_block, k_maximum_budget_references_per_scenario)
+	V5_TAG_BLOCK(scenario_budget_references_block, k_maximum_budget_references_per_scenario)
 	{
 		{ _field_tag_reference, "reference^", &scenario_budget_references_block_reference_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(model_references_block, SHORT_MAX)
+	V5_TAG_BLOCK(model_references_block, SHORT_MAX)
 	{
 		{ _field_tag_reference, "model reference^", &model_reference$5 },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
+	V5_TAG_BLOCK(scenario_performance_actor_block, MAXIMUM_ACTORS_PER_PERFORMANCE)
 	{
 		{ _field_long_flags, "flags", &scenario_performance_actor_flags_definition },
 		{ _field_string_id, "Actor name^" },
@@ -801,14 +801,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performance_task_block, MAXIMUM_TASKS_PER_PERFORMANCE)
+	V5_TAG_BLOCK(scenario_performance_task_block, MAXIMUM_TASKS_PER_PERFORMANCE)
 	{
 		{ _field_short_block_index, "objective" },
 		{ _field_custom_short_block_index, "task" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_performances_block, MAXIMUM_PERFORMANCES_PER_SCENARIO)
+	V5_TAG_BLOCK(scenario_performances_block, MAXIMUM_PERFORMANCES_PER_SCENARIO)
 	{
 		{ _field_string_id, "name^" },
 		{ _field_string_id, "script name#The name of a custom script used to drive the performance. If none is given, a default script is uses that goes through the lines in sequence" },
@@ -832,13 +832,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioRandomOrdnanceDropPointBlock, k_maximum_random_ordnance_drop_points)
+	V5_TAG_BLOCK(scenarioRandomOrdnanceDropPointBlock, k_maximum_random_ordnance_drop_points)
 	{
 		{ _field_short_block_index, "Drop point" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenarioRandomOrdnanceDropSetBlock, k_maximum_scenario_ordnance_drop_sets)
+	V5_TAG_BLOCK(scenarioRandomOrdnanceDropSetBlock, k_maximum_scenario_ordnance_drop_sets)
 	{
 		{ _field_word_flags, "drop set flags", &ordnance_dropset_flags },
 		{ _field_pad, "ODSF", 2 },
@@ -849,9 +849,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(ScenarioUnitRecordingBlock, k_maximum_unit_recordings_per_scenario, ScenarioUnitRecordingBlock_struct_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(ScenarioUnitRecordingBlock, k_maximum_unit_recordings_per_scenario, ScenarioUnitRecordingBlock_struct_struct_definition );
 
-	TAG_BLOCK(loadScreenReferenceBlock, SHORT_MAX)
+	V5_TAG_BLOCK(loadScreenReferenceBlock, SHORT_MAX)
 	{
 		{ _field_explanation, "Map IDs", "These are pulled from levels_map_id_constants.h\nk_mp_z00_testchamber_map_id\t\t\t10777)\nk_mp_wraparound_map_id\t\t\t\t\t10080)  \nk_mp_z05_cliffside_map_id              10085)  // complex \nk_mp_z11_valhalla_id\t\t\t\t\t10091)\nk_mp_ca_gore_valley_map_id\t\t\t\t10200)\nk_mp_ca_tower_map_id\t\t\t\t\t10202)\nk_mp_ca_warhouse_map_id\t\t\t\t10210)\nk_mp_ca_blood_cavern_map_id\t\t\t10225)\nk_mp_ca_blood_crash_map_id\t\t\t\t10226)\nk_mp_ca_forge_erosion_map_id\t\t\t10245)\nk_mp_ca_redoubt_map_id\t\t\t\t\t10252)\nk_mp_ca_forge_bonanza_map_id\t\t\t10255)\nk_mp_ca_forge_ravine_map_id\t\t\t10256)\nk_mp_ca_canyon_map_id\t\t\t\t\t10261)\nk_mp_zd_02_grind_map_id\t\t\t\t10102)\n\nk_ff81_courtyard_map_id\t\t\t\t11081)\nk_ff82_scurve_map_id\t\t\t\t\t11071)\nk_ff83_breach_map_id\t\t\t\t\t11061)\nk_ff84_temple_map_id\t\t\t\t\t11084)\nk_ff85_island_map_id\t\t\t\t\t11091)\nk_ff86_sniperalley_map_id\t\t\t\t11101)\nk_ff87_chopperbowl_map_id\t\t\t\t11111)\nk_ff88_horseshou_map_id\t\t\t\t11121)\nk_ff89_infinity_map_id\t\t\t\t\t11131)\nk_ff90_fortsw_map_id\t\t\t\t\t11141)\n\nk_sp_intro_map_id\t\t\t\t\t\t12000)\nk_sp_m10_crash_map_id\t\t\t\t\t12010)\nk_sp_m20_haven_map_id\t\t\t\t\t12020)\nk_sp_m30_cryptum_map_id\t\t\t\t12030)\nk_sp_m40_invasion_map_id\t\t\t\t12040)\nk_sp_m60_rescue_map_id\t\t\t\t\t12060)\nk_sp_m70_liftoff_map_id\t\t\t\t12070)\nk_sp_m80_delta_map_id\t\t\t\t\t12080)\nk_sp_m90_sacrifice_map_id\t\t\t\t12090)\n\nk_sp_max_environment_solo_map_id\t\t12499)\n" },
 		{ _field_long_integer, "Map ID#Only valid for main menu - otherwise always use first reference" },
@@ -860,9 +860,9 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(scenario_block, 1, scenario_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_block, 1, scenario_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(scenario_required_resource_block, 1, scenario_required_resource_struct_definition_struct_definition );
+	V5_TAG_BLOCK_FROM_STRUCT(scenario_required_resource_block, 1, scenario_required_resource_struct_definition_struct_definition );
 
 	TAG_ARRAY(scenarioFloatingShadowCascadeSettingsArray, 4)
 	{
@@ -883,7 +883,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(manualBspFlagsReferences)
+	V5_TAG_STRUCT(manualBspFlagsReferences)
 	{
 		{ _field_custom, "manual bsp flags" },
 		{ _field_block, "references block*!", &scenarioBspReferenceBlock_block },
@@ -891,14 +891,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(structured_buffer)
+	V5_TAG_STRUCT(structured_buffer)
 	{
 		{ _field_data, "data" },
 		{ _field_long_integer, "entry size" },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_structured_buffer_interops_block, 1)
+	V5_TAG_BLOCK(scenario_structured_buffer_interops_block, 1)
 	{
 		{ _field_api_interop, "effect", &structured_buffer_struct_definition },
 		{ _field_api_interop, "beam", &structured_buffer_struct_definition },
@@ -907,7 +907,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_unknown_object_reference, 65536) // CUSTOM
+	V5_TAG_BLOCK(scenario_unknown_object_reference, 65536) // CUSTOM
 	{
 		{ _field_struct, "object ID*!", &scenario_object_id_struct_struct_definition },
 		{ _field_char_integer, "unknown" }, // index?
@@ -918,7 +918,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_unknown, 65536) // CUSTOM
+	V5_TAG_BLOCK(scenario_unknown, 65536) // CUSTOM
 	{
 		{ _field_real, "unknown" },
 		{ _field_real, "unknown" },
@@ -933,7 +933,7 @@ namespace blofeld
 
 	TAG_REFERENCE(scenario_resources_reference_block_reference);
 
-	TAG_BLOCK(scenario_resources_reference_block, NUMBER_OF_SCENARIO_RESOURCE_TYPES)
+	V5_TAG_BLOCK(scenario_resources_reference_block, NUMBER_OF_SCENARIO_RESOURCE_TYPES)
 	{
 		{ _field_version_less_or_equal, _engine_type_halo2 },
 		{ _field_tag_reference, "reference*", &scenario_resources_reference_block_reference },
@@ -966,7 +966,7 @@ namespace blofeld
 
 	TAG_REFERENCE(scenario_hs_source_reference_block_block_reference, HSC_TAG);
 
-	TAG_BLOCK(scenario_hs_source_reference_block, k_maximum_hs_source_files_per_scenario)
+	V5_TAG_BLOCK(scenario_hs_source_reference_block, k_maximum_hs_source_files_per_scenario)
 	{
 		{ _field_tag_reference, "reference*", &scenario_hs_source_reference_block_block_reference },
 		{ _field_terminator }
@@ -974,13 +974,13 @@ namespace blofeld
 
 	TAG_REFERENCE(scenario_ai_resource_reference_block_reference);
 
-	TAG_BLOCK(scenario_ai_resource_reference_block, k_number_of_scenario_ai_types)
+	V5_TAG_BLOCK(scenario_ai_resource_reference_block, k_number_of_scenario_ai_types)
 	{
 		{ _field_tag_reference, "reference*", &scenario_ai_resource_reference_block_reference },
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(scenario_resources_block, 1)
+	V5_TAG_BLOCK(scenario_resources_block, 1)
 	{
 		{ _field_version_greater, _engine_type_halo2, 2 },
 		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
@@ -999,7 +999,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_struct_definition)
+	V5_TAG_STRUCT(scenario_struct_definition)
 	{
 		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "child scenarios", &scenario_child_references_block_block },
@@ -1309,7 +1309,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenarioVolumetricLightShaftSettingsStruct)
+	V5_TAG_STRUCT(scenarioVolumetricLightShaftSettingsStruct)
 	{
 		{ _field_byte_flags, "flags", &scenarioVolumetricLightShaftSettingsFlags },
 		{ _field_pad, "pad the byte flag", 3 },
@@ -1320,7 +1320,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenarioFloatingShadowSettingsStruct)
+	V5_TAG_STRUCT(scenarioFloatingShadowSettingsStruct)
 	{
 		{ _field_byte_integer, "number of cascades" },
 		{ _field_byte_integer, "has been initialized" },
@@ -1331,7 +1331,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_lightmap_setting_struct)
+	V5_TAG_STRUCT(scenario_lightmap_setting_struct)
 	{
 		{ _field_explanation, "Lightmap resolution for each buckets", "relative to world unit per texel. default:\n1-> 1\n2-> 4\n2-> 16\n3-> 64\n5-> 128\n6-> 256\n7-> 512" },
 		{ _field_real, "lightmap res lowest" },
@@ -1349,7 +1349,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_trigger_volume_struct)
+	V5_TAG_STRUCT(scenario_trigger_volume_struct)
 	{
 		{ _field_explanation, "naming", "the name of the trigger volume specifies what kind of volume it is:\n\'zone_set:\'\n\'begin_zone_set:\'\n\'kill\' (plus \'_soft\' for soft kill volume)\n\'playerkill\' (plus \'_soft\' for soft kill volume) for player only kill volume \n\'safe_zone\' (plus \'_soft\' for soft kill volume)\n\'location_\'\n\'ordnance_bounds\'\n\'unsafe_spawn\'\nappend \':*\' to zone set names to allow vehicles to teleport along with their players." },
 		{ _field_string_id, "name^" },
@@ -1381,7 +1381,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(ScenarioUnitRecordingBlock_struct)
+	V5_TAG_STRUCT(ScenarioUnitRecordingBlock_struct)
 	{
 		{ _field_string, "name^" },
 		{ _field_long_integer, "sampling rate" },
@@ -1391,7 +1391,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(scenario_required_resource_struct_definition)
+	V5_TAG_STRUCT(scenario_required_resource_struct_definition)
 	{
 		{ _field_block, "resources", &scenario_budget_references_block_block },
 		{ _field_terminator }

@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(gear_block, s_vehicle_engine_definition::k_gear_count_max)
+	V5_TAG_BLOCK(gear_block, s_vehicle_engine_definition::k_gear_count_max)
 	{
 		{ _field_explanation, "loaded torque", "" },
 
@@ -39,14 +39,14 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK(load_and_cruise_block, s_vehicle_engine_definition::k_load_and_cruise_looping_sound_max)
+	V5_TAG_BLOCK(load_and_cruise_block, s_vehicle_engine_definition::k_load_and_cruise_looping_sound_max)
 	{
 		{ _field_string_id, "load cruise function" },
 		{ _field_long_block_index, "attachment index" },
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(global_vehicle_engine_struct)
+	V5_TAG_STRUCT(global_vehicle_engine_struct)
 	{
 		{ _field_explanation, "engine", "" },
 		{ _field_real, "engine moment#higher moments make engine spin up slower" },
@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(torque_curve_struct)
+	V5_TAG_STRUCT(torque_curve_struct)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
 
@@ -70,7 +70,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_STRUCT(old_torque_struct)
+	V5_TAG_STRUCT(old_torque_struct)
 	{
 		{ _field_real, "min torque" },
 		{ _field_real, "max torque" },
