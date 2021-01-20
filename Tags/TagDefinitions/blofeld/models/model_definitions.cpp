@@ -195,7 +195,7 @@ namespace blofeld
 	};
 
 	// fixup as older blocks differ in count from global array definition
-	TAG_ARRAY(g_model_node_flag_storage_array, k_model_flag_chunk_count /*c_node_flags::k_flag_chunk_count*/)
+	V5_TAG_ARRAY(g_model_node_flag_storage_array, k_model_flag_chunk_count /*c_node_flags::k_flag_chunk_count*/)
 	{
 		{ _field_long_integer, "flag data" },
 		{ _field_terminator }
@@ -368,13 +368,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL)
+	V5_TAG_ARRAY(runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL)
 	{
 		{ _field_char_integer, "runtime region index!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(model_state_permutation_index_array, k_number_of_model_states)
+	V5_TAG_ARRAY(model_state_permutation_index_array, k_number_of_model_states)
 	{
 		{ _field_char_integer, "runtime permutation index!" },
 		{ _field_terminator }

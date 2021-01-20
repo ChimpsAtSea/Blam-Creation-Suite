@@ -223,7 +223,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_model_lightmap_atlas_block, 1, render_model_lightmap_atlas_struct_definition_struct_definition );
 
-	TAG_ARRAY(radiance_transfer_matrix, 9*9)
+	V5_TAG_ARRAY(radiance_transfer_matrix, 9*9)
 	{
 		{ _field_real, "element*!" },
 		{ _field_terminator }

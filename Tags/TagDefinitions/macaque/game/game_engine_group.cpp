@@ -407,7 +407,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(game_engine_team_options_team_block, k_multiplayer_team_game_team_count)
+	#define GAME_ENGINE_TEAM_OPTIONS_TEAM_BLOCK_ID { 0x3303F583, 0x42184740, 0x986A9390, 0x90FCFEE1 }
+	TAG_ARRAY(
+		game_engine_team_options_team_block_array,
+		"game_engine_team_options_team_block",
+		k_multiplayer_team_game_team_count,
+		"s_game_engine_team_options_team_definition",
+		GAME_ENGINE_TEAM_OPTIONS_TEAM_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &game_engine_team_options_team_flags },
 		{ _field_char_enum, "initial team designator", &global_multiplayer_team_designator_enum_definition },

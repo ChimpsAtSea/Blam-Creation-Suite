@@ -35,7 +35,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(particle_block, 1, particle_struct_definition_struct_definition );
 
-	TAG_ARRAY(gpu_single_constant_register_array, sizeof(real_vector4d)/sizeof(real))
+	V5_TAG_ARRAY(gpu_single_constant_register_array, sizeof(real_vector4d)/sizeof(real))
 	{
 		{ _field_real, "runtime gpu_real!" },
 		{ _field_terminator }

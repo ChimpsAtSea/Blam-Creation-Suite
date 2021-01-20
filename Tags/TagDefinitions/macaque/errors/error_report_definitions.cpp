@@ -137,31 +137,61 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_point_node_index_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
+	#define ERROR_POINT_NODE_INDEX_ARRAY_ID { 0xB0BC81FE, 0xF4FF4938, 0xBA0BD7A5, 0xCE3EBDC0 }
+	TAG_ARRAY(
+		error_point_node_index_array,
+		"error_point_node_index_array",
+		MAXIMUM_NODE_INDICES_PER_ERROR_POINT,
+		"char",
+		ERROR_POINT_NODE_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_point_node_weight_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
+	#define ERROR_POINT_NODE_WEIGHT_ARRAY_ID { 0xFA129333, 0xA37C4DC7, 0xB1050C1B, 0x12F05638 }
+	TAG_ARRAY(
+		error_point_node_weight_array,
+		"error_point_node_weight_array",
+		MAXIMUM_NODE_INDICES_PER_ERROR_POINT,
+		"real",
+		ERROR_POINT_NODE_WEIGHT_ARRAY_ID)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_line_point_array, k_vertices_per_line_count)
+	#define ERROR_REPORT_LINE_POINT_ARRAY_ID { 0x0F4729E0, 0x338142C9, 0xBB1ABDAE, 0x4888C89A }
+	TAG_ARRAY(
+		error_report_line_point_array,
+		"error_report_line_point_array",
+		k_vertices_per_line_count,
+		"error_report_point",
+		ERROR_REPORT_LINE_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_triangle_point_array, k_vertices_per_triangle_count)
+	#define ERROR_REPORT_TRIANGLE_POINT_ARRAY_ID { 0xD7176398, 0xDDD84F94, 0x8AFE9068, 0x59AEA189 }
+	TAG_ARRAY(
+		error_report_triangle_point_array,
+		"error_report_triangle_point_array",
+		k_vertices_per_triangle_count,
+		"error_report_point",
+		ERROR_REPORT_TRIANGLE_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_quad_point_array, k_vertices_per_quadrilateral_count)
+	#define ERROR_REPORT_QUAD_POINT_ARRAY_ID { 0x81027CE9, 0x0A0E42FD, 0xAE95FE26, 0x6EB082A3 }
+	TAG_ARRAY(
+		error_report_quad_point_array,
+		"error_report_quad_point_array",
+		k_vertices_per_quadrilateral_count,
+		"error_report_point",
+		ERROR_REPORT_QUAD_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
 		{ _field_terminator }

@@ -185,19 +185,37 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_property_sub_array, c_particle_emitter_gpu::_sizeof_gpu_property/sizeof(real))
+	#define GPU_PROPERTY_SUB_ARRAY_ID { 0x5E56CDB1, 0xEC34402B, 0xBF36EF1D, 0x9B7468BA }
+	TAG_ARRAY(
+		gpu_property_sub_array,
+		"gpu_property_sub_array",
+		c_particle_emitter_gpu::_sizeof_gpu_property/sizeof(real),
+		"real",
+		GPU_PROPERTY_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_property_real!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_function_sub_array, c_particle_emitter_gpu::_sizeof_gpu_function/sizeof(real))
+	#define GPU_FUNCTION_SUB_ARRAY_ID { 0xD6260931, 0xE09141A2, 0x984511D9, 0xA3D78599 }
+	TAG_ARRAY(
+		gpu_function_sub_array,
+		"gpu_function_sub_array",
+		c_particle_emitter_gpu::_sizeof_gpu_function/sizeof(real),
+		"real",
+		GPU_FUNCTION_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_function_real!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_color_sub_array, c_particle_emitter_gpu::_sizeof_gpu_color/sizeof(real))
+	#define GPU_COLOR_SUB_ARRAY_ID { 0xEBCC1FB0, 0x84F141D4, 0xA584B00F, 0x8EFF6043 }
+	TAG_ARRAY(
+		gpu_color_sub_array,
+		"gpu_color_sub_array",
+		c_particle_emitter_gpu::_sizeof_gpu_color/sizeof(real),
+		"real",
+		GPU_COLOR_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_color_real!" },
 		{ _field_terminator }

@@ -60,7 +60,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(super_node_mapping_index_array, k_super_node_node_count+k_super_node_child_indices_count)
+	V5_TAG_ARRAY(super_node_mapping_index_array, k_super_node_node_count+k_super_node_child_indices_count)
 	{
 		{ _field_short_block_index, "index!" },
 		{ _field_terminator }

@@ -454,7 +454,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(dual_vmf_terms, k_dual_vmf_basis_real_coefficients_count)
+	#define DUAL_VMF_TERMS_ID { 0x0E0FABA4, 0x51F74A05, 0x852BD2AC, 0xDA03B75B }
+	TAG_ARRAY(
+		dual_vmf_terms_array,
+		"dual_vmf_terms",
+		k_dual_vmf_basis_real_coefficients_count,
+		"short",
+		DUAL_VMF_TERMS_ID)
 	{
 		{ _field_short_integer, "dual vmf coefficient*" },
 		{ _field_terminator }

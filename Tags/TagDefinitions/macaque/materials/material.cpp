@@ -147,7 +147,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(runtime_queryable_properties$3, s_material_postprocess_definition::k_runtime_queryable_properties_count)
+	#define RUNTIME_QUERYABLE_PROPERTIES_ID { 0xC7C8D371, 0x1E1A4BB1, 0xBE9FC430, 0xBEC7DEBE }
+	TAG_ARRAY(
+		runtime_queryable_properties$3_array,
+		"runtime_queryable_properties",
+		s_material_postprocess_definition::k_runtime_queryable_properties_count,
+		"short",
+		RUNTIME_QUERYABLE_PROPERTIES_ID)
 	{
 		{ _field_short_block_index, "index" },
 		{ _field_terminator }

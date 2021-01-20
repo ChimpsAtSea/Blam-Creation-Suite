@@ -86,31 +86,31 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_point_node_index_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
+	V5_TAG_ARRAY(error_point_node_index_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
 	{
 		{ _field_char_integer, "node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_point_node_weight_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
+	V5_TAG_ARRAY(error_point_node_weight_array, MAXIMUM_NODE_INDICES_PER_ERROR_POINT)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_line_point_array, k_vertices_per_line_count)
+	V5_TAG_ARRAY(error_report_line_point_array, k_vertices_per_line_count)
 	{
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_triangle_point_array, k_vertices_per_triangle_count)
+	V5_TAG_ARRAY(error_report_triangle_point_array, k_vertices_per_triangle_count)
 	{
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(error_report_quad_point_array, k_vertices_per_quadrilateral_count)
+	V5_TAG_ARRAY(error_report_quad_point_array, k_vertices_per_quadrilateral_count)
 	{
 		{ _field_struct, "point", &error_report_point_definition_struct_definition },
 		{ _field_terminator }

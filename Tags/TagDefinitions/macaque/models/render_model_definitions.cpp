@@ -254,7 +254,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(radiance_transfer_matrix, 9*9)
+	#define RADIANCE_TRANSFER_MATRIX_ID { 0x0FA34AD9, 0x785D45B5, 0xA12B1861, 0x7B84E30C }
+	TAG_ARRAY(
+		radiance_transfer_matrix_array,
+		"radiance_transfer_matrix",
+		9*9,
+		"real",
+		RADIANCE_TRANSFER_MATRIX_ID)
 	{
 		{ _field_real, "element*!" },
 		{ _field_terminator }

@@ -105,7 +105,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(area_cluster_occupancy_bitvector_array, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	V5_TAG_ARRAY(area_cluster_occupancy_bitvector_array, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
 		{ _field_long_integer, "bitvector data!" },
 		{ _field_terminator }

@@ -7,7 +7,11 @@ namespace blofeld
 namespace macaque
 {
 
-	TAG_ARRAY_FROM_STRUCT(render_interleaved_texture_array_definition, k_interleaved_texture_count, render_texture_format_definition);
+	TAG_ARRAY_FROM_STRUCT(
+		render_interleaved_texture_array_definition_array,
+		"render_interleaved_texture_array_definition",
+		k_interleaved_texture_count,
+		render_texture_format_definition);
 
 	#define RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID { 0x64017671, 0x437A46F0, 0x9A33C422, 0x517096E3 }
 	TAG_STRUCT(

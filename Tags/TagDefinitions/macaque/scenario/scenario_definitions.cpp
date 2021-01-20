@@ -1276,7 +1276,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(scenarioFloatingShadowCascadeSettingsArray, 4)
+	#define SCENARIOFLOATINGSHADOWCASCADESETTINGSARRAY_ID { 0xB53B3A91, 0xBF404DB2, 0x89CA7210, 0x6570A7D4 }
+	TAG_ARRAY(
+		scenarioFloatingShadowCascadeSettingsArray_array,
+		"scenarioFloatingShadowCascadeSettingsArray",
+		4,
+		"scenarioFloatingShadowCascadeSettings",
+		SCENARIOFLOATINGSHADOWCASCADESETTINGSARRAY_ID)
 	{
 		FIELD_CUSTOM("CASCADE", _custom_field_function_group_begin),
 		{ _field_real, "cascade half-width" },
@@ -1289,7 +1295,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(object_salt_storage_array, k_maximum_number_of_object_salts)
+	#define OBJECT_SALT_STORAGE_ARRAY_ID { 0x2BAB1657, 0x98084D7F, 0x8C0FFCBC, 0x954E72C1 }
+	TAG_ARRAY(
+		object_salt_storage_array,
+		"object_salt_storage_array",
+		k_maximum_number_of_object_salts,
+		"long",
+		OBJECT_SALT_STORAGE_ARRAY_ID)
 	{
 		{ _field_long_integer, "salt!*" },
 		{ _field_terminator }

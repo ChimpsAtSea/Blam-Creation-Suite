@@ -263,7 +263,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
 
-	TAG_ARRAY(runtime_queryable_properties, s_render_method_postprocess_definition::k_runtime_queryable_properties_count)
+	V5_TAG_ARRAY(runtime_queryable_properties, s_render_method_postprocess_definition::k_runtime_queryable_properties_count)
 	{
 		{ _field_short_block_index, "index" },
 		{ _field_terminator }

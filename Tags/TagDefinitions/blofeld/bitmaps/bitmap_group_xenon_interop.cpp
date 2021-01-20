@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	TAG_ARRAY_FROM_STRUCT(render_interleaved_texture_array_definition, k_interleaved_texture_count, render_texture_format_definition_struct_definition);
+	V5_TAG_ARRAY_FROM_STRUCT(render_interleaved_texture_array_definition, k_interleaved_texture_count, render_texture_format_definition_struct_definition);
 
 	V5_TAG_STRUCT(render_texture_interop_definition_struct)
 	{

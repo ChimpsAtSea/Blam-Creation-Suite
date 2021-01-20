@@ -392,7 +392,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
 
-	TAG_ARRAY(dual_vmf_terms, k_dual_vmf_basis_real_coefficients_count)
+	V5_TAG_ARRAY(dual_vmf_terms, k_dual_vmf_basis_real_coefficients_count)
 	{
 		{ _field_short_integer, "dual vmf coefficient*" },
 		{ _field_terminator }

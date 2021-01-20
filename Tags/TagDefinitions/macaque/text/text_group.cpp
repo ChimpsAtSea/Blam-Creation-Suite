@@ -63,13 +63,25 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(data_hash_definition, k_hash_size)
+	#define DATA_HASH_DEFINITION_ID { 0x6A3A433A, 0xA2E2464E, 0xBD38F0AE, 0x0CC98FB3 }
+	TAG_ARRAY(
+		data_hash_definition_array,
+		"data_hash_definition",
+		k_hash_size,
+		"byte",
+		DATA_HASH_DEFINITION_ID)
 	{
 		{ _field_byte_integer, "hash byte!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(multilingual_unicode_string_list_language_pack_offsets, k_language_count)
+	#define MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_ID { 0xD3554473, 0x3F7445DD, 0x86D39D3C, 0x59003C59 }
+	TAG_ARRAY(
+		multilingual_unicode_string_list_language_pack_offsets_array,
+		"multilingual_unicode_string_list_language_pack_offsets",
+		k_language_count,
+		"s_language_pack_offsets",
+		MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_ID)
 	{
 		{ _field_short_integer, "start index!" },
 		{ _field_short_integer, "string count!" },

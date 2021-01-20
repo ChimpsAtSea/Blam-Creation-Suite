@@ -669,49 +669,97 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_hash_definition, k_hash_size)
+	#define RESOURCE_HASH_DEFINITION_ID { 0xF713F8B8, 0xA3FB4157, 0x956953B8, 0x16833EDB }
+	TAG_ARRAY(
+		resource_hash_definition_array,
+		"resource_hash_definition",
+		k_hash_size,
+		"byte",
+		RESOURCE_HASH_DEFINITION_ID)
 	{
 		{ _field_byte_integer, "hash byte" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(location_offsets_array_definition, k_numberOfResourcePriorities)
+	#define LOCATION_OFFSETS_ARRAY_DEFINITION_ID { 0x18557C2E, 0x60C811E0, 0xA9F9FD26, 0xE0D72085 }
+	TAG_ARRAY(
+		location_offsets_array_definition_array,
+		"location_offsets_array_definition",
+		k_numberOfResourcePriorities,
+		"dword",
+		LOCATION_OFFSETS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "offset" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(file_location_indexes_array_definition, k_numberOfResourcePriorities)
+	#define FILE_LOCATION_INDEXES_ARRAY_DEFINITION_ID { 0x955AB4BE, 0x60C811E0, 0x86CB7C27, 0xE0D72085 }
+	TAG_ARRAY(
+		file_location_indexes_array_definition_array,
+		"file_location_indexes_array_definition",
+		k_numberOfResourcePriorities,
+		"word",
+		FILE_LOCATION_INDEXES_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "page index" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(sublocation_table_indexes_array_definition, k_numberOfResourcePriorities)
+	#define SUBLOCATION_TABLE_INDEXES_ARRAY_DEFINITION_ID { 0xB3E03FAA, 0x04D94FCF, 0xA6602684, 0xA733B0FA }
+	TAG_ARRAY(
+		sublocation_table_indexes_array_definition_array,
+		"sublocation_table_indexes_array_definition",
+		k_numberOfResourcePriorities,
+		"word",
+		SUBLOCATION_TABLE_INDEXES_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "subpage table index" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(tag_resource_alignment_bits_array_definition, k_numberOfResourcePriorities)
+	#define TAG_RESOURCE_ALIGNMENT_BITS_ARRAY_DEFINITION_ID { 0x105858F0, 0xA65043AA, 0x8F0EE066, 0x4222491A }
+	TAG_ARRAY(
+		tag_resource_alignment_bits_array_definition_array,
+		"tag_resource_alignment_bits_array_definition",
+		k_numberOfResourcePriorities,
+		"word",
+		TAG_RESOURCE_ALIGNMENT_BITS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_integer, "page alignment bits" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_usage_page_size_array_definition, k_numberOfResourcePriorities)
+	#define RESOURCE_USAGE_PAGE_SIZE_ARRAY_DEFINITION_ID { 0x75BD02C0, 0xF0BA48F9, 0x851711E4, 0xDB4626C6 }
+	TAG_ARRAY(
+		resource_usage_page_size_array_definition_array,
+		"resource_usage_page_size_array_definition",
+		k_numberOfResourcePriorities,
+		"dword",
+		RESOURCE_USAGE_PAGE_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "page size" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_layout_memory_size_array_definition, k_numberOfResourcePriorities)
+	#define RESOURCE_LAYOUT_MEMORY_SIZE_ARRAY_DEFINITION_ID { 0xBF77779F, 0xBE234452, 0xB2A3C7EC, 0xF73AFF38 }
+	TAG_ARRAY(
+		resource_layout_memory_size_array_definition_array,
+		"resource_layout_memory_size_array_definition",
+		k_numberOfResourcePriorities,
+		"dword",
+		RESOURCE_LAYOUT_MEMORY_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "memory size" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_layout_compressed_size_array_definition, k_numberOfResourcePriorities)
+	#define RESOURCE_LAYOUT_COMPRESSED_SIZE_ARRAY_DEFINITION_ID { 0x48483D04, 0x07DB4B74, 0xAA4B1292, 0xCC40B002 }
+	TAG_ARRAY(
+		resource_layout_compressed_size_array_definition_array,
+		"resource_layout_compressed_size_array_definition",
+		k_numberOfResourcePriorities,
+		"dword",
+		RESOURCE_LAYOUT_COMPRESSED_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "compressed size" },
 		{ _field_terminator }

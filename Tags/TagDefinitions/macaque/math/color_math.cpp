@@ -7,7 +7,13 @@ namespace blofeld
 namespace macaque
 {
 
-	TAG_ARRAY(half_sh_terms, ((3)*(3)))
+	#define HALF_SH_TERMS_ID { 0x20CD467C, 0x4303458B, 0x9980FCD2, 0x2E473035 }
+	TAG_ARRAY(
+		half_sh_terms_array,
+		"half_sh_terms",
+		((3)*(3)),
+		"short",
+		HALF_SH_TERMS_ID)
 	{
 		{ _field_short_integer, "coefficient*" },
 		{ _field_terminator }

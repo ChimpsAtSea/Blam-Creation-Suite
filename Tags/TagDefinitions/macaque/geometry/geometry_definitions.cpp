@@ -530,25 +530,49 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(vertex_buffer_indices_word_array, ((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))))
+	#define VERTEX_BUFFER_INDICES_WORD_ARRAY_ID { 0x5E95A6C9, 0x37604276, 0xBD4EEEA3, 0x52D11A95 }
+	TAG_ARRAY(
+		vertex_buffer_indices_word_array,
+		"vertex_buffer_indices_word_array",
+		((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))),
+		"(((s_mesh *",
+		VERTEX_BUFFER_INDICES_WORD_ARRAY_ID)
 	{
 		{ _field_word_integer, "vertex buffer index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_indices_array, 4)
+	#define NODE_INDICES_ARRAY_ID { 0x96D9B877, 0x7D854A1A, 0x94447B36, 0x3D993ECB }
+	TAG_ARRAY(
+		node_indices_array,
+		"node_indices_array",
+		4,
+		"byte",
+		NODE_INDICES_ARRAY_ID)
 	{
 		{ _field_byte_integer, "node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_weights_implicit_array, 4-1)
+	#define NODE_WEIGHTS_IMPLICIT_ARRAY_ID { 0x688AC376, 0x93AA40C8, 0xB49A447E, 0x88C1B821 }
+	TAG_ARRAY(
+		node_weights_implicit_array,
+		"node_weights_implicit_array",
+		4-1,
+		"real",
+		NODE_WEIGHTS_IMPLICIT_ARRAY_ID)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_weights_complete_array, 4)
+	#define NODE_WEIGHTS_COMPLETE_ARRAY_ID { 0x93F6CB70, 0x935C4824, 0xAFBCAA80, 0x199C0BA7 }
+	TAG_ARRAY(
+		node_weights_complete_array,
+		"node_weights_complete_array",
+		4,
+		"real",
+		NODE_WEIGHTS_COMPLETE_ARRAY_ID)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }

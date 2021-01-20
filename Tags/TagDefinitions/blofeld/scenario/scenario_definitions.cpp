@@ -864,7 +864,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(scenario_required_resource_block, 1, scenario_required_resource_struct_definition_struct_definition );
 
-	TAG_ARRAY(scenarioFloatingShadowCascadeSettingsArray, 4)
+	V5_TAG_ARRAY(scenarioFloatingShadowCascadeSettingsArray, 4)
 	{
 		{ _field_custom, "CASCADE" },
 		{ _field_real, "cascade half-width" },
@@ -877,7 +877,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(object_salt_storage_array, k_maximum_number_of_object_salts)
+	V5_TAG_ARRAY(object_salt_storage_array, k_maximum_number_of_object_salts)
 	{
 		{ _field_long_integer, "salt!*" },
 		{ _field_terminator }

@@ -824,13 +824,13 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(g_node_flag_storage_array, c_node_flags::k_flag_chunk_count)
+	V5_TAG_ARRAY(g_node_flag_storage_array, c_node_flags::k_flag_chunk_count)
 	{
 		{ _field_long_integer, "flag data" },
 		{ _field_terminator }
 	};
 	
-	TAG_ARRAY(animation_velocity_boundaries, k_animation_maximum_velocity_boundary_entries)
+	V5_TAG_ARRAY(animation_velocity_boundaries, k_animation_maximum_velocity_boundary_entries)
 	{
 		{ _field_real, "values!" },
 		{ _field_terminator }

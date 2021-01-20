@@ -95,7 +95,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(runtime_queryable_properties$3, s_material_postprocess_definition::k_runtime_queryable_properties_count)
+	V5_TAG_ARRAY(runtime_queryable_properties$3, s_material_postprocess_definition::k_runtime_queryable_properties_count)
 	{
 		{ _field_short_block_index, "index" },
 		{ _field_terminator }

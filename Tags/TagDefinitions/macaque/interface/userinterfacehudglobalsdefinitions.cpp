@@ -20,7 +20,13 @@ namespace macaque
 		1,
 		user_interface_hud_globals_definition_struct_definition);
 
-	TAG_ARRAY(screen_transform_basis_array_definition, 9)
+	#define SCREEN_TRANSFORM_BASIS_ARRAY_DEFINITION_ID { 0xEE6C4CCF, 0x5BE94948, 0xA2F9EA40, 0x71F433BE }
+	TAG_ARRAY(
+		screen_transform_basis_array_definition_array,
+		"screen_transform_basis_array_definition",
+		9,
+		"real_point2d",
+		SCREEN_TRANSFORM_BASIS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_real_point_2d, "screen transform basis element" },
 		{ _field_terminator }

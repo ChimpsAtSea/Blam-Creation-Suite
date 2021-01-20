@@ -105,7 +105,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(super_node_mapping_index_array, k_super_node_node_count+k_super_node_child_indices_count)
+	#define SUPER_NODE_MAPPING_INDEX_ARRAY_ID { 0xD98D671C, 0xB7E64985, 0x3D63EF05, 0xFAEAE84E }
+	TAG_ARRAY(
+		super_node_mapping_index_array,
+		"super_node_mapping_index_array",
+		k_super_node_node_count+k_super_node_child_indices_count,
+		"short",
+		SUPER_NODE_MAPPING_INDEX_ARRAY_ID)
 	{
 		{ _field_short_block_index, "index!" },
 		{ _field_terminator }

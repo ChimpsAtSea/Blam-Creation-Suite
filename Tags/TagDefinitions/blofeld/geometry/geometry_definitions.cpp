@@ -356,25 +356,25 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(vertex_buffer_indices_word_array, ((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))))
+	V5_TAG_ARRAY(vertex_buffer_indices_word_array, ((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))))
 	{
 		{ _field_word_integer, "vertex buffer index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_indices_array, 4)
+	V5_TAG_ARRAY(node_indices_array, 4)
 	{
 		{ _field_byte_integer, "node index*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_weights_implicit_array, 4-1)
+	V5_TAG_ARRAY(node_weights_implicit_array, 4-1)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(node_weights_complete_array, 4)
+	V5_TAG_ARRAY(node_weights_complete_array, 4)
 	{
 		{ _field_real, "node weight*" },
 		{ _field_terminator }

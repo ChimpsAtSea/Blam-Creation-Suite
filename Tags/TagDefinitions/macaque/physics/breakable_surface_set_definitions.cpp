@@ -19,7 +19,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(supported_bitfield, ((((k_maximum_breakable_surfaces_per_breakable_surface_set)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	#define SUPPORTED_BITFIELD_ID { 0x5BA3F924, 0xD9104D57, 0x9D743495, 0x3F6636C6 }
+	TAG_ARRAY(
+		supported_bitfield_array,
+		"supported_bitfield",
+		((((k_maximum_breakable_surfaces_per_breakable_surface_set)+(k_int32_bits-1))>>k_int32_bits_bits)),
+		"long",
+		SUPPORTED_BITFIELD_ID)
 	{
 		{ _field_long_integer, "bitvector data!" },
 		{ _field_terminator }

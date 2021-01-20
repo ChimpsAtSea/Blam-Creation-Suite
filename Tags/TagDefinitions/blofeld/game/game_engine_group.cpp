@@ -330,7 +330,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(game_engine_settings_definition_block, 1, game_engine_settings_definition_struct_definition_struct_definition );
 
-	TAG_ARRAY(game_engine_team_options_team_block, k_multiplayer_team_game_team_count)
+	V5_TAG_ARRAY(game_engine_team_options_team_block, k_multiplayer_team_game_team_count)
 	{
 		{ _field_byte_flags, "flags", &game_engine_team_options_team_flags },
 		{ _field_char_enum, "initial team designator", &global_multiplayer_team_designator_enum_definition },

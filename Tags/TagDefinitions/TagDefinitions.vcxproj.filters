@@ -936,6 +936,9 @@
     <ClCompile Include="tag_group_info.haloreach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\__unknown\tag_references.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\ai\ai.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -999,13 +1002,13 @@
     <ClCompile Include="macaque\ai\zone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\animations\animation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\animations\composites\composite_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\animations\pca\pca_animation_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\animations\animation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\bink\bink_definitions.cpp">
@@ -1089,9 +1092,6 @@
     <ClCompile Include="macaque\effects\decal_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\effects\effectglobalforces.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\effects\effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1101,25 +1101,25 @@
     <ClCompile Include="macaque\effects\effect_scenery_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\effects\effectglobalforces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\effects\jetwash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\lens_flare_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\effects\lightcones.cpp">
+    <ClCompile Include="macaque\effects\light_volume_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\effects\light_volume_definitions.cpp">
+    <ClCompile Include="macaque\effects\lightcones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\material_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\modeldissolve.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particleize_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\particle_definitions.cpp">
@@ -1141,6 +1141,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\particle_system_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\effects\particleize_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\effects\screen_effect.cpp">
@@ -1170,22 +1173,73 @@
     <ClCompile Include="macaque\fx\fx_test_tag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\game\challenges\challenge_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\incidents\incident_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\incidents\incident_response_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_string_id_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\game_completion_rewards_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_achievements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_avatar_awards.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_commendation_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_cookie_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_cookie_purchase_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_grade_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\player_medals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\playermedalaggregators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\playerrewarddefinitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\player_rewards\prerequisites_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\progression\playerenlistmentdefinitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\game\progression\progression_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\game\armormod_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\campaign_metagame_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\game\challenges\challenge_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\game\firefight_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\gameenginesandboxdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\game_active_camo_globals.cpp">
@@ -1245,10 +1299,7 @@
     <ClCompile Include="macaque\game\game_ui_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\game\incidents\incident_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\incidents\incident_response_definition.cpp">
+    <ClCompile Include="macaque\game\gameenginesandboxdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\loadout_definition.cpp">
@@ -1258,15 +1309,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\materials_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_string_id_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\multiplayer_definitions.cpp">
@@ -1281,49 +1323,10 @@
     <ClCompile Include="macaque\game\player_model_customization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\game_completion_rewards_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\playermedalaggregators.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\playerrewarddefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_achievements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_avatar_awards.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_commendation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_cookie_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_cookie_purchase_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_grade_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_medals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\prerequisites_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\game\player_rumble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\player_training.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\progression\playerenlistmentdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\progression\progression_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\game\silent_assist_definitions.cpp">
@@ -1341,9 +1344,6 @@
     <ClCompile Include="macaque\geometry\geometry_definitions_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\halo4_validation_data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\hs\hs_scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1359,9 +1359,6 @@
     <ClCompile Include="macaque\interface\components\hud\motionsensorbliplist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\interface\controller_mapping_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\interface\cui\cui_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1371,13 +1368,16 @@
     <ClCompile Include="macaque\interface\hud\hudaudio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\interface\vector_hud\vector_hud_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\interface\controller_mapping_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\interface\meter_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\interface\stylesheetglobalsdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\userinterfacehudglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\interface\user_interface_main_menu_voiceover.cpp">
@@ -1389,7 +1389,7 @@
     <ClCompile Include="macaque\interface\user_interface_widget_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\interface\vector_hud\vector_hud_definitions.cpp">
+    <ClCompile Include="macaque\interface\userinterfacehudglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\items\airstrike_definitions.cpp">
@@ -1446,6 +1446,30 @@
     <ClCompile Include="macaque\models\render_model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\antenna_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\cellular_automata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\cellular_automata2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\cloth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\fluid_dynamics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\leaf_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\muffins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\objects\widgets\stereo_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\objects\cheap_light_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1488,40 +1512,16 @@
     <ClCompile Include="macaque\objects\target_tracking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\antenna_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cellular_automata.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cellular_automata2d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cloth.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\fluid_dynamics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\leaf_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\muffins.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\stereo_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\physics\boat_engine_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\physics\boat_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\physics\breakable_surfaces.cpp">
+    <ClCompile Include="macaque\physics\breakable_surface_set_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\physics\breakable_surface_set_definitions.cpp">
+    <ClCompile Include="macaque\physics\breakable_surfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\physics\character_physics_definitions.cpp">
@@ -1710,16 +1710,13 @@
     <ClCompile Include="macaque\structures\detail_object_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\structures\instanced_geometry_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\structures\instance_imposter_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\structures\leaf_map.cpp">
+    <ClCompile Include="macaque\structures\instanced_geometry_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\structures\structuremetadata.cpp">
+    <ClCompile Include="macaque\structures\leaf_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\structures\structure_bsp_definitions.cpp">
@@ -1743,6 +1740,9 @@
     <ClCompile Include="macaque\structures\structure_seam_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="macaque\structures\structuremetadata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="macaque\tag_files\self_tracking\file_self_track.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1755,22 +1755,16 @@
     <ClCompile Include="macaque\tag_files\tag_vertex_buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_structs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="macaque\text\font_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\text\text_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\units\biped_definitions.cpp">
+    <ClCompile Include="macaque\units\custom_apps\custom_app_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\units\custom_apps\custom_app_globals.cpp">
+    <ClCompile Include="macaque\units\biped_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="macaque\units\death_program_selection_definitions.cpp">
@@ -1800,7 +1794,16 @@
     <ClCompile Include="macaque\weather\weather_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macaque\__unknown\tag_references.cpp">
+    <ClCompile Include="macaque\halo4_validation_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\tag_groups.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\tag_structs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macaque\inline_files.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -2753,6 +2756,12 @@
     <ClInclude Include="tag_group_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque_field_type_override.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\__unknown\tag_references.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\ai\ai.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2816,13 +2825,13 @@
     <ClInclude Include="macaque\ai\zone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\animations\animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\animations\composites\composite_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\animations\pca\pca_animation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\animations\animation_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\bink\bink_definitions.h">
@@ -2906,9 +2915,6 @@
     <ClInclude Include="macaque\effects\decal_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\effects\effectglobalforces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\effects\effect_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2918,25 +2924,25 @@
     <ClInclude Include="macaque\effects\effect_scenery_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque\effects\effectglobalforces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\effects\jetwash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\lens_flare_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\effects\lightcones.h">
+    <ClInclude Include="macaque\effects\light_volume_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\effects\light_volume_definitions.h">
+    <ClInclude Include="macaque\effects\lightcones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\material_effect_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\modeldissolve.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particleize_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\particle_definitions.h">
@@ -2958,6 +2964,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\particle_system_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\effects\particleize_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\effects\screen_effect.h">
@@ -2987,22 +2996,73 @@
     <ClInclude Include="macaque\fx\fx_test_tag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque\game\challenges\challenge_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\incidents\incident_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\incidents\incident_response_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_string_id_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\game_completion_rewards_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_achievements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_avatar_awards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_commendation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_cookie_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_cookie_purchase_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_grade_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\player_medals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\playermedalaggregators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\playerrewarddefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\player_rewards\prerequisites_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\progression\playerenlistmentdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\game\progression\progression_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\game\armormod_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\campaign_metagame_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\game\challenges\challenge_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\game\firefight_globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\gameenginesandboxdefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\game_active_camo_globals.h">
@@ -3062,10 +3122,7 @@
     <ClInclude Include="macaque\game\game_ui_globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\game\incidents\incident_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\incidents\incident_response_definition.h">
+    <ClInclude Include="macaque\game\gameenginesandboxdefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\loadout_definition.h">
@@ -3075,15 +3132,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\materials_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_string_id_table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\multiplayer_definitions.h">
@@ -3098,49 +3146,10 @@
     <ClInclude Include="macaque\game\player_model_customization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\game_completion_rewards_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\playermedalaggregators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\playerrewarddefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_achievements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_avatar_awards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_commendation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_cookie_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_cookie_purchase_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_grade_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_medals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\prerequisites_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\game\player_rumble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\player_training.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\progression\playerenlistmentdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\progression\progression_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\game\silent_assist_definitions.h">
@@ -3158,9 +3167,6 @@
     <ClInclude Include="macaque\geometry\geometry_definitions_new.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\halo4_validation_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\hs\hs_scenario_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3176,9 +3182,6 @@
     <ClInclude Include="macaque\interface\components\hud\motionsensorbliplist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\interface\controller_mapping_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\interface\cui\cui_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3188,13 +3191,16 @@
     <ClInclude Include="macaque\interface\hud\hudaudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque\interface\vector_hud\vector_hud_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\interface\controller_mapping_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\interface\meter_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\interface\stylesheetglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\userinterfacehudglobalsdefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\interface\user_interface_main_menu_voiceover.h">
@@ -3206,7 +3212,7 @@
     <ClInclude Include="macaque\interface\user_interface_widget_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\interface\vector_hud\vector_hud_definitions.h">
+    <ClInclude Include="macaque\interface\userinterfacehudglobalsdefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\items\airstrike_definitions.h">
@@ -3263,6 +3269,30 @@
     <ClInclude Include="macaque\models\render_model_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\antenna_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\cellular_automata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\cellular_automata2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\cloth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\fluid_dynamics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\leaf_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\muffins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\objects\widgets\stereo_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\objects\cheap_light_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3305,40 +3335,16 @@
     <ClInclude Include="macaque\objects\target_tracking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\antenna_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cellular_automata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cellular_automata2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cloth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\fluid_dynamics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\leaf_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\muffins.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\stereo_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\physics\boat_engine_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\physics\boat_physics_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\physics\breakable_surfaces.h">
+    <ClInclude Include="macaque\physics\breakable_surface_set_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\physics\breakable_surface_set_definitions.h">
+    <ClInclude Include="macaque\physics\breakable_surfaces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\physics\character_physics_definitions.h">
@@ -3536,16 +3542,13 @@
     <ClInclude Include="macaque\structures\detail_object_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\structures\instanced_geometry_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\structures\instance_imposter_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\structures\leaf_map.h">
+    <ClInclude Include="macaque\structures\instanced_geometry_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\structures\structuremetadata.h">
+    <ClInclude Include="macaque\structures\leaf_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\structures\structure_bsp_definitions.h">
@@ -3569,6 +3572,9 @@
     <ClInclude Include="macaque\structures\structure_seam_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="macaque\structures\structuremetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="macaque\tag_files\self_tracking\file_self_track.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3581,22 +3587,16 @@
     <ClInclude Include="macaque\tag_files\tag_vertex_buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\tag_groups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_structs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="macaque\text\font_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\text\text_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\units\biped_definitions.h">
+    <ClInclude Include="macaque\units\custom_apps\custom_app_globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\units\custom_apps\custom_app_globals.h">
+    <ClInclude Include="macaque\units\biped_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\units\death_program_selection_definitions.h">
@@ -3626,10 +3626,13 @@
     <ClInclude Include="macaque\weather\weather_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque\__unknown\tag_references.h">
+    <ClInclude Include="macaque\halo4_validation_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macaque_field_type_override.h">
+    <ClInclude Include="macaque\tag_groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque\tag_structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

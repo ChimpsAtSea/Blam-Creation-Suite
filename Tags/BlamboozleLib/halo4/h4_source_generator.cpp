@@ -626,7 +626,40 @@ void c_h4_source_generator::create_tag_array_source(std::stringstream& ss, c_h4_
 
 	if (tag_block_container.use_tag_block_definition)
 	{
-		ss << "\tTAG_ARRAY(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ")" << std::endl;
+		char persistent_identifier_buffer[256];
+		snprintf(
+			persistent_identifier_buffer,
+			256,
+			"0x%08X, 0x%08X, 0x%08X, 0x%08X",
+			tag_struct.persistent_identifier.data[0],
+			tag_struct.persistent_identifier.data[1],
+			tag_struct.persistent_identifier.data[2],
+			tag_struct.persistent_identifier.data[3]);
+
+		char persistent_identifier_name_buffer[256];
+		snprintf(
+			persistent_identifier_name_buffer,
+			256,
+			"%s_id",
+			tag_struct_container.name.c_str());
+		for (char* persistent_identifier_name_pos = persistent_identifier_name_buffer; *persistent_identifier_name_pos; persistent_identifier_name_pos++)
+		{
+			*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
+		}
+
+		ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
+		ss << "\tTAG_ARRAY(" << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
+		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
+		ss << "\t\t" << tag_block.maximum_element_count_string << "," << std::endl;
+		ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+		ss << "\t\t" << persistent_identifier_name_buffer;
+		if (tag_struct_container.tag_struct.alignment_bits)
+		{
+			ss << "," << std::endl;
+			ss << "\t\t" << tag_struct_container.tag_struct.alignment_bits;
+		}
+		ss << ")" << std::endl;
 		ss << "\t{" << std::endl;
 		generate_tag_fields_source(ss, tag_struct.tag_fields);
 		ss << "\t};" << std::endl;
@@ -634,7 +667,11 @@ void c_h4_source_generator::create_tag_array_source(std::stringstream& ss, c_h4_
 	}
 	else
 	{
-		ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << ");" << std::endl;
+		ss << "\tTAG_ARRAY_FROM_STRUCT(" << std::endl;
+		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
+		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
+		ss << "\t\t" << tag_block.maximum_element_count_string << "," << std::endl;
+		ss << "\t\t" << tag_struct_container.symbol_name << ");" << std::endl;
 
 		ss << std::endl;
 	}

@@ -647,7 +647,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(g_cinematicShotFlagArray, c_cinematic_shot_flags::k_flag_chunk_count)
+	#define G_CINEMATICSHOTFLAGARRAY_ID { 0x519DEDF9, 0x1CBB442B, 0xAC615A1F, 0xAD7FAB9B }
+	TAG_ARRAY(
+		g_cinematicShotFlagArray_array,
+		"g_cinematicShotFlagArray",
+		c_cinematic_shot_flags::k_flag_chunk_count,
+		"c_big_flags_chunk_type",
+		G_CINEMATICSHOTFLAGARRAY_ID)
 	{
 		{ _field_dword_integer, "shot flag data" },
 		{ _field_terminator }

@@ -1275,13 +1275,25 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(g_node_flag_storage_array, c_node_flags::k_flag_chunk_count)
+	#define G_NODE_FLAG_STORAGE_ARRAY_ID { 0xFA382E96, 0x31004754, 0xA73B7ADD, 0xC9AA134C }
+	TAG_ARRAY(
+		g_node_flag_storage_array,
+		"g_node_flag_storage_array",
+		c_node_flags::k_flag_chunk_count,
+		"c_big_flags_chunk_type",
+		G_NODE_FLAG_STORAGE_ARRAY_ID)
 	{
 		{ _field_long_integer, "flag data" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(animation_velocity_boundaries, k_animation_maximum_velocity_boundary_entries)
+	#define ANIMATION_VELOCITY_BOUNDARIES_ID { 0xD512B001, 0x58E04B93, 0x8363AD46, 0x72E1442C }
+	TAG_ARRAY(
+		animation_velocity_boundaries_array,
+		"animation_velocity_boundaries",
+		k_animation_maximum_velocity_boundary_entries,
+		"real",
+		ANIMATION_VELOCITY_BOUNDARIES_ID)
 	{
 		{ _field_real, "values!" },
 		{ _field_terminator }

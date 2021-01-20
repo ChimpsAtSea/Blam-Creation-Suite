@@ -171,19 +171,19 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_property_sub_array, c_particle_emitter_gpu::_sizeof_gpu_property/sizeof(real))
+	V5_TAG_ARRAY(gpu_property_sub_array, c_particle_emitter_gpu::_sizeof_gpu_property/sizeof(real))
 	{
 		{ _field_real, "runtime gpu_property_real!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_function_sub_array, c_particle_emitter_gpu::_sizeof_gpu_function/sizeof(real))
+	V5_TAG_ARRAY(gpu_function_sub_array, c_particle_emitter_gpu::_sizeof_gpu_function/sizeof(real))
 	{
 		{ _field_real, "runtime gpu_function_real!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_color_sub_array, c_particle_emitter_gpu::_sizeof_gpu_color/sizeof(real))
+	V5_TAG_ARRAY(gpu_color_sub_array, c_particle_emitter_gpu::_sizeof_gpu_color/sizeof(real))
 	{
 		{ _field_real, "runtime gpu_color_real!" },
 		{ _field_terminator }

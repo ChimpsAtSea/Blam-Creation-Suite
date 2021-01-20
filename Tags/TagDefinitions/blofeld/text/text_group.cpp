@@ -39,13 +39,13 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(multilingual_unicode_string_list_block, 1, multilingual_unicode_string_list_struct_definition_struct_definition );
 
-	TAG_ARRAY(data_hash_definition, k_hash_size)
+	V5_TAG_ARRAY(data_hash_definition, k_hash_size)
 	{
 		{ _field_byte_integer, "hash byte!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(multilingual_unicode_string_list_language_pack_offsets, k_language_count)
+	V5_TAG_ARRAY(multilingual_unicode_string_list_language_pack_offsets, k_language_count)
 	{
 		{ _field_short_integer, "start index!" },
 		{ _field_short_integer, "string count!" },

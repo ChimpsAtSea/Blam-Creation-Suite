@@ -742,7 +742,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(multi_sphere_vector_storage, 8)
+	#define MULTI_SPHERE_VECTOR_STORAGE_ID { 0xC2F4C73E, 0xD6904055, 0xB0613D10, 0x58830BA2 }
+	TAG_ARRAY(
+		multi_sphere_vector_storage_array,
+		"multi_sphere_vector_storage",
+		8,
+		"hkVector4",
+		MULTI_SPHERE_VECTOR_STORAGE_ID)
 	{
 		{ _field_real_vector_3d, "sphere*!" },
 		{ _field_real, "havok w sphere*!!" },

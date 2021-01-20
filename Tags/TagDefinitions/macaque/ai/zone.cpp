@@ -115,7 +115,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(area_cluster_occupancy_bitvector_array, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
+	#define AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_ID { 0xC8420AC3, 0x96874B81, 0x8F07ACCE, 0xEDD9DE36 }
+	TAG_ARRAY(
+		area_cluster_occupancy_bitvector_array,
+		"area_cluster_occupancy_bitvector_array",
+		((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)),
+		"long",
+		AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_ID)
 	{
 		{ _field_long_integer, "bitvector data!" },
 		{ _field_terminator }

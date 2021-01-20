@@ -592,7 +592,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(physics_model_block, 1, physics_model_struct_definition_struct_definition );
 
-	TAG_ARRAY(multi_sphere_vector_storage, 8)
+	V5_TAG_ARRAY(multi_sphere_vector_storage, 8)
 	{
 		{ _field_real_vector_3d, "sphere*!" },
 		{ _field_real, "havok w sphere*!!" },

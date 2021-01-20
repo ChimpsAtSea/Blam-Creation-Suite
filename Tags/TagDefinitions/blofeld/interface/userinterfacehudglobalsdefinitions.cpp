@@ -8,7 +8,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK_FROM_STRUCT(user_interface_hud_globals_definition_block, 1, user_interface_hud_globals_definition_struct_definition_struct_definition );
 
-	TAG_ARRAY(screen_transform_basis_array_definition, 9)
+	V5_TAG_ARRAY(screen_transform_basis_array_definition, 9)
 	{
 		{ _field_real_point_2d, "screen transform basis element" },
 		{ _field_terminator }

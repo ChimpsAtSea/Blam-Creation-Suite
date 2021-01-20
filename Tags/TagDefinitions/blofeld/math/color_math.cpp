@@ -4,7 +4,7 @@
 namespace blofeld
 {
 
-	TAG_ARRAY(half_sh_terms, ((3)*(3)))
+	V5_TAG_ARRAY(half_sh_terms, ((3)*(3)))
 	{
 		{ _field_short_integer, "coefficient*" },
 		{ _field_terminator }

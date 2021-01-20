@@ -68,7 +68,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(real_rgb_lightprobe_array, ((3)*(3)) * 3)
+	#define REAL_RGB_LIGHTPROBE_ARRAY_ID { 0xE8F85914, 0xE49BA421, 0x1216AB74, 0x0B6D7111 }
+	TAG_ARRAY(
+		real_rgb_lightprobe_array,
+		"real_rgb_lightprobe_array",
+		((3)*(3)) * 3,
+		"real",
+		REAL_RGB_LIGHTPROBE_ARRAY_ID)
 	{
 		{ _field_real, "sh data" },
 		{ _field_terminator }

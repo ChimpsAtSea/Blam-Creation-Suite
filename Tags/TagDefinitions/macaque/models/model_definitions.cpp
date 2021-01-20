@@ -421,13 +421,25 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(runtime_region_index_array, MAXIMUM_REGIONS_PER_MODEL)
+	#define RUNTIME_REGION_INDEX_ARRAY_ID { 0x698D671C, 0x87E64985, 0x8D63EF05, 0xF3EAE84E }
+	TAG_ARRAY(
+		runtime_region_index_array,
+		"runtime_region_index_array",
+		MAXIMUM_REGIONS_PER_MODEL,
+		"char",
+		RUNTIME_REGION_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "runtime region index!" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(model_state_permutation_index_array, k_number_of_model_states)
+	#define MODEL_STATE_PERMUTATION_INDEX_ARRAY_ID { 0x42CDCB9B, 0x148440EA, 0xB21C6D08, 0xB3C86C53 }
+	TAG_ARRAY(
+		model_state_permutation_index_array,
+		"model_state_permutation_index_array",
+		k_number_of_model_states,
+		"char",
+		MODEL_STATE_PERMUTATION_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "runtime permutation index!" },
 		{ _field_terminator }

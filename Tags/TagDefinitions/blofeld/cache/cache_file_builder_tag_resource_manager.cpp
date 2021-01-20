@@ -429,49 +429,49 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_hash_definition, k_hash_size)
+	V5_TAG_ARRAY(resource_hash_definition, k_hash_size)
 	{
 		{ _field_byte_integer, "hash byte" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(location_offsets_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(location_offsets_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_long_integer, "offset" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(file_location_indexes_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(file_location_indexes_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_short_block_index, "page index" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(sublocation_table_indexes_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(sublocation_table_indexes_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_short_block_index, "subpage table index" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(tag_resource_alignment_bits_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(tag_resource_alignment_bits_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_short_integer, "page alignment bits" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_usage_page_size_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(resource_usage_page_size_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_long_integer, "page size" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_layout_memory_size_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(resource_layout_memory_size_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_long_integer, "memory size" },
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(resource_layout_compressed_size_array_definition, k_numberOfResourcePriorities)
+	V5_TAG_ARRAY(resource_layout_compressed_size_array_definition, k_numberOfResourcePriorities)
 	{
 		{ _field_long_integer, "compressed size" },
 		{ _field_terminator }

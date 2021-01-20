@@ -64,7 +64,13 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(gpu_single_constant_register_array, sizeof(real_vector4d)/sizeof(real))
+	#define GPU_SINGLE_CONSTANT_REGISTER_ARRAY_ID { 0xA2794AE9, 0x58564257, 0xA6A57292, 0x7319E3F2 }
+	TAG_ARRAY(
+		gpu_single_constant_register_array,
+		"gpu_single_constant_register_array",
+		sizeof(real_vector4d)/sizeof(real),
+		"real",
+		GPU_SINGLE_CONSTANT_REGISTER_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_real!" },
 		{ _field_terminator }

@@ -465,7 +465,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(g_cinematicShotFlagArray, c_cinematic_shot_flags::k_flag_chunk_count)
+	V5_TAG_ARRAY(g_cinematicShotFlagArray, c_cinematic_shot_flags::k_flag_chunk_count)
 	{
 		{ _field_dword_integer, "shot flag data" },
 		{ _field_terminator }

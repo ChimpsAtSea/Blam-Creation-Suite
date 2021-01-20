@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_terminator }
 	};
 
-	TAG_ARRAY(real_rgb_lightprobe_array, ((3)*(3)) * 3)
+	V5_TAG_ARRAY(real_rgb_lightprobe_array, ((3)*(3)) * 3)
 	{
 		{ _field_real, "sh data" },
 		{ _field_terminator }

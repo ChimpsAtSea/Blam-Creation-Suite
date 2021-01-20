@@ -66,6 +66,13 @@ s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#sy
 s_tag_block_definition symbol = s_tag_block_definition(#symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(max_count); }, #max_count, symbol##_struct_definition ); \
 s_tag_field symbol##_struct_definition_fields[] =
 
+// symbol, pretty_name, count, struct_name, persistent_identifier, [aligmnment_bits]
+#define TAG_ARRAY(symbol, pretty_name, count, struct_name, persistent_identifier, ...) \
+extern s_tag_field symbol##_struct_definition_fields[]; \
+s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#symbol "_struct_definition", #symbol "_struct_definition", struct_name, __FILE__, __LINE__, persistent_identifier, symbol##_struct_definition_fields, __VA_ARGS__); \
+s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(count); }, #count, symbol##_struct_definition }; \
+s_tag_field symbol##_struct_definition_fields[] =
+
 //// symbol, group_tag, parent_group, parent_group_tag, max_count, struct_name, persistent_identifier, [aligmnment_bits]
 //#define TAG_GROUP(symbol, group_tag, parent_group, parent_group_tag, max_count, struct_name, persistent_identifier, ...) \
 //extern s_tag_field symbol##_struct_definition_fields[]; \
@@ -80,6 +87,11 @@ s_tag_group symbol = s_tag_group(#symbol, group_tag, parent_group_tag, block, pa
 
 #define TAG_BLOCK_FROM_STRUCT(symbol, pretty_name, max_count, struct_definition) \
 s_tag_block_definition symbol = s_tag_block_definition(#symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(max_count); }, #max_count, struct_definition );
+
+#define TAG_ARRAY_FROM_STRUCT(symbol, pretty_name, count, struct_definition) \
+s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(count); }, #count, struct_definition };
+
+
 
 #define V5_TAG_STRUCT(tag_struct_name) \
 V5_TAG_STRUCT_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct_definition)) \
@@ -139,12 +151,12 @@ extern const char* CONCAT(name, _strings)[]; \
 s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings), __FILE__, __LINE__ }; \
 const char* CONCAT(name, _strings)[] = { "" }
 
-#define TAG_ARRAY(tag_array_name, array_count) \
+#define V5_TAG_ARRAY(tag_array_name, array_count) \
 V5_TAG_STRUCT_FORWARD(tag_array_name) \
 s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(array_count); }, #array_count, CONCAT(tag_array_name, _struct_definition) }; \
 V5_TAG_STRUCT(tag_array_name)
 
-#define TAG_ARRAY_FROM_STRUCT(tag_array_name, array_count, tag_array_struct) \
+#define V5_TAG_ARRAY_FROM_STRUCT(tag_array_name, array_count, tag_array_struct) \
 s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, [](e_engine_type engine_type) { return static_cast<uint32_t>(array_count); }, #array_count, tag_array_struct }
 
 #define TAG_INTEROP(tag_interop_name, tag_interop_structure) \
