@@ -14,8 +14,15 @@ namespace macaque
 		"s_ai_spawn_conditions",
 		AI_SPAWN_CONDITIONS_STRUCT_ID)
 	{
-		{ _field_word_flags, "difficulty flags", &global_campaign_difficulty_enum },
+		{ _field_word_flags, "difficulty flags", & global_campaign_difficulty_enum },
 		{ _field_pad, "post-difficulty-flags-padding", 2 },
+
+		{ _field_version_less_or_equal, _engine_type_haloreach, 4 },
+		{ _field_short_integer, "unknown@" },
+		{ _field_short_integer, "unknown@" },
+		{ _field_short_integer, "unknown&" },
+		{ _field_short_integer, "unknown&" },
+
 		{ _field_terminator }
 	};
 

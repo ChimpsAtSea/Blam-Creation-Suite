@@ -16,10 +16,13 @@ namespace macaque
 		AI_CUE_TEMPLATE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name^" },
+
+		{ _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "template_flags", &cue_template_flags },
-		{ _field_block, "firing points", &firing_point_payload_block },
-		{ _field_block, "stimulus", &stimulus_payload_block },
-		{ _field_block, "combat cue", &combat_cue_payload_block },
+
+		{ _field_block, "firing points", &firing_point_payload_block_block },
+		{ _field_block, "stimulus", &stimulus_payload_block_block },
+		{ _field_block, "combat cue", &combat_cue_payload_block_block },
 		{ _field_terminator }
 	};
 
