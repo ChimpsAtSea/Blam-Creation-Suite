@@ -15,39 +15,39 @@ namespace macaque
 		"c_particle_system_definition",
 		PARTICLE_SYSTEM_DEFINITION_BLOCK_NEW_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
-		{ _field_pad, "CXAEIHGADNF", 3 },
+		FIELD_PAD("CXAEIHGADNF", nullptr, 3),
 		{ _field_tag_reference, "particle", &particle_reference },
-		{ _field_long_block_index, "location" },
+		{ _field_long_block_index, "location", &effect_locations_block },
 		{ _field_enum, "coordinate system", &coordinate_system_enum },
 		{ _field_enum, "environment", &effect_environments },
 		{ _field_enum, "disposition", &effect_dispositions },
 		{ _field_enum, "camera mode", &effect_camera_modes },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
-		{ _field_pad, "pad0", 1 },
-		{ _field_short_integer, "sort bias#use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
+		FIELD_PAD("pad0", nullptr, 1),
+		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		{ _field_long_flags, "flags", &particle_system_flags },
-		{ _field_real_bounds, "percent velocity to inherit#flag must be checked above" },
-		{ _field_real, "size scale#multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
-		{ _field_real, "camera offset:world units#the particle is pushed away from the camera this distance (can be negative)" },
-		FIELD_CUSTOM("Estimate overdraw threshold", _custom_field_particle_estimate_overdraw_unknown),
-		{ _field_real, "Pixel budget:ms" },
-		{ _field_real, "near fade range:world units#distance beyond cutoff over which particles fade" },
-		{ _field_real, "near fade cutoff:world units#distance in front of camera where fade is complete*" },
-		{ _field_real, "near fade override:world units#distance in front of camera where fade is complete" },
-		{ _field_real, "far fade range:world units#distance before cutoff over which particles fade" },
-		{ _field_real, "far fade cutoff:world units#distance from camera where fade is complete" },
-		{ _field_real, "LOD in distance#" },
-		{ _field_real, "LOD feather in delta#minimum is 0.0001" },
-		{ _field_real, "inverse LOD feather in!" },
-		{ _field_real, "LOD out distance#defaults to 20.0" },
-		{ _field_real, "LOD feather out delta#0 defaults to 5.0, minimum is 0.0001" },
-		{ _field_real, "inverse LOD feather out!" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_end),
+		{ _field_real_bounds, "percent velocity to inherit", "flag must be checked above" },
+		{ _field_real, "size scale", "multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
+		{ _field_real, "camera offset", "the particle is pushed away from the camera this distance (can be negative)", "world units" },
+		FIELD_CUSTOM("Estimate overdraw threshold", nullptr, _field_id_particle_estimate_overdraw_unknown),
+		{ _field_real, "Pixel budget", "ms" },
+		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
+		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete*", "world units" },
+		{ _field_real, "near fade override", "distance in front of camera where fade is complete", "world units" },
+		{ _field_real, "far fade range", "distance before cutoff over which particles fade", "world units" },
+		{ _field_real, "far fade cutoff", "distance from camera where fade is complete", "world units" },
+		{ _field_real, "LOD in distance" },
+		{ _field_real, "LOD feather in delta", "minimum is 0.0001" },
+		{ _field_real, "inverse LOD feather in" },
+		{ _field_real, "LOD out distance", "defaults to 20.0" },
+		{ _field_real, "LOD feather out delta", "0 defaults to 5.0, minimum is 0.0001" },
+		{ _field_real, "inverse LOD feather out" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_block, "emitters", &particle_system_emitter_definition_block },
-		{ _field_real, "runtime max lifespan!" },
-		{ _field_real, "runtime overdraw!" },
+		{ _field_real, "runtime max lifespan" },
+		{ _field_real, "runtime overdraw" },
 		{ _field_terminator }
 	};
 
@@ -59,63 +59,63 @@ namespace macaque
 		"c_particle_emitter_definition",
 		PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_begin),
-		{ _field_string_id, "emitter name^" },
-		FIELD_CUSTOM("EMITTER SETTINGS|8FAF8D", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
+		{ _field_string_id, "emitter name" },
+		FIELD_CUSTOM("EMITTER SETTINGS|8FAF8D", nullptr, _field_id_function_group_begin),
 		{ _field_char_enum, "emission shape", &emission_shape_enum },
-		{ _field_byte_flags, "flags!", &emitter_flags },
+		{ _field_byte_flags, "flags", &emitter_flags },
 		{ _field_byte_flags, "emitter flags", &visible_emitter_flags },
 		{ _field_char_enum, "particle axis (for models)", &emission_axis_enum },
 		{ _field_char_enum, "particle reference axis", &emission_reference_axis_enum },
-		{ _field_pad, "Pad0", 3 },
+		FIELD_PAD("Pad0", nullptr, 3),
 		{ _field_tag_reference, "custom shape", &particle_emitter_custom_shape_reference },
 		{ _field_tag_reference, "boat hull", &particle_emitter_boat_hull_shape_reference },
-		{ _field_real, "bounding radius estimate*:world units#used if override is zero" },
-		{ _field_real, "bounding radius override:world units#used if non-zero" },
-		{ _field_real_point_3d, "axis scale#NOTE - setting this will break automatic bounding sphere calculation, you must enter radius manually" },
-		{ _field_real_vector_2d, "uv scrolling:tiles per second" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_end),
-		{ _field_struct, "translational offset:world units#XYZ controls that offset the emitter\'s origin from the original location", &particle_property_real_point3d_struct_new },
-		{ _field_struct, "relative direction#yaw/pitch that changes the initial rotation of the emitter", &particle_property_real_euler_angles2d_struct_new },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_begin),
-		{ _field_struct, "emission radius:world units#defines the size of the emitter", &particle_property_scalar_struct_new },
-		{ _field_struct, "emission angle:degrees#determines the angle at which particles are emitted", &particle_property_scalar_struct_new },
-		{ _field_struct, "emission axis angle:degrees#determines the max tilt for particle axis", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("EMISSION SETTINGS|8FAF8D", _custom_field_function_group_begin),
-		{ _field_struct, "particle starting count#number of particles that are spawned at the birth of the effect", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle max count:0=unlimited#max number of particles allowed to exist at one time", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle emission rate:particles per second#number of particles that are spawned every second from the emitters", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle emission per distance:particles per world unit#number of particles that are spawned every world unit of motion from the emitters", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle lifespan:seconds#the number of seconds a particle will live after emission", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("PARTICLE MOTION|8FAF8D", _custom_field_function_group_begin),
-		FIELD_CUSTOM("particle physics template", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
+		{ _field_real, "bounding radius estimate", "used if override is zero", "world units" },
+		{ _field_real, "bounding radius override", "used if non-zero", "world units" },
+		{ _field_real_point_3d, "axis scale", "NOTE - setting this will break automatic bounding sphere calculation, you must enter radius manually" },
+		{ _field_real_vector_2d, "uv scrolling", "tiles per second" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
+		{ _field_struct, "translational offset", &particle_property_real_point3d_struct_new },
+		{ _field_struct, "relative direction", &particle_property_real_euler_angles2d_struct_new },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
+		{ _field_struct, "emission radius", &particle_property_scalar_struct_new },
+		{ _field_struct, "emission angle", &particle_property_scalar_struct_new },
+		{ _field_struct, "emission axis angle", &particle_property_scalar_struct_new },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("EMISSION SETTINGS|8FAF8D", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "particle starting count", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle max count", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle emission rate", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle emission per distance", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle lifespan", &particle_property_scalar_struct_new },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("PARTICLE MOTION|8FAF8D", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("particle physics template", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
 		{ _field_struct, "particle movement", &particle_physics_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block },
 		{ _field_block, "particle clip sphere", &emitterClipSphereBlock_block },
-		{ _field_struct, "particle self-acceleration:world units per second per second", &particle_property_real_vector3d_struct_new },
-		{ _field_struct, "particle initial velocity{particle velocity}:world units per second", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation:.25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle initial rotation rate{particle angular velocity}:360 degree rotations per second", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("PARTICLE APPEARANCE|8FAF8D", _custom_field_function_group_begin),
-		{ _field_struct, "particle size:world units", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle scale:multiple of size", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle scale x:multiple of size", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle scale y:multiple of size", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle tint:RGB#controls the overall tint of the particle", &particle_property_color_struct_new },
+		{ _field_struct, "particle self-acceleration", &particle_property_real_vector3d_struct_new },
+		{ _field_struct, "particle initial velocity", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle initial rotation rate", &particle_property_scalar_struct_new },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("PARTICLE APPEARANCE|8FAF8D", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "particle size", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle scale", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle scale x", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle scale y", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle tint", &particle_property_color_struct_new },
 		{ _field_struct, "particle alpha", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle alpha black point:0=normal, 1=clamped", &particle_property_scalar_struct_new },
-		{ _field_struct, "particle alpha white point:1=normal, 0=clamped", &particle_property_scalar_struct_new },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_end),
-		{ _field_long_integer, "runtime m_constant_per_particle_properties!" },
-		{ _field_long_integer, "runtime m_constant_over_time_properties!" },
-		{ _field_long_integer, "runtime m_used_particle_states!" },
-		{ _field_struct, "runtime m_gpu_data!", &gpu_property_function_color_struct },
+		{ _field_struct, "particle alpha black point", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle alpha white point", &particle_property_scalar_struct_new },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
+		{ _field_long_integer, "runtime m_constant_per_particle_properties" },
+		{ _field_long_integer, "runtime m_constant_over_time_properties" },
+		{ _field_long_integer, "runtime m_used_particle_states" },
+		{ _field_struct, "runtime m_gpu_data", &gpu_property_function_color_struct },
 		{ _field_terminator }
 	};
 
@@ -155,7 +155,7 @@ namespace macaque
 		GPU_PROPERTY_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_property_sub_array!", &gpu_property_sub_array },
+		{ _field_array, "runtime gpu_property_sub_array", &gpu_property_sub_array },
 		{ _field_terminator }
 	};
 
@@ -168,7 +168,7 @@ namespace macaque
 		GPU_FUNCTION_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_function_sub_array!", &gpu_function_sub_array },
+		{ _field_array, "runtime gpu_function_sub_array", &gpu_function_sub_array },
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace macaque
 		GPU_COLOR_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_color_sub_array!", &gpu_color_sub_array },
+		{ _field_array, "runtime gpu_color_sub_array", &gpu_color_sub_array },
 		{ _field_terminator }
 	};
 
@@ -193,7 +193,7 @@ namespace macaque
 		"real",
 		GPU_PROPERTY_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_property_real!" },
+		{ _field_real, "runtime gpu_property_real" },
 		{ _field_terminator }
 	};
 
@@ -205,7 +205,7 @@ namespace macaque
 		"real",
 		GPU_FUNCTION_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_function_real!" },
+		{ _field_real, "runtime gpu_function_real" },
 		{ _field_terminator }
 	};
 
@@ -217,7 +217,7 @@ namespace macaque
 		"real",
 		GPU_COLOR_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_color_real!" },
+		{ _field_real, "runtime gpu_color_real" },
 		{ _field_terminator }
 	};
 
@@ -228,9 +228,9 @@ namespace macaque
 		"c_particle_emitter_definition::s_gpu_data",
 		GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID)
 	{
-		{ _field_block, "runtime gpu_property_block!", &gpu_property_block },
-		{ _field_block, "runtime gpu_functions_block!", &gpu_function_block },
-		{ _field_block, "runtime gpu_colors_block!", &gpu_color_block },
+		{ _field_block, "runtime gpu_property_block", &gpu_property_block },
+		{ _field_block, "runtime gpu_functions_block", &gpu_function_block },
+		{ _field_block, "runtime gpu_colors_block", &gpu_color_block },
 		{ _field_terminator }
 	};
 

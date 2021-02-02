@@ -15,10 +15,10 @@ namespace macaque
 		"c_rasterizer_constant_definition",
 		RASTERIZER_CONSTANT_BLOCK_ID)
 	{
-		{ _field_string_id, "constant name^" },
-		{ _field_word_integer, "register start*" },
-		{ _field_byte_integer, "register count*" },
-		{ _field_char_enum, "register set*", &register_set_enum },
+		{ _field_string_id, "constant name" },
+		{ _field_word_integer, "register start" },
+		{ _field_byte_integer, "register count" },
+		{ _field_char_enum, "register set", &register_set_enum },
 		{ _field_terminator }
 	};
 
@@ -29,9 +29,9 @@ namespace macaque
 		"c_rasterizer_constant_table_definition",
 		GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID)
 	{
-		{ _field_block, "constants*", &rasterizer_constant_block },
-		{ _field_char_enum, "type*", &rasterizer_constant_table_type_enum },
-		{ _field_pad, "qersaui", 3 },
+		{ _field_block, "constants", &rasterizer_constant_block },
+		{ _field_char_enum, "type", &rasterizer_constant_table_type_enum },
+		FIELD_PAD("qersaui", nullptr, 3),
 		{ _field_terminator }
 	};
 

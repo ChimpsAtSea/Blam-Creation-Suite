@@ -15,28 +15,28 @@ namespace macaque
 		"s_cinematic_definition",
 		CINEMATIC_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("custom playback", _custom_field_cinematic_playback),
-		{ _field_struct, "cinematic playback!", &cinematic_playback_data_block },
+		FIELD_CUSTOM("custom playback", nullptr, _field_id_cinematic_playback),
+		{ _field_struct, "cinematic playback", &cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &scenario_and_zone_set_struct },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "channel type", &cinematic_channel_type_enum },
-		{ _field_pad, "PADDING", 2 },
+		FIELD_PAD("PADDING", nullptr, 2),
 		{ _field_long_flags, "flags", &cinematic_flags },
-		{ _field_real, "easing in time#seconds" },
-		{ _field_real, "easing out time#seconds" },
+		{ _field_real, "easing in time", "seconds" },
+		{ _field_real, "easing out time", "seconds" },
 		{ _field_tag_reference, "transition settings", &cinematic_transition_reference },
 		{ _field_tag_reference, "bink movie", &bink_reference },
 		{ _field_string, "bink movie on disc" },
-		FIELD_CUSTOM("Header", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Header", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "scenes", &cinematic_scene_reference_block },
-		FIELD_CUSTOM("Footer", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Footer", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("If The Player Skips", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("If The Player Skips", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "early exit", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -69,21 +69,21 @@ namespace macaque
 		"s_cinematic_transition_data",
 		CINEMATIC_TRANSITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("fade out from game", _custom_field_function_group_begin),
+		FIELD_CUSTOM("fade out from game", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fade out from game struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("fade in to cinematic", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("fade in to cinematic", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fade in to cinematic struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("fade out from cinematic", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("fade out from cinematic", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fade out from cinematic struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("fade post core load", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("fade post core load", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fade post core load struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("fade in to game", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("fade in to game", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fade in to game struct", &cinematic_transition_element_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -106,18 +106,6 @@ namespace macaque
 		1,
 		cinematic_scene_data_struct_definition);
 
-	#define CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID { 0xBCE7A6B4, 0xE12744C9, 0xBEAEBC13, 0xD21CF591 }
-	TAG_BLOCK(
-		cinematic_shot_playback_data_block,
-		"cinematic_shot_playback_data_block",
-		MAX_CINEMATIC_SCENE_COUNT,
-		"s_cinematic_shot_playback_data",
-		CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID)
-	{
-		{ _field_array, "shot flags!", &g_cinematicShotFlagArray_array },
-		{ _field_terminator }
-	};
-
 	#define CINEMATIC_SCENE_REFERENCE_BLOCK_ID { 0x77C11E67, 0x725B4B54, 0x916808BF, 0x593A841D }
 	TAG_BLOCK(
 		cinematic_scene_reference_block,
@@ -131,6 +119,18 @@ namespace macaque
 		{ _field_terminator }
 	};
 
+	#define CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID { 0xBCE7A6B4, 0xE12744C9, 0xBEAEBC13, 0xD21CF591 }
+	TAG_BLOCK(
+		cinematic_shot_playback_data_block,
+		"cinematic_shot_playback_data_block",
+		MAX_CINEMATIC_SCENE_COUNT,
+		"s_cinematic_shot_playback_data",
+		CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID)
+	{
+		{ _field_array, "shot flags", &g_cinematicShotFlagArray_array },
+		{ _field_terminator }
+	};
+
 	#define CINEMATIC_SCENE_OBJECT_BLOCK_STRUCT_ID { 0x50C09E03, 0x425D488E, 0xA09DB8AD, 0x3EB374E0 }
 	TAG_BLOCK(
 		cinematic_scene_object_block,
@@ -139,12 +139,12 @@ namespace macaque
 		"s_scene_object",
 		CINEMATIC_SCENE_OBJECT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name*^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "variant name" },
 		{ _field_long_flags, "flags", &scene_object_flags },
-		FIELD_CUSTOM("lightmap shadow flags", _custom_field_cinematic_scene_flags),
+		FIELD_CUSTOM("lightmap shadow flags", nullptr, _field_id_cinematic_scene_flags),
 		{ _field_array, "lightmap shadow flags", &g_cinematicShotFlagArray_array },
-		FIELD_CUSTOM("high res flags", _custom_field_cinematic_scene_flags),
+		FIELD_CUSTOM("high res flags", nullptr, _field_id_cinematic_scene_flags),
 		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array },
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
 		{ _field_explanation, "Custom override creation condition", "Used in combination with the override creation flags above" },
@@ -162,11 +162,11 @@ namespace macaque
 		SCENE_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scene_object_attachment_flags },
-		{ _field_pad, "VKJSLKHF", 3 },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_PAD("VKJSLKHF", nullptr, 3),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "object marker name" },
-		{ _field_string_id, "attachment object name^" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_string_id, "attachment object name" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "attachment marker name" },
 		{ _field_tag_reference, "attachment type", &scene_object_attachment_block_attachment_type_reference },
 		{ _field_terminator }
@@ -180,16 +180,16 @@ namespace macaque
 		"s_scene_shot",
 		CINEMATIC_SHOT_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("loop now", _custom_field_loop_cinematic_shot),
-		FIELD_CUSTOM("Header", _custom_field_function_group_begin),
+		FIELD_CUSTOM("loop now", nullptr, _field_id_loop_cinematic_shot),
+		FIELD_CUSTOM("Header", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		{ _field_long_flags, "flags", &shot_flags_definition },
-		FIELD_CUSTOM("environment darken:0 - 1#this works best with auto-exposure off", _custom_field_slider_editor),
-		{ _field_real, "environment darken:0 - 1#this works best with auto-exposure off", nullptr, 'sled' },
-		FIELD_CUSTOM("forced exposure:stops#will disable auto-exposure", _custom_field_slider_editor),
-		{ _field_real, "forced exposure:stops#will disable auto-exposure", nullptr, 'sled' },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Settings", _custom_field_function_group_begin),
+		FIELD_CUSTOM("environment darken", "this works best with auto-exposure off", _field_id_slider_editor),
+		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _field_id_slider_editor },
+		FIELD_CUSTOM("forced exposure", "will disable auto-exposure", _field_id_slider_editor),
+		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _field_id_slider_editor },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Settings", nullptr, _field_id_function_group_begin),
 		{ _field_long_flags, "settings flags", &sceneShotSettingsFlags },
 		{ _field_real, "Lightmap Direct Scalar" },
 		{ _field_real, "Lightmap Indirect Scalar" },
@@ -197,7 +197,7 @@ namespace macaque
 		{ _field_tag_reference, "Atmosphere Fog", &global_atmosphere_definition_reference },
 		{ _field_tag_reference, "Camera Effects", &global_camera_fx_settings_reference },
 		{ _field_tag_reference, "Cubemap", &global_bitmap_reference },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "lighting", &cinematic_shot_lighting_block },
 		{ _field_block, "clip", &cinematic_shot_clip_block },
 		{ _field_block, "music", &cinematic_shot_music_block },
@@ -205,9 +205,9 @@ namespace macaque
 		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block },
 		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block },
 		{ _field_block, "texture movies", &cinematicShotTextureMovieBlock_block },
-		FIELD_CUSTOM("Footer", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Footer", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -221,8 +221,8 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_lighting_flags_definition },
 		{ _field_tag_reference, "lighting", &global_new_cinematic_lighting_reference },
-		{ _field_long_block_index, "subject^" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_long_block_index, "subject", &cinematic_scene_object_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker" },
 		{ _field_terminator }
 	};
@@ -237,10 +237,10 @@ namespace macaque
 	{
 		{ _field_real_point_3d, "plane center" },
 		{ _field_real_point_3d, "plane direction" },
-		FIELD_CUSTOM("frame start", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame start", nullptr, 'cifi' },
-		FIELD_CUSTOM("frame end", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame end", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame start", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame start", _field_id_cinematic_frame_index },
+		FIELD_CUSTOM("frame end", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame end", _field_id_cinematic_frame_index },
 		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block },
 		{ _field_terminator }
 	};
@@ -253,7 +253,7 @@ namespace macaque
 		"s_scene_shot_clip_subject",
 		CINEMATIC_SHOT_CLIP_SUBJECT_BLOCK_ID)
 	{
-		{ _field_long_block_index, "index" },
+		{ _field_long_block_index, "index", &cinematic_scene_object_block },
 		{ _field_terminator }
 	};
 
@@ -267,8 +267,8 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &music_flags_enum },
 		{ _field_tag_reference, "music/foley", &global_sound_and_looping_sound_reference },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_terminator }
 	};
 
@@ -280,7 +280,7 @@ namespace macaque
 		"s_scene_object_function",
 		CINEMATIC_SHOT_OBJECT_FUNCTION_BLOCK_ID)
 	{
-		{ _field_long_block_index, "object" },
+		{ _field_long_block_index, "object", &cinematic_scene_object_block },
 		{ _field_string_id, "function name" },
 		{ _field_block, "keyframes", &cinematic_shot_object_function_keyframe_block },
 		{ _field_terminator }
@@ -295,10 +295,10 @@ namespace macaque
 		CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_object_function_flags },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_real, "value" },
-		{ _field_real, "interpolation time:ticks" },
+		{ _field_real, "interpolation time", "ticks" },
 		{ _field_terminator }
 	};
 
@@ -311,12 +311,12 @@ namespace macaque
 		CINEMATIC_SHOT_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
-		FIELD_CUSTOM("stop frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "stop frame", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
+		FIELD_CUSTOM("stop frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "stop frame", _field_id_cinematic_frame_index },
 		{ _field_byte_flags, "flags", &cinematicShotScreenEffectFlags },
-		{ _field_pad, "BLAHWWW", 3 },
+		FIELD_PAD("BLAHWWW", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -328,8 +328,8 @@ namespace macaque
 		"s_scene_shot_user_input_constraints",
 		CINEMATIC_SHOT_USER_INPUT_CONSTRAINTS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_long_integer, "ticks" },
 		{ _field_rectangle_2d, "maximum look angles" },
 		{ _field_real, "frictional force" },
@@ -345,8 +345,8 @@ namespace macaque
 		CINEMATICSHOTTEXTUREMOVIEBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &textureMovieFlags },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_tag_reference, "bink movie", &bink_reference },
 		{ _field_terminator }
 	};
@@ -359,7 +359,7 @@ namespace macaque
 		"CinematicStructureLighting",
 		CINEMATICSTRUCTURELIGHTINGBLOCK_ID)
 	{
-		{ _field_tag_reference, "structure lighting info^", &structure_lighting_bsp_reference },
+		{ _field_tag_reference, "structure lighting info", &structure_lighting_bsp_reference },
 		{ _field_terminator }
 	};
 
@@ -380,10 +380,10 @@ namespace macaque
 		{ _field_block, "dialogue", &cinematic_shot_dialogue_block },
 		{ _field_block, "effects", &cinematic_shot_effect_block },
 		{ _field_block, "custom script", &cinematic_shot_custom_script_block },
-		{ _field_long_integer, "frame count*" },
-		{ _field_block, "frame data*", &cinematic_shot_frame_block },
-		{ _field_block, "dynamic frame data*!", &cinematic_shot_frame_dynamic_block },
-		{ _field_block, "constant frame data*!", &cinematic_shot_frame_constant_block },
+		{ _field_long_integer, "frame count" },
+		{ _field_block, "frame data", &cinematic_shot_frame_block },
+		{ _field_block, "dynamic frame data", &cinematic_shot_frame_dynamic_block },
+		{ _field_block, "constant frame data", &cinematic_shot_frame_constant_block },
 		{ _field_terminator }
 	};
 
@@ -395,12 +395,12 @@ namespace macaque
 		"s_scene_shot_dialogue",
 		CINEMATIC_SHOT_DIALOGUE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "dialogue*", &global_sound_reference },
-		{ _field_tag_reference, "female dialogue*", &global_sound_reference },
-		FIELD_CUSTOM("frame*", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame*", nullptr, 'cifi' },
-		{ _field_real, "scale*" },
-		{ _field_string_id, "lipsync actor*" },
+		{ _field_tag_reference, "dialogue", &global_sound_reference },
+		{ _field_tag_reference, "female dialogue", &global_sound_reference },
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
+		{ _field_real, "scale" },
+		{ _field_string_id, "lipsync actor" },
 		{ _field_string_id, "default sound effect" },
 		{ _field_string_id, "subtitle" },
 		{ _field_string_id, "female subtitle" },
@@ -418,18 +418,18 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &cinematic_shot_effect_flags },
 		{ _field_char_enum, "state", &sceneShotEffectState },
-		{ _field_pad, "CMVOIRLKSD", 2 },
+		FIELD_PAD("CMVOIRLKSD", nullptr, 2),
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_real, "size scale" },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
-		{ _field_long_block_index, "marker parent" },
+		{ _field_long_block_index, "marker parent", &cinematicSceneDataObjectBlock_block },
 		{ _field_string_id, "function a" },
 		{ _field_string_id, "function b" },
-		{ _field_long_integer, "node id!" },
-		{ _field_long_integer, "sequence id!" },
+		{ _field_long_integer, "node id" },
+		{ _field_long_integer, "sequence id" },
 		{ _field_terminator }
 	};
 
@@ -441,13 +441,13 @@ namespace macaque
 		"s_scene_shot_custom_script",
 		CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID)
 	{
-		{ _field_byte_flags, "flags!", &cinematic_shot_custom_script_flags },
-		{ _field_pad, "CMVOIRLKSD", 3 },
-		FIELD_CUSTOM("frame", _custom_field_cinematic_frame_index),
-		{ _field_long_integer, "frame", nullptr, 'cifi' },
+		{ _field_byte_flags, "flags", &cinematic_shot_custom_script_flags },
+		FIELD_PAD("CMVOIRLKSD", nullptr, 3),
+		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
+		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
 		{ _field_struct, "script", &cinematic_custom_script_block },
-		{ _field_long_integer, "node id!" },
-		{ _field_long_integer, "sequence id!" },
+		{ _field_long_integer, "node id" },
+		{ _field_long_integer, "sequence id" },
 		{ _field_terminator }
 	};
 
@@ -535,8 +535,8 @@ namespace macaque
 		"s_cinematic_transition_global_gain_data",
 		CINEMATIC_TRANSITION_GLOBAL_GAIN_BLOCK_STRUCT_ID)
 	{
-		{ _field_real, "gain:dB^" },
-		{ _field_long_integer, "time:hs_ticks" },
+		{ _field_real, "gain", "dB" },
+		{ _field_long_integer, "time", "hs_ticks" },
 		{ _field_terminator }
 	};
 
@@ -548,10 +548,10 @@ namespace macaque
 		"s_cinematic_transition_sound_class_gain_data",
 		CINEMATIC_TRANSITION_SOUND_CLASS_GAIN_BLOCK_STRUCT_ID)
 	{
-		{ _field_char_enum, "class^", &sound_class_enum },
-		{ _field_pad, "pad", 3 },
-		{ _field_real, "gain:dB" },
-		{ _field_long_integer, "time:hs_ticks" },
+		{ _field_char_enum, "class", &sound_class_enum },
+		FIELD_PAD("pad", nullptr, 3),
+		{ _field_real, "gain", "dB" },
+		{ _field_long_integer, "time", "hs_ticks" },
 		{ _field_terminator }
 	};
 
@@ -563,7 +563,7 @@ namespace macaque
 		"s_cinematic_transition_sound_reference",
 		CINEMATIC_TRANSITION_SOUND_REFERENCE_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
+		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -575,7 +575,7 @@ namespace macaque
 		"s_cinematic_transition_sound_reference",
 		CINEMATIC_TRANSITION_LOOPING_SOUND_REFERENCE_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
+		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -587,7 +587,7 @@ namespace macaque
 		"s_cinematic_transition_looping_sound_state",
 		CINEMATIC_TRANSITION_LOOPING_SOUND_STATE_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
+		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
 		{ _field_real, "scale" },
 		{ _field_word_flags, "alternate", &cinematic_transition_looping_sound_alternate_flags },
 		{ _field_word_flags, "layers", &cinematic_transition_looping_sound_layer_flags },
@@ -605,8 +605,8 @@ namespace macaque
 		{ _field_tag_reference, "cinematic anchor reference", &scenery_reference },
 		{ _field_real, "cinematic film aperture" },
 		{ _field_real, "cinematic skip ui up time" },
-		{ _field_real_fraction_bounds, "subtitle rect width#percentage towards the center - 0=default, 0.5=center of the screen" },
-		{ _field_real_fraction_bounds, "subtitle rect height#0=default, 0.5=center of the screen" },
+		{ _field_real_fraction_bounds, "subtitle rect width", "percentage towards the center - 0=default, 0.5=center of the screen" },
+		{ _field_real_fraction_bounds, "subtitle rect height", "0=default, 0.5=center of the screen" },
 		{ _field_real_rgb_color, "default subtitle color" },
 		{ _field_real_rgb_color, "default subtitle shadow color" },
 		{ _field_block, "cinematic characters", &cinematic_characters_block },
@@ -621,17 +621,11 @@ namespace macaque
 		"s_cinematic_character",
 		CINEMATIC_CHARACTERS_BLOCK_ID)
 	{
-		{ _field_string_id, "character name^" },
+		{ _field_string_id, "character name" },
 		{ _field_real_rgb_color, "subtitle color" },
 		{ _field_real_rgb_color, "shadow color" },
 		{ _field_terminator }
 	};
-
-	TAG_BLOCK_FROM_STRUCT(
-		scenario_cutscene_title_block,
-		"scenario_cutscene_title_block",
-		k_maximum_scenario_cutscene_titles,
-		scenario_cutscene_title_struct);
 
 	#define SCENARIO_CINEMATICS_BLOCK_ID { 0x59336E8E, 0x27A04735, 0xA9545DF3, 0x921A7282 }
 	TAG_BLOCK(
@@ -642,10 +636,16 @@ namespace macaque
 		SCENARIO_CINEMATICS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scenario_cinematics_flags },
-		{ _field_pad, "SDJLKANF", 3 },
-		{ _field_tag_reference, "name^", &cinematic_reference },
+		FIELD_PAD("SDJLKANF", nullptr, 3),
+		{ _field_tag_reference, "name", &cinematic_reference },
 		{ _field_terminator }
 	};
+
+	TAG_BLOCK_FROM_STRUCT(
+		scenario_cutscene_title_block,
+		"scenario_cutscene_title_block",
+		k_maximum_scenario_cutscene_titles,
+		scenario_cutscene_title_struct);
 
 	#define G_CINEMATICSHOTFLAGARRAY_ID { 0x519DEDF9, 0x1CBB442B, 0xAC615A1F, 0xAD7FAB9B }
 	TAG_ARRAY(
@@ -666,21 +666,21 @@ namespace macaque
 		"s_cinematic_scene",
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("loop now", _custom_field_loop_cinematic_scene),
-		{ _field_string_id, "name^" },
+		FIELD_CUSTOM("loop now", nullptr, _field_id_loop_cinematic_scene),
+		{ _field_string_id, "name" },
 		{ _field_string_id, "anchor" },
 		{ _field_enum, "reset object lighting", &scene_reset_object_lighting_enum },
-		{ _field_pad, "pad", 2 },
-		{ _field_tag_reference, "data*", &cinematic_scene_data_reference },
-		FIELD_CUSTOM("Header", _custom_field_function_group_begin),
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_tag_reference, "data", &cinematic_scene_data_reference },
+		FIELD_CUSTOM("Header", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_block, "objects*", &cinematic_scene_object_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		{ _field_block, "objects", &cinematic_scene_object_block },
 		{ _field_block, "shots", &cinematic_shot_block },
 		{ _field_block, "lights", &cinematicStructureLightingBlock_block },
-		FIELD_CUSTOM("Footer", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Footer", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -691,10 +691,10 @@ namespace macaque
 		"CinematicSceneData",
 		CINEMATIC_SCENE_DATA_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "objects*", &cinematicSceneDataObjectBlock_block },
-		{ _field_block, "shots*", &cinematicDataShotBlock_block },
-		{ _field_block, "extra camera frame data*", &cinematic_shot_extra_camera_block },
-		{ _field_long_integer, "version*" },
+		{ _field_block, "objects", &cinematicSceneDataObjectBlock_block },
+		{ _field_block, "shots", &cinematicDataShotBlock_block },
+		{ _field_block, "extra camera frame data", &cinematic_shot_extra_camera_block },
+		{ _field_long_integer, "version" },
 		{ _field_terminator }
 	};
 
@@ -705,10 +705,10 @@ namespace macaque
 		"s_cinematic_playback_data",
 		CINEMATIC_PLAYBACK_DATA_BLOCK_ID)
 	{
-		{ _field_long_block_flags, "scenes!" },
-		{ _field_long_block_flags, "scenes expanded!" },
-		{ _field_block, "shots!", &cinematic_shot_playback_data_block },
-		{ _field_long_integer, "bsp zone flags!" },
+		{ _field_long_block_flags, "scenes", &cinematic_scene_reference_block },
+		{ _field_long_block_flags, "scenes expanded", &cinematic_scene_reference_block },
+		{ _field_block, "shots", &cinematic_shot_playback_data_block },
+		{ _field_long_integer, "bsp zone flags" },
 		{ _field_terminator }
 	};
 
@@ -719,9 +719,9 @@ namespace macaque
 		"s_scenario_and_zone_set",
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom ui", _custom_field_scenario_zone_set_index),
-		{ _field_tag_reference, "scenario!", &scenario_reference },
-		{ _field_long_integer, "zone set!" },
+		FIELD_CUSTOM("custom ui", nullptr, _field_id_scenario_zone_set_index),
+		{ _field_tag_reference, "scenario", &scenario_reference },
+		{ _field_long_integer, "zone set" },
 		{ _field_terminator }
 	};
 
@@ -732,7 +732,7 @@ namespace macaque
 		"s_cinematic_custom_script",
 		CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID)
 	{
-		{ _field_data, "script{ }" },
+		{ _field_data, "script" },
 		{ _field_terminator }
 	};
 
@@ -743,12 +743,12 @@ namespace macaque
 		"SceneDataObject",
 		CINEMATICSCENEDATAOBJECTBLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name*^" },
-		{ _field_string_id, "identifier*" },
-		{ _field_tag_reference, "model animation graph*", &global_animation_graph_reference },
-		{ _field_tag_reference, "object type*", &scene_object_attachment_block_attachment_type_reference },
-		FIELD_CUSTOM("shots active flags*", _custom_field_cinematic_scene_flags),
-		{ _field_array, "shots active flags*", &g_cinematicShotFlagArray_array },
+		{ _field_string_id, "name" },
+		{ _field_string_id, "identifier" },
+		{ _field_tag_reference, "model animation graph", &global_animation_graph_reference },
+		{ _field_tag_reference, "object type", &scene_object_attachment_block_attachment_type_reference },
+		FIELD_CUSTOM("shots active flags", nullptr, _field_id_cinematic_scene_flags),
+		{ _field_array, "shots active flags", &g_cinematicShotFlagArray_array },
 		{ _field_terminator }
 	};
 
@@ -771,9 +771,9 @@ namespace macaque
 		"s_camera_frame_dynamic",
 		CAMERA_FRAME_DYNAMIC_STRUCT_ID)
 	{
-		{ _field_real_point_3d, "camera position*" },
-		{ _field_real_vector_3d, "camera forward*" },
-		{ _field_real_vector_3d, "camera up*" },
+		{ _field_real_point_3d, "camera position" },
+		{ _field_real_vector_3d, "camera forward" },
+		{ _field_real_vector_3d, "camera up" },
 		{ _field_terminator }
 	};
 
@@ -784,14 +784,14 @@ namespace macaque
 		"s_camera_frame_constant",
 		CAMERA_FRAME_CONSTANT_STRUCT_ID)
 	{
-		{ _field_real, "focal length*" },
-		{ _field_long_integer, "depth of field*" },
-		{ _field_real, "near focal plane distance*" },
-		{ _field_real, "far focal plane distance*" },
-		{ _field_real, "near focal depth*" },
-		{ _field_real, "far focal depth*" },
-		{ _field_real, "near blur amount*" },
-		{ _field_real, "far blur amount*" },
+		{ _field_real, "focal length" },
+		{ _field_long_integer, "depth of field" },
+		{ _field_real, "near focal plane distance" },
+		{ _field_real, "far focal plane distance" },
+		{ _field_real, "near focal depth" },
+		{ _field_real, "far focal depth" },
+		{ _field_real, "near blur amount" },
+		{ _field_real, "far blur amount" },
 		{ _field_terminator }
 	};
 
@@ -809,7 +809,7 @@ namespace macaque
 		{ _field_block, "start sounds", &cinematic_transition_sound_reference_block },
 		{ _field_block, "resume looping sounds", &cinematic_transition_looping_sound_reference_block },
 		{ _field_block, "looping sound states", &cinematic_transition_looping_sound_state_block },
-		{ _field_long_integer, "sleep time:hs_ticks" },
+		{ _field_long_integer, "sleep time", "hs_ticks" },
 		{ _field_terminator }
 	};
 
@@ -820,8 +820,8 @@ namespace macaque
 		"s_cinematic_transition_global_fade_data",
 		CINEMATIC_TRANSITION_GLOBAL_FADE_BLOCK_ID)
 	{
-		{ _field_real_rgb_color, "fade_color^" },
-		{ _field_long_integer, "fade time:hs_ticks" },
+		{ _field_real_rgb_color, "fade_color" },
+		{ _field_long_integer, "fade time", "hs_ticks" },
 		{ _field_terminator }
 	};
 
@@ -832,19 +832,19 @@ namespace macaque
 		"s_scenario_cutscene_title",
 		SCENARIO_CUTSCENE_TITLE_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real_fraction_bounds, "text bounds X" },
 		{ _field_real_fraction_bounds, "text bounds Y" },
 		{ _field_enum, "justification", &text_justification_enum_definition },
 		{ _field_enum, "vertical justification", &text_vertical_justification_enum_definition },
 		{ _field_enum, "font", &global_font_id_enum_definition },
-		{ _field_pad, "padding", 2 },
+		FIELD_PAD("padding", nullptr, 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
-		{ _field_real, "fade in time [seconds]" },
-		{ _field_real, "up time [seconds]" },
-		{ _field_real, "fade out time [seconds]" },
-		{ _field_real, "letter print time:seconds" },
+		{ _field_real, "fade in time " },
+		{ _field_real, "up time " },
+		{ _field_real, "fade out time " },
+		{ _field_real, "letter print time", "seconds" },
 		{ _field_terminator }
 	};
 

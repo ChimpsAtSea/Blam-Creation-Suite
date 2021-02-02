@@ -13,18 +13,35 @@ enum e_h4_tag_memory_type : unsigned long
 enum e_h4_tag_memory_usage_bit : unsigned long
 {
 	_h4_tag_memory_physical_bit = 0,
+	_h4_tag_memory_unknown1_bit,
+	_h4_tag_memory_unknown2_bit,
 	_h4_tag_memory_writeable_bit = 3,
 	_h4_tag_memory_combined_bit = 4,
 	_h4_tag_memory_streaming_bit = 5,
 	_h4_tag_memory_non_aliased_bit = 6,
-	k_num_tag_memory_usage_bits = 7
+	k_num_h4_tag_memory_usage_bits = 7
 };
 
 enum e_h4_runtime_flags_bit : unsigned long
 {
+	_h4_runtime_flags_unknown0 = 0,
+	_h4_runtime_flags_unknown1 = 1,
+	_h4_runtime_flags_unknown2 = 2,
+	_h4_runtime_flags_unknown3 = 3,
+	_h4_runtime_flags_unknown4 = 4,
+	_h4_runtime_flags_unknown5 = 5,
 	_h4_runtime_flags_is_built_from_disk = 6,
+	_h4_runtime_flags_unknown7 = 7,
+	_h4_runtime_flags_unknown8 = 8,
+	_h4_runtime_flags_unknown9 = 9,
+	_h4_runtime_flags_unknown10 = 10,
+	_h4_runtime_flags_unknown11 = 11,
+	_h4_runtime_flags_unknown12 = 12,
 	_h4_runtime_flags_no_children_with_resources = 13, // cannot have any children with resources
+	_h4_runtime_flags_unknown14 = 14,
+	_h4_runtime_flags_unknown15 = 15,
 	_h4_runtime_flags_no_children_with_level_specific_data = 16, // cannot have any children that are level specific (string_ids, tag_references)
+	k_num_h4_runtime_flags = 17
 };
 
 struct c_h4_tag_memory_attributes

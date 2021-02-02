@@ -52,10 +52,10 @@ namespace macaque
 		"s_rumble_frequency_definition",
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
-		{ _field_real, "duration:seconds" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_real, "duration", "seconds" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "dirty whore", &mapping_function },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 

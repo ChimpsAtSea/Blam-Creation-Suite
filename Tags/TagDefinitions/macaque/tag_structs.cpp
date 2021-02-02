@@ -276,6 +276,7 @@ namespace macaque
 		&blofeld::macaque::mapping_function,
 		&blofeld::macaque::render_method_postprocess_block_struct_definition, // block
 		&blofeld::macaque::render_method_postprocess_texture_block_struct_definition, // block
+		&blofeld::macaque::g_null_block_struct_definition, // block
 		&blofeld::macaque::tag_block_index_struct,
 		&blofeld::macaque::real_vector4d_block_struct_definition, // block
 		&blofeld::macaque::int_block_struct_definition, // block
@@ -310,6 +311,10 @@ namespace macaque
 		&blofeld::macaque::global_render_geometry_struct,
 		&blofeld::macaque::global_mesh_block_struct_definition, // block
 		&blofeld::macaque::part_block_struct_definition, // block
+		&blofeld::macaque::global_geometry_material_block_struct_definition, // block
+		&blofeld::macaque::sorting_position_block_struct_definition, // block
+		&blofeld::macaque::node_indices_array_struct_definition, // array
+		&blofeld::macaque::node_weights_implicit_array_struct_definition, // array
 		&blofeld::macaque::subpart_block_struct_definition, // block
 		&blofeld::macaque::vertex_buffer_indices_word_array_struct_definition, // array
 		&blofeld::macaque::global_instance_bucket_block_struct_definition, // block
@@ -318,9 +323,6 @@ namespace macaque
 		&blofeld::macaque::vertexKeyBlock_block_struct_definition, // block
 		&blofeld::macaque::PCAMeshIndexBlock_block_struct_definition, // block
 		&blofeld::macaque::compression_info_block_struct_definition, // block
-		&blofeld::macaque::sorting_position_block_struct_definition, // block
-		&blofeld::macaque::node_indices_array_struct_definition, // array
-		&blofeld::macaque::node_weights_implicit_array_struct_definition, // array
 		&blofeld::macaque::user_data_block_struct_definition, // block
 		&blofeld::macaque::global_render_geometry_user_data_header_struct,
 		&blofeld::macaque::per_mesh_raw_data_block_struct_definition, // block
@@ -399,6 +401,12 @@ namespace macaque
 		&blofeld::macaque::firing_point_payload_block_struct_definition, // block
 		&blofeld::macaque::stimulus_payload_block_struct_definition, // block
 		&blofeld::macaque::combat_cue_payload_block_struct_definition, // block
+		&blofeld::macaque::areas_block_struct_definition, // block
+		&blofeld::macaque::NavMeshAttachmentsStruct,
+		&blofeld::macaque::NavMeshAttachmentBlock_block_struct_definition, // block
+		&blofeld::macaque::area_cluster_occupancy_bitvector_array_struct_definition, // array
+		&blofeld::macaque::flight_reference_block_struct_definition, // block
+		&blofeld::macaque::area_sector_point_block_struct_definition, // block
 		&blofeld::macaque::ai_trait_vision_block_struct_definition, // block
 		&blofeld::macaque::ai_trait_sound_block_struct_definition, // block
 		&blofeld::macaque::ai_trait_luck_block_struct_definition, // block
@@ -416,10 +424,13 @@ namespace macaque
 		&blofeld::macaque::character_physics_struct,
 		&blofeld::macaque::spheres_block_struct_definition, // block
 		&blofeld::macaque::havok_primitive_struct,
-		&blofeld::macaque::havok_convex_shape_struct,
+		&blofeld::macaque::materials_block_struct_definition, // block
+		&blofeld::macaque::phantom_types_block_struct_definition, // block
+		&blofeld::macaque::phantoms_block_struct_definition, // block
 		&blofeld::macaque::havok_shape_struct,
-		&blofeld::macaque::havok_convex_translate_shape_struct,
 		&blofeld::macaque::havok_shape_reference_struct,
+		&blofeld::macaque::havok_convex_shape_struct,
+		&blofeld::macaque::havok_convex_translate_shape_struct,
 		&blofeld::macaque::pills_block_struct_definition, // block
 		&blofeld::macaque::lists_block_struct_definition, // block
 		&blofeld::macaque::havok_shape_collection_struct_2010_2,
@@ -451,7 +462,6 @@ namespace macaque
 		&blofeld::macaque::object_change_colors_block_struct_definition, // block
 		&blofeld::macaque::object_change_color_initial_permutation_block_struct_definition, // block
 		&blofeld::macaque::object_change_color_function_block_struct_definition, // block
-		&blofeld::macaque::g_null_block_struct_definition, // block
 		&blofeld::macaque::multiplayer_object_block_struct_definition, // block
 		&blofeld::macaque::spawn_influence_weight_falloff_function_block_struct_definition, // block
 		&blofeld::macaque::object_spawn_effects_block_struct_definition, // block
@@ -505,10 +515,11 @@ namespace macaque
 		&blofeld::macaque::bitmap_group_sprite_block_def_block_struct_definition, // block
 		&blofeld::macaque::bitmap_tight_bounds_block_def_block_struct_definition, // block
 		&blofeld::macaque::bitmap_data_block_def_block_struct_definition, // block
+		&blofeld::macaque::bitmap_texture_interleaved_interop_block_struct_definition, // block
 		&blofeld::macaque::bitmap_texture_interop_block_struct_definition, // block
 		&blofeld::macaque::stitchable_bitmap_texture_interop_block_struct_definition, // block
-		&blofeld::macaque::bitmap_texture_interleaved_interop_block_struct_definition, // block
 		&blofeld::macaque::particle_system_definition_block_new_block_struct_definition, // block
+		&blofeld::macaque::effect_locations_block_struct_definition, // block
 		&blofeld::macaque::particle_system_emitter_definition_block_struct_definition, // block
 		&blofeld::macaque::particle_property_real_point3d_struct_new,
 		&blofeld::macaque::particle_property_real_euler_angles2d_struct_new,
@@ -637,11 +648,11 @@ namespace macaque
 		&blofeld::macaque::challenge_block_struct_definition, // block
 		&blofeld::macaque::game_mode_flags_struct,
 		&blofeld::macaque::cinematic_playback_data_block,
+		&blofeld::macaque::cinematic_scene_reference_block_struct_definition, // block
 		&blofeld::macaque::cinematic_shot_playback_data_block_struct_definition, // block
 		&blofeld::macaque::g_cinematicShotFlagArray_array_struct_definition, // array
 		&blofeld::macaque::scenario_and_zone_set_struct,
 		&blofeld::macaque::cinematic_custom_script_block,
-		&blofeld::macaque::cinematic_scene_reference_block_struct_definition, // block
 		&blofeld::macaque::cinematic_scene_object_block_struct_definition, // block
 		&blofeld::macaque::scene_object_attachment_block_struct_definition, // block
 		&blofeld::macaque::cinematic_shot_block_struct_definition, // block
@@ -713,12 +724,29 @@ namespace macaque
 		&blofeld::macaque::purchase_prerequisite_commendation_definition_block_struct_definition, // block
 		&blofeld::macaque::PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::PurchaseAppearanceDefinitionReferenceStruct,
+		&blofeld::macaque::CookiePurchaseAppearanceDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::PurchaseLoadoutDefinitionReferenceStruct,
+		&blofeld::macaque::CookiePurchaseLoadoutDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::PurchaseOrdnanceDefinitionReferenceStruct,
+		&blofeld::macaque::CookiePurchaseOrdnanceDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::purchase_prerequisites_unlockable_definition_block_struct_definition, // block
 		&blofeld::macaque::purchase_prerequisites_offer_definition_block_struct_definition, // block
+		&blofeld::macaque::PurchasePlayerOrdnanceStruct,
+		&blofeld::macaque::PurchasePlayerOrdnanceItemBlock_block_struct_definition, // block
+		&blofeld::macaque::PurchasePlayerOrdnanceSlotBlock_block_struct_definition, // block
+		&blofeld::macaque::PurchasePlayerLoadoutStruct,
+		&blofeld::macaque::purchase_player_item_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_app_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_loadout_slot_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_app_mod_slot_block_struct_definition, // block
+		&blofeld::macaque::PurchasePlayerAppearanceStruct,
+		&blofeld::macaque::purchase_player_appearance_effect_model_permutation_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_appearance_effect_non_model_permutation_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_appearance_effect_visor_tint_block_struct_definition, // block
+		&blofeld::macaque::purchase_player_appearance_effect_emblem_index_block_struct_definition, // block
+		&blofeld::macaque::PurchasePlayerAppearancePoseBlock_block_struct_definition, // block
 		&blofeld::macaque::commendationLevelBlock_block_struct_definition, // block
 		&blofeld::macaque::rewardDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::rewardBlock_block_struct_definition, // block
@@ -729,29 +757,12 @@ namespace macaque
 		&blofeld::macaque::CookiePurchaseLoadoutDefinitionReferenceBlock_block_struct_definition, // block
 		&blofeld::macaque::CookiePurchaseFamilyOrdnanceDefinitionBlock_block_struct_definition, // block
 		&blofeld::macaque::CookiePurchaseOrdnanceDefinitionReferenceBlock_block_struct_definition, // block
-		&blofeld::macaque::CookiePurchaseAppearanceDefinitionBlock_block_struct_definition, // block
-		&blofeld::macaque::PurchasePlayerAppearanceStruct,
-		&blofeld::macaque::purchase_player_appearance_effect_model_permutation_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_appearance_effect_non_model_permutation_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_appearance_effect_visor_tint_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_appearance_effect_emblem_index_block_struct_definition, // block
-		&blofeld::macaque::PurchasePlayerAppearancePoseBlock_block_struct_definition, // block
 		&blofeld::macaque::CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block_struct_definition, // block
-		&blofeld::macaque::CookiePurchaseLoadoutDefinitionBlock_block_struct_definition, // block
-		&blofeld::macaque::PurchasePlayerLoadoutStruct,
-		&blofeld::macaque::purchase_player_item_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_app_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_loadout_slot_block_struct_definition, // block
-		&blofeld::macaque::purchase_player_app_mod_slot_block_struct_definition, // block
 		&blofeld::macaque::CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block_struct_definition, // block
-		&blofeld::macaque::CookiePurchaseOrdnanceDefinitionBlock_block_struct_definition, // block
-		&blofeld::macaque::PurchasePlayerOrdnanceStruct,
-		&blofeld::macaque::PurchasePlayerOrdnanceItemBlock_block_struct_definition, // block
-		&blofeld::macaque::PurchasePlayerOrdnanceSlotBlock_block_struct_definition, // block
 		&blofeld::macaque::CookiePurchaseExternalUnlockableBlockOrdnanceDefinition_block_struct_definition, // block
 		&blofeld::macaque::cheap_particle_type_block_struct_definition, // block
-		&blofeld::macaque::cheap_particle_bitmap_reference_block_struct_definition, // block
 		&blofeld::macaque::cheapParticleTurbulenceTypeBlock_block_struct_definition, // block
+		&blofeld::macaque::cheap_particle_bitmap_reference_block_struct_definition, // block
 		&blofeld::macaque::camera_impulse_struct,
 		&blofeld::macaque::camera_shake_struct,
 		&blofeld::macaque::cui_system,
@@ -812,7 +823,6 @@ namespace macaque
 		&blofeld::macaque::area_control_scalar_function_struct,
 		&blofeld::macaque::area_control_scalar_object_function_struct,
 		&blofeld::macaque::particle_emitter_boat_hull_group_block_struct_definition, // block
-		&blofeld::macaque::effect_locations_block_struct_definition, // block
 		&blofeld::macaque::effect_event_block_struct_definition, // block
 		&blofeld::macaque::effect_part_block_struct_definition, // block
 		&blofeld::macaque::effect_accelerations_block_struct_definition, // block
@@ -946,32 +956,32 @@ namespace macaque
 		&blofeld::macaque::model_variant_state_block_struct_definition, // block
 		&blofeld::macaque::model_state_permutation_index_array_struct_definition, // array
 		&blofeld::macaque::model_variant_object_block_struct_definition, // block
+		&blofeld::macaque::new_global_damage_section_block_struct_definition, // block
+		&blofeld::macaque::damage_section_recharge_speed_curve_block_struct_definition, // block
+		&blofeld::macaque::damage_section_segmented_recharge_fraction_block_struct_definition, // block
+		&blofeld::macaque::new_instantaneous_damage_response_block_struct_definition, // block
+		&blofeld::macaque::instantaneous_response_damage_effect_struct,
+		&blofeld::macaque::instantaneous_response_damage_effect_marker_struct,
+		&blofeld::macaque::damage_response_region_transition_block_struct_definition, // block
+		&blofeld::macaque::damage_transfer_block_struct_definition, // block
+		&blofeld::macaque::global_model_instance_group_block_struct_definition, // block
+		&blofeld::macaque::model_instance_group_member_block_struct_definition, // block
+		&blofeld::macaque::seat_ejection_block_struct_definition, // block
+		&blofeld::macaque::damage_section_rendering_paramters_block_struct_definition, // block
 		&blofeld::macaque::model_variant_muted_node_block_struct_definition, // block
 		&blofeld::macaque::g_node_flag_storage_array_struct_definition, // array
 		&blofeld::macaque::region_name_block_struct_definition, // block
-		&blofeld::macaque::global_model_instance_group_block_struct_definition, // block
-		&blofeld::macaque::model_instance_group_member_block_struct_definition, // block
 		&blofeld::macaque::model_material_block_new_block_struct_definition, // block
 		&blofeld::macaque::global_damage_info_block_struct_definition, // block
 		&blofeld::macaque::damage_body_parameters_struct,
 		&blofeld::macaque::damage_shield_parameters_struct,
 		&blofeld::macaque::global_damage_section_block_struct_definition, // block
 		&blofeld::macaque::instantaneous_damage_repsonse_block_struct_definition, // block
-		&blofeld::macaque::instantaneous_response_damage_effect_struct,
-		&blofeld::macaque::instantaneous_response_damage_effect_marker_struct,
 		&blofeld::macaque::global_damage_nodes_block_struct_definition, // block
 		&blofeld::macaque::damage_seat_info_block_struct_definition, // block
 		&blofeld::macaque::damage_seat_region_setting_block_struct_definition, // block
 		&blofeld::macaque::damage_constraint_info_block_struct_definition, // block
 		&blofeld::macaque::model_damage_info_struct,
-		&blofeld::macaque::new_global_damage_section_block_struct_definition, // block
-		&blofeld::macaque::damage_section_recharge_speed_curve_block_struct_definition, // block
-		&blofeld::macaque::damage_section_segmented_recharge_fraction_block_struct_definition, // block
-		&blofeld::macaque::new_instantaneous_damage_response_block_struct_definition, // block
-		&blofeld::macaque::damage_response_region_transition_block_struct_definition, // block
-		&blofeld::macaque::damage_transfer_block_struct_definition, // block
-		&blofeld::macaque::seat_ejection_block_struct_definition, // block
-		&blofeld::macaque::damage_section_rendering_paramters_block_struct_definition, // block
 		&blofeld::macaque::model_target_block_old_block_struct_definition, // block
 		&blofeld::macaque::model_target_lock_on_data_struct,
 		&blofeld::macaque::model_target_block_new_block_struct_definition, // block
@@ -1019,16 +1029,24 @@ namespace macaque
 		&blofeld::macaque::InfinityMissionImagesDefinition_block_struct_definition, // block
 		&blofeld::macaque::animation_graph_definitions_struct,
 		&blofeld::macaque::animation_usage_block_struct_definition, // block
+		&blofeld::macaque::animation_graph_node_block_struct_definition, // block
 		&blofeld::macaque::animation_node_mask_block_struct_definition, // block
 		&blofeld::macaque::animation_node_mask_entry_block_struct_definition, // block
 		&blofeld::macaque::animation_function_block_struct_definition, // block
 		&blofeld::macaque::model_animation_variant_block_struct_definition, // block
 		&blofeld::macaque::mode_or_stance_alias_block_struct_definition, // block
-		&blofeld::macaque::animation_graph_node_block_struct_definition, // block
 		&blofeld::macaque::animation_blend_screen_block_struct_definition, // block
 		&blofeld::macaque::animation_aiming_screen_struct,
 		&blofeld::macaque::foot_tracking_member_block_struct_definition, // block
 		&blofeld::macaque::animation_pool_block_struct_definition, // block
+		&blofeld::macaque::g_compositeTag_struct,
+		&blofeld::macaque::CompositeAxisDefinition_block_struct_definition, // block
+		&blofeld::macaque::CompositeDeadZoneDefinition_block_struct_definition, // block
+		&blofeld::macaque::CompositeEntryDefinition_block_struct_definition, // block
+		&blofeld::macaque::CompositeEntryValueDefinition_block_struct_definition, // block
+		&blofeld::macaque::CompositePhaseSetDefinition_block_struct_definition, // block
+		&blofeld::macaque::SyncKeyBlock_block_struct_definition, // block
+		&blofeld::macaque::StringBlock_block_struct_definition, // block
 		&blofeld::macaque::shared_animation_reference_block,
 		&blofeld::macaque::shared_model_animation_block_struct_definition, // block
 		&blofeld::macaque::animation_frame_event_block_struct_definition, // block
@@ -1060,14 +1078,6 @@ namespace macaque
 		&blofeld::macaque::animation_ik_set_block_struct_definition, // block
 		&blofeld::macaque::animation_ik_set_item_block_struct_definition, // block
 		&blofeld::macaque::animation_ik_chain_block_struct_definition, // block
-		&blofeld::macaque::g_compositeTag_struct,
-		&blofeld::macaque::CompositeAxisDefinition_block_struct_definition, // block
-		&blofeld::macaque::CompositeDeadZoneDefinition_block_struct_definition, // block
-		&blofeld::macaque::CompositeEntryDefinition_block_struct_definition, // block
-		&blofeld::macaque::CompositeEntryValueDefinition_block_struct_definition, // block
-		&blofeld::macaque::CompositePhaseSetDefinition_block_struct_definition, // block
-		&blofeld::macaque::SyncKeyBlock_block_struct_definition, // block
-		&blofeld::macaque::StringBlock_block_struct_definition, // block
 		&blofeld::macaque::PCAAnimationDataStruct,
 		&blofeld::macaque::PCAGroupSettingsBlock_block_struct_definition, // block
 		&blofeld::macaque::animation_graph_contents_struct,
@@ -1158,7 +1168,7 @@ namespace macaque
 		&blofeld::macaque::damage_globals_block_struct_definition, // block
 		&blofeld::macaque::damage_decay_struct,
 		&blofeld::macaque::shield_boost_block_struct_definition, // block
-		&blofeld::macaque::materials_block_struct_definition, // block
+		&blofeld::macaque::materials_block$3_block_struct_definition, // block
 		&blofeld::macaque::wet_proxies_struct,
 		&blofeld::macaque::material_physics_properties_struct,
 		&blofeld::macaque::object_type_drag_properties_block_struct_definition, // block
@@ -1212,7 +1222,6 @@ namespace macaque
 		&blofeld::macaque::render_model_node_block_struct_definition, // block
 		&blofeld::macaque::render_model_marker_group_block_struct_definition, // block
 		&blofeld::macaque::render_model_marker_block_struct_definition, // block
-		&blofeld::macaque::global_geometry_material_block_struct_definition, // block
 		&blofeld::macaque::instance_node_map_mapping_block_struct_definition, // block
 		&blofeld::macaque::volume_samples_block_struct_definition, // block
 		&blofeld::macaque::radiance_transfer_matrix_array_struct_definition, // array
@@ -1239,6 +1248,7 @@ namespace macaque
 		&blofeld::macaque::requisition_constants_block_struct_definition, // block
 		&blofeld::macaque::requisition_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_profiles_block_struct_definition, // block
+		&blofeld::macaque::g_scenario_editor_folder_block_struct_definition, // block
 		&blofeld::macaque::multiplayer_runtime_block_struct_definition, // block
 		&blofeld::macaque::sounds_block_struct_definition, // block
 		&blofeld::macaque::looping_sounds_block_struct_definition, // block
@@ -1281,6 +1291,13 @@ namespace macaque
 		&blofeld::macaque::FaceUserDataBlock_block_struct_definition, // block
 		&blofeld::macaque::MobileNavMeshBlock_block_struct_definition, // block
 		&blofeld::macaque::scenario_object_id_struct,
+		&blofeld::macaque::scenario_structure_bsp_reference_block_struct_definition, // block
+		&blofeld::macaque::scenario_sky_reference_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_names_block_struct_definition, // block
+		&blofeld::macaque::scenarioVolumetricLightShaftSettingsStruct,
+		&blofeld::macaque::scenarioFloatingShadowSettingsStruct,
+		&blofeld::macaque::scenarioFloatingShadowCascadeSettingsArray_array_struct_definition, // array
+		&blofeld::macaque::scenario_lightmap_setting_struct,
 		&blofeld::macaque::NavVolumeBlock_block_struct_definition, // block
 		&blofeld::macaque::NavClimbBlock_block_struct_definition, // block
 		&blofeld::macaque::user_edge_block_struct_definition, // block
@@ -1288,6 +1305,50 @@ namespace macaque
 		&blofeld::macaque::user_hint_line_segment_block_struct_definition, // block
 		&blofeld::macaque::user_hint_parallelogram_block_struct_definition, // block
 		&blofeld::macaque::user_hint_jump_block_struct_definition, // block
+		&blofeld::macaque::squad_groups_block_struct_definition, // block
+		&blofeld::macaque::objectives_block_struct_definition, // block
+		&blofeld::macaque::opposing_objective_block_struct_definition, // block
+		&blofeld::macaque::zone_block_struct_definition, // block
+		&blofeld::macaque::firing_positions_block_struct_definition, // block
+		&blofeld::macaque::manualBspFlagsReferences,
+		&blofeld::macaque::scenarioBspReferenceBlock_block_struct_definition, // block
+		&blofeld::macaque::tasks_block_struct_definition, // block
+		&blofeld::macaque::squads_block_struct_definition, // block
+		&blofeld::macaque::spawn_formation_block_struct_definition, // block
+		&blofeld::macaque::ai_spawn_conditions_struct,
+		&blofeld::macaque::patrol_point_block_struct_definition, // block
+		&blofeld::macaque::spawn_points_block_struct_definition, // block
+		&blofeld::macaque::character_palette_block_struct_definition, // block
+		&blofeld::macaque::scenario_weapon_palette_block_struct_definition, // block
+		&blofeld::macaque::scenario_equipment_palette_block_struct_definition, // block
+		&blofeld::macaque::scenario_vehicle_palette_block_struct_definition, // block
+		&blofeld::macaque::scenario_vehicle_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_datum_struct,
+		&blofeld::macaque::scenario_object_node_orientations_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_node_orientations_bit_vector_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_node_orientations_orientations_block_struct_definition, // block
+		&blofeld::macaque::scriptListBlock_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_parent_struct,
+		&blofeld::macaque::commandLinkBlock_block_struct_definition, // block
+		&blofeld::macaque::scenario_object_permutation_struct,
+		&blofeld::macaque::scenario_unit_struct,
+		&blofeld::macaque::scenario_multiplayer_object_struct,
+		&blofeld::macaque::scenario_vehicle_datum_struct,
+		&blofeld::macaque::pathfinding_object_index_list_block_struct_definition, // block
+		&blofeld::macaque::scenario_giant_block_struct_definition, // block
+		&blofeld::macaque::scenario_giant_palette_block_struct_definition, // block
+		&blofeld::macaque::scenario_giant_datum_struct,
+		&blofeld::macaque::scenario_biped_block_struct_definition, // block
+		&blofeld::macaque::scenario_biped_palette_block_struct_definition, // block
+		&blofeld::macaque::squad_definition_internal_struct,
+		&blofeld::macaque::cell_block_struct_definition, // block
+		&blofeld::macaque::character_palette_choice_block_struct_definition, // block
+		&blofeld::macaque::weapon_palette_choice_block_struct_definition, // block
+		&blofeld::macaque::equipment_palette_choice_block_struct_definition, // block
+		&blofeld::macaque::script_fragment_block_struct_definition, // block
+		&blofeld::macaque::area_reference_block_struct_definition, // block
+		&blofeld::macaque::task_direction_block_v2_struct,
+		&blofeld::macaque::task_direction_point_block_struct_definition, // block
 		&blofeld::macaque::hint_vertex_block_struct_definition, // block
 		&blofeld::macaque::user_hint_climb_block_struct_definition, // block
 		&blofeld::macaque::user_hint_well_block_struct_definition, // block
@@ -1309,9 +1370,9 @@ namespace macaque
 		&blofeld::macaque::user_hint_flood_sector_block_struct_definition, // block
 		&blofeld::macaque::physics_model_damped_spring_motor_block_struct_definition, // block
 		&blofeld::macaque::physics_model_position_motor_block_struct_definition, // block
-		&blofeld::macaque::phantom_types_block_struct_definition, // block
 		&blofeld::macaque::physics_model_powered_chains_block_struct_definition, // block
 		&blofeld::macaque::physics_model_powered_chain_nodes_block_struct_definition, // block
+		&blofeld::macaque::nodes_block_struct_definition, // block
 		&blofeld::macaque::physics_model_powered_chain_constraints_block_struct_definition, // block
 		&blofeld::macaque::physics_model_motor_reference_struct,
 		&blofeld::macaque::physics_model_node_constraint_edge_block_struct_definition, // block
@@ -1319,7 +1380,11 @@ namespace macaque
 		&blofeld::macaque::physics_model_ragdoll_motors_block_struct_definition, // block
 		&blofeld::macaque::physics_model_limited_hinge_motors_block_struct_definition, // block
 		&blofeld::macaque::rigid_bodies_block_struct_definition, // block
-		&blofeld::macaque::materials_block$3_block_struct_definition, // block
+		&blofeld::macaque::regions_block_struct_definition, // block
+		&blofeld::macaque::permutations_block_struct_definition, // block
+		&blofeld::macaque::rigid_body_indices_block_struct_definition, // block
+		&blofeld::macaque::RigidBodySerializedShapesBlock_block_struct_definition, // block
+		&blofeld::macaque::MoppSerializedHavokDataBlock_block_struct_definition, // block
 		&blofeld::macaque::multi_spheres_block_struct_definition, // block
 		&blofeld::macaque::multi_sphere_vector_storage_array_struct_definition, // array
 		&blofeld::macaque::boxes_block_struct_definition, // block
@@ -1334,19 +1399,12 @@ namespace macaque
 		&blofeld::macaque::hinge_constraints_block_struct_definition, // block
 		&blofeld::macaque::constraint_bodies_struct,
 		&blofeld::macaque::ragdoll_constraints_block_struct_definition, // block
-		&blofeld::macaque::regions_block_struct_definition, // block
-		&blofeld::macaque::permutations_block_struct_definition, // block
-		&blofeld::macaque::rigid_body_indices_block_struct_definition, // block
-		&blofeld::macaque::nodes_block_struct_definition, // block
 		&blofeld::macaque::point_to_path_curve_block_struct_definition, // block
 		&blofeld::macaque::point_to_path_curve_point_block_struct_definition, // block
 		&blofeld::macaque::limited_hinge_constraints_block_struct_definition, // block
 		&blofeld::macaque::ball_and_socket_constraints_block_struct_definition, // block
 		&blofeld::macaque::stiff_spring_constraints_block_struct_definition, // block
 		&blofeld::macaque::prismatic_constraints_block_struct_definition, // block
-		&blofeld::macaque::phantoms_block_struct_definition, // block
-		&blofeld::macaque::RigidBodySerializedShapesBlock_block_struct_definition, // block
-		&blofeld::macaque::MoppSerializedHavokDataBlock_block_struct_definition, // block
 		&blofeld::macaque::pixel_entry_point_block_struct_definition, // block
 		&blofeld::macaque::cache_file_codec_identifier_block_struct_definition, // block
 		&blofeld::macaque::cache_file_shared_file_block_struct_definition, // block
@@ -1402,12 +1460,13 @@ namespace macaque
 		&blofeld::macaque::structure_seam_cluster_mapping_block_struct_definition, // block
 		&blofeld::macaque::structure_edge_to_seam_edge_mapping_block_struct_definition, // block
 		&blofeld::macaque::structure_collision_materials_block_struct_definition, // block
+		&blofeld::macaque::structure_bsp_conveyor_surface_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_leaf_block_struct_definition, // block
 		&blofeld::macaque::structure_super_node_aabbs_block_struct_definition, // block
 		&blofeld::macaque::super_node_mappings_block_struct_definition, // block
+		&blofeld::macaque::structure_super_node_traversal_geometry_indices_block_struct_definition, // block
 		&blofeld::macaque::super_node_recursable_masks_block_struct_definition, // block
 		&blofeld::macaque::structure_super_node_traversal_geometry_block_struct_definition, // block
-		&blofeld::macaque::structure_super_node_traversal_geometry_indices_block_struct_definition, // block
 		&blofeld::macaque::collision_kd_hierarchy_static_struct,
 		&blofeld::macaque::collision_kd_hierarchy_static_hash_table_data_block_struct_definition, // block
 		&blofeld::macaque::collision_kd_hierarchy_static_hash_table_short_block_struct_definition, // block
@@ -1428,10 +1487,14 @@ namespace macaque
 		&blofeld::macaque::global_detail_object_counts_block_struct_definition, // block
 		&blofeld::macaque::global_z_reference_vector_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_cluster_block_struct_definition, // block
+		&blofeld::macaque::scenario_acoustics_palette_block_definition_struct,
+		&blofeld::macaque::scenario_acoustics_environment_definition,
+		&blofeld::macaque::scenario_acoustics_ambience_definition,
 		&blofeld::macaque::structure_bsp_cluster_portal_index_block_struct_definition, // block
 		&blofeld::macaque::seam_indices_block_definition_block_struct_definition, // block
 		&blofeld::macaque::decorator_runtime_cluster_block_struct_definition, // block
 		&blofeld::macaque::cheap_light_marker_ref_block_struct_definition, // block
+		&blofeld::macaque::cheap_light_reference_block_struct_definition, // block
 		&blofeld::macaque::pvs_bound_object_identifiers_block_struct_definition, // block
 		&blofeld::macaque::pvs_bound_object_references_block_struct_definition, // block
 		&blofeld::macaque::scenario_object_reference_struct,
@@ -1439,19 +1502,13 @@ namespace macaque
 		&blofeld::macaque::cubemap_reference_points_block_struct_definition, // block
 		&blofeld::macaque::structure_material_lighting_info_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_sky_owner_cluster_block_struct_definition, // block
-		&blofeld::macaque::structure_bsp_conveyor_surface_block_struct_definition, // block
 		&blofeld::macaque::breakable_surface_set_block_struct_definition, // block
 		&blofeld::macaque::supported_bitfield_array_struct_definition, // array
 		&blofeld::macaque::structure_cookie_cutter_definition_block_struct_definition, // block
-		&blofeld::macaque::scenario_acoustics_palette_block_definition_struct,
-		&blofeld::macaque::scenario_acoustics_environment_definition,
-		&blofeld::macaque::scenario_acoustics_ambience_definition,
 		&blofeld::macaque::structure_bsp_marker_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_marker_light_palette_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_marker_light_index_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_runtime_decal_block_struct_definition, // block
-		&blofeld::macaque::manualBspFlagsReferences,
-		&blofeld::macaque::scenarioBspReferenceBlock_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_environment_object_palette_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_environment_object_block_struct_definition, // block
 		&blofeld::macaque::global_map_leaf_block_struct_definition, // block
@@ -1464,6 +1521,7 @@ namespace macaque
 		&blofeld::macaque::index_list_block_struct_definition, // block
 		&blofeld::macaque::structure_instance_group_definition_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_instanced_geometry_instances_block_struct_definition, // block
+		&blofeld::macaque::structure_bsp_instanced_geometry_definition_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_instanced_geometry_instances_names_block_struct_definition, // block
 		&blofeld::macaque::structure_instance_imposter_info_block_struct_definition, // block
 		&blofeld::macaque::runtime_decorator_set_block_struct_definition, // block
@@ -1482,7 +1540,6 @@ namespace macaque
 		&blofeld::macaque::global_structure_physics_struct,
 		&blofeld::macaque::breakable_surface_key_table_block_struct_definition, // block
 		&blofeld::macaque::widget_reference_block_struct_definition, // block
-		&blofeld::macaque::cheap_light_reference_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_resource_interface,
 		&blofeld::macaque::structure_bsp_raw_resources_block_struct_definition, // block
 		&blofeld::macaque::structure_bsp_resource_struct,
@@ -1495,7 +1552,6 @@ namespace macaque
 		&blofeld::macaque::large_surfaces_block_struct_definition, // block
 		&blofeld::macaque::large_edges_block_struct_definition, // block
 		&blofeld::macaque::large_vertices_block_struct_definition, // block
-		&blofeld::macaque::structure_bsp_instanced_geometry_definition_block_struct_definition, // block
 		&blofeld::macaque::structureIOHavokDataBlock_struct,
 		&blofeld::macaque::SerializedHavokGeometryDataBlock_struct,
 		&blofeld::macaque::structure_bsp_tag_resources_struct,
@@ -1506,13 +1562,7 @@ namespace macaque
 		&blofeld::macaque::AnimGraphDependencyBlock_block_struct_definition, // block
 		&blofeld::macaque::sound_combiner_definition_entry_block_struct_definition, // block
 		&blofeld::macaque::scenario_child_references_block_struct_definition, // block
-		&blofeld::macaque::scenario_structure_bsp_reference_block_struct_definition, // block
-		&blofeld::macaque::scenarioVolumetricLightShaftSettingsStruct,
-		&blofeld::macaque::scenarioFloatingShadowSettingsStruct,
-		&blofeld::macaque::scenarioFloatingShadowCascadeSettingsArray_array_struct_definition, // array
-		&blofeld::macaque::scenario_lightmap_setting_struct,
 		&blofeld::macaque::scenario_design_reference_block_struct_definition, // block
-		&blofeld::macaque::scenario_sky_reference_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_set_pvs_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_set_bsp_checksum_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_set_bsp_pvs_block_struct_definition, // block
@@ -1534,6 +1584,40 @@ namespace macaque
 		&blofeld::macaque::bsp_cluster_to_room_bounds_block_struct_definition, // block
 		&blofeld::macaque::bsp_cluster_to_room_indices_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_set_block_struct_definition, // block
+		&blofeld::macaque::scenario_designer_zone_block_struct_definition, // block
+		&blofeld::macaque::scenarioDesignerZoneTagReferenceBlock_block_struct_definition, // block
+		&blofeld::macaque::biped_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::vehicle_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::weapon_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::equipment_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenery_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_scenery_palette_block_struct_definition, // block
+		&blofeld::macaque::machine_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_machine_palette_block_struct_definition, // block
+		&blofeld::macaque::terminal_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_terminal_palette_block_struct_definition, // block
+		&blofeld::macaque::control_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_control_palette_block_struct_definition, // block
+		&blofeld::macaque::dispenser_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::ScenarioDispenserPaletteBlock_block_struct_definition, // block
+		&blofeld::macaque::sound_scenery_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_sound_scenery_palette_block_struct_definition, // block
+		&blofeld::macaque::crate_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_crate_palette_block_struct_definition, // block
+		&blofeld::macaque::creature_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_creature_palette_block_struct_definition, // block
+		&blofeld::macaque::giant_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::effect_scenery_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_effect_scenery_palette_block_struct_definition, // block
+		&blofeld::macaque::character_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::spawner_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_spawner_palette_block_struct_definition, // block
+		&blofeld::macaque::budget_reference_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::scenario_budget_references_block_struct_definition, // block
+		&blofeld::macaque::bink_block_index_flags_block_struct_definition, // block
+		&blofeld::macaque::binkPaletteBlock_block_struct_definition, // block
+		&blofeld::macaque::scenarioDesignerResourceDependenciesBlock_block_struct_definition, // block
+		&blofeld::macaque::scenario_cinematics_block_struct_definition, // block
 		&blofeld::macaque::planar_fog_zone_set_visibility_definition_block_struct_definition, // block
 		&blofeld::macaque::planar_fog_structure_visibility_definition_block_struct_definition, // block
 		&blofeld::macaque::planar_fog_cluster_visibility_definition_block_struct_definition, // block
@@ -1544,61 +1628,30 @@ namespace macaque
 		&blofeld::macaque::scenario_function_block_struct_definition, // block
 		&blofeld::macaque::editor_comment_block_struct_definition, // block
 		&blofeld::macaque::dont_use_me_scenario_environment_object_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_names_block_struct_definition, // block
 		&blofeld::macaque::scenario_scenery_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_datum_struct,
-		&blofeld::macaque::scenario_object_node_orientations_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_node_orientations_bit_vector_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_node_orientations_orientations_block_struct_definition, // block
-		&blofeld::macaque::scriptListBlock_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_parent_struct,
-		&blofeld::macaque::commandLinkBlock_block_struct_definition, // block
-		&blofeld::macaque::scenario_object_permutation_struct,
 		&blofeld::macaque::scenario_scenery_datum_struct_v4,
-		&blofeld::macaque::pathfinding_object_index_list_block_struct_definition, // block
-		&blofeld::macaque::scenario_multiplayer_object_struct,
-		&blofeld::macaque::scenario_scenery_palette_block_struct_definition, // block
-		&blofeld::macaque::scenario_biped_block_struct_definition, // block
-		&blofeld::macaque::scenario_unit_struct,
-		&blofeld::macaque::scenario_biped_palette_block_struct_definition, // block
-		&blofeld::macaque::scenario_vehicle_block_struct_definition, // block
-		&blofeld::macaque::scenario_vehicle_datum_struct,
-		&blofeld::macaque::scenario_vehicle_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_equipment_block_struct_definition, // block
 		&blofeld::macaque::scenario_equipment_datum_struct,
-		&blofeld::macaque::scenario_equipment_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_weapon_block_struct_definition, // block
 		&blofeld::macaque::scenario_weapon_datum_struct,
-		&blofeld::macaque::scenario_weapon_palette_block_struct_definition, // block
 		&blofeld::macaque::device_group_block_struct_definition, // block
 		&blofeld::macaque::scenario_machine_block_struct_definition, // block
 		&blofeld::macaque::scenario_device_struct,
 		&blofeld::macaque::scenario_machine_struct_v3,
-		&blofeld::macaque::scenario_machine_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_terminal_block_struct_definition, // block
 		&blofeld::macaque::scenario_terminal_struct,
-		&blofeld::macaque::scenario_terminal_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_control_block_struct_definition, // block
 		&blofeld::macaque::scenario_control_struct,
-		&blofeld::macaque::scenario_control_palette_block_struct_definition, // block
 		&blofeld::macaque::ScenarioDispenserBlock_block_struct_definition, // block
 		&blofeld::macaque::ScenarioDispenserStruct,
-		&blofeld::macaque::ScenarioDispenserPaletteBlock_block_struct_definition, // block
 		&blofeld::macaque::scenario_sound_scenery_block_struct_definition, // block
 		&blofeld::macaque::sound_scenery_datum_struct,
 		&blofeld::macaque::sound_distance_parameters_struct,
-		&blofeld::macaque::scenario_sound_scenery_palette_block_struct_definition, // block
-		&blofeld::macaque::scenario_giant_block_struct_definition, // block
-		&blofeld::macaque::scenario_giant_datum_struct,
-		&blofeld::macaque::scenario_giant_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_effect_scenery_block_struct_definition, // block
 		&blofeld::macaque::scenario_effect_scenery_datum_struct,
-		&blofeld::macaque::scenario_effect_scenery_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_spawner_block_struct_definition, // block
 		&blofeld::macaque::ScenarioEntityStruct,
 		&blofeld::macaque::ScenarioSpawnerStruct,
-		&blofeld::macaque::scenario_spawner_palette_block_struct_definition, // block
-		&blofeld::macaque::binkPaletteBlock_block_struct_definition, // block
 		&blofeld::macaque::scenarioAttachedEffectsBlock_block_struct_definition, // block
 		&blofeld::macaque::scenarioAttachedLensFlaresBlock_block_struct_definition, // block
 		&blofeld::macaque::scenarioAttachedLightConesBlock_block_struct_definition, // block
@@ -1614,6 +1667,7 @@ namespace macaque
 		&blofeld::macaque::scenario_trigger_volume_struct,
 		&blofeld::macaque::trigger_volume_point_block_struct_definition, // block
 		&blofeld::macaque::trigger_volume_runtime_triangles_block_struct_definition, // block
+		&blofeld::macaque::scenario_kill_trigger_volumes_block_struct_definition, // block
 		&blofeld::macaque::scenario_acoustic_sector_block_struct_definition, // block
 		&blofeld::macaque::acoustic_sector_point_block_struct_definition, // block
 		&blofeld::macaque::scenario_acoustic_transition_block_struct_definition, // block
@@ -1622,7 +1676,9 @@ namespace macaque
 		&blofeld::macaque::scenario_atmosphere_dumpling_block_struct_definition, // block
 		&blofeld::macaque::scenario_dumpling_struct,
 		&blofeld::macaque::dumpling_point_block_struct_definition, // block
+		&blofeld::macaque::scenario_atmosphere_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_weather_dumpling_block_struct_definition, // block
+		&blofeld::macaque::scenario_weather_palette_block_struct_definition, // block
 		&blofeld::macaque::recorded_animation_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_set_switch_trigger_volume_block_struct_definition, // block
 		&blofeld::macaque::scenario_named_location_volume_block_struct_definition, // block
@@ -1631,25 +1687,6 @@ namespace macaque
 		&blofeld::macaque::scenario_decal_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_detail_object_collection_palette_block_struct_definition, // block
 		&blofeld::macaque::style_palette_block_struct_definition, // block
-		&blofeld::macaque::squad_groups_block_struct_definition, // block
-		&blofeld::macaque::squads_block_struct_definition, // block
-		&blofeld::macaque::spawn_formation_block_struct_definition, // block
-		&blofeld::macaque::ai_spawn_conditions_struct,
-		&blofeld::macaque::patrol_point_block_struct_definition, // block
-		&blofeld::macaque::spawn_points_block_struct_definition, // block
-		&blofeld::macaque::squad_definition_internal_struct,
-		&blofeld::macaque::cell_block_struct_definition, // block
-		&blofeld::macaque::character_palette_choice_block_struct_definition, // block
-		&blofeld::macaque::weapon_palette_choice_block_struct_definition, // block
-		&blofeld::macaque::equipment_palette_choice_block_struct_definition, // block
-		&blofeld::macaque::zone_block_struct_definition, // block
-		&blofeld::macaque::firing_positions_block_struct_definition, // block
-		&blofeld::macaque::areas_block_struct_definition, // block
-		&blofeld::macaque::NavMeshAttachmentsStruct,
-		&blofeld::macaque::NavMeshAttachmentBlock_block_struct_definition, // block
-		&blofeld::macaque::area_cluster_occupancy_bitvector_array_struct_definition, // array
-		&blofeld::macaque::flight_reference_block_struct_definition, // block
-		&blofeld::macaque::area_sector_point_block_struct_definition, // block
 		&blofeld::macaque::squad_patrol_block_struct_definition, // block
 		&blofeld::macaque::squad_patrol_member_block_struct_definition, // block
 		&blofeld::macaque::squad_patrol_point_block_struct_definition, // block
@@ -1671,9 +1708,10 @@ namespace macaque
 		&blofeld::macaque::ai_scene_block_struct_definition, // block
 		&blofeld::macaque::ai_scene_trigger_block_struct_definition, // block
 		&blofeld::macaque::trigger_references_block_struct_definition, // block
+		&blofeld::macaque::triggers_block_struct_definition, // block
+		&blofeld::macaque::order_completion_condition_block_struct_definition, // block
 		&blofeld::macaque::ai_scene_role_block_struct_definition, // block
 		&blofeld::macaque::ai_scene_role_variants_block_struct_definition, // block
-		&blofeld::macaque::character_palette_block_struct_definition, // block
 		&blofeld::macaque::ai_recording_reference_block_struct_definition, // block
 		&blofeld::macaque::cs_script_data_block_struct_definition, // block
 		&blofeld::macaque::cs_point_set_block_struct_definition, // block
@@ -1682,22 +1720,16 @@ namespace macaque
 		&blofeld::macaque::scenario_cutscene_flag_block_struct_definition, // block
 		&blofeld::macaque::scenario_cutscene_camera_point_block_struct_definition, // block
 		&blofeld::macaque::scenario_cutscene_title_struct,
-		&blofeld::macaque::scenario_kill_trigger_volumes_block_struct_definition, // block
 		&blofeld::macaque::scenario_safe_zone_trigger_volumes_block_struct_definition, // block
 		&blofeld::macaque::trigger_volume_mopp_code_block_struct_definition, // block
 		&blofeld::macaque::scenario_requisition_trigger_volumes_block_struct_definition, // block
 		&blofeld::macaque::scenario_location_name_trigger_volumes_block_struct_definition, // block
 		&blofeld::macaque::scenarioUnsafeSpawnZoneTriggerVolumesBlock_block_struct_definition, // block
 		&blofeld::macaque::orders_block_struct_definition, // block
-		&blofeld::macaque::area_reference_block_struct_definition, // block
 		&blofeld::macaque::secondary_set_trigger_block_struct_definition, // block
 		&blofeld::macaque::special_movement_block_struct_definition, // block
 		&blofeld::macaque::order_ending_block_struct_definition, // block
-		&blofeld::macaque::triggers_block_struct_definition, // block
-		&blofeld::macaque::order_completion_condition_block_struct_definition, // block
-		&blofeld::macaque::scenario_atmosphere_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_camera_fx_palette_block_struct_definition, // block
-		&blofeld::macaque::scenario_weather_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_cluster_data_block_struct_definition, // block
 		&blofeld::macaque::scenario_cluster_points_block_struct_definition, // block
 		&blofeld::macaque::scenario_cluster_acoustics_block_struct_definition, // block
@@ -1708,44 +1740,14 @@ namespace macaque
 		&blofeld::macaque::scenario_spawn_data_block_struct_definition, // block
 		&blofeld::macaque::scenario_crate_block_struct_definition, // block
 		&blofeld::macaque::scenario_crate_datum_struct,
-		&blofeld::macaque::scenario_crate_palette_block_struct_definition, // block
 		&blofeld::macaque::flock_palette_block_struct_definition, // block
 		&blofeld::macaque::flock_instance_block_struct_definition, // block
 		&blofeld::macaque::flock_source_block_struct_definition, // block
 		&blofeld::macaque::flock_destination_block_struct_definition, // block
+		&blofeld::macaque::big_battle_creature_palette_block_struct_definition, // block
 		&blofeld::macaque::SoundSubtitleBlock_block_struct_definition, // block
 		&blofeld::macaque::scenario_creature_block_struct_definition, // block
-		&blofeld::macaque::scenario_creature_palette_block_struct_definition, // block
-		&blofeld::macaque::big_battle_creature_palette_block_struct_definition, // block
-		&blofeld::macaque::g_scenario_editor_folder_block_struct_definition, // block
 		&blofeld::macaque::ai_scenario_mission_dialogue_block_struct_definition, // block
-		&blofeld::macaque::objectives_block_struct_definition, // block
-		&blofeld::macaque::opposing_objective_block_struct_definition, // block
-		&blofeld::macaque::tasks_block_struct_definition, // block
-		&blofeld::macaque::script_fragment_block_struct_definition, // block
-		&blofeld::macaque::task_direction_block_v2_struct,
-		&blofeld::macaque::task_direction_point_block_struct_definition, // block
-		&blofeld::macaque::scenario_designer_zone_block_struct_definition, // block
-		&blofeld::macaque::scenarioDesignerZoneTagReferenceBlock_block_struct_definition, // block
-		&blofeld::macaque::biped_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::vehicle_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::weapon_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::equipment_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::scenery_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::machine_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::terminal_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::control_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::dispenser_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::sound_scenery_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::crate_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::creature_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::giant_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::effect_scenery_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::character_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::spawner_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::budget_reference_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::bink_block_index_flags_block_struct_definition, // block
-		&blofeld::macaque::scenarioDesignerResourceDependenciesBlock_block_struct_definition, // block
 		&blofeld::macaque::scenario_zone_debugger_block_definition_struct,
 		&blofeld::macaque::scenario_decorator_block_struct_definition, // block
 		&blofeld::macaque::decorator_brush_struct,
@@ -1755,14 +1757,12 @@ namespace macaque
 		&blofeld::macaque::scenario_cheap_particle_system_palette_block_struct_definition, // block
 		&blofeld::macaque::scenario_cheap_particle_systems_block_struct_definition, // block
 		&blofeld::macaque::scriptableLightRigBlock_block_struct_definition, // block
-		&blofeld::macaque::scenario_cinematics_block_struct_definition, // block
 		&blofeld::macaque::scenario_cinematic_lighting_palette_block_struct_definition, // block
 		&blofeld::macaque::campaign_metagame_scenario_block_struct_definition, // block
 		&blofeld::macaque::campaign_metagame_scenario_bonuses_block_struct_definition, // block
 		&blofeld::macaque::soft_surfaces_definition_block_struct_definition, // block
 		&blofeld::macaque::scenario_cubemap_block_struct_definition, // block
 		&blofeld::macaque::scenario_airprobes_block_struct_definition, // block
-		&blofeld::macaque::scenario_budget_references_block_struct_definition, // block
 		&blofeld::macaque::model_references_block_struct_definition, // block
 		&blofeld::macaque::scenario_performances_block_struct_definition, // block
 		&blofeld::macaque::scenario_performance_actor_block_struct_definition, // block
@@ -1838,11 +1838,11 @@ namespace macaque
 		&blofeld::macaque::sound_scale_modifiers_struct,
 		&blofeld::macaque::sound_promotion_parameters_struct,
 		&blofeld::macaque::sound_promotion_rule_block_struct_definition, // block
-		&blofeld::macaque::sound_promotion_runtime_timer_block_struct_definition, // block
 		&blofeld::macaque::sound_pitch_range_block_struct_definition, // block
 		&blofeld::macaque::sound_permutations_block_struct_definition, // block
 		&blofeld::macaque::sound_permutation_languages_block_struct_definition, // block
 		&blofeld::macaque::sound_permutation_chunk_block_struct_definition, // block
+		&blofeld::macaque::sound_promotion_runtime_timer_block_struct_definition, // block
 		&blofeld::macaque::sound_platform_sound_playback_block_struct_definition, // block
 		&blofeld::macaque::sound_extra_info_block_struct_definition, // block
 		&blofeld::macaque::sound_definition_language_permutation_info_block_struct_definition, // block
@@ -1989,9 +1989,6 @@ namespace macaque
 		&blofeld::macaque::magazines_block_struct_definition, // block
 		&blofeld::macaque::magazine_objects_block_struct_definition, // block
 		&blofeld::macaque::weapon_triggers_block_struct_definition, // block
-		&blofeld::macaque::weapon_trigger_autofire_struct,
-		&blofeld::macaque::weapon_trigger_charging_struct,
-		&blofeld::macaque::weapon_trigger_charging_fire_fraction_block_struct_definition, // block
 		&blofeld::macaque::weapon_barrels_block_struct_definition, // block
 		&blofeld::macaque::weapon_barrel_firing_parameters_struct,
 		&blofeld::macaque::weapon_barrel_firing_error_struct,
@@ -2002,6 +1999,9 @@ namespace macaque
 		&blofeld::macaque::weapon_barrel_first_person_offset_block_struct_definition, // block
 		&blofeld::macaque::weapon_barrel_damage_effect_struct,
 		&blofeld::macaque::barrel_firing_effect_block_struct_definition, // block
+		&blofeld::macaque::weapon_trigger_autofire_struct,
+		&blofeld::macaque::weapon_trigger_charging_struct,
+		&blofeld::macaque::weapon_trigger_charging_fire_fraction_block_struct_definition, // block
 		&blofeld::macaque::weaponScaleshotStruct_block_struct_definition, // block
 		&blofeld::macaque::weaponScaleshotLevelStruct_block_struct_definition, // block
 		&blofeld::macaque::weapon_screen_effect_block_struct_definition, // block
@@ -2056,10 +2056,10 @@ namespace macaque
 		&blofeld::macaque::resource_usage_page_size_array_definition_array_struct_definition, // array
 		&blofeld::macaque::cache_file_tag_resource_usage_block_struct_definition, // block
 		&blofeld::macaque::cache_file_zone_resource_visit_node_block_struct_definition, // block
+		&blofeld::macaque::cache_file_resource_owner_block_struct_definition, // block
 		&blofeld::macaque::cache_file_zone_resource_visit_node_link_block_struct_definition, // block
 		&blofeld::macaque::cache_file_zone_set_zone_usage_block_struct_definition, // block
 		&blofeld::macaque::cache_file_bsp_reference_block_struct_definition, // block
-		&blofeld::macaque::cache_file_resource_owner_block_struct_definition, // block
 		&blofeld::macaque::cache_file_model_variant_usage_block_struct_definition, // block
 		&blofeld::macaque::cache_file_resource_owner_reference_block_struct_definition, // block
 		&blofeld::macaque::cache_file_character_usage_block_struct_definition, // block
@@ -2090,12 +2090,12 @@ namespace macaque
 		&blofeld::macaque::vectorartVertexBufferDescriptorStruct,
 		&blofeld::macaque::render_vertex_buffer_descriptor_struct,
 		&blofeld::macaque::render_index_buffer_descriptor_struct,
-		&blofeld::macaque::bitmap_texture_interop_resource_struct,
-		&blofeld::macaque::render_texture_interop_definition_struct,
-		&blofeld::macaque::stitchable_bitmap_texture_interop_resource_struct,
 		&blofeld::macaque::bitmap_texture_interleaved_interop_resource_struct,
 		&blofeld::macaque::render_texture_interleaved_interop_definition_struct,
 		&blofeld::macaque::render_texture_format_definition, // array
+		&blofeld::macaque::bitmap_texture_interop_resource_struct,
+		&blofeld::macaque::render_texture_interop_definition_struct,
+		&blofeld::macaque::stitchable_bitmap_texture_interop_resource_struct,
 		&blofeld::macaque::model_animation_tag_resource_struct,
 		&blofeld::macaque::model_animation_tag_resource_member_block_struct_definition, // block
 		&blofeld::macaque::packed_data_sizes_struct,

@@ -12,22 +12,22 @@ namespace blofeld
 
 	V5_TAG_STRUCT(survival_mode_globals_struct_definition)
 	{
-		{ _field_real, "respawn time#NO: Use game_engine_settings for this" },
-		{ _field_tag_reference, "survival mode text", &global_multilingual_unicode_string_list_reference },
-		{ _field_tag_reference, "countdown sound", &global_sound_reference },
-		{ _field_tag_reference, "respawn sound", &global_sound_reference },
-		{ _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
-		{ _field_block, "wave templates", &survival_mode_wave_templates_block },
-		{ _field_block, "state responses", &game_engine_status_response_block_block },
-		{ _field_block, "team colors", &multiplayer_color_block$3_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "respawn time#NO: Use game_engine_settings for this" },
+		{ _field_legacy, _field_tag_reference, "survival mode text", &global_multilingual_unicode_string_list_reference },
+		{ _field_legacy, _field_tag_reference, "countdown sound", &global_sound_reference },
+		{ _field_legacy, _field_tag_reference, "respawn sound", &global_sound_reference },
+		{ _field_legacy, _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
+		{ _field_legacy, _field_block, "wave templates", &survival_mode_wave_templates_block },
+		{ _field_legacy, _field_block, "state responses", &game_engine_status_response_block_block },
+		{ _field_legacy, _field_block, "team colors", &multiplayer_color_block$3_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(survival_mode_wave_templates_struct)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_tag_reference, "wave template", &wave_template_reference$2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_tag_reference, "wave template", &wave_template_reference$2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

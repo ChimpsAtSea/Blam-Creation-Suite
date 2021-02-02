@@ -28,7 +28,7 @@ namespace macaque
 		"s_multiplayer_effect",
 		MULTIPLAYEREFFECTSBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "effect", &effect_reference$3 },
 		{ _field_terminator }
 	};

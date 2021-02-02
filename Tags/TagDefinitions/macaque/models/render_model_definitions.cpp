@@ -22,31 +22,31 @@ namespace macaque
 		"render_model_definition",
 		RENDER_MODEL_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name*" },
-		{ _field_word_flags, "flags*", &render_model_flags_definition },
-		{ _field_word_integer, "version!" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_checksum_begin),
-		{ _field_long_integer, "runtime import info checksum!" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_checksum_end),
-		{ _field_block, "regions*", &render_model_region_block },
-		{ _field_char_integer, "L1 section group index*:(low)" },
-		{ _field_char_integer, "L2 section group index*:(high)" },
-		{ _field_pad, "PUJJ", 2 },
-		{ _field_long_block_index, "instance mesh index*" },
+		{ _field_string_id, "name" },
+		{ _field_word_flags, "flags", &render_model_flags_definition },
+		{ _field_word_integer, "version" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_checksum_begin),
+		{ _field_long_integer, "runtime import info checksum" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_checksum_end),
+		{ _field_block, "regions", &render_model_region_block },
+		{ _field_char_integer, "L1 section group index", "(low)" },
+		{ _field_char_integer, "L2 section group index", "(high)" },
+		FIELD_PAD("PUJJ", nullptr, 2),
+		{ _field_long_block_index, "instance mesh index", &global_mesh_block },
 		{ _field_block, "instance placements", &global_render_model_instance_placement_block },
-		{ _field_long_integer, "node list checksum*" },
-		{ _field_block, "nodes*", &render_model_node_block },
-		{ _field_block, "marker groups*", &render_model_marker_group_block },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_block, "nodes", &render_model_node_block },
+		{ _field_block, "marker groups", &render_model_marker_group_block },
 		{ _field_block, "materials", &global_geometry_material_block },
-		{ _field_block, "errors*", &global_error_report_categories_block },
-		{ _field_real, "don\'t draw over camera cosine angle#dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
-		{ _field_struct, "render geometry*", &global_render_geometry_struct },
-		{ _field_block, "node map mapping*", &instance_node_map_mapping_block },
+		{ _field_block, "errors", &global_error_report_categories_block },
+		{ _field_real, "don\'t draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
+		{ _field_struct, "render geometry", &global_render_geometry_struct },
+		{ _field_block, "node map mapping", &instance_node_map_mapping_block },
 		{ _field_block, "volume samples", &volume_samples_block },
-		{ _field_block, "runtime node orientations!", &default_node_orientations_block },
+		{ _field_block, "runtime node orientations", &default_node_orientations_block },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block },
 		{ _field_explanation, "Static Lightmap", "" },
-		{ _field_tag_reference, "structure meta data*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
+		{ _field_tag_reference, "structure meta data", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "forge lightmap atlases", &RenderModelLightmapAtlasReference },
 		{ _field_terminator }
@@ -88,7 +88,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
-		{ _field_pad, "WAXI", 2 },
+		FIELD_PAD("WAXI", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -100,8 +100,8 @@ namespace macaque
 		"render_model_region",
 		RENDER_MODEL_REGION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_block, "permutations*", &render_model_permutation_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "permutations", &render_model_permutation_block },
 		{ _field_terminator }
 	};
 
@@ -113,14 +113,14 @@ namespace macaque
 		"render_model_permutation",
 		RENDER_MODEL_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_short_integer, "mesh index*" },
-		{ _field_short_integer, "mesh count*" },
-		{ _field_string_id, "clone name*" },
-		{ _field_long_flags, "instance mask 0-31*", &render_model_instance_bitfield_flags_definition },
-		{ _field_long_flags, "instance mask 32-63*", &render_model_instance_bitfield_flags_definition },
-		{ _field_long_flags, "instance mask 64-95*", &render_model_instance_bitfield_flags_definition },
-		{ _field_long_flags, "instance mask 96-127*", &render_model_instance_bitfield_flags_definition },
+		{ _field_string_id, "name" },
+		{ _field_short_integer, "mesh index" },
+		{ _field_short_integer, "mesh count" },
+		{ _field_string_id, "clone name" },
+		{ _field_long_flags, "instance mask 0-31", &render_model_instance_bitfield_flags_definition },
+		{ _field_long_flags, "instance mask 32-63", &render_model_instance_bitfield_flags_definition },
+		{ _field_long_flags, "instance mask 64-95", &render_model_instance_bitfield_flags_definition },
+		{ _field_long_flags, "instance mask 96-127", &render_model_instance_bitfield_flags_definition },
 		{ _field_terminator }
 	};
 
@@ -132,28 +132,28 @@ namespace macaque
 		"render_model_node",
 		RENDER_MODEL_NODE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_short_block_index, "parent node*" },
-		{ _field_short_block_index, "first child node*" },
-		{ _field_short_block_index, "next sibling node*" },
-		{ _field_pad, "RELFLFLLE", 2 },
-		{ _field_real_point_3d, "default translation*" },
-		{ _field_real_quaternion, "default rotation*" },
-		{ _field_real_vector_3d, "inverse forward*" },
-		{ _field_real_vector_3d, "inverse left*" },
-		{ _field_real_vector_3d, "inverse up*" },
-		{ _field_real_point_3d, "inverse position*" },
-		{ _field_real, "inverse scale*" },
-		{ _field_real, "distance from parent*" },
-		FIELD_CUSTOM("Procedural Joint", _custom_field_function_group_begin),
+		{ _field_string_id, "name" },
+		{ _field_short_block_index, "parent node", &render_model_node_block },
+		{ _field_short_block_index, "first child node", &render_model_node_block },
+		{ _field_short_block_index, "next sibling node", &render_model_node_block },
+		FIELD_PAD("RELFLFLLE", nullptr, 2),
+		{ _field_real_point_3d, "default translation" },
+		{ _field_real_quaternion, "default rotation" },
+		{ _field_real_vector_3d, "inverse forward" },
+		{ _field_real_vector_3d, "inverse left" },
+		{ _field_real_vector_3d, "inverse up" },
+		{ _field_real_point_3d, "inverse position" },
+		{ _field_real, "inverse scale" },
+		{ _field_real, "distance from parent" },
+		FIELD_CUSTOM("Procedural Joint", nullptr, _field_id_function_group_begin),
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },
-		{ _field_pad, "pad", 2 },
-		{ _field_short_block_index, "procedure node A" },
-		{ _field_short_block_index, "procedure node B" },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_short_block_index, "procedure node A", &render_model_node_block },
+		{ _field_short_block_index, "procedure node B", &render_model_node_block },
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -165,8 +165,8 @@ namespace macaque
 		"render_model_marker_group",
 		RENDER_MODEL_MARKER_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_block, "markers*", &render_model_marker_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "markers", &render_model_marker_block },
 		{ _field_terminator }
 	};
 
@@ -178,14 +178,14 @@ namespace macaque
 		"render_model_marker",
 		RENDER_MODEL_MARKER_BLOCK_ID)
 	{
-		{ _field_char_integer, "region index*" },
-		{ _field_char_integer, "permutation index*" },
-		{ _field_byte_integer, "node index*" },
+		{ _field_char_integer, "region index" },
+		{ _field_char_integer, "permutation index" },
+		{ _field_byte_integer, "node index" },
 		{ _field_byte_flags, "flags", &render_model_marker_flags_definition },
-		{ _field_real_point_3d, "translation*" },
-		{ _field_real_quaternion, "rotation*" },
+		{ _field_real_point_3d, "translation" },
+		{ _field_real_quaternion, "rotation" },
 		{ _field_real, "scale" },
-		{ _field_real_vector_3d, "direction*" },
+		{ _field_real_vector_3d, "direction" },
 		{ _field_terminator }
 	};
 
@@ -197,7 +197,7 @@ namespace macaque
 		"short",
 		INSTANCE_NODE_MAP_MAPPING_BLOCK_ID)
 	{
-		{ _field_short_integer, "instance_node map region node index*" },
+		{ _field_short_integer, "instance_node map region node index" },
 		{ _field_terminator }
 	};
 
@@ -210,7 +210,7 @@ namespace macaque
 		VOLUME_SAMPLES_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "position" },
-		{ _field_array, "radiance transfer matrix*", &radiance_transfer_matrix_array },
+		{ _field_array, "radiance transfer matrix", &radiance_transfer_matrix_array },
 		{ _field_terminator }
 	};
 
@@ -223,9 +223,9 @@ namespace macaque
 		DEFAULT_NODE_ORIENTATIONS_BLOCK_ID,
 		4)
 	{
-		{ _field_real_quaternion, "rotation*" },
-		{ _field_real_point_3d, "translation*" },
-		{ _field_real, "scale*" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "translation" },
+		{ _field_real, "scale" },
 		{ _field_terminator }
 	};
 
@@ -237,8 +237,8 @@ namespace macaque
 		"RenderModelBoneGroup",
 		RENDERMODELBONEGROUPBLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_block, "bones*", &RenderModelNodeIndexBlock_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "bones", &RenderModelNodeIndexBlock_block },
 		{ _field_terminator }
 	};
 
@@ -250,7 +250,7 @@ namespace macaque
 		"short",
 		RENDERMODELNODEINDEXBLOCK_ID)
 	{
-		{ _field_short_block_index, "node index^*" },
+		{ _field_short_block_index, "node index", &render_model_node_block },
 		{ _field_terminator }
 	};
 
@@ -262,7 +262,7 @@ namespace macaque
 		"real",
 		RADIANCE_TRANSFER_MATRIX_ID)
 	{
-		{ _field_real, "element*!" },
+		{ _field_real, "element" },
 		{ _field_terminator }
 	};
 
@@ -273,15 +273,15 @@ namespace macaque
 		"s_imposter_model",
 		IMPOSTER_MODEL_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name*" },
+		{ _field_string_id, "name" },
 		{ _field_short_integer, "quality" },
-		{ _field_pad, "NBOML", 2 },
+		FIELD_PAD("NBOML", nullptr, 2),
 		{ _field_real, "brightness adjustment" },
 		{ _field_block, "node maps", &imposter_mode_node_block },
-		{ _field_block, "regions*", &render_model_region_block },
-		FIELD_CUSTOM("render geometry", _custom_field_function_group_begin),
-		{ _field_struct, "geometry*", &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_block, "regions", &render_model_region_block },
+		FIELD_CUSTOM("render geometry", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "geometry", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -292,7 +292,7 @@ namespace macaque
 		"RenderModelLightmapAtlas",
 		RENDER_MODEL_LIGHTMAP_ATLAS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_struct, "atlas geometry*", &global_render_geometry_struct },
+		{ _field_struct, "atlas geometry", &global_render_geometry_struct },
 		{ _field_real, "world scale ratio" },
 		{ _field_terminator }
 	};

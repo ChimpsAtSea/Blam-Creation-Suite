@@ -28,7 +28,7 @@ namespace macaque
 		"string_id",
 		DEFAULT_STIMULUS_SUPPRESSOR_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "stimulus^" },
+		{ _field_string_id, "stimulus" },
 		{ _field_terminator }
 	};
 
@@ -40,33 +40,33 @@ namespace macaque
 		"vocalization",
 		VOCALIZATION_DEFINITIONS_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization^" },
-		{ _field_short_block_index, "parent index*" },
+		{ _field_string_id, "vocalization" },
+		{ _field_short_block_index, "parent index", &vocalization_definitions_block },
 		{ _field_enum, "priority", &priority_enum },
 		{ _field_long_flags, "flags", &vocalization_flags_definition },
-		{ _field_enum, "glance behavior#how does the speaker of this vocalization direct his gaze\?", &glance_type_enum },
-		{ _field_enum, "glance recipient behavior#how does someone who hears me behave\?", &glance_type_enum },
+		{ _field_enum, "glance behavior", &glance_type_enum },
+		{ _field_enum, "glance recipient behavior", &glance_type_enum },
 		{ _field_enum, "perception type", &perception_type_enum },
 		{ _field_enum, "max combat status", &combat_status_enum },
 		{ _field_enum, "animation impulse", &dialogue_animation_enum },
 		{ _field_short_integer, "proxy dialogue index" },
-		{ _field_real, "sound repetition delay:minutes#Minimum delay time between playing the same permutation" },
-		{ _field_real, "allowable queue delay:seconds#How long to wait to actually start the vocalization" },
-		{ _field_real, "pre voc. delay:seconds#How long to wait to actually start the vocalization" },
-		{ _field_real, "notification delay:seconds#How long into the vocalization the AI should be notified" },
-		{ _field_real, "post voc. delay:seconds#How long speech is suppressed in the speaking unit after vocalizing" },
-		{ _field_real, "repeat delay:seconds#How long before the same vocalization can be repeated" },
-		{ _field_real, "weight:[0-1]#Inherent weight of this vocalization" },
-		{ _field_real, "speaker freeze time#speaker won\'t move for the given amount of time" },
-		{ _field_real, "listener freeze time#listener won\'t move for the given amount of time (from start of vocalization)" },
+		{ _field_real, "sound repetition delay", "Minimum delay time between playing the same permutation", "minutes" },
+		{ _field_real, "allowable queue delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "pre voc. delay", "How long to wait to actually start the vocalization", "seconds" },
+		{ _field_real, "notification delay", "How long into the vocalization the AI should be notified", "seconds" },
+		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
+		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
+		{ _field_real, "weight", "Inherent weight of this vocalization" },
+		{ _field_real, "speaker freeze time", "speaker won\'t move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won\'t move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &dialogue_emotion_enum },
 		{ _field_enum, "listener emotion", &dialogue_emotion_enum },
 		{ _field_real, "player speaker skip fraction" },
 		{ _field_real, "player skip fraction" },
 		{ _field_real, "flood skip fraction" },
 		{ _field_real, "skip fraction" },
-		{ _field_short_integer, "mission min value#The lowest mission id that we play this line in" },
-		{ _field_short_integer, "mission max value#The highest mission id that we play this line in" },
+		{ _field_short_integer, "mission min value", "The lowest mission id that we play this line in" },
+		{ _field_short_integer, "mission max value", "The highest mission id that we play this line in" },
 		{ _field_string_id, "Sample line" },
 		{ _field_block, "reponses", &response_block },
 		{ _field_terminator }
@@ -82,9 +82,9 @@ namespace macaque
 	{
 		{ _field_string_id, "vocalization name" },
 		{ _field_word_flags, "flags", &response_flags },
-		{ _field_short_integer, "vocalization index*" },
+		{ _field_short_integer, "vocalization index" },
 		{ _field_enum, "response type", &response_type_enum },
-		{ _field_short_integer, "dialogue index (import)*" },
+		{ _field_short_integer, "dialogue index (import)" },
 		{ _field_terminator }
 	};
 
@@ -100,8 +100,8 @@ namespace macaque
 		{ _field_short_integer, "vocalization index" },
 		{ _field_string_id, "vocalization name" },
 		{ _field_enum, "speaker type", &speaker_type_enum },
-		{ _field_enum, "listener/target#who/what am I speaking to/of\?", &speaker_type_enum },
-		{ _field_enum, "hostility#The relationship between the subject and the cause", &hostility_enum },
+		{ _field_enum, "listener/target", &speaker_type_enum },
+		{ _field_enum, "hostility", &hostility_enum },
 		{ _field_word_flags, "flags", &pattern_flags },
 		{ _field_explanation, "Cause", "" },
 		{ _field_enum, "cause actor type", &actor_type_enum },
@@ -111,18 +111,18 @@ namespace macaque
 		{ _field_explanation, "Speaker", "" },
 		{ _field_enum, "speaker object type", &dialogue_object_types_enum },
 		{ _field_enum, "speaker behavior", &speaker_behavior_enum },
-		{ _field_enum, "danger level#Speaker must have danger level of at least this much", &danger_enum },
+		{ _field_enum, "danger level", &danger_enum },
 		{ _field_char_enum, "speaker/subject position", &spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &spatial_relation_enum },
 		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
 		{ _field_explanation, "Matching", "" },
-		{ _field_enum, "spatial relation#with respect to the subject, the cause is ...", &spatial_relation_enum },
+		{ _field_enum, "spatial relation", &spatial_relation_enum },
 		{ _field_enum, "damage type", &damage_enum },
 		{ _field_enum, "game type", &game_type_enum },
 		{ _field_explanation, "Subject", "" },
 		{ _field_enum, "subject actor type", &actor_type_enum },
 		{ _field_enum, "subject type", &dialogue_object_types_enum },
-		{ _field_pad, "post-subject-type-pad", 2 },
+		FIELD_PAD("post-subject-type-pad", nullptr, 2),
 		{ _field_string_id, "subject ai type name" },
 		{ _field_terminator }
 	};
@@ -135,8 +135,8 @@ namespace macaque
 		"dialogue_data",
 		DIALOGUE_DATA_BLOCK_ID)
 	{
-		{ _field_short_integer, "start index (postprocess)*" },
-		{ _field_short_integer, "length (postprocess)*" },
+		{ _field_short_integer, "start index (postprocess)" },
+		{ _field_short_integer, "length (postprocess)" },
 		{ _field_terminator }
 	};
 
@@ -148,8 +148,8 @@ namespace macaque
 		"involuntary_data",
 		INVOLUNTARY_DATA_BLOCK_ID)
 	{
-		{ _field_short_integer, "involuntary vocalization index*" },
-		{ _field_pad, "JXIFX", 2 },
+		{ _field_short_integer, "involuntary vocalization index" },
+		FIELD_PAD("JXIFX", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -161,7 +161,7 @@ namespace macaque
 		"long",
 		PREDICTED_DATA_BLOCK_ID)
 	{
-		{ _field_long_integer, "predicted vocalization index*" },
+		{ _field_long_integer, "predicted vocalization index" },
 		{ _field_terminator }
 	};
 
@@ -173,25 +173,25 @@ namespace macaque
 		AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Global timing", "" },
-		{ _field_real_bounds, "strike delay bounds:secs" },
-		{ _field_real, "remind delay:secs" },
+		{ _field_real_bounds, "strike delay bounds", "secs" },
+		{ _field_real, "remind delay", "secs" },
 		{ _field_real, "cover curse chance" },
 		{ _field_explanation, "Player look settings", "used to play look and look_longtime dialogue in campain and firefight" },
-		{ _field_real, "player look max distance:wu#defaults to 10 wu" },
-		{ _field_real, "player look:secs#defaults to 3 secs" },
-		{ _field_real, "player look long time:secs#defaults to 15 secs" },
+		{ _field_real, "player look max distance", "defaults to 10 wu", "wu" },
+		{ _field_real, "player look", "defaults to 3 secs", "secs" },
+		{ _field_real, "player look long time", "defaults to 15 secs", "secs" },
 		{ _field_explanation, "Spartan nearby search distance", "this is used when checking if the player is with other spartan ais." },
-		{ _field_real, "spartan nearby search distance:wu#defaults to 7 wu" },
+		{ _field_real, "spartan nearby search distance", "defaults to 7 wu", "wu" },
 		{ _field_explanation, "Face friendly player distance", "when talking to friendly players within this distance, if not in combat, we will turn to face them." },
-		{ _field_real, "face friendly player distance:wu#0: disable facing behavior" },
+		{ _field_real, "face friendly player distance", "0: disable facing behavior", "wu" },
 		{ _field_explanation, "Space dialogue effect", "at some point this will be moved into the patterns block..." },
-		{ _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" },
+		{ _field_string_id, "space dialogue effect", "used for dialog lines started by a pattern with \"speaker in space\" set" },
 		{ _field_explanation, "Default stimulus suppressors", "when these stimuli are active on an actor, default stimulus permutations will be suppressed." },
 		{ _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block },
 		{ _field_explanation, "Imported Data. Don\'t touch me.", "" },
 		{ _field_block, "vocalizations", &vocalization_definitions_block },
 		{ _field_block, "patterns", &vocalization_patterns_block },
-		{ _field_pad, "WWKMVLL", 12 },
+		FIELD_PAD("WWKMVLL", nullptr, 12),
 		{ _field_block, "dialogue data", &dialogue_data_block },
 		{ _field_block, "involuntary data", &involuntary_data_block },
 		{ _field_block, "predicted vocalizations", &predicted_data_block },

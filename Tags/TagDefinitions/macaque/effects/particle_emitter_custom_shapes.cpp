@@ -45,9 +45,9 @@ namespace macaque
 		"s_particle_emitter_custom_points",
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _custom_field_unknown_compile),
+		FIELD_CUSTOM("import", nullptr, _field_id_unknown_compile),
 		{ _field_explanation, "PARTICLE POINTS", "Explanation goes here.\nWoo....\n" },
-		{ _field_tag_reference, "source reference!", &particle_model_reference },
+		{ _field_tag_reference, "source reference", &particle_model_reference },
 		{ _field_real_vector_3d, "compression scale" },
 		{ _field_real_vector_3d, "compression offset" },
 		{ _field_block, "points", &particle_emitter_custom_point_block },

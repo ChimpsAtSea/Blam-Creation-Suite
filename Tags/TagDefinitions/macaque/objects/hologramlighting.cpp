@@ -15,18 +15,18 @@ namespace macaque
 		"HologramLightingGlobals",
 		HOLOGRAMLIGHTINGGLOBALSBLOCK_ID)
 	{
-		FIELD_CUSTOM("HOLOGRAM FUNCTIONS", _custom_field_function_group_begin),
+		FIELD_CUSTOM("HOLOGRAM FUNCTIONS", nullptr, _field_id_function_group_begin),
 		{ _field_string_id, "Intensity" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("KEY LIGHT FUNCTIONS", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("KEY LIGHT FUNCTIONS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Key Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("FILL LIGHT FUNCTIONS", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("FILL LIGHT FUNCTIONS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Fill Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("RIM LIGHT FUNCTIONS", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("RIM LIGHT FUNCTIONS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Rim Light Functions", &hologramLightFunctions },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -57,22 +57,22 @@ namespace macaque
 		"HologramLighting",
 		HOLOGRAMLIGHTINGBLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("HOLOGRAM", _custom_field_function_group_begin),
-		FIELD_CUSTOM("Intensity", _custom_field_slider_editor),
-		{ _field_real, "Intensity", nullptr, 'sled' },
-		{ _field_real, "Intensity Input!" },
+		FIELD_CUSTOM("HOLOGRAM", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Intensity", nullptr, _field_id_slider_editor),
+		{ _field_real, "Intensity", _field_id_slider_editor },
+		{ _field_real, "Intensity Input" },
 		{ _field_char_enum, "Transparency Mode", &hologramTransparencyMode },
-		{ _field_pad, "PADDING1", 3 },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("KEY LIGHT", _custom_field_function_group_begin),
+		FIELD_PAD("PADDING1", nullptr, 3),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("KEY LIGHT", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Key Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("FILL LIGHT", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("FILL LIGHT", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Fill Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("RIM LIGHT", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("RIM LIGHT", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Rim Light", &hologramLight },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -83,17 +83,17 @@ namespace macaque
 		"HologramLight",
 		HOLOGRAMLIGHT_ID)
 	{
-		FIELD_CUSTOM("Hologram Light", _custom_field_hologram_light),
-		FIELD_CUSTOM("Direction", _custom_field_slider_editor),
-		{ _field_real, "Direction", nullptr, 'sled' },
-		FIELD_CUSTOM("Front-Back", _custom_field_slider_editor),
-		{ _field_real, "Front-Back", nullptr, 'sled' },
-		FIELD_CUSTOM("Intensity", _custom_field_slider_editor),
-		{ _field_real, "Intensity", nullptr, 'sled' },
-		{ _field_real, "Intensity Input!" },
-		{ _field_real, "Forward Input!" },
-		{ _field_real, "Right Input!" },
-		{ _field_real, "Up Input!" },
+		FIELD_CUSTOM("Hologram Light", nullptr, _field_id_hologram_light),
+		FIELD_CUSTOM("Direction", nullptr, _field_id_slider_editor),
+		{ _field_real, "Direction", _field_id_slider_editor },
+		FIELD_CUSTOM("Front-Back", nullptr, _field_id_slider_editor),
+		{ _field_real, "Front-Back", _field_id_slider_editor },
+		FIELD_CUSTOM("Intensity", nullptr, _field_id_slider_editor),
+		{ _field_real, "Intensity", _field_id_slider_editor },
+		{ _field_real, "Intensity Input" },
+		{ _field_real, "Forward Input" },
+		{ _field_real, "Right Input" },
+		{ _field_real, "Up Input" },
 		{ _field_terminator }
 	};
 

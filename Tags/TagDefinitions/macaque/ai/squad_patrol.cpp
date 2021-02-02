@@ -15,13 +15,13 @@ namespace macaque
 		"s_squad_patrol_definition",
 		SQUAD_PATROL_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_string_id, "name^" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_string_id, "name" },
 		{ _field_block, "squads", &squad_patrol_member_block },
 		{ _field_block, "points", &squad_patrol_point_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
-		{ _field_pad, "pad", 2 },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -33,8 +33,8 @@ namespace macaque
 		"s_squad_patrol_member_definition",
 		SQUAD_PATROL_MEMBER_BLOCK_ID)
 	{
-		{ _field_short_block_index, "squad^" },
-		{ _field_pad, "post-squad-pad", 2 },
+		{ _field_short_block_index, "squad", &squads_block },
+		FIELD_PAD("post-squad-pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -46,16 +46,16 @@ namespace macaque
 		"s_squad_patrol_point_definition",
 		SQUAD_PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_short_block_index, "objective^" },
-		{ _field_pad, "post-objective-pad", 2 },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_real, "hold time{occupy time}:seconds#How long the AI should pause at this point before searching" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_real, "search time:seconds#How long the AI should search at this point before returning" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_real, "pause time:seconds#How long the AI should pause at this point after searching before moving on" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_real, "cooldown time:seconds#How long after being abandoned should this point be available again" },
+		{ _field_short_block_index, "objective", &objectives_block },
+		FIELD_PAD("post-objective-pad", nullptr, 2),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_real, "pause time", "How long the AI should pause at this point after searching before moving on", "seconds" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_real, "cooldown time", "How long after being abandoned should this point be available again", "seconds" },
 		{ _field_terminator }
 	};
 
@@ -67,8 +67,8 @@ namespace macaque
 		"s_squad_patrol_transition_definition",
 		SQUAD_PATROL_TRANSITION_BLOCK_ID)
 	{
-		{ _field_short_block_index, "point1" },
-		{ _field_short_block_index, "point2" },
+		{ _field_short_block_index, "point1", &squad_patrol_point_block },
+		{ _field_short_block_index, "point2", &squad_patrol_point_block },
 		{ _field_block, "waypoints", &squad_patrol_waypoint_block },
 		{ _field_terminator }
 	};
@@ -82,8 +82,8 @@ namespace macaque
 		SQUAD_PATROL_WAYPOINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 		{ _field_terminator }
 	};
 

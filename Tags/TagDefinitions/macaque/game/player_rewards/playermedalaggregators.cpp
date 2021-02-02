@@ -41,7 +41,7 @@ namespace macaque
 		"MedalChallengeAggregator",
 		MEDALCHALLENGEAGGREGATOR_ID)
 	{
-		{ _field_string_id, "challenge to increment^" },
+		{ _field_string_id, "challenge to increment" },
 		{ _field_struct, "medals", &medalAggregator },
 		{ _field_terminator }
 	};
@@ -54,7 +54,7 @@ namespace macaque
 		"MedalAggregatorEntry",
 		MEDALAGGREGATORENTRY_ID)
 	{
-		{ _field_string_id, "medal name^" },
+		{ _field_string_id, "medal name" },
 		{ _field_terminator }
 	};
 
@@ -66,7 +66,7 @@ namespace macaque
 		"MedalCommendationAggregator",
 		MEDALCOMMENDATIONAGGREGATOR_ID)
 	{
-		{ _field_string_id, "commendation to award^" },
+		{ _field_string_id, "commendation to award" },
 		{ _field_struct, "medals", &medalAggregator },
 		{ _field_terminator }
 	};
@@ -100,10 +100,10 @@ namespace macaque
 		"MedalAggregator",
 		MEDALAGGREGATOR_ID)
 	{
-		{ _field_string_id, "display name^" },
-		FIELD_CUSTOM("allowed game modes", _custom_field_function_group_begin),
+		{ _field_string_id, "display name" },
+		FIELD_CUSTOM("allowed game modes", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "contributing medals", &medalAggregatorEntry_block },
 		{ _field_terminator }
 	};

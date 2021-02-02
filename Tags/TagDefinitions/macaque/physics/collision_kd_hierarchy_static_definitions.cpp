@@ -15,10 +15,10 @@ namespace macaque
 		"int32",
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_DATA_BLOCK_ID)
 	{
-		{ _field_long_integer, "node index!" },
-		{ _field_long_integer, "key a!" },
-		{ _field_long_integer, "key b!" },
-		{ _field_long_integer, "key c!" },
+		{ _field_long_integer, "node index" },
+		{ _field_long_integer, "key a" },
+		{ _field_long_integer, "key b" },
+		{ _field_long_integer, "key c" },
 		{ _field_terminator }
 	};
 
@@ -30,7 +30,7 @@ namespace macaque
 		"int16",
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_SHORT_BLOCK_ID)
 	{
-		{ _field_short_integer, "index!" },
+		{ _field_short_integer, "index" },
 		{ _field_terminator }
 	};
 
@@ -42,12 +42,12 @@ namespace macaque
 		"s_collision_kd_hierarchy_static_node",
 		COLLISION_KD_HIERARCHY_STATIC_NODES_BLOCK_ID)
 	{
-		{ _field_block, "render only headers!", &collision_kd_hierarchy_static_hash_table_headers_block },
-		{ _field_block, "collidable headers!", &collision_kd_hierarchy_static_hash_table_headers_block },
-		{ _field_short_block_index, "child below!" },
-		{ _field_short_block_index, "child above!" },
-		{ _field_short_block_index, "parent!" },
-		{ _field_short_integer, "cluster index!" },
+		{ _field_block, "render only headers", &collision_kd_hierarchy_static_hash_table_headers_block },
+		{ _field_block, "collidable headers", &collision_kd_hierarchy_static_hash_table_headers_block },
+		{ _field_short_block_index, "child below", &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_block_index, "child above", &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_block_index, "parent", &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_integer, "cluster index" },
 		{ _field_terminator }
 	};
 
@@ -59,12 +59,12 @@ namespace macaque
 		"s_collision_kd_hierarchy_static_header",
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_HEADERS_BLOCK_ID)
 	{
-		{ _field_word_flags, "cull flags!", &collision_kd_hierarchy_static_hash_table_cull_flags },
-		{ _field_short_integer, "instance index!" },
-		{ _field_long_integer, "instance index dword mask!" },
-		{ _field_short_integer, "bsp index!" },
-		{ _field_pad, "bsp-index-pad", 2 },
-		{ _field_long_integer, "bsp mask!" },
+		{ _field_word_flags, "cull flags", &collision_kd_hierarchy_static_hash_table_cull_flags },
+		{ _field_short_integer, "instance index" },
+		{ _field_long_integer, "instance index dword mask" },
+		{ _field_short_integer, "bsp index" },
+		FIELD_PAD("bsp-index-pad", nullptr, 2),
+		{ _field_long_integer, "bsp mask" },
 		{ _field_terminator }
 	};
 
@@ -76,7 +76,7 @@ namespace macaque
 		"dword",
 		COLLISION_KD_HIERARCHY_STATIC_IN_USE_MASKS_BLOCK_ID)
 	{
-		{ _field_long_integer, "mask!" },
+		{ _field_long_integer, "mask" },
 		{ _field_terminator }
 	};
 
@@ -100,8 +100,8 @@ namespace macaque
 		"s_super_node_mapping",
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
-		{ _field_array, "indices!", &super_node_mapping_index_array },
-		{ _field_pad, "pad", 2 },
+		{ _field_array, "indices", &super_node_mapping_index_array },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -113,7 +113,7 @@ namespace macaque
 		"short",
 		SUPER_NODE_MAPPING_INDEX_ARRAY_ID)
 	{
-		{ _field_short_block_index, "index!" },
+		{ _field_short_block_index, "index", &collision_kd_hierarchy_static_nodes_block },
 		{ _field_terminator }
 	};
 
@@ -124,7 +124,7 @@ namespace macaque
 		"s_collision_kd_hierarchy_static",
 		COLLISION_KD_HIERARCHY_STATIC_STRUCT_ID)
 	{
-		{ _field_long_integer, "hash total_count!" },
+		{ _field_long_integer, "hash total_count" },
 		{ _field_block, "hash data", &collision_kd_hierarchy_static_hash_table_data_block },
 		{ _field_block, "hash entry count", &collision_kd_hierarchy_static_hash_table_short_block },
 		{ _field_block, "original hash entry count", &collision_kd_hierarchy_static_hash_table_short_block },

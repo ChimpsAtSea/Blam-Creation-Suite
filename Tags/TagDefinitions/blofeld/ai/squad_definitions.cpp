@@ -6,230 +6,230 @@ namespace blofeld
 
 	V5_TAG_GROUP(squad_template, SQUAD_TEMPLATE_TAG)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_block, "cell templates", &cell_template_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_block, "cell templates", &cell_template_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(squad_groups_block, k_max_squad_groups_per_map)
 	{
-		{ _field_string, "name^" },
-		{ _field_short_block_index, "parent" },
-		{ _field_short_block_index, "initial objective" },
-		{ _field_pad, "soon to be an initial task", 2 },
-		{ _field_short_block_index, "editor folder!" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string, "name^" },
+		{ _field_legacy, _field_short_block_index, "parent" },
+		{ _field_legacy, _field_short_block_index, "initial objective" },
+		{ _field_legacy, _field_pad, "soon to be an initial task", 2 },
+		{ _field_legacy, _field_short_block_index, "editor folder!" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(patrol_point_block, 32)
 	{
-		{ _field_custom_short_block_index, "point^" },
-		{ _field_word_flags, "flags", &patrol_point_flags },
-		{ _field_real, "delay:seconds#how long the AI should pause at this point" },
-		{ _field_real, "angle:degrees#the angle-from-forward that the AI can pick at this point" },
-		{ _field_string_id, "activity name" },
-		{ _field_enum, "activity!", &g_activity_enum },
-		{ _field_short_integer, "activity variant!" },
-		{ _field_string_id, "command script" },
-		{ _field_short_integer, "command script index*~" },
-		{ _field_pad, "post-command-script", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom_short_block_index, "point^" },
+		{ _field_legacy, _field_word_flags, "flags", &patrol_point_flags },
+		{ _field_legacy, _field_real, "delay:seconds#how long the AI should pause at this point" },
+		{ _field_legacy, _field_real, "angle:degrees#the angle-from-forward that the AI can pick at this point" },
+		{ _field_legacy, _field_string_id, "activity name" },
+		{ _field_legacy, _field_enum, "activity!", &g_activity_enum },
+		{ _field_legacy, _field_short_integer, "activity variant!" },
+		{ _field_legacy, _field_string_id, "command script" },
+		{ _field_legacy, _field_short_integer, "command script index*~" },
+		{ _field_legacy, _field_pad, "post-command-script", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(spawn_formation_block, k_maximum_spawn_formations_per_squad)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_string_id, "name^" },
-		{ _field_real_point_3d, "position" },
-		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
-		{ _field_real, "roll" },
-		{ _field_string_id, "formation" },
-		{ _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_enum, "initial movement mode", &actor_movement_modes },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_string_id, "placement script{Placement script}" },
-		{ _field_string_id, "activity name" },
-		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &patrol_mode_enum },
-		{ _field_block, "points", &patrol_point_block_block },
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_real_point_3d, "position" },
+		{ _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
+		{ _field_legacy, _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
+		{ _field_legacy, _field_real, "roll" },
+		{ _field_legacy, _field_string_id, "formation" },
+		{ _field_legacy, _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_legacy, _field_enum, "initial movement mode", &actor_movement_modes },
+		{ _field_legacy, _field_short_integer, "placement script index!~" },
+		{ _field_legacy, _field_string_id, "placement script{Placement script}" },
+		{ _field_legacy, _field_string_id, "activity name" },
+		{ _field_legacy, _field_string_id, "movement set" },
+		{ _field_legacy, _field_custom_short_block_index, "point set" },
+		{ _field_legacy, _field_enum, "patrol mode", &patrol_mode_enum },
+		{ _field_legacy, _field_block, "points", &patrol_point_block_block },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_byte_flags, "flags", &spawn_formation_flags },
-		{ _field_pad, "post-flags-pad", 3 },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_byte_flags, "flags", &spawn_formation_flags },
+		{ _field_legacy, _field_pad, "post-flags-pad", 3 },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(spawn_points_block, k_maximum_spawn_points_per_squad)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_string_id, "name^" },
-		{ _field_custom_short_block_index, "cell" },
-		{ _field_pad, "post-cell-index-pad", 2 },
-		{ _field_real_point_3d, "position" },
-		{ _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
-		{ _field_real, "roll" },
-		{ _field_word_flags, "flags", &starting_location_flags },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "initial secondary weapon" },
-		{ _field_short_block_index, "initial equipment" },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_enum, "seat type", &ai_placement_seat_preference_enum },
-		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_short_integer, "swarm count#number of cretures in swarm if a swarm is spawned at this location" },
-		{ _field_pad, "post-swarm-count-pad", 2 },
-		{ _field_string_id, "actor variant name" },
-		{ _field_string_id, "vehicle variant name" },
-		{ _field_string_id, "voice designator" },
-		{ _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
-		{ _field_enum, "initial movement mode", &actor_movement_modes },
-		{ _field_short_block_index, "emitter vehicle" },
-		{ _field_short_block_index, "giant body" },
-		{ _field_short_block_index, "biped body" },
-		{ _field_string_id, "placement script{Placement script}" },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_pad, "post-placement-script-pad", 2 },
-		{ _field_string_id, "activity name" },
-		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &patrol_mode_enum },
-		{ _field_block, "points", &patrol_point_block_block },
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_custom_short_block_index, "cell" },
+		{ _field_legacy, _field_pad, "post-cell-index-pad", 2 },
+		{ _field_legacy, _field_real_point_3d, "position" },
+		{ _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
+		{ _field_legacy, _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
+		{ _field_legacy, _field_real, "roll" },
+		{ _field_legacy, _field_word_flags, "flags", &starting_location_flags },
+		{ _field_legacy, _field_short_block_index, "character type" },
+		{ _field_legacy, _field_short_block_index, "initial weapon" },
+		{ _field_legacy, _field_short_block_index, "initial secondary weapon" },
+		{ _field_legacy, _field_short_block_index, "initial equipment" },
+		{ _field_legacy, _field_short_block_index, "vehicle type" },
+		{ _field_legacy, _field_enum, "seat type", &ai_placement_seat_preference_enum },
+		{ _field_legacy, _field_enum, "grenade type", &global_ai_grenade_type_enum },
+		{ _field_legacy, _field_short_integer, "swarm count#number of cretures in swarm if a swarm is spawned at this location" },
+		{ _field_legacy, _field_pad, "post-swarm-count-pad", 2 },
+		{ _field_legacy, _field_string_id, "actor variant name" },
+		{ _field_legacy, _field_string_id, "vehicle variant name" },
+		{ _field_legacy, _field_string_id, "voice designator" },
+		{ _field_legacy, _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_legacy, _field_enum, "initial movement mode", &actor_movement_modes },
+		{ _field_legacy, _field_short_block_index, "emitter vehicle" },
+		{ _field_legacy, _field_short_block_index, "giant body" },
+		{ _field_legacy, _field_short_block_index, "biped body" },
+		{ _field_legacy, _field_string_id, "placement script{Placement script}" },
+		{ _field_legacy, _field_short_integer, "placement script index!~" },
+		{ _field_legacy, _field_pad, "post-placement-script-pad", 2 },
+		{ _field_legacy, _field_string_id, "activity name" },
+		{ _field_legacy, _field_string_id, "movement set" },
+		{ _field_legacy, _field_custom_short_block_index, "point set" },
+		{ _field_legacy, _field_enum, "patrol mode", &patrol_mode_enum },
+		{ _field_legacy, _field_block, "points", &patrol_point_block_block },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_short_block_index, "vehicle body" },
-		{ _field_pad, "post-vehicle_index-pad", 2 },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_short_block_index, "vehicle body" },
+		{ _field_legacy, _field_pad, "post-vehicle_index-pad", 2 },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(character_palette_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_short_block_index, "character type^" },
-		{ _field_custom },
-		{ _field_short_integer, "chance" },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_short_block_index, "character type^" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(weapon_palette_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_short_block_index, "weapon type^" },
-		{ _field_custom },
-		{ _field_short_integer, "chance" },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_short_block_index, "weapon type^" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(equipment_palette_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_short_block_index, "equipment type^" },
-		{ _field_custom },
-		{ _field_short_integer, "chance" },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_short_block_index, "equipment type^" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
 	{
-		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
-		{ _field_string_id, "name^" },
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
-		{ _field_enum, "major upgrade", &major_upgrade_enum },
-		{ _field_block, "character type", &character_palette_choice_block_block },
-		{ _field_block, "initial weapon", &weapon_palette_choice_block_block },
-		{ _field_block, "initial secondary weapon", &weapon_palette_choice_block_block },
-		{ _field_block, "initial equipment", &equipment_palette_choice_block_block },
-		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_short_block_index, "vehicle type" },
-		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "Placement script" },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_pad, "plsc", 2 },
-		{ _field_string_id, "activity name" },
-		{ _field_string_id, "movement set" },
-		{ _field_custom_short_block_index, "point set" },
-		{ _field_enum, "patrol mode", &patrol_mode_enum },
-		{ _field_block, "points!", &patrol_point_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
+		{ _field_legacy, _field_enum, "major upgrade", &major_upgrade_enum },
+		{ _field_legacy, _field_block, "character type", &character_palette_choice_block_block },
+		{ _field_legacy, _field_block, "initial weapon", &weapon_palette_choice_block_block },
+		{ _field_legacy, _field_block, "initial secondary weapon", &weapon_palette_choice_block_block },
+		{ _field_legacy, _field_block, "initial equipment", &equipment_palette_choice_block_block },
+		{ _field_legacy, _field_enum, "grenade type", &global_ai_grenade_type_enum },
+		{ _field_legacy, _field_short_block_index, "vehicle type" },
+		{ _field_legacy, _field_string_id, "vehicle variant" },
+		{ _field_legacy, _field_string_id, "Placement script" },
+		{ _field_legacy, _field_short_integer, "placement script index!~" },
+		{ _field_legacy, _field_pad, "plsc", 2 },
+		{ _field_legacy, _field_string_id, "activity name" },
+		{ _field_legacy, _field_string_id, "movement set" },
+		{ _field_legacy, _field_custom_short_block_index, "point set" },
+		{ _field_legacy, _field_enum, "patrol mode", &patrol_mode_enum },
+		{ _field_legacy, _field_block, "points!", &patrol_point_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(squads_block, k_maximum_squads_per_map)
 	{
-		{ _field_custom },
-		{ _field_string, "name^" },
-		{ _field_long_flags, "flags", &squad_flags },
-		{ _field_enum, "team", &ai_team_enum },
-		{ _field_short_block_index, "parent" },
-		{ _field_short_block_index, "initial zone" },
-		{ _field_short_block_index, "initial objective" },
-		{ _field_custom_short_block_index, "initial task" },
-		{ _field_short_block_index, "editor folder!" },
-		{ _field_block, "spawn formations!", &spawn_formation_block_block },
-		{ _field_block, "spawn points!", &spawn_points_block_block },
-		{ _field_long_enum, "wave placement filter#Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
-		{ _field_string_id, "template" },
-		{ _field_long_integer, "squad template index!" },
-		{ _field_custom },
-		{ _field_struct, "designer", &squad_definition_internal_struct_struct_definition },
-		{ _field_struct, "templated*!", &squad_definition_internal_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_string, "name^" },
+		{ _field_legacy, _field_long_flags, "flags", &squad_flags },
+		{ _field_legacy, _field_enum, "team", &ai_team_enum },
+		{ _field_legacy, _field_short_block_index, "parent" },
+		{ _field_legacy, _field_short_block_index, "initial zone" },
+		{ _field_legacy, _field_short_block_index, "initial objective" },
+		{ _field_legacy, _field_custom_short_block_index, "initial task" },
+		{ _field_legacy, _field_short_block_index, "editor folder!" },
+		{ _field_legacy, _field_block, "spawn formations!", &spawn_formation_block_block },
+		{ _field_legacy, _field_block, "spawn points!", &spawn_points_block_block },
+		{ _field_legacy, _field_long_enum, "wave placement filter#Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
+		{ _field_legacy, _field_string_id, "template" },
+		{ _field_legacy, _field_long_integer, "squad template index!" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "designer", &squad_definition_internal_struct_struct_definition },
+		{ _field_legacy, _field_struct, "templated*!", &squad_definition_internal_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(character_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_tag_reference, "character type^", &character_reference$7 },
-		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_tag_reference, "character type^", &character_reference$7 },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_pad, "post-chance", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_tag_reference, "weapon type^", &weapon_reference$8 },
-		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_tag_reference, "weapon type^", &weapon_reference$8 },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_pad, "post-chance", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 	{
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_tag_reference, "equipment type^", &equipment_reference$4 },
-		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_tag_reference, "equipment type^", &equipment_reference$4 },
+		{ _field_legacy, _field_short_integer, "chance" },
+		{ _field_legacy, _field_pad, "post-chance", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(cell_template_block, k_maximum_cells_per_squad)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
-		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
-		{ _field_enum, "major upgrade", &major_upgrade_enum },
-		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
-		{ _field_block, "character type", &character_ref_choice_block_block },
-		{ _field_block, "initial weapon", &weapon_ref_choice_block_block },
-		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block },
-		{ _field_block, "initial equipment", &equipment_ref_choice_block_block },
-		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_pad, "post-grenade", 2 },
-		{ _field_tag_reference, "vehicle type", &vehicle_reference$3 },
-		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "activity name" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
+		{ _field_legacy, _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
+		{ _field_legacy, _field_enum, "major upgrade", &major_upgrade_enum },
+		{ _field_legacy, _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
+		{ _field_legacy, _field_block, "character type", &character_ref_choice_block_block },
+		{ _field_legacy, _field_block, "initial weapon", &weapon_ref_choice_block_block },
+		{ _field_legacy, _field_block, "initial secondary weapon", &weapon_ref_choice_block_block },
+		{ _field_legacy, _field_block, "initial equipment", &equipment_ref_choice_block_block },
+		{ _field_legacy, _field_enum, "grenade type", &global_ai_grenade_type_enum },
+		{ _field_legacy, _field_pad, "post-grenade", 2 },
+		{ _field_legacy, _field_tag_reference, "vehicle type", &vehicle_reference$3 },
+		{ _field_legacy, _field_string_id, "vehicle variant" },
+		{ _field_legacy, _field_string_id, "activity name" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(squad_definition_internal_struct)
 	{
-		{ _field_block, "cells", &cell_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "cells", &cell_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(patrol_point_flags)

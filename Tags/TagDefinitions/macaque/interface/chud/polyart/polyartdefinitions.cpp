@@ -15,18 +15,18 @@ namespace macaque
 		"PolyartAsset",
 		POLYART_ASSET_STRUCT_DEFINITION_ID)
 	{
-		{ _field_char_enum, "runtime flags*!", &g_polyartAssetStateFlags },
+		{ _field_char_enum, "runtime flags", &g_polyartAssetStateFlags },
 		{ _field_char_enum, "Polyart vertex type", &PolyartVertexFormatTypeEnum },
 		{ _field_char_integer, "uvSet index" },
-		{ _field_pad, "MERP", 1 },
+		FIELD_PAD("MERP", nullptr, 1),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_block, "placement data", &polyartCameraBlock_block },
-		{ _field_block, "vertices*", &polyartVertexBlock_block },
-		{ _field_block, "indices*", &polyartIndexBlock_block },
-		{ _field_block, "pc vertex buffers*", &vertexBuffersBlock_block },
-		{ _field_block, "pc index buffers*", &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop*", &polyartVertexBufferDescriptorStruct },
-		{ _field_api_interop, "index buffer interop*", &polyartIndexBufferDescriptorStruct },
+		{ _field_block, "vertices", &polyartVertexBlock_block },
+		{ _field_block, "indices", &polyartIndexBlock_block },
+		{ _field_block, "pc vertex buffers", &vertexBuffersBlock_block },
+		{ _field_block, "pc index buffers", &indexBuffersBlock_block },
+		{ _field_api_interop, "vertex buffer interop", &polyartVertexBufferDescriptorStruct },
+		{ _field_api_interop, "index buffer interop", &polyartIndexBufferDescriptorStruct },
 		{ _field_terminator }
 	};
 
@@ -60,8 +60,8 @@ namespace macaque
 		"PolyartVertexBufferDescriptor",
 		POLYARTVERTEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "vertices*" },
-		{ _field_long_integer, "vertex type*" },
+		{ _field_data, "vertices" },
+		{ _field_long_integer, "vertex type" },
 		{ _field_terminator }
 	};
 
@@ -72,7 +72,7 @@ namespace macaque
 		"PolyartIndexBufferDescriptor",
 		POLYARTINDEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "index_data*" },
+		{ _field_data, "index_data" },
 		{ _field_terminator }
 	};
 

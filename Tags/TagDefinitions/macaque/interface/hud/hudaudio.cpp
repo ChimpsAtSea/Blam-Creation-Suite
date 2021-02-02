@@ -16,16 +16,16 @@ namespace macaque
 		HUD_UNIT_SOUND_BLOCK_ID)
 	{
 		{ _field_block, "Hud audio cues", &hud_unit_sound_cue_block },
-		FIELD_CUSTOM("health thresholds", _custom_field_function_group_begin),
+		FIELD_CUSTOM("health thresholds", nullptr, _field_id_function_group_begin),
 		{ _field_real, "health minor" },
 		{ _field_real, "health major" },
 		{ _field_real, "health critical" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("shield thresholds", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("shield thresholds", nullptr, _field_id_function_group_begin),
 		{ _field_real, "shield minor" },
 		{ _field_real, "shield major" },
 		{ _field_real, "shield critical" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -37,7 +37,7 @@ namespace macaque
 		"HudUnitSoundCueDefinition",
 		HUD_UNIT_SOUND_CUE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
+		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
 		{ _field_long_flags, "latched to", &hud_sound_cue_flags },
 		{ _field_real, "scale" },
 		{ _field_terminator }

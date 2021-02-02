@@ -41,14 +41,14 @@ namespace blofeld
 
 	V5_TAG_STRUCT(contrail_system_unknown_struct)
 	{
-		{ _field_char_integer, "input" },
-		{ _field_char_integer, "input range" },
-		{ _field_char_enum, "output kind", &contrail_system_output_kind },
-		{ _field_char_integer, "output" },
-		{ _field_data, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_long_integer, "unknown" },
-		{ _field_terminator }
+		{ _field_legacy, _field_char_integer, "input" },
+		{ _field_legacy, _field_char_integer, "input range" },
+		{ _field_legacy, _field_char_enum, "output kind", &contrail_system_output_kind },
+		{ _field_legacy, _field_char_integer, "output" },
+		{ _field_legacy, _field_data, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	TAG_REFERENCE(contrail_render_method_definition_reference, blofeld::RENDER_METHOD_DEFINITION_TAG);
@@ -56,59 +56,59 @@ namespace blofeld
 
 	V5_TAG_BLOCK(contrail_system_entry, 65536)
 	{
-		{ _field_string_id, "name" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
-		{ _field_long_integer, "unknown" },
+		{ _field_legacy, _field_string_id, "name" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_struct, "unknown", &contrail_system_unknown_struct_struct_definition },
+		{ _field_legacy, _field_long_integer, "unknown" },
 
-		{ _field_explanation, "Render Method" },
-		{ _field_struct, "render method", &render_method_struct_definition_struct_definition },
+		{ _field_legacy, _field_explanation, "Render Method" },
+		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition_struct_definition },
 
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_real, "unknown" },
-		{ _field_struct, "profile color", &tracerProperty_real_rgb_color_Struct_struct_definition },
-		{ _field_struct, "profile alpha", &tracerProperty_real_Struct_struct_definition },
-		{ _field_struct, "profile alpha2", &tracerProperty_real_Struct_struct_definition },
-		{ _field_struct, "profile black point", &tracerProperty_real_Struct_struct_definition },
-		{ _field_struct, "profile palette", &tracerProperty_real_Struct_struct_definition },
-		{ _field_struct, "profile intensity", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_struct, "profile color", &tracerProperty_real_rgb_color_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile alpha", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile alpha2", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile black point", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile palette", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile intensity", &tracerProperty_real_Struct_struct_definition },
 
-		{ _field_long_integer, "unknown" },
-		{ _field_long_integer, "unknown" },
-		{ _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_GROUP(contrail_system, CONTRAIL_SYSTEM_TAG)
 	{
-		{ _field_block, "contrail system", &contrail_system_entry_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "contrail system", &contrail_system_entry_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 }

@@ -15,9 +15,9 @@ namespace macaque
 		"s_material_shader_parameter",
 		MATERIAL_SHADER_PARAMETER_BLOCK_ID)
 	{
-		{ _field_string_id, "parameter name^*" },
-		{ _field_long_enum, "parameter type*", &material_shader_parameter_type_enum },
-		{ _field_long_integer, "parameter index*!" },
+		{ _field_string_id, "parameter name" },
+		{ _field_long_enum, "parameter type", &material_shader_parameter_type_enum },
+		{ _field_long_integer, "parameter index" },
 		{ _field_tag_reference, "bitmap", &bitmap_reference$7 },
 		{ _field_string_id, "bitmap path" },
 		{ _field_real_argb_color, "color" },
@@ -35,15 +35,15 @@ namespace macaque
 		{ _field_byte_integer, "bitmap max mipmap" },
 		{ _field_byte_integer, "render phases used" },
 		{ _field_block, "function parameters", &material_shader_function_parameter_block },
-		{ _field_data, "display name*" },
-		{ _field_data, "display group*" },
-		{ _field_data, "display help text*" },
+		{ _field_data, "display name" },
+		{ _field_data, "display group" },
+		{ _field_data, "display help text" },
 		{ _field_real, "display minimum" },
 		{ _field_real, "display maximum" },
-		{ _field_byte_integer, "register index*!" },
-		{ _field_byte_integer, "register offset*!" },
-		{ _field_byte_integer, "register count*!" },
-		{ _field_char_enum, "register set*!", &register_set_enum },
+		{ _field_byte_integer, "register index" },
+		{ _field_byte_integer, "register offset" },
+		{ _field_byte_integer, "register count" },
+		{ _field_char_enum, "register set", &register_set_enum },
 		{ _field_terminator }
 	};
 
@@ -55,15 +55,15 @@ namespace macaque
 		"s_material_shader_function_parameter",
 		MATERIAL_SHADER_FUNCTION_PARAMETER_BLOCK_ID)
 	{
-		{ _field_long_enum, "type^", &material_animated_parameter_type_enum },
-		{ _field_string_id, "input name", nullptr, 'fnin' },
-		{ _field_string_id, "range name", nullptr, 'fnir' },
-		{ _field_char_enum, "Output Modifier!", &materialFunctionOutputModEnum },
-		{ _field_pad, "BVCG", 3 },
-		{ _field_string_id, "Output Modifier Input!", nullptr, 'fnom' },
-		{ _field_real, "time period:seconds", nullptr, 'fn**' },
+		{ _field_long_enum, "type", &material_animated_parameter_type_enum },
+		{ _field_string_id, "input name", _field_id_function_input_scalar },
+		{ _field_string_id, "range name", _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &materialFunctionOutputModEnum },
+		FIELD_PAD("BVCG", nullptr, 3),
+		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier },
+		{ _field_real, "time period", "seconds", _field_id_function_unknown },
 		{ _field_explanation, "FUNCTION", "" },
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }
 	};

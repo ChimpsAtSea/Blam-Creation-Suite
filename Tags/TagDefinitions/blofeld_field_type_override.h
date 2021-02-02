@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef HIDDEN_CODE
+
 #define _field_string _field_string, __FILE__, __LINE__
 #define _field_long_string _field_long_string, __FILE__, __LINE__
 #define _field_string_id _field_string_id, __FILE__, __LINE__
@@ -79,3 +81,5 @@
 #define _field_version_custom _field_version_custom, __FILE__, __LINE__
 #define _field_version_platform_include _field_version_platform_include, __FILE__, __LINE__
 #define _field_version_platform_exclude _field_version_platform_exclude, __FILE__, __LINE__
+
+#endif

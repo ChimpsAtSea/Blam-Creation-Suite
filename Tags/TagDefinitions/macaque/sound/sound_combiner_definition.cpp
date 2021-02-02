@@ -16,9 +16,9 @@ namespace macaque
 		SOUND_COMBINER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entries", &sound_combiner_definition_entry_block },
-		{ _field_real, "maximum play seconds!#this is determined at post process time" },
-		{ _field_real, "minimum distance default!#this is determined at post process time" },
-		{ _field_real, "maximum distance default!#this is determined at post process time" },
+		{ _field_real, "maximum play seconds", "this is determined at post process time" },
+		{ _field_real, "minimum distance default", "this is determined at post process time" },
+		{ _field_real, "maximum distance default", "this is determined at post process time" },
 		{ _field_terminator }
 	};
 
@@ -37,8 +37,8 @@ namespace macaque
 		"s_sound_combiner_definition_entry",
 		SOUND_COMBINER_DEFINITION_ENTRY_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_force_sound_only_reference },
-		{ _field_real_bounds, "delay bounds:seconds#delay before this sound is played" },
+		{ _field_tag_reference, "sound", &global_force_sound_only_reference },
+		{ _field_real_bounds, "delay bounds", "delay before this sound is played", "seconds" },
 		{ _field_terminator }
 	};
 

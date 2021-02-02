@@ -42,7 +42,7 @@ namespace macaque
 		"FirefightWaveTemplateDefinition",
 		FIREFIGHTWAVETEMPLATESBLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "wave template", &wave_template_reference },
 		{ _field_terminator }
 	};

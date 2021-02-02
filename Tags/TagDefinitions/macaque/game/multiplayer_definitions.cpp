@@ -61,18 +61,18 @@ namespace macaque
 		"TeamDefinition",
 		TEAMDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
-		FIELD_CUSTOM("- Emblem Data", _custom_field_function_group_begin),
+		FIELD_CUSTOM("- Emblem Data", nullptr, _field_id_function_group_begin),
 		{ _field_byte_integer, "foreground emblem index" },
 		{ _field_byte_integer, "background emblem index" },
 		{ _field_byte_flags, "info flags", &emblemInfoFlags },
 		{ _field_char_enum, "primary color index", &playerColorEnum },
 		{ _field_char_enum, "secondary color index", &playerColorEnum },
 		{ _field_char_enum, "background color index", &playerColorEnum },
-		{ _field_pad, "pad", 2 },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_PAD("pad", nullptr, 2),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -84,20 +84,20 @@ namespace macaque
 		"s_requisition_constants",
 		REQUISITION_CONSTANTS_BLOCK_ID)
 	{
-		{ _field_real, "FTL bonus fraction#multiplier to apply to money earned by minions to also give to the fireteam leader" },
+		{ _field_real, "FTL bonus fraction", "multiplier to apply to money earned by minions to also give to the fireteam leader" },
 		{ _field_explanation, "AWARD AMOUNTS", "These are requisition award amounts for various thing players can get money for" },
 		{ _field_long_integer, "Kill" },
 		{ _field_long_integer, "Assist" },
 		{ _field_long_integer, "Fire team leader kill" },
-		{ _field_long_integer, "vehicle kill#Default, only applies if the vehicle doesn\'t have a custom award amount in the scenario requisition palette." },
-		{ _field_long_integer, "objective destroyed#awarded to entire team" },
-		{ _field_long_integer, "objective armed#awarded to entire team" },
-		{ _field_long_integer, "objective disarmed#awarded to entire team" },
-		{ _field_long_integer, "objective defending#awarded every 3 seconds to any individuals near secondary defensive objectives" },
-		{ _field_long_integer, "neutral territory owned#awarded every 3 seconds to entire team that owns BFG" },
-		{ _field_long_integer, "served as reinforcement target#awarded to a reinforcement target when a teammate spawns on him (to encourage cooperation)" },
-		{ _field_long_integer, "uberassault gun captured#awarded on gaining ownership of a gun to every member of the new owning team" },
-		{ _field_long_integer, "uberassault gun owned#awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you\'ll get 3x this money every 3 seconds)." },
+		{ _field_long_integer, "vehicle kill", "Default, only applies if the vehicle doesn\'t have a custom award amount in the scenario requisition palette." },
+		{ _field_long_integer, "objective destroyed", "awarded to entire team" },
+		{ _field_long_integer, "objective armed", "awarded to entire team" },
+		{ _field_long_integer, "objective disarmed", "awarded to entire team" },
+		{ _field_long_integer, "objective defending", "awarded every 3 seconds to any individuals near secondary defensive objectives" },
+		{ _field_long_integer, "neutral territory owned", "awarded every 3 seconds to entire team that owns BFG" },
+		{ _field_long_integer, "served as reinforcement target", "awarded to a reinforcement target when a teammate spawns on him (to encourage cooperation)" },
+		{ _field_long_integer, "uberassault gun captured", "awarded on gaining ownership of a gun to every member of the new owning team" },
+		{ _field_long_integer, "uberassault gun owned", "awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you\'ll get 3x this money every 3 seconds)." },
 		{ _field_explanation, "PENALTY AMOUNTS", "Requisition penalties for various discouraged actions" },
 		{ _field_long_integer, "Betrayed a teammate" },
 		{ _field_explanation, "FIRE TEAM TIER KILL REQUIREMENTS", "Number of kills a fireteam must have to reach each fire team tier" },
@@ -126,7 +126,7 @@ namespace macaque
 	{
 		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
 		{ _field_tag_reference, "name", &requisition_palette_block_name_reference },
-		{ _field_string_id, "display_name^" },
+		{ _field_string_id, "display_name" },
 		{ _field_long_enum, "special_buy", &requisition_special_buy_enum },
 		{ _field_terminator }
 	};
@@ -148,8 +148,8 @@ namespace macaque
 		{ _field_tag_reference, "in game text", &global_multilingual_unicode_string_list_reference },
 		{ _field_block, "sounds", &sounds_block },
 		{ _field_block, "looping sounds", &looping_sounds_block },
-		{ _field_tag_reference, "megalo sounds{english}", &global_megalogamengine_sound_group_reference },
-		{ _field_tag_reference, "communication sounds{comm english}", &global_communication_sound_group_reference },
+		{ _field_tag_reference, "megalo sounds", &global_megalogamengine_sound_group_reference },
+		{ _field_tag_reference, "communication sounds", &global_communication_sound_group_reference },
 		{ _field_long_integer, "maximum frag count" },
 		{ _field_long_integer, "maximum plasma count" },
 		{ _field_block, "multiplayer constants", &multiplayer_constants_block },
@@ -165,7 +165,7 @@ namespace macaque
 		{ _field_tag_reference, "default_object_simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
 		{ _field_tag_reference, "megalo string_id table", &global_megalo_string_id_table_reference },
-		{ _field_tag_reference, "killcam parameters# Used for non projectile killcams.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
+		{ _field_tag_reference, "killcam parameters", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
@@ -177,7 +177,7 @@ namespace macaque
 		"s_tag_reference",
 		SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_reference },
+		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -189,7 +189,7 @@ namespace macaque
 		"s_tag_reference",
 		LOOPING_SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
+		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -204,7 +204,7 @@ namespace macaque
 		{ _field_explanation, "PLAYER SPAWN INFLUENCERS", "These are the default spawn influencer settings which can be overridden by scenario tags" },
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
 		{ _field_explanation, "MORE MP CONSTANTS", "More old Halo2 stuff follows..." },
-		{ _field_real, "teleporter recharge time:seconds" },
+		{ _field_real, "teleporter recharge time", "seconds" },
 		{ _field_tag_reference, "sandbox effect", &global_effect_reference },
 		{ _field_string_id, "blocked teleporter string" },
 		{ _field_explanation, "RESPAWN STRINGS", "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above" },
@@ -236,13 +236,13 @@ namespace macaque
 		GAME_ENGINE_STATUS_RESPONSE_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &game_engine_status_flags_definition },
-		{ _field_pad, "FAW", 2 },
-		{ _field_enum, "state^", &game_engine_status_enum_definition },
-		{ _field_pad, "BNYFIDDGX", 2 },
+		FIELD_PAD("FAW", nullptr, 2),
+		{ _field_enum, "state", &game_engine_status_enum_definition },
+		FIELD_PAD("BNYFIDDGX", nullptr, 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
-		{ _field_tag_reference, "unused!", &g_non_traversed_reference_definition },
-		{ _field_pad, "GTL", 4 },
+		{ _field_tag_reference, "unused", &g_non_traversed_reference_definition },
+		FIELD_PAD("GTL", nullptr, 4),
 		{ _field_terminator }
 	};
 

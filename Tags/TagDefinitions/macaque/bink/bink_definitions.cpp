@@ -28,7 +28,7 @@ namespace macaque
 		"BinkPaletteEntry",
 		BINKPALETTEBLOCK_ID)
 	{
-		{ _field_tag_reference, "reference^", &bink_reference$2 },
+		{ _field_tag_reference, "reference", &bink_reference$2 },
 		{ _field_terminator }
 	};
 
@@ -39,9 +39,9 @@ namespace macaque
 		"s_bink_definition",
 		BINK_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "frame count*" },
+		{ _field_long_integer, "frame count" },
 		{ _field_pageable, "bink resource", &bink_resource_struct },
-		{ _field_tag_reference, "external sound track^", &global_sound_reference },
+		{ _field_tag_reference, "external sound track", &global_sound_reference },
 		{ _field_terminator }
 	};
 

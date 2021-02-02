@@ -8,23 +8,23 @@ namespace blofeld
 
 	V5_TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 	{
-		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
-		{ _field_string_id, "Name^" },
-		{ _field_long_flags, "Flags", &self_illumination_flags },
-		{ _field_real, "Length #Length of illumination animation in seconds." },
-		{ _field_string_id, "Next State #Used to automatically transition to another state when finished." },
-		{ _field_struct, "Intensity #Animates intensity over time. 0 - Min Intensity.  1 - Max Intensity", &scalar_function_named_struct_struct_definition },
-		{ _field_struct, "Color #Animates color over time.  0 - White.  1 - Full Color", &scalar_function_named_struct_struct_definition },
-		{ _field_struct, "Activation #Animates On/Off state over time. 0 - Off. 1 - On", &scalar_function_named_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
+		{ _field_legacy, _field_string_id, "Name^" },
+		{ _field_legacy, _field_long_flags, "Flags", &self_illumination_flags },
+		{ _field_legacy, _field_real, "Length #Length of illumination animation in seconds." },
+		{ _field_legacy, _field_string_id, "Next State #Used to automatically transition to another state when finished." },
+		{ _field_legacy, _field_struct, "Intensity #Animates intensity over time. 0 - Min Intensity.  1 - Max Intensity", &scalar_function_named_struct_struct_definition },
+		{ _field_legacy, _field_struct, "Color #Animates color over time.  0 - White.  1 - Full Color", &scalar_function_named_struct_struct_definition },
+		{ _field_legacy, _field_struct, "Activation #Animates On/Off state over time. 0 - Off. 1 - On", &scalar_function_named_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(self_illumination_struct_definition)
 	{
-		{ _field_block, "States", &self_illumination_state_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "States", &self_illumination_state_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(self_illumination_flags)

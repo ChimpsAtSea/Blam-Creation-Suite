@@ -25,10 +25,10 @@ namespace macaque
 
 	extern s_tag_block_definition cinematic_scene_block;
 	extern s_tag_block_definition cinematic_scene_data_block;
-	extern s_tag_block_definition cinematic_shot_playback_data_block;
-	extern s_tag_struct_definition cinematic_shot_playback_data_block_struct_definition; // cinematic_shot_playback_data_block
 	extern s_tag_block_definition cinematic_scene_reference_block;
 	extern s_tag_struct_definition cinematic_scene_reference_block_struct_definition; // cinematic_scene_reference_block
+	extern s_tag_block_definition cinematic_shot_playback_data_block;
+	extern s_tag_struct_definition cinematic_shot_playback_data_block_struct_definition; // cinematic_shot_playback_data_block
 	extern s_tag_block_definition cinematic_scene_object_block;
 	extern s_tag_struct_definition cinematic_scene_object_block_struct_definition; // cinematic_scene_object_block
 	extern s_tag_block_definition scene_object_attachment_block;
@@ -90,9 +90,9 @@ namespace macaque
 	extern s_tag_struct_definition cinematics_globals_block_struct_definition; // cinematics_globals_block
 	extern s_tag_block_definition cinematic_characters_block;
 	extern s_tag_struct_definition cinematic_characters_block_struct_definition; // cinematic_characters_block
-	extern s_tag_block_definition scenario_cutscene_title_block;
 	extern s_tag_block_definition scenario_cinematics_block;
 	extern s_tag_struct_definition scenario_cinematics_block_struct_definition; // scenario_cinematics_block
+	extern s_tag_block_definition scenario_cutscene_title_block;
 
 	extern s_tag_struct_definition g_cinematicShotFlagArray_array_struct_definition;
 	extern s_tag_array_definition g_cinematicShotFlagArray_array;

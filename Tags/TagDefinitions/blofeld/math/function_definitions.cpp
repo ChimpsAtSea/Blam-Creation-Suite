@@ -10,45 +10,45 @@ namespace blofeld
 
 	V5_TAG_STRUCT(mapping_function)
 	{
-		{ _field_custom },
-		{ _field_data, "data" },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_data, "data" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(scalar_function_named_struct_default_one)
 	{
-		{ _field_custom },
-		{ _field_struct, "function", &mapping_function_default_one_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "function", &mapping_function_default_one_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(mapping_function_default_one)
 	{
-		{ _field_custom },
-		{ _field_data, "data" },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_data, "data" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(scalar_function_named_struct)
 	{
-		{ _field_custom },
-		{ _field_struct, "function", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(curve_scalar_struct_definition)
 	{
-		{ _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(color_function_named_struct)
 	{
-		{ _field_custom },
-		{ _field_struct, "function", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(function_type_enum_definition)

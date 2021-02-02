@@ -41,16 +41,16 @@ namespace macaque
 		"OrdnanceLoadoutData",
 		GAMEGLOBALSORDNANCEBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance name^" },
-		{ _field_string, "ordnance internal name!" },
+		{ _field_string_id, "ordnance name" },
+		{ _field_string, "ordnance internal name" },
 		{ _field_long_integer, "activation point cost" },
-		{ _field_string_id, "drop pod variant name#is pod with this power weapon, else if blank is remote strike (remote strike equipment)" },
+		{ _field_string_id, "drop pod variant name", "is pod with this power weapon, else if blank is remote strike (remote strike equipment)" },
 		{ _field_tag_reference, "remote strike equipment", &global_equipment_reference },
 		{ _field_byte_integer, "sequence index" },
 		{ _field_byte_integer, "equipment count" },
 		{ _field_byte_flags, "premium flag", &GuiOrdnancePrimiumFlag },
-		{ _field_pad, "PAD", 1 },
-		{ _field_real_point_3d, "navpoint marker offset*!" },
+		FIELD_PAD("PAD", nullptr, 1),
+		{ _field_real_point_3d, "navpoint marker offset" },
 		{ _field_terminator }
 	};
 
@@ -63,7 +63,7 @@ namespace macaque
 		ORDNANCEREMAPPINGVARIANTBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_string, "internal name!" },
+		{ _field_string, "internal name" },
 		{ _field_block, "remappings", &OrdnanceRemappingBlock_block },
 		{ _field_terminator }
 	};
@@ -76,8 +76,8 @@ namespace macaque
 		"OrdnanceRemapping",
 		ORDNANCEREMAPPINGBLOCK_ID)
 	{
-		{ _field_string_id, "from^#This must match one of the global ordnance objects." },
-		{ _field_string_id, "to^#This must match one of the global ordnance objects." },
+		{ _field_string_id, "from", "This must match one of the global ordnance objects." },
+		{ _field_string_id, "to", "This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
@@ -89,7 +89,7 @@ namespace macaque
 		"randomOrdnanceItem",
 		RANDOMORDNANCEITEMBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." },
+		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
@@ -113,8 +113,8 @@ namespace macaque
 		"playerOrdnanceItem",
 		PLAYERORDNANCEITEMBLOCK_ID)
 	{
-		{ _field_string, "ordnance name^#This must match one of the global ordnance objects." },
-		{ _field_real, "ordnance frequency#chance that an ordnance from this group will be chosen" },
+		{ _field_string, "ordnance name", "This must match one of the global ordnance objects." },
+		{ _field_real, "ordnance frequency", "chance that an ordnance from this group will be chosen" },
 		{ _field_terminator }
 	};
 
@@ -125,8 +125,8 @@ namespace macaque
 		"GameGlobalsOrdnance",
 		GAME_GLOBALS_ORDNANCE_LIST_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "ordnance map width:world units" },
-		{ _field_real, "random ordnance fanfare duration:seconds" },
+		{ _field_real, "ordnance map width", "world units" },
+		{ _field_real, "random ordnance fanfare duration", "seconds" },
 		{ _field_tag_reference, "drop pod cleanup effect", &global_effect_reference },
 		{ _field_block, "ordnances", &GameGlobalsOrdnanceBlock_block },
 		{ _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock_block },

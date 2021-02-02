@@ -29,7 +29,7 @@ namespace macaque
 		GPU_VARIANTS_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime m_count!", &gpu_single_constant_register_array },
+		{ _field_array, "runtime m_count", &gpu_single_constant_register_array },
 		{ _field_terminator }
 	};
 
@@ -42,10 +42,10 @@ namespace macaque
 		ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &attachment_flags },
-		{ _field_pad, "gerrrrr", 3 },
+		FIELD_PAD("gerrrrr", nullptr, 3),
 		{ _field_tag_reference, "type", &attachment_block_type_reference },
 		{ _field_char_enum, "trigger", &attachment_type_enum },
-		{ _field_byte_integer, "skip fraction:[0-127]#0 will always play, 127 will be extremely rare" },
+		{ _field_byte_integer, "skip fraction", "0 will always play, 127 will be extremely rare" },
 		{ _field_char_enum, "primary scale", &game_state_type_enum },
 		{ _field_char_enum, "secondary scale", &game_state_type_enum },
 		{ _field_terminator }
@@ -60,7 +60,7 @@ namespace macaque
 		GPU_SPRITE_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_sprite_array!", &gpu_single_constant_register_array },
+		{ _field_array, "runtime gpu_sprite_array", &gpu_single_constant_register_array },
 		{ _field_terminator }
 	};
 
@@ -72,7 +72,7 @@ namespace macaque
 		"real",
 		GPU_SINGLE_CONSTANT_REGISTER_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_real!" },
+		{ _field_real, "runtime gpu_real" },
 		{ _field_terminator }
 	};
 
@@ -83,50 +83,50 @@ namespace macaque
 		"c_particle_definition",
 		PARTICLE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
 		{ _field_long_flags, "main flags", &particle_main_flags },
 		{ _field_block, "attachments", &attachment_block },
 		{ _field_explanation, "PARTICLE APPEARANCE", "" },
 		{ _field_long_flags, "appearance flags", &particle_appearance_flags },
 		{ _field_enum, "particle billboard style", &particle_billboard_type_enum },
-		{ _field_pad, "NQCLLBQ", 2 },
+		FIELD_PAD("NQCLLBQ", nullptr, 2),
 		{ _field_short_integer, "first sequence index" },
 		{ _field_short_integer, "sequence count" },
-		{ _field_real, "low res switch distance:wu#the distance at which we switch from low res (close) to high res (far)" },
+		{ _field_real, "low res switch distance", "the distance at which we switch from low res (close) to high res (far)", "wu" },
 		{ _field_real_point_2d, "center offset" },
-		{ _field_real, "curvature:0=flat, 1=hemisphere" },
-		{ _field_real, "angle fade range:degrees#degrees beyond cutoff over which particles fade" },
-		{ _field_real, "angle fade cutoff:degrees#degrees away from edge-on where fade is total" },
-		{ _field_real, "motion blur translation scale#affects billboard tilt from observer motion" },
-		{ _field_real, "motion blur rotation scale#affects billboard tilt from observer turning" },
-		{ _field_real, "motion blur aspect scale#affects aspect ratio stretching from particle and observer motion" },
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_end),
+		{ _field_real, "curvature", "0=flat, 1=hemisphere" },
+		{ _field_real, "angle fade range", "degrees beyond cutoff over which particles fade", "degrees" },
+		{ _field_real, "angle fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
+		{ _field_real, "motion blur translation scale", "affects billboard tilt from observer motion" },
+		{ _field_real, "motion blur rotation scale", "affects billboard tilt from observer turning" },
+		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_struct, "aspect ratio", &particle_property_scalar_struct_new },
-		{ _field_struct, "color:RGB#controls how the color of the particle changes as a function of its input", &particle_property_color_struct_new },
-		{ _field_struct, "intensity#multiplies color to give dynamic range outside [0,1]", &particle_property_scalar_struct_new },
-		{ _field_struct, "alpha#separate from color, controls how the particle fades as a function of its input", &particle_property_scalar_struct_new },
-		{ _field_real, "tint factor:0=modulate, 1=tint#switches between modulate (multiply) and tint(preserve whites)" },
+		{ _field_struct, "color", &particle_property_color_struct_new },
+		{ _field_struct, "intensity", &particle_property_scalar_struct_new },
+		{ _field_struct, "alpha", &particle_property_scalar_struct_new },
+		{ _field_real, "tint factor", "switches between modulate (multiply) and tint(preserve whites)", "0=modulate, 1=tint" },
 		{ _field_explanation, "PARTICLE ANIMATION", "" },
 		{ _field_long_flags, "animation flags", &particle_animation_flags },
-		{ _field_struct, "frame index#0=first frame, 1=last frame", &particle_property_scalar_struct_new },
-		{ _field_struct, "animation rate:index cycles per second", &particle_property_scalar_struct_new },
-		{ _field_struct, "palette animation:v coord of palette", &particle_property_scalar_struct_new },
+		{ _field_struct, "frame index", &particle_property_scalar_struct_new },
+		{ _field_struct, "animation rate", &particle_property_scalar_struct_new },
+		{ _field_struct, "palette animation", &particle_property_scalar_struct_new },
 		{ _field_explanation, "Mesh data, if this is a mesh particle", "" },
 		{ _field_tag_reference, "Model", &particle_model_reference$2 },
-		FIELD_CUSTOM("OLD DEPRECATED shader definition", _custom_field_function_group_begin),
-		FIELD_CUSTOM("shader", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual shader\?", &shader_particle_struct_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		{ _field_dword_integer, "runtime m_used_particle_states!" },
-		{ _field_dword_integer, "runtime m_constant_per_particle_properties!" },
-		{ _field_dword_integer, "runtime m_constant_over_time_properties!" },
-		{ _field_struct, "runtime m_gpu_data!", &gpu_data_struct$2 },
+		FIELD_CUSTOM("OLD DEPRECATED shader definition", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("shader", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual shader", &shader_particle_struct_definition },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		{ _field_dword_integer, "runtime m_used_particle_states" },
+		{ _field_dword_integer, "runtime m_constant_per_particle_properties" },
+		{ _field_dword_integer, "runtime m_constant_over_time_properties" },
+		{ _field_struct, "runtime m_gpu_data", &gpu_data_struct$2 },
 		{ _field_terminator }
 	};
 
@@ -137,8 +137,8 @@ namespace macaque
 		"c_particle_definition::s_gpu_data",
 		GPU_DATA_STRUCT$2_ID)
 	{
-		{ _field_block, "runtime m_sprite!", &gpu_sprite_block },
-		{ _field_block, "runtime m_frames!", &gpu_variants_block },
+		{ _field_block, "runtime m_sprite", &gpu_sprite_block },
+		{ _field_block, "runtime m_frames", &gpu_variants_block },
 		{ _field_terminator }
 	};
 

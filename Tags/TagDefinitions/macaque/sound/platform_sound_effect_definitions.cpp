@@ -34,7 +34,7 @@ namespace macaque
 		"s_platform_sound_playback_named_definition",
 		PLATFORM_SOUND_PLAYBACK_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_struct, "playback", &platform_sound_playback_struct },
 		{ _field_terminator }
 	};
@@ -47,8 +47,8 @@ namespace macaque
 		"s_platform_sound_playback_lowpass_definition",
 		PLATFORM_SOUND_PLAYBACK_LOWPASS_BLOCK_STRUCT_ID)
 	{
-		{ _field_real, "attack:seconds" },
-		{ _field_real, "release:seconds" },
+		{ _field_real, "attack", "seconds" },
+		{ _field_real, "release", "seconds" },
 		{ _field_struct, "settings", &global_sound_lowpass_block },
 		{ _field_terminator }
 	};
@@ -61,8 +61,8 @@ namespace macaque
 		"s_platform_sound_playback_component_definition",
 		PLATFORM_SOUND_PLAYBACK_COMPONENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
-		{ _field_real, "gain:dB#additional attenuation to sound" },
+		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
+		{ _field_real, "gain", "additional attenuation to sound", "dB" },
 		{ _field_long_flags, "flags", &platform_sound_playback_component_flags },
 		{ _field_terminator }
 	};
@@ -78,7 +78,7 @@ namespace macaque
 		{ _field_tag_reference, "radio effect", &global_sound_radio_settings_reference },
 		{ _field_tag_reference, "Start event", &global_sound_reference },
 		{ _field_tag_reference, "End event", &global_sound_reference },
-		{ _field_tag_reference, "Immediate stop event#Must clear the effect without any transition - used for exiting levels, etc", &global_sound_reference },
+		{ _field_tag_reference, "Immediate stop event", &global_sound_reference },
 		{ _field_block, "lowpass effect", &platform_sound_playback_lowpass_block },
 		{ _field_block, "sound components", &platform_sound_playback_component_block },
 		{ _field_terminator }

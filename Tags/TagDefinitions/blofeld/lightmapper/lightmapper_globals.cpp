@@ -10,8 +10,8 @@ namespace blofeld
 
 	V5_TAG_BLOCK(lightmap_model_reference_block, SHORT_MAX)
 	{
-		{ _field_tag_reference, "Model Reference", &model_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "Model Reference", &model_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(lightmap_model_globals_block, 1, lightmap_model_globals_struct_definition_struct_definition );
@@ -20,82 +20,82 @@ namespace blofeld
 
 	V5_TAG_STRUCT(lightmap_model_globals_struct_definition)
 	{
-		{ _field_block, "Lightmapped Models", &lightmap_model_reference_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "Lightmapped Models", &lightmap_model_reference_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(lightmapper_globals_struct_definition)
 	{
-		{ _field_long_integer, "Version!" },
-		{ _field_custom, "GLOBAL QUALITY SETTINGS" },
-		{ _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct_struct_definition },
-		{ _field_custom },
-		{ _field_custom, "LOCAL SETTINGS" },
-		{ _field_struct, "Local lightmapper settings", &global_lightmap_local_settings_struct_struct_definition },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "Version!" },
+		{ _field_legacy, _field_custom, "GLOBAL QUALITY SETTINGS" },
+		{ _field_legacy, _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct_struct_definition },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_custom, "LOCAL SETTINGS" },
+		{ _field_legacy, _field_struct, "Local lightmapper settings", &global_lightmap_local_settings_struct_struct_definition },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_lightmap_global_settings_struct)
 	{
-		{ _field_long_flags, "Global flags", &lightmap_global_flags },
-		{ _field_long_enum, "Mode", &lightmap_mode_enum },
-		{ _field_long_enum, "Hemicube resolution", &lightmap_hemicube_resolution_enum },
-		{ _field_long_enum, "DXT compression quality", &lightmap_dxt_quality_enum },
-		{ _field_long_enum, "Indirect quality", &lightmap_indirect_quality_enum },
-		{ _field_long_enum, "Direct shadow map resolution", &lightmap_direct_shadow_map_resolution_enum },
-		{ _field_long_enum, "Super-sampling factor", &lightmap_supersampling_factor_enum },
-		{ _field_long_enum, "AO Sample Quality", &lightmap_ao_quality_enum },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Min!" },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Max!" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "Global flags", &lightmap_global_flags },
+		{ _field_legacy, _field_long_enum, "Mode", &lightmap_mode_enum },
+		{ _field_legacy, _field_long_enum, "Hemicube resolution", &lightmap_hemicube_resolution_enum },
+		{ _field_legacy, _field_long_enum, "DXT compression quality", &lightmap_dxt_quality_enum },
+		{ _field_legacy, _field_long_enum, "Indirect quality", &lightmap_indirect_quality_enum },
+		{ _field_legacy, _field_long_enum, "Direct shadow map resolution", &lightmap_direct_shadow_map_resolution_enum },
+		{ _field_legacy, _field_long_enum, "Super-sampling factor", &lightmap_supersampling_factor_enum },
+		{ _field_legacy, _field_long_enum, "AO Sample Quality", &lightmap_ao_quality_enum },
+		{ _field_legacy, _field_real_vector_3d, "Indirect Restrict AABB Min!" },
+		{ _field_legacy, _field_real_vector_3d, "Indirect Restrict AABB Max!" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_lightmap_local_settings_struct)
 	{
-		{ _field_long_flags, "Local flags", &lightmap_local_flags },
-		{ _field_real, "Skydome amplification factor" },
-		{ _field_real, "Indirect amplification factor" },
-		{ _field_real, "Lightmap Compression Maximum" },
-		{ _field_real, "Per Vertex AO Auto Threshold" },
-		{ _field_custom, "Ambient occlusion settings" },
-		{ _field_struct, "AO settings", &global_lightmap_ao_settings_struct_struct_definition },
-		{ _field_custom },
-		{ _field_custom, "Global illumination falloff settings" },
-		{ _field_struct, "Global illumination falloff settings", &global_lightmap_global_illumination_falloff_settings_struct_struct_definition },
-		{ _field_custom },
-		{ _field_custom, "Quality Overrides" },
-		{ _field_struct, "Local lightmapper override settings", &global_lightmap_local_override_settings_struct_struct_definition },
-		{ _field_custom },
-		{ _field_long_enum, "Forge Lightmap Size Class (if enabled)", &scenario_structure_size_enum },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "Local flags", &lightmap_local_flags },
+		{ _field_legacy, _field_real, "Skydome amplification factor" },
+		{ _field_legacy, _field_real, "Indirect amplification factor" },
+		{ _field_legacy, _field_real, "Lightmap Compression Maximum" },
+		{ _field_legacy, _field_real, "Per Vertex AO Auto Threshold" },
+		{ _field_legacy, _field_custom, "Ambient occlusion settings" },
+		{ _field_legacy, _field_struct, "AO settings", &global_lightmap_ao_settings_struct_struct_definition },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_custom, "Global illumination falloff settings" },
+		{ _field_legacy, _field_struct, "Global illumination falloff settings", &global_lightmap_global_illumination_falloff_settings_struct_struct_definition },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_custom, "Quality Overrides" },
+		{ _field_legacy, _field_struct, "Local lightmapper override settings", &global_lightmap_local_override_settings_struct_struct_definition },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_long_enum, "Forge Lightmap Size Class (if enabled)", &scenario_structure_size_enum },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_lightmap_ao_settings_struct)
 	{
-		{ _field_real, "Radius{Offset}" },
-		{ _field_real, "Falloff Power" },
-		{ _field_real, "Multiplier" },
-		{ _field_real, "MaxThreadCount" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "Radius{Offset}" },
+		{ _field_legacy, _field_real, "Falloff Power" },
+		{ _field_legacy, _field_real, "Multiplier" },
+		{ _field_legacy, _field_real, "MaxThreadCount" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_lightmap_global_illumination_falloff_settings_struct)
 	{
-		{ _field_real, "Falloff Begin" },
-		{ _field_real, "Falloff End" },
-		{ _field_real_rgb_color, "Far Lighting Color" },
-		{ _field_real, "Far Lighting Scalar" },
-		{ _field_tag_reference, "Far Lighting Texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "Falloff Begin" },
+		{ _field_legacy, _field_real, "Falloff End" },
+		{ _field_legacy, _field_real_rgb_color, "Far Lighting Color" },
+		{ _field_legacy, _field_real, "Far Lighting Scalar" },
+		{ _field_legacy, _field_tag_reference, "Far Lighting Texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_lightmap_local_override_settings_struct)
 	{
-		{ _field_long_integer, "High Quality Average Jitter Samples" },
-		{ _field_long_integer, "Per Vertex Supersample Count" },
-		{ _field_long_integer, "Indirect Quality Offset" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "High Quality Average Jitter Samples" },
+		{ _field_legacy, _field_long_integer, "Per Vertex Supersample Count" },
+		{ _field_legacy, _field_long_integer, "Indirect Quality Offset" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(lightmap_mode_enum)

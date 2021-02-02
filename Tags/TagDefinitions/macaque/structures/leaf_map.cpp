@@ -15,8 +15,8 @@ namespace macaque
 		"map_leaf",
 		GLOBAL_MAP_LEAF_BLOCK_ID)
 	{
-		{ _field_block, "faces*", &map_leaf_face_block },
-		{ _field_block, "connection indices*", &map_leaf_connection_index_block },
+		{ _field_block, "faces", &map_leaf_face_block },
+		{ _field_block, "connection indices", &map_leaf_connection_index_block },
 		{ _field_terminator }
 	};
 
@@ -28,8 +28,8 @@ namespace macaque
 		"map_leaf_face",
 		MAP_LEAF_FACE_BLOCK_ID)
 	{
-		{ _field_long_integer, "node index*" },
-		{ _field_block, "vertices*", &map_leaf_face_vertex_block },
+		{ _field_long_integer, "node index" },
+		{ _field_block, "vertices", &map_leaf_face_vertex_block },
 		{ _field_terminator }
 	};
 
@@ -41,7 +41,7 @@ namespace macaque
 		"real_point3d",
 		MAP_LEAF_FACE_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "vertex*" },
+		{ _field_real_point_3d, "vertex" },
 		{ _field_terminator }
 	};
 
@@ -53,7 +53,7 @@ namespace macaque
 		"long",
 		MAP_LEAF_CONNECTION_INDEX_BLOCK_ID)
 	{
-		{ _field_long_integer, "connection index*" },
+		{ _field_long_integer, "connection index" },
 		{ _field_terminator }
 	};
 
@@ -65,11 +65,11 @@ namespace macaque
 		"leaf_connection",
 		GLOBAL_LEAF_CONNECTION_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane index*" },
-		{ _field_long_integer, "back leaf index*" },
-		{ _field_long_integer, "front leaf index*" },
-		{ _field_block, "vertices*", &leaf_connection_vertex_block },
-		{ _field_real, "area*" },
+		{ _field_long_integer, "plane index" },
+		{ _field_long_integer, "back leaf index" },
+		{ _field_long_integer, "front leaf index" },
+		{ _field_block, "vertices", &leaf_connection_vertex_block },
+		{ _field_real, "area" },
 		{ _field_terminator }
 	};
 
@@ -81,7 +81,7 @@ namespace macaque
 		"real_point3d",
 		LEAF_CONNECTION_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "vertex*" },
+		{ _field_real_point_3d, "vertex" },
 		{ _field_terminator }
 	};
 

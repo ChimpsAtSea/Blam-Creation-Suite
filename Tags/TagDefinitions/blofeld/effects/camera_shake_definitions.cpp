@@ -10,53 +10,53 @@ namespace blofeld
 
 	V5_TAG_BLOCK(global_camera_impulse_block, 1)
 	{
-		{ _field_custom },
-		{ _field_struct, "mapping", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(camera_shake_struct_definition)
 	{
-		{ _field_explanation, "camera impulse", "" },
-		{ _field_struct, "camera impulse", &camera_impulse_struct_struct_definition },
-		{ _field_explanation, "camera shake", "" },
-		{ _field_struct, "camera shake", &camera_shake_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "camera impulse", "" },
+		{ _field_legacy, _field_struct, "camera impulse", &camera_impulse_struct_struct_definition },
+		{ _field_legacy, _field_explanation, "camera shake", "" },
+		{ _field_legacy, _field_struct, "camera shake", &camera_shake_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(camera_impulse_struct)
 	{
-		{ _field_real, "impulse duration:seconds" },
-		{ _field_custom },
-		{ _field_struct, "mapping", &mapping_function_struct_definition },
-		{ _field_angle, "rotation:degrees" },
-		{ _field_real, "pushback:world units" },
-		{ _field_real_bounds, "jitter:world units" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "impulse duration:seconds" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_angle, "rotation:degrees" },
+		{ _field_legacy, _field_real, "pushback:world units" },
+		{ _field_legacy, _field_real_bounds, "jitter:world units" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(camera_shake_struct)
 	{
-		{ _field_real, "shake duration:seconds#the effect will last for this duration." },
-		{ _field_explanation, "procedural camera shake", "" },
-		{ _field_custom },
-		{ _field_struct, "mapping", &mapping_function_struct_definition },
-		{ _field_real, "random translation:world units#random translation in all directions" },
-		{ _field_angle, "random rotation:degrees#random rotation in all directions" },
-		{ _field_real, "wobble function period:seconds" },
-		{ _field_real_fraction, "wobble weight#a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
-		{ _field_enum, "wobble function#a function to perturb the effect\'s behavior over time", &global_periodic_functions_enum },
-		{ _field_explanation, "animated camera shake", "" },
-		{ _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
-		{ _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },
-		{ _field_tag_reference, "animation graph", &global_animation_graph_reference },
-		{ _field_string_id, "animation name" },
+		{ _field_legacy, _field_real, "shake duration:seconds#the effect will last for this duration." },
+		{ _field_legacy, _field_explanation, "procedural camera shake", "" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_real, "random translation:world units#random translation in all directions" },
+		{ _field_legacy, _field_angle, "random rotation:degrees#random rotation in all directions" },
+		{ _field_legacy, _field_real, "wobble function period:seconds" },
+		{ _field_legacy, _field_real_fraction, "wobble weight#a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
+		{ _field_legacy, _field_enum, "wobble function#a function to perturb the effect\'s behavior over time", &global_periodic_functions_enum },
+		{ _field_legacy, _field_explanation, "animated camera shake", "" },
+		{ _field_legacy, _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
+		{ _field_legacy, _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },
+		{ _field_legacy, _field_tag_reference, "animation graph", &global_animation_graph_reference },
+		{ _field_legacy, _field_string_id, "animation name" },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_real, "zoom penalty linear #multiplier penalty that increases linearly with zoom over 1" },
-		{ _field_real, "zoom penalty squareroot #multiplier penalty that increases with square root of zoom over 1" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_real, "zoom penalty linear #multiplier penalty that increases linearly with zoom over 1" },
+		{ _field_legacy, _field_real, "zoom penalty squareroot #multiplier penalty that increases with square root of zoom over 1" },
 		
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(animated_camera_shake_playback_type_enum)

@@ -28,9 +28,9 @@ namespace macaque
 		ENTITY_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ ENTITY $$$", _custom_field_function_group_begin),
+		FIELD_CUSTOM("$$$ ENTITY $$$", nullptr, _field_id_function_group_begin),
 		{ _field_real, "Entity Placeholder" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

@@ -10,19 +10,19 @@ namespace blofeld
 
 	V5_TAG_STRUCT(scenery_group)
 	{
-		{ _field_struct, "object", &object_struct_definition_struct_definition },
-		{ _field_explanation, "Pathfinding", "Indicate whether, by default, we should create pathfinding data for this type of scenery" },
-		{ _field_enum, "pathfinding policy", &pathfinding_policy_enum },
-		{ _field_word_flags, "flags", &scenery_flags },
-		{ _field_explanation, "Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery" },
-		{ _field_enum, "lightmapping policy", &lightmapping_policy_enum },
-		{ _field_pad, "WGW", 2 },
+		{ _field_legacy, _field_struct, "object", &object_struct_definition_struct_definition },
+		{ _field_legacy, _field_explanation, "Pathfinding", "Indicate whether, by default, we should create pathfinding data for this type of scenery" },
+		{ _field_legacy, _field_enum, "pathfinding policy", &pathfinding_policy_enum },
+		{ _field_legacy, _field_word_flags, "flags", &scenery_flags },
+		{ _field_legacy, _field_explanation, "Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery" },
+		{ _field_legacy, _field_enum, "lightmapping policy", &lightmapping_policy_enum },
+		{ _field_legacy, _field_pad, "WGW", 2 },
 
-		{ _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_tag_reference, "Structure Lighting Tag", &Tag::Reference<struct s_structure_lighting_info>::s_defaultDefinition },
-		{ _field_useless_pad },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_tag_reference, "Structure Lighting Tag", &Tag::Reference<struct s_structure_lighting_info>::s_defaultDefinition },
+		{ _field_legacy, _field_useless_pad },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(pathfinding_policy_enum$2)

@@ -29,7 +29,7 @@ namespace macaque
 		GAMEGLOBALSGRENADEBLOCK_ID)
 	{
 		{ _field_short_integer, "maximum count" },
-		{ _field_pad, "CXVLKJE", 2 },
+		FIELD_PAD("CXVLKJE", nullptr, 2),
 		{ _field_short_integer, "initial count (Campaign)" },
 		{ _field_short_integer, "initial count (Firefight)" },
 		{ _field_short_integer, "initial count (Multiplayer)" },

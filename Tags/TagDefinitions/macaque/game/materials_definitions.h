@@ -6,8 +6,8 @@ namespace blofeld
 namespace macaque
 {
 
-	extern s_tag_block_definition materials_block;
-	extern s_tag_struct_definition materials_block_struct_definition; // materials_block
+	extern s_tag_block_definition materials_block$3_block;
+	extern s_tag_struct_definition materials_block$3_block_struct_definition; // materials_block$3_block
 	extern s_tag_block_definition object_type_drag_properties_block;
 	extern s_tag_struct_definition object_type_drag_properties_block_struct_definition; // object_type_drag_properties_block
 	extern s_tag_block_definition underwater_proxies_block;

@@ -79,7 +79,7 @@ namespace macaque
 		"s_render_method_parameter",
 		RENDER_METHOD_PARAMETER_BLOCK_ID)
 	{
-		{ _field_string_id, "parameter name^" },
+		{ _field_string_id, "parameter name" },
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
 		{ _field_tag_reference, "bitmap", &bitmap_reference },
 		{ _field_real, "real" },
@@ -104,12 +104,12 @@ namespace macaque
 		"s_render_method_animated_parameter",
 		RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID)
 	{
-		{ _field_long_enum, "type^", &render_method_animated_parameter_type_enum },
-		{ _field_string_id, "input name", nullptr, 'fnin' },
-		{ _field_string_id, "range name", nullptr, 'fnir' },
-		{ _field_real, "time period:seconds", nullptr, 'fn**' },
+		{ _field_long_enum, "type", &render_method_animated_parameter_type_enum },
+		{ _field_string_id, "input name", _field_id_function_input_scalar },
+		{ _field_string_id, "range name", _field_id_function_input_range },
+		{ _field_real, "time period", "seconds", _field_id_function_unknown },
 		{ _field_explanation, "FUNCTION", "" },
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }
 	};
@@ -133,7 +133,7 @@ namespace macaque
 		{ _field_block, "overlays", &render_method_animated_parameter_block },
 		{ _field_long_integer, "blend mode" },
 		{ _field_long_integer, "flags" },
-		{ _field_long_integer, "im_so_fired_pad!*" },
+		{ _field_long_integer, "im_so_fired_pad" },
 		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
 		{ _field_terminator }
 	};
@@ -151,7 +151,7 @@ namespace macaque
 		{ _field_byte_integer, "address mode" },
 		{ _field_byte_integer, "filter mode" },
 		{ _field_byte_integer, "extern texture mode" },
-		{ _field_char_block_index, "texture transform constant index" },
+		{ _field_char_block_index, "texture transform constant index", &g_null_block },
 		{ _field_struct, "texture transform overlay indices", &tag_block_index_struct },
 		{ _field_terminator }
 	};
@@ -201,9 +201,9 @@ namespace macaque
 		"s_render_method_postprocess_pass",
 		RENDER_METHOD_POSTPROCESS_PASS_BLOCK_ID)
 	{
-		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel real#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "bitmaps", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex real", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel real", "divide by 1024 for count, remainder is start index" },
 		{ _field_terminator }
 	};
 
@@ -215,9 +215,9 @@ namespace macaque
 		"s_render_method_routing_info",
 		RENDER_METHOD_ROUTING_INFO_BLOCK_ID)
 	{
-		{ _field_word_integer, "destination index#D3D constant index or sampler index" },
-		{ _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" },
-		{ _field_byte_integer, "type specific#bitmap flags or shader component mask" },
+		{ _field_word_integer, "destination index", "D3D constant index or sampler index" },
+		{ _field_byte_integer, "source index", "into constant tables below, unless this is an extern parameter" },
+		{ _field_byte_integer, "type specific", "bitmap flags or shader component mask" },
 		{ _field_terminator }
 	};
 
@@ -287,7 +287,7 @@ namespace macaque
 		RENDER_METHOD_PASS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &render_method_pass_flags },
-		{ _field_pad, "nothing", 2 },
+		FIELD_PAD("nothing", nullptr, 2),
 		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
 		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
 		{ _field_terminator }
@@ -301,7 +301,7 @@ namespace macaque
 		"short",
 		RENDER_METHOD_PASS_CATEGORY_DEPENDENCIES_ID)
 	{
-		{ _field_short_block_index, "category" },
+		{ _field_short_block_index, "category", &render_method_category_block },
 		{ _field_terminator }
 	};
 
@@ -314,7 +314,7 @@ namespace macaque
 		VERTEX_TYPES_BLOCK_ID)
 	{
 		{ _field_enum, "vertex type", &vertex_types_names_enum },
-		{ _field_pad, "blahasdf", 2 },
+		FIELD_PAD("blahasdf", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -357,18 +357,18 @@ namespace macaque
 		"s_render_method_template_pass",
 		RENDER_METHOD_TEMPLATE_PASS_BLOCK_ID)
 	{
-		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex bool constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel bool constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern vertex real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern vertex int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "bitmaps", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex real constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex int constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex bool constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel real constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel int constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel bool constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern bitmaps", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern vertex real constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern vertex int constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern pixel real constants", "divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern pixel int constants", "divide by 1024 for count, remainder is start index" },
 		{ _field_long_integer, "alpha blend mode" },
 		{ _field_terminator }
 	};
@@ -395,7 +395,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry_points*" },
+		{ _field_dword_integer, "available entry_points" },
 		{ _field_block, "entry points", &tag_block_index_block },
 		{ _field_block, "passes", &render_method_template_pass_block },
 		{ _field_block, "routing info", &render_method_routing_info_block },
@@ -414,7 +414,7 @@ namespace macaque
 		"short",
 		RUNTIME_QUERYABLE_PROPERTIES_ID)
 	{
-		{ _field_short_block_index, "index" },
+		{ _field_short_block_index, "index", &g_null_block },
 		{ _field_terminator }
 	};
 
@@ -425,24 +425,20 @@ namespace macaque
 		"c_render_method",
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_version_greater_or_equal, _engine_type_haloreach },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_tag_reference, "definition", &render_method_definition_reference },
 		{ _field_tag_reference, "reference", &render_method_reference },
-
-		{ _field_block, "options", &short_block_block },
-		{ _field_block, "parameters", &render_method_parameter_block_block },
-		{ _field_block, "postprocess", &render_method_postprocess_block_block },
-
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _field_block, "options", &short_block },
+		{ _field_block, "parameters", &render_method_parameter_block },
+		{ _field_block, "postprocess", &render_method_postprocess_block },
 		{ _field_long_integer, "is template" },
 		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &render_method_locked_parameter_block_block },
-
-		{ _field_word_flags, "shader flags*", &global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version!" },
+		{ _field_block, "locked parameters", &render_method_locked_parameter_block },
+		{ _field_word_flags, "shader flags", &global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index!" },
+		{ _field_long_block_index, "prediction atom index", &g_null_block },
 		{ _field_terminator }
 	};
 
@@ -457,10 +453,10 @@ namespace macaque
 		{ _field_block, "categories", &render_method_category_block },
 		{ _field_block, "entry_points", &render_method_entry_points_block },
 		{ _field_block, "vertex_types", &vertex_types_block },
-		{ _field_tag_reference, "shared pixel shaders*", &global_pixel_shader_reference },
-		{ _field_tag_reference, "shared vertex shaders*", &global_vertex_shader_reference },
+		{ _field_tag_reference, "shared pixel shaders", &global_pixel_shader_reference },
+		{ _field_tag_reference, "shared vertex shaders", &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
-		{ _field_dword_integer, "version:bump to force recompile" },
+		{ _field_dword_integer, "version", "bump to force recompile" },
 		{ _field_explanation, "source file location", "like templated\\shader ..." },
 		{ _field_long_string, "location" },
 		{ _field_terminator }
@@ -486,7 +482,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry points*" },
+		{ _field_dword_integer, "available entry points" },
 		{ _field_block, "entry points", &tag_block_index_block },
 		{ _field_block, "passes", &render_method_template_pass_block },
 		{ _field_block, "routing info", &render_method_routing_info_block },
@@ -505,7 +501,7 @@ namespace macaque
 		"s_tag_block_index",
 		TAG_BLOCK_INDEX_STRUCT_ID)
 	{
-		{ _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "block index data", "divide by 1024 for count, remainder is start index" },
 		{ _field_terminator }
 	};
 

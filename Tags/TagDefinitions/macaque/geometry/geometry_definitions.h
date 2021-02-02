@@ -10,6 +10,8 @@ namespace macaque
 	extern s_tag_struct_definition global_mesh_block_struct_definition; // global_mesh_block
 	extern s_tag_block_definition part_block;
 	extern s_tag_struct_definition part_block_struct_definition; // part_block
+	extern s_tag_block_definition sorting_position_block;
+	extern s_tag_struct_definition sorting_position_block_struct_definition; // sorting_position_block
 	extern s_tag_block_definition subpart_block;
 	extern s_tag_struct_definition subpart_block_struct_definition; // subpart_block
 	extern s_tag_block_definition global_instance_bucket_block;
@@ -24,8 +26,6 @@ namespace macaque
 	extern s_tag_struct_definition PCAMeshIndexBlock_block_struct_definition; // PCAMeshIndexBlock_block
 	extern s_tag_block_definition compression_info_block;
 	extern s_tag_struct_definition compression_info_block_struct_definition; // compression_info_block
-	extern s_tag_block_definition sorting_position_block;
-	extern s_tag_struct_definition sorting_position_block_struct_definition; // sorting_position_block
 	extern s_tag_block_definition user_data_block;
 	extern s_tag_struct_definition user_data_block_struct_definition; // user_data_block
 	extern s_tag_block_definition per_mesh_raw_data_block;
@@ -77,12 +77,12 @@ namespace macaque
 	extern s_tag_block_definition shapeNameBlock_block;
 	extern s_tag_struct_definition shapeNameBlock_block_struct_definition; // shapeNameBlock_block
 
-	extern s_tag_struct_definition vertex_buffer_indices_word_array_struct_definition;
-	extern s_tag_array_definition vertex_buffer_indices_word_array;
 	extern s_tag_struct_definition node_indices_array_struct_definition;
 	extern s_tag_array_definition node_indices_array;
 	extern s_tag_struct_definition node_weights_implicit_array_struct_definition;
 	extern s_tag_array_definition node_weights_implicit_array;
+	extern s_tag_struct_definition vertex_buffer_indices_word_array_struct_definition;
+	extern s_tag_array_definition vertex_buffer_indices_word_array;
 	extern s_tag_struct_definition node_weights_complete_array_struct_definition;
 	extern s_tag_array_definition node_weights_complete_array;
 	extern s_tag_struct_definition global_render_geometry_struct;

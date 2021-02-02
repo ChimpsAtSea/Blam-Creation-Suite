@@ -40,11 +40,11 @@ namespace macaque
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref0~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref0~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref0" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref0" },
 		{ _field_real_point_3d, "Point 1" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref1~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref1~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref1" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref1" },
 		{ _field_terminator }
 	};
 
@@ -58,19 +58,19 @@ namespace macaque
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref0!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref0!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref0" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref0" },
 		{ _field_real_point_3d, "Point 1" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref1!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref1!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref1" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref1" },
 		{ _field_real_point_3d, "Point 2" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref2!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref2!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref2" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref2" },
 		{ _field_real_point_3d, "Point 3" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref3!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref3!" },
-		{ _field_word_flags, "invalid_points*", &parallelogram_points_invalid_flags },
-		{ _field_pad, "KJHIUF", 2 },
+		{ _field_custom_long_block_index, "packedKeyOffaceref3" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref3" },
+		{ _field_word_flags, "invalid_points", &parallelogram_points_invalid_flags },
+		FIELD_PAD("KJHIUF", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -83,14 +83,14 @@ namespace macaque
 		USER_HINT_JUMP_BLOCK_ID)
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
-		{ _field_short_block_index, "Squad group filter" },
-		{ _field_block, "hint vertices*~", &hint_vertex_block },
-		{ _field_long_integer, "hint data 0*" },
-		{ _field_short_integer, "hint data 1*" },
-		{ _field_byte_integer, "hint data 2*" },
-		{ _field_byte_integer, "pad1*" },
+		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
+		{ _field_block, "hint vertices", &hint_vertex_block },
+		{ _field_long_integer, "hint data 0" },
+		{ _field_short_integer, "hint data 1" },
+		{ _field_byte_integer, "hint data 2" },
+		{ _field_byte_integer, "pad1" },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
-		{ _field_short_block_index, "geometry index*" },
+		{ _field_short_block_index, "geometry index", &user_hint_parallelogram_block },
 		{ _field_enum, "force jump height", &global_ai_jump_height_enum },
 		{ _field_word_flags, "control flags", &jump_flags },
 		{ _field_terminator }
@@ -104,7 +104,7 @@ namespace macaque
 		"real_point3d",
 		HINT_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point*" },
+		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
@@ -117,16 +117,16 @@ namespace macaque
 		USER_HINT_CLIMB_BLOCK_ID)
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
-		{ _field_short_block_index, "Squad group filter" },
-		{ _field_block, "hint vertices*~", &hint_vertex_block },
-		{ _field_long_integer, "hint data 0*" },
-		{ _field_short_integer, "hint data 1*" },
-		{ _field_byte_integer, "hint data 2*" },
-		{ _field_byte_integer, "pad1*" },
+		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
+		{ _field_block, "hint vertices", &hint_vertex_block },
+		{ _field_long_integer, "hint data 0" },
+		{ _field_short_integer, "hint data 1" },
+		{ _field_byte_integer, "hint data 2" },
+		{ _field_byte_integer, "pad1" },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
-		{ _field_short_block_index, "geometry index*" },
+		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
 		{ _field_enum, "force hoist height", &forced_hoist_height_enum },
-		{ _field_pad, "post-forced-hoist-height", 2 },
+		FIELD_PAD("post-forced-hoist-height", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -152,10 +152,10 @@ namespace macaque
 		USER_HINT_WELL_POINT_BLOCK_ID)
 	{
 		{ _field_enum, "type", &user_hint_well_point_type_enum },
-		{ _field_pad, "CNXLP", 2 },
+		FIELD_PAD("CNXLP", nullptr, 2),
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
@@ -199,12 +199,12 @@ namespace macaque
 		USER_HINT_SPLINE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_real, "radius:wus" },
-		{ _field_real, "time between points:sec" },
+		{ _field_real, "radius", "wus" },
+		{ _field_real, "time between points", "sec" },
 		{ _field_block, "control points", &user_hint_spline_control_point_block },
-		{ _field_short_block_index, "bsp" },
-		{ _field_pad, "post-bsp-pad", 2 },
-		{ _field_block, "volume intersect points*!", &user_hint_spline_intersect_point_block },
+		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
+		FIELD_PAD("post-bsp-pad", nullptr, 2),
+		{ _field_block, "volume intersect points", &user_hint_spline_intersect_point_block },
 		{ _field_terminator }
 	};
 
@@ -217,10 +217,10 @@ namespace macaque
 		USER_HINT_SPLINE_CONTROL_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &user_hint_spline_segment_flags },
-		{ _field_pad, "post-flags-pad", 2 },
-		{ _field_real_point_3d, "point", nullptr, 'poin' },
+		FIELD_PAD("post-flags-pad", nullptr, 2),
+		{ _field_real_point_3d, "point", _field_id_point },
 		{ _field_real_vector_3d, "tangent" },
-		{ _field_real, "segment arc length*!" },
+		{ _field_real, "segment arc length" },
 		{ _field_terminator }
 	};
 
@@ -232,8 +232,8 @@ namespace macaque
 		"s_user_hint_spline_intersect_point",
 		USER_HINT_SPLINE_INTERSECT_POINT_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "volume index" },
-		{ _field_pad, "post-volume-index-pad", 2 },
+		{ _field_short_block_index, "volume index", &user_hint_volume_avoidance_block },
+		FIELD_PAD("post-volume-index-pad", nullptr, 2),
 		{ _field_real_point_3d, "point" },
 		{ _field_real_vector_3d, "tangent" },
 		{ _field_terminator }
@@ -247,20 +247,20 @@ namespace macaque
 		"s_cookie_cutter",
 		USER_HINT_COOKIE_CUTTER_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "hkaiVolume vtable*~!", nullptr, 'nuke' },
-		{ _field_short_integer, "size*~!" },
-		{ _field_short_integer, "count*~!" },
+		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
 		{ _field_block, "points", &user_hint_sector_point_block },
 		{ _field_block, "pointsObjectIds", &hint_object_id_block },
 		{ _field_real, "z height" },
 		{ _field_real, "z sink" },
 		{ _field_enum, "type", &cookie_cutter_type_enum },
-		{ _field_short_integer, "pad*!" },
-		{ _field_long_integer, "runtimeObjectTransformOverrideIndex*~!" },
-		{ _field_char_integer, "invalid*!" },
-		{ _field_char_integer, "pad2*!" },
-		{ _field_char_integer, "pad3*!" },
-		{ _field_char_integer, "pad4*!" },
+		{ _field_short_integer, "pad" },
+		{ _field_long_integer, "runtimeObjectTransformOverrideIndex" },
+		{ _field_char_integer, "invalid" },
+		{ _field_char_integer, "pad2" },
+		{ _field_char_integer, "pad3" },
+		{ _field_char_integer, "pad4" },
 		{ _field_terminator }
 	};
 
@@ -273,8 +273,8 @@ namespace macaque
 		USER_HINT_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
@@ -287,7 +287,7 @@ namespace macaque
 		"c_object_identifier",
 		HINT_OBJECT_ID_BLOCK_ID)
 	{
-		{ _field_struct, "object ID*!", &scenario_object_id_struct },
+		{ _field_struct, "object ID", &scenario_object_id_struct },
 		{ _field_terminator }
 	};
 
@@ -299,15 +299,15 @@ namespace macaque
 		"NavMeshArea",
 		USER_HINT_NAVMESH_AREA_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "hkaiVolume vtable*~!", nullptr, 'nuke' },
-		{ _field_short_integer, "size*~!" },
-		{ _field_short_integer, "count*~!" },
+		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
 		{ _field_block, "points", &user_hint_sector_point_block },
 		{ _field_real, "z height" },
 		{ _field_real, "z sink" },
 		{ _field_real, "step height" },
 		{ _field_long_enum, "type", &navmesh_area_type_enum },
-		{ _field_real, "isValid*~!" },
+		{ _field_real, "isValid" },
 		{ _field_explanation, "Max CONVEX Border Simplify Area", "This controls the amount of simplification applied to internal segments and convex boundary segments" },
 		{ _field_real, "Max CONVEX Border Simplify Area" },
 		{ _field_explanation, "Max Border Distance Error", "When simplifying internal segments and convex boundary segments, this controls the maximum projected distance by which the simplified segment can deviate from the unsimplified segment" },
@@ -360,8 +360,8 @@ namespace macaque
 		"s_user_hint_giant_rail",
 		USER_HINT_GIANT_RAIL_BLOCK_ID)
 	{
-		{ _field_short_block_index, "geometry index*" },
-		{ _field_pad, "JLOU", 2 },
+		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
+		FIELD_PAD("JLOU", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -409,14 +409,14 @@ namespace macaque
 		USER_HINT_VOLUME_AVOIDANCE_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &user_hint_avoidance_volume_enum },
-		{ _field_real_point_3d, "origin{center}" },
+		{ _field_real_point_3d, "origin" },
 		{ _field_real, "radius" },
-		{ _field_real_vector_3d, "facing vector#for pills" },
-		{ _field_real, "height#for pills" },
-		{ _field_short_block_index, "bsp" },
-		{ _field_short_integer, "spline_count*!" },
-		{ _field_short_integer, "zone_index*!" },
-		{ _field_short_integer, "area_index*!" },
+		{ _field_real_vector_3d, "facing vector", "for pills" },
+		{ _field_real, "height", "for pills" },
+		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
+		{ _field_short_integer, "spline_count" },
+		{ _field_short_integer, "zone_index" },
+		{ _field_short_integer, "area_index" },
 		{ _field_terminator }
 	};
 

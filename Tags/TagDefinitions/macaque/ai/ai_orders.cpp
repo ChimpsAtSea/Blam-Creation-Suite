@@ -16,8 +16,53 @@ namespace macaque
 		TRIGGER_REFERENCES_ID)
 	{
 		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
-		{ _field_short_block_index, "trigger^" },
-		{ _field_pad, "LPQYXEA", 2 },
+		{ _field_short_block_index, "trigger", &triggers_block },
+		FIELD_PAD("LPQYXEA", nullptr, 2),
+		{ _field_terminator }
+	};
+
+	#define TRIGGERS_BLOCK_ID { 0xBDCE0188, 0x8F4F4836, 0xB6CB517B, 0x781A6B59 }
+	TAG_BLOCK(
+		triggers_block,
+		"triggers_block",
+		256,
+		"trigger_definition",
+		TRIGGERS_BLOCK_ID)
+	{
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_string, "name" },
+		{ _field_long_flags, "trigger flags", &trigger_flags },
+		{ _field_enum, "combination rule", &combination_rules_enum },
+		FIELD_PAD("XXCMMRUP", nullptr, 2),
+		{ _field_useless_pad, "" },
+		{ _field_block, "conditions", &order_completion_condition_block },
+		{ _field_terminator }
+	};
+
+	#define ORDER_COMPLETION_CONDITION_ID { 0xF28511DE, 0xF3EF4ED6, 0xAA67399F, 0x165711C7 }
+	TAG_BLOCK(
+		order_completion_condition_block,
+		"order_completion_condition",
+		5,
+		"s_trigger_condition",
+		ORDER_COMPLETION_CONDITION_ID)
+	{
+		{ _field_enum, "rule type", &condition_type_enum },
+		{ _field_short_block_index, "squad", &squads_block },
+		{ _field_short_block_index, "squad group", &squad_groups_block },
+		{ _field_short_integer, "a" },
+		{ _field_useless_pad, "" },
+		{ _field_useless_pad, "" },
+		{ _field_real, "x" },
+		{ _field_useless_pad, "" },
+		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
+		FIELD_PAD("VZNEYGLW", nullptr, 2),
+		{ _field_useless_pad, "" },
+		{ _field_string, "Exit condition script", _field_id_halo_script_block },
+		{ _field_short_integer, "script index" },
+		FIELD_PAD("LEV", nullptr, 2),
+		{ _field_useless_pad, "" },
+		{ _field_long_flags, "flags", &completion_condition_flags },
 		{ _field_terminator }
 	};
 
@@ -29,22 +74,22 @@ namespace macaque
 		"orders_definition",
 		ORDERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_string, "name^" },
-		{ _field_short_block_index, "Style" },
-		{ _field_pad, "YATIWNRNR", 2 },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_string, "name" },
+		{ _field_short_block_index, "Style", &style_palette_block },
+		FIELD_PAD("YATIWNRNR", nullptr, 2),
 		{ _field_long_flags, "flags", &order_flags },
 		{ _field_enum, "Force combat status", &force_combat_status_enum },
-		{ _field_pad, "PWY", 2 },
-		{ _field_string, "Entry Script", nullptr, 'hsbl' },
-		{ _field_short_integer, "Script index*!" },
-		{ _field_short_block_index, "Follow squad" },
+		FIELD_PAD("PWY", nullptr, 2),
+		{ _field_string, "Entry Script", _field_id_halo_script_block },
+		{ _field_short_integer, "Script index" },
+		{ _field_short_block_index, "Follow squad", &squads_block },
 		{ _field_real, "follow radius" },
 		{ _field_block, "Primary area set", &area_reference_block },
 		{ _field_block, "Secondary area set", &area_reference_block },
 		{ _field_block, "Secondary set trigger", &secondary_set_trigger_block },
 		{ _field_block, "Special movement", &special_movement_block },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_block, "Order endings", &order_ending_block },
 		{ _field_terminator }
 	};
@@ -58,7 +103,7 @@ namespace macaque
 		SECONDARY_SET_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
+		{ _field_enum, "dialogue type", &order_ending_dialogue_enum },
 		{ _field_block, "triggers", &trigger_references_block },
 		{ _field_terminator }
 	};
@@ -71,58 +116,13 @@ namespace macaque
 		"order_ending_definition",
 		ORDER_ENDING_BLOCK_ID)
 	{
-		{ _field_short_block_index, "next order^" },
+		{ _field_short_block_index, "next order", &orders_block },
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		{ _field_real, "delay time" },
-		{ _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
-		{ _field_pad, "YVKPCQIYY", 2 },
-		{ _field_useless_pad },
+		{ _field_enum, "dialogue type", &order_ending_dialogue_enum },
+		FIELD_PAD("YVKPCQIYY", nullptr, 2),
+		{ _field_useless_pad, "" },
 		{ _field_block, "triggers", &trigger_references_block },
-		{ _field_terminator }
-	};
-
-	#define TRIGGERS_BLOCK_ID { 0xBDCE0188, 0x8F4F4836, 0xB6CB517B, 0x781A6B59 }
-	TAG_BLOCK(
-		triggers_block,
-		"triggers_block",
-		256,
-		"trigger_definition",
-		TRIGGERS_BLOCK_ID)
-	{
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_string, "name^" },
-		{ _field_long_flags, "trigger flags", &trigger_flags },
-		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_pad, "XXCMMRUP", 2 },
-		{ _field_useless_pad },
-		{ _field_block, "conditions", &order_completion_condition_block },
-		{ _field_terminator }
-	};
-
-	#define ORDER_COMPLETION_CONDITION_ID { 0xF28511DE, 0xF3EF4ED6, 0xAA67399F, 0x165711C7 }
-	TAG_BLOCK(
-		order_completion_condition_block,
-		"order_completion_condition",
-		5,
-		"s_trigger_condition",
-		ORDER_COMPLETION_CONDITION_ID)
-	{
-		{ _field_enum, "rule type^", &condition_type_enum },
-		{ _field_short_block_index, "squad" },
-		{ _field_short_block_index, "squad group" },
-		{ _field_short_integer, "a" },
-		{ _field_useless_pad },
-		{ _field_useless_pad },
-		{ _field_real, "x" },
-		{ _field_useless_pad },
-		{ _field_short_block_index, "trigger volume" },
-		{ _field_pad, "VZNEYGLW", 2 },
-		{ _field_useless_pad },
-		{ _field_string, "Exit condition script", nullptr, 'hsbl' },
-		{ _field_short_integer, "script index!" },
-		{ _field_pad, "LEV", 2 },
-		{ _field_useless_pad },
-		{ _field_long_flags, "flags", &completion_condition_flags },
 		{ _field_terminator }
 	};
 

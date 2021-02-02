@@ -6,85 +6,85 @@ namespace blofeld
 
 	V5_TAG_BLOCK(trigger_references, 10)
 	{
-		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
-		{ _field_short_block_index, "trigger^" },
-		{ _field_pad, "LPQYXEA", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "Trigger flags", &trigger_ref_flags },
+		{ _field_legacy, _field_short_block_index, "trigger^" },
+		{ _field_legacy, _field_pad, "LPQYXEA", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(secondary_set_trigger_block, 1)
 	{
-		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
-		{ _field_block, "triggers", &trigger_references_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_enum, "combination rule", &combination_rules_enum },
+		{ _field_legacy, _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
+		{ _field_legacy, _field_block, "triggers", &trigger_references_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(order_ending_block, 12)
 	{
-		{ _field_short_block_index, "next order^" },
-		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_real, "delay time" },
-		{ _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
-		{ _field_pad, "YVKPCQIYY", 2 },
-		{ _field_useless_pad },
-		{ _field_block, "triggers", &trigger_references_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_block_index, "next order^" },
+		{ _field_legacy, _field_enum, "combination rule", &combination_rules_enum },
+		{ _field_legacy, _field_real, "delay time" },
+		{ _field_legacy, _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
+		{ _field_legacy, _field_pad, "YVKPCQIYY", 2 },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_block, "triggers", &trigger_references_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(orders_block, 300)
 	{
-		{ _field_custom },
-		{ _field_string, "name^" },
-		{ _field_short_block_index, "Style" },
-		{ _field_pad, "YATIWNRNR", 2 },
-		{ _field_long_flags, "flags", &order_flags },
-		{ _field_enum, "Force combat status", &force_combat_status_enum },
-		{ _field_pad, "PWY", 2 },
-		{ _field_string, "Entry Script" },
-		{ _field_short_integer, "Script index*!" },
-		{ _field_short_block_index, "Follow squad" },
-		{ _field_real, "follow radius" },
-		{ _field_block, "Primary area set", &area_reference_block_block },
-		{ _field_block, "Secondary area set", &area_reference_block_block },
-		{ _field_block, "Secondary set trigger", &secondary_set_trigger_block_block },
-		{ _field_block, "Special movement", &special_movement_block_block },
-		{ _field_useless_pad },
-		{ _field_block, "Order endings", &order_ending_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_string, "name^" },
+		{ _field_legacy, _field_short_block_index, "Style" },
+		{ _field_legacy, _field_pad, "YATIWNRNR", 2 },
+		{ _field_legacy, _field_long_flags, "flags", &order_flags },
+		{ _field_legacy, _field_enum, "Force combat status", &force_combat_status_enum },
+		{ _field_legacy, _field_pad, "PWY", 2 },
+		{ _field_legacy, _field_string, "Entry Script" },
+		{ _field_legacy, _field_short_integer, "Script index*!" },
+		{ _field_legacy, _field_short_block_index, "Follow squad" },
+		{ _field_legacy, _field_real, "follow radius" },
+		{ _field_legacy, _field_block, "Primary area set", &area_reference_block_block },
+		{ _field_legacy, _field_block, "Secondary area set", &area_reference_block_block },
+		{ _field_legacy, _field_block, "Secondary set trigger", &secondary_set_trigger_block_block },
+		{ _field_legacy, _field_block, "Special movement", &special_movement_block_block },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_block, "Order endings", &order_ending_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(order_completion_condition, 5)
 	{
-		{ _field_enum, "rule type^", &condition_type_enum },
-		{ _field_short_block_index, "squad" },
-		{ _field_short_block_index, "squad group" },
-		{ _field_short_integer, "a" },
-		{ _field_useless_pad },
-		{ _field_useless_pad },
-		{ _field_real, "x" },
-		{ _field_useless_pad },
-		{ _field_short_block_index, "trigger volume" },
-		{ _field_pad, "VZNEYGLW", 2 },
-		{ _field_useless_pad },
-		{ _field_string, "Exit condition script" },
-		{ _field_short_integer, "script index!" },
-		{ _field_pad, "LEV", 2 },
-		{ _field_useless_pad },
-		{ _field_long_flags, "flags", &completion_condition_flags },
-		{ _field_terminator }
+		{ _field_legacy, _field_enum, "rule type^", &condition_type_enum },
+		{ _field_legacy, _field_short_block_index, "squad" },
+		{ _field_legacy, _field_short_block_index, "squad group" },
+		{ _field_legacy, _field_short_integer, "a" },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_real, "x" },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_short_block_index, "trigger volume" },
+		{ _field_legacy, _field_pad, "VZNEYGLW", 2 },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_string, "Exit condition script" },
+		{ _field_legacy, _field_short_integer, "script index!" },
+		{ _field_legacy, _field_pad, "LEV", 2 },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_long_flags, "flags", &completion_condition_flags },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(triggers_block, 256)
 	{
-		{ _field_custom },
-		{ _field_string, "name^" },
-		{ _field_long_flags, "trigger flags", &trigger_flags },
-		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_pad, "XXCMMRUP", 2 },
-		{ _field_useless_pad },
-		{ _field_block, "conditions", &order_completion_condition_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_string, "name^" },
+		{ _field_legacy, _field_long_flags, "trigger flags", &trigger_flags },
+		{ _field_legacy, _field_enum, "combination rule", &combination_rules_enum },
+		{ _field_legacy, _field_pad, "XXCMMRUP", 2 },
+		{ _field_legacy, _field_useless_pad },
+		{ _field_legacy, _field_block, "conditions", &order_completion_condition_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(condition_type_enum)

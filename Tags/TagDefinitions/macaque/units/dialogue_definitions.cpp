@@ -18,7 +18,7 @@ namespace macaque
 		{ _field_tag_reference, "global dialogue info", &global_dialogue_reference },
 		{ _field_long_flags, "flags", &dialogue_flags },
 		{ _field_block, "vocalizations", &sound_references_block },
-		{ _field_string_id, "mission dialogue designator#3-letter mission dialogue designator name" },
+		{ _field_string_id, "mission dialogue designator", "3-letter mission dialogue designator name" },
 		{ _field_terminator }
 	};
 
@@ -37,7 +37,7 @@ namespace macaque
 		"sound_references_block",
 		SOUND_REFERENCES_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization^" },
+		{ _field_string_id, "vocalization" },
 		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block },
 		{ _field_terminator }
 	};
@@ -51,8 +51,8 @@ namespace macaque
 		VOCALIZATION_STIMULI_BLOCK_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &vocalization_stimulus_flags },
-		{ _field_pad, "AN", 2 },
-		{ _field_string_id, "stimulus^" },
+		FIELD_PAD("AN", nullptr, 2),
+		{ _field_string_id, "stimulus" },
 		{ _field_tag_reference, "sound", &sound_reference$4 },
 		{ _field_terminator }
 	};

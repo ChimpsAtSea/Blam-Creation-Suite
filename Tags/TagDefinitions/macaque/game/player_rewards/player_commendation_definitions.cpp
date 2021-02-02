@@ -41,14 +41,14 @@ namespace macaque
 		"CommendationAggregator",
 		COMMENDATIONAGGREGATOR_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "description text" },
 		{ _field_block, "rewards", &commendationRewardBlock_block },
 		{ _field_char_integer, "sequence index" },
-		{ _field_pad, "CA_PAD1", 3 },
+		FIELD_PAD("CA_PAD1", nullptr, 3),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		{ _field_block, "prerequisites{contributing commendations}", &commendationAggregatorDependent_block },
+		{ _field_block, "prerequisites", &commendationAggregatorDependent_block },
 		{ _field_terminator }
 	};
 
@@ -60,8 +60,8 @@ namespace macaque
 		"CommendationReward",
 		COMMENDATIONREWARDBLOCK_ID)
 	{
-		{ _field_char_enum, "currency type#Type of currency given by this reward.", &currencyTypeEnumDefinition },
-		{ _field_pad, "CRB_PAD1", 1 },
+		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
+		FIELD_PAD("CRB_PAD1", nullptr, 1),
 		{ _field_short_integer, "reward value" },
 		{ _field_terminator }
 	};
@@ -80,19 +80,19 @@ namespace macaque
 		"CommendationDefinition",
 		COMMENDATIONBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "description" },
 		{ _field_byte_flags, "flags", &commendationFlags },
-		{ _field_pad, "CB_PAD0", 3 },
+		FIELD_PAD("CB_PAD0", nullptr, 3),
 		{ _field_char_enum, "category", &commendationCategoryEnum },
 		{ _field_char_enum, "subcategory", &commendationSubcategoryEnum },
 		{ _field_char_integer, "sequence index" },
-		{ _field_pad, "CB_PAD1", 1 },
+		FIELD_PAD("CB_PAD1", nullptr, 1),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		FIELD_CUSTOM("unlock prerequisites", _custom_field_function_group_begin),
+		FIELD_CUSTOM("unlock prerequisites", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "levels", &commendationLevelBlock_block },
 		{ _field_terminator }
 	};
@@ -105,11 +105,11 @@ namespace macaque
 		"CommendationLevel",
 		COMMENDATIONLEVELBLOCK_ID)
 	{
-		{ _field_string_id, "level name^" },
-		{ _field_short_integer, "progress ticks to level#number of ticks to reach this level" },
-		{ _field_short_integer, "progress display interval#number of ticks between displaying progress toast; 0=never display progress, 1=display every tick, 2=every other, etc." },
+		{ _field_string_id, "level name" },
+		{ _field_short_integer, "progress ticks to level", "number of ticks to reach this level" },
+		{ _field_short_integer, "progress display interval", "number of ticks between displaying progress toast; 0=never display progress, 1=display every tick, 2=every other, etc." },
 		{ _field_string_id, "achievement" },
-		{ _field_block, "level up rewards#rewards given for reaching this level", &commendationRewardBlock_block },
+		{ _field_block, "level up rewards", &commendationRewardBlock_block },
 		{ _field_terminator }
 	};
 
@@ -134,8 +134,8 @@ namespace macaque
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalCommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "commendation text", &global_multilingual_unicode_string_list_reference },
-		{ _field_short_integer, "progress display time{progression display time}:seconds" },
-		{ _field_short_integer, "complete display time{callout display time}:seconds" },
+		{ _field_short_integer, "progress display time", "seconds" },
+		{ _field_short_integer, "complete display time", "seconds" },
 		{ _field_block, "commendations", &commendationBlock_block },
 		{ _field_terminator }
 	};
@@ -148,8 +148,8 @@ namespace macaque
 		COMMENDATIONAGGREGATORDEPENDENT_STRUCT_ID)
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		{ _field_pad, "PAD1", 3 },
-		{ _field_string_id, "name^" },
+		FIELD_PAD("PAD1", nullptr, 3),
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 

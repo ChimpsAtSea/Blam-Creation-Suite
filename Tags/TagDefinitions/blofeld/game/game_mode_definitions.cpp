@@ -6,11 +6,11 @@ namespace blofeld
 
 	V5_TAG_STRUCT(game_mode_flags_struct)
 	{
-		{ _field_byte_flags, "game mode", &game_type_enum_definition },
-		{ _field_byte_flags, "matchmaking type", &game_matchmaking_flags_definition },
-		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
-		{ _field_char_enum, "player count", &game_player_count_flags_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_byte_flags, "game mode", &game_type_enum_definition },
+		{ _field_legacy, _field_byte_flags, "matchmaking type", &game_matchmaking_flags_definition },
+		{ _field_legacy, _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
+		{ _field_legacy, _field_char_enum, "player count", &game_player_count_flags_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(game_type_enum_definition)

@@ -15,12 +15,12 @@ namespace macaque
 		"PolyartVertex_Full",
 		POLYARTVERTEXBLOCK_ID)
 	{
-		{ _field_short_integer, "half x*" },
-		{ _field_short_integer, "half y*" },
-		{ _field_short_integer, "half z*" },
-		{ _field_short_integer, "half alpha*" },
-		{ _field_short_integer, "half u*" },
-		{ _field_short_integer, "half v*" },
+		{ _field_short_integer, "half x" },
+		{ _field_short_integer, "half y" },
+		{ _field_short_integer, "half z" },
+		{ _field_short_integer, "half alpha" },
+		{ _field_short_integer, "half u" },
+		{ _field_short_integer, "half v" },
 		{ _field_terminator }
 	};
 
@@ -32,7 +32,7 @@ namespace macaque
 		"PolyartIndex",
 		POLYARTINDEXBLOCK_ID)
 	{
-		{ _field_short_integer, "index*" },
+		{ _field_short_integer, "index" },
 		{ _field_terminator }
 	};
 
@@ -55,11 +55,11 @@ namespace macaque
 		"c_rasterizer_vertex_buffer",
 		VERTEXBUFFERSBLOCK_STRUCT_ID)
 	{
-		{ _field_byte_integer, "declaration type*" },
-		{ _field_byte_integer, "stride*" },
-		{ _field_pad, "vertex buffer pad", 2 },
-		{ _field_dword_integer, "count*" },
-		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_byte_integer, "declaration type" },
+		{ _field_byte_integer, "stride" },
+		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		{ _field_dword_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 
@@ -70,11 +70,11 @@ namespace macaque
 		"c_rasterizer_index_buffer",
 		INDEXBUFFERSBLOCK_STRUCT_ID)
 	{
-		{ _field_byte_integer, "declaration type*" },
-		{ _field_byte_integer, "stride*" },
-		{ _field_pad, "vertex buffer pad", 2 },
-		{ _field_dword_integer, "count*" },
-		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_byte_integer, "declaration type" },
+		{ _field_byte_integer, "stride" },
+		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		{ _field_dword_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 

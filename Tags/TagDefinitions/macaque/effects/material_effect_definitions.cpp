@@ -16,7 +16,7 @@ namespace macaque
 		MATERIAL_EFFECTS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "effects", &material_effect_block_v2_block },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 
@@ -35,7 +35,7 @@ namespace macaque
 		"s_material_effect",
 		MATERIAL_EFFECT_BLOCK_V2_ID)
 	{
-		{ _field_block, "old materials (DO NOT USE)!", &old_material_effect_material_block },
+		{ _field_block, "old materials (DO NOT USE)", &old_material_effect_material_block },
 		{ _field_block, "sounds", &material_effect_material_block },
 		{ _field_block, "effects", &material_effect_material_block },
 		{ _field_terminator }
@@ -51,12 +51,12 @@ namespace macaque
 	{
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
-		{ _field_string_id, "material name^" },
-		{ _field_short_integer, "runtime material index!" },
-		{ _field_pad, "KTRVUIKB", 2 },
+		{ _field_string_id, "material name" },
+		{ _field_short_integer, "runtime material index" },
+		FIELD_PAD("KTRVUIKB", nullptr, 2),
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
-		{ _field_pad, "QNGPTA", 3 },
-		{ _field_useless_pad },
+		FIELD_PAD("QNGPTA", nullptr, 3),
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 
@@ -70,11 +70,11 @@ namespace macaque
 	{
 		{ _field_tag_reference, "tag (effect or sound)", &material_effect_material_block_tag_effect_or_sound_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &material_effect_material_block_tag_effect_or_sound_reference },
-		{ _field_string_id, "material name^" },
-		{ _field_short_integer, "runtime material index!" },
+		{ _field_string_id, "material name" },
+		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
-		{ _field_pad, "L", 1 },
-		{ _field_real, "max_visibility_distance#manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." },
+		FIELD_PAD("L", nullptr, 1),
+		{ _field_real, "max_visibility_distance", "manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." },
 		{ _field_terminator }
 	};
 

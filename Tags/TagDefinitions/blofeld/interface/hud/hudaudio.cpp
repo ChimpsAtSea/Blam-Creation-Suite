@@ -6,26 +6,26 @@ namespace blofeld
 
 	V5_TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
-		{ _field_long_flags, "latched to", &hud_sound_cue_flags },
-		{ _field_real, "scale" },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
+		{ _field_legacy, _field_long_flags, "latched to", &hud_sound_cue_flags },
+		{ _field_legacy, _field_real, "scale" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hud_unit_sound_block, 1)
 	{
-		{ _field_block, "Hud audio cues", &hud_unit_sound_cue_block_block },
-		{ _field_custom, "health thresholds" },
-		{ _field_real, "health minor" },
-		{ _field_real, "health major" },
-		{ _field_real, "health critical" },
-		{ _field_custom },
-		{ _field_custom, "shield thresholds" },
-		{ _field_real, "shield minor" },
-		{ _field_real, "shield major" },
-		{ _field_real, "shield critical" },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "Hud audio cues", &hud_unit_sound_cue_block_block },
+		{ _field_legacy, _field_custom, "health thresholds" },
+		{ _field_legacy, _field_real, "health minor" },
+		{ _field_legacy, _field_real, "health major" },
+		{ _field_legacy, _field_real, "health critical" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_custom, "shield thresholds" },
+		{ _field_legacy, _field_real, "shield minor" },
+		{ _field_legacy, _field_real, "shield major" },
+		{ _field_legacy, _field_real, "shield critical" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(hud_sound_cue_flags)

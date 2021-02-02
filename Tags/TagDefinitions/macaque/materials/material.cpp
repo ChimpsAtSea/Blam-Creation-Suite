@@ -17,18 +17,18 @@ namespace macaque
 	{
 		{ _field_tag_reference, "material shader", &material_shader_reference },
 		{ _field_block, "material parameters", &material_shader_parameter_block },
-		{ _field_block, "postprocess definition!", &material_postprocess_block },
+		{ _field_block, "postprocess definition", &material_postprocess_block },
 		{ _field_string_id, "physics material name" },
 		{ _field_string_id, "physics material name 2" },
 		{ _field_string_id, "physics material name 3" },
 		{ _field_string_id, "physics material name 4" },
 		{ _field_real, "sort offset" },
 		{ _field_char_enum, "alpha blend mode", &alpha_blend_mode_enum },
-		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
-		{ _field_byte_flags, "flags!", &materialFlags },
-		{ _field_byte_flags, "render flags!", &materialRenderFlags },
+		{ _field_char_enum, "sort layer", &global_sort_layer_enum_defintion },
+		{ _field_byte_flags, "flags", &materialFlags },
+		{ _field_byte_flags, "render flags", &materialRenderFlags },
 		{ _field_char_enum, "Transparent Shadow Policy", &MaterialTransparentShadowPolicyEnum },
-		{ _field_pad, "transparentshadowpad", 3 },
+		FIELD_PAD("transparentshadowpad", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -65,10 +65,10 @@ namespace macaque
 		{ _field_char_enum, "layer blend mode", &layerBlendModeEnum },
 		{ _field_word_flags, "flags", &materialPostprocessFlags },
 		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties$3_array },
-		{ _field_struct, "physics material 0!", &material_type_struct },
-		{ _field_struct, "physics material 1!", &material_type_struct },
-		{ _field_struct, "physics material 2!", &material_type_struct },
-		{ _field_struct, "physics material 3!", &material_type_struct },
+		{ _field_struct, "physics material 0", &material_type_struct },
+		{ _field_struct, "physics material 1", &material_type_struct },
+		{ _field_struct, "physics material 2", &material_type_struct },
+		{ _field_struct, "physics material 3", &material_type_struct },
 		{ _field_terminator }
 	};
 
@@ -88,7 +88,7 @@ namespace macaque
 		{ _field_char_integer, "level of smallest mipmap to use" },
 		{ _field_char_integer, "level of largest mipmap to use" },
 		{ _field_byte_integer, "render phase mask" },
-		{ _field_pad, "DHaFS", 1 },
+		FIELD_PAD("DHaFS", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -155,7 +155,7 @@ namespace macaque
 		"short",
 		RUNTIME_QUERYABLE_PROPERTIES_ID)
 	{
-		{ _field_short_block_index, "index" },
+		{ _field_short_block_index, "index", &g_null_block },
 		{ _field_terminator }
 	};
 
@@ -168,18 +168,18 @@ namespace macaque
 	{
 		{ _field_tag_reference, "material shader", &material_shader_reference },
 		{ _field_block, "material parameters", &material_shader_parameter_block },
-		{ _field_block, "postprocess definition!", &material_postprocess_block },
+		{ _field_block, "postprocess definition", &material_postprocess_block },
 		{ _field_string_id, "physics material name" },
 		{ _field_string_id, "physics material name 2" },
 		{ _field_string_id, "physics material name 3" },
 		{ _field_string_id, "physics material name 4" },
 		{ _field_real, "sort offset" },
 		{ _field_char_enum, "alpha blend mode", &alpha_blend_mode_enum },
-		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
-		{ _field_byte_flags, "flags!", &materialFlags },
-		{ _field_byte_flags, "render flags!", &materialRenderFlags },
+		{ _field_char_enum, "sort layer", &global_sort_layer_enum_defintion },
+		{ _field_byte_flags, "flags", &materialFlags },
+		{ _field_byte_flags, "render flags", &materialRenderFlags },
 		{ _field_char_enum, "Transparent Shadow Policy", &MaterialTransparentShadowPolicyEnum },
-		{ _field_pad, "transparentshadowpad", 3 },
+		FIELD_PAD("transparentshadowpad", nullptr, 3),
 		{ _field_terminator }
 	};
 

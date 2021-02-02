@@ -29,9 +29,9 @@ namespace macaque
 		WATER_PHYSICS_HULL_SURFACE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
-		{ _field_pad, "pad0", 2 },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "marker name^" },
+		FIELD_PAD("pad0", nullptr, 2),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "marker name" },
 		{ _field_real, "radius" },
 		{ _field_block, "drag", &water_physics_material_override_block },
 		{ _field_terminator }
@@ -45,7 +45,7 @@ namespace macaque
 		"s_water_physics_drag_override",
 		WATER_PHYSICS_MATERIAL_OVERRIDE_ID)
 	{
-		{ _field_string_id, "material^" },
+		{ _field_string_id, "material" },
 		{ _field_struct, "drag", &water_physics_drag_properties_struct },
 		{ _field_terminator }
 	};
@@ -68,12 +68,12 @@ namespace macaque
 		"s_water_physics_drag_properties",
 		WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Pressure", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Pressure", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "pressure", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Suction", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Suction", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "suction", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_real, "linear damping" },
 		{ _field_real, "angular damping" },
 		{ _field_terminator }
@@ -86,9 +86,9 @@ namespace macaque
 		"s_physics_force_function",
 		PHYSICS_FORCE_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "velocity to pressure", &mapping_function },
-		{ _field_real, "max velocity:wu/s" },
+		{ _field_real, "max velocity", "wu/s" },
 		{ _field_terminator }
 	};
 

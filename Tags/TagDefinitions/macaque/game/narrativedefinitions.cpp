@@ -30,7 +30,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "Index" },
 		{ _field_char_enum, "Type", &NarrativeFlagTypeEnum },
-		{ _field_pad, "fsarewrsda", 3 },
+		FIELD_PAD("fsarewrsda", nullptr, 3),
 		{ _field_terminator }
 	};
 

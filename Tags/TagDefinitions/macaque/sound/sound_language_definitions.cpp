@@ -41,7 +41,7 @@ namespace macaque
 		"s_sound_pitch_range_language_info",
 		SOUND_PITCH_RANGE_LANGUAGE_INFO_ID)
 	{
-		{ _field_short_block_index, "first permutation language index" },
+		{ _field_short_block_index, "first permutation language index", &sound_permutation_language_info_block },
 		{ _field_short_integer, "permutation count" },
 		{ _field_terminator }
 	};

@@ -7,27 +7,6 @@ namespace blofeld
 namespace macaque
 {
 
-	#define ZONE_BLOCK_ID { 0x661CA582, 0xD7F44761, 0x8100E014, 0x147ECA8B }
-	TAG_BLOCK(
-		zone_block,
-		"zone_block",
-		k_max_zones_per_map,
-		"zone_definition",
-		ZONE_BLOCK_ID)
-	{
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_string, "name^" },
-		{ _field_word_flags, "flags", &zone_flags },
-		{ _field_short_block_index, "editor folder index!", nullptr, 'ugly' },
-		{ _field_block, "firing positions", &firing_positions_block },
-		{ _field_block, "areas", &areas_block },
-		{ _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct },
-		{ _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences },
-		{ _field_terminator }
-	};
-
 	#define AREAS_BLOCK_STRUCT_ID { 0x65351716, 0xEEF54EC7, 0xB16396B1, 0x2F48E3D7 }
 	TAG_BLOCK(
 		areas_block,
@@ -36,40 +15,40 @@ namespace macaque
 		"area_definition",
 		AREAS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_long_integer, "hkaiVolume vtable*~!", nullptr, 'nuke' },
-		{ _field_short_integer, "size*~!" },
-		{ _field_short_integer, "count*~!" },
-		{ _field_string, "name^`" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
+		{ _field_string, "name" },
 		{ _field_long_flags, "area flags", &area_flags },
-		{ _field_real_point_3d, "runtime relative mean point!" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real, "runtime standard deviation!" },
-		{ _field_short_integer, "runtime starting index!" },
-		{ _field_short_integer, "runtime count!" },
-		{ _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct },
-		{ _field_array, "cluster occupancy!", &area_cluster_occupancy_bitvector_array },
+		{ _field_real_point_3d, "runtime relative mean point" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real, "runtime standard deviation" },
+		{ _field_short_integer, "runtime starting index" },
+		{ _field_short_integer, "runtime count" },
+		{ _field_struct, "Nav Mesh Attachments", &NavMeshAttachmentsStruct },
+		{ _field_array, "cluster occupancy", &area_cluster_occupancy_bitvector_array },
 		{ _field_block, "flight_hints", &flight_reference_block },
-		{ _field_block, "points^", &area_sector_point_block },
+		{ _field_block, "points", &area_sector_point_block },
 		{ _field_explanation, "Generation Properties", "" },
 		{ _field_enum, "preset", &generate_preset_enum },
-		{ _field_short_integer, "runtimeCarverInversion*~!" },
+		{ _field_short_integer, "runtimeCarverInversion" },
 		{ _field_long_flags, "flags", &generate_flags },
 		{ _field_real, "extrusion" },
 		{ _field_real, "sink" },
 		{ _field_angle, "firing point orientation" },
 		{ _field_angle, "grid orientation" },
 		{ _field_real, "nav volume cell size" },
-		{ _field_real, "spacing*" },
-		{ _field_real, "airborne spacing*" },
-		{ _field_real, "min cover length*" },
-		{ _field_real, "cover spacing*" },
-		{ _field_real, "cover offset distance*" },
-		{ _field_real, "too close distance*" },
+		{ _field_real, "spacing" },
+		{ _field_real, "airborne spacing" },
+		{ _field_real, "min cover length" },
+		{ _field_real, "cover spacing" },
+		{ _field_real, "cover offset distance" },
+		{ _field_real, "too close distance" },
 		{ _field_terminator }
 	};
 
@@ -96,7 +75,7 @@ namespace macaque
 		{ _field_short_integer, "flight hint index" },
 		{ _field_short_integer, "point index" },
 		{ _field_short_integer, "structure index" },
-		{ _field_pad, "post-structure-index-pad", 2 },
+		FIELD_PAD("post-structure-index-pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -109,9 +88,30 @@ namespace macaque
 		AREA_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 		{ _field_real_euler_angles_2d, "normal" },
+		{ _field_terminator }
+	};
+
+	#define ZONE_BLOCK_ID { 0x661CA582, 0xD7F44761, 0x8100E014, 0x147ECA8B }
+	TAG_BLOCK(
+		zone_block,
+		"zone_block",
+		k_max_zones_per_map,
+		"zone_definition",
+		ZONE_BLOCK_ID)
+	{
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_string, "name" },
+		{ _field_word_flags, "flags", &zone_flags },
+		{ _field_short_block_index, "editor folder index", &g_scenario_editor_folder_block },
+		{ _field_block, "firing positions", &firing_positions_block },
+		{ _field_block, "areas", &areas_block },
+		{ _field_struct, "Nav Mesh Attachments", &NavMeshAttachmentsStruct },
+		{ _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences },
 		{ _field_terminator }
 	};
 
@@ -123,7 +123,7 @@ namespace macaque
 		"long",
 		AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_ID)
 	{
-		{ _field_long_integer, "bitvector data!" },
+		{ _field_long_integer, "bitvector data" },
 		{ _field_terminator }
 	};
 

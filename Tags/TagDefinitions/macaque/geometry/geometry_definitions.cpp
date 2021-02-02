@@ -15,25 +15,25 @@ namespace macaque
 		"s_mesh",
 		GLOBAL_MESH_BLOCK_ID)
 	{
-		{ _field_block, "parts*", &part_block },
-		{ _field_block, "subparts*", &subpart_block },
-		{ _field_array, "vertex buffer indices*", &vertex_buffer_indices_word_array },
-		{ _field_short_integer, "index buffer index*" },
-		{ _field_short_integer, "index buffer tessellation*" },
-		{ _field_word_flags, "mesh flags*", &mesh_flags },
-		{ _field_char_integer, "rigid node index*" },
-		{ _field_char_enum, "vertex type*", &mesh_vertex_type_definition },
-		{ _field_char_enum, "PRT vertex type*", &mesh_transfer_vertex_type_definition },
+		{ _field_block, "parts", &part_block },
+		{ _field_block, "subparts", &subpart_block },
+		{ _field_array, "vertex buffer indices", &vertex_buffer_indices_word_array },
+		{ _field_short_integer, "index buffer index" },
+		{ _field_short_integer, "index buffer tessellation" },
+		{ _field_word_flags, "mesh flags", &mesh_flags },
+		{ _field_char_integer, "rigid node index" },
+		{ _field_char_enum, "vertex type", &mesh_vertex_type_definition },
+		{ _field_char_enum, "PRT vertex type", &mesh_transfer_vertex_type_definition },
 		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
-		{ _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition },
-		{ _field_pad, "BAASDFIR", 1 },
-		{ _field_short_integer, "pca mesh index*" },
-		{ _field_block, "instance buckets*", &global_instance_bucket_block },
+		{ _field_char_enum, "index buffer type", &mesh_index_buffer_type_definition },
+		FIELD_PAD("BAASDFIR", nullptr, 1),
+		{ _field_short_integer, "pca mesh index" },
+		{ _field_block, "instance buckets", &global_instance_bucket_block },
 		{ _field_block, "water indices start", &indices_word_block },
-		{ _field_real, "runtime bounding radius:world units*!" },
-		{ _field_real_point_3d, "runtime bounding offset*!" },
-		{ _field_block, "vertex keys*", &vertexKeyBlock_block },
-		{ _field_short_block_index, "clone index*" },
+		{ _field_real, "runtime bounding radius", "world units" },
+		{ _field_real_point_3d, "runtime bounding offset" },
+		{ _field_block, "vertex keys", &vertexKeyBlock_block },
+		{ _field_short_block_index, "clone index", &global_mesh_block },
 		{ _field_short_integer, "cumulative part count (initialized by PVS building code)" },
 		{ _field_terminator }
 	};
@@ -46,17 +46,33 @@ namespace macaque
 		"s_part",
 		PART_BLOCK_ID)
 	{
-		{ _field_short_block_index, "render method index^*" },
-		{ _field_short_block_index, "transparent sorting index*" },
-		{ _field_long_integer, "index start*" },
-		{ _field_long_integer, "index count*" },
-		{ _field_short_integer, "subpart start*" },
-		{ _field_short_integer, "subpart count*" },
-		{ _field_char_integer, "part type*" },
+		{ _field_short_block_index, "render method index", &global_geometry_material_block },
+		{ _field_short_block_index, "transparent sorting index", &sorting_position_block },
+		{ _field_long_integer, "index start" },
+		{ _field_long_integer, "index count" },
+		{ _field_short_integer, "subpart start" },
+		{ _field_short_integer, "subpart count" },
+		{ _field_char_integer, "part type" },
 		{ _field_char_enum, "specialized render", &specialized_render_definition },
-		{ _field_word_flags, "part flags*", &part_flags },
+		{ _field_word_flags, "part flags", &part_flags },
 		{ _field_word_integer, "budget vertex count" },
 		{ _field_enum, "tessellation", &tessellation_mode_definition },
+		{ _field_terminator }
+	};
+
+	#define SORTING_POSITION_BLOCK_ID { 0x684EF46D, 0xB52E4111, 0x8E20FEFB, 0xEEFB1C9E }
+	TAG_BLOCK(
+		sorting_position_block,
+		"sorting_position_block",
+		UNSIGNED_SHORT_MAX,
+		"s_positioning",
+		SORTING_POSITION_BLOCK_ID)
+	{
+		{ _field_real_plane_3d, "plane" },
+		{ _field_real_point_3d, "position" },
+		{ _field_real, "radius" },
+		{ _field_array, "node indices", &node_indices_array },
+		{ _field_array, "node weights", &node_weights_implicit_array },
 		{ _field_terminator }
 	};
 
@@ -68,9 +84,9 @@ namespace macaque
 		"s_subpart",
 		SUBPART_BLOCK_ID)
 	{
-		{ _field_long_integer, "index start*" },
-		{ _field_long_integer, "index count*" },
-		{ _field_short_block_index, "part index*" },
+		{ _field_long_integer, "index start" },
+		{ _field_long_integer, "index count" },
+		{ _field_short_block_index, "part index", &part_block },
 		{ _field_word_integer, "budget vertex count" },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_terminator }
@@ -84,8 +100,8 @@ namespace macaque
 		"s_instance_bucket",
 		GLOBAL_INSTANCE_BUCKET_BLOCK_ID)
 	{
-		{ _field_short_integer, "mesh index*" },
-		{ _field_short_integer, "definition index*" },
+		{ _field_short_integer, "mesh index" },
+		{ _field_short_integer, "definition index" },
 		{ _field_block, "instances", &instance_index_word_block },
 		{ _field_terminator }
 	};
@@ -98,7 +114,7 @@ namespace macaque
 		"word",
 		INSTANCE_INDEX_WORD_BLOCK_ID)
 	{
-		{ _field_short_integer, "instance index*" },
+		{ _field_short_integer, "instance index" },
 		{ _field_terminator }
 	};
 
@@ -110,7 +126,7 @@ namespace macaque
 		"word",
 		INDICES_WORD_BLOCK_ID)
 	{
-		{ _field_short_integer, "word*" },
+		{ _field_short_integer, "word" },
 		{ _field_terminator }
 	};
 
@@ -122,8 +138,8 @@ namespace macaque
 		"s_mesh::VertexKey",
 		VERTEXKEYBLOCK_ID)
 	{
-		{ _field_long_integer, "key1*" },
-		{ _field_long_integer, "key2*" },
+		{ _field_long_integer, "key1" },
+		{ _field_long_integer, "key2" },
 		{ _field_terminator }
 	};
 
@@ -135,7 +151,7 @@ namespace macaque
 		"long",
 		PCAMESHINDEXBLOCK_ID)
 	{
-		{ _field_long_block_index, "mesh index" },
+		{ _field_long_block_index, "mesh index", &global_mesh_block },
 		{ _field_terminator }
 	};
 
@@ -147,31 +163,15 @@ namespace macaque
 		"s_compression_info",
 		COMPRESSION_INFO_BLOCK_ID)
 	{
-		{ _field_word_flags, "compression flags*", &compression_flags },
-		{ _field_pad, "JOJOBOMO", 2 },
+		{ _field_word_flags, "compression flags", &compression_flags },
+		FIELD_PAD("JOJOBOMO", nullptr, 2),
 		{ _field_explanation, "WARNING", "The following fields are mislabeled for legacy reasons.The actual order is:\nposition_bounds.x0 position_bounds.x1 position_bounds.y0\nposition_bounds.y1 position_bounds.z0 position_bounds.z1\n\ntexcoord_bounds.x0 texcoord_bounds.x1\ntexcoord_bounds.y0 texcoord_bounds.y1\n" },
-		{ _field_real_point_3d, "position bounds 0*" },
-		{ _field_real_point_3d, "position bounds 1*" },
-		{ _field_real_point_2d, "texcoord bounds 0*" },
-		{ _field_real_point_2d, "texcoord bounds 1*" },
-		{ _field_real, "unused0*" },
-		{ _field_real, "unused1*" },
-		{ _field_terminator }
-	};
-
-	#define SORTING_POSITION_BLOCK_ID { 0x684EF46D, 0xB52E4111, 0x8E20FEFB, 0xEEFB1C9E }
-	TAG_BLOCK(
-		sorting_position_block,
-		"sorting_position_block",
-		UNSIGNED_SHORT_MAX,
-		"s_positioning",
-		SORTING_POSITION_BLOCK_ID)
-	{
-		{ _field_real_plane_3d, "plane*" },
-		{ _field_real_point_3d, "position*" },
-		{ _field_real, "radius*" },
-		{ _field_array, "node indices*", &node_indices_array },
-		{ _field_array, "node weights*", &node_weights_implicit_array },
+		{ _field_real_point_3d, "position bounds 0" },
+		{ _field_real_point_3d, "position bounds 1" },
+		{ _field_real_point_2d, "texcoord bounds 0" },
+		{ _field_real_point_2d, "texcoord bounds 1" },
+		{ _field_real, "unused0" },
+		{ _field_real, "unused1" },
 		{ _field_terminator }
 	};
 
@@ -183,8 +183,8 @@ namespace macaque
 		"s_render_geometry_user_data",
 		USER_DATA_BLOCK_ID)
 	{
-		{ _field_struct, "user data header*", &global_render_geometry_user_data_header_struct },
-		{ _field_data, "user data*" },
+		{ _field_struct, "user data header", &global_render_geometry_user_data_header_struct },
+		{ _field_data, "user data" },
 		{ _field_terminator }
 	};
 
@@ -196,13 +196,13 @@ namespace macaque
 		"s_per_mesh_raw_data",
 		PER_MESH_RAW_DATA_BLOCK_ID)
 	{
-		{ _field_block, "raw vertices*", &raw_vertex_block },
-		{ _field_block, "raw indices*", &indices_word_block },
-		{ _field_block, "raw indices32*", &indices_dword_block },
+		{ _field_block, "raw vertices", &raw_vertex_block },
+		{ _field_block, "raw indices", &indices_word_block },
+		{ _field_block, "raw indices32", &indices_dword_block },
 		{ _field_block, "raw water data", &raw_water_block },
 		{ _field_block, "raw imposter data", &raw_imposter_brdf_block },
 		{ _field_block, "raw instance imposter verts", &raw_instance_imposter_block },
-		{ _field_block, "raw blendshapes*", &raw_blendshape_block },
+		{ _field_block, "raw blendshapes", &raw_blendshape_block },
 		{ _field_long_integer, "per vertex lighting vertex size" },
 		{ _field_short_integer, "parameterized texture width" },
 		{ _field_short_integer, "parameterized texture height" },
@@ -218,16 +218,16 @@ namespace macaque
 		"s_raw_vertex",
 		RAW_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "position*" },
-		{ _field_real_point_2d, "texcoord*" },
-		{ _field_real_point_3d, "normal*" },
-		{ _field_real_point_3d, "binormal*" },
-		{ _field_real_point_3d, "tangent*" },
-		{ _field_real_point_2d, "lightmap texcoord*" },
-		{ _field_array, "node indices*", &node_indices_array },
-		{ _field_array, "node weights*", &node_weights_complete_array },
-		{ _field_real_point_3d, "vertex color*" },
-		{ _field_real_point_2d, "texcoord1*" },
+		{ _field_real_point_3d, "position" },
+		{ _field_real_point_2d, "texcoord" },
+		{ _field_real_point_3d, "normal" },
+		{ _field_real_point_3d, "binormal" },
+		{ _field_real_point_3d, "tangent" },
+		{ _field_real_point_2d, "lightmap texcoord" },
+		{ _field_array, "node indices", &node_indices_array },
+		{ _field_array, "node weights", &node_weights_complete_array },
+		{ _field_real_point_3d, "vertex color" },
+		{ _field_real_point_2d, "texcoord1" },
 		{ _field_terminator }
 	};
 
@@ -239,7 +239,7 @@ namespace macaque
 		"dword",
 		INDICES_DWORD_BLOCK_ID)
 	{
-		{ _field_long_integer, "dword*" },
+		{ _field_long_integer, "dword" },
 		{ _field_terminator }
 	};
 
@@ -251,8 +251,8 @@ namespace macaque
 		"s_raw_water_data",
 		RAW_WATER_BLOCK_ID)
 	{
-		{ _field_block, "raw water indices*", &indices_word_block },
-		{ _field_block, "raw water vertices*", &raw_water_append_block },
+		{ _field_block, "raw water indices", &indices_word_block },
+		{ _field_block, "raw water vertices", &raw_water_append_block },
 		{ _field_terminator }
 	};
 
@@ -264,7 +264,7 @@ namespace macaque
 		"s_raw_water_append",
 		RAW_WATER_APPEND_BLOCK_ID)
 	{
-		{ _field_real_point_2d, "base texcoord*" },
+		{ _field_real_point_2d, "base texcoord" },
 		{ _field_terminator }
 	};
 
@@ -308,9 +308,9 @@ namespace macaque
 		"RawBlendshapeVertex",
 		RAW_BLENDSHAPE_BLOCK_ID)
 	{
-		{ _field_real_vector_3d, "position*" },
-		{ _field_real_vector_3d, "normal*" },
-		{ _field_real_argb_color, "tension and ambient occlusion*" },
+		{ _field_real_vector_3d, "position" },
+		{ _field_real_vector_3d, "normal" },
+		{ _field_real_argb_color, "tension and ambient occlusion" },
 		{ _field_terminator }
 	};
 
@@ -322,7 +322,7 @@ namespace macaque
 		"s_per_mesh_node_map",
 		PER_MESH_NODE_MAP_BLOCK_ID)
 	{
-		{ _field_block, "node map*", &node_map_byte_block },
+		{ _field_block, "node map", &node_map_byte_block },
 		{ _field_terminator }
 	};
 
@@ -334,7 +334,7 @@ namespace macaque
 		"byte",
 		NODE_MAP_BYTE_BLOCK_ID)
 	{
-		{ _field_char_integer, "node index*" },
+		{ _field_char_integer, "node index" },
 		{ _field_terminator }
 	};
 
@@ -346,7 +346,7 @@ namespace macaque
 		"s_per_mesh_subpart_visibility",
 		PER_MESH_SUBPART_VISIBILITY_BLOCK_ID)
 	{
-		{ _field_block, "bounding_sphere*", &sorting_position_block },
+		{ _field_block, "bounding_sphere", &sorting_position_block },
 		{ _field_terminator }
 	};
 
@@ -358,7 +358,7 @@ namespace macaque
 		"s_per_mesh_prt_data",
 		PER_MESH_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data*" },
+		{ _field_data, "mesh pca data" },
 		{ _field_block, "per instance prt data", &per_instance_prt_data_block },
 		{ _field_terminator }
 	};
@@ -371,7 +371,7 @@ namespace macaque
 		"s_per_instance_prt_data",
 		PER_INSTANCE_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data*" },
+		{ _field_data, "mesh pca data" },
 		{ _field_terminator }
 	};
 
@@ -385,8 +385,8 @@ namespace macaque
 	{
 		{ _field_block, "texture coordinates", &raw_vertex_block },
 		{ _field_block, "texture coordinates (concise)", &raw_texcoord_block },
-		{ _field_short_integer, "vertex buffer index*" },
-		{ _field_pad, "HTJIAHA", 2 },
+		{ _field_short_integer, "vertex buffer index" },
+		FIELD_PAD("HTJIAHA", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -398,7 +398,7 @@ namespace macaque
 		"s_raw_texcoord",
 		RAW_TEXCOORD_BLOCK_ID)
 	{
-		{ _field_real_point_2d, "texcoord*" },
+		{ _field_real_point_2d, "texcoord" },
 		{ _field_terminator }
 	};
 
@@ -425,11 +425,11 @@ namespace macaque
 		"c_rasterizer_vertex_buffer",
 		VERTEX_BUFFERS_BLOCK_ID)
 	{
-		{ _field_byte_integer, "declaration type*" },
-		{ _field_byte_integer, "stride*" },
-		{ _field_pad, "vertex buffer pad", 2 },
-		{ _field_dword_integer, "count*" },
-		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_byte_integer, "declaration type" },
+		{ _field_byte_integer, "stride" },
+		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		{ _field_dword_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 
@@ -441,11 +441,11 @@ namespace macaque
 		"c_rasterizer_index_buffer",
 		INDEX_BUFFERS_BLOCK_ID)
 	{
-		{ _field_byte_integer, "declaration type*" },
-		{ _field_byte_integer, "stride*" },
-		{ _field_pad, "vertex buffer pad", 2 },
-		{ _field_dword_integer, "count*" },
-		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_byte_integer, "declaration type" },
+		{ _field_byte_integer, "stride" },
+		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		{ _field_dword_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 
@@ -525,20 +525,8 @@ namespace macaque
 		"s_render_geometry::ShapeName",
 		SHAPENAMEBLOCK_ID)
 	{
-		{ _field_long_integer, "key*" },
-		{ _field_long_string, "name*" },
-		{ _field_terminator }
-	};
-
-	#define VERTEX_BUFFER_INDICES_WORD_ARRAY_ID { 0x5E95A6C9, 0x37604276, 0xBD4EEEA3, 0x52D11A95 }
-	TAG_ARRAY(
-		vertex_buffer_indices_word_array,
-		"vertex_buffer_indices_word_array",
-		((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))),
-		"(((s_mesh *",
-		VERTEX_BUFFER_INDICES_WORD_ARRAY_ID)
-	{
-		{ _field_word_integer, "vertex buffer index*" },
+		{ _field_long_integer, "key" },
+		{ _field_long_string, "name" },
 		{ _field_terminator }
 	};
 
@@ -550,7 +538,7 @@ namespace macaque
 		"byte",
 		NODE_INDICES_ARRAY_ID)
 	{
-		{ _field_byte_integer, "node index*" },
+		{ _field_byte_integer, "node index" },
 		{ _field_terminator }
 	};
 
@@ -562,7 +550,19 @@ namespace macaque
 		"real",
 		NODE_WEIGHTS_IMPLICIT_ARRAY_ID)
 	{
-		{ _field_real, "node weight*" },
+		{ _field_real, "node weight" },
+		{ _field_terminator }
+	};
+
+	#define VERTEX_BUFFER_INDICES_WORD_ARRAY_ID { 0x5E95A6C9, 0x37604276, 0xBD4EEEA3, 0x52D11A95 }
+	TAG_ARRAY(
+		vertex_buffer_indices_word_array,
+		"vertex_buffer_indices_word_array",
+		((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))),
+		"(((s_mesh *",
+		VERTEX_BUFFER_INDICES_WORD_ARRAY_ID)
+	{
+		{ _field_word_integer, "vertex buffer index" },
 		{ _field_terminator }
 	};
 
@@ -574,7 +574,7 @@ namespace macaque
 		"real",
 		NODE_WEIGHTS_COMPLETE_ARRAY_ID)
 	{
-		{ _field_real, "node weight*" },
+		{ _field_real, "node weight" },
 		{ _field_terminator }
 	};
 
@@ -586,22 +586,22 @@ namespace macaque
 		GLOBAL_RENDER_GEOMETRY_STRUCT_ID)
 	{
 		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
-		{ _field_long_flags, "runtime flags*!", &render_geometry_flags },
-		{ _field_block, "meshes*", &global_mesh_block },
-		{ _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock_block },
-		{ _field_block, "compression info*", &compression_info_block },
-		{ _field_block, "part sorting position*", &sorting_position_block },
-		{ _field_block, "user data*", &user_data_block },
-		{ _field_block, "per mesh temporary*", &per_mesh_raw_data_block },
-		{ _field_pad, "pad3", 12 },
-		{ _field_block, "per mesh node map*", &per_mesh_node_map_block },
-		{ _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block },
-		{ _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block },
-		{ _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block },
-		{ _field_block, "water bounding box block*", &water_bounding_box_block },
+		{ _field_long_flags, "runtime flags", &render_geometry_flags },
+		{ _field_block, "meshes", &global_mesh_block },
+		{ _field_block, "PCA Mesh Indices", &PCAMeshIndexBlock_block },
+		{ _field_block, "compression info", &compression_info_block },
+		{ _field_block, "part sorting position", &sorting_position_block },
+		{ _field_block, "user data", &user_data_block },
+		{ _field_block, "per mesh temporary", &per_mesh_raw_data_block },
+		FIELD_PAD("pad3", nullptr, 12),
+		{ _field_block, "per mesh node map", &per_mesh_node_map_block },
+		{ _field_block, "per mesh subpart visibility", &per_mesh_subpart_visibility_block },
+		{ _field_block, "per_mesh_prt_data", &per_mesh_prt_data_block },
+		{ _field_block, "per_instance_lightmap_texcoords", &per_instance_lightmap_texcoords_block },
+		{ _field_block, "water bounding box block", &water_bounding_box_block },
 		{ _field_pageable, "api resource", &render_geometry_api_resource_definition_struct },
 		{ _field_block, "Optional PVS data", &render_geometry_pvs_data_block },
-		{ _field_block, "shapeNames*", &shapeNameBlock_block },
+		{ _field_block, "shapeNames", &shapeNameBlock_block },
 		{ _field_terminator }
 	};
 
@@ -612,9 +612,9 @@ namespace macaque
 		"s_render_geometry_user_data_header",
 		GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID)
 	{
-		{ _field_char_enum, "data type^*", &render_geometry_user_data_type_definition },
-		{ _field_char_integer, "data count*" },
-		{ _field_word_integer, "data size*" },
+		{ _field_char_enum, "data type", &render_geometry_user_data_type_definition },
+		{ _field_char_integer, "data count" },
+		{ _field_word_integer, "data size" },
 		{ _field_terminator }
 	};
 
@@ -625,10 +625,10 @@ namespace macaque
 		"s_render_geometry_api_resource",
 		RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID)
 	{
-		{ _field_block, "pc vertex buffers*", &vertex_buffers_block },
-		{ _field_block, "pc index buffers*", &index_buffers_block },
-		{ _field_block, "xenon vertex buffers*", &render_vertex_buffer_block },
-		{ _field_block, "xenon index buffers*", &render_index_buffer_block },
+		{ _field_block, "pc vertex buffers", &vertex_buffers_block },
+		{ _field_block, "pc index buffers", &index_buffers_block },
+		{ _field_block, "xenon vertex buffers", &render_vertex_buffer_block },
+		{ _field_block, "xenon index buffers", &render_index_buffer_block },
 		{ _field_terminator }
 	};
 

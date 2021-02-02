@@ -41,7 +41,7 @@ namespace macaque
 		"s_hs_source_reference",
 		HS_SOURCE_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference^", &hsc_reference },
+		{ _field_tag_reference, "reference", &hsc_reference },
 		{ _field_terminator }
 	};
 
@@ -63,15 +63,15 @@ namespace macaque
 		"HSCompiledScript",
 		SCRIPT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "source files*", &hs_source_files_block },
-		{ _field_block, "scripts*", &hs_scripts_block },
-		{ _field_block, "globals*", &hs_globals_block },
-		{ _field_block, "instanced variables*", &HSInstancedVariablesBlock_block },
-		{ _field_block, "references*", &hs_references_block },
-		{ _field_block, "hs unit seats!", &hs_unit_seat_block },
-		{ _field_block, "hs syntax datums*", &hs_syntax_datum_block },
+		{ _field_block, "source files", &hs_source_files_block },
+		{ _field_block, "scripts", &hs_scripts_block },
+		{ _field_block, "globals", &hs_globals_block },
+		{ _field_block, "instanced variables", &HSInstancedVariablesBlock_block },
+		{ _field_block, "references", &hs_references_block },
+		{ _field_block, "hs unit seats", &hs_unit_seat_block },
+		{ _field_block, "hs syntax datums", &hs_syntax_datum_block },
 		{ _field_data, "script string data" },
-		{ _field_block, "import manifest*", &HSImportManifestBlock_block },
+		{ _field_block, "import manifest", &HSImportManifestBlock_block },
 		{ _field_terminator }
 	};
 
@@ -82,9 +82,9 @@ namespace macaque
 		"HaloScript::ScriptData",
 		HS_SCRIPT_DATA_STRUCT_ID)
 	{
-		{ _field_block, "source file references*", &hs_source_reference_block },
+		{ _field_block, "source file references", &hs_source_reference_block },
 		{ _field_block, "external source references", &hs_source_reference_block },
-		{ _field_tag_reference, "compiled script*!", &Tag::Reference<struct HSCompiledScript>::s_defaultDefinition },
+		{ _field_tag_reference, "compiled script", &Tag::Reference<struct HSCompiledScript>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 

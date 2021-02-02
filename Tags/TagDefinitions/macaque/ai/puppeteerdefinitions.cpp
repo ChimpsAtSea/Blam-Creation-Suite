@@ -15,11 +15,11 @@ namespace macaque
 		"PuppetShow",
 		PUPPETSHOWSBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "designerZone" },
-		{ _field_struct, "manual bsp flags*", &manualBspFlagsReferences },
+		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_byte_flags, "flags", &PuppetShowFlagsDefinition },
-		{ _field_pad, "pad", 3 },
+		FIELD_PAD("pad", nullptr, 3),
 		{ _field_string, "icsPoint0" },
 		{ _field_string, "icsPoint1" },
 		{ _field_string, "icsPoint2" },
@@ -54,8 +54,8 @@ namespace macaque
 		{ _field_long_string, "startScript" },
 		{ _field_long_string, "endScript" },
 		{ _field_short_integer, "height" },
-		{ _field_byte_flags, "editorFlags!*", &PuppetEditorFlagsDefinition },
-		{ _field_pad, "pad", 1 },
+		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		FIELD_PAD("pad", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -73,16 +73,16 @@ namespace macaque
 		{ _field_long_string, "comment" },
 		{ _field_long_string, "animCondition" },
 		{ _field_dword_integer, "color" },
-		{ _field_byte_flags, "editorFlags!*", &PuppetEditorFlagsDefinition },
-		{ _field_pad, "pad", 3 },
-		{ _field_long_integer, "startFrame*" },
-		{ _field_long_integer, "endFrame*" },
-		{ _field_long_integer, "blendFrame*" },
-		{ _field_long_integer, "startPixel*" },
-		{ _field_long_integer, "endPixel*" },
-		{ _field_long_integer, "blendPixel*" },
-		{ _field_long_integer, "blendInDrag*" },
-		{ _field_long_integer, "lengthDrag*" },
+		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		FIELD_PAD("pad", nullptr, 3),
+		{ _field_long_integer, "startFrame" },
+		{ _field_long_integer, "endFrame" },
+		{ _field_long_integer, "blendFrame" },
+		{ _field_long_integer, "startPixel" },
+		{ _field_long_integer, "endPixel" },
+		{ _field_long_integer, "blendPixel" },
+		{ _field_long_integer, "blendInDrag" },
+		{ _field_long_integer, "lengthDrag" },
 		{ _field_terminator }
 	};
 
@@ -111,15 +111,15 @@ namespace macaque
 		{ _field_block, "branchConditions", &PuppetScriptTextBlock_block },
 		{ _field_dword_integer, "color" },
 		{ _field_byte_integer, "subTrack" },
-		{ _field_byte_flags, "editorFlags!*", &PuppetEditorFlagsDefinition },
-		{ _field_pad, "pad", 2 },
-		{ _field_long_integer, "startFrame*" },
-		{ _field_long_integer, "endFrame*" },
-		{ _field_long_integer, "startPixel*" },
-		{ _field_long_integer, "endPixel*" },
-		{ _field_long_integer, "subTrackDrag*" },
-		{ _field_long_integer, "startOffsetDrag*" },
-		{ _field_long_integer, "endOffsetDrag*" },
+		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_long_integer, "startFrame" },
+		{ _field_long_integer, "endFrame" },
+		{ _field_long_integer, "startPixel" },
+		{ _field_long_integer, "endPixel" },
+		{ _field_long_integer, "subTrackDrag" },
+		{ _field_long_integer, "startOffsetDrag" },
+		{ _field_long_integer, "endOffsetDrag" },
 		{ _field_terminator }
 	};
 
@@ -133,7 +133,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "targetAction" },
 		{ _field_string_id, "conditionScriptName" },
-		{ _field_long_integer, "condition~" },
+		{ _field_long_integer, "condition" },
 		{ _field_terminator }
 	};
 
@@ -157,7 +157,7 @@ namespace macaque
 		"string_id",
 		SUBTRACKSBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
@@ -229,17 +229,17 @@ namespace macaque
 		PUPPETHEADERSTRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &PuppetFlagsDefinition },
-		{ _field_char_enum, "indexType~", &PuppetIndexTypeEnum },
-		{ _field_pad, "pad", 2 },
+		{ _field_char_enum, "indexType", &PuppetIndexTypeEnum },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "type", &PuppetHeaderStruct_type_reference },
 		{ _field_string_id, "objectName" },
-		{ _field_long_integer, "index~" },
+		{ _field_long_integer, "index" },
 		{ _field_struct, "position", &PuppetPathPointStruct },
 		{ _field_string_id, "startScriptName" },
 		{ _field_string_id, "endScriptName" },
-		{ _field_short_integer, "startScript~" },
-		{ _field_short_integer, "endScript~" },
+		{ _field_short_integer, "startScript" },
+		{ _field_short_integer, "endScript" },
 		{ _field_short_integer, "firstAction" },
 		{ _field_short_integer, "actionCount" },
 		{ _field_short_integer, "firstSubAction" },
@@ -257,10 +257,10 @@ namespace macaque
 	{
 		{ _field_char_enum, "type", &PuppetPathPointTypeEnum },
 		{ _field_byte_flags, "flags", &PuppetPathPointFlagsDefinition },
-		{ _field_char_enum, "indexType~", &PuppetIndexTypeEnum },
-		{ _field_pad, "pad", 1 },
+		{ _field_char_enum, "indexType", &PuppetIndexTypeEnum },
+		FIELD_PAD("pad", nullptr, 1),
 		{ _field_string_id, "objectName" },
-		{ _field_long_integer, "index~" },
+		{ _field_long_integer, "index" },
 		{ _field_string_id, "marker" },
 		{ _field_real_point_3d, "pos" },
 		{ _field_real_euler_angles_3d, "rot" },
@@ -296,13 +296,13 @@ namespace macaque
 		{ _field_struct, "position", &PuppetPathPointStruct },
 		{ _field_byte_flags, "flags", &PuppetAnimationFlagsDefinition },
 		{ _field_char_enum, "posType", &AnimPositionTypeEnum },
-		{ _field_pad, "pad", 2 },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_long_integer, "startFrame" },
 		{ _field_long_integer, "endFrame" },
 		{ _field_long_integer, "repeatCount" },
 		{ _field_real, "scale" },
 		{ _field_string_id, "conditionScriptName" },
-		{ _field_long_integer, "condition~" },
+		{ _field_long_integer, "condition" },
 		{ _field_terminator }
 	};
 
@@ -328,18 +328,18 @@ namespace macaque
 		{ _field_char_enum, "type", &PuppetSubActionTypeEnum },
 		{ _field_char_enum, "startType", &SubActionTimeTypeEnum },
 		{ _field_char_enum, "endType", &SubActionTimeTypeEnum },
-		{ _field_pad, "pad1", 1 },
+		FIELD_PAD("pad1", nullptr, 1),
 		{ _field_long_integer, "startAction" },
 		{ _field_long_integer, "startOffset" },
 		{ _field_string_id, "startConditionScriptName" },
 		{ _field_string_id, "endConditionScriptName" },
-		{ _field_short_integer, "startCondition~" },
-		{ _field_short_integer, "endCondition~" },
+		{ _field_short_integer, "startCondition" },
+		{ _field_short_integer, "endCondition" },
 		{ _field_long_integer, "endAction" },
 		{ _field_long_integer, "endOffset" },
 		{ _field_long_integer, "comment" },
 		{ _field_short_integer, "dataIndex" },
-		{ _field_pad, "pad2", 2 },
+		FIELD_PAD("pad2", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -353,7 +353,7 @@ namespace macaque
 		{ _field_struct, "point", &PuppetPathPointStruct },
 		{ _field_tag_reference, "asset", &PuppetSubActionPointStruct_asset_reference },
 		{ _field_byte_flags, "flags", &SubActionPointFlagsDefinition },
-		{ _field_pad, "pad", 3 },
+		FIELD_PAD("pad", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -376,7 +376,7 @@ namespace macaque
 		PUPPETSUBACTIONSCRIPTSTRUCT_ID)
 	{
 		{ _field_string_id, "scriptName" },
-		{ _field_long_integer, "script~" },
+		{ _field_long_integer, "script" },
 		{ _field_terminator }
 	};
 

@@ -33,9 +33,9 @@ namespace macaque
 		{ _field_word_flags, "flags", &scenery_flags },
 		{ _field_explanation, "Lightmapping", "Indicate whether, by default, how we should lightmap this type of scenery" },
 		{ _field_enum, "lightmapping policy", &lightmapping_policy_enum },
-		{ _field_pad, "WGW", 2 },
+		FIELD_PAD("WGW", nullptr, 2),
 		{ _field_tag_reference, "Structure Lighting Tag", &Tag::Reference<struct s_structure_lighting_info>::s_defaultDefinition },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 

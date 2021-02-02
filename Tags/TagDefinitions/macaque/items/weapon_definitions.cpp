@@ -16,92 +16,92 @@ namespace macaque
 		WEAPON_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "item", &item_struct_definition },
-		FIELD_CUSTOM("$$$ WEAPON $$$", _custom_field_function_group_begin),
+		FIELD_CUSTOM("$$$ WEAPON $$$", nullptr, _field_id_function_group_begin),
 		{ _field_explanation, "", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'." },
 		{ _field_long_flags, "flags", &weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &weapon_definition_secondary_flags },
-		{ _field_old_string_id, "unused label!" },
+		{ _field_old_string_id, "unused label" },
 		{ _field_enum, "secondary trigger mode", &secondary_trigger_modes },
-		{ _field_short_integer, "maximum alternate shots loaded#if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
-		{ _field_real, "turn on time#how long after being readied it takes this weapon to switch its \'turned_on\' attachment to 1.0" },
+		{ _field_short_integer, "maximum alternate shots loaded", "if the second trigger loads alternate ammunition, this is the maximum number of shots that can be loaded at a time" },
+		{ _field_real, "turn on time", "how long after being readied it takes this weapon to switch its \'turned_on\' attachment to 1.0" },
 		{ _field_explanation, "weapon vision mode settings", "" },
-		{ _field_tag_reference, "vision mode#activated when this weapon is charging", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
-		{ _field_real, "vision cooldown time:seconds" },
+		{ _field_tag_reference, "vision mode", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
+		{ _field_real, "vision cooldown time", "seconds" },
 		{ _field_explanation, "old obsolete export to functions", "" },
-		{ _field_real, "ready time:seconds" },
+		{ _field_real, "ready time", "seconds" },
 		{ _field_tag_reference, "ready effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "ready damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_explanation, "heat", "" },
-		{ _field_real_fraction, "heat recovery threshold:[0,1]#the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place" },
-		{ _field_real_fraction, "overheated threshold:[0,1]#the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)" },
-		{ _field_real_fraction, "heat detonation threshold:[0,1]#the heat value above which the weapon has a chance of exploding each time it is fired" },
-		{ _field_real_fraction, "heat detonation fraction:[0,1]#the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold" },
-		{ _field_real_fraction, "heat loss per second:[0,1]#the amount of heat lost each second when the weapon is not being fired" },
-		{ _field_string_id, "heat loss#function values sets the current heat loss per second" },
-		{ _field_string_id, "heat loss venting#function value sets the heat loss per second while weapon is being vented" },
-		{ _field_real, "heat venting time:seconds" },
-		{ _field_real_fraction, "heat venting exit heat#heat at which to begin the venting exit animations so that the weapon is just about fully cooled when the exit animation completes." },
-		{ _field_real_fraction, "heat illumination:[0,1]#the amount of illumination given off when the weapon is overheated" },
-		{ _field_real_fraction, "heat warning threshold#the amount of heat at which a warning will be displayed on the hud" },
-		{ _field_real_fraction, "overheated heat loss per second:[0,1]#the amount of heat lost each second when the weapon is not being fired" },
-		{ _field_string_id, "overheated heat loss#function values sets the heat loss per second when weapon is overheated" },
+		{ _field_real_fraction, "heat recovery threshold", "the heat value a weapon must return to before leaving the overheated state, once it has become overheated in the first place" },
+		{ _field_real_fraction, "overheated threshold", "the heat value over which a weapon first becomes overheated (should be greater than the heat recovery threshold)" },
+		{ _field_real_fraction, "heat detonation threshold", "the heat value above which the weapon has a chance of exploding each time it is fired" },
+		{ _field_real_fraction, "heat detonation fraction", "the percent chance (between 0.0 and 1.0) the weapon will explode when fired over the heat detonation threshold" },
+		{ _field_real_fraction, "heat loss per second", "the amount of heat lost each second when the weapon is not being fired" },
+		{ _field_string_id, "heat loss", "function values sets the current heat loss per second" },
+		{ _field_string_id, "heat loss venting", "function value sets the heat loss per second while weapon is being vented" },
+		{ _field_real, "heat venting time", "seconds" },
+		{ _field_real_fraction, "heat venting exit heat", "heat at which to begin the venting exit animations so that the weapon is just about fully cooled when the exit animation completes." },
+		{ _field_real_fraction, "heat illumination", "the amount of illumination given off when the weapon is overheated" },
+		{ _field_real_fraction, "heat warning threshold", "the amount of heat at which a warning will be displayed on the hud" },
+		{ _field_real_fraction, "overheated heat loss per second", "the amount of heat lost each second when the weapon is not being fired" },
+		{ _field_string_id, "overheated heat loss", "function values sets the heat loss per second when weapon is overheated" },
 		{ _field_tag_reference, "overheated", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "overheated damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "detonation", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "detonation damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_block, "melee damage parameters", &melee_damage_parameters_block },
-		{ _field_tag_reference, "clang effect#effect that is played in the air between two players that clang with this weapon", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "clang effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_char_enum, "melee damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "FEOROBJE", 1 },
+		FIELD_PAD("FEOROBJE", nullptr, 1),
 		{ _field_explanation, "zoom", "" },
-		{ _field_short_integer, "magnification levels#the number of magnification levels this weapon allows" },
+		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
-		{ _field_char_integer, "zoom effect ticks#how often \'zoom effect\' will be triggered (while zoomed)" },
-		{ _field_pad, "wzt", 3 },
-		{ _field_tag_reference, "zoom effect#effect that is played while zoomed", &weapon_block_struct_ready_effect_reference },
-		{ _field_explanation, "weapon aim assist!#DEPRECATED -- this will go away in favor of aim assist modes below", "DEPRECATED -- this will go away in favor of aim assist modes below" },
+		{ _field_char_integer, "zoom effect ticks", "how often \'zoom effect\' will be triggered (while zoomed)" },
+		FIELD_PAD("wzt", nullptr, 3),
+		{ _field_tag_reference, "zoom effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_explanation, "weapon aim assist", "DEPRECATED -- this will go away in favor of aim assist modes below" },
 		{ _field_struct, "weapon aim assist", &aim_assist_struct },
 		{ _field_struct, "iron sights modifiers", &WeaponBarrelIronSightsStruct },
-		{ _field_block, "aim assist modes#First mode is normal, second mode is iron sights/scoped", &globalAimAssistBlock_block },
+		{ _field_block, "aim assist modes", &globalAimAssistBlock_block },
 		{ _field_block, "target tracking", &global_target_tracking_parameters_block },
 		{ _field_explanation, "aim swim indexing", "swim index 0 used when unzoomed, index 1 is for first zoom level, index 2 is 2nd zoom, etc." },
 		{ _field_block, "aim swim", &globalAimSwimBlock_block },
 		{ _field_explanation, "ballistics", "" },
-		{ _field_real_bounds, "ballistic arcing firing bounds:world units#At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used" },
-		{ _field_real_bounds, "ballistic arcing fraction bounds:[0-1]#Controls speed and degree of arc. 0 = low, fast, 1 = high, slow" },
+		{ _field_real_bounds, "ballistic arcing firing bounds", "At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used", "world units" },
+		{ _field_real_bounds, "ballistic arcing fraction bounds", "Controls speed and degree of arc. 0 = low, fast, 1 = high, slow" },
 		{ _field_explanation, "movement", "" },
 		{ _field_enum, "movement penalized", &movement_penalty_modes },
-		{ _field_pad, "GTIXVRPA", 2 },
-		{ _field_real_fraction, "forward movement penalty#percent slowdown to forward movement for units carrying this weapon" },
-		{ _field_real_fraction, "sideways movement penalty#percent slowdown to sideways and backward movement for units carrying this weapon" },
-		{ _field_real_fraction, "gunner armor mod forward movement penalty#percent slowdown to forward movement for units carrying this weapon with the gunner armor mod active" },
-		{ _field_real_fraction, "gunner armor mod sideways movement penalty#percent slowdown to sideways and backward movement for units carrying this weapon with the gunner armor mod active" },
+		FIELD_PAD("GTIXVRPA", nullptr, 2),
+		{ _field_real_fraction, "forward movement penalty", "percent slowdown to forward movement for units carrying this weapon" },
+		{ _field_real_fraction, "sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon" },
+		{ _field_real_fraction, "gunner armor mod forward movement penalty", "percent slowdown to forward movement for units carrying this weapon with the gunner armor mod active" },
+		{ _field_real_fraction, "gunner armor mod sideways movement penalty", "percent slowdown to sideways and backward movement for units carrying this weapon with the gunner armor mod active" },
 		{ _field_explanation, "Aiming", "" },
-		{ _field_real, "Maximum pitch rate:degrees per second#This will cap the speed at which the player can aim when holding this weapon, probably want to set something sensible for turrets etc" },
+		{ _field_real, "Maximum pitch rate", "This will cap the speed at which the player can aim when holding this weapon, probably want to set something sensible for turrets etc", "degrees per second" },
 		{ _field_explanation, "ArmorMod Parameters", "" },
-		{ _field_real, "Ammopack power capacity#Ammopack armormod - 0.2 would give 20% additional capacity to an energy weapon" },
+		{ _field_real, "Ammopack power capacity", "Ammopack armormod - 0.2 would give 20% additional capacity to an energy weapon" },
 		{ _field_explanation, "AI targeting parameters", "" },
 		{ _field_real, "AI scariness" },
 		{ _field_explanation, "miscellaneous", "" },
-		{ _field_real, "weapon power-on time:seconds" },
-		{ _field_real, "weapon power-off time:seconds" },
+		{ _field_real, "weapon power-on time", "seconds" },
+		{ _field_real, "weapon power-off time", "seconds" },
 		{ _field_tag_reference, "weapon power-on effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "weapon power-off effect", &weapon_block_struct_ready_effect_reference },
-		{ _field_real, "age heat recovery penalty#how much the weapon\'s heat recovery is penalized as it ages" },
-		{ _field_real, "age rate of fire penalty#how much the weapon\'s rate of fire is penalized as it ages" },
-		{ _field_real_fraction, "age misfire start:[0,1]#the age threshold when the weapon begins to misfire" },
-		{ _field_real_fraction, "age misfire chance:[0,1]#at age 1.0, the misfire chance per shot" },
+		{ _field_real, "age heat recovery penalty", "how much the weapon\'s heat recovery is penalized as it ages" },
+		{ _field_real, "age rate of fire penalty", "how much the weapon\'s rate of fire is penalized as it ages" },
+		{ _field_real_fraction, "age misfire start", "the age threshold when the weapon begins to misfire" },
+		{ _field_real_fraction, "age misfire chance", "at age 1.0, the misfire chance per shot" },
 		{ _field_tag_reference, "pickup sound", &global_sound_reference },
 		{ _field_tag_reference, "zoom-in sound", &global_sound_reference },
 		{ _field_tag_reference, "zoom-out sound", &global_sound_reference },
-		{ _field_real, "active camo ding#how much to decrease active camo when a round is fired" },
-		{ _field_string_id, "handle node#the node that get\'s attached to the unit\'s hand" },
+		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
+		{ _field_string_id, "handle node", "the node that get\'s attached to the unit\'s hand" },
 		{ _field_explanation, "weapon labels", "" },
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
 		{ _field_explanation, "more miscellaneous", "" },
 		{ _field_char_enum, "first time pickup type", &first_time_pickup_types },
-		{ _field_pad, "PAD", 3 },
+		FIELD_PAD("PAD", nullptr, 3),
 		{ _field_enum, "weapon type", &weapon_types },
 		{ _field_short_integer, "low ammo threshold" },
 		{ _field_struct, "player interface", &weapon_interface_struct },
@@ -111,9 +111,9 @@ namespace macaque
 		{ _field_block, "barrels", &weapon_barrels_block },
 		{ _field_explanation, "scaleshot", "Allows the weapon to scale up and fire different projectiles based upon how many hits you get etc." },
 		{ _field_block, "scaleshot parameters", &weaponScaleshotStruct_block },
-		{ _field_real, "runtime weapon power on velocity!" },
-		{ _field_real, "runtime weapon power off velocity!" },
-		{ _field_useless_pad },
+		{ _field_real, "runtime weapon power on velocity" },
+		{ _field_real, "runtime weapon power off velocity" },
+		{ _field_useless_pad, "" },
 		{ _field_explanation, "first-person movement control", "" },
 		{ _field_real, "max movement acceleration" },
 		{ _field_real, "max movement velocity" },
@@ -124,34 +124,34 @@ namespace macaque
 		{ _field_tag_reference, "age effect", &global_effect_reference },
 		{ _field_tag_reference, "aged weapon", &global_weapon_reference },
 		{ _field_tag_reference, "aged material effects", &global_material_effects_reference },
-		{ _field_real, "per kill or hit aging amount#aging applied for \'weapon ages when damage is inflicted\' or \'weapon ages with each kill\' flags" },
+		{ _field_real, "per kill or hit aging amount", "aging applied for \'weapon ages when damage is inflicted\' or \'weapon ages with each kill\' flags" },
 		{ _field_real, "external aging amount" },
 		{ _field_real, "campaign external aging amount" },
 		{ _field_real, "external heat amount" },
-		{ _field_real_fraction, "age recovered per second:[0,1]#the amount of age the weapon recovers per second" },
-		{ _field_tag_reference, "age fully recovered (sound or effect)#the sound or effect played when the weapon\'s age reaches fully recovered", &weapon_block_struct_ready_effect_reference },
+		{ _field_real_fraction, "age recovered per second", "the amount of age the weapon recovers per second" },
+		{ _field_tag_reference, "age fully recovered (sound or effect)", &weapon_block_struct_ready_effect_reference },
 		{ _field_real_vector_3d, "first person weapon offset" },
 		{ _field_real_vector_2d, "first person scope size" },
-		{ _field_real_bounds, "support third person camera range:degrees#range in degrees. 0 is straight, -90 is down, 90 is up" },
-		{ _field_real, "weapon zoom time#seconds" },
-		{ _field_real, "weapon ready-for-use time#seconds" },
-		{ _field_real, "weapon ready 1st person animation playback scale#e.g. - 2.0 makes playspeed twice as fast" },
-		{ _field_real, "tether transition to linked time:seconds#begins when tethered projectile is LNKED" },
-		{ _field_real, "tether transition from linked time:seconds#begins when tethered projectile becomes non-LNKED" },
+		{ _field_real_bounds, "support third person camera range", "range in degrees. 0 is straight, -90 is down, 90 is up", "degrees" },
+		{ _field_real, "weapon zoom time", "seconds" },
+		{ _field_real, "weapon ready-for-use time", "seconds" },
+		{ _field_real, "weapon ready 1st person animation playback scale", "e.g. - 2.0 makes playspeed twice as fast" },
+		{ _field_real, "tether transition to linked time", "begins when tethered projectile is LNKED", "seconds" },
+		{ _field_real, "tether transition from linked time", "begins when tethered projectile becomes non-LNKED", "seconds" },
 		{ _field_string_id, "unit stow anchor name" },
 		{ _field_block, "screen effects", &weapon_screen_effect_block },
-		{ _field_tag_reference, "Player sound bank#High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
-		{ _field_string_id, "Player EQ preset name#Name of the EQ shareset in WWise to apply when this weapon is active" },
-		{ _field_long_integer, "Player EQ preset hash!" },
-		{ _field_string_id, "Reload cancel event#Note - this is a direct event string - not a .sound" },
-		{ _field_long_integer, "Reload cancel event hash!" },
+		{ _field_tag_reference, "Player sound bank", &global_soundbank_reference },
+		{ _field_string_id, "Player EQ preset name", "Name of the EQ shareset in WWise to apply when this weapon is active" },
+		{ _field_long_integer, "Player EQ preset hash" },
+		{ _field_string_id, "Reload cancel event", "Note - this is a direct event string - not a .sound" },
+		{ _field_long_integer, "Reload cancel event hash" },
 		{ _field_tag_reference, "single shot fire for automatics", &global_sound_reference },
 		{ _field_tag_reference, "firing loop for automatics", &global_looping_sound_reference },
 		{ _field_block, "Sound RTPCs", &WeaponSoundRTPCBlock_block },
 		{ _field_block, "Sound Sweeteners", &WeaponSoundSweetenerBlock_block },
 		{ _field_string_id, "Locking Reticle Screen Name" },
 		{ _field_string_id, "Locked On Reticle Screen Name" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -172,20 +172,20 @@ namespace macaque
 	{
 		{ _field_explanation, "melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target" },
 		{ _field_real_euler_angles_2d, "damage pyramid angles" },
-		{ _field_real, "damage pyramid depth:wu#0 defaults to 0.8f" },
-		{ _field_real, "maximum lunge range:wu#0 defaults to 1.22f" },
-		{ _field_real, "damage lunge explosive depth:wu#the distance out from the pyramid center to spawn explosive effects.  This value will be clamped to the damage pyramid depth. 0 defaults to the damage pyramid depth" },
-		{ _field_real, "runtime damage lunge explosive fraction*!" },
+		{ _field_real, "damage pyramid depth", "0 defaults to 0.8f", "wu" },
+		{ _field_real, "maximum lunge range", "0 defaults to 1.22f", "wu" },
+		{ _field_real, "damage lunge explosive depth", "the distance out from the pyramid center to spawn explosive effects.  This value will be clamped to the damage pyramid depth. 0 defaults to the damage pyramid depth", "wu" },
+		{ _field_real, "runtime damage lunge explosive fraction" },
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
 		{ _field_tag_reference, "melee response", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "lunge melee damage#this is only important for the energy sword", &global_damage_reference },
-		{ _field_tag_reference, "lunge melee response#this is only important for the energy sword", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "empty melee damage#this is only important for the energy sword", &global_damage_reference },
-		{ _field_tag_reference, "empty melee response#this is only important for the energy sword", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "clang melee damage#this is only important for the energy sword", &global_damage_reference },
-		{ _field_tag_reference, "clang melee response#this is only important for the energy sword", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "clang melee against melee weapon damage#e.g. used by AR to damage sword guy when clanging sword attack", &global_damage_reference },
-		{ _field_tag_reference, "clang melee against melee weapon damage response#e.g. used by AR to damage sword guy when clanging sword attack", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "lunge melee damage", &global_damage_reference },
+		{ _field_tag_reference, "lunge melee response", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "empty melee damage", &global_damage_reference },
+		{ _field_tag_reference, "empty melee response", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "clang melee damage", &global_damage_reference },
+		{ _field_tag_reference, "clang melee response", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "clang melee against melee weapon damage", &global_damage_reference },
+		{ _field_tag_reference, "clang melee against melee weapon damage response", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "lunge melee explosive damage", &global_effect_reference },
 		{ _field_terminator }
 	};
@@ -198,20 +198,20 @@ namespace macaque
 		"aim_assist_parameters",
 		GLOBALAIMASSISTBLOCK_ID)
 	{
-		{ _field_real, "autoaim stick time:seconds#the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in" },
-		{ _field_angle, "autoaim stick angle:degrees#the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior." },
-		{ _field_angle, "autoaim angle:degrees#the maximum angle that autoaim works at full strength" },
-		{ _field_real, "autoaim range:world units#the maximum distance that autoaim works at full strength" },
-		{ _field_real, "autoaim falloff range:world units#at what point the autoaim starts falling off" },
-		{ _field_real, "autoaim near falloff range:world units#at what point the autoaim reaches full power" },
-		{ _field_angle, "magnetism angle:degrees#the maximum angle that magnetism works at full strength" },
-		{ _field_real, "magnetism range:world units#the maximum distance that magnetism works at full strength" },
-		{ _field_real, "magnetism falloff range:world units#at what point magnetism starts falling off" },
-		{ _field_real, "magnetism near falloff range:world units#at what point magnetism reaches full power" },
-		{ _field_angle, "deviation angle:degrees#the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction" },
-		{ _field_pad, "ZHV", 4 },
-		{ _field_pad, "CVYGPMLMX", 16 },
-		{ _field_pad, "UQXKLVAXI", 4 },
+		{ _field_real, "autoaim stick time", "the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in", "seconds" },
+		{ _field_angle, "autoaim stick angle", "the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior.", "degrees" },
+		{ _field_angle, "autoaim angle", "the maximum angle that autoaim works at full strength", "degrees" },
+		{ _field_real, "autoaim range", "the maximum distance that autoaim works at full strength", "world units" },
+		{ _field_real, "autoaim falloff range", "at what point the autoaim starts falling off", "world units" },
+		{ _field_real, "autoaim near falloff range", "at what point the autoaim reaches full power", "world units" },
+		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength", "degrees" },
+		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength", "world units" },
+		{ _field_real, "magnetism falloff range", "at what point magnetism starts falling off", "world units" },
+		{ _field_real, "magnetism near falloff range", "at what point magnetism reaches full power", "world units" },
+		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction", "degrees" },
+		FIELD_PAD("ZHV", nullptr, 4),
+		FIELD_PAD("CVYGPMLMX", nullptr, 16),
+		FIELD_PAD("UQXKLVAXI", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -224,18 +224,18 @@ namespace macaque
 		GLOBALAIMSWIMBLOCK_ID)
 	{
 		{ _field_explanation, "x axis curve", "" },
-		{ _field_real, "x period:seconds" },
+		{ _field_real, "x period", "seconds" },
 		{ _field_real, "x amplitude" },
 		{ _field_explanation, "y axis curve", "" },
-		{ _field_real, "y period:seconds" },
+		{ _field_real, "y period", "seconds" },
 		{ _field_real, "y amplitude" },
 		{ _field_explanation, "biped state scalers", "" },
 		{ _field_real, "non-moving, crouched" },
 		{ _field_real, "non-moving, standing" },
 		{ _field_real, "moving" },
 		{ _field_explanation, "biped state transition times", "" },
-		{ _field_real, "to crouched:seconds" },
-		{ _field_real, "to standing:seconds" },
+		{ _field_real, "to crouched", "seconds" },
+		{ _field_real, "to standing", "seconds" },
 		{ _field_terminator }
 	};
 
@@ -249,8 +249,8 @@ namespace macaque
 	{
 		{ _field_tag_reference, "first person model", &render_model_reference$10 },
 		{ _field_tag_reference, "first person animations", &model_animation_graph_reference$4 },
-		{ _field_real, "first person fov scale#the multiplier by the standard first person FOV to use when this weapon is held" },
-		{ _field_real, "first person dof distance#the distance to apply depth of field to the weapon" },
+		{ _field_real, "first person fov scale", "the multiplier by the standard first person FOV to use when this weapon is held" },
+		{ _field_real, "first person dof distance", "the distance to apply depth of field to the weapon" },
 		{ _field_terminator }
 	};
 
@@ -263,25 +263,25 @@ namespace macaque
 		MAGAZINES_ID)
 	{
 		{ _field_long_flags, "flags", &magazine_flags },
-		{ _field_short_integer, "rounds recharged:per second" },
+		{ _field_short_integer, "rounds recharged", "per second" },
 		{ _field_short_integer, "rounds total initial" },
 		{ _field_short_integer, "rounds total maximum" },
 		{ _field_short_integer, "rounds loaded maximum" },
 		{ _field_short_integer, "runtime rounds inventory maximum" },
-		{ _field_short_integer, "Ammopack rounds total initial#AmmoPack armormod - alternate total_initial value due to AmmoPack" },
-		{ _field_short_integer, "Ammopack rounds total maximum#AmmoPack armormod - alternate total_maximum value due to armor mod AmmoPack" },
-		{ _field_pad, "pad", 2 },
-		{ _field_real, "reload dialogue time:seconds#the length of time we wait before saying the reload dialogue" },
+		{ _field_short_integer, "Ammopack rounds total initial", "AmmoPack armormod - alternate total_initial value due to AmmoPack" },
+		{ _field_short_integer, "Ammopack rounds total maximum", "AmmoPack armormod - alternate total_maximum value due to armor mod AmmoPack" },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_real, "reload dialogue time", "the length of time we wait before saying the reload dialogue", "seconds" },
 		{ _field_short_integer, "rounds reloaded" },
-		{ _field_pad, "VJGZW", 2 },
-		{ _field_real, "chamber time:seconds - NOT USED!#the length of time it takes to chamber the next round" },
-		{ _field_pad, "HPMIV", 8 },
-		{ _field_pad, "P", 16 },
+		FIELD_PAD("VJGZW", nullptr, 2),
+		{ _field_real, "chamber time", "the length of time it takes to chamber the next round", "seconds - NOT USED" },
+		FIELD_PAD("HPMIV", nullptr, 8),
+		FIELD_PAD("P", nullptr, 16),
 		{ _field_tag_reference, "reloading effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "reloading damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "chambering effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "chambering damage effect", &global_damage_effect_or_response_definition_reference },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_block, "magazines", &magazine_objects_block },
 		{ _field_terminator }
 	};
@@ -295,8 +295,8 @@ namespace macaque
 		MAGAZINE_OBJECTS_ID)
 	{
 		{ _field_short_integer, "rounds" },
-		{ _field_pad, "DTDPY", 2 },
-		{ _field_tag_reference, "equipment^", &global_equipment_reference },
+		FIELD_PAD("DTDPY", nullptr, 2),
+		{ _field_tag_reference, "equipment", &global_equipment_reference },
 		{ _field_terminator }
 	};
 
@@ -311,27 +311,15 @@ namespace macaque
 		{ _field_long_flags, "flags", &weapon_trigger_definition_flags },
 		{ _field_enum, "input", &weapon_trigger_inputs },
 		{ _field_enum, "behavior", &weapon_trigger_behaviors },
-		{ _field_short_block_index, "primary barrel" },
-		{ _field_short_block_index, "secondary barrel" },
+		{ _field_short_block_index, "primary barrel", &weapon_barrels_block },
+		{ _field_short_block_index, "secondary barrel", &weapon_barrels_block },
 		{ _field_enum, "prediction", &trigger_prediction_type_enum },
-		{ _field_pad, "GNFR", 2 },
-		{ _field_useless_pad },
+		FIELD_PAD("GNFR", nullptr, 2),
+		{ _field_useless_pad, "" },
 		{ _field_struct, "autofire", &weapon_trigger_autofire_struct },
 		{ _field_struct, "charging", &weapon_trigger_charging_struct },
-		{ _field_tag_reference, "double latch projectile releasable effect#created once player is able to release the tethered projectile", &global_effect_reference },
-		{ _field_tag_reference, "double latch projectile released effect#created when player releases the tethered projectile", &global_effect_reference },
-		{ _field_terminator }
-	};
-
-	#define WEAPON_TRIGGER_CHARGING_FIRE_FRACTION_ID { 0x59082A5C, 0x8986456E, 0xBF034B9A, 0x229B0B5E }
-	TAG_BLOCK(
-		weapon_trigger_charging_fire_fraction_block,
-		"weapon_trigger_charging_fire_fraction",
-		MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER,
-		"real",
-		WEAPON_TRIGGER_CHARGING_FIRE_FRACTION_ID)
-	{
-		{ _field_real_fraction, "charge fraction^:[0.1]#charging fraction at which the weapon should additionally fire a shot." },
+		{ _field_tag_reference, "double latch projectile releasable effect", &global_effect_reference },
+		{ _field_tag_reference, "double latch projectile released effect", &global_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -346,49 +334,49 @@ namespace macaque
 		{ _field_long_flags, "flags", &weapon_barrel_flags },
 		{ _field_explanation, "firing", "" },
 		{ _field_struct, "firing", &weapon_barrel_firing_parameters_struct },
-		{ _field_short_block_index, "magazine#the magazine from which this trigger draws its ammunition" },
-		{ _field_short_integer, "rounds per shot#the number of rounds expended to create a single firing effect" },
-		{ _field_short_integer, "minimum rounds loaded#the minimum number of rounds necessary to fire the weapon" },
-		{ _field_short_integer, "rounds between tracers#the number of non-tracer rounds fired between tracers" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_short_block_index, "magazine", &magazines_block },
+		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
+		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
+		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "optional barrel marker name" },
-		{ _field_enum, "firing noise#how loud this weapon appears to the AI", &ai_sound_volume_enum },
+		{ _field_enum, "firing noise", &ai_sound_volume_enum },
 		{ _field_explanation, "prediction properties", "what the behavior of this barrel is in a predicted network game" },
 		{ _field_enum, "prediction type", &barrel_prediction_type_enum },
-		{ _field_real, "event_synchronized_projectiles_per_second#Valid only for barrels set to prediction type \"continuous\". Controls how many projectiles per second can be individually synchronized (use debug_projectiles to diagnose)." },
-		{ _field_real, "maximum_barrel_error_for_event_synchronization#Valid only for barrels set to prediction type \"continuous\". If the barrel\'s current error level is over this value (zero to one scale), we will not consider synchronizing projectiles with individual events (use debug_projectiles to diagnose)." },
+		{ _field_real, "event_synchronized_projectiles_per_second", "Valid only for barrels set to prediction type \"continuous\". Controls how many projectiles per second can be individually synchronized (use debug_projectiles to diagnose)." },
+		{ _field_real, "maximum_barrel_error_for_event_synchronization", "Valid only for barrels set to prediction type \"continuous\". If the barrel\'s current error level is over this value (zero to one scale), we will not consider synchronizing projectiles with individual events (use debug_projectiles to diagnose)." },
 		{ _field_explanation, "firing error", "full error look pitch rate controlls how fast you can turn \nwith full error, yaw is implied from pitch. 0==130.\nfor reference, profile sensitivities are set to:\n1: 40\n3: 60\n9: 130\n" },
 		{ _field_struct, "firing error", &weapon_barrel_firing_error_struct },
 		{ _field_explanation, "projectile", "" },
 		{ _field_enum, "distribution function", &weapon_barrel_distribution_functions },
 		{ _field_short_integer, "projectiles per shot" },
-		{ _field_block, "custom vectors#Custom vectors must be set in distribution function above", &projectileDistributionCustomVector_block },
-		{ _field_real, "distribution angle:degrees#used by distribution function \'horizontal fan\' above" },
-		{ _field_angle, "minimum error:degrees#projectile direction is randomly selected between this and max_error_angle below" },
-		{ _field_angle_bounds, "error angle:degrees (max_error_angle)#current barrel_error is linearly interpolated between these to generate max_error_angle" },
+		{ _field_block, "custom vectors", &projectileDistributionCustomVector_block },
+		{ _field_real, "distribution angle", "used by distribution function \'horizontal fan\' above", "degrees" },
+		{ _field_angle, "minimum error", "projectile direction is randomly selected between this and max_error_angle below", "degrees" },
+		{ _field_angle_bounds, "error angle", "current barrel_error is linearly interpolated between these to generate max_error_angle", "degrees (max_error_angle)" },
 		{ _field_struct, "accuracy penalties", &weapon_barrel_projectile_accuracy_penalty_struct },
 		{ _field_block, "first person offset", &weapon_barrel_first_person_offset_block },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "DGSXQ", 3 },
+		FIELD_PAD("DGSXQ", nullptr, 3),
 		{ _field_tag_reference, "projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
 		{ _field_tag_reference, "optional secondary projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
 		{ _field_struct, "eh", &weapon_barrel_damage_effect_struct },
 		{ _field_tag_reference, "crate projectile", &crate_projectile_reference },
 		{ _field_real, "crate projectile speed" },
 		{ _field_explanation, "misc", "" },
-		{ _field_real, "ejection port recovery time#the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
-		{ _field_real, "illumination recovery time#the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
-		{ _field_real_fraction, "heat generated per round:[0,1]#the amount of heat generated each time the barrel fires. Unlike the name suggests, this amount of heat is NOT applied per projectile created." },
-		{ _field_string_id, "heat generated per round function&heat generated per round#function value sets the amount of heat to add to the weapon each tick the barrel is firing" },
-		{ _field_real_fraction, "age generated per round:[0,1]#the amount the weapon ages each time the trigger is fired" },
-		{ _field_real_fraction, "CAMPAIGN age generated per round:[0,1]#the amount the weapon ages each time the trigger is fired" },
-		{ _field_real, "overload time:seconds#the next trigger fires this often while holding down this trigger" },
-		{ _field_real, "runtime illumination recovery rate!" },
-		{ _field_real, "runtime ejection port recovery rate!" },
-		{ _field_real, "runtime rate of fire acceleration rate!" },
-		{ _field_real, "runtime rate of fire deceleration rate!" },
-		{ _field_real, "runtime error deceleration rate!" },
-		{ _field_block, "firing effects#firing effects determine what happens when this trigger is fired", &barrel_firing_effect_block },
+		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
+		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
+		{ _field_real_fraction, "heat generated per round", "the amount of heat generated each time the barrel fires. Unlike the name suggests, this amount of heat is NOT applied per projectile created." },
+		{ _field_string_id, "heat generated per round function&heat generated per round", "function value sets the amount of heat to add to the weapon each tick the barrel is firing" },
+		{ _field_real_fraction, "age generated per round", "the amount the weapon ages each time the trigger is fired" },
+		{ _field_real_fraction, "CAMPAIGN age generated per round", "the amount the weapon ages each time the trigger is fired" },
+		{ _field_real, "overload time", "the next trigger fires this often while holding down this trigger", "seconds" },
+		{ _field_real, "runtime illumination recovery rate" },
+		{ _field_real, "runtime ejection port recovery rate" },
+		{ _field_real, "runtime rate of fire acceleration rate" },
+		{ _field_real, "runtime rate of fire deceleration rate" },
+		{ _field_real, "runtime error deceleration rate" },
+		{ _field_block, "firing effects", &barrel_firing_effect_block },
 		{ _field_terminator }
 	};
 
@@ -400,7 +388,7 @@ namespace macaque
 		"s_ProjectileDistributionCustomVector",
 		PROJECTILEDISTRIBUTIONCUSTOMVECTOR_ID)
 	{
-		{ _field_real_point_2d, "Point offset^:[-1.1]#x-y offset - +x is right, +y is up" },
+		{ _field_real_point_2d, "Point offset", "x-y offset - +x is right, +y is up" },
 		{ _field_terminator }
 	};
 
@@ -424,7 +412,7 @@ namespace macaque
 		"real_point3d",
 		WEAPON_BARREL_FIRST_PERSON_OFFSET_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "first person offset:world units#+x is forward, +z is up, +y is left" },
+		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
 		{ _field_terminator }
 	};
 
@@ -436,23 +424,35 @@ namespace macaque
 		"barrel_firing_effect_block",
 		BARREL_FIRING_EFFECT_BLOCK_ID)
 	{
-		{ _field_short_integer, "shot count lower bound#the minimum number of times this firing effect will be used, once it has been chosen" },
-		{ _field_short_integer, "shot count upper bound#the maximum number of times this firing effect will be used, once it has been chosen" },
-		{ _field_tag_reference, "firing effect^#this effect is used when the weapon is loaded and fired normally", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "critical effect^#this effect is used when the weapon is loaded and will do critical damage", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "misfire effect#this effect is used when the weapon is loaded but fired while overheated", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "empty effect#this effect is used when the weapon is not loaded", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "optional secondary firing effect#this effect is used when the weapon is not loaded", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "firing damage#this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "critical damage^#this effect is used when the weapon is loaded and will do critical damage", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "misfire damage#this effect is used when the weapon is loaded but fired while overheated", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "empty damage#this effect is used when the weapon is not loaded", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "optional secondary firing damage#this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "firing rider damage#this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "critical rider damage^#this effect is used when the weapon is loaded and will do critical damage", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "misfire rider damage#this effect is used when the weapon is loaded but fired while overheated", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "empty rider damage#this effect is used when the weapon is not loaded", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "optional secondary firing rider damage#this effect is used when the weapon is loaded and fired normally", &global_damage_effect_or_response_definition_reference },
+		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
+		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
+		{ _field_tag_reference, "firing effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "critical effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "misfire effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "empty effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "optional secondary firing effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "firing damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "critical damage", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "misfire damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "empty damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "optional secondary firing damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "firing rider damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "critical rider damage", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "misfire rider damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "empty rider damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "optional secondary firing rider damage", &global_damage_effect_or_response_definition_reference },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_TRIGGER_CHARGING_FIRE_FRACTION_ID { 0x59082A5C, 0x8986456E, 0xBF034B9A, 0x229B0B5E }
+	TAG_BLOCK(
+		weapon_trigger_charging_fire_fraction_block,
+		"weapon_trigger_charging_fire_fraction",
+		MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER,
+		"real",
+		WEAPON_TRIGGER_CHARGING_FIRE_FRACTION_ID)
+	{
+		{ _field_real_fraction, "charge fraction", "charging fraction at which the weapon should additionally fire a shot." },
 		{ _field_terminator }
 	};
 
@@ -465,9 +465,9 @@ namespace macaque
 		WEAPONSCALESHOTSTRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotFlags },
-		{ _field_real, "power per shot#the amount of scaleshot power you get when this weapon is fired" },
-		{ _field_real, "power per hit#the amount of scaleshot power you get when a projectile from this weapon hits an enemy" },
-		{ _field_real, "power change per second#the change per second in power" },
+		{ _field_real, "power per shot", "the amount of scaleshot power you get when this weapon is fired" },
+		{ _field_real, "power per hit", "the amount of scaleshot power you get when a projectile from this weapon hits an enemy" },
+		{ _field_real, "power change per second", "the change per second in power" },
 		{ _field_explanation, "power levels", "IMPORTANT: put these in increasing order, by \"minimum power level\".  I claim no responsibility for weird behavior if they\'re out of order." },
 		{ _field_block, "power levels", &weaponScaleshotLevelStruct_block },
 		{ _field_terminator }
@@ -482,11 +482,11 @@ namespace macaque
 		WEAPONSCALESHOTLEVELSTRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotLevelFlags },
-		{ _field_real, "minimum power level^#the minimum power at which this scaleshot level kicks in" },
-		{ _field_real, "power change per shot#the change per shot in power when you\'re at this level" },
-		{ _field_real, "power change per second#the change per second in power when you\'re at this level" },
-		{ _field_tag_reference, "projectile#the projectile to fire at this level", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
-		{ _field_block, "firing effects#firing effects when firing at this level", &barrel_firing_effect_block },
+		{ _field_real, "minimum power level", "the minimum power at which this scaleshot level kicks in" },
+		{ _field_real, "power change per shot", "the change per shot in power when you\'re at this level" },
+		{ _field_real, "power change per second", "the change per second in power when you\'re at this level" },
+		{ _field_tag_reference, "projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
+		{ _field_block, "firing effects", &barrel_firing_effect_block },
 		{ _field_terminator }
 	};
 
@@ -499,8 +499,8 @@ namespace macaque
 		WEAPON_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
-		{ _field_pad, "LKSZJFSE", 3 },
-		{ _field_tag_reference, "screen effect^", &global_area_screen_effect_reference },
+		FIELD_PAD("LKSZJFSE", nullptr, 3),
+		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -512,10 +512,10 @@ namespace macaque
 		"WeaponSoundRTPCBlockDefinition",
 		WEAPONSOUNDRTPCBLOCK_ID)
 	{
-		{ _field_long_block_index, "Attachment Index#Sound attachment to affect - leave empty for main body" },
-		{ _field_string_id, "Function#Function to drive the RTPC" },
-		{ _field_string_id, "RTPC Name#WWise RTPC string name" },
-		{ _field_long_integer, "RTPC name hash value*!" },
+		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
+		{ _field_string_id, "Function", "Function to drive the RTPC" },
+		{ _field_string_id, "RTPC Name", "WWise RTPC string name" },
+		{ _field_long_integer, "RTPC name hash value" },
 		{ _field_terminator }
 	};
 
@@ -527,10 +527,10 @@ namespace macaque
 		"WeaponSoundSweetenerBlockDefinition",
 		WEAPONSOUNDSWEETENERBLOCK_ID)
 	{
-		{ _field_string_id, "Function#Function to trigger the sweetener" },
+		{ _field_string_id, "Function", "Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
-		{ _field_real, "Switch point#value of the function (between 0 and 1) where the sound is triggered" },
-		{ _field_long_integer, "Mode#0 for triggering while function is decreasing, 1 for increasing (more modes to come\?)" },
+		{ _field_real, "Switch point", "value of the function (between 0 and 1) where the sound is triggered" },
+		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come\?)" },
 		{ _field_terminator }
 	};
 
@@ -541,20 +541,20 @@ namespace macaque
 		"aim_assist_parameters",
 		AIM_ASSIST_STRUCT_ID)
 	{
-		{ _field_real, "autoaim stick time:seconds!#the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in" },
-		{ _field_angle, "autoaim stick angle:degrees!#the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior." },
-		{ _field_angle, "autoaim angle:degrees#the maximum angle that autoaim works at full strength!" },
-		{ _field_real, "autoaim range:world units#the maximum distance that autoaim works at full strength!" },
-		{ _field_real, "autoaim falloff range:world units#at what point the autoaim starts falling off!" },
-		{ _field_real, "autoaim near falloff range:world units#at what point the autoaim reaches full power!" },
-		{ _field_angle, "magnetism angle:degrees#the maximum angle that magnetism works at full strength!" },
-		{ _field_real, "magnetism range:world units#the maximum distance that magnetism works at full strength!" },
-		{ _field_real, "magnetism falloff range:world units#at what point magnetism starts falling off!" },
-		{ _field_real, "magnetism near falloff range:world units#at what point magnetism reaches full power!" },
-		{ _field_angle, "deviation angle:degrees#the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction!" },
-		{ _field_pad, "ZHV", 4 },
-		{ _field_pad, "CVYGPMLMX", 16 },
-		{ _field_pad, "UQXKLVAXI", 4 },
+		{ _field_real, "autoaim stick time", "the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in", "seconds" },
+		{ _field_angle, "autoaim stick angle", "the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior.", "degrees" },
+		{ _field_angle, "autoaim angle", "the maximum angle that autoaim works at full strength!", "degrees" },
+		{ _field_real, "autoaim range", "the maximum distance that autoaim works at full strength!", "world units" },
+		{ _field_real, "autoaim falloff range", "at what point the autoaim starts falling off!", "world units" },
+		{ _field_real, "autoaim near falloff range", "at what point the autoaim reaches full power!", "world units" },
+		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength!", "degrees" },
+		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength!", "world units" },
+		{ _field_real, "magnetism falloff range", "at what point magnetism starts falling off!", "world units" },
+		{ _field_real, "magnetism near falloff range", "at what point magnetism reaches full power!", "world units" },
+		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction!", "degrees" },
+		FIELD_PAD("ZHV", nullptr, 4),
+		FIELD_PAD("CVYGPMLMX", nullptr, 16),
+		FIELD_PAD("UQXKLVAXI", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -565,10 +565,10 @@ namespace macaque
 		"s_IronSightsParameters",
 		WEAPONBARRELIRONSIGHTSSTRUCT_ID)
 	{
-		{ _field_real, "spread multiplier#multiplies the spread error - use < 1.0 for more accuracy" },
-		{ _field_real, "movement multiplier#multipliers player maximum move speed" },
+		{ _field_real, "spread multiplier", "multiplies the spread error - use < 1.0 for more accuracy" },
+		{ _field_real, "movement multiplier", "multipliers player maximum move speed" },
 		{ _field_real, "aim speed multiplier" },
-		{ _field_real, "auto zoom out time#tick delay before zooming out upon release of iron sights zoom -- use 0 for single-zoom weapons, 5-10 for multi-zooms like sniper rifle" },
+		{ _field_real, "auto zoom out time", "tick delay before zooming out upon release of iron sights zoom -- use 0 for single-zoom weapons, 5-10 for multi-zooms like sniper rifle" },
 		{ _field_terminator }
 	};
 
@@ -583,7 +583,7 @@ namespace macaque
 		{ _field_struct, "shared interface", &weapon_shared_interface_struct },
 		{ _field_block, "first person", &weapon_first_person_interface_block },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
-		{ _field_tag_reference, "alternate hud screen reference#the parent of the weapon can indicate that this hud should be used instead of the default", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
+		{ _field_tag_reference, "alternate hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
@@ -594,7 +594,93 @@ namespace macaque
 		"s_tag_reference",
 		WEAPON_SHARED_INTERFACE_STRUCT_ID)
 	{
-		{ _field_pad, "PWGUS", 16 },
+		FIELD_PAD("PWGUS", nullptr, 16),
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x85D673EA, 0x92E147FF, 0xB5F3E5BA, 0x101796F3 }
+	TAG_STRUCT(
+		weapon_barrel_firing_parameters_struct,
+		"weapon_barrel_firing_parameters_struct",
+		"s_weapon_barrel_firing_params_definition",
+		WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID)
+	{
+		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
+		{ _field_string_id, "rate of fire acceleration", "function value sets the current rate of fire when the barrel is firing" },
+		{ _field_real, "acceleration time", "the continuous firing time it takes for the weapon to achieve its final rounds per second", "seconds" },
+		{ _field_string_id, "rate of fire deceleration", "function value sets the current rate of fire when the barrel is not firing" },
+		{ _field_real, "deceleration time", "the continuous idle time it takes for the weapon to return from its final rounds per second to its initial", "seconds" },
+		{ _field_real, "barrel spin scale", "scale the barrel spin speed by this amount" },
+		{ _field_real_fraction, "blurred rate of fire", "a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
+		{ _field_short_bounds, "shots per fire", "allows designer caps to the shots you can fire from one firing action" },
+		{ _field_real, "fire recovery time", "how long after a set of shots it takes before the barrel can fire again", "seconds" },
+		{ _field_real_fraction, "soft recovery fraction", "how much of the recovery allows shots to be queued" },
+		{ _field_real, "melee  fire recovery time", "how long after a set of shots it takes before the weapon can melee", "seconds" },
+		{ _field_real_fraction, "melee soft recovery fraction", "how much of the melee recovery allows melee to be queued" },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_FIRING_ERROR_STRUCT_ID { 0xB76772F5, 0x98BB4797, 0xBC2BC6CD, 0x43C3E14E }
+	TAG_STRUCT(
+		weapon_barrel_firing_error_struct,
+		"weapon_barrel_firing_error_struct",
+		"real",
+		WEAPON_BARREL_FIRING_ERROR_STRUCT_ID)
+	{
+		{ _field_real, "deceleration time", "the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n\'globals@Player information.momentum and sprinting.min weapon error\'", "seconds" },
+		{ _field_real_bounds, "damage error", "the range of angles (in degrees) that a damaged weapon will skew fire" },
+		{ _field_angle, "min error look pitch rate", "yaw rate is doubled" },
+		{ _field_angle, "full error look pitch rate", "yaw rate is doubled" },
+		{ _field_real, "look pitch error power", "use to soften or sharpen the rate ding" },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID { 0x058C5820, 0x7637243A, 0x2D036E58, 0x11C1972B }
+	TAG_STRUCT(
+		weapon_barrel_projectile_accuracy_penalty_struct,
+		"weapon_barrel_projectile_accuracy_penalty_struct",
+		"s_projectile_accuracy_penalty_info",
+		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
+	{
+		FIELD_CUSTOM("accuracy penalties", nullptr, _field_id_function_group_begin),
+		{ _field_real, "reload penalty", "percentage accuracy lost when reloading" },
+		{ _field_real, "switch penalty", "percentage accuracy lost when switching weapons" },
+		{ _field_real, "zoom penalty", "percentage accuracy lost when zooming in/out" },
+		{ _field_real, "jump penalty", "percentage accuracy lost when jumping" },
+		{ _field_explanation, "barrel_error penalty functions", "barrel_error = barrel_error + penaltyfunction(barrel_error)\nWhere input value \'X\' produces output value \'Y\'\n" },
+		FIELD_CUSTOM("single wield penalties", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "single wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("dual wield penalties", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "dual wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID { 0x7D45A208, 0xAA304F19, 0x847FE6F6, 0x5B453291 }
+	TAG_STRUCT(
+		weapon_barrel_projectile_accuracy_penalty_function_struct,
+		"weapon_barrel_projectile_accuracy_penalty_function_struct",
+		"s_projectile_accuracy_penalty_functions",
+		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID)
+	{
+		{ _field_block, "firing penalty function", &weapon_barrel_function_block },
+		{ _field_block, "firing crouched penalty function", &weapon_barrel_function_block },
+		{ _field_block, "moving penalty function", &weapon_barrel_function_block },
+		{ _field_block, "turning penalty function", &weapon_barrel_function_block },
+		{ _field_real, "error angle max rotation", "angle which represents the maximum input to the turning penalty function." },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID { 0x0CC000C1, 0x6C214FBD, 0x8B1DF64F, 0xC75CB408 }
+	TAG_STRUCT(
+		weapon_barrel_damage_effect_struct,
+		"weapon_barrel_damage_effect_struct",
+		"weapon_barrel_damage_effect_struct",
+		WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID)
+	{
+		{ _field_tag_reference, "damage effect", &global_damage_reference },
 		{ _field_terminator }
 	};
 
@@ -621,105 +707,19 @@ namespace macaque
 		WEAPON_TRIGGER_CHARGING_STRUCT_ID)
 	{
 		{ _field_explanation, "CHARGING", "" },
-		{ _field_real, "charging time:seconds#the amount of time it takes for this trigger to become fully charged" },
-		{ _field_real, "charged time:seconds#the amount of time this trigger can be charged before becoming overcharged" },
+		{ _field_real, "charging time", "the amount of time it takes for this trigger to become fully charged", "seconds" },
+		{ _field_real, "charged time", "the amount of time this trigger can be charged before becoming overcharged", "seconds" },
 		{ _field_char_enum, "overcharged action", &weapon_trigger_overcharged_actions },
 		{ _field_byte_flags, "flags", &weapon_trigger_charging_flags },
-		{ _field_short_integer, "cancelled trigger throw#96 was the constant in code for the pp" },
-		{ _field_real, "charged illumination:[0,1]#the amount of illumination given off when the weapon is fully charged" },
-		{ _field_tag_reference, "charging effect#the charging effect is created once when the trigger begins to charge", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "charging damage effect#the charging effect is created once when the trigger begins to charge", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "charging continuous damage response#plays every tick you\'re charging or charged, scaled to charging fraction", &global_damage_response_definition_reference },
-		{ _field_real, "charged drain rate#how much battery to drain per second when charged" },
-		{ _field_tag_reference, "discharge effect#the discharging effect is created once when the trigger releases its charge", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "discharge damage effect#the discharging effect is created once when the trigger releases its charge", &global_damage_effect_or_response_definition_reference },
+		{ _field_short_integer, "cancelled trigger throw", "96 was the constant in code for the pp" },
+		{ _field_real, "charged illumination", "the amount of illumination given off when the weapon is fully charged" },
+		{ _field_tag_reference, "charging effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "charging damage effect", &global_damage_effect_or_response_definition_reference },
+		{ _field_tag_reference, "charging continuous damage response", &global_damage_response_definition_reference },
+		{ _field_real, "charged drain rate", "how much battery to drain per second when charged" },
+		{ _field_tag_reference, "discharge effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "discharge damage effect", &global_damage_effect_or_response_definition_reference },
 		{ _field_block, "fire fractions", &weapon_trigger_charging_fire_fraction_block },
-		{ _field_terminator }
-	};
-
-	#define WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID { 0x85D673EA, 0x92E147FF, 0xB5F3E5BA, 0x101796F3 }
-	TAG_STRUCT(
-		weapon_barrel_firing_parameters_struct,
-		"weapon_barrel_firing_parameters_struct",
-		"s_weapon_barrel_firing_params_definition",
-		WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID)
-	{
-		{ _field_real_bounds, "rounds per second#the number of firing effects created per second" },
-		{ _field_string_id, "rate of fire acceleration#function value sets the current rate of fire when the barrel is firing" },
-		{ _field_real, "acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final rounds per second" },
-		{ _field_string_id, "rate of fire deceleration#function value sets the current rate of fire when the barrel is not firing" },
-		{ _field_real, "deceleration time:seconds#the continuous idle time it takes for the weapon to return from its final rounds per second to its initial" },
-		{ _field_real, "barrel spin scale#scale the barrel spin speed by this amount" },
-		{ _field_real_fraction, "blurred rate of fire#a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" },
-		{ _field_short_bounds, "shots per fire#allows designer caps to the shots you can fire from one firing action" },
-		{ _field_real, "fire recovery time:seconds#how long after a set of shots it takes before the barrel can fire again" },
-		{ _field_real_fraction, "soft recovery fraction#how much of the recovery allows shots to be queued" },
-		{ _field_real, "melee  fire recovery time:seconds#how long after a set of shots it takes before the weapon can melee" },
-		{ _field_real_fraction, "melee soft recovery fraction#how much of the melee recovery allows melee to be queued" },
-		{ _field_terminator }
-	};
-
-	#define WEAPON_BARREL_FIRING_ERROR_STRUCT_ID { 0xB76772F5, 0x98BB4797, 0xBC2BC6CD, 0x43C3E14E }
-	TAG_STRUCT(
-		weapon_barrel_firing_error_struct,
-		"weapon_barrel_firing_error_struct",
-		"real",
-		WEAPON_BARREL_FIRING_ERROR_STRUCT_ID)
-	{
-		{ _field_real, "deceleration time:seconds#the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n\'globals@Player information.momentum and sprinting.min weapon error\'" },
-		{ _field_real_bounds, "damage error#the range of angles (in degrees) that a damaged weapon will skew fire" },
-		{ _field_angle, "min error look pitch rate#yaw rate is doubled" },
-		{ _field_angle, "full error look pitch rate#yaw rate is doubled" },
-		{ _field_real, "look pitch error power#use to soften or sharpen the rate ding" },
-		{ _field_terminator }
-	};
-
-	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID { 0x058C5820, 0x7637243A, 0x2D036E58, 0x11C1972B }
-	TAG_STRUCT(
-		weapon_barrel_projectile_accuracy_penalty_struct,
-		"weapon_barrel_projectile_accuracy_penalty_struct",
-		"s_projectile_accuracy_penalty_info",
-		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
-	{
-		FIELD_CUSTOM("accuracy penalties", _custom_field_function_group_begin),
-		{ _field_real, "reload penalty#percentage accuracy lost when reloading" },
-		{ _field_real, "switch penalty#percentage accuracy lost when switching weapons" },
-		{ _field_real, "zoom penalty#percentage accuracy lost when zooming in/out" },
-		{ _field_real, "jump penalty#percentage accuracy lost when jumping" },
-		{ _field_explanation, "barrel_error penalty functions", "barrel_error = barrel_error + penaltyfunction(barrel_error)\nWhere input value \'X\' produces output value \'Y\'\n" },
-		FIELD_CUSTOM("single wield penalties", _custom_field_function_group_begin),
-		{ _field_struct, "single wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("dual wield penalties", _custom_field_function_group_begin),
-		{ _field_struct, "dual wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_terminator }
-	};
-
-	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID { 0x7D45A208, 0xAA304F19, 0x847FE6F6, 0x5B453291 }
-	TAG_STRUCT(
-		weapon_barrel_projectile_accuracy_penalty_function_struct,
-		"weapon_barrel_projectile_accuracy_penalty_function_struct",
-		"s_projectile_accuracy_penalty_functions",
-		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID)
-	{
-		{ _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired", &weapon_barrel_function_block },
-		{ _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position", &weapon_barrel_function_block },
-		{ _field_block, "moving penalty function#percentage accuracy lost when moving", &weapon_barrel_function_block },
-		{ _field_block, "turning penalty function#percentage accuracy lost when turning the camera", &weapon_barrel_function_block },
-		{ _field_real, "error angle max rotation#angle which represents the maximum input to the turning penalty function." },
-		{ _field_terminator }
-	};
-
-	#define WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID { 0x0CC000C1, 0x6C214FBD, 0x8B1DF64F, 0xC75CB408 }
-	TAG_STRUCT(
-		weapon_barrel_damage_effect_struct,
-		"weapon_barrel_damage_effect_struct",
-		"weapon_barrel_damage_effect_struct",
-		WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID)
-	{
-		{ _field_tag_reference, "damage effect", &global_damage_reference },
 		{ _field_terminator }
 	};
 

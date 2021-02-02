@@ -15,15 +15,15 @@ namespace macaque
 		"recorded_animation_definition",
 		RECORDED_ANIMATION_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
-		{ _field_char_integer, "version*" },
-		{ _field_char_integer, "raw animation data*" },
-		{ _field_char_integer, "unit control data version*" },
-		{ _field_pad, "DVU", 1 },
-		{ _field_short_integer, "length of animation*:ticks" },
-		{ _field_pad, "DCAU", 2 },
-		{ _field_pad, "HL", 4 },
-		{ _field_data, "recorded animation event stream*" },
+		{ _field_string, "name" },
+		{ _field_char_integer, "version" },
+		{ _field_char_integer, "raw animation data" },
+		{ _field_char_integer, "unit control data version" },
+		FIELD_PAD("DVU", nullptr, 1),
+		{ _field_short_integer, "length of animation", "ticks" },
+		FIELD_PAD("DCAU", nullptr, 2),
+		FIELD_PAD("HL", nullptr, 4),
+		{ _field_data, "recorded animation event stream" },
 		{ _field_terminator }
 	};
 

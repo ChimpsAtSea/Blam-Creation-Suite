@@ -16,24 +16,24 @@ namespace macaque
 		MOPP_CODE_DEFINITION_BLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "field pointer skip!~", nullptr, 'nuke' },
-		{ _field_short_integer, "size*!" },
-		{ _field_short_integer, "count~*!" },
-		{ _field_pad, "total shit pad1", 8 },
-		{ _field_real, "v.i*!" },
-		{ _field_real, "v.j*!" },
-		{ _field_real, "v.k*!" },
-		{ _field_real, "v.w*!" },
-		{ _field_long_integer, "m_data pointer!~", nullptr, 'nuke' },
-		{ _field_long_integer, "int m_size*!" },
-		{ _field_long_integer, "int m_capacityAndFlags*!" },
-		{ _field_char_integer, "int8 m_buildType*!" },
-		{ _field_pad, "total shit pad2", 3 },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_block, "mopp data block *!", &mopp_code_data_definition_block },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		{ _field_char_integer, "mopp build type!*#they say it only matters for ps3" },
-		{ _field_pad, "explicit alignment pad 3", 3 },
+		{ _field_long_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_short_integer, "size" },
+		{ _field_short_integer, "count" },
+		FIELD_PAD("total shit pad1", nullptr, 8),
+		{ _field_real, "v.i" },
+		{ _field_real, "v.j" },
+		{ _field_real, "v.k" },
+		{ _field_real, "v.w" },
+		{ _field_long_integer, "m_data pointer", _field_id_zero_data },
+		{ _field_long_integer, "int m_size" },
+		{ _field_long_integer, "int m_capacityAndFlags" },
+		{ _field_char_integer, "int8 m_buildType" },
+		FIELD_PAD("total shit pad2", nullptr, 3),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_block, "mopp data block ", &mopp_code_data_definition_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		{ _field_char_integer, "mopp build type", "they say it only matters for ps3" },
+		FIELD_PAD("explicit alignment pad 3", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -45,7 +45,7 @@ namespace macaque
 		"byte",
 		MOPP_CODE_DATA_DEFINITION_BLOCK_ID)
 	{
-		{ _field_byte_integer, "mopp data*!" },
+		{ _field_byte_integer, "mopp data" },
 		{ _field_terminator }
 	};
 

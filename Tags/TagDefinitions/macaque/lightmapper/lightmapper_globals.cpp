@@ -63,13 +63,13 @@ namespace macaque
 		"s_lightmapper_globals",
 		LIGHTMAPPER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "Version!" },
-		FIELD_CUSTOM("GLOBAL QUALITY SETTINGS", _custom_field_function_group_begin),
+		{ _field_long_integer, "Version" },
+		FIELD_CUSTOM("GLOBAL QUALITY SETTINGS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("LOCAL SETTINGS", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("LOCAL SETTINGS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Local lightmapper settings", &global_lightmap_local_settings_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -88,8 +88,8 @@ namespace macaque
 		{ _field_long_enum, "Direct shadow map resolution", &lightmap_direct_shadow_map_resolution_enum },
 		{ _field_long_enum, "Super-sampling factor", &lightmap_supersampling_factor_enum },
 		{ _field_long_enum, "AO Sample Quality", &lightmap_ao_quality_enum },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Min!" },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Max!" },
+		{ _field_real_vector_3d, "Indirect Restrict AABB Min" },
+		{ _field_real_vector_3d, "Indirect Restrict AABB Max" },
 		{ _field_terminator }
 	};
 
@@ -105,15 +105,15 @@ namespace macaque
 		{ _field_real, "Indirect amplification factor" },
 		{ _field_real, "Lightmap Compression Maximum" },
 		{ _field_real, "Per Vertex AO Auto Threshold" },
-		FIELD_CUSTOM("Ambient occlusion settings", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Ambient occlusion settings", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "AO settings", &global_lightmap_ao_settings_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Global illumination falloff settings", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Global illumination falloff settings", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Global illumination falloff settings", &global_lightmap_global_illumination_falloff_settings_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Quality Overrides", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Quality Overrides", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Local lightmapper override settings", &global_lightmap_local_override_settings_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_long_enum, "Forge Lightmap Size Class (if enabled)", &scenario_structure_size_enum },
 		{ _field_terminator }
 	};
@@ -125,7 +125,7 @@ namespace macaque
 		"s_lightmap_settings_ao",
 		GLOBAL_LIGHTMAP_AO_SETTINGS_STRUCT_ID)
 	{
-		{ _field_real, "Radius{Offset}" },
+		{ _field_real, "Radius" },
 		{ _field_real, "Falloff Power" },
 		{ _field_real, "Multiplier" },
 		{ _field_real, "MaxThreadCount" },

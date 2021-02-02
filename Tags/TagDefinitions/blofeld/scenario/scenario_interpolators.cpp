@@ -8,25 +8,25 @@ namespace blofeld
 
 	V5_TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario)
 	{
-		{ _field_word_flags, "flags", &scenario_interpolator_flags },
-		{ _field_pad, "SCBP1", 2 },
-		{ _field_string_id, "name^" },
-		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
-		{ _field_real, "duration:seconds" },
-		{ _field_long_enum, "map reset type", &scenario_interpolator_reset_value_enum },
-		{ _field_real_fraction, "custom map reset value" },
-		{ _field_long_enum, "start type", &scenario_interpolator_start_value_enum },
-		{ _field_long_enum, "stop type", &scenario_interpolator_stop_value_enum },
-		{ _field_real_fraction, "custom stop value" },
-		{ _field_terminator }
+		{ _field_legacy, _field_word_flags, "flags", &scenario_interpolator_flags },
+		{ _field_legacy, _field_pad, "SCBP1", 2 },
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_struct, "function", &scalar_function_named_struct_struct_definition },
+		{ _field_legacy, _field_real, "duration:seconds" },
+		{ _field_legacy, _field_long_enum, "map reset type", &scenario_interpolator_reset_value_enum },
+		{ _field_legacy, _field_real_fraction, "custom map reset value" },
+		{ _field_legacy, _field_long_enum, "start type", &scenario_interpolator_start_value_enum },
+		{ _field_legacy, _field_long_enum, "stop type", &scenario_interpolator_stop_value_enum },
+		{ _field_legacy, _field_real_fraction, "custom stop value" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(scenario_interpolator_struct_definition)
 	{
-		{ _field_block, "interpolators", &scenario_interpolator_data_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "interpolators", &scenario_interpolator_data_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(scenario_interpolator_reset_value_enum)

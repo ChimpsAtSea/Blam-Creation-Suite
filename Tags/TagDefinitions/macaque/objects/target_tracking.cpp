@@ -15,10 +15,10 @@ namespace macaque
 		"s_target_tracking_parameters",
 		GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_block, "tracking types#specify the kinds of targets this tracking system can lock on", &tracking_type_block },
-		{ _field_real, "acquire time:s" },
-		{ _field_real, "grace time:s" },
-		{ _field_real, "decay time:s" },
+		{ _field_block, "tracking types", &tracking_type_block },
+		{ _field_real, "acquire time", "s" },
+		{ _field_real, "grace time", "s" },
+		{ _field_real, "decay time", "s" },
 		{ _field_tag_reference, "tracking sound", &global_sound_and_looping_sound_reference },
 		{ _field_tag_reference, "locked sound", &global_sound_and_looping_sound_reference },
 		{ _field_terminator }
@@ -32,7 +32,7 @@ namespace macaque
 		"string_id",
 		TRACKING_TYPE_BLOCK_ID)
 	{
-		{ _field_string_id, "tracking type^" },
+		{ _field_string_id, "tracking type" },
 		{ _field_terminator }
 	};
 

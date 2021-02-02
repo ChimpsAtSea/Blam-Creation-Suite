@@ -15,15 +15,15 @@ namespace macaque
 		"c_material_shader",
 		MATERIAL_SHADER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_flags, "flags!", &material_shader_flags },
-		{ _field_block, "source shader files!", &material_shader_source_file_block },
-		{ _field_block, "compiled effects!", &compiled_effects_block },
-		{ _field_long_integer, "source shader hash!" },
-		{ _field_long_integer, "compiled shader hash!" },
+		{ _field_long_flags, "flags", &material_shader_flags },
+		{ _field_block, "source shader files", &material_shader_source_file_block },
+		{ _field_block, "compiled effects", &compiled_effects_block },
+		{ _field_long_integer, "source shader hash" },
+		{ _field_long_integer, "compiled shader hash" },
 		{ _field_tag_reference, "shader bank", &material_shader_bank_reference },
-		{ _field_block, "vertex shader entry points*", &material_vertex_shader_entry_point_block },
-		{ _field_block, "pixel shader entry points*", &compiled_pixel_shader_refererence_block },
-		{ _field_block, "material parameters*", &material_shader_parameter_block },
+		{ _field_block, "vertex shader entry points", &material_vertex_shader_entry_point_block },
+		{ _field_block, "pixel shader entry points", &compiled_pixel_shader_refererence_block },
+		{ _field_block, "material parameters", &material_shader_parameter_block },
 		{ _field_terminator }
 	};
 
@@ -42,7 +42,7 @@ namespace macaque
 		"s_material_shader_source_file",
 		MATERIAL_SHADER_SOURCE_FILE_BLOCK_ID)
 	{
-		{ _field_long_string, "shader path^" },
+		{ _field_long_string, "shader path" },
 		{ _field_data, "shader data" },
 		{ _field_terminator }
 	};

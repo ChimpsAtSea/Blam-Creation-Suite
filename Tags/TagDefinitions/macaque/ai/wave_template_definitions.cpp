@@ -39,13 +39,13 @@ namespace macaque
 		"s_ai_wave_squad_definition",
 		WAVE_SQUAD_SPECIFICATION_STRUCT_STRUCT_ID)
 	{
-		{ _field_tag_reference, "squad template^", &squad_template_reference$2 },
+		{ _field_tag_reference, "squad template", &squad_template_reference$2 },
 		{ _field_struct, "spawn conditions", &ai_spawn_conditions_struct },
-		{ _field_short_integer, "weight#The relative weight given to this squad spawning" },
+		{ _field_short_integer, "weight", "The relative weight given to this squad spawning" },
 		{ _field_explanation, "MIN/MAX SPAWN COUNTS", "When spawning a number of squads from this wave template, try and spawn at least the minimum number, and at most the maximum number. Once these min/max bounds have been met, probabilistic distribution will continue." },
-		{ _field_char_integer, "min spawn#Spawn AT LEAST this number of squads. Value of 0 means \"no minimum\"" },
-		{ _field_char_integer, "max spawn#Spawn NO MORE THAN this number of squads. Value of 0 means \"no maximum\"" },
-		{ _field_long_enum, "placement filter#Filter where this squad specification can spawn by matching this value with the values in squad definitions in the scenario", &wave_placement_filter_enum },
+		{ _field_char_integer, "min spawn", "Spawn AT LEAST this number of squads. Value of 0 means \"no minimum\"" },
+		{ _field_char_integer, "max spawn", "Spawn NO MORE THAN this number of squads. Value of 0 means \"no maximum\"" },
+		{ _field_long_enum, "placement filter", &wave_placement_filter_enum },
 		{ _field_terminator }
 	};
 

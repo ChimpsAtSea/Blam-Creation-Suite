@@ -15,7 +15,7 @@ namespace macaque
 		"character_palette_entry",
 		CHARACTER_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference^", &character_reference$6 },
+		{ _field_tag_reference, "reference", &character_reference$6 },
 		{ _field_terminator }
 	};
 
@@ -27,8 +27,8 @@ namespace macaque
 		"ai_recording_reference_definition",
 		AI_RECORDING_REFERENCE_BLOCK_ID)
 	{
-		{ _field_string, "recording name^" },
-		{ _field_pad, "INYRGOR", 8 },
+		{ _field_string, "recording name" },
+		FIELD_PAD("INYRGOR", nullptr, 8),
 		{ _field_terminator }
 	};
 
@@ -40,7 +40,7 @@ namespace macaque
 		"s_big_battle_creature_palette_entry",
 		BIG_BATTLE_CREATURE_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference^", &big_battle_creature_reference },
+		{ _field_tag_reference, "reference", &big_battle_creature_reference },
 		{ _field_terminator }
 	};
 
@@ -54,9 +54,9 @@ namespace macaque
 	};
 	STRING_LIST(ai_sound_volume_enum, ai_sound_volume_enum_strings, _countof(ai_sound_volume_enum_strings));
 
-	TAG_REFERENCE(structureBspReferenceNonDependency, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
-
 	TAG_REFERENCE(structure_bsp_reference_non_resolving, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+
+	TAG_REFERENCE(structureBspReferenceNonDependency, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
 
 } // namespace macaque
 

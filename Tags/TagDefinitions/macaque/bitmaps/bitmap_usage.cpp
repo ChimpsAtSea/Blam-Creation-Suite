@@ -15,8 +15,8 @@ namespace macaque
 		"c_bitmap_usage",
 		BITMAP_USAGE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_real, "source gamma:0.0 to use xenon curve (default)" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_real, "source gamma", "0.0 to use xenon curve (default)" },
 		{ _field_long_enum, "bitmap curve", &bitmap_curve_enum },
 		{ _field_byte_flags, "flags", &bitmap_usage_flags_def },
 		{ _field_char_enum, "slicer", &bitmap_usage_slicer_def },

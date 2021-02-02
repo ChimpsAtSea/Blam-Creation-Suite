@@ -16,7 +16,7 @@ namespace macaque
 		BSP3D_NODES_BLOCK_STRUCT_ID,
 		3)
 	{
-		{ _field_int64_integer, "node data designator!" },
+		{ _field_int64_integer, "node data designator" },
 		{ _field_terminator }
 	};
 
@@ -29,38 +29,38 @@ namespace macaque
 		BSP3D_KD_SUPDERNODES_BLOCK_ID,
 		7)
 	{
-		{ _field_real, "plane 0*!" },
-		{ _field_real, "plane 1*!" },
-		{ _field_real, "plane 2*!" },
-		{ _field_real, "plane 3*!" },
-		{ _field_real, "plane 4*!" },
-		{ _field_real, "plane 5*!" },
-		{ _field_real, "plane 6*!" },
-		{ _field_real, "plane 7*!" },
-		{ _field_real, "plane 8*!" },
-		{ _field_real, "plane 9*!" },
-		{ _field_real, "plane10*!" },
-		{ _field_real, "plane11*!" },
-		{ _field_real, "plane12*!" },
-		{ _field_real, "plane13*!" },
-		{ _field_real, "plane14*!" },
-		{ _field_long_integer, "plane dimensions*!" },
-		{ _field_long_integer, "child index 0*!" },
-		{ _field_long_integer, "child index 1*!" },
-		{ _field_long_integer, "child index 2*!" },
-		{ _field_long_integer, "child index 3*!" },
-		{ _field_long_integer, "child index 4*!" },
-		{ _field_long_integer, "child index 5*!" },
-		{ _field_long_integer, "child index 6*!" },
-		{ _field_long_integer, "child index 7*!" },
-		{ _field_long_integer, "child index 8*!" },
-		{ _field_long_integer, "child index 9*!" },
-		{ _field_long_integer, "child index10*!" },
-		{ _field_long_integer, "child index11*!" },
-		{ _field_long_integer, "child index12*!" },
-		{ _field_long_integer, "child index13*!" },
-		{ _field_long_integer, "child index14*!" },
-		{ _field_long_integer, "child index15*!" },
+		{ _field_real, "plane 0" },
+		{ _field_real, "plane 1" },
+		{ _field_real, "plane 2" },
+		{ _field_real, "plane 3" },
+		{ _field_real, "plane 4" },
+		{ _field_real, "plane 5" },
+		{ _field_real, "plane 6" },
+		{ _field_real, "plane 7" },
+		{ _field_real, "plane 8" },
+		{ _field_real, "plane 9" },
+		{ _field_real, "plane10" },
+		{ _field_real, "plane11" },
+		{ _field_real, "plane12" },
+		{ _field_real, "plane13" },
+		{ _field_real, "plane14" },
+		{ _field_long_integer, "plane dimensions" },
+		{ _field_long_integer, "child index 0" },
+		{ _field_long_integer, "child index 1" },
+		{ _field_long_integer, "child index 2" },
+		{ _field_long_integer, "child index 3" },
+		{ _field_long_integer, "child index 4" },
+		{ _field_long_integer, "child index 5" },
+		{ _field_long_integer, "child index 6" },
+		{ _field_long_integer, "child index 7" },
+		{ _field_long_integer, "child index 8" },
+		{ _field_long_integer, "child index 9" },
+		{ _field_long_integer, "child index10" },
+		{ _field_long_integer, "child index11" },
+		{ _field_long_integer, "child index12" },
+		{ _field_long_integer, "child index13" },
+		{ _field_long_integer, "child index14" },
+		{ _field_long_integer, "child index15" },
 		{ _field_terminator }
 	};
 
@@ -73,7 +73,7 @@ namespace macaque
 		PLANES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_plane_3d, "plane*" },
+		{ _field_real_plane_3d, "plane" },
 		{ _field_terminator }
 	};
 
@@ -92,8 +92,8 @@ namespace macaque
 		BSP2D_REFERENCES_BLOCK_ID,
 		2)
 	{
-		{ _field_short_integer, "plane*" },
-		{ _field_short_integer, "bsp2d node*" },
+		{ _field_short_integer, "plane" },
+		{ _field_short_integer, "bsp2d node" },
 		{ _field_terminator }
 	};
 
@@ -106,9 +106,9 @@ namespace macaque
 		BSP2D_NODES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_plane_2d, "plane*" },
-		{ _field_short_integer, "left child*" },
-		{ _field_short_integer, "right child*" },
+		{ _field_real_plane_2d, "plane" },
+		{ _field_short_integer, "left child" },
+		{ _field_short_integer, "right child" },
 		{ _field_terminator }
 	};
 
@@ -120,13 +120,13 @@ namespace macaque
 		"collision_surface",
 		SURFACES_BLOCK_STRUCT_ID)
 	{
-		{ _field_word_integer, "plane index*" },
-		{ _field_word_integer, "first edge*" },
-		{ _field_short_integer, "material*" },
-		{ _field_short_integer, "breakable surface set*" },
-		{ _field_short_integer, "breakable surface*" },
-		{ _field_byte_flags, "flags*", &surface_flags },
-		{ _field_byte_integer, "best plane calculation vertex index *!" },
+		{ _field_word_integer, "plane index" },
+		{ _field_word_integer, "first edge" },
+		{ _field_short_integer, "material" },
+		{ _field_short_integer, "breakable surface set" },
+		{ _field_short_integer, "breakable surface" },
+		{ _field_byte_flags, "flags", &surface_flags },
+		{ _field_byte_integer, "best plane calculation vertex index " },
 		{ _field_terminator }
 	};
 
@@ -138,12 +138,12 @@ namespace macaque
 		"collision_edge",
 		EDGES_BLOCK_ID)
 	{
-		{ _field_word_integer, "start vertex*" },
-		{ _field_word_integer, "end vertex*" },
-		{ _field_word_integer, "forward edge*" },
-		{ _field_word_integer, "reverse edge*" },
-		{ _field_word_integer, "left surface*" },
-		{ _field_word_integer, "right surface*" },
+		{ _field_word_integer, "start vertex" },
+		{ _field_word_integer, "end vertex" },
+		{ _field_word_integer, "forward edge" },
+		{ _field_word_integer, "reverse edge" },
+		{ _field_word_integer, "left surface" },
+		{ _field_word_integer, "right surface" },
 		{ _field_terminator }
 	};
 
@@ -156,9 +156,9 @@ namespace macaque
 		VERTICES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_point_3d, "point*" },
-		{ _field_word_integer, "first edge*" },
-		{ _field_short_integer, "sink*!" },
+		{ _field_real_point_3d, "point" },
+		{ _field_word_integer, "first edge" },
+		{ _field_short_integer, "sink" },
 		{ _field_terminator }
 	};
 
@@ -170,15 +170,15 @@ namespace macaque
 		"collision_bsp",
 		GLOBAL_COLLISION_BSP_BLOCK_ID)
 	{
-		{ _field_block, "bsp3d nodes*", &bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes*", &planes_block },
-		{ _field_block, "leaves*", &leaves_block },
-		{ _field_block, "bsp2d references*", &bsp2d_references_block },
-		{ _field_block, "bsp2d nodes*", &bsp2d_nodes_block },
-		{ _field_block, "surfaces*", &surfaces_block },
-		{ _field_block, "edges*", &edges_block },
-		{ _field_block, "vertices*", &vertices_block },
+		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", &planes_block },
+		{ _field_block, "leaves", &leaves_block },
+		{ _field_block, "bsp2d references", &bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", &bsp2d_nodes_block },
+		{ _field_block, "surfaces", &surfaces_block },
+		{ _field_block, "edges", &edges_block },
+		{ _field_block, "vertices", &vertices_block },
 		{ _field_terminator }
 	};
 
@@ -190,15 +190,15 @@ namespace macaque
 		"large_collision_bsp",
 		GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID)
 	{
-		{ _field_block, "bsp3d nodes*", &large_bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes*", &planes_block },
-		{ _field_block, "leaves*", &large_leaves_block },
-		{ _field_block, "bsp2d references*", &large_bsp2d_references_block },
-		{ _field_block, "bsp2d nodes*", &large_bsp2d_nodes_block },
-		{ _field_block, "surfaces*", &large_surfaces_block },
-		{ _field_block, "edges*", &large_edges_block },
-		{ _field_block, "vertices*", &large_vertices_block },
+		{ _field_block, "bsp3d nodes", &large_bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", &planes_block },
+		{ _field_block, "leaves", &large_leaves_block },
+		{ _field_block, "bsp2d references", &large_bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", &large_bsp2d_nodes_block },
+		{ _field_block, "surfaces", &large_surfaces_block },
+		{ _field_block, "edges", &large_edges_block },
+		{ _field_block, "vertices", &large_vertices_block },
 		{ _field_terminator }
 	};
 
@@ -210,9 +210,9 @@ namespace macaque
 		"large_bsp3d_node",
 		LARGE_BSP3D_NODES_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane*" },
-		{ _field_long_integer, "back child*" },
-		{ _field_long_integer, "front child*" },
+		{ _field_long_integer, "plane" },
+		{ _field_long_integer, "back child" },
+		{ _field_long_integer, "front child" },
 		{ _field_terminator }
 	};
 
@@ -224,9 +224,9 @@ namespace macaque
 		"large_collision_leaf",
 		LARGE_LEAVES_BLOCK_ID)
 	{
-		{ _field_word_flags, "flags*", &leaf_flags },
-		{ _field_short_integer, "bsp2d reference count*" },
-		{ _field_long_integer, "first bsp2d reference*" },
+		{ _field_word_flags, "flags", &leaf_flags },
+		{ _field_short_integer, "bsp2d reference count" },
+		{ _field_long_integer, "first bsp2d reference" },
 		{ _field_terminator }
 	};
 
@@ -238,8 +238,8 @@ namespace macaque
 		"large_bsp2d_reference",
 		LARGE_BSP2D_REFERENCES_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane*" },
-		{ _field_long_integer, "bsp2d node*" },
+		{ _field_long_integer, "plane" },
+		{ _field_long_integer, "bsp2d node" },
 		{ _field_terminator }
 	};
 
@@ -251,9 +251,9 @@ namespace macaque
 		"large_bsp2d_node",
 		LARGE_BSP2D_NODES_BLOCK_ID)
 	{
-		{ _field_real_plane_2d, "plane*" },
-		{ _field_long_integer, "left child*" },
-		{ _field_long_integer, "right child*" },
+		{ _field_real_plane_2d, "plane" },
+		{ _field_long_integer, "left child" },
+		{ _field_long_integer, "right child" },
 		{ _field_terminator }
 	};
 
@@ -265,13 +265,13 @@ namespace macaque
 		"large_collision_surface",
 		LARGE_SURFACES_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "plane index*" },
-		{ _field_long_integer, "first edge*" },
-		{ _field_short_integer, "material*" },
-		{ _field_short_integer, "breakable surface set*" },
-		{ _field_short_integer, "breakable surface*" },
-		{ _field_byte_flags, "flags*", &surface_flags },
-		{ _field_byte_integer, "best plane calculation vertex index *!" },
+		{ _field_long_integer, "plane index" },
+		{ _field_long_integer, "first edge" },
+		{ _field_short_integer, "material" },
+		{ _field_short_integer, "breakable surface set" },
+		{ _field_short_integer, "breakable surface" },
+		{ _field_byte_flags, "flags", &surface_flags },
+		{ _field_byte_integer, "best plane calculation vertex index " },
 		{ _field_terminator }
 	};
 
@@ -283,12 +283,12 @@ namespace macaque
 		"large_collision_edge",
 		LARGE_EDGES_BLOCK_ID)
 	{
-		{ _field_long_integer, "start vertex*" },
-		{ _field_long_integer, "end vertex*" },
-		{ _field_long_integer, "forward edge*" },
-		{ _field_long_integer, "reverse edge*" },
-		{ _field_long_integer, "left surface*" },
-		{ _field_long_integer, "right surface*" },
+		{ _field_long_integer, "start vertex" },
+		{ _field_long_integer, "end vertex" },
+		{ _field_long_integer, "forward edge" },
+		{ _field_long_integer, "reverse edge" },
+		{ _field_long_integer, "left surface" },
+		{ _field_long_integer, "right surface" },
 		{ _field_terminator }
 	};
 
@@ -300,9 +300,9 @@ namespace macaque
 		"large_collision_vertex",
 		LARGE_VERTICES_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point*" },
-		{ _field_long_integer, "first edge*" },
-		{ _field_long_integer, "sink*!" },
+		{ _field_real_point_3d, "point" },
+		{ _field_long_integer, "first edge" },
+		{ _field_long_integer, "sink" },
 		{ _field_terminator }
 	};
 
@@ -313,15 +313,15 @@ namespace macaque
 		"collision_bsp",
 		GLOBAL_COLLISION_BSP_STRUCT_ID)
 	{
-		{ _field_block, "bsp3d nodes*", &bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes*", &planes_block },
-		{ _field_block, "leaves*", &leaves_block },
-		{ _field_block, "bsp2d references*", &bsp2d_references_block },
-		{ _field_block, "bsp2d nodes*", &bsp2d_nodes_block },
-		{ _field_block, "surfaces*", &surfaces_block },
-		{ _field_block, "edges*", &edges_block },
-		{ _field_block, "vertices*", &vertices_block },
+		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", &planes_block },
+		{ _field_block, "leaves", &leaves_block },
+		{ _field_block, "bsp2d references", &bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", &bsp2d_nodes_block },
+		{ _field_block, "surfaces", &surfaces_block },
+		{ _field_block, "edges", &edges_block },
+		{ _field_block, "vertices", &vertices_block },
 		{ _field_terminator }
 	};
 
@@ -333,10 +333,10 @@ namespace macaque
 		COLLISION_LEAF_STRUCT_ID,
 		2)
 	{
-		{ _field_byte_flags, "flags*", &leaf_flags },
-		{ _field_pad, "pad", 1 },
-		{ _field_word_integer, "bsp2d reference count*" },
-		{ _field_dword_integer, "first bsp2d reference*" },
+		{ _field_byte_flags, "flags", &leaf_flags },
+		FIELD_PAD("pad", nullptr, 1),
+		{ _field_word_integer, "bsp2d reference count" },
+		{ _field_dword_integer, "first bsp2d reference" },
 		{ _field_terminator }
 	};
 

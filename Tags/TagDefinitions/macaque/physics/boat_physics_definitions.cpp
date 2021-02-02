@@ -15,7 +15,7 @@ namespace macaque
 		BOAT_PHYSICS_DEFINITION_STRUCT_ID)
 	{
 		{ _field_explanation, "water hull physics", "" },
-		{ _field_real, "ground vertical extrusion#for hull surfaces that drive on ground this is how far we pretend the water is above everything physical" },
+		{ _field_real, "ground vertical extrusion", "for hull surfaces that drive on ground this is how far we pretend the water is above everything physical" },
 		{ _field_terminator }
 	};
 

@@ -33,6 +33,7 @@ namespace blofeld
 		}
 
 		s_versioned_string_list_value(
+			e_field_legacy,
 			e_field field_type,
 			const char* filename,
 			int32_t line,

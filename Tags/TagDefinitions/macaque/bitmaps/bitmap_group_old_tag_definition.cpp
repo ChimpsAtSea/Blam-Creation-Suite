@@ -15,11 +15,11 @@ namespace macaque
 		"bitmap_group_sequence",
 		BITMAP_GROUP_SEQUENCE_BLOCK_DEF_ID)
 	{
-		{ _field_string, "name^" },
-		{ _field_short_integer, "first bitmap index*" },
-		{ _field_short_integer, "bitmap count*" },
-		{ _field_pad, "OTXYKQ", 16 },
-		{ _field_block, "sprites*", &bitmap_group_sprite_block_def_block },
+		{ _field_string, "name" },
+		{ _field_short_integer, "first bitmap index" },
+		{ _field_short_integer, "bitmap count" },
+		FIELD_PAD("OTXYKQ", nullptr, 16),
+		{ _field_block, "sprites", &bitmap_group_sprite_block_def_block },
 		{ _field_terminator }
 	};
 
@@ -31,14 +31,14 @@ namespace macaque
 		"bitmap_group_sprite",
 		BITMAP_GROUP_SPRITE_BLOCK_DEF_ID)
 	{
-		{ _field_short_integer, "bitmap index*" },
-		{ _field_pad, "D", 2 },
-		{ _field_pad, "GMLJPJIMC", 4 },
-		{ _field_real, "left*" },
-		{ _field_real, "right*" },
-		{ _field_real, "top*" },
-		{ _field_real, "bottom*" },
-		{ _field_real_point_2d, "registration point*" },
+		{ _field_short_integer, "bitmap index" },
+		FIELD_PAD("D", nullptr, 2),
+		FIELD_PAD("GMLJPJIMC", nullptr, 4),
+		{ _field_real, "left" },
+		{ _field_real, "right" },
+		{ _field_real, "top" },
+		{ _field_real, "bottom" },
+		{ _field_real_point_2d, "registration point" },
 		{ _field_terminator }
 	};
 

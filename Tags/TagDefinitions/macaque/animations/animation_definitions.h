@@ -34,6 +34,8 @@ namespace macaque
 	extern s_tag_struct_definition animation_script_event_block_extended_block_struct_definition; // animation_script_event_block_extended_block
 	extern s_tag_block_definition animation_usage_block;
 	extern s_tag_struct_definition animation_usage_block_struct_definition; // animation_usage_block
+	extern s_tag_block_definition animation_graph_node_block;
+	extern s_tag_struct_definition animation_graph_node_block_struct_definition; // animation_graph_node_block
 	extern s_tag_block_definition animation_node_mask_block;
 	extern s_tag_struct_definition animation_node_mask_block_struct_definition; // animation_node_mask_block
 	extern s_tag_block_definition animation_node_mask_entry_block;
@@ -44,8 +46,6 @@ namespace macaque
 	extern s_tag_struct_definition model_animation_variant_block_struct_definition; // model_animation_variant_block
 	extern s_tag_block_definition mode_or_stance_alias_block;
 	extern s_tag_struct_definition mode_or_stance_alias_block_struct_definition; // mode_or_stance_alias_block
-	extern s_tag_block_definition animation_graph_node_block;
-	extern s_tag_struct_definition animation_graph_node_block_struct_definition; // animation_graph_node_block
 	extern s_tag_block_definition animation_blend_screen_block;
 	extern s_tag_struct_definition animation_blend_screen_block_struct_definition; // animation_blend_screen_block
 	extern s_tag_block_definition foot_tracking_member_block;

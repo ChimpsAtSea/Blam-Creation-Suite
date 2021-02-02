@@ -15,9 +15,9 @@ namespace macaque
 		"s_structure_manifest_bsp_definition",
 		STRUCTURE_MANIFEST_BSP_BLOCK_ID)
 	{
-		{ _field_struct, "build identifer*", &structure_manifest_build_identifier_struct },
-		{ _field_struct, "parent build identifer*", &structure_manifest_build_identifier_struct },
-		{ _field_long_string, "bsp name^*" },
+		{ _field_struct, "build identifer", &structure_manifest_build_identifier_struct },
+		{ _field_struct, "parent build identifer", &structure_manifest_build_identifier_struct },
+		{ _field_long_string, "bsp name" },
 		{ _field_terminator }
 	};
 
@@ -28,12 +28,12 @@ namespace macaque
 		"s_structure_manifest_build_identifier_definition",
 		STRUCTURE_MANIFEST_BUILD_IDENTIFIER_STRUCT_ID)
 	{
-		{ _field_long_integer, "manifest_id0*!" },
-		{ _field_long_integer, "manifest_id1*!" },
-		{ _field_long_integer, "manifest_id2*!" },
-		{ _field_long_integer, "manifest_id3*!" },
-		{ _field_long_integer, "build_index*" },
-		{ _field_long_integer, "structure importer version*" },
+		{ _field_long_integer, "manifest_id0" },
+		{ _field_long_integer, "manifest_id1" },
+		{ _field_long_integer, "manifest_id2" },
+		{ _field_long_integer, "manifest_id3" },
+		{ _field_long_integer, "build_index" },
+		{ _field_long_integer, "structure importer version" },
 		{ _field_terminator }
 	};
 
@@ -45,10 +45,10 @@ namespace macaque
 		STRUCTURE_MANIFEST_STRUCT_ID)
 	{
 		{ _field_explanation, "build identifer", "" },
-		{ _field_struct, "build identifer*", &structure_manifest_build_identifier_struct },
+		{ _field_struct, "build identifer", &structure_manifest_build_identifier_struct },
 		{ _field_explanation, "parent build identifier", "" },
-		{ _field_struct, "parent build identifer*#for local builds, this is the content build identifier you are based on", &structure_manifest_build_identifier_struct },
-		{ _field_block, "bsp manifest*", &structure_manifest_bsp_block },
+		{ _field_struct, "parent build identifer", &structure_manifest_build_identifier_struct },
+		{ _field_block, "bsp manifest", &structure_manifest_bsp_block },
 		{ _field_terminator }
 	};
 

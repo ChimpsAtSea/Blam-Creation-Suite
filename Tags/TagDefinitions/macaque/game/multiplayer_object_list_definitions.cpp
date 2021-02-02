@@ -29,7 +29,7 @@ namespace macaque
 		MULTIPLAYER_OBJECT_TYPE_BLOCK_ID)
 	{
 		{ _field_explanation, "WARNING", "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face." },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "object", &object_reference$6 },
 		{ _field_terminator }
 	};
@@ -66,7 +66,7 @@ namespace macaque
 		"s_multiplayer_object_remap_table",
 		MULTIPLAYER_WEAPON_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "remap table", &multiplayer_weapon_remap_table_entry_block },
 		{ _field_terminator }
 	};
@@ -92,7 +92,7 @@ namespace macaque
 		"s_multiplayer_object_remap_table",
 		MULTIPLAYER_VEHICLE_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "remap table", &multiplayer_vehicle_remap_table_entry_block },
 		{ _field_terminator }
 	};
@@ -118,7 +118,7 @@ namespace macaque
 		"s_multiplayer_object_remap_table",
 		MULTIPLAYER_EQUIPMENT_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "remap table", &multiplayer_equipment_remap_table_entry_block },
 		{ _field_terminator }
 	};
@@ -167,7 +167,7 @@ namespace macaque
 		"s_multiplayer_object_collection_entry",
 		MULTIPLAYER_OBJECT_COLLECTION_STRUCT_ID)
 	{
-		{ _field_long_block_index, "object type^" },
+		{ _field_long_block_index, "object type", &multiplayer_object_type_block },
 		{ _field_string_id, "object description" },
 		{ _field_string_id, "object header text" },
 		{ _field_string_id, "object help text" },

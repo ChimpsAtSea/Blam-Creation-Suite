@@ -6,8 +6,6 @@ namespace blofeld
 namespace macaque
 {
 
-	extern s_tag_block_definition area_reference_block;
-	extern s_tag_struct_definition area_reference_block_struct_definition; // area_reference_block
 	extern s_tag_block_definition objectives_block;
 	extern s_tag_struct_definition objectives_block_struct_definition; // objectives_block
 	extern s_tag_block_definition opposing_objective_block;
@@ -16,6 +14,8 @@ namespace macaque
 	extern s_tag_struct_definition tasks_block_struct_definition; // tasks_block
 	extern s_tag_block_definition script_fragment_block;
 	extern s_tag_struct_definition script_fragment_block_struct_definition; // script_fragment_block
+	extern s_tag_block_definition area_reference_block;
+	extern s_tag_struct_definition area_reference_block_struct_definition; // area_reference_block
 	extern s_tag_block_definition task_direction_block_v2_block;
 	extern s_tag_block_definition task_direction_point_block;
 	extern s_tag_struct_definition task_direction_point_block_struct_definition; // task_direction_point_block

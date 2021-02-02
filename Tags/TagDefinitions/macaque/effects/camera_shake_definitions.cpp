@@ -28,7 +28,7 @@ namespace macaque
 		"s_camera_impulse_globals",
 		GLOBAL_CAMERA_IMPULSE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -54,12 +54,12 @@ namespace macaque
 		"s_camera_impulse",
 		CAMERA_IMPULSE_STRUCT_ID)
 	{
-		{ _field_real, "impulse duration:seconds" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_real, "impulse duration", "seconds" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
-		{ _field_angle, "rotation:degrees" },
-		{ _field_real, "pushback:world units" },
-		{ _field_real_bounds, "jitter:world units" },
+		{ _field_angle, "rotation", "degrees" },
+		{ _field_real, "pushback", "world units" },
+		{ _field_real_bounds, "jitter", "world units" },
 		{ _field_terminator }
 	};
 
@@ -70,22 +70,22 @@ namespace macaque
 		"s_camera_shake",
 		CAMERA_SHAKE_STRUCT_ID)
 	{
-		{ _field_real, "shake duration:seconds#the effect will last for this duration." },
+		{ _field_real, "shake duration", "the effect will last for this duration.", "seconds" },
 		{ _field_explanation, "procedural camera shake", "" },
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
-		{ _field_real, "random translation:world units#random translation in all directions" },
-		{ _field_angle, "random rotation:degrees#random rotation in all directions" },
-		{ _field_real, "wobble function period:seconds" },
-		{ _field_real_fraction, "wobble weight#a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
-		{ _field_enum, "wobble function#a function to perturb the effect\'s behavior over time", &global_periodic_functions_enum },
+		{ _field_real, "random translation", "random translation in all directions", "world units" },
+		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
+		{ _field_real, "wobble function period", "seconds" },
+		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
+		{ _field_enum, "wobble function", &global_periodic_functions_enum },
 		{ _field_explanation, "animated camera shake", "" },
 		{ _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
 		{ _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },
 		{ _field_tag_reference, "animation graph", &global_animation_graph_reference },
 		{ _field_string_id, "animation name" },
-		{ _field_real, "zoom penalty linear #multiplier penalty that increases linearly with zoom over 1" },
-		{ _field_real, "zoom penalty squareroot #multiplier penalty that increases with square root of zoom over 1" },
+		{ _field_real, "zoom penalty linear ", "multiplier penalty that increases linearly with zoom over 1" },
+		{ _field_real, "zoom penalty squareroot ", "multiplier penalty that increases with square root of zoom over 1" },
 		{ _field_terminator }
 	};
 

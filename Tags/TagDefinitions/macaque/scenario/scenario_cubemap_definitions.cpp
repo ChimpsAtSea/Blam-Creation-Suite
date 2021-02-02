@@ -30,7 +30,7 @@ namespace macaque
 		CUBEMAP_REFERENCE_POINTS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "reference point" },
-		{ _field_long_integer, "point index!" },
+		{ _field_long_integer, "point index" },
 		{ _field_terminator }
 	};
 
@@ -42,11 +42,11 @@ namespace macaque
 		"s_scenario_cubemap_info",
 		SCENARIO_CUBEMAP_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
-		{ _field_pad, "post-cubemap-resolution-pad", 2 },
+		FIELD_PAD("post-cubemap-resolution-pad", nullptr, 2),
 		{ _field_explanation, "bsps it could belong to", "empty masks mean automatic selection." },
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_block, "reference points", &cubemap_reference_points_block },

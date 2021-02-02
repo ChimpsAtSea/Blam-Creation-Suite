@@ -15,45 +15,45 @@ namespace macaque
 		"s_scenario_designer_zone",
 		SCENARIO_DESIGNER_ZONE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_block, "references*", &scenarioDesignerZoneTagReferenceBlock_block },
-		FIELD_CUSTOM("biped", _custom_field_block_index_flags),
+		{ _field_string_id, "name" },
+		{ _field_block, "references", &scenarioDesignerZoneTagReferenceBlock_block },
+		FIELD_CUSTOM("biped", nullptr, _field_id_block_index_flags),
 		{ _field_block, "biped", &biped_block_index_flags_block },
-		FIELD_CUSTOM("vehicle", _custom_field_block_index_flags),
+		FIELD_CUSTOM("vehicle", nullptr, _field_id_block_index_flags),
 		{ _field_block, "vehicle", &vehicle_block_index_flags_block },
-		FIELD_CUSTOM("weapon", _custom_field_block_index_flags),
+		FIELD_CUSTOM("weapon", nullptr, _field_id_block_index_flags),
 		{ _field_block, "weapon", &weapon_block_index_flags_block },
-		FIELD_CUSTOM("equipment", _custom_field_block_index_flags),
+		FIELD_CUSTOM("equipment", nullptr, _field_id_block_index_flags),
 		{ _field_block, "equipment", &equipment_block_index_flags_block },
-		FIELD_CUSTOM("scenery", _custom_field_block_index_flags),
+		FIELD_CUSTOM("scenery", nullptr, _field_id_block_index_flags),
 		{ _field_block, "scenery", &scenery_block_index_flags_block },
-		FIELD_CUSTOM("machine", _custom_field_block_index_flags),
+		FIELD_CUSTOM("machine", nullptr, _field_id_block_index_flags),
 		{ _field_block, "machine", &machine_block_index_flags_block },
-		FIELD_CUSTOM("terminal", _custom_field_block_index_flags),
+		FIELD_CUSTOM("terminal", nullptr, _field_id_block_index_flags),
 		{ _field_block, "terminal", &terminal_block_index_flags_block },
-		FIELD_CUSTOM("control", _custom_field_block_index_flags),
+		FIELD_CUSTOM("control", nullptr, _field_id_block_index_flags),
 		{ _field_block, "control", &control_block_index_flags_block },
-		FIELD_CUSTOM("dispenser", _custom_field_block_index_flags),
+		FIELD_CUSTOM("dispenser", nullptr, _field_id_block_index_flags),
 		{ _field_block, "dispenser", &dispenser_block_index_flags_block },
-		FIELD_CUSTOM("sound_scenery", _custom_field_block_index_flags),
+		FIELD_CUSTOM("sound_scenery", nullptr, _field_id_block_index_flags),
 		{ _field_block, "sound_scenery", &sound_scenery_block_index_flags_block },
-		FIELD_CUSTOM("crate", _custom_field_block_index_flags),
+		FIELD_CUSTOM("crate", nullptr, _field_id_block_index_flags),
 		{ _field_block, "crate", &crate_block_index_flags_block },
-		FIELD_CUSTOM("creature", _custom_field_block_index_flags),
+		FIELD_CUSTOM("creature", nullptr, _field_id_block_index_flags),
 		{ _field_block, "creature", &creature_block_index_flags_block },
-		FIELD_CUSTOM("giant", _custom_field_block_index_flags),
+		FIELD_CUSTOM("giant", nullptr, _field_id_block_index_flags),
 		{ _field_block, "giant", &giant_block_index_flags_block },
-		FIELD_CUSTOM("effect_scenery", _custom_field_block_index_flags),
+		FIELD_CUSTOM("effect_scenery", nullptr, _field_id_block_index_flags),
 		{ _field_block, "effect_scenery", &effect_scenery_block_index_flags_block },
-		FIELD_CUSTOM("character", _custom_field_block_index_flags),
+		FIELD_CUSTOM("character", nullptr, _field_id_block_index_flags),
 		{ _field_block, "character", &character_block_index_flags_block },
-		FIELD_CUSTOM("spawner", _custom_field_block_index_flags),
+		FIELD_CUSTOM("spawner", nullptr, _field_id_block_index_flags),
 		{ _field_block, "spawner", &spawner_block_index_flags_block },
-		FIELD_CUSTOM("budget_reference", _custom_field_block_index_flags),
+		FIELD_CUSTOM("budget_reference", nullptr, _field_id_block_index_flags),
 		{ _field_block, "budget_reference", &budget_reference_block_index_flags_block },
-		FIELD_CUSTOM("bink", _custom_field_block_index_flags),
+		FIELD_CUSTOM("bink", nullptr, _field_id_block_index_flags),
 		{ _field_block, "bink", &bink_block_index_flags_block },
-		{ _field_block, "resource dependencies*!", &scenarioDesignerResourceDependenciesBlock_block },
+		{ _field_block, "resource dependencies", &scenarioDesignerResourceDependenciesBlock_block },
 		{ _field_terminator }
 	};
 
@@ -65,7 +65,7 @@ namespace macaque
 		"DesignerZoneTagReference",
 		SCENARIODESIGNERZONETAGREFERENCEBLOCK_ID)
 	{
-		{ _field_tag_reference, "tag^", &scenarioDesignerZoneTagReferenceBlock_tag_reference },
+		{ _field_tag_reference, "tag", &scenarioDesignerZoneTagReferenceBlock_tag_reference },
 		{ _field_terminator }
 	};
 
@@ -77,7 +77,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		BIPED_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_biped_palette_block },
 		{ _field_terminator }
 	};
 
@@ -89,7 +89,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_vehicle_palette_block },
 		{ _field_terminator }
 	};
 
@@ -101,7 +101,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		WEAPON_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_weapon_palette_block },
 		{ _field_terminator }
 	};
 
@@ -113,7 +113,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_equipment_palette_block },
 		{ _field_terminator }
 	};
 
@@ -125,7 +125,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -137,7 +137,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_machine_palette_block },
 		{ _field_terminator }
 	};
 
@@ -149,7 +149,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		TERMINAL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_terminal_palette_block },
 		{ _field_terminator }
 	};
 
@@ -161,7 +161,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_control_palette_block },
 		{ _field_terminator }
 	};
 
@@ -173,7 +173,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		DISPENSER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &ScenarioDispenserPaletteBlock_block },
 		{ _field_terminator }
 	};
 
@@ -185,7 +185,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		SOUND_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_sound_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -197,7 +197,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_crate_palette_block },
 		{ _field_terminator }
 	};
 
@@ -209,7 +209,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		CREATURE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_creature_palette_block },
 		{ _field_terminator }
 	};
 
@@ -221,7 +221,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_giant_palette_block },
 		{ _field_terminator }
 	};
 
@@ -233,7 +233,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		EFFECT_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_effect_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -245,7 +245,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &character_palette_block },
 		{ _field_terminator }
 	};
 
@@ -257,7 +257,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		SPAWNER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_spawner_palette_block },
 		{ _field_terminator }
 	};
 
@@ -269,7 +269,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		BUDGET_REFERENCE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &scenario_budget_references_block },
 		{ _field_terminator }
 	};
 
@@ -281,7 +281,7 @@ namespace macaque
 		"s_scenario_designer_zone_palette_index_flag",
 		BINK_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index^" },
+		{ _field_short_block_index, "palette index", &binkPaletteBlock_block },
 		{ _field_terminator }
 	};
 
@@ -293,7 +293,7 @@ namespace macaque
 		"s_tag_reference",
 		SCENARIODESIGNERRESOURCEDEPENDENCIESBLOCK_ID)
 	{
-		{ _field_tag_reference, "tag^", &scenarioDesignerResourceDependenciesBlock_tag_reference },
+		{ _field_tag_reference, "tag", &scenarioDesignerResourceDependenciesBlock_tag_reference },
 		{ _field_terminator }
 	};
 

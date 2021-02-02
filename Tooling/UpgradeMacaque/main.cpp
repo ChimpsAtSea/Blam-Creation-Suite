@@ -44,36 +44,38 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 			c_console::write_line_verbose("--------------------------------");
 			break;
 		}
-		else
+
+		c_blamlib_string_parser blofeld_string_parser = c_blamlib_string_parser(blofeld_field->name);
+
+		
+
+		switch (macaque_field->field_type)
 		{
-			switch (macaque_field->field_type)
-			{
-			case _field_block:
-			{
-				validate_structure_definition(&blofeld_field->block_definition->struct_definition, &macaque_field->block_definition->struct_definition);
-				break;
-			}
-			case _field_struct:
-			{
-				validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
-				break;
-			}
-			case _field_array:
-			{
-				validate_structure_definition(&blofeld_field->array_definition->struct_definition, &macaque_field->array_definition->struct_definition);
-				break;
-			}
-			case _field_pageable:
-			{
-				validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
-				break;
-			}
-			case _field_api_interop:
-			{
-				validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
-				break;
-			}
-			}
+		case _field_block:
+		{
+			validate_structure_definition(&blofeld_field->block_definition->struct_definition, &macaque_field->block_definition->struct_definition);
+			break;
+		}
+		case _field_struct:
+		{
+			validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
+			break;
+		}
+		case _field_array:
+		{
+			validate_structure_definition(&blofeld_field->array_definition->struct_definition, &macaque_field->array_definition->struct_definition);
+			break;
+		}
+		case _field_pageable:
+		{
+			validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
+			break;
+		}
+		case _field_api_interop:
+		{
+			validate_structure_definition(blofeld_field->struct_definition, macaque_field->struct_definition);
+			break;
+		}
 		}
 	} while (blofeld_field++->field_type != _field_terminator && macaque_field++->field_type != _field_terminator);
 };

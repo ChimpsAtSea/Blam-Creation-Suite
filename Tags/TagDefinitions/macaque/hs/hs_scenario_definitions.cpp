@@ -22,8 +22,8 @@ namespace macaque
 		"hs_source_file",
 		HSC_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string, "name*" },
-		{ _field_data, "source*" },
+		{ _field_string, "name" },
+		{ _field_data, "source" },
 		{ _field_long_flags, "flags", &hs_source_file_flags },
 		{ _field_terminator }
 	};
@@ -36,7 +36,7 @@ namespace macaque
 		"s_tag_reference",
 		HS_REFERENCES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference*^", &hs_references_block_reference_reference },
+		{ _field_tag_reference, "reference", &hs_references_block_reference_reference },
 		{ _field_terminator }
 	};
 
@@ -48,11 +48,11 @@ namespace macaque
 		"hs_script",
 		HS_SCRIPTS_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_enum, "script type*", &hs_script_types_enum },
-		{ _field_word_flags, "script flags*", &scriptFlagsEnumDefinition },
-		{ _field_long_enum, "return type*", &hs_types_enum },
-		{ _field_long_integer, "root expression index*" },
+		{ _field_string_id, "name" },
+		{ _field_enum, "script type", &hs_script_types_enum },
+		{ _field_word_flags, "script flags", &scriptFlagsEnumDefinition },
+		{ _field_long_enum, "return type", &hs_types_enum },
+		{ _field_long_integer, "root expression index" },
 		{ _field_long_integer, "locals stack space" },
 		{ _field_block, "parameters", &hs_script_parameters_block },
 		{ _field_terminator }
@@ -66,8 +66,8 @@ namespace macaque
 		"hs_script_parameter",
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_string, "name^*" },
-		{ _field_long_enum, "return type*", &hs_types_enum },
+		{ _field_string, "name" },
+		{ _field_long_enum, "return type", &hs_types_enum },
 		{ _field_terminator }
 	};
 
@@ -79,9 +79,9 @@ namespace macaque
 		"HSInternalGlobal",
 		HS_GLOBALS_BLOCK_ID)
 	{
-		{ _field_string_id, "name*" },
-		{ _field_long_enum, "type*", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index*" },
+		{ _field_string_id, "name" },
+		{ _field_long_enum, "type", &hs_types_enum },
+		{ _field_long_integer, "initialization expression index" },
 		{ _field_terminator }
 	};
 
@@ -93,9 +93,9 @@ namespace macaque
 		"HSInternalInstanced",
 		HSINSTANCEDVARIABLESBLOCK_ID)
 	{
-		{ _field_string_id, "name*" },
-		{ _field_long_enum, "type*", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index*" },
+		{ _field_string_id, "name" },
+		{ _field_long_enum, "type", &hs_types_enum },
+		{ _field_long_integer, "initialization expression index" },
 		{ _field_terminator }
 	};
 
@@ -107,9 +107,9 @@ namespace macaque
 		"s_hs_unit_seat_mapping",
 		HS_UNIT_SEAT_BLOCK_ID)
 	{
-		{ _field_long_integer, "unit definition tag index!" },
-		{ _field_long_integer, "unit seats!" },
-		{ _field_long_integer, "unit seats2!" },
+		{ _field_long_integer, "unit definition tag index" },
+		{ _field_long_integer, "unit seats" },
+		{ _field_long_integer, "unit seats2" },
 		{ _field_terminator }
 	};
 
@@ -121,7 +121,7 @@ namespace macaque
 		"HSSyntaxNode",
 		HS_SYNTAX_DATUM_BLOCK_ID)
 	{
-		{ _field_short_integer, "datum header~" },
+		{ _field_short_integer, "datum header" },
 		{ _field_short_integer, "script index/function index/constant type union" },
 		{ _field_long_integer, "next node" },
 		{ _field_long_integer, "source data" },
@@ -141,9 +141,9 @@ namespace macaque
 		"HSImportManifest",
 		HSIMPORTMANIFESTBLOCK_ID)
 	{
-		{ _field_tag, "callee tag*" },
-		{ _field_block, "script table*", &HSImportManifestEntryBlock_block },
-		{ _field_block, "variable table*", &HSImportManifestEntryBlock_block },
+		{ _field_tag, "callee tag" },
+		{ _field_block, "script table", &HSImportManifestEntryBlock_block },
+		{ _field_block, "variable table", &HSImportManifestEntryBlock_block },
 		{ _field_terminator }
 	};
 
@@ -155,9 +155,9 @@ namespace macaque
 		"HSImportManifestEntry",
 		HSIMPORTMANIFESTENTRYBLOCK_ID)
 	{
-		{ _field_string_id, "script name*" },
-		{ _field_long_integer, "argCount*" },
-		{ _field_long_integer, "index!~" },
+		{ _field_string_id, "script name" },
+		{ _field_long_integer, "argCount" },
+		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 

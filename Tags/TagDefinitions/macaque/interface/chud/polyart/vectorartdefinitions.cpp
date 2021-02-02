@@ -15,18 +15,18 @@ namespace macaque
 		"VectorartAsset",
 		VECTORART_ASSET_STRUCT_DEFINITION_ID)
 	{
-		{ _field_char_enum, "runtime flags*!", &g_polyartAssetStateFlags },
-		{ _field_pad, "MERP", 3 },
+		{ _field_char_enum, "runtime flags", &g_polyartAssetStateFlags },
+		FIELD_PAD("MERP", nullptr, 3),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_real, "import fudge factor (suggested 0.5)" },
-		{ _field_real_point_2d, "bounds*" },
+		{ _field_real_point_2d, "bounds" },
 		{ _field_real, "curve smoothness" },
-		{ _field_block, "vertices*", &polyartVertexBlock_block },
-		{ _field_block, "indices*", &polyartIndexBlock_block },
-		{ _field_block, "pc vertex buffers*", &vertexBuffersBlock_block },
-		{ _field_block, "pc index buffers*", &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop*", &vectorartVertexBufferDescriptorStruct },
-		{ _field_api_interop, "index buffer interop*", &polyartIndexBufferDescriptorStruct },
+		{ _field_block, "vertices", &polyartVertexBlock_block },
+		{ _field_block, "indices", &polyartIndexBlock_block },
+		{ _field_block, "pc vertex buffers", &vertexBuffersBlock_block },
+		{ _field_block, "pc index buffers", &indexBuffersBlock_block },
+		{ _field_api_interop, "vertex buffer interop", &vectorartVertexBufferDescriptorStruct },
+		{ _field_api_interop, "index buffer interop", &polyartIndexBufferDescriptorStruct },
 		{ _field_terminator }
 	};
 
@@ -44,7 +44,7 @@ namespace macaque
 		"VectorartVertexBufferDescriptor",
 		VECTORARTVERTEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "vertices*" },
+		{ _field_data, "vertices" },
 		{ _field_terminator }
 	};
 

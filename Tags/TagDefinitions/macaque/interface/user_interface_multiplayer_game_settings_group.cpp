@@ -55,7 +55,7 @@ namespace macaque
 		VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_long_enum, "setting category^", &game_engine_settings },
+		{ _field_long_enum, "setting category", &game_engine_settings },
 		{ _field_block, "options", &variant_option_block },
 		{ _field_terminator }
 	};
@@ -92,7 +92,7 @@ namespace macaque
 	{
 		{ _field_string_id, "property name" },
 		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_pad, "blug", 3 },
+		FIELD_PAD("blug", nullptr, 3),
 		{ _field_block, "allowed values", &text_value_pair_reference_block },
 		{ _field_terminator }
 	};
@@ -106,7 +106,7 @@ namespace macaque
 		TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &text_value_pair_flags },
-		{ _field_pad, "grug", 3 },
+		FIELD_PAD("grug", nullptr, 3),
 		{ _field_long_integer, "enumerated value" },
 		{ _field_real, "real value" },
 		{ _field_string_id, "string_id value" },
@@ -149,7 +149,7 @@ namespace macaque
 		{ _field_string_id, "name" },
 		{ _field_string_id, "description text" },
 		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_pad, "shrug", 3 },
+		FIELD_PAD("shrug", nullptr, 3),
 		{ _field_block, "text value pairs", &text_value_pair_reference_block },
 		{ _field_terminator }
 	};

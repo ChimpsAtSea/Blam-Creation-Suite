@@ -15,14 +15,14 @@ namespace macaque
 		"collision_model_definition",
 		COLLISION_MODEL_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "import_info_checksum*!" },
-		{ _field_block, "errors*", &global_error_report_categories_block },
-		{ _field_long_flags, "flags*", &collision_model_flags },
-		{ _field_block, "materials*", &collision_model_material_block },
-		{ _field_block, "regions*", &collision_model_region_block },
-		{ _field_block, "cookie cutters*", &collision_model_region_block },
-		{ _field_block, "pathfinding spheres*", &collision_model_pathfinding_sphere_block },
-		{ _field_block, "nodes*", &collision_model_node_block },
+		{ _field_long_integer, "import_info_checksum" },
+		{ _field_block, "errors", &global_error_report_categories_block },
+		{ _field_long_flags, "flags", &collision_model_flags },
+		{ _field_block, "materials", &collision_model_material_block },
+		{ _field_block, "regions", &collision_model_region_block },
+		{ _field_block, "cookie cutters", &collision_model_region_block },
+		{ _field_block, "pathfinding spheres", &collision_model_pathfinding_sphere_block },
+		{ _field_block, "nodes", &collision_model_node_block },
 		{ _field_pageable, "regions resource", &collision_model_resource_struct },
 		{ _field_terminator }
 	};
@@ -42,7 +42,7 @@ namespace macaque
 		"collision_model_material",
 		COLLISION_MODEL_MATERIAL_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
@@ -54,8 +54,8 @@ namespace macaque
 		"collision_model_region",
 		COLLISION_MODEL_REGION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_block, "permutations*", &collision_model_permutation_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "permutations", &collision_model_permutation_block },
 		{ _field_terminator }
 	};
 
@@ -67,12 +67,12 @@ namespace macaque
 		"collision_model_permutation_block",
 		COLLISION_MODEL_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_short_integer, "resourceBspOffset*!" },
-		{ _field_short_integer, "resourceBspCount*!" },
-		{ _field_block, "bsps*", &collision_model_bsp_block },
-		{ _field_block, "bsp_physics*", &collision_bsp_physics_block },
-		{ _field_block, "mopp_codes*", &mopp_code_definition_block },
+		{ _field_string_id, "name" },
+		{ _field_short_integer, "resourceBspOffset" },
+		{ _field_short_integer, "resourceBspCount" },
+		{ _field_block, "bsps", &collision_model_bsp_block },
+		{ _field_block, "bsp_physics", &collision_bsp_physics_block },
+		{ _field_block, "mopp_codes", &mopp_code_definition_block },
 		{ _field_terminator }
 	};
 
@@ -90,11 +90,11 @@ namespace macaque
 		"collision_model_pathfinding_sphere",
 		COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node*" },
+		{ _field_short_block_index, "node", &collision_model_node_block },
 		{ _field_word_flags, "flags", &pathfinding_sphere_flags },
-		{ _field_useless_pad },
-		{ _field_real_point_3d, "center*" },
-		{ _field_real, "radius*" },
+		{ _field_useless_pad, "" },
+		{ _field_real_point_3d, "center" },
+		{ _field_real, "radius" },
 		{ _field_terminator }
 	};
 
@@ -106,11 +106,11 @@ namespace macaque
 		"collision_model_node_block",
 		COLLISION_MODEL_NODE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_pad, "PFPPD", 2 },
-		{ _field_short_block_index, "parent node*" },
-		{ _field_short_block_index, "next sibling node*" },
-		{ _field_short_block_index, "first child node*" },
+		{ _field_string_id, "name" },
+		FIELD_PAD("PFPPD", nullptr, 2),
+		{ _field_short_block_index, "parent node", &collision_model_node_block },
+		{ _field_short_block_index, "next sibling node", &collision_model_node_block },
+		{ _field_short_block_index, "first child node", &collision_model_node_block },
 		{ _field_terminator }
 	};
 
@@ -127,10 +127,10 @@ namespace macaque
 		"collision_model_bsp",
 		COLLISION_MODEL_BSP_STRUCT_ID)
 	{
-		{ _field_short_integer, "node index*" },
-		{ _field_pad, "KXGCEIEI", 2 },
-		{ _field_useless_pad },
-		{ _field_struct, "bsp*", &global_collision_bsp_struct },
+		{ _field_short_integer, "node index" },
+		FIELD_PAD("KXGCEIEI", nullptr, 2),
+		{ _field_useless_pad, "" },
+		{ _field_struct, "bsp", &global_collision_bsp_struct },
 		{ _field_terminator }
 	};
 

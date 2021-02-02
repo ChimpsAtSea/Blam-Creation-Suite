@@ -15,14 +15,11 @@ namespace macaque
 		"s_ai_cue_template_definition",
 		AI_CUE_TEMPLATE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
-
-		{ _field_version_greater, _engine_type_haloreach },
+		{ _field_string_id, "name" },
 		{ _field_long_flags, "template_flags", &cue_template_flags },
-
-		{ _field_block, "firing points", &firing_point_payload_block_block },
-		{ _field_block, "stimulus", &stimulus_payload_block_block },
-		{ _field_block, "combat cue", &combat_cue_payload_block_block },
+		{ _field_block, "firing points", &firing_point_payload_block },
+		{ _field_block, "stimulus", &stimulus_payload_block },
+		{ _field_block, "combat cue", &combat_cue_payload_block },
 		{ _field_terminator }
 	};
 
@@ -58,21 +55,21 @@ namespace macaque
 		"s_cue_payload_combat_cue",
 		COMBAT_CUE_PAYLOAD_BLOCK_STRUCT_ID)
 	{
-		{ _field_real_point_3d, "position!" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_word_flags, "flags!", &g_firing_position_flags },
-		{ _field_word_flags, "posture flags!", &g_firing_position_posture_flags },
-		{ _field_short_block_index, "area^!" },
-		{ _field_short_integer, "cluster index!" },
-		{ _field_short_integer, "cluster bsp*" },
-		{ _field_char_integer, "bits and pad!" },
-		{ _field_pad, "PAD1", 1 },
-		{ _field_real_euler_angles_2d, "normal!" },
-		{ _field_angle, "facing!" },
-		{ _field_long_integer, "lastAbsoluteRejectionGameTime!" },
+		{ _field_real_point_3d, "position" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_word_flags, "flags", &g_firing_position_flags },
+		{ _field_word_flags, "posture flags", &g_firing_position_posture_flags },
+		{ _field_short_block_index, "area", &areas_block },
+		{ _field_short_integer, "cluster index" },
+		{ _field_short_integer, "cluster bsp" },
+		{ _field_char_integer, "bits and pad" },
+		FIELD_PAD("PAD1", nullptr, 1),
+		{ _field_real_euler_angles_2d, "normal" },
+		{ _field_angle, "facing" },
+		{ _field_long_integer, "lastAbsoluteRejectionGameTime" },
 		{ _field_enum, "preference", &combat_cue_preference_enum },
-		{ _field_pad, "post-preference", 2 },
+		FIELD_PAD("post-preference", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -84,22 +81,22 @@ namespace macaque
 		"s_ai_cue_definition",
 		AI_CUE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &cue_flags },
-		{ _field_char_integer, "quick cue*!" },
-		{ _field_short_integer, "editor folder!" },
-		{ _field_real_point_3d, "position!" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
+		{ _field_char_integer, "quick cue" },
+		{ _field_short_integer, "editor folder" },
+		{ _field_real_point_3d, "position" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", "degrees" },
 		{ _field_real, "roll" },
-		FIELD_CUSTOM("distribution", _custom_field_function_group_begin),
+		FIELD_CUSTOM("distribution", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("payload", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("payload", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_pad, "no-cue-definition-index", 4 },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_PAD("no-cue-definition-index", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -111,7 +108,7 @@ namespace macaque
 		"s_stimulus_distribution_task",
 		TASK_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "objective" },
+		{ _field_short_block_index, "objective", &objectives_block },
 		{ _field_custom_short_block_index, "task" },
 		{ _field_terminator }
 	};
@@ -126,7 +123,7 @@ namespace macaque
 	{
 		{ _field_real, "radius" },
 		{ _field_short_integer, "travel time (ticks)" },
-		{ _field_pad, "post-travel-time", 2 },
+		FIELD_PAD("post-travel-time", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -150,9 +147,9 @@ namespace macaque
 		"s_stimulus_distribution_character",
 		CHARACTER_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "character" },
+		{ _field_short_block_index, "character", &character_palette_block },
 		{ _field_byte_flags, "flags", &distribution_character_flags },
-		{ _field_pad, "post-flags", 1 },
+		FIELD_PAD("post-flags", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -164,8 +161,8 @@ namespace macaque
 		"s_stimulus_distribution_weapon",
 		WEAPON_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "weapon" },
-		{ _field_pad, "post-weapon-palette-index", 2 },
+		{ _field_short_block_index, "weapon", &scenario_weapon_palette_block },
+		FIELD_PAD("post-weapon-palette-index", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -190,7 +187,7 @@ namespace macaque
 		COMBAT_SYNC_ACTION_GROUP_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "sync action group name" },
-		{ _field_real, "cooldown#seconds" },
+		{ _field_real, "cooldown", "seconds" },
 		{ _field_terminator }
 	};
 
@@ -202,24 +199,24 @@ namespace macaque
 		"s_ai_cue_definition",
 		AI_FULL_CUE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &cue_flags },
-		{ _field_char_integer, "quick cue*!" },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
+		{ _field_char_integer, "quick cue" },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real_euler_angles_2d, "facing!" },
-		{ _field_real, "roll!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real_euler_angles_2d, "facing" },
+		{ _field_real, "roll" },
 		{ _field_explanation, "Distribution", "The following blocks describe who will receive this cue." },
-		FIELD_CUSTOM("distribution", _custom_field_function_group_begin),
+		FIELD_CUSTOM("distribution", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_explanation, "Payload", "The following blocks describe the type of stimulus and related payload; you should only specify one." },
-		FIELD_CUSTOM("payload", _custom_field_function_group_begin),
+		FIELD_CUSTOM("payload", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_long_block_index, "cue definition index!" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		{ _field_long_block_index, "cue definition index", &ai_cue_block },
 		{ _field_terminator }
 	};
 
@@ -231,20 +228,20 @@ namespace macaque
 		"s_ai_quick_cue_definition",
 		AI_QUICK_CUE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &quick_cue_flags },
-		{ _field_pad, "post-flags", 1 },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
+		FIELD_PAD("post-flags", nullptr, 1),
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real_euler_angles_2d, "facing!" },
-		{ _field_real, "roll!" },
-		{ _field_block, "tasks*!", &task_distribution_block },
-		{ _field_short_block_index, "character" },
-		{ _field_short_block_index, "weapon" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real_euler_angles_2d, "facing" },
+		{ _field_real, "roll" },
+		{ _field_block, "tasks", &task_distribution_block },
+		{ _field_short_block_index, "character", &character_palette_block },
+		{ _field_short_block_index, "weapon", &scenario_weapon_palette_block },
 		{ _field_string_id, "template" },
-		{ _field_long_block_index, "cue definition index!" },
+		{ _field_long_block_index, "cue definition index", &ai_cue_block },
 		{ _field_terminator }
 	};
 
@@ -255,7 +252,7 @@ namespace macaque
 		"s_ai_cue_distribution",
 		CUE_DISTRIBUTION_STRUCT_ID)
 	{
-		{ _field_block, "tasks*!", &task_distribution_block },
+		{ _field_block, "tasks", &task_distribution_block },
 		{ _field_struct, "distribution", &cue_stimulus_distribution_struct },
 		{ _field_terminator }
 	};

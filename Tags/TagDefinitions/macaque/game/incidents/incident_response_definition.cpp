@@ -15,13 +15,13 @@ namespace macaque
 		"s_game_incident_response",
 		GAME_INCIDENT_RESPONSE_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("allowed game modes", _custom_field_function_group_begin),
+		FIELD_CUSTOM("allowed game modes", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("allowed campaign and firefight", _custom_field_function_group_begin),
-		{ _field_string_id, "allowed level name#Can only be triggered on this level." },
-		{ _field_long_flags, "required skulls#These skulls must be enabled to trigger.", &skull_flags_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("allowed campaign and firefight", nullptr, _field_id_function_group_begin),
+		{ _field_string_id, "allowed level name", "Can only be triggered on this level." },
+		{ _field_long_flags, "required skulls", &skull_flags_definition },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_long_integer, "heat award" },
 		{ _field_string_id, "game engine event" },
 		{ _field_string_id, "medal" },
@@ -30,8 +30,8 @@ namespace macaque
 		{ _field_string_id, "avatar award" },
 		{ _field_block, "challenges", &game_incident_daily_challenge_to_increment_block },
 		{ _field_string_id, "hs script" },
-		{ _field_short_integer, "internal hs script index!*~" },
-		{ _field_pad, "VHSLKJNE", 2 },
+		{ _field_short_integer, "internal hs script index" },
+		FIELD_PAD("VHSLKJNE", nullptr, 2),
 		{ _field_block, "fanfare", &specialized_incident_fanfare_block },
 		{ _field_tag_reference, "sound response", &sound_incident_response_group_reference },
 		{ _field_terminator }
@@ -45,7 +45,7 @@ namespace macaque
 		"s_daily_challenge_to_increment",
 		GAME_INCIDENT_DAILY_CHALLENGE_TO_INCREMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "daily challenge^" },
+		{ _field_string_id, "daily challenge" },
 		{ _field_terminator }
 	};
 
@@ -57,11 +57,11 @@ namespace macaque
 		"IncidentFanfareImplementDefinition",
 		SPECIALIZED_INCIDENT_FANFARE_BLOCK_ID)
 	{
-		{ _field_long_integer, "priority#0 is highest prioroty" },
+		{ _field_long_integer, "priority", "0 is highest prioroty" },
 		{ _field_char_enum, "queue type", &incident_fanfare_queue_type },
 		{ _field_byte_flags, "excluded audience", &incident_fanfare_event_input_enum_definition },
 		{ _field_byte_flags, "broad cast message", &incident_fanfare_event_flags_definition },
-		{ _field_pad, "PADME", 1 },
+		FIELD_PAD("PADME", nullptr, 1),
 		{ _field_string_id, "fanfare string" },
 		{ _field_short_integer, "fanfare sprite index" },
 		{ _field_short_integer, "display time in seconds" },

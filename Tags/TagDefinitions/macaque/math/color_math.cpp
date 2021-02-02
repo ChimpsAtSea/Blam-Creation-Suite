@@ -15,7 +15,7 @@ namespace macaque
 		"short",
 		HALF_SH_TERMS_ID)
 	{
-		{ _field_short_integer, "coefficient*" },
+		{ _field_short_integer, "coefficient" },
 		{ _field_terminator }
 	};
 

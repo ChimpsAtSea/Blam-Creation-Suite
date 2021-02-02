@@ -6,8 +6,8 @@ namespace blofeld
 
 	V5_TAG_BLOCK(g_null_block, 0)
 	{
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	TAG_REFERENCE(g_non_traversed_reference_definition);

@@ -16,12 +16,12 @@ namespace macaque
 		SCENARIO_DECORATOR_BLOCK_ID)
 	{
 		{ _field_struct, "brush", &decorator_brush_struct },
-		{ _field_long_integer, "decorator count*" },
-		{ _field_long_integer, "current bsp count*" },
-		{ _field_real_vector_3d, "global offset!" },
-		{ _field_real_vector_3d, "global x!" },
-		{ _field_real_vector_3d, "global y!" },
-		{ _field_real_vector_3d, "global z!" },
+		{ _field_long_integer, "decorator count" },
+		{ _field_long_integer, "current bsp count" },
+		{ _field_real_vector_3d, "global offset" },
+		{ _field_real_vector_3d, "global x" },
+		{ _field_real_vector_3d, "global y" },
+		{ _field_real_vector_3d, "global z" },
 		{ _field_block, "palette", &decorator_palette_block },
 		{ _field_block, "sets", &decorator_scenario_set_block },
 		{ _field_terminator }
@@ -35,22 +35,22 @@ namespace macaque
 		"s_decorator_palette",
 		DECORATOR_PALETTE_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_short_block_index, "decorator set 0" },
+		{ _field_string_id, "name" },
+		{ _field_short_block_index, "decorator set 0", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 0" },
-		{ _field_short_block_index, "decorator set 1" },
+		{ _field_short_block_index, "decorator set 1", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 1" },
-		{ _field_short_block_index, "decorator set 2" },
+		{ _field_short_block_index, "decorator set 2", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 2" },
-		{ _field_short_block_index, "decorator set 3" },
+		{ _field_short_block_index, "decorator set 3", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 3" },
-		{ _field_short_block_index, "decorator set 4" },
+		{ _field_short_block_index, "decorator set 4", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 4" },
-		{ _field_short_block_index, "decorator set 5" },
+		{ _field_short_block_index, "decorator set 5", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 5" },
-		{ _field_short_block_index, "decorator set 6" },
+		{ _field_short_block_index, "decorator set 6", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 6" },
-		{ _field_short_block_index, "decorator set 7" },
+		{ _field_short_block_index, "decorator set 7", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 7" },
 		{ _field_terminator }
 	};
@@ -63,8 +63,8 @@ namespace macaque
 		"s_decorator_scenario_set_placements",
 		DECORATOR_SCENARIO_SET_BLOCK_ID)
 	{
-		{ _field_tag_reference, "decorator set^", &global_decorator_set_reference },
-		{ _field_block, "placements*", &global_decorator_placement_block },
+		{ _field_tag_reference, "decorator set", &global_decorator_set_reference },
+		{ _field_block, "placements", &global_decorator_placement_block },
 		{ _field_terminator }
 	};
 
@@ -86,9 +86,9 @@ namespace macaque
 		{ _field_real_point_3d, "tint color" },
 		{ _field_real_point_3d, "original point" },
 		{ _field_real_point_3d, "original normal" },
-		{ _field_long_integer, "bsp index!" },
-		{ _field_short_integer, "cluster index!" },
-		{ _field_short_integer, "cluster decorator set index!" },
+		{ _field_long_integer, "bsp index" },
+		{ _field_short_integer, "cluster index" },
+		{ _field_short_integer, "cluster decorator set index" },
 		{ _field_terminator }
 	};
 
@@ -105,20 +105,20 @@ namespace macaque
 		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition },
 		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition },
 		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition },
-		{ _field_real, "outer radius!" },
-		{ _field_real, "feather percent!" },
+		{ _field_real, "outer radius" },
+		{ _field_real, "feather percent" },
 		{ _field_byte_flags, "reapply flags", &decorator_brush_reapply_flags_definition },
 		{ _field_byte_flags, "render flags", &decorator_brush_render_flags_definition },
 		{ _field_byte_flags, "action flags", &decorator_brush_action_flags_definition },
 		{ _field_char_enum, "brush shape", &decorator_brush_shape_enum_definition },
-		{ _field_long_block_index, "current palette" },
-		{ _field_long_block_index, "current set" },
-		{ _field_long_integer, "current type", nullptr, 'cbif' },
-		{ _field_real, "paint rate:[0 - 1]" },
+		{ _field_long_block_index, "current palette", &decorator_palette_block },
+		{ _field_long_block_index, "current set", &decorator_scenario_set_block },
+		{ _field_long_integer, "current type", _field_id_decorator_brush_unknown },
+		{ _field_real, "paint rate" },
 		{ _field_real_rgb_color, "paint color" },
-		{ _field_real, "move distance#drop height for drop to ground" },
-		{ _field_real, "angle snap interval#rotate brushes will snap to intervals of this" },
-		{ _field_real, "Editor cull distance#decorators will not draw beyond this distance from the camera" },
+		{ _field_real, "move distance", "drop height for drop to ground" },
+		{ _field_real, "angle snap interval", "rotate brushes will snap to intervals of this" },
+		{ _field_real, "Editor cull distance", "decorators will not draw beyond this distance from the camera" },
 		{ _field_explanation, "KEYS", "[] \t brush size\n-= \t brush feathering\n0-9 \t brush opacity\nSHIFT+0-9\t select palette\nSHIFT\t while painting will reverse the operation\n" },
 		{ _field_terminator }
 	};

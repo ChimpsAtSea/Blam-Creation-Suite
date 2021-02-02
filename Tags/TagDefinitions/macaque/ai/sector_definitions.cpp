@@ -16,13 +16,13 @@ namespace macaque
 		PATHFINDING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "bsp pathfinding data", &pathfinding_data_block },
-		{ _field_block, "mobileNavMeshes*~", &MobileNavMeshBlock_block },
-		{ _field_block, "navVolumes*~", &NavVolumeBlock_block },
-		{ _field_block, "navClimbs*~", &NavClimbBlock_block },
-		{ _field_block, "user edges*~", &user_edge_block },
+		{ _field_block, "mobileNavMeshes", &MobileNavMeshBlock_block },
+		{ _field_block, "navVolumes", &NavVolumeBlock_block },
+		{ _field_block, "navClimbs", &NavClimbBlock_block },
+		{ _field_block, "user edges", &user_edge_block },
 		{ _field_block, "hints", &user_hint_block },
-		{ _field_byte_integer, "already Converted!" },
-		{ _field_pad, "fuckPad", 3 },
+		{ _field_byte_integer, "already Converted" },
+		FIELD_PAD("fuckPad", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -42,15 +42,15 @@ namespace macaque
 		PATHFINDING_DATA_BLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavGraph*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavMediator*~!", nullptr, 'nuke' },
-		{ _field_pad, "pads", 4 },
-		{ _field_data, "navGraphData*~" },
-		{ _field_data, "navMediatorData*~" },
-		{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
-		{ _field_long_integer, "structure checksum*~" },
-		{ _field_pad, "pads2", 8 },
+		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		FIELD_PAD("pads", nullptr, 4),
+		{ _field_data, "navGraphData" },
+		{ _field_data, "navMediatorData" },
+		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
+		{ _field_long_integer, "structure checksum" },
+		FIELD_PAD("pads2", nullptr, 8),
 		{ _field_terminator }
 	};
 
@@ -62,10 +62,10 @@ namespace macaque
 		"FaceUserData",
 		FACEUSERDATABLOCK_ID)
 	{
-		{ _field_short_integer, "m_flags*~" },
-		{ _field_pad, "pad", 2 },
-		{ _field_real, "currentMinPathDistance!*~" },
-		{ _field_real, "currentMinTargetApproachDistance!*~" },
+		{ _field_short_integer, "m_flags" },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_real, "currentMinPathDistance" },
+		{ _field_real, "currentMinTargetApproachDistance" },
 		{ _field_terminator }
 	};
 
@@ -78,16 +78,16 @@ namespace macaque
 		MOBILENAVMESHBLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavGraph*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavMediator*~!", nullptr, 'nuke' },
-		{ _field_pad, "pads2", 4 },
-		{ _field_data, "navGraphData*~" },
-		{ _field_data, "navMediatorData*~" },
-		{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
+		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		FIELD_PAD("pads2", nullptr, 4),
+		{ _field_data, "navGraphData" },
+		{ _field_data, "navMediatorData" },
+		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_byte_flags, "flags", &MobileNavMeshFlagsDefinition },
-		{ _field_pad, "pads", 3 },
+		FIELD_PAD("pads", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -99,11 +99,11 @@ namespace macaque
 		"NavVolume",
 		NAVVOLUMEBLOCK_ID)
 	{
-		{ _field_short_integer, "zoneIndex*~" },
-		{ _field_short_integer, "areaIndex*~" },
-		{ _field_long_integer, "runtimeNavVolume*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavMediator*~!", nullptr, 'nuke' },
-		{ _field_data, "navMediatorData*~" },
+		{ _field_short_integer, "zoneIndex" },
+		{ _field_short_integer, "areaIndex" },
+		{ _field_long_integer, "runtimeNavVolume", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		{ _field_data, "navMediatorData" },
 		{ _field_terminator }
 	};
 
@@ -116,16 +116,16 @@ namespace macaque
 		NAVCLIMBBLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavGraph*~!", nullptr, 'nuke' },
-		{ _field_long_integer, "runtimeNavMediator*~!", nullptr, 'nuke' },
-		{ _field_pad, "pads", 4 },
-		{ _field_data, "navGraphData*~" },
-		{ _field_data, "navMediatorData*~" },
-		{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
-		{ _field_short_integer, "zoneIndex*~" },
-		{ _field_short_integer, "areaIndex*~" },
-		{ _field_pad, "pads2", 8 },
+		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		FIELD_PAD("pads", nullptr, 4),
+		{ _field_data, "navGraphData" },
+		{ _field_data, "navMediatorData" },
+		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
+		{ _field_short_integer, "zoneIndex" },
+		{ _field_short_integer, "areaIndex" },
+		FIELD_PAD("pads2", nullptr, 8),
 		{ _field_terminator }
 	};
 
@@ -138,22 +138,22 @@ namespace macaque
 		USER_EDGE_BLOCK_ID,
 		4)
 	{
-		{ _field_real_vector_3d, "m_x*~" },
-		{ _field_real, "havok w m_x*~!" },
-		{ _field_real_vector_3d, "m_y*~" },
-		{ _field_real, "havok w m_y*~!" },
-		{ _field_real_vector_3d, "m_z*~" },
-		{ _field_real, "havok w m_z*~!" },
-		{ _field_long_integer, "m_meshUidA*~" },
-		{ _field_long_integer, "m_meshUidB*~" },
-		{ _field_long_integer, "m_faceA*~" },
-		{ _field_long_integer, "m_faceB*~" },
-		{ _field_long_integer, "m_userDataA*~" },
-		{ _field_long_integer, "m_userDataB*~" },
-		{ _field_short_integer, "m_costAtoB*~" },
-		{ _field_short_integer, "m_costBtoA*~" },
-		{ _field_char_integer, "m_direction*~" },
-		{ _field_pad, "padding", 3 },
+		{ _field_real_vector_3d, "m_x" },
+		{ _field_real, "havok w m_x" },
+		{ _field_real_vector_3d, "m_y" },
+		{ _field_real, "havok w m_y" },
+		{ _field_real_vector_3d, "m_z" },
+		{ _field_real, "havok w m_z" },
+		{ _field_long_integer, "m_meshUidA" },
+		{ _field_long_integer, "m_meshUidB" },
+		{ _field_long_integer, "m_faceA" },
+		{ _field_long_integer, "m_faceB" },
+		{ _field_long_integer, "m_userDataA" },
+		{ _field_long_integer, "m_userDataB" },
+		{ _field_short_integer, "m_costAtoB" },
+		{ _field_short_integer, "m_costBtoA" },
+		{ _field_char_integer, "m_direction" },
+		FIELD_PAD("padding", nullptr, 3),
 		{ _field_terminator }
 	};
 

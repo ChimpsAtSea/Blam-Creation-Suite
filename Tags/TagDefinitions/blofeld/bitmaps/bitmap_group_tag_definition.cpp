@@ -6,80 +6,80 @@ namespace blofeld
 
 	V5_TAG_GROUP(bitmap, BITMAP_TAG)
 	{
-		{ _field_custom, "show bitmap" },
-		{ _field_explanation, "IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n" },
-		{ _field_long_enum, "Usage#choose how you are using this bitmap", &bitmap_usage_global_enum },
-		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
-		{ _field_short_integer, "sprite spacing#number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
-		{ _field_real, "bump map height:repeats#the apparent height of the bump map above the triangle it is textured onto, in texture repeats (i.e., 1.0 would be as high as the texture is wide)" },
-		{ _field_real_fraction, "fade factor:[0,1]#used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap" },
-		{ _field_real, "blur:pixels#how much to blur the input image" },
-		{ _field_real, "mip map blur:pixels#how much to blur as each mip level is being downsampled" },
-		{ _field_char_enum, "curve mode#automatic chooses FAST if your bitmap is bright, and PRETTY if your bitmap has dark bits", &bitmap_curve_override_enum },
-		{ _field_char_integer, "max mipmap level#0 = use default defined by usage" },
-		{ _field_short_integer, "max resolution#0 = do not downsample source image" },
-		{ _field_short_integer, "atlas#index into global atlas if the texture is missing its required resources and has been atlased" },
-		{ _field_enum, "force bitmap format#overrides the format defined by usage", &bitmap_usage_format_def },
-		{ _field_real, "tight bounds threshold:[0.0 - 1.0]#This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
-		{ _field_block, "usage override", &bitmap_usage_block_block },
-		{ _field_block, "manual_sequences*", &bitmap_group_sequence_block_def_block },
-		{ _field_explanation, "IMPORT DATA", "***************************************************************************************************************************\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n***************************************************************************************************************************" },
-		{ _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
-		{ _field_data, "source data*" },
-		{ _field_data, "processed pixel data*" },
-		{ _field_block, "sequences*", &bitmap_group_sequence_block_def_block },
-		{ _field_block, "bitmaps*", &bitmap_data_block_def_block },
-		{ _field_data, "xenon processed pixel data*" },
-		{ _field_block, "xenon bitmaps*", &bitmap_data_block_def_block },
-		{ _field_block, "hardware textures", &bitmap_texture_interop_block_block },
+		{ _field_legacy, _field_custom, "show bitmap" },
+		{ _field_legacy, _field_explanation, "IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n" },
+		{ _field_legacy, _field_long_enum, "Usage#choose how you are using this bitmap", &bitmap_usage_global_enum },
+		{ _field_legacy, _field_word_flags, "Flags", &bitmap_group_flags_def },
+		{ _field_legacy, _field_short_integer, "sprite spacing#number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
+		{ _field_legacy, _field_real, "bump map height:repeats#the apparent height of the bump map above the triangle it is textured onto, in texture repeats (i.e., 1.0 would be as high as the texture is wide)" },
+		{ _field_legacy, _field_real_fraction, "fade factor:[0,1]#used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap" },
+		{ _field_legacy, _field_real, "blur:pixels#how much to blur the input image" },
+		{ _field_legacy, _field_real, "mip map blur:pixels#how much to blur as each mip level is being downsampled" },
+		{ _field_legacy, _field_char_enum, "curve mode#automatic chooses FAST if your bitmap is bright, and PRETTY if your bitmap has dark bits", &bitmap_curve_override_enum },
+		{ _field_legacy, _field_char_integer, "max mipmap level#0 = use default defined by usage" },
+		{ _field_legacy, _field_short_integer, "max resolution#0 = do not downsample source image" },
+		{ _field_legacy, _field_short_integer, "atlas#index into global atlas if the texture is missing its required resources and has been atlased" },
+		{ _field_legacy, _field_enum, "force bitmap format#overrides the format defined by usage", &bitmap_usage_format_def },
+		{ _field_legacy, _field_real, "tight bounds threshold:[0.0 - 1.0]#This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
+		{ _field_legacy, _field_block, "usage override", &bitmap_usage_block_block },
+		{ _field_legacy, _field_block, "manual_sequences*", &bitmap_group_sequence_block_def_block },
+		{ _field_legacy, _field_explanation, "IMPORT DATA", "***************************************************************************************************************************\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n***************************************************************************************************************************" },
+		{ _field_legacy, _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
+		{ _field_legacy, _field_data, "source data*" },
+		{ _field_legacy, _field_data, "processed pixel data*" },
+		{ _field_legacy, _field_block, "sequences*", &bitmap_group_sequence_block_def_block },
+		{ _field_legacy, _field_block, "bitmaps*", &bitmap_data_block_def_block },
+		{ _field_legacy, _field_data, "xenon processed pixel data*" },
+		{ _field_legacy, _field_block, "xenon bitmaps*", &bitmap_data_block_def_block },
+		{ _field_legacy, _field_block, "hardware textures", &bitmap_texture_interop_block_block },
 
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block_block },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block_block },
 
-		{ _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block_block },
+		{ _field_legacy, _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block_block },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "texture resource", &bitmap_texture_interop_resource_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_pageable, "texture resource", &bitmap_texture_interop_resource_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(stitchable_bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "texture resource", &stitchable_bitmap_texture_interop_resource_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_pageable, "texture resource", &stitchable_bitmap_texture_interop_resource_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(bitmap_texture_interleaved_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 	{
-		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(bitmap_texture_interop_resource_struct)
 	{
-		{ _field_version_equal, _engine_type_haloreach },
-		{ _field_struct, "texture resource", &render_texture_interop_definition_struct_struct_definition },
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_struct, "texture resource", &render_texture_interop_definition_struct_struct_definition },
 
-		{ _field_version_not_equal, _engine_type_haloreach },
-		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
+		{ _field_legacy, _field_version_not_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(stitchable_bitmap_texture_interop_resource_struct)
 	{
-		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_api_interop, "texture interop", &render_texture_interop_definition_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(bitmap_texture_interleaved_interop_resource_struct)
 	{
-		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(bitmap_group_flags_def)

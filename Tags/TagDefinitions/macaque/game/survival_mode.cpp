@@ -33,7 +33,7 @@ namespace macaque
 		"s_survival_mode_globals_definition",
 		SURVIVAL_MODE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "respawn time#NO: Use game_engine_settings for this" },
+		{ _field_real, "respawn time", "NO: Use game_engine_settings for this" },
 		{ _field_tag_reference, "survival mode text", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "countdown sound", &global_sound_reference },
 		{ _field_tag_reference, "respawn sound", &global_sound_reference },
@@ -51,7 +51,7 @@ namespace macaque
 		"s_survival_mode_wave_template_definition",
 		SURVIVAL_MODE_WAVE_TEMPLATES_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "wave template", &wave_template_reference$2 },
 		{ _field_terminator }
 	};

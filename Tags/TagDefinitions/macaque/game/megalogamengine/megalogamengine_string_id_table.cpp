@@ -28,7 +28,7 @@ namespace macaque
 		"string_id",
 		MEGALO_STRING_ID_BLOCK_ID)
 	{
-		{ _field_string_id, "string_id^" },
+		{ _field_string_id, "string_id" },
 		{ _field_terminator }
 	};
 

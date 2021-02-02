@@ -10,22 +10,22 @@ namespace blofeld
 
 	V5_TAG_BLOCK(binkPaletteBlock, MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		{ _field_tag_reference, "reference^", &bink_reference$2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "reference^", &bink_reference$2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(bink_struct_definition)
 	{
-		{ _field_long_integer, "frame count*" },
-		{ _field_pageable, "bink resource", &bink_resource_struct_struct_definition },
-		{ _field_tag_reference, "external sound track^", &global_sound_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "frame count*" },
+		{ _field_legacy, _field_pageable, "bink resource", &bink_resource_struct_struct_definition },
+		{ _field_legacy, _field_tag_reference, "external sound track^", &global_sound_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(bink_resource_struct)
 	{
-		{ _field_data, "bink data" },
-		{ _field_terminator }
+		{ _field_legacy, _field_data, "bink data" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

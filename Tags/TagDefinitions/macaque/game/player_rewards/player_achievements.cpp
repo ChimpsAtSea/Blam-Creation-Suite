@@ -28,10 +28,10 @@ namespace macaque
 		"s_single_achievement_definition",
 		SINGLE_ACHIEVEMENT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_char_enum, "type", &global_achievement_enum },
 		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
-		{ _field_pad, "VJNOSNJER", 2 },
+		FIELD_PAD("VJNOSNJER", nullptr, 2),
 		{ _field_block, "restricted levels", &single_achievement_restricted_level_block },
 		{ _field_terminator }
 	};
@@ -44,7 +44,7 @@ namespace macaque
 		"s_single_achivement_restricted_level_definition",
 		SINGLE_ACHIEVEMENT_RESTRICTED_LEVEL_BLOCK_ID)
 	{
-		{ _field_string_id, "level name^#Compared to map name in scenario" },
+		{ _field_string_id, "level name", "Compared to map name in scenario" },
 		{ _field_terminator }
 	};
 

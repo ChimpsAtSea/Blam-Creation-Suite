@@ -7,6 +7,8 @@
 
 #include "blamboozlelib-public-pch.h"
 
+#include "blamlib_string_parser.h"
+
 // #TODO: Common
 struct tag_group
 {

@@ -28,9 +28,9 @@ namespace macaque
 		"s_structure_lighting_generic_light_definition",
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_int64_integer, "Definition Identifier!" },
+		{ _field_int64_integer, "Definition Identifier" },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct },
-		{ _field_long_integer, "Source File Identifier!" },
+		{ _field_long_integer, "Source File Identifier" },
 		{ _field_explanation, "Static Only Parameters", "" },
 		{ _field_real, "indirect amplification factor" },
 		{ _field_real, "jitter sphere radius" },
@@ -40,7 +40,7 @@ namespace macaque
 		{ _field_char_enum, "indirect only", &midnight_boolean_enum_definition },
 		{ _field_long_flags, "flags", &structure_lighting_generic_light_flags },
 		{ _field_char_enum, "static analytic", &midnight_boolean_enum_definition },
-		{ _field_pad, "pdd", 3 },
+		FIELD_PAD("pdd", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -52,11 +52,11 @@ namespace macaque
 		"s_structure_lighting_generic_light_instance",
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID)
 	{
-		{ _field_int64_integer, "Light Definition ID!" },
-		{ _field_int64_integer, "Light Instance ID!" },
-		{ _field_long_integer, "Light Definition Index!" },
-		{ _field_long_integer, "Maya Source Hash!" },
-		{ _field_tag_reference, "runtime definition!", &Tag::Reference<struct dynamic_light_definition>::s_defaultDefinition },
+		{ _field_int64_integer, "Light Definition ID" },
+		{ _field_int64_integer, "Light Instance ID" },
+		{ _field_long_integer, "Light Definition Index" },
+		{ _field_long_integer, "Maya Source Hash" },
+		{ _field_tag_reference, "runtime definition", &Tag::Reference<struct dynamic_light_definition>::s_defaultDefinition },
 		{ _field_long_enum, "light mode", &structure_lighting_light_mode_enum },
 		{ _field_real_point_3d, "origin" },
 		{ _field_real_vector_3d, "forward" },
@@ -64,7 +64,7 @@ namespace macaque
 		{ _field_real, "fade out distance" },
 		{ _field_real, "fade start distance" },
 		{ _field_long_integer, "Shadow Geometry Checksum" },
-		{ _field_pad, "pdd", 4 },
+		FIELD_PAD("pdd", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -127,12 +127,12 @@ namespace macaque
 		"StructureLightingCinematicLightInfo",
 		STRUCTURELIGHTINGCINEMATICLIGHTINSTANCEBLOCK_STRUCT_ID)
 	{
-		{ _field_int64_integer, "Light Instance ID!" },
-		{ _field_long_block_index, "Light Definition Index" },
-		{ _field_long_block_index, "Light Instance Index" },
+		{ _field_int64_integer, "Light Instance ID" },
+		{ _field_long_block_index, "Light Definition Index", &structure_lighting_generic_light_definition_block },
+		{ _field_long_block_index, "Light Instance Index", &structure_lighting_generic_light_instance_block },
 		{ _field_array, "Active Shots", &g_cinematicShotFlagArray_array },
 		{ _field_block, "Linked Objects", &structureLightingCinematicObjectBlock_block },
-		{ _field_pad, "padding", 4 },
+		FIELD_PAD("padding", nullptr, 4),
 		{ _field_terminator }
 	};
 

@@ -28,8 +28,8 @@ namespace macaque
 		"s_model_customization_selection",
 		CUSTOMIZED_MODEL_SELECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "selection name^" },
-		{ _field_string_id, "app name#Which player-stats modifier should be activated when this item is equipped" },
+		{ _field_string_id, "selection name" },
+		{ _field_string_id, "app name", "Which player-stats modifier should be activated when this item is equipped" },
 		{ _field_block, "customized bits", &customized_model_player_bits_block },
 		{ _field_terminator }
 	};
@@ -42,10 +42,10 @@ namespace macaque
 		"s_model_customization_player_region_permutation",
 		CUSTOMIZED_MODEL_PLAYER_BITS_BLOCK_ID)
 	{
-		{ _field_string_id, "region name^" },
+		{ _field_string_id, "region name" },
 		{ _field_string_id, "permutation name" },
 		{ _field_byte_flags, "flags", &model_customization_player_permutation_flags },
-		{ _field_pad, "pad1", 3 },
+		FIELD_PAD("pad1", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -56,22 +56,22 @@ namespace macaque
 		"s_player_model_customization_globals_definition",
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_tag_reference, "spartan render model#used for string list generation", &render_model_reference$7 },
-		{ _field_tag_reference, "elite render model!", &render_model_reference$7 },
+		{ _field_tag_reference, "spartan render model", &render_model_reference$7 },
+		{ _field_tag_reference, "elite render model", &render_model_reference$7 },
 		{ _field_block, "helmet selections", &customized_model_selection_block },
 		{ _field_block, "chest selections", &customized_model_selection_block },
-		{ _field_block, "elite selections!", &customized_model_selection_block },
+		{ _field_block, "elite selections", &customized_model_selection_block },
 		{ _field_block, "left shoulder", &customized_model_selection_block },
 		{ _field_block, "right shoulder", &customized_model_selection_block },
 		{ _field_block, "arms", &customized_model_selection_block },
 		{ _field_block, "legs", &customized_model_selection_block },
-		{ _field_block, "unused 5!", &customized_model_selection_block },
+		{ _field_block, "unused 5", &customized_model_selection_block },
 		{ _field_block, "spartan armor effect selections", &customized_model_selection_block },
-		{ _field_block, "elite armor effect selections!", &customized_model_selection_block },
+		{ _field_block, "elite armor effect selections", &customized_model_selection_block },
 		{ _field_block, "male spartan selections", &customized_model_player_bits_block },
 		{ _field_block, "female spartan selections", &customized_model_player_bits_block },
 		{ _field_block, "spartan model defaults", &customized_model_player_bits_block },
-		{ _field_block, "elite model defaults!", &customized_model_player_bits_block },
+		{ _field_block, "elite model defaults", &customized_model_player_bits_block },
 		{ _field_terminator }
 	};
 

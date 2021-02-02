@@ -10,37 +10,37 @@ namespace blofeld
 
 	V5_TAG_STRUCT(simulated_input_struct_definition)
 	{
-		{ _field_explanation, "Simulated Input (SI)", "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)" },
-		{ _field_explanation, "Impulse", "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input." },
-		{ _field_explanation, "Scalers", "Starting scaler value comes from damage multiplier or is set to 1.0 if SI not directly related to damage.\nThat is then scaled by the following:\n * area control falloff\n * function output y: func(SI_elapsed_time/duration) --> y)\n * 1 / zoom magnification\n * tick_delta_secs / tick_length\nresult of this is final scaler value" },
-		{ _field_explanation, "Screen Space angles", "0 - pitch up, +/-180 - pitch down\n-90 - yaw left, +90 - yaw right" },
-		{ _field_explanation, "Move", "" },
-		{ _field_struct, "move", &simulated_input_stick_struct_struct_definition },
-		{ _field_explanation, "Look", "" },
-		{ _field_struct, "look", &simulated_input_stick_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Simulated Input (SI)", "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)" },
+		{ _field_legacy, _field_explanation, "Impulse", "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input." },
+		{ _field_legacy, _field_explanation, "Scalers", "Starting scaler value comes from damage multiplier or is set to 1.0 if SI not directly related to damage.\nThat is then scaled by the following:\n * area control falloff\n * function output y: func(SI_elapsed_time/duration) --> y)\n * 1 / zoom magnification\n * tick_delta_secs / tick_length\nresult of this is final scaler value" },
+		{ _field_legacy, _field_explanation, "Screen Space angles", "0 - pitch up, +/-180 - pitch down\n-90 - yaw left, +90 - yaw right" },
+		{ _field_legacy, _field_explanation, "Move", "" },
+		{ _field_legacy, _field_struct, "move", &simulated_input_stick_struct_struct_definition },
+		{ _field_legacy, _field_explanation, "Look", "" },
+		{ _field_legacy, _field_struct, "look", &simulated_input_stick_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(simulated_input_stick_struct)
 	{
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_long_flags, "flags", &simulated_input_flags },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_long_flags, "flags", &simulated_input_flags },
 
-		{ _field_enum, "response type", &direction_type_enum_definition },
-		{ _field_enum, "mapping type", &mapping_type_enum_definition },
-		{ _field_real_bounds, "angle:degrees" },
-		{ _field_custom },
-		{ _field_struct, "Mapping", &mapping_function_struct_definition },
-		{ _field_real, "duration:seconds" },
+		{ _field_legacy, _field_enum, "response type", &direction_type_enum_definition },
+		{ _field_legacy, _field_enum, "mapping type", &mapping_type_enum_definition },
+		{ _field_legacy, _field_real_bounds, "angle:degrees" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_real, "duration:seconds" },
 
-		{ _field_version_greater, _engine_type_haloreach, 5 },
-		{ _field_real, "inverse duration:seconds#if >0.f, accumulated inpulse will be \'undone\' over the give time span" },
-		{ _field_real, "inverse random length:percent#15.0 would randomly adjust length of accumulated impulse +/-15%" },
-		{ _field_real_bounds, "inverse random angle:degrees#apply random adjustment to direction of accumulated impulse" },
-		{ _field_real, "linear zoom penalty#linear multiplier of zoom that increases effect; computed for no change at zoom 1" },
-		{ _field_real, "square root zoom penalty#multiplier to increase effect proportional to square root of zoom; computed for no change at zoom 1" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
+		{ _field_legacy, _field_real, "inverse duration:seconds#if >0.f, accumulated inpulse will be \'undone\' over the give time span" },
+		{ _field_legacy, _field_real, "inverse random length:percent#15.0 would randomly adjust length of accumulated impulse +/-15%" },
+		{ _field_legacy, _field_real_bounds, "inverse random angle:degrees#apply random adjustment to direction of accumulated impulse" },
+		{ _field_legacy, _field_real, "linear zoom penalty#linear multiplier of zoom that increases effect; computed for no change at zoom 1" },
+		{ _field_legacy, _field_real, "square root zoom penalty#multiplier to increase effect proportional to square root of zoom; computed for no change at zoom 1" },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(simulated_input_flags)

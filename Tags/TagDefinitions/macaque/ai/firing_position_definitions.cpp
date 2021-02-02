@@ -15,21 +15,21 @@ namespace macaque
 		"s_firing_position_definition",
 		FIRING_POSITIONS_BLOCK_ID)
 	{
-		{ _field_explanation, "CONTROLS~", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points." },
+		{ _field_explanation, "CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points." },
 		{ _field_real_point_3d, "position (local)" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_word_flags, "flags*", &g_firing_position_flags },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_word_flags, "flags", &g_firing_position_flags },
 		{ _field_word_flags, "posture flags", &g_firing_position_posture_flags },
-		{ _field_short_block_index, "area^" },
-		{ _field_short_integer, "cluster index*" },
-		{ _field_short_integer, "cluster bsp*" },
-		{ _field_char_integer, "bits and pad!" },
-		{ _field_pad, "PAD1", 1 },
+		{ _field_short_block_index, "area", &areas_block },
+		{ _field_short_integer, "cluster index" },
+		{ _field_short_integer, "cluster bsp" },
+		{ _field_char_integer, "bits and pad" },
+		FIELD_PAD("PAD1", nullptr, 1),
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_facing),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_facing),
 		{ _field_angle, "facing" },
-		{ _field_long_integer, "lastAbsoluteRejectionGameTime!" },
+		{ _field_long_integer, "lastAbsoluteRejectionGameTime" },
 		{ _field_terminator }
 	};
 

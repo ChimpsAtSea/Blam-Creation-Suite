@@ -12,49 +12,49 @@ namespace blofeld
 
 	V5_TAG_BLOCK(variant_option_block, k_maximum_variant_category_blocks)
 	{
-		{ _field_explanation, "SUB-CATEGORY", "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here" },
-		{ _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
-		{ _field_explanation, "PLAYER TRAIT", "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here" },
-		{ _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
-		{ _field_long_enum, "player trait category", &game_engine_settings },
-		{ _field_explanation, "CATEGORY NAME", "string_id name used for the category labelling (used for both sub-category and player-trait references)" },
-		{ _field_string_id, "category name" },
-		{ _field_explanation, "CATEGORY DESCRIPTION", "string_id description used for the category description (used for both sub-category and player-trait references)" },
-		{ _field_string_id, "category description" },
-		{ _field_explanation, "VALUE-PAIRS", "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here" },
-		{ _field_tag_reference, "value pairs", &g_text_value_pair_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "SUB-CATEGORY", "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here" },
+		{ _field_legacy, _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
+		{ _field_legacy, _field_explanation, "PLAYER TRAIT", "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here" },
+		{ _field_legacy, _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
+		{ _field_legacy, _field_long_enum, "player trait category", &game_engine_settings },
+		{ _field_legacy, _field_explanation, "CATEGORY NAME", "string_id name used for the category labelling (used for both sub-category and player-trait references)" },
+		{ _field_legacy, _field_string_id, "category name" },
+		{ _field_legacy, _field_explanation, "CATEGORY DESCRIPTION", "string_id description used for the category description (used for both sub-category and player-trait references)" },
+		{ _field_legacy, _field_string_id, "category description" },
+		{ _field_legacy, _field_explanation, "VALUE-PAIRS", "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here" },
+		{ _field_legacy, _field_tag_reference, "value pairs", &g_text_value_pair_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(variant_setting_edit_reference_block, k_maximum_game_setting_blocks)
 	{
-		{ _field_string_id, "name" },
-		{ _field_long_enum, "setting category^", &game_engine_settings },
-		{ _field_block, "options", &variant_option_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name" },
+		{ _field_legacy, _field_long_enum, "setting category^", &game_engine_settings },
+		{ _field_legacy, _field_block, "options", &variant_option_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(multiplayer_variant_settings_interface_definition_block, 1, multiplayer_variant_settings_interface_definition_struct_definition_struct_definition );
 
 	V5_TAG_BLOCK(text_value_pair_reference_block, k_maximum_text_value_pairs_per_block)
 	{
-		{ _field_byte_flags, "flags", &text_value_pair_flags },
-		{ _field_pad, "grug", 3 },
-		{ _field_long_integer, "enumerated value" },
-		{ _field_real, "real value" },
-		{ _field_string_id, "string_id value" },
-		{ _field_string_id, "label string id" },
-		{ _field_string_id, "description string id" },
-		{ _field_terminator }
+		{ _field_legacy, _field_byte_flags, "flags", &text_value_pair_flags },
+		{ _field_legacy, _field_pad, "grug", 3 },
+		{ _field_legacy, _field_long_integer, "enumerated value" },
+		{ _field_legacy, _field_real, "real value" },
+		{ _field_legacy, _field_string_id, "string_id value" },
+		{ _field_legacy, _field_string_id, "label string id" },
+		{ _field_legacy, _field_string_id, "description string id" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(sandbox_property_allowed_values_reference_block, k_maximum_sandbox_property_values)
 	{
-		{ _field_string_id, "property name" },
-		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_pad, "blug", 3 },
-		{ _field_block, "allowed values", &text_value_pair_reference_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "property name" },
+		{ _field_legacy, _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
+		{ _field_legacy, _field_pad, "blug", 3 },
+		{ _field_legacy, _field_block, "allowed values", &text_value_pair_reference_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(sandbox_text_value_pair_definition_block, 1, sandbox_text_value_pair_definition_struct_definition_struct_definition );
@@ -63,26 +63,26 @@ namespace blofeld
 
 	V5_TAG_STRUCT(multiplayer_variant_settings_interface_definition_struct_definition)
 	{
-		{ _field_string_id, "name (unused)" },
-		{ _field_block, "game engine settings", &variant_setting_edit_reference_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name (unused)" },
+		{ _field_legacy, _field_block, "game engine settings", &variant_setting_edit_reference_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(sandbox_text_value_pair_definition_struct_definition)
 	{
-		{ _field_block, "property values", &sandbox_property_allowed_values_reference_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "property values", &sandbox_property_allowed_values_reference_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(text_value_pair_definition_struct_definition)
 	{
-		{ _field_long_enum, "parameter", &game_variant_parameters },
-		{ _field_string_id, "name" },
-		{ _field_string_id, "description text" },
-		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_pad, "shrug", 3 },
-		{ _field_block, "text value pairs", &text_value_pair_reference_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_enum, "parameter", &game_variant_parameters },
+		{ _field_legacy, _field_string_id, "name" },
+		{ _field_legacy, _field_string_id, "description text" },
+		{ _field_legacy, _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
+		{ _field_legacy, _field_pad, "shrug", 3 },
+		{ _field_legacy, _field_block, "text value pairs", &text_value_pair_reference_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(game_engine_settings)

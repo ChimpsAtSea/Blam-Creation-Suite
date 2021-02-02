@@ -28,9 +28,9 @@ namespace macaque
 		"RewardGlobalDefinition",
 		REWARDDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_char_enum, "type", &rewardTypeEnum },
-		{ _field_pad, "PJB1", 3 },
+		FIELD_PAD("PJB1", nullptr, 3),
 		{ _field_block, "rewards", &rewardBlock_block },
 		{ _field_terminator }
 	};
@@ -42,7 +42,7 @@ namespace macaque
 		"RewardGlobalsDefinition",
 		REWARD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "reward definitions{cookie awards}", &rewardDefinitionBlock_block },
+		{ _field_block, "reward definitions", &rewardDefinitionBlock_block },
 		{ _field_terminator }
 	};
 

@@ -28,7 +28,7 @@ namespace macaque
 		"MainMenuVoiceoverLine",
 		MAIN_MENU_VOICEOVER_LINES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &sound_reference$2 },
+		{ _field_tag_reference, "sound", &sound_reference$2 },
 		{ _field_terminator }
 	};
 

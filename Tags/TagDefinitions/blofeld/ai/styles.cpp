@@ -8,43 +8,43 @@ namespace blofeld
 
 	V5_TAG_BLOCK(style_palette_block, 50)
 	{
-		{ _field_tag_reference, "reference^", &style_reference$2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "reference^", &style_reference$2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
 	{
-		{ _field_string, "behavior name*^" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string, "behavior name*^" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(style_struct_definition)
 	{
-		{ _field_string, "name^" },
-		{ _field_explanation, "Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag." },
-		{ _field_enum, "Combat status decay options", &combat_status_enum },
+		{ _field_legacy, _field_string, "name^" },
+		{ _field_legacy, _field_explanation, "Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag." },
+		{ _field_legacy, _field_enum, "Combat status decay options", &combat_status_enum },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_pad, "hghq", 2 },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_pad, "hghq", 2 },
 
-		{ _field_version_less, _engine_type_haloreach },
-		{ _field_short_integer, "unknown" },
+		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _field_legacy, _field_short_integer, "unknown" },
 
-		{ _field_explanation, "Style Behavior Control", "Check the appropriate box to turn on/off the given behavior" },
-		{ _field_long_flags, "Style control", &style_control_flags },
-		{ _field_long_flags, "Behaviors1", &behavior_set1 },
-		{ _field_long_flags, "Behaviors2", &behavior_set2 },
-		{ _field_long_flags, "Behaviors3", &behavior_set3 },
-		{ _field_long_flags, "Behaviors4", &behavior_set4 },
-		{ _field_long_flags, "Behaviors5", &behavior_set5 },
-		{ _field_long_flags, "Behaviors6", &behavior_set6 },
-		{ _field_long_flags, "Behaviors7", &behavior_set7 },
-		{ _field_long_flags, "Behaviors8", &behavior_set8 },
-		{ _field_block, "Special movement", &special_movement_block_block },
-		{ _field_block, "Behavior list", &behavior_names_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Style Behavior Control", "Check the appropriate box to turn on/off the given behavior" },
+		{ _field_legacy, _field_long_flags, "Style control", &style_control_flags },
+		{ _field_legacy, _field_long_flags, "Behaviors1", &behavior_set1 },
+		{ _field_legacy, _field_long_flags, "Behaviors2", &behavior_set2 },
+		{ _field_legacy, _field_long_flags, "Behaviors3", &behavior_set3 },
+		{ _field_legacy, _field_long_flags, "Behaviors4", &behavior_set4 },
+		{ _field_legacy, _field_long_flags, "Behaviors5", &behavior_set5 },
+		{ _field_legacy, _field_long_flags, "Behaviors6", &behavior_set6 },
+		{ _field_legacy, _field_long_flags, "Behaviors7", &behavior_set7 },
+		{ _field_legacy, _field_long_flags, "Behaviors8", &behavior_set8 },
+		{ _field_legacy, _field_block, "Special movement", &special_movement_block_block },
+		{ _field_legacy, _field_block, "Behavior list", &behavior_names_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(behavior_set1)

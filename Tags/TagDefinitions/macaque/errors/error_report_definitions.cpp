@@ -15,13 +15,13 @@ namespace macaque
 		"error_report_category",
 		GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID)
 	{
-		{ _field_long_string, "name^*" },
-		{ _field_enum, "report type*", &error_report_types },
-		{ _field_word_flags, "flags*", &error_report_flags },
-		{ _field_short_integer, "runtime generation flags!" },
-		{ _field_pad, "WVTP", 2 },
-		{ _field_long_integer, "runtime something~!" },
-		{ _field_block, "reports*", &error_reports_block },
+		{ _field_long_string, "name" },
+		{ _field_enum, "report type", &error_report_types },
+		{ _field_word_flags, "flags", &error_report_flags },
+		{ _field_short_integer, "runtime generation flags" },
+		FIELD_PAD("WVTP", nullptr, 2),
+		{ _field_long_integer, "runtime something" },
+		{ _field_block, "reports", &error_reports_block },
 		{ _field_terminator }
 	};
 
@@ -33,25 +33,25 @@ namespace macaque
 		"error_report",
 		ERROR_REPORTS_BLOCK_ID)
 	{
-		{ _field_char_enum, "type*", &error_report_types },
-		{ _field_char_enum, "source*", &error_report_source },
-		{ _field_word_flags, "flags*", &error_report_flags },
-		{ _field_data, "text*" },
-		{ _field_long_integer, "source identifier*" },
-		{ _field_string, "source filename*" },
-		{ _field_long_integer, "source line number*" },
-		{ _field_block, "vertices*", &error_report_vertices_block },
-		{ _field_block, "vectors*", &error_report_vectors_block },
-		{ _field_block, "lines*", &error_report_lines_block },
-		{ _field_block, "triangles*", &error_report_triangles_block },
-		{ _field_block, "quads*", &error_report_quads_block },
-		{ _field_block, "comments*", &error_report_comments_block },
-		{ _field_long_integer, "report key*" },
-		{ _field_long_integer, "node index*" },
-		{ _field_real_bounds, "bounds x*" },
-		{ _field_real_bounds, "bounds y*" },
-		{ _field_real_bounds, "bounds z*" },
-		{ _field_real_argb_color, "color*" },
+		{ _field_char_enum, "type", &error_report_types },
+		{ _field_char_enum, "source", &error_report_source },
+		{ _field_word_flags, "flags", &error_report_flags },
+		{ _field_data, "text" },
+		{ _field_long_integer, "source identifier" },
+		{ _field_string, "source filename" },
+		{ _field_long_integer, "source line number" },
+		{ _field_block, "vertices", &error_report_vertices_block },
+		{ _field_block, "vectors", &error_report_vectors_block },
+		{ _field_block, "lines", &error_report_lines_block },
+		{ _field_block, "triangles", &error_report_triangles_block },
+		{ _field_block, "quads", &error_report_quads_block },
+		{ _field_block, "comments", &error_report_comments_block },
+		{ _field_long_integer, "report key" },
+		{ _field_long_integer, "node index" },
+		{ _field_real_bounds, "bounds x" },
+		{ _field_real_bounds, "bounds y" },
+		{ _field_real_bounds, "bounds z" },
+		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -64,8 +64,8 @@ namespace macaque
 		ERROR_REPORT_VERTICES_BLOCK_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
-		{ _field_real_argb_color, "color*" },
-		{ _field_real, "screen size*" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "screen size" },
 		{ _field_terminator }
 	};
 
@@ -78,9 +78,9 @@ namespace macaque
 		ERROR_REPORT_VECTORS_BLOCK_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
-		{ _field_real_argb_color, "color*" },
-		{ _field_real_vector_3d, "normal*" },
-		{ _field_real, "screen length*" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real_vector_3d, "normal" },
+		{ _field_real, "screen length" },
 		{ _field_terminator }
 	};
 
@@ -92,8 +92,8 @@ namespace macaque
 		"error_report_line",
 		ERROR_REPORT_LINES_BLOCK_ID)
 	{
-		{ _field_array, "points*", &error_report_line_point_array },
-		{ _field_real_argb_color, "color*" },
+		{ _field_array, "points", &error_report_line_point_array },
+		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -105,8 +105,8 @@ namespace macaque
 		"error_report_triangle",
 		ERROR_REPORT_TRIANGLES_BLOCK_ID)
 	{
-		{ _field_array, "points*", &error_report_triangle_point_array },
-		{ _field_real_argb_color, "color*" },
+		{ _field_array, "points", &error_report_triangle_point_array },
+		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -118,8 +118,8 @@ namespace macaque
 		"error_report_quad",
 		ERROR_REPORT_QUADS_BLOCK_ID)
 	{
-		{ _field_array, "points*", &error_report_quad_point_array },
-		{ _field_real_argb_color, "color*" },
+		{ _field_array, "points", &error_report_quad_point_array },
+		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -131,9 +131,9 @@ namespace macaque
 		"error_report_comment",
 		ERROR_REPORT_COMMENTS_BLOCK_ID)
 	{
-		{ _field_data, "text*" },
+		{ _field_data, "text" },
 		{ _field_struct, "point", &error_report_point_definition },
-		{ _field_real_argb_color, "color*" },
+		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -145,7 +145,7 @@ namespace macaque
 		"char",
 		ERROR_POINT_NODE_INDEX_ARRAY_ID)
 	{
-		{ _field_char_integer, "node index*" },
+		{ _field_char_integer, "node index" },
 		{ _field_terminator }
 	};
 
@@ -157,7 +157,7 @@ namespace macaque
 		"real",
 		ERROR_POINT_NODE_WEIGHT_ARRAY_ID)
 	{
-		{ _field_real, "node weight*" },
+		{ _field_real, "node weight" },
 		{ _field_terminator }
 	};
 
@@ -204,9 +204,9 @@ namespace macaque
 		"error_report_point",
 		ERROR_REPORT_POINT_DEFINITION_ID)
 	{
-		{ _field_real_point_3d, "position*" },
-		{ _field_array, "node indices*", &error_point_node_index_array },
-		{ _field_array, "node weights*", &error_point_node_weight_array },
+		{ _field_real_point_3d, "position" },
+		{ _field_array, "node indices", &error_point_node_index_array },
+		{ _field_array, "node weights", &error_point_node_weight_array },
 		{ _field_terminator }
 	};
 

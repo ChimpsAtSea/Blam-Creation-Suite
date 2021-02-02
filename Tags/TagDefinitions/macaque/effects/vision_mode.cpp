@@ -28,10 +28,10 @@ namespace macaque
 		"VisionModeScreenPass",
 		VISIONMODESCREENPASSBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
 
@@ -43,10 +43,10 @@ namespace macaque
 		"VisionModeEnvironmentPass",
 		VISIONMODEENVIRONMENTPASSBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
 
@@ -60,9 +60,9 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &visionModeBipedPassesFlags },
 		{ _field_real, "max radius" },
-		{ _field_real, "falloff begin radius#between this and max radius, we go smoothly from on to off" },
-		{ _field_real, "motion sensor inactive fade time#if \"linked to motion sensor\" is checked, this is how long it takes to fade after you stop activity" },
-		{ _field_real, "active camo visible velocity#if a unit has active camo and is moving faster than this, it will be shown" },
+		{ _field_real, "falloff begin radius", "between this and max radius, we go smoothly from on to off" },
+		{ _field_real, "motion sensor inactive fade time", "if \"linked to motion sensor\" is checked, this is how long it takes to fade after you stop activity" },
+		{ _field_real, "active camo visible velocity", "if a unit has active camo and is moving faster than this, it will be shown" },
 		{ _field_block, "biped passes", &visionModeBipedPassBlock_block },
 		{ _field_block, "biped threat values (optional)", &visionModeBipedThreatBlock_block },
 		{ _field_terminator }
@@ -78,10 +78,10 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &visionModeBipedPassFlags },
 		{ _field_long_flags, "render for", &visionModeBipedTeamTypes },
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
 
@@ -94,9 +94,9 @@ namespace macaque
 		VISIONMODEBIPEDTHREATBLOCK_ID)
 	{
 		{ _field_real, "threat per kill" },
-		{ _field_real, "threat per death#can be negative" },
-		{ _field_real, "threat per weapon scariness point#keys off the \"AI scariness\" field of each weapon" },
-		{ _field_real_bounds, "min/max threat range#below/above these values are pinned" },
+		{ _field_real, "threat per death", "can be negative" },
+		{ _field_real, "threat per weapon scariness point", "keys off the \"AI scariness\" field of each weapon" },
+		{ _field_real_bounds, "min/max threat range", "below/above these values are pinned" },
 		{ _field_terminator }
 	};
 
@@ -109,10 +109,10 @@ namespace macaque
 		VISIONMODEORDNANCEVEHICLEPASSBLOCK_ID)
 	{
 		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
 
@@ -138,10 +138,10 @@ namespace macaque
 		"VisionModeOrdnanceCrosshair",
 		VISIONMODEORDNANCECROSSHAIRBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
 

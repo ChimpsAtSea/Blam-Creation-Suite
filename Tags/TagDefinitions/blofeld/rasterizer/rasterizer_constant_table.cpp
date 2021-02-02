@@ -6,24 +6,24 @@ namespace blofeld
 
 	V5_TAG_BLOCK(rasterizer_constant_block, c_rasterizer_constant_table_definition::k_max_constants)
 	{
-		{ _field_string_id, "constant name^" },
-		{ _field_word_integer, "register start*" },
-		{ _field_byte_integer, "register count*" },
-		{ _field_char_enum, "register set*", &register_set_enum },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "constant name^" },
+		{ _field_legacy, _field_word_integer, "register start*" },
+		{ _field_legacy, _field_byte_integer, "register count*" },
+		{ _field_legacy, _field_char_enum, "register set*", &register_set_enum },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(global_rasterizer_constant_table_struct)
 	{
-		{ _field_block, "constants*", &rasterizer_constant_block_block },
+		{ _field_legacy, _field_block, "constants*", &rasterizer_constant_block_block },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_dword_integer, "unknown@" },
-		{ _field_dword_integer, "unknown@" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_dword_integer, "unknown@" },
+		{ _field_legacy, _field_dword_integer, "unknown@" },
 
-		{ _field_char_enum, "type*", &rasterizer_constant_table_type_enum },
-		{ _field_pad, "qersaui", 3 },
-		{ _field_terminator }
+		{ _field_legacy, _field_char_enum, "type*", &rasterizer_constant_table_type_enum },
+		{ _field_legacy, _field_pad, "qersaui", 3 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(register_set_enum)

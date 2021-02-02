@@ -26,8 +26,6 @@ namespace macaque
 	extern s_tag_struct_definition magazine_objects_block_struct_definition; // magazine_objects_block
 	extern s_tag_block_definition weapon_triggers_block;
 	extern s_tag_struct_definition weapon_triggers_block_struct_definition; // weapon_triggers_block
-	extern s_tag_block_definition weapon_trigger_charging_fire_fraction_block;
-	extern s_tag_struct_definition weapon_trigger_charging_fire_fraction_block_struct_definition; // weapon_trigger_charging_fire_fraction_block
 	extern s_tag_block_definition weapon_barrels_block;
 	extern s_tag_struct_definition weapon_barrels_block_struct_definition; // weapon_barrels_block
 	extern s_tag_block_definition projectileDistributionCustomVector_block;
@@ -38,6 +36,8 @@ namespace macaque
 	extern s_tag_struct_definition weapon_barrel_first_person_offset_block_struct_definition; // weapon_barrel_first_person_offset_block
 	extern s_tag_block_definition barrel_firing_effect_block;
 	extern s_tag_struct_definition barrel_firing_effect_block_struct_definition; // barrel_firing_effect_block
+	extern s_tag_block_definition weapon_trigger_charging_fire_fraction_block;
+	extern s_tag_struct_definition weapon_trigger_charging_fire_fraction_block_struct_definition; // weapon_trigger_charging_fire_fraction_block
 	extern s_tag_block_definition weaponScaleshotStruct_block;
 	extern s_tag_struct_definition weaponScaleshotStruct_block_struct_definition; // weaponScaleshotStruct_block
 	extern s_tag_block_definition weaponScaleshotLevelStruct_block;
@@ -53,13 +53,13 @@ namespace macaque
 	extern s_tag_struct_definition WeaponBarrelIronSightsStruct;
 	extern s_tag_struct_definition weapon_interface_struct;
 	extern s_tag_struct_definition weapon_shared_interface_struct;
-	extern s_tag_struct_definition weapon_trigger_autofire_struct;
-	extern s_tag_struct_definition weapon_trigger_charging_struct;
 	extern s_tag_struct_definition weapon_barrel_firing_parameters_struct;
 	extern s_tag_struct_definition weapon_barrel_firing_error_struct;
 	extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_struct;
 	extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_function_struct;
 	extern s_tag_struct_definition weapon_barrel_damage_effect_struct;
+	extern s_tag_struct_definition weapon_trigger_autofire_struct;
+	extern s_tag_struct_definition weapon_trigger_charging_struct;
 
 	extern c_versioned_string_list magazine_flags_strings;
 	extern s_string_list_definition magazine_flags;

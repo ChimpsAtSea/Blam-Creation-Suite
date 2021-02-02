@@ -21,20 +21,20 @@ namespace macaque
 		"CompositeAxis",
 		COMPOSITEAXISDEFINITION_ID)
 	{
-		{ _field_string_id, "name*!^" },
-		{ _field_string_id, "animation source*" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		{ _field_string_id, "name" },
+		{ _field_string_id, "animation source" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "input function" },
 		{ _field_real_bounds, "animation bounds" },
 		{ _field_real_bounds, "input bounds" },
 		{ _field_real_bounds, "clamp bounds" },
-		{ _field_real, "blend limit*" },
+		{ _field_real, "blend limit" },
 		{ _field_block, "dead zones", &CompositeDeadZoneDefinition_block },
-		{ _field_char_integer, "divisions*" },
-		{ _field_char_integer, "priority*" },
-		{ _field_char_integer, "update*" },
-		{ _field_char_integer, "functionIndex*" },
-		{ _field_long_flags, "flags*", &CompositeAxisFlags },
+		{ _field_char_integer, "divisions" },
+		{ _field_char_integer, "priority" },
+		{ _field_char_integer, "update" },
+		{ _field_char_integer, "functionIndex" },
+		{ _field_long_flags, "flags", &CompositeAxisFlags },
 		{ _field_terminator }
 	};
 
@@ -48,10 +48,10 @@ namespace macaque
 	{
 		{ _field_real_bounds, "bounds" },
 		{ _field_real, "rate" },
-		{ _field_real, "center*!" },
-		{ _field_real, "radius*!" },
-		{ _field_real, "amount*!" },
-		{ _field_long_integer, "delay*!" },
+		{ _field_real, "center" },
+		{ _field_real, "radius" },
+		{ _field_real, "amount" },
+		{ _field_long_integer, "delay" },
 		{ _field_terminator }
 	};
 
@@ -63,12 +63,12 @@ namespace macaque
 		"CompositeEntry",
 		COMPOSITEENTRYDEFINITION_ID)
 	{
-		{ _field_string_id, "source^" },
-		{ _field_block, "values*", &CompositeEntryValueDefinition_block },
-		{ _field_long_integer, "overridden*!" },
-		{ _field_short_integer, "animIndex*!" },
-		{ _field_char_integer, "slideAxis*" },
-		{ _field_pad, "PAD", 1 },
+		{ _field_string_id, "source" },
+		{ _field_block, "values", &CompositeEntryValueDefinition_block },
+		{ _field_long_integer, "overridden" },
+		{ _field_short_integer, "animIndex" },
+		{ _field_char_integer, "slideAxis" },
+		FIELD_PAD("PAD", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -80,7 +80,7 @@ namespace macaque
 		"real",
 		COMPOSITEENTRYVALUEDEFINITION_ID)
 	{
-		{ _field_real, "value^" },
+		{ _field_real, "value" },
 		{ _field_terminator }
 	};
 
@@ -92,18 +92,18 @@ namespace macaque
 		"CompositePhaseSet",
 		COMPOSITEPHASESETDEFINITION_ID)
 	{
-		{ _field_string_id, "name*^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "timing source" },
 		{ _field_block, "sync points", &SyncKeyBlock_block },
-		{ _field_data, "sync frames*!" },
-		{ _field_data, "facets*" },
-		{ _field_data, "neighbors*" },
-		{ _field_data, "containment*" },
-		{ _field_data, "example grid*" },
+		{ _field_data, "sync frames" },
+		{ _field_data, "facets" },
+		{ _field_data, "neighbors" },
+		{ _field_data, "containment" },
+		{ _field_data, "example grid" },
 		{ _field_real_bounds, "normalized bounds" },
-		{ _field_char_integer, "offset*" },
-		{ _field_pad, "PAD", 1 },
-		{ _field_short_integer, "timingAnimIndex*!" },
+		{ _field_char_integer, "offset" },
+		FIELD_PAD("PAD", nullptr, 1),
+		{ _field_short_integer, "timingAnimIndex" },
 		{ _field_terminator }
 	};
 
@@ -115,7 +115,7 @@ namespace macaque
 		"c_animation_frame_event_type",
 		SYNCKEYBLOCK_ID)
 	{
-		{ _field_enum, "key*^", &frame_event_type_new },
+		{ _field_enum, "key", &frame_event_type_new },
 		{ _field_terminator }
 	};
 
@@ -127,7 +127,7 @@ namespace macaque
 		"string_id",
 		STRINGBLOCK_ID)
 	{
-		{ _field_string_id, "name*^" },
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
@@ -138,14 +138,14 @@ namespace macaque
 		"CompositeTag",
 		G_COMPOSITETAG_STRUCT_ID)
 	{
-		{ _field_string_id, "name*^" },
-		{ _field_block, "axes*", &CompositeAxisDefinition_block },
-		{ _field_block, "anims*", &CompositeEntryDefinition_block },
-		{ _field_block, "sets*", &CompositePhaseSetDefinition_block },
-		{ _field_block, "strings*", &StringBlock_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "axes", &CompositeAxisDefinition_block },
+		{ _field_block, "anims", &CompositeEntryDefinition_block },
+		{ _field_block, "sets", &CompositePhaseSetDefinition_block },
+		{ _field_block, "strings", &StringBlock_block },
 		{ _field_string_id, "timing source" },
-		{ _field_short_integer, "timingAnimIndex*!" },
-		{ _field_pad, "PAD", 2 },
+		{ _field_short_integer, "timingAnimIndex" },
+		FIELD_PAD("PAD", nullptr, 2),
 		{ _field_terminator }
 	};
 

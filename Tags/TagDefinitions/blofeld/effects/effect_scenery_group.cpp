@@ -10,8 +10,8 @@ namespace blofeld
 
 	V5_TAG_STRUCT(effect_scenery_struct_definition)
 	{
-		{ _field_struct, "object", &object_struct_definition_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "object", &object_struct_definition_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

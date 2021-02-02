@@ -28,7 +28,7 @@ namespace macaque
 		"s_mux_generator_material",
 		MUX_GENERATOR_MATERIAL_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "mux material", &Tag::Reference<class c_render_method_shader_mux_material>::s_defaultDefinition },
 		{ _field_terminator }
 	};
@@ -40,11 +40,11 @@ namespace macaque
 		"s_mux_generator",
 		MUX_GENERATOR_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("generate", _custom_field_unknown_compile),
+		FIELD_CUSTOM("generate", nullptr, _field_id_unknown_compile),
 		{ _field_explanation, "Blend Map", "The blend map determines which material shows up where in your mux shader.\nWhere the blend map is black (color 0) you will see the first material\nWhere it is white (color 255), you will see the last material\nIn between it will blend through all the materials in order (at least once through the list)\nSo if you have 5 materials, first set to 1, and last set to 2, the material order is:\n1-2-3-4-0-1-2\nBy default, it starts and ends at the first material:\n0-1-2-3-4-0\n" },
 		{ _field_tag_reference, "blend texture", &bitmap_reference$10 },
-		{ _field_long_block_index, "first material in blend map" },
-		{ _field_long_block_index, "last material in blend map" },
+		{ _field_long_block_index, "first material in blend map", &mux_generator_material_block },
+		{ _field_long_block_index, "last material in blend map", &mux_generator_material_block },
 		{ _field_block, "materials", &mux_generator_material_block },
 		{ _field_explanation, "TARGETS", "these will be filled out automatically if you don\'t specify them\nthese are the tags that will be modified by this mux generator\n" },
 		{ _field_tag_reference, "target mux shader", &shader_mux_reference },

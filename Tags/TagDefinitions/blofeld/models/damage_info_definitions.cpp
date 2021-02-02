@@ -6,234 +6,234 @@ namespace blofeld
 
 	V5_TAG_BLOCK(instantaneous_damage_repsonse_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
 	{
-		{ _field_enum, "response type", &damage_response_type_enum_definition },
-		{ _field_explanation, "Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free" },
-		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		{ _field_explanation, "Constraint destruction", "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n" },
-		{ _field_string_id, "constraint/group name" },
-		{ _field_explanation, "Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed" },
-		{ _field_long_flags, "flags", &damage_response_set1 },
+		{ _field_legacy, _field_enum, "response type", &damage_response_type_enum_definition },
+		{ _field_legacy, _field_explanation, "Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free" },
+		{ _field_legacy, _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
+		{ _field_legacy, _field_explanation, "Constraint destruction", "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n" },
+		{ _field_legacy, _field_string_id, "constraint/group name" },
+		{ _field_legacy, _field_explanation, "Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed" },
+		{ _field_legacy, _field_long_flags, "flags", &damage_response_set1 },
 
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_long_flags, "flags2", &damage_response_set2 },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_long_flags, "flags2", &damage_response_set2 },
 
-		{ _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
+		{ _field_legacy, _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
-		{ _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
-		{ _field_real, "body damage threshold#response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
+		{ _field_legacy, _field_real, "body damage threshold#response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
 
-		{ _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
-		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
-		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct_struct_definition },
-		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index!*" },
-		{ _field_string_id, "region (secondary)" },
-		{ _field_enum, "new state (secondary)", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index (secondary)!*" },
-		{ _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
-		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
-		{ _field_string_id, "custom response label" },
-		{ _field_string_id, "effect marker name" },
-		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition },
-		{ _field_explanation, "Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire." },
-		{ _field_real, "response delay#in seconds" },
-		{ _field_tag_reference, "delay effect", &global_effect_reference },
-		{ _field_string_id, "delay effect marker name" },
+		{ _field_legacy, _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
+		{ _field_legacy, _field_tag_reference, "transition effect (specific)", &global_effect_reference },
+		{ _field_legacy, _field_struct, "damage effect", &instantaneous_response_damage_effect_struct_struct_definition },
+		{ _field_legacy, _field_string_id, "region" },
+		{ _field_legacy, _field_enum, "new state", &model_state_enum_definition },
+		{ _field_legacy, _field_short_integer, "runtime region index!*" },
+		{ _field_legacy, _field_string_id, "region (secondary)" },
+		{ _field_legacy, _field_enum, "new state (secondary)", &model_state_enum_definition },
+		{ _field_legacy, _field_short_integer, "runtime region index (secondary)!*" },
+		{ _field_legacy, _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
+		{ _field_legacy, _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
+		{ _field_legacy, _field_string_id, "custom response label" },
+		{ _field_legacy, _field_string_id, "effect marker name" },
+		{ _field_legacy, _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition },
+		{ _field_legacy, _field_explanation, "Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire." },
+		{ _field_legacy, _field_real, "response delay#in seconds" },
+		{ _field_legacy, _field_tag_reference, "delay effect", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "delay effect marker name" },
 
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_real, "response delay premature damage threshold" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_real, "response delay premature damage threshold" },
 
-		{ _field_explanation, "seat ejaculation", "" },
-		{ _field_string_id, "ejecting seat label" },
-		{ _field_explanation, "skip fraction", "0.0 always fires, 1.0 never fires" },
-		{ _field_real_fraction, "skip fraction" },
-		{ _field_explanation, "destroyed child object marker name", "when this response fires, any children objects created at the supplied marker name will be destroyed" },
-		{ _field_string_id, "destroyed child object marker name" },
-		{ _field_explanation, "total damage threshold", "scale on total damage section vitality" },
-		{ _field_real_fraction, "total damage threshold" },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "seat ejaculation", "" },
+		{ _field_legacy, _field_string_id, "ejecting seat label" },
+		{ _field_legacy, _field_explanation, "skip fraction", "0.0 always fires, 1.0 never fires" },
+		{ _field_legacy, _field_real_fraction, "skip fraction" },
+		{ _field_legacy, _field_explanation, "destroyed child object marker name", "when this response fires, any children objects created at the supplied marker name will be destroyed" },
+		{ _field_legacy, _field_string_id, "destroyed child object marker name" },
+		{ _field_legacy, _field_explanation, "total damage threshold", "scale on total damage section vitality" },
+		{ _field_legacy, _field_real_fraction, "total damage threshold" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_explanation, "damage section flags", "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields" },
-		{ _field_long_flags, "flags", &damage_section_flags_definition },
-		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
-		{ _field_block, "instant responses", &instantaneous_damage_repsonse_block_block },
-		{ _field_block, "unused0", &g_null_block_block },
-		{ _field_block, "unused1", &g_null_block_block },
-		{ _field_real, "stun time:seconds" },
-		{ _field_real, "recharge time:seconds" },
-		{ _field_real, "runtime recharge velocity!*" },
-		{ _field_string_id, "resurrection restored region name" },
-		{ _field_short_integer, "runtime resurrection restored region index!*" },
-		{ _field_pad, "AG", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_explanation, "damage section flags", "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields" },
+		{ _field_legacy, _field_long_flags, "flags", &damage_section_flags_definition },
+		{ _field_legacy, _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
+		{ _field_legacy, _field_block, "instant responses", &instantaneous_damage_repsonse_block_block },
+		{ _field_legacy, _field_block, "unused0", &g_null_block_block },
+		{ _field_legacy, _field_block, "unused1", &g_null_block_block },
+		{ _field_legacy, _field_real, "stun time:seconds" },
+		{ _field_legacy, _field_real, "recharge time:seconds" },
+		{ _field_legacy, _field_real, "runtime recharge velocity!*" },
+		{ _field_legacy, _field_string_id, "resurrection restored region name" },
+		{ _field_legacy, _field_short_integer, "runtime resurrection restored region index!*" },
+		{ _field_legacy, _field_pad, "AG", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(global_damage_nodes_block, MAXIMUM_NODES_PER_MODEL)
 	{
-		{ _field_short_integer, "runtime damage part!*" },
-		{ _field_pad, "EOT", 2 },
-		{ _field_pad, "SBFL", 12 },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_integer, "runtime damage part!*" },
+		{ _field_legacy, _field_pad, "EOT", 2 },
+		{ _field_legacy, _field_pad, "SBFL", 12 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_seat_region_setting_block, 1)
 	{
-		{ _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
-		{ _field_string_id, "damage region name" },
-		{ _field_short_integer, "runtime damage region index!*" },
-		{ _field_pad, "EOQ", 2 },
-		{ _field_real, "direct damage scale (minor)" },
-		{ _field_real, "Max. transfer scale (minor)" },
-		{ _field_real, "min. transfer scale (minor)" },
-		{ _field_real, "direct damage scale (medium)" },
-		{ _field_real, "Max. transfer scale (medium)" },
-		{ _field_real, "min. transfer scale (medium)" },
-		{ _field_real, "direct damage scale (major)" },
-		{ _field_real, "Max. transfer scale (major)" },
-		{ _field_real, "min. transfer scale (major)" },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
+		{ _field_legacy, _field_string_id, "damage region name" },
+		{ _field_legacy, _field_short_integer, "runtime damage region index!*" },
+		{ _field_legacy, _field_pad, "EOQ", 2 },
+		{ _field_legacy, _field_real, "direct damage scale (minor)" },
+		{ _field_legacy, _field_real, "Max. transfer scale (minor)" },
+		{ _field_legacy, _field_real, "min. transfer scale (minor)" },
+		{ _field_legacy, _field_real, "direct damage scale (medium)" },
+		{ _field_legacy, _field_real, "Max. transfer scale (medium)" },
+		{ _field_legacy, _field_real, "min. transfer scale (medium)" },
+		{ _field_legacy, _field_real, "direct damage scale (major)" },
+		{ _field_legacy, _field_real, "Max. transfer scale (major)" },
+		{ _field_legacy, _field_real, "min. transfer scale (major)" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_seat_info_block, MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL)
 	{
-		{ _field_string_id, "seat label^" },
-		{ _field_real_fraction, "direct damage scale#0==no damage, 1==full damage" },
-		{ _field_real, "damage transfer fall-off radius" },
-		{ _field_real, "maximum transfer damage scale" },
-		{ _field_real, "minimum transfer damage scale" },
-		{ _field_block, "region-specific-damage", &damage_seat_region_setting_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "seat label^" },
+		{ _field_legacy, _field_real_fraction, "direct damage scale#0==no damage, 1==full damage" },
+		{ _field_legacy, _field_real, "damage transfer fall-off radius" },
+		{ _field_legacy, _field_real, "maximum transfer damage scale" },
+		{ _field_legacy, _field_real, "minimum transfer damage scale" },
+		{ _field_legacy, _field_block, "region-specific-damage", &damage_seat_region_setting_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_constraint_info_block, MAXIMUM_DAMAGE_CONSTRAINT_INFOS_PER_MODEL)
 	{
-		{ _field_string_id, "physics model constraint name" },
-		{ _field_string_id, "damage constraint name" },
-		{ _field_string_id, "damage constraint group name" },
-		{ _field_real, "group probability scale" },
-		{ _field_short_integer, "runtime constraint type!*" },
-		{ _field_short_integer, "runtime constraint index!*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "physics model constraint name" },
+		{ _field_legacy, _field_string_id, "damage constraint name" },
+		{ _field_legacy, _field_string_id, "damage constraint group name" },
+		{ _field_legacy, _field_real, "group probability scale" },
+		{ _field_legacy, _field_short_integer, "runtime constraint type!*" },
+		{ _field_legacy, _field_short_integer, "runtime constraint index!*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(global_damage_info_block, 1)
 	{
-		{ _field_long_flags, "flags", &model_damage_info_flags_definition },
-		{ _field_string_id, "global indirect material name#absorbes AOE or child damage" },
-		{ _field_custom_short_block_index, "indirect damage section#absorbes AOE or child damage" },
-		{ _field_pad, "XN", 2 },
-		{ _field_pad, "LPVYKO", 4 },
-		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "MQ", 2 },
-		{ _field_pad, "MYON", 20 },
-		{ _field_explanation, "body", "" },
-		{ _field_struct, "body", &damage_body_parameters_struct_struct_definition },
-		{ _field_pad, "IKEIDYSCX", 64 },
-		{ _field_explanation, "shield", "" },
-		{ _field_struct, "shield", &damage_shield_parameters_struct_struct_definition },
-		{ _field_block, "damage sections", &global_damage_section_block_block },
-		{ _field_block, "nodes*", &global_damage_nodes_block_block },
-		{ _field_short_integer, "runtime shield material type!*" },
-		{ _field_short_integer, "runtime indirect material type!*" },
+		{ _field_legacy, _field_long_flags, "flags", &model_damage_info_flags_definition },
+		{ _field_legacy, _field_string_id, "global indirect material name#absorbes AOE or child damage" },
+		{ _field_legacy, _field_custom_short_block_index, "indirect damage section#absorbes AOE or child damage" },
+		{ _field_legacy, _field_pad, "XN", 2 },
+		{ _field_legacy, _field_pad, "LPVYKO", 4 },
+		{ _field_legacy, _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
+		{ _field_legacy, _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
+		{ _field_legacy, _field_pad, "MQ", 2 },
+		{ _field_legacy, _field_pad, "MYON", 20 },
+		{ _field_legacy, _field_explanation, "body", "" },
+		{ _field_legacy, _field_struct, "body", &damage_body_parameters_struct_struct_definition },
+		{ _field_legacy, _field_pad, "IKEIDYSCX", 64 },
+		{ _field_legacy, _field_explanation, "shield", "" },
+		{ _field_legacy, _field_struct, "shield", &damage_shield_parameters_struct_struct_definition },
+		{ _field_legacy, _field_block, "damage sections", &global_damage_section_block_block },
+		{ _field_legacy, _field_block, "nodes*", &global_damage_nodes_block_block },
+		{ _field_legacy, _field_short_integer, "runtime shield material type!*" },
+		{ _field_legacy, _field_short_integer, "runtime indirect material type!*" },
 
-		{ _field_version_less, _engine_type_haloreach, 2 },
-		{ _field_real, "@unknown" },
-		{ _field_real, "@unknown" },
+		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_real, "@unknown" },
+		{ _field_legacy, _field_real, "@unknown" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
-		{ _field_real, "runtime shield recharge velocity!*" },
-		{ _field_real, "runtime overcharge velocity!*" },
-		{ _field_real, "runtime health recharge velocity!*" },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_real, "runtime shield recharge velocity!*" },
+		{ _field_legacy, _field_real, "runtime overcharge velocity!*" },
+		{ _field_legacy, _field_real, "runtime health recharge velocity!*" },
 
-		{ _field_block, "damage seats", &damage_seat_info_block_block },
-		{ _field_block, "damage constraints", &damage_constraint_info_block_block },
-		{ _field_explanation, "overshield", "" },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "damage seats", &damage_seat_info_block_block },
+		{ _field_legacy, _field_block, "damage constraints", &damage_constraint_info_block_block },
+		{ _field_legacy, _field_explanation, "overshield", "" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_section_recharge_speed_curve_block, 1)
 	{
-		{ _field_custom },
-		{ _field_struct, "Mapping", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_section_segmented_recharge_fraction, 16)
 	{
-		{ _field_real_fraction, "vitality percentage:[0.1]#recharge will stop once this percentage of vitality is reached." },
-		{ _field_terminator }
+		{ _field_legacy, _field_real_fraction, "vitality percentage:[0.1]#recharge will stop once this percentage of vitality is reached." },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_response_region_transition_block, 16)
 	{
-		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index!*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "region" },
+		{ _field_legacy, _field_enum, "new state", &model_state_enum_definition },
+		{ _field_legacy, _field_short_integer, "runtime region index!*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_transfer_block, MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL)
 	{
-		{ _field_long_flags, "flags", &damage_transfer_flags_definition },
-		{ _field_real, "transfer amount" },
-		{ _field_enum, "transfer function", &damage_transfer_function_enum_definition },
-		{ _field_short_block_index, "damage section" },
-		{ _field_string_id, "seat label" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "flags", &damage_transfer_flags_definition },
+		{ _field_legacy, _field_real, "transfer amount" },
+		{ _field_legacy, _field_enum, "transfer function", &damage_transfer_function_enum_definition },
+		{ _field_legacy, _field_short_block_index, "damage section" },
+		{ _field_legacy, _field_string_id, "seat label" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(seat_ejection_block, 8)
 	{
-		{ _field_string_id, "seat label^" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "seat label^" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(new_instantaneous_damage_response_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
 	{
-		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
+		{ _field_legacy, _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
 
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2 },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_long_flags, "flags2", &newDamageResponseFlagsPart2 },
 
-		{ _field_string_id, "label" },
-		{ _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
-		{ _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
-		{ _field_string_id, "generic effect marker{effect marker name}" },
-		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
-		{ _field_string_id, "specific effect marker" },
-		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct_struct_definition },
-		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition },
-		{ _field_tag_reference, "looping effect#will play until the next response is triggered.", &global_effect_reference },
-		{ _field_block, "region_transitions", &damage_response_region_transition_block_block },
-		{ _field_block, "response damage transfers", &damage_transfer_block_block },
-		{ _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
-		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
-		{ _field_string_id, "custom response label" },
-		{ _field_real, "response delay:seconds#time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires." },
-		{ _field_tag_reference, "delay effect#plays while the timer is counting down", &global_effect_reference },
-		{ _field_string_id, "delay effect marker name" },
-		{ _field_block, "seat eject", &seat_ejection_block_block },
-		{ _field_real_fraction, "skip fraction#0.0 always fires, 1.0 never fires" },
-		{ _field_string_id, "destroyed child object marker name#when this response fires, any children objects created at the supplied marker name will be destroyed" },
-		{ _field_real_fraction, "total damage threshold#scale on total damage section vitality" },
-		{ _field_string_id, "constraint/group name#can specify a randomly-selected single constraint or the entire group of named constraints" },
-		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		{ _field_pad, "IDRBCDT", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "label" },
+		{ _field_legacy, _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
+		{ _field_legacy, _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "generic effect marker{effect marker name}" },
+		{ _field_legacy, _field_tag_reference, "transition effect (specific)", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "specific effect marker" },
+		{ _field_legacy, _field_struct, "damage effect", &instantaneous_response_damage_effect_struct_struct_definition },
+		{ _field_legacy, _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition },
+		{ _field_legacy, _field_tag_reference, "looping effect#will play until the next response is triggered.", &global_effect_reference },
+		{ _field_legacy, _field_block, "region_transitions", &damage_response_region_transition_block_block },
+		{ _field_legacy, _field_block, "response damage transfers", &damage_transfer_block_block },
+		{ _field_legacy, _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
+		{ _field_legacy, _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
+		{ _field_legacy, _field_string_id, "custom response label" },
+		{ _field_legacy, _field_real, "response delay:seconds#time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires." },
+		{ _field_legacy, _field_tag_reference, "delay effect#plays while the timer is counting down", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "delay effect marker name" },
+		{ _field_legacy, _field_block, "seat eject", &seat_ejection_block_block },
+		{ _field_legacy, _field_real_fraction, "skip fraction#0.0 always fires, 1.0 never fires" },
+		{ _field_legacy, _field_string_id, "destroyed child object marker name#when this response fires, any children objects created at the supplied marker name will be destroyed" },
+		{ _field_legacy, _field_real_fraction, "total damage threshold#scale on total damage section vitality" },
+		{ _field_legacy, _field_string_id, "constraint/group name#can specify a randomly-selected single constraint or the entire group of named constraints" },
+		{ _field_legacy, _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
+		{ _field_legacy, _field_pad, "IDRBCDT", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(damage_section_rendering_paramters, 1)
 	{
-		{ _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
-		{ _field_tag_reference, "1st person impact parameters", &global_shield_parameters_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
+		{ _field_legacy, _field_tag_reference, "1st person impact parameters", &global_shield_parameters_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(health_transfers_flags_definition)
@@ -258,113 +258,113 @@ namespace blofeld
 
 	V5_TAG_BLOCK(health_transfers_block, 65536) // assembly #NOTE: where did this information come from?
 	{
-		{ _field_long_flags, "flags", &health_transfers_flags_definition },
-		{ _field_real, "transfer amount" },
-		{ _field_word_flags, "transfer function", &transfer_function_enum_definition },
-		{ _field_short_integer, "damage section index" },
-		{ _field_string_id, "seat label" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "flags", &health_transfers_flags_definition },
+		{ _field_legacy, _field_real, "transfer amount" },
+		{ _field_legacy, _field_word_flags, "transfer function", &transfer_function_enum_definition },
+		{ _field_legacy, _field_short_integer, "damage section index" },
+		{ _field_legacy, _field_string_id, "seat label" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(new_global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
-		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
-		{ _field_string_id, "shield material name#set this to make this damage section a shield" },
-		{ _field_explanation, "stun", "" },
-		{ _field_real, "stun time:seconds" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
-		{ _field_explanation, "recharge", "" },
-		{ _field_real, "recharge time:seconds" },
-		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block_block },
-		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
-		{ _field_tag_reference, "recharging effect", &global_effect_reference },
-		{ _field_real, "pre recharge effect warn time:seconds#(main shield only) how long before the recharge begins the pre-recharge effect fires" },
-		{ _field_tag_reference, "pre recharge effect#(main shield only)", &global_effect_reference },
-		{ _field_string_id, "pre recharge effect marker#(main shield only)" },
-		{ _field_tag_reference, "pre recharge abort effect#(main shield only) if the pre-recharge effect is aborted before the actual recharge starts, this effect plays", &global_effect_reference },
-		{ _field_string_id, "pre recharge abort effect marker#(main shield only)" },
-		{ _field_explanation, "overcharge", "" },
-		{ _field_real, "overcharge time:seconds#time it takes to reach full \"overcharge fraction\"" },
-		{ _field_real, "overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		{ _field_explanation, "decay", "" },
-		{ _field_real, "pre decay time:seconds#time for this section to be active before it will start to decay" },
-		{ _field_real, "decay time:seconds#time for need for this section to fully decay with full health." },
-		{ _field_explanation, "resurrection", "" },
-		{ _field_string_id, "resurrection restored region name" },
-		{ _field_block, "instant responses", &new_instantaneous_damage_response_block_block },
-		{ _field_block, "section damage transfers", &damage_transfer_block_block },
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_long_flags, "flags", &new_damage_section_flags_definition },
+		{ _field_legacy, _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
+		{ _field_legacy, _field_string_id, "shield material name#set this to make this damage section a shield" },
+		{ _field_legacy, _field_explanation, "stun", "" },
+		{ _field_legacy, _field_real, "stun time:seconds" },
+		{ _field_legacy, _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
+		{ _field_legacy, _field_explanation, "recharge", "" },
+		{ _field_legacy, _field_real, "recharge time:seconds" },
+		{ _field_legacy, _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block_block },
+		{ _field_legacy, _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
+		{ _field_legacy, _field_tag_reference, "recharging effect", &global_effect_reference },
+		{ _field_legacy, _field_real, "pre recharge effect warn time:seconds#(main shield only) how long before the recharge begins the pre-recharge effect fires" },
+		{ _field_legacy, _field_tag_reference, "pre recharge effect#(main shield only)", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "pre recharge effect marker#(main shield only)" },
+		{ _field_legacy, _field_tag_reference, "pre recharge abort effect#(main shield only) if the pre-recharge effect is aborted before the actual recharge starts, this effect plays", &global_effect_reference },
+		{ _field_legacy, _field_string_id, "pre recharge abort effect marker#(main shield only)" },
+		{ _field_legacy, _field_explanation, "overcharge", "" },
+		{ _field_legacy, _field_real, "overcharge time:seconds#time it takes to reach full \"overcharge fraction\"" },
+		{ _field_legacy, _field_real, "overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
+		{ _field_legacy, _field_explanation, "decay", "" },
+		{ _field_legacy, _field_real, "pre decay time:seconds#time for this section to be active before it will start to decay" },
+		{ _field_legacy, _field_real, "decay time:seconds#time for need for this section to fully decay with full health." },
+		{ _field_legacy, _field_explanation, "resurrection", "" },
+		{ _field_legacy, _field_string_id, "resurrection restored region name" },
+		{ _field_legacy, _field_block, "instant responses", &new_instantaneous_damage_response_block_block },
+		{ _field_legacy, _field_block, "section damage transfers", &damage_transfer_block_block },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_block, "health transfers", &health_transfers_block_block },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_block, "health transfers", &health_transfers_block_block },
 
-		{ _field_block, "rendering", &damage_section_rendering_paramters_block },
-		{ _field_real, "runtime recharge velocity!*" },
-		{ _field_real, "runtime overcharge velocity!*" },
-		{ _field_short_integer, "runtime resurrection restored region index!*" },
-		{ _field_short_integer, "runtime global shield material type!*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "rendering", &damage_section_rendering_paramters_block },
+		{ _field_legacy, _field_real, "runtime recharge velocity!*" },
+		{ _field_legacy, _field_real, "runtime overcharge velocity!*" },
+		{ _field_legacy, _field_short_integer, "runtime resurrection restored region index!*" },
+		{ _field_legacy, _field_short_integer, "runtime global shield material type!*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(damage_body_parameters_struct)
 	{
-		{ _field_real, "maximum vitality" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
-		{ _field_real, "stun time:seconds#the length of time the health stay stunned (do not recharge) after taking damage" },
-		{ _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
-		{ _field_real_fraction, "recharge fraction#0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "maximum vitality" },
+		{ _field_legacy, _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
+		{ _field_legacy, _field_real, "stun time:seconds#the length of time the health stay stunned (do not recharge) after taking damage" },
+		{ _field_legacy, _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
+		{ _field_legacy, _field_real_fraction, "recharge fraction#0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(damage_shield_parameters_struct)
 	{
-		{ _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s shields" },
-		{ _field_real, "stun time:seconds#the length of time the shields stay stunned (do not recharge) after taking damage" },
-		{ _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
+		{ _field_legacy, _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" },
+		{ _field_legacy, _field_string_id, "global shield material name" },
+		{ _field_legacy, _field_real, "minimum stun damage#the minimum damage required to stun this object\'s shields" },
+		{ _field_legacy, _field_real, "stun time:seconds#the length of time the shields stay stunned (do not recharge) after taking damage" },
+		{ _field_legacy, _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 2 },
-		{ _field_real, "shield overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		{ _field_real, "shield overcharge time#time it takes to reach full \"shield overcharge fraction\"" },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_real, "shield overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
+		{ _field_legacy, _field_real, "shield overcharge time#time it takes to reach full \"shield overcharge fraction\"" },
 
-		{ _field_real, "shield damaged threshold" },
-		{ _field_tag_reference, "shield damaged effect", &global_effect_reference },
-		{ _field_tag_reference, "shield depleted effect", &global_effect_reference },
-		{ _field_tag_reference, "shield recharging effect", &global_effect_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "shield damaged threshold" },
+		{ _field_legacy, _field_tag_reference, "shield damaged effect", &global_effect_reference },
+		{ _field_legacy, _field_tag_reference, "shield depleted effect", &global_effect_reference },
+		{ _field_legacy, _field_tag_reference, "shield recharging effect", &global_effect_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(instantaneous_response_damage_effect_struct)
 	{
-		{ _field_tag_reference, "transition damage effect", &global_damage_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "transition damage effect", &global_damage_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
 	{
-		{ _field_string_id, "damage effect marker name" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "damage effect marker name" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(model_damage_info_struct)
 	{
-		{ _field_explanation, "Damage Info", "" },
-		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
-		{ _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" },
-		{ _field_string_id, "indirect material name#absorbes AOE or child damage" },
-		{ _field_short_block_index, "indirect damage section#absorbes AOE or child damage" },
-		{ _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" },
-		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "MDIBP0", 2 },
-		{ _field_block, "damage sections", &new_global_damage_section_block_block },
-		{ _field_block, "damage constraints", &damage_constraint_info_block_block },
-		{ _field_block, "nodes*", &global_damage_nodes_block_block },
-		{ _field_short_integer, "runtime indirect material type!*" },
-		{ _field_pad, "MDIBP1", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Damage Info", "" },
+		{ _field_legacy, _field_long_flags, "flags", &new_model_damage_info_flags_definition },
+		{ _field_legacy, _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" },
+		{ _field_legacy, _field_string_id, "indirect material name#absorbes AOE or child damage" },
+		{ _field_legacy, _field_short_block_index, "indirect damage section#absorbes AOE or child damage" },
+		{ _field_legacy, _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" },
+		{ _field_legacy, _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
+		{ _field_legacy, _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
+		{ _field_legacy, _field_pad, "MDIBP0", 2 },
+		{ _field_legacy, _field_block, "damage sections", &new_global_damage_section_block_block },
+		{ _field_legacy, _field_block, "damage constraints", &damage_constraint_info_block_block },
+		{ _field_legacy, _field_block, "nodes*", &global_damage_nodes_block_block },
+		{ _field_legacy, _field_short_integer, "runtime indirect material type!*" },
+		{ _field_legacy, _field_pad, "MDIBP1", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(model_state_enum_definition)

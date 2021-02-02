@@ -8,26 +8,26 @@ namespace blofeld
 
 	V5_TAG_BLOCK(single_achievement_restricted_level_block, s_single_achivement_restricted_level_definition::k_maximum_count)
 	{
-		{ _field_string_id, "level name^#Compared to map name in scenario" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "level name^#Compared to map name in scenario" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_char_enum, "type", &global_achievement_enum },
-		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
-		{ _field_pad, "VJNOSNJER", 2 },
-		{ _field_block, "restricted levels", &single_achievement_restricted_level_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_char_enum, "type", &global_achievement_enum },
+		{ _field_legacy, _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
+		{ _field_legacy, _field_pad, "VJNOSNJER", 2 },
+		{ _field_legacy, _field_block, "restricted levels", &single_achievement_restricted_level_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(achievements_struct_definition)
 	{
-		{ _field_block, "achievement", &single_achievement_definition_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "achievement", &single_achievement_definition_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(global_achievement_enum)

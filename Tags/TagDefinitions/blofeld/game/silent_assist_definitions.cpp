@@ -8,27 +8,27 @@ namespace blofeld
 
 	V5_TAG_BLOCK(silentAssistLevelBlock, SilentAssistGlobals::k_maxSilentAssistLevel+1)
 	{
-		{ _field_real, "grenade damage" },
-		{ _field_real, "grenade radius" },
-		{ _field_real, "assist award bias#multiplier for attributed-damage during assist calculation" },
-		{ _field_real, "weapon spread" },
-		{ _field_real, "headshot aim assist{headshot magnetism}#increases autoaim for headshot weapons" },
-		{ _field_real, "melee cone" },
-		{ _field_real, "aim assist#unimplemented" },
-		{ _field_explanation, "Level Change", "These fields show how many kills/deaths it takes to move between levels" },
-		{ _field_byte_flags, "flags", &g_silentAssistFlags },
-		{ _field_pad, "SXIX", 3 },
-		{ _field_long_integer, "kills to decrease level" },
-		{ _field_long_integer, "deaths to increase level" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "grenade damage" },
+		{ _field_legacy, _field_real, "grenade radius" },
+		{ _field_legacy, _field_real, "assist award bias#multiplier for attributed-damage during assist calculation" },
+		{ _field_legacy, _field_real, "weapon spread" },
+		{ _field_legacy, _field_real, "headshot aim assist{headshot magnetism}#increases autoaim for headshot weapons" },
+		{ _field_legacy, _field_real, "melee cone" },
+		{ _field_legacy, _field_real, "aim assist#unimplemented" },
+		{ _field_legacy, _field_explanation, "Level Change", "These fields show how many kills/deaths it takes to move between levels" },
+		{ _field_legacy, _field_byte_flags, "flags", &g_silentAssistFlags },
+		{ _field_legacy, _field_pad, "SXIX", 3 },
+		{ _field_legacy, _field_long_integer, "kills to decrease level" },
+		{ _field_legacy, _field_long_integer, "deaths to increase level" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(silent_assist_globals_block, 1, silent_assist_globals_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(silent_assist_globals_struct_definition)
 	{
-		{ _field_block, "levels", &silentAssistLevelBlock_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "levels", &silentAssistLevelBlock_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(g_silentAssistFlags)

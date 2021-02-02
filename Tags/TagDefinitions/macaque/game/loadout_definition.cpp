@@ -29,7 +29,7 @@ namespace macaque
 		GAME_ENGINE_LOADOUT_OPTIONS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &loadout_flags_definition },
-		{ _field_pad, "DLVKJSER", 3 },
+		FIELD_PAD("DLVKJSER", nullptr, 3),
 		{ _field_block, "loadout palettes", &game_engine_loadout_palette_entry_block },
 		{ _field_terminator }
 	};
@@ -42,7 +42,7 @@ namespace macaque
 		"s_static_loadout_palette_entry_definition",
 		GAME_ENGINE_LOADOUT_PALETTE_ENTRY_BLOCK_ID)
 	{
-		{ _field_string_id, "palette name^" },
+		{ _field_string_id, "palette name" },
 		{ _field_terminator }
 	};
 
@@ -73,8 +73,8 @@ namespace macaque
 		"s_static_loadout_tag_reference",
 		LOADOUT_INDEX_BLOCK_ID)
 	{
-		{ _field_short_block_index, "loadout^" },
-		{ _field_pad, "padding0", 2 },
+		{ _field_short_block_index, "loadout", &loadout_definition_block },
+		FIELD_PAD("padding0", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -86,7 +86,7 @@ namespace macaque
 		"s_static_loadout_name_tag_definition",
 		LOADOUT_NAME_BLOCK_ID)
 	{
-		{ _field_string_id, "display name^" },
+		{ _field_string_id, "display name" },
 		{ _field_terminator }
 	};
 
@@ -117,16 +117,16 @@ namespace macaque
 		"s_static_loadout_tag_definition",
 		LOADOUT_DEFINITION_STRUCT_ID)
 	{
-		{ _field_string_id, "loadout name^" },
-		{ _field_string_id, "app1#name of an element from custom_app_globals/custom_apps.  Can be left empty." },
-		{ _field_string_id, "app2#see above" },
-		{ _field_string_id, "initial primary weapon#name of an element from global starting weapons block. Other values:\n(empty) - unchanged\nunchanged - unchanged\ndefault - take from starting profiles in scenario\nnone - no weapon\nrandom - use random item from valid starting weapons" },
+		{ _field_string_id, "loadout name" },
+		{ _field_string_id, "app1", "name of an element from custom_app_globals/custom_apps.  Can be left empty." },
+		{ _field_string_id, "app2", "see above" },
+		{ _field_string_id, "initial primary weapon", "name of an element from global starting weapons block. Other values:\n(empty) - unchanged\nunchanged - unchanged\ndefault - take from starting profiles in scenario\nnone - no weapon\nrandom - use random item from valid starting weapons" },
 		{ _field_string_id, "initial primary weapon variant name" },
-		{ _field_string_id, "initial secondary weapon#see above" },
+		{ _field_string_id, "initial secondary weapon", "see above" },
 		{ _field_string_id, "initial secondary weapon variant name" },
-		{ _field_string_id, "initial equipment#see above" },
+		{ _field_string_id, "initial equipment", "see above" },
 		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
-		{ _field_pad, "SDJCESLRN", 3 },
+		FIELD_PAD("SDJCESLRN", nullptr, 3),
 		{ _field_terminator }
 	};
 

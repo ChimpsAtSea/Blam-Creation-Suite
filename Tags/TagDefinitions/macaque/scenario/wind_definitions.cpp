@@ -22,7 +22,7 @@ namespace macaque
 		{ _field_struct, "bend", &wind_scalar_function_struct },
 		{ _field_struct, "oscillation", &wind_scalar_function_struct },
 		{ _field_struct, "frequency", &wind_scalar_function_struct },
-		{ _field_real, "gust size:world units" },
+		{ _field_real, "gust size", "world units" },
 		{ _field_tag_reference, "gust noise bitmap", &global_bitmap_reference },
 		{ _field_terminator }
 	};
@@ -41,7 +41,7 @@ namespace macaque
 		"s_wind_function",
 		WIND_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

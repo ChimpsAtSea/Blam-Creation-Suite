@@ -39,28 +39,28 @@ namespace macaque
 		{ _field_block, "instances", &scenario_lightmap_instance_data_block },
 		{ _field_block, "probes", &scenario_lightmap_lightprobe_value_block },
 		{ _field_block, "shadow geometry excluded instance indices", &scenario_lightmap_instance_index_block },
-		{ _field_block, "per-pixel padding!", &scenario_lightmap_global_perpixel_padding_data_block },
-		{ _field_block, "per-pixel rasterized charts!", &scenario_lightmap_rasterized_chart_data_block },
-		{ _field_block, "New AO Data!", &scenario_lightmap_new_ao_data_block },
-		{ _field_block, "Adjacent Bounce Vertices!", &scenario_lightmap_adjacent_bounce_vertex_block },
-		{ _field_block, "Adjacent Bounce Indices!", &scenario_lightmap_adjacent_bounce_index_block },
-		{ _field_long_integer, "Parameterization Method Checksum!" },
-		{ _field_long_integer, "New AO checksum!" },
+		{ _field_block, "per-pixel padding", &scenario_lightmap_global_perpixel_padding_data_block },
+		{ _field_block, "per-pixel rasterized charts", &scenario_lightmap_rasterized_chart_data_block },
+		{ _field_block, "New AO Data", &scenario_lightmap_new_ao_data_block },
+		{ _field_block, "Adjacent Bounce Vertices", &scenario_lightmap_adjacent_bounce_vertex_block },
+		{ _field_block, "Adjacent Bounce Indices", &scenario_lightmap_adjacent_bounce_index_block },
+		{ _field_long_integer, "Parameterization Method Checksum" },
+		{ _field_long_integer, "New AO checksum" },
 		{ _field_long_integer, "Material Count" },
 		{ _field_long_integer, "Mesh Count" },
 		{ _field_short_integer, "lightmap parameterization width" },
 		{ _field_short_integer, "lightmap parameterization height" },
-		{ _field_struct, "imported geometry*", &global_render_geometry_struct },
+		{ _field_struct, "imported geometry", &global_render_geometry_struct },
 		{ _field_block, "per mesh triangle mapping", &triangle_mapping_per_mesh_block },
-		{ _field_struct, "shadow geometry*", &global_render_geometry_struct },
-		{ _field_struct, "Dynamic Light Shadow Geometry*", &global_render_geometry_struct },
+		{ _field_struct, "shadow geometry", &global_render_geometry_struct },
+		{ _field_struct, "Dynamic Light Shadow Geometry", &global_render_geometry_struct },
 		{ _field_block, "light instance data", &scenario_lightmap_dynamic_light_instance_block },
 		{ _field_block, "structure light instance data", &scenario_lightmap_structure_light_instance_block },
 		{ _field_block, "extruded silhouette vertices", &s_scenario_lightmap_silhouette_vertex_block },
 		{ _field_block, "extruded silhouette edges", &s_scenario_lightmap_silhouette_edge_block },
 		{ _field_block, "extruded silhouette groups", &s_scenario_lightmap_silhouette_group_block },
 		{ _field_block, "airprobes", &scenario_lightmap_airprobe_value_block },
-		{ _field_block, "errors*", &global_error_report_categories_block },
+		{ _field_block, "errors", &global_error_report_categories_block },
 		{ _field_block, "self_track", &global_self_track_block },
 		{ _field_tag_reference, "forge per-pixel color", &bitmap_reference$2 },
 		{ _field_tag_reference, "forge per-pixel sun", &bitmap_reference$2 },
@@ -134,7 +134,7 @@ namespace macaque
 		{ _field_short_integer, "pervertex block index" },
 		{ _field_short_integer, "probe block index" },
 		{ _field_char_integer, "analytical light collision warning" },
-		{ _field_char_enum, "lightmap debug uv policy*", &lightmapDebugUVPolicyDefinition },
+		{ _field_char_enum, "lightmap debug uv policy", &lightmapDebugUVPolicyDefinition },
 		{ _field_long_integer, "analytical light index" },
 		{ _field_long_integer, "per-vertex lightprobe texture offset" },
 		{ _field_dword_integer, "matching flags" },
@@ -289,7 +289,7 @@ namespace macaque
 		"dword",
 		TRIANGLE_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "word*" },
+		{ _field_long_integer, "word" },
 		{ _field_terminator }
 	};
 
@@ -383,8 +383,8 @@ namespace macaque
 		SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID)
 	{
 		{ _field_real_point_3d, "airprobe position" },
-		{ _field_string_id, "airprobe name^" },
-		{ _field_long_integer, "BSP index^" },
+		{ _field_string_id, "airprobe name" },
+		{ _field_long_integer, "BSP index" },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_struct, "sh terms", &half_rgb_lightprobe_struct },
 		{ _field_terminator }
@@ -449,8 +449,8 @@ namespace macaque
 	{
 		{ _field_long_integer, "cluster offset" },
 		{ _field_char_integer, "single probe" },
-		{ _field_pad, "LHWCHFX", 1 },
-		{ _field_pad, "DWCIEFG", 2 },
+		FIELD_PAD("LHWCHFX", nullptr, 1),
+		FIELD_PAD("DWCIEFG", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -462,7 +462,7 @@ namespace macaque
 		"short",
 		DUAL_VMF_TERMS_ID)
 	{
-		{ _field_short_integer, "dual vmf coefficient*" },
+		{ _field_short_integer, "dual vmf coefficient" },
 		{ _field_terminator }
 	};
 
@@ -474,7 +474,7 @@ namespace macaque
 		SCENARIO_WETNESS_BSP_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "bsp reference index" },
-		{ _field_pad, "LHWCHFX", 2 },
+		FIELD_PAD("LHWCHFX", nullptr, 2),
 		{ _field_long_integer, "structure BSP import checksum" },
 		{ _field_long_integer, "lightmap BSP import checksum" },
 		{ _field_long_integer, "design BSP checksum" },

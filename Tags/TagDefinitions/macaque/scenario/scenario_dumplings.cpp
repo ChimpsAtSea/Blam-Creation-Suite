@@ -16,8 +16,8 @@ namespace macaque
 		SCENARIO_ATMOSPHERE_DUMPLING_BLOCK_ID)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
-		{ _field_short_block_index, "atmosphere" },
-		{ _field_pad, "pad", 2 },
+		{ _field_short_block_index, "atmosphere", &scenario_atmosphere_palette_block },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -43,8 +43,8 @@ namespace macaque
 		SCENARIO_WEATHER_DUMPLING_BLOCK_ID)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
-		{ _field_short_block_index, "weather" },
-		{ _field_pad, "pad", 2 },
+		{ _field_short_block_index, "weather", &scenario_weather_palette_block },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -61,8 +61,8 @@ namespace macaque
 		{ _field_real, "sink" },
 		{ _field_real, "inner value" },
 		{ _field_real, "outer value" },
-		{ _field_real_point_3d, "center point!" },
-		{ _field_real, "trivial cull radius squared!" },
+		{ _field_real_point_3d, "center point" },
+		{ _field_real, "trivial cull radius squared" },
 		{ _field_terminator }
 	};
 

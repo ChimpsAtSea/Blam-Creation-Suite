@@ -15,7 +15,7 @@ namespace macaque
 		"g_null_block",
 		G_NULL_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_terminator }
 	};
 

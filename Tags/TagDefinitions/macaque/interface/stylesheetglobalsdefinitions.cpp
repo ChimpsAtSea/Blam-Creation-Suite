@@ -28,7 +28,7 @@ namespace macaque
 		"UserInterfaceStyleSheets",
 		USERINTERFACESTYLESHEETLANGUAGESBLOCK_ID)
 	{
-		{ _field_long_enum, "language^", &style_sheet_language_enum_definition },
+		{ _field_long_enum, "language", &style_sheet_language_enum_definition },
 		{ _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
 		{ _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block },
 		{ _field_terminator }
@@ -42,7 +42,7 @@ namespace macaque
 		"StyleFontData",
 		USERINTERFACESTYLESHEETSFONTBLOCK_ID)
 	{
-		{ _field_string_id, "style sheet name^" },
+		{ _field_string_id, "style sheet name" },
 		{ _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
 		{ _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block },
 		{ _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block },
@@ -132,7 +132,7 @@ namespace macaque
 		"StyleVisualData",
 		USERINTERFACESTYLESHEETSVISUALBLOCK_ID)
 	{
-		{ _field_string_id, "style sheet name^" },
+		{ _field_string_id, "style sheet name" },
 		{ _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
 		{ _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block },
 		{ _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block },
@@ -174,7 +174,7 @@ namespace macaque
 		"UserInterfaceStyleGradient",
 		USERINTERFACESTYLESHEETGRADIENTBLOCK_ID)
 	{
-		{ _field_string_id, "gradient name^" },
+		{ _field_string_id, "gradient name" },
 		{ _field_real_argb_color, "color1" },
 		{ _field_real_argb_color, "color2" },
 		{ _field_real_argb_color, "color3" },
@@ -195,7 +195,7 @@ namespace macaque
 		"UserInterfaceStyleDropshadow",
 		USERINTERFACESTYLESHEETDROPSHADOWBLOCK_ID)
 	{
-		{ _field_string_id, "dropshadow name^" },
+		{ _field_string_id, "dropshadow name" },
 		{ _field_real_argb_color, "color" },
 		{ _field_real, "angle" },
 		{ _field_real, "distance" },
@@ -212,7 +212,7 @@ namespace macaque
 		"UserInterfaceStyleOuterGlow",
 		USERINTERFACESTYLESHEETOUTERGLOWBLOCK_ID)
 	{
-		{ _field_string_id, "outer glow name^" },
+		{ _field_string_id, "outer glow name" },
 		{ _field_real_argb_color, "color" },
 		{ _field_real, "spread" },
 		{ _field_real, "size" },

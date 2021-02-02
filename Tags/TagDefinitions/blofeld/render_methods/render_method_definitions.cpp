@@ -14,327 +14,327 @@ namespace blofeld
 
 	V5_TAG_BLOCK(short_block, k_kilo)
 	{
-		{ _field_short_integer, "short" },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_integer, "short" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_animated_parameter_block, k_kilo)
 	{
-		{ _field_long_enum, "type^", &render_method_animated_parameter_type_enum },
-		{ _field_string_id, "input name" },
-		{ _field_string_id, "range name" },
-		{ _field_real, "time period:seconds" },
-		{ _field_explanation, "FUNCTION", "" },
-		{ _field_custom },
-		{ _field_struct, "function", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_enum, "type^", &render_method_animated_parameter_type_enum },
+		{ _field_legacy, _field_string_id, "input name" },
+		{ _field_legacy, _field_string_id, "range name" },
+		{ _field_legacy, _field_real, "time period:seconds" },
+		{ _field_legacy, _field_explanation, "FUNCTION", "" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_parameter_block, c_render_method::k_maximum_parameters)
 	{
-		{ _field_string_id, "parameter name^" },
-		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
-		{ _field_tag_reference, "bitmap", &bitmap_reference },
-		{ _field_real, "real" },
-		{ _field_long_integer, "int/bool" },
-		{ _field_word_integer, "bitmap flags" },
-		{ _field_word_integer, "bitmap filter mode" },
-		{ _field_word_integer, "bitmap address mode" },
-		{ _field_word_integer, "bitmap address mode x" },
-		{ _field_word_integer, "bitmap address mode y" },
-		{ _field_short_integer, "bitmap anisotropy amount" },
-		{ _field_short_integer, "bitmap extern RTT mode" },
-		{ _field_word_integer, "bitmap sharpen mode" },
-		{ _field_block, "animated parameters", &render_method_animated_parameter_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "parameter name^" },
+		{ _field_legacy, _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_legacy, _field_tag_reference, "bitmap", &bitmap_reference },
+		{ _field_legacy, _field_real, "real" },
+		{ _field_legacy, _field_long_integer, "int/bool" },
+		{ _field_legacy, _field_word_integer, "bitmap flags" },
+		{ _field_legacy, _field_word_integer, "bitmap filter mode" },
+		{ _field_legacy, _field_word_integer, "bitmap address mode" },
+		{ _field_legacy, _field_word_integer, "bitmap address mode x" },
+		{ _field_legacy, _field_word_integer, "bitmap address mode y" },
+		{ _field_legacy, _field_short_integer, "bitmap anisotropy amount" },
+		{ _field_legacy, _field_short_integer, "bitmap extern RTT mode" },
+		{ _field_legacy, _field_word_integer, "bitmap sharpen mode" },
+		{ _field_legacy, _field_block, "animated parameters", &render_method_animated_parameter_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_postprocess_texture_block, c_render_method::k_maximum_postprocess_textures)
 	{
-		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
-		{ _field_short_integer, "bitmap index" },
-		{ _field_byte_integer, "address mode" },
-		{ _field_byte_integer, "filter mode" },
-		{ _field_byte_integer, "extern texture mode" },
-		{ _field_char_block_index, "texture transform constant index" },
-		{ _field_struct, "texture transform overlay indices", &tag_block_index_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "bitmap reference", &global_bitmap_reference },
+		{ _field_legacy, _field_short_integer, "bitmap index" },
+		{ _field_legacy, _field_byte_integer, "address mode" },
+		{ _field_legacy, _field_byte_integer, "filter mode" },
+		{ _field_legacy, _field_byte_integer, "extern texture mode" },
+		{ _field_legacy, _field_char_block_index, "texture transform constant index" },
+		{ _field_legacy, _field_struct, "texture transform overlay indices", &tag_block_index_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(real_vector4d_block, k_kilo)
 	{
-		{ _field_real_vector_3d, "vector" },
-		{ _field_real, "vector w" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real_vector_3d, "vector" },
+		{ _field_legacy, _field_real, "vector w" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(int_block, k_kilo)
 	{
-		{ _field_long_integer, "int value" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "int value" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(tag_block_index_block, k_kilo)
 	{
-		{ _field_struct, "block index", &tag_block_index_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "block index", &tag_block_index_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_postprocess_pass_block, k_kilo)
 	{
-		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel real#divide by 1024 for count, remainder is start index" },
-		{ _field_terminator }
+		{ _field_legacy, _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "pixel real#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_routing_info_block, c_render_method_template::k_maximum_routing_info)
 	{
-		{ _field_word_integer, "destination index#D3D constant index or sampler index" },
-		{ _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" },
-		{ _field_byte_integer, "type specific#bitmap flags or shader component mask" },
-		{ _field_terminator }
+		{ _field_legacy, _field_word_integer, "destination index#D3D constant index or sampler index" },
+		{ _field_legacy, _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" },
+		{ _field_legacy, _field_byte_integer, "type specific#bitmap flags or shader component mask" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_postprocess_block, 1)
 	{
-		{ _field_tag_reference, "shader template", &render_method_template_reference },
-		{ _field_block, "textures", &render_method_postprocess_texture_block_block },
-		{ _field_block, "real vectors", &real_vector4d_block_block },
-		{ _field_block, "int constants", &int_block_block },
-		{ _field_long_integer, "bool constants" },
-		{ _field_block, "entry points", &tag_block_index_block_block },
-		{ _field_block, "passes", &render_method_postprocess_pass_block_block },
-		{ _field_block, "routing info", &render_method_routing_info_block_block },
-		{ _field_block, "overlays", &render_method_animated_parameter_block_block },
-		{ _field_long_integer, "blend mode" },
-		{ _field_long_integer, "flags" },
-		{ _field_long_integer, "im_so_fired_pad!*" },
-		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
+		{ _field_legacy, _field_tag_reference, "shader template", &render_method_template_reference },
+		{ _field_legacy, _field_block, "textures", &render_method_postprocess_texture_block_block },
+		{ _field_legacy, _field_block, "real vectors", &real_vector4d_block_block },
+		{ _field_legacy, _field_block, "int constants", &int_block_block },
+		{ _field_legacy, _field_long_integer, "bool constants" },
+		{ _field_legacy, _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_legacy, _field_block, "passes", &render_method_postprocess_pass_block_block },
+		{ _field_legacy, _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_legacy, _field_block, "overlays", &render_method_animated_parameter_block_block },
+		{ _field_legacy, _field_long_integer, "blend mode" },
+		{ _field_legacy, _field_long_integer, "flags" },
+		{ _field_legacy, _field_long_integer, "im_so_fired_pad!*" },
+		{ _field_legacy, _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_pageable, "unknown pageable" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_pageable, "unknown pageable" },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_locked_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
-		{ _field_string_id, "parameter name" },
-		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
-		{ _field_dword_integer, "animated parameter flags" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "parameter name" },
+		{ _field_legacy, _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_legacy, _field_dword_integer, "animated parameter flags" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
 
 	V5_TAG_BLOCK(render_method_options_block, c_render_method_definition::k_maximum_category_options)
 	{
-		{ _field_string_id, "option name" },
-		{ _field_tag_reference, "option", &render_method_option_reference },
-		{ _field_string_id, "vertex function" },
-		{ _field_string_id, "pixel function" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "option name" },
+		{ _field_legacy, _field_tag_reference, "option", &render_method_option_reference },
+		{ _field_legacy, _field_string_id, "vertex function" },
+		{ _field_legacy, _field_string_id, "pixel function" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_category_block, c_render_method_definition::k_maximum_categories)
 	{
-		{ _field_string_id, "category name" },
-		{ _field_block, "options", &render_method_options_block_block },
-		{ _field_string_id, "vertex function" },
-		{ _field_string_id, "pixel function" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "category name" },
+		{ _field_legacy, _field_block, "options", &render_method_options_block_block },
+		{ _field_legacy, _field_string_id, "vertex function" },
+		{ _field_legacy, _field_string_id, "pixel function" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_pass_category_dependencies, 1)
 	{
-		{ _field_short_block_index, "category" },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_block_index, "category" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_pass_block, k_kilo)
 	{
-		{ _field_word_flags, "flags", &render_method_pass_flags },
-		{ _field_pad, "nothing", 2 },
-		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
+		{ _field_legacy, _field_word_flags, "flags", &render_method_pass_flags },
+		{ _field_legacy, _field_pad, "nothing", 2 },
+		{ _field_legacy, _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 1 },
-		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
+		{ _field_legacy, _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_entry_points_block, c_render_method_definition::k_maximum_entry_points)
 	{
-		{ _field_long_enum, "entry point", &entry_point_enum },
-		{ _field_block, "passes", &render_method_pass_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_enum, "entry point", &entry_point_enum },
+		{ _field_legacy, _field_block, "passes", &render_method_pass_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(vertex_types_block, k_number_of_vertex_types)
 	{
-		{ _field_enum, "vertex type", &vertex_types_names_enum },
-		{ _field_pad, "blahasdf", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_enum, "vertex type", &vertex_types_names_enum },
+		{ _field_legacy, _field_pad, "blahasdf", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_method_definition_block, 1, render_method_definition_struct_definition_struct_definition );
 
 	V5_TAG_BLOCK(render_method_option_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
-		{ _field_string_id, "parameter name" },
+		{ _field_legacy, _field_string_id, "parameter name" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_string_id, "parameter ui override name" },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_string_id, "parameter ui override name" },
 
-		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
-		{ _field_long_enum, "source extern", &render_method_extern_enum },
-		{ _field_tag_reference, "default bitmap", &global_bitmap_reference },
-		{ _field_real, "default real value" },
-		{ _field_long_integer, "default int/bool value" },
-		{ _field_word_integer, "flags" },
-		{ _field_enum, "default filter mode", &render_method_bitmap_filter_mode_enum },
-		{ _field_enum, "default address mode", &render_method_bitmap_address_mode_enum },
-		{ _field_word_integer, "anisotropy amount" },
-		{ _field_argb_color, "default color" },
-		{ _field_real, "default bitmap scale" },
-		{ _field_long_flags, "usage flags", &ui_and_usage_flags },
-		{ _field_enum, "force function type", &function_type_enum_definition },
-		{ _field_enum, "force function color count", &color_graph_type_enum_definition },
-		{ _field_real, "suggested real min" },
-		{ _field_real, "suggested real max" },
-		{ _field_long_integer, "ticks from min to max" },
+		{ _field_legacy, _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_legacy, _field_long_enum, "source extern", &render_method_extern_enum },
+		{ _field_legacy, _field_tag_reference, "default bitmap", &global_bitmap_reference },
+		{ _field_legacy, _field_real, "default real value" },
+		{ _field_legacy, _field_long_integer, "default int/bool value" },
+		{ _field_legacy, _field_word_integer, "flags" },
+		{ _field_legacy, _field_enum, "default filter mode", &render_method_bitmap_filter_mode_enum },
+		{ _field_legacy, _field_enum, "default address mode", &render_method_bitmap_address_mode_enum },
+		{ _field_legacy, _field_word_integer, "anisotropy amount" },
+		{ _field_legacy, _field_argb_color, "default color" },
+		{ _field_legacy, _field_real, "default bitmap scale" },
+		{ _field_legacy, _field_long_flags, "usage flags", &ui_and_usage_flags },
+		{ _field_legacy, _field_enum, "force function type", &function_type_enum_definition },
+		{ _field_legacy, _field_enum, "force function color count", &color_graph_type_enum_definition },
+		{ _field_legacy, _field_real, "suggested real min" },
+		{ _field_legacy, _field_real, "suggested real max" },
+		{ _field_legacy, _field_long_integer, "ticks from min to max" },
 
-		{ _field_version_equal, _engine_type_halo3odst, 4 },
-		{ _field_long_integer, "@unknown" },
-		{ _field_long_integer, "@unknown" },
-		{ _field_long_integer, "@unknown" },
+		{ _field_legacy, _field_version_equal, _engine_type_halo3odst, 4 },
+		{ _field_legacy, _field_long_integer, "@unknown" },
+		{ _field_legacy, _field_long_integer, "@unknown" },
+		{ _field_legacy, _field_long_integer, "@unknown" },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_data, "help text" },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_data, "help text" },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_method_option_block, 1, render_method_option_struct_definition_struct_definition );
 
 	V5_TAG_BLOCK(render_method_template_pass_block, c_render_method_template::k_maximum_passes)
 	{
-		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "vertex bool constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "pixel bool constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern bitmaps#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern vertex real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern vertex int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" },
-		{ _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" },
-		{ _field_long_integer, "alpha blend mode" },
+		{ _field_legacy, _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "vertex int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "vertex bool constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "pixel real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "pixel int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "pixel bool constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "extern bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "extern vertex real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "extern vertex int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_long_integer, "alpha blend mode" },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_long_integer, "unknown@" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_long_integer, "unknown@" },
 
-		{ _field_terminator }
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_template_constant_table_block, 254)
 	{
-		{ _field_string_id, "parameter name" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "parameter name" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(render_method_template_platform_block, 1)
 	{
-		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
-		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry_points*" },
-		{ _field_block, "entry points", &tag_block_index_block_block },
-		{ _field_block, "passes", &render_method_template_pass_block_block },
-		{ _field_block, "routing info", &render_method_routing_info_block_block },
-		{ _field_block, "float constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "int constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "bool constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "textures", &render_method_template_constant_table_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "vertex shader", &vertex_shader_reference },
+		{ _field_legacy, _field_tag_reference, "pixel shader", &pixel_shader_reference },
+		{ _field_legacy, _field_dword_integer, "available entry_points*" },
+		{ _field_legacy, _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_legacy, _field_block, "passes", &render_method_template_pass_block_block },
+		{ _field_legacy, _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_legacy, _field_block, "float constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "int constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "bool constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "textures", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
 
 	V5_TAG_ARRAY(runtime_queryable_properties, s_render_method_postprocess_definition::k_runtime_queryable_properties_count)
 	{
-		{ _field_short_block_index, "index" },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_block_index, "index" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(render_method_struct_definition)
 	{
-		{ _field_custom },
-		{ _field_tag_reference, "definition*", &render_method_definition_reference },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_tag_reference, "definition*", &render_method_definition_reference },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_tag_reference, "reference", &render_method_reference },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_tag_reference, "reference", &render_method_reference },
 
-		{ _field_block, "options", &short_block_block },
-		{ _field_block, "parameters", &render_method_parameter_block_block },
-		{ _field_block, "postprocess", &render_method_postprocess_block_block },
+		{ _field_legacy, _field_block, "options", &short_block_block },
+		{ _field_legacy, _field_block, "parameters", &render_method_parameter_block_block },
+		{ _field_legacy, _field_block, "postprocess", &render_method_postprocess_block_block },
 
-		{ _field_version_greater_or_equal, _engine_type_haloreach, 3 },
-		{ _field_long_integer, "is template" },
-		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
-		{ _field_block, "locked parameters", &render_method_locked_parameter_block_block },
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_long_integer, "is template" },
+		{ _field_legacy, _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
+		{ _field_legacy, _field_block, "locked parameters", &render_method_locked_parameter_block_block },
 
-		{ _field_word_flags, "shader flags*", &global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version!" },
-		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index!" },
-		{ _field_terminator }
+		{ _field_legacy, _field_word_flags, "shader flags*", &global_render_method_flags_defintion },
+		{ _field_legacy, _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
+		{ _field_legacy, _field_char_integer, "version!" },
+		{ _field_legacy, _field_long_integer, "Custom fog setting index" },
+		{ _field_legacy, _field_long_block_index, "prediction atom index!" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(tag_block_index_struct)
 	{
-		{ _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" },
-		{ _field_terminator }
+		{ _field_legacy, _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(render_method_definition_struct_definition)
 	{
-		{ _field_tag_reference, "global options", &render_method_option_reference },
-		{ _field_block, "categories", &render_method_category_block_block },
-		{ _field_block, "entry_points", &render_method_entry_points_block_block },
-		{ _field_block, "vertex_types", &vertex_types_block_block },
-		{ _field_tag_reference, "shared pixel shaders*", &global_pixel_shader_reference },
-		{ _field_tag_reference, "shared vertex shaders*", &global_vertex_shader_reference },
-		{ _field_long_flags, "flags", &render_method_definition_flags },
-		{ _field_dword_integer, "version:bump to force recompile" },
-		{ _field_explanation, "source file location", "like templated\\shader ..." },
-		{ _field_long_string, "location" },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "global options", &render_method_option_reference },
+		{ _field_legacy, _field_block, "categories", &render_method_category_block_block },
+		{ _field_legacy, _field_block, "entry_points", &render_method_entry_points_block_block },
+		{ _field_legacy, _field_block, "vertex_types", &vertex_types_block_block },
+		{ _field_legacy, _field_tag_reference, "shared pixel shaders*", &global_pixel_shader_reference },
+		{ _field_legacy, _field_tag_reference, "shared vertex shaders*", &global_vertex_shader_reference },
+		{ _field_legacy, _field_long_flags, "flags", &render_method_definition_flags },
+		{ _field_legacy, _field_dword_integer, "version:bump to force recompile" },
+		{ _field_legacy, _field_explanation, "source file location", "like templated\\shader ..." },
+		{ _field_legacy, _field_long_string, "location" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(render_method_option_struct_definition)
 	{
-		{ _field_block, "parameters", &render_method_option_parameter_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "parameters", &render_method_option_parameter_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(render_method_template_struct_definition)
 	{
-		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
-		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry points*" },
-		{ _field_block, "entry points", &tag_block_index_block_block },
-		{ _field_block, "passes", &render_method_template_pass_block_block },
-		{ _field_block, "routing info", &render_method_routing_info_block_block },
-		{ _field_block, "float constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "int constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "bool constants", &render_method_template_constant_table_block_block },
-		{ _field_block, "textures", &render_method_template_constant_table_block_block },
-		{ _field_block, "other platforms", &render_method_template_platform_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "vertex shader", &vertex_shader_reference },
+		{ _field_legacy, _field_tag_reference, "pixel shader", &pixel_shader_reference },
+		{ _field_legacy, _field_dword_integer, "available entry points*" },
+		{ _field_legacy, _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_legacy, _field_block, "passes", &render_method_template_pass_block_block },
+		{ _field_legacy, _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_legacy, _field_block, "float constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "int constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "bool constants", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "textures", &render_method_template_constant_table_block_block },
+		{ _field_legacy, _field_block, "other platforms", &render_method_template_platform_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(render_method_parameter_type_enum)

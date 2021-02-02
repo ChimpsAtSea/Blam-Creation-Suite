@@ -16,10 +16,10 @@ namespace macaque
 		SOUNDBANK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundBankDefinitionFlags },
-		{ _field_long_flags, "import flags!", &sound_import_flags },
-		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
-		{ _field_block, "Sound bank list#List of names of soundbanks. If more than one, one will be randomly chosen at load", &SoundBankBlock_block },
-		{ _field_long_integer, "Bank priority#the importance of this bank over others. 1 is highest priority (ie will bump all others)" },
+		{ _field_long_flags, "import flags", &sound_import_flags },
+		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_block, "Sound bank list", &SoundBankBlock_block },
+		{ _field_long_integer, "Bank priority", "the importance of this bank over others. 1 is highest priority (ie will bump all others)" },
 		{ _field_long_integer, "Bank unique ID" },
 		{ _field_terminator }
 	};
@@ -60,16 +60,16 @@ namespace macaque
 		SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
-		{ _field_long_flags, "import flags!", &sound_import_flags },
-		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
-		{ _field_string_id, "Event Name#Sound event name." },
-		{ _field_string_id, "Player Event Name#Optional sound event name for player only." },
-		{ _field_string_id, "Fallback Event Name#Fallback sound event if the others don\'t play - should be an a guaranteed bank." },
+		{ _field_long_flags, "import flags", &sound_import_flags },
+		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_string_id, "Event Name", "Sound event name." },
+		{ _field_string_id, "Player Event Name", "Optional sound event name for player only." },
+		{ _field_string_id, "Fallback Event Name", "Fallback sound event if the others don\'t play - should be an a guaranteed bank." },
 		{ _field_real, "Max Radius" },
-		{ _field_real, "Max Duration#Max duration of this event. Enter manually for now - will auto-fill later." },
-		{ _field_real, "Don\'t play time.#Time the event will not retrigger for (global)" },
-		{ _field_long_integer, "Hidden runtime info index!" },
-		{ _field_tag_reference, "Sound bank#Reference to the sound bank tag this event is in. Can be empty.", &global_soundbank_reference },
+		{ _field_real, "Max Duration", "Max duration of this event. Enter manually for now - will auto-fill later." },
+		{ _field_real, "Don\'t play time.", "Time the event will not retrigger for (global)" },
+		{ _field_long_integer, "Hidden runtime info index" },
+		{ _field_tag_reference, "Sound bank", &global_soundbank_reference },
 		{ _field_block, "lipsync info", &soundLipSyncInfoBlock_block },
 		{ _field_long_integer, "deterministic flag index" },
 		{ _field_terminator }
@@ -91,27 +91,27 @@ namespace macaque
 		SOUND_OLD_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
-		{ _field_long_flags, "import flags!", &sound_import_flags },
-		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", &sound_import_flags },
+		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
-		{ _field_char_enum, "sample rate*", &sound_sample_rate_enum },
-		{ _field_char_integer, "override xma compression:[1-100]" },
-		{ _field_char_enum, "import type*", &sound_import_type_enum },
+		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
+		{ _field_char_integer, "override xma compression" },
+		{ _field_char_enum, "import type", &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
 		{ _field_explanation, "sub priority", "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)" },
 		{ _field_real, "sub priority" },
 		{ _field_explanation, "import properties", "" },
-		{ _field_char_enum, "encoding*", &sound_encoding_enum },
-		{ _field_char_enum, "compression*", &sound_compression_enum },
-		{ _field_pad, "pad", 2 },
+		{ _field_char_enum, "encoding", &sound_encoding_enum },
+		{ _field_char_enum, "compression", &sound_compression_enum },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
-		{ _field_pad, "runtime pad~", 4 },
-		{ _field_block, "pitch ranges*#pitch ranges allow multiple samples to represent the same sound at different pitches", &sound_pitch_range_block },
+		FIELD_PAD("runtime pad", nullptr, 4),
+		{ _field_block, "pitch ranges", &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
-		{ _field_block, "extra info!", &sound_extra_info_block },
-		{ _field_block, "language info!", &sound_language_info_block },
+		{ _field_block, "extra info", &sound_extra_info_block },
+		{ _field_block, "language info", &sound_language_info_block },
 		{ _field_terminator }
 	};
 
@@ -131,27 +131,27 @@ namespace macaque
 		SOUND2_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
-		{ _field_long_flags, "import flags!", &sound_import_flags },
-		{ _field_long_flags, "xsync flags!", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", &sound_import_flags },
+		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
-		{ _field_char_enum, "sample rate*", &sound_sample_rate_enum },
-		{ _field_char_integer, "override xma compression:[1-100]" },
-		{ _field_char_enum, "import type*", &sound_import_type_enum },
+		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
+		{ _field_char_integer, "override xma compression" },
+		{ _field_char_enum, "import type", &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
 		{ _field_explanation, "sub priority", "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)" },
 		{ _field_real, "sub priority" },
 		{ _field_explanation, "import properties", "" },
-		{ _field_char_enum, "encoding*", &sound_encoding_enum },
-		{ _field_char_enum, "compression*", &sound_compression_enum },
-		{ _field_pad, "pad", 2 },
+		{ _field_char_enum, "encoding", &sound_encoding_enum },
+		{ _field_char_enum, "compression", &sound_compression_enum },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
-		{ _field_pad, "runtime pad~", 4 },
-		{ _field_block, "pitch ranges*#pitch ranges allow multiple samples to represent the same sound at different pitches", &sound_pitch_range_block },
+		FIELD_PAD("runtime pad", nullptr, 4),
+		{ _field_block, "pitch ranges", &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
-		{ _field_block, "extra info!", &sound_extra_info_block },
-		{ _field_block, "language info!", &sound_language_info_block },
+		{ _field_block, "extra info", &sound_extra_info_block },
+		{ _field_block, "language info", &sound_language_info_block },
 		{ _field_terminator }
 	};
 
@@ -219,11 +219,11 @@ namespace macaque
 		{ _field_tag_reference, "sound mix", &sound_mix_reference },
 		{ _field_tag_reference, "sound combat dialogue constants", &sound_dialogue_constants_reference },
 		{ _field_tag_reference, "sound propagation", &sound_global_propagation_reference },
-		{ _field_tag_reference, "Init sound bank#Init sound bank for WWise.", &global_soundbank_reference },
-		{ _field_tag_reference, "Global sound bank#Global sound bank for WWise.", &global_soundbank_reference },
-		{ _field_tag_reference, "Extra sound bank#The other sound bank for WWise.", &global_soundbank_reference },
-		{ _field_tag_reference, "Campaign sound bank#Extra sound bank for WWise - only loaded for Campaign.", &global_soundbank_reference },
-		{ _field_tag_reference, "Multiplayer sound bank#Extra sound bank for WWise - only loaded for MP - PVP.", &global_soundbank_reference },
+		{ _field_tag_reference, "Init sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Global sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Extra sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Campaign sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Multiplayer sound bank", &global_soundbank_reference },
 		{ _field_block, "Streaming pack files", &StreamingPackBlock_block },
 		{ _field_block, "un-spatialized campaign sounds", &campaign_unspatialized_sounds_block },
 		{ _field_terminator }
@@ -238,7 +238,7 @@ namespace macaque
 		STREAMINGPACKBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &StreamingPackBlockFlags },
-		{ _field_string, "Streaming pck file#Name of the stream pack file" },
+		{ _field_string, "Streaming pck file", "Name of the stream pack file" },
 		{ _field_terminator }
 	};
 
@@ -250,7 +250,7 @@ namespace macaque
 		"s_tag_reference",
 		CAMPAIGN_UNSPATIALIZED_SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_reference },
+		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -262,7 +262,7 @@ namespace macaque
 		"SoundBankBlockDefinition",
 		SOUNDBANKBLOCK_ID)
 	{
-		{ _field_string_id, "Sound bank name#Name of the main sound bank." },
+		{ _field_string_id, "Sound bank name", "Name of the main sound bank." },
 		{ _field_terminator }
 	};
 
@@ -299,23 +299,11 @@ namespace macaque
 		"s_sound_promotion_rule",
 		SOUND_PROMOTION_RULE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "pitch range^" },
+		{ _field_short_block_index, "pitch range", &sound_pitch_range_block },
 		{ _field_short_integer, "maximum playing count" },
-		{ _field_real, "suppression time:seconds#time from when first permutation plays to when another sound from an equal or lower promotion can play" },
-		{ _field_long_integer, "runtime rollover time!" },
-		{ _field_long_integer, "impulse promotion time!" },
-		{ _field_terminator }
-	};
-
-	#define SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID { 0x7738DDE0, 0x0D754110, 0xB20B95F0, 0x43509AAA }
-	TAG_BLOCK(
-		sound_promotion_runtime_timer_block,
-		"sound_promotion_runtime_timer_block",
-		k_maximum_promotion_rules_per_sound,
-		"long",
-		SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID)
-	{
-		{ _field_long_integer, "timer storage~!" },
+		{ _field_real, "suppression time", "time from when first permutation plays to when another sound from an equal or lower promotion can play", "seconds" },
+		{ _field_long_integer, "runtime rollover time" },
+		{ _field_long_integer, "impulse promotion time" },
 		{ _field_terminator }
 	};
 
@@ -327,19 +315,19 @@ namespace macaque
 		"s_sound_pitch_range",
 		SOUND_PITCH_RANGE_BLOCK_ID)
 	{
-		{ _field_string_id, "name*#the name of the imported pitch range directory" },
+		{ _field_string_id, "name", "the name of the imported pitch range directory" },
 		{ _field_explanation, "pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored." },
-		{ _field_short_integer, "natural pitch:cents#the apparent pitch when these samples are played at their recorded pitch." },
-		{ _field_pad, "KCTSDWPP~", 2 },
-		{ _field_short_bounds, "bend bounds:cents#the range of pitches that will be represented using this sample." },
-		{ _field_short_bounds, "full volume bounds!:cents#the range of pitches that map to full gain." },
-		{ _field_short_bounds, "playback bend bounds:cents#the actual pitch will be clamped to this", nullptr, 'fn**' },
+		{ _field_short_integer, "natural pitch", "the apparent pitch when these samples are played at their recorded pitch.", "cents" },
+		FIELD_PAD("KCTSDWPP", nullptr, 2),
+		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
+		{ _field_short_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
 		{ _field_struct, "distance parameters", &sound_distance_parameters_struct },
-		{ _field_pad, "YAMTVB~", 4 },
-		{ _field_char_integer, "runtime usable permutation count!" },
-		{ _field_byte_flags, "xsync flags!", &sound_pitch_range_internal_xsync_flags },
-		{ _field_pad, "asdf", 2 },
-		{ _field_block, "permutations*#permutations represent equivalent variations of this sound.", &sound_permutations_block },
+		FIELD_PAD("YAMTVB", nullptr, 4),
+		{ _field_char_integer, "runtime usable permutation count" },
+		{ _field_byte_flags, "xsync flags", &sound_pitch_range_internal_xsync_flags },
+		FIELD_PAD("asdf", nullptr, 2),
+		{ _field_block, "permutations", &sound_permutations_block },
 		{ _field_terminator }
 	};
 
@@ -351,18 +339,18 @@ namespace macaque
 		"s_sound_permutation",
 		SOUND_PERMUTATIONS_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_sound_player),
-		{ _field_string_id, "name*^#name of the file from which this sample was imported" },
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_real_fraction, "skip fraction#fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_real, "gain:dB#additional attenuation when played", nullptr, '+dB+' },
-		{ _field_custom_short_block_index, "raw info!" },
-		{ _field_short_block_index, "play fraction type!" },
-		{ _field_short_bounds, "mission range#first and last mission ids this permutation can play in (zero values are ignored)" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_sound_player),
+		{ _field_string_id, "name", "name of the file from which this sample was imported" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
+		{ _field_custom_short_block_index, "raw info" },
+		{ _field_short_block_index, "play fraction type", &g_null_block },
+		{ _field_short_bounds, "mission range", "first and last mission ids this permutation can play in (zero values are ignored)" },
 		{ _field_word_flags, "permutation flags", &sound_permutation_external_flags },
-		{ _field_word_flags, "flags!*", &sound_permutation_flags },
-		{ _field_block, "languages!", &sound_permutation_languages_block },
+		{ _field_word_flags, "flags", &sound_permutation_flags },
+		{ _field_block, "languages", &sound_permutation_languages_block },
 		{ _field_terminator }
 	};
 
@@ -387,11 +375,23 @@ namespace macaque
 		"sound_permutation_chunk_block",
 		SOUND_PERMUTATION_CHUNK_BLOCK_ID)
 	{
-		{ _field_long_integer, "file offset*" },
-		{ _field_long_integer, "encoded size and flags~!" },
-		{ _field_long_block_index, "cache index~!" },
-		{ _field_long_integer, "xma2_source_buffer_sample_start*" },
-		{ _field_long_integer, "xma2_source_buffer_sample_end*" },
+		{ _field_long_integer, "file offset" },
+		{ _field_long_integer, "encoded size and flags" },
+		{ _field_long_block_index, "cache index", &g_null_block },
+		{ _field_long_integer, "xma2_source_buffer_sample_start" },
+		{ _field_long_integer, "xma2_source_buffer_sample_end" },
+		{ _field_terminator }
+	};
+
+	#define SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID { 0x7738DDE0, 0x0D754110, 0xB20B95F0, 0x43509AAA }
+	TAG_BLOCK(
+		sound_promotion_runtime_timer_block,
+		"sound_promotion_runtime_timer_block",
+		k_maximum_promotion_rules_per_sound,
+		"long",
+		SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID)
+	{
+		{ _field_long_integer, "timer storage" },
 		{ _field_terminator }
 	};
 
@@ -441,16 +441,16 @@ namespace macaque
 		SOUND_PERMUTATION_RAW_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "skip fraction name" },
-		{ _field_data, "samples!#sampled sound data" },
-		{ _field_block, "markers!", &sound_permutation_marker_block },
-		{ _field_block, "layer markers!", &sound_permutation_marker_block },
-		{ _field_block, "xma2 seek table!", &sound_xma2_seek_table_block },
-		{ _field_enum, "compression*", &sound_compression_enum },
-		{ _field_char_enum, "language*", &sound_language_enum_definition },
-		{ _field_pad, "ZHDGBHWS", 1 },
-		{ _field_long_integer, "sample count!" },
-		{ _field_long_integer, "resource sample offset!" },
-		{ _field_long_integer, "resource sample size!" },
+		{ _field_data, "samples", "sampled sound data" },
+		{ _field_block, "markers", &sound_permutation_marker_block },
+		{ _field_block, "layer markers", &sound_permutation_marker_block },
+		{ _field_block, "xma2 seek table", &sound_xma2_seek_table_block },
+		{ _field_enum, "compression", &sound_compression_enum },
+		{ _field_char_enum, "language", &sound_language_enum_definition },
+		FIELD_PAD("ZHDGBHWS", nullptr, 1),
+		{ _field_long_integer, "sample count" },
+		{ _field_long_integer, "resource sample offset" },
+		{ _field_long_integer, "resource sample size" },
 		{ _field_terminator }
 	};
 
@@ -462,10 +462,10 @@ namespace macaque
 		"s_sound_permutation_marker",
 		SOUND_PERMUTATION_MARKER_BLOCK_ID)
 	{
-		{ _field_long_integer, "marker id*" },
-		{ _field_string_id, "name^*" },
-		{ _field_long_integer, "sample offset*" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_player),
+		{ _field_long_integer, "marker id" },
+		{ _field_string_id, "name" },
+		{ _field_long_integer, "sample offset" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_player),
 		{ _field_terminator }
 	};
 
@@ -477,12 +477,12 @@ namespace macaque
 		"s_sound_xma2_seek_table_entry",
 		SOUND_XMA2_SEEK_TABLE_BLOCK_ID)
 	{
-		{ _field_long_integer, "block relative sample start*" },
+		{ _field_long_integer, "block relative sample start" },
 		{ _field_long_integer, "block relative sample end" },
-		{ _field_long_integer, "starting sample index*" },
-		{ _field_long_integer, "ending sample index*" },
-		{ _field_long_integer, "starting xma2 offset*" },
-		{ _field_long_integer, "ending xma2 offset*" },
+		{ _field_long_integer, "starting sample index" },
+		{ _field_long_integer, "ending sample index" },
+		{ _field_long_integer, "starting xma2 offset" },
+		{ _field_long_integer, "ending xma2 offset" },
 		{ _field_terminator }
 	};
 
@@ -534,7 +534,7 @@ namespace macaque
 		{ _field_real, "rarely" },
 		{ _field_real, "somewhat" },
 		{ _field_real, "often" },
-		{ _field_pad, "VBEZIIDOF", 24 },
+		FIELD_PAD("VBEZIIDOF", nullptr, 24),
 		{ _field_terminator }
 	};
 
@@ -546,14 +546,14 @@ namespace macaque
 		SOUND_DISTANCE_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_explanation, "attenuation distances", "these settings vary how the sound fades as you move closer or further away from it." },
-		{ _field_real, "don\'t obstruct distance:world units#don\'t obstruct below this distance" },
-		{ _field_real, "don\'t play distance:world units#don\'t play below this distance" },
-		{ _field_real, "attack distance:world units#start playing at full volume at this distance" },
-		{ _field_real, "minimum distance:world units#start attenuating at this distance" },
-		{ _field_real, "sustain begin distance:world units#set attenuation to sustain db at this distance" },
-		{ _field_real, "sustain end distance:world units#continue attenuating to silence at this distance" },
-		{ _field_real, "maximum distance:world units#the distance beyond which this sound is no longer audible" },
-		{ _field_real, "sustain db:dB#the amount of attenuation between sustain begin and end" },
+		{ _field_real, "don\'t obstruct distance", "don\'t obstruct below this distance", "world units" },
+		{ _field_real, "don\'t play distance", "don\'t play below this distance", "world units" },
+		{ _field_real, "attack distance", "start playing at full volume at this distance", "world units" },
+		{ _field_real, "minimum distance", "start attenuating at this distance", "world units" },
+		{ _field_real, "sustain begin distance", "set attenuation to sustain db at this distance", "world units" },
+		{ _field_real, "sustain end distance", "continue attenuating to silence at this distance", "world units" },
+		{ _field_real, "maximum distance", "the distance beyond which this sound is no longer audible", "world units" },
+		{ _field_real, "sustain db", "the amount of attenuation between sustain begin and end", "dB" },
 		{ _field_terminator }
 	};
 
@@ -566,8 +566,8 @@ namespace macaque
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
-		{ _field_real, "background sound gain#scale for fog background sound:dB" },
-		{ _field_real, "environment ducking#scales the surrounding background sound by this much:dB" },
+		{ _field_real, "background sound gain", "scale for fog background sound:dB" },
+		{ _field_real, "environment ducking", "scales the surrounding background sound by this much:dB" },
 		{ _field_tag_reference, "entry sound", &global_sound_reference },
 		{ _field_tag_reference, "exit sound", &global_sound_reference },
 		{ _field_terminator }
@@ -596,7 +596,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &SpeechEventInfoFlags },
 		{ _field_string_id, "voice file path" },
 		{ _field_real, "event duration" },
-		{ _field_real, "skip fraction#Percent this file will be skipped when picked. 0 is always, 0.99 is almost never" },
+		{ _field_real, "skip fraction", "Percent this file will be skipped when picked. 0 is always, 0.99 is almost never" },
 		{ _field_terminator }
 	};
 
@@ -607,27 +607,27 @@ namespace macaque
 		"s_sound_definition_playback_parameters",
 		SOUND_PLAYBACK_PARAMETERS_STRUCT_ID)
 	{
-		{ _field_long_integer, "internal flags!" },
-		{ _field_real_fraction, "skip fraction#fraction of requests to play this sound that will be ignored (0 means always play.)" },
-		{ _field_real, "maximum bend per second:cents", nullptr, 'cent' },
-		{ _field_struct, "distance parameters{.}", &sound_distance_parameters_struct },
-		FIELD_CUSTOM(nullptr, 0),
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_long_integer, "internal flags" },
+		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
+		{ _field_real, "maximum bend per second", "cents", _field_id_cents },
+		{ _field_struct, "distance parameters", &sound_distance_parameters_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_explanation, "randomization", "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first." },
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_real, "gain base:dB#sound\'s random gain will start here", nullptr, '+dB+' },
-		{ _field_real, "gain variance:dB#sound\'s gain will be randomly modulated within this range", nullptr, '+dB+' },
-		{ _field_short_bounds, "random pitch bounds:cents#the sound\'s pitch will be modulated randomly within this range." },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_real, "gain base", "sound\'s random gain will start here", "dB", _field_id_decibels },
+		{ _field_real, "gain variance", "sound\'s gain will be randomly modulated within this range", "dB", _field_id_decibels },
+		{ _field_short_bounds, "random pitch bounds", "the sound\'s pitch will be modulated randomly within this range.", "cents" },
 		{ _field_explanation, "directional sounds", "these settings allow sounds to be directional, fading as they turn away from the listener" },
-		{ _field_angle, "inner cone angle:degrees#within the cone defined by this angle and the sound\'s direction, the sound plays with a gain of 1.0." },
-		{ _field_angle, "outer cone angle:degrees#outside the cone defined by this angle and the sound\'s direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)" },
-		{ _field_real, "outer cone gain:dB#the gain to use when the sound is directed away from the listener", nullptr, '+dB+' },
+		{ _field_angle, "inner cone angle", "within the cone defined by this angle and the sound\'s direction, the sound plays with a gain of 1.0.", "degrees" },
+		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound\'s direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
+		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB", _field_id_decibels },
 		{ _field_explanation, "scripted location override", "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n" },
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_long_flags, "flags", &sound_override_location_flags_definition },
 		{ _field_angle, "azimuth" },
-		{ _field_real, "positional gain:dB" },
-		{ _field_real, "first person gain:dB" },
+		{ _field_real, "positional gain", "dB" },
+		{ _field_real, "first person gain", "dB" },
 		{ _field_terminator }
 	};
 
@@ -639,8 +639,8 @@ namespace macaque
 		SOUND_SCALE_MODIFIERS_STRUCT_ID)
 	{
 		{ _field_explanation, "scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)" },
-		{ _field_real_bounds, "gain modifier:dB", nullptr, '+dB+' },
-		{ _field_short_bounds, "pitch modifier:cents" },
+		{ _field_real_bounds, "gain modifier", "dB", _field_id_decibels },
+		{ _field_short_bounds, "pitch modifier", "cents" },
 		{ _field_real_fraction_bounds, "skip fraction modifier" },
 		{ _field_terminator }
 	};
@@ -653,10 +653,10 @@ namespace macaque
 		SOUND_PROMOTION_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_block, "promotion rules", &sound_promotion_rule_block },
-		{ _field_block, "runtime timers!", &sound_promotion_runtime_timer_block },
-		{ _field_long_integer, "runtime active promotion index!" },
-		{ _field_long_integer, "runtime last promotion time!" },
-		{ _field_long_integer, "runtime suppression timeout!" },
+		{ _field_block, "runtime timers", &sound_promotion_runtime_timer_block },
+		{ _field_long_integer, "runtime active promotion index" },
+		{ _field_long_integer, "runtime last promotion time" },
+		{ _field_long_integer, "runtime suppression timeout" },
 		{ _field_terminator }
 	};
 
@@ -681,8 +681,8 @@ namespace macaque
 		"s_sound_stereo_mix_definition",
 		SOUND_STEREO_MIX_STRUCT_ID)
 	{
-		{ _field_real, "left stereo gain:dB" },
-		{ _field_real, "right stereo gain:dB" },
+		{ _field_real, "left stereo gain", "dB" },
+		{ _field_real, "right stereo gain", "dB" },
 		{ _field_terminator }
 	};
 
@@ -693,8 +693,8 @@ namespace macaque
 		"s_sound_stereo_mix_definition",
 		SOUND_SURROUND_MIX_STRUCT_ID)
 	{
-		{ _field_real, "front speaker gain:dB" },
-		{ _field_real, "rear speaker gain:dB" },
+		{ _field_real, "front speaker gain", "dB" },
+		{ _field_real, "rear speaker gain", "dB" },
 		{ _field_terminator }
 	};
 
@@ -705,9 +705,9 @@ namespace macaque
 		"s_sound_global_mix_configuration",
 		SOUND_GLOBAL_MIX_STRUCT_ID)
 	{
-		{ _field_real, "mono unspatialized gain:dB" },
-		{ _field_real, "stereo to 3d gain:dB" },
-		{ _field_real, "rear surround to front stereo gain:dB" },
+		{ _field_real, "mono unspatialized gain", "dB" },
+		{ _field_real, "stereo to 3d gain", "dB" },
+		{ _field_real, "rear surround to front stereo gain", "dB" },
 		{ _field_explanation, "surround center mix", "for sounds that have \"use center speaker unspatialized\" checked when outputting in surround" },
 		{ _field_struct, "surround center mix", &sound_center_mix_struct },
 		{ _field_explanation, "stereo center mix", "for sounds that have \"use center speaker unspatialized\" checked when outputting in stereo" },
@@ -717,17 +717,17 @@ namespace macaque
 		{ _field_explanation, "radio stereo center mix", "for the radio effect when outputting in stereo" },
 		{ _field_struct, "radio stereo center mix", &sound_center_mix_struct },
 		{ _field_explanation, "more sound lovin\'", "" },
-		{ _field_real, "stereo unspatialized gain:dB" },
-		{ _field_real, "quad route to lfe gain:dB" },
+		{ _field_real, "stereo unspatialized gain", "dB" },
+		{ _field_real, "quad route to lfe gain", "dB" },
 		{ _field_explanation, "last minute values", "" },
-		{ _field_real, "solo player fade out delay: seconds" },
-		{ _field_real, "solo player fade out time: seconds" },
-		{ _field_real, "solo player fade in time: seconds" },
-		{ _field_real, "game music fade out time: seconds" },
+		{ _field_real, "solo player fade out delay", " seconds" },
+		{ _field_real, "solo player fade out time", " seconds" },
+		{ _field_real, "solo player fade in time", " seconds" },
+		{ _field_real, "game music fade out time", " seconds" },
 		{ _field_explanation, "debugging stuff", "" },
 		{ _field_tag_reference, "play on unplayable sound", &global_force_sound_only_reference },
-		{ _field_real, "left/right bleed:[0 = no bleed, 1 = swap left/right, 0.5 = mono" },
-		{ _field_real, "remote voice boost: output= (1 + boost)*input" },
+		{ _field_real, "left/right bleed" },
+		{ _field_real, "remote voice boost", " output= (1 + boost)" },
 		{ _field_terminator }
 	};
 
@@ -738,8 +738,8 @@ namespace macaque
 		"s_sound_center_mix_definition",
 		SOUND_CENTER_MIX_STRUCT_ID)
 	{
-		{ _field_real, "front speaker gain:dB" },
-		{ _field_real, "center speaker gain:dB" },
+		{ _field_real, "front speaker gain", "dB" },
+		{ _field_real, "center speaker gain", "dB" },
 		{ _field_terminator }
 	};
 

@@ -29,7 +29,7 @@ namespace macaque
 	{
 		{ _field_explanation, "Active Camo Controls", "" },
 		{ _field_word_flags, "Flags", &camo_flags },
-		{ _field_pad, "KKHKKHKKL", 2 },
+		FIELD_PAD("KKHKKHKKL", nullptr, 2),
 		{ _field_struct, "Active Camo Amount", &camo_scalar_function_struct },
 		{ _field_struct, "Shadow Amount", &camo_scalar_function_struct },
 		{ _field_terminator }
@@ -42,9 +42,9 @@ namespace macaque
 		"s_camo_function",
 		CAMO_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable!", nullptr, 'fnin' },
-		{ _field_string_id, "Range Variable!", nullptr, 'fnir' },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

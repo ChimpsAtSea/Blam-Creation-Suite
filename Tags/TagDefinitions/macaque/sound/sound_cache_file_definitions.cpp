@@ -41,9 +41,9 @@ namespace macaque
 		"s_cache_file_sound_codec",
 		SOUND_GESTALT_CODEC_BLOCK_ID)
 	{
-		{ _field_char_enum, "sample rate*", &sound_sample_rate_enum },
-		{ _field_char_enum, "encoding*", &sound_encoding_enum },
-		{ _field_char_enum, "compression*", &sound_compression_enum },
+		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
+		{ _field_char_enum, "encoding", &sound_encoding_enum },
+		{ _field_char_enum, "compression", &sound_compression_enum },
 		{ _field_terminator }
 	};
 
@@ -55,7 +55,7 @@ namespace macaque
 		"s_sound_definition_playback_parameters",
 		SOUND_GESTALT_PLAYBACK_BLOCK_ID)
 	{
-		{ _field_struct, "playback!", &sound_playback_parameters_struct },
+		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_terminator }
 	};
 
@@ -67,7 +67,7 @@ namespace macaque
 		"s_sound_definition_scale_modifiers",
 		SOUND_GESTALT_SCALE_BLOCK_ID)
 	{
-		{ _field_struct, "scale!", &sound_scale_modifiers_struct },
+		{ _field_struct, "scale", &sound_scale_modifiers_struct },
 		{ _field_terminator }
 	};
 
@@ -79,7 +79,7 @@ namespace macaque
 		"string_id",
 		SOUND_GESTALT_IMPORT_NAMES_BLOCK_ID)
 	{
-		{ _field_string_id, "import name^" },
+		{ _field_string_id, "import name" },
 		{ _field_terminator }
 	};
 
@@ -91,11 +91,11 @@ namespace macaque
 		"s_cache_file_sound_pitch_range_parameters",
 		SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_short_integer, "natural pitch:cents" },
+		{ _field_short_integer, "natural pitch", "cents" },
 		{ _field_short_integer, "PAD" },
-		{ _field_short_bounds, "bend bounds:cents#the range of pitches that will be represented using this sample." },
-		{ _field_short_bounds, "max gain pitch bounds:cents" },
-		{ _field_short_bounds, "playback pitch bounds:cents" },
+		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
+		{ _field_short_bounds, "max gain pitch bounds", "cents" },
+		{ _field_short_bounds, "playback pitch bounds", "cents" },
 		{ _field_terminator }
 	};
 
@@ -107,10 +107,10 @@ namespace macaque
 		"s_cache_file_sound_pitch_range",
 		SOUND_GESTALT_PITCH_RANGES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "name^" },
-		{ _field_short_block_index, "parameters" },
+		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
+		{ _field_short_block_index, "parameters", &sound_gestalt_pitch_range_parameters_block },
 		{ _field_short_integer, "encoded permutation data" },
-		{ _field_short_integer, "first runtime permutation flag index~" },
+		{ _field_short_integer, "first runtime permutation flag index" },
 		{ _field_long_integer, "encoded first permutation and counts" },
 		{ _field_terminator }
 	};
@@ -123,12 +123,12 @@ namespace macaque
 		"s_cache_file_sound_permutation",
 		SOUND_GESTALT_PERMUTATIONS_BLOCK_ID)
 	{
-		{ _field_short_block_index, "name^" },
+		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
 		{ _field_short_integer, "encoded skip fraction" },
 		{ _field_long_integer, "uncompressed sample count" },
 		{ _field_long_integer, "first chunk index" },
 		{ _field_short_integer, "chunk count" },
-		{ _field_char_integer, "encoded gain:dB" },
+		{ _field_char_integer, "encoded gain", "dB" },
 		{ _field_char_integer, "permutation info index" },
 		{ _field_word_integer, "first layer marker index" },
 		{ _field_word_integer, "layer marker count" },
@@ -218,7 +218,7 @@ namespace macaque
 		"char",
 		SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID)
 	{
-		{ _field_char_integer, "runtime permutation bit vector~!" },
+		{ _field_char_integer, "runtime permutation bit vector" },
 		{ _field_terminator }
 	};
 
@@ -230,7 +230,7 @@ namespace macaque
 		"s_sound_promotion_parameters",
 		SOUND_GESTALT_PROMOTIONS_BLOCK_ID)
 	{
-		{ _field_struct, "runtime promotion storage~!", &sound_promotion_parameters_struct },
+		{ _field_struct, "runtime promotion storage", &sound_promotion_parameters_struct },
 		{ _field_terminator }
 	};
 
@@ -266,20 +266,20 @@ namespace macaque
 		CACHE_FILE_SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &sound_definition_flags },
-		{ _field_char_enum, "sound class*", &sound_class_enum },
+		{ _field_char_enum, "sound class", &sound_class_enum },
 		{ _field_char_integer, "pitch range count" },
 		{ _field_short_integer, "codec index" },
 		{ _field_short_integer, "first pitch range index" },
 		{ _field_short_integer, "first language duration pitch range index" },
-		{ _field_short_integer, "runtime gestalt index storage~" },
+		{ _field_short_integer, "runtime gestalt index storage" },
 		{ _field_short_integer, "sub priority" },
 		{ _field_short_integer, "playback index" },
 		{ _field_short_integer, "scale index" },
 		{ _field_char_integer, "promotion index" },
 		{ _field_char_integer, "custom playback index" },
 		{ _field_short_integer, "extra info index" },
-		{ _field_pad, "pad", 2 },
-		{ _field_long_integer, "maximum play time:ms" },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_long_integer, "maximum play time", "ms" },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
 		{ _field_terminator }
 	};

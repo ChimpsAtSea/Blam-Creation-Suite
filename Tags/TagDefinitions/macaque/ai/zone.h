@@ -6,8 +6,6 @@ namespace blofeld
 namespace macaque
 {
 
-	extern s_tag_block_definition zone_block;
-	extern s_tag_struct_definition zone_block_struct_definition; // zone_block
 	extern s_tag_block_definition areas_block;
 	extern s_tag_struct_definition areas_block_struct_definition; // areas_block
 	extern s_tag_block_definition NavMeshAttachmentBlock_block;
@@ -16,6 +14,8 @@ namespace macaque
 	extern s_tag_struct_definition flight_reference_block_struct_definition; // flight_reference_block
 	extern s_tag_block_definition area_sector_point_block;
 	extern s_tag_struct_definition area_sector_point_block_struct_definition; // area_sector_point_block
+	extern s_tag_block_definition zone_block;
+	extern s_tag_struct_definition zone_block_struct_definition; // zone_block
 
 	extern s_tag_struct_definition area_cluster_occupancy_bitvector_array_struct_definition;
 	extern s_tag_array_definition area_cluster_occupancy_bitvector_array;

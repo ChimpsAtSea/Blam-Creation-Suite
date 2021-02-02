@@ -628,13 +628,14 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 	}
 	if(traverse && !tag_block_container->has_traversed)
 	{
+		tag_block_container->has_traversed = true;
+		
 		create_tag_block_source_count_constants(tag_block);
 
 		for (c_h4_tag_field* tag_field : tag_block.tag_struct.tag_fields)
 		{
 			process_tag_block_field(tag_field, tag_block.tag_struct);
 		}
-		tag_block_container->has_traversed = true;
 	}
 	ASSERT(tag_block_container != nullptr);
 	return *tag_block_container;
@@ -685,10 +686,10 @@ void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_f
 		ASSERT(block != nullptr);
 		traverse_tag_blocks(*block, nullptr, false, false, true);
 
-		for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
-		{
-			process_tag_block_field(tag_field, block->tag_struct);
-		}
+		//for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
+		//{
+		//	process_tag_block_field(tag_field, block->tag_struct);
+		//}
 	}
 }
 
@@ -702,11 +703,12 @@ c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h
 	}
 	if (traverse && !tag_struct_container->has_traversed)
 	{
+		tag_struct_container->has_traversed = true;
+		
 		for (c_h4_tag_field* tag_field : tag_struct.tag_fields)
 		{
 			process_tag_struct_field(tag_field, tag_struct);
 		}
-		tag_struct_container->has_traversed = true;
 	}
 	ASSERT(tag_struct_container != nullptr);
 	return *tag_struct_container;

@@ -27,12 +27,12 @@ namespace macaque
 		"c_particle_model_definition",
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Import model", _custom_field_import_model),
-		{ _field_explanation, "WHY IS THIS TAG EMPTY\?", "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n" },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "render geometry*!", &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		{ _field_struct, "m_gpu_data!", &gpu_data_struct },
+		FIELD_CUSTOM("Import model", nullptr, _field_id_import_model),
+		{ _field_explanation, "WHY IS THIS TAG EMPTY", "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "render geometry", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		{ _field_struct, "m_gpu_data", &gpu_data_struct },
 		{ _field_terminator }
 	};
 
@@ -43,7 +43,7 @@ namespace macaque
 		"c_particle_model_definition::s_gpu_data",
 		GPU_DATA_STRUCT_ID)
 	{
-		{ _field_block, "m_variants!", &gpu_variants_block },
+		{ _field_block, "m_variants", &gpu_variants_block },
 		{ _field_terminator }
 	};
 

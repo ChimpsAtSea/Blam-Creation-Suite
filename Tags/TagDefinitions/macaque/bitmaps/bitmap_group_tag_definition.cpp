@@ -15,31 +15,31 @@ namespace macaque
 		"bitmap_group",
 		BITMAP_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("show bitmap", _custom_field_bitmap_show),
+		FIELD_CUSTOM("show bitmap", nullptr, _field_id_bitmap_show),
 		{ _field_explanation, "IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n" },
-		{ _field_long_enum, "Usage#choose how you are using this bitmap", &bitmap_usage_global_enum },
+		{ _field_long_enum, "Usage", &bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
-		{ _field_short_integer, "sprite spacing#number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
-		{ _field_real, "bump map height:repeats#the apparent height of the bump map above the triangle it is textured onto, in texture repeats (i.e., 1.0 would be as high as the texture is wide)" },
-		{ _field_real_fraction, "fade factor:[0,1]#used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap" },
-		{ _field_real, "blur:pixels#how much to blur the input image" },
-		{ _field_real, "mip map blur:pixels#how much to blur as each mip level is being downsampled" },
-		{ _field_char_enum, "curve mode#automatic chooses FAST if your bitmap is bright, and PRETTY if your bitmap has dark bits", &bitmap_curve_override_enum },
-		{ _field_char_integer, "max mipmap level#0 = use default defined by usage" },
-		{ _field_short_integer, "max resolution#0 = do not downsample source image" },
-		{ _field_short_integer, "atlas#index into global atlas if the texture is missing its required resources and has been atlased" },
-		{ _field_enum, "force bitmap format#overrides the format defined by usage", &bitmap_usage_format_def },
-		{ _field_real, "tight bounds threshold:[0.0 - 1.0]#This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
+		{ _field_short_integer, "sprite spacing", "number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
+		{ _field_real, "bump map height", "the apparent height of the bump map above the triangle it is textured onto, in texture repeats (i.e., 1.0 would be as high as the texture is wide)", "repeats" },
+		{ _field_real_fraction, "fade factor", "used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap" },
+		{ _field_real, "blur", "how much to blur the input image", "pixels" },
+		{ _field_real, "mip map blur", "how much to blur as each mip level is being downsampled", "pixels" },
+		{ _field_char_enum, "curve mode", &bitmap_curve_override_enum },
+		{ _field_char_integer, "max mipmap level", "0 = use default defined by usage" },
+		{ _field_short_integer, "max resolution", "0 = do not downsample source image" },
+		{ _field_short_integer, "atlas", "index into global atlas if the texture is missing its required resources and has been atlased" },
+		{ _field_enum, "force bitmap format", &bitmap_usage_format_def },
+		{ _field_real, "tight bounds threshold", "This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
 		{ _field_block, "usage override", &bitmap_usage_block },
-		{ _field_block, "manual_sequences*", &bitmap_group_sequence_block_def_block },
+		{ _field_block, "manual_sequences", &bitmap_group_sequence_block_def_block },
 		{ _field_explanation, "IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" },
 		{ _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
-		{ _field_data, "source data*" },
-		{ _field_data, "processed pixel data*" },
-		{ _field_block, "sequences*", &bitmap_group_sequence_block_def_block },
-		{ _field_block, "bitmaps*", &bitmap_data_block_def_block },
-		{ _field_data, "xenon processed pixel data*" },
-		{ _field_block, "xenon bitmaps*", &bitmap_data_block_def_block },
+		{ _field_data, "source data" },
+		{ _field_data, "processed pixel data" },
+		{ _field_block, "sequences", &bitmap_group_sequence_block_def_block },
+		{ _field_block, "bitmaps", &bitmap_data_block_def_block },
+		{ _field_data, "xenon processed pixel data" },
+		{ _field_block, "xenon bitmaps", &bitmap_data_block_def_block },
 		{ _field_block, "hardware textures", &bitmap_texture_interop_block },
 		{ _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block },
 		{ _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block },
@@ -52,6 +52,18 @@ namespace macaque
 		nullptr,
 		INVALID_TAG,
 		bitmap_block );
+
+	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID { 0x6CAC3A05, 0x36414556, 0xB586A7E8, 0x0731BD25 }
+	TAG_BLOCK(
+		bitmap_texture_interleaved_interop_block,
+		"bitmap_texture_interleaved_interop_block",
+		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
+		"s_tag_resource",
+		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
+	{
+		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct },
+		{ _field_terminator }
+	};
 
 	#define BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID { 0xCBC28AC7, 0x279B478F, 0xAF316019, 0xFD14E270 }
 	TAG_BLOCK(
@@ -77,15 +89,14 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID { 0x6CAC3A05, 0x36414556, 0xB586A7E8, 0x0731BD25 }
-	TAG_BLOCK(
-		bitmap_texture_interleaved_interop_block,
-		"bitmap_texture_interleaved_interop_block",
-		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
-		"s_tag_resource",
-		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
+	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID { 0x1D36B11D, 0x7C714D24, 0x9EDAE21F, 0xA0629172 }
+	TAG_STRUCT(
+		bitmap_texture_interleaved_interop_resource_struct,
+		"bitmap_texture_interleaved_interop_resource_struct",
+		"c_tag_d3d_texture_interleaved_interop",
+		BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID)
 	{
-		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct },
+		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct },
 		{ _field_terminator }
 	};
 
@@ -108,17 +119,6 @@ namespace macaque
 		STITCHABLE_BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct },
-		{ _field_terminator }
-	};
-
-	#define BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID { 0x1D36B11D, 0x7C714D24, 0x9EDAE21F, 0xA0629172 }
-	TAG_STRUCT(
-		bitmap_texture_interleaved_interop_resource_struct,
-		"bitmap_texture_interleaved_interop_resource_struct",
-		"c_tag_d3d_texture_interleaved_interop",
-		BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID)
-	{
-		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct },
 		{ _field_terminator }
 	};
 

@@ -8,93 +8,93 @@ namespace blofeld
 
 	V5_TAG_BLOCK(visionModeScreenPassBlock, VisionModeScreenPass::k_maxCount)
 	{
-		{ _field_custom, "material" },
-		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_block_struct },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom, "material" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeEnvironmentPassBlock, VisionModeEnvironmentPass::k_maxCount)
 	{
-		{ _field_custom, "material" },
-		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_block_struct },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom, "material" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeBipedPassBlock, VisionModeBipedPass::k_maxCount)
 	{
-		{ _field_long_flags, "flags", &visionModeBipedPassFlags },
-		{ _field_long_flags, "render for", &visionModeBipedTeamTypes },
-		{ _field_custom, "material" },
-		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_block_struct },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "flags", &visionModeBipedPassFlags },
+		{ _field_legacy, _field_long_flags, "render for", &visionModeBipedTeamTypes },
+		{ _field_legacy, _field_custom, "material" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeBipedThreatBlock, VisionModeBipedThreat::k_maxCount)
 	{
-		{ _field_real, "threat per kill" },
-		{ _field_real, "threat per death#can be negative" },
-		{ _field_real, "threat per weapon scariness point#keys off the \"AI scariness\" field of each weapon" },
-		{ _field_real_bounds, "min/max threat range#below/above these values are pinned" },
-		{ _field_terminator }
+		{ _field_legacy, _field_real, "threat per kill" },
+		{ _field_legacy, _field_real, "threat per death#can be negative" },
+		{ _field_legacy, _field_real, "threat per weapon scariness point#keys off the \"AI scariness\" field of each weapon" },
+		{ _field_legacy, _field_real_bounds, "min/max threat range#below/above these values are pinned" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeBipedPassesBlock, VisionModeBipedPasses::k_maxCount)
 	{
-		{ _field_long_flags, "flags", &visionModeBipedPassesFlags },
-		{ _field_real, "max radius" },
-		{ _field_real, "falloff begin radius#between this and max radius, we go smoothly from on to off" },
-		{ _field_real, "motion sensor inactive fade time#if \"linked to motion sensor\" is checked, this is how long it takes to fade after you stop activity" },
-		{ _field_real, "active camo visible velocity#if a unit has active camo and is moving faster than this, it will be shown" },
-		{ _field_block, "biped passes", &visionModeBipedPassBlock_block },
-		{ _field_block, "biped threat values (optional)", &visionModeBipedThreatBlock_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "flags", &visionModeBipedPassesFlags },
+		{ _field_legacy, _field_real, "max radius" },
+		{ _field_legacy, _field_real, "falloff begin radius#between this and max radius, we go smoothly from on to off" },
+		{ _field_legacy, _field_real, "motion sensor inactive fade time#if \"linked to motion sensor\" is checked, this is how long it takes to fade after you stop activity" },
+		{ _field_legacy, _field_real, "active camo visible velocity#if a unit has active camo and is moving faster than this, it will be shown" },
+		{ _field_legacy, _field_block, "biped passes", &visionModeBipedPassBlock_block },
+		{ _field_legacy, _field_block, "biped threat values (optional)", &visionModeBipedThreatBlock_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeOrdnanceVehicleTypeBlock, VisionModeOrdnanceVehicleType::k_maxCount)
 	{
-		{ _field_tag_reference, "vehicle type", &Tag::Reference<struct vehicle_definition>::s_defaultDefinition },
-		{ _field_tag_reference, "icon", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		{ _field_real_vector_2d, "icon size" },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "vehicle type", &Tag::Reference<struct vehicle_definition>::s_defaultDefinition },
+		{ _field_legacy, _field_tag_reference, "icon", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_legacy, _field_real_vector_2d, "icon size" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeOrdnanceVehiclePassBlock, VisionModeOrdnanceVehiclePass::k_maxCount)
 	{
-		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
-		{ _field_custom, "material" },
-		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_block_struct },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
+		{ _field_legacy, _field_custom, "material" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(visionModeOrdnanceCrosshairBlock, VisionModeOrdnanceCrosshair::k_maxCount)
 	{
-		{ _field_custom, "material" },
-		{ _field_custom },
-		{ _field_struct, "actual material\?", &material_block_struct },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom, "material" },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(vision_mode_block, 1, vision_mode_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(vision_mode_struct_definition)
 	{
-		{ _field_long_flags, "flags", &visionModeFlags },
-		{ _field_real, "disabled lighting transparent exposure boost" },
-		{ _field_block, "screen pass", &visionModeScreenPassBlock_block },
-		{ _field_block, "environment pass", &visionModeEnvironmentPassBlock_block },
-		{ _field_block, "biped passes", &visionModeBipedPassesBlock_block },
-		{ _field_block, "ordnance vehicle pass", &visionModeOrdnanceVehiclePassBlock_block },
-		{ _field_block, "ordnance crosshair", &visionModeOrdnanceCrosshairBlock_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_flags, "flags", &visionModeFlags },
+		{ _field_legacy, _field_real, "disabled lighting transparent exposure boost" },
+		{ _field_legacy, _field_block, "screen pass", &visionModeScreenPassBlock_block },
+		{ _field_legacy, _field_block, "environment pass", &visionModeEnvironmentPassBlock_block },
+		{ _field_legacy, _field_block, "biped passes", &visionModeBipedPassesBlock_block },
+		{ _field_legacy, _field_block, "ordnance vehicle pass", &visionModeOrdnanceVehiclePassBlock_block },
+		{ _field_legacy, _field_block, "ordnance crosshair", &visionModeOrdnanceCrosshairBlock_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(visionModeBipedTeamTypes)

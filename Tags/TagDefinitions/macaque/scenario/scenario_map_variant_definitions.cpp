@@ -15,9 +15,9 @@ namespace macaque
 		"s_map_variant_palette",
 		MAP_VARIANT_PALETTE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
-		{ _field_pad, "pad", 3 },
+		FIELD_PAD("pad", nullptr, 3),
 		{ _field_block, "entries", &map_variant_palette_entry_block },
 		{ _field_terminator }
 	};
@@ -30,9 +30,9 @@ namespace macaque
 		"s_map_variant_palette_entry",
 		MAP_VARIANT_PALETTE_ENTRY_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "variants", &map_variant_object_variant_block },
-		{ _field_long_integer, "maximum allowed#if this is <= 0, these are \'unlimited\' (up to a reasonable code-defined maximum)" },
+		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are \'unlimited\' (up to a reasonable code-defined maximum)" },
 		{ _field_long_integer, "price per instance" },
 		{ _field_terminator }
 	};
@@ -45,10 +45,10 @@ namespace macaque
 		"s_map_variant_object_variant",
 		MAP_VARIANT_OBJECT_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "display name^" },
+		{ _field_string_id, "display name" },
 		{ _field_tag_reference, "object", &object_reference$9 },
 		{ _field_string_id, "variant name" },
-		{ _field_struct, "resource dependencies!*", &mapVariantResourceManifest },
+		{ _field_struct, "resource dependencies", &mapVariantResourceManifest },
 		{ _field_terminator }
 	};
 

@@ -15,16 +15,16 @@ namespace macaque
 		"s_unit_trick_definition",
 		UNIT_TRICK_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "animation name^" },
+		{ _field_string_id, "animation name" },
 		{ _field_char_enum, "activation type", &unit_trick_activation_type_enum },
-		{ _field_char_enum, "velocity preservation#specifies how pre-trick velocity is maintained during and after the trick\nonly applies to vehicles", &unit_trick_velocity_preservation_mode_enum },
+		{ _field_char_enum, "velocity preservation", &unit_trick_velocity_preservation_mode_enum },
 		{ _field_byte_flags, "flags", &unit_trick_flags },
-		{ _field_pad, "XEKMVZ", 1 },
-		{ _field_real, "camera interpolation time:s#sloppiness of the camera\nonly applies to vehicles" },
-		{ _field_real, "trick exit time:s#how long before the end of the trick we start using the below values" },
-		{ _field_real_bounds, "trick exit camera interpolation time:s#sloppiness of the camera when exiting the trick\nwe interpolate between these values depending on how far your camera was displaced from the ideal camera" },
-		{ _field_real, "trick exit displacement reference:wu#when your camera is this far from the ideal at the start of the trick, we use the maximum delay time above\nonly for space fighter" },
-		{ _field_real, "cooldown time:s#after ending this trick, how long until I can trick again\nonly applies to vehicles" },
+		FIELD_PAD("XEKMVZ", nullptr, 1),
+		{ _field_real, "camera interpolation time", "sloppiness of the camera\nonly applies to vehicles", "s" },
+		{ _field_real, "trick exit time", "how long before the end of the trick we start using the below values", "s" },
+		{ _field_real_bounds, "trick exit camera interpolation time", "sloppiness of the camera when exiting the trick\nwe interpolate between these values depending on how far your camera was displaced from the ideal camera", "s" },
+		{ _field_real, "trick exit displacement reference", "when your camera is this far from the ideal at the start of the trick, we use the maximum delay time above\nonly for space fighter", "wu" },
+		{ _field_real, "cooldown time", "after ending this trick, how long until I can trick again\nonly applies to vehicles", "s" },
 		{ _field_terminator }
 	};
 

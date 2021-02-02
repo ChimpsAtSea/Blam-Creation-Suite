@@ -15,7 +15,7 @@ namespace macaque
 		"s_squad_template_definition",
 		SQUAD_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "cell templates", &cell_template_block },
 		{ _field_terminator }
 	};
@@ -35,11 +35,11 @@ namespace macaque
 		"squad_group_definition",
 		SQUAD_GROUPS_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
-		{ _field_short_block_index, "parent", nullptr, 'sqdt' },
-		{ _field_short_block_index, "initial objective" },
-		{ _field_pad, "soon to be an initial task", 2 },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
+		{ _field_string, "name" },
+		{ _field_short_block_index, "parent", &squad_groups_block },
+		{ _field_short_block_index, "initial objective", &objectives_block },
+		FIELD_PAD("soon to be an initial task", nullptr, 2),
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
 		{ _field_terminator }
 	};
 
@@ -51,23 +51,23 @@ namespace macaque
 		"s_squad_definition",
 		SQUADS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
-		{ _field_string, "name^" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
+		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_enum, "team", &ai_team_enum },
-		{ _field_short_block_index, "parent", nullptr, 'sqdt' },
-		{ _field_short_block_index, "initial zone" },
-		{ _field_short_block_index, "initial objective" },
+		{ _field_short_block_index, "parent", &squad_groups_block },
+		{ _field_short_block_index, "initial zone", &zone_block },
+		{ _field_short_block_index, "initial objective", &objectives_block },
 		{ _field_custom_short_block_index, "initial task" },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
-		{ _field_block, "spawn formations!", &spawn_formation_block },
-		{ _field_block, "spawn points!", &spawn_points_block },
-		{ _field_long_enum, "wave placement filter#Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_block, "spawn formations", &spawn_formation_block },
+		{ _field_block, "spawn points", &spawn_points_block },
+		{ _field_long_enum, "wave placement filter", &wave_placement_filter_enum },
 		{ _field_string_id, "template" },
-		{ _field_long_integer, "squad template index!" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_long_integer, "squad template index" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "designer", &squad_definition_internal_struct },
-		{ _field_struct, "templated*!", &squad_definition_internal_struct },
+		{ _field_struct, "templated", &squad_definition_internal_struct },
 		{ _field_terminator }
 	};
 
@@ -80,24 +80,24 @@ namespace macaque
 		SPAWN_FORMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", "degrees" },
 		{ _field_real, "roll" },
 		{ _field_string_id, "formation" },
-		{ _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_enum, "initial movement mode", &actor_movement_modes },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_string_id, "placement script{Placement script}", nullptr, 'hsbl' },
+		{ _field_short_integer, "placement script index" },
+		{ _field_string_id, "placement script", _field_id_halo_script_block },
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
 		{ _field_enum, "patrol mode", &patrol_mode_enum },
 		{ _field_block, "points", &patrol_point_block },
 		{ _field_byte_flags, "flags", &spawn_formation_flags },
-		{ _field_pad, "post-flags-pad", 3 },
+		FIELD_PAD("post-flags-pad", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -109,16 +109,16 @@ namespace macaque
 		"s_patrol_point",
 		PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "point^" },
+		{ _field_custom_short_block_index, "point" },
 		{ _field_word_flags, "flags", &patrol_point_flags },
-		{ _field_real, "delay:seconds#how long the AI should pause at this point" },
-		{ _field_real, "angle:degrees#the angle-from-forward that the AI can pick at this point" },
+		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
+		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
 		{ _field_string_id, "activity name" },
-		{ _field_enum, "activity!", &g_activity_enum },
-		{ _field_short_integer, "activity variant!" },
-		{ _field_string_id, "command script", nullptr, 'hsbl' },
-		{ _field_short_integer, "command script index*~" },
-		{ _field_pad, "post-command-script", 2 },
+		{ _field_enum, "activity", &g_activity_enum },
+		{ _field_short_integer, "activity variant" },
+		{ _field_string_id, "command script", _field_id_halo_script_block },
+		{ _field_short_integer, "command script index" },
+		FIELD_PAD("post-command-script", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -131,42 +131,42 @@ namespace macaque
 		SPAWN_POINTS_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_custom_short_block_index, "cell" },
-		{ _field_pad, "post-cell-index-pad", 2 },
+		FIELD_PAD("post-cell-index-pad", nullptr, 2),
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", "degrees" },
 		{ _field_real, "roll" },
 		{ _field_word_flags, "flags", &starting_location_flags },
-		{ _field_short_block_index, "character type" },
-		{ _field_short_block_index, "initial weapon" },
-		{ _field_short_block_index, "initial secondary weapon" },
-		{ _field_short_block_index, "initial equipment" },
-		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_block_index, "character type", &character_palette_block },
+		{ _field_short_block_index, "initial weapon", &scenario_weapon_palette_block },
+		{ _field_short_block_index, "initial secondary weapon", &scenario_weapon_palette_block },
+		{ _field_short_block_index, "initial equipment", &scenario_equipment_palette_block },
+		{ _field_short_block_index, "vehicle type", &scenario_vehicle_palette_block },
 		{ _field_enum, "seat type", &ai_placement_seat_preference_enum },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_short_integer, "swarm count#number of cretures in swarm if a swarm is spawned at this location" },
-		{ _field_pad, "post-swarm-count-pad", 2 },
+		{ _field_short_integer, "swarm count", "number of cretures in swarm if a swarm is spawned at this location" },
+		FIELD_PAD("post-swarm-count-pad", nullptr, 2),
 		{ _field_string_id, "actor variant name" },
 		{ _field_string_id, "vehicle variant name" },
 		{ _field_string_id, "voice designator" },
-		{ _field_real, "initial movement distance#before doing anything else, the actor will travel the given distance in its forward direction" },
+		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_enum, "initial movement mode", &actor_movement_modes },
-		{ _field_short_block_index, "emitter vehicle" },
-		{ _field_short_block_index, "giant body" },
-		{ _field_short_block_index, "biped body" },
-		{ _field_string_id, "placement script{Placement script}", nullptr, 'hsbl' },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_pad, "post-placement-script-pad", 2 },
+		{ _field_short_block_index, "emitter vehicle", &scenario_vehicle_block },
+		{ _field_short_block_index, "giant body", &scenario_giant_block },
+		{ _field_short_block_index, "biped body", &scenario_biped_block },
+		{ _field_string_id, "placement script", _field_id_halo_script_block },
+		{ _field_short_integer, "placement script index" },
+		FIELD_PAD("post-placement-script-pad", nullptr, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
 		{ _field_enum, "patrol mode", &patrol_mode_enum },
 		{ _field_block, "points", &patrol_point_block },
-		{ _field_short_block_index, "vehicle body" },
-		{ _field_pad, "post-vehicle_index-pad", 2 },
+		{ _field_short_block_index, "vehicle body", &scenario_vehicle_block },
+		FIELD_PAD("post-vehicle_index-pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -179,25 +179,25 @@ namespace macaque
 		CELL_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
+		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
 		{ _field_block, "character type", &character_palette_choice_block },
 		{ _field_block, "initial weapon", &weapon_palette_choice_block },
 		{ _field_block, "initial secondary weapon", &weapon_palette_choice_block },
 		{ _field_block, "initial equipment", &equipment_palette_choice_block },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_short_block_index, "vehicle type" },
+		{ _field_short_block_index, "vehicle type", &scenario_vehicle_palette_block },
 		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "Placement script", nullptr, 'hsbl' },
-		{ _field_short_integer, "placement script index!~" },
-		{ _field_pad, "plsc", 2 },
+		{ _field_string_id, "Placement script", _field_id_halo_script_block },
+		{ _field_short_integer, "placement script index" },
+		FIELD_PAD("plsc", nullptr, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
 		{ _field_enum, "patrol mode", &patrol_mode_enum },
-		{ _field_block, "points!", &patrol_point_block },
+		{ _field_block, "points", &patrol_point_block },
 		{ _field_terminator }
 	};
 
@@ -210,8 +210,8 @@ namespace macaque
 		CHARACTER_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "character type^" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
+		{ _field_short_block_index, "character type", &character_palette_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -225,8 +225,8 @@ namespace macaque
 		WEAPON_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "weapon type^" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
+		{ _field_short_block_index, "weapon type", &scenario_weapon_palette_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -240,8 +240,8 @@ namespace macaque
 		EQUIPMENT_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "equipment type^" },
-		FIELD_CUSTOM(nullptr, _custom_field_filter),
+		{ _field_short_block_index, "equipment type", &scenario_equipment_palette_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -254,9 +254,9 @@ namespace macaque
 		"s_cell_template_definition",
 		CELL_TEMPLATE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
+		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
 		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
 		{ _field_block, "character type", &character_ref_choice_block },
@@ -264,7 +264,7 @@ namespace macaque
 		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block },
 		{ _field_block, "initial equipment", &equipment_ref_choice_block },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
-		{ _field_pad, "post-grenade", 2 },
+		FIELD_PAD("post-grenade", nullptr, 2),
 		{ _field_tag_reference, "vehicle type", &vehicle_reference$3 },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "activity name" },
@@ -280,9 +280,9 @@ namespace macaque
 		CHARACTER_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "character type^", &character_reference$7 },
+		{ _field_tag_reference, "character type", &character_reference$7 },
 		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
+		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -295,9 +295,9 @@ namespace macaque
 		WEAPON_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "weapon type^", &weapon_reference$8 },
+		{ _field_tag_reference, "weapon type", &weapon_reference$8 },
 		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
+		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -310,9 +310,9 @@ namespace macaque
 		EQUIPMENT_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "equipment type^", &equipment_reference$4 },
+		{ _field_tag_reference, "equipment type", &equipment_reference$4 },
 		{ _field_short_integer, "chance" },
-		{ _field_pad, "post-chance", 2 },
+		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }
 	};
 

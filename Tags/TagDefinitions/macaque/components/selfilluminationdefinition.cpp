@@ -29,13 +29,13 @@ namespace macaque
 		SELF_ILLUMINATION_STATE_ID)
 	{
 		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
-		{ _field_string_id, "Name^" },
+		{ _field_string_id, "Name" },
 		{ _field_long_flags, "Flags", &self_illumination_flags },
-		{ _field_real, "Length #Length of illumination animation in seconds." },
-		{ _field_string_id, "Next State #Used to automatically transition to another state when finished." },
-		{ _field_struct, "Intensity #Animates intensity over time. 0 - Min Intensity.  1 - Max Intensity", &scalar_function_named_struct },
-		{ _field_struct, "Color #Animates color over time.  0 - White.  1 - Full Color", &scalar_function_named_struct },
-		{ _field_struct, "Activation #Animates On/Off state over time. 0 - Off. 1 - On", &scalar_function_named_struct },
+		{ _field_real, "Length ", "Length of illumination animation in seconds." },
+		{ _field_string_id, "Next State ", "Used to automatically transition to another state when finished." },
+		{ _field_struct, "Intensity ", &scalar_function_named_struct },
+		{ _field_struct, "Color ", &scalar_function_named_struct },
+		{ _field_struct, "Activation ", &scalar_function_named_struct },
 		{ _field_terminator }
 	};
 

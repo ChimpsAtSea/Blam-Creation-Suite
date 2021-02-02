@@ -1,6 +1,7 @@
 #define SHORT_MAX 32767
 #define UNSIGNED_SHORT_MAX 65535
 #define BYTE_MAX 255
+#define MAXIMUM_MATERIALS_PER_GEOMETRY 1024
 #define MAXIMUM_VERTICES_PER_GEOMETRY_SECTION 16777214
 #define MAXIMUM_ERROR_REPORT_CATEGORIES 512
 #define MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY 1048576
@@ -11,6 +12,7 @@
 #define MAXIMUM_TRIANGLES_PER_ERROR_REPORT 1048576
 #define MAXIMUM_QUADS_PER_ERROR_REPORT 1048576
 #define MAXIMUM_COMMENTS_PER_ERROR_REPORT 1048576
+#define MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES 160
 #define MAXIMUM_NUMBER_OF_ANTENNA_VERTICES 20
 #define MAXIMUM_WIDGETS_PER_OBJECT 4
 #define MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_INITIAL_PERMUTATIONS 32
@@ -45,9 +47,9 @@
 #define MAXIMUM_STATES_PER_MODEL_PERMUTATION 10
 #define MAXIMUM_DAMAGE_SECTIONS_PER_MODEL 16
 #define MAXIMUM_RESPONSES_PER_DAMAGE_SECTION 16
+#define MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL 32
 #define MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL 16
 #define MAXIMUM_DAMAGE_CONSTRAINT_INFOS_PER_MODEL 16
-#define MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL 32
 #define MAXIMUM_MODEL_TARGETS_PER_MODEL 32
 #define MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK 32
 #define MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK 64
@@ -63,7 +65,6 @@
 #define MATERIAL_SHADER_MAX_SOURCE_FILES 256
 #define MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL 4096
 #define MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP 256
-#define MAXIMUM_MATERIALS_PER_GEOMETRY 1024
 #define MAXIMUM_BONE_GROUPS_PER_MODEL 64
 #define MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS 32
 #define MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK 256
@@ -78,8 +79,15 @@
 #define MAXIMUM_SOUNDS_PER_PERFORMANCE_LINE 4
 #define MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO 32
 #define MAX_NUM_MOBILE_NAVMESHES 128
+#define MAXIMUM_SKIES_PER_SCENARIO 32
+#define MAXIMUM_OBJECT_NAMES_PER_SCENARIO 2048
 #define MAX_NUM_NAV_VOLUMES 256
 #define MAX_NUM_NAV_CLIMBS 256
+#define MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK 256
+#define MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO 256
+#define MAXIMUM_NODES_PER_MODEL*7 1785
+#define MAXIMUM_GIANT_DATUMS_PER_SCENARIO 32
+#define MAXIMUM_BIPED_DATUMS_PER_SCENARIO 256
 #define LONG_BITS 32
 #define MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE 512
 #define MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE 1000
@@ -91,7 +99,6 @@
 #define MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER 512
 #define MAXIMUM_BLOCKS_PER_CLUSTER 1429968
 #define MAXIMUM_MARKERS_PER_STRUCTURE 1024
-#define MAXIMUM_SKIES_PER_SCENARIO 32
 #define MAXIMUM_DECALS_PER_STRUCTURE 6144
 #define MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE 1024
 #define MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE 16384
@@ -104,15 +111,13 @@
 #define MAXIMUM_CHILD_SCENARIOS_PER_SCENARIO 16
 #define MAXIMUM_STRUCTURE_DESIGNS_PER_SCENARIO 8
 #define MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO 8160
+#define MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count 4352
+#define MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK 32
+#define MAXIMUM_SCENARIO_CINEMATICS 32
 #define MAXIMUM_FUNCTIONS_PER_SCENARIO 32
 #define MAXIMUM_EDITOR_COMMENTS 65536
 #define MAXIMUM_ENVIRONMENT_OBJECTS_PER_SCENARIO 4096
-#define MAXIMUM_OBJECT_NAMES_PER_SCENARIO 2048
 #define MAXIMUM_SCENERY_DATUMS_PER_SCENARIO 2000
-#define MAXIMUM_NODES_PER_MODEL*7 1785
-#define MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK 256
-#define MAXIMUM_BIPED_DATUMS_PER_SCENARIO 256
-#define MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO 256
 #define MAXIMUM_EQUIPMENT_DATUMS_PER_SCENARIO 256
 #define MAXIMUM_WEAPON_DATUMS_PER_SCENARIO 128
 #define MAXIMUM_DEVICE_GROUPS_PER_SCENARIO 128
@@ -121,30 +126,25 @@
 #define MAXIMUM_CONTROL_DATUMS_PER_SCENARIO 100
 #define MAXIMUM_DISPENSER_DATUMS_PER_SCENARIO 40
 #define MAXIMUM_SOUND_SCENERY_DATUMS_PER_SCENARIO 512
-#define MAXIMUM_GIANT_DATUMS_PER_SCENARIO 32
 #define MAXIMUM_EFFECT_SCENERY_DATUMS_PER_SCENARIO 512
 #define MAXIMUM_SPAWNER_DATUMS_PER_SCENARIO 128
-#define MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK 32
 #define MAXIMUM_REQUISITION_MENU_SIZE 64
 #define MAXIMUM_SCENARIO_SOFT_CEILINGS_PER_SCENARIO 128
 #define MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO 1024
+#define MAXIMUM_ATMOSPHERE_PALETTE_ENTRIES_PER_STRUCTURE 32
+#define MAXIMUM_WEATHER_PALETTE_ENTRIES_PER_STRUCTURE 32
 #define MAXIMUM_RECORDED_ANIMATIONS_PER_MAP 1024
 #define MAXIMUM_DECALS_PER_SCENARIO 65536
 #define MAXIMUM_DECAL_PALETTES_PER_SCENARIO 128
 #define MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE 32
-#define MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES 160
 #define MAXIMUM_CUTSCENE_FLAGS_PER_SCENARIO 4096
 #define MAXIMUM_CUTSCENE_CAMERA_POINTS_PER_SCENARIO 512
-#define MAXIMUM_ATMOSPHERE_PALETTE_ENTRIES_PER_STRUCTURE 32
 #define MAXIMUM_CAMERA_FX_PALETTE_ENTRIES_PER_STRUCTURE 64
-#define MAXIMUM_WEATHER_PALETTE_ENTRIES_PER_STRUCTURE 32
 #define MAXIMUM_CRATE_DATUMS_PER_SCENARIO 1536
 #define MAXIMUM_SUBTITLES_PER_SCENARIO 1024
 #define MAXIMUM_CREATURE_DATUMS_PER_SCENARIO 128
-#define MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count 4352
 #define MAXIMUM_DECORATOR_PALETTES_PER_SCENARIO 8
 #define MAXIMUM_DECORATOR_PLACEMENTS_PER_SET 262144
-#define MAXIMUM_SCENARIO_CINEMATICS 32
 #define MAXIMUM_PERFORMANCES_PER_SCENARIO 256
 #define MAXIMUM_TASKS_PER_PERFORMANCE 8
 #define MAX_PUPPETS_PER_SHOW 32
@@ -179,10 +179,10 @@ const unsigned long 1024 * 1024 = 1048576;
 const unsigned long 2147483647L = 2147483647;
 const unsigned long 1024 * 1024 * 4 = 4194304;
 const unsigned long (8*1024-1) = 8191;
+const unsigned long 4-1 = 3;
 const unsigned long ((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))) = 9;
 const unsigned long (2*1024) = 2048;
 const unsigned long 1+UNSIGNED_SHORT_MAX = 65536;
-const unsigned long 4-1 = 3;
 const unsigned long k_max_airprobes_per_scenario = 4096;
 const unsigned long k_vertices_per_line_count = 2;
 const unsigned long k_vertices_per_triangle_count = 3;
@@ -196,6 +196,10 @@ const unsigned long k_global_performance_template_folder_count = 32;
 const unsigned long k_global_performance_templates_count = 128;
 const unsigned long k_max_custom_stimuli_count = 128;
 const unsigned long k_max_ai_cue_templates = 32;
+const unsigned long k_max_areas_per_zone = 128;
+const unsigned long ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)) = 8;
+const unsigned long k_max_flight_references_per_area = 10;
+const unsigned long k_maximum_points_per_sector = 32;
 const unsigned long k_num_ai_trait_vision-2 = 3;
 const unsigned long k_num_ai_trait_sound-2 = 2;
 const unsigned long k_num_ai_trait_luck-2 = 3;
@@ -204,6 +208,9 @@ const unsigned long k_max_atmosphere_settings = 16;
 const unsigned long ((3)*(3)) * 3 = 27;
 const unsigned long k_online_avatar_award_count = 3;
 const unsigned long k_maximum_shapes_per_physics_model = 16384;
+const unsigned long k_maximum_materials_per_physics_model = 64;
+const unsigned long k_maximum_phantom_types_per_physics_model = 16;
+const unsigned long k_maximum_phantoms_per_physics_model = 128;
 const unsigned long k_maximum_rigid_bodies_per_physics_model = 64;
 const unsigned long k_maximum_list_shapes_per_physics_model = 4096;
 const unsigned long k_maximum_death_program_special_types = 5;
@@ -227,6 +234,7 @@ const unsigned long k_maxBipedSoundRTPCBlocks = 16;
 const unsigned long k_maxBipedSoundSweetenerBlocks = 16;
 const unsigned long k_maximum_aiming_fixup_joints = 2;
 const unsigned long (4 * k_maxTightBoundsSets) = 20;
+const unsigned long k_maximum_effect_locations_count = 8;
 const unsigned long k_max_gpu_properties = 17;
 const unsigned long k_max_gpu_functions = 25;
 const unsigned long k_max_gpu_colors = 8;
@@ -260,13 +268,13 @@ const unsigned long ((false) ? 2621440 : UNSIGNED_SHORT_MAX) = 65535;
 const unsigned long ((false) ? 1310720 : 131072) = 131072;
 const unsigned long (1024) = 1024;
 const unsigned long 16*(1024*1024) = 16777216;
-const unsigned long k_max_cookie_purchase_families = 30;
-const unsigned long k_max_cookie_purchase_family_items = 200;
 const unsigned long k_max_cookie_purchase_total_appearance_items = 512;
-const unsigned long k_maxEmblemIndicesPerItem = 32;
-const unsigned long (sizeof(dword)*k_byte_bits) = 32;
 const unsigned long k_max_cookie_purchase_total_loadout_items = 96;
 const unsigned long k_max_cookie_purchase_total_ordnance_items = 32;
+const unsigned long k_maxEmblemIndicesPerItem = 32;
+const unsigned long k_max_cookie_purchase_families = 30;
+const unsigned long k_max_cookie_purchase_family_items = 200;
+const unsigned long (sizeof(dword)*k_byte_bits) = 32;
 const unsigned long k_cui_max_component_count = 8192;
 const unsigned long k_cui_max_overlay_count = 24;
 const unsigned long 8*k_kilo = 8192;
@@ -276,7 +284,6 @@ const unsigned long k_cui_max_property_binding_count = 1024;
 const unsigned long k_cuiMaxEncapsulationCount = 64;
 const unsigned long k_uint8_max = 255;
 const unsigned long k_kilo*10 = 10240;
-const unsigned long k_maximum_effect_locations_count = 8;
 const unsigned long k_maximum_effect_events_count = 32;
 const unsigned long k_maximum_effect_parts_per_event_count = 32;
 const unsigned long k_maximum_effect_accelerations_per_event_count = 32;
@@ -311,9 +318,9 @@ const unsigned long k_maximum_variant_category_blocks = 16;
 const unsigned long k_havok_group_count = 31;
 const unsigned long k_number_of_model_states = 5;
 const unsigned long k_maximum_objects_per_model_variant = 31;
-const unsigned long k_maximum_muted_nodes_per_model_variant = 31;
 const unsigned long k_maximum_instance_groups_per_model = 256;
 const unsigned long k_maximum_members_per_instance_group = 32;
+const unsigned long k_maximum_muted_nodes_per_model_variant = 31;
 const unsigned long k_scenario_load_maximum_parameter_blocks = 32;
 const unsigned long k_maximum_model_game_mode_types = 4;
 const unsigned long k_maximum_hs_scripts_per_context = 3072;
@@ -326,8 +333,8 @@ const unsigned long k_maximum_instance_geometry_instances_per_structure_bsp = 81
 const unsigned long k_infinityMaximumSeasonCount = 3;
 const unsigned long k_infinityMaximumMissionsPerSeason = 55;
 const unsigned long k_animation_node_usage_count = 25;
-const unsigned long k_animation_maximum_node_mask_count = 8;
 const unsigned long k_max_nodes_per_animation = 255;
+const unsigned long k_animation_maximum_node_mask_count = 8;
 const unsigned long k_animation_maximum_function_count = 16;
 const unsigned long k_animation_maximum_model_variants = 64;
 const unsigned long k_animation_maximum_mode_or_stance_aliases = 64;
@@ -413,6 +420,7 @@ const unsigned long k_maximum_megalo_string_ids = 255;
 const unsigned long kshaderBlockCount = 10240;
 const unsigned long k_maximum_number_of_game_engine_roles = 64;
 const unsigned long k_infinity_requisition_palette_maximum_count = 64;
+const unsigned long k_maximum_scenario_editor_folders = 32767;
 const unsigned long k_maximum_multiplayer_sounds = 60;
 const unsigned long k_maximum_status_response_count = 32;
 const unsigned long k_chudPolyArtVertexMaxCount = 32768;
@@ -426,6 +434,20 @@ const unsigned long k_maxPlayerGradeCount = 127;
 const unsigned long 256*1024 = 262144;
 const unsigned long 4*1024 = 4096;
 const unsigned long k_max_hint_geometries = 1000;
+const unsigned long k_max_squad_groups_per_map = 130;
+const unsigned long k_maximum_objectives_per_map = 64;
+const unsigned long k_maximum_opposing_objectives = 4;
+const unsigned long k_max_zones_per_map = 128;
+const unsigned long k_max_firing_positions_per_zone = 2048;
+const unsigned long k_maximum_tasks_per_objective = 100;
+const unsigned long k_maximum_squads_per_map = 256;
+const unsigned long k_maximum_spawn_formations_per_squad = 8;
+const unsigned long k_maximum_spawn_points_per_squad = 128;
+const unsigned long 2*(((((MAXIMUM_NODES_PER_MODEL)+(k_int32_bits-1))>>k_int32_bits_bits))*sizeof(int32)) = 64;
+const unsigned long k_maximum_cells_per_squad = 10;
+const unsigned long k_maximum_palette_choices = 8;
+const unsigned long k_maximum_areas_per_task = 64;
+const unsigned long k_max_points_per_task_direction = 8;
 const unsigned long k_max_climb_hints = 200;
 const unsigned long k_max_flight_hints_per_bsp = 256;
 const unsigned long k_max_points_per_flight_hint = 10;
@@ -433,16 +455,12 @@ const unsigned long k_max_avoidance_volumes_per_bsp = 512;
 const unsigned long k_max_spline_hints_per_bsp = 256;
 const unsigned long k_max_control_points_per_spline_hint = 32;
 const unsigned long k_max_cookie_cutters = 512;
-const unsigned long k_maximum_points_per_sector = 32;
 const unsigned long k_max_navmesh_areas = 512;
 const unsigned long k_maximum_constraints_per_physics_model = 64;
-const unsigned long k_maximum_phantom_types_per_physics_model = 16;
 const unsigned long k_maximum_node_constraint_edges_per_physics_model = 4096;
-const unsigned long k_maximum_materials_per_physics_model = 64;
 const unsigned long k_maximum_four_vectors_per_physics_model = 24576;
 const unsigned long k_maximum_plane_equations_per_physics_model = 131072;
 const unsigned long k_maximum_inertia_tensors_per_physics_model = 1024;
-const unsigned long k_maximum_phantoms_per_physics_model = 128;
 const unsigned long k_maximum_cache_file_codecs = 127;
 const unsigned long k_maximum_cache_file_shared_files = 7;
 const unsigned long k_numberOfResourcePriorities = 3;
@@ -461,30 +479,29 @@ const unsigned long k_structure_seam_maximum_clusters_on_seam_count = 255;
 const unsigned long ((true) ? 2621440 : UNSIGNED_SHORT_MAX) = 2621440;
 const unsigned long ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))) = 134217728;
 const unsigned long (k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count = 32768;
-const unsigned long k_short_max = 32767;
 const unsigned long ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)) = 1000;
+const unsigned long k_short_max = 32767;
 const unsigned long k_super_node_node_count+k_super_node_child_indices_count = 31;
 const unsigned long ((true) ? SHORT_MAX<<3 : SHORT_MAX) = 262136;
 const unsigned long (8*((true) ? SHORT_MAX<<3 : SHORT_MAX)) = 2097088;
+const unsigned long k_maximum_cluster_sound_palette_entries_per_structure = 128;
 const unsigned long k_maximum_scenario_object_datum_count = 6304;
 const unsigned long k_max_cubemaps_per_cluster = 32;
 const unsigned long k_max_cubemap_reference_point_count = 15;
 const unsigned long k_maximum_breakable_surface_sets = 2048;
 const unsigned long ((((k_maximum_breakable_surfaces_per_breakable_surface_set)+(k_int32_bits-1))>>k_int32_bits_bits)) = 8;
-const unsigned long k_maximum_cluster_sound_palette_entries_per_structure = 128;
 const unsigned long k_maximum_cluster_to_instance_group_block_size = 4096;
 const unsigned long 4 * k_kilo = 4096;
+const unsigned long k_maximum_instance_geometry_definitions_per_structure_bsp = 2048;
 const unsigned long 32*k_kilo = 32768;
 const unsigned long (SHORT_MAX) = 32767;
 const unsigned long ((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))) = 536870911;
 const unsigned long ((true) ? 2147483647L>>2 : 196608) = 536870911;
 const unsigned long ((true) ? 2147483647L>>2 : SHORT_MAX) = 536870911;
 const unsigned long ((true) ? 1310720 : 131072) = 1310720;
-const unsigned long k_maximum_instance_geometry_definitions_per_structure_bsp = 2048;
 const unsigned long k_external_instanced_geometry_max = 4096;
 const unsigned long k_maximum_sound_combiner_defintion_entry_count = 32;
 const unsigned long k_maximum_scenario_zone_set_count+1 = 65;
-const unsigned long ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)) = 8;
 const unsigned long k_maximum_machine_door_portal_associations = 128;
 const unsigned long k_maximum_occluding_portal_associations = 128;
 const unsigned long k_maximum_scenario_zone_set_count = 64;
@@ -493,22 +510,14 @@ const unsigned long k_maximum_rooms_per_game*((((k_maximum_audibility_door_count
 const unsigned long (((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)) = 16368;
 const unsigned long (k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2 = 523776;
 const unsigned long k_maximum_audibility_room_count = 1024;
-const unsigned long 2*(((((MAXIMUM_NODES_PER_MODEL)+(k_int32_bits-1))>>k_int32_bits_bits))*sizeof(int32)) = 64;
+const unsigned long k_maximum_designer_zone_count = 64;
+const unsigned long k_maximum_budget_references_per_scenario = 128;
+const unsigned long 16*1024 = 16384;
 const unsigned long k_maximum_map_variant_palettes = 16;
 const unsigned long k_maximum_map_variant_palette_entries = 256;
 const unsigned long k_maximum_object_variants_per_map_variant_palette_entry = 32;
 const unsigned long k_maximum_simultaneous_tag_instances = 32767;
 const unsigned long k_maximum_points_per_sector-2 = 30;
-const unsigned long k_max_squad_groups_per_map = 130;
-const unsigned long k_maximum_squads_per_map = 256;
-const unsigned long k_maximum_spawn_formations_per_squad = 8;
-const unsigned long k_maximum_spawn_points_per_squad = 128;
-const unsigned long k_maximum_cells_per_squad = 10;
-const unsigned long k_maximum_palette_choices = 8;
-const unsigned long k_max_zones_per_map = 128;
-const unsigned long k_max_firing_positions_per_zone = 2048;
-const unsigned long k_max_areas_per_zone = 128;
-const unsigned long k_max_flight_references_per_area = 10;
 const unsigned long k_max_squad_patrols_per_map = 16;
 const unsigned long k_max_members_per_squad_patrol = 64;
 const unsigned long k_max_points_per_squad_patrol = 48;
@@ -525,23 +534,14 @@ const unsigned long k_max_roles_per_scene = 10;
 const unsigned long k_max_point_sets_per_map = 200;
 const unsigned long k_max_animation_points_per_map = 256;
 const unsigned long k_maximum_scenario_cutscene_titles = 128;
-const unsigned long k_maximum_areas_per_task = 64;
 const unsigned long k_maximum_number_of_object_salts = 32;
 const unsigned long k_max_flock_instances_per_map = 50;
 const unsigned long k_max_sources_per_flock = 10;
 const unsigned long k_max_destinations_per_flock = 10;
-const unsigned long k_maximum_scenario_editor_folders = 32767;
-const unsigned long k_maximum_objectives_per_map = 64;
-const unsigned long k_maximum_opposing_objectives = 4;
-const unsigned long k_maximum_tasks_per_objective = 100;
-const unsigned long k_max_points_per_task_direction = 8;
-const unsigned long k_maximum_designer_zone_count = 64;
-const unsigned long 16*1024 = 16384;
 const unsigned long e_scriptableLightRigMax = 128;
 const unsigned long k_maximum_scenario_cinematic_lighting_palette_entry_count = 128;
 const unsigned long k_maximum_campaign_metagame_scenario_completion_bonus_count = 8;
 const unsigned long k_max_cubemaps_per_scenario = 1024;
-const unsigned long k_maximum_budget_references_per_scenario = 128;
 const unsigned long k_maximum_scenario_ordnance_drop_sets = 32;
 const unsigned long k_maximum_random_ordnance_drop_points = 256;
 const unsigned long k_maximum_unit_recordings_per_scenario = 32;
@@ -924,13 +924,13 @@ struct s_cheap_particle_type
 {
 	const unsigned long k_maximum_types = 255;
 };
-struct s_cheap_particle_type_library
-{
-	const unsigned long k_max_textures = 63;
-};
 struct CheapParticleTurbulenceType
 {
 	const unsigned long k_maxTypes = 8;
+};
+struct s_cheap_particle_type_library
+{
+	const unsigned long k_max_textures = 63;
 };
 struct s_cui_expression_step_definition
 {
@@ -1064,6 +1064,10 @@ struct s_particle_emitter_custom_points
 {
 	const unsigned long k_maximum_points = 32768;
 };
+struct CommandDispatcher
+{
+	const unsigned long MAX_LINKS = 6;
+};
 struct sizeof(c_particle_definition
 {
 	const unsigned long s_gpu_data::s_frames)/sizeof(real_vector4d) = 16;
@@ -1075,10 +1079,6 @@ struct c_render_method_definition
 struct c_render_method_template
 {
 	const unsigned long k_maximum_passes = 64;
-};
-struct CommandDispatcher
-{
-	const unsigned long MAX_LINKS = 6;
 };
 struct ScenarioAttachedEffect
 {

@@ -30,8 +30,8 @@ namespace macaque
 		{ _field_explanation, "TYPE FLAGS", "" },
 		{ _field_long_flags, "flags", &ripple_behavior_flags },
 		{ _field_explanation, "INITIAL SETTINGS", "" },
-		{ _field_real, "initial radius{radius}" },
-		{ _field_real, "initial amplitude{amplitude}" },
+		{ _field_real, "initial radius" },
+		{ _field_real, "initial amplitude" },
 		{ _field_real, "spread speed" },
 		{ _field_real, "speed bias" },
 		{ _field_real, "position random range" },
@@ -49,13 +49,13 @@ namespace macaque
 		{ _field_real, "pattern start idx" },
 		{ _field_real, "pattern end idx" },
 		{ _field_enum, "pattern transition", &transition_function_enum },
-		{ _field_pad, "SexyPadding1", 2 },
+		FIELD_PAD("SexyPadding1", nullptr, 2),
 		{ _field_explanation, "FOAM", "quick flashed foam" },
 		{ _field_real, "foam out radius" },
 		{ _field_real, "foam fade distance" },
 		{ _field_real, "foam duration" },
 		{ _field_enum, "foam fade function", &transition_function_enum },
-		{ _field_pad, "SexyPadding2", 2 },
+		FIELD_PAD("SexyPadding2", nullptr, 2),
 		{ _field_terminator }
 	};
 

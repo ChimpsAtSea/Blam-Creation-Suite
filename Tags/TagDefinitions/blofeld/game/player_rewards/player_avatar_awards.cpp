@@ -8,17 +8,17 @@ namespace blofeld
 
 	V5_TAG_BLOCK(single_avatar_award_definition_block, k_online_avatar_award_count)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_long_enum, "type", &global_avatar_award_enum },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name^" },
+		{ _field_legacy, _field_long_enum, "type", &global_avatar_award_enum },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(avatar_awards_block, 1, avatar_awards_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(avatar_awards_struct_definition)
 	{
-		{ _field_block, "avatar_award", &single_avatar_award_definition_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "avatar_award", &single_avatar_award_definition_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(global_avatar_award_enum)

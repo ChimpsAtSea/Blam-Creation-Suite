@@ -28,9 +28,9 @@ namespace macaque
 		"s_structure_seam_mapping",
 		STRUCTURE_SEAM_MAPPING_BLOCK_ID)
 	{
-		{ _field_struct, "seams identifier*!", &structure_seam_identifier_struct },
-		{ _field_block, "edge mapping*", &structure_seam_edge_mapping_block },
-		{ _field_block, "cluster mapping*", &structure_seam_cluster_mapping_block },
+		{ _field_struct, "seams identifier", &structure_seam_identifier_struct },
+		{ _field_block, "edge mapping", &structure_seam_edge_mapping_block },
+		{ _field_block, "cluster mapping", &structure_seam_cluster_mapping_block },
 		{ _field_terminator }
 	};
 
@@ -42,7 +42,7 @@ namespace macaque
 		"long",
 		STRUCTURE_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "structure edge index*" },
+		{ _field_long_integer, "structure edge index" },
 		{ _field_terminator }
 	};
 
@@ -54,8 +54,8 @@ namespace macaque
 		"s_structure_seam_cluster_mapping",
 		STRUCTURE_SEAM_CLUSTER_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "cluster_index*" },
-		{ _field_real_point_3d, "cluster center*" },
+		{ _field_long_integer, "cluster_index" },
+		{ _field_real_point_3d, "cluster center" },
 		{ _field_terminator }
 	};
 
@@ -67,9 +67,9 @@ namespace macaque
 		"s_structure_seam",
 		STRUCTURE_SEAM_BLOCK_ID)
 	{
-		{ _field_struct, "identifier*!", &structure_seam_identifier_struct },
-		{ _field_struct, "original*!", &structure_seam_original_geometry_struct },
-		{ _field_struct, "final*!", &structure_seam_final_geometry_struct },
+		{ _field_struct, "identifier", &structure_seam_identifier_struct },
+		{ _field_struct, "original", &structure_seam_original_geometry_struct },
+		{ _field_struct, "final", &structure_seam_final_geometry_struct },
 		{ _field_terminator }
 	};
 
@@ -81,9 +81,9 @@ namespace macaque
 		"s_structure_seam_original_vertex",
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "original vertex*!" },
-		{ _field_long_integer, "final point index*!" },
-		{ _field_block, "plane normals*", &structure_seam_original_vertex_plane_normals_block },
+		{ _field_real_point_3d, "original vertex" },
+		{ _field_long_integer, "final point index" },
+		{ _field_block, "plane normals", &structure_seam_original_vertex_plane_normals_block },
 		{ _field_terminator }
 	};
 
@@ -95,7 +95,7 @@ namespace macaque
 		"real_vector3d",
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_PLANE_NORMALS_BLOCK_ID)
 	{
-		{ _field_real_vector_3d, "triangle normal*!" },
+		{ _field_real_vector_3d, "triangle normal" },
 		{ _field_terminator }
 	};
 
@@ -107,7 +107,7 @@ namespace macaque
 		"real_plane3d",
 		STRUCTURE_SEAM_FINAL_PLANES_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane*" },
+		{ _field_real_plane_3d, "plane" },
 		{ _field_terminator }
 	};
 
@@ -119,7 +119,7 @@ namespace macaque
 		"real_point3d",
 		STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "final point*!" },
+		{ _field_real_point_3d, "final point" },
 		{ _field_terminator }
 	};
 
@@ -131,11 +131,11 @@ namespace macaque
 		"s_structure_seam_final_triangle",
 		STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID)
 	{
-		{ _field_long_integer, "final plane*!" },
-		{ _field_short_block_index, "final point0*!" },
-		{ _field_short_block_index, "final point1*!" },
-		{ _field_short_block_index, "final point2*!" },
-		{ _field_pad, "pad0", 2 },
+		{ _field_long_integer, "final plane" },
+		{ _field_short_block_index, "final point0", &structure_seam_final_points_block },
+		{ _field_short_block_index, "final point1", &structure_seam_final_points_block },
+		{ _field_short_block_index, "final point2", &structure_seam_final_points_block },
+		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -147,8 +147,8 @@ namespace macaque
 		"s_structure_seam_final_edge",
 		STRUCTURE_SEAM_FINAL_EDGES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "final point0*!" },
-		{ _field_short_block_index, "final point1*!" },
+		{ _field_short_block_index, "final point0", &structure_seam_final_points_block },
+		{ _field_short_block_index, "final point1", &structure_seam_final_points_block },
 		{ _field_terminator }
 	};
 
@@ -159,12 +159,12 @@ namespace macaque
 		"s_structure_seams",
 		STRUCTURE_SEAMS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_struct, "structure manifest*", &structure_manifest_struct },
+		{ _field_struct, "structure manifest", &structure_manifest_struct },
 		{ _field_explanation, "This tag defines the geometry between seam connected structures bsp.", "" },
-		{ _field_long_integer, "version*!" },
-		{ _field_block, "errors*!", &global_error_report_categories_block },
-		{ _field_block, "seams*!", &structure_seam_block },
-		{ _field_block, "seam triangle mopp code block!*", &mopp_code_definition_block },
+		{ _field_long_integer, "version" },
+		{ _field_block, "errors", &global_error_report_categories_block },
+		{ _field_block, "seams", &structure_seam_block },
+		{ _field_block, "seam triangle mopp code block", &mopp_code_definition_block },
 		{ _field_terminator }
 	};
 
@@ -175,10 +175,10 @@ namespace macaque
 		"s_structure_seam_identifier",
 		STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID)
 	{
-		{ _field_long_integer, "seam_id0*!" },
-		{ _field_long_integer, "seam_id1*!" },
-		{ _field_long_integer, "seam_id2*!" },
-		{ _field_long_integer, "seam_id3*!" },
+		{ _field_long_integer, "seam_id0" },
+		{ _field_long_integer, "seam_id1" },
+		{ _field_long_integer, "seam_id2" },
+		{ _field_long_integer, "seam_id3" },
 		{ _field_terminator }
 	};
 
@@ -189,7 +189,7 @@ namespace macaque
 		"s_structure_seam_original_geometry",
 		STRUCTURE_SEAM_ORIGINAL_GEOMETRY_STRUCT_ID)
 	{
-		{ _field_block, "original vertices*!", &structure_seam_original_vertex_block },
+		{ _field_block, "original vertices", &structure_seam_original_vertex_block },
 		{ _field_terminator }
 	};
 
@@ -200,10 +200,10 @@ namespace macaque
 		"s_structure_seam_final_geometry",
 		STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID)
 	{
-		{ _field_block, "planes*!", &structure_seam_final_planes_block },
-		{ _field_block, "points*!", &structure_seam_final_points_block },
-		{ _field_block, "triangles*!", &structure_seam_final_triangles_block },
-		{ _field_block, "edges*!", &structure_seam_final_edges_block },
+		{ _field_block, "planes", &structure_seam_final_planes_block },
+		{ _field_block, "points", &structure_seam_final_points_block },
+		{ _field_block, "triangles", &structure_seam_final_triangles_block },
+		{ _field_block, "edges", &structure_seam_final_edges_block },
 		{ _field_terminator }
 	};
 

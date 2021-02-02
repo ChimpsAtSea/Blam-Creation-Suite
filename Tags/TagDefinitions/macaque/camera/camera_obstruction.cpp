@@ -14,12 +14,12 @@ namespace macaque
 		"s_camera_obstruction_parameters",
 		CAMERA_OBSTRUCTION_STRUCT_ID)
 	{
-		{ _field_real_fraction, "cylinder fraction#controls how far from the focus point the outer raycasts start.  0 == cone, 1 == cylinder" },
-		{ _field_angle, "obstruction test angle:degrees#how wide of a cone to test" },
-		{ _field_real, "obstruction max inward accel:1.0/s/s#how quickly the camera moves inward when it anticipates a collision" },
-		{ _field_real, "obstruction max outward accel:1.0/s/s#how quickly the camera returns to a normal position when its anticipated distance is further than its current" },
-		{ _field_real, "obstruction max velocity:1.0/s#maximum speed the camera can move" },
-		{ _field_real, "obstruction return delay:s#when the camera wants to start moving back out, wait this long before doing so" },
+		{ _field_real_fraction, "cylinder fraction", "controls how far from the focus point the outer raycasts start.  0 == cone, 1 == cylinder" },
+		{ _field_angle, "obstruction test angle", "how wide of a cone to test", "degrees" },
+		{ _field_real, "obstruction max inward accel", "how quickly the camera moves inward when it anticipates a collision", "1.0/s/s" },
+		{ _field_real, "obstruction max outward accel", "how quickly the camera returns to a normal position when its anticipated distance is further than its current", "1.0/s/s" },
+		{ _field_real, "obstruction max velocity", "maximum speed the camera can move", "1.0/s" },
+		{ _field_real, "obstruction return delay", "when the camera wants to start moving back out, wait this long before doing so", "s" },
 		{ _field_terminator }
 	};
 

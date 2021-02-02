@@ -28,7 +28,7 @@ namespace macaque
 		"color_table_color",
 		COLOR_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
+		{ _field_string, "name" },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};

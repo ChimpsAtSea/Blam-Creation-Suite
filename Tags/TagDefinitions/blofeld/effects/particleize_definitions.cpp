@@ -10,21 +10,21 @@ namespace blofeld
 
 	V5_TAG_STRUCT(particleman_struct_definition)
 	{
-		{ _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
-		{ _field_enum, "Shape", &particleize_shape_enum },
-		{ _field_word_flags, "Flags", &particleize_flags },
-		{ _field_real, "Duration:sec" },
-		{ _field_real, "Density" },
-		{ _field_real, "Size:world units" },
-		{ _field_struct, "Curve", &particleize_scalar_function_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
+		{ _field_legacy, _field_enum, "Shape", &particleize_shape_enum },
+		{ _field_legacy, _field_word_flags, "Flags", &particleize_flags },
+		{ _field_legacy, _field_real, "Duration:sec" },
+		{ _field_legacy, _field_real, "Density" },
+		{ _field_legacy, _field_real, "Size:world units" },
+		{ _field_legacy, _field_struct, "Curve", &particleize_scalar_function_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(particleize_scalar_function_struct)
 	{
-		{ _field_custom },
-		{ _field_struct, "Mapping", &mapping_function_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(particleize_shape_enum)

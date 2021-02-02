@@ -28,7 +28,7 @@ namespace macaque
 		"s_location_name_tag_definition",
 		LOCATION_NAME_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 

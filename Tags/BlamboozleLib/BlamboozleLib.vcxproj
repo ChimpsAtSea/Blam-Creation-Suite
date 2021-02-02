@@ -170,6 +170,7 @@
     <ClCompile Include="blamboozle_base.cpp" />
     <ClCompile Include="blamboozle_h1_guerilla.cpp" />
     <ClCompile Include="blamboozle_h2_guerilla.cpp" />
+    <ClCompile Include="blamlib_string_parser.cpp" />
     <ClCompile Include="halo4\h4_tag_interop.cpp" />
     <ClCompile Include="halo4\h4_tag_enum.cpp" />
     <ClCompile Include="halo4\h4_generator_preprocessor.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="blamboozle_base.h" />
     <ClInclude Include="blamboozle_h1_guerilla.h" />
     <ClInclude Include="blamboozle_h2_guerilla.h" />
+    <ClInclude Include="blamlib_string_parser.h" />
     <ClInclude Include="halo4\h4_tag_interop.h" />
     <ClInclude Include="halo4\h4_tag_enum.h" />
     <ClInclude Include="halo4\h4_generator_preprocessor.h" />

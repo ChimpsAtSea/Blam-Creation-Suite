@@ -30,7 +30,7 @@ namespace macaque
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_real_quaternion, "orientation" },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 
@@ -43,7 +43,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &camera_track_flags },
 		{ _field_block, "control points", &camera_track_control_point_block },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 

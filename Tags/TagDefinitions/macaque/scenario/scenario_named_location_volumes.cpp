@@ -18,7 +18,7 @@ namespace macaque
 		{ _field_block, "points", &named_location_volume_point_block },
 		{ _field_real, "height" },
 		{ _field_real, "sink" },
-		{ _field_string_id, "location name^" },
+		{ _field_string_id, "location name" },
 		{ _field_terminator }
 	};
 

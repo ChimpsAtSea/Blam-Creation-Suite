@@ -15,21 +15,25 @@ namespace blofeld
 		int32_t const line;
 		union
 		{
-			void* const value1;
-			const s_tag_block_definition* const block_definition;
-			const s_tag_struct_definition* const struct_definition;
-			const s_tag_array_definition* const array_definition;
-			const s_string_list_definition* const string_list_definition;
-			const s_tag_reference_definition* const tag_reference_definition;
-			const s_tag_interop_definition* const tag_interop_definition;
-			const char* const explanation;
-			uint32_t padding;
-			uint32_t length;
+			const void* const pointer; // #todo rename to definition
+			const s_tag_block_definition* const block_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_tag_struct_definition* const struct_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_tag_array_definition* const array_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_string_list_definition* const string_list_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_tag_reference_definition* const tag_reference_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const s_tag_interop_definition* const tag_interop_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			const char* const explanation; // #todo remove from union
+			uint32_t padding; // #todo remove from union
+			uint32_t length; // #todo remove from union
 		};
-		const void* const value2;
+		union
+		{
+			const void* const extra_value; // #todo remove
+			uint32_t custom_type; // #todo remove
+			e_field_id id;
+		};
 		//enum e_build const min_version;
 		//enum e_build const max_version;
-
 
 		e_engine_type _engine_type;
 		e_platform_type _platform_type;
@@ -38,20 +42,24 @@ namespace blofeld
 		t_tag_field_custom_version_callback _custom_version_callback;
 		c_blamlib_string_parser string_parser;
 
+	public:
 		template<typename A, typename B>
 		s_tag_field(
+			e_field_legacy,
 			e_field field_type,
+#ifndef __INTELLISENSE__
 			const char* filename,
 			int32_t line,
+#endif
 			const char* name,
-			A&& value1,
-			B&& value2) :
+			A&& pointer,
+			B&& extra_value) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
-			value1((void*)(value1)),
-			value2((void*)(value2)),
+			pointer((void*)(pointer)),
+			extra_value((void*)(extra_value)),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
@@ -64,17 +72,20 @@ namespace blofeld
 
 		template<typename A>
 		s_tag_field(
+			e_field_legacy,
 			e_field field_type,
+#ifndef __INTELLISENSE__
 			const char* filename,
 			int32_t line,
+#endif
 			const char* name,
-			A&& value1) :
+			A&& pointer) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
-			value1((void*)(value1)),
-			value2(nullptr),
+			pointer((void*)(pointer)),
+			extra_value(nullptr),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
@@ -86,16 +97,19 @@ namespace blofeld
 		}
 
 		s_tag_field(
+			e_field_legacy,
 			e_field field_type,
+#ifndef __INTELLISENSE__
 			const char* filename,
 			int32_t line,
+#endif
 			const char* name) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
-			value1(nullptr),
-			value2(nullptr),
+			pointer(nullptr),
+			extra_value(nullptr),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
@@ -107,15 +121,19 @@ namespace blofeld
 		}
 
 		s_tag_field(
-			e_field field_type,
-			const char* filename,
-			int32_t line) :
+			e_field_legacy,
+			e_field field_type
+#ifndef __INTELLISENSE__
+			, const char* filename
+			, int32_t line
+#endif
+		) :
 			field_type(field_type),
 			name(nullptr),
 			filename(filename),
 			line(line),
-			value1(nullptr),
-			value2(nullptr),
+			pointer(nullptr),
+			extra_value(nullptr),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
@@ -127,17 +145,20 @@ namespace blofeld
 		}
 
 		s_tag_field(
+			e_field_legacy,
 			e_field field_type,
+#ifndef __INTELLISENSE__
 			const char* filename,
 			int32_t line,
+#endif
 			s_engine_type_and_platform_and_build engine_type_and_build,
 			uint32_t version_field_skip_count = 1) :
 			field_type(field_type),
 			name(nullptr),
 			filename(filename),
 			line(line),
-			value1(nullptr),
-			value2(nullptr),
+			pointer(nullptr),
+			extra_value(nullptr),
 			_engine_type(engine_type_and_build.engine_type),
 			_platform_type(engine_type_and_build.platform_type),
 			_build(engine_type_and_build.build),
@@ -149,16 +170,19 @@ namespace blofeld
 		}
 
 		s_tag_field(
+			e_field_legacy,
 			e_field field_type,
+#ifndef __INTELLISENSE__
 			const char* filename,
 			int32_t line,
+#endif
 			t_tag_field_custom_version_callback custom_version_callback) :
 			field_type(field_type),
 			name(nullptr),
 			filename(filename),
 			line(line),
-			value1(nullptr),
-			value2(nullptr),
+			pointer(nullptr),
+			extra_value(nullptr),
 			_engine_type(_engine_type_not_set),
 			_platform_type(_platform_type_not_set),
 			_build(_build_not_set),
@@ -167,6 +191,116 @@ namespace blofeld
 			string_parser("")
 		{
 			ASSERT(field_type == _field_version_custom);
+		}
+
+		// type #WARN: Must only be used with _field_terminator
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line)) :
+			s_tag_field(type HIDDEN(, filename, line), nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default)
+		{
+			DEBUG_ONLY(if (type != _field_terminator) FATAL_ERROR(L"Invalid tag constructor usage (expected type == _field_terminator) %S:%i", filename, line));
+		};
+
+		// type, name
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, FLAGS
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, uint32_t flags) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
+
+		// type, name, description
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, pointer
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const void* pointer) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, 0, pointer, _field_id_default) {};
+
+		// type, name, FLAGS, pointer
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, uint32_t flags, const void* pointer) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, flags, pointer, _field_id_default) {};
+
+		// type, name, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, 0, pointer, id) {};
+
+		// type, name, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, flags, pointer, id) {};
+
+		// type, name, description, pointer
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const void* pointer) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, 0, pointer, _field_id_default) {};
+
+		// type, name, description, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, 0, pointer, id) {};
+
+		// type, name, description, units
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, description, minimum, maximum
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* minimum, const char* maximum) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, minimum, maximum, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, description, units, minimum, maximum
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, const char* minimum, const char* maximum) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, minimum, maximum, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, description, FLAGS, pointer
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, uint32_t flags, const void* pointer) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, flags, pointer, _field_id_default) {};
+
+		// type, name, description, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, flags, pointer, id) {};
+
+		// type, name, description, units, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, nullptr, flags, pointer, id) {};
+
+		// type, name, description, minimum, maximum, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* minimum, const char* maximum, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, minimum, maximum, nullptr, flags, pointer, id) {};
+
+		// type, name, description, units, minimum, maximum, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, const char* minimum, const char* maximum, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, minimum, maximum, nullptr, flags, pointer, id) {};
+
+		// type, name, description, alt-names-array, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char** alt_names, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, alt_names, flags, pointer, id) {};
+
+		// type, name, description, units, alt-names-array, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, const char** alt_names, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, alt_names, flags, pointer, id) {};
+
+		// type, name, description, alt-names-array, minimum, maximum, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* minimum, const char* maximum, const char** alt_names, uint32_t flags, const void* pointer, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, minimum, maximum, alt_names, flags, pointer, id) {};
+
+		// type, name, description, units, minimum, maximum, alt-names-array, FLAGS, pointer, tag
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, const char* minimum, const char* maximum, const char** alt_names, uint32_t flags, const void* pointer, e_field_id id) :
+			field_type(type),
+			name(nullptr),
+#ifndef HIDDEN_CODE
+			filename(filename),
+			line(line),
+#else
+			filename(""),
+			line(0),
+#endif
+			pointer(pointer), // union
+			extra_value((void*)id), // union
+			_engine_type(_engine_type_not_set),
+			_platform_type(_platform_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(nullptr),
+			string_parser(name)
+		{
+
 		}
 	};
 

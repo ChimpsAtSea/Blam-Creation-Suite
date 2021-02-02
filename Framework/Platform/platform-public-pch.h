@@ -2,6 +2,22 @@
 
 #pragma warning(disable : 4200)
 
+#ifdef __RESHARPER__
+#define __INTELLISENSE__
+#endif
+
+#ifdef __INTELLISENSE__
+#ifndef HIDDEN_CODE
+#define HIDDEN_CODE
+#endif
+#endif
+
+#ifdef HIDDEN_CODE
+#define HIDDEN(...)
+#else
+#define HIDDEN(...) __VA_ARGS__
+#endif
+
 #ifdef BCS_EXTENSION
 #define BCSAPI __declspec(dllimport)
 #else

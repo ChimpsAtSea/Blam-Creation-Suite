@@ -41,8 +41,8 @@ namespace macaque
 		"cloth_vertex_definition",
 		CLOTH_VERTICES_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "initial position*" },
-		{ _field_real_vector_2d, "uv*" },
+		{ _field_real_point_3d, "initial position" },
+		{ _field_real_vector_2d, "uv" },
 		{ _field_terminator }
 	};
 
@@ -54,7 +54,7 @@ namespace macaque
 		"cloth_index_definition",
 		CLOTH_INDICES_BLOCK_ID)
 	{
-		{ _field_short_integer, "index*" },
+		{ _field_short_integer, "index" },
 		{ _field_terminator }
 	};
 
@@ -66,10 +66,10 @@ namespace macaque
 		"cloth_link_definition",
 		CLOTH_LINKS_BLOCK_ID)
 	{
-		{ _field_real, "default_distance*" },
-		{ _field_long_integer, "index1*" },
-		{ _field_long_integer, "index2*" },
-		{ _field_pad, "vmx_pad", 4 },
+		{ _field_real, "default_distance" },
+		{ _field_long_integer, "index1" },
+		{ _field_long_integer, "index2" },
+		FIELD_PAD("vmx_pad", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -93,10 +93,10 @@ namespace macaque
 		{ _field_explanation, "Cloth Properties", "" },
 		{ _field_struct, "properties", &cloth_properties },
 		{ _field_explanation, "Import or grid data", "" },
-		{ _field_block, "vertices*", &cloth_vertices_block },
-		{ _field_block, "indices*", &cloth_indices_block },
-		{ _field_block, "strip indices*", &cloth_indices_block },
-		{ _field_block, "links*", &cloth_links_block },
+		{ _field_block, "vertices", &cloth_vertices_block },
+		{ _field_block, "indices", &cloth_indices_block },
+		{ _field_block, "strip indices", &cloth_indices_block },
+		{ _field_block, "links", &cloth_links_block },
 		{ _field_terminator }
 	};
 
@@ -107,14 +107,14 @@ namespace macaque
 		"cloth_properties",
 		CLOTH_PROPERTIES_ID)
 	{
-		{ _field_enum, "Integration type*", &cloth_integration_enum },
-		{ _field_short_integer, "Number iterations#[1-8] sug 1" },
-		{ _field_real, "weight#[-10.0 - 10.0] sug 1.0" },
-		{ _field_real, "drag#[0.0 - 0.5] sug 0.07" },
-		{ _field_real, "wind_scale#[0.0 - 3.0] sug 1.0" },
-		{ _field_real, "wind_flappiness_scale#[0.0 - 1.0] sug 0.75" },
-		{ _field_real, "longest_rod#[1.0 - 10.0] sug 3.5" },
-		{ _field_pad, "WXLH", 24 },
+		{ _field_enum, "Integration type", &cloth_integration_enum },
+		{ _field_short_integer, "Number iterations", "[1-8] sug 1" },
+		{ _field_real, "weight", "[-10.0 - 10.0] sug 1.0" },
+		{ _field_real, "drag", "[0.0 - 0.5] sug 0.07" },
+		{ _field_real, "wind_scale", "[0.0 - 3.0] sug 1.0" },
+		{ _field_real, "wind_flappiness_scale", "[0.0 - 1.0] sug 0.75" },
+		{ _field_real, "longest_rod", "[1.0 - 10.0] sug 3.5" },
+		FIELD_PAD("WXLH", nullptr, 24),
 		{ _field_terminator }
 	};
 

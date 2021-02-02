@@ -10,14 +10,14 @@ namespace blofeld
 
 	V5_TAG_STRUCT(spawner_struct_definition)
 	{
-		{ _field_struct, "entity", &entity_struct_definition_struct_definition },
-		{ _field_custom, "$$$ SPAWNER $$$" },
-		{ _field_byte_flags, "Spawner Flags", &SpawnerFlags },
-		{ _field_pad, "FlagPad1", 3 },
-		{ _field_long_integer, "Post Spawn Cooldown (ticks)" },
-		{ _field_real, "Activation Task Priority #Priority of task to activate this spawner." },
-		{ _field_custom },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "entity", &entity_struct_definition_struct_definition },
+		{ _field_legacy, _field_custom, "$$$ SPAWNER $$$" },
+		{ _field_legacy, _field_byte_flags, "Spawner Flags", &SpawnerFlags },
+		{ _field_legacy, _field_pad, "FlagPad1", 3 },
+		{ _field_legacy, _field_long_integer, "Post Spawn Cooldown (ticks)" },
+		{ _field_legacy, _field_real, "Activation Task Priority #Priority of task to activate this spawner." },
+		{ _field_legacy, _field_custom },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(SpawnerFlags)

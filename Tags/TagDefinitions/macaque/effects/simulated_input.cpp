@@ -48,15 +48,15 @@ namespace macaque
 		{ _field_long_flags, "flags", &simulated_input_flags },
 		{ _field_enum, "response type", &direction_type_enum_definition },
 		{ _field_enum, "mapping type", &mapping_type_enum_definition },
-		{ _field_real_bounds, "angle:degrees" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_real_bounds, "angle", "degrees" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "duration:seconds" },
-		{ _field_real, "inverse duration:seconds#if >0.f, accumulated inpulse will be \'undone\' over the give time span" },
-		{ _field_real, "inverse random length:percent#15.0 would randomly adjust length of accumulated impulse +/-15%" },
-		{ _field_real_bounds, "inverse random angle:degrees#apply random adjustment to direction of accumulated impulse" },
-		{ _field_real, "linear zoom penalty#linear multiplier of zoom that increases effect; computed for no change at zoom 1" },
-		{ _field_real, "square root zoom penalty#multiplier to increase effect proportional to square root of zoom; computed for no change at zoom 1" },
+		{ _field_real, "duration", "seconds" },
+		{ _field_real, "inverse duration", "if >0.f, accumulated inpulse will be \'undone\' over the give time span", "seconds" },
+		{ _field_real, "inverse random length", "15.0 would randomly adjust length of accumulated impulse +/-15%", "percent" },
+		{ _field_real_bounds, "inverse random angle", "apply random adjustment to direction of accumulated impulse", "degrees" },
+		{ _field_real, "linear zoom penalty", "linear multiplier of zoom that increases effect; computed for no change at zoom 1" },
+		{ _field_real, "square root zoom penalty", "multiplier to increase effect proportional to square root of zoom; computed for no change at zoom 1" },
 		{ _field_terminator }
 	};
 

@@ -28,24 +28,24 @@ namespace macaque
 		"s_multilingual_unicode_string_reference",
 		MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID)
 	{
-		{ _field_string_id, "string id^*" },
-		{ _field_long_integer, "english offset*" },
-		{ _field_long_integer, "japanese offset*" },
-		{ _field_long_integer, "german offset*" },
-		{ _field_long_integer, "french offset*" },
-		{ _field_long_integer, "spanish offset*" },
-		{ _field_long_integer, "mexican spanish offset*" },
-		{ _field_long_integer, "italian offset*" },
-		{ _field_long_integer, "korean offset*" },
-		{ _field_long_integer, "traditional chinese offset*" },
-		{ _field_long_integer, "simplified chinese offset*" },
-		{ _field_long_integer, "portuguese offset*" },
-		{ _field_long_integer, "polish offset*" },
-		{ _field_long_integer, "russian offset*" },
-		{ _field_long_integer, "danish offset*" },
-		{ _field_long_integer, "finnish offset*" },
-		{ _field_long_integer, "dutch offset*" },
-		{ _field_long_integer, "norwegian offset*" },
+		{ _field_string_id, "string id" },
+		{ _field_long_integer, "english offset" },
+		{ _field_long_integer, "japanese offset" },
+		{ _field_long_integer, "german offset" },
+		{ _field_long_integer, "french offset" },
+		{ _field_long_integer, "spanish offset" },
+		{ _field_long_integer, "mexican spanish offset" },
+		{ _field_long_integer, "italian offset" },
+		{ _field_long_integer, "korean offset" },
+		{ _field_long_integer, "traditional chinese offset" },
+		{ _field_long_integer, "simplified chinese offset" },
+		{ _field_long_integer, "portuguese offset" },
+		{ _field_long_integer, "polish offset" },
+		{ _field_long_integer, "russian offset" },
+		{ _field_long_integer, "danish offset" },
+		{ _field_long_integer, "finnish offset" },
+		{ _field_long_integer, "dutch offset" },
+		{ _field_long_integer, "norwegian offset" },
 		{ _field_terminator }
 	};
 
@@ -57,9 +57,9 @@ namespace macaque
 		"s_string_substitution_pair",
 		STRING_SUBSTITUTION_PAIR_BLOCK_ID)
 	{
-		{ _field_string_id, "first string id^*!" },
-		{ _field_string_id, "second string id*!" },
-		{ _field_long_integer, "associated value*!" },
+		{ _field_string_id, "first string id" },
+		{ _field_string_id, "second string id" },
+		{ _field_long_integer, "associated value" },
 		{ _field_terminator }
 	};
 
@@ -71,7 +71,7 @@ namespace macaque
 		"byte",
 		DATA_HASH_DEFINITION_ID)
 	{
-		{ _field_byte_integer, "hash byte!" },
+		{ _field_byte_integer, "hash byte" },
 		{ _field_terminator }
 	};
 
@@ -83,8 +83,8 @@ namespace macaque
 		"s_language_pack_offsets",
 		MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_ID)
 	{
-		{ _field_short_integer, "start index!" },
-		{ _field_short_integer, "string count!" },
+		{ _field_short_integer, "start index" },
+		{ _field_short_integer, "string count" },
 		{ _field_terminator }
 	};
 
@@ -95,12 +95,12 @@ namespace macaque
 		"s_multilingual_unicode_string_list_group_header",
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _custom_field_text_unknown),
-		FIELD_CUSTOM("import clean", _custom_field_text_unknown),
-		{ _field_block, "string references*", &multilingual_unicode_string_reference_block },
-		{ _field_block, "substitution pairs*", &string_substitution_pair_block },
-		{ _field_data, "string data utf8*" },
-		{ _field_array, "language pack offsets!", &multilingual_unicode_string_list_language_pack_offsets_array },
+		FIELD_CUSTOM("import", nullptr, _field_id_text_unknown),
+		FIELD_CUSTOM("import clean", nullptr, _field_id_text_unknown),
+		{ _field_block, "string references", &multilingual_unicode_string_reference_block },
+		{ _field_block, "substitution pairs", &string_substitution_pair_block },
+		{ _field_data, "string data utf8" },
+		{ _field_array, "language pack offsets", &multilingual_unicode_string_list_language_pack_offsets_array },
 		{ _field_terminator }
 	};
 
@@ -111,15 +111,15 @@ namespace macaque
 		"c_language_pack",
 		LANGUAGE_PACK_DEFINITION_ID)
 	{
-		{ _field_long_integer, "string reference pointer!", nullptr, 'nuke' },
-		{ _field_long_integer, "string data pointer!", nullptr, 'nuke' },
-		{ _field_long_integer, "number of strings!" },
-		{ _field_long_integer, "string data size!" },
-		{ _field_long_integer, "string reference cache offset!" },
-		{ _field_long_integer, "string data cache offset!" },
-		{ _field_array, "string reference checksum!", &data_hash_definition_array },
-		{ _field_array, "string data checksum!", &data_hash_definition_array },
-		{ _field_long_integer, "data loaded boolean~!" },
+		{ _field_long_integer, "string reference pointer", _field_id_zero_data },
+		{ _field_long_integer, "string data pointer", _field_id_zero_data },
+		{ _field_long_integer, "number of strings" },
+		{ _field_long_integer, "string data size" },
+		{ _field_long_integer, "string reference cache offset" },
+		{ _field_long_integer, "string data cache offset" },
+		{ _field_array, "string reference checksum", &data_hash_definition_array },
+		{ _field_array, "string data checksum", &data_hash_definition_array },
+		{ _field_long_integer, "data loaded boolean" },
 		{ _field_terminator }
 	};
 

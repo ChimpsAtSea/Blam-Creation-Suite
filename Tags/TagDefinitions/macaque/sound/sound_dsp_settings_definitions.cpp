@@ -39,13 +39,13 @@ namespace macaque
 		"s_sound_equalizer_band_settings",
 		SOUND_EQUALIZER_BAND_SETTINGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_enum, "type^", &equalizer_band_type_definition },
-		FIELD_CUSTOM("frequency:Hz", _custom_field_slider_editor),
-		{ _field_real, "frequency:Hz", nullptr, 'sled' },
-		FIELD_CUSTOM("gain:dB", _custom_field_slider_editor),
-		{ _field_real, "gain:dB", nullptr, 'sled' },
-		FIELD_CUSTOM("q", _custom_field_slider_editor),
-		{ _field_real, "q", nullptr, 'sled' },
+		{ _field_long_enum, "type", &equalizer_band_type_definition },
+		FIELD_CUSTOM("frequency", nullptr, _field_id_slider_editor),
+		{ _field_real, "frequency", "Hz", _field_id_slider_editor },
+		FIELD_CUSTOM("gain", nullptr, _field_id_slider_editor),
+		{ _field_real, "gain", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("q", nullptr, _field_id_slider_editor),
+		{ _field_real, "q", _field_id_slider_editor },
 		{ _field_terminator }
 	};
 
@@ -56,10 +56,10 @@ namespace macaque
 		"s_sound_lowpass_settings",
 		GLOBAL_SOUND_LOWPASS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("cutoff frequency:Hz", _custom_field_slider_editor),
-		{ _field_real, "cutoff frequency:Hz", nullptr, 'sled' },
-		FIELD_CUSTOM("output gain:dB", _custom_field_slider_editor),
-		{ _field_real, "output gain:dB", nullptr, 'sled' },
+		FIELD_CUSTOM("cutoff frequency", nullptr, _field_id_slider_editor),
+		{ _field_real, "cutoff frequency", "Hz", _field_id_slider_editor },
+		FIELD_CUSTOM("output gain", nullptr, _field_id_slider_editor),
+		{ _field_real, "output gain", "dB", _field_id_slider_editor },
 		{ _field_terminator }
 	};
 
@@ -70,38 +70,38 @@ namespace macaque
 		"s_sound_reverb_settings",
 		GLOBAL_SOUND_REVERB_BLOCK_ID)
 	{
-		FIELD_CUSTOM("room intensity:dB#intensity of the room effect", _custom_field_slider_editor),
-		{ _field_real, "room intensity:dB#intensity of the room effect", nullptr, 'sled' },
-		FIELD_CUSTOM("room intensity hf:dB#intensity of the room effect above the reference high frequency", _custom_field_slider_editor),
-		{ _field_real, "room intensity hf:dB#intensity of the room effect above the reference high frequency", nullptr, 'sled' },
-		FIELD_CUSTOM("room rolloff (0 to 10)#how quickly the room effect rolls off, from 0.0 to 10.0", _custom_field_slider_editor),
-		{ _field_real, "room rolloff (0 to 10)#how quickly the room effect rolls off, from 0.0 to 10.0", nullptr, 'sled' },
-		FIELD_CUSTOM("decay time (.1 to 20):seconds", _custom_field_slider_editor),
-		{ _field_real, "decay time (.1 to 20):seconds", nullptr, 'sled' },
-		FIELD_CUSTOM("decay hf ratio (.1 to 2)", _custom_field_slider_editor),
-		{ _field_real, "decay hf ratio (.1 to 2)", nullptr, 'sled' },
-		FIELD_CUSTOM("reflections intensity:dB[-100,10]", _custom_field_slider_editor),
-		{ _field_real, "reflections intensity:dB[-100,10]", nullptr, 'sled' },
-		FIELD_CUSTOM("reflections delay (0 to .3):seconds", _custom_field_slider_editor),
-		{ _field_real, "reflections delay (0 to .3):seconds", nullptr, 'sled' },
-		FIELD_CUSTOM("reverb intensity:dB[-100,20]", _custom_field_slider_editor),
-		{ _field_real, "reverb intensity:dB[-100,20]", nullptr, 'sled' },
-		FIELD_CUSTOM("reverb delay (0 to .1):seconds", _custom_field_slider_editor),
-		{ _field_real, "reverb delay (0 to .1):seconds", nullptr, 'sled' },
-		FIELD_CUSTOM("diffusion", _custom_field_slider_editor),
-		{ _field_real, "diffusion", nullptr, 'sled' },
-		FIELD_CUSTOM("density", _custom_field_slider_editor),
-		{ _field_real, "density", nullptr, 'sled' },
-		FIELD_CUSTOM("hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000", _custom_field_slider_editor),
-		{ _field_real, "hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000", nullptr, 'sled' },
+		FIELD_CUSTOM("room intensity", "intensity of the room effect", _field_id_slider_editor),
+		{ _field_real, "room intensity", "intensity of the room effect", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("room intensity hf", "intensity of the room effect above the reference high frequency", _field_id_slider_editor),
+		{ _field_real, "room intensity hf", "intensity of the room effect above the reference high frequency", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0", _field_id_slider_editor),
+		{ _field_real, "room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0", _field_id_slider_editor },
+		FIELD_CUSTOM("decay time (.1 to 20)", nullptr, _field_id_slider_editor),
+		{ _field_real, "decay time (.1 to 20)", "seconds", _field_id_slider_editor },
+		FIELD_CUSTOM("decay hf ratio (.1 to 2)", nullptr, _field_id_slider_editor),
+		{ _field_real, "decay hf ratio (.1 to 2)", _field_id_slider_editor },
+		FIELD_CUSTOM("reflections intensity", nullptr, _field_id_slider_editor),
+		{ _field_real, "reflections intensity", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("reflections delay (0 to .3)", nullptr, _field_id_slider_editor),
+		{ _field_real, "reflections delay (0 to .3)", "seconds", _field_id_slider_editor },
+		FIELD_CUSTOM("reverb intensity", nullptr, _field_id_slider_editor),
+		{ _field_real, "reverb intensity", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("reverb delay (0 to .1)", nullptr, _field_id_slider_editor),
+		{ _field_real, "reverb delay (0 to .1)", "seconds", _field_id_slider_editor },
+		FIELD_CUSTOM("diffusion", nullptr, _field_id_slider_editor),
+		{ _field_real, "diffusion", _field_id_slider_editor },
+		FIELD_CUSTOM("density", nullptr, _field_id_slider_editor),
+		{ _field_real, "density", _field_id_slider_editor },
+		FIELD_CUSTOM("hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", _field_id_slider_editor),
+		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _field_id_slider_editor },
 		{ _field_explanation, "WWise Environment", "Use these values for WWise reverb. Above stuff will be removed eventually." },
-		{ _field_string_id, "Environment name#Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
-		FIELD_CUSTOM("Dry mix value#0 to 1 with 0 being none, and 1 being full.", _custom_field_slider_editor),
-		{ _field_real, "Dry mix value#0 to 1 with 0 being none, and 1 being full.", nullptr, 'sled' },
-		FIELD_CUSTOM("Wet mix value#0 to 1 with 0 being none, and 1 being full.", _custom_field_slider_editor),
-		{ _field_real, "Wet mix value#0 to 1 with 0 being none, and 1 being full.", nullptr, 'sled' },
-		FIELD_CUSTOM("Player wet mix value#0 to 1 with 0 being none, and 1 being full.", _custom_field_slider_editor),
-		{ _field_real, "Player wet mix value#0 to 1 with 0 being none, and 1 being full.", nullptr, 'sled' },
+		{ _field_string_id, "Environment name", "Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
+		FIELD_CUSTOM("Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor),
+		{ _field_real, "Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
+		FIELD_CUSTOM("Wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor),
+		{ _field_real, "Wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
+		FIELD_CUSTOM("Player wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor),
+		{ _field_real, "Player wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
 		{ _field_terminator }
 	};
 
@@ -112,10 +112,10 @@ namespace macaque
 		"s_sound_look_up_table_distortion_settings",
 		GLOBAL_SOUND_LOOK_UP_TABLE_DISTORTION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("table size", _custom_field_slider_editor),
-		{ _field_long_integer, "table size", nullptr, 'sled' },
-		FIELD_CUSTOM("noise amount", _custom_field_slider_editor),
-		{ _field_real, "noise amount", nullptr, 'sled' },
+		FIELD_CUSTOM("table size", nullptr, _field_id_slider_editor),
+		{ _field_long_integer, "table size", _field_id_slider_editor },
+		FIELD_CUSTOM("noise amount", nullptr, _field_id_slider_editor),
+		{ _field_real, "noise amount", _field_id_slider_editor },
 		{ _field_long_flags, "flags", &look_up_table_flags_definition },
 		{ _field_terminator }
 	};
@@ -127,10 +127,10 @@ namespace macaque
 		"s_sound_equalizer_settings",
 		GLOBAL_SOUND_EQUALIZER_BLOCK_ID)
 	{
-		FIELD_CUSTOM("input gain:dB", _custom_field_slider_editor),
-		{ _field_real, "input gain:dB", nullptr, 'sled' },
-		FIELD_CUSTOM("output gain:dB", _custom_field_slider_editor),
-		{ _field_real, "output gain:dB", nullptr, 'sled' },
+		FIELD_CUSTOM("input gain", nullptr, _field_id_slider_editor),
+		{ _field_real, "input gain", "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("output gain", nullptr, _field_id_slider_editor),
+		{ _field_real, "output gain", "dB", _field_id_slider_editor },
 		{ _field_block, "band settings", &sound_equalizer_band_settings_block },
 		{ _field_terminator }
 	};

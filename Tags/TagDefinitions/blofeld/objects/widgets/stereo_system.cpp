@@ -10,8 +10,8 @@ namespace blofeld
 
 	V5_TAG_STRUCT(stereo_system_struct_definition)
 	{
-		{ _field_long_integer, "unused" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "unused" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

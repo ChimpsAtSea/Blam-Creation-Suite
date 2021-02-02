@@ -67,10 +67,10 @@ namespace macaque
 		COMPONENT_DEFINITION_ID)
 	{
 		{ _field_string_id, "type" },
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "parent" },
 		{ _field_word_flags, "flags", &component_definition_flags },
-		{ _field_short_block_index, "template instantiation index" },
+		{ _field_short_block_index, "template instantiation index", &template_instantiation_block_definition_block },
 		{ _field_terminator }
 	};
 
@@ -82,9 +82,9 @@ namespace macaque
 		"s_cui_component_index_definition",
 		COMPONENT_INDEX_BLOCK_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_short_block_index, "component definition index" },
-		{ _field_pad, "pad0", 2 },
+		{ _field_string_id, "name" },
+		{ _field_short_block_index, "component definition index", &component_definition_block },
+		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -111,7 +111,7 @@ namespace macaque
 		"s_cui_component_properties_definition",
 		COMPONENT_PROPERTIES_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_struct, "property values", &properties_struct },
 		{ _field_terminator }
 	};
@@ -124,7 +124,7 @@ namespace macaque
 		"s_cui_property_value_long_definition",
 		PROPERTY_LONG_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
@@ -137,7 +137,7 @@ namespace macaque
 		"s_cui_property_value_real_definition",
 		PROPERTY_REAL_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real, "value" },
 		{ _field_terminator }
 	};
@@ -150,7 +150,7 @@ namespace macaque
 		"s_cui_property_value_string_id_definition",
 		PROPERTY_STRING_ID_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "value" },
 		{ _field_terminator }
 	};
@@ -163,10 +163,10 @@ namespace macaque
 		"CuiPropertyValueComponentPtrDefinition",
 		PROPERTYCOMPONENTPTRVALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "value" },
 		{ _field_byte_flags, "flags", &propertyComponentPtrFlags },
-		{ _field_pad, "pad0", 3 },
+		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -178,7 +178,7 @@ namespace macaque
 		"s_cui_property_value_tag_reference_definition",
 		PROPERTY_TAG_REFERENCE_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_tag_reference, "value", &property_tag_reference_value_value_reference },
 		{ _field_terminator }
 	};
@@ -191,7 +191,7 @@ namespace macaque
 		"s_cui_property_value_text_definition",
 		PROPERTY_TEXT_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_string, "value" },
 		{ _field_terminator }
 	};
@@ -204,7 +204,7 @@ namespace macaque
 		"s_cui_property_value_argb_color_definition",
 		PROPERTY_ARGB_COLOR_VALUE_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real_argb_color, "value" },
 		{ _field_terminator }
 	};
@@ -217,11 +217,11 @@ namespace macaque
 		"s_cui_animation_definition",
 		ANIMATION_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real, "time base offset" },
 		{ _field_real, "time exponential offset" },
 		{ _field_char_enum, "animation input", &animationInputType },
-		{ _field_pad, "pad0", 3 },
+		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_block, "components", &animation_component_definition_block },
 		{ _field_terminator }
 	};
@@ -234,7 +234,7 @@ namespace macaque
 		"s_cui_animation_component_definition",
 		ANIMATION_COMPONENT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "real properties", &animation_component_real_property_block },
 		{ _field_block, "argb color properties", &animation_component_argb_color_property_block },
@@ -249,10 +249,10 @@ namespace macaque
 		"s_cui_animation_component_property_real_definition",
 		ANIMATION_COMPONENT_REAL_PROPERTY_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
-		{ _field_pad, "pad0", 1 },
+		FIELD_PAD("pad0", nullptr, 1),
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "real keyframes", &animation_property_keyframe_real_value_block },
 		{ _field_terminator }
@@ -266,8 +266,8 @@ namespace macaque
 		"s_cui_animation_property_keyframe_value_real_definition",
 		ANIMATION_PROPERTY_KEYFRAME_REAL_VALUE_ID)
 	{
-		{ _field_long_integer, "duration:milliseconds#the amount of time from the previous keyframe to this keyframe" },
-		{ _field_real, "value#the value when the current time is on this keyframe" },
+		{ _field_long_integer, "duration", "the amount of time from the previous keyframe to this keyframe", "milliseconds" },
+		{ _field_real, "value", "the value when the current time is on this keyframe" },
 		{ _field_struct, "transition function", &animation_scalar_function },
 		{ _field_terminator }
 	};
@@ -280,10 +280,10 @@ namespace macaque
 		"s_cui_animation_component_property_argb_color_definition",
 		ANIMATION_COMPONENT_ARGB_COLOR_PROPERTY_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
-		{ _field_pad, "pad0", 1 },
+		FIELD_PAD("pad0", nullptr, 1),
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "argb color keyframes", &animation_property_keyframe_argb_color_value_block },
 		{ _field_terminator }
@@ -297,8 +297,8 @@ namespace macaque
 		"s_cui_animation_property_keyframe_value_argb_color_definition",
 		ANIMATION_PROPERTY_KEYFRAME_ARGB_COLOR_VALUE_ID)
 	{
-		{ _field_long_integer, "duration:milliseconds#the amount of time from the previous keyframe to this keyframe" },
-		{ _field_real_argb_color, "color#the value when the current time is on this keyframe" },
+		{ _field_long_integer, "duration", "the amount of time from the previous keyframe to this keyframe", "milliseconds" },
+		{ _field_real_argb_color, "color", "the value when the current time is on this keyframe" },
 		{ _field_struct, "transition function", &animation_scalar_function },
 		{ _field_terminator }
 	};
@@ -316,7 +316,7 @@ namespace macaque
 		{ _field_byte_flags, "flags", &editor_overlay_info_flags },
 		{ _field_block, "components editor only", &component_editor_only_definition_block },
 		{ _field_block, "animations editor only", &animation_editor_only_definition_block },
-		{ _field_pad, "pad0", 3 },
+		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -328,7 +328,7 @@ namespace macaque
 		"s_cui_component_editor_only_definition",
 		COMPONENT_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "properties editor only", &property_editor_only_definition_block },
 		{ _field_terminator }
 	};
@@ -341,9 +341,9 @@ namespace macaque
 		"s_cui_property_editor_only_definition",
 		PROPERTY_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &editor_property_info_flags },
-		{ _field_pad, "pad0", 3 },
+		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -355,7 +355,7 @@ namespace macaque
 		"s_cui_animation_editor_only_definition",
 		ANIMATION_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "components editor only", &component_editor_only_definition_block },
 		{ _field_terminator }
 	};
@@ -388,7 +388,7 @@ namespace macaque
 		{ _field_string_id, "target component name" },
 		{ _field_string_id, "target property name" },
 		{ _field_char_enum, "comparison operator", &binding_conversion_comparison_operator_enum_definition },
-		{ _field_pad, "pad0", 3 },
+		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_long_integer, "comparison value" },
 		{ _field_terminator }
 	};
@@ -401,8 +401,8 @@ namespace macaque
 		"s_cui_static_data_definition",
 		STATIC_DATA_TABLE_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_string_id, "mock data for component#a component on this screen that gets replaced in simulation with this data table" },
+		{ _field_string_id, "name" },
+		{ _field_string_id, "mock data for component", "a component on this screen that gets replaced in simulation with this data table" },
 		{ _field_struct, "static data", &static_data_struct },
 		{ _field_terminator }
 	};
@@ -415,9 +415,9 @@ namespace macaque
 		"s_cui_static_data_column_definition",
 		STATIC_DATA_COLUMN_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "type", &property_type },
-		{ _field_pad, "pad0", 2 },
+		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -435,7 +435,7 @@ namespace macaque
 		"s_cui_expression_definition",
 		EXPRESSION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_string, "expression text" },
 		{ _field_block, "steps", &expression_step_block },
 		{ _field_terminator }
@@ -449,10 +449,10 @@ namespace macaque
 		"s_cui_expression_step_definition",
 		EXPRESSION_STEP_ID)
 	{
-		{ _field_char_enum, "step type^", &step_type },
+		{ _field_char_enum, "step type", &step_type },
 		{ _field_char_enum, "operator", &step_operator },
 		{ _field_char_enum, "variable", &step_variable },
-		{ _field_pad, "pad0", 1 },
+		FIELD_PAD("pad0", nullptr, 1),
 		{ _field_real, "value&real value" },
 		{ _field_string_id, "string id value" },
 		{ _field_terminator }
@@ -466,7 +466,7 @@ namespace macaque
 		"CuiEncapsulatedProperties",
 		ENCAPSULATEDPROPERTIES_ID)
 	{
-		{ _field_string_id, "encapsulation name^" },
+		{ _field_string_id, "encapsulation name" },
 		{ _field_block, "properties", &static_data_column_block },
 		{ _field_terminator }
 	};
@@ -564,7 +564,7 @@ namespace macaque
 		"s_cui_animation_scalar_function",
 		ANIMATION_SCALAR_FUNCTION_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "scalar function", &mapping_function },
 		{ _field_terminator }
 	};

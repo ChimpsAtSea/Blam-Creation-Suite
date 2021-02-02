@@ -60,21 +60,21 @@ namespace macaque
 		"s_incident_definition",
 		INCIDENT_DEFINITION_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
-		FIELD_CUSTOM("PROPERTIES", _custom_field_function_group_begin),
+		{ _field_string_id, "name" },
+		FIELD_CUSTOM("PROPERTIES", nullptr, _field_id_function_group_begin),
 		{ _field_byte_flags, "flags", &incident_definition_flags },
-		{ _field_pad, "JKOPEIE", 3 },
-		FIELD_CUSTOM("DISALLOWED GAME MODES", _custom_field_function_group_begin),
+		FIELD_PAD("JKOPEIE", nullptr, 3),
+		FIELD_CUSTOM("DISALLOWED GAME MODES", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "disallowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "suppressed incidents", &suppressed_incident_block },
 		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("CREATION", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("CREATION", nullptr, _field_id_function_group_begin),
 		{ _field_block, "specialized incidents", &specialized_incident_block },
 		{ _field_block, "accumulator incidents", &incident_accumulator_block },
 		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "response", &game_incident_response_block },
 		{ _field_terminator }
 	};
@@ -87,9 +87,9 @@ namespace macaque
 		"s_suppressed_incident_definition",
 		SUPPRESSED_INCIDENT_BLOCK_ID)
 	{
-		{ _field_string_id, "incident name^" },
+		{ _field_string_id, "incident name" },
 		{ _field_byte_flags, "suppression type", &suppressed_incident_flags },
-		{ _field_pad, "VNJESHFHV", 3 },
+		FIELD_PAD("VNJESHFHV", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -113,10 +113,10 @@ namespace macaque
 		"s_specialized_incident_definition",
 		SPECIALIZED_INCIDENT_BLOCK_ID)
 	{
-		{ _field_string_id, "base incident^" },
+		{ _field_string_id, "base incident" },
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block },
 		{ _field_block, "cause object", &specialized_incident_object_properties_block },
-		{ _field_block, "effect object{kill bucket}", &specialized_incident_object_properties_block },
+		{ _field_block, "effect object", &specialized_incident_object_properties_block },
 		{ _field_block, "special kill type", &specialized_incident_special_kill_type_block },
 		{ _field_block, "game over filter", &specializedIncidentGameOverBlock_block },
 		{ _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block },
@@ -133,8 +133,8 @@ namespace macaque
 		"s_specialized_incident_kill_implement_definition",
 		SPECIALIZED_INCIDENT_KILL_IMPLEMENT_BLOCK_ID)
 	{
-		{ _field_char_enum, "damage reporting type^", &global_damage_reporting_enum_definition },
-		{ _field_pad, "ACNUIEHF", 3 },
+		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
+		FIELD_PAD("ACNUIEHF", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -147,9 +147,9 @@ namespace macaque
 		SPECIALIZED_INCIDENT_OBJECT_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
-		{ _field_char_enum, "bucket type^", &campaign_metagame_bucket_type_with_none_enum },
-		{ _field_char_enum, "bucket class^", &campaign_metagame_bucket_class_with_none_enum },
-		{ _field_pad, "PAD0", 2 },
+		{ _field_char_enum, "bucket type", &campaign_metagame_bucket_type_with_none_enum },
+		{ _field_char_enum, "bucket class", &campaign_metagame_bucket_class_with_none_enum },
+		FIELD_PAD("PAD0", nullptr, 2),
 		{ _field_string, "gamertag" },
 		{ _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block },
 		{ _field_terminator }
@@ -175,8 +175,8 @@ namespace macaque
 		"s_specialized_incident_special_kill_type_definition",
 		SPECIALIZED_INCIDENT_SPECIAL_KILL_TYPE_BLOCK_ID)
 	{
-		{ _field_char_enum, "special kill type^", &specialized_incident_special_kill_type_enum },
-		{ _field_pad, "CVUIHEN", 3 },
+		{ _field_char_enum, "special kill type", &specialized_incident_special_kill_type_enum },
+		FIELD_PAD("CVUIHEN", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -189,9 +189,9 @@ namespace macaque
 		SPECIALIZEDINCIDENTGAMEOVERBLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &specializedIncidentGameOverFlags },
-		{ _field_short_integer, "minimum game length:seconds" },
-		{ _field_char_integer, "megalo category index#only used if the \"check megalo category\" flag is set" },
-		{ _field_pad, "PAD1", 3 },
+		{ _field_short_integer, "minimum game length", "seconds" },
+		{ _field_char_integer, "megalo category index", "only used if the \"check megalo category\" flag is set" },
+		FIELD_PAD("PAD1", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -203,7 +203,7 @@ namespace macaque
 		"specializedIncidentRandomOrdnanceDefinition",
 		SPECIALIZEDINCIDENTRANDOMORDNANCEBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." },
+		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
 		{ _field_terminator }
 	};
 
@@ -216,7 +216,7 @@ namespace macaque
 		SPECIALIZEDINCIDENTCUSTOMDATAFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		{ _field_pad, "PAD1", 3 },
+		FIELD_PAD("PAD1", nullptr, 3),
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
@@ -230,8 +230,8 @@ namespace macaque
 		SPECIALIZEDINCIDENTDISTANCEFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		{ _field_pad, "PAD1", 3 },
-		{ _field_long_integer, "distance between effect and cause player: wu" },
+		FIELD_PAD("PAD1", nullptr, 3),
+		{ _field_long_integer, "distance between effect and cause player", " wu" },
 		{ _field_terminator }
 	};
 
@@ -245,7 +245,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "aggregation type", &incident_accumulator_aggregation_method_enum },
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
-		{ _field_pad, "VJIOEJNLKS", 2 },
+		FIELD_PAD("VJIOEJNLKS", nullptr, 2),
 		{ _field_block, "child incidents", &incident_accumulator_child_incident_block },
 		{ _field_terminator }
 	};
@@ -259,7 +259,7 @@ namespace macaque
 		INCIDENT_ACCUMULATOR_CHILD_INCIDENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		{ _field_pad, "VLHSJNRE", 3 },
+		FIELD_PAD("VLHSJNRE", nullptr, 3),
 		{ _field_long_integer, "count" },
 		{ _field_string_id, "incident name" },
 		{ _field_string_id, "reset incident name" },
@@ -277,7 +277,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
-		{ _field_pad, "XSEXEC", 2 },
+		FIELD_PAD("XSEXEC", nullptr, 2),
 		{ _field_long_integer, "count" },
 		{ _field_block, "child incidents", &incident_sum_accumulator_child_incident_block },
 		{ _field_terminator }
@@ -304,32 +304,32 @@ namespace macaque
 		"s_incident_global_properties_definition",
 		INCIDENT_GLOBAL_PROPERTIES_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "campaign multikill time:s" },
-		{ _field_real, "survival multikill time:s" },
-		{ _field_real, "multiplayer multikill time:s" },
-		{ _field_real, "low health threshold:[0,1]" },
-		{ _field_real, "shield recharge threshold:[0,1]" },
-		{ _field_real, "maximum vengeance time:s" },
-		{ _field_real, "lifesaver damage threshold:[0,2]" },
-		{ _field_real, "avenger dead time:s" },
-		{ _field_real, "hologram recently used maximum time:s" },
+		{ _field_real, "campaign multikill time", "s" },
+		{ _field_real, "survival multikill time", "s" },
+		{ _field_real, "multiplayer multikill time", "s" },
+		{ _field_real, "low health threshold" },
+		{ _field_real, "shield recharge threshold" },
+		{ _field_real, "maximum vengeance time", "s" },
+		{ _field_real, "lifesaver damage threshold" },
+		{ _field_real, "avenger dead time", "s" },
+		{ _field_real, "hologram recently used maximum time", "s" },
 		{ _field_long_enum, "active camouflage incident minimum level", &active_camo_enum_definition },
-		{ _field_real, "thruster pack recently used maximum time:s" },
-		{ _field_real, "active shield recently used maximum time:s" },
-		{ _field_real, "damage threshold for hologram incidents:[0,1]" },
-		{ _field_real, "damage threshold for distraction incident killer:[0,1]" },
-		{ _field_real, "damage threshold for distraction incident distractor:[0,1]" },
-		{ _field_tag_reference, "reward globals!", &reward_globals_definition_reference },
+		{ _field_real, "thruster pack recently used maximum time", "s" },
+		{ _field_real, "active shield recently used maximum time", "s" },
+		{ _field_real, "damage threshold for hologram incidents" },
+		{ _field_real, "damage threshold for distraction incident killer" },
+		{ _field_real, "damage threshold for distraction incident distractor" },
+		{ _field_tag_reference, "reward globals", &reward_globals_definition_reference },
 		{ _field_tag_reference, "commendation globals", &commendation_globals_definition_reference },
-		FIELD_CUSTOM("HEAT", _custom_field_function_group_begin),
+		FIELD_CUSTOM("HEAT", nullptr, _field_id_function_group_begin),
 		{ _field_short_integer, "maximum heat" },
-		{ _field_pad, "KVLHESKH", 2 },
-		{ _field_real, "full heat decay time:S#seconds to completely deplete a full heat meter" },
-		{ _field_real, "full heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" },
-		{ _field_real, "betrayal heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_PAD("KVLHESKH", nullptr, 2),
+		{ _field_real, "full heat decay time", "seconds to completely deplete a full heat meter", "S" },
+		{ _field_real, "full heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
+		{ _field_real, "betrayal heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
-		{ _field_block, "default incident definition!*#generated in code", &incident_definition_block },
+		{ _field_block, "default incident definition", &incident_definition_block },
 		{ _field_terminator }
 	};
 

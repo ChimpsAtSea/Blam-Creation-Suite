@@ -20,11 +20,11 @@ namespace macaque
 		{ _field_explanation, "cruising torque", "" },
 		{ _field_struct, "cruising torque curve", &torque_curve_struct },
 		{ _field_explanation, "gearing", "" },
-		{ _field_real, "min time to upshift#seconds" },
-		{ _field_real, "engine up-shift scale#0-1" },
+		{ _field_real, "min time to upshift", "seconds" },
+		{ _field_real, "engine up-shift scale", "0-1" },
 		{ _field_real, "gear ratio" },
-		{ _field_real, "min time to downshift#seconds" },
-		{ _field_real, "engine down-shift scale#0-1" },
+		{ _field_real, "min time to downshift", "seconds" },
+		{ _field_real, "engine down-shift scale", "0-1" },
 		{ _field_tag_reference, "gear shift sound - shifting up", &global_sound_reference },
 		{ _field_tag_reference, "gear shift sound - shifting down", &global_sound_reference },
 		{ _field_terminator }
@@ -39,7 +39,7 @@ namespace macaque
 		LOAD_AND_CRUISE_BLOCK_ID)
 	{
 		{ _field_string_id, "load cruise function" },
-		{ _field_long_block_index, "attachment index" },
+		{ _field_long_block_index, "attachment index", &global_object_attachment_block },
 		{ _field_terminator }
 	};
 
@@ -51,8 +51,8 @@ namespace macaque
 		GLOBAL_VEHICLE_ENGINE_STRUCT_ID)
 	{
 		{ _field_explanation, "engine", "" },
-		{ _field_real, "engine moment#higher moments make engine spin up slower" },
-		{ _field_real, "engine max angular velocity#higher moments make engine spin up slower" },
+		{ _field_real, "engine moment", "higher moments make engine spin up slower" },
+		{ _field_real, "engine max angular velocity", "higher moments make engine spin up slower" },
 		{ _field_block, "gears", &gear_block },
 		{ _field_tag_reference, "gear shift sound", &global_sound_reference },
 		{ _field_block, "load and cruise sound", &load_and_cruise_block },

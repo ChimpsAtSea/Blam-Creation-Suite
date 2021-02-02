@@ -18,9 +18,9 @@ namespace macaque
 		{ _field_byte_flags, "flags", &campaign_metagame_bucket_flags },
 		{ _field_char_enum, "type", &campaign_metagame_bucket_type_enum },
 		{ _field_char_enum, "class", &campaign_metagame_bucket_class_enum },
-		{ _field_pad, "pad0", 1 },
+		FIELD_PAD("pad0", nullptr, 1),
 		{ _field_short_integer, "point count" },
-		{ _field_pad, "pad1", 2 },
+		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -34,12 +34,12 @@ namespace macaque
 	{
 		{ _field_block, "styles", &campaign_metagame_style_type_block },
 		{ _field_block, "difficulty", &campaign_metagame_difficulty_scale_block },
-		{ _field_block, "skulls{Primary Skulls}", &campaign_metagame_skull_block },
+		{ _field_block, "skulls", &campaign_metagame_skull_block },
 		{ _field_long_integer, "friendly_death_point_count" },
 		{ _field_long_integer, "player_death_point_count" },
 		{ _field_long_integer, "player_betrayal_point_count" },
-		{ _field_real, "transient score time{multi kill window}:s#how long does transient score stay onscreen" },
-		{ _field_real, "EMP kill window#time after taking a guys shields down with emp damage you have to get the emp kill bonus (seconds)" },
+		{ _field_real, "transient score time", "how long does transient score stay onscreen", "s" },
+		{ _field_real, "EMP kill window", "time after taking a guys shields down with emp damage you have to get the emp kill bonus (seconds)" },
 		{ _field_terminator }
 	};
 
@@ -51,7 +51,7 @@ namespace macaque
 		"s_campaign_metagame_style_definition",
 		CAMPAIGN_METAGAME_STYLE_TYPE_BLOCK_ID)
 	{
-		{ _field_string_id, "incident name^" },
+		{ _field_string_id, "incident name" },
 		{ _field_real, "style multiplier" },
 		{ _field_terminator }
 	};
@@ -101,7 +101,7 @@ namespace macaque
 		"s_campaign_metagame_scenario_completion_bonus",
 		CAMPAIGN_METAGAME_SCENARIO_BONUSES_BLOCK_ID)
 	{
-		{ _field_real, "time#if you finish in under this time you get the following bonus" },
+		{ _field_real, "time", "if you finish in under this time you get the following bonus" },
 		{ _field_real, "score multiplier" },
 		{ _field_terminator }
 	};

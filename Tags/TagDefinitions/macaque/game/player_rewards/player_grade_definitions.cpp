@@ -28,12 +28,12 @@ namespace macaque
 		"s_player_grade_definition",
 		PLAYER_GRADE_DEFINITION_BLOCK_ID)
 	{
-		{ _field_long_integer, "xp threshold #total earned XP needed to reach this rank" },
+		{ _field_long_integer, "xp threshold ", "total earned XP needed to reach this rank" },
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "sprite index" },
-		{ _field_pad, "pad0", 2 },
-		{ _field_real, "time played multiplier#This is an additional multiplier to rewards given for time played for players at this grade" },
-		{ _field_block, "level up rewards#These rewards will be given to the player when they reach this grade", &rewardBlock_block },
+		FIELD_PAD("pad0", nullptr, 2),
+		{ _field_real, "time played multiplier", "This is an additional multiplier to rewards given for time played for players at this grade" },
+		{ _field_block, "level up rewards", &rewardBlock_block },
 		{ _field_terminator }
 	};
 

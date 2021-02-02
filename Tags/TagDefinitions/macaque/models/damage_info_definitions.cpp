@@ -7,6 +7,166 @@ namespace blofeld
 namespace macaque
 {
 
+	#define NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID { 0xB8F6D2FD, 0xEE1D49A5, 0xA82B01A4, 0xFE09380E }
+	TAG_BLOCK(
+		new_global_damage_section_block,
+		"new_global_damage_section_block",
+		MAXIMUM_DAMAGE_SECTIONS_PER_MODEL,
+		"s_new_model_damage_section",
+		NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
+		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality" },
+		{ _field_string_id, "shield material name", "set this to make this damage section a shield" },
+		{ _field_explanation, "stun", "" },
+		{ _field_real, "stun time", "seconds" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
+		{ _field_explanation, "recharge", "" },
+		{ _field_real, "recharge time", "seconds" },
+		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block },
+		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
+		{ _field_tag_reference, "recharging effect", &global_effect_reference },
+		{ _field_real, "pre recharge effect warn time", "(main shield only) how long before the recharge begins the pre-recharge effect fires", "seconds" },
+		{ _field_tag_reference, "pre recharge effect", &global_effect_reference },
+		{ _field_string_id, "pre recharge effect marker", "(main shield only)" },
+		{ _field_tag_reference, "pre recharge abort effect", &global_effect_reference },
+		{ _field_string_id, "pre recharge abort effect marker", "(main shield only)" },
+		{ _field_explanation, "overcharge", "" },
+		{ _field_real, "overcharge time", "time it takes to reach full \"overcharge fraction\"", "seconds" },
+		{ _field_real, "overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
+		{ _field_explanation, "decay", "" },
+		{ _field_real, "pre decay time", "time for this section to be active before it will start to decay", "seconds" },
+		{ _field_real, "decay time", "time for need for this section to fully decay with full health.", "seconds" },
+		{ _field_explanation, "resurrection", "" },
+		{ _field_string_id, "resurrection restored region name" },
+		{ _field_block, "instant responses", &new_instantaneous_damage_response_block },
+		{ _field_block, "section damage transfers", &damage_transfer_block },
+		{ _field_block, "rendering", &damage_section_rendering_paramters_block },
+		{ _field_real, "runtime recharge velocity" },
+		{ _field_real, "runtime overcharge velocity" },
+		{ _field_short_integer, "runtime resurrection restored region index" },
+		{ _field_short_integer, "runtime global shield material type" },
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID { 0x93ADFC14, 0xDC9D498C, 0xAF3BA884, 0x17FF6AD8 }
+	TAG_BLOCK(
+		damage_section_recharge_speed_curve_block,
+		"damage_section_recharge_speed_curve_block",
+		1,
+		"s_damage_section_recharge_speed_multiplier_curve",
+		DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID)
+	{
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		{ _field_struct, "Mapping", &mapping_function },
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_SECTION_SEGMENTED_RECHARGE_FRACTION_ID { 0x974937E7, 0x69D54EC5, 0xB34261A9, 0x53C817CE }
+	TAG_BLOCK(
+		damage_section_segmented_recharge_fraction_block,
+		"damage_section_segmented_recharge_fraction",
+		16,
+		"real",
+		DAMAGE_SECTION_SEGMENTED_RECHARGE_FRACTION_ID)
+	{
+		{ _field_real_fraction, "vitality percentage", "recharge will stop once this percentage of vitality is reached." },
+		{ _field_terminator }
+	};
+
+	#define NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID { 0x559D19CA, 0xE3724DAB, 0xB0CCAE0B, 0xFF415CD4 }
+	TAG_BLOCK(
+		new_instantaneous_damage_response_block,
+		"new_instantaneous_damage_response_block",
+		MAXIMUM_RESPONSES_PER_DAMAGE_SECTION,
+		"s_new_instantaneous_damage_response",
+		NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
+		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2 },
+		{ _field_string_id, "label" },
+		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
+		{ _field_tag_reference, "transition effect (generic)", &global_effect_reference },
+		{ _field_string_id, "generic effect marker" },
+		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
+		{ _field_string_id, "specific effect marker" },
+		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
+		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct },
+		{ _field_tag_reference, "looping effect", &global_effect_reference },
+		{ _field_block, "region_transitions", &damage_response_region_transition_block },
+		{ _field_block, "response damage transfers", &damage_transfer_block },
+		{ _field_short_block_index, "destroy instance group", &global_model_instance_group_block },
+		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
+		{ _field_string_id, "custom response label" },
+		{ _field_real, "response delay", "time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires.", "seconds" },
+		{ _field_tag_reference, "delay effect", &global_effect_reference },
+		{ _field_string_id, "delay effect marker name" },
+		{ _field_block, "seat eject", &seat_ejection_block },
+		{ _field_real_fraction, "skip fraction", "0.0 always fires, 1.0 never fires" },
+		{ _field_string_id, "destroyed child object marker name", "when this response fires, any children objects created at the supplied marker name will be destroyed" },
+		{ _field_real_fraction, "total damage threshold", "scale on total damage section vitality" },
+		{ _field_string_id, "constraint/group name", "can specify a randomly-selected single constraint or the entire group of named constraints" },
+		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
+		FIELD_PAD("IDRBCDT", nullptr, 2),
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID { 0xAB37ECDD, 0x2463448A, 0xA416FEB5, 0x6A0B2580 }
+	TAG_BLOCK(
+		damage_response_region_transition_block,
+		"damage_response_region_transition_block",
+		16,
+		"s_region_transition",
+		DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID)
+	{
+		{ _field_string_id, "region" },
+		{ _field_enum, "new state", &model_state_enum_definition },
+		{ _field_short_integer, "runtime region index" },
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_TRANSFER_BLOCK_ID { 0xD77922D6, 0x7BE043FA, 0xB5E62CE4, 0x60490EB9 }
+	TAG_BLOCK(
+		damage_transfer_block,
+		"damage_transfer_block",
+		MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL,
+		"s_damage_transfer",
+		DAMAGE_TRANSFER_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &damage_transfer_flags_definition },
+		{ _field_real, "transfer amount" },
+		{ _field_enum, "transfer function", &damage_transfer_function_enum_definition },
+		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
+		{ _field_string_id, "seat label" },
+		{ _field_terminator }
+	};
+
+	#define SEAT_EJECTION_BLOCK_ID { 0x6CB868BB, 0x2CBA40A2, 0xAEB08A95, 0xCA96880D }
+	TAG_BLOCK(
+		seat_ejection_block,
+		"seat_ejection_block",
+		8,
+		"string_id",
+		SEAT_EJECTION_BLOCK_ID)
+	{
+		{ _field_string_id, "seat label" },
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_SECTION_RENDERING_PARAMTERS_ID { 0x54A5FE0B, 0xE53A4277, 0x95555319, 0x9F924131 }
+	TAG_BLOCK(
+		damage_section_rendering_paramters_block,
+		"damage_section_rendering_paramters",
+		1,
+		"s_damage_section_rendering_parameters",
+		DAMAGE_SECTION_RENDERING_PARAMTERS_ID)
+	{
+		{ _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
+		{ _field_tag_reference, "1st person impact parameters", &global_shield_parameters_reference },
+		{ _field_terminator }
+	};
+
 	#define GLOBAL_DAMAGE_INFO_BLOCK_ID { 0xF8EA703F, 0x560E438E, 0x903E0A00, 0x1C77B3F2 }
 	TAG_BLOCK(
 		global_damage_info_block,
@@ -16,26 +176,26 @@ namespace macaque
 		GLOBAL_DAMAGE_INFO_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &model_damage_info_flags_definition },
-		{ _field_string_id, "global indirect material name#absorbes AOE or child damage" },
-		{ _field_custom_short_block_index, "indirect damage section#absorbes AOE or child damage" },
-		{ _field_pad, "XN", 2 },
-		{ _field_pad, "LPVYKO", 4 },
+		{ _field_string_id, "global indirect material name", "absorbes AOE or child damage" },
+		{ _field_custom_short_block_index, "indirect damage section", "absorbes AOE or child damage" },
+		FIELD_PAD("XN", nullptr, 2),
+		FIELD_PAD("LPVYKO", nullptr, 4),
 		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "MQ", 2 },
-		{ _field_pad, "MYON", 20 },
+		FIELD_PAD("MQ", nullptr, 2),
+		FIELD_PAD("MYON", nullptr, 20),
 		{ _field_explanation, "body", "" },
 		{ _field_struct, "body", &damage_body_parameters_struct },
-		{ _field_pad, "IKEIDYSCX", 64 },
+		FIELD_PAD("IKEIDYSCX", nullptr, 64),
 		{ _field_explanation, "shield", "" },
 		{ _field_struct, "shield", &damage_shield_parameters_struct },
 		{ _field_block, "damage sections", &global_damage_section_block },
-		{ _field_block, "nodes*", &global_damage_nodes_block },
-		{ _field_short_integer, "runtime shield material type!*" },
-		{ _field_short_integer, "runtime indirect material type!*" },
-		{ _field_real, "runtime shield recharge velocity!*" },
-		{ _field_real, "runtime overcharge velocity!*" },
-		{ _field_real, "runtime health recharge velocity!*" },
+		{ _field_block, "nodes", &global_damage_nodes_block },
+		{ _field_short_integer, "runtime shield material type" },
+		{ _field_short_integer, "runtime indirect material type" },
+		{ _field_real, "runtime shield recharge velocity" },
+		{ _field_real, "runtime overcharge velocity" },
+		{ _field_real, "runtime health recharge velocity" },
 		{ _field_block, "damage seats", &damage_seat_info_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
 		{ _field_explanation, "overshield", "" },
@@ -50,19 +210,19 @@ namespace macaque
 		"s_model_damage_section",
 		GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_explanation, "damage section flags", "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields" },
 		{ _field_long_flags, "flags", &damage_section_flags_definition },
-		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
+		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality" },
 		{ _field_block, "instant responses", &instantaneous_damage_repsonse_block },
 		{ _field_block, "unused0", &g_null_block },
 		{ _field_block, "unused1", &g_null_block },
-		{ _field_real, "stun time:seconds" },
-		{ _field_real, "recharge time:seconds" },
-		{ _field_real, "runtime recharge velocity!*" },
+		{ _field_real, "stun time", "seconds" },
+		{ _field_real, "recharge time", "seconds" },
+		{ _field_real, "runtime recharge velocity" },
 		{ _field_string_id, "resurrection restored region name" },
-		{ _field_short_integer, "runtime resurrection restored region index!*" },
-		{ _field_pad, "AG", 2 },
+		{ _field_short_integer, "runtime resurrection restored region index" },
+		FIELD_PAD("AG", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -82,25 +242,25 @@ namespace macaque
 		{ _field_explanation, "Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed" },
 		{ _field_long_flags, "flags", &damage_response_set1 },
 		{ _field_long_flags, "flags2", &damage_response_set2 },
-		{ _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
+		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
 		{ _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
-		{ _field_real, "body damage threshold#response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
-		{ _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
+		{ _field_real, "body damage threshold", "response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },
+		{ _field_tag_reference, "transition effect (generic)", &global_effect_reference },
 		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
 		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
 		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index!*" },
+		{ _field_short_integer, "runtime region index" },
 		{ _field_string_id, "region (secondary)" },
 		{ _field_enum, "new state (secondary)", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index (secondary)!*" },
-		{ _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
+		{ _field_short_integer, "runtime region index (secondary)" },
+		{ _field_short_block_index, "destroy instance group", &global_model_instance_group_block },
 		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct },
 		{ _field_explanation, "Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire." },
-		{ _field_real, "response delay#in seconds" },
+		{ _field_real, "response delay", "in seconds" },
 		{ _field_tag_reference, "delay effect", &global_effect_reference },
 		{ _field_string_id, "delay effect marker name" },
 		{ _field_real, "response delay premature damage threshold" },
@@ -123,9 +283,9 @@ namespace macaque
 		"s_damage_node",
 		GLOBAL_DAMAGE_NODES_BLOCK_ID)
 	{
-		{ _field_short_integer, "runtime damage part!*" },
-		{ _field_pad, "EOT", 2 },
-		{ _field_pad, "SBFL", 12 },
+		{ _field_short_integer, "runtime damage part" },
+		FIELD_PAD("EOT", nullptr, 2),
+		FIELD_PAD("SBFL", nullptr, 12),
 		{ _field_terminator }
 	};
 
@@ -137,8 +297,8 @@ namespace macaque
 		"s_damage_seat_info",
 		DAMAGE_SEAT_INFO_BLOCK_ID)
 	{
-		{ _field_string_id, "seat label^" },
-		{ _field_real_fraction, "direct damage scale#0==no damage, 1==full damage" },
+		{ _field_string_id, "seat label" },
+		{ _field_real_fraction, "direct damage scale", "0==no damage, 1==full damage" },
 		{ _field_real, "damage transfer fall-off radius" },
 		{ _field_real, "maximum transfer damage scale" },
 		{ _field_real, "minimum transfer damage scale" },
@@ -156,8 +316,8 @@ namespace macaque
 	{
 		{ _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
 		{ _field_string_id, "damage region name" },
-		{ _field_short_integer, "runtime damage region index!*" },
-		{ _field_pad, "EOQ", 2 },
+		{ _field_short_integer, "runtime damage region index" },
+		FIELD_PAD("EOQ", nullptr, 2),
 		{ _field_real, "direct damage scale (minor)" },
 		{ _field_real, "Max. transfer scale (minor)" },
 		{ _field_real, "min. transfer scale (minor)" },
@@ -182,204 +342,8 @@ namespace macaque
 		{ _field_string_id, "damage constraint name" },
 		{ _field_string_id, "damage constraint group name" },
 		{ _field_real, "group probability scale" },
-		{ _field_short_integer, "runtime constraint type!*" },
-		{ _field_short_integer, "runtime constraint index!*" },
-		{ _field_terminator }
-	};
-
-	#define NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID { 0xB8F6D2FD, 0xEE1D49A5, 0xA82B01A4, 0xFE09380E }
-	TAG_BLOCK(
-		new_global_damage_section_block,
-		"new_global_damage_section_block",
-		MAXIMUM_DAMAGE_SECTIONS_PER_MODEL,
-		"s_new_model_damage_section",
-		NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID)
-	{
-		{ _field_string_id, "name^" },
-		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
-		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
-		{ _field_string_id, "shield material name#set this to make this damage section a shield" },
-		{ _field_explanation, "stun", "" },
-		{ _field_real, "stun time:seconds" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
-		{ _field_explanation, "recharge", "" },
-		{ _field_real, "recharge time:seconds" },
-		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block },
-		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
-		{ _field_tag_reference, "recharging effect", &global_effect_reference },
-		{ _field_real, "pre recharge effect warn time:seconds#(main shield only) how long before the recharge begins the pre-recharge effect fires" },
-		{ _field_tag_reference, "pre recharge effect#(main shield only)", &global_effect_reference },
-		{ _field_string_id, "pre recharge effect marker#(main shield only)" },
-		{ _field_tag_reference, "pre recharge abort effect#(main shield only) if the pre-recharge effect is aborted before the actual recharge starts, this effect plays", &global_effect_reference },
-		{ _field_string_id, "pre recharge abort effect marker#(main shield only)" },
-		{ _field_explanation, "overcharge", "" },
-		{ _field_real, "overcharge time:seconds#time it takes to reach full \"overcharge fraction\"" },
-		{ _field_real, "overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		{ _field_explanation, "decay", "" },
-		{ _field_real, "pre decay time:seconds#time for this section to be active before it will start to decay" },
-		{ _field_real, "decay time:seconds#time for need for this section to fully decay with full health." },
-		{ _field_explanation, "resurrection", "" },
-		{ _field_string_id, "resurrection restored region name" },
-		{ _field_block, "instant responses", &new_instantaneous_damage_response_block },
-		{ _field_block, "section damage transfers", &damage_transfer_block },
-		{ _field_block, "rendering", &damage_section_rendering_paramters_block },
-		{ _field_real, "runtime recharge velocity!*" },
-		{ _field_real, "runtime overcharge velocity!*" },
-		{ _field_short_integer, "runtime resurrection restored region index!*" },
-		{ _field_short_integer, "runtime global shield material type!*" },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID { 0x93ADFC14, 0xDC9D498C, 0xAF3BA884, 0x17FF6AD8 }
-	TAG_BLOCK(
-		damage_section_recharge_speed_curve_block,
-		"damage_section_recharge_speed_curve_block",
-		1,
-		"s_damage_section_recharge_speed_multiplier_curve",
-		DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID)
-	{
-		FIELD_CUSTOM(nullptr, 0),
-		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_SECTION_SEGMENTED_RECHARGE_FRACTION_ID { 0x974937E7, 0x69D54EC5, 0xB34261A9, 0x53C817CE }
-	TAG_BLOCK(
-		damage_section_segmented_recharge_fraction_block,
-		"damage_section_segmented_recharge_fraction",
-		16,
-		"real",
-		DAMAGE_SECTION_SEGMENTED_RECHARGE_FRACTION_ID)
-	{
-		{ _field_real_fraction, "vitality percentage:[0.1]#recharge will stop once this percentage of vitality is reached." },
-		{ _field_terminator }
-	};
-
-	#define NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID { 0x559D19CA, 0xE3724DAB, 0xB0CCAE0B, 0xFF415CD4 }
-	TAG_BLOCK(
-		new_instantaneous_damage_response_block,
-		"new_instantaneous_damage_response_block",
-		MAXIMUM_RESPONSES_PER_DAMAGE_SECTION,
-		"s_new_instantaneous_damage_response",
-		NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID)
-	{
-		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
-		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2 },
-		{ _field_string_id, "label" },
-		{ _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
-		{ _field_tag_reference, "transition effect (generic){transition effect}", &global_effect_reference },
-		{ _field_string_id, "generic effect marker{effect marker name}" },
-		{ _field_tag_reference, "transition effect (specific)", &global_effect_reference },
-		{ _field_string_id, "specific effect marker" },
-		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
-		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct },
-		{ _field_tag_reference, "looping effect#will play until the next response is triggered.", &global_effect_reference },
-		{ _field_block, "region_transitions", &damage_response_region_transition_block },
-		{ _field_block, "response damage transfers", &damage_transfer_block },
-		{ _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" },
-		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
-		{ _field_string_id, "custom response label" },
-		{ _field_real, "response delay:seconds#time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires." },
-		{ _field_tag_reference, "delay effect#plays while the timer is counting down", &global_effect_reference },
-		{ _field_string_id, "delay effect marker name" },
-		{ _field_block, "seat eject", &seat_ejection_block },
-		{ _field_real_fraction, "skip fraction#0.0 always fires, 1.0 never fires" },
-		{ _field_string_id, "destroyed child object marker name#when this response fires, any children objects created at the supplied marker name will be destroyed" },
-		{ _field_real_fraction, "total damage threshold#scale on total damage section vitality" },
-		{ _field_string_id, "constraint/group name#can specify a randomly-selected single constraint or the entire group of named constraints" },
-		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		{ _field_pad, "IDRBCDT", 2 },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID { 0xAB37ECDD, 0x2463448A, 0xA416FEB5, 0x6A0B2580 }
-	TAG_BLOCK(
-		damage_response_region_transition_block,
-		"damage_response_region_transition_block",
-		16,
-		"s_region_transition",
-		DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID)
-	{
-		{ _field_string_id, "region" },
-		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index!*" },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_TRANSFER_BLOCK_ID { 0xD77922D6, 0x7BE043FA, 0xB5E62CE4, 0x60490EB9 }
-	TAG_BLOCK(
-		damage_transfer_block,
-		"damage_transfer_block",
-		MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL,
-		"s_damage_transfer",
-		DAMAGE_TRANSFER_BLOCK_ID)
-	{
-		{ _field_long_flags, "flags", &damage_transfer_flags_definition },
-		{ _field_real, "transfer amount" },
-		{ _field_enum, "transfer function", &damage_transfer_function_enum_definition },
-		{ _field_short_block_index, "damage section" },
-		{ _field_string_id, "seat label" },
-		{ _field_terminator }
-	};
-
-	#define SEAT_EJECTION_BLOCK_ID { 0x6CB868BB, 0x2CBA40A2, 0xAEB08A95, 0xCA96880D }
-	TAG_BLOCK(
-		seat_ejection_block,
-		"seat_ejection_block",
-		8,
-		"string_id",
-		SEAT_EJECTION_BLOCK_ID)
-	{
-		{ _field_string_id, "seat label^" },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_SECTION_RENDERING_PARAMTERS_ID { 0x54A5FE0B, 0xE53A4277, 0x95555319, 0x9F924131 }
-	TAG_BLOCK(
-		damage_section_rendering_paramters_block,
-		"damage_section_rendering_paramters",
-		1,
-		"s_damage_section_rendering_parameters",
-		DAMAGE_SECTION_RENDERING_PARAMTERS_ID)
-	{
-		{ _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
-		{ _field_tag_reference, "1st person impact parameters", &global_shield_parameters_reference },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_BODY_PARAMETERS_STRUCT_ID { 0x33ECAC95, 0x9A4245E7, 0x8F244955, 0x413516E8 }
-	TAG_STRUCT(
-		damage_body_parameters_struct,
-		"damage_body_parameters_struct",
-		"real",
-		DAMAGE_BODY_PARAMETERS_STRUCT_ID)
-	{
-		{ _field_real, "maximum vitality" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
-		{ _field_real, "stun time:seconds#the length of time the health stay stunned (do not recharge) after taking damage" },
-		{ _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
-		{ _field_real_fraction, "recharge fraction#0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
-		{ _field_terminator }
-	};
-
-	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0xD30C88AC, 0xF030462C, 0x9536E894, 0xA6F752C1 }
-	TAG_STRUCT(
-		damage_shield_parameters_struct,
-		"damage_shield_parameters_struct",
-		"damage_shield_parameters_struct",
-		DAMAGE_SHIELD_PARAMETERS_STRUCT_ID)
-	{
-		{ _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name" },
-		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s shields" },
-		{ _field_real, "stun time:seconds#the length of time the shields stay stunned (do not recharge) after taking damage" },
-		{ _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" },
-		{ _field_real, "shield overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		{ _field_real, "shield overcharge time#time it takes to reach full \"shield overcharge fraction\"" },
-		{ _field_real, "shield damaged threshold" },
-		{ _field_tag_reference, "shield damaged effect", &global_effect_reference },
-		{ _field_tag_reference, "shield depleted effect", &global_effect_reference },
-		{ _field_tag_reference, "shield recharging effect", &global_effect_reference },
+		{ _field_short_integer, "runtime constraint type" },
+		{ _field_short_integer, "runtime constraint index" },
 		{ _field_terminator }
 	};
 
@@ -405,6 +369,42 @@ namespace macaque
 		{ _field_terminator }
 	};
 
+	#define DAMAGE_BODY_PARAMETERS_STRUCT_ID { 0x33ECAC95, 0x9A4245E7, 0x8F244955, 0x413516E8 }
+	TAG_STRUCT(
+		damage_body_parameters_struct,
+		"damage_body_parameters_struct",
+		"real",
+		DAMAGE_BODY_PARAMETERS_STRUCT_ID)
+	{
+		{ _field_real, "maximum vitality" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
+		{ _field_real, "stun time", "the length of time the health stay stunned (do not recharge) after taking damage", "seconds" },
+		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
+		{ _field_real_fraction, "recharge fraction", "0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
+		{ _field_terminator }
+	};
+
+	#define DAMAGE_SHIELD_PARAMETERS_STRUCT_ID { 0xD30C88AC, 0xF030462C, 0x9536E894, 0xA6F752C1 }
+	TAG_STRUCT(
+		damage_shield_parameters_struct,
+		"damage_shield_parameters_struct",
+		"damage_shield_parameters_struct",
+		DAMAGE_SHIELD_PARAMETERS_STRUCT_ID)
+	{
+		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
+		{ _field_string_id, "global shield material name" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s shields" },
+		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
+		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
+		{ _field_real, "shield overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
+		{ _field_real, "shield overcharge time", "time it takes to reach full \"shield overcharge fraction\"" },
+		{ _field_real, "shield damaged threshold" },
+		{ _field_tag_reference, "shield damaged effect", &global_effect_reference },
+		{ _field_tag_reference, "shield depleted effect", &global_effect_reference },
+		{ _field_tag_reference, "shield recharging effect", &global_effect_reference },
+		{ _field_terminator }
+	};
+
 	#define MODEL_DAMAGE_INFO_STRUCT_ID { 0xDF8AD947, 0xD85A4A9F, 0xA4D8F89C, 0xD3E30B24 }
 	TAG_STRUCT(
 		model_damage_info_struct,
@@ -414,18 +414,18 @@ namespace macaque
 	{
 		{ _field_explanation, "Damage Info", "" },
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
-		{ _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" },
-		{ _field_string_id, "indirect material name#absorbes AOE or child damage" },
-		{ _field_short_block_index, "indirect damage section#absorbes AOE or child damage" },
-		{ _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" },
+		{ _field_real, "maximum vitality", "value of zero implies \'damage sections\' should be empty" },
+		{ _field_string_id, "indirect material name", "absorbes AOE or child damage" },
+		{ _field_short_block_index, "indirect damage section", &new_global_damage_section_block },
+		{ _field_short_block_index, "shielded state damage section", &new_global_damage_section_block },
 		{ _field_char_enum, "collision damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "MDIBP0", 2 },
+		FIELD_PAD("MDIBP0", nullptr, 2),
 		{ _field_block, "damage sections", &new_global_damage_section_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
-		{ _field_block, "nodes*", &global_damage_nodes_block },
-		{ _field_short_integer, "runtime indirect material type!*" },
-		{ _field_pad, "MDIBP1", 2 },
+		{ _field_block, "nodes", &global_damage_nodes_block },
+		{ _field_short_integer, "runtime indirect material type" },
+		FIELD_PAD("MDIBP1", nullptr, 2),
 		{ _field_terminator }
 	};
 

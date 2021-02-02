@@ -15,7 +15,7 @@ namespace macaque
 		"s_breakable_surface_set_definition",
 		BREAKABLE_SURFACE_SET_BLOCK_ID)
 	{
-		{ _field_array, "supported bitfield!", &supported_bitfield_array },
+		{ _field_array, "supported bitfield", &supported_bitfield_array },
 		{ _field_terminator }
 	};
 
@@ -27,7 +27,7 @@ namespace macaque
 		"long",
 		SUPPORTED_BITFIELD_ID)
 	{
-		{ _field_long_integer, "bitvector data!" },
+		{ _field_long_integer, "bitvector data" },
 		{ _field_terminator }
 	};
 

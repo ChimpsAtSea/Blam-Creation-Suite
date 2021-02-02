@@ -31,8 +31,8 @@ namespace macaque
 		{ _field_explanation, "net map info", "these provide the info required by the UI to load a net map" },
 		{ _field_tag_reference, "descriptive bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "displayed map name", &global_multilingual_unicode_string_list_reference },
-		{ _field_string, "scenario tag directory path#this is the path to the directory containing the scenario tag file of the same name" },
-		{ _field_pad, "RMNNQW", 4 },
+		{ _field_string, "scenario tag directory path", "this is the path to the directory containing the scenario tag file of the same name" },
+		FIELD_PAD("RMNNQW", nullptr, 4),
 		{ _field_terminator }
 	};
 

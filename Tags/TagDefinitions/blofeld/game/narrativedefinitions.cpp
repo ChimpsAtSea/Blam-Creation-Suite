@@ -8,18 +8,18 @@ namespace blofeld
 
 	V5_TAG_BLOCK(NarrativeFlagDefinitionBlock, 64)
 	{
-		{ _field_long_integer, "Index" },
-		{ _field_char_enum, "Type", &NarrativeFlagTypeEnum },
-		{ _field_pad, "fsarewrsda", 3 },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "Index" },
+		{ _field_legacy, _field_char_enum, "Type", &NarrativeFlagTypeEnum },
+		{ _field_legacy, _field_pad, "fsarewrsda", 3 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(NarrativeGlobals_block, 1, NarrativeGlobals_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(NarrativeGlobals_struct_definition)
 	{
-		{ _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(NarrativeFlagTypeEnum)

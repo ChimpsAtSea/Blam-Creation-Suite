@@ -27,7 +27,7 @@ namespace macaque
 		{ _field_struct, "run time data", &model_animation_runtime_data_struct },
 		{ _field_block, "additional node data", &additional_node_data_block },
 		{ _field_block, "tag resource groups", &model_animation_tag_resource_group_block },
-		{ _field_struct, "codec data*!", &animation_codec_data_struct },
+		{ _field_struct, "codec data", &animation_codec_data_struct },
 		{ _field_terminator }
 	};
 
@@ -52,11 +52,11 @@ namespace macaque
 		"animation_graph_sound_reference",
 		ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound^", &global_sound_reference },
+		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
-		{ _field_word_flags, "internal_flags!", &key_event_internal_flags_enum },
-		{ _field_tag_reference, "model#optional. only allow this event when used on this model", &model_reference$3 },
-		{ _field_string_id, "variant#optional. only allow this event when used on this model variant" },
+		{ _field_word_flags, "internal_flags", &key_event_internal_flags_enum },
+		{ _field_tag_reference, "model", &model_reference$3 },
+		{ _field_string_id, "variant", "optional. only allow this event when used on this model variant" },
 		{ _field_terminator }
 	};
 
@@ -68,11 +68,11 @@ namespace macaque
 		"animation_graph_effect_reference",
 		ANIMATION_GRAPH_EFFECT_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "effect^", &global_effect_reference },
+		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
-		{ _field_word_flags, "internal_flags!", &key_event_internal_flags_enum },
-		{ _field_tag_reference, "model#optional. only allow this event when used on this model", &model_reference$3 },
-		{ _field_string_id, "variant#optional. only allow this event when used on this model variant" },
+		{ _field_word_flags, "internal_flags", &key_event_internal_flags_enum },
+		{ _field_tag_reference, "model", &model_reference$3 },
+		{ _field_string_id, "variant", "optional. only allow this event when used on this model variant" },
 		{ _field_terminator }
 	};
 
@@ -84,8 +84,8 @@ namespace macaque
 		"s_import_animation_event",
 		IMPORT_ANIMATION_EVENT_BLOCK_ID)
 	{
-		{ _field_string_id, "animation name^*!" },
-		{ _field_long_integer, "animation frame count^*!" },
+		{ _field_string_id, "animation name" },
+		{ _field_long_integer, "animation frame count" },
 		{ _field_block, "animation events", &import_frame_event_block },
 		{ _field_block, "sound events", &animation_sound_event_block_extended_block },
 		{ _field_block, "effect events", &animation_effects_event_block_extended_block },
@@ -102,13 +102,13 @@ namespace macaque
 		"s_import_frame_event",
 		IMPORT_FRAME_EVENT_BLOCK_ID)
 	{
-		{ _field_string_id, "event name*" },
-		{ _field_string_id, "animation name!*" },
+		{ _field_string_id, "event name" },
+		{ _field_string_id, "animation name" },
 		{ _field_short_integer, "frame" },
 		{ _field_short_integer, "frame offset" },
-		{ _field_enum, "type*", &frame_event_type_new },
-		{ _field_pad, "pad", 2 },
-		{ _field_long_integer, "unique ID*!#(Do not change this)" },
+		{ _field_enum, "type", &frame_event_type_new },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_long_integer, "unique ID", "(Do not change this)" },
 		{ _field_terminator }
 	};
 
@@ -120,11 +120,11 @@ namespace macaque
 		"s_sound_event_extended",
 		ANIMATION_SOUND_EVENT_BLOCK_EXTENDED_ID)
 	{
-		{ _field_short_block_index, "frame event" },
-		{ _field_pad, "pad", 2 },
-		{ _field_short_block_index, "sound" },
-		{ _field_short_integer, "frame offset#If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_short_block_index, "frame event", &import_frame_event_block },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -137,14 +137,14 @@ namespace macaque
 		"s_effect_event_extended",
 		ANIMATION_EFFECTS_EVENT_BLOCK_EXTENDED_ID)
 	{
-		{ _field_short_block_index, "frame event" },
-		{ _field_pad, "pad", 2 },
-		{ _field_short_block_index, "effect" },
-		{ _field_short_integer, "frame offset#If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_short_block_index, "frame event", &import_frame_event_block },
+		FIELD_PAD("pad", nullptr, 2),
+		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "pad_2", 3 },
+		FIELD_PAD("pad_2", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -156,10 +156,10 @@ namespace macaque
 		"s_dialogue_event_extended",
 		ANIMATION_DIALOGUE_EVENT_BLOCK_EXTENDED_ID)
 	{
-		{ _field_short_block_index, "frame event" },
+		{ _field_short_block_index, "frame event", &import_frame_event_block },
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
-		{ _field_short_integer, "frame offset#If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
-		{ _field_pad, "pad", 2 },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -171,8 +171,8 @@ namespace macaque
 		"s_script_event_extended",
 		ANIMATION_SCRIPT_EVENT_BLOCK_EXTENDED_ID)
 	{
-		{ _field_short_block_index, "frame event" },
-		{ _field_short_integer, "frame offset#If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		{ _field_short_block_index, "frame event", &import_frame_event_block },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
 		{ _field_string_id, "script name" },
 		{ _field_terminator }
 	};
@@ -185,8 +185,32 @@ namespace macaque
 		"s_animation_node_usage_entry",
 		ANIMATION_USAGE_BLOCK_ID)
 	{
-		{ _field_enum, "usage^", &animation_usage_enumeration },
-		{ _field_short_block_index, "node to use" },
+		{ _field_enum, "usage", &animation_usage_enumeration },
+		{ _field_short_block_index, "node to use", &animation_graph_node_block },
+		{ _field_terminator }
+	};
+
+	#define ANIMATION_GRAPH_NODE_BLOCK_ID { 0xA1BC3EC9, 0xA8A1454C, 0x8C893F2D, 0x2CAC1368 }
+	TAG_BLOCK(
+		animation_graph_node_block,
+		"animation_graph_node_block",
+		k_max_nodes_per_animation,
+		"animation_graph_node_block",
+		ANIMATION_GRAPH_NODE_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_short_block_index, "next sibling node index", &animation_graph_node_block },
+		{ _field_short_block_index, "first child node index", &animation_graph_node_block },
+		{ _field_short_block_index, "parent node index", &animation_graph_node_block },
+		{ _field_byte_flags, "model flags", &animation_node_model_flags },
+		{ _field_byte_flags, "node joint flags", &node_joint_flags },
+		{ _field_byte_flags, "additional flags", &node_info_flags },
+		FIELD_PAD("NOD", nullptr, 3),
+		{ _field_real_vector_3d, "base vector" },
+		{ _field_real, "vector range" },
+		{ _field_real, "z_pos" },
+		{ _field_long_integer, "frame_ID1" },
+		{ _field_long_integer, "frame_ID2" },
 		{ _field_terminator }
 	};
 
@@ -198,9 +222,9 @@ namespace macaque
 		"s_animation_node_mask",
 		ANIMATION_NODE_MASK_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "nodes", &animation_node_mask_entry_block },
-		{ _field_array, "node flags!", &g_node_flag_storage_array },
+		{ _field_array, "node flags", &g_node_flag_storage_array },
 		{ _field_terminator }
 	};
 
@@ -212,8 +236,8 @@ namespace macaque
 		"s_animation_node_mask_entry",
 		ANIMATION_NODE_MASK_ENTRY_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node^" },
-		{ _field_pad, "anbfp", 2 },
+		{ _field_short_block_index, "node", &animation_graph_node_block },
+		FIELD_PAD("anbfp", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -225,7 +249,7 @@ namespace macaque
 		"s_animation_function",
 		ANIMATION_FUNCTION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_struct, "function", &scalar_function_named_struct },
 		{ _field_terminator }
 	};
@@ -238,7 +262,7 @@ namespace macaque
 		"s_model_animation_variant",
 		MODEL_ANIMATION_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "variant name^" },
+		{ _field_string_id, "variant name" },
 		{ _field_long_flags, "variant flags", &model_animation_variant_flags },
 		{ _field_block, "mode or stance aliases", &mode_or_stance_alias_block },
 		{ _field_terminator }
@@ -257,30 +281,6 @@ namespace macaque
 		{ _field_terminator }
 	};
 
-	#define ANIMATION_GRAPH_NODE_BLOCK_ID { 0xA1BC3EC9, 0xA8A1454C, 0x8C893F2D, 0x2CAC1368 }
-	TAG_BLOCK(
-		animation_graph_node_block,
-		"animation_graph_node_block",
-		k_max_nodes_per_animation,
-		"animation_graph_node_block",
-		ANIMATION_GRAPH_NODE_BLOCK_ID)
-	{
-		{ _field_string_id, "name^" },
-		{ _field_short_block_index, "next sibling node index*" },
-		{ _field_short_block_index, "first child node index*" },
-		{ _field_short_block_index, "parent node index*" },
-		{ _field_byte_flags, "model flags*", &animation_node_model_flags },
-		{ _field_byte_flags, "node joint flags", &node_joint_flags },
-		{ _field_byte_flags, "additional flags", &node_info_flags },
-		{ _field_pad, "NOD", 3 },
-		{ _field_real_vector_3d, "base vector*" },
-		{ _field_real, "vector range*" },
-		{ _field_real, "z_pos*" },
-		{ _field_long_integer, "frame_ID1*" },
-		{ _field_long_integer, "frame_ID2*" },
-		{ _field_terminator }
-	};
-
 	#define ANIMATION_BLEND_SCREEN_BLOCK_ID { 0xED41E38F, 0x7F884652, 0xAC5624AC, 0x23F6E113 }
 	TAG_BLOCK(
 		animation_blend_screen_block,
@@ -289,8 +289,8 @@ namespace macaque
 		"s_animation_blend_screen",
 		ANIMATION_BLEND_SCREEN_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_struct, "aiming screen*", &animation_aiming_screen_struct },
+		{ _field_string_id, "label" },
+		{ _field_struct, "aiming screen", &animation_aiming_screen_struct },
 		{ _field_terminator }
 	};
 
@@ -302,14 +302,14 @@ namespace macaque
 		"s_foot_tracking_member",
 		FOOT_TRACKING_MEMBER_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "foot marker name^" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "foot marker name" },
 		{ _field_real_bounds, "foot ik range" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "ankle marker name" },
 		{ _field_real_bounds, "ankle ik range" },
 		{ _field_enum, "default state", &foot_tracking_default_values },
-		{ _field_pad, "f00t1", 2 },
+		FIELD_PAD("f00t1", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -321,21 +321,21 @@ namespace macaque
 		"c_model_animation",
 		ANIMATION_POOL_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name*^" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_string_id, "name" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
-		{ _field_word_flags, "user flags{playback flags}", &animation_index_flags },
-		{ _field_real, "override blend in time{override blend time}" },
+		{ _field_word_flags, "user flags", &animation_index_flags },
+		{ _field_real, "override blend in time" },
 		{ _field_real, "override blend out time" },
-		{ _field_short_block_index, "parent animation*!" },
-		{ _field_short_block_index, "next animation*!" },
+		{ _field_short_block_index, "parent animation", &animation_pool_block },
+		{ _field_short_block_index, "next animation", &animation_pool_block },
 		{ _field_word_flags, "production flags", &production_status_flags },
-		{ _field_short_block_index, "composite*" },
+		{ _field_short_block_index, "composite", &g_compositeTag_block },
 		{ _field_explanation, "PCA Group Link", "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block." },
 		{ _field_string_id, "pca group name" },
 		{ _field_explanation, "Shared Animation Data", "data which may be shared by one or more animations" },
-		{ _field_struct, "shared animation reference!", &shared_animation_reference_block },
+		{ _field_struct, "shared animation reference", &shared_animation_reference_block },
 		{ _field_block, "shared animation data", &shared_model_animation_block },
 		{ _field_terminator }
 	};
@@ -348,39 +348,39 @@ namespace macaque
 		"c_shared_model_animation",
 		SHARED_MODEL_ANIMATION_BLOCK_ID)
 	{
-		{ _field_short_integer, "frame count*" },
-		{ _field_byte_integer, "node count*" },
-		{ _field_char_enum, "animation type*", &animation_type_enum },
-		{ _field_char_enum, "frame info type*", &frame_info_type_enum },
-		{ _field_char_enum, "desired frame info type*", &frame_info_type_enum },
+		{ _field_short_integer, "frame count" },
+		{ _field_byte_integer, "node count" },
+		{ _field_char_enum, "animation type", &animation_type_enum },
+		{ _field_char_enum, "frame info type", &frame_info_type_enum },
+		{ _field_char_enum, "desired frame info type", &frame_info_type_enum },
 		{ _field_char_enum, "desired compression", &compression_settings },
-		{ _field_char_enum, "current compression*", &compression_settings },
-		{ _field_word_flags, "internal flags*", &internal_animation_flags },
-		{ _field_short_integer, "compressor_version*" },
-		{ _field_long_integer, "uid*" },
-		{ _field_string_id, "shared id*" },
-		{ _field_long_integer, "node list checksum*" },
-		{ _field_short_integer, "resource_group*" },
-		{ _field_short_integer, "resource_group_member*" },
-		{ _field_real_vector_3d, "heading*!" },
-		{ _field_real, "heading angle*!" },
-		{ _field_real, "average translation magnitude*!" },
-		{ _field_real, "average pivot yaw*!" },
-		{ _field_explanation, "a!", "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n" },
-		{ _field_block, "frame events|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_frame_event_block },
-		{ _field_block, "sound events|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_sound_event_block },
-		{ _field_block, "effect events|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_effect_event_block },
-		{ _field_block, "dialogue events|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_dialogue_event_block },
-		{ _field_block, "script events|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_script_event_block },
-		{ _field_explanation, "b!", "" },
+		{ _field_char_enum, "current compression", &compression_settings },
+		{ _field_word_flags, "internal flags", &internal_animation_flags },
+		{ _field_short_integer, "compressor_version" },
+		{ _field_long_integer, "uid" },
+		{ _field_string_id, "shared id" },
+		{ _field_long_integer, "node list checksum" },
+		{ _field_short_integer, "resource_group" },
+		{ _field_short_integer, "resource_group_member" },
+		{ _field_real_vector_3d, "heading" },
+		{ _field_real, "heading angle" },
+		{ _field_real, "average translation magnitude" },
+		{ _field_real, "average pivot yaw" },
+		{ _field_explanation, "a", "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n" },
+		{ _field_block, "frame events|ABCDCC", &animation_frame_event_block },
+		{ _field_block, "sound events|ABCDCC", &animation_sound_event_block },
+		{ _field_block, "effect events|ABCDCC", &animation_effect_event_block },
+		{ _field_block, "dialogue events|ABCDCC", &animation_dialogue_event_block },
+		{ _field_block, "script events|ABCDCC", &animation_script_event_block },
+		{ _field_explanation, "b", "" },
 		{ _field_block, "object-space parent nodes|ABCDCC", &object_space_node_data_block },
 		{ _field_block, "foot tracking|ABCDCC", &foot_tracking_block },
 		{ _field_block, "object space offset nodes|ABCDCC", &object_space_offset_node_block },
 		{ _field_block, "forward-invert kinetic anchor nodes|ABCDCC", &fik_anchor_node_block },
-		{ _field_block, "ik chain events*!", &animation_ik_chain_events_block },
-		{ _field_block, "ik chain proxies*!", &animation_ik_chain_proxies_block },
-		{ _field_block, "facial wrinkle events*!", &animation_facial_wrinkle_events_block },
-		{ _field_block, "extended data events*!", &animation_extended_events_block },
+		{ _field_block, "ik chain events", &animation_ik_chain_events_block },
+		{ _field_block, "ik chain proxies", &animation_ik_chain_proxies_block },
+		{ _field_block, "facial wrinkle events", &animation_facial_wrinkle_events_block },
+		{ _field_block, "extended data events", &animation_extended_events_block },
 		{ _field_block, "animation object functions", &animation_object_functions_block },
 		{ _field_terminator }
 	};
@@ -406,9 +406,9 @@ namespace macaque
 		"s_sound_event",
 		ANIMATION_SOUND_EVENT_BLOCK_ID)
 	{
-		{ _field_short_block_index, "sound" },
+		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -421,12 +421,12 @@ namespace macaque
 		"animation_effect_event_block",
 		ANIMATION_EFFECT_EVENT_BLOCK_ID)
 	{
-		{ _field_short_block_index, "effect" },
+		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "eefpd1", 3 },
+		FIELD_PAD("eefpd1", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -453,7 +453,7 @@ namespace macaque
 	{
 		{ _field_string_id, "script name" },
 		{ _field_short_integer, "frame" },
-		{ _field_pad, "pad", 2 },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -465,9 +465,9 @@ namespace macaque
 		"s_object_space_node_data",
 		OBJECT_SPACE_NODE_DATA_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node index{node_index}^" },
-		{ _field_word_flags, "flags*", &object_space_node_flags },
-		{ _field_struct, "parent orientation{orientation}*", &quantized_orientation_struct },
+		{ _field_short_block_index, "node index", &animation_graph_node_block },
+		{ _field_word_flags, "flags", &object_space_node_flags },
+		{ _field_struct, "parent orientation", &quantized_orientation_struct },
 		{ _field_terminator }
 	};
 
@@ -479,8 +479,8 @@ namespace macaque
 		"s_foot_tracking_data",
 		FOOT_TRACKING_BLOCK_ID)
 	{
-		{ _field_short_block_index, "foot" },
-		{ _field_pad, "f00t2", 2 },
+		{ _field_short_block_index, "foot", &foot_tracking_member_block },
+		FIELD_PAD("f00t2", nullptr, 2),
 		{ _field_block, "cycles|ABCDCC", &foot_lock_cycle_block },
 		{ _field_terminator }
 	};
@@ -497,7 +497,7 @@ namespace macaque
 		{ _field_short_integer, "locked" },
 		{ _field_short_integer, "start unlocking" },
 		{ _field_short_integer, "unlocked" },
-		{ _field_real_point_3d, "lock point*" },
+		{ _field_real_point_3d, "lock point" },
 		{ _field_terminator }
 	};
 
@@ -509,8 +509,8 @@ namespace macaque
 		"s_object_space_offset_node_reference",
 		OBJECT_SPACE_OFFSET_NODE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "object space offset node^" },
-		{ _field_pad, "wsonbp", 2 },
+		{ _field_short_block_index, "object space offset node", &animation_graph_node_block },
+		FIELD_PAD("wsonbp", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -522,8 +522,8 @@ namespace macaque
 		"s_fik_anchor_node_reference",
 		FIK_ANCHOR_NODE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "anchor node^" },
-		{ _field_pad, "dse", 2 },
+		{ _field_short_block_index, "anchor node", &animation_graph_node_block },
+		FIELD_PAD("dse", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -565,23 +565,23 @@ namespace macaque
 		"s_new_animation_blend_screen",
 		NEW_ANIMATION_BLEND_SCREEN_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blend_screen_definition_flags },
 		{ _field_real, "weight" },
-		{ _field_real_fraction, "interpolation rate:[0,1]#A value of zero or one means no interpolation." },
-		{ _field_pad, "nabsbfp0", 2 },
+		{ _field_real_fraction, "interpolation rate", "A value of zero or one means no interpolation." },
+		FIELD_PAD("nabsbfp0", nullptr, 2),
 		{ _field_enum, "yaw source", &blend_screen_variable_sources },
 		{ _field_enum, "pitch source", &blend_screen_variable_sources },
 		{ _field_enum, "weight source", &blend_screen_weight_sources },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "yaw source object function" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "pitch source object function" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "weight source object function" },
-		{ _field_short_block_index, "weight function#Function applied to input from weight function source" },
-		{ _field_pad, "nabsbfp1", 2 },
-		{ _field_struct, "animation{animation info}", &animation_index_struct },
+		{ _field_short_block_index, "weight function", &animation_function_block },
+		FIELD_PAD("nabsbfp1", nullptr, 2),
+		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
 	};
 
@@ -593,14 +593,14 @@ namespace macaque
 		"s_new_animation_function_overlay",
 		NEW_ANIMATION_FUNCTION_OVERLAY_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &function_overlay_definition_flags },
 		{ _field_explanation, "Frame Ratio or Playback Speed", "Enter either or leave blank.  Entering both will default to frame ratio option for playback control." },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "frame ratio object function" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "playback speed object function" },
-		FIELD_CUSTOM(nullptr, _custom_field_unknown_function),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "blend weight object function" },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
@@ -614,8 +614,8 @@ namespace macaque
 		"s_overlay_group",
 		OVERLAY_GROUP_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_block, "blend screens{blend screen}|CCBBAA", &blend_screen_item_definition_block },
+		{ _field_string_id, "name" },
+		{ _field_block, "blend screens", &blend_screen_item_definition_block },
 		{ _field_block, "function overlays|CCBBAA", &function_overlay_item_definition_block },
 		{ _field_terminator }
 	};
@@ -628,10 +628,10 @@ namespace macaque
 		"s_blend_screen_item",
 		BLEND_SCREEN_ITEM_DEFINITION_BLOCK_ID)
 	{
-		{ _field_short_block_index, "blend screen^" },
+		{ _field_short_block_index, "blend screen", &new_animation_blend_screen_block },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
-		{ _field_short_block_index, "node mask" },
-		{ _field_pad, "bsidbfp", 2 },
+		{ _field_short_block_index, "node mask", &animation_node_mask_block },
+		FIELD_PAD("bsidbfp", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -643,7 +643,7 @@ namespace macaque
 		"s_function_overlay_item",
 		FUNCTION_OVERLAY_ITEM_DEFINITION_BLOCK_ID)
 	{
-		{ _field_short_block_index, "function overlay^" },
+		{ _field_short_block_index, "function overlay", &new_animation_function_overlay_block },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
 		{ _field_terminator }
 	};
@@ -656,12 +656,12 @@ namespace macaque
 		"s_animation_gait",
 		ANIMATION_GAIT_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_string_id, "slow gait name" },
-		{ _field_string_id, "intermediate gait name#animation name used for the speed variations" },
+		{ _field_string_id, "intermediate gait name", "animation name used for the speed variations" },
 		{ _field_string_id, "fast gait name" },
 		{ _field_enum, "move state", &animation_gait_directions },
-		{ _field_pad, "pad", 2 },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -673,7 +673,7 @@ namespace macaque
 		"s_animation_gait_group",
 		ANIMATION_GAIT_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "animation gaits", &animation_gait_item_block },
 		{ _field_terminator }
 	};
@@ -686,8 +686,8 @@ namespace macaque
 		"s_animation_gait_item",
 		ANIMATION_GAIT_ITEM_BLOCK_ID)
 	{
-		{ _field_short_block_index, "animation gait^" },
-		{ _field_pad, "agibfap", 2 },
+		{ _field_short_block_index, "animation gait", &animation_gait_block },
+		FIELD_PAD("agibfap", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -699,10 +699,10 @@ namespace macaque
 		"s_animation_ik_point",
 		ANIMATION_IK_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
-		{ _field_string_id, "source marker#the marker name on this object where the point of attachment is" },
+		{ _field_string_id, "name" },
+		{ _field_string_id, "source marker", "the marker name on this object where the point of attachment is" },
 		{ _field_long_enum, "attach to", &animation_ik_target_enum_definition },
-		{ _field_string_id, "destination marker#the marker name of the attachment destination point" },
+		{ _field_string_id, "destination marker", "the marker name of the attachment destination point" },
 		{ _field_real_point_3d, "pole marker" },
 		{ _field_terminator }
 	};
@@ -715,7 +715,7 @@ namespace macaque
 		"s_animation_ik_set",
 		ANIMATION_IK_SET_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "ik points|CCBBAA", &animation_ik_set_item_block },
 		{ _field_terminator }
 	};
@@ -728,7 +728,7 @@ namespace macaque
 		"s_animation_ik_set_item",
 		ANIMATION_IK_SET_ITEM_ID)
 	{
-		{ _field_short_block_index, "ik point^" },
+		{ _field_short_block_index, "ik point", &animation_ik_block },
 		{ _field_word_flags, "flags", &animation_ik_set_item_flags },
 		{ _field_terminator }
 	};
@@ -741,13 +741,13 @@ namespace macaque
 		"s_animation_ik_chain",
 		ANIMATION_IK_CHAIN_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "type", &animation_ik_chain_type_enumeration },
-		{ _field_pad, "aikcbp", 2 },
-		{ _field_short_block_index, "start node{grandparent node}" },
-		{ _field_short_block_index, "effector node" },
-		{ _field_short_integer, "rank!#calculated during post process where rank is default ordinal for solving" },
-		{ _field_short_integer, "antecedents!#calculated during post process where bit index represents chain index" },
+		FIELD_PAD("aikcbp", nullptr, 2),
+		{ _field_short_block_index, "start node", &animation_graph_node_block },
+		{ _field_short_block_index, "effector node", &animation_graph_node_block },
+		{ _field_short_integer, "rank", "calculated during post process where rank is default ordinal for solving" },
+		{ _field_short_integer, "antecedents", "calculated during post process where bit index represents chain index" },
 		{ _field_terminator }
 	};
 
@@ -759,7 +759,7 @@ namespace macaque
 		"PCAGroupSettings",
 		PCAGROUPSETTINGSBLOCK_ID)
 	{
-		{ _field_string_id, "Group Name^" },
+		{ _field_string_id, "Group Name" },
 		{ _field_long_integer, "Desired Mesh Count" },
 		{ _field_terminator }
 	};
@@ -772,10 +772,10 @@ namespace macaque
 		"c_animation_mode",
 		ANIMATION_MODE_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
-		{ _field_long_flags, "flags*", &animation_mode_flags },
+		{ _field_string_id, "label" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
+		{ _field_long_flags, "flags", &animation_mode_flags },
 		{ _field_block, "weapon class|AABBCC", &weapon_class_block },
 		{ _field_block, "mode ik|AABBCC", &animation_ik_block_v1_block },
 		{ _field_block, "foot defaults|AABBCC", &foot_tracking_defaults_block },
@@ -790,9 +790,9 @@ namespace macaque
 		"c_weapon_class",
 		WEAPON_CLASS_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
+		{ _field_string_id, "label" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_block, "weapon type|AABBCC", &weapon_type_block },
 		{ _field_block, "weapon ik|AABBCC", &animation_ik_block_v1_block },
 		{ _field_block, "ranged actions", &animation_ranged_action_block },
@@ -808,9 +808,9 @@ namespace macaque
 		"c_weapon_type",
 		WEAPON_TYPE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
+		{ _field_string_id, "label" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_block, "sets|AABBCC", &animation_set_block },
 		{ _field_terminator }
 	};
@@ -823,16 +823,16 @@ namespace macaque
 		"c_animation_set",
 		ANIMATION_SET_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
-		{ _field_short_block_index, "gait group|AABBCC" },
-		{ _field_pad, "asbfap", 2 },
+		{ _field_string_id, "label" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
+		{ _field_short_block_index, "gait group|AABBCC", &animation_gait_group_block },
+		FIELD_PAD("asbfap", nullptr, 2),
 		{ _field_block, "actions|AABBCC", &animation_entry_block },
-		{ _field_block, "overlay animations{overlays}|AABBCC", &animation_entry_block },
+		{ _field_block, "overlay animations", &animation_entry_block },
 		{ _field_block, "death and damage|AABBCC", &damage_animation_block },
 		{ _field_block, "transitions|AABBCC", &animation_transition_source_block },
-		{ _field_block, "velocity boundaries!", &animation_velocity_boundaries_block },
+		{ _field_block, "velocity boundaries", &animation_velocity_boundaries_block },
 		{ _field_terminator }
 	};
 
@@ -844,9 +844,9 @@ namespace macaque
 		"s_animation_entry",
 		ANIMATION_ENTRY_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
+		{ _field_string_id, "label" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
 	};
@@ -859,8 +859,8 @@ namespace macaque
 		"s_animation_damage_actions",
 		DAMAGE_ANIMATION_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_block, "directions*|AABBCC", &damage_direction_block },
+		{ _field_string_id, "label" },
+		{ _field_block, "directions", &damage_direction_block },
 		{ _field_terminator }
 	};
 
@@ -872,7 +872,7 @@ namespace macaque
 		"s_animation_damage_direction",
 		DAMAGE_DIRECTION_BLOCK_ID)
 	{
-		{ _field_block, "regions*|AABBCC", &damage_region_block },
+		{ _field_block, "regions", &damage_region_block },
 		{ _field_terminator }
 	};
 
@@ -884,7 +884,7 @@ namespace macaque
 		"c_animation_id",
 		DAMAGE_REGION_BLOCK_ID)
 	{
-		{ _field_struct, "animation*", &animation_index_struct },
+		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
 	};
 
@@ -896,7 +896,7 @@ namespace macaque
 		"s_animation_transition_source",
 		ANIMATION_TRANSITION_SOURCE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "state name^#name of the state this transition starts in" },
+		{ _field_string_id, "state name", "name of the state this transition starts in" },
 		{ _field_block, "destinations", &animation_transition_destination_block },
 		{ _field_terminator }
 	};
@@ -909,8 +909,8 @@ namespace macaque
 		"s_animation_transition_destination",
 		ANIMATION_TRANSITION_DESTINATION_BLOCK_ID)
 	{
-		{ _field_string_id, "mode name#name of the mode this transition ends in" },
-		{ _field_string_id, "state name#name of the state this transition ends in" },
+		{ _field_string_id, "mode name", "name of the mode this transition ends in" },
+		{ _field_string_id, "state name", "name of the state this transition ends in" },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
 	};
@@ -923,7 +923,7 @@ namespace macaque
 		"s_animation_velocity_boundaries",
 		ANIMATION_VELOCITY_BOUNDARIES_BLOCK_ID)
 	{
-		{ _field_array, "velocity boundary entries!", &animation_velocity_boundaries_array },
+		{ _field_array, "velocity boundary entries", &animation_velocity_boundaries_array },
 		{ _field_terminator }
 	};
 
@@ -935,10 +935,10 @@ namespace macaque
 		"s_animation_ik_point_v1",
 		ANIMATION_IK_BLOCK_V1_ID)
 	{
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "marker#the marker name on the object being attached" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "attach to marker#the marker name object (weapon, vehicle, etc.) the above marker is being attached to" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "marker", "the marker name on the object being attached" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "attach to marker", "the marker name object (weapon, vehicle, etc.) the above marker is being attached to" },
 		{ _field_terminator }
 	};
 
@@ -950,9 +950,9 @@ namespace macaque
 		"s_animation_ranged_action",
 		ANIMATION_RANGED_ACTION_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
+		{ _field_string_id, "label" },
 		{ _field_block, "animations", &ranged_animation_entry_block },
-		{ _field_block, "triangulation data!", &triangulation_entry_block },
+		{ _field_block, "triangulation data", &triangulation_entry_block },
 		{ _field_enum, "horizontal source", &ranged_action_variable_sources },
 		{ _field_enum, "vertical source", &ranged_action_variable_sources },
 		{ _field_enum, "start key", &frame_event_type_new },
@@ -968,10 +968,10 @@ namespace macaque
 		"s_ranged_animation_entry",
 		RANGED_ANIMATION_ENTRY_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "overlay group{pose overlay|overlay}" },
-		{ _field_short_block_index, "ik set" },
+		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_struct, "animation", &animation_index_struct },
-		{ _field_real, "animation parameter#Numerical value associated with the ranged action animation (e.g. velocity for jumps)" },
+		{ _field_real, "animation parameter", "Numerical value associated with the ranged action animation (e.g. velocity for jumps)" },
 		{ _field_real, "animation parameter b" },
 		{ _field_terminator }
 	};
@@ -1015,7 +1015,7 @@ namespace macaque
 		{ _field_byte_integer, "link12" },
 		{ _field_byte_integer, "link23" },
 		{ _field_byte_integer, "link31" },
-		{ _field_pad, "aaah", 2 },
+		FIELD_PAD("aaah", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -1027,7 +1027,7 @@ namespace macaque
 		"s_animation_sync_action_group",
 		ANIMATION_SYNC_ACTION_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "sync actions", &animation_sync_action_block },
 		{ _field_terminator }
 	};
@@ -1040,7 +1040,7 @@ namespace macaque
 		"s_animation_sync_action",
 		ANIMATION_SYNC_ACTION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "same type participants", &animation_sync_action_same_type_participant_block },
 		{ _field_block, "other participants", &animation_sync_action_other_type_participant_block },
 		{ _field_terminator }
@@ -1056,11 +1056,11 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &animation_sync_action_flags_definition },
 		{ _field_struct, "animation", &animation_index_struct },
-		{ _field_real_point_3d, "start offset*" },
-		{ _field_real_vector_3d, "start facing*" },
-		{ _field_real_point_3d, "end offset*" },
-		{ _field_real, "time_until_hurt*" },
-		{ _field_real_point_3d, "apex offset*" },
+		{ _field_real_point_3d, "start offset" },
+		{ _field_real_vector_3d, "start facing" },
+		{ _field_real_point_3d, "end offset" },
+		{ _field_real, "time_until_hurt" },
+		{ _field_real_point_3d, "apex offset" },
 		{ _field_terminator }
 	};
 
@@ -1085,7 +1085,7 @@ namespace macaque
 		"s_foot_tracking_default",
 		FOOT_TRACKING_DEFAULTS_ID)
 	{
-		{ _field_short_block_index, "foot" },
+		{ _field_short_block_index, "foot", &foot_tracking_member_block },
 		{ _field_enum, "default state", &foot_tracking_default_values },
 		{ _field_terminator }
 	};
@@ -1098,21 +1098,21 @@ namespace macaque
 		"c_vehicle_suspension",
 		VEHICLE_SUSPENSION_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_struct, "animation*", &animation_index_struct },
+		{ _field_string_id, "label" },
+		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_string_id, "function name" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "marker name#this marker should be parented to the vehicle root node" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_string_id, "contact marker name#this marker should be parented to the wheel node" },
-		{ _field_real, "mass point offset#distance along the vehicle\'s up direction to move the wheel from the marker location" },
-		{ _field_real, "full extension ground_depth!" },
-		{ _field_real, "full compression ground_depth!" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "marker name", "this marker should be parented to the vehicle root node" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_string_id, "contact marker name", "this marker should be parented to the wheel node" },
+		{ _field_real, "mass point offset", "distance along the vehicle\'s up direction to move the wheel from the marker location" },
+		{ _field_real, "full extension ground_depth" },
+		{ _field_real, "full compression ground_depth" },
 		{ _field_explanation, "Destroyed Suspension", "Only Necessary for suspensions with a destroyed state" },
 		{ _field_string_id, "region name" },
 		{ _field_real, "destroyed mass point offset" },
-		{ _field_real, "destroyed full extension ground_depth!" },
-		{ _field_real, "destroyed full compression ground_depth!" },
+		{ _field_real, "destroyed full extension ground_depth" },
+		{ _field_real, "destroyed full compression ground_depth" },
 		{ _field_terminator }
 	};
 
@@ -1124,12 +1124,12 @@ namespace macaque
 		"s_function_overlay",
 		FUNCTION_OVERLAY_ANIMATION_BLOCK_ID)
 	{
-		{ _field_string_id, "label^" },
-		{ _field_struct, "animation*", &animation_index_struct },
-		{ _field_pad, "VQWLKE", 2 },
+		{ _field_string_id, "label" },
+		{ _field_struct, "animation", &animation_index_struct },
+		FIELD_PAD("VQWLKE", nullptr, 2),
 		{ _field_enum, "function controls", &function_overlay_animation_mode },
 		{ _field_string_id, "function" },
-		{ _field_pad, "OHIOJE", 4 },
+		FIELD_PAD("OHIOJE", nullptr, 4),
 		{ _field_terminator }
 	};
 
@@ -1141,11 +1141,11 @@ namespace macaque
 		"s_animation_inheritance",
 		INHERITED_ANIMATION_BLOCK_ID)
 	{
-		{ _field_tag_reference, "inherited graph*", &model_animation_graph_reference },
-		{ _field_block, "node map*", &inherited_animation_node_map_block },
-		{ _field_block, "node map flags*", &inherited_animation_node_map_flag_block },
-		{ _field_long_integer, "inheritance_flags*" },
-		{ _field_real, "uniform translation scale*" },
+		{ _field_tag_reference, "inherited graph", &model_animation_graph_reference },
+		{ _field_block, "node map", &inherited_animation_node_map_block },
+		{ _field_block, "node map flags", &inherited_animation_node_map_flag_block },
+		{ _field_long_integer, "inheritance_flags" },
+		{ _field_real, "uniform translation scale" },
 		{ _field_terminator }
 	};
 
@@ -1181,7 +1181,7 @@ namespace macaque
 		"s_weapon_class_listing",
 		WEAPON_CLASS_LOOKUP_BLOCK_ID)
 	{
-		{ _field_string_id, "weapon name^" },
+		{ _field_string_id, "weapon name" },
 		{ _field_string_id, "weapon class" },
 		{ _field_terminator }
 	};
@@ -1194,10 +1194,10 @@ namespace macaque
 		"s_additional_node_data",
 		ADDITIONAL_NODE_DATA_BLOCK_ID)
 	{
-		{ _field_string_id, "node name^" },
-		{ _field_real_quaternion, "default rotation*" },
-		{ _field_real_point_3d, "default translation*" },
-		{ _field_real, "default scale*" },
+		{ _field_string_id, "node name" },
+		{ _field_real_quaternion, "default rotation" },
+		{ _field_real_point_3d, "default translation" },
+		{ _field_real, "default scale" },
 		{ _field_real_point_3d, "min bounds" },
 		{ _field_real_point_3d, "max bounds" },
 		{ _field_terminator }
@@ -1211,7 +1211,7 @@ namespace macaque
 		"c_model_animation_tag_refrence_counted_resource",
 		MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID)
 	{
-		{ _field_long_integer, "reference_count*" },
+		{ _field_long_integer, "reference_count" },
 		{ _field_pageable, "tag_resource", &model_animation_tag_resource_struct },
 		{ _field_terminator }
 	};
@@ -1267,11 +1267,11 @@ namespace macaque
 	{
 		{ _field_long_integer, "animation_index" },
 		{ _field_dword_integer, "animation_checksum" },
-		{ _field_short_integer, "frame count*" },
-		{ _field_char_integer, "node count*" },
-		{ _field_char_enum, "movement_data_type*", &frame_info_type_enum },
-		{ _field_struct, "data sizes*!", &packed_data_sizes_struct },
-		{ _field_data, "animation_data*" },
+		{ _field_short_integer, "frame count" },
+		{ _field_char_integer, "node count" },
+		{ _field_char_enum, "movement_data_type", &frame_info_type_enum },
+		{ _field_struct, "data sizes", &packed_data_sizes_struct },
+		{ _field_data, "animation_data" },
 		{ _field_terminator }
 	};
 
@@ -1295,7 +1295,7 @@ namespace macaque
 		"real",
 		ANIMATION_VELOCITY_BOUNDARIES_ID)
 	{
-		{ _field_real, "values!" },
+		{ _field_real, "values" },
 		{ _field_terminator }
 	};
 
@@ -1323,26 +1323,26 @@ namespace macaque
 		{ _field_explanation, "GRAPH DATA", "" },
 		{ _field_tag_reference, "parent animation graph", &model_animation_graph_reference },
 		{ _field_byte_flags, "inheritance flags", &public_animation_graph_flags },
-		{ _field_byte_flags, "private flags*", &private_animation_graph_flags },
-		{ _field_short_integer, "animation codec pack*" },
-		{ _field_enum, "force compression setting*", &compression_force_settings },
+		{ _field_byte_flags, "private flags", &private_animation_graph_flags },
+		{ _field_short_integer, "animation codec pack" },
+		{ _field_enum, "force compression setting", &compression_force_settings },
 		{ _field_word_flags, "misc graph flags", &animation_graph_misc_flags },
 		{ _field_long_integer, "skeleton checksum" },
 		{ _field_long_integer, "skeleton checksum lite" },
 		{ _field_tag_reference, "imported events|ABCDCC", &global_frame_event_list_reference },
-		{ _field_block, "node usage*|ABCDCC", &animation_usage_block },
+		{ _field_block, "node usage", &animation_usage_block },
 		{ _field_block, "node masks|ABCDCC", &animation_node_mask_block },
 		{ _field_block, "functions|ABCDCC", &animation_function_block },
 		{ _field_block, "model animation variants|ABCDCC", &model_animation_variant_block },
-		{ _field_block, "skeleton nodes*|ABCDCC", &animation_graph_node_block },
-		{ _field_block, "sound references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_sound_reference_block },
-		{ _field_block, "effect references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_effect_reference_block },
-		{ _field_block, "blend screens|ABCDCC!*#Legacy field - please edit in NEW blend screens tag below", &animation_blend_screen_block },
+		{ _field_block, "skeleton nodes", &animation_graph_node_block },
+		{ _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block },
+		{ _field_block, "effect references|ABCDCC", &animation_graph_effect_reference_block },
+		{ _field_block, "blend screens|ABCDCC", &animation_blend_screen_block },
 		{ _field_block, "foot markers|ABCDCC", &foot_tracking_member_block },
-		{ _field_block, "animations*|ABCDCC", &animation_pool_block },
+		{ _field_block, "animations", &animation_pool_block },
 		{ _field_block, "NEW blend screens|CCBBAA", &new_animation_blend_screen_block },
 		{ _field_block, "NEW function overlays|CCAABB", &new_animation_function_overlay_block },
-		{ _field_block, "overlay groups{pose overlays|NEW overlays}|CCBBAA", &overlay_group_definition_block },
+		{ _field_block, "overlay groups", &overlay_group_definition_block },
 		{ _field_block, "gaits|ABCDCC", &animation_gait_block },
 		{ _field_block, "gait groups|ABCDCC", &animation_gait_group_block },
 		{ _field_block, "ik data|CCBBAA", &animation_ik_block },
@@ -1378,9 +1378,9 @@ namespace macaque
 		"s_shared_model_animation_reference",
 		SHARED_ANIMATION_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "graph reference!", &model_animation_graph_reference },
-		{ _field_short_block_index, "shared animation index!" },
-		{ _field_pad, "sarbp", 2 },
+		{ _field_tag_reference, "graph reference", &model_animation_graph_reference },
+		{ _field_short_block_index, "shared animation index", &shared_model_animation_block },
+		FIELD_PAD("sarbp", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -1391,12 +1391,12 @@ namespace macaque
 		"c_quantized_orientation",
 		QUANTIZED_ORIENTATION_STRUCT_ID)
 	{
-		{ _field_short_integer, "rotation x*" },
-		{ _field_short_integer, "rotation y*" },
-		{ _field_short_integer, "rotation z*" },
-		{ _field_short_integer, "rotation w*" },
-		{ _field_real_point_3d, "default translation*" },
-		{ _field_real, "default scale*" },
+		{ _field_short_integer, "rotation x" },
+		{ _field_short_integer, "rotation y" },
+		{ _field_short_integer, "rotation z" },
+		{ _field_short_integer, "rotation w" },
+		{ _field_real_point_3d, "default translation" },
+		{ _field_real, "default scale" },
 		{ _field_terminator }
 	};
 
@@ -1410,8 +1410,8 @@ namespace macaque
 		{ _field_explanation, "REFERENCE IK CHAIN INFO", "" },
 		{ _field_string_id, "chain name" },
 		{ _field_enum, "chain type", &animation_ik_chain_type_enumeration },
-		{ _field_short_block_index, "chain start node" },
-		{ _field_short_block_index, "chain effector node" },
+		{ _field_short_block_index, "chain start node", &animation_graph_node_block },
+		{ _field_short_block_index, "chain effector node", &animation_graph_node_block },
 		{ _field_explanation, "IMPORTED IK CHAIN INFO", "" },
 		{ _field_enum, "chain usage", &animation_ik_chain_event_usage },
 		{ _field_string_id, "proxy marker" },
@@ -1422,7 +1422,7 @@ namespace macaque
 		{ _field_byte_integer, "pole point data index" },
 		{ _field_explanation, "POST PROCESS IK CHAIN INFO", "" },
 		{ _field_byte_integer, "chain index" },
-		{ _field_pad, "aikcep", 3 },
+		FIELD_PAD("aikcep", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -1434,10 +1434,10 @@ namespace macaque
 		ANIMATION_IK_CHAIN_PROXIES_STRUCT_ID)
 	{
 		{ _field_long_integer, "id" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "target marker" },
 		{ _field_byte_integer, "proxy transform data index" },
-		{ _field_pad, "aikcpp", 3 },
+		FIELD_PAD("aikcpp", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -1455,10 +1455,10 @@ namespace macaque
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
 		{ _field_char_enum, "region", &animation_facial_wrinkle_region },
-		{ _field_pad, "PADDNG", 3 },
+		FIELD_PAD("PADDNG", nullptr, 3),
 		{ _field_explanation, "POST PROCESS WRINKLE EVENT INFO", "" },
 		{ _field_short_integer, "wrinkle data index" },
-		{ _field_pad, "aikcep", 2 },
+		FIELD_PAD("aikcep", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -1475,7 +1475,7 @@ namespace macaque
 		{ _field_short_integer, "frame count" },
 		{ _field_real, "default value" },
 		{ _field_short_integer, "data index" },
-		{ _field_pad, "pants", 2 },
+		FIELD_PAD("pants", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -1486,7 +1486,7 @@ namespace macaque
 		"s_animation_object_function",
 		ANIMATION_OBJECT_FUNCTIONS_STRUCT_ID)
 	{
-		{ _field_string_id, "real_name!*" },
+		{ _field_string_id, "real_name" },
 		{ _field_long_enum, "name", &animation_object_function_name },
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
@@ -1501,8 +1501,8 @@ namespace macaque
 		"c_animation_id",
 		ANIMATION_INDEX_STRUCT_ID)
 	{
-		{ _field_short_integer, "graph index!" },
-		{ _field_short_block_index, "animation" },
+		{ _field_short_integer, "graph index" },
+		{ _field_short_block_index, "animation", &animation_pool_block },
 		{ _field_terminator }
 	};
 
@@ -1517,8 +1517,8 @@ namespace macaque
 		{ _field_block, "PCA Groups", &PCAGroupSettingsBlock_block },
 		{ _field_explanation, "PCA Animation Tag", "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you." },
 		{ _field_tag_reference, "pca animation|ABCDCC", &global_pca_animation_tag_reference },
-		{ _field_long_integer, "PCA Animation Count*!" },
-		{ _field_long_integer, "PCA Checksum*!" },
+		{ _field_long_integer, "PCA Animation Count" },
+		{ _field_long_integer, "PCA Checksum" },
 		{ _field_terminator }
 	};
 
@@ -1530,12 +1530,12 @@ namespace macaque
 		ANIMATION_GRAPH_CONTENTS_STRUCT_ID)
 	{
 		{ _field_explanation, "MODE-n-STATE GRAPH", "" },
-		{ _field_short_block_index, "default gait group|CCAABB" },
-		{ _field_pad, "agcsfap", 2 },
+		{ _field_short_block_index, "default gait group|CCAABB", &animation_gait_group_block },
+		FIELD_PAD("agcsfap", nullptr, 2),
 		{ _field_block, "modes|AABBCC", &animation_mode_block },
 		{ _field_explanation, "SPECIAL CASE ANIMS", "" },
 		{ _field_block, "vehicle suspension|CCAABB", &vehicle_suspension_block },
-		{ _field_block, "function overlays{object overlays}|CCAABB", &function_overlay_animation_block },
+		{ _field_block, "function overlays", &function_overlay_animation_block },
 		{ _field_terminator }
 	};
 
@@ -1547,12 +1547,12 @@ namespace macaque
 		MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "RUN-TIME DATA", "" },
-		{ _field_block, "inheritence list*|BBAAAA", &inherited_animation_block },
-		{ _field_block, "new inheritance list*|BBAAAA", &inherited_animation_block },
+		{ _field_block, "inheritence list", &inherited_animation_block },
+		{ _field_block, "new inheritance list", &inherited_animation_block },
 		{ _field_block, "weapon list|BBAAAA", &weapon_class_lookup_block },
-		{ _field_array, "left arm bit vector!", &g_node_flag_storage_array },
-		{ _field_array, "right arm bit vector!", &g_node_flag_storage_array },
-		{ _field_data, "animationPlayCounts!" },
+		{ _field_array, "left arm bit vector", &g_node_flag_storage_array },
+		{ _field_array, "right arm bit vector", &g_node_flag_storage_array },
+		{ _field_data, "animationPlayCounts" },
 		{ _field_terminator }
 	};
 
@@ -1564,7 +1564,7 @@ namespace macaque
 		ANIMATION_CODEC_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "CODEC-SPECIFIC DATA", "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit." },
-		{ _field_struct, "shared_static_codec*!", &shared_static_data_codec_graph_data_struct },
+		{ _field_struct, "shared_static_codec", &shared_static_data_codec_graph_data_struct },
 		{ _field_terminator }
 	};
 
@@ -1576,9 +1576,9 @@ namespace macaque
 		SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "Shared Static Codec", "" },
-		{ _field_block, "rotations*!", &shared_static_data_codec_rotation_block },
-		{ _field_block, "translations*!", &shared_static_data_codec_translation_block },
-		{ _field_block, "scale*!", &shared_static_data_codec_scale_block },
+		{ _field_block, "rotations", &shared_static_data_codec_rotation_block },
+		{ _field_block, "translations", &shared_static_data_codec_translation_block },
+		{ _field_block, "scale", &shared_static_data_codec_scale_block },
 		{ _field_terminator }
 	};
 
@@ -1600,24 +1600,24 @@ namespace macaque
 		"c_animation_data_sizes",
 		PACKED_DATA_SIZES_STRUCT_ID)
 	{
-		{ _field_long_integer, "static_node_flags!" },
-		{ _field_long_integer, "animated_node_flags!" },
-		{ _field_long_integer, "movement_data!" },
-		{ _field_long_integer, "pill_offset_data!" },
-		{ _field_long_integer, "default_data!" },
-		{ _field_long_integer, "uncompressed_data!" },
-		{ _field_long_integer, "compressed_data!" },
-		{ _field_long_integer, "blend_screen_data!" },
-		{ _field_long_integer, "object_space_offset_data!" },
-		{ _field_long_integer, "ik_chain_event_data!" },
-		{ _field_long_integer, "ik_chain_control_data!" },
-		{ _field_long_integer, "ik_chain_proxy_data!" },
-		{ _field_long_integer, "ik_chain_pole_vector_data!" },
-		{ _field_long_integer, "uncompressed_object_space_data!" },
-		{ _field_long_integer, "fik_anchor_data!" },
-		{ _field_long_integer, "uncompressed_object_space_node_flags!" },
-		{ _field_long_integer, "compressed_event_curve!" },
-		{ _field_long_integer, "compressed_static_pose!" },
+		{ _field_long_integer, "static_node_flags" },
+		{ _field_long_integer, "animated_node_flags" },
+		{ _field_long_integer, "movement_data" },
+		{ _field_long_integer, "pill_offset_data" },
+		{ _field_long_integer, "default_data" },
+		{ _field_long_integer, "uncompressed_data" },
+		{ _field_long_integer, "compressed_data" },
+		{ _field_long_integer, "blend_screen_data" },
+		{ _field_long_integer, "object_space_offset_data" },
+		{ _field_long_integer, "ik_chain_event_data" },
+		{ _field_long_integer, "ik_chain_control_data" },
+		{ _field_long_integer, "ik_chain_proxy_data" },
+		{ _field_long_integer, "ik_chain_pole_vector_data" },
+		{ _field_long_integer, "uncompressed_object_space_data" },
+		{ _field_long_integer, "fik_anchor_data" },
+		{ _field_long_integer, "uncompressed_object_space_node_flags" },
+		{ _field_long_integer, "compressed_event_curve" },
+		{ _field_long_integer, "compressed_static_pose" },
 		{ _field_terminator }
 	};
 

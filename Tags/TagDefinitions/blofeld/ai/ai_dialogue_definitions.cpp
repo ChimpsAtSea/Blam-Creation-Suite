@@ -8,141 +8,141 @@ namespace blofeld
 
 	V5_TAG_BLOCK(default_stimulus_suppressor_block, 4)
 	{
-		{ _field_string_id, "stimulus^" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "stimulus^" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(response_block, 20)
 	{
-		{ _field_string_id, "vocalization name" },
-		{ _field_word_flags, "flags", &response_flags },
-		{ _field_short_integer, "vocalization index*" },
-		{ _field_enum, "response type", &response_type_enum },
-		{ _field_short_integer, "dialogue index (import)*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "vocalization name" },
+		{ _field_legacy, _field_word_flags, "flags", &response_flags },
+		{ _field_legacy, _field_short_integer, "vocalization index*" },
+		{ _field_legacy, _field_enum, "response type", &response_type_enum },
+		{ _field_legacy, _field_short_integer, "dialogue index (import)*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(vocalization_definitions_block, 500)
 	{
-		{ _field_string_id, "vocalization^" },
-		{ _field_short_block_index, "parent index*" },
-		{ _field_enum, "priority", &priority_enum },
-		{ _field_long_flags, "flags", &vocalization_flags_definition },
-		{ _field_enum, "glance behavior#how does the speaker of this vocalization direct his gaze\?", &glance_type_enum },
-		{ _field_enum, "glance recipient behavior#how does someone who hears me behave\?", &glance_type_enum },
-		{ _field_enum, "perception type", &perception_type_enum },
-		{ _field_enum, "max combat status", &combat_status_enum },
-		{ _field_enum, "animation impulse", &dialogue_animation_enum },
-		{ _field_short_integer, "proxy dialogue index" },
-		{ _field_real, "sound repetition delay:minutes#Minimum delay time between playing the same permutation" },
-		{ _field_real, "allowable queue delay:seconds#How long to wait to actually start the vocalization" },
-		{ _field_real, "pre voc. delay:seconds#How long to wait to actually start the vocalization" },
-		{ _field_real, "notification delay:seconds#How long into the vocalization the AI should be notified" },
-		{ _field_real, "post voc. delay:seconds#How long speech is suppressed in the speaking unit after vocalizing" },
-		{ _field_real, "repeat delay:seconds#How long before the same vocalization can be repeated" },
-		{ _field_real, "weight:[0-1]#Inherent weight of this vocalization" },
-		{ _field_real, "speaker freeze time#speaker won\'t move for the given amount of time" },
-		{ _field_real, "listener freeze time#listener won\'t move for the given amount of time (from start of vocalization)" },
-		{ _field_enum, "speaker emotion", &dialogue_emotion_enum },
-		{ _field_enum, "listener emotion", &dialogue_emotion_enum },
-		{ _field_real, "player speaker skip fraction" },
-		{ _field_real, "player skip fraction" },
-		{ _field_real, "flood skip fraction" },
-		{ _field_real, "skip fraction" },
-		{ _field_short_integer, "mission min value#The lowest mission id that we play this line in" },
-		{ _field_short_integer, "mission max value#The highest mission id that we play this line in" },
-		{ _field_string_id, "Sample line" },
-		{ _field_block, "reponses", &response_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "vocalization^" },
+		{ _field_legacy, _field_short_block_index, "parent index*" },
+		{ _field_legacy, _field_enum, "priority", &priority_enum },
+		{ _field_legacy, _field_long_flags, "flags", &vocalization_flags_definition },
+		{ _field_legacy, _field_enum, "glance behavior#how does the speaker of this vocalization direct his gaze\?", &glance_type_enum },
+		{ _field_legacy, _field_enum, "glance recipient behavior#how does someone who hears me behave\?", &glance_type_enum },
+		{ _field_legacy, _field_enum, "perception type", &perception_type_enum },
+		{ _field_legacy, _field_enum, "max combat status", &combat_status_enum },
+		{ _field_legacy, _field_enum, "animation impulse", &dialogue_animation_enum },
+		{ _field_legacy, _field_short_integer, "proxy dialogue index" },
+		{ _field_legacy, _field_real, "sound repetition delay:minutes#Minimum delay time between playing the same permutation" },
+		{ _field_legacy, _field_real, "allowable queue delay:seconds#How long to wait to actually start the vocalization" },
+		{ _field_legacy, _field_real, "pre voc. delay:seconds#How long to wait to actually start the vocalization" },
+		{ _field_legacy, _field_real, "notification delay:seconds#How long into the vocalization the AI should be notified" },
+		{ _field_legacy, _field_real, "post voc. delay:seconds#How long speech is suppressed in the speaking unit after vocalizing" },
+		{ _field_legacy, _field_real, "repeat delay:seconds#How long before the same vocalization can be repeated" },
+		{ _field_legacy, _field_real, "weight:[0-1]#Inherent weight of this vocalization" },
+		{ _field_legacy, _field_real, "speaker freeze time#speaker won\'t move for the given amount of time" },
+		{ _field_legacy, _field_real, "listener freeze time#listener won\'t move for the given amount of time (from start of vocalization)" },
+		{ _field_legacy, _field_enum, "speaker emotion", &dialogue_emotion_enum },
+		{ _field_legacy, _field_enum, "listener emotion", &dialogue_emotion_enum },
+		{ _field_legacy, _field_real, "player speaker skip fraction" },
+		{ _field_legacy, _field_real, "player skip fraction" },
+		{ _field_legacy, _field_real, "flood skip fraction" },
+		{ _field_legacy, _field_real, "skip fraction" },
+		{ _field_legacy, _field_short_integer, "mission min value#The lowest mission id that we play this line in" },
+		{ _field_legacy, _field_short_integer, "mission max value#The highest mission id that we play this line in" },
+		{ _field_legacy, _field_string_id, "Sample line" },
+		{ _field_legacy, _field_block, "reponses", &response_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(vocalization_patterns_block, 1000)
 	{
-		{ _field_enum, "dialogue type", &dialogue_names_enum },
-		{ _field_short_integer, "vocalization index" },
-		{ _field_string_id, "vocalization name" },
-		{ _field_enum, "speaker type", &speaker_type_enum },
-		{ _field_enum, "listener/target#who/what am I speaking to/of\?", &speaker_type_enum },
-		{ _field_enum, "hostility#The relationship between the subject and the cause", &hostility_enum },
-		{ _field_word_flags, "flags", &pattern_flags },
-		{ _field_explanation, "Cause", "" },
-		{ _field_enum, "cause actor type", &actor_type_enum },
-		{ _field_enum, "cause type", &dialogue_object_types_enum },
-		{ _field_string_id, "cause ai type name" },
-		{ _field_string_id, "cause equipment type name" },
-		{ _field_explanation, "Speaker", "" },
-		{ _field_enum, "speaker object type", &dialogue_object_types_enum },
-		{ _field_enum, "speaker behavior", &speaker_behavior_enum },
-		{ _field_enum, "danger level#Speaker must have danger level of at least this much", &danger_enum },
-		{ _field_char_enum, "speaker/subject position", &spatial_relation_enum },
-		{ _field_char_enum, "speaker/cause position", &spatial_relation_enum },
+		{ _field_legacy, _field_enum, "dialogue type", &dialogue_names_enum },
+		{ _field_legacy, _field_short_integer, "vocalization index" },
+		{ _field_legacy, _field_string_id, "vocalization name" },
+		{ _field_legacy, _field_enum, "speaker type", &speaker_type_enum },
+		{ _field_legacy, _field_enum, "listener/target#who/what am I speaking to/of\?", &speaker_type_enum },
+		{ _field_legacy, _field_enum, "hostility#The relationship between the subject and the cause", &hostility_enum },
+		{ _field_legacy, _field_word_flags, "flags", &pattern_flags },
+		{ _field_legacy, _field_explanation, "Cause", "" },
+		{ _field_legacy, _field_enum, "cause actor type", &actor_type_enum },
+		{ _field_legacy, _field_enum, "cause type", &dialogue_object_types_enum },
+		{ _field_legacy, _field_string_id, "cause ai type name" },
+		{ _field_legacy, _field_string_id, "cause equipment type name" },
+		{ _field_legacy, _field_explanation, "Speaker", "" },
+		{ _field_legacy, _field_enum, "speaker object type", &dialogue_object_types_enum },
+		{ _field_legacy, _field_enum, "speaker behavior", &speaker_behavior_enum },
+		{ _field_legacy, _field_enum, "danger level#Speaker must have danger level of at least this much", &danger_enum },
+		{ _field_legacy, _field_char_enum, "speaker/subject position", &spatial_relation_enum },
+		{ _field_legacy, _field_char_enum, "speaker/cause position", &spatial_relation_enum },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_long_integer, "unknown" }, // likely a block index
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_long_integer, "unknown" }, // likely a block index
 
-		{ _field_version_greater, _engine_type_haloreach },
-		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_legacy, _field_long_flags, "Conditions", &dialogue_condition_flags },
 
-		{ _field_explanation, "Matching", "" },
-		{ _field_enum, "spatial relation#with respect to the subject, the cause is ...", &spatial_relation_enum },
-		{ _field_enum, "damage type", &damage_enum },
-		{ _field_enum, "game type", &game_type_enum },
-		{ _field_explanation, "Subject", "" },
-		{ _field_enum, "subject actor type", &actor_type_enum },
-		{ _field_enum, "subject type", &dialogue_object_types_enum },
-		{ _field_pad, "post-subject-type-pad", 2 },
-		{ _field_string_id, "subject ai type name" },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Matching", "" },
+		{ _field_legacy, _field_enum, "spatial relation#with respect to the subject, the cause is ...", &spatial_relation_enum },
+		{ _field_legacy, _field_enum, "damage type", &damage_enum },
+		{ _field_legacy, _field_enum, "game type", &game_type_enum },
+		{ _field_legacy, _field_explanation, "Subject", "" },
+		{ _field_legacy, _field_enum, "subject actor type", &actor_type_enum },
+		{ _field_legacy, _field_enum, "subject type", &dialogue_object_types_enum },
+		{ _field_legacy, _field_pad, "post-subject-type-pad", 2 },
+		{ _field_legacy, _field_string_id, "subject ai type name" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(dialogue_data_block, k_dialogue_type_count)
 	{
-		{ _field_short_integer, "start index (postprocess)*" },
-		{ _field_short_integer, "length (postprocess)*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_integer, "start index (postprocess)*" },
+		{ _field_legacy, _field_short_integer, "length (postprocess)*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(involuntary_data_block, 100)
 	{
-		{ _field_short_integer, "involuntary vocalization index*" },
-		{ _field_pad, "JXIFX", 2 },
-		{ _field_terminator }
+		{ _field_legacy, _field_short_integer, "involuntary vocalization index*" },
+		{ _field_legacy, _field_pad, "JXIFX", 2 },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(predicted_data_block, 32)
 	{
-		{ _field_long_integer, "predicted vocalization index*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "predicted vocalization index*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(ai_dialogue_globals_block, 1, ai_dialogue_globals_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(ai_dialogue_globals_struct_definition)
 	{
-		{ _field_explanation, "Global timing", "" },
-		{ _field_real_bounds, "strike delay bounds:secs" },
-		{ _field_real, "remind delay:secs" },
-		{ _field_real, "cover curse chance" },
-		{ _field_explanation, "Player look settings", "used to play look and look_longtime dialogue in campain and firefight" },
-		{ _field_real, "player look max distance:wu#defaults to 10 wu" },
-		{ _field_real, "player look:secs#defaults to 3 secs" },
-		{ _field_real, "player look long time:secs#defaults to 15 secs" },
-		{ _field_explanation, "Spartan nearby search distance", "this is used when checking if the player is with other spartan ais." },
-		{ _field_real, "spartan nearby search distance:wu#defaults to 7 wu" },
-		{ _field_explanation, "Face friendly player distance", "when talking to friendly players within this distance, if not in combat, we will turn to face them." },
-		{ _field_real, "face friendly player distance:wu#0: disable facing behavior" },
-		{ _field_explanation, "Space dialogue effect", "at some point this will be moved into the patterns block..." },
-		{ _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" },
-		{ _field_explanation, "Default stimulus suppressors", "when these stimuli are active on an actor, default stimulus permutations will be suppressed." },
-		{ _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block_block },
-		{ _field_explanation, "Imported Data. Don\'t touch me.", "" },
-		{ _field_block, "vocalizations", &vocalization_definitions_block_block },
-		{ _field_block, "patterns", &vocalization_patterns_block_block },
-		{ _field_pad, "WWKMVLL", 12 },
-		{ _field_block, "dialogue data", &dialogue_data_block_block },
-		{ _field_block, "involuntary data", &involuntary_data_block_block },
-		{ _field_block, "predicted vocalizations", &predicted_data_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_explanation, "Global timing", "" },
+		{ _field_legacy, _field_real_bounds, "strike delay bounds:secs" },
+		{ _field_legacy, _field_real, "remind delay:secs" },
+		{ _field_legacy, _field_real, "cover curse chance" },
+		{ _field_legacy, _field_explanation, "Player look settings", "used to play look and look_longtime dialogue in campain and firefight" },
+		{ _field_legacy, _field_real, "player look max distance:wu#defaults to 10 wu" },
+		{ _field_legacy, _field_real, "player look:secs#defaults to 3 secs" },
+		{ _field_legacy, _field_real, "player look long time:secs#defaults to 15 secs" },
+		{ _field_legacy, _field_explanation, "Spartan nearby search distance", "this is used when checking if the player is with other spartan ais." },
+		{ _field_legacy, _field_real, "spartan nearby search distance:wu#defaults to 7 wu" },
+		{ _field_legacy, _field_explanation, "Face friendly player distance", "when talking to friendly players within this distance, if not in combat, we will turn to face them." },
+		{ _field_legacy, _field_real, "face friendly player distance:wu#0: disable facing behavior" },
+		{ _field_legacy, _field_explanation, "Space dialogue effect", "at some point this will be moved into the patterns block..." },
+		{ _field_legacy, _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" },
+		{ _field_legacy, _field_explanation, "Default stimulus suppressors", "when these stimuli are active on an actor, default stimulus permutations will be suppressed." },
+		{ _field_legacy, _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block_block },
+		{ _field_legacy, _field_explanation, "Imported Data. Don\'t touch me.", "" },
+		{ _field_legacy, _field_block, "vocalizations", &vocalization_definitions_block_block },
+		{ _field_legacy, _field_block, "patterns", &vocalization_patterns_block_block },
+		{ _field_legacy, _field_pad, "WWKMVLL", 12 },
+		{ _field_legacy, _field_block, "dialogue data", &dialogue_data_block_block },
+		{ _field_legacy, _field_block, "involuntary data", &involuntary_data_block_block },
+		{ _field_legacy, _field_block, "predicted vocalizations", &predicted_data_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(dialogue_names_enum)

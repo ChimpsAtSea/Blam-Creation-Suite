@@ -16,24 +16,24 @@ namespace macaque
 		EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &effect_flags },
-		{ _field_dword_integer, "fixed random seed#If this is non-zero, the effect will usually be exactly repeatable" },
-		{ _field_real, "restart if within{overlap threshold}:world units" },
-		{ _field_real, "continue if within:world units" },
+		{ _field_dword_integer, "fixed random seed", "If this is non-zero, the effect will usually be exactly repeatable" },
+		{ _field_real, "restart if within", "world units" },
+		{ _field_real, "continue if within", "world units" },
 		{ _field_real, "death_delay" },
-		{ _field_short_block_index, "loop start event" },
-		{ _field_char_enum, "priority!*", &global_effect_priority_enum },
-		{ _field_pad, "asdfsdf", 1 },
+		{ _field_short_block_index, "loop start event", &effect_event_block },
+		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		FIELD_PAD("asdfsdf", nullptr, 1),
 		{ _field_real, "global size scale" },
-		{ _field_string_id, "scale A override#Handle with care. FYI only works if the effect is attached to an object" },
-		{ _field_string_id, "scale B override#Handle with care. FYI only works if the effect is attached to an object" },
-		{ _field_real, "runtime danger radius!" },
+		{ _field_string_id, "scale A override", "Handle with care. FYI only works if the effect is attached to an object" },
+		{ _field_string_id, "scale B override", "Handle with care. FYI only works if the effect is attached to an object" },
+		{ _field_real, "runtime danger radius" },
 		{ _field_block, "locations", &effect_locations_block },
 		{ _field_block, "events", &effect_event_block },
 		{ _field_block, "looping sounds", &effect_looping_sound_block },
 		{ _field_real, "always play distance" },
 		{ _field_real, "never play distance" },
-		{ _field_real, "runtime lightprobe_death_delay!" },
-		{ _field_real, "runtime local_space_death_delay!" },
+		{ _field_real, "runtime lightprobe_death_delay" },
+		{ _field_real, "runtime local_space_death_delay" },
 		{ _field_block, "conical distribution", &effect_conical_distribution_block },
 		{ _field_terminator }
 	};
@@ -54,11 +54,11 @@ namespace macaque
 		EFFECT_LOCATIONS_BLOCK_ID)
 	{
 		{ _field_explanation, "MARKER NAMES", "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
-		{ _field_old_string_id, "marker name^" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		{ _field_old_string_id, "marker name" },
 		{ _field_word_flags, "flags", &effect_location_flags },
-		{ _field_char_enum, "priority!*", &global_effect_priority_enum },
-		{ _field_pad, "RGEWNQIG", 1 },
+		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		FIELD_PAD("RGEWNQIG", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -70,17 +70,17 @@ namespace macaque
 		"effect_event_definition",
 		EFFECT_EVENT_BLOCK_ID)
 	{
-		{ _field_string_id, "event name^" },
+		{ _field_string_id, "event name" },
 		{ _field_word_flags, "flags", &event_flags },
-		{ _field_char_enum, "priority!*", &global_effect_priority_enum },
-		{ _field_pad, "EVUIQSNDS", 1 },
-		{ _field_real_fraction, "skip fraction#chance that this event will be skipped entirely" },
-		FIELD_CUSTOM("delay bounds:seconds#delay before this event takes place", _custom_field_unknown_mela),
-		{ _field_real_bounds, "delay bounds:seconds#delay before this event takes place" },
-		FIELD_CUSTOM("duration bounds:seconds#duration of this event", _custom_field_unknown_mela),
-		{ _field_real_bounds, "duration bounds:seconds#duration of this event" },
+		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		FIELD_PAD("EVUIQSNDS", nullptr, 1),
+		{ _field_real_fraction, "skip fraction", "chance that this event will be skipped entirely" },
+		FIELD_CUSTOM("delay bounds", "delay before this event takes place", _field_id_unknown_mela),
+		{ _field_real_bounds, "delay bounds", "delay before this event takes place", "seconds" },
+		FIELD_CUSTOM("duration bounds", "duration of this event", _field_id_unknown_mela),
+		{ _field_real_bounds, "duration bounds", "duration of this event", "seconds" },
 		{ _field_explanation, "event age duration override", "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above." },
-		{ _field_real, "event age duration override:seconds#the amount of time over which the \"event age\" function input goes from 0 to 1" },
+		{ _field_real, "event age duration override", "the amount of time over which the \"event age\" function input goes from 0 to 1", "seconds" },
 		{ _field_block, "parts", &effect_part_block },
 		{ _field_block, "accelerations", &effect_accelerations_block },
 		{ _field_block, "particle systems", &particle_system_definition_block_new_block },
@@ -97,29 +97,29 @@ namespace macaque
 	{
 		{ _field_enum, "create in", &effect_environments },
 		{ _field_enum, "violence mode", &effect_dispositions },
-		{ _field_short_block_index, "location" },
-		{ _field_short_block_index, "secondary location (beams)" },
+		{ _field_short_block_index, "location", &effect_locations_block },
+		{ _field_short_block_index, "secondary location (beams)", &effect_locations_block },
 		{ _field_word_flags, "flags", &effect_part_flags },
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
-		{ _field_char_enum, "camera mode#Currently, the only supported use is to turn parts off in first-person view.", &effect_camera_modes },
-		{ _field_tag, "runtime base group tag!" },
+		{ _field_char_enum, "camera mode", &effect_camera_modes },
+		{ _field_tag, "runtime base group tag" },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
-		{ _field_pad, "JCIOEHR", 2 },
-		{ _field_tag_reference, "type^", &effect_part_block_type_reference },
-		FIELD_CUSTOM("velocity bounds:world units per second#initial velocity along the location\'s forward, for decals the distance at which decal is created (defaults to 0.5)", _custom_field_unknown_mela),
-		{ _field_real_bounds, "velocity bounds:world units per second#initial velocity along the location\'s forward, for decals the distance at which decal is created (defaults to 0.5)" },
-		{ _field_real_euler_angles_2d, "velocity orientation (yaw, pitch)#NOT USED!" },
-		{ _field_angle, "velocity cone angle:degrees#initial velocity will be inside the cone defined by this angle." },
-		{ _field_angle_bounds, "angular velocity bounds:degrees per second" },
-		FIELD_CUSTOM("radius modifier bounds", _custom_field_unknown_mela),
+		FIELD_PAD("JCIOEHR", nullptr, 2),
+		{ _field_tag_reference, "type", &effect_part_block_type_reference },
+		FIELD_CUSTOM("velocity bounds", "initial velocity along the location\'s forward, for decals the distance at which decal is created (defaults to 0.5)", _field_id_unknown_mela),
+		{ _field_real_bounds, "velocity bounds", "initial velocity along the location\'s forward, for decals the distance at which decal is created (defaults to 0.5)", "world units per second" },
+		{ _field_real_euler_angles_2d, "velocity orientation (yaw, pitch)", "NOT USED!" },
+		{ _field_angle, "velocity cone angle", "initial velocity will be inside the cone defined by this angle.", "degrees" },
+		{ _field_angle_bounds, "angular velocity bounds", "degrees per second" },
+		FIELD_CUSTOM("radius modifier bounds", nullptr, _field_id_unknown_mela),
 		{ _field_real_bounds, "radius modifier bounds" },
 		{ _field_real_point_3d, "relative offset" },
 		{ _field_real_euler_angles_2d, "relative orientation (yaw, pitch)" },
 		{ _field_explanation, "SCALE MODIFIERS", "" },
-		{ _field_long_flags, "A scales values:", &effect_part_scaleable_values },
-		{ _field_long_flags, "B scales values:", &effect_part_scaleable_values },
-		{ _field_tag_reference, "particleize#optional particleization effect definition, if you want this to particleize on spawn", &global_particleize_parameters_reference },
+		{ _field_long_flags, "A scales values", &effect_part_scaleable_values },
+		{ _field_long_flags, "B scales values", &effect_part_scaleable_values },
+		{ _field_tag_reference, "particleize", &global_particleize_parameters_reference },
 		{ _field_terminator }
 	};
 
@@ -133,11 +133,11 @@ namespace macaque
 	{
 		{ _field_enum, "create in", &effect_environments },
 		{ _field_enum, "violence mode", &effect_dispositions },
-		{ _field_short_block_index, "location" },
-		{ _field_pad, "THY", 2 },
+		{ _field_short_block_index, "location", &effect_locations_block },
+		FIELD_PAD("THY", nullptr, 2),
 		{ _field_real, "acceleration" },
-		{ _field_real, "inner cone angle:degrees" },
-		{ _field_real, "outer cone angle:degrees" },
+		{ _field_real, "inner cone angle", "degrees" },
+		{ _field_real, "outer cone angle", "degrees" },
 		{ _field_terminator }
 	};
 
@@ -149,9 +149,9 @@ namespace macaque
 		"effect_looping_sound_definition",
 		EFFECT_LOOPING_SOUND_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "looping sound^", &global_looping_sound_reference },
-		{ _field_short_block_index, "location" },
-		{ _field_short_block_index, "bind scale to event" },
+		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
+		{ _field_short_block_index, "location", &effect_locations_block },
+		{ _field_short_block_index, "bind scale to event", &effect_event_block },
 		{ _field_terminator }
 	};
 
@@ -163,11 +163,11 @@ namespace macaque
 		"s_effect_conical_distribution_definition",
 		EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID)
 	{
-		{ _field_explanation, "conical_projection: AKA shotgun", "projectile_count = yaw_count*pitch_count" },
+		{ _field_explanation, "conical_projection", "projectile_count = yaw_count*pitch_count" },
 		{ _field_short_integer, "yaw count" },
 		{ _field_short_integer, "pitch count" },
-		{ _field_real, "distribution exponent#exp==.5 even distribution, exp>.5== tighter" },
-		{ _field_angle, "spread#degrees" },
+		{ _field_real, "distribution exponent", "exp==.5 even distribution, exp>.5== tighter" },
+		{ _field_angle, "spread", "degrees" },
 		{ _field_terminator }
 	};
 

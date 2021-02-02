@@ -15,8 +15,8 @@ namespace macaque
 		"s_structure_sound_cluster",
 		STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID)
 	{
-		{ _field_short_integer, "palette index!" },
-		{ _field_pad, "HRSFKJT", 2 },
+		{ _field_short_integer, "palette index" },
+		FIELD_PAD("HRSFKJT", nullptr, 2),
 		{ _field_block, "enclosing portal designators", &structure_sound_cluster_portal_designators_block },
 		{ _field_block, "interior cluster indices", &structure_sound_cluster_interior_cluster_indices_block },
 		{ _field_terminator }
@@ -30,7 +30,7 @@ namespace macaque
 		"short",
 		STRUCTURE_SOUND_CLUSTER_PORTAL_DESIGNATORS_ID)
 	{
-		{ _field_short_integer, "portal designator*" },
+		{ _field_short_integer, "portal designator" },
 		{ _field_terminator }
 	};
 
@@ -42,7 +42,7 @@ namespace macaque
 		"short",
 		STRUCTURE_SOUND_CLUSTER_INTERIOR_CLUSTER_INDICES_ID)
 	{
-		{ _field_short_integer, "interior cluster index*" },
+		{ _field_short_integer, "interior cluster index" },
 		{ _field_terminator }
 	};
 

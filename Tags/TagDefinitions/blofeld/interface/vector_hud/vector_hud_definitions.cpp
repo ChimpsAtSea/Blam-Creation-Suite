@@ -10,8 +10,8 @@ namespace blofeld
 
 	V5_TAG_STRUCT(vector_hud_definition_struct_definition)
 	{
-		{ _field_data, "raw hud data" },
-		{ _field_terminator }
+		{ _field_legacy, _field_data, "raw hud data" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

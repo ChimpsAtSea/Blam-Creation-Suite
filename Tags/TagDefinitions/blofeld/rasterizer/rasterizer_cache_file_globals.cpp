@@ -10,10 +10,10 @@ namespace blofeld
 
 	V5_TAG_STRUCT(rasterizer_cache_file_globals_struct_definition)
 	{
-		{ _field_long_integer, "texture header count" },
-		{ _field_long_integer, "maximum vertex shader gprs" },
-		{ _field_long_integer, "maximum pixel shader gprs" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "texture header count" },
+		{ _field_legacy, _field_long_integer, "maximum vertex shader gprs" },
+		{ _field_legacy, _field_long_integer, "maximum pixel shader gprs" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

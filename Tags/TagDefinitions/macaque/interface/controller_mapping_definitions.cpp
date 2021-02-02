@@ -27,7 +27,7 @@ namespace macaque
 		"s_controller_mapping_definition",
 		CONTROLLER_MAPPING_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "auto zoom out ticks#set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },
+		{ _field_long_integer, "auto zoom out ticks", "set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },
 		{ _field_explanation, "Start/Back", "Start and Back buttons are not remappable and do not appear in this list." },
 		{ _field_enum, "jump", &gamepad_button_definition },
 		{ _field_enum, "switch weapon", &gamepad_button_definition },
@@ -46,8 +46,8 @@ namespace macaque
 		{ _field_enum, "vehicle trick secondary", &gamepad_button_definition },
 		{ _field_enum, "secondary contextual action", &gamepad_button_definition },
 		{ _field_enum, "radio message", &gamepad_button_definition },
-		{ _field_skip, "start", 2 },
-		{ _field_skip, "back", 2 },
+		FIELD_SKIP("start", nullptr, 2),
+		FIELD_SKIP("back", nullptr, 2),
 		{ _field_enum, "lean left", &gamepad_button_definition },
 		{ _field_enum, "lean right", &gamepad_button_definition },
 		{ _field_enum, "night vision", &gamepad_button_definition },
@@ -66,7 +66,7 @@ namespace macaque
 		{ _field_enum, "activate minimap", &gamepad_button_definition },
 		{ _field_enum, "requisition menu", &gamepad_button_definition },
 		{ _field_enum, "loadout menu", &gamepad_button_definition },
-		{ _field_enum, "hero assist#aka sprint", &gamepad_button_definition },
+		{ _field_enum, "hero assist", &gamepad_button_definition },
 		{ _field_enum, "ordnance", &gamepad_button_definition },
 		{ _field_enum, "skip killcam", &gamepad_button_definition },
 		{ _field_enum, "mantis fire primary", &gamepad_button_definition },

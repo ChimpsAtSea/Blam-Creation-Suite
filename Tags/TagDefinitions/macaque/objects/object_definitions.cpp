@@ -28,7 +28,7 @@ namespace macaque
 		"SidecarPathDefinition",
 		SIDECARBLOCK_ID)
 	{
-		{ _field_long_string, "sidecar path*" },
+		{ _field_long_string, "sidecar path" },
 		{ _field_terminator }
 	};
 
@@ -40,8 +40,8 @@ namespace macaque
 		"s_object_early_mover_obb_definition",
 		OBJECT_EARLY_MOVER_OBB_BLOCK_ID)
 	{
-		{ _field_string_id, "node name#empty mean object space" },
-		{ _field_long_integer, "runtime node index*!" },
+		{ _field_string_id, "node name", "empty mean object space" },
+		{ _field_long_integer, "runtime node index" },
 		{ _field_real, "x0" },
 		{ _field_real, "x1" },
 		{ _field_real, "y0" },
@@ -61,8 +61,8 @@ namespace macaque
 		OBJECT_AI_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "ai flags", &ai_properties_flags },
-		{ _field_string_id, "ai type name#used for combat dialogue, etc." },
-		{ _field_string_id, "interaction name#if you checked the consider for interaction flag, type what interaction the AI should do with this object (NYI - you can use any)" },
+		{ _field_string_id, "ai type name", "used for combat dialogue, etc." },
+		{ _field_string_id, "interaction name", "if you checked the consider for interaction flag, type what interaction the AI should do with this object (NYI - you can use any)" },
 		{ _field_enum, "ai size", &ai_size_enum },
 		{ _field_enum, "leap jump speed", &global_ai_jump_height_enum },
 		{ _field_terminator }
@@ -77,16 +77,16 @@ namespace macaque
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
-		{ _field_string_id, "import name#if you leave this field blank then you can set this function\'s input value with the hs_function object_set_function_variable" },
+		{ _field_string_id, "import name", "if you leave this field blank then you can set this function\'s input value with the hs_function object_set_function_variable" },
 		{ _field_string_id, "export name" },
-		{ _field_string_id, "turn off with#if the specified function is off, so is this function" },
-		{ _field_string_id, "ranged interpolation name#if you have the ranged button checked" },
-		{ _field_real, "min value#function must exceed this value (after mapping) to be active 0. means do nothing" },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_string_id, "turn off with", "if the specified function is off, so is this function" },
+		{ _field_string_id, "ranged interpolation name", "if you have the ranged button checked" },
+		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "default function", &mapping_function },
 		{ _field_string_id, "scale by" },
 		{ _field_block, "interpolation", &object_function_interpolation_block },
-		{ _field_long_block_index, "runtime interpolator index*!" },
+		{ _field_long_block_index, "runtime interpolator index", &object_runtime_interpolator_functions_block },
 		{ _field_terminator }
 	};
 
@@ -99,12 +99,12 @@ namespace macaque
 		OBJECT_FUNCTION_INTERPOLATION_BLOCK_ID)
 	{
 		{ _field_long_enum, "interpolation mode", &object_function_interpolation_mode_enum },
-		{ _field_real, "linear travel time:s#used by constant velocity" },
-		{ _field_real, "acceleration:1/s/s#used by linear acceleration" },
+		{ _field_real, "linear travel time", "used by constant velocity", "s" },
+		{ _field_real, "acceleration", "used by linear acceleration", "1/s/s" },
 		{ _field_explanation, "springs", "the damping ratio is c/(2*sqrt(k)). if this ratio is:\n= 0 : oscillates forever\n< 1 : oscillates with decreasing amplitude\n= 1 : reaches the target precisely and quickly (no oscillation)\n> 1 : reaches the target slowly\nthe higher the value of k, the quicker the system will reach the target value" },
-		{ _field_real, "spring k#used by damped spring\ndetermines acceleration by displacement" },
-		{ _field_real, "spring c#used by damped spring\ndetermines damping based on velocity" },
-		{ _field_real, "fraction:0-1#used by fractional\nhow mush of the distance to the target to cover each update" },
+		{ _field_real, "spring k", "used by damped spring\ndetermines acceleration by displacement" },
+		{ _field_real, "spring c", "used by damped spring\ndetermines damping based on velocity" },
+		{ _field_real, "fraction", "used by fractional\nhow mush of the distance to the target to cover each update", "0-1" },
 		{ _field_terminator }
 	};
 
@@ -116,7 +116,7 @@ namespace macaque
 		"long",
 		OBJECT_RUNTIME_INTERPOLATOR_FUNCTIONS_BLOCK_ID)
 	{
-		{ _field_long_integer, "runtime interpolator to object function mapping*!" },
+		{ _field_long_integer, "runtime interpolator to object function mapping" },
 		{ _field_terminator }
 	};
 
@@ -142,8 +142,8 @@ namespace macaque
 		"ObjectFunctionSwitchDefinition::Function",
 		OBJECTFUNCTIONSWITCHFUNCTIONBLOCK_ID)
 	{
-		{ _field_real_bounds, "selection bounds#if the switch function is between these values, this function will be picked" },
-		{ _field_string_id, "function name^" },
+		{ _field_real_bounds, "selection bounds", "if the switch function is between these values, this function will be picked" },
+		{ _field_string_id, "function name" },
 		{ _field_terminator }
 	};
 
@@ -155,12 +155,12 @@ namespace macaque
 		"object_attachment_definition",
 		GLOBAL_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
-		{ _field_tag_reference, "type^", &global_object_attachment_block_type_reference },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		{ _field_tag_reference, "type", &global_object_attachment_block_type_reference },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_old_string_id, "marker" },
 		{ _field_char_enum, "change color", &global_object_change_color_enum },
 		{ _field_byte_flags, "flags", &object_attachment_flags },
-		{ _field_pad, "DPKP", 2 },
+		FIELD_PAD("DPKP", nullptr, 2),
 		{ _field_string_id, "primary scale" },
 		{ _field_string_id, "secondary scale" },
 		{ _field_terminator }
@@ -175,7 +175,7 @@ namespace macaque
 		OBJECT_WIDGET_BLOCK_ID)
 	{
 		{ _field_tag_reference, "type", &object_widget_block_type_reference },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};
 
@@ -187,7 +187,7 @@ namespace macaque
 		"object_change_color_definition",
 		OBJECT_CHANGE_COLORS_ID)
 	{
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_block, "initial permutations", &object_change_color_initial_permutation_block },
 		{ _field_block, "functions", &object_change_color_function_block },
 		{ _field_terminator }
@@ -204,7 +204,7 @@ namespace macaque
 		{ _field_real, "weight" },
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
-		{ _field_string_id, "variant name#if empty, may be used by any model variant" },
+		{ _field_string_id, "variant name", "if empty, may be used by any model variant" },
 		{ _field_terminator }
 	};
 
@@ -216,7 +216,7 @@ namespace macaque
 		"object_change_color_function",
 		OBJECT_CHANGE_COLOR_FUNCTION_ID)
 	{
-		{ _field_pad, "TJJWBYNU", 4 },
+		FIELD_PAD("TJJWBYNU", nullptr, 4),
 		{ _field_long_flags, "scale flags", &global_rgb_interpolation_flags },
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
@@ -237,27 +237,27 @@ namespace macaque
 		{ _field_byte_flags, "game engine flags", &global_game_engine_type_flags },
 		{ _field_explanation, "TYPE AND FLAGS", "Type pertains to how you want the game engine to handle this object\nCertain flags applicable only to certain object types, should be self evident" },
 		{ _field_char_enum, "type", &multiplayer_object_type },
-		{ _field_byte_flags, "teleporter passability:used only for teleporters", &teleporter_passability_flags },
+		{ _field_byte_flags, "teleporter passability", &teleporter_passability_flags },
 		{ _field_char_enum, "spawn timer type", &multiplayer_object_spawn_timer_types },
 		{ _field_explanation, "GOAL & RESPAWN ZONE OBJECT BOUNDARY", "These fields are only used for goal area objects with boundaries, and for respawn zones" },
 		{ _field_real, "boundary width/radius" },
 		{ _field_real, "boundary box length" },
-		{ _field_real, "boundary +height" },
-		{ _field_real, "boundary -height" },
+		{ _field_real, "boundary positive height" },
+		{ _field_real, "boundary negative height" },
 		{ _field_char_enum, "boundary shape", &multiplayer_object_boundary_shape },
-		{ _field_pad, "pad_shape", 3 },
+		FIELD_PAD("pad_shape", nullptr, 3),
 		{ _field_explanation, "SPAWNING DATA", "These fields are used for default spawning times and remapping" },
-		{ _field_short_integer, "default spawn time:seconds" },
-		{ _field_short_integer, "default abandonment time:seconds" },
+		{ _field_short_integer, "default spawn time", "seconds" },
+		{ _field_short_integer, "default abandonment time", "seconds" },
 		{ _field_word_flags, "flags", &multiplayer_object_flags },
-		{ _field_pad, "pad1", 2 },
+		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_explanation, "RESPAWN ZONE DATA", "These are respawn zone weights, used only for respawn zones" },
-		{ _field_real, "normal weight:aka natural weight" },
-		{ _field_block, "falloff function#Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block },
+		{ _field_real, "normal weight", "aka natural weight" },
+		{ _field_block, "falloff function", &spawn_influence_weight_falloff_function_block },
 		{ _field_explanation, "MARKER DATA", "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "boundary center marker" },
-		FIELD_CUSTOM(nullptr, _custom_field_marker),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "spawned object marker name" },
 		{ _field_explanation, "SPAWNED OBJECT", "If this object is intended to spawn something, the object it spawns should be specified here" },
 		{ _field_tag_reference, "spawned object", &object_reference },
@@ -286,9 +286,9 @@ namespace macaque
 		OBJECT_SPAWN_EFFECTS_BLOCK_ID)
 	{
 		{ _field_explanation, "Spawn Effects", "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created." },
-		{ _field_tag_reference, "multiplayer spawn effect#effect played when this object spawns in MP games", &global_effect_reference },
-		{ _field_tag_reference, "survival spawn effect#effect played when this object spawns in Firefight games", &global_effect_reference },
-		{ _field_tag_reference, "campaign spawn effect#effect played when this object spawns in Campaign games", &global_effect_reference },
+		{ _field_tag_reference, "multiplayer spawn effect", &global_effect_reference },
+		{ _field_tag_reference, "survival spawn effect", &global_effect_reference },
+		{ _field_tag_reference, "campaign spawn effect", &global_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -299,24 +299,24 @@ namespace macaque
 		"_object_definition",
 		OBJECT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("OBJECT", _custom_field_function_group_begin),
-		{ _field_short_integer, "runtime object type!" },
+		FIELD_CUSTOM("OBJECT", nullptr, _field_id_function_group_begin),
+		{ _field_short_integer, "runtime object type" },
 		{ _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum },
 		{ _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum },
 		{ _field_real_vector_3d, "Nav Mesh Cutting OBB Offset" },
 		{ _field_real_vector_3d, "Nav Mesh Cutting OBB Scale" },
 		{ _field_long_flags, "flags", &object_definition_flags },
-		{ _field_real, "bounding radius#If you edit this field manually, beware that the render model is no longer respected for radius calculation and that you need to set the bounding offset as well." },
+		{ _field_real, "bounding radius", "If you edit this field manually, beware that the render model is no longer respected for radius calculation and that you need to set the bounding offset as well." },
 		{ _field_real_point_3d, "bounding offset" },
-		{ _field_real, "horizontal acceleration scale{acceleration scale}:[0,+inf]" },
+		{ _field_real, "horizontal acceleration scale" },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
 		{ _field_enum, "lightmap shadow mode", &lightmap_shadow_mode_enum },
 		{ _field_char_enum, "sweetener size", &sweetener_size_enum },
 		{ _field_char_enum, "water density", &water_density_type_enum },
-		{ _field_long_integer, "runtime flags!*" },
-		{ _field_real, "dynamic light sphere radius#sphere to use for dynamic lights and shadows. only used if not 0" },
-		{ _field_real_point_3d, "dynamic light sphere offset#only used if radius not 0" },
+		{ _field_long_integer, "runtime flags" },
+		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
+		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
 		{ _field_string_id, "generic hud text" },
 		{ _field_tag_reference, "generic name list", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "generic service tag list", &global_multilingual_unicode_string_list_reference },
@@ -330,11 +330,11 @@ namespace macaque
 		{ _field_block, "early mover OBB", &object_early_mover_obb_block },
 		{ _field_tag_reference, "creation effect", &global_effect_reference },
 		{ _field_tag_reference, "material effects", &global_material_effects_reference },
-		{ _field_tag_reference, "melee sound#this is the sound that is made when I am meleed.  This overrides the sweetener sound of my material.", &global_sound_reference },
-		{ _field_real, "self-destruct time:seconds#if non-zero, any instances of this object will destroy themselves after this many seconds." },
+		{ _field_tag_reference, "melee sound", &global_sound_reference },
+		{ _field_real, "self-destruct time", "if non-zero, any instances of this object will destroy themselves after this many seconds.", "seconds" },
 		{ _field_block, "ai properties", &object_ai_properties_block },
 		{ _field_block, "functions", &object_function_block },
-		{ _field_block, "runtime interpolator functions*!", &object_runtime_interpolator_functions_block },
+		{ _field_block, "runtime interpolator functions", &object_runtime_interpolator_functions_block },
 		{ _field_block, "function switches", &objectFunctionSwitchBlock_block },
 		{ _field_short_integer, "hud text message index" },
 		{ _field_word_flags, "secondary flags", &object_definition_secondary_flags },
@@ -343,17 +343,17 @@ namespace macaque
 		{ _field_block, "jetwash", &jetwash_definition_block },
 		{ _field_block, "widgets", &object_widget_block },
 		{ _field_block, "change colors", &object_change_colors_block },
-		{ _field_block, "predicted resources*", &g_null_block },
+		{ _field_block, "predicted resources", &g_null_block },
 		{ _field_block, "multiplayer object", &multiplayer_object_block },
-		{ _field_tag_reference, "simulation_interpolation#Set to a specific interpolation definition, or leave blank to inherit the default for the object type (there are defaults for bipeds, vehicles, and crates in multiplayer_globals).  To disable interpolation on a particular object whose type has interpolation by default, set this reference to the special disable_interpolation.simulation_interpolation tag.", &global_simulation_interpolation_reference },
+		{ _field_tag_reference, "simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_block, "spawn effects", &object_spawn_effects_block },
 		{ _field_block, "model dissolve data", &modelDissolveDataBlock_block },
-		{ _field_struct, "script data*!", &hs_script_data_struct },
+		{ _field_struct, "script data", &hs_script_data_struct },
 		{ _field_block, "script tagalongs", &hs_references_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
 		{ _field_explanation, "Object Abandoment", "" },
 		{ _field_struct, "object abandonment", &object_abandonment_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -367,7 +367,7 @@ namespace macaque
 		{ _field_real, "Vitality Limit To Start Countdown" },
 		{ _field_real, "Countdown Time In Seconds" },
 		{ _field_byte_flags, "flags", &object_abandonment_flags },
-		{ _field_pad, "DPKP", 3 },
+		FIELD_PAD("DPKP", nullptr, 3),
 		{ _field_terminator }
 	};
 

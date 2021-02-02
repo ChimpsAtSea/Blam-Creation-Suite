@@ -28,7 +28,7 @@ namespace macaque
 		"s_fx_property",
 		FX_PROPERTY_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
+		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &fx_property_flags },
 		{ _field_long_integer, "scope" },
 		{ _field_long_enum, "value type", &fx_property_value_type_enum },
@@ -54,7 +54,7 @@ namespace macaque
 		"s_fx_property::s_default",
 		FX_PROPERTY_DEFAULT_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
@@ -76,9 +76,9 @@ namespace macaque
 		"s_fx_test_scalar_function",
 		FX_TEST_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable!", nullptr, 'fnin' },
-		{ _field_string_id, "Range Variable!", nullptr, 'fnir' },
-		FIELD_CUSTOM(nullptr, 0),
+		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

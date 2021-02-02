@@ -41,7 +41,7 @@ namespace macaque
 		{ _field_real, "body recharge rate" },
 		{ _field_real, "overshield recharge rate" },
 		{ _field_real, "vampirism percent" },
-		{ _field_real, "explosive damage resistance#incoming damage multiplied by (1 - resistance)" },
+		{ _field_real, "explosive damage resistance", "incoming damage multiplied by (1 - resistance)" },
 		{ _field_real, "wheelman armor vehicle stun time modifier" },
 		{ _field_real, "wheelman armor vehicle recharge time modifier" },
 		{ _field_real, "wheelman armor vehicle emp disabled time modifier" },
@@ -51,7 +51,7 @@ namespace macaque
 		{ _field_char_enum, "deathless", &player_trait_bool_enum },
 		{ _field_char_enum, "fast track armor", &player_trait_bool_enum },
 		{ _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
-		{ _field_pad, "pad", 3 },
+		FIELD_PAD("pad", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -90,18 +90,18 @@ namespace macaque
 		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
 		{ _field_char_enum, "infinite ammo", &player_trait_infinite_ammo_enum },
 		{ _field_char_enum, "equipment usage", &player_trait_equipment_usage_enum },
-		{ _field_char_enum, "equipment usage excepting auto turret#false will disable all equipment except auto turret", &player_trait_equipment_usage_enum },
+		{ _field_char_enum, "equipment usage excepting auto turret", &player_trait_equipment_usage_enum },
 		{ _field_char_enum, "equipment drop", &player_trait_bool_enum },
 		{ _field_char_enum, "infinite equipment", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons ammopack", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons grenadier", &player_trait_bool_enum },
-		{ _field_char_enum, "weapons explode on death armormod#spawns projectile specified in globals.globals", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons explode on death armormod", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance markers visible", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons ordnance reroll available", &player_trait_bool_enum },
-		{ _field_char_enum, "weapons resourceful#grenade probabilities defined in grenade_list.game_globals_grenade_list", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons resourceful", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
-		{ _field_pad, "weapons_padding", 1 },
+		FIELD_PAD("weapons_padding", nullptr, 1),
 		{ _field_explanation, "initial weapons/equipment", "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list." },
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
@@ -130,7 +130,7 @@ namespace macaque
 		{ _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
 		{ _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
 		{ _field_char_enum, "stealthy", &player_trait_bool_enum },
-		{ _field_pad, "grue", 2 },
+		FIELD_PAD("grue", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -162,7 +162,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
 		{ _field_real, "motion tracker range" },
-		{ _field_real, "nemesis duration:seconds" },
+		{ _field_real, "nemesis duration", "seconds" },
 		{ _field_char_enum, "motion tracker", &player_trait_motion_tracker },
 		{ _field_char_enum, "motion tracker while zoomed", &player_trait_bool_enum },
 		{ _field_char_enum, "directional damage indicator", &player_trait_bool_enum },
@@ -182,7 +182,7 @@ namespace macaque
 		"s_game_engine_player_traits_list",
 		GAME_ENGINE_PLAYER_TRAITS_LIST_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "vitality traits", &player_traits_vitality_block },
 		{ _field_block, "weapon traits", &player_traits_weapons_block },
 		{ _field_block, "movement traits", &player_traits_movement_block },

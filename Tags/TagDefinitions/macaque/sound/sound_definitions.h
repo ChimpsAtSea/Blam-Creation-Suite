@@ -55,8 +55,6 @@ namespace macaque
 	extern s_tag_struct_definition facial_animation_language_block_struct_definition; // facial_animation_language_block
 	extern s_tag_block_definition sound_promotion_rule_block;
 	extern s_tag_struct_definition sound_promotion_rule_block_struct_definition; // sound_promotion_rule_block
-	extern s_tag_block_definition sound_promotion_runtime_timer_block;
-	extern s_tag_struct_definition sound_promotion_runtime_timer_block_struct_definition; // sound_promotion_runtime_timer_block
 	extern s_tag_block_definition sound_pitch_range_block;
 	extern s_tag_struct_definition sound_pitch_range_block_struct_definition; // sound_pitch_range_block
 	extern s_tag_block_definition sound_permutations_block;
@@ -65,6 +63,8 @@ namespace macaque
 	extern s_tag_struct_definition sound_permutation_languages_block_struct_definition; // sound_permutation_languages_block
 	extern s_tag_block_definition sound_permutation_chunk_block;
 	extern s_tag_struct_definition sound_permutation_chunk_block_struct_definition; // sound_permutation_chunk_block
+	extern s_tag_block_definition sound_promotion_runtime_timer_block;
+	extern s_tag_struct_definition sound_promotion_runtime_timer_block_struct_definition; // sound_promotion_runtime_timer_block
 	extern s_tag_block_definition sound_platform_sound_playback_block;
 	extern s_tag_struct_definition sound_platform_sound_playback_block_struct_definition; // sound_platform_sound_playback_block
 	extern s_tag_block_definition sound_extra_info_block;

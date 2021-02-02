@@ -8,8 +8,8 @@ namespace blofeld
 
 	V5_TAG_STRUCT(scenario_zone_debugger_block_definition_struct)
 	{
-		{ _field_long_block_flags, "active designer zones" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_block_flags, "active designer zones" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

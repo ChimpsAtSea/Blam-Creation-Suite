@@ -27,7 +27,7 @@ namespace macaque
 		"s_damage_group_definition",
 		DAMAGE_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "armor modifiers", &armor_modifier_block },
 		{ _field_terminator }
 	};
@@ -40,7 +40,7 @@ namespace macaque
 		"s_armor_modifier_definition",
 		ARMOR_MODIFIER_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_real, "damage multiplier" },
 		{ _field_terminator }
 	};
@@ -59,20 +59,20 @@ namespace macaque
 		{ _field_tag_reference, "hard landing damage", &global_damage_reference },
 		{ _field_tag_reference, "hs damage", &global_damage_reference },
 		{ _field_tag_reference, "hs fire damage", &global_damage_reference },
-		{ _field_real, "terminal velocity:wu/s#you die if you fall faster than this (non-multiplayer only)" },
-		{ _field_tag_reference, "terminal velocity damage{distance damage}", &global_damage_reference },
-		{ _field_tag_reference, "default damage response{damage response}#fall back if none is specified in damage effect tags", &global_damage_response_definition_reference },
-		{ _field_tag_reference, "friendly fire damage response#anytime your teammate shoots you", &global_damage_response_definition_reference },
-		{ _field_real, "player shield spillover#the minimum amount of shield vitality needed to prevent spillover from damage types that do not spillover." },
-		FIELD_CUSTOM("damage decay", _custom_field_function_group_begin),
-		{ _field_struct, "damage decay props*!", &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("AI damage decay", _custom_field_function_group_begin),
-		{ _field_struct, "ai damage decay props*!", &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("shield impact decay", _custom_field_function_group_begin),
+		{ _field_real, "terminal velocity", "you die if you fall faster than this (non-multiplayer only)", "wu/s" },
+		{ _field_tag_reference, "terminal velocity damage", &global_damage_reference },
+		{ _field_tag_reference, "default damage response", &global_damage_response_definition_reference },
+		{ _field_tag_reference, "friendly fire damage response", &global_damage_response_definition_reference },
+		{ _field_real, "player shield spillover", "the minimum amount of shield vitality needed to prevent spillover from damage types that do not spillover." },
+		FIELD_CUSTOM("damage decay", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "damage decay props", &damage_decay_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("AI damage decay", nullptr, _field_id_function_group_begin),
+		{ _field_struct, "ai damage decay props", &damage_decay_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("shield impact decay", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "shield impact decay props", &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -85,9 +85,9 @@ namespace macaque
 		SHIELD_BOOST_BLOCK_ID)
 	{
 		{ _field_explanation, "shield boosting", "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source" },
-		{ _field_real, "shield boost decay#amount of shield-boost to decay per second" },
-		{ _field_real, "shield boost recharge time#time to recharge full shields when getting boosted" },
-		{ _field_real, "shield boost stun time#stun time when getting boosted" },
+		{ _field_real, "shield boost decay", "amount of shield-boost to decay per second" },
+		{ _field_real, "shield boost recharge time", "time to recharge full shields when getting boosted" },
+		{ _field_real, "shield boost stun time", "stun time when getting boosted" },
 		{ _field_terminator }
 	};
 
@@ -98,11 +98,11 @@ namespace macaque
 		"s_damage_decay",
 		DAMAGE_DECAY_STRUCT_ID)
 	{
-		{ _field_real, "current damage decay delay:seconds#current damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)" },
-		{ _field_real, "current damage decay time:seconds#amount of time it would take for 100% current damage to decay to 0" },
-		{ _field_real, "current damage decay rate:damage/second#amount of damage that decays from our current damage every second" },
-		{ _field_real, "recent damage decay delay:seconds#recent damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)" },
-		{ _field_real, "recent damage decay time:seconds#amount of time it would take for 100% recent damage to decay to 0" },
+		{ _field_real, "current damage decay delay", "current damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)", "seconds" },
+		{ _field_real, "current damage decay time", "amount of time it would take for 100% current damage to decay to 0", "seconds" },
+		{ _field_real, "current damage decay rate", "amount of damage that decays from our current damage every second", "damage/second" },
+		{ _field_real, "recent damage decay delay", "recent damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)", "seconds" },
+		{ _field_real, "recent damage decay time", "amount of time it would take for 100% recent damage to decay to 0", "seconds" },
 		{ _field_terminator }
 	};
 

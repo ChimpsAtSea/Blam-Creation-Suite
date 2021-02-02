@@ -28,8 +28,8 @@ namespace macaque
 		"s_effect_component_holdbacks",
 		EFFECT_COMPONENT_HOLDBACKS_BLOCK_ID)
 	{
-		{ _field_long_enum, "holdback type^*", &effect_holdback_type_enum },
-		{ _field_dword_integer, "overall budget*#from code" },
+		{ _field_long_enum, "holdback type", &effect_holdback_type_enum },
+		{ _field_dword_integer, "overall budget", "from code" },
 		{ _field_block, "priorities", &effect_component_holdback_block },
 		{ _field_terminator }
 	};
@@ -42,11 +42,11 @@ namespace macaque
 		"s_effect_component_holdbacks::s_holdback",
 		EFFECT_COMPONENT_HOLDBACK_BLOCK_ID)
 	{
-		{ _field_long_enum, "priority type^*", &global_effect_priority_enum },
+		{ _field_long_enum, "priority type", &global_effect_priority_enum },
 		{ _field_explanation, "SET ONE OF THE FOLLOWING", "Whichever is larger will be used" },
 		{ _field_dword_integer, "absolute count" },
-		{ _field_real, "relative percentage:/ 100" },
-		{ _field_dword_integer, "How many available at this priority*!" },
+		{ _field_real, "relative percentage", "/ 100" },
+		{ _field_dword_integer, "How many available at this priority" },
 		{ _field_terminator }
 	};
 

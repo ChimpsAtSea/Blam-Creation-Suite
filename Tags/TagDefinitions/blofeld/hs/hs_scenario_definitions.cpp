@@ -8,113 +8,113 @@ namespace blofeld
 
 	V5_TAG_BLOCK(hs_references_block, k_maximum_hs_references_per_context)
 	{
-		{ _field_tag_reference, "reference*^", &hs_references_block_reference_reference },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag_reference, "reference*^", &hs_references_block_reference_reference },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 	{
-		{ _field_string, "name*" },
-		{ _field_data, "source*" },
-		{ _field_long_flags, "flags", &hs_source_file_flags },
-		{ _field_terminator }
+		{ _field_legacy, _field_string, "name*" },
+		{ _field_legacy, _field_data, "source*" },
+		{ _field_legacy, _field_long_flags, "flags", &hs_source_file_flags },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_script_parameters_block, k_maximum_hs_parameters_per_script)
 	{
-		{ _field_string, "name^*" },
-		{ _field_long_enum, "return type*", &hs_types_enum },
-		{ _field_terminator }
+		{ _field_legacy, _field_string, "name^*" },
+		{ _field_legacy, _field_long_enum, "return type*", &hs_types_enum },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_enum, "script type*", &hs_script_types_enum },
+		{ _field_legacy, _field_string_id, "name^*" },
+		{ _field_legacy, _field_enum, "script type*", &hs_script_types_enum },
 
-		{ _field_version_less_or_equal, _engine_type_haloreach, 3 },
-		{ _field_enum, "return type*", &hs_types_enum },
-		{ _field_short_integer, "root expression index*" },
-		{ _field_short_integer, "locals stack space" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_enum, "return type*", &hs_types_enum },
+		{ _field_legacy, _field_short_integer, "root expression index*" },
+		{ _field_legacy, _field_short_integer, "locals stack space" },
 
-		{ _field_version_greater, _engine_type_haloreach, 4 },
-		{ _field_word_flags, "script flags*", &scriptFlagsEnumDefinition },
-		{ _field_long_enum, "return type*", &hs_types_enum },
-		{ _field_long_integer, "root expression index*" },
-		{ _field_long_integer, "locals stack space" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
+		{ _field_legacy, _field_word_flags, "script flags*", &scriptFlagsEnumDefinition },
+		{ _field_legacy, _field_long_enum, "return type*", &hs_types_enum },
+		{ _field_legacy, _field_long_integer, "root expression index*" },
+		{ _field_legacy, _field_long_integer, "locals stack space" },
 
-		{ _field_block, "parameters", &hs_script_parameters_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "parameters", &hs_script_parameters_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_globals_block, k_maximum_hs_globals_per_context)
 	{
-		{ _field_version_less_or_equal, _engine_type_haloreach, 1 },
-		{ _field_string, "name" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 1 },
+		{ _field_legacy, _field_string, "name" },
 
-		{ _field_version_greater, _engine_type_haloreach, 1 },
-		{ _field_string_id, "name*" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
+		{ _field_legacy, _field_string_id, "name*" },
 
-		{ _field_long_enum, "type*", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_enum, "type*", &hs_types_enum },
+		{ _field_legacy, _field_long_integer, "initialization expression index*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(HSInstancedVariablesBlock, k_maximum_hs_instanced_variables_per_context)
 	{
-		{ _field_string_id, "name*" },
-		{ _field_long_enum, "type*", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index*" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "name*" },
+		{ _field_legacy, _field_long_enum, "type*", &hs_types_enum },
+		{ _field_legacy, _field_long_integer, "initialization expression index*" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_unit_seat_block, k_maximum_hs_unit_seat_mappings)
 	{
-		{ _field_long_integer, "unit definition tag index!" },
-		{ _field_long_integer, "unit seats!" },
-		{ _field_long_integer, "unit seats2!" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "unit definition tag index!" },
+		{ _field_legacy, _field_long_integer, "unit seats!" },
+		{ _field_legacy, _field_long_integer, "unit seats2!" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
 	{
-		{ _field_version_less_or_equal, _engine_type_haloreach, 8 },
-		{ _field_short_integer, "datum header~" },
-		{ _field_short_integer, "script index/function index/constant type union" },
-		{ _field_enum, "node expression type", &hs_types_enum },
-		{ _field_short_integer, "flags" },
-		{ _field_long_integer, "next node" },
-		{ _field_long_integer, "source data" }, // offset into script string data (check halo 2)
-		{ _field_long_integer, "source offset location" }, // reinterpreted value
-		{ _field_long_integer, "source file offset" },
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 8 },
+		{ _field_legacy, _field_short_integer, "datum header~" },
+		{ _field_legacy, _field_short_integer, "script index/function index/constant type union" },
+		{ _field_legacy, _field_enum, "node expression type", &hs_types_enum },
+		{ _field_legacy, _field_short_integer, "flags" },
+		{ _field_legacy, _field_long_integer, "next node" },
+		{ _field_legacy, _field_long_integer, "source data" }, // offset into script string data (check halo 2)
+		{ _field_legacy, _field_long_integer, "source offset location" }, // reinterpreted value
+		{ _field_legacy, _field_long_integer, "source file offset" },
 
-		{ _field_version_greater, _engine_type_haloreach, 9 },
-		{ _field_short_integer, "datum header~" },
-		{ _field_short_integer, "script index/function index/constant type union" },
-		{ _field_long_integer, "next node" },
-		{ _field_long_integer, "source data" },
-		{ _field_long_integer, "source offset location" },
-		{ _field_long_enum, "node expression type", &hs_types_enum },
-		{ _field_short_integer, "flags" },
-		{ _field_short_integer, "source file index" },
-		{ _field_long_integer, "source file offset" },
-		{ _field_terminator }
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
+		{ _field_legacy, _field_short_integer, "datum header~" },
+		{ _field_legacy, _field_short_integer, "script index/function index/constant type union" },
+		{ _field_legacy, _field_long_integer, "next node" },
+		{ _field_legacy, _field_long_integer, "source data" },
+		{ _field_legacy, _field_long_integer, "source offset location" },
+		{ _field_legacy, _field_long_enum, "node expression type", &hs_types_enum },
+		{ _field_legacy, _field_short_integer, "flags" },
+		{ _field_legacy, _field_short_integer, "source file index" },
+		{ _field_legacy, _field_long_integer, "source file offset" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(HSImportManifestEntryBlock, k_maximum_hs_scripts_per_context)
 	{
-		{ _field_string_id, "script name*" },
-		{ _field_long_integer, "argCount*" },
-		{ _field_long_integer, "index!~" },
-		{ _field_terminator }
+		{ _field_legacy, _field_string_id, "script name*" },
+		{ _field_legacy, _field_long_integer, "argCount*" },
+		{ _field_legacy, _field_long_integer, "index!~" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK(HSImportManifestBlock, 128)
 	{
-		{ _field_tag, "callee tag*" },
-		{ _field_block, "script table*", &HSImportManifestEntryBlock_block },
-		{ _field_block, "variable table*", &HSImportManifestEntryBlock_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_tag, "callee tag*" },
+		{ _field_legacy, _field_block, "script table*", &HSImportManifestEntryBlock_block },
+		{ _field_legacy, _field_block, "variable table*", &HSImportManifestEntryBlock_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	STRINGS(hs_script_types_enum)

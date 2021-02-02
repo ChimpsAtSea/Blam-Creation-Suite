@@ -28,7 +28,7 @@ namespace macaque
 		"s_particle_emitter_boat_hull_shape_data::s_marker_group",
 		PARTICLE_EMITTER_BOAT_HULL_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "marker group^" },
+		{ _field_string_id, "marker group" },
 		{ _field_terminator }
 	};
 
@@ -39,8 +39,8 @@ namespace macaque
 		"s_particle_emitter_boat_hull_shape_data",
 		PARTICLE_EMITTER_BOAT_HULL_SHAPE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_char_enum, "distribution#heuristic used to determine where to spawn particles", &particle_emitter_boat_hull_distribution_type },
-		{ _field_pad, "PEBHSP1", 3 },
+		{ _field_char_enum, "distribution", &particle_emitter_boat_hull_distribution_type },
+		FIELD_PAD("PEBHSP1", nullptr, 3),
 		{ _field_block, "markers", &particle_emitter_boat_hull_group_block },
 		{ _field_terminator }
 	};

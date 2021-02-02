@@ -28,10 +28,10 @@ namespace macaque
 		"s_purchase_prerequisite_commendation_definition",
 		PURCHASE_PREREQUISITE_COMMENDATION_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "commendation id^#This must match one of the commendation names." },
+		{ _field_string_id, "commendation id", "This must match one of the commendation names." },
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		{ _field_char_integer, "minimum level#This field is ignored if \'type\' is set to \'aggregator\'." },
-		{ _field_pad, "PAD1", 2 },
+		{ _field_char_integer, "minimum level", "This field is ignored if \'type\' is set to \'aggregator\'." },
+		FIELD_PAD("PAD1", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -79,7 +79,7 @@ namespace macaque
 		"s_purchase_prerequisite_unlockable_definition",
 		PURCHASE_PREREQUISITES_UNLOCKABLE_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "unlockable name^" },
+		{ _field_string_id, "unlockable name" },
 		{ _field_terminator }
 	};
 
@@ -91,8 +91,8 @@ namespace macaque
 		"PurchasePrerequisiteOfferDefinition",
 		PURCHASE_PREREQUISITES_OFFER_DEFINITION_BLOCK_ID)
 	{
-		{ _field_char_enum, "offer type^", &MarketplaceOfferTypeEnum },
-		{ _field_pad, "pad1", 3 },
+		{ _field_char_enum, "offer type", &MarketplaceOfferTypeEnum },
+		FIELD_PAD("pad1", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -124,8 +124,8 @@ namespace macaque
 		"s_cookie_purchase_definition_reference",
 		PURCHASEAPPEARANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference^" },
-		{ _field_pad, "pad1", 2 },
+		{ _field_short_block_index, "item reference", &CookiePurchaseAppearanceDefinitionBlock_block },
+		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -136,8 +136,8 @@ namespace macaque
 		"s_cookie_purchase_definition_reference",
 		PURCHASELOADOUTDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference^" },
-		{ _field_pad, "pad1", 2 },
+		{ _field_short_block_index, "item reference", &CookiePurchaseLoadoutDefinitionBlock_block },
+		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -148,8 +148,8 @@ namespace macaque
 		"s_cookie_purchase_definition_reference",
 		PURCHASEORDNANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference^" },
-		{ _field_pad, "pad1", 2 },
+		{ _field_short_block_index, "item reference", &CookiePurchaseOrdnanceDefinitionBlock_block },
+		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
 

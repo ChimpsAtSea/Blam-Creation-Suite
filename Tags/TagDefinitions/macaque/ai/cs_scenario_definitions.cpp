@@ -17,7 +17,7 @@ namespace macaque
 	{
 		{ _field_block, "point sets", &cs_point_set_block },
 		{ _field_block, "animation points", &cs_animation_point_block },
-		{ _field_pad, "TPHWNCUR", 120 },
+		FIELD_PAD("TPHWNCUR", nullptr, 120),
 		{ _field_terminator }
 	};
 
@@ -29,14 +29,14 @@ namespace macaque
 		"cs_point_set",
 		CS_POINT_SET_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
+		{ _field_string, "name" },
 		{ _field_block, "points", &cs_point_block },
-		{ _field_short_block_index, "bsp index" },
-		{ _field_pad, "PAD1", 2 },
+		{ _field_short_block_index, "bsp index", &scenario_structure_bsp_reference_block },
+		FIELD_PAD("PAD1", nullptr, 2),
 		{ _field_long_flags, "flags", &point_set_flags },
 		{ _field_long_flags, "traversal flags", &point_set_traversal_flags },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
-		{ _field_pad, "AJDEYNFD", 2 },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		FIELD_PAD("AJDEYNFD", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -48,11 +48,11 @@ namespace macaque
 		"cs_point",
 		CS_POINT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string, "name^" },
-		{ _field_string_id, "name_id*!" },
+		{ _field_string, "name" },
+		{ _field_string_id, "name_id" },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 		{ _field_real_euler_angles_2d, "facing direction" },
 		{ _field_terminator }
 	};
@@ -65,9 +65,9 @@ namespace macaque
 		"cs_animation_point",
 		CS_ANIMATION_POINT_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
-		{ _field_long_block_index, "Animating Object" },
-		{ _field_long_integer, "Animating Object Index!" },
+		{ _field_string, "name" },
+		{ _field_long_block_index, "Animating Object", &scenario_object_names_block },
+		{ _field_long_integer, "Animating Object Index" },
 		{ _field_string_id, "Animation Name" },
 		{ _field_long_integer, "Animation Bone to Track" },
 		{ _field_real_point_3d, "Offset From Bone" },

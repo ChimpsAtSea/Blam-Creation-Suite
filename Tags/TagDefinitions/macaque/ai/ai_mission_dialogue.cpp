@@ -28,7 +28,7 @@ namespace macaque
 		"mission_dialogue_line",
 		MISSION_DIALOGUE_LINES_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "variants", &mission_dialogue_variants_block },
 		{ _field_string_id, "default sound effect" },
 		{ _field_terminator }
@@ -42,7 +42,7 @@ namespace macaque
 		"mission_dialogue_variant",
 		MISSION_DIALOGUE_VARIANTS_BLOCK_ID)
 	{
-		{ _field_string_id, "variant designation#3-letter designation for the character^" },
+		{ _field_string_id, "variant designation", "3-letter designation for the character^" },
 		{ _field_tag_reference, "sound", &sound_reference },
 		{ _field_string_id, "sound effect" },
 		{ _field_terminator }
@@ -56,10 +56,10 @@ namespace macaque
 		"ai_scene",
 		AI_SCENE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &scene_flags },
 		{ _field_block, "trigger conditions", &ai_scene_trigger_block },
-		{ _field_useless_pad },
+		{ _field_useless_pad, "" },
 		{ _field_block, "roles", &ai_scene_role_block },
 		{ _field_terminator }
 	};
@@ -73,7 +73,7 @@ namespace macaque
 		AI_SCENE_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_pad, "NJBJMKU", 2 },
+		FIELD_PAD("NJBJMKU", nullptr, 2),
 		{ _field_block, "triggers", &trigger_references_block },
 		{ _field_terminator }
 	};
@@ -86,10 +86,10 @@ namespace macaque
 		"ai_scene_role",
 		AI_SCENE_ROLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_enum, "group", &role_group_enum },
-		{ _field_pad, "XZUW", 2 },
-		{ _field_useless_pad },
+		FIELD_PAD("XZUW", nullptr, 2),
+		{ _field_useless_pad, "" },
 		{ _field_block, "role variants", &ai_scene_role_variants_block },
 		{ _field_terminator }
 	};
@@ -102,7 +102,7 @@ namespace macaque
 		"ai_scene_role_variant",
 		AI_SCENE_ROLE_VARIANTS_BLOCK_ID)
 	{
-		{ _field_string_id, "variant designation^" },
+		{ _field_string_id, "variant designation" },
 		{ _field_terminator }
 	};
 

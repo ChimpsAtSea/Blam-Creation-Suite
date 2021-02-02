@@ -28,15 +28,15 @@ namespace macaque
 		LIGHT_CONE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &lightConeFlags },
-		{ _field_pad, "gosh", 3 },
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		{ _field_real, "angle fade range:degrees" },
-		{ _field_real, "angle fade cutoff:degrees" },
-		{ _field_real, "far fade range:wus" },
-		{ _field_real, "far fade cutoff:wus" },
+		FIELD_PAD("gosh", nullptr, 3),
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		{ _field_real, "angle fade range", "degrees" },
+		{ _field_real, "angle fade cutoff", "degrees" },
+		{ _field_real, "far fade range", "wus" },
+		{ _field_real, "far fade cutoff", "wus" },
 		{ _field_terminator }
 	};
 

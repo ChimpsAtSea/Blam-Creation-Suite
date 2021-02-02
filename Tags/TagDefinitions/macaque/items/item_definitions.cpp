@@ -40,7 +40,7 @@ namespace macaque
 		ITEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ ITEM $$$", _custom_field_function_group_begin),
+		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, _field_id_function_group_begin),
 		{ _field_long_flags, "flags", &item_definition_flags },
 		{ _field_short_integer, "OLD message index" },
 		{ _field_short_integer, "sort order" },
@@ -59,7 +59,7 @@ namespace macaque
 		{ _field_tag_reference, "collision sound", &global_sound_reference },
 		{ _field_block, "predicted bitmaps", &predicted_bitmaps_block },
 		{ _field_tag_reference, "detonation damage effect", &global_damage_reference },
-		{ _field_real_bounds, "detonation delay:seconds" },
+		{ _field_real_bounds, "detonation delay", "seconds" },
 		{ _field_tag_reference, "detonating effect", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect", &global_effect_reference },
 		{ _field_explanation, "Item scale settings", "because grenades look better as coconuts. 0==1" },
@@ -72,9 +72,9 @@ namespace macaque
 		{ _field_real, "large unit (stowed)" },
 		{ _field_real, "huge unit (armed)" },
 		{ _field_real, "huge unit (stowed)" },
-		{ _field_tag_reference, "grounded friction settings#If not present, the default from global.globals is used.", &global_grounded_friction_reference },
-		{ _field_tag_reference, "Tossed Override# Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override.", &object_reference$3 },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		{ _field_tag_reference, "grounded friction settings", &global_grounded_friction_reference },
+		{ _field_tag_reference, "Tossed Override", &object_reference$3 },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

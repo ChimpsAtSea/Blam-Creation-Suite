@@ -290,7 +290,7 @@ namespace macaque
 		SHADER_DECAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_long_integer, "specular_modulate!" },
+		{ _field_long_integer, "specular_modulate" },
 		{ _field_terminator }
 	};
 
@@ -385,15 +385,15 @@ namespace macaque
 		SHADER_MUX_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name 0#defines global material type for channel 0 of the mux shader" },
-		{ _field_string_id, "material name 1#defines global material type for channel 1 of the mux shader" },
-		{ _field_string_id, "material name 2#defines global material type for channel 2 of the mux shader" },
-		{ _field_string_id, "material name 3#defines global material type for channel 3 of the mux shader" },
-		{ _field_struct, "material type 0!", &material_type_struct },
-		{ _field_struct, "material type 1!", &material_type_struct },
-		{ _field_struct, "material type 2!", &material_type_struct },
-		{ _field_struct, "material type 3!", &material_type_struct },
-		{ _field_long_integer, "single material!" },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the mux shader" },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the mux shader" },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the mux shader" },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the mux shader" },
+		{ _field_struct, "material type 0", &material_type_struct },
+		{ _field_struct, "material type 1", &material_type_struct },
+		{ _field_struct, "material type 2", &material_type_struct },
+		{ _field_struct, "material type 3", &material_type_struct },
+		{ _field_long_integer, "single material" },
 		{ _field_terminator }
 	};
 
@@ -433,7 +433,7 @@ namespace macaque
 		{ _field_char_enum, "render layer", &global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &global_screen_shader_flags_definition },
-		{ _field_pad, "fefjjjfrjg", 1 },
+		FIELD_PAD("fefjjjfrjg", nullptr, 1),
 		{ _field_terminator }
 	};
 
@@ -445,15 +445,15 @@ namespace macaque
 		SHADER_TERRAIN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name 0#defines global material type for channel 0 of the terrain shader" },
-		{ _field_string_id, "material name 1#defines global material type for channel 1 of the terrain shader" },
-		{ _field_string_id, "material name 2#defines global material type for channel 2 of the terrain shader" },
-		{ _field_string_id, "material name 3#defines global material type for channel 3 of the terrain shader" },
-		{ _field_struct, "material type 0!", &material_type_struct },
-		{ _field_struct, "material type 1!", &material_type_struct },
-		{ _field_struct, "material type 2!", &material_type_struct },
-		{ _field_struct, "material type 3!", &material_type_struct },
-		{ _field_long_integer, "single material!" },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader" },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader" },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader" },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader" },
+		{ _field_struct, "material type 0", &material_type_struct },
+		{ _field_struct, "material type 1", &material_type_struct },
+		{ _field_struct, "material type 2", &material_type_struct },
+		{ _field_struct, "material type 3", &material_type_struct },
+		{ _field_long_integer, "single material" },
 		{ _field_terminator }
 	};
 

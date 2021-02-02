@@ -16,9 +16,9 @@ namespace macaque
 		GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_explanation, "SCENARIO LOAD PARAMETERS", "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only" },
-		{ _field_tag_reference, "scenario^", &scenario_reference$2 },
+		{ _field_tag_reference, "scenario", &scenario_reference$2 },
 		{ _field_data, "parameters" },
-		{ _field_pad, "BDZDSK", 32 },
+		FIELD_PAD("BDZDSK", nullptr, 32),
 		{ _field_terminator }
 	};
 

@@ -15,7 +15,7 @@ namespace macaque
 		"s_formation_definition",
 		FORMATION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_block, "primitives", &formation_primitive_definition_block },
 		{ _field_terminator }
 	};
@@ -38,8 +38,8 @@ namespace macaque
 		{ _field_explanation, "", "" },
 		{ _field_word_flags, "flags", &formation_primitive_flags },
 		{ _field_short_integer, "priority" },
-		{ _field_short_integer, "capacity*!" },
-		{ _field_pad, "post-capacity-pad", 2 },
+		{ _field_short_integer, "capacity" },
+		FIELD_PAD("post-capacity-pad", nullptr, 2),
 		{ _field_real, "dist forwards" },
 		{ _field_real, "dist backwards" },
 		{ _field_real, "rank spacing" },

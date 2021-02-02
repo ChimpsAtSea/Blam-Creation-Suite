@@ -15,13 +15,13 @@ namespace macaque
 		"s_render_model_instance_placement",
 		GLOBAL_RENDER_MODEL_INSTANCE_PLACEMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "name^*" },
-		{ _field_long_block_index, "node_index*" },
-		{ _field_real, "scale*" },
-		{ _field_real_vector_3d, "forward*" },
-		{ _field_real_vector_3d, "left*" },
-		{ _field_real_vector_3d, "up*" },
-		{ _field_real_point_3d, "position*" },
+		{ _field_string_id, "name" },
+		{ _field_long_block_index, "node_index", &render_model_node_block },
+		{ _field_real, "scale" },
+		{ _field_real_vector_3d, "forward" },
+		{ _field_real_vector_3d, "left" },
+		{ _field_real_vector_3d, "up" },
+		{ _field_real_point_3d, "position" },
 		{ _field_terminator }
 	};
 
@@ -38,50 +38,38 @@ namespace macaque
 		{ _field_real_vector_3d, "left" },
 		{ _field_real_vector_3d, "up" },
 		{ _field_real_point_3d, "position" },
-		{ _field_short_block_index, "instance definition*" },
+		{ _field_short_block_index, "instance definition", &structure_bsp_instanced_geometry_definition_block },
 		{ _field_word_flags, "flags", &instanced_geometry_flags },
-		{ _field_long_flags, "Light Channels:", &channelDefinitionFlags },
+		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 		{ _field_short_integer, "mesh_index" },
 		{ _field_short_integer, "compression_index" },
 		{ _field_long_integer, "seam bit vector 0" },
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
-		{ _field_real, "bounds x0!" },
-		{ _field_real, "bounds x1!" },
-		{ _field_real, "bounds y0!" },
-		{ _field_real, "bounds y1!" },
-		{ _field_real, "bounds z0!" },
-		{ _field_real, "bounds z1!" },
-		{ _field_real_point_3d, "world bounding sphere center!" },
-		{ _field_real, "world bounding sphere radius!" },
-		{ _field_real, "imposter transition complete distance!" },
-		{ _field_real, "imposter brightness!" },
-		{ _field_long_integer, "checksum*" },
-		{ _field_char_enum, "pathfinding policy*", &instanced_geometry_pathfinding_policy_enum },
-		{ _field_char_enum, "lightmapping policy*", &instanced_geometry_lightmapping_policy_enum },
-		{ _field_char_enum, "imposter policy*", &instanced_geometry_imposter_policy_enum },
-		{ _field_pad, "SDFSDFE", 1 },
-		{ _field_char_enum, "streaming priority*", &instanced_geometry_streamingpriority_enum },
-		{ _field_pad, "strpad", 1 },
+		{ _field_real, "bounds x0" },
+		{ _field_real, "bounds x1" },
+		{ _field_real, "bounds y0" },
+		{ _field_real, "bounds y1" },
+		{ _field_real, "bounds z0" },
+		{ _field_real, "bounds z1" },
+		{ _field_real_point_3d, "world bounding sphere center" },
+		{ _field_real, "world bounding sphere radius" },
+		{ _field_real, "imposter transition complete distance" },
+		{ _field_real, "imposter brightness" },
+		{ _field_long_integer, "checksum" },
+		{ _field_char_enum, "pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
+		{ _field_char_enum, "lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
+		{ _field_char_enum, "imposter policy", &instanced_geometry_imposter_policy_enum },
+		FIELD_PAD("SDFSDFE", nullptr, 1),
+		{ _field_char_enum, "streaming priority", &instanced_geometry_streamingpriority_enum },
+		FIELD_PAD("strpad", nullptr, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
-		{ _field_short_integer, "group_index!" },
-		{ _field_short_integer, "group_list_index!" },
-		{ _field_string_id, "name*^" },
-		{ _field_long_string, "source file name*" },
-		{ _field_terminator }
-	};
-
-	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID { 0xA3DF7A2E, 0xC2DC41E9, 0xDBA27244, 0x1AD617D1 }
-	TAG_BLOCK(
-		structure_bsp_instanced_geometry_instances_names_block,
-		"structure_bsp_instanced_geometry_instances_names_block",
-		k_maximum_instance_geometry_instances_per_structure_bsp,
-		"string_id",
-		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID)
-	{
-		{ _field_string_id, "name*^" },
+		{ _field_short_integer, "group_index" },
+		{ _field_short_integer, "group_list_index" },
+		{ _field_string_id, "name" },
+		{ _field_long_string, "source file name" },
 		{ _field_terminator }
 	};
 
@@ -93,13 +81,25 @@ namespace macaque
 		"structure_instanced_geometry_definition",
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID)
 	{
-		{ _field_long_integer, "checksum*" },
-		{ _field_long_flags, "flags*", &instanced_geometry_definition_flags },
+		{ _field_long_integer, "checksum" },
+		{ _field_long_flags, "flags", &instanced_geometry_definition_flags },
 		{ _field_short_integer, "mesh index" },
 		{ _field_short_integer, "compression index" },
 		{ _field_real, "global lightmap resolution scale" },
 		{ _field_short_integer, "external_index" },
-		{ _field_pad, "useme", 2 },
+		FIELD_PAD("useme", nullptr, 2),
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID { 0xA3DF7A2E, 0xC2DC41E9, 0xDBA27244, 0x1AD617D1 }
+	TAG_BLOCK(
+		structure_bsp_instanced_geometry_instances_names_block,
+		"structure_bsp_instanced_geometry_instances_names_block",
+		k_maximum_instance_geometry_instances_per_structure_bsp,
+		"string_id",
+		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
 		{ _field_terminator }
 	};
 
@@ -128,36 +128,36 @@ namespace macaque
 		{ _field_real_vector_3d, "left" },
 		{ _field_real_vector_3d, "up" },
 		{ _field_real_point_3d, "position" },
-		{ _field_short_block_index, "instance definition*" },
+		{ _field_short_block_index, "instance definition", &structure_bsp_instanced_geometry_definition_block },
 		{ _field_word_flags, "flags", &instanced_geometry_flags },
-		{ _field_long_flags, "Light Channels:", &channelDefinitionFlags },
+		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 		{ _field_short_integer, "mesh_index" },
 		{ _field_short_integer, "compression_index" },
 		{ _field_long_integer, "seam bit vector 0" },
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
-		{ _field_real, "bounds x0!" },
-		{ _field_real, "bounds x1!" },
-		{ _field_real, "bounds y0!" },
-		{ _field_real, "bounds y1!" },
-		{ _field_real, "bounds z0!" },
-		{ _field_real, "bounds z1!" },
-		{ _field_real_point_3d, "world bounding sphere center!" },
-		{ _field_real, "world bounding sphere radius!" },
-		{ _field_real, "imposter transition complete distance!" },
-		{ _field_real, "imposter brightness!" },
-		{ _field_long_integer, "checksum*" },
-		{ _field_char_enum, "pathfinding policy*", &instanced_geometry_pathfinding_policy_enum },
-		{ _field_char_enum, "lightmapping policy*", &instanced_geometry_lightmapping_policy_enum },
-		{ _field_char_enum, "imposter policy*", &instanced_geometry_imposter_policy_enum },
-		{ _field_pad, "SDFSDFE", 1 },
-		{ _field_char_enum, "streaming priority*", &instanced_geometry_streamingpriority_enum },
-		{ _field_pad, "strpad", 1 },
+		{ _field_real, "bounds x0" },
+		{ _field_real, "bounds x1" },
+		{ _field_real, "bounds y0" },
+		{ _field_real, "bounds y1" },
+		{ _field_real, "bounds z0" },
+		{ _field_real, "bounds z1" },
+		{ _field_real_point_3d, "world bounding sphere center" },
+		{ _field_real, "world bounding sphere radius" },
+		{ _field_real, "imposter transition complete distance" },
+		{ _field_real, "imposter brightness" },
+		{ _field_long_integer, "checksum" },
+		{ _field_char_enum, "pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
+		{ _field_char_enum, "lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
+		{ _field_char_enum, "imposter policy", &instanced_geometry_imposter_policy_enum },
+		FIELD_PAD("SDFSDFE", nullptr, 1),
+		{ _field_char_enum, "streaming priority", &instanced_geometry_streamingpriority_enum },
+		FIELD_PAD("strpad", nullptr, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
-		{ _field_short_integer, "group_index!" },
-		{ _field_short_integer, "group_list_index!" },
+		{ _field_short_integer, "group_index" },
+		{ _field_short_integer, "group_list_index" },
 		{ _field_terminator }
 	};
 
@@ -168,14 +168,14 @@ namespace macaque
 		"StructureIOSerializedHavokData",
 		STRUCTUREIOHAVOKDATABLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "version*" },
-		{ _field_long_integer, "RuntimeDeserializedBody Pointer*!" },
-		{ _field_long_integer, "RuntimeDeserializedData Pointer*!" },
-		{ _field_long_integer, "Prefab Index*!" },
-		{ _field_data, "Serialized Havok Data*" },
+		{ _field_long_integer, "version" },
+		{ _field_long_integer, "RuntimeDeserializedBody Pointer" },
+		{ _field_long_integer, "RuntimeDeserializedData Pointer" },
+		{ _field_long_integer, "Prefab Index" },
+		{ _field_data, "Serialized Havok Data" },
 		{ _field_block, "Serialized Per Collision Type Havok Geometry", &SerializedHavokGeometryDataBlock_block },
-		{ _field_real_point_3d, "Shapes bounds min!*" },
-		{ _field_real_point_3d, "Shapes bounds max!*" },
+		{ _field_real_point_3d, "Shapes bounds min" },
+		{ _field_real_point_3d, "Shapes bounds max" },
 		{ _field_terminator }
 	};
 
@@ -186,11 +186,11 @@ namespace macaque
 		"SerializedHavokGeometry",
 		SERIALIZEDHAVOKGEOMETRYDATABLOCK_STRUCT_ID)
 	{
-		{ _field_data, "Serialized Havok Data*" },
-		{ _field_data, "Serialized Static Havok Data*" },
+		{ _field_data, "Serialized Havok Data" },
+		{ _field_data, "Serialized Static Havok Data" },
 		{ _field_long_integer, "collision type" },
-		{ _field_long_integer, "RuntimeDeserializedBody Pointer*!" },
-		{ _field_long_integer, "RuntimeDeserializedData Pointer*!" },
+		{ _field_long_integer, "RuntimeDeserializedBody Pointer" },
+		{ _field_long_integer, "RuntimeDeserializedData Pointer" },
 		{ _field_terminator }
 	};
 

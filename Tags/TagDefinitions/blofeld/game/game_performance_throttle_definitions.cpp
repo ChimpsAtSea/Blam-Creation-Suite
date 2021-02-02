@@ -8,35 +8,35 @@ namespace blofeld
 
 	V5_TAG_BLOCK(game_performance_throttle_entries_block, 32)
 	{
-		{ _field_struct, "filter", &game_performance_throttle_filter_struct_struct_definition },
-		{ _field_struct, "profile", &game_performance_throttle_profile_struct_struct_definition },
-		{ _field_terminator }
+		{ _field_legacy, _field_struct, "filter", &game_performance_throttle_filter_struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile", &game_performance_throttle_profile_struct_struct_definition },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_BLOCK_FROM_STRUCT(game_performance_throttle_block, 1, game_performance_throttle_struct_definition_struct_definition );
 
 	V5_TAG_STRUCT(game_performance_throttle_struct_definition)
 	{
-		{ _field_block, "entries", &game_performance_throttle_entries_block_block },
-		{ _field_terminator }
+		{ _field_legacy, _field_block, "entries", &game_performance_throttle_entries_block_block },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(game_performance_throttle_filter_struct)
 	{
-		{ _field_long_integer, "minimum player count" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "minimum player count" },
+		{ _field_legacy, _field_terminator }
 	};
 
 	V5_TAG_STRUCT(game_performance_throttle_profile_struct)
 	{
-		{ _field_long_integer, "maximum havok proxy count" },
-		{ _field_long_integer, "maximum ragdoll count" },
-		{ _field_long_integer, "maximum impact count" },
-		{ _field_long_integer, "vehicle suspension update frequency" },
-		{ _field_long_integer, "Actor LOD, AI actors to update fully each frame" },
-		{ _field_long_integer, "Actor LOD, Number of frames to tick LODed AI" },
-		{ _field_long_integer, "Actor LOD, Number of concurrent LOD actors to tick" },
-		{ _field_terminator }
+		{ _field_legacy, _field_long_integer, "maximum havok proxy count" },
+		{ _field_legacy, _field_long_integer, "maximum ragdoll count" },
+		{ _field_legacy, _field_long_integer, "maximum impact count" },
+		{ _field_legacy, _field_long_integer, "vehicle suspension update frequency" },
+		{ _field_legacy, _field_long_integer, "Actor LOD, AI actors to update fully each frame" },
+		{ _field_legacy, _field_long_integer, "Actor LOD, Number of frames to tick LODed AI" },
+		{ _field_legacy, _field_long_integer, "Actor LOD, Number of concurrent LOD actors to tick" },
+		{ _field_legacy, _field_terminator }
 	};
 
 } // namespace blofeld

@@ -22,87 +22,87 @@ namespace macaque
 		"structure_bsp",
 		SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID)
 	{
-		{ _field_struct, "build identifier*", &structure_manifest_build_identifier_struct },
-		{ _field_struct, "parent build identifier*", &structure_manifest_build_identifier_struct },
-		{ _field_long_integer, "import info checksum*" },
-		{ _field_tag_reference, "structure lighting_info^", &structure_lighting_bsp_reference },
-		{ _field_long_integer, "import version*!" },
-		{ _field_tag_reference, "structure meta data*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
-		{ _field_word_flags, "flags*!", &structure_bsp_flags_definition },
-		{ _field_word_flags, "content policy flags*!", &structure_bsp_content_policy_flag },
-		{ _field_word_flags, "failed content policy flags*!", &structure_bsp_content_policy_flag },
-		{ _field_pad, "faild policy pad*!", 2 },
-		{ _field_block, "seam identifiers*!", &structure_seam_mapping_block },
-		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block },
-		{ _field_block, "collision materials*", &structure_collision_materials_block },
-		{ _field_block, "leaves*!", &structure_bsp_leaf_block },
-		{ _field_block, "super aabbs*!", &structure_super_node_aabbs_block },
-		{ _field_block, "super node parent mappings*!", &super_node_mappings_block },
-		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block },
-		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block },
-		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct },
-		{ _field_real_bounds, "world bounds x*" },
-		{ _field_real_bounds, "world bounds y*" },
-		{ _field_real_bounds, "world bounds z*" },
-		{ _field_block, "large structure surfaces*", &structure_surface_block },
-		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block },
-		{ _field_block, "cluster portals*", &structure_bsp_cluster_portal_block },
-		{ _field_block, "detail objects*", &structure_bsp_detail_object_data_block },
-		{ _field_block, "clusters*", &structure_bsp_cluster_block },
-		{ _field_block, "materials*", &global_geometry_material_block },
-		{ _field_block, "emissive materials*", &structure_material_lighting_info_block },
-		{ _field_block, "sky owner cluster*", &structure_bsp_sky_owner_cluster_block },
-		{ _field_block, "conveyor surfaces*", &structure_bsp_conveyor_surface_block },
-		{ _field_block, "breakable surface sets*", &breakable_surface_set_block },
+		{ _field_struct, "build identifier", &structure_manifest_build_identifier_struct },
+		{ _field_struct, "parent build identifier", &structure_manifest_build_identifier_struct },
+		{ _field_long_integer, "import info checksum" },
+		{ _field_tag_reference, "structure lighting_info", &structure_lighting_bsp_reference },
+		{ _field_long_integer, "import version" },
+		{ _field_tag_reference, "structure meta data", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
+		{ _field_word_flags, "flags", &structure_bsp_flags_definition },
+		{ _field_word_flags, "content policy flags", &structure_bsp_content_policy_flag },
+		{ _field_word_flags, "failed content policy flags", &structure_bsp_content_policy_flag },
+		FIELD_PAD("faild policy pad", nullptr, 2),
+		{ _field_block, "seam identifiers", &structure_seam_mapping_block },
+		{ _field_block, "edge to seam edge", &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "collision materials", &structure_collision_materials_block },
+		{ _field_block, "leaves", &structure_bsp_leaf_block },
+		{ _field_block, "super aabbs", &structure_super_node_aabbs_block },
+		{ _field_block, "super node parent mappings", &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks", &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block", &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy", &collision_kd_hierarchy_static_struct },
+		{ _field_real_bounds, "world bounds x" },
+		{ _field_real_bounds, "world bounds y" },
+		{ _field_real_bounds, "world bounds z" },
+		{ _field_block, "large structure surfaces", &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping", &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "cluster portals", &structure_bsp_cluster_portal_block },
+		{ _field_block, "detail objects", &structure_bsp_detail_object_data_block },
+		{ _field_block, "clusters", &structure_bsp_cluster_block },
+		{ _field_block, "materials", &global_geometry_material_block },
+		{ _field_block, "emissive materials", &structure_material_lighting_info_block },
+		{ _field_block, "sky owner cluster", &structure_bsp_sky_owner_cluster_block },
+		{ _field_block, "conveyor surfaces", &structure_bsp_conveyor_surface_block },
+		{ _field_block, "breakable surface sets", &breakable_surface_set_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
 		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
 		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
-		{ _field_data, "sound PAS data*" },
-		{ _field_block, "markers*", &structure_bsp_marker_block },
-		{ _field_block, "marker light palette*", &structure_bsp_marker_light_palette_block },
-		{ _field_block, "marker light palette index*", &structure_bsp_marker_light_index_block },
-		{ _field_block, "runtime decals*", &structure_bsp_runtime_decal_block },
-		{ _field_block, "(DEPRECATED) environment object palette*", &structure_bsp_environment_object_palette_block },
-		{ _field_block, "(DEPRECATED) environment objects*", &structure_bsp_environment_object_block },
-		{ _field_pad, "IMISWXUG", 4 },
-		{ _field_block, "leaf map leaves*", &global_map_leaf_block },
-		{ _field_block, "leaf map connections*", &global_leaf_connection_block },
-		{ _field_block, "errors*", &global_error_report_categories_block },
+		{ _field_data, "sound PAS data" },
+		{ _field_block, "markers", &structure_bsp_marker_block },
+		{ _field_block, "marker light palette", &structure_bsp_marker_light_palette_block },
+		{ _field_block, "marker light palette index", &structure_bsp_marker_light_index_block },
+		{ _field_block, "runtime decals", &structure_bsp_runtime_decal_block },
+		{ _field_block, "(DEPRECATED) environment object palette", &structure_bsp_environment_object_palette_block },
+		{ _field_block, "(DEPRECATED) environment objects", &structure_bsp_environment_object_block },
+		FIELD_PAD("IMISWXUG", nullptr, 4),
+		{ _field_block, "leaf map leaves", &global_map_leaf_block },
+		{ _field_block, "leaf map connections", &global_leaf_connection_block },
+		{ _field_block, "errors", &global_error_report_categories_block },
 		{ _field_block, "cluster to instance group mopps", &mopp_code_definition_block },
 		{ _field_block, "instance group to instance mopps", &mopp_code_definition_block },
 		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
 		{ _field_block, "instance group to instance spheres", &structure_instance_group_definition_block },
-		{ _field_block, "instanced geometry instances*", &structure_bsp_instanced_geometry_instances_block },
-		{ _field_block, "instanced geometry instance names*", &structure_bsp_instanced_geometry_instances_names_block },
+		{ _field_block, "instanced geometry instances", &structure_bsp_instanced_geometry_instances_block },
+		{ _field_block, "instanced geometry instance names", &structure_bsp_instanced_geometry_instances_names_block },
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
-		{ _field_long_integer, "Instance Geometry Tag Instance Count!" },
-		FIELD_CUSTOM("decorator info", _custom_field_function_group_begin),
-		{ _field_block, "decorator sets*", &runtime_decorator_set_block },
-		{ _field_struct, "decorator instance buffer!*", &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("decals info", _custom_field_function_group_begin),
-		{ _field_block, "preplaced decal sets*", &bsp_preplaced_decal_set_reference_block },
-		{ _field_block, "preplaced decals*", &bsp_preplaced_decal_reference_block },
-		{ _field_struct, "preplaced decal geometry!*", &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_block, "acoustics sound clusters!", &structure_bsp_sound_cluster_block },
-		{ _field_block, "transparent planes*", &transparent_planes_block },
-		{ _field_block, "debug info*", &structure_bsp_debug_info_block },
-		{ _field_struct, "structure_physics*", &global_structure_physics_struct },
-		{ _field_struct, "render geometry*", &global_render_geometry_struct },
+		{ _field_long_integer, "Instance Geometry Tag Instance Count" },
+		FIELD_CUSTOM("decorator info", nullptr, _field_id_function_group_begin),
+		{ _field_block, "decorator sets", &runtime_decorator_set_block },
+		{ _field_struct, "decorator instance buffer", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("decals info", nullptr, _field_id_function_group_begin),
+		{ _field_block, "preplaced decal sets", &bsp_preplaced_decal_set_reference_block },
+		{ _field_block, "preplaced decals", &bsp_preplaced_decal_reference_block },
+		{ _field_struct, "preplaced decal geometry", &global_render_geometry_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		{ _field_block, "acoustics sound clusters", &structure_bsp_sound_cluster_block },
+		{ _field_block, "transparent planes", &transparent_planes_block },
+		{ _field_block, "debug info", &structure_bsp_debug_info_block },
+		{ _field_struct, "structure_physics", &global_structure_physics_struct },
+		{ _field_struct, "render geometry", &global_render_geometry_struct },
 		{ _field_block, "widget references", &widget_reference_block },
 		{ _field_block, "cheap light references", &cheap_light_reference_block },
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
-		FIELD_CUSTOM("Any Platform Temporary Storage", _custom_field_function_group_begin),
-		{ _field_block, "Any Platform Temp Havok Data*!", &structureIOHavokDataBlock_block },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, _field_id_function_group_begin),
+		{ _field_block, "Any Platform Temp Havok Data", &structureIOHavokDataBlock_block },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
-		{ _field_long_integer, "base material count*!" },
+		{ _field_long_integer, "base material count" },
 		{ _field_block, "obb volume list", &structure_bsp_obb_volume_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
-		{ _field_block, "pupAnimations*!", &AnimGraphDependencyBlock_block },
+		{ _field_block, "pupAnimations", &AnimGraphDependencyBlock_block },
 		{ _field_terminator }
 	};
 
@@ -127,8 +127,8 @@ namespace macaque
 		"s_structure_edge_to_seam_edge_mapping",
 		STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
-		{ _field_short_integer, "seam_index*!" },
-		{ _field_short_integer, "seam_edge_index*!" },
+		{ _field_short_integer, "seam_index" },
+		{ _field_short_integer, "seam_edge_index" },
 		{ _field_terminator }
 	};
 
@@ -140,12 +140,25 @@ namespace macaque
 		"structure_collision_material",
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method{old shader}*^", &structure_collision_materials_block_render_method_reference },
+		{ _field_tag_reference, "render method", &structure_collision_materials_block_render_method_reference },
 		{ _field_string_id, "override material name" },
-		{ _field_short_integer, "runtime global material index!" },
-		{ _field_short_block_index, "conveyor surface index*" },
-		{ _field_short_block_index, "seam mapping index*" },
-		{ _field_word_flags, "flags*", &structure_collision_materialg_flags },
+		{ _field_short_integer, "runtime global material index" },
+		{ _field_short_block_index, "conveyor surface index", &structure_bsp_conveyor_surface_block },
+		{ _field_short_block_index, "seam mapping index", &structure_seam_mapping_block },
+		{ _field_word_flags, "flags", &structure_collision_materialg_flags },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID { 0xCD0C6613, 0x20BF49D0, 0x9379FD49, 0xA1729B48 }
+	TAG_BLOCK(
+		structure_bsp_conveyor_surface_block,
+		"structure_bsp_conveyor_surface_block",
+		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
+		"structure_conveyor_surface",
+		STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID)
+	{
+		{ _field_real_vector_3d, "u" },
+		{ _field_real_vector_3d, "v" },
 		{ _field_terminator }
 	};
 
@@ -157,7 +170,7 @@ namespace macaque
 		"structure_bsp_leaf_block",
 		STRUCTURE_BSP_LEAF_BLOCK_ID)
 	{
-		{ _field_byte_integer, "cluster*" },
+		{ _field_byte_integer, "cluster" },
 		{ _field_terminator }
 	};
 
@@ -186,40 +199,15 @@ namespace macaque
 		"s_structure_super_node_mapping",
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
-		{ _field_short_integer, "parent_super_node_index!*" },
-		{ _field_char_integer, "parent_internal_node_index!*" },
-		{ _field_byte_flags, "flags!*", &structure_super_node_mapping_flags },
-		{ _field_long_integer, "has_traversal_geometry_mask!*" },
-		{ _field_short_block_index, "first_traversal_geometry_index!*" },
-		{ _field_short_block_index, "first_aabb_index!*" },
-		{ _field_long_integer, "aabb_mask!*" },
-		{ _field_short_block_index, "non_terminal_traversal_geometry_index!*" },
-		{ _field_pad, "pad", 2 },
-		{ _field_terminator }
-	};
-
-	#define SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID { 0x61AB468A, 0xCA044161, 0xB167CAAF, 0x1B2716BF }
-	TAG_BLOCK(
-		super_node_recursable_masks_block,
-		"super_node_recursable_masks_block",
-		(k_bsp3d_maximum_super_node_count),
-		"word",
-		SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID)
-	{
-		{ _field_short_integer, "mask!*" },
-		{ _field_terminator }
-	};
-
-	#define STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID { 0x61AAAB8A, 0x10044161, 0xC167CA2F, 0xCB4716BF }
-	TAG_BLOCK(
-		structure_super_node_traversal_geometry_block,
-		"structure_super_node_traversal_geometry_block",
-		k_short_max,
-		"s_structure_super_node_traversal_geometry",
-		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID)
-	{
-		{ _field_block, "portal_indices!*", &structure_super_node_traversal_geometry_indices_block },
-		{ _field_block, "seam_indices!*", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_short_integer, "parent_super_node_index" },
+		{ _field_char_integer, "parent_internal_node_index" },
+		{ _field_byte_flags, "flags", &structure_super_node_mapping_flags },
+		{ _field_long_integer, "has_traversal_geometry_mask" },
+		{ _field_short_block_index, "first_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_short_block_index, "first_aabb_index", &structure_super_node_aabbs_block },
+		{ _field_long_integer, "aabb_mask" },
+		{ _field_short_block_index, "non_terminal_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
+		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -231,7 +219,32 @@ namespace macaque
 		"short",
 		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_INDICES_BLOCK_ID)
 	{
-		{ _field_short_integer, "index!*" },
+		{ _field_short_integer, "index" },
+		{ _field_terminator }
+	};
+
+	#define SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID { 0x61AB468A, 0xCA044161, 0xB167CAAF, 0x1B2716BF }
+	TAG_BLOCK(
+		super_node_recursable_masks_block,
+		"super_node_recursable_masks_block",
+		(k_bsp3d_maximum_super_node_count),
+		"word",
+		SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID)
+	{
+		{ _field_short_integer, "mask" },
+		{ _field_terminator }
+	};
+
+	#define STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID { 0x61AAAB8A, 0x10044161, 0xC167CA2F, 0xCB4716BF }
+	TAG_BLOCK(
+		structure_super_node_traversal_geometry_block,
+		"structure_super_node_traversal_geometry_block",
+		k_short_max,
+		"s_structure_super_node_traversal_geometry",
+		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID)
+	{
+		{ _field_block, "portal_indices", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_block, "seam_indices", &structure_super_node_traversal_geometry_indices_block },
 		{ _field_terminator }
 	};
 
@@ -243,8 +256,8 @@ namespace macaque
 		"structure_surface_block",
 		STRUCTURE_SURFACE_BLOCK_ID)
 	{
-		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index*" },
-		{ _field_long_integer, "structure_surface_to_triangle_mapping_count*" },
+		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index" },
+		{ _field_long_integer, "structure_surface_to_triangle_mapping_count" },
 		{ _field_terminator }
 	};
 
@@ -256,7 +269,7 @@ namespace macaque
 		"structure_surface_to_triangle_mapping",
 		STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_STRUCT_ID)
 	{
-		{ _field_dword_integer, "manual byteswarp1*" },
+		{ _field_dword_integer, "manual byteswarp1" },
 		{ _field_terminator }
 	};
 
@@ -269,13 +282,13 @@ namespace macaque
 		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID)
 	{
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block },
-		{ _field_short_integer, "back cluster*" },
-		{ _field_short_integer, "front cluster*" },
-		{ _field_long_integer, "plane index*" },
-		{ _field_real_point_3d, "centroid*" },
-		{ _field_real, "bounding radius*" },
-		{ _field_long_flags, "flags*", &structure_bsp_cluster_portal_flags_definition },
-		{ _field_block, "vertices*", &structure_bsp_cluster_portal_vertex_block },
+		{ _field_short_integer, "back cluster" },
+		{ _field_short_integer, "front cluster" },
+		{ _field_long_integer, "plane index" },
+		{ _field_real_point_3d, "centroid" },
+		{ _field_real, "bounding radius" },
+		{ _field_long_flags, "flags", &structure_bsp_cluster_portal_flags_definition },
+		{ _field_block, "vertices", &structure_bsp_cluster_portal_vertex_block },
 		{ _field_terminator }
 	};
 
@@ -287,7 +300,7 @@ namespace macaque
 		"real_point3d",
 		STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point*" },
+		{ _field_real_point_3d, "point" },
 		{ _field_terminator }
 	};
 
@@ -303,8 +316,8 @@ namespace macaque
 		{ _field_block, "instances", &global_detail_object_block },
 		{ _field_block, "counts", &global_detail_object_counts_block },
 		{ _field_block, "z reference vectors", &global_z_reference_vector_block },
-		{ _field_pad, "KXILLD", 1 },
-		{ _field_pad, "EDFPN", 3 },
+		FIELD_PAD("KXILLD", nullptr, 1),
+		FIELD_PAD("EDFPN", nullptr, 3),
 		{ _field_terminator }
 	};
 
@@ -317,28 +330,28 @@ namespace macaque
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "CLUSTER INFO", "" },
-		{ _field_real_bounds, "bounds x*" },
-		{ _field_real_bounds, "bounds y*" },
-		{ _field_real_bounds, "bounds z*" },
-		{ _field_pad, "DING", 1 },
-		{ _field_char_integer, "atmosphere index*" },
-		{ _field_char_integer, "camera fx index*" },
-		{ _field_char_integer, "weather index*" },
-		{ _field_short_block_index, "acoustics*" },
+		{ _field_real_bounds, "bounds x" },
+		{ _field_real_bounds, "bounds y" },
+		{ _field_real_bounds, "bounds z" },
+		FIELD_PAD("DING", nullptr, 1),
+		{ _field_char_integer, "atmosphere index" },
+		{ _field_char_integer, "camera fx index" },
+		{ _field_char_integer, "weather index" },
+		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
 		{ _field_short_integer, "acoustics sound cluster index" },
-		{ _field_short_integer, "runtime first decal index!" },
-		{ _field_short_integer, "runtime decal cound!" },
+		{ _field_short_integer, "runtime first decal index" },
+		{ _field_short_integer, "runtime decal cound" },
 		{ _field_word_flags, "flags", &structure_cluster_flags },
-		{ _field_pad, "ERERRFQ", 2 },
-		{ _field_block, "predicted resources*", &g_null_block },
-		{ _field_block, "portals*", &structure_bsp_cluster_portal_index_block },
-		{ _field_short_integer, "mesh index*" },
+		FIELD_PAD("ERERRFQ", nullptr, 2),
+		{ _field_block, "predicted resources", &g_null_block },
+		{ _field_block, "portals", &structure_bsp_cluster_portal_index_block },
+		{ _field_short_integer, "mesh index" },
 		{ _field_short_integer, "instance imposter cluster mopp index" },
-		{ _field_block, "seam indices*!", &seam_indices_block_definition_block },
-		{ _field_block, "decorator groups*", &decorator_runtime_cluster_block },
-		{ _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block },
-		{ _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block },
-		{ _field_block, "pvs bound object references*!", &pvs_bound_object_references_block },
+		{ _field_block, "seam indices", &seam_indices_block_definition_block },
+		{ _field_block, "decorator groups", &decorator_runtime_cluster_block },
+		{ _field_block, "cheap light marker refs", &cheap_light_marker_ref_block },
+		{ _field_block, "pvs bound object identifiers", &pvs_bound_object_identifiers_block },
+		{ _field_block, "pvs bound object references", &pvs_bound_object_references_block },
 		{ _field_block, "cluster cubemaps", &structure_cluster_cubemap_block },
 		{ _field_terminator }
 	};
@@ -351,7 +364,7 @@ namespace macaque
 		"short",
 		STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID)
 	{
-		{ _field_short_integer, "portal index*" },
+		{ _field_short_integer, "portal index" },
 		{ _field_terminator }
 	};
 
@@ -363,7 +376,7 @@ namespace macaque
 		"char",
 		SEAM_INDICES_BLOCK_DEFINITION_ID)
 	{
-		{ _field_char_integer, "seam index*" },
+		{ _field_char_integer, "seam index" },
 		{ _field_terminator }
 	};
 
@@ -375,8 +388,22 @@ namespace macaque
 		"s_cheap_light_marker_reference_reference",
 		CHEAP_LIGHT_MARKER_REF_BLOCK_ID)
 	{
-		{ _field_short_block_index, "cheap light reference reference" },
-		{ _field_pad, "WHATIZZIT", 2 },
+		{ _field_short_block_index, "cheap light reference reference", &cheap_light_reference_block },
+		FIELD_PAD("WHATIZZIT", nullptr, 2),
+		{ _field_terminator }
+	};
+
+	#define CHEAP_LIGHT_REFERENCE_BLOCK_ID { 0xFE62CAFA, 0x49536A8C, 0xB9E5A93F, 0xA9AA1AAB }
+	TAG_BLOCK(
+		cheap_light_reference_block,
+		"cheap_light_reference_block",
+		MAXIMUM_MARKERS_PER_STRUCTURE,
+		"s_cheap_light_marker_reference",
+		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
+	{
+		{ _field_short_integer, "marker index" },
+		FIELD_PAD("ldajk", nullptr, 2),
+		{ _field_tag_reference, "cheap light", &cheap_light_reference },
 		{ _field_terminator }
 	};
 
@@ -388,7 +415,7 @@ namespace macaque
 		"c_object_identifier",
 		PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID)
 	{
-		{ _field_struct, "object ID*!", &scenario_object_id_struct },
+		{ _field_struct, "object ID", &scenario_object_id_struct },
 		{ _field_terminator }
 	};
 
@@ -400,7 +427,7 @@ namespace macaque
 		"s_scenario_object_reference",
 		PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID)
 	{
-		{ _field_struct, "scenario object reference*!", &scenario_object_reference_struct },
+		{ _field_struct, "scenario object reference", &scenario_object_reference_struct },
 		{ _field_terminator }
 	};
 
@@ -431,20 +458,7 @@ namespace macaque
 		"short",
 		STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID)
 	{
-		{ _field_short_integer, "cluster owner*" },
-		{ _field_terminator }
-	};
-
-	#define STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID { 0xCD0C6613, 0x20BF49D0, 0x9379FD49, 0xA1729B48 }
-	TAG_BLOCK(
-		structure_bsp_conveyor_surface_block,
-		"structure_bsp_conveyor_surface_block",
-		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
-		"structure_conveyor_surface",
-		STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID)
-	{
-		{ _field_real_vector_3d, "u" },
-		{ _field_real_vector_3d, "v" },
+		{ _field_short_integer, "cluster owner" },
 		{ _field_terminator }
 	};
 
@@ -456,9 +470,9 @@ namespace macaque
 		"s_structure_cookie_cutter",
 		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Cookie Cutter", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Cookie Cutter", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "collision model", &global_collision_bsp_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -470,11 +484,11 @@ namespace macaque
 		"structure_marker",
 		STRUCTURE_BSP_MARKER_BLOCK_ID)
 	{
-		{ _field_char_enum, "marker type*", &structure_marker_type_enum },
-		{ _field_pad, "pad", 3 },
-		{ _field_string, "marker parameter*" },
+		{ _field_char_enum, "marker type", &structure_marker_type_enum },
+		FIELD_PAD("pad", nullptr, 3),
+		{ _field_string, "marker parameter" },
 		{ _field_real_quaternion, "rotation" },
-		{ _field_real_point_3d, "position*" },
+		{ _field_real_point_3d, "position" },
 		{ _field_terminator }
 	};
 
@@ -510,13 +524,13 @@ namespace macaque
 		"scenario_decal",
 		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID)
 	{
-		{ _field_short_integer, "decal palette index!" },
-		{ _field_pad, "post-decal-palette-index-pad", 2 },
+		{ _field_short_integer, "decal palette index" },
+		FIELD_PAD("post-decal-palette-index-pad", nullptr, 2),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
-		{ _field_real_quaternion, "rotation*" },
-		{ _field_real_point_3d, "position*" },
-		{ _field_real, "scale_x(scale}*" },
-		{ _field_real, "scale_y*" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "position" },
+		{ _field_real, "scale_x" },
+		{ _field_real, "scale_y" },
 		{ _field_real, "cull angle" },
 		{ _field_terminator }
 	};
@@ -529,9 +543,9 @@ namespace macaque
 		"structure_environment_object_palette_entry",
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "definition^", &object_reference$8 },
+		{ _field_tag_reference, "definition", &object_reference$8 },
 		{ _field_tag_reference, "model", &render_model_reference$9 },
-		{ _field_long_integer, "GVEYN!" },
+		{ _field_long_integer, "GVEYN" },
 		{ _field_terminator }
 	};
 
@@ -543,14 +557,14 @@ namespace macaque
 		"structure_environment_object",
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
-		{ _field_string, "name^" },
+		{ _field_string, "name" },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "translation" },
 		{ _field_real, "scale" },
-		{ _field_short_block_index, "palette_index" },
+		{ _field_short_block_index, "palette_index", &structure_bsp_environment_object_palette_block },
 		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
-		{ _field_pad, "QHUGQ", 1 },
-		{ _field_long_integer, "unique id*" },
+		FIELD_PAD("QHUGQ", nullptr, 1),
+		{ _field_long_integer, "unique id" },
 		{ _field_tag, "exported object type" },
 		{ _field_string_id, "scenario object name" },
 		{ _field_string_id, "variant name" },
@@ -594,9 +608,9 @@ namespace macaque
 		{ _field_real, "radius" },
 		{ _field_short_integer, "cluster count" },
 		{ _field_word_flags, "flags", &structure_instance_group_flags },
-		{ _field_real, "maximum imposter distance*" },
-		{ _field_real, "minimum centrifugal distance from group center*" },
-		{ _field_real, "minimum imposter distance squared*" },
+		{ _field_real, "maximum imposter distance" },
+		{ _field_real, "minimum centrifugal distance from group center" },
+		{ _field_real, "minimum imposter distance squared" },
 		{ _field_block, "instance indices", &index_list_block },
 		{ _field_terminator }
 	};
@@ -611,7 +625,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_integer, "imposter policy" },
-		{ _field_pad, "parasdd", 3 },
+		FIELD_PAD("parasdd", nullptr, 3),
 		{ _field_real, "transition distance" },
 		{ _field_terminator }
 	};
@@ -624,7 +638,7 @@ namespace macaque
 		"s_tag_reference",
 		RUNTIME_DECORATOR_SET_BLOCK_ID)
 	{
-		{ _field_tag_reference, "decorator set reference*", &global_decorator_set_reference },
+		{ _field_tag_reference, "decorator set reference", &global_decorator_set_reference },
 		{ _field_terminator }
 	};
 
@@ -636,18 +650,18 @@ namespace macaque
 		"s_bsp_preplaced_decal_set_reference",
 		BSP_PREPLACED_DECAL_SET_REFERENCE_BLOCK_ID)
 	{
-		{ _field_long_integer, "decal definition index!" },
-		{ _field_char_integer, "location bsp 0!" },
-		{ _field_byte_integer, "location cluster 0!" },
-		{ _field_char_integer, "location bsp 1!" },
-		{ _field_byte_integer, "location cluster 1!" },
-		{ _field_char_integer, "location bsp 2!" },
-		{ _field_byte_integer, "location cluster 2!" },
-		{ _field_char_integer, "location bsp 3!" },
-		{ _field_byte_integer, "location cluster 3!" },
-		{ _field_real_point_3d, "center*" },
-		{ _field_short_integer, "first decal ref index!" },
-		{ _field_short_integer, "decal ref count!" },
+		{ _field_long_integer, "decal definition index" },
+		{ _field_char_integer, "location bsp 0" },
+		{ _field_byte_integer, "location cluster 0" },
+		{ _field_char_integer, "location bsp 1" },
+		{ _field_byte_integer, "location cluster 1" },
+		{ _field_char_integer, "location bsp 2" },
+		{ _field_byte_integer, "location cluster 2" },
+		{ _field_char_integer, "location bsp 3" },
+		{ _field_byte_integer, "location cluster 3" },
+		{ _field_real_point_3d, "center" },
+		{ _field_short_integer, "first decal ref index" },
+		{ _field_short_integer, "decal ref count" },
 		{ _field_terminator }
 	};
 
@@ -664,7 +678,7 @@ namespace macaque
 		{ _field_short_integer, "vertex start" },
 		{ _field_short_integer, "vertex count" },
 		{ _field_short_integer, "definition block index" },
-		{ _field_pad, "paddddg", 2 },
+		FIELD_PAD("paddddg", nullptr, 2),
 		{ _field_real_point_2d, "spirit corner" },
 		{ _field_real_vector_2d, "spirit size" },
 		{ _field_terminator }
@@ -692,10 +706,10 @@ namespace macaque
 		"s_structure_debug_info",
 		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_pad, "BRQYEF", 64 },
-		{ _field_block, "clusters*", &structure_bsp_cluster_debug_info_block },
-		{ _field_block, "fog planes*", &structure_bsp_fog_plane_debug_info_block },
-		{ _field_block, "fog zones*", &structure_bsp_fog_zone_debug_info_block },
+		FIELD_PAD("BRQYEF", nullptr, 64),
+		{ _field_block, "clusters", &structure_bsp_cluster_debug_info_block },
+		{ _field_block, "fog planes", &structure_bsp_fog_plane_debug_info_block },
+		{ _field_block, "fog zones", &structure_bsp_fog_zone_debug_info_block },
 		{ _field_terminator }
 	};
 
@@ -707,14 +721,14 @@ namespace macaque
 		"s_structure_cluster_debug_info",
 		STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_word_flags, "errors*", &structure_bsp_debug_info_cluster_error_flags },
-		{ _field_word_flags, "warnings*", &structure_bsp_debug_info_cluster_warning_flags },
-		{ _field_pad, "KHWRB", 28 },
-		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "fog plane indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "visible fog plane indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "vis-fog omission cluster indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "containing fog zone indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_word_flags, "errors", &structure_bsp_debug_info_cluster_error_flags },
+		{ _field_word_flags, "warnings", &structure_bsp_debug_info_cluster_warning_flags },
+		FIELD_PAD("KHWRB", nullptr, 28),
+		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "fog plane indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "visible fog plane indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "vis-fog omission cluster indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "containing fog zone indices", &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -726,12 +740,12 @@ namespace macaque
 		"s_structure_debug_info_render_line",
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
-		{ _field_enum, "type*", &structure_bsp_debug_info_render_line_type_enum },
-		{ _field_short_integer, "code*" },
-		{ _field_short_integer, "pad thai*" },
-		{ _field_pad, "BNQS", 2 },
-		{ _field_real_point_3d, "point 0*" },
-		{ _field_real_point_3d, "point 1*" },
+		{ _field_enum, "type", &structure_bsp_debug_info_render_line_type_enum },
+		{ _field_short_integer, "code" },
+		{ _field_short_integer, "pad thai" },
+		FIELD_PAD("BNQS", nullptr, 2),
+		{ _field_real_point_3d, "point 0" },
+		{ _field_real_point_3d, "point 1" },
 		{ _field_terminator }
 	};
 
@@ -743,7 +757,7 @@ namespace macaque
 		"long",
 		STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID)
 	{
-		{ _field_long_integer, "index*" },
+		{ _field_long_integer, "index" },
 		{ _field_terminator }
 	};
 
@@ -755,12 +769,12 @@ namespace macaque
 		"s_structure_fog_plane_debug_info",
 		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_long_integer, "fog zone index*" },
-		{ _field_pad, "WZGH", 24 },
-		{ _field_long_integer, "connected plane designator*" },
-		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "intersected cluster indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "inf. extent cluster indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_long_integer, "fog zone index" },
+		FIELD_PAD("WZGH", nullptr, 24),
+		{ _field_long_integer, "connected plane designator" },
+		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "intersected cluster indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "inf. extent cluster indices", &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -772,13 +786,13 @@ namespace macaque
 		"s_structure_fog_zone_debug_info",
 		STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_long_integer, "media index:scenario fog plane*" },
-		{ _field_long_integer, "base fog plane index*" },
-		{ _field_pad, "RB", 24 },
-		{ _field_block, "lines*", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "immersed cluster indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "bounding fog plane indices*", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "collision fog plane indices*", &structure_bsp_debug_info_indices_block },
+		{ _field_long_integer, "media index", "scenario fog plane" },
+		{ _field_long_integer, "base fog plane index" },
+		FIELD_PAD("RB", nullptr, 24),
+		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "immersed cluster indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "bounding fog plane indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "collision fog plane indices", &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -790,23 +804,9 @@ namespace macaque
 		"s_widget_marker_reference",
 		WIDGET_REFERENCE_BLOCK_ID)
 	{
-		{ _field_short_integer, "marker index*" },
-		{ _field_pad, "gnlao", 2 },
-		{ _field_tag_reference, "widget ref*", &leaf_system_reference },
-		{ _field_terminator }
-	};
-
-	#define CHEAP_LIGHT_REFERENCE_BLOCK_ID { 0xFE62CAFA, 0x49536A8C, 0xB9E5A93F, 0xA9AA1AAB }
-	TAG_BLOCK(
-		cheap_light_reference_block,
-		"cheap_light_reference_block",
-		MAXIMUM_MARKERS_PER_STRUCTURE,
-		"s_cheap_light_marker_reference",
-		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
-	{
-		{ _field_short_integer, "marker index*" },
-		{ _field_pad, "ldajk", 2 },
-		{ _field_tag_reference, "cheap light*", &cheap_light_reference },
+		{ _field_short_integer, "marker index" },
+		FIELD_PAD("gnlao", nullptr, 2),
+		{ _field_tag_reference, "widget ref", &leaf_system_reference },
 		{ _field_terminator }
 	};
 
@@ -831,24 +831,24 @@ namespace macaque
 		STRUCTURE_EXTERNAL_INSTANCED_GEOMETRY_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "prefab reference", &prefab_reference },
-		{ _field_string_id, "name*^" },
+		{ _field_string_id, "name" },
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "left" },
 		{ _field_real_vector_3d, "up" },
 		{ _field_real_point_3d, "position" },
-		{ _field_short_integer, "mesh count!" },
-		{ _field_short_integer, "mesh block index!" },
-		{ _field_short_integer, "light count!" },
-		{ _field_short_integer, "light instance block index!" },
-		{ _field_short_integer, "dynamic object count!" },
-		{ _field_short_integer, "dynamic object block index!" },
+		{ _field_short_integer, "mesh count" },
+		{ _field_short_integer, "mesh block index" },
+		{ _field_short_integer, "light count" },
+		{ _field_short_integer, "light instance block index" },
+		{ _field_short_integer, "dynamic object count" },
+		{ _field_short_integer, "dynamic object block index" },
 		{ _field_word_flags, "override flags", &instanced_geometry_flags },
-		{ _field_pad, "SDFSDEE", 2 },
+		FIELD_PAD("SDFSDEE", nullptr, 2),
 		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "override lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "override imposter policy", &instanced_geometry_imposter_policy_enum },
-		{ _field_char_enum, "override streaming priority*", &instanced_geometry_streamingpriority_enum },
+		{ _field_char_enum, "override streaming priority", &instanced_geometry_streamingpriority_enum },
 		{ _field_real, "override lightmap resolution scale" },
 		{ _field_real, "override imposter transition distance" },
 		{ _field_real, "override imposter brightness" },
@@ -894,9 +894,9 @@ namespace macaque
 		"structureFxMarker",
 		STRUCTUREBSPFXMARKERBLOCK_ID)
 	{
-		{ _field_string, "marker name^" },
-		{ _field_real_quaternion, "rotation*" },
-		{ _field_real_point_3d, "position*" },
+		{ _field_string, "marker name" },
+		{ _field_real_quaternion, "rotation" },
+		{ _field_real_point_3d, "position" },
 		{ _field_tag_reference, "optional attached effect", &structureBspFxMarkerBlock_optional_attached_effect_reference },
 		{ _field_terminator }
 	};
@@ -909,7 +909,7 @@ namespace macaque
 		"structureMetadataLightConeMarker",
 		STRUCTUREMETADATALIGHTCONEMARKERBLOCK_ID)
 	{
-		{ _field_string, "marker name^" },
+		{ _field_string, "marker name" },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real, "length" },
@@ -939,9 +939,9 @@ namespace macaque
 		"cluster_portal::s_oriented_bounds",
 		STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "center*!" },
-		{ _field_real_vector_3d, "extents*!" },
-		{ _field_real_quaternion, "orientation*!" },
+		{ _field_real_point_3d, "center" },
+		{ _field_real_vector_3d, "extents" },
+		{ _field_real_quaternion, "orientation" },
 		{ _field_terminator }
 	};
 
@@ -955,7 +955,7 @@ namespace macaque
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
 		{ _field_pageable, "tag_resources", &structure_bsp_tag_resources_struct },
 		{ _field_pageable, "cache_file_resources", &structure_bsp_cache_file_tag_resources_struct },
-		{ _field_long_integer, "use resource items*" },
+		{ _field_long_integer, "use resource items" },
 		{ _field_terminator }
 	};
 
@@ -966,10 +966,10 @@ namespace macaque
 		"s_structure_bsp_resources",
 		STRUCTURE_BSP_RESOURCE_STRUCT_ID)
 	{
-		{ _field_block, "collision bsp*", &global_collision_bsp_block },
-		{ _field_block, "large collision bsp*", &global_large_collision_bsp_block },
-		{ _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block },
-		{ _field_block, "Havok Data*", &structureIOHavokDataBlock_block },
+		{ _field_block, "collision bsp", &global_collision_bsp_block },
+		{ _field_block, "large collision bsp", &global_large_collision_bsp_block },
+		{ _field_block, "instanced geometries definitions", &structure_bsp_instanced_geometry_definition_block },
+		{ _field_block, "Havok Data", &structureIOHavokDataBlock_block },
 		{ _field_terminator }
 	};
 
@@ -991,15 +991,15 @@ namespace macaque
 		"s_structure_bsp_cache_file_resources",
 		STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID)
 	{
-		{ _field_block, "large structure surfaces*", &structure_surface_block },
-		{ _field_block, "structure surface to triangle mapping*", &structure_surface_to_triangle_mapping_block },
-		{ _field_block, "edge to seam edge*!", &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "large structure surfaces", &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping", &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "edge to seam edge", &structure_edge_to_seam_edge_mapping_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
-		{ _field_block, "instanced geometry instances without names*", &structure_bsp_instanced_geometry_instances_without_names_block },
-		{ _field_block, "super node parent mappings*!", &super_node_mappings_block },
-		{ _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block },
-		{ _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block },
-		{ _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct },
+		{ _field_block, "instanced geometry instances without names", &structure_bsp_instanced_geometry_instances_without_names_block },
+		{ _field_block, "super node parent mappings", &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks", &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block", &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy", &collision_kd_hierarchy_static_struct },
 		{ _field_terminator }
 	};
 

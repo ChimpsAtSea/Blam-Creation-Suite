@@ -28,23 +28,23 @@ namespace macaque
 		"c_decal_definition",
 		DECAL_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "decal name^" },
+		{ _field_string_id, "decal name" },
 		{ _field_long_flags, "flags", &decal_flags },
-		FIELD_CUSTOM("material", _custom_field_shader_template),
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_begin),
-		{ _field_struct, "actual material\?", &material_struct },
-		FIELD_CUSTOM(nullptr, _custom_field_hidd_end),
-		{ _field_real_bounds, "radius:world units" },
-		{ _field_real_bounds, "decay time:seconds!" },
-		{ _field_real_bounds, "lifespan:seconds!" },
-		{ _field_real, "clamp angle:degrees#Projections at greater than this angle will be clamped to this angle" },
-		{ _field_real, "cull angle:degrees#Projections at greater than this angle will not be drawn" },
+		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		{ _field_struct, "actual material", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		{ _field_real_bounds, "radius", "world units" },
+		{ _field_real_bounds, "decay time", "seconds" },
+		{ _field_real_bounds, "lifespan", "seconds" },
+		{ _field_real, "clamp angle", "Projections at greater than this angle will be clamped to this angle", "degrees" },
+		{ _field_real, "cull angle", "Projections at greater than this angle will not be drawn", "degrees" },
 		{ _field_real, "depth bias" },
-		FIELD_CUSTOM("Decal Strip", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Decal Strip", nullptr, _field_id_function_group_begin),
 		{ _field_real, "strip U-coordinate tile length" },
 		{ _field_real, "strip max profile distance" },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		{ _field_real, "runtime bitmap aspect!" },
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		{ _field_real, "runtime bitmap aspect" },
 		{ _field_terminator }
 	};
 
@@ -56,14 +56,14 @@ namespace macaque
 		DECAL_SYSTEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &decal_system_flags },
-		{ _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" },
-		{ _field_long_integer, "ring buffer size single player (in triangles)#above entry is for MP -- SP can be different" },
-		{ _field_real, "material shader fade time#material shader lifetime is modulated from 1 to 0 over this time" },
-		{ _field_real_point_2d, "decal scale override#NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" },
+		{ _field_long_integer, "ring buffer size (in triangles)", "bigger sizes keep more decals around but use much more memory" },
+		{ _field_long_integer, "ring buffer size single player (in triangles)", "above entry is for MP -- SP can be different" },
+		{ _field_real, "material shader fade time", "material shader lifetime is modulated from 1 to 0 over this time" },
+		{ _field_real_point_2d, "decal scale override", "NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" },
 		{ _field_explanation, "Decal bucket sharing", "For the index bounds below, if non-zero, sprites will be chosen between low and high bounds, inclusive.\nUse this to keep multiple different decals in the same bucket.\nIf multiple decal systems use the same bitmap set and the same material definition, they will be combined at runtime and share their vertex bucket.\nThis is more efficient in memory and more performant to render." },
-		{ _field_short_bounds, "random sprite index bounds#if zero, will use random sprite" },
+		{ _field_short_bounds, "random sprite index bounds", "if zero, will use random sprite" },
 		{ _field_block, "decals", &decal_definition_block },
-		{ _field_real, "runtime max radius!" },
+		{ _field_real, "runtime max radius" },
 		{ _field_terminator }
 	};
 

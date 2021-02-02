@@ -20,7 +20,7 @@ namespace macaque
 		"s_scenario_zone_debugger_definition",
 		SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID)
 	{
-		{ _field_long_block_flags, "active designer zones", nullptr, 'bf32' },
+		{ _field_long_block_flags, "active designer zones", &scenario_designer_zone_block },
 		{ _field_terminator }
 	};
 

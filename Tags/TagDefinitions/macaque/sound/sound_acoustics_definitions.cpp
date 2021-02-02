@@ -22,12 +22,12 @@ namespace macaque
 		SCENARIO_ACOUSTIC_SECTOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "points", &acoustic_sector_point_block },
-		{ _field_real_plane_3d, "top plane!" },
-		{ _field_real_plane_3d, "bottom plane!" },
+		{ _field_real_plane_3d, "top plane" },
+		{ _field_real_plane_3d, "bottom plane" },
 		{ _field_long_flags, "flags", &acousticPaletteFlags },
 		{ _field_real, "occlusion value" },
-		{ _field_short_block_index, "acoustics^" },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
+		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
 		{ _field_real, "height" },
 		{ _field_real, "sink" },
 		{ _field_terminator }
@@ -53,19 +53,19 @@ namespace macaque
 		"s_scenario_acoustic_transition",
 		SCENARIO_ACOUSTIC_TRANSITION_BLOCK_STRUCT_ID)
 	{
-		{ _field_real_point_3d, "center!" },
-		{ _field_real_point_3d, "forward!" },
-		{ _field_real_point_3d, "up!" },
-		{ _field_real, "half width!" },
-		{ _field_real, "half height!" },
-		{ _field_real, "sample point offset 0!" },
-		{ _field_real, "sample point offset 1!" },
-		{ _field_short_block_index, "sample 0*" },
-		{ _field_short_block_index, "sample 1*" },
-		{ _field_struct, "location 0*!", &scenario_acoustic_location_definition },
-		{ _field_struct, "location 1*!", &scenario_acoustic_location_definition },
-		{ _field_short_block_index, "editor folder!", nullptr, 'ugly' },
-		{ _field_pad, "CKJEWRSDF", 2 },
+		{ _field_real_point_3d, "center" },
+		{ _field_real_point_3d, "forward" },
+		{ _field_real_point_3d, "up" },
+		{ _field_real, "half width" },
+		{ _field_real, "half height" },
+		{ _field_real, "sample point offset 0" },
+		{ _field_real, "sample point offset 1" },
+		{ _field_short_block_index, "sample 0", &scenario_acoustics_palette_block_definition_block },
+		{ _field_short_block_index, "sample 1", &scenario_acoustics_palette_block_definition_block },
+		{ _field_struct, "location 0", &scenario_acoustic_location_definition },
+		{ _field_struct, "location 1", &scenario_acoustic_location_definition },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		FIELD_PAD("CKJEWRSDF", nullptr, 2),
 		{ _field_terminator }
 	};
 
@@ -76,7 +76,7 @@ namespace macaque
 		"s_scenario_acoustics_palette_entry",
 		SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_explanation, "SOUND ENVIRONMENT", "" },
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition },
 		{ _field_explanation, "BACKGROUND SOUND", "" },
@@ -97,7 +97,7 @@ namespace macaque
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time{interpolation speed}:seconds" },
+		{ _field_real, "interpolation time", "seconds" },
 		{ _field_terminator }
 	};
 
@@ -109,15 +109,15 @@ namespace macaque
 		SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
-		{ _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale.", &global_looping_sound_reference },
-		{ _field_tag_reference, "entry sound#plays when entering this area", &global_sound_reference },
-		{ _field_tag_reference, "exit sound#plays when leaving this area", &global_sound_reference },
+		{ _field_tag_reference, "weather sound", &global_looping_sound_reference },
+		{ _field_tag_reference, "entry sound", &global_sound_reference },
+		{ _field_tag_reference, "exit sound", &global_sound_reference },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time{interpolation speed}:seconds" },
-		{ _field_long_flags, "scale flags DEPRICATED!", &background_sound_scale_flags_definition },
-		{ _field_real_fraction, "interior scale DEPRICATED!" },
-		{ _field_real_fraction, "portal scale DEPRICATED!" },
-		{ _field_real_fraction, "exterior scale DEPRICATED!" },
+		{ _field_real, "interpolation time", "seconds" },
+		{ _field_long_flags, "scale flags DEPRICATED", &background_sound_scale_flags_definition },
+		{ _field_real_fraction, "interior scale DEPRICATED" },
+		{ _field_real_fraction, "portal scale DEPRICATED" },
+		{ _field_real_fraction, "exterior scale DEPRICATED" },
 		{ _field_terminator }
 	};
 
@@ -128,8 +128,8 @@ namespace macaque
 		"s_scenario_acoustic_location",
 		SCENARIO_ACOUSTIC_LOCATION_DEFINITION_ID)
 	{
-		{ _field_short_block_index, "sector index*!" },
-		{ _field_struct, "cluster reference*!", &scenario_acoustic_cluster_reference_definition },
+		{ _field_short_block_index, "sector index", &scenario_acoustic_sector_block },
+		{ _field_struct, "cluster reference", &scenario_acoustic_cluster_reference_definition },
 		{ _field_terminator }
 	};
 
@@ -140,8 +140,8 @@ namespace macaque
 		"s_cluster_reference",
 		SCENARIO_ACOUSTIC_CLUSTER_REFERENCE_DEFINITION_ID)
 	{
-		{ _field_char_integer, "bsp index*!" },
-		{ _field_byte_integer, "cluster index*!" },
+		{ _field_char_integer, "bsp index" },
+		{ _field_byte_integer, "cluster index" },
 		{ _field_terminator }
 	};
 

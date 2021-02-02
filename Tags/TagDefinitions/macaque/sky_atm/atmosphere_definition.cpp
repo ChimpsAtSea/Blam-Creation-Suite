@@ -23,22 +23,22 @@ namespace macaque
 		ATMOSPHERE_FOG_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "Flags", &atmosphere_flags },
-		{ _field_byte_integer, "Version!" },
-		{ _field_pad, "ABCDEFGH", 1 },
+		{ _field_byte_integer, "Version" },
+		FIELD_PAD("ABCDEFGH", nullptr, 1),
 		{ _field_explanation, "Ambient Fog Parameters", "All heights are absolute world space height\n" },
-		{ _field_real, "distance bias:world units#negative means into the screen" },
-		FIELD_CUSTOM("Sky Fog", _custom_field_function_group_begin),
+		{ _field_real, "distance bias", "negative means into the screen", "world units" },
+		FIELD_CUSTOM("Sky Fog", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "sky fog", &solo_fog_parameters_struct_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Ground Fog", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Ground Fog", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "ground fog", &solo_fog_parameters_struct_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Ceiling Fog BEWARE!", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Ceiling Fog BEWARE", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "ceiling fog", &solo_fog_parameters_struct_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Fog Light", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Fog Light", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fog light", &fog_light_struct_definition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_explanation, "Patchy Fog Per-Cluster Parameters", "Sheet density.............Intensity scaling factor applied to all sheets\nFull intensity height.....Height above 0 below which fog should be at full intensity\nHalf intensity height.....Height at which fog should be attenuated to half intensity\nWind......................Direction and intensity of fog motion due to wind\n\n" },
 		{ _field_real, "Sheet density" },
 		{ _field_real_rgb_color, "Color tint" },
@@ -48,12 +48,12 @@ namespace macaque
 		{ _field_real, "Half intensity height" },
 		{ _field_real_vector_3d, "Wind direction" },
 		{ _field_real, "Reference plane height" },
-		FIELD_CUSTOM("Volume Fog", _custom_field_function_group_begin),
+		FIELD_CUSTOM("Volume Fog", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "volume fog", &VolumeFogParametersDefinition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
-		FIELD_CUSTOM("Light Shafts", _custom_field_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM("Light Shafts", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "light shaft", &LightShaftParametersDefinition },
-		FIELD_CUSTOM(nullptr, _custom_field_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_explanation, "Weather effect", "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n" },
 		{ _field_tag_reference, "Weather effect", &global_effect_reference },
 		{ _field_terminator }
@@ -67,7 +67,7 @@ namespace macaque
 		"s_soloFogFunction",
 		SOLOFOGFUNCTIONBLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, 0),
+		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -79,12 +79,12 @@ namespace macaque
 		"s_solo_fog_parameters",
 		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "base height:world units" },
-		{ _field_real, "fog height:world units" },
-		{ _field_real, "fog thickness [0.0 to 1.0]" },
-		{ _field_real, "fog falloff end{max fog distance}" },
+		{ _field_real, "base height", "world units" },
+		{ _field_real, "fog height", "world units" },
+		{ _field_real, "fog thickness " },
+		{ _field_real, "fog falloff end" },
 		{ _field_real_rgb_color, "fog color" },
-		{ _field_real, "fog color intensity#scales color up or down to allow for HDR values" },
+		{ _field_real, "fog color intensity", "scales color up or down to allow for HDR values" },
 		{ _field_block, "Function", &soloFogFunctionBlock_block },
 		{ _field_terminator }
 	};
@@ -96,9 +96,9 @@ namespace macaque
 		"s_fog_light_parameters",
 		FOG_LIGHT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "pitch angle [-90 to 90]:degree" },
-		{ _field_real, "yaw angle [0 to 360]:degree" },
-		{ _field_real, "angular radius [0 to 180]:degree" },
+		{ _field_real, "pitch angle " },
+		{ _field_real, "yaw angle " },
+		{ _field_real, "angular radius " },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "tint color intensity" },
 		{ _field_real, "angular falloff steepness" },

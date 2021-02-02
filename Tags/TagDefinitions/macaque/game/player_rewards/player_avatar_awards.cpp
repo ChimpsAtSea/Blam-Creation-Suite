@@ -28,7 +28,7 @@ namespace macaque
 		"s_single_avatar_award_definition",
 		SINGLE_AVATAR_AWARD_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "name^" },
+		{ _field_string_id, "name" },
 		{ _field_long_enum, "type", &global_avatar_award_enum },
 		{ _field_terminator }
 	};
