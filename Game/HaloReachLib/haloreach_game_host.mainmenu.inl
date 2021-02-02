@@ -6,6 +6,7 @@ uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build bu
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18003E3E0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18003E390);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18003E390);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18003E390);
 
 	if (engine_type == _engine_type_haloreach)
 	{
@@ -61,6 +62,7 @@ uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18003E6A0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18003E650);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18003E650);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18003E650);
 
 	if (engine_type == _engine_type_haloreach)
 	{

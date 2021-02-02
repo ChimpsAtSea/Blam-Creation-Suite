@@ -6,6 +6,7 @@ uintptr_t mcc_map_id_parse_from_halo4_offset(e_engine_type engine_type, e_build 
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x18007E1C4);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x18007E1C4);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 0x18007E214);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 0x18007E214);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_from_halo4_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo4 = { "mcc_map_id_parse_from_halo4", [](long map_id)
@@ -20,6 +21,7 @@ uintptr_t mcc_map_id_parse_to_halo4_offset(e_engine_type engine_type, e_build bu
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x18007DF40);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x18007DF40);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 0x18007DF90);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 0x18007DF90);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_to_halo4_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo4 = { "mcc_map_id_parse_to_halo4", [](long map_id)
@@ -34,6 +36,7 @@ uintptr_t mcc_game_mode_parse_to_halo4_patch_offset(e_engine_type engine_type, e
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x18003DBB6 + 2);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x18003DBB6 + 2);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 0x18003DBB6 + 2);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 0x18003DBB6 + 2);
 	return ~uintptr_t();
 }
 c_data_patch<mcc_game_mode_parse_to_halo4_patch_offset> mcc_game_mode_parse_to_halo4_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -59,6 +62,7 @@ size_t halo4_enable_mainmenu_scenario_patch_size(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 6);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 6);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 6);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 6);
 	return ~size_t();
 }
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
@@ -70,6 +74,7 @@ uintptr_t halo4_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type,
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180105888);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x1801058D8);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 0x180105938);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 0x180105938);
 	return ~uintptr_t();
 }
 c_data_patch<halo4_enable_mainmenu_scenario_patch_offset> halo4_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -88,6 +93,7 @@ uintptr_t halo4_external_launch_timeout_patch_offset(e_engine_type engine_type, 
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180066F8B);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1955_0_0, 0x180066F8B);
 	OFFSET(_engine_type_halo4, _build_mcc_1_2028_0_0, 0x180066FDB);
+	OFFSET(_engine_type_halo4, _build_mcc_1_2094_0_0, 0x180066FDB);
 	return ~uintptr_t();
 }
 c_data_patch<halo4_external_launch_timeout_patch_offset> halo4_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)

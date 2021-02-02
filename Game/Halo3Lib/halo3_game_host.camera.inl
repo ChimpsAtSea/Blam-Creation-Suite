@@ -7,6 +7,7 @@ uintptr_t halo3_player_mapping_get_local_player_offset(e_engine_type engine_type
 	// not available for builds 1767-1871
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1800FA564);
 	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x1800FCBA8);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2094_0_0, 0x180102DC8);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_player_mapping_get_local_player_offset, int __stdcall ()> halo3_player_mapping_get_local_player;
@@ -24,6 +25,7 @@ uintptr_t halo3_observer_try_and_get_camera_offset(e_engine_type engine_type, e_
 	OFFSET(_engine_type_halo3, _build_mcc_1_1871_0_0, 0x1801F4CE0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1955_0_0, 0x1801808B0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_2028_0_0, 0x180183220);
+	OFFSET(_engine_type_halo3, _build_mcc_1_2094_0_0, 0x180189440);
 	return ~uintptr_t();
 }
 c_function_hook_ex<halo3_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> halo3_observer_try_and_get_camera;

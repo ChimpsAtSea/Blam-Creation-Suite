@@ -14,6 +14,7 @@ uintptr_t sub_180041770_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo2, _build_mcc_1_1871_0_0, 0x18003B2F0);
 	OFFSET(_engine_type_halo2, _build_mcc_1_1955_0_0, 0x18003B340);
 	OFFSET(_engine_type_halo2, _build_mcc_1_2028_0_0, 0x18003B340);
+	OFFSET(_engine_type_halo2, _build_mcc_1_2094_0_0, 0x18003B340);
 	return ~uintptr_t();
 }
 c_function_hook_ex<sub_180041770_offset, char()> sub_180041770 = { "sub_180041770", []()

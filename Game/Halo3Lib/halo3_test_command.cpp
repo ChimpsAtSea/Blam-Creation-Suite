@@ -246,9 +246,9 @@ void use_30_tick_test_command()
 	c_console::write_line_verbose("using 30 tick: %s", g_use_30_tick ? "true" : "false");
 }
 
-extern bool g_halo3_ui_view_disabled;
+extern bool g_halo3_disable_c_ui_view_render;
 void halo3_toggle_ui_view_test_command()
 {
-	g_halo3_ui_view_disabled = !g_halo3_ui_view_disabled;
-	c_console::write_line_verbose("c_ui_view disabled: %s", g_halo3_ui_view_disabled ? "true" : "false");
+	g_halo3_disable_c_ui_view_render = !g_halo3_disable_c_ui_view_render;
+	c_console::write_line_verbose("c_ui_view disabled: %s", g_halo3_disable_c_ui_view_render ? "true" : "false");
 }

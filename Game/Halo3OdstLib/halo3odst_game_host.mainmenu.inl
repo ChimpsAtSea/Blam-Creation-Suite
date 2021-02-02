@@ -10,6 +10,7 @@ uintptr_t mcc_map_id_parse_from_halo3odst_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1871_0_0, 0x1800628E0);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1955_0_0, 0x18004F580);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2028_0_0, 0x18004F580);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x18004F580);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_from_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_from_halo3odst = { "mcc_map_id_parse_from_halo3odst", [](long map_id)
@@ -28,6 +29,7 @@ uintptr_t mcc_map_id_parse_to_halo3odst_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1871_0_0, 0x180062840);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1955_0_0, 0x18004F4F4);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2028_0_0, 0x18004F4F4);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x18004F4F4);
 	return ~uintptr_t();
 }
 c_function_hook_ex<mcc_map_id_parse_to_halo3odst_offset, long __fastcall(long map_id)> mcc_map_id_parse_to_halo3odst = { "mcc_map_id_parse_to_halo3odst", [](long map_id)
@@ -46,6 +48,7 @@ uintptr_t mcc_game_mode_parse_to_halo3odst_patch_offset(e_engine_type engine_typ
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1871_0_0, 0x1800145BE + 1);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1955_0_0, 0x1800102C7 + 1);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2028_0_0, 0x1800102C7 + 1);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x1800102C7 + 1);
 	return ~uintptr_t();
 }
 c_data_patch<mcc_game_mode_parse_to_halo3odst_patch_offset> mcc_game_mode_parse_to_halo3odst_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -69,6 +72,7 @@ uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(e_engine_type engine_t
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1871_0_0, 0x1800A9102);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1955_0_0, 0x180084924);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2028_0_0, 0x180084924);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x180084924);
 	return ~uintptr_t();
 }
 c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
@@ -89,6 +93,7 @@ uintptr_t halo3odst_external_launch_timeout_patch_offset(e_engine_type engine_ty
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1871_0_0, 0x180032991);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1955_0_0, 0x18002A877);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2028_0_0, 0x18002A877);
+	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x18002A877);
 	return ~uintptr_t();
 }
 c_data_patch<halo3odst_external_launch_timeout_patch_offset> halo3odst_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)

@@ -73,6 +73,7 @@ uintptr_t haloreach_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18058D36C);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18058D30C);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18058D33C);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18058D33C);
 	return ~uintptr_t();
 }
 
@@ -104,6 +105,7 @@ uintptr_t haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offse
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1805BCFD0+??);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1805BCF70+??);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x1805BCFA0+??);
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x1805BCFA0+??);
 	return ~uintptr_t();
 }
 
@@ -142,6 +144,7 @@ uintptr_t allow_night_vision_in_multiplayer_patch_offset(e_engine_type engine_ty
 	#pragma region crashes
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18004B4A5);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18004B4A5);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18004B4A5);
 	#pragma endregion
 	return ~uintptr_t();
 }
@@ -154,6 +157,7 @@ c_data_patch<allow_night_vision_in_multiplayer_patch_offset> allow_night_vision_
 	case _build_mcc_1_1930_0_0:
 	case _build_mcc_1_1955_0_0:
 	case _build_mcc_1_2028_0_0:
+	case _build_mcc_1_2094_0_0:
 		packet = MAKE_DATAPATCHPACKET(data, 2);
 		nop_address(data, 2);
 		break;
@@ -215,6 +219,7 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x1808DB7D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1808DB7D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x1808DB7D0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x1808DB7D0);
 	return ~uintptr_t();
 }
 hs_script_op* (&hs_function_table)[] = reference_symbol<hs_script_op* []>("hs_function_table", hs_function_table_offset);
@@ -246,6 +251,7 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017FC24);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017FBC4);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18017FBF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18017FBF4);
 	return ~uintptr_t();
 }
 
@@ -279,6 +285,7 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017F358);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017F2F8);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18017F328);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18017F328);
 	return ~uintptr_t();
 }
 c_function_hook_ex<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
@@ -323,6 +330,7 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1930_0_0, 0x18017DCD8);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18017DC78);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_2028_0_0, 0x18017DCA8);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_2094_0_0, 0x18017DCA8);
 	return ~uintptr_t();
 }
 c_function_hook_ex<hs_inspect_str_offset, char* __fastcall (__int64 unused, int id, char* dst, int len)> hs_inspect_str;
