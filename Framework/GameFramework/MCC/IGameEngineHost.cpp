@@ -664,6 +664,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 		s_player_configuration = new c_player_configuration(_player_configuration_version_10);
 		break;
 	case _build_mcc_1_2028_0_0:
+	case _build_mcc_1_2094_0_0:
 	default:
 		s_player_configuration = new c_player_configuration(_player_configuration_version_11);
 		break;
