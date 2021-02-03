@@ -26,6 +26,9 @@ namespace macaque
 		"reflection",
 		k_maximum_reflections_per_lens_flare,
 		"LensFlareReflection",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_REFLECTION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -54,6 +57,9 @@ namespace macaque
 		"lens_flare_scalar_animation_block",
 		1,
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_SCALAR_ANIMATION_BLOCK_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct },
@@ -66,6 +72,9 @@ namespace macaque
 		"lens_flare_color_animation_block",
 		1,
 		"s_editing_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_COLOR_ANIMATION_BLOCK_ID)
 	{
 		{ _field_struct, "color animation", &lens_flare_color_function_struct },
@@ -77,6 +86,9 @@ namespace macaque
 		lens_flare_struct_definition,
 		"lens_flare_struct_definition",
 		"s_lens_flare_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "LENS FLARE", "" },
@@ -119,6 +131,9 @@ namespace macaque
 		lens_flare_color_function_struct,
 		"lens_flare_color_function_struct",
 		"s_editing_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_COLOR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

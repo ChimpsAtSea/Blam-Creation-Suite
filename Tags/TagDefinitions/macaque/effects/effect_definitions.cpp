@@ -13,6 +13,9 @@ namespace macaque
 		"effect_block",
 		1,
 		"effect_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &effect_flags },
@@ -51,6 +54,8 @@ namespace macaque
 		"effect_locations_block",
 		k_maximum_effect_locations_count,
 		"effect_location_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_LOCATIONS_BLOCK_ID)
 	{
 		{ _field_explanation, "MARKER NAMES", "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n" },
@@ -68,6 +73,8 @@ namespace macaque
 		"effect_event_block",
 		k_maximum_effect_events_count,
 		"effect_event_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_EVENT_BLOCK_ID)
 	{
 		{ _field_string_id, "event name" },
@@ -93,6 +100,8 @@ namespace macaque
 		"effect_part_block",
 		k_maximum_effect_parts_per_event_count,
 		"effect_part_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_PART_BLOCK_ID)
 	{
 		{ _field_enum, "create in", &effect_environments },
@@ -129,6 +138,8 @@ namespace macaque
 		"effect_accelerations_block",
 		k_maximum_effect_accelerations_per_event_count,
 		"effect_acceleration_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_ACCELERATIONS_BLOCK_ID)
 	{
 		{ _field_enum, "create in", &effect_environments },
@@ -147,6 +158,8 @@ namespace macaque
 		"effect_looping_sound_block",
 		k_maximum_effect_looping_sounds_count,
 		"effect_looping_sound_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_LOOPING_SOUND_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
@@ -161,6 +174,8 @@ namespace macaque
 		"effect_conical_distribution_block",
 		1,
 		"s_effect_conical_distribution_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID)
 	{
 		{ _field_explanation, "conical_projection", "projectile_count = yaw_count*pitch_count" },

@@ -26,6 +26,8 @@ namespace macaque
 		"collision_sphere_block",
 		k_maximum_collision_spheres_per_cloth,
 		"s_cloth_collision_sphere",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_SPHERE_BLOCK_ID)
 	{
 		{ _field_string_id, "object marker name" },
@@ -39,6 +41,8 @@ namespace macaque
 		"cloth_vertices_block",
 		k_maximum_vertices_per_cloth,
 		"cloth_vertex_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_VERTICES_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "initial position" },
@@ -52,6 +56,8 @@ namespace macaque
 		"cloth_indices_block",
 		k_maximum_indices_per_cloth,
 		"cloth_index_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_INDICES_BLOCK_ID)
 	{
 		{ _field_short_integer, "index" },
@@ -64,6 +70,8 @@ namespace macaque
 		"cloth_links_block",
 		k_maximum_links_per_cloth,
 		"cloth_link_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_LINKS_BLOCK_ID)
 	{
 		{ _field_real, "default_distance" },
@@ -78,6 +86,8 @@ namespace macaque
 		cloth_struct_definition,
 		"cloth_struct_definition",
 		"cloth_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &cloth_flags },
@@ -105,6 +115,8 @@ namespace macaque
 		cloth_properties,
 		"cloth_properties",
 		"cloth_properties",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_PROPERTIES_ID)
 	{
 		{ _field_enum, "Integration type", &cloth_integration_enum },

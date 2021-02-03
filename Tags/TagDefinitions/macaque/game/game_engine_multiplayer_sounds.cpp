@@ -39,6 +39,8 @@ namespace macaque
 		"sound_response_data_block",
 		10,
 		"SoundResponseDefinition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESPONSE_DATA_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -61,6 +63,8 @@ namespace macaque
 		"sound_response_permutation_block",
 		10,
 		"SoundResponsePermutationDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESPONSE_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -73,6 +77,8 @@ namespace macaque
 		"sound_combine_response_block",
 		10,
 		"SoundCombineResponseDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_COMBINE_RESPONSE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -88,6 +94,8 @@ namespace macaque
 		"sound_incident_response_data_block",
 		10,
 		"SoundIncidentResponseDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_INCIDENT_RESPONSE_DATA_BLOCK_ID)
 	{
 		{ _field_byte_flags, "audience", &sound_audience_flags },
@@ -103,6 +111,8 @@ namespace macaque
 		sound_response_struct_definition,
 		"sound_response_struct_definition",
 		"SoundResponseGroupDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESPONSE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "responses", &sound_response_data_block },
@@ -114,6 +124,8 @@ namespace macaque
 		sound_incident_response_struct_definition,
 		"sound_incident_response_struct_definition",
 		"SoundIncidentResponseGroupDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_INCIDENT_RESPONSE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "responses", &sound_incident_response_data_block },

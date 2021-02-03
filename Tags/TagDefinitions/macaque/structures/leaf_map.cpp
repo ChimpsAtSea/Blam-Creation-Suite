@@ -13,6 +13,8 @@ namespace macaque
 		"global_map_leaf_block",
 		((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))),
 		"map_leaf",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MAP_LEAF_BLOCK_ID)
 	{
 		{ _field_block, "faces", &map_leaf_face_block },
@@ -26,6 +28,8 @@ namespace macaque
 		"map_leaf_face_block",
 		MAXIMUM_FACES_PER_MAP_LEAF,
 		"map_leaf_face",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_FACE_BLOCK_ID)
 	{
 		{ _field_long_integer, "node index" },
@@ -39,6 +43,8 @@ namespace macaque
 		"map_leaf_face_vertex_block",
 		MAXIMUM_VERTICES_PER_LEAF_CONNECTION,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_FACE_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "vertex" },
@@ -51,6 +57,8 @@ namespace macaque
 		"map_leaf_connection_index_block",
 		MAXIMUM_CONNECTIONS_PER_MAP_LEAF,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_CONNECTION_INDEX_BLOCK_ID)
 	{
 		{ _field_long_integer, "connection index" },
@@ -63,6 +71,8 @@ namespace macaque
 		"global_leaf_connection_block",
 		MAXIMUM_CONNECTIONS_PER_LEAF_MAP,
 		"leaf_connection",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LEAF_CONNECTION_BLOCK_ID)
 	{
 		{ _field_long_integer, "plane index" },
@@ -79,6 +89,8 @@ namespace macaque
 		"leaf_connection_vertex_block",
 		MAXIMUM_VERTICES_PER_LEAF_CONNECTION,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LEAF_CONNECTION_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "vertex" },

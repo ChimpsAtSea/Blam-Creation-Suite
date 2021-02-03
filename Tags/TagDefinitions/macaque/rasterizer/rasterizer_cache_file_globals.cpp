@@ -25,6 +25,8 @@ namespace macaque
 		rasterizer_cache_file_globals_struct_definition,
 		"rasterizer_cache_file_globals_struct_definition",
 		"s_rasterizer_cache_file_globals",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_CACHE_FILE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "texture header count" },

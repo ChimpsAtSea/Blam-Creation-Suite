@@ -26,6 +26,9 @@ namespace macaque
 		"global_camera_impulse_block",
 		1,
 		"s_camera_impulse_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_CAMERA_IMPULSE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -38,6 +41,9 @@ namespace macaque
 		camera_shake_struct_definition,
 		"camera_shake_struct_definition",
 		"s_camera_shake_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_SHAKE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "camera impulse", "" },
@@ -52,6 +58,9 @@ namespace macaque
 		camera_impulse_struct,
 		"camera_impulse_struct",
 		"s_camera_impulse",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_IMPULSE_STRUCT_ID)
 	{
 		{ _field_real, "impulse duration", "seconds" },
@@ -68,6 +77,9 @@ namespace macaque
 		camera_shake_struct,
 		"camera_shake_struct",
 		"s_camera_shake",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_SHAKE_STRUCT_ID)
 	{
 		{ _field_real, "shake duration", "the effect will last for this duration.", "seconds" },

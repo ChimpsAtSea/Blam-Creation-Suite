@@ -26,6 +26,8 @@ namespace macaque
 		"player_grade_definition_block",
 		k_maxPlayerGradeCount,
 		"s_player_grade_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_GRADE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_long_integer, "xp threshold ", "total earned XP needed to reach this rank" },
@@ -42,6 +44,8 @@ namespace macaque
 		player_grade_globals_definition_struct_definition,
 		"player_grade_globals_definition_struct_definition",
 		"s_player_grade_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_GRADE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "player grades", &player_grade_definition_block },

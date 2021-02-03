@@ -13,6 +13,9 @@ namespace macaque
 		"scenario_decorator_block",
 		1,
 		"s_scenario_new_decorator_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECORATOR_BLOCK_ID)
 	{
 		{ _field_struct, "brush", &decorator_brush_struct },
@@ -33,6 +36,8 @@ namespace macaque
 		"decorator_palette",
 		MAXIMUM_DECORATOR_PALETTES_PER_SCENARIO,
 		"s_decorator_palette",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_PALETTE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -61,6 +66,8 @@ namespace macaque
 		"decorator_scenario_set_block",
 		MAXIMUM_DECORATOR_SETS_PER_SCENARIO,
 		"s_decorator_scenario_set_placements",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SCENARIO_SET_BLOCK_ID)
 	{
 		{ _field_tag_reference, "decorator set", &global_decorator_set_reference },
@@ -74,6 +81,8 @@ namespace macaque
 		"global_decorator_placement_block",
 		MAXIMUM_DECORATOR_PLACEMENTS_PER_SET,
 		"s_decorator_placement",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DECORATOR_PLACEMENT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -97,6 +106,8 @@ namespace macaque
 		decorator_brush_struct,
 		"decorator_brush_struct",
 		"s_decorator_brush_options",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_BRUSH_STRUCT_ID)
 	{
 		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition },

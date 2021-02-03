@@ -13,6 +13,8 @@ namespace macaque
 		"g_scenario_editor_folder_block",
 		k_maximum_scenario_editor_folders,
 		"s_scenario_editor_folder",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		G_SCENARIO_EDITOR_FOLDER_BLOCK_ID)
 	{
 		{ _field_long_block_index, "parent folder", &g_scenario_editor_folder_block },

@@ -13,6 +13,8 @@ namespace macaque
 		"collision_kd_hierarchy_static_hash_table_data_block",
 		k_short_max,
 		"int32",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_DATA_BLOCK_ID)
 	{
 		{ _field_long_integer, "node index" },
@@ -28,6 +30,8 @@ namespace macaque
 		"collision_kd_hierarchy_static_hash_table_short_block",
 		k_short_max,
 		"int16",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_SHORT_BLOCK_ID)
 	{
 		{ _field_short_integer, "index" },
@@ -40,6 +44,8 @@ namespace macaque
 		"collision_kd_hierarchy_static_nodes_block",
 		k_short_max,
 		"s_collision_kd_hierarchy_static_node",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_NODES_BLOCK_ID)
 	{
 		{ _field_block, "render only headers", &collision_kd_hierarchy_static_hash_table_headers_block },
@@ -57,6 +63,8 @@ namespace macaque
 		"collision_kd_hierarchy_static_hash_table_headers_block",
 		k_short_max,
 		"s_collision_kd_hierarchy_static_header",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_HEADERS_BLOCK_ID)
 	{
 		{ _field_word_flags, "cull flags", &collision_kd_hierarchy_static_hash_table_cull_flags },
@@ -74,6 +82,8 @@ namespace macaque
 		"collision_kd_hierarchy_static_in_use_masks_block",
 		(k_bsp3d_maximum_super_node_count),
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_IN_USE_MASKS_BLOCK_ID)
 	{
 		{ _field_long_integer, "mask" },
@@ -86,6 +96,8 @@ namespace macaque
 		"cluster_table_block",
 		k_short_max,
 		"s_cluster_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CLUSTER_TABLE_BLOCK_ID)
 	{
 		{ _field_block, "super node mappings", &super_node_mappings_block$3_block },
@@ -98,6 +110,8 @@ namespace macaque
 		"super_node_mappings_block",
 		k_short_max,
 		"s_super_node_mapping",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
 		{ _field_array, "indices", &super_node_mapping_index_array },
@@ -111,6 +125,8 @@ namespace macaque
 		"super_node_mapping_index_array",
 		k_super_node_node_count+k_super_node_child_indices_count,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPING_INDEX_ARRAY_ID)
 	{
 		{ _field_short_block_index, "index", &collision_kd_hierarchy_static_nodes_block },
@@ -122,6 +138,8 @@ namespace macaque
 		collision_kd_hierarchy_static_struct,
 		"collision_kd_hierarchy_static_struct",
 		"s_collision_kd_hierarchy_static",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_STRUCT_ID)
 	{
 		{ _field_long_integer, "hash total_count" },

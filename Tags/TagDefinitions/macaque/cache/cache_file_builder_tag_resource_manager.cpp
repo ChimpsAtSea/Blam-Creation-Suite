@@ -13,6 +13,8 @@ namespace macaque
 		"cache_file_resource_layout_table_block",
 		1,
 		"Resources::LayoutTable",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block },
@@ -38,6 +40,8 @@ namespace macaque
 		"cache_file_resource_gestalt_block",
 		1,
 		"Resources::Gestalt",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_GESTALT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_enum, "scenario type", &scenario_type_enum },
@@ -104,6 +108,8 @@ namespace macaque
 		"cache_file_codec_identifier_block",
 		k_maximum_cache_file_codecs,
 		"s_cache_file_codec_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_CODEC_IDENTIFIER_BLOCK_ID)
 	{
 		{ _field_long_integer, "identifier part 0" },
@@ -119,6 +125,8 @@ namespace macaque
 		"cache_file_shared_file_block",
 		k_maximum_cache_file_shared_files,
 		"s_cache_file_resource_shared_file",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_SHARED_FILE_BLOCK_ID)
 	{
 		{ _field_long_string, "dvd relative path" },
@@ -140,6 +148,8 @@ namespace macaque
 		"cache_file_resource_streaming_subpage_table_block",
 		SHORT_MAX,
 		"CacheFiles::Resources::SubpageTable",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_STREAMING_SUBPAGE_TABLE_BLOCK_ID)
 	{
 		{ _field_long_integer, "total memory size" },
@@ -153,6 +163,8 @@ namespace macaque
 		"cache_file_resource_streaming_subpage_block",
 		SHORT_MAX,
 		"CacheFiles::Resources::Subpage",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_STREAMING_SUBPAGE_BLOCK_ID)
 	{
 		{ _field_long_integer, "memory offset" },
@@ -166,6 +178,8 @@ namespace macaque
 		"cache_file_resource_section_block",
 		SHORT_MAX,
 		"CacheFiles::Resources::Section",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_SECTION_BLOCK_ID)
 	{
 		{ _field_array, "page offsets", &location_offsets_array_definition_array },
@@ -180,6 +194,8 @@ namespace macaque
 		"cache_file_resource_type_identifier_block",
 		k_maximum_cache_file_tag_resource_types,
 		"s_cache_file_tag_resource_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_TYPE_IDENTIFIER_BLOCK_ID)
 	{
 		{ _field_long_integer, "identifier part 0" },
@@ -199,6 +215,8 @@ namespace macaque
 		"cache_file_interop_type_identifier_block",
 		k_maximum_cache_file_tag_resource_types,
 		"s_cache_file_tag_interop_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_INTEROP_TYPE_IDENTIFIER_BLOCK_ID)
 	{
 		{ _field_long_integer, "identifier part 0" },
@@ -215,6 +233,8 @@ namespace macaque
 		"cache_file_resource_data_block",
 		SHORT_MAX,
 		"Resources::ResourceData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_DATA_BLOCK_ID)
 	{
 		{ _field_tag_reference, "owner tag", &g_non_traversed_reference_definition },
@@ -237,6 +257,8 @@ namespace macaque
 		"cache_file_resource_fixup_location_block",
 		SHORT_MAX,
 		"s_tag_resource_fixup_location",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_FIXUP_LOCATION_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded fixup location" },
@@ -250,6 +272,8 @@ namespace macaque
 		"cache_file_resource_interop_location_block",
 		SHORT_MAX,
 		"s_tag_resource_interop_location",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_INTEROP_LOCATION_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded interop location" },
@@ -263,6 +287,8 @@ namespace macaque
 		"cache_file_resource_priority_data_block",
 		k_numberOfResourcePriorities,
 		"Resources::ResourcePriorityLevelData",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_PRIORITY_DATA_BLOCK_ID)
 	{
 		{ _field_long_integer, "naive data offset" },
@@ -281,6 +307,8 @@ namespace macaque
 		"cache_file_tag_resources_bitvector_block",
 		SHORT_MAX,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCES_BITVECTOR_BLOCK_ID)
 	{
 		{ _field_long_integer, "32 bits" },
@@ -293,6 +321,8 @@ namespace macaque
 		"cache_file_tag_resource_usage_block",
 		k_maximum_cache_file_tag_resource_types,
 		"s_cache_file_zone_resource_usage",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_USAGE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -309,6 +339,8 @@ namespace macaque
 		"cache_file_zone_resource_visit_node_block",
 		SHORT_MAX,
 		"s_cache_file_zone_resource_visit_node",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_UNKNOWN19,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "parent tag", &cache_file_resource_owner_block },
@@ -323,6 +355,8 @@ namespace macaque
 		"cache_file_resource_owner_block",
 		SHORT_MAX,
 		"s_cache_file_tag_instance_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_OWNER_BLOCK_ID)
 	{
 		{ _field_tag_reference, "resource owner", &g_non_traversed_reference_definition },
@@ -336,6 +370,8 @@ namespace macaque
 		"cache_file_zone_resource_visit_node_link_block",
 		SHORT_MAX,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_LINK_BLOCK_ID)
 	{
 		{ _field_short_block_index, "child tag", &cache_file_zone_resource_visit_node_block },
@@ -378,6 +414,8 @@ namespace macaque
 		"cache_file_zone_set_zone_usage_block",
 		k_maximum_scenario_zone_set_count,
 		"s_cache_file_zone_set_zone_usage",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_ZONE_SET_ZONE_USAGE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -397,6 +435,8 @@ namespace macaque
 		"cache_file_bsp_reference_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_BSP_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bsp", &g_non_traversed_reference_definition },
@@ -409,6 +449,8 @@ namespace macaque
 		"cache_file_model_variant_usage_block",
 		SHORT_MAX,
 		"s_cache_file_model_variant_usage",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_MODEL_VARIANT_USAGE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "model", &cache_file_resource_owner_block },
@@ -424,6 +466,8 @@ namespace macaque
 		"cache_file_resource_owner_reference_block",
 		SHORT_MAX,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_OWNER_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "tag", &cache_file_resource_owner_block },
@@ -436,6 +480,8 @@ namespace macaque
 		"cache_file_character_usage_block",
 		SHORT_MAX,
 		"s_cache_file_character_usage",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_CHARACTER_USAGE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "model", &cache_file_resource_owner_block },
@@ -450,6 +496,8 @@ namespace macaque
 		"cache_file_model_variant_usage_reference_block",
 		SHORT_MAX,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_MODEL_VARIANT_USAGE_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "model variant", &cache_file_model_variant_usage_block },
@@ -462,6 +510,8 @@ namespace macaque
 		"cache_file_bsp_game_attachments_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_cache_file_bsp_game_attachments",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "static", &cache_file_bsp_attachment_block },
@@ -476,6 +526,8 @@ namespace macaque
 		"cache_file_bsp_attachment_block",
 		SHORT_MAX,
 		"s_cache_file_bsp_attachment",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_BSP_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "attachment", &g_non_traversed_reference_definition },
@@ -506,6 +558,8 @@ namespace macaque
 		"cache_file_debug_resource_definition_block",
 		k_maximum_cache_file_tag_resource_types,
 		"s_cache_file_debug_tag_resource_defintion",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_DEBUG_RESOURCE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_block, "categories", &resource_category_block },
@@ -518,6 +572,8 @@ namespace macaque
 		"resource_category_block",
 		k_maximum_categories_per_resource,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_CATEGORY_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -530,6 +586,8 @@ namespace macaque
 		"cache_file_resource_layout_block",
 		SHORT_MAX,
 		"s_cache_file_tag_resource_layout",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_LAYOUT_BLOCK_STRUCT_ID)
 	{
 		{ _field_array, "memory sizes", &resource_layout_memory_size_array_definition_array },
@@ -551,6 +609,8 @@ namespace macaque
 		"cache_file_tag_resource_properties_block",
 		SHORT_MAX,
 		"s_cache_file_tag_resource_properties",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_block, "named values", &cache_file_tag_resource_named_value_block },
@@ -563,6 +623,8 @@ namespace macaque
 		"cache_file_tag_resource_named_value_block",
 		k_maximum_categories_per_resource*k_maximum_category_rows_per_resource,
 		"s_cache_file_tag_resource_named_value",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_NAMED_VALUE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -580,6 +642,8 @@ namespace macaque
 		"cache_file_tag_parentage_block",
 		k_maximum_tag_parentages_count,
 		"s_cache_file_tag_parentage",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_PARENTAGE_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "tag", &g_non_traversed_reference_definition },
@@ -596,6 +660,8 @@ namespace macaque
 		"cache_file_tag_parentage_reference_block",
 		k_maximum_tag_parentages_count,
 		"long",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_PARENTAGE_REFERENCE_BLOCK_ID)
 	{
 		{ _field_long_block_index, "link", &cache_file_tag_parentage_block },
@@ -608,6 +674,8 @@ namespace macaque
 		"cache_file_tag_resource_prediction_quantum_block",
 		60*k_kilo,
 		"s_tag_resource_prediction_quantum",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_QUANTUM_BLOCK_ID)
 	{
 		{ _field_long_integer, "internal resource handle" },
@@ -620,6 +688,8 @@ namespace macaque
 		"cache_file_tag_resource_prediction_atom_block",
 		k_maximum_simultaneous_tag_instances,
 		"s_tag_resource_prediction_atom",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_ATOM_BLOCK_ID)
 	{
 		{ _field_short_integer, "index salt" },
@@ -634,6 +704,8 @@ namespace macaque
 		"cache_file_tag_resource_prediction_molecule_atom_reference_block",
 		SHORT_MAX,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_ATOM_REFERENCE_BLOCK_ID)
 	{
 		{ _field_long_integer, "prediction atom handle" },
@@ -646,6 +718,8 @@ namespace macaque
 		"cache_file_tag_resource_prediction_molecule_block",
 		SHORT_MAX,
 		"s_tag_resource_prediction_molecule",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_BLOCK_ID)
 	{
 		{ _field_word_integer, "prediction atom count" },
@@ -661,6 +735,8 @@ namespace macaque
 		"cache_file_tag_resource_prediction_molecule_keys_block",
 		c_tag_resource_prediction_table_base::k_maximum_mapped_molecules,
 		"s_tag_resource_prediction_molecule_key",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_MOLECULE_KEYS_BLOCK_ID)
 	{
 		{ _field_long_integer, "index a" },
@@ -675,6 +751,8 @@ namespace macaque
 		"resource_hash_definition",
 		k_hash_size,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_HASH_DEFINITION_ID)
 	{
 		{ _field_byte_integer, "hash byte" },
@@ -687,6 +765,8 @@ namespace macaque
 		"location_offsets_array_definition",
 		k_numberOfResourcePriorities,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOCATION_OFFSETS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "offset" },
@@ -699,6 +779,8 @@ namespace macaque
 		"file_location_indexes_array_definition",
 		k_numberOfResourcePriorities,
 		"word",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FILE_LOCATION_INDEXES_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "page index", &cache_file_resource_file_page_block },
@@ -711,6 +793,8 @@ namespace macaque
 		"sublocation_table_indexes_array_definition",
 		k_numberOfResourcePriorities,
 		"word",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUBLOCATION_TABLE_INDEXES_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "subpage table index", &cache_file_resource_file_page_block },
@@ -723,6 +807,8 @@ namespace macaque
 		"tag_resource_alignment_bits_array_definition",
 		k_numberOfResourcePriorities,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TAG_RESOURCE_ALIGNMENT_BITS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_short_integer, "page alignment bits" },
@@ -735,6 +821,8 @@ namespace macaque
 		"resource_usage_page_size_array_definition",
 		k_numberOfResourcePriorities,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_USAGE_PAGE_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "page size" },
@@ -747,6 +835,8 @@ namespace macaque
 		"resource_layout_memory_size_array_definition",
 		k_numberOfResourcePriorities,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_LAYOUT_MEMORY_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "memory size" },
@@ -759,6 +849,8 @@ namespace macaque
 		"resource_layout_compressed_size_array_definition",
 		k_numberOfResourcePriorities,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_LAYOUT_COMPRESSED_SIZE_ARRAY_DEFINITION_ID)
 	{
 		{ _field_long_integer, "compressed size" },
@@ -770,6 +862,8 @@ namespace macaque
 		cache_file_resource_page_struct,
 		"cache_file_resource_page_struct",
 		"CacheFiles::Resources::FilePage",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_PAGE_STRUCT_ID)
 	{
 		{ _field_short_integer, "header salt at runtime" },
@@ -791,6 +885,8 @@ namespace macaque
 		resource_checksum_struct,
 		"resource_checksum_struct",
 		"s_cache_file_resource_checksum",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCE_CHECKSUM_STRUCT_ID)
 	{
 		{ _field_long_integer, "checksum" },
@@ -805,6 +901,8 @@ namespace macaque
 		cache_file_tag_zone_manifest_struct,
 		"cache_file_tag_zone_manifest_struct",
 		"s_cache_file_zone_manifest",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_ZONE_MANIFEST_STRUCT_ID)
 	{
 		{ _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block },
@@ -832,6 +930,8 @@ namespace macaque
 		debug_cache_file_zone_manifest_struct,
 		"debug_cache_file_zone_manifest_struct",
 		"s_debug_tag_cache_file_zone_manifest",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEBUG_CACHE_FILE_ZONE_MANIFEST_STRUCT_ID)
 	{
 		{ _field_struct, "cache zone manifest", &cache_file_tag_zone_manifest_struct },
@@ -846,6 +946,8 @@ namespace macaque
 		cache_file_tag_resource_prediction_table,
 		"cache_file_tag_resource_prediction_table",
 		"s_cache_file_resource_prediction_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_PREDICTION_TABLE_ID)
 	{
 		{ _field_block, "prediction quanta", &cache_file_tag_resource_prediction_quantum_block },

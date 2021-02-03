@@ -39,6 +39,8 @@ namespace macaque
 		"commendationAggregator",
 		CommendationAggregator::k_commendationAggregatorMaxCount,
 		"CommendationAggregator",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONAGGREGATOR_ID)
 	{
 		{ _field_string_id, "name" },
@@ -58,6 +60,8 @@ namespace macaque
 		"commendationRewardBlock",
 		eCT_count,
 		"CommendationReward",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONREWARDBLOCK_ID)
 	{
 		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
@@ -78,6 +82,8 @@ namespace macaque
 		"commendationBlock",
 		CommendationDefinition::k_maximumCommendationDefinitions,
 		"CommendationDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -103,6 +109,8 @@ namespace macaque
 		"commendationLevelBlock",
 		CommendationLevel::k_maximumCommendationLevels,
 		"CommendationLevel",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONLEVELBLOCK_ID)
 	{
 		{ _field_string_id, "level name" },
@@ -118,6 +126,8 @@ namespace macaque
 		commendation_aggregator_list_struct_definition,
 		"commendation_aggregator_list_struct_definition",
 		"CommendationAggregatorList",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATION_AGGREGATOR_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "lists", &commendationAggregator_block },
@@ -129,6 +139,8 @@ namespace macaque
 		commendation_globals_definition_struct_definition,
 		"commendation_globals_definition_struct_definition",
 		"s_commendation_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATION_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
@@ -145,6 +157,8 @@ namespace macaque
 		commendationAggregatorDependent_struct,
 		"commendationAggregatorDependent_struct",
 		"CommendationAggregatorDependent",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONAGGREGATORDEPENDENT_STRUCT_ID)
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },

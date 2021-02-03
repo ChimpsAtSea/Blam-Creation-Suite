@@ -13,6 +13,8 @@ namespace macaque
 		"map_variant_palette_block",
 		k_maximum_map_variant_palettes,
 		"s_map_variant_palette",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_PALETTE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -28,6 +30,8 @@ namespace macaque
 		"map_variant_palette_entry_block",
 		k_maximum_map_variant_palette_entries,
 		"s_map_variant_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_PALETTE_ENTRY_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -43,6 +47,8 @@ namespace macaque
 		"map_variant_object_variant_block",
 		k_maximum_object_variants_per_map_variant_palette_entry,
 		"s_map_variant_object_variant",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_OBJECT_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "display name" },
@@ -58,6 +64,8 @@ namespace macaque
 		"mapVariantPaletteDependencyBlock",
 		k_maximum_simultaneous_tag_instances,
 		"AnyTagHandle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAPVARIANTPALETTEDEPENDENCYBLOCK_ID)
 	{
 		{ _field_tag, "tag" },
@@ -70,6 +78,8 @@ namespace macaque
 		"resourceHandleBlock",
 		k_maximum_simultaneous_tag_instances,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESOURCEHANDLEBLOCK_ID)
 	{
 		{ _field_long_integer, "resourceHandle" },
@@ -81,6 +91,8 @@ namespace macaque
 		mapVariantResourceManifest,
 		"mapVariantResourceManifest",
 		"MapVariantObjectResourceManifest",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAPVARIANTRESOURCEMANIFEST_ID)
 	{
 		{ _field_block, "attachedResourceOwners", &mapVariantPaletteDependencyBlock_block },

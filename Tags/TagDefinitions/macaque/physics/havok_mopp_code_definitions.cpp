@@ -13,6 +13,8 @@ namespace macaque
 		"mopp_code_definition_block",
 		SHORT_MAX,
 		"s_havok_mopp_code_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		MOPP_CODE_DEFINITION_BLOCK_ID,
 		4)
 	{
@@ -43,6 +45,8 @@ namespace macaque
 		"mopp_code_data_definition_block",
 		16*(1024*1024),
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MOPP_CODE_DATA_DEFINITION_BLOCK_ID)
 	{
 		{ _field_byte_integer, "mopp data" },

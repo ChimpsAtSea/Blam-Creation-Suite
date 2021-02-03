@@ -26,6 +26,8 @@ namespace macaque
 		"StreamingZoneSetResourceIdBlock",
 		4096,
 		"StreamingZoneSetResourceId",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STREAMINGZONESETRESOURCEIDBLOCK_ID)
 	{
 		{ _field_tag_reference, "streaming_reference_tag", &bitmap_reference$3 },
@@ -38,6 +40,8 @@ namespace macaque
 		"StreamingZoneSetResourceSubregionDataBlock",
 		65536,
 		"StreamingZoneSetResourceSubregionData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STREAMINGZONESETRESOURCESUBREGIONDATABLOCK_ID)
 	{
 		{ _field_long_integer, "block offset X" },
@@ -54,6 +58,8 @@ namespace macaque
 		"StreamingZoneSetResourceLevelsBlock",
 		4096,
 		"StreamingZoneSetResourceLevel",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STREAMINGZONESETRESOURCELEVELSBLOCK_ID)
 	{
 		{ _field_byte_integer, "streaming subregion requested resolution" },
@@ -65,6 +71,8 @@ namespace macaque
 		streamingzoneset_struct_definition,
 		"streamingzoneset_struct_definition",
 		"StreamingZoneSet",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STREAMINGZONESET_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real_point_2d, "resource subregion AABB min" },

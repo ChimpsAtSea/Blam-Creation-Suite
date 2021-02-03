@@ -26,6 +26,8 @@ namespace macaque
 		"performane_throttle_block",
 		7,
 		"s_performance_throttles",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANE_THROTTLE_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &performance_throttle_flags },
@@ -61,6 +63,8 @@ namespace macaque
 		performance_throttles_struct_definition,
 		"performance_throttles_struct_definition",
 		"c_performance_throttles",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Performance Throttles", "Split-screen throttle settings should be more aggresive than non-local co-op settings\nblock index 0:\tdefault non split screen\nblock index 1: two way split screen\nblock index 2: three way split screen\nblock index 3: four way split screen\nblock index 4: one additional non-local player\nblock index 5: two additional non-local players\nblock index 6: three additional non-local players\n\n" },

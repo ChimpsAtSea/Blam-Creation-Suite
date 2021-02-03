@@ -26,6 +26,8 @@ namespace macaque
 		"water_physics_hull_surface_definition_block",
 		s_water_physics_model::k_maximum_hull_surfaces_count,
 		"s_water_physics_hull_surface_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_HULL_SURFACE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
@@ -43,6 +45,9 @@ namespace macaque
 		"water_physics_material_override",
 		k_maximum_material_types,
 		"s_water_physics_drag_override",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_MATERIAL_OVERRIDE_ID)
 	{
 		{ _field_string_id, "material" },
@@ -55,6 +60,9 @@ namespace macaque
 		water_physics_drag_properties_struct_definition,
 		"water_physics_drag_properties_struct_definition",
 		"s_water_physics_drag_properties",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "drag", &water_physics_drag_properties_struct },
@@ -66,6 +74,9 @@ namespace macaque
 		water_physics_drag_properties_struct,
 		"water_physics_drag_properties_struct",
 		"s_water_physics_drag_properties",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Pressure", nullptr, _field_id_function_group_begin),
@@ -84,6 +95,9 @@ namespace macaque
 		physics_force_function_struct,
 		"physics_force_function_struct",
 		"s_physics_force_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_FORCE_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

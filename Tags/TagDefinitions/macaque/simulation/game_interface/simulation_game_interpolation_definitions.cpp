@@ -25,6 +25,8 @@ namespace macaque
 		simulation_interpolation_struct_definition,
 		"simulation_interpolation_struct_definition",
 		"s_simulation_interpolation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATION_INTERPOLATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "SIMULATION INTERPOLATION", "This tag defines interpolation that will be used to smooth the motion of objects in distributed multiplayer games.  In bandwidth-constrained multiplayer games (i.e. most games), we will receive only one or two updates per second for faraway objects.  Even near objects may frequently be dropped to <5 updates per second, especially crates, garbage bits, and similar less important elements of the simulation.  Between updates, each peer predicts the motion of each object.  These predictions are often wrong (by anything from an inch to dozens of feet).  The simulation interpolation system is responsible for correcting these mispredictions in as aesthetically pleasing a way as possible, without harming the integrity of the game.  The details of the technical implementation are beyond the scope of this explanation, but various configuration parameters are exposed here.  \n\nThe tooltips for each configuration parameter should be helpful.  Please see daldridge w/ questions or bugs." },
@@ -58,6 +60,8 @@ namespace macaque
 		single_domain_configuration_struct,
 		"single_domain_configuration_struct",
 		"s_simulation_single_domain_interpolation_configuration",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_DOMAIN_CONFIGURATION_STRUCT_ID)
 	{
 		{ _field_explanation, "SINGLE DOMAIN INTERPOLATION", "Note that if either the position or rotation discrepancy thresholds above which we use blending are exceeded, we will blend in both domains (because blending is more accurate and once we blend in either domain, we are forced to warp the physics representation of the object, which is the main downside of blending.  Therefore, the second domain is essentially \"free\" after we pay for the first w/ a physics warp.\n\nNote also that this discrepancy threshold is either WU or degrees, depending on context.  Check your context!" },
@@ -78,6 +82,8 @@ namespace macaque
 		single_domain_velocity_bumps_configuration_struct,
 		"single_domain_velocity_bumps_configuration_struct",
 		"s_simulation_single_domain_velocity_bumps_configuration",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_DOMAIN_VELOCITY_BUMPS_CONFIGURATION_STRUCT_ID)
 	{
 		{ _field_explanation, "SINGLE DOMAIN VELOCITY BUMPS", "Velocity bumps are used for small mis-predictions because they are more visually pleasing than straight blending. However, they are less accurate, less consistent, and harder to tune." },
@@ -95,6 +101,8 @@ namespace macaque
 		single_domain_blending_configuration_struct,
 		"single_domain_blending_configuration_struct",
 		"s_simulation_single_domain_blending_configuration",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_DOMAIN_BLENDING_CONFIGURATION_STRUCT_ID)
 	{
 		{ _field_explanation, "SINGLE DOMAIN BLENDING CONFIGURATION", "Whether these speeds are linear or angular depends on the context - check context before modifying." },

@@ -13,6 +13,8 @@ namespace macaque
 		"game_engine_player_traits_block",
 		1,
 		"s_game_engine_player_traits",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_PLAYER_TRAITS_BLOCK_ID)
 	{
 		{ _field_block, "vitality traits", &player_traits_vitality_block },
@@ -29,6 +31,8 @@ namespace macaque
 		"player_traits_vitality_block",
 		1,
 		"c_player_traits_vitality",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_VITALITY_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
@@ -61,6 +65,8 @@ namespace macaque
 		"player_traits_weapons_block",
 		1,
 		"s_player_traits_weapons",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_WEAPONS_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_weapons_float_flags },
@@ -117,6 +123,8 @@ namespace macaque
 		"player_traits_movement_block",
 		1,
 		"c_player_traits_movement",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_MOVEMENT_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_movement_float_flags },
@@ -140,6 +148,8 @@ namespace macaque
 		"player_traits_appearance_block",
 		1,
 		"s_player_traits_appearance",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_APPEARANCE_BLOCK_ID)
 	{
 		{ _field_char_enum, "active camo", &player_trait_active_camo },
@@ -158,6 +168,8 @@ namespace macaque
 		"player_traits_sensors_block",
 		1,
 		"c_player_traits_sensors",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_SENSORS_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
@@ -180,6 +192,8 @@ namespace macaque
 		"game_engine_player_traits_list_block",
 		64,
 		"s_game_engine_player_traits_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_PLAYER_TRAITS_LIST_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },

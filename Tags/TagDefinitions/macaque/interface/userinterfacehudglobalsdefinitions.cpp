@@ -26,6 +26,8 @@ namespace macaque
 		"screen_transform_basis_array_definition",
 		9,
 		"real_point2d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_TRANSFORM_BASIS_ARRAY_DEFINITION_ID)
 	{
 		{ _field_real_point_2d, "screen transform basis element" },
@@ -37,6 +39,8 @@ namespace macaque
 		user_interface_hud_globals_definition_struct_definition,
 		"user_interface_hud_globals_definition_struct_definition",
 		"UserInterfaceHUDGlobalsDefinitions",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_HUD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Motion sensor globals", "Misc settings for the motion sensor" },

@@ -26,6 +26,8 @@ namespace macaque
 		"cinematic_dynamic_light_block",
 		16,
 		"s_cinematic_dynamic_light",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
@@ -44,6 +46,9 @@ namespace macaque
 		new_cinematic_lighting_struct_definition,
 		"new_cinematic_lighting_struct_definition",
 		"s_cinematic_lighting",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Cinematic Lighting", nullptr, _field_id_function_group_begin),

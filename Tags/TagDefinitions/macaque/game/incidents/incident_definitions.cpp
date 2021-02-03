@@ -20,6 +20,8 @@ namespace macaque
 		"incident_globals_definition_block",
 		1,
 		"s_incident_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "incidents", &incident_definition_block },
@@ -58,6 +60,8 @@ namespace macaque
 		"incident_definition_block",
 		s_incident_definition::k_maximum_incidents_per_definition,
 		"s_incident_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_DEFINITION_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -85,6 +89,8 @@ namespace macaque
 		"suppressed_incident_block",
 		1000,
 		"s_suppressed_incident_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSED_INCIDENT_BLOCK_ID)
 	{
 		{ _field_string_id, "incident name" },
@@ -99,6 +105,8 @@ namespace macaque
 		"SuppressedIncidentBlockReferenceDefinition",
 		8,
 		"SuppressedIncidentBlockReferenceDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSEDINCIDENTBLOCKREFERENCEDEFINITION_ID)
 	{
 		{ _field_tag_reference, "suppression block", &SuppressedIncidentGroupReference },
@@ -111,6 +119,8 @@ namespace macaque
 		"specialized_incident_block",
 		1,
 		"s_specialized_incident_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_BLOCK_ID)
 	{
 		{ _field_string_id, "base incident" },
@@ -131,6 +141,8 @@ namespace macaque
 		"specialized_incident_kill_implement_block",
 		50,
 		"s_specialized_incident_kill_implement_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_KILL_IMPLEMENT_BLOCK_ID)
 	{
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
@@ -144,6 +156,8 @@ namespace macaque
 		"specialized_incident_object_properties_block",
 		10,
 		"s_specialized_incident_object_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_OBJECT_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
@@ -161,6 +175,8 @@ namespace macaque
 		"specialized_incident_object_riding_in_vehicle_properties_block",
 		10,
 		"s_specialized_incident_object_vehicle_properties_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_OBJECT_RIDING_IN_VEHICLE_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_enum, "vehicle type", &vehicle_type_enum },
@@ -173,6 +189,8 @@ namespace macaque
 		"specialized_incident_special_kill_type_block",
 		10,
 		"s_specialized_incident_special_kill_type_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_SPECIAL_KILL_TYPE_BLOCK_ID)
 	{
 		{ _field_char_enum, "special kill type", &specialized_incident_special_kill_type_enum },
@@ -186,6 +204,8 @@ namespace macaque
 		"specializedIncidentGameOverBlock",
 		1,
 		"SpecializedIncidentGameOverDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZEDINCIDENTGAMEOVERBLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &specializedIncidentGameOverFlags },
@@ -201,6 +221,8 @@ namespace macaque
 		"specializedIncidentRandomOrdnanceBlock",
 		16,
 		"specializedIncidentRandomOrdnanceDefinition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZEDINCIDENTRANDOMORDNANCEBLOCK_ID)
 	{
 		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
@@ -213,6 +235,8 @@ namespace macaque
 		"specializedIncidentCustomDataFilterBlock",
 		1,
 		"SpecializedIncidentCustomDataFilterDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZEDINCIDENTCUSTOMDATAFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
@@ -227,6 +251,8 @@ namespace macaque
 		"specializedIncidentDistanceFilterBlock",
 		1,
 		"SpecializedIncidentDistanceDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZEDINCIDENTDISTANCEFILTERBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
@@ -241,6 +267,8 @@ namespace macaque
 		"incident_accumulator_block",
 		1,
 		"s_incident_accumulator_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_ACCUMULATOR_BLOCK_ID)
 	{
 		{ _field_char_enum, "aggregation type", &incident_accumulator_aggregation_method_enum },
@@ -256,6 +284,8 @@ namespace macaque
 		"incident_accumulator_child_incident_block",
 		60,
 		"s_incident_accumulator_child_incident_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_ACCUMULATOR_CHILD_INCIDENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
@@ -273,6 +303,8 @@ namespace macaque
 		"incident_sum_accumulator_block",
 		1,
 		"s_incident_sum_accumulator_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_SUM_ACCUMULATOR_BLOCK_ID)
 	{
 		{ _field_char_enum, "resets on", &incident_accumulator_reset_enum },
@@ -289,6 +321,8 @@ namespace macaque
 		"incident_sum_accumulator_child_incident_block",
 		60,
 		"s_incident_sum_accumulator_child_incident_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_SUM_ACCUMULATOR_CHILD_INCIDENT_BLOCK_ID)
 	{
 		{ _field_string_id, "incident name" },
@@ -302,6 +336,8 @@ namespace macaque
 		incident_global_properties_definition_struct_definition,
 		"incident_global_properties_definition_struct_definition",
 		"s_incident_global_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_GLOBAL_PROPERTIES_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "campaign multikill time", "s" },
@@ -338,6 +374,8 @@ namespace macaque
 		SuppressedIncident_struct_definition,
 		"SuppressedIncident_struct_definition",
 		"SuppressedIncidentGroupDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSEDINCIDENT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "suppressed incidents", &suppressed_incident_block },

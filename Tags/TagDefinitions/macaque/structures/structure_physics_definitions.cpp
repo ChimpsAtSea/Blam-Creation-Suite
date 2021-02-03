@@ -13,6 +13,8 @@ namespace macaque
 		"breakable_surface_key_table_block",
 		(SHORT_MAX),
 		"s_strucure_physics_breakable_surface_key_value",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BREAKABLE_SURFACE_KEY_TABLE_BLOCK_ID)
 	{
 		{ _field_short_integer, "instanced geometry index" },
@@ -34,6 +36,8 @@ namespace macaque
 		"soft_surfaces_definition_block",
 		1,
 		"s_soft_surfaces_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOFT_SURFACES_DEFINITION_BLOCK_ID)
 	{
 		FIELD_PAD("CLASS_NONE", nullptr, 4),
@@ -51,6 +55,8 @@ namespace macaque
 		"structure_soft_ceiling_block",
 		k_maximum_structure_soft_ceilings_count,
 		"s_structure_soft_ceiling",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOFT_CEILING_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -66,6 +72,8 @@ namespace macaque
 		"structure_soft_ceiling_triangle_block",
 		k_maximum_structure_soft_ceiling_triangles,
 		"s_structure_soft_ceiling_triangle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOFT_CEILING_TRIANGLE_BLOCK_ID)
 	{
 		{ _field_real_plane_3d, "plane" },
@@ -83,6 +91,8 @@ namespace macaque
 		"structure_water_groups_block",
 		k_maximum_structure_water_groups,
 		"s_structure_physics_water_group",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_GROUPS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -95,6 +105,8 @@ namespace macaque
 		"structure_water_instances_block",
 		k_maximum_structure_water_instances,
 		"s_structure_physics_water_instance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "group", &structure_water_groups_block },
@@ -116,6 +128,8 @@ namespace macaque
 		"structure_water_instance_planes_block",
 		k_maximum_structure_water_instance_planes,
 		"real_plane3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCE_PLANES_BLOCK_ID)
 	{
 		{ _field_real_plane_3d, "plane" },
@@ -128,6 +142,8 @@ namespace macaque
 		"structure_water_instance_debug_triangles_block",
 		k_maximum_structure_water_instance_debug_triangles,
 		"s_structure_physics_water_instance_debug_triangle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCE_DEBUG_TRIANGLES_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point0" },
@@ -141,6 +157,8 @@ namespace macaque
 		global_structure_physics_struct,
 		"global_structure_physics_struct",
 		"global_structure_physics_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID)
 	{
 		{ _field_block, "breakable surfaces mopp code block", &mopp_code_definition_block },
@@ -153,6 +171,8 @@ namespace macaque
 		global_structure_physics_design_struct,
 		"global_structure_physics_design_struct",
 		"global_structure_physics_design_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID)
 	{
 		{ _field_long_integer, "importer version" },

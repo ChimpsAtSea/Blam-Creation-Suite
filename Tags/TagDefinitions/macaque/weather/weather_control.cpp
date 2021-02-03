@@ -26,6 +26,8 @@ namespace macaque
 		"global_textures_refs_block",
 		BYTE_MAX,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_TEXTURES_REFS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "texture", &global_bitmap_reference },
@@ -37,6 +39,8 @@ namespace macaque
 		weather_globals_struct_definition,
 		"weather_globals_struct_definition",
 		"s_weather_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEATHER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "global textures", "0: ............... random noise\n" },
@@ -52,6 +56,8 @@ namespace macaque
 		rain_ripple_setting_block,
 		"rain_ripple_setting_block",
 		"s_rain_ripple_setting",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAIN_RIPPLE_SETTING_BLOCK_ID)
 	{
 		{ _field_tag_reference, "rain ripple texture", &global_bitmap_reference },

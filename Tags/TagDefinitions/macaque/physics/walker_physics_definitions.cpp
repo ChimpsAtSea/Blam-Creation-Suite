@@ -13,6 +13,8 @@ namespace macaque
 		"walker_physics_leg_block",
 		s_walker_physics_definition::k_maximum_leg_count,
 		"s_walker_physics_leg",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WALKER_PHYSICS_LEG_BLOCK_ID)
 	{
 		{ _field_explanation, "walker physics", "" },
@@ -50,6 +52,8 @@ namespace macaque
 		walker_physics_struct,
 		"walker_physics_struct",
 		"s_walker_physics_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WALKER_PHYSICS_STRUCT_ID)
 	{
 		{ _field_real_vector_3d, "maximum leg motion", "in WU, how far can we displace the legs in x,y,z each step" },

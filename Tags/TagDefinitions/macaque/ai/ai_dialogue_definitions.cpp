@@ -26,6 +26,8 @@ namespace macaque
 		"default_stimulus_suppressor_block",
 		4,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_STIMULUS_SUPPRESSOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "stimulus" },
@@ -38,6 +40,8 @@ namespace macaque
 		"vocalization_definitions_block",
 		500,
 		"vocalization",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_DEFINITIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "vocalization" },
@@ -78,6 +82,8 @@ namespace macaque
 		"response_block",
 		20,
 		"response",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESPONSE_BLOCK_ID)
 	{
 		{ _field_string_id, "vocalization name" },
@@ -94,6 +100,8 @@ namespace macaque
 		"vocalization_patterns_block",
 		1000,
 		"vocalization_pattern",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_PATTERNS_BLOCK_ID)
 	{
 		{ _field_enum, "dialogue type", &dialogue_names_enum },
@@ -133,6 +141,8 @@ namespace macaque
 		"dialogue_data_block",
 		k_dialogue_type_count,
 		"dialogue_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DIALOGUE_DATA_BLOCK_ID)
 	{
 		{ _field_short_integer, "start index (postprocess)" },
@@ -146,6 +156,8 @@ namespace macaque
 		"involuntary_data_block",
 		100,
 		"involuntary_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INVOLUNTARY_DATA_BLOCK_ID)
 	{
 		{ _field_short_integer, "involuntary vocalization index" },
@@ -159,6 +171,8 @@ namespace macaque
 		"predicted_data_block",
 		32,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PREDICTED_DATA_BLOCK_ID)
 	{
 		{ _field_long_integer, "predicted vocalization index" },
@@ -170,6 +184,8 @@ namespace macaque
 		ai_dialogue_globals_struct_definition,
 		"ai_dialogue_globals_struct_definition",
 		"ai_dialogue_definitions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Global timing", "" },

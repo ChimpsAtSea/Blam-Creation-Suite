@@ -578,12 +578,17 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 			*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
 		}
 
+		std::string runtime_flags = create_struct_definition_runtime_flags(tag_struct.runtime_flags, "\n\t\t");
+		std::string memory_attributes = create_struct_definition_memory_attributes(tag_struct.memory_attributes.memory_type, tag_struct.memory_attributes.usage_flags, "\n\t\t");
+
 		ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
 		ss << "\tTAG_BLOCK(" << std::endl;
 		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
 		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
 		ss << "\t\t" << tag_block.maximum_element_count_string << "," << std::endl;
 		ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+		ss << "\t\t" << runtime_flags << "," << std::endl;
+		ss << "\t\t" << memory_attributes << "," << std::endl;
 		ss << "\t\t" << persistent_identifier_name_buffer;
 		if (tag_struct_container.tag_struct.alignment_bits)
 		{
@@ -648,12 +653,17 @@ void c_h4_source_generator::create_tag_array_source(std::stringstream& ss, c_h4_
 			*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
 		}
 
+		std::string runtime_flags = create_struct_definition_runtime_flags(tag_struct.runtime_flags, "\n\t\t");
+		std::string memory_attributes = create_struct_definition_memory_attributes(tag_struct.memory_attributes.memory_type, tag_struct.memory_attributes.usage_flags, "\n\t\t");
+
 		ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
 		ss << "\tTAG_ARRAY(" << std::endl;
 		ss << "\t\t" << tag_block_container.symbol_name << "," << std::endl;
 		ss << "\t\t\"" << tag_block_container.tag_block.display_name << "\"," << std::endl;
 		ss << "\t\t" << tag_block.maximum_element_count_string << "," << std::endl;
 		ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+		ss << "\t\t" << runtime_flags << "," << std::endl;
+		ss << "\t\t" << memory_attributes << "," << std::endl;
 		ss << "\t\t" << persistent_identifier_name_buffer;
 		if (tag_struct_container.tag_struct.alignment_bits)
 		{
@@ -726,11 +736,16 @@ void c_h4_source_generator::create_tag_struct_source(std::stringstream& ss, c_h4
 		*persistent_identifier_name_pos = toupper(*persistent_identifier_name_pos);
 	}
 
+	std::string runtime_flags = create_struct_definition_runtime_flags(tag_struct.runtime_flags, "\n\t\t");
+	std::string memory_flags = create_struct_definition_memory_attributes(tag_struct.memory_attributes.memory_type, tag_struct.memory_attributes.usage_flags, "\n\t\t");
+
 	ss << "\t#define " << persistent_identifier_name_buffer << " { " << persistent_identifier_buffer << " }" << std::nouppercase << std::endl;
 	ss << "\tTAG_STRUCT(" << std::endl;
 	ss << "\t\t" << tag_struct_container.name << "," << std::endl;
 	ss << "\t\t\"" << tag_struct_container.tag_struct.pretty_name << "\"" << "," << std::endl;
 	ss << "\t\t\"" << tag_struct_container.struct_name << "\"" << "," << std::endl;
+	ss << "\t\t" << runtime_flags << "," << std::endl;
+	ss << "\t\t" << memory_flags << "," << std::endl;
 	ss << "\t\t" << persistent_identifier_name_buffer;
 	if (tag_struct_container.tag_struct.alignment_bits)
 	{
@@ -1170,4 +1185,186 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		}
 	}
 	ss << "\t\t{ _field_terminator }" << std::endl;
+}
+
+std::string c_h4_source_generator::create_struct_definition_runtime_flags(unsigned long runtime_flags, const char* new_line_format)
+{
+	char runtime_flags_buffer[2048] = { 0 };
+	{
+		char* runtime_flags_buffer_pos = runtime_flags_buffer; // unsafe
+		// 
+		//unsigned long default_bits = _h4_tag_field_set_unknown0 |
+		//	_h4_tag_field_set_unknown1 |
+		//	_h4_tag_field_set_has_inlined_children_with_placement_new_bit |
+		//	_h4_tag_field_set_unknown5 |
+		//	_h4_tag_field_set_unknown7 |
+		//	_h4_tag_field_set_delete_recursively_bit |
+		//	_h4_tag_field_set_postprocess_recursively_bit |
+		//	_h4_tag_field_set_unknown15 |
+		//	_h4_tag_field_set_has_level_specific_fields_bit |
+		//	_h4_tag_field_set_unknown18;
+
+		bool has_default_bits = false; // #todo is this a thing?
+
+		unsigned long default_bits =
+			1 << _h4_tag_field_set_unknown0 |
+			1 << _h4_tag_field_set_unknown1 |
+			1 << _h4_tag_field_set_unknown5 |
+			1 << _h4_tag_field_set_delete_recursively_bit |
+			1 << _h4_tag_field_set_postprocess_recursively_bit;
+
+		//bool has_default_bits = (runtime_flags & default_bits) == default_bits;
+		//if (has_default_bits)
+		//{
+		//	runtime_flags_buffer_pos += sprintf(runtime_flags_buffer, "_h4_tag_field_set_default_bits");
+		//}
+
+		{
+			bool make_new_line = false;
+			uint32_t line_characters = 0;
+			for (unsigned long runtime_flag = 0; runtime_flag < k_num_h4_runtime_flags; runtime_flag++)
+			{
+				unsigned long bit = 1 << runtime_flag;
+
+				if (has_default_bits && default_bits & bit)
+				{
+					continue;
+				}
+
+				if (runtime_flags & bit)
+				{
+					const char* runtime_flag_name = h4_tag_field_set_bit_to_field_set_bit_name(static_cast<e_h4_tag_field_set_bit>(runtime_flag));
+					const char* runtime_flag_macro = h4_tag_field_set_bit_to_field_set_bit_macro(static_cast<e_h4_tag_field_set_bit>(runtime_flag));
+
+					if (runtime_flags_buffer_pos != runtime_flags_buffer)
+					{
+						uint32_t length0 = sprintf(runtime_flags_buffer_pos, " | ");
+						runtime_flags_buffer_pos += length0;
+						line_characters += length0;
+
+						if (make_new_line)
+						{
+							uint32_t length1 = sprintf(runtime_flags_buffer_pos, "%s", new_line_format);
+							runtime_flags_buffer_pos += length1;
+							line_characters = 0;
+							make_new_line = false;
+						}
+					}
+
+					//uint32_t length = sprintf(runtime_flags_buffer_pos, "c_flags<e_tag_field_set_bit>(%s)", runtime_flag_name);
+					uint32_t length = sprintf(runtime_flags_buffer_pos, "%s", runtime_flag_macro);
+					runtime_flags_buffer_pos += length;
+					line_characters += length;
+
+					if (line_characters >= 100)
+					{
+						make_new_line = true;
+					}
+				}
+			}
+		}
+	}
+
+	if (runtime_flags_buffer[0] == 0)
+	{
+		//sprintf(runtime_flags_buffer, "c_flags<e_tag_field_set_bit>()");
+		sprintf(runtime_flags_buffer, "SET_DEFAULT");
+	}
+
+	return runtime_flags_buffer;
+}
+
+#define TEST_BIT(value, bit) (((value) & (1 << (bit))) != 0)  // #todo move this globally
+
+std::string c_h4_source_generator::create_struct_definition_memory_attributes(unsigned long memory_type, unsigned long usage_flags, const char* new_line_format)
+{
+	const char* comment = nullptr;
+	if(memory_type == 0 && usage_flags == 0)
+	{
+		comment = "k_read_only_tag_memory_attributes";
+		//return "TAG_MEMORY_ATTRIBUTES_READ_ONLY";
+	}
+	if (memory_type == 0 && TEST_BIT(usage_flags, _h4_tag_memory_writeable_bit))
+	{
+		comment = "k_read_write_tag_memory_attributes";
+		//return "TAG_MEMORY_ATTRIBUTES_READ_WRITE";
+	}
+	if (memory_type == 0 && TEST_BIT(usage_flags, _h4_tag_memory_physical_bit))
+	{
+		comment = "k_physical_read_only_tag_memory_attributes";
+		//return "TAG_MEMORY_ATTRIBUTES_PHYSICAL_READ_ONLY";
+	}
+	if (memory_type == 0 && TEST_BIT(usage_flags, _h4_tag_memory_physical_bit) && TEST_BIT(usage_flags, _h4_tag_memory_writeable_bit))
+	{
+		comment = "k_physical_read_write_tag_memory_attributes";
+		//return "TAG_MEMORY_ATTRIBUTES_PHYSICAL_READ_WRITE";
+	}
+	if (memory_type == 0 && TEST_BIT(usage_flags, _h4_tag_memory_physical_bit) && TEST_BIT(usage_flags, _h4_tag_memory_writeable_bit) && TEST_BIT(usage_flags, _h4_tag_memory_combined_bit))
+	{
+		comment = "k_physical_write_combined_tag_memory_attributes";
+		//return "TAG_MEMORY_ATTRIBUTES_PHYSICAL_WRITE_COMBINED";
+	}
+
+	const char* allocation_type_name = h4_memory_allocation_type_to_memory_allocation_type_name(static_cast<e_h4_tag_memory_allocation_type>(memory_type));
+	const char* allocation_type_macro = h4_memory_allocation_type_to_memory_allocation_type_macro(static_cast<e_h4_tag_memory_allocation_type>(memory_type));
+	
+	char memory_usage_bits_buffer[2048] = { 0 };
+	{
+		char* memory_usage_bits_buffer_pos = memory_usage_bits_buffer; // unsafe
+
+		{
+			bool make_new_line = false;
+			uint32_t line_characters = strlen(allocation_type_macro);
+			for (unsigned long usage_flag = 0; usage_flag < k_num_h4_tag_memory_usage_bits; usage_flag++)
+			{
+				unsigned long usage_flag_bit = 1 << usage_flag;
+
+				if (usage_flags & usage_flag_bit)
+				{
+					const char* usage_flag_name = h4_memory_usage_bit_to_memory_usage_bit_name(static_cast<e_h4_tag_memory_usage_bit>(usage_flag));
+					const char* usage_flag_macro = h4_memory_usage_bit_to_memory_usage_bit_macro(static_cast<e_h4_tag_memory_usage_bit>(usage_flag));
+					
+					if (memory_usage_bits_buffer_pos != memory_usage_bits_buffer)
+					{
+						uint32_t length0 = sprintf(memory_usage_bits_buffer_pos, " | ");
+						memory_usage_bits_buffer_pos += length0;
+						line_characters += length0;
+
+						if (make_new_line)
+						{
+							uint32_t length1 = sprintf(memory_usage_bits_buffer_pos, "%s", new_line_format);
+							memory_usage_bits_buffer_pos += length1;
+							line_characters = 0;
+							make_new_line = false;
+						}
+					}
+					
+					//uint32_t length = sprintf(memory_usage_bits_buffer_pos, "c_flags<e_tag_memory_usage_bit>(%s)", usage_flag_name);
+					uint32_t length = sprintf(memory_usage_bits_buffer_pos, "%s", usage_flag_macro);
+					memory_usage_bits_buffer_pos += length;
+					line_characters += length;
+
+					if (line_characters >= 100)
+					{
+						make_new_line = true;
+					}
+				}
+			}
+		}
+	}
+
+	if(memory_usage_bits_buffer[0] == 0)
+	{
+		//sprintf(memory_usage_bits_buffer, "c_flags<e_tag_memory_usage_bit>()");
+		sprintf(memory_usage_bits_buffer, "TAG_MEMORY_USAGE_READ_ONLY");
+	}
+	
+	char memory_attributes_buffer[2048] = { 0 };
+	char* memory_attributes_buffer_pos = memory_attributes_buffer;
+	memory_attributes_buffer_pos += sprintf(memory_attributes_buffer_pos, "TAG_MEMORY_ATTRIBUTES(%s, %s)", allocation_type_macro, memory_usage_bits_buffer);
+	if(comment)
+	{
+		// memory_attributes_buffer_pos += sprintf(memory_attributes_buffer_pos, " // %s", comment);
+	}
+	return memory_attributes_buffer;
 }

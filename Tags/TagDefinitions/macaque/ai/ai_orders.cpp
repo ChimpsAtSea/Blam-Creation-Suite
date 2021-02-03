@@ -13,6 +13,8 @@ namespace macaque
 		"trigger_references",
 		10,
 		"order_trigger_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGER_REFERENCES_ID)
 	{
 		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
@@ -27,6 +29,8 @@ namespace macaque
 		"triggers_block",
 		256,
 		"trigger_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGERS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
@@ -45,6 +49,8 @@ namespace macaque
 		"order_completion_condition",
 		5,
 		"s_trigger_condition",
+		SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_COMPLETION_CONDITION_ID)
 	{
 		{ _field_enum, "rule type", &condition_type_enum },
@@ -72,6 +78,8 @@ namespace macaque
 		"orders_block",
 		300,
 		"orders_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDERS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
@@ -100,6 +108,8 @@ namespace macaque
 		"secondary_set_trigger_block",
 		1,
 		"secondary_set_triggers",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SECONDARY_SET_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
@@ -114,6 +124,8 @@ namespace macaque
 		"order_ending_block",
 		12,
 		"order_ending_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_ENDING_BLOCK_ID)
 	{
 		{ _field_short_block_index, "next order", &orders_block },

@@ -26,6 +26,8 @@ namespace macaque
 		"customized_model_selection_block",
 		k_maximum_number_of_model_customization_selections_per_area,
 		"s_model_customization_selection",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOMIZED_MODEL_SELECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "selection name" },
@@ -40,6 +42,8 @@ namespace macaque
 		"customized_model_player_bits_block",
 		k_maximum_number_of_model_customization_bits_per_selection,
 		"s_model_customization_player_region_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOMIZED_MODEL_PLAYER_BITS_BLOCK_ID)
 	{
 		{ _field_string_id, "region name" },
@@ -54,6 +58,8 @@ namespace macaque
 		player_model_customization_globals_struct_definition,
 		"player_model_customization_globals_struct_definition",
 		"s_player_model_customization_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "spartan render model", &render_model_reference$7 },

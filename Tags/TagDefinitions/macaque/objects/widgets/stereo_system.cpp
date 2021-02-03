@@ -25,6 +25,8 @@ namespace macaque
 		stereo_system_struct_definition,
 		"stereo_system_struct_definition",
 		"stereo_system_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STEREO_SYSTEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "unused" },

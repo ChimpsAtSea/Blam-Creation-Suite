@@ -26,6 +26,9 @@ namespace macaque
 		"game_performance_throttle_entries_block",
 		32,
 		"s_game_performance_throttle_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | 
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_PERFORMANCE_THROTTLE_ENTRIES_BLOCK_ID)
 	{
 		{ _field_struct, "filter", &game_performance_throttle_filter_struct },
@@ -38,6 +41,8 @@ namespace macaque
 		game_performance_throttle_struct_definition,
 		"game_performance_throttle_struct_definition",
 		"s_game_performance_throttle_definitions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_PERFORMANCE_THROTTLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entries", &game_performance_throttle_entries_block },
@@ -49,6 +54,8 @@ namespace macaque
 		game_performance_throttle_filter_struct,
 		"game_performance_throttle_filter_struct",
 		"s_game_performance_throttle_filter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_PERFORMANCE_THROTTLE_FILTER_STRUCT_ID)
 	{
 		{ _field_long_integer, "minimum player count" },
@@ -60,6 +67,8 @@ namespace macaque
 		game_performance_throttle_profile_struct,
 		"game_performance_throttle_profile_struct",
 		"s_game_performance_throttle_profile",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_PERFORMANCE_THROTTLE_PROFILE_STRUCT_ID)
 	{
 		{ _field_long_integer, "maximum havok proxy count" },

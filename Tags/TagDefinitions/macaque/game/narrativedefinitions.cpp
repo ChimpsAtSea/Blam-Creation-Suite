@@ -26,6 +26,8 @@ namespace macaque
 		"NarrativeFlagDefinitionBlock",
 		64,
 		"NarrativeFlagDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NARRATIVEFLAGDEFINITIONBLOCK_ID)
 	{
 		{ _field_long_integer, "Index" },
@@ -39,6 +41,8 @@ namespace macaque
 		NarrativeGlobals_struct_definition,
 		"NarrativeGlobals_struct_definition",
 		"NarrativeGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NARRATIVEGLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock_block },

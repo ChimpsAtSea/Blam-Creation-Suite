@@ -26,6 +26,8 @@ namespace macaque
 		"default_textures_refs_block",
 		32,
 		"s_global_bitmaps",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_TEXTURES_REFS_BLOCK_ID)
 	{
 		{ _field_long_flags, "options", &global_bitmap_flags },
@@ -39,6 +41,8 @@ namespace macaque
 		"material_textures_refs_block",
 		16,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_TEXTURES_REFS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "material textures", &global_bitmap_reference },
@@ -51,6 +55,8 @@ namespace macaque
 		"explicit_shader_refs_block",
 		256,
 		"c_rasterizer_globals::s_explicit_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EXPLICIT_SHADER_REFS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -64,6 +70,8 @@ namespace macaque
 		rasterizer_globals_struct_definition,
 		"rasterizer_globals_struct_definition",
 		"c_rasterizer_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "default bitmaps", "0:  ............... default 2D texture (white)\n1:  ............... default normal map (no bump)\n2:  ............... default cube map (error pattern)\n3:  ............... color bars\n4:  ............... black 2D texture\n5:  ............... transparent black 2D texture\n6:  ............... gray 2D texture\n7:  ............... auto exposure weight\n8:  ............... auto exposure weight (4x3)\n9:  ............... stencil dither pattern\n10: ............... smooth noise warp\n11: ............... ripple pattern\n12: ............... rain ripple\n13: ............... unsigned noise\n14: ............... MLAA area map\n15: ............... red 2D texture\n16: ............... green 2D texture\n17: ............... blue 2D texture\n18: ............... cyan 2D texture\n19: ............... dxt5 atlas texture\n20: ............... dxn atlas texture\n" },

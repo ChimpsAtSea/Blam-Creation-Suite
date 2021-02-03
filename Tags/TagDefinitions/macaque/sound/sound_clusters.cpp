@@ -13,6 +13,8 @@ namespace macaque
 		"structure_bsp_sound_cluster_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_structure_sound_cluster",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID)
 	{
 		{ _field_short_integer, "palette index" },
@@ -28,6 +30,8 @@ namespace macaque
 		"structure_sound_cluster_portal_designators",
 		MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOUND_CLUSTER_PORTAL_DESIGNATORS_ID)
 	{
 		{ _field_short_integer, "portal designator" },
@@ -40,6 +44,8 @@ namespace macaque
 		"structure_sound_cluster_interior_cluster_indices",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOUND_CLUSTER_INTERIOR_CLUSTER_INDICES_ID)
 	{
 		{ _field_short_integer, "interior cluster index" },

@@ -25,6 +25,8 @@ namespace macaque
 		effect_global_force_struct_definition,
 		"effect_global_force_struct_definition",
 		"EffectGlobalForceDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_GLOBAL_FORCE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &globalForceFlags },

@@ -13,6 +13,9 @@ namespace macaque
 		"scenario_atmosphere_dumpling_block",
 		s_scenario_atmosphere_dumpling::k_maximum_scenario_atmosphere_dumplings,
 		"s_scenario_atmosphere_dumpling",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ATMOSPHERE_DUMPLING_BLOCK_ID)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
@@ -27,6 +30,8 @@ namespace macaque
 		"dumpling_point_block",
 		k_maximum_points_per_sector,
 		"s_dumpling_sector_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DUMPLING_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -40,6 +45,9 @@ namespace macaque
 		"scenario_weather_dumpling_block",
 		s_scenario_weather_dumpling::k_maximum_scenario_weather_dumplings,
 		"s_scenario_weather_dumpling",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_WEATHER_DUMPLING_BLOCK_ID)
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
@@ -53,6 +61,8 @@ namespace macaque
 		scenario_dumpling_struct,
 		"scenario_dumpling_struct",
 		"s_scenario_dumpling",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DUMPLING_STRUCT_ID)
 	{
 		{ _field_block, "inner points", &dumpling_point_block },

@@ -13,6 +13,8 @@ namespace macaque
 		"sound_radio_settings_block",
 		1,
 		"s_sound_radio_settings",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RADIO_SETTINGS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "mix settings", "" },
@@ -37,6 +39,8 @@ namespace macaque
 		"sound_equalizer_band_settings_block",
 		k_maximum_sound_equalizer_bands,
 		"s_sound_equalizer_band_settings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EQUALIZER_BAND_SETTINGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &equalizer_band_type_definition },
@@ -54,6 +58,8 @@ namespace macaque
 		global_sound_lowpass_block,
 		"global_sound_lowpass_block",
 		"s_sound_lowpass_settings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_LOWPASS_BLOCK_ID)
 	{
 		FIELD_CUSTOM("cutoff frequency", nullptr, _field_id_slider_editor),
@@ -68,6 +74,8 @@ namespace macaque
 		global_sound_reverb_block,
 		"global_sound_reverb_block",
 		"s_sound_reverb_settings",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_REVERB_BLOCK_ID)
 	{
 		FIELD_CUSTOM("room intensity", "intensity of the room effect", _field_id_slider_editor),
@@ -110,6 +118,8 @@ namespace macaque
 		global_sound_look_up_table_distortion_block,
 		"global_sound_look_up_table_distortion_block",
 		"s_sound_look_up_table_distortion_settings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_LOOK_UP_TABLE_DISTORTION_BLOCK_ID)
 	{
 		FIELD_CUSTOM("table size", nullptr, _field_id_slider_editor),
@@ -125,6 +135,8 @@ namespace macaque
 		global_sound_equalizer_block,
 		"global_sound_equalizer_block",
 		"s_sound_equalizer_settings",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_EQUALIZER_BLOCK_ID)
 	{
 		FIELD_CUSTOM("input gain", nullptr, _field_id_slider_editor),

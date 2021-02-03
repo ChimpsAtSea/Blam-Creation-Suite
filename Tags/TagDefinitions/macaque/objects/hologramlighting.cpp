@@ -13,6 +13,8 @@ namespace macaque
 		"hologramLightingGlobalsBlock",
 		1,
 		"HologramLightingGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHTINGGLOBALSBLOCK_ID)
 	{
 		FIELD_CUSTOM("HOLOGRAM FUNCTIONS", nullptr, _field_id_function_group_begin),
@@ -41,6 +43,8 @@ namespace macaque
 		hologramLightFunctions,
 		"hologramLightFunctions",
 		"HologramLightFunctions",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHTFUNCTIONS_ID)
 	{
 		{ _field_string_id, "Intensity" },
@@ -55,6 +59,8 @@ namespace macaque
 		hologramLightingBlock_struct,
 		"hologramLightingBlock_struct",
 		"HologramLighting",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHTINGBLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM("HOLOGRAM", nullptr, _field_id_function_group_begin),
@@ -81,6 +87,8 @@ namespace macaque
 		hologramLight,
 		"hologramLight",
 		"HologramLight",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HOLOGRAMLIGHT_ID)
 	{
 		FIELD_CUSTOM("Hologram Light", nullptr, _field_id_hologram_light),

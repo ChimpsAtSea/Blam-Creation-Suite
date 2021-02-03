@@ -13,6 +13,9 @@ namespace macaque
 		"active_camo_globals_block",
 		1,
 		"s_active_camo_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ACTIVE_CAMO_GLOBALS_BLOCK_ID)
 	{
 		{ _field_real, "biped speed reference", "for bipeds, the speed at which you are on the far right of the \'speed to max camo\' graph", "wu/s" },
@@ -37,6 +40,9 @@ namespace macaque
 		"active_camo_level_definition_block",
 		k_number_of_active_camo_levels,
 		"s_active_camo_level_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ACTIVE_CAMO_LEVEL_DEFINITION_BLOCK_ID)
 	{
 		{ _field_real, "grenade throw penalty", "reduces camo value by this much when throwing a grenade", "0..1" },

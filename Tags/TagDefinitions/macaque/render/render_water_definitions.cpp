@@ -25,6 +25,8 @@ namespace macaque
 		render_water_ripple_struct_definition,
 		"render_water_ripple_struct_definition",
 		"s_render_water_ripple_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_WATER_RIPPLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "TYPE FLAGS", "" },

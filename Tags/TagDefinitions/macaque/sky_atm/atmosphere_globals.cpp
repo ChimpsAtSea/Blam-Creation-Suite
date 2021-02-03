@@ -26,6 +26,8 @@ namespace macaque
 		"underwater_setting_block",
 		k_max_atmosphere_settings,
 		"s_underwater_setting",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNDERWATER_SETTING_BLOCK_ID)
 	{
 		{ _field_string_id, "Name" },
@@ -39,6 +41,9 @@ namespace macaque
 		atmosphere_globals_struct_definition,
 		"atmosphere_globals_struct_definition",
 		"s_atmosphere_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ATMOSPHERE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Patchy Fog Global Parameters", "Fog Bitmap................Noise texture to use on the screen-aligned sheets of fog\nTexture repeat rate.......Scaling factor to apply to fog UV coordinates\nDistance between sheets...Separating distance between sheets of fog\nDepth fade factor.........Lower values (approaching 0) cause a smoother fade at scene boundaries. Larger values (1 or more) make for a sharp transition\n\nFalloff start distance....Distance (in world units) at which to begin fading out patchy fog (default: 5)\nDistance falloff power....Rate at which to begin attenuating patchy fog settings (default: 2)\nTransparent sort distance..Distance from the camera where we sort the patchy fog effect (default: 100)\nwind strength across distance..Multiplies the wind strength based upon distance from player\n\n" },

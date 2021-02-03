@@ -13,6 +13,8 @@ namespace macaque
 		"polyartVertexBlock",
 		k_chudPolyArtVertexMaxCount,
 		"PolyartVertex_Full",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTVERTEXBLOCK_ID)
 	{
 		{ _field_short_integer, "half x" },
@@ -30,6 +32,8 @@ namespace macaque
 		"polyartIndexBlock",
 		PolyartIndex::k_chudPolyArtIndexMaxCount,
 		"PolyartIndex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTINDEXBLOCK_ID)
 	{
 		{ _field_short_integer, "index" },
@@ -53,6 +57,8 @@ namespace macaque
 		vertexBuffersBlock_struct,
 		"vertexBuffersBlock_struct",
 		"c_rasterizer_vertex_buffer",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXBUFFERSBLOCK_STRUCT_ID)
 	{
 		{ _field_byte_integer, "declaration type" },
@@ -68,6 +74,8 @@ namespace macaque
 		indexBuffersBlock_struct,
 		"indexBuffersBlock_struct",
 		"c_rasterizer_index_buffer",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDEXBUFFERSBLOCK_STRUCT_ID)
 	{
 		{ _field_byte_integer, "declaration type" },

@@ -26,6 +26,8 @@ namespace macaque
 		"flock_palette_block",
 		k_max_flock_instances_per_map,
 		"s_flock_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &flock_reference },
@@ -38,6 +40,8 @@ namespace macaque
 		"flock_instance_block",
 		k_max_flock_instances_per_map,
 		"s_flock_instance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_INSTANCE_BLOCK_ID)
 	{
 		{ _field_string_id, "flock name" },
@@ -68,6 +72,8 @@ namespace macaque
 		"flock_source_block",
 		k_max_sources_per_flock,
 		"s_flock_source",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_SOURCE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -88,6 +94,8 @@ namespace macaque
 		"flock_destination_block",
 		k_max_destinations_per_flock,
 		"s_flock_destination",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_DESTINATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -105,6 +113,8 @@ namespace macaque
 		flock_struct_definition,
 		"flock_struct_definition",
 		"s_flock_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Simple flocking", "" },

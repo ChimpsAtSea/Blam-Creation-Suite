@@ -26,6 +26,8 @@ namespace macaque
 		"directionalLightRigBlock",
 		lightRigDirectionalCount,
 		"DirectionalLightRig",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DIRECTIONALLIGHTRIGBLOCK_ID)
 	{
 		{ _field_long_flags, "Location", &lightRigLocation },
@@ -44,6 +46,8 @@ namespace macaque
 		"scriptableLightRigBlock",
 		e_scriptableLightRigMax,
 		"ScriptableLightRig",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPTABLELIGHTRIGBLOCK_ID)
 	{
 		{ _field_explanation, "Scriptable Light Rig", "" },
@@ -57,6 +61,8 @@ namespace macaque
 		light_rig_struct_definition,
 		"light_rig_struct_definition",
 		"LightRig",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_RIG_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Character Light Rig", "" },

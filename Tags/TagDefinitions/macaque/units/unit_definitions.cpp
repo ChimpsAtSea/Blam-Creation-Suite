@@ -26,6 +26,8 @@ namespace macaque
 		"unit_screen_effect_block",
 		4,
 		"s_unit_screen_effect_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
@@ -38,6 +40,8 @@ namespace macaque
 		"unit_camera_track_block",
 		MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS,
 		"s_unit_camera_track",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_TRACK_BLOCK_ID)
 	{
 		{ _field_tag_reference, "track", &global_camera_track_reference },
@@ -51,6 +55,9 @@ namespace macaque
 		"unit_camera_acceleration_displacement_block",
 		1,
 		"s_unit_camera_acceleration",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_BLOCK_ID)
 	{
 		{ _field_real, "maximum camera velocity", "how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don\'t set this too low.\n0 defaults to infinite.", "wu/s" },
@@ -67,6 +74,8 @@ namespace macaque
 		"WeaponSpecificMarkersBlock",
 		WEAPON_SPECIFIC_MARKERS_COUNT,
 		"WeaponSpecificMarkers",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSPECIFICMARKERSBLOCK_ID)
 	{
 		{ _field_string_id, "complete weapon name" },
@@ -85,6 +94,8 @@ namespace macaque
 		"unit_postures_block",
 		MAXIMUM_POSTURES_PER_UNIT,
 		"s_posture_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_POSTURES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -99,6 +110,8 @@ namespace macaque
 		"dialogue_variant_block",
 		MAXIMUM_DIALOGUE_VARIANTS_PER_UNIT,
 		"dialogue_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DIALOGUE_VARIANT_BLOCK_ID)
 	{
 		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit\'s model)" },
@@ -114,6 +127,8 @@ namespace macaque
 		"powered_seat_block",
 		k_powered_seats_count,
 		"powered_seat_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POWERED_SEAT_BLOCK_ID)
 	{
 		{ _field_real, "driver powerup time", "seconds" },
@@ -127,6 +142,8 @@ namespace macaque
 		"unit_weapon_block",
 		MAXIMUM_INITIAL_WEAPONS_PER_UNIT,
 		"unit_initial_weapon",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_WEAPON_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference },
@@ -172,6 +189,8 @@ namespace macaque
 		"SentryPropertiesBlock",
 		1,
 		"SentryProperties",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SENTRYPROPERTIESBLOCK_ID)
 	{
 		{ _field_byte_flags, "behavior", &sentryTurretBehaviorFlagDefinition },
@@ -199,6 +218,9 @@ namespace macaque
 		"unit_seat_block",
 		MAXIMUM_SEATS_PER_UNIT_DEFINITION,
 		"unit_seat_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN3 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_SEAT_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &unit_seat_flags },
@@ -271,6 +293,8 @@ namespace macaque
 		"boarding_seat_block",
 		MAXIMUM_SEATS_PER_UNIT_DEFINITION,
 		"s_boarding_seat",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOARDING_SEAT_BLOCK_ID)
 	{
 		{ _field_short_block_index, "seat", &unit_seat_block },
@@ -283,6 +307,10 @@ namespace macaque
 		unit_struct_definition,
 		"unit_struct_definition",
 		"_unit_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
@@ -423,6 +451,9 @@ namespace macaque
 		unit_camera_struct,
 		"unit_camera_struct",
 		"s_unit_camera",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN3 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Unit Camera", nullptr, _field_id_function_group_begin),
@@ -453,6 +484,9 @@ namespace macaque
 		unit_camera_acceleration_displacement_function_struct,
 		"unit_camera_acceleration_displacement_function_struct",
 		"s_unit_camera_acceleration_displacement_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input },
@@ -470,6 +504,8 @@ namespace macaque
 		unit_additional_node_names_struct,
 		"unit_additional_node_names_struct",
 		"unit_additional_node_names_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_ADDITIONAL_NODE_NAMES_STRUCT_ID)
 	{
 		{ _field_string_id, "preferred_gun_node", "if found, use this gun marker" },
@@ -485,6 +521,8 @@ namespace macaque
 		unit_boarding_melee_struct,
 		"unit_boarding_melee_struct",
 		"unit_boarding_melee_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_BOARDING_MELEE_STRUCT_ID)
 	{
 		{ _field_tag_reference, "boarding melee damage", &global_damage_reference },
@@ -504,6 +542,9 @@ namespace macaque
 		unit_boost_struct,
 		"unit_boost_struct",
 		"s_unit_boost_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_BOOST_STRUCT_ID)
 	{
 		{ _field_tag_reference, "boost collision damage", &collision_damage_reference$2 },
@@ -525,6 +566,8 @@ namespace macaque
 		unit_lipsync_scales_struct,
 		"unit_lipsync_scales_struct",
 		"unit_lipsync_scales_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_LIPSYNC_SCALES_STRUCT_ID)
 	{
 		{ _field_real_fraction, "attack weight" },
@@ -537,6 +580,8 @@ namespace macaque
 		unit_birth_struct,
 		"unit_birth_struct",
 		"UnitBirthingProperties",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_BIRTH_STRUCT_ID)
 	{
 		{ _field_short_block_index, "seat", &unit_seat_block },

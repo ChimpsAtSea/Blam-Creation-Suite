@@ -65,6 +65,8 @@ namespace macaque
 		"short_block",
 		k_kilo,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHORT_BLOCK_ID)
 	{
 		{ _field_short_integer, "short" },
@@ -77,6 +79,8 @@ namespace macaque
 		"render_method_parameter_block",
 		c_render_method::k_maximum_parameters,
 		"s_render_method_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name" },
@@ -102,6 +106,9 @@ namespace macaque
 		"render_method_animated_parameter_block",
 		k_kilo,
 		"s_render_method_animated_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID)
 	{
 		{ _field_long_enum, "type", &render_method_animated_parameter_type_enum },
@@ -120,6 +127,9 @@ namespace macaque
 		"render_method_postprocess_block",
 		1,
 		"s_render_method_postprocess_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_POSTPROCESS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "shader template", &render_method_template_reference },
@@ -144,6 +154,8 @@ namespace macaque
 		"render_method_postprocess_texture_block",
 		c_render_method::k_maximum_postprocess_textures,
 		"s_render_method_postprocess_texture",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_POSTPROCESS_TEXTURE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
@@ -162,6 +174,8 @@ namespace macaque
 		"real_vector4d_block",
 		k_kilo,
 		"real_vector4d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REAL_VECTOR4D_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "vector" },
@@ -175,6 +189,8 @@ namespace macaque
 		"int_block",
 		k_kilo,
 		"int",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INT_BLOCK_ID)
 	{
 		{ _field_long_integer, "int value" },
@@ -187,6 +203,8 @@ namespace macaque
 		"tag_block_index_block",
 		k_kilo,
 		"s_tag_block_index",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TAG_BLOCK_INDEX_BLOCK_ID)
 	{
 		{ _field_struct, "block index", &tag_block_index_struct },
@@ -199,6 +217,8 @@ namespace macaque
 		"render_method_postprocess_pass_block",
 		k_kilo,
 		"s_render_method_postprocess_pass",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_POSTPROCESS_PASS_BLOCK_ID)
 	{
 		{ _field_word_integer, "bitmaps", "divide by 1024 for count, remainder is start index" },
@@ -213,6 +233,8 @@ namespace macaque
 		"render_method_routing_info_block",
 		c_render_method_template::k_maximum_routing_info,
 		"s_render_method_routing_info",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_ROUTING_INFO_BLOCK_ID)
 	{
 		{ _field_word_integer, "destination index", "D3D constant index or sampler index" },
@@ -227,6 +249,8 @@ namespace macaque
 		"render_method_locked_parameter_block",
 		c_render_method_option::k_maximum_parameters,
 		"s_render_method_locked_parameter",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_LOCKED_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name" },
@@ -241,6 +265,8 @@ namespace macaque
 		"render_method_category_block",
 		c_render_method_definition::k_maximum_categories,
 		"s_render_method_definition_category",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_CATEGORY_BLOCK_ID)
 	{
 		{ _field_string_id, "category name" },
@@ -256,6 +282,8 @@ namespace macaque
 		"render_method_options_block",
 		c_render_method_definition::k_maximum_category_options,
 		"s_render_method_definition_category_option",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_OPTIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "option name" },
@@ -271,6 +299,8 @@ namespace macaque
 		"render_method_entry_points_block",
 		c_render_method_definition::k_maximum_entry_points,
 		"s_render_method_entry_point",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_ENTRY_POINTS_BLOCK_ID)
 	{
 		{ _field_long_enum, "entry point", &entry_point_enum },
@@ -284,6 +314,8 @@ namespace macaque
 		"render_method_pass_block",
 		k_kilo,
 		"s_render_method_pass",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_PASS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &render_method_pass_flags },
@@ -299,6 +331,8 @@ namespace macaque
 		"render_method_pass_category_dependencies",
 		1,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_PASS_CATEGORY_DEPENDENCIES_ID)
 	{
 		{ _field_short_block_index, "category", &render_method_category_block },
@@ -311,6 +345,8 @@ namespace macaque
 		"vertex_types_block",
 		k_number_of_vertex_types,
 		"s_render_method_vertex_types",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_TYPES_BLOCK_ID)
 	{
 		{ _field_enum, "vertex type", &vertex_types_names_enum },
@@ -324,6 +360,8 @@ namespace macaque
 		"render_method_option_parameter_block",
 		c_render_method_option::k_maximum_parameters,
 		"s_render_method_option_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_OPTION_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name" },
@@ -355,6 +393,8 @@ namespace macaque
 		"render_method_template_pass_block",
 		c_render_method_template::k_maximum_passes,
 		"s_render_method_template_pass",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_TEMPLATE_PASS_BLOCK_ID)
 	{
 		{ _field_word_integer, "bitmaps", "divide by 1024 for count, remainder is start index" },
@@ -379,6 +419,8 @@ namespace macaque
 		"render_method_template_constant_table_block",
 		254,
 		"c_render_method_template::s_constant_table_entry",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_TEMPLATE_CONSTANT_TABLE_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name" },
@@ -391,6 +433,8 @@ namespace macaque
 		"render_method_template_platform_block",
 		1,
 		"c_render_method_template::s_platform_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_TEMPLATE_PLATFORM_BLOCK_ID)
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
@@ -412,6 +456,8 @@ namespace macaque
 		"runtime_queryable_properties",
 		s_render_method_postprocess_definition::k_runtime_queryable_properties_count,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_QUERYABLE_PROPERTIES_ID)
 	{
 		{ _field_short_block_index, "index", &g_null_block },
@@ -423,6 +469,8 @@ namespace macaque
 		render_method_struct_definition,
 		"render_method_struct_definition",
 		"c_render_method",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -447,6 +495,8 @@ namespace macaque
 		render_method_definition_struct_definition,
 		"render_method_definition_struct_definition",
 		"c_render_method_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "global options", &render_method_option_reference },
@@ -467,6 +517,8 @@ namespace macaque
 		render_method_option_struct_definition,
 		"render_method_option_struct_definition",
 		"c_render_method_option",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_OPTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "parameters", &render_method_option_parameter_block },
@@ -478,6 +530,8 @@ namespace macaque
 		render_method_template_struct_definition,
 		"render_method_template_struct_definition",
 		"c_render_method_template",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
@@ -499,6 +553,8 @@ namespace macaque
 		tag_block_index_struct,
 		"tag_block_index_struct",
 		"s_tag_block_index",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TAG_BLOCK_INDEX_STRUCT_ID)
 	{
 		{ _field_word_integer, "block index data", "divide by 1024 for count, remainder is start index" },

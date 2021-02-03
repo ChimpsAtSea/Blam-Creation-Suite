@@ -26,6 +26,9 @@ namespace macaque
 		"visionModeScreenPassBlock",
 		VisionModeScreenPass::k_maxCount,
 		"VisionModeScreenPass",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODESCREENPASSBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
@@ -41,6 +44,9 @@ namespace macaque
 		"visionModeEnvironmentPassBlock",
 		VisionModeEnvironmentPass::k_maxCount,
 		"VisionModeEnvironmentPass",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEENVIRONMENTPASSBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
@@ -56,6 +62,8 @@ namespace macaque
 		"visionModeBipedPassesBlock",
 		VisionModeBipedPasses::k_maxCount,
 		"VisionModeBipedPasses",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEBIPEDPASSESBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &visionModeBipedPassesFlags },
@@ -74,6 +82,9 @@ namespace macaque
 		"visionModeBipedPassBlock",
 		VisionModeBipedPass::k_maxCount,
 		"VisionModeBipedPass",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEBIPEDPASSBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &visionModeBipedPassFlags },
@@ -91,6 +102,8 @@ namespace macaque
 		"visionModeBipedThreatBlock",
 		VisionModeBipedThreat::k_maxCount,
 		"VisionModeBipedThreat",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEBIPEDTHREATBLOCK_ID)
 	{
 		{ _field_real, "threat per kill" },
@@ -106,6 +119,9 @@ namespace macaque
 		"visionModeOrdnanceVehiclePassBlock",
 		VisionModeOrdnanceVehiclePass::k_maxCount,
 		"VisionModeOrdnanceVehiclePass",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEORDNANCEVEHICLEPASSBLOCK_ID)
 	{
 		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
@@ -122,6 +138,8 @@ namespace macaque
 		"visionModeOrdnanceVehicleTypeBlock",
 		VisionModeOrdnanceVehicleType::k_maxCount,
 		"VisionModeOrdnanceVehicleType",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEORDNANCEVEHICLETYPEBLOCK_ID)
 	{
 		{ _field_tag_reference, "vehicle type", &Tag::Reference<struct vehicle_definition>::s_defaultDefinition },
@@ -136,6 +154,9 @@ namespace macaque
 		"visionModeOrdnanceCrosshairBlock",
 		VisionModeOrdnanceCrosshair::k_maxCount,
 		"VisionModeOrdnanceCrosshair",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEORDNANCECROSSHAIRBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
@@ -150,6 +171,8 @@ namespace macaque
 		vision_mode_struct_definition,
 		"vision_mode_struct_definition",
 		"VisionModeDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VISION_MODE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &visionModeFlags },

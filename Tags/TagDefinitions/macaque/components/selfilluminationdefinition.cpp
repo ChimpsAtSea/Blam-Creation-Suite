@@ -26,6 +26,9 @@ namespace macaque
 		"self_illumination_state",
 		SelfIlluminationDefinition::MAX_STATES,
 		"SelfIlluminationState",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SELF_ILLUMINATION_STATE_ID)
 	{
 		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
@@ -44,6 +47,9 @@ namespace macaque
 		self_illumination_struct_definition,
 		"self_illumination_struct_definition",
 		"SelfIlluminationDefinition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SELF_ILLUMINATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "States", &self_illumination_state_block },

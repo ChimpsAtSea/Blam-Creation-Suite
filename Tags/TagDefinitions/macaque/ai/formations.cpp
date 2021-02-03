@@ -13,6 +13,8 @@ namespace macaque
 		"formation_block",
 		1,
 		"s_formation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -33,6 +35,8 @@ namespace macaque
 		"formation_primitive_definition",
 		k_max_primitives_per_formation,
 		"s_formation_primitive",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_PRIMITIVE_DEFINITION_ID)
 	{
 		{ _field_explanation, "", "" },
@@ -54,6 +58,8 @@ namespace macaque
 		"formation_point_definition",
 		k_max_points_per_primitive,
 		"s_formation_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_POINT_DEFINITION_ID)
 	{
 		{ _field_explanation, "", "" },

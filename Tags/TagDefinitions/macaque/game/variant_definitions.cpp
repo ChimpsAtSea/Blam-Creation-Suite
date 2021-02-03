@@ -26,6 +26,8 @@ namespace macaque
 		"single_variant_block",
 		s_variant_globals_definition::k_variant_globals_per_block_count_maximum,
 		"s_single_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_VARIANT_BLOCK_ID)
 	{
 		{ _field_data, "metadata" },
@@ -40,6 +42,8 @@ namespace macaque
 		"FallbackHopperFileBlock",
 		s_variant_globals_definition::k_hopper_files_maximum_count,
 		"FallbackHopperFile",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FALLBACKHOPPERFILEBLOCK_ID)
 	{
 		{ _field_data, "file_data" },
@@ -52,6 +56,8 @@ namespace macaque
 		variant_globals_struct_definition,
 		"variant_globals_struct_definition",
 		"s_variant_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VARIANT_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "map_variants", &single_variant_block },

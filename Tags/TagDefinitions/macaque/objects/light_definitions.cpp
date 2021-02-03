@@ -25,6 +25,9 @@ namespace macaque
 		light_struct_definition,
 		"light_struct_definition",
 		"dynamic_light_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct },
@@ -36,6 +39,9 @@ namespace macaque
 		light_color_function_struct,
 		"light_color_function_struct",
 		"light_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_COLOR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
@@ -53,6 +59,9 @@ namespace macaque
 		light_scalar_function_struct,
 		"light_scalar_function_struct",
 		"light_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

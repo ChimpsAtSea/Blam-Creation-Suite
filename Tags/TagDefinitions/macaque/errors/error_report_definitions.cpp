@@ -13,6 +13,8 @@ namespace macaque
 		"error report category",
 		MAXIMUM_ERROR_REPORT_CATEGORIES,
 		"error_report_category",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID)
 	{
 		{ _field_long_string, "name" },
@@ -31,6 +33,8 @@ namespace macaque
 		"error report",
 		MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY,
 		"error_report",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORTS_BLOCK_ID)
 	{
 		{ _field_char_enum, "type", &error_report_types },
@@ -61,6 +65,8 @@ namespace macaque
 		"error report vertex",
 		MAXIMUM_VERTICES_PER_ERROR_REPORT,
 		"error_report_vertex",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_VERTICES_BLOCK_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
@@ -75,6 +81,8 @@ namespace macaque
 		"error report vector",
 		MAXIMUM_VECTORS_PER_ERROR_REPORT,
 		"error_report_vector",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_VECTORS_BLOCK_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
@@ -90,6 +98,8 @@ namespace macaque
 		"error report line",
 		MAXIMUM_LINES_PER_ERROR_REPORT,
 		"error_report_line",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_LINES_BLOCK_ID)
 	{
 		{ _field_array, "points", &error_report_line_point_array },
@@ -103,6 +113,8 @@ namespace macaque
 		"error report triangle",
 		MAXIMUM_TRIANGLES_PER_ERROR_REPORT,
 		"error_report_triangle",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_TRIANGLES_BLOCK_ID)
 	{
 		{ _field_array, "points", &error_report_triangle_point_array },
@@ -116,6 +128,8 @@ namespace macaque
 		"error report quad",
 		MAXIMUM_QUADS_PER_ERROR_REPORT,
 		"error_report_quad",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_QUADS_BLOCK_ID)
 	{
 		{ _field_array, "points", &error_report_quad_point_array },
@@ -129,6 +143,8 @@ namespace macaque
 		"error report comment",
 		MAXIMUM_COMMENTS_PER_ERROR_REPORT,
 		"error_report_comment",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_COMMENTS_BLOCK_ID)
 	{
 		{ _field_data, "text" },
@@ -143,6 +159,8 @@ namespace macaque
 		"error_point_node_index_array",
 		MAXIMUM_NODE_INDICES_PER_ERROR_POINT,
 		"char",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_POINT_NODE_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "node index" },
@@ -155,6 +173,8 @@ namespace macaque
 		"error_point_node_weight_array",
 		MAXIMUM_NODE_INDICES_PER_ERROR_POINT,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_POINT_NODE_WEIGHT_ARRAY_ID)
 	{
 		{ _field_real, "node weight" },
@@ -167,6 +187,8 @@ namespace macaque
 		"error_report_line_point_array",
 		k_vertices_per_line_count,
 		"error_report_point",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_LINE_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
@@ -179,6 +201,8 @@ namespace macaque
 		"error_report_triangle_point_array",
 		k_vertices_per_triangle_count,
 		"error_report_point",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_TRIANGLE_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
@@ -191,6 +215,8 @@ namespace macaque
 		"error_report_quad_point_array",
 		k_vertices_per_quadrilateral_count,
 		"error_report_point",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_QUAD_POINT_ARRAY_ID)
 	{
 		{ _field_struct, "point", &error_report_point_definition },
@@ -202,6 +228,8 @@ namespace macaque
 		error_report_point_definition,
 		"error_report_point_definition",
 		"error_report_point",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_POINT_DEFINITION_ID)
 	{
 		{ _field_real_point_3d, "position" },

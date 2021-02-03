@@ -13,6 +13,9 @@ namespace macaque
 		"collision_model_block",
 		1,
 		"collision_model_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "import_info_checksum" },
@@ -40,6 +43,8 @@ namespace macaque
 		"material",
 		MAXIMUM_MATERIALS_PER_MODEL,
 		"collision_model_material",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_MATERIAL_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -52,6 +57,8 @@ namespace macaque
 		"region",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"collision_model_region",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -65,6 +72,8 @@ namespace macaque
 		"collision_model_permutation_block",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"collision_model_permutation_block",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -88,6 +97,8 @@ namespace macaque
 		"sphere",
 		MAXIMUM_PATHFINDING_SPHERES_PER_COLLISION_MODEL,
 		"collision_model_pathfinding_sphere",
+		SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "node", &collision_model_node_block },
@@ -104,6 +115,8 @@ namespace macaque
 		"collision_model_node_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"collision_model_node_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -125,6 +138,8 @@ namespace macaque
 		collision_model_bsp_struct,
 		"collision_model_bsp_struct",
 		"collision_model_bsp",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_BSP_STRUCT_ID)
 	{
 		{ _field_short_integer, "node index" },
@@ -139,6 +154,8 @@ namespace macaque
 		collision_model_resource_struct,
 		"collision_model_resource_struct",
 		"CollisionModelResource",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_RESOURCE_STRUCT_ID)
 	{
 		{ _field_block, "bsps", &collision_model_resource_bsp_block },

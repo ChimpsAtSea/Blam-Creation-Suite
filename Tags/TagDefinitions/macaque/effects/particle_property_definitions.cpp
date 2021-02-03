@@ -12,6 +12,9 @@ namespace macaque
 		particle_property_real_point3d_struct_new,
 		"particle_property_real_point3d_struct_new",
 		"c_particle_property_real_point3d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
@@ -33,6 +36,9 @@ namespace macaque
 		particle_property_real_euler_angles2d_struct_new,
 		"particle_property_real_euler_angles2d_struct_new",
 		"c_particle_property_real_euler_angles2d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_EULER_ANGLES2D_STRUCT_NEW_ID)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
@@ -54,6 +60,9 @@ namespace macaque
 		particle_property_scalar_struct_new,
 		"particle_property_scalar_struct_new",
 		"c_particle_property",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
@@ -74,6 +83,9 @@ namespace macaque
 		particle_property_real_vector3d_struct_new,
 		"particle_property_real_vector3d_struct_new",
 		"c_particle_property_real_vector3d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_VECTOR3D_STRUCT_NEW_ID)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },
@@ -95,6 +107,9 @@ namespace macaque
 		particle_property_color_struct_new,
 		"particle_property_color_struct_new",
 		"c_particle_property",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_COLOR_STRUCT_NEW_ID)
 	{
 		{ _field_char_enum, "Input Variable", &game_state_type_enum },

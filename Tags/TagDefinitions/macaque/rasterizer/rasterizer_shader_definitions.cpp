@@ -13,6 +13,8 @@ namespace macaque
 		"global_pixel_shader_block",
 		1,
 		"s_global_render_method_pixel_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_PIXEL_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &global_shader_entry_point_block },
@@ -34,6 +36,8 @@ namespace macaque
 		"global_vertex_shader_block",
 		1,
 		"s_global_render_method_vertex_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_VERTEX_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "vertex types", &global_vertex_shader_vertex_types_block },
@@ -69,6 +73,8 @@ namespace macaque
 		"pixel_shader_block",
 		1,
 		"c_rasterizer_pixel_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PIXEL_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &pixel_entry_point_block },
@@ -90,6 +96,8 @@ namespace macaque
 		"vertex_shader_block",
 		1,
 		"c_rasterizer_vertex_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &vertex_entry_point_block },
@@ -123,6 +131,8 @@ namespace macaque
 		"global_shader_entry_point_block",
 		k_number_of_entry_points*2,
 		"s_global_shader_entry_point_dependency",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SHADER_ENTRY_POINT_BLOCK_ID)
 	{
 		{ _field_block, "category dependency", &global_shader_category_dependency_block },
@@ -136,6 +146,8 @@ namespace macaque
 		"global_shader_category_dependency",
 		c_render_method_definition::k_maximum_categories,
 		"s_global_shader_category_dependency",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SHADER_CATEGORY_DEPENDENCY_ID)
 	{
 		{ _field_long_integer, "definition category index" },
@@ -149,6 +161,8 @@ namespace macaque
 		"global_shader_option_dependency",
 		c_render_method_definition::k_maximum_category_options,
 		"s_category_option_dependency",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SHADER_OPTION_DEPENDENCY_ID)
 	{
 		{ _field_long_integer, "compiled shader index" },
@@ -161,6 +175,8 @@ namespace macaque
 		"compiled_pixel_shader_block",
 		10*k_kilo,
 		"c_rasterizer_compiled_pixel_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		COMPILED_PIXEL_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
@@ -174,6 +190,8 @@ namespace macaque
 		"global_vertex_shader_vertex_types_block",
 		k_number_of_vertex_types*2,
 		"s_global_vertex_shader_vertex_type",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_VERTEX_SHADER_VERTEX_TYPES_BLOCK_ID)
 	{
 		{ _field_block, "entry point dependency", &global_shader_entry_point_block },
@@ -186,6 +204,8 @@ namespace macaque
 		"compiled_vertex_shader_block",
 		10*k_kilo,
 		"c_rasterizer_compiled_vertex_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		COMPILED_VERTEX_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
@@ -199,6 +219,8 @@ namespace macaque
 		"pixel_entry_point_block",
 		k_kilo,
 		"s_compiled_shader_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PIXEL_ENTRY_POINT_BLOCK_ID)
 	{
 		{ _field_byte_integer, "start index" },
@@ -212,6 +234,8 @@ namespace macaque
 		"vertex_entry_point_block",
 		k_number_of_vertex_types*2,
 		"s_tag_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_ENTRY_POINT_BLOCK_ID)
 	{
 		{ _field_block, "vertex types", &vertex_types_block$3_block },
@@ -224,6 +248,8 @@ namespace macaque
 		"vertex_types_block",
 		k_kilo,
 		"s_compiled_shader_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_TYPES_BLOCK_ID)
 	{
 		{ _field_byte_integer, "start index" },
@@ -236,6 +262,8 @@ namespace macaque
 		global_cache_file_pixel_shaders_struct_definition,
 		"global_cache_file_pixel_shaders_struct_definition",
 		"c_global_cache_file_pixel_shaders",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_CACHE_FILE_PIXEL_SHADERS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "shader count" },
@@ -251,6 +279,8 @@ namespace macaque
 		hlsl_include_struct_definition,
 		"hlsl_include_struct_definition",
 		"c_rasterizer_hlsl_include_file",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HLSL_INCLUDE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_data, "include file" },
@@ -262,6 +292,8 @@ namespace macaque
 		rasterizer_compiled_shader_struct,
 		"rasterizer_compiled_shader_struct",
 		"c_rasterizer_compiled_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
 		{ _field_long_flags, "shader flags", &shader_flags },

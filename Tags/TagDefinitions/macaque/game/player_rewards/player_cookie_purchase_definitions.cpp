@@ -26,6 +26,8 @@ namespace macaque
 		"CookiePurchaseAppearanceDefinitionBlock",
 		k_max_cookie_purchase_total_appearance_items,
 		"CookiePurchaseAppearanceDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEAPPEARANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
@@ -54,6 +56,8 @@ namespace macaque
 		"CookiePurchaseLoadoutDefinitionBlock",
 		k_max_cookie_purchase_total_loadout_items,
 		"CookiePurchaseLoadoutDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASELOADOUTDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
@@ -83,6 +87,8 @@ namespace macaque
 		"CookiePurchaseOrdnanceDefinitionBlock",
 		k_max_cookie_purchase_total_ordnance_items,
 		"CookiePurchaseOrdnanceDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEORDNANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
@@ -111,6 +117,8 @@ namespace macaque
 		"PurchasePlayerOrdnanceItemBlock",
 		1,
 		"PurchasePlayerOrdnanceItem",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCEITEMBLOCK_ID)
 	{
 		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
@@ -123,6 +131,8 @@ namespace macaque
 		"PurchasePlayerOrdnanceSlotBlock",
 		1,
 		"PurchasePlayerSlot",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCESLOTBLOCK_ID)
 	{
 		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed." },
@@ -135,6 +145,8 @@ namespace macaque
 		"purchase_player_item_block",
 		1,
 		"s_purchase_player_item",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_ITEM_BLOCK_ID)
 	{
 		{ _field_char_enum, "item_category", &player_item_category_enum },
@@ -151,6 +163,8 @@ namespace macaque
 		"purchase_player_app_block",
 		1,
 		"s_purchase_player_app",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APP_BLOCK_ID)
 	{
 		{ _field_string_id, "object_name", "This must match an item in the custom app globals." },
@@ -163,6 +177,8 @@ namespace macaque
 		"purchase_player_loadout_slot_block",
 		1,
 		"PurchasePlayerSlot",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_LOADOUT_SLOT_BLOCK_ID)
 	{
 		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed." },
@@ -175,6 +191,8 @@ namespace macaque
 		"purchase_player_app_mod_slot_block",
 		1,
 		"PurchasePlayerAppModSlot",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APP_MOD_SLOT_BLOCK_ID)
 	{
 		{ _field_byte_integer, "app_count", "Total apps you\'re allowed (from 0 to 2)." },
@@ -188,6 +206,8 @@ namespace macaque
 		"purchase_player_appearance_effect_model_permutation_block",
 		1,
 		"s_purchase_player_appearance_effect_model_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_char_enum, "model_region", &player_model_customization_area_enum },
@@ -202,6 +222,8 @@ namespace macaque
 		"purchase_player_appearance_effect_non_model_permutation_block",
 		2,
 		"s_purchase_player_appearance_effect_non_model_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_NON_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_char_enum, "non_model_region", &player_non_model_customization_area_enum },
@@ -216,6 +238,8 @@ namespace macaque
 		"purchase_player_appearance_effect_visor_tint_block",
 		1,
 		"s_purchase_player_appearance_effect_visor_tint",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_VISOR_TINT_BLOCK_ID)
 	{
 		{ _field_string_id, "visor color name" },
@@ -228,6 +252,8 @@ namespace macaque
 		"purchase_player_appearance_effect_emblem_index_block",
 		k_maxEmblemIndicesPerItem,
 		"s_purchase_player_appearance_effect_emblem_index",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_EMBLEM_INDEX_BLOCK_ID)
 	{
 		{ _field_char_integer, "emblem index" },
@@ -240,6 +266,8 @@ namespace macaque
 		"PurchasePlayerAppearancePoseBlock",
 		1,
 		"PurchasePlayerAppearancePose",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERAPPEARANCEPOSEBLOCK_ID)
 	{
 		{ _field_string_id, "pose name" },
@@ -252,6 +280,8 @@ namespace macaque
 		"CookiePurchaseFamilyAppearanceDefinitionBlock",
 		k_max_cookie_purchase_families,
 		"s_cookie_purchase_family_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYAPPEARANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
@@ -268,6 +298,8 @@ namespace macaque
 		"CookiePurchaseAppearanceDefinitionReferenceBlock",
 		k_max_cookie_purchase_family_items,
 		"s_cookie_purchase_definition_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEAPPEARANCEDEFINITIONREFERENCEBLOCK_ID)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseAppearanceDefinitionReferenceStruct },
@@ -280,6 +312,8 @@ namespace macaque
 		"CookiePurchaseFamilyLoadoutDefinitionBlock",
 		k_max_cookie_purchase_families,
 		"s_cookie_purchase_family_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYLOADOUTDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
@@ -296,6 +330,8 @@ namespace macaque
 		"CookiePurchaseLoadoutDefinitionReferenceBlock",
 		k_max_cookie_purchase_family_items,
 		"s_cookie_purchase_definition_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASELOADOUTDEFINITIONREFERENCEBLOCK_ID)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseLoadoutDefinitionReferenceStruct },
@@ -308,6 +344,8 @@ namespace macaque
 		"CookiePurchaseFamilyOrdnanceDefinitionBlock",
 		k_max_cookie_purchase_families,
 		"s_cookie_purchase_family_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYORDNANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
@@ -324,6 +362,8 @@ namespace macaque
 		"CookiePurchaseOrdnanceDefinitionReferenceBlock",
 		k_max_cookie_purchase_family_items,
 		"s_cookie_purchase_definition_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEORDNANCEDEFINITIONREFERENCEBLOCK_ID)
 	{
 		{ _field_struct, "purchasable item reference", &PurchaseOrdnanceDefinitionReferenceStruct },
@@ -336,6 +376,8 @@ namespace macaque
 		"CookiePurchaseExternalUnlockableBlockAppearanceDefinition",
 		(sizeof(dword)*k_byte_bits),
 		"s_cookie_purchase_external_unlockable_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEEXTERNALUNLOCKABLEBLOCKAPPEARANCEDEFINITION_ID)
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseAppearanceDefinitionReferenceBlock_block },
@@ -348,6 +390,8 @@ namespace macaque
 		"CookiePurchaseExternalUnlockableBlockLoadoutDefinition",
 		(sizeof(dword)*k_byte_bits),
 		"s_cookie_purchase_external_unlockable_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEEXTERNALUNLOCKABLEBLOCKLOADOUTDEFINITION_ID)
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseLoadoutDefinitionReferenceBlock_block },
@@ -360,6 +404,8 @@ namespace macaque
 		"CookiePurchaseExternalUnlockableBlockOrdnanceDefinition",
 		(sizeof(dword)*k_byte_bits),
 		"s_cookie_purchase_external_unlockable_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEEXTERNALUNLOCKABLEBLOCKORDNANCEDEFINITION_ID)
 	{
 		{ _field_block, "purchasable items", &CookiePurchaseOrdnanceDefinitionReferenceBlock_block },
@@ -371,6 +417,8 @@ namespace macaque
 		cookie_purchase_globals_struct_definition,
 		"cookie_purchase_globals_struct_definition",
 		"s_cookie_purchase_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIE_PURCHASE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Purchase Families", nullptr, _field_id_function_group_begin),
@@ -417,6 +465,8 @@ namespace macaque
 		PurchasePlayerOrdnanceStruct,
 		"PurchasePlayerOrdnanceStruct",
 		"PurchasePlayerOrdnance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCESTRUCT_ID)
 	{
 		{ _field_block, "ordnance items", &PurchasePlayerOrdnanceItemBlock_block },
@@ -429,6 +479,8 @@ namespace macaque
 		PurchasePlayerLoadoutStruct,
 		"PurchasePlayerLoadoutStruct",
 		"PurchasePlayerLoadout",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERLOADOUTSTRUCT_ID)
 	{
 		{ _field_block, "items", &purchase_player_item_block },
@@ -443,6 +495,8 @@ namespace macaque
 		PurchasePlayerAppearanceStruct,
 		"PurchasePlayerAppearanceStruct",
 		"PurchasePlayerAppearance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERAPPEARANCESTRUCT_ID)
 	{
 		{ _field_block, "permutations", &purchase_player_appearance_effect_model_permutation_block },

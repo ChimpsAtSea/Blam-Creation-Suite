@@ -13,6 +13,9 @@ namespace macaque
 		"gear_block",
 		s_vehicle_engine_definition::k_gear_count_max,
 		"s_vehicle_gear_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GEAR_BLOCK_ID)
 	{
 		{ _field_explanation, "loaded torque", "" },
@@ -36,6 +39,8 @@ namespace macaque
 		"load_and_cruise_block",
 		s_vehicle_engine_definition::k_load_and_cruise_looping_sound_max,
 		"s_vehicle_load_and_cruise_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOAD_AND_CRUISE_BLOCK_ID)
 	{
 		{ _field_string_id, "load cruise function" },
@@ -48,6 +53,8 @@ namespace macaque
 		global_vehicle_engine_struct,
 		"global_vehicle_engine_struct",
 		"s_vehicle_engine_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_VEHICLE_ENGINE_STRUCT_ID)
 	{
 		{ _field_explanation, "engine", "" },
@@ -64,6 +71,9 @@ namespace macaque
 		torque_curve_struct,
 		"torque_curve_struct",
 		"s_toruqe_curve_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TORQUE_CURVE_STRUCT_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct },

@@ -26,6 +26,8 @@ namespace macaque
 		"playerEnlistmentDefinitionBlock",
 		k_maximumPlayerEnlistments - 1,
 		"PlayerEnlistmentDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYERENLISTMENTDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "name", "the string id of the name of this enlistment" },
@@ -51,6 +53,8 @@ namespace macaque
 		player_enlistment_globals_definition_struct_definition,
 		"player_enlistment_globals_definition_struct_definition",
 		"PlayerEnlistmentGlobalsDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_ENLISTMENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Enlistments", "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!" },

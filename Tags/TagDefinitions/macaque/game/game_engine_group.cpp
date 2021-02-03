@@ -13,6 +13,8 @@ namespace macaque
 		"GameEngineFirefightVariantTag_block",
 		1,
 		"GameEngineFirefightVariantDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTVARIANTTAG_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "variant", &gameEngineFirefightVariantDefinition },
@@ -58,6 +60,8 @@ namespace macaque
 		"game_engine_miscellaneous_options_block",
 		1,
 		"s_game_engine_miscellaneous_options_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_MISCELLANEOUS_OPTIONS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &game_engine_miscellaneous_options_flags },
@@ -76,6 +80,8 @@ namespace macaque
 		"game_engine_prototype_options_block",
 		1,
 		"s_game_engine_prototype_options_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_PROTOTYPE_OPTIONS_BLOCK_ID)
 	{
 		{ _field_char_integer, "prototype mode" },
@@ -93,6 +99,8 @@ namespace macaque
 		"game_engine_respawn_options_block",
 		1,
 		"s_game_engine_respawn_options_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_RESPAWN_OPTIONS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &game_engine_respawn_options_flags },
@@ -117,6 +125,8 @@ namespace macaque
 		"game_engine_social_options_block",
 		1,
 		"s_game_engine_social_options_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SOCIAL_OPTIONS_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &game_engine_social_options_flags },
@@ -129,6 +139,8 @@ namespace macaque
 		"game_engine_map_override_options_block",
 		1,
 		"s_game_engine_map_override_options_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_MAP_OVERRIDE_OPTIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "player traits name" },
@@ -162,6 +174,9 @@ namespace macaque
 		"game_engine_team_options_block",
 		1,
 		"s_game_engine_team_options_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_TEAM_OPTIONS_BLOCK_ID)
 	{
 		{ _field_char_enum, "model override type", &game_engine_team_options_model_override_type },
@@ -177,6 +192,8 @@ namespace macaque
 		"gameEngineOrdnanceOptionsBlock",
 		1,
 		"GameEngineOrdnanceOptionsDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEORDNANCEOPTIONSBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &gameEngineOrdnanceOptionsFlags },
@@ -189,6 +206,8 @@ namespace macaque
 		"GameEngineFirefightPlayerGoalPropertiesBlock",
 		k_firefightMaxPlayerGoals,
 		"GameEngineFirefightPlayerGoalDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTPLAYERGOALPROPERTIESBLOCK_ID)
 	{
 		{ _field_char_enum, "Player Goal", &FirefightGoal },
@@ -218,6 +237,8 @@ namespace macaque
 		"GameEngineFirefightWavePropertiesBlock",
 		k_firefightWavesPerGoal,
 		"GameEngineFirefightWaveDefinition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTWAVEPROPERTIESBLOCK_ID)
 	{
 		{ _field_string_id, "squad type", "survival_mode_get_wave_squad" },
@@ -240,6 +261,8 @@ namespace macaque
 		"game_engine_ai_traits_list_block",
 		64,
 		"s_game_engine_ai_traits_list",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_AI_TRAITS_LIST_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -253,6 +276,8 @@ namespace macaque
 		"game_engine_sandbox_variant_block",
 		32,
 		"s_game_engine_sandbox_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SANDBOX_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "localizable name" },
@@ -278,6 +303,8 @@ namespace macaque
 		"game_engine_survival_variant_block",
 		32,
 		"s_game_engine_survival_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "localizable name" },
@@ -321,6 +348,8 @@ namespace macaque
 		"game_engine_survival_set_properties_block",
 		10,
 		"s_survival_set_properties_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "skulls", &skull_flags },
@@ -333,6 +362,8 @@ namespace macaque
 		"game_engine_survival_round_properties_block",
 		k_survival_full_rounds_per_set,
 		"s_survival_round_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "skulls", &skull_flags },
@@ -354,6 +385,8 @@ namespace macaque
 		"survival_wave_squad_block",
 		k_maximum_survival_possible_wave_squads,
 		"s_survival_wave_possible_wave_squad",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURVIVAL_WAVE_SQUAD_BLOCK_ID)
 	{
 		{ _field_string_id, "squad type", "survival_mode_get_wave_squad" },
@@ -366,6 +399,8 @@ namespace macaque
 		"game_engine_survival_custom_skull_block",
 		k_maximum_survival_custom_skulls,
 		"s_custom_skull_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_CUSTOM_SKULL_BLOCK_ID)
 	{
 		{ _field_string_id, "spartan player traits" },
@@ -380,6 +415,8 @@ namespace macaque
 		"GameEngineFirefightVariantShellBlock",
 		128,
 		"s_game_engine_firefight_variant_definition_shell",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTVARIANTSHELLBLOCK_ID)
 	{
 		{ _field_tag_reference, "variant", &GameEngineFirefightVariantReference },
@@ -392,6 +429,8 @@ namespace macaque
 		"game_engine_campaign_variant_block",
 		32,
 		"s_game_engine_campaign_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_CAMPAIGN_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "localizable name" },
@@ -413,6 +452,8 @@ namespace macaque
 		"game_engine_team_options_team_block",
 		k_multiplayer_team_game_team_count,
 		"s_game_engine_team_options_team_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_TEAM_OPTIONS_TEAM_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &game_engine_team_options_team_flags },
@@ -432,6 +473,8 @@ namespace macaque
 		game_engine_globals_struct_definition,
 		"game_engine_globals_struct_definition",
 		"s_game_engine_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "game engine settings", &game_engine_settings_definition_reference },
@@ -445,6 +488,8 @@ namespace macaque
 		game_engine_settings_definition_struct_definition,
 		"game_engine_settings_definition_struct_definition",
 		"s_game_engine_settings_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Game Engine Settings", "This contains the definitions for the built-in custom multiplayer game variants" },
@@ -463,6 +508,8 @@ namespace macaque
 		gameEngineFirefightVariantDefinition,
 		"gameEngineFirefightVariantDefinition",
 		"s_game_engine_firefight_variant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTVARIANTDEFINITION_ID)
 	{
 		{ _field_string_id, "localizable name" },
@@ -504,6 +551,8 @@ namespace macaque
 		game_engine_ai_traits_struct,
 		"game_engine_ai_traits_struct",
 		"s_game_engine_ai_traits",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_AI_TRAITS_STRUCT_ID)
 	{
 		{ _field_char_enum, "vision traits", &ai_trait_vision_settings },
@@ -525,6 +574,8 @@ namespace macaque
 		game_engine_survival_wave_properties_struct,
 		"game_engine_survival_wave_properties_struct",
 		"s_survival_wave_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_WAVE_PROPERTIES_STRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &survival_wave_properties_flags },
@@ -539,6 +590,8 @@ namespace macaque
 		game_engine_survival_bonus_wave_properties_struct,
 		"game_engine_survival_bonus_wave_properties_struct",
 		"s_survival_bonus_wave_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
 	{
 		{ _field_long_flags, "skulls", &skull_flags },

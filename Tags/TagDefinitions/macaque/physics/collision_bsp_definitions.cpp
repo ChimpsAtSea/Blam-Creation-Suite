@@ -13,6 +13,8 @@ namespace macaque
 		"bsp3d_nodes_block",
 		((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))),
 		"bsp3d_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP3D_NODES_BLOCK_STRUCT_ID,
 		3)
 	{
@@ -26,6 +28,8 @@ namespace macaque
 		"bsp3d_kd_supdernodes_block",
 		(k_bsp3d_maximum_super_node_count),
 		"s_bsp3d_kd_super_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP3D_KD_SUPDERNODES_BLOCK_ID,
 		7)
 	{
@@ -70,6 +74,8 @@ namespace macaque
 		"planes_block",
 		((((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))>(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))?(((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits))))):(((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_plane_index_bits)))))),
 		"real_plane3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANES_BLOCK_ID,
 		4)
 	{
@@ -89,6 +95,8 @@ namespace macaque
 		"bsp2d_references_block",
 		((false) ? 2147483647L>>2 : 196608),
 		"bsp2d_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP2D_REFERENCES_BLOCK_ID,
 		2)
 	{
@@ -103,6 +111,8 @@ namespace macaque
 		"bsp2d_nodes_block",
 		((false) ? 2147483647L>>2 : SHORT_MAX),
 		"bsp2d_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP2D_NODES_BLOCK_ID,
 		4)
 	{
@@ -118,6 +128,8 @@ namespace macaque
 		"surfaces_block",
 		((false) ? SHORT_MAX<<3 : SHORT_MAX),
 		"collision_surface",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURFACES_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_integer, "plane index" },
@@ -136,6 +148,8 @@ namespace macaque
 		"edges_block",
 		((false) ? 2621440 : UNSIGNED_SHORT_MAX),
 		"collision_edge",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EDGES_BLOCK_ID)
 	{
 		{ _field_word_integer, "start vertex" },
@@ -153,6 +167,8 @@ namespace macaque
 		"vertices_block",
 		((false) ? 1310720 : 131072),
 		"collision_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTICES_BLOCK_ID,
 		4)
 	{
@@ -168,6 +184,8 @@ namespace macaque
 		"global_collision_bsp_block",
 		1,
 		"collision_bsp",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_COLLISION_BSP_BLOCK_ID)
 	{
 		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
@@ -188,6 +206,8 @@ namespace macaque
 		"global_large_collision_bsp_block",
 		1,
 		"large_collision_bsp",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID)
 	{
 		{ _field_block, "bsp3d nodes", &large_bsp3d_nodes_block },
@@ -208,6 +228,8 @@ namespace macaque
 		"bsp3d node",
 		((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))),
 		"large_bsp3d_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP3D_NODES_BLOCK_ID)
 	{
 		{ _field_long_integer, "plane" },
@@ -222,6 +244,8 @@ namespace macaque
 		"leaf",
 		((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))),
 		"large_collision_leaf",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_LEAVES_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &leaf_flags },
@@ -236,6 +260,8 @@ namespace macaque
 		"bsp2d reference",
 		((true) ? 2147483647L>>2 : 196608),
 		"large_bsp2d_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP2D_REFERENCES_BLOCK_ID)
 	{
 		{ _field_long_integer, "plane" },
@@ -249,6 +275,8 @@ namespace macaque
 		"bsp2d node",
 		((true) ? 2147483647L>>2 : SHORT_MAX),
 		"large_bsp2d_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP2D_NODES_BLOCK_ID)
 	{
 		{ _field_real_plane_2d, "plane" },
@@ -263,6 +291,8 @@ namespace macaque
 		"large_surfaces_block",
 		((true) ? SHORT_MAX<<3 : SHORT_MAX),
 		"large_collision_surface",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_SURFACES_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "plane index" },
@@ -281,6 +311,8 @@ namespace macaque
 		"edge",
 		((true) ? 2621440 : UNSIGNED_SHORT_MAX),
 		"large_collision_edge",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_EDGES_BLOCK_ID)
 	{
 		{ _field_long_integer, "start vertex" },
@@ -298,6 +330,8 @@ namespace macaque
 		"vertex",
 		((true) ? 1310720 : 131072),
 		"large_collision_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_VERTICES_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
@@ -311,6 +345,8 @@ namespace macaque
 		global_collision_bsp_struct,
 		"global_collision_bsp_struct",
 		"collision_bsp",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_COLLISION_BSP_STRUCT_ID)
 	{
 		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
@@ -330,6 +366,8 @@ namespace macaque
 		collision_leaf_struct,
 		"collision_leaf_struct",
 		"collision_leaf",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_LEAF_STRUCT_ID,
 		2)
 	{

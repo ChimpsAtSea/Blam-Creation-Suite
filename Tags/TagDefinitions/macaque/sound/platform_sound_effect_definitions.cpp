@@ -13,6 +13,8 @@ namespace macaque
 		"sound_effect_collection_block",
 		1,
 		"s_platform_sound_playback_collection",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_COLLECTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "sound effects", &platform_sound_playback_block },
@@ -32,6 +34,8 @@ namespace macaque
 		"platform_sound_playback_block",
 		128,
 		"s_platform_sound_playback_named_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -45,6 +49,8 @@ namespace macaque
 		"platform_sound_playback_lowpass_block",
 		1,
 		"s_platform_sound_playback_lowpass_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_LOWPASS_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "attack", "seconds" },
@@ -59,6 +65,8 @@ namespace macaque
 		"platform_sound_playback_component_block",
 		k_maximum_number_of_platform_sound_playback_components,
 		"s_platform_sound_playback_component_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_COMPONENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
@@ -72,6 +80,8 @@ namespace macaque
 		platform_sound_playback_struct,
 		"platform_sound_playback_struct",
 		"s_platform_sound_playback_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &platform_sound_effect_flags_definition },

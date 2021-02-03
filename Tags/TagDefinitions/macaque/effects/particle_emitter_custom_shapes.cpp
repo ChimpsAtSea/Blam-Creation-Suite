@@ -26,6 +26,8 @@ namespace macaque
 		"particle_emitter_custom_point_block",
 		s_particle_emitter_custom_points::k_maximum_points,
 		"s_particle_emitter_custom_points::s_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINT_BLOCK_ID)
 	{
 		{ _field_short_integer, "position_x" },
@@ -43,6 +45,8 @@ namespace macaque
 		particle_emitter_custom_points_struct_definition,
 		"particle_emitter_custom_points_struct_definition",
 		"s_particle_emitter_custom_points",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("import", nullptr, _field_id_unknown_compile),

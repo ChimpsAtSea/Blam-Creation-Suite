@@ -26,6 +26,8 @@ namespace macaque
 		"fluid_dynamics_squirter_block",
 		MAXIMUM_SQUIRTERS_PER_FLUID_DYNAMICS,
 		"fluid_dynamics_squirter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLUID_DYNAMICS_SQUIRTER_BLOCK_ID)
 	{
 		{ _field_point_2d, "grid location" },
@@ -40,6 +42,8 @@ namespace macaque
 		"fluid_dynamics_inflow_block",
 		MAXIMUM_INFLOWS_PER_FLUID_DYNAMICS,
 		"fluid_dynamics_inflow",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLUID_DYNAMICS_INFLOW_BLOCK_ID)
 	{
 		{ _field_point_2d, "grid location" },
@@ -55,6 +59,8 @@ namespace macaque
 		"fluid_dynamics_outflow_block",
 		MAXIMUM_OUTFLOWS_PER_FLUID_DYNAMICS,
 		"fluid_dynamics_outflow",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLUID_DYNAMICS_OUTFLOW_BLOCK_ID)
 	{
 		{ _field_point_2d, "grid location" },
@@ -67,6 +73,8 @@ namespace macaque
 		"fluid_dynamics_obstacle_block",
 		MAXIMUM_OBSTACLES_PER_FLUID_DYNAMICS,
 		"fluid_dynamics_obstacle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLUID_DYNAMICS_OBSTACLE_BLOCK_ID)
 	{
 		{ _field_point_2d, "2x2 grid location" },
@@ -78,6 +86,9 @@ namespace macaque
 		fluid_dynamics_struct_definition,
 		"fluid_dynamics_struct_definition",
 		"fluid_dynamics_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FLUID_DYNAMICS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &fluid_dynamics_flags },
@@ -122,6 +133,9 @@ namespace macaque
 		g_single_scalar_function_evaluation_struct,
 		"g_single_scalar_function_evaluation_struct",
 		"s_single_scalar_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID)
 	{
 		{ _field_real, "input" },

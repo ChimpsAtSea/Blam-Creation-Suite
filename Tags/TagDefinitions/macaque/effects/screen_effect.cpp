@@ -26,6 +26,9 @@ namespace macaque
 		"single_screen_effect",
 		s_area_screen_effect_definition::k_maximum_effects_per_tag,
 		"s_single_screen_effect_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_SCREEN_EFFECT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -80,6 +83,9 @@ namespace macaque
 		area_screen_effect_struct_definition,
 		"area_screen_effect_struct_definition",
 		"s_area_screen_effect_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "global flags", &area_screen_effect_global_flags_definition },
@@ -93,6 +99,9 @@ namespace macaque
 		screen_effect_scalar_function_struct,
 		"screen_effect_scalar_function_struct",
 		"s_screen_effect_scalar_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -105,6 +114,9 @@ namespace macaque
 		screen_effect_scalar_object_function_struct,
 		"screen_effect_scalar_object_function_struct",
 		"s_screen_effect_scalar_object_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

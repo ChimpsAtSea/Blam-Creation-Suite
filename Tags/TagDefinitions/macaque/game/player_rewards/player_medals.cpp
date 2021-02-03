@@ -26,6 +26,8 @@ namespace macaque
 		"gameMedalTiers",
 		GameMedalTierDefinition::k_maximumGameMedalTierDefinitions,
 		"GameMedalTierDefinition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEMEDALTIERS_ID)
 	{
 		{ _field_string_id, "name" },
@@ -41,6 +43,8 @@ namespace macaque
 		"game_medal_block",
 		s_game_medal_definition::k_maximum_game_medal_definitions,
 		"s_game_medal_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_MEDAL_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -60,6 +64,8 @@ namespace macaque
 		game_medal_globals_struct_definition,
 		"game_medal_globals_struct_definition",
 		"s_game_medal_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_MEDAL_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "tiers", &gameMedalTiers_block },

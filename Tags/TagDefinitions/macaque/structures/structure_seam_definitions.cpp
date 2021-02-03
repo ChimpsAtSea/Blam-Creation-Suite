@@ -26,6 +26,8 @@ namespace macaque
 		"structure_seam_mapping_block",
 		k_structure_seam_maximum_seam_count,
 		"s_structure_seam_mapping",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_MAPPING_BLOCK_ID)
 	{
 		{ _field_struct, "seams identifier", &structure_seam_identifier_struct },
@@ -40,6 +42,8 @@ namespace macaque
 		"structure_seam_edge_mapping_block",
 		k_structure_seam_maximum_edges_count,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
 		{ _field_long_integer, "structure edge index" },
@@ -52,6 +56,8 @@ namespace macaque
 		"structure_seam_cluster_mapping_block",
 		k_structure_seam_maximum_clusters_on_seam_count,
 		"s_structure_seam_cluster_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_CLUSTER_MAPPING_BLOCK_ID)
 	{
 		{ _field_long_integer, "cluster_index" },
@@ -65,6 +71,8 @@ namespace macaque
 		"structure_seam_block",
 		k_structure_seam_maximum_seam_count,
 		"s_structure_seam",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_BLOCK_ID)
 	{
 		{ _field_struct, "identifier", &structure_seam_identifier_struct },
@@ -79,6 +87,8 @@ namespace macaque
 		"structure_seam_original_vertex_block",
 		k_structure_seam_maximum_points_count,
 		"s_structure_seam_original_vertex",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "original vertex" },
@@ -93,6 +103,8 @@ namespace macaque
 		"structure_seam_original_vertex_plane_normals_block",
 		1024,
 		"real_vector3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_PLANE_NORMALS_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "triangle normal" },
@@ -105,6 +117,8 @@ namespace macaque
 		"structure_seam_final_planes_block",
 		k_structure_seam_maximum_planes_count,
 		"real_plane3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_PLANES_BLOCK_ID)
 	{
 		{ _field_real_plane_3d, "plane" },
@@ -117,6 +131,8 @@ namespace macaque
 		"structure_seam_final_points_block",
 		k_structure_seam_maximum_points_count,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "final point" },
@@ -129,6 +145,8 @@ namespace macaque
 		"structure_seam_final_triangles_block",
 		k_structure_seam_maximum_triangles_count,
 		"s_structure_seam_final_triangle",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID)
 	{
 		{ _field_long_integer, "final plane" },
@@ -145,6 +163,8 @@ namespace macaque
 		"structure_seam_final_edges_block",
 		k_structure_seam_maximum_edges_count,
 		"s_structure_seam_final_edge",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_EDGES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "final point0", &structure_seam_final_points_block },
@@ -157,6 +177,8 @@ namespace macaque
 		structure_seams_struct_definition,
 		"structure_seams_struct_definition",
 		"s_structure_seams",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAMS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "structure manifest", &structure_manifest_struct },
@@ -173,6 +195,8 @@ namespace macaque
 		structure_seam_identifier_struct,
 		"structure_seam_identifier_struct",
 		"s_structure_seam_identifier",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID)
 	{
 		{ _field_long_integer, "seam_id0" },
@@ -187,6 +211,8 @@ namespace macaque
 		structure_seam_original_geometry_struct,
 		"structure_seam_original_geometry_struct",
 		"s_structure_seam_original_geometry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_ORIGINAL_GEOMETRY_STRUCT_ID)
 	{
 		{ _field_block, "original vertices", &structure_seam_original_vertex_block },
@@ -198,6 +224,8 @@ namespace macaque
 		structure_seam_final_geometry_struct,
 		"structure_seam_final_geometry_struct",
 		"s_structure_seam_final_geometry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_GEOMETRY_STRUCT_ID)
 	{
 		{ _field_block, "planes", &structure_seam_final_planes_block },

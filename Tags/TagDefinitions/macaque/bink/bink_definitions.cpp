@@ -26,6 +26,8 @@ namespace macaque
 		"binkPaletteBlock",
 		MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK,
 		"BinkPaletteEntry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINKPALETTEBLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &bink_reference$2 },
@@ -37,6 +39,8 @@ namespace macaque
 		bink_struct_definition,
 		"bink_struct_definition",
 		"s_bink_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BINK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "frame count" },
@@ -50,6 +54,8 @@ namespace macaque
 		bink_resource_struct,
 		"bink_resource_struct",
 		"s_bink_resource_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BINK_RESOURCE_STRUCT_ID)
 	{
 		{ _field_data, "bink data" },

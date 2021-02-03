@@ -26,6 +26,8 @@ namespace macaque
 		"detail_object_type_block",
 		MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION,
 		"detail_object_type_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAIL_OBJECT_TYPE_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -51,6 +53,8 @@ namespace macaque
 		"global_detail_object_cells_block",
 		MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE,
 		"detail_object_cell_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_ID)
 	{
 		{ _field_short_integer, "cell x" },
@@ -70,6 +74,8 @@ namespace macaque
 		"global_detail_object_block",
 		MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE,
 		"detail_object",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_BLOCK_ID)
 	{
 		{ _field_char_integer, "position x" },
@@ -86,6 +92,8 @@ namespace macaque
 		"global_detail_object_counts_block",
 		MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE*MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE,
 		"detail_object_count",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_ID)
 	{
 		{ _field_short_integer, "count" },
@@ -98,6 +106,8 @@ namespace macaque
 		"global_z_reference_vector_block",
 		MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE,
 		"real_vector4d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_Z_REFERENCE_VECTOR_BLOCK_ID)
 	{
 		{ _field_real, "z reference i" },
@@ -112,6 +122,8 @@ namespace macaque
 		detail_object_collection_struct_definition,
 		"detail_object_collection_struct_definition",
 		"detail_object_collection_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_enum, "collection type", &detail_object_collection_type_enum_definition },

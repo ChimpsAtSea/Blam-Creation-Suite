@@ -39,6 +39,8 @@ namespace macaque
 		"lightmap_model_reference_block",
 		SHORT_MAX,
 		"s_lightmap_model_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHTMAP_MODEL_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "Model Reference", &model_reference },
@@ -50,6 +52,8 @@ namespace macaque
 		lightmap_model_globals_struct_definition,
 		"lightmap_model_globals_struct_definition",
 		"s_lightmap_model_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHTMAP_MODEL_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "Lightmapped Models", &lightmap_model_reference_block },
@@ -61,6 +65,8 @@ namespace macaque
 		lightmapper_globals_struct_definition,
 		"lightmapper_globals_struct_definition",
 		"s_lightmapper_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHTMAPPER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "Version" },
@@ -78,6 +84,8 @@ namespace macaque
 		global_lightmap_global_settings_struct,
 		"global_lightmap_global_settings_struct",
 		"s_lightmap_settings_global",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_GLOBAL_SETTINGS_STRUCT_ID)
 	{
 		{ _field_long_flags, "Global flags", &lightmap_global_flags },
@@ -98,6 +106,8 @@ namespace macaque
 		global_lightmap_local_settings_struct,
 		"global_lightmap_local_settings_struct",
 		"s_lightmap_settings_local",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_LOCAL_SETTINGS_STRUCT_ID)
 	{
 		{ _field_long_flags, "Local flags", &lightmap_local_flags },
@@ -123,6 +133,8 @@ namespace macaque
 		global_lightmap_ao_settings_struct,
 		"global_lightmap_ao_settings_struct",
 		"s_lightmap_settings_ao",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_AO_SETTINGS_STRUCT_ID)
 	{
 		{ _field_real, "Radius" },
@@ -137,6 +149,8 @@ namespace macaque
 		global_lightmap_global_illumination_falloff_settings_struct,
 		"global_lightmap_global_illumination_falloff_settings_struct",
 		"s_lightmap_settings_global_illumination_falloff",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_GLOBAL_ILLUMINATION_FALLOFF_SETTINGS_STRUCT_ID)
 	{
 		{ _field_real, "Falloff Begin" },
@@ -152,6 +166,8 @@ namespace macaque
 		global_lightmap_local_override_settings_struct,
 		"global_lightmap_local_override_settings_struct",
 		"s_lightmap_settings_local_overrides",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_LOCAL_OVERRIDE_SETTINGS_STRUCT_ID)
 	{
 		{ _field_long_integer, "High Quality Average Jitter Samples" },

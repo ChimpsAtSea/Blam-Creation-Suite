@@ -13,6 +13,8 @@ namespace macaque
 		"campaign_metagame_bucket_block",
 		1,
 		"s_campaign_metagame_bucket",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_BUCKET_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &campaign_metagame_bucket_flags },
@@ -30,6 +32,8 @@ namespace macaque
 		"campaign_metagame_globals_block",
 		1,
 		"s_campaign_metagame_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_GLOBALS_BLOCK_ID)
 	{
 		{ _field_block, "styles", &campaign_metagame_style_type_block },
@@ -49,6 +53,8 @@ namespace macaque
 		"campaign_metagame_style_type_block",
 		100,
 		"s_campaign_metagame_style_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_STYLE_TYPE_BLOCK_ID)
 	{
 		{ _field_string_id, "incident name" },
@@ -62,6 +68,8 @@ namespace macaque
 		"campaign_metagame_difficulty_scale_block",
 		k_campaign_difficulty_levels_count,
 		"s_campaign_metagame_difficulty",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_DIFFICULTY_SCALE_BLOCK_ID)
 	{
 		{ _field_real, "difficulty multiplier" },
@@ -74,6 +82,8 @@ namespace macaque
 		"campaign_metagame_skull_block",
 		k_game_skull_count,
 		"s_campaign_metagame_skull_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_SKULL_BLOCK_ID)
 	{
 		{ _field_real, "difficulty multiplier" },
@@ -86,6 +96,8 @@ namespace macaque
 		"campaign_metagame_scenario_block",
 		1,
 		"s_campaign_metagame_scenario",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_SCENARIO_BLOCK_ID)
 	{
 		{ _field_real, "par score" },
@@ -99,6 +111,8 @@ namespace macaque
 		"campaign_metagame_scenario_bonuses_block",
 		k_maximum_campaign_metagame_scenario_completion_bonus_count,
 		"s_campaign_metagame_scenario_completion_bonus",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_SCENARIO_BONUSES_BLOCK_ID)
 	{
 		{ _field_real, "time", "if you finish in under this time you get the following bonus" },

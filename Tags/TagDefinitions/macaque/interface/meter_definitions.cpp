@@ -25,6 +25,8 @@ namespace macaque
 		meter_struct_definition,
 		"meter_struct_definition",
 		"meter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		METER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &meter_flags },

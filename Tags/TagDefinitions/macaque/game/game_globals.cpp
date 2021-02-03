@@ -39,6 +39,8 @@ namespace macaque
 		"havok_cleanup_resources_block",
 		1,
 		"s_game_globals_havok_cleanup_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_CLEANUP_RESOURCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "object cleanup effect", &global_effect_reference },
@@ -51,6 +53,8 @@ namespace macaque
 		"sound_block",
 		NUMBER_OF_GLOBAL_SOUNDS,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound (OBSOLETE)", &sound_block_sound_OBSOLETE_reference },
@@ -63,6 +67,8 @@ namespace macaque
 		"soft_ceiling_globals_block",
 		1,
 		"s_game_globals_soft_ceiling",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOFT_CEILING_GLOBALS_BLOCK_ID)
 	{
 		{ _field_real, "biped spring constant" },
@@ -81,6 +87,8 @@ namespace macaque
 		"cheat_weapons_block",
 		20,
 		"s_game_globals_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAT_WEAPONS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &global_item_reference },
@@ -93,6 +101,8 @@ namespace macaque
 		"cheat_powerups_block",
 		20,
 		"s_game_globals_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAT_POWERUPS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "powerup", &global_equipment_reference },
@@ -105,6 +115,8 @@ namespace macaque
 		"multiplayer_color_block",
 		k_player_color_index_count,
 		"real_rgb_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "color" },
@@ -117,6 +129,8 @@ namespace macaque
 		"visor_color_block",
 		32,
 		"s_multiplayer_visor_color",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISOR_COLOR_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -130,6 +144,9 @@ namespace macaque
 		globals_struct_definition,
 		"globals_struct_definition",
 		"s_game_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_PAD("YJLTWDSL", nullptr, 172),
@@ -237,6 +254,8 @@ namespace macaque
 		patch_globals_struct_definition,
 		"patch_globals_struct_definition",
 		"PatchGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		PATCH_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "language pack1", &language_pack_definition },
@@ -264,6 +283,8 @@ namespace macaque
 		elite_specular_color_struct,
 		"elite_specular_color_struct",
 		"s_elite_specular_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ELITE_SPECULAR_COLOR_STRUCT_ID)
 	{
 		{ _field_real_rgb_color, "tertiary color" },

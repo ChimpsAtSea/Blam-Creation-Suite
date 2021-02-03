@@ -20,6 +20,9 @@ namespace macaque
 		"atmosphere_definition_block",
 		k_max_atmosphere_settings,
 		"s_atmosphere_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ATMOSPHERE_FOG_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "Flags", &atmosphere_flags },
@@ -65,6 +68,9 @@ namespace macaque
 		"soloFogFunctionBlock",
 		1,
 		"s_soloFogFunction",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOLOFOGFUNCTIONBLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -77,6 +83,8 @@ namespace macaque
 		solo_fog_parameters_struct_definition,
 		"solo_fog_parameters_struct_definition",
 		"s_solo_fog_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "base height", "world units" },
@@ -94,6 +102,8 @@ namespace macaque
 		fog_light_struct_definition,
 		"fog_light_struct_definition",
 		"s_fog_light_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOG_LIGHT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "pitch angle " },
@@ -112,6 +122,8 @@ namespace macaque
 		VolumeFogParametersDefinition,
 		"VolumeFogParametersDefinition",
 		"VolumeFogParameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOLUMEFOGPARAMETERSDEFINITION_ID)
 	{
 		{ _field_real_rgb_color, "volume fog color" },
@@ -124,6 +136,8 @@ namespace macaque
 		LightShaftParametersDefinition,
 		"LightShaftParametersDefinition",
 		"LightShaftParameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHTSHAFTPARAMETERSDEFINITION_ID)
 	{
 		{ _field_real_rgb_color, "light shaft tint color" },

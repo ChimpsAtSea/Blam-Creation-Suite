@@ -13,6 +13,8 @@ namespace macaque
 		"firing_positions_block",
 		k_max_firing_positions_per_zone,
 		"s_firing_position_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		FIRING_POSITIONS_BLOCK_ID)
 	{
 		{ _field_explanation, "CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points." },

@@ -26,6 +26,8 @@ namespace macaque
 		"particle_controller",
 		c_particle_movement_definition::k_type_count + 2,
 		"c_particle_controller",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_CONTROLLER_ID)
 	{
 		{ _field_enum, "type", &particle_movement_type },
@@ -43,6 +45,9 @@ namespace macaque
 		"particle_controller_parameters",
 		c_particle_movement_definition::k_flocking_parameter_count,
 		"c_particle_controller_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_CONTROLLER_PARAMETERS_ID)
 	{
 		{ _field_long_integer, "parameter id" },
@@ -55,6 +60,8 @@ namespace macaque
 		particle_physics_struct_definition,
 		"particle_physics_struct_definition",
 		"c_particle_movement_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PHYSICS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "template", &particle_movement_definition },
@@ -73,6 +80,8 @@ namespace macaque
 		particle_physics_struct,
 		"particle_physics_struct",
 		"c_particle_movement_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PHYSICS_STRUCT_ID)
 	{
 		{ _field_tag_reference, "template", &particle_movement_definition },

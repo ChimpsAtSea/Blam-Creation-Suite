@@ -13,6 +13,8 @@ namespace macaque
 		"structure_manifest_bsp_block",
 		k_maximum_structure_manifest_items_count,
 		"s_structure_manifest_bsp_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_BSP_BLOCK_ID)
 	{
 		{ _field_struct, "build identifer", &structure_manifest_build_identifier_struct },
@@ -26,6 +28,8 @@ namespace macaque
 		structure_manifest_build_identifier_struct,
 		"structure_manifest_build_identifier_struct",
 		"s_structure_manifest_build_identifier_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_BUILD_IDENTIFIER_STRUCT_ID)
 	{
 		{ _field_long_integer, "manifest_id0" },
@@ -42,6 +46,8 @@ namespace macaque
 		structure_manifest_struct,
 		"structure_manifest_struct",
 		"s_structure_manifest_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_STRUCT_ID)
 	{
 		{ _field_explanation, "build identifer", "" },

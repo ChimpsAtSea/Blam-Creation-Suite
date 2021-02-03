@@ -26,6 +26,8 @@ namespace macaque
 		"biped_camera_height_block",
 		16,
 		"s_biped_camera_height",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_CAMERA_HEIGHT_BLOCK_ID)
 	{
 		{ _field_string_id, "weapon class" },
@@ -40,6 +42,8 @@ namespace macaque
 		"biped_wall_proximity_block",
 		k_maximum_biped_proximity_feelers,
 		"s_biped_wall_proximity_feeler",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_WALL_PROXIMITY_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -58,6 +62,9 @@ namespace macaque
 		"biped_movement_gate_block",
 		16,
 		"s_biped_movement_gate",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_MOVEMENT_GATE_BLOCK_ID)
 	{
 		{ _field_real, "period", "seconds" },
@@ -76,6 +83,8 @@ namespace macaque
 		"contact_point_block",
 		k_contact_point_count,
 		"biped_contact_point",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTACT_POINT_BLOCK_ID)
 	{
 		{ _field_useless_pad, "" },
@@ -90,6 +99,8 @@ namespace macaque
 		"biped_grab_object_animation_set_block",
 		k_max_biped_grab_object_animation_sets,
 		"s_biped_grab_object_animation_set",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GRAB_OBJECT_ANIMATION_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "animation set name" },
@@ -104,6 +115,8 @@ namespace macaque
 		"BipedSoundRTPCBlock",
 		k_maxBipedSoundRTPCBlocks,
 		"BipedSoundRTPCBlockDefinition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPEDSOUNDRTPCBLOCK_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
@@ -118,6 +131,8 @@ namespace macaque
 		"BipedSoundSweetenerBlock",
 		k_maxBipedSoundSweetenerBlocks,
 		"BipedSoundSweetenerBlockDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPEDSOUNDSWEETENERBLOCK_ID)
 	{
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
@@ -133,6 +148,8 @@ namespace macaque
 		"BipedAimingJointFixupBlock",
 		k_maximum_aiming_fixup_joints,
 		"BipedAimingJointFixup",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPEDAIMINGJOINTFIXUPBLOCK_ID)
 	{
 		{ _field_string_id, "rotation_node", "bone to rotate to align marker" },
@@ -150,6 +167,10 @@ namespace macaque
 		biped_struct_definition,
 		"biped",
 		"biped_group",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
@@ -242,6 +263,8 @@ namespace macaque
 		biped_leaping_data_struct,
 		"biped_leaping_data_struct",
 		"s_biped_leaping_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_LEAPING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("wall-leaping", nullptr, _field_id_function_group_begin),
@@ -264,6 +287,8 @@ namespace macaque
 		biped_vaulting_data_struct,
 		"biped_vaulting_data_struct",
 		"s_biped_vaulting_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_VAULTING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("vaulting", nullptr, _field_id_function_group_begin),
@@ -282,6 +307,8 @@ namespace macaque
 		biped_grab_biped_data_struct,
 		"biped_grab_biped_data_struct",
 		"s_biped_grab_biped_data",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GRAB_BIPED_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("grab biped", nullptr, _field_id_function_group_begin),
@@ -298,6 +325,8 @@ namespace macaque
 		biped_grab_object_data_struct,
 		"biped_grab_object_data_struct",
 		"s_biped_grab_object_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GRAB_OBJECT_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("grab object", nullptr, _field_id_function_group_begin),
@@ -312,6 +341,8 @@ namespace macaque
 		biped_ground_fitting_data_struct,
 		"biped_ground_fitting_data_struct",
 		"biped_ground_fitting_data_struct",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GROUND_FITTING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("ground fitting", nullptr, _field_id_function_group_begin),
@@ -373,6 +404,8 @@ namespace macaque
 		BipedMovementHipLeaningStruct,
 		"BipedMovementHipLeaningStruct",
 		"BipedMovementHipLeaning",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPEDMOVEMENTHIPLEANINGSTRUCT_ID)
 	{
 		FIELD_CUSTOM("Movement Hip Leaning", nullptr, _field_id_function_group_begin),

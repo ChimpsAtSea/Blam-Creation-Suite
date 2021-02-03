@@ -25,6 +25,9 @@ namespace macaque
 		collision_damage_struct_definition,
 		"collision_damage_struct_definition",
 		"s_collision_damage_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_DAMAGE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "Flags", &collisionDamageFlags },
@@ -52,6 +55,9 @@ namespace macaque
 		collision_damage_function,
 		"collision_damage_function",
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_DAMAGE_FUNCTION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

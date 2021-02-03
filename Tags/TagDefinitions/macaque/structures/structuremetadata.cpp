@@ -25,6 +25,8 @@ namespace macaque
 		structure_meta_struct_definition,
 		"structure_meta_struct_definition",
 		"StructureMetadata",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_META_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "Effects markers", &structureBspFxMarkerBlock_block },

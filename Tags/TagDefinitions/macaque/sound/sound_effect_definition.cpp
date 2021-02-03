@@ -26,6 +26,8 @@ namespace macaque
 		"sound_effect_templates_block",
 		k_maximum_number_of_sound_effect_templates,
 		"sound_effect_templates_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_TEMPLATES_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
@@ -44,6 +46,9 @@ namespace macaque
 		"sound_effect_template_parameter_block",
 		k_maximum_number_of_sound_effect_parameters,
 		"s_sound_effect_template_parameter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_TEMPLATE_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -65,6 +70,9 @@ namespace macaque
 		"sound_effect_template_additional_sound_input_block",
 		1,
 		"s_sound_effect_template_sound_input_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
@@ -79,6 +87,8 @@ namespace macaque
 		sound_effect_template_struct_definition,
 		"sound_effect_template_struct_definition",
 		"s_sound_effect_template_collection",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "template collection", &sound_effect_templates_block },

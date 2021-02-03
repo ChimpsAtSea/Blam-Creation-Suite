@@ -32,6 +32,9 @@ namespace macaque
 		"human_jeep_block",
 		1,
 		"s_vehicle_human_jeep_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HUMAN_JEEP_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -51,6 +54,8 @@ namespace macaque
 		"human_plane_block",
 		1,
 		"s_vehicle_human_plane_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HUMAN_PLANE_BLOCK_ID)
 	{
 		{ _field_explanation, "velocity control variables", "" },
@@ -88,6 +93,9 @@ namespace macaque
 		"wolverine_block",
 		1,
 		"s_vehicle_wolverine_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WOLVERINE_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -111,6 +119,9 @@ namespace macaque
 		"alien_scout_block",
 		1,
 		"s_vehicle_alien_scout_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ALIEN_SCOUT_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -148,6 +159,8 @@ namespace macaque
 		"alien_fighter_block",
 		1,
 		"s_vehicle_alien_fighter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ALIEN_FIGHTER_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -187,6 +200,8 @@ namespace macaque
 		"turret_block",
 		1,
 		"s_vehicle_turret_definition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TURRET_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &turret_flags },
@@ -204,6 +219,8 @@ namespace macaque
 		"mantis_block",
 		1,
 		"s_vehicle_mantis_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MANTIS_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -246,6 +263,9 @@ namespace macaque
 		"vtol_block",
 		1,
 		"s_vehicle_vtol_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VTOL_BLOCK_ID)
 	{
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
@@ -293,6 +313,8 @@ namespace macaque
 		"vtol_speed_interpolated_block",
 		2,
 		"s_vehicle_vtol_interpolated_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VTOL_SPEED_INTERPOLATED_BLOCK_ID)
 	{
 		{ _field_real, "rotor damping", "maxes out around 30" },
@@ -312,6 +334,9 @@ namespace macaque
 		"chopper_block",
 		1,
 		"s_vehicle_chopper_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHOPPER_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -342,6 +367,8 @@ namespace macaque
 		"guardian_block",
 		1,
 		"s_vehicle_guardian_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUARDIAN_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -364,6 +391,9 @@ namespace macaque
 		"jackal_glider_block",
 		1,
 		"s_vehicle_jackal_glider_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JACKAL_GLIDER_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -422,6 +452,9 @@ namespace macaque
 		"boat_block",
 		1,
 		"s_vehicle_boat_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BOAT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
@@ -443,6 +476,9 @@ namespace macaque
 		"space_fighter_block",
 		1,
 		"s_vehicle_space_fighter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPACE_FIGHTER_BLOCK_ID)
 	{
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
@@ -530,6 +566,9 @@ namespace macaque
 		"revenant_block",
 		1,
 		"s_vehicle_revenant_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REVENANT_BLOCK_ID)
 	{
 		{ _field_struct, "tank block", &human_tank_struct },
@@ -558,6 +597,8 @@ namespace macaque
 		"SoundRTPCBlock",
 		k_maxSoundRTPCBlocks,
 		"vehicleSoundRTPCBlockDefinition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDRTPCBLOCK_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
@@ -573,6 +614,8 @@ namespace macaque
 		"SoundSweetenerBlock",
 		k_maxSoundSweetenerBlocks,
 		"vehicleSoundSweetenerBlockDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDSWEETENERBLOCK_ID)
 	{
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
@@ -588,6 +631,8 @@ namespace macaque
 		"physics_transitions_block",
 		k_max_vehicle_physics_transitions,
 		"vehicle_physics_transition_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_TRANSITIONS_BLOCK_ID)
 	{
 		{ _field_real, "transition velocity", "speed at which flight model transition occurs", "wu/s" },
@@ -604,6 +649,10 @@ namespace macaque
 		vehicle_struct_definition,
 		"vehicle",
 		"vehicle_group",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
@@ -653,6 +702,8 @@ namespace macaque
 		vehicle_physics_types_struct,
 		"vehicle_physics_types_struct",
 		"s_vehicle_physics_types",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_PHYSICS_TYPES_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -680,6 +731,9 @@ namespace macaque
 		human_tank_struct,
 		"human_tank_struct",
 		"s_vehicle_human_tank_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HUMAN_TANK_STRUCT_ID)
 	{
 		{ _field_angle, "forward arc", "outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." },
@@ -721,6 +775,8 @@ namespace macaque
 		vehicle_steering_control_struct,
 		"vehicle_steering_control_struct",
 		"s_vehicle_steering_control_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_STEERING_CONTROL_STRUCT_ID)
 	{
 		{ _field_explanation, "steering overdampening", "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n" },
@@ -734,6 +790,8 @@ namespace macaque
 		vehicle_turning_control_struct,
 		"vehicle_turning_control_struct",
 		"s_vehicle_turning_control_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_TURNING_CONTROL_STRUCT_ID)
 	{
 		{ _field_explanation, "turning", "" },
@@ -748,6 +806,8 @@ namespace macaque
 		steering_animation_struct,
 		"steering_animation_struct",
 		"s_vehicle_steering_animation_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STEERING_ANIMATION_STRUCT_ID)
 	{
 		{ _field_explanation, "steering animation and interpolation\n", "This data controls the depiction of steering \nthrough animation - not the vehicles ability to turn\ninterpolation scale= how much we interpolate between steering poses.\nmax angle= max animated steering angle change allowed per tick.\n" },
@@ -761,6 +821,8 @@ namespace macaque
 		engine_function_struct,
 		"engine_function_struct",
 		"s_engine_function_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ENGINE_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "object function damage region", "this is the name of the region by which we gauge the overall damage of the vehicle" },
@@ -776,6 +838,9 @@ namespace macaque
 		vtol_descent_function_struct,
 		"vtol_descent_function_struct",
 		"s_vtol_descent_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VTOL_DESCENT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_struct, "descent to boost", &scalar_function_named_struct },
@@ -788,6 +853,8 @@ namespace macaque
 		flight_surface_struct,
 		"flight_surface_struct",
 		"s_flight_surface_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLIGHT_SURFACE_STRUCT_ID)
 	{
 		{ _field_char_enum, "offset axis", &dimensions_enum },
@@ -810,6 +877,8 @@ namespace macaque
 		jackal_glider_drag_struct,
 		"jackal_glider_drag_struct",
 		"s_vehicle_jackal_glider_drag_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JACKAL_GLIDER_DRAG_STRUCT_ID)
 	{
 		{ _field_explanation, "drag", "drag= k*SQR(q*velocity) + constant deceleration" },

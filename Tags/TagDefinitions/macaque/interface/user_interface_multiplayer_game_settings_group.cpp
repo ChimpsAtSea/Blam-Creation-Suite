@@ -52,6 +52,8 @@ namespace macaque
 		"variant_setting_edit_reference_block",
 		k_maximum_game_setting_blocks,
 		"s_variant_setting_edit_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -66,6 +68,8 @@ namespace macaque
 		"variant_option_block",
 		k_maximum_variant_category_blocks,
 		"s_game_variant_category_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VARIANT_OPTION_BLOCK_ID)
 	{
 		{ _field_explanation, "SUB-CATEGORY", "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here" },
@@ -88,6 +92,8 @@ namespace macaque
 		"sandbox_property_allowed_values_reference_block",
 		k_maximum_sandbox_property_values,
 		"s_sandbox_property_allowed_values_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SANDBOX_PROPERTY_ALLOWED_VALUES_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "property name" },
@@ -103,6 +109,8 @@ namespace macaque
 		"text_value_pair_reference_block",
 		k_maximum_text_value_pairs_per_block,
 		"s_text_value_pair",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &text_value_pair_flags },
@@ -120,6 +128,8 @@ namespace macaque
 		multiplayer_variant_settings_interface_definition_struct_definition,
 		"multiplayer_variant_settings_interface_definition_struct_definition",
 		"s_multiplayer_variant_settings_interface_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name (unused)" },
@@ -132,6 +142,8 @@ namespace macaque
 		sandbox_text_value_pair_definition_struct_definition,
 		"sandbox_text_value_pair_definition_struct_definition",
 		"s_object_properties_tag_block_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "property values", &sandbox_property_allowed_values_reference_block },
@@ -143,6 +155,8 @@ namespace macaque
 		text_value_pair_definition_struct_definition,
 		"text_value_pair_definition_struct_definition",
 		"s_text_value_pair_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_enum, "parameter", &game_variant_parameters },

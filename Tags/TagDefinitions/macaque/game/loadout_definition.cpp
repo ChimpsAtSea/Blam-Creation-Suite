@@ -26,6 +26,8 @@ namespace macaque
 		"game_engine_loadout_options_block",
 		1,
 		"s_game_engine_loadout_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_LOADOUT_OPTIONS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &loadout_flags_definition },
@@ -40,6 +42,8 @@ namespace macaque
 		"game_engine_loadout_palette_entry_block",
 		k_maximum_game_engine_static_loadout_palettes,
 		"s_static_loadout_palette_entry_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_LOADOUT_PALETTE_ENTRY_BLOCK_ID)
 	{
 		{ _field_string_id, "palette name" },
@@ -58,6 +62,8 @@ namespace macaque
 		"loadout_palette_definition_block",
 		k_maximum_loadout_palettes,
 		"s_static_loadout_palette_tag_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_PALETTE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "palette name" },
@@ -71,6 +77,8 @@ namespace macaque
 		"loadout_index_block",
 		k_maximum_loadouts_per_palette,
 		"s_static_loadout_tag_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_INDEX_BLOCK_ID)
 	{
 		{ _field_short_block_index, "loadout", &loadout_definition_block },
@@ -84,6 +92,8 @@ namespace macaque
 		"loadout_name_block",
 		k_maximum_loadout_names,
 		"s_static_loadout_name_tag_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_NAME_BLOCK_ID)
 	{
 		{ _field_string_id, "display name" },
@@ -101,6 +111,8 @@ namespace macaque
 		loadout_globals_definition_struct_definition,
 		"loadout_globals_definition_struct_definition",
 		"s_loadout_globals_tag_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "loadouts", &loadout_definition_block },
@@ -115,6 +127,8 @@ namespace macaque
 		loadout_definition_struct,
 		"loadout_definition_struct",
 		"s_static_loadout_tag_definition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_DEFINITION_STRUCT_ID)
 	{
 		{ _field_string_id, "loadout name" },

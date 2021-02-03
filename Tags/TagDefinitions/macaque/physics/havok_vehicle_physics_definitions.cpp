@@ -13,6 +13,8 @@ namespace macaque
 		"anti_gravity_point_definition_block",
 		k_maximum_anti_gravity_points_per_vehicle_physics_definition,
 		"s_anti_gravity_point_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -46,6 +48,8 @@ namespace macaque
 		"friction_point_definition_block",
 		k_maximum_friction_points_per_vehicle_physics_definition,
 		"s_friction_point_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FRICTION_POINT_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -78,6 +82,8 @@ namespace macaque
 		havok_vehicle_physics_struct,
 		"havok_vehicle_physics_struct",
 		"s_havok_vehicle_physics_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_VEHICLE_PHYSICS_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &havok_vehicle_physics_definition_flags },

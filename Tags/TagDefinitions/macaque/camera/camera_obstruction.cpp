@@ -12,6 +12,8 @@ namespace macaque
 		camera_obstruction_struct,
 		"camera_obstruction_struct",
 		"s_camera_obstruction_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_OBSTRUCTION_STRUCT_ID)
 	{
 		{ _field_real_fraction, "cylinder fraction", "controls how far from the focus point the outer raycasts start.  0 == cone, 1 == cylinder" },

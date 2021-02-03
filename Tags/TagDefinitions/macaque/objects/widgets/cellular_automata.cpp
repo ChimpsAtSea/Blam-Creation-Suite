@@ -25,6 +25,8 @@ namespace macaque
 		cellular_automata_struct_definition,
 		"cellular_automata_struct_definition",
 		"ca_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CELLULAR_AUTOMATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "parameters", "" },

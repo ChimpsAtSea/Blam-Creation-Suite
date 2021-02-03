@@ -13,6 +13,8 @@ namespace macaque
 		"unit_trick_definition_block",
 		k_maximum_trick_definitions_per_unit,
 		"s_unit_trick_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_TRICK_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "animation name" },

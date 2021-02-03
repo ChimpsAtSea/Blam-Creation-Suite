@@ -13,6 +13,8 @@ namespace macaque
 		"game_audibility_block",
 		k_maximum_scenario_zone_set_count,
 		"s_game_audibility",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_AUDIBILITY_BLOCK_ID)
 	{
 		{ _field_long_integer, "door portal count" },
@@ -34,6 +36,8 @@ namespace macaque
 		"door_encoded_pas_block",
 		k_maximum_audibility_door_count*2*((((k_maximum_rooms_per_game)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DOOR_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
@@ -46,6 +50,8 @@ namespace macaque
 		"room_door_portal_encoded_pas_block",
 		k_maximum_rooms_per_game*((((k_maximum_audibility_door_count)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ROOM_DOOR_PORTAL_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
@@ -58,6 +64,8 @@ namespace macaque
 		"ai_deafening_encoded_pas_block",
 		(((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
@@ -70,6 +78,8 @@ namespace macaque
 		"encoded_room_distances_block",
 		(k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ENCODED_ROOM_DISTANCES_BLOCK_ID)
 	{
 		{ _field_char_integer, "encoded data" },
@@ -82,6 +92,8 @@ namespace macaque
 		"game_portal_to_door_occluder_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_game_audibility_bsp_game_portal_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_PORTAL_TO_DOOR_OCCLUDER_BLOCK_ID)
 	{
 		{ _field_long_integer, "first door occluder index" },
@@ -95,6 +107,8 @@ namespace macaque
 		"bsp_cluster_to_room_bounds",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_game_audibility_bsp_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP_CLUSTER_TO_ROOM_BOUNDS_ID)
 	{
 		{ _field_long_integer, "first room index" },
@@ -108,6 +122,8 @@ namespace macaque
 		"bsp_cluster_to_room_indices",
 		k_maximum_audibility_room_count,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP_CLUSTER_TO_ROOM_INDICES_ID)
 	{
 		{ _field_short_integer, "room index" },

@@ -26,6 +26,8 @@ namespace macaque
 		"optionalUnitCameraBlock",
 		1,
 		"s_unit_camera",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OPTIONALUNITCAMERABLOCK_ID)
 	{
 		{ _field_struct, "unit camera", &unit_camera_struct },
@@ -38,6 +40,9 @@ namespace macaque
 		"equipmentAbilityDatum",
 		k_equipmentMaxAbilityCount,
 		"EquipmentAbility",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYDATUM_ID)
 	{
 		FIELD_CUSTOM("Timers", nullptr, _field_id_function_group_begin),
@@ -115,6 +120,8 @@ namespace macaque
 		"equipmentAbilityTypeMultiplayerPowerupBlock",
 		1,
 		"EquipmentAbilityTypeMultiplayerPowerup",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEMULTIPLAYERPOWERUPBLOCK_ID)
 	{
 		{ _field_long_enum, "flavor", &multiplayer_powerup_flavor },
@@ -127,6 +134,8 @@ namespace macaque
 		"equipmentAbilityTypeSpawnerBlock",
 		1,
 		"EquipmentAbilityTypeSpawner",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESPAWNERBLOCK_ID)
 	{
 		{ _field_real, "spawn radius", "distance from players eyeball on the z-plane that this effect spawns" },
@@ -146,6 +155,8 @@ namespace macaque
 		"equipmentAbilityTypeAiSpawnerBlock",
 		1,
 		"EquipmentAbilityTypeAiSpawner",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEAISPAWNERBLOCK_ID)
 	{
 		{ _field_real, "spawn radius", "distance from players eyeball on the z-plane that this effect spawns" },
@@ -164,6 +175,8 @@ namespace macaque
 		"equipmentAbilityTypeProximityMineBlock",
 		1,
 		"EquipmentAbilityTypeProximityMine",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEPROXIMITYMINEBLOCK_ID)
 	{
 		{ _field_tag_reference, "explosion effect", &global_effect_reference },
@@ -181,6 +194,8 @@ namespace macaque
 		"equipmentAbilityTypeMotionTrackerNoiseBlock",
 		1,
 		"EquipmentAbilityTypeMotionTrackerNoise",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEMOTIONTRACKERNOISEBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &equipmentAbilityType_MotionTrackerNoise_flags },
@@ -197,6 +212,9 @@ namespace macaque
 		"equipmentAbilityTypeInvincibilityBlock",
 		1,
 		"EquipmentAbilityTypeInvincibilityMode",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEINVINCIBILITYBLOCK_ID)
 	{
 		{ _field_string_id, "invincibility material" },
@@ -222,6 +240,8 @@ namespace macaque
 		"equipmentEffectWithThresholdBlock",
 		10,
 		"s_equipment_effect_with_threshold",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTEFFECTWITHTHRESHOLDBLOCK_ID)
 	{
 		{ _field_real, "threshold energy burned", "how much energy you have to burn to play this effect", "0-1" },
@@ -236,6 +256,8 @@ namespace macaque
 		"equipmentAbilityTypeTreeOfLifeBlock",
 		1,
 		"EquipmentAbilityTypeTreeOfLife",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPETREEOFLIFEBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &equipmentAbilityType_treeoflife_flags },
@@ -250,6 +272,8 @@ namespace macaque
 		"equipmentAbilityTypeShapeshifterBlock",
 		1,
 		"EquipmentAbilityTypeShapeshifter",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESHAPESHIFTERBLOCK_ID)
 	{
 		{ _field_string_id, "region name" },
@@ -264,6 +288,8 @@ namespace macaque
 		"equipmentAbilityTypePlayerTraitFieldBlock",
 		1,
 		"EquipmentAbilityTypePlayerTraitField",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEPLAYERTRAITFIELDBLOCK_ID)
 	{
 		FIELD_SKIP("radius", nullptr, 4),
@@ -278,6 +304,8 @@ namespace macaque
 		"equipmentAbilityTypeAiTraitFieldBlock",
 		1,
 		"EquipmentAbilityTypeAiTraitField",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEAITRAITFIELDBLOCK_ID)
 	{
 		{ _field_block, "active ai equipment traits", &aiEquipmentTraitsBlock_block },
@@ -291,6 +319,8 @@ namespace macaque
 		"aiEquipmentTraitsBlock",
 		1,
 		"s_ai_equipement_traits",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AIEQUIPMENTTRAITSBLOCK_ID)
 	{
 		{ _field_block, "appearance traits", &aiEquipmentTraitAppearanceBlock_block },
@@ -303,6 +333,8 @@ namespace macaque
 		"aiEquipmentTraitAppearanceBlock",
 		1,
 		"s_ai_equipment_trait_appearance",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AIEQUIPMENTTRAITAPPEARANCEBLOCK_ID)
 	{
 		{ _field_explanation, "Appearance Traits", "Traits that affect the AI\'s appearance" },
@@ -317,6 +349,8 @@ namespace macaque
 		"equipmentAbilityTypeRepulsorFieldBlock",
 		1,
 		"EquipmentAbilityTypeRepulsorField",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEREPULSORFIELDBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
@@ -331,6 +365,8 @@ namespace macaque
 		"equipmentAbilityTypeStasisFieldBlock",
 		1,
 		"EquipmentAbilityTypeStasisField",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESTASISFIELDBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
@@ -353,6 +389,8 @@ namespace macaque
 		"equipmentAbilityTypeBallLightningBlock",
 		1,
 		"EquipmentAbilityTypeBallLightning",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEBALLLIGHTNINGBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
@@ -370,6 +408,8 @@ namespace macaque
 		"equipmentAbilityTypeDaddyBlock",
 		1,
 		"EquipmentAbilityTypeDaddy",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEDADDYBLOCK_ID)
 	{
 		{ _field_tag_reference, "child object", &object_reference$4 },
@@ -396,6 +436,8 @@ namespace macaque
 		"equipmentAbilityTypeLaserDesignationBlock",
 		1,
 		"EquipmentAbilityTypeLaserDesignation",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPELASERDESIGNATIONBLOCK_ID)
 	{
 		{ _field_real, "unused" },
@@ -408,6 +450,9 @@ namespace macaque
 		"equipmentAbilityTypeSuperJumpBlock",
 		1,
 		"EquipmentAbilityTypeSuperJump",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESUPERJUMPBLOCK_ID)
 	{
 		{ _field_struct, "energy to jump", &scalar_function_named_struct },
@@ -420,6 +465,8 @@ namespace macaque
 		"equipmentAbilityTypeAmmoPackBlock",
 		1,
 		"EquipmentAbilityTypeAmmoPack",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEAMMOPACKBLOCK_ID)
 	{
 		{ _field_real, "energy change per clip added" },
@@ -440,6 +487,8 @@ namespace macaque
 		"equipmentAbilityTypePowerFistBlock",
 		1,
 		"EquipmentAbilityTypePowerFist",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEPOWERFISTBLOCK_ID)
 	{
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
@@ -455,6 +504,9 @@ namespace macaque
 		"equipmentAbilityTypeHealthPackBlock",
 		1,
 		"EquipmentAbilityTypeHealthPack",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEHEALTHPACKBLOCK_ID)
 	{
 		{ _field_struct, "health given over energy used", &scalar_function_named_struct },
@@ -467,6 +519,9 @@ namespace macaque
 		"equipmentAbilityTypeJetPackBlock",
 		1,
 		"EquipmentAbilityTypeJetPack",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEJETPACKBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeJetPackFlags },
@@ -498,6 +553,8 @@ namespace macaque
 		"equipmentAbilityPartCowCatcherBlock",
 		1,
 		"EquipmentAbilityPartCowCatcher",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYPARTCOWCATCHERBLOCK_ID)
 	{
 		{ _field_real, "cow catcher height", "world units" },
@@ -515,6 +572,9 @@ namespace macaque
 		"equipmentAbilityTypeHologramBlock",
 		1,
 		"EquipmentAbilityTypeHologram",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEHOLOGRAMBLOCK_ID)
 	{
 		{ _field_real, "hologram duration", "s" },
@@ -540,6 +600,8 @@ namespace macaque
 		"equipmentAbilityTypeSpecialWeaponBlock",
 		1,
 		"EquipmentAbilityTypeSpecialWeapon",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESPECIALWEAPONBLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &global_weapon_reference },
@@ -552,6 +614,8 @@ namespace macaque
 		"equipmentAbilityTypeSpecialMoveBlock",
 		1,
 		"EquipmentAbilityTypeSpecialMove",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESPECIALMOVEBLOCK_ID)
 	{
 		{ _field_string_id, "forward" },
@@ -572,6 +636,8 @@ namespace macaque
 		"equipmentAbilityTypeEngineerShieldsBlock",
 		1,
 		"EquipmentAbilityTypeEngineerShields",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEENGINEERSHIELDSBLOCK_ID)
 	{
 		{ _field_real, "radius" },
@@ -586,6 +652,8 @@ namespace macaque
 		"equipmentAbilityTypeSprintBlock",
 		1,
 		"EquipmentAbilityTypeSprint",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESPRINTBLOCK_ID)
 	{
 		FIELD_PAD("haha", nullptr, 1),
@@ -598,6 +666,9 @@ namespace macaque
 		"equipmentAbilityTypeTeleporterBlock",
 		1,
 		"EquipmentAbilityTypeTeleporter",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPETELEPORTERBLOCK_ID)
 	{
 		{ _field_explanation, "Teleporter", "This causes you to warp forward.  It\'ll trace the path with an effect at the specified speed, then spawn you at the end of it." },
@@ -636,6 +707,8 @@ namespace macaque
 		"equipmentAbilityTypeAutoTurretBlock",
 		1,
 		"EquipmentAbilityTypeAutoTurret",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEAUTOTURRETBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &equipment_auto_turret_flags },
@@ -670,6 +743,8 @@ namespace macaque
 		"equipmentAbilityTypeVisionModeBlock",
 		1,
 		"EquipmentAbilityTypeVisionMode",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEVISIONMODEBLOCK_ID)
 	{
 		{ _field_byte_flags, "Flags", &equipmentVisionModeFlags },
@@ -687,6 +762,8 @@ namespace macaque
 		"equipmentAbilityTypeShieldProjectorBlock",
 		1,
 		"EquipmentAbilityTypeShieldProjector",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESHIELDPROJECTORBLOCK_ID)
 	{
 		{ _field_real, "Lifetime ", "Number of seconds a projected shield will remain active." },
@@ -709,6 +786,8 @@ namespace macaque
 		"equipmentAbilityTypeProjectileCollectorBlock",
 		1,
 		"EquipmentAbilityTypeProjectileCollector",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEPROJECTILECOLLECTORBLOCK_ID)
 	{
 		{ _field_real_fraction, "Chance to Collect ", "Percent chance (0-1) that collector has to collect each grenade.  Will only attempt to collect each grenade once." },
@@ -730,6 +809,8 @@ namespace macaque
 		"equipmentAbilityTypeRemoteStrikeBlock",
 		1,
 		"EquipmentAbilityTypeRemoteStrike",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEREMOTESTRIKEBLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &object_reference$4 },
@@ -748,6 +829,8 @@ namespace macaque
 		"equipmentAbilityTypeEquipmentHackerBlock",
 		1,
 		"EquipmentAbilityTypeEquipmentHacker",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEEQUIPMENTHACKERBLOCK_ID)
 	{
 		{ _field_byte_flags, "Flags", &equipmentHackerFlags },
@@ -767,6 +850,8 @@ namespace macaque
 		"equipmentHackerDrainLevel",
 		EquipmentAbilityTypeEquipmentHacker::DrainLevel::k_maxLevels,
 		"EquipmentAbilityTypeEquipmentHacker::DrainLevel",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTHACKERDRAINLEVEL_ID)
 	{
 		{ _field_real, "Cutoff distance", "Targets within this distance will be affected by this multiplier." },
@@ -780,6 +865,8 @@ namespace macaque
 		"equipmentAbilityTypeRemoteVehicleBlock",
 		1,
 		"EquipmentAbilityTypeRemoteVehicle",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEREMOTEVEHICLEBLOCK_ID)
 	{
 		{ _field_tag_reference, "hologram spawner", &object_reference$4 },
@@ -795,6 +882,8 @@ namespace macaque
 		"equipmentAbilityTypeSuicideBombBlock",
 		1,
 		"EquipmentAbilityTypeSuicideBomb",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPESUICIDEBOMBBLOCK_ID)
 	{
 		{ _field_tag_reference, "explosion damage effect", &global_damage_reference },
@@ -808,6 +897,8 @@ namespace macaque
 		"equipmentAbilityTypeActiveShieldBlock",
 		1,
 		"EquipmentAbilityTypeActiveShield",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEACTIVESHIELDBLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &activeShieldFlags },
@@ -820,6 +911,8 @@ namespace macaque
 		"EquipmentSoundRTPCBlock",
 		k_maxEquipmentSoundRTPCBlocks,
 		"EquipmentSoundRTPCBlockDefinition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTSOUNDRTPCBLOCK_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
@@ -835,6 +928,8 @@ namespace macaque
 		"EquipmentSoundSweetenerBlock",
 		k_maxEquipmentSoundSweetenerBlocks,
 		"EquipmentSoundSweetenerBlockDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTSOUNDSWEETENERBLOCK_ID)
 	{
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
@@ -849,6 +944,10 @@ namespace macaque
 		equipment_struct_definition,
 		"equipment_struct_definition",
 		"_equipment_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "item", &item_struct_definition },

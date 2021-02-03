@@ -13,6 +13,9 @@ namespace macaque
 		"structure_design_block",
 		1,
 		"s_structure_design",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_DESIGN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "build identifier", &structure_manifest_build_identifier_struct },

@@ -25,6 +25,9 @@ namespace macaque
 		particleman_struct_definition,
 		"particleman_struct_definition",
 		"s_particleize_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLEMAN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
@@ -42,6 +45,9 @@ namespace macaque
 		particleize_scalar_function_struct,
 		"particleize_scalar_function_struct",
 		"particleize_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLEIZE_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

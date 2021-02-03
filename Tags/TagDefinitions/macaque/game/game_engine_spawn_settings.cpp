@@ -26,6 +26,8 @@ namespace macaque
 		"influencerSpawnSettingsBlock",
 		k_spawn_influencer_type_count,
 		"InfluencerSpawnSettings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INFLUENCERSPAWNSETTINGSBLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &InfluencerSpawnSettingsFlagsDefinition },
@@ -40,6 +42,8 @@ namespace macaque
 		"weaponSpawnInfluenceBlock",
 		48,
 		"WeaponSpawnInfluence",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSPAWNINFLUENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference$9 },
@@ -56,6 +60,8 @@ namespace macaque
 		"vehicleSpawnInfluenceBlock",
 		k_vehicle_spawn_influencer_maximum_count,
 		"VehicleSpawnInfluence",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLESPAWNINFLUENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "vehicle", &vehicle_reference$4 },
@@ -74,6 +80,8 @@ namespace macaque
 		"projectileSpawnInfluenceBlock",
 		k_projectile_spawn_influencer_maximum_count,
 		"ProjectileSpawnInfluence",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROJECTILESPAWNINFLUENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "projectile", &projectile_reference$3 },
@@ -89,6 +97,8 @@ namespace macaque
 		"equipmentSpawnInfluenceBlock",
 		k_equipment_spawn_influencer_maximum_count,
 		"EquipmentSpawnInfluence",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTSPAWNINFLUENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "equipment", &equipment_reference$5 },
@@ -101,6 +111,8 @@ namespace macaque
 		SpawnSettings_struct_definition,
 		"SpawnSettings_struct_definition",
 		"SpawnSettingsTagGroup",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPAWNSETTINGS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "minimum spawn time", "Absolute floor.  Used to put a few-frame delay between death and instaspawn.  Will not override longer minimum times.", "seconds" },

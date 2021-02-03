@@ -13,6 +13,9 @@ namespace macaque
 		"scenario_lightmap_bsp_data_block",
 		1,
 		"s_scenario_lightmap_bsp_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_BSP_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_lightmap_bsp_flags },
@@ -81,6 +84,8 @@ namespace macaque
 		"scenario_lightmap_block",
 		1,
 		"s_scenario_lightmap",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "job guid" },
@@ -114,6 +119,8 @@ namespace macaque
 		"scenario_lightmap_cluster_data",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_cluster_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_CLUSTER_DATA_ID)
 	{
 		{ _field_short_integer, "lightprobe texture array index" },
@@ -128,6 +135,8 @@ namespace macaque
 		"scenario_lightmap_instance_data",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_instance_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_INSTANCE_DATA_ID)
 	{
 		{ _field_short_integer, "lightprobe texture array index" },
@@ -149,6 +158,8 @@ namespace macaque
 		"scenario_lightmap_lightprobe_value",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_bsp_single_probe",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_LIGHTPROBE_VALUE_ID)
 	{
 		{ _field_array, "vmf terms", &dual_vmf_terms_array },
@@ -163,6 +174,8 @@ namespace macaque
 		"scenario_lightmap_instance_index_block",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_instance_index",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_INSTANCE_INDEX_BLOCK_ID)
 	{
 		{ _field_long_integer, "Indices" },
@@ -175,6 +188,8 @@ namespace macaque
 		"scenario_lightmap_global_perpixel_padding_data",
 		1024 * 1024,
 		"s_scenario_lightmap_perpixel_padding_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_GLOBAL_PERPIXEL_PADDING_DATA_ID)
 	{
 		{ _field_long_integer, "x" },
@@ -190,6 +205,8 @@ namespace macaque
 		"scenario_lightmap_rasterized_chart_data",
 		1024 * 1024,
 		"s_scenario_lightmap_rasterized_chart_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_RASTERIZED_CHART_DATA_ID)
 	{
 		{ _field_long_integer, "width" },
@@ -210,6 +227,8 @@ namespace macaque
 		"scenario_lightmap_rasterized_chart_source",
 		2147483647L,
 		"s_scenario_lightmap_rasterized_chart_source",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_RASTERIZED_CHART_SOURCE_ID)
 	{
 		{ _field_long_integer, "streamIndex" },
@@ -223,6 +242,8 @@ namespace macaque
 		"scenario_lightmap_rasterized_chart_element",
 		1024 * 1024 * 4,
 		"s_scenario_lightmap_rasterized_chart_element",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_RASTERIZED_CHART_ELEMENT_ID)
 	{
 		{ _field_byte_integer, "composite" },
@@ -235,6 +256,8 @@ namespace macaque
 		"scenario_lightmap_new_ao_data_block",
 		2147483647L,
 		"s_scenario_lightmap_new_ao_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_NEW_AO_DATA_BLOCK_ID)
 	{
 		{ _field_char_integer, "value" },
@@ -247,6 +270,8 @@ namespace macaque
 		"scenario_lightmap_adjacent_bounce_vertex_block",
 		2147483647L,
 		"s_scenario_lightmap_adjacent_bounce_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_ADJACENT_BOUNCE_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "position" },
@@ -263,6 +288,8 @@ namespace macaque
 		"scenario_lightmap_adjacent_bounce_index_block",
 		2147483647L,
 		"unsigned long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_ADJACENT_BOUNCE_INDEX_BLOCK_ID)
 	{
 		{ _field_long_integer, "index" },
@@ -275,6 +302,8 @@ namespace macaque
 		"triangle_mapping_per_mesh_block",
 		(8*1024-1),
 		"s_reordered_triangle",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGLE_MAPPING_PER_MESH_BLOCK_ID)
 	{
 		{ _field_block, "mesh", &triangle_mapping_block },
@@ -287,6 +316,8 @@ namespace macaque
 		"triangle_mapping_block",
 		2147483647L,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGLE_MAPPING_BLOCK_ID)
 	{
 		{ _field_long_integer, "word" },
@@ -299,6 +330,8 @@ namespace macaque
 		"scenario_lightmap_dynamic_light_instance",
 		2147483647L,
 		"s_scenario_lightmap_dynamic_light_instance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_DYNAMIC_LIGHT_INSTANCE_ID)
 	{
 		{ _field_real, "Min Depth" },
@@ -313,6 +346,8 @@ namespace macaque
 		"scenario_lightmap_dynamic_light_instance_data_block",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_dynamic_light_instance_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_DYNAMIC_LIGHT_INSTANCE_DATA_BLOCK_ID)
 	{
 		{ _field_long_integer, "Index" },
@@ -326,6 +361,8 @@ namespace macaque
 		"scenario_lightmap_structure_light_instance",
 		2147483647L,
 		"s_scenario_lightmap_structure_light_instance",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_STRUCTURE_LIGHT_INSTANCE_ID)
 	{
 		{ _field_long_integer, "Shadow Geometry Mesh Index" },
@@ -338,6 +375,8 @@ namespace macaque
 		"s_scenario_lightmap_silhouette_vertex",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_silhouette_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_LIGHTMAP_SILHOUETTE_VERTEX_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -350,6 +389,8 @@ namespace macaque
 		"s_scenario_lightmap_silhouette_edge",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_silhouette_edge",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_LIGHTMAP_SILHOUETTE_EDGE_ID)
 	{
 		{ _field_long_integer, "First index" },
@@ -363,6 +404,8 @@ namespace macaque
 		"s_scenario_lightmap_silhouette_group",
 		UNSIGNED_SHORT_MAX,
 		"s_scenario_lightmap_silhouette_group",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_LIGHTMAP_SILHOUETTE_GROUP_ID)
 	{
 		{ _field_long_integer, "First edge" },
@@ -380,6 +423,8 @@ namespace macaque
 		"scenario_lightmap_airprobe_value",
 		k_max_airprobes_per_scenario,
 		"s_scenario_lightmap_airprobe",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID)
 	{
 		{ _field_real_point_3d, "airprobe position" },
@@ -396,6 +441,8 @@ namespace macaque
 		"scenario_lightmap_bsp_data_reference_block",
 		LONG_BITS,
 		"s_scenario_lightmap_bsp_data_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_BSP_DATA_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
@@ -409,6 +456,8 @@ namespace macaque
 		"wentness_bit_vector",
 		UNSIGNED_SHORT_MAX,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WENTNESS_BIT_VECTOR_ID)
 	{
 		{ _field_long_integer, "bits" },
@@ -421,6 +470,8 @@ namespace macaque
 		"wentness_byte_vector",
 		UNSIGNED_SHORT_MAX,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WENTNESS_BYTE_VECTOR_ID)
 	{
 		{ _field_char_integer, "bytes" },
@@ -433,6 +484,8 @@ namespace macaque
 		"cluster_wetness_offset_block",
 		UNSIGNED_SHORT_MAX,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLUSTER_WETNESS_OFFSET_BLOCK_ID)
 	{
 		{ _field_long_integer, "cluster offset" },
@@ -445,6 +498,8 @@ namespace macaque
 		"instance_wetness_instance_block",
 		UNSIGNED_SHORT_MAX,
 		"s_instance_wetness_info",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANCE_WETNESS_INSTANCE_BLOCK_ID)
 	{
 		{ _field_long_integer, "cluster offset" },
@@ -460,6 +515,8 @@ namespace macaque
 		"dual_vmf_terms",
 		k_dual_vmf_basis_real_coefficients_count,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DUAL_VMF_TERMS_ID)
 	{
 		{ _field_short_integer, "dual vmf coefficient" },
@@ -471,6 +528,8 @@ namespace macaque
 		scenario_wetness_bsp_data_struct_definition,
 		"scenario_wetness_bsp_data_struct_definition",
 		"s_scenario_wetness_bsp_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_WETNESS_BSP_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "bsp reference index" },

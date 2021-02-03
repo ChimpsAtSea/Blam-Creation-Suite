@@ -26,6 +26,8 @@ namespace macaque
 		"multiplayerEffectsBlock",
 		k_multiplayer_effect_maximum_count,
 		"s_multiplayer_effect",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYEREFFECTSBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -38,6 +40,8 @@ namespace macaque
 		multiplayerEffects_struct_definition,
 		"multiplayerEffects_struct_definition",
 		"s_megalogamengine_effect_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYEREFFECTS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "effects", &multiplayerEffectsBlock_block },

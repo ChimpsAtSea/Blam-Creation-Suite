@@ -13,6 +13,8 @@ namespace macaque
 		"wave_template_block",
 		1,
 		"s_ai_wave_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WAVE_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "squad specifications", &wave_squad_specification_struct_block },
@@ -37,6 +39,8 @@ namespace macaque
 		wave_squad_specification_struct_struct,
 		"wave_squad_specification_struct_struct",
 		"s_ai_wave_squad_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WAVE_SQUAD_SPECIFICATION_STRUCT_STRUCT_ID)
 	{
 		{ _field_tag_reference, "squad template", &squad_template_reference$2 },

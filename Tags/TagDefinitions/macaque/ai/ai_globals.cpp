@@ -26,6 +26,8 @@ namespace macaque
 		"ai_globals_data_block",
 		1,
 		"s_ai_globals_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_DATA_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "AI infantry-on-AI weapon damage scale", "Global scale on weapon damage made by AI on other AI" },
@@ -130,6 +132,8 @@ namespace macaque
 		"ai_globals_gravemind_block",
 		1,
 		"s_ai_globals_gravemind_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_GRAVEMIND_BLOCK_ID)
 	{
 		{ _field_real, "min retreat time", "secs" },
@@ -144,6 +148,8 @@ namespace macaque
 		"ai_globals_formation_block",
 		k_global_formations_count,
 		"s_ai_globals_formation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_FORMATION_BLOCK_ID)
 	{
 		{ _field_tag_reference, "formation", &formation_reference },
@@ -156,6 +162,8 @@ namespace macaque
 		"ai_globals_squad_template_folder_block",
 		k_global_squad_template_folder_count,
 		"s_ai_globals_squad_template_folder_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_SQUAD_TEMPLATE_FOLDER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "folder name" },
@@ -170,6 +178,8 @@ namespace macaque
 		"ai_globals_squad_template_sub_folder_block",
 		k_global_squad_template_folder_count,
 		"s_ai_globals_squad_template_sub_folder_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_SQUAD_TEMPLATE_SUB_FOLDER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "sub folder name" },
@@ -183,6 +193,8 @@ namespace macaque
 		"ai_globals_squad_template_block",
 		k_global_squad_templates_count,
 		"s_ai_globals_squad_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_SQUAD_TEMPLATE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "squad_template", &squad_template_reference },
@@ -195,6 +207,8 @@ namespace macaque
 		"ai_globals_performance_template_folder_block",
 		k_global_performance_template_folder_count,
 		"s_ai_globals_performance_template_folder_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_PERFORMANCE_TEMPLATE_FOLDER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "folder name" },
@@ -209,6 +223,8 @@ namespace macaque
 		"ai_globals_performance_template_sub_folder_block",
 		k_global_performance_template_folder_count,
 		"s_ai_globals_performance_template_sub_folder_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_PERFORMANCE_TEMPLATE_SUB_FOLDER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "sub folder name" },
@@ -222,6 +238,8 @@ namespace macaque
 		"ai_globals_performance_template_block",
 		k_global_performance_templates_count,
 		"s_ai_globals_performance_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_PERFORMANCE_TEMPLATE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "thespian_template", &performance_template_reference },
@@ -234,6 +252,8 @@ namespace macaque
 		"ai_globals_custom_stimuli_block",
 		k_max_custom_stimuli_count,
 		"s_ai_globals_custom_stimulus_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_CUSTOM_STIMULI_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -246,6 +266,8 @@ namespace macaque
 		"ai_trait_vision_block",
 		k_num_ai_trait_vision-2,
 		"s_ai_globals_trait_vision_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_TRAIT_VISION_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Vision Traits", "Traits that affect the AI\'s vision" },
@@ -260,6 +282,8 @@ namespace macaque
 		"ai_trait_sound_block",
 		k_num_ai_trait_sound-2,
 		"s_ai_globals_trait_sound_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_TRAIT_SOUND_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Sound Traits", "Traits that affect the AI\'s sound awareness" },
@@ -273,6 +297,8 @@ namespace macaque
 		"ai_trait_luck_block",
 		k_num_ai_trait_luck-2,
 		"s_ai_globals_trait_luck_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_TRAIT_LUCK_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Luck Traits", "Traits that affect the AI\'s luck" },
@@ -296,6 +322,8 @@ namespace macaque
 		"ai_trait_grenade_block",
 		k_num_ai_trait_grenade-2,
 		"s_ai_globals_trait_grenade_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_TRAIT_GRENADE_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Grenade Traits", "Traits that affect the AI\'s grenade use" },
@@ -314,6 +342,8 @@ namespace macaque
 		ai_globals_struct_definition,
 		"ai_globals_struct_definition",
 		"s_ai_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "data", &ai_globals_data_block },

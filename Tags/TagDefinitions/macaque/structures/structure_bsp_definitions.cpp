@@ -20,6 +20,9 @@ namespace macaque
 		"scenario_structure_bsp_block",
 		1,
 		"structure_bsp",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "build identifier", &structure_manifest_build_identifier_struct },
@@ -125,6 +128,8 @@ namespace macaque
 		"structure_edge_to_seam_edge_mapping_block",
 		((true) ? 2621440 : UNSIGNED_SHORT_MAX),
 		"s_structure_edge_to_seam_edge_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
 		{ _field_short_integer, "seam_index" },
@@ -138,6 +143,8 @@ namespace macaque
 		"structure_collision_materials_block",
 		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
 		"structure_collision_material",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "render method", &structure_collision_materials_block_render_method_reference },
@@ -155,6 +162,8 @@ namespace macaque
 		"structure_bsp_conveyor_surface_block",
 		MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE,
 		"structure_conveyor_surface",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CONVEYOR_SURFACE_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "u" },
@@ -168,6 +177,8 @@ namespace macaque
 		"structure_bsp_leaf_block",
 		((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))),
 		"structure_bsp_leaf_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_LEAF_BLOCK_ID)
 	{
 		{ _field_byte_integer, "cluster" },
@@ -180,6 +191,8 @@ namespace macaque
 		"structure_super_node_aabbs_block",
 		(k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count,
 		"real_rectangle3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SUPER_NODE_AABBS_BLOCK_ID)
 	{
 		{ _field_real, "x0" },
@@ -197,6 +210,8 @@ namespace macaque
 		"super_node_mappings_block",
 		(k_bsp3d_maximum_super_node_count),
 		"s_structure_super_node_mapping",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
 		{ _field_short_integer, "parent_super_node_index" },
@@ -217,6 +232,8 @@ namespace macaque
 		"structure_super_node_traversal_geometry_indices_block",
 		((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)),
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_INDICES_BLOCK_ID)
 	{
 		{ _field_short_integer, "index" },
@@ -229,6 +246,8 @@ namespace macaque
 		"super_node_recursable_masks_block",
 		(k_bsp3d_maximum_super_node_count),
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID)
 	{
 		{ _field_short_integer, "mask" },
@@ -241,6 +260,8 @@ namespace macaque
 		"structure_super_node_traversal_geometry_block",
 		k_short_max,
 		"s_structure_super_node_traversal_geometry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID)
 	{
 		{ _field_block, "portal_indices", &structure_super_node_traversal_geometry_indices_block },
@@ -254,6 +275,8 @@ namespace macaque
 		"structure_surface_block",
 		((true) ? SHORT_MAX<<3 : SHORT_MAX),
 		"structure_surface_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SURFACE_BLOCK_ID)
 	{
 		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index" },
@@ -267,6 +290,8 @@ namespace macaque
 		"structure_surface_to_triangle_mapping_block",
 		(8*((true) ? SHORT_MAX<<3 : SHORT_MAX)),
 		"structure_surface_to_triangle_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_STRUCT_ID)
 	{
 		{ _field_dword_integer, "manual byteswarp1" },
@@ -279,6 +304,8 @@ namespace macaque
 		"structure_bsp_cluster_portal_block",
 		MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE,
 		"cluster_portal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID)
 	{
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block },
@@ -298,6 +325,8 @@ namespace macaque
 		"structure_bsp_cluster_portal_vertex_block",
 		MAXIMUM_VERTICES_PER_CLUSTER_PORTAL,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
@@ -310,6 +339,8 @@ namespace macaque
 		"structure_bsp_detail_object_data_block",
 		1,
 		"structure_detail_object_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DETAIL_OBJECT_DATA_BLOCK_ID)
 	{
 		{ _field_block, "cells", &global_detail_object_cells_block },
@@ -327,6 +358,8 @@ namespace macaque
 		"structure_bsp_cluster_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"structure_cluster",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "CLUSTER INFO", "" },
@@ -362,6 +395,8 @@ namespace macaque
 		"structure_bsp_cluster_portal_index_block",
 		MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID)
 	{
 		{ _field_short_integer, "portal index" },
@@ -374,6 +409,8 @@ namespace macaque
 		"seam_indices_block_definition",
 		k_structure_seam_maximum_seam_count,
 		"char",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SEAM_INDICES_BLOCK_DEFINITION_ID)
 	{
 		{ _field_char_integer, "seam index" },
@@ -386,6 +423,8 @@ namespace macaque
 		"cheap_light_marker_ref_block",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"s_cheap_light_marker_reference_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_LIGHT_MARKER_REF_BLOCK_ID)
 	{
 		{ _field_short_block_index, "cheap light reference reference", &cheap_light_reference_block },
@@ -399,6 +438,8 @@ namespace macaque
 		"cheap_light_reference_block",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"s_cheap_light_marker_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index" },
@@ -413,6 +454,8 @@ namespace macaque
 		"pvs_bound_object_identifiers_block",
 		k_maximum_scenario_object_datum_count,
 		"c_object_identifier",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID)
 	{
 		{ _field_struct, "object ID", &scenario_object_id_struct },
@@ -425,6 +468,8 @@ namespace macaque
 		"pvs_bound_object_references_block",
 		k_maximum_scenario_object_datum_count,
 		"s_scenario_object_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID)
 	{
 		{ _field_struct, "scenario object reference", &scenario_object_reference_struct },
@@ -437,6 +482,8 @@ namespace macaque
 		"structure_material_lighting_info_block",
 		SHORT_MAX,
 		"s_structure_material_lighting_info",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MATERIAL_LIGHTING_INFO_BLOCK_ID)
 	{
 		{ _field_real, "emissive power" },
@@ -456,6 +503,8 @@ namespace macaque
 		"structure_bsp_sky_owner_cluster_block",
 		MAXIMUM_SKIES_PER_SCENARIO,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID)
 	{
 		{ _field_short_integer, "cluster owner" },
@@ -468,6 +517,8 @@ namespace macaque
 		"structure_cookie_cutter_definition",
 		k_kilo,
 		"s_structure_cookie_cutter",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Cookie Cutter", nullptr, _field_id_function_group_begin),
@@ -482,6 +533,8 @@ namespace macaque
 		"structure_bsp_marker_block",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"structure_marker",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_MARKER_BLOCK_ID)
 	{
 		{ _field_char_enum, "marker type", &structure_marker_type_enum },
@@ -498,6 +551,8 @@ namespace macaque
 		"structure_bsp_marker_light_palette",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_MARKER_LIGHT_PALETTE_ID)
 	{
 		{ _field_tag_reference, "light tag", &light_reference },
@@ -510,6 +565,8 @@ namespace macaque
 		"structure_bsp_marker_light_index",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_MARKER_LIGHT_INDEX_ID)
 	{
 		{ _field_short_integer, "palette index" },
@@ -522,6 +579,8 @@ namespace macaque
 		"structure_bsp_runtime_decal_block",
 		MAXIMUM_DECALS_PER_STRUCTURE,
 		"scenario_decal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID)
 	{
 		{ _field_short_integer, "decal palette index" },
@@ -541,6 +600,8 @@ namespace macaque
 		"structure_bsp_environment_object_palette_block",
 		MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE,
 		"structure_environment_object_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "definition", &object_reference$8 },
@@ -555,6 +616,8 @@ namespace macaque
 		"structure_bsp_environment_object_block",
 		MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE,
 		"structure_environment_object",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -577,6 +640,8 @@ namespace macaque
 		"structure_instance_cluster_definition",
 		k_maximum_cluster_to_instance_group_block_size,
 		"s_structure_instance_cluster",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_INSTANCE_CLUSTER_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &structure_instance_cluster_flags },
@@ -590,6 +655,8 @@ namespace macaque
 		"index_list_block",
 		4 * k_kilo,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDEX_LIST_BLOCK_ID)
 	{
 		{ _field_word_integer, "index" },
@@ -602,6 +669,8 @@ namespace macaque
 		"structure_instance_group_definition",
 		4 * k_kilo,
 		"s_structure_instance_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_INSTANCE_GROUP_DEFINITION_ID)
 	{
 		{ _field_real_point_3d, "center" },
@@ -621,6 +690,8 @@ namespace macaque
 		"structure_instance_imposter_info_block",
 		k_maximum_instance_geometry_instances_per_structure_bsp,
 		"s_structure_instance_imposter_info",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_INSTANCE_IMPOSTER_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -636,6 +707,8 @@ namespace macaque
 		"runtime_decorator_set_block",
 		MAXIMUM_DECORATOR_SETS_PER_SCENARIO,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_DECORATOR_SET_BLOCK_ID)
 	{
 		{ _field_tag_reference, "decorator set reference", &global_decorator_set_reference },
@@ -648,6 +721,8 @@ namespace macaque
 		"bsp_preplaced_decal_set_reference_block",
 		MAXIMUM_DECALS_PER_STRUCTURE,
 		"s_bsp_preplaced_decal_set_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP_PREPLACED_DECAL_SET_REFERENCE_BLOCK_ID)
 	{
 		{ _field_long_integer, "decal definition index" },
@@ -671,6 +746,8 @@ namespace macaque
 		"bsp_preplaced_decal_reference_block",
 		MAXIMUM_DECALS_PER_STRUCTURE,
 		"s_bsp_preplaced_decal_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP_PREPLACED_DECAL_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "index start" },
@@ -690,6 +767,8 @@ namespace macaque
 		"transparent_planes_block",
 		32*k_kilo,
 		"s_transparent_plane",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRANSPARENT_PLANES_BLOCK_ID)
 	{
 		{ _field_short_integer, "section index" },
@@ -704,6 +783,8 @@ namespace macaque
 		"structure_bsp_debug_info_block",
 		1,
 		"s_structure_debug_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
 	{
 		FIELD_PAD("BRQYEF", nullptr, 64),
@@ -719,6 +800,8 @@ namespace macaque
 		"structure_bsp_cluster_debug_info_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_structure_cluster_debug_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID)
 	{
 		{ _field_word_flags, "errors", &structure_bsp_debug_info_cluster_error_flags },
@@ -738,6 +821,8 @@ namespace macaque
 		"structure_bsp_debug_info_render_line_block",
 		SHORT_MAX,
 		"s_structure_debug_info_render_line",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
 		{ _field_enum, "type", &structure_bsp_debug_info_render_line_type_enum },
@@ -755,6 +840,8 @@ namespace macaque
 		"structure_bsp_debug_info_indices_block",
 		SHORT_MAX,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID)
 	{
 		{ _field_long_integer, "index" },
@@ -767,6 +854,8 @@ namespace macaque
 		"structure_bsp_fog_plane_debug_info_block",
 		MAXIMUM_FOG_PLANES_PER_STRUCTURE,
 		"s_structure_fog_plane_debug_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
 	{
 		{ _field_long_integer, "fog zone index" },
@@ -784,6 +873,8 @@ namespace macaque
 		"structure_bsp_fog_zone_debug_info_block",
 		MAXIMUM_FOG_ZONES_PER_STRUCTURE,
 		"s_structure_fog_zone_debug_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID)
 	{
 		{ _field_long_integer, "media index", "scenario fog plane" },
@@ -802,6 +893,8 @@ namespace macaque
 		"widget_reference_block",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"s_widget_marker_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIDGET_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index" },
@@ -816,6 +909,8 @@ namespace macaque
 		"structure_bsp_raw_resources",
 		1,
 		"s_structure_bsp_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RAW_RESOURCES_ID)
 	{
 		{ _field_struct, "raw_items", &structure_bsp_resource_struct },
@@ -828,6 +923,8 @@ namespace macaque
 		"structure_external_instanced_geometry_references_block",
 		k_external_instanced_geometry_max,
 		"structure_external_instanced_geometry_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_EXTERNAL_INSTANCED_GEOMETRY_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "prefab reference", &prefab_reference },
@@ -864,6 +961,8 @@ namespace macaque
 		"structure_bsp_obb_volume_block",
 		4096,
 		"s_structure_bsp_obb_volume",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_OBB_VOLUME_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "origin" },
@@ -880,6 +979,8 @@ namespace macaque
 		"AnimGraphDependencyBlock",
 		256,
 		"AnimGraphDependency",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMGRAPHDEPENDENCYBLOCK_ID)
 	{
 		{ _field_tag_reference, "graph", &model_animation_graph_reference$2 },
@@ -892,6 +993,8 @@ namespace macaque
 		"structureBspFxMarkerBlock",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"structureFxMarker",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREBSPFXMARKERBLOCK_ID)
 	{
 		{ _field_string, "marker name" },
@@ -907,6 +1010,8 @@ namespace macaque
 		"structureMetadataLightConeMarkerBlock",
 		MAXIMUM_MARKERS_PER_STRUCTURE,
 		"structureMetadataLightConeMarker",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREMETADATALIGHTCONEMARKERBLOCK_ID)
 	{
 		{ _field_string, "marker name" },
@@ -926,6 +1031,8 @@ namespace macaque
 		prefab_struct_definition,
 		"prefab_struct_definition",
 		"structure_prefab",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PREFAB_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "bsp reference", &scenario_structure_bsp_reference },
@@ -937,6 +1044,8 @@ namespace macaque
 		structure_bsp_cluster_portal_oriented_bounds_block,
 		"structure_bsp_cluster_portal_oriented_bounds_block",
 		"cluster_portal::s_oriented_bounds",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "center" },
@@ -950,6 +1059,9 @@ namespace macaque
 		structure_bsp_resource_interface,
 		"structure_bsp_resource_interface",
 		"c_structure_bsp_resource_interface",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RESOURCE_INTERFACE_ID)
 	{
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
@@ -964,6 +1076,8 @@ namespace macaque
 		structure_bsp_resource_struct,
 		"structure_bsp_resource_struct",
 		"s_structure_bsp_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_block, "collision bsp", &global_collision_bsp_block },
@@ -978,6 +1092,8 @@ namespace macaque
 		structure_bsp_tag_resources_struct,
 		"structure_bsp_tag_resources_struct",
 		"s_structure_bsp_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_TAG_RESOURCES_STRUCT_ID)
 	{
 		{ _field_struct, "resource_items", &structure_bsp_resource_struct },
@@ -989,6 +1105,8 @@ namespace macaque
 		structure_bsp_cache_file_tag_resources_struct,
 		"structure_bsp_cache_file_tag_resources_struct",
 		"s_structure_bsp_cache_file_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID)
 	{
 		{ _field_block, "large structure surfaces", &structure_surface_block },

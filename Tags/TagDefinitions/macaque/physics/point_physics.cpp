@@ -25,6 +25,8 @@ namespace macaque
 		point_physics_struct_definition,
 		"point_physics_struct_definition",
 		"point_physics_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POINT_PHYSICS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &point_physics_definition_flags },

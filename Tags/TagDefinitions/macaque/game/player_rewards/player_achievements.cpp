@@ -26,6 +26,8 @@ namespace macaque
 		"single_achievement_definition_block",
 		k_maximum_achievements,
 		"s_single_achievement_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_ACHIEVEMENT_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -42,6 +44,8 @@ namespace macaque
 		"single_achievement_restricted_level_block",
 		s_single_achivement_restricted_level_definition::k_maximum_count,
 		"s_single_achivement_restricted_level_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_ACHIEVEMENT_RESTRICTED_LEVEL_BLOCK_ID)
 	{
 		{ _field_string_id, "level name", "Compared to map name in scenario" },
@@ -53,6 +57,8 @@ namespace macaque
 		achievements_struct_definition,
 		"achievements_struct_definition",
 		"s_game_achievements_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ACHIEVEMENTS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "achievement", &single_achievement_definition_block },

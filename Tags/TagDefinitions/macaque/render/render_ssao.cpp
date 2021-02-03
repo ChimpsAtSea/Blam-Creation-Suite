@@ -25,6 +25,8 @@ namespace macaque
 		ssao_definition_struct_definition,
 		"ssao_definition_struct_definition",
 		"s_ssao_definition",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SSAO_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_char_enum, "downsample", &ssao_downsample_enum_definition },

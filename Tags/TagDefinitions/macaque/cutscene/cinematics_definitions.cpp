@@ -13,6 +13,9 @@ namespace macaque
 		"cinematic_block",
 		1,
 		"s_cinematic_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("custom playback", nullptr, _field_id_cinematic_playback),
@@ -67,6 +70,8 @@ namespace macaque
 		"cinematic_transition_block",
 		1,
 		"s_cinematic_transition_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("fade out from game", nullptr, _field_id_function_group_begin),
@@ -112,6 +117,8 @@ namespace macaque
 		"cinematic_scene_reference_block",
 		MAX_CINEMATIC_SCENE_COUNT,
 		"s_cinematic_scene_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "scene", &cinematic_scene_reference },
@@ -125,6 +132,8 @@ namespace macaque
 		"cinematic_shot_playback_data_block",
 		MAX_CINEMATIC_SCENE_COUNT,
 		"s_cinematic_shot_playback_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_PLAYBACK_DATA_BLOCK_ID)
 	{
 		{ _field_array, "shot flags", &g_cinematicShotFlagArray_array },
@@ -137,6 +146,8 @@ namespace macaque
 		"cinematic_scene_object_block",
 		10000,
 		"s_scene_object",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_OBJECT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -159,6 +170,8 @@ namespace macaque
 		"scene_object_attachment_block",
 		10000,
 		"s_scene_object_attachment",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENE_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scene_object_attachment_flags },
@@ -178,6 +191,9 @@ namespace macaque
 		"cinematic_shot_block",
 		MAX_CINEMATIC_SHOT_COUNT,
 		"s_scene_shot",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_BLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM("loop now", nullptr, _field_id_loop_cinematic_shot),
@@ -217,6 +233,8 @@ namespace macaque
 		"cinematic_shot_lighting_block",
 		10000,
 		"s_scene_shot_lighting",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_LIGHTING_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_lighting_flags_definition },
@@ -233,6 +251,8 @@ namespace macaque
 		"cinematic_shot_clip_block",
 		k_maximum_scene_shot_clip_plane_count,
 		"s_scene_shot_clip",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_CLIP_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "plane center" },
@@ -251,6 +271,8 @@ namespace macaque
 		"cinematic_shot_clip_subject_block",
 		k_maximum_scene_shot_clip_subject_count,
 		"s_scene_shot_clip_subject",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_CLIP_SUBJECT_BLOCK_ID)
 	{
 		{ _field_long_block_index, "index", &cinematic_scene_object_block },
@@ -263,6 +285,8 @@ namespace macaque
 		"cinematic_shot_music_block",
 		10000,
 		"s_scene_shot_music",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_MUSIC_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &music_flags_enum },
@@ -278,6 +302,8 @@ namespace macaque
 		"cinematic_shot_object_function_block",
 		10000,
 		"s_scene_object_function",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_block_index, "object", &cinematic_scene_object_block },
@@ -292,6 +318,8 @@ namespace macaque
 		"cinematic_shot_object_function_keyframe_block",
 		10000,
 		"s_scene_object_function_keyframe",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_OBJECT_FUNCTION_KEYFRAME_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &cinematic_shot_object_function_flags },
@@ -308,6 +336,8 @@ namespace macaque
 		"cinematic_shot_screen_effect_block",
 		10000,
 		"s_scene_shot_screen_effect",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
@@ -326,6 +356,8 @@ namespace macaque
 		"cinematic_shot_user_input_constraints_block",
 		10000,
 		"s_scene_shot_user_input_constraints",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_USER_INPUT_CONSTRAINTS_BLOCK_ID)
 	{
 		FIELD_CUSTOM("frame", nullptr, _field_id_cinematic_frame_index),
@@ -342,6 +374,8 @@ namespace macaque
 		"cinematicShotTextureMovieBlock",
 		10000,
 		"ShotTextureMovie",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICSHOTTEXTUREMOVIEBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &textureMovieFlags },
@@ -357,6 +391,8 @@ namespace macaque
 		"cinematicStructureLightingBlock",
 		32,
 		"CinematicStructureLighting",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICSTRUCTURELIGHTINGBLOCK_ID)
 	{
 		{ _field_tag_reference, "structure lighting info", &structure_lighting_bsp_reference },
@@ -375,6 +411,8 @@ namespace macaque
 		"cinematicDataShotBlock",
 		MAX_CINEMATIC_SHOT_COUNT,
 		"SceneDataShot",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICDATASHOTBLOCK_ID)
 	{
 		{ _field_block, "dialogue", &cinematic_shot_dialogue_block },
@@ -393,6 +431,8 @@ namespace macaque
 		"cinematic_shot_dialogue_block",
 		10000,
 		"s_scene_shot_dialogue",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_DIALOGUE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "dialogue", &global_sound_reference },
@@ -414,6 +454,8 @@ namespace macaque
 		"cinematic_shot_effect_block",
 		10000,
 		"s_scene_shot_effect",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_EFFECT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &cinematic_shot_effect_flags },
@@ -439,6 +481,8 @@ namespace macaque
 		"cinematic_shot_custom_script_block",
 		10000,
 		"s_scene_shot_custom_script",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_CUSTOM_SCRIPT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &cinematic_shot_custom_script_flags },
@@ -457,6 +501,8 @@ namespace macaque
 		"cinematic_shot_frame_block",
 		10000,
 		"s_scene_shot_frame",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_FRAME_BLOCK_ID)
 	{
 		{ _field_struct, "camera frame", &camera_frame_struct },
@@ -469,6 +515,8 @@ namespace macaque
 		"cinematic_shot_frame_dynamic_block",
 		10000,
 		"s_scene_shot_frame_dynamic",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_FRAME_DYNAMIC_BLOCK_ID)
 	{
 		{ _field_struct, "dynamic camera frame", &camera_frame_dynamic_struct },
@@ -481,6 +529,8 @@ namespace macaque
 		"cinematic_shot_frame_constant_block",
 		10000,
 		"s_scene_shot_frame_constant",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_FRAME_CONSTANT_BLOCK_ID)
 	{
 		{ _field_long_integer, "frame index" },
@@ -494,6 +544,8 @@ namespace macaque
 		"cinematic_shot_extra_camera_block",
 		10000,
 		"s_scene_extra_camera",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_EXTRA_CAMERA_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -508,6 +560,8 @@ namespace macaque
 		"cinematic_extra_camera_shot_block",
 		10000,
 		"s_extra_camera_shot",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID)
 	{
 		{ _field_block, "frame data", &cinematic_extra_camera_frame_block },
@@ -520,6 +574,8 @@ namespace macaque
 		"cinematic_extra_camera_frame_block",
 		10000,
 		"s_extra_camera_frame",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_FRAME_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &cinematic_extra_camera_frame_flags },
@@ -533,6 +589,8 @@ namespace macaque
 		"cinematic_transition_global_gain_block",
 		1,
 		"s_cinematic_transition_global_gain_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_GLOBAL_GAIN_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "gain", "dB" },
@@ -546,6 +604,8 @@ namespace macaque
 		"cinematic_transition_sound_class_gain_block",
 		8,
 		"s_cinematic_transition_sound_class_gain_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_SOUND_CLASS_GAIN_BLOCK_STRUCT_ID)
 	{
 		{ _field_char_enum, "class", &sound_class_enum },
@@ -561,6 +621,8 @@ namespace macaque
 		"cinematic_transition_sound_reference_block",
 		4,
 		"s_cinematic_transition_sound_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_SOUND_REFERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
@@ -573,6 +635,8 @@ namespace macaque
 		"cinematic_transition_looping_sound_reference_block",
 		4,
 		"s_cinematic_transition_sound_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_LOOPING_SOUND_REFERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
@@ -585,6 +649,8 @@ namespace macaque
 		"cinematic_transition_looping_sound_state_block",
 		4,
 		"s_cinematic_transition_looping_sound_state",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_LOOPING_SOUND_STATE_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
@@ -600,6 +666,8 @@ namespace macaque
 		"cinematics_globals_block",
 		1,
 		"cinematics_globals_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICS_GLOBALS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "cinematic anchor reference", &scenery_reference },
@@ -619,6 +687,8 @@ namespace macaque
 		"cinematic_characters_block",
 		16,
 		"s_cinematic_character",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_CHARACTERS_BLOCK_ID)
 	{
 		{ _field_string_id, "character name" },
@@ -633,6 +703,8 @@ namespace macaque
 		"scenario_cinematics_block",
 		MAXIMUM_SCENARIO_CINEMATICS,
 		"s_cinematic_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CINEMATICS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &scenario_cinematics_flags },
@@ -653,6 +725,8 @@ namespace macaque
 		"g_cinematicShotFlagArray",
 		c_cinematic_shot_flags::k_flag_chunk_count,
 		"c_big_flags_chunk_type",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		G_CINEMATICSHOTFLAGARRAY_ID)
 	{
 		{ _field_dword_integer, "shot flag data" },
@@ -664,6 +738,9 @@ namespace macaque
 		cinematic_scene_struct_definition,
 		"cinematic_scene_struct_definition",
 		"s_cinematic_scene",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("loop now", nullptr, _field_id_loop_cinematic_scene),
@@ -689,6 +766,9 @@ namespace macaque
 		cinematic_scene_data_struct_definition,
 		"cinematic_scene_data_struct_definition",
 		"CinematicSceneData",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "objects", &cinematicSceneDataObjectBlock_block },
@@ -703,6 +783,8 @@ namespace macaque
 		cinematic_playback_data_block,
 		"cinematic_playback_data_block",
 		"s_cinematic_playback_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_PLAYBACK_DATA_BLOCK_ID)
 	{
 		{ _field_long_block_flags, "scenes", &cinematic_scene_reference_block },
@@ -717,6 +799,8 @@ namespace macaque
 		scenario_and_zone_set_struct,
 		"scenario_and_zone_set_struct",
 		"s_scenario_and_zone_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
 		FIELD_CUSTOM("custom ui", nullptr, _field_id_scenario_zone_set_index),
@@ -730,6 +814,8 @@ namespace macaque
 		cinematic_custom_script_block,
 		"cinematic_custom_script_block",
 		"s_cinematic_custom_script",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_CUSTOM_SCRIPT_BLOCK_ID)
 	{
 		{ _field_data, "script" },
@@ -741,6 +827,8 @@ namespace macaque
 		cinematicSceneDataObjectBlock_struct,
 		"cinematicSceneDataObjectBlock_struct",
 		"SceneDataObject",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICSCENEDATAOBJECTBLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -757,6 +845,8 @@ namespace macaque
 		camera_frame_struct,
 		"camera_frame_struct",
 		"s_camera_frame",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FRAME_STRUCT_ID)
 	{
 		{ _field_struct, "dynamic data", &camera_frame_dynamic_struct },
@@ -769,6 +859,8 @@ namespace macaque
 		camera_frame_dynamic_struct,
 		"camera_frame_dynamic_struct",
 		"s_camera_frame_dynamic",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FRAME_DYNAMIC_STRUCT_ID)
 	{
 		{ _field_real_point_3d, "camera position" },
@@ -782,6 +874,8 @@ namespace macaque
 		camera_frame_constant_struct,
 		"camera_frame_constant_struct",
 		"s_camera_frame_constant",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FRAME_CONSTANT_STRUCT_ID)
 	{
 		{ _field_real, "focal length" },
@@ -800,6 +894,8 @@ namespace macaque
 		cinematic_transition_element_block,
 		"cinematic_transition_element_block",
 		"s_cinematic_transition_element_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_ELEMENT_BLOCK_ID)
 	{
 		{ _field_struct, "global fade", &cinematic_transition_global_fade_block },
@@ -818,6 +914,8 @@ namespace macaque
 		cinematic_transition_global_fade_block,
 		"cinematic_transition_global_fade_block",
 		"s_cinematic_transition_global_fade_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_TRANSITION_GLOBAL_FADE_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "fade_color" },
@@ -830,6 +928,8 @@ namespace macaque
 		scenario_cutscene_title_struct,
 		"scenario_cutscene_title_struct",
 		"s_scenario_cutscene_title",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUTSCENE_TITLE_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },

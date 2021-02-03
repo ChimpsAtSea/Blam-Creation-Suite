@@ -13,6 +13,8 @@ namespace macaque
 		"self track log",
 		UNSIGNED_SHORT_MAX,
 		"c_self_log",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SELF_TRACK_BLOCK_ID)
 	{
 		{ _field_string, "time" },

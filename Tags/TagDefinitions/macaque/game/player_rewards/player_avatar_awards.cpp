@@ -26,6 +26,8 @@ namespace macaque
 		"single_avatar_award_definition_block",
 		k_online_avatar_award_count,
 		"s_single_avatar_award_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_AVATAR_AWARD_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -38,6 +40,8 @@ namespace macaque
 		avatar_awards_struct_definition,
 		"avatar_awards_struct_definition",
 		"s_game_avatar_awards_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AVATAR_AWARDS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "avatar_award", &single_avatar_award_definition_block },

@@ -13,6 +13,9 @@ namespace macaque
 		"areas_block",
 		k_max_areas_per_zone,
 		"area_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		AREAS_BLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -58,6 +61,8 @@ namespace macaque
 		"NavMeshAttachmentBlock",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NAVMESHATTACHMENTBLOCK_ID)
 	{
 		{ _field_dword_integer, "navMeshUID" },
@@ -70,6 +75,8 @@ namespace macaque
 		"flight_reference_block",
 		k_max_flight_references_per_area,
 		"flight_hint_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLIGHT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "flight hint index" },
@@ -85,6 +92,8 @@ namespace macaque
 		"area_sector_point_block",
 		k_maximum_points_per_sector,
 		"s_ai_sector_point",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		AREA_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
@@ -100,6 +109,9 @@ namespace macaque
 		"zone_block",
 		k_max_zones_per_map,
 		"zone_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ZONE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -121,6 +133,8 @@ namespace macaque
 		"area_cluster_occupancy_bitvector_array",
 		((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_ID)
 	{
 		{ _field_long_integer, "bitvector data" },
@@ -132,6 +146,8 @@ namespace macaque
 		NavMeshAttachmentsStruct,
 		"NavMeshAttachmentsStruct",
 		"NavMeshAttachment",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NAVMESHATTACHMENTSSTRUCT_ID)
 	{
 		{ _field_block, "attachments", &NavMeshAttachmentBlock_block },

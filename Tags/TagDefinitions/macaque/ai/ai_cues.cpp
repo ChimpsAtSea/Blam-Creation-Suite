@@ -13,6 +13,8 @@ namespace macaque
 		"ai_cue_template_block",
 		k_max_ai_cue_templates,
 		"s_ai_cue_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_CUE_TEMPLATE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -29,6 +31,8 @@ namespace macaque
 		"firing_point_payload_block",
 		1,
 		"s_cue_payload_firing_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIRING_POINT_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "radius" },
@@ -41,6 +45,8 @@ namespace macaque
 		"stimulus_payload_block",
 		1,
 		"s_cue_payload_stimulus",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STIMULUS_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "stimulus type" },
@@ -53,6 +59,8 @@ namespace macaque
 		"combat_cue_payload_block",
 		1,
 		"s_cue_payload_combat_cue",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		COMBAT_CUE_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -79,6 +87,8 @@ namespace macaque
 		"ai_cue_block",
 		k_max_ai_cues_per_level,
 		"s_ai_cue_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		AI_CUE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -106,6 +116,8 @@ namespace macaque
 		"task_distribution_block",
 		k_max_task_distributions_per_cue,
 		"s_stimulus_distribution_task",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TASK_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "objective", &objectives_block },
@@ -119,6 +131,8 @@ namespace macaque
 		"radial_distribution_block",
 		k_max_radial_distributions_per_cue,
 		"s_stimulus_distribution_radial",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RADIAL_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "radius" },
@@ -133,6 +147,8 @@ namespace macaque
 		"probability_distribution_block",
 		k_max_probability_distributions_per_cue,
 		"s_stimulus_distribution_probability",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROBABILITY_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "chance per second" },
@@ -145,6 +161,8 @@ namespace macaque
 		"character_distribution_block",
 		k_max_character_distributions_per_cue,
 		"s_stimulus_distribution_character",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "character", &character_palette_block },
@@ -159,6 +177,8 @@ namespace macaque
 		"weapon_distribution_block",
 		k_max_weapon_distributions_per_cue,
 		"s_stimulus_distribution_weapon",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_DISTRIBUTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "weapon", &scenario_weapon_palette_block },
@@ -172,6 +192,8 @@ namespace macaque
 		"script_payload_block",
 		1,
 		"s_cue_payload_script",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPT_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "script function name" },
@@ -184,6 +206,8 @@ namespace macaque
 		"combat_sync_action_group_payload_block",
 		1,
 		"s_cue_payload_combat_sync_action",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMBAT_SYNC_ACTION_GROUP_PAYLOAD_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "sync action group name" },
@@ -197,6 +221,9 @@ namespace macaque
 		"ai_full_cue_block",
 		k_max_ai_cues_per_level,
 		"s_ai_cue_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		AI_FULL_CUE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -226,6 +253,8 @@ namespace macaque
 		"ai_quick_cue_block",
 		k_max_ai_cues_per_level,
 		"s_ai_quick_cue_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		AI_QUICK_CUE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -250,6 +279,8 @@ namespace macaque
 		cue_distribution_struct,
 		"cue_distribution_struct",
 		"s_ai_cue_distribution",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUE_DISTRIBUTION_STRUCT_ID)
 	{
 		{ _field_block, "tasks", &task_distribution_block },
@@ -262,6 +293,8 @@ namespace macaque
 		cue_stimulus_distribution_struct,
 		"cue_stimulus_distribution_struct",
 		"s_ai_cue_stimulus_distribution",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUE_STIMULUS_DISTRIBUTION_STRUCT_ID)
 	{
 		{ _field_block, "radius", &radial_distribution_block },
@@ -276,6 +309,8 @@ namespace macaque
 		cue_payload_struct,
 		"cue_payload_struct",
 		"s_ai_cue_payload",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUE_PAYLOAD_STRUCT_ID)
 	{
 		{ _field_block, "firing points", &firing_point_payload_block },

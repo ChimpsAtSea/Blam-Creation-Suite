@@ -26,6 +26,8 @@ namespace macaque
 		"spheres_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_sphere",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		SPHERES_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -42,6 +44,8 @@ namespace macaque
 		"materials_block",
 		k_maximum_materials_per_physics_model,
 		"s_physics_model_material",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -61,6 +65,8 @@ namespace macaque
 		"phantom_types_block",
 		k_maximum_phantom_types_per_physics_model,
 		"s_physics_model_phantom_type",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHANTOM_TYPES_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &PhantomFlagsV2 },
@@ -99,6 +105,8 @@ namespace macaque
 		"phantoms_block",
 		k_maximum_phantoms_per_physics_model,
 		"s_physics_model_phantom",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		PHANTOMS_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "bv shape", &havok_shape_struct },
@@ -115,6 +123,8 @@ namespace macaque
 		"pills_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_pill",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		PILLS_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -134,6 +144,8 @@ namespace macaque
 		"lists_block",
 		k_maximum_rigid_bodies_per_physics_model,
 		"s_physics_model_list",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		LISTS_BLOCK_ID,
 		4)
 	{
@@ -163,6 +175,8 @@ namespace macaque
 		"list_shapes_block",
 		k_maximum_list_shapes_per_physics_model,
 		"hkpListShape::ChildInfo",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_NON_ALIASED),
 		LIST_SHAPES_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "shape reference", &havok_shape_reference_struct },
@@ -178,6 +192,8 @@ namespace macaque
 		"physics_model_damped_spring_motor_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_damped_spring_motor",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_DAMPED_SPRING_MOTOR_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -195,6 +211,8 @@ namespace macaque
 		"physics_model_position_motor_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_position_motor",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POSITION_MOTOR_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -214,6 +232,8 @@ namespace macaque
 		"physics_model_powered_chains_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_powered_chain",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POWERED_CHAINS_BLOCK_ID)
 	{
 		{ _field_block, "nodes", &physics_model_powered_chain_nodes_block },
@@ -227,6 +247,8 @@ namespace macaque
 		"physics_model_powered_chain_nodes_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POWERED_CHAIN_NODES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "node", &nodes_block },
@@ -239,6 +261,8 @@ namespace macaque
 		"nodes_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"s_physics_model_node",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -255,6 +279,8 @@ namespace macaque
 		"physics_model_powered_chain_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_powered_chain_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_POWERED_CHAIN_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_enum, "constraint type", &rigid_constraint_types_enum },
@@ -271,6 +297,8 @@ namespace macaque
 		"physics_model_node_constraint_edge_block",
 		k_maximum_node_constraint_edges_per_physics_model,
 		"s_physics_model_node_constraint_edge",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_NODE_CONSTRAINT_EDGE_BLOCK_ID)
 	{
 		{ _field_short_integer, "runtime material type a" },
@@ -289,6 +317,8 @@ namespace macaque
 		"physics_model_constraint_edge_constraint_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_node_constraint_edge_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
 		{ _field_enum, "type", &rigid_constraint_types_enum },
@@ -306,6 +336,8 @@ namespace macaque
 		"physics_model_ragdoll_motors_block",
 		1,
 		"s_physics_model_ragdoll_motors",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_RAGDOLL_MOTORS_BLOCK_ID)
 	{
 		{ _field_explanation, "twist", "" },
@@ -323,6 +355,8 @@ namespace macaque
 		"physics_model_limited_hinge_motors_block",
 		1,
 		"s_physics_model_limited_hinge_motors",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_LIMITED_HINGE_MOTORS_BLOCK_ID)
 	{
 		{ _field_struct, "motor", &physics_model_motor_reference_struct },
@@ -335,6 +369,8 @@ namespace macaque
 		"rigid_bodies_block",
 		k_maximum_rigid_bodies_per_physics_model,
 		"rigid_bodies_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		RIGID_BODIES_BLOCK_ID,
 		4)
 	{
@@ -393,6 +429,8 @@ namespace macaque
 		"regions_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_physics_model_region",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REGIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -406,6 +444,8 @@ namespace macaque
 		"permutations_block",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"s_physics_model_permutation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PERMUTATIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -419,6 +459,8 @@ namespace macaque
 		"rigid_body_indices_block",
 		k_maximum_rigid_bodies_per_physics_model,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RIGID_BODY_INDICES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "rigid body", &rigid_bodies_block },
@@ -431,6 +473,8 @@ namespace macaque
 		"RigidBodySerializedShapesBlock",
 		k_maximum_shapes_per_physics_model,
 		"RigidBodySerializedShapes",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RIGIDBODYSERIALIZEDSHAPESBLOCK_ID)
 	{
 		{ _field_block, "Mopp Serialized Havok Data", &MoppSerializedHavokDataBlock_block },
@@ -443,6 +487,8 @@ namespace macaque
 		"MoppSerializedHavokDataBlock",
 		k_maximum_rigid_bodies_per_physics_model,
 		"MoppSerializedHavokData",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		MOPPSERIALIZEDHAVOKDATABLOCK_ID)
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
@@ -459,6 +505,8 @@ namespace macaque
 		"multi_spheres_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_multi_sphere",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		MULTI_SPHERES_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -476,6 +524,8 @@ namespace macaque
 		"boxes_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_box",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		BOXES_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -494,6 +544,8 @@ namespace macaque
 		"triangles_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_triangle",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		TRIANGLES_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -520,6 +572,8 @@ namespace macaque
 		"polyhedra_block",
 		k_maximum_shapes_per_physics_model,
 		"s_physics_model_polyhedron",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		POLYHEDRA_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -550,6 +604,8 @@ namespace macaque
 		"polyhedron_four_vectors_block",
 		k_maximum_four_vectors_per_physics_model,
 		"hkVector4",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYHEDRON_FOUR_VECTORS_BLOCK_ID,
 		4)
 	{
@@ -568,6 +624,8 @@ namespace macaque
 		"polyhedron_plane_equations_block",
 		k_maximum_plane_equations_per_physics_model,
 		"hkVector4",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYHEDRON_PLANE_EQUATIONS_BLOCK_ID,
 		4)
 	{
@@ -582,6 +640,8 @@ namespace macaque
 		"mass_distributions_block",
 		k_maximum_inertia_tensors_per_physics_model,
 		"s_physics_model_mass_distribution",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MASS_DISTRIBUTIONS_BLOCK_ID,
 		4)
 	{
@@ -602,6 +662,8 @@ namespace macaque
 		"mopps_block",
 		k_maximum_rigid_bodies_per_physics_model,
 		"s_physics_model_mopp",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		MOPPS_BLOCK_STRUCT_ID,
 		4)
 	{
@@ -628,6 +690,8 @@ namespace macaque
 		"hinge_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_hinge_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINGE_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -641,6 +705,8 @@ namespace macaque
 		"ragdoll_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_ragdoll_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAGDOLL_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -661,6 +727,8 @@ namespace macaque
 		"point_to_path_curve_block",
 		k_maximum_rigid_bodies_per_physics_model,
 		"s_physics_model_point_to_path_curve",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		POINT_TO_PATH_CURVE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -676,6 +744,8 @@ namespace macaque
 		"point_to_path_curve_point_block",
 		1024,
 		"s_physics_model_point_to_path_curve_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POINT_TO_PATH_CURVE_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -689,6 +759,8 @@ namespace macaque
 		"limited_hinge_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_limited_hinge_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIMITED_HINGE_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -705,6 +777,8 @@ namespace macaque
 		"ball_and_socket_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_ball_and_socket_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BALL_AND_SOCKET_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -718,6 +792,8 @@ namespace macaque
 		"stiff_spring_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_stiff_spring_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STIFF_SPRING_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -732,6 +808,8 @@ namespace macaque
 		"prismatic_constraints_block",
 		k_maximum_constraints_per_physics_model,
 		"s_physics_model_prismatic_constraint",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PRISMATIC_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
@@ -748,6 +826,8 @@ namespace macaque
 		"multi_sphere_vector_storage",
 		8,
 		"hkVector4",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTI_SPHERE_VECTOR_STORAGE_ID)
 	{
 		{ _field_real_vector_3d, "sphere" },
@@ -760,6 +840,9 @@ namespace macaque
 		physics_model_struct_definition,
 		"physics_model_struct_definition",
 		"physics_model_struct_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &physics_model_flags },
@@ -811,6 +894,8 @@ namespace macaque
 		havok_primitive_struct,
 		"havok_primitive_struct",
 		"s_physics_model_primitive",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		HAVOK_PRIMITIVE_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -834,6 +919,8 @@ namespace macaque
 		havok_shape_struct,
 		"havok_shape_struct",
 		"hkpShape",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_STRUCT_ID)
 	{
 		{ _field_long_integer, "field pointer skip", _field_id_zero_data },
@@ -852,6 +939,8 @@ namespace macaque
 		havok_shape_reference_struct,
 		"havok_shape_reference_struct",
 		"hkpShape *",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
 		{ _field_enum, "shape type", &shape_enum },
@@ -864,6 +953,8 @@ namespace macaque
 		havok_convex_shape_struct,
 		"havok_convex_shape_struct",
 		"hkpConvexShape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_CONVEX_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "base", &havok_shape_struct },
@@ -876,6 +967,8 @@ namespace macaque
 		havok_convex_translate_shape_struct,
 		"havok_convex_translate_shape_struct",
 		"hkpConvexTranslateShape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_CONVEX_TRANSLATE_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct },
@@ -892,6 +985,8 @@ namespace macaque
 		havok_shape_collection_struct_2010_2,
 		"havok_shape_collection_struct_2010_2",
 		"hkpShapeCollection_hk2010_2",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_COLLECTION_STRUCT_2010_2_ID)
 	{
 		{ _field_struct, "base", &havok_shape_struct_2010_2 },
@@ -907,6 +1002,8 @@ namespace macaque
 		havok_shape_struct_2010_2,
 		"havok_shape_struct_2010_2",
 		"hkpShape_hk2010_2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_STRUCT_2010_2_ID)
 	{
 		{ _field_long_integer, "field pointer skip", _field_id_zero_data },
@@ -922,6 +1019,8 @@ namespace macaque
 		physics_model_motor_reference_struct,
 		"physics_model_motor_reference_struct",
 		"s_physics_model_motor_reference",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_MOTOR_REFERENCE_STRUCT_ID)
 	{
 		{ _field_enum, "motor type", &physics_model_motor_types_enum },
@@ -934,6 +1033,8 @@ namespace macaque
 		havok_convex_transform_shape_struct,
 		"havok_convex_transform_shape_struct",
 		"hkpConvexTransformShape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "convex", &havok_convex_shape_struct },
@@ -956,6 +1057,8 @@ namespace macaque
 		havok_convex_shape_struct_2010_2,
 		"havok_convex_shape_struct_2010_2",
 		"hkpConvexShape_hk2010_2",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_CONVEX_SHAPE_STRUCT_2010_2_ID)
 	{
 		{ _field_struct, "base", &havok_shape_struct_2010_2 },
@@ -968,6 +1071,8 @@ namespace macaque
 		constraint_bodies_struct,
 		"constraint_bodies_struct",
 		"s_physics_model_constraint_bodies",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONSTRAINT_BODIES_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },

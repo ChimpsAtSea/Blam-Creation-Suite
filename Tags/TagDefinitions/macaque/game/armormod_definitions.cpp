@@ -26,6 +26,8 @@ namespace macaque
 		"aural_enhancement_audio_settings_block",
 		1,
 		"AuralEnhancementAudioSettings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AURAL_ENHANCEMENT_AUDIO_SETTINGS_BLOCK_ID)
 	{
 		{ _field_real, "frequency", "beeps per second" },
@@ -38,6 +40,8 @@ namespace macaque
 		armormod_globals_struct_definition,
 		"armormod_globals_struct_definition",
 		"ArmorModGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMORMOD_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "explode on death", "" },

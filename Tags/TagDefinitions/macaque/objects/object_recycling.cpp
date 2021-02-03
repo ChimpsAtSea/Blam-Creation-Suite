@@ -13,6 +13,8 @@ namespace macaque
 		"garbage_collection_block",
 		1,
 		"s_garbage_collection_globals",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GARBAGE_COLLECTION_BLOCK_ID)
 	{
 		{ _field_explanation, "Garbage Times", "time before the game considers that following entities as garbage" },

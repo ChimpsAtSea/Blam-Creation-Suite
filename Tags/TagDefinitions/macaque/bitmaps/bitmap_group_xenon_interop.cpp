@@ -18,6 +18,8 @@ namespace macaque
 		render_texture_interleaved_interop_definition_struct,
 		"render_texture_interleaved_interop_definition_struct",
 		"s_render_texture_interleaved_descriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_STRUCT_ID)
 	{
 		{ _field_data, "pixel data" },
@@ -31,6 +33,8 @@ namespace macaque
 		render_texture_format_definition,
 		"render_texture_format_definition",
 		"s_render_texture_format",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_FORMAT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "width" },
@@ -53,6 +57,8 @@ namespace macaque
 		render_texture_interop_definition_struct,
 		"render_texture_interop_definition_struct",
 		"s_render_texture_descriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID)
 	{
 		{ _field_data, "pixel data" },

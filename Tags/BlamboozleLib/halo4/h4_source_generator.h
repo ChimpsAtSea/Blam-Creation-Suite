@@ -28,6 +28,9 @@ public:
 	void create_tag_enum_source(std::stringstream& ss, c_h4_tag_enum_container& tag_enum_container, bool is_header);
 	void generate_tag_fields_source(std::stringstream& ss, std::vector<c_h4_tag_field*>& tag_fields);
 
+	std::string create_struct_definition_runtime_flags(unsigned long flags, const char* new_line_format);
+	std::string create_struct_definition_memory_attributes(unsigned long memory_type, unsigned long usage_flags, const char* new_line_format);
+	
 	c_h4_blamboozle& blamboozle;
 	c_h4_generator_preprocessor& preprocessor;
 };

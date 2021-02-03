@@ -13,6 +13,8 @@ namespace macaque
 		"polyart_asset_block",
 		1,
 		"PolyartAsset",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		POLYART_ASSET_STRUCT_DEFINITION_ID)
 	{
 		{ _field_char_enum, "runtime flags", &g_polyartAssetStateFlags },
@@ -43,6 +45,8 @@ namespace macaque
 		"polyartCameraBlock",
 		1,
 		"PolyartCamera",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTCAMERABLOCK_ID)
 	{
 		{ _field_real, "horizontal fov" },
@@ -58,6 +62,8 @@ namespace macaque
 		polyartVertexBufferDescriptorStruct,
 		"polyartVertexBufferDescriptorStruct",
 		"PolyartVertexBufferDescriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTVERTEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
 		{ _field_data, "vertices" },
@@ -70,6 +76,8 @@ namespace macaque
 		polyartIndexBufferDescriptorStruct,
 		"polyartIndexBufferDescriptorStruct",
 		"PolyartIndexBufferDescriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTINDEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
 		{ _field_data, "index_data" },

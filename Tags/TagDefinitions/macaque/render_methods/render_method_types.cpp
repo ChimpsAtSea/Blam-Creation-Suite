@@ -246,6 +246,10 @@ namespace macaque
 		shader_particle_struct_definition,
 		"shader_particle_struct_definition",
 		"c_render_method_shader_particle",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_PARTICLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -263,6 +267,10 @@ namespace macaque
 		shader_custom_struct_definition,
 		"shader_custom_struct_definition",
 		"c_render_method_shader_custom",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_CUSTOM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -275,6 +283,10 @@ namespace macaque
 		shader_cortana_struct_definition,
 		"shader_cortana_struct_definition",
 		"c_render_method_shader_cortana",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_CORTANA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -287,6 +299,10 @@ namespace macaque
 		shader_decal_struct_definition,
 		"shader_decal_struct_definition",
 		"c_render_method_shader_decal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_DECAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -299,6 +315,10 @@ namespace macaque
 		shader_foliage_struct_definition,
 		"shader_foliage_struct_definition",
 		"c_render_method_shader_foliage",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_FOLIAGE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -311,6 +331,10 @@ namespace macaque
 		shader_fur_stencil_struct_definition,
 		"shader_fur_stencil_struct_definition",
 		"c_render_method_shader_fur_stencil",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_FUR_STENCIL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -323,6 +347,10 @@ namespace macaque
 		shader_fur_struct_definition,
 		"shader_fur_struct_definition",
 		"c_render_method_shader_fur",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_FUR_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -335,6 +363,10 @@ namespace macaque
 		shader_glass_struct_definition,
 		"shader_glass_struct_definition",
 		"c_render_method_shader_glass",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_GLASS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -347,6 +379,10 @@ namespace macaque
 		shader_halogram_struct_definition,
 		"shader_halogram_struct_definition",
 		"c_render_method_shader_halogram",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_HALOGRAM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -359,6 +395,10 @@ namespace macaque
 		shader_light_volume_struct_definition,
 		"shader_light_volume_struct_definition",
 		"c_render_method_shader_light_volume",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_LIGHT_VOLUME_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -370,6 +410,10 @@ namespace macaque
 		shader_mux_material_struct_definition,
 		"shader_mux_material_struct_definition",
 		"c_render_method_shader_mux_material",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_MUX_MATERIAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -382,6 +426,10 @@ namespace macaque
 		shader_mux_struct_definition,
 		"shader_mux_struct_definition",
 		"c_render_method_shader_mux",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_MUX_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -402,6 +450,10 @@ namespace macaque
 		shader_struct_definition,
 		"shader_struct_definition",
 		"c_render_method_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -414,6 +466,10 @@ namespace macaque
 		shader_skin_struct_definition,
 		"shader_skin_struct_definition",
 		"c_render_method_shader_skin",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_SKIN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -426,6 +482,10 @@ namespace macaque
 		shader_screen_struct_definition,
 		"shader_screen_struct_definition",
 		"c_render_method_shader_screen",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_SCREEN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -442,6 +502,10 @@ namespace macaque
 		shader_terrain_struct_definition,
 		"shader_terrain_struct_definition",
 		"c_render_method_shader_terrain",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_TERRAIN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -462,6 +526,10 @@ namespace macaque
 		shader_water_struct_definition,
 		"shader_water_struct_definition",
 		"c_render_method_shader_water",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_WATER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -473,6 +541,10 @@ namespace macaque
 		shader_waterfall_struct_definition,
 		"shader_waterfall_struct_definition",
 		"c_render_method_shader_waterfall",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN7 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHADER_WATERFALL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
@@ -485,6 +557,8 @@ namespace macaque
 		material_type_struct,
 		"material_type_struct",
 		"c_global_material_type",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_TYPE_STRUCT_ID)
 	{
 		{ _field_short_integer, "global material index" },

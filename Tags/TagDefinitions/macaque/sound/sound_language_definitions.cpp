@@ -13,6 +13,8 @@ namespace macaque
 		"sound_language_info_block",
 		k_language_count,
 		"s_sound_language_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_LANGUAGE_INFO_BLOCK_ID)
 	{
 		{ _field_long_enum, "language", &sound_language_enum_definition },
@@ -27,6 +29,8 @@ namespace macaque
 		"sound_permutation_language_info",
 		UNSIGNED_SHORT_MAX,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_LANGUAGE_INFO_ID)
 	{
 		{ _field_short_integer, "duration in hs ticks" },
@@ -39,6 +43,8 @@ namespace macaque
 		"sound_pitch_range_language_info",
 		UNSIGNED_SHORT_MAX,
 		"s_sound_pitch_range_language_info",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PITCH_RANGE_LANGUAGE_INFO_ID)
 	{
 		{ _field_short_block_index, "first permutation language index", &sound_permutation_language_info_block },

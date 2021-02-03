@@ -26,6 +26,8 @@ namespace macaque
 		"gpu_variants_block",
 		sizeof(c_particle_definition::s_gpu_data::s_frames)/sizeof(real_vector4d),
 		"real_vector4d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_VARIANTS_BLOCK_ID,
 		4)
 	{
@@ -39,6 +41,8 @@ namespace macaque
 		"attachment_block",
 		4,
 		"s_particle_attachment",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &attachment_flags },
@@ -57,6 +61,8 @@ namespace macaque
 		"gpu_sprite_block",
 		1,
 		"(*((c_particle_definition*",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_SPRITE_BLOCK_ID,
 		4)
 	{
@@ -70,6 +76,8 @@ namespace macaque
 		"gpu_single_constant_register_array",
 		sizeof(real_vector4d)/sizeof(real),
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_SINGLE_CONSTANT_REGISTER_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_real" },
@@ -81,6 +89,9 @@ namespace macaque
 		particle_struct_definition,
 		"particle_struct_definition",
 		"c_particle_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -135,6 +146,8 @@ namespace macaque
 		gpu_data_struct$2,
 		"gpu_data_struct",
 		"c_particle_definition::s_gpu_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_DATA_STRUCT$2_ID)
 	{
 		{ _field_block, "runtime m_sprite", &gpu_sprite_block },

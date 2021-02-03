@@ -13,6 +13,8 @@ namespace macaque
 		"collision_bsp_physics_block",
 		(1024),
 		"s_collision_bsp_physics_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		COLLISION_BSP_PHYSICS_BLOCK_ID,
 		4)
 	{
@@ -26,6 +28,8 @@ namespace macaque
 		collision_geometry_shape_struct,
 		"collision_geometry_shape_struct",
 		"c_collision_geometry_shape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		COLLISION_GEOMETRY_SHAPE_STRUCT_ID,
 		4)
 	{
@@ -51,6 +55,8 @@ namespace macaque
 		mopp_bv_tree_shape_struct,
 		"mopp_bv_tree_shape_struct",
 		"c_mopp_bv_tree_shape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		MOPP_BV_TREE_SHAPE_STRUCT_ID,
 		4)
 	{

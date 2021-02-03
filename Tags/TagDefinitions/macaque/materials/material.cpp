@@ -13,6 +13,8 @@ namespace macaque
 		"material_block",
 		1,
 		"c_material",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "material shader", &material_shader_reference },
@@ -45,6 +47,9 @@ namespace macaque
 		"material_postprocess_block",
 		1,
 		"s_material_postprocess_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_POSTPROCESS_BLOCK_ID)
 	{
 		{ _field_block, "textures", &material_postprocess_texture_block },
@@ -78,6 +83,8 @@ namespace macaque
 		"material_postprocess_texture_block",
 		c_material::k_maximum_postprocess_textures,
 		"s_material_postprocess_texture",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_POSTPROCESS_TEXTURE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
@@ -98,6 +105,8 @@ namespace macaque
 		"real_vector4d_block",
 		k_kilo,
 		"real_vector4d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REAL_VECTOR4D_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "vector" },
@@ -111,6 +120,8 @@ namespace macaque
 		"int_block",
 		k_kilo,
 		"int",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INT_BLOCK_ID)
 	{
 		{ _field_long_integer, "int value" },
@@ -123,6 +134,8 @@ namespace macaque
 		"functionParameterBlock",
 		k_uint8_max,
 		"s_materialFunctionParameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FUNCTIONPARAMETERBLOCK_ID)
 	{
 		{ _field_byte_integer, "function index" },
@@ -138,6 +151,8 @@ namespace macaque
 		"externParameterBlock",
 		k_uint8_max,
 		"s_materialExternParameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EXTERNPARAMETERBLOCK_ID)
 	{
 		{ _field_byte_integer, "extern index" },
@@ -153,6 +168,8 @@ namespace macaque
 		"runtime_queryable_properties",
 		s_material_postprocess_definition::k_runtime_queryable_properties_count,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_QUERYABLE_PROPERTIES_ID)
 	{
 		{ _field_short_block_index, "index", &g_null_block },
@@ -164,6 +181,8 @@ namespace macaque
 		material_struct,
 		"material_struct",
 		"material_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_STRUCT_ID)
 	{
 		{ _field_tag_reference, "material shader", &material_shader_reference },

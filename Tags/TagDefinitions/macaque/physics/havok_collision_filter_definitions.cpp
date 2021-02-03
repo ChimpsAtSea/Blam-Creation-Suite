@@ -26,6 +26,8 @@ namespace macaque
 		"havok_collision_filter_group_block",
 		k_havok_group_count,
 		"s_havok_collision_filter_group",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_COLLISION_FILTER_GROUP_BLOCK_ID)
 	{
 		{ _field_long_flags, "filter", &collision_filter_enum },
@@ -37,6 +39,8 @@ namespace macaque
 		havok_collision_filter_struct_definition,
 		"havok_collision_filter_struct_definition",
 		"s_havok_collision_filter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_COLLISION_FILTER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "specify what each group collides with", "" },
@@ -51,6 +55,8 @@ namespace macaque
 		havok_group_filter_filter_struct,
 		"havok_group_filter_filter_struct",
 		"hkpGroupFilter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_GROUP_FILTER_FILTER_STRUCT_ID)
 	{
 		{ _field_long_integer, "hkReferencedObject vtable", _field_id_zero_data },

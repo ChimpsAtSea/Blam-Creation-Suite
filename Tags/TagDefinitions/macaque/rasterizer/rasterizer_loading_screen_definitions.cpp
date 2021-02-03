@@ -20,6 +20,8 @@ namespace macaque
 		"loadScreenBlock",
 		1,
 		"LoadScreenDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LOAD_SCREEN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &loadscreenFlags },
@@ -48,6 +50,8 @@ namespace macaque
 		"vertexBlock",
 		77824,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXBLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },

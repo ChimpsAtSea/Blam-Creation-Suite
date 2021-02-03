@@ -26,6 +26,8 @@ namespace macaque
 		"planar_fog_zone_set_visibility_definition_block",
 		1,
 		"s_planar_fog_zone_set_visibility",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_ZONE_SET_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
 		{ _field_block, "structure visiblity", &planar_fog_structure_visibility_definition_block },
@@ -38,6 +40,8 @@ namespace macaque
 		"planar_fog_structure_visibility_definition_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_planar_fog_structure_visibility",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_STRUCTURE_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
 		{ _field_block, "cluster visiblity", &planar_fog_cluster_visibility_definition_block },
@@ -50,6 +54,8 @@ namespace macaque
 		"planar_fog_cluster_visibility_definition_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_planar_fog_cluster_visibility",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_CLUSTER_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
 		{ _field_block, "attached fogs", &planar_fog_reference_definition_block },
@@ -62,6 +68,8 @@ namespace macaque
 		"planar_fog_reference_definition_block",
 		k_short_max,
 		"s_planar_fog_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_REFERENCE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_short_integer, "structure design index" },
@@ -75,6 +83,8 @@ namespace macaque
 		"planar_fog_definition_block",
 		s_planer_fog_set_definition::k_maximum_planar_fog_count,
 		"s_planar_fog_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -92,6 +102,8 @@ namespace macaque
 		"planar_fog_vertex_block",
 		s_planar_fog_definition::k_maximum_triangle_count*k_vertices_per_triangle_count,
 		"s_planar_fog_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -104,6 +116,8 @@ namespace macaque
 		"planar_fog_triangle_block",
 		k_short_max,
 		"s_planar_fog_triangle",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_TRIANGLE_BLOCK_ID)
 	{
 		{ _field_block, "planes", &planar_fog_triangle_planes_block },
@@ -116,6 +130,8 @@ namespace macaque
 		"planar_fog_triangle_planes_block",
 		s_planar_fog_definition::k_maximum_triangle_count,
 		"real_plane3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_TRIANGLE_PLANES_BLOCK_ID)
 	{
 		{ _field_real_plane_3d, "plane" },
@@ -127,6 +143,8 @@ namespace macaque
 		planar_fog_parameters_struct_definition,
 		"planar_fog_parameters_struct_definition",
 		"s_planar_fog_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &planar_fog_flags },
@@ -164,6 +182,8 @@ namespace macaque
 		planar_fog_set_definition_struct,
 		"planar_fog_set_definition_struct",
 		"s_planer_fog_set_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_SET_DEFINITION_STRUCT_ID)
 	{
 		{ _field_block, "planar fogs", &planar_fog_definition_block },

@@ -31,6 +31,8 @@ namespace macaque
 		survival_mode_globals_struct_definition,
 		"survival_mode_globals_struct_definition",
 		"s_survival_mode_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SURVIVAL_MODE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "respawn time", "NO: Use game_engine_settings for this" },
@@ -49,6 +51,8 @@ namespace macaque
 		survival_mode_wave_templates_struct,
 		"survival_mode_wave_templates_struct",
 		"s_survival_mode_wave_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURVIVAL_MODE_WAVE_TEMPLATES_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },

@@ -26,6 +26,8 @@ namespace macaque
 		"airstrike_battery_block",
 		AirStrikeDefinition::k_max_airstrike_batteries,
 		"s_airstrike_battery_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AIRSTRIKE_BATTERY_BLOCK_ID)
 	{
 		{ _field_real, "launch radius", "each shot will be fired with a random offset in this radius in the x/y plane above the target location", "wu" },
@@ -47,6 +49,8 @@ namespace macaque
 		"airstrike_fire_location_block",
 		s_airstrike_battery_definition::max_fire_locations,
 		"real_point2d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AIRSTRIKE_FIRE_LOCATION_BLOCK_ID)
 	{
 		{ _field_real_point_2d, "offset" },
@@ -58,6 +62,8 @@ namespace macaque
 		airstrike_struct_definition,
 		"airstrike_struct_definition",
 		"AirStrikeDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AIRSTRIKE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "batteries", &airstrike_battery_block },

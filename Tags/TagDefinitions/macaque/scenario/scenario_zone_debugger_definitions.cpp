@@ -18,6 +18,8 @@ namespace macaque
 		scenario_zone_debugger_block_definition_struct,
 		"scenario_zone_debugger_block_definition_struct",
 		"s_scenario_zone_debugger_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID)
 	{
 		{ _field_long_block_flags, "active designer zones", &scenario_designer_zone_block },

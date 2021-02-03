@@ -39,6 +39,8 @@ namespace macaque
 		"hs_source_reference_block",
 		k_maximum_hs_source_files_per_context,
 		"s_hs_source_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SOURCE_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &hsc_reference },
@@ -50,6 +52,8 @@ namespace macaque
 		script_container_struct_definition,
 		"script_container_struct_definition",
 		"HSScriptContainer",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPT_CONTAINER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "script data", &hs_script_data_struct },
@@ -61,6 +65,8 @@ namespace macaque
 		script_struct_definition,
 		"script_struct_definition",
 		"HSCompiledScript",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "source files", &hs_source_files_block },
@@ -80,6 +86,8 @@ namespace macaque
 		hs_script_data_struct,
 		"hs_script_data_struct",
 		"HaloScript::ScriptData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPT_DATA_STRUCT_ID)
 	{
 		{ _field_block, "source file references", &hs_source_reference_block },

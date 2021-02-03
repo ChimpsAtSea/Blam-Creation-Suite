@@ -26,6 +26,8 @@ namespace macaque
 		"multilingual_unicode_string_reference_block",
 		k_maximum_multilingual_unicode_strings_per_string_list,
 		"s_multilingual_unicode_string_reference",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "string id" },
@@ -55,6 +57,8 @@ namespace macaque
 		"string_substitution_pair_block",
 		k_maximum_strings_per_string_list,
 		"s_string_substitution_pair",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRING_SUBSTITUTION_PAIR_BLOCK_ID)
 	{
 		{ _field_string_id, "first string id" },
@@ -69,6 +73,8 @@ namespace macaque
 		"data_hash_definition",
 		k_hash_size,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DATA_HASH_DEFINITION_ID)
 	{
 		{ _field_byte_integer, "hash byte" },
@@ -81,6 +87,8 @@ namespace macaque
 		"multilingual_unicode_string_list_language_pack_offsets",
 		k_language_count,
 		"s_language_pack_offsets",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_ID)
 	{
 		{ _field_short_integer, "start index" },
@@ -93,6 +101,8 @@ namespace macaque
 		multilingual_unicode_string_list_struct_definition,
 		"multilingual_unicode_string_list_struct_definition",
 		"s_multilingual_unicode_string_list_group_header",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("import", nullptr, _field_id_text_unknown),
@@ -109,6 +119,8 @@ namespace macaque
 		language_pack_definition,
 		"language_pack_definition",
 		"c_language_pack",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		LANGUAGE_PACK_DEFINITION_ID)
 	{
 		{ _field_long_integer, "string reference pointer", _field_id_zero_data },

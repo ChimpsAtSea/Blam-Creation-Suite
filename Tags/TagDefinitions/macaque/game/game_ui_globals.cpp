@@ -13,6 +13,8 @@ namespace macaque
 		"interface_tag_references",
 		1,
 		"s_game_globals_interface_tag_references",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INTERFACE_TAG_REFERENCES_ID)
 	{
 		{ _field_tag_reference, "spinner bitmap", &global_bitmap_reference },

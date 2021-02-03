@@ -25,6 +25,8 @@ namespace macaque
 		breakable_surface_struct_definition,
 		"breakable_surface_struct_definition",
 		"s_breakable_surface_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BREAKABLE_SURFACE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "VITALITY", "If the damage is below the lower bound, the surface won\'t break.\nIf the damage is above the upper bound, the surface always breaks.\nIn the middle, the surface will break with a weighted random chance.\nNegative values mean that the surface will never break from that kind of damage." },

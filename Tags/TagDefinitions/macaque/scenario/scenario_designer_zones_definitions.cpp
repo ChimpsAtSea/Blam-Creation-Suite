@@ -13,6 +13,8 @@ namespace macaque
 		"scenario_designer_zone_block",
 		k_maximum_designer_zone_count,
 		"s_scenario_designer_zone",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESIGNER_ZONE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -63,6 +65,8 @@ namespace macaque
 		"scenarioDesignerZoneTagReferenceBlock",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count,
 		"DesignerZoneTagReference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODESIGNERZONETAGREFERENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "tag", &scenarioDesignerZoneTagReferenceBlock_tag_reference },
@@ -75,6 +79,8 @@ namespace macaque
 		"biped_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_biped_palette_block },
@@ -87,6 +93,8 @@ namespace macaque
 		"vehicle_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_vehicle_palette_block },
@@ -99,6 +107,8 @@ namespace macaque
 		"weapon_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_weapon_palette_block },
@@ -111,6 +121,8 @@ namespace macaque
 		"equipment_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_equipment_palette_block },
@@ -123,6 +135,8 @@ namespace macaque
 		"scenery_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_scenery_palette_block },
@@ -135,6 +149,8 @@ namespace macaque
 		"machine_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_machine_palette_block },
@@ -147,6 +163,8 @@ namespace macaque
 		"terminal_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TERMINAL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_terminal_palette_block },
@@ -159,6 +177,8 @@ namespace macaque
 		"control_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_control_palette_block },
@@ -171,6 +191,8 @@ namespace macaque
 		"dispenser_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DISPENSER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &ScenarioDispenserPaletteBlock_block },
@@ -183,6 +205,8 @@ namespace macaque
 		"sound_scenery_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_sound_scenery_palette_block },
@@ -195,6 +219,8 @@ namespace macaque
 		"crate_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_crate_palette_block },
@@ -207,6 +233,8 @@ namespace macaque
 		"creature_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CREATURE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_creature_palette_block },
@@ -219,6 +247,8 @@ namespace macaque
 		"giant_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_giant_palette_block },
@@ -231,6 +261,8 @@ namespace macaque
 		"effect_scenery_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_effect_scenery_palette_block },
@@ -243,6 +275,8 @@ namespace macaque
 		"character_block_index_flags_block",
 		64,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &character_palette_block },
@@ -255,6 +289,8 @@ namespace macaque
 		"spawner_block_index_flags_block",
 		MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPAWNER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_spawner_palette_block },
@@ -267,6 +303,8 @@ namespace macaque
 		"budget_reference_block_index_flags_block",
 		k_maximum_hs_references_per_context,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BUDGET_REFERENCE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_budget_references_block },
@@ -279,6 +317,8 @@ namespace macaque
 		"bink_block_index_flags_block",
 		MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK,
 		"s_scenario_designer_zone_palette_index_flag",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINK_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "palette index", &binkPaletteBlock_block },
@@ -291,6 +331,8 @@ namespace macaque
 		"scenarioDesignerResourceDependenciesBlock",
 		16*1024,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODESIGNERRESOURCEDEPENDENCIESBLOCK_ID)
 	{
 		{ _field_tag_reference, "tag", &scenarioDesignerResourceDependenciesBlock_tag_reference },

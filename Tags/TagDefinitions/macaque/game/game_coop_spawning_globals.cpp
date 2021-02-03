@@ -25,6 +25,8 @@ namespace macaque
 		coop_spawning_globals_definition_struct_definition,
 		"coop_spawning_globals_definition_struct_definition",
 		"s_coop_spawning_globals_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COOP_SPAWNING_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "player cooldown timer seconds" },

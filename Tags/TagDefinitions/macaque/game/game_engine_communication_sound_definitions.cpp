@@ -25,6 +25,8 @@ namespace macaque
 		communication_sounds_struct_definition,
 		"communication_sounds_struct_definition",
 		"s_communication_sound_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMUNICATION_SOUNDS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "silence", &global_sound_reference },

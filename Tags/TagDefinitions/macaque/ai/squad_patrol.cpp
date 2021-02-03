@@ -13,6 +13,8 @@ namespace macaque
 		"squad_patrol_block",
 		k_max_squad_patrols_per_map,
 		"s_squad_patrol_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -31,6 +33,8 @@ namespace macaque
 		"squad_patrol_member_block",
 		k_max_members_per_squad_patrol,
 		"s_squad_patrol_member_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_MEMBER_BLOCK_ID)
 	{
 		{ _field_short_block_index, "squad", &squads_block },
@@ -44,6 +48,8 @@ namespace macaque
 		"squad_patrol_point_block",
 		k_max_points_per_squad_patrol,
 		"s_squad_patrol_point_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_POINT_BLOCK_ID)
 	{
 		{ _field_short_block_index, "objective", &objectives_block },
@@ -65,6 +71,8 @@ namespace macaque
 		"squad_patrol_transition_block",
 		k_max_squad_patrol_transitions,
 		"s_squad_patrol_transition_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_TRANSITION_BLOCK_ID)
 	{
 		{ _field_short_block_index, "point1", &squad_patrol_point_block },
@@ -79,6 +87,8 @@ namespace macaque
 		"squad_patrol_waypoint_block",
 		k_max_squad_patrol_waypoints_per_transition,
 		"s_squad_patrol_waypoint_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SQUAD_PATROL_WAYPOINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },

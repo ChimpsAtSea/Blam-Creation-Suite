@@ -13,6 +13,8 @@ namespace macaque
 		"structure_cluster_cubemap",
 		k_max_cubemaps_per_cluster,
 		"s_structure_cluster_cubemap_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_CLUSTER_CUBEMAP_ID)
 	{
 		{ _field_short_integer, "scenario cubemap index" },
@@ -27,6 +29,8 @@ namespace macaque
 		"cubemap_reference_points_block",
 		k_max_cubemap_reference_point_count,
 		"s_cubemap_reference_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUBEMAP_REFERENCE_POINTS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "reference point" },
@@ -40,6 +44,8 @@ namespace macaque
 		"scenario_cubemap_block",
 		k_max_cubemaps_per_scenario,
 		"s_scenario_cubemap_info",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUBEMAP_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),

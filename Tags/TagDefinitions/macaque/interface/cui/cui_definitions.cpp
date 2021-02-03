@@ -52,6 +52,8 @@ namespace macaque
 		"template_instantiation_block_definition",
 		k_cui_max_component_count,
 		"s_cui_template_instantiation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEMPLATE_INSTANTIATION_BLOCK_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
@@ -64,6 +66,8 @@ namespace macaque
 		"component_definition",
 		k_cui_max_component_count,
 		"s_cui_component_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_DEFINITION_ID)
 	{
 		{ _field_string_id, "type" },
@@ -80,6 +84,8 @@ namespace macaque
 		"component_index_block_definition",
 		k_cui_max_component_count,
 		"s_cui_component_index_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_INDEX_BLOCK_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -94,6 +100,8 @@ namespace macaque
 		"overlay_definition",
 		k_cui_max_overlay_count,
 		"s_cui_overlay_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OVERLAY_DEFINITION_ID)
 	{
 		{ _field_string_id, "resolution" },
@@ -109,6 +117,8 @@ namespace macaque
 		"component_properties_definition",
 		k_cui_max_component_count,
 		"s_cui_component_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_PROPERTIES_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -122,6 +132,8 @@ namespace macaque
 		"property_long_value",
 		8*k_kilo,
 		"s_cui_property_value_long_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_LONG_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -135,6 +147,8 @@ namespace macaque
 		"property_real_value",
 		8*k_kilo,
 		"s_cui_property_value_real_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_REAL_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -148,6 +162,8 @@ namespace macaque
 		"property_string_id_value",
 		8*k_kilo,
 		"s_cui_property_value_string_id_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_STRING_ID_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -161,6 +177,8 @@ namespace macaque
 		"propertyComponentPtrValue",
 		8*k_kilo,
 		"CuiPropertyValueComponentPtrDefinition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTYCOMPONENTPTRVALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -176,6 +194,8 @@ namespace macaque
 		"property_tag_reference_value",
 		8*k_kilo,
 		"s_cui_property_value_tag_reference_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_TAG_REFERENCE_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -189,6 +209,8 @@ namespace macaque
 		"property_text_value",
 		8*k_kilo,
 		"s_cui_property_value_text_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_TEXT_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -202,6 +224,8 @@ namespace macaque
 		"property_argb_color_value",
 		8*k_kilo,
 		"s_cui_property_value_argb_color_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_ARGB_COLOR_VALUE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -215,6 +239,8 @@ namespace macaque
 		"animation_definition",
 		k_cui_max_animation_count,
 		"s_cui_animation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -232,6 +258,8 @@ namespace macaque
 		"animation_component_definition",
 		k_cui_max_component_count,
 		"s_cui_animation_component_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -247,6 +275,8 @@ namespace macaque
 		"animation_component_real_property",
 		8*k_kilo,
 		"s_cui_animation_component_property_real_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_REAL_PROPERTY_ID)
 	{
 		{ _field_string_id, "name" },
@@ -264,6 +294,9 @@ namespace macaque
 		"animation_property_keyframe_real_value",
 		8*k_kilo,
 		"s_cui_animation_property_keyframe_value_real_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_PROPERTY_KEYFRAME_REAL_VALUE_ID)
 	{
 		{ _field_long_integer, "duration", "the amount of time from the previous keyframe to this keyframe", "milliseconds" },
@@ -278,6 +311,8 @@ namespace macaque
 		"animation_component_argb_color_property",
 		8*k_kilo,
 		"s_cui_animation_component_property_argb_color_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_ARGB_COLOR_PROPERTY_ID)
 	{
 		{ _field_string_id, "name" },
@@ -295,6 +330,9 @@ namespace macaque
 		"animation_property_keyframe_argb_color_value",
 		8*k_kilo,
 		"s_cui_animation_property_keyframe_value_argb_color_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_PROPERTY_KEYFRAME_ARGB_COLOR_VALUE_ID)
 	{
 		{ _field_long_integer, "duration", "the amount of time from the previous keyframe to this keyframe", "milliseconds" },
@@ -309,6 +347,8 @@ namespace macaque
 		"overlay_editor_only_definition",
 		k_cui_max_overlay_count,
 		"s_cui_overlay_editor_only_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OVERLAY_EDITOR_ONLY_DEFINITION_ID)
 	{
 		{ _field_string_id, "resolution" },
@@ -326,6 +366,8 @@ namespace macaque
 		"component_editor_only_definition",
 		k_cui_max_component_count,
 		"s_cui_component_editor_only_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_EDITOR_ONLY_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -339,6 +381,8 @@ namespace macaque
 		"property_editor_only_definition",
 		k_cui_max_property_count,
 		"s_cui_property_editor_only_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_EDITOR_ONLY_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -353,6 +397,8 @@ namespace macaque
 		"animation_editor_only_definition",
 		k_cui_max_animation_count,
 		"s_cui_animation_editor_only_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EDITOR_ONLY_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -366,6 +412,8 @@ namespace macaque
 		"property_binding",
 		k_cui_max_property_binding_count,
 		"s_cui_property_binding_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_BINDING_ID)
 	{
 		{ _field_word_flags, "flags", &property_binding_flags },
@@ -383,6 +431,8 @@ namespace macaque
 		"binding_conversion_long_comparison_block_definition",
 		k_cui_max_property_binding_count,
 		"s_cui_binding_conversion_long_comparison_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINDING_CONVERSION_LONG_COMPARISON_BLOCK_DEFINITION_ID)
 	{
 		{ _field_string_id, "target component name" },
@@ -399,6 +449,8 @@ namespace macaque
 		"static_data_table",
 		128,
 		"s_cui_static_data_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_DATA_TABLE_ID)
 	{
 		{ _field_string_id, "name" },
@@ -413,6 +465,8 @@ namespace macaque
 		"static_data_column",
 		128,
 		"s_cui_static_data_column_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_DATA_COLUMN_ID)
 	{
 		{ _field_string_id, "name" },
@@ -433,6 +487,8 @@ namespace macaque
 		"expression",
 		128,
 		"s_cui_expression_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EXPRESSION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -447,6 +503,8 @@ namespace macaque
 		"expression_step",
 		s_cui_expression_step_definition::k_maximum_step_count,
 		"s_cui_expression_step_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EXPRESSION_STEP_ID)
 	{
 		{ _field_char_enum, "step type", &step_type },
@@ -464,6 +522,8 @@ namespace macaque
 		"encapsulatedProperties",
 		k_cuiMaxEncapsulationCount,
 		"CuiEncapsulatedProperties",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ENCAPSULATEDPROPERTIES_ID)
 	{
 		{ _field_string_id, "encapsulation name" },
@@ -477,6 +537,8 @@ namespace macaque
 		"string_file_references",
 		16,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRING_FILE_REFERENCES_ID)
 	{
 		{ _field_tag_reference, "string list", &global_multilingual_unicode_string_list_reference },
@@ -488,6 +550,9 @@ namespace macaque
 		cui_logic_struct_definition,
 		"cui_logic_struct_definition",
 		"CuiLogicDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_LOGIC_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "logic name" },
@@ -501,6 +566,9 @@ namespace macaque
 		cui_screen_struct_definition,
 		"cui_screen_struct_definition",
 		"CuiScreenDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_SCREEN_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "string references", &string_file_references_block },
@@ -514,6 +582,8 @@ namespace macaque
 		cui_static_data_struct_definition,
 		"cui_static_data_struct_definition",
 		"s_cui_static_data_group_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_STATIC_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "static data", &static_data_struct },
@@ -525,6 +595,8 @@ namespace macaque
 		cui_system,
 		"cui_system",
 		"CuiSystemDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_SYSTEM_ID)
 	{
 		{ _field_block, "template instantiations", &template_instantiation_block_definition_block },
@@ -545,6 +617,8 @@ namespace macaque
 		properties_struct,
 		"properties_struct",
 		"s_cui_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTIES_STRUCT_ID)
 	{
 		{ _field_block, "long properties", &property_long_value_block },
@@ -562,6 +636,9 @@ namespace macaque
 		animation_scalar_function,
 		"animation_scalar_function",
 		"s_cui_animation_scalar_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SCALAR_FUNCTION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -574,6 +651,8 @@ namespace macaque
 		static_data_struct,
 		"static_data_struct",
 		"s_cui_static_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_DATA_STRUCT_ID)
 	{
 		{ _field_block, "columns", &static_data_column_block },

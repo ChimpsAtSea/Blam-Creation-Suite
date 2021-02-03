@@ -26,6 +26,8 @@ namespace macaque
 		"rules_block",
 		MAXIMUM_RULES_PER_CA,
 		"ca2d_rule",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RULES_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -41,6 +43,8 @@ namespace macaque
 		"states_block",
 		MAXIMUM_STATES_PER_RULE,
 		"ca2d_rule_state",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATES_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -67,6 +71,8 @@ namespace macaque
 		cellular_automata2d_struct_definition,
 		"cellular_automata2d_struct_definition",
 		"ca2d_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "properties", "" },

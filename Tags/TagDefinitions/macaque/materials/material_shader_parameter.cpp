@@ -13,6 +13,9 @@ namespace macaque
 		"material_shader_parameter_block",
 		s_material_shader_parameter::k_max_material_shader_parameters,
 		"s_material_shader_parameter",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name" },
@@ -53,6 +56,9 @@ namespace macaque
 		"material_shader_function_parameter_block",
 		s_material_shader_parameter::k_max_material_shader_parameters,
 		"s_material_shader_function_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_FUNCTION_PARAMETER_BLOCK_ID)
 	{
 		{ _field_long_enum, "type", &material_animated_parameter_type_enum },

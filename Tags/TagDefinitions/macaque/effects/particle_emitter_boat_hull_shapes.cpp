@@ -26,6 +26,8 @@ namespace macaque
 		"particle_emitter_boat_hull_group_block",
 		s_particle_emitter_boat_hull_shape_data::k_max_groups_per_hull_shape,
 		"s_particle_emitter_boat_hull_shape_data::s_marker_group",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_BOAT_HULL_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "marker group" },
@@ -37,6 +39,8 @@ namespace macaque
 		particle_emitter_boat_hull_shape_struct_definition,
 		"particle_emitter_boat_hull_shape_struct_definition",
 		"s_particle_emitter_boat_hull_shape_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_BOAT_HULL_SHAPE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_char_enum, "distribution", &particle_emitter_boat_hull_distribution_type },

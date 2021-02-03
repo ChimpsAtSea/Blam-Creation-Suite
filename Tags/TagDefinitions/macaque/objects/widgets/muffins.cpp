@@ -13,6 +13,8 @@ namespace macaque
 		"muffin_block",
 		1,
 		"s_muffin_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("link to render model", nullptr, _field_id_unknown_compile),
@@ -37,6 +39,8 @@ namespace macaque
 		"muffin_permutation_name_block",
 		SHORT_MAX,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_PERMUTATION_NAME_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -49,6 +53,8 @@ namespace macaque
 		"muffin_marker_block",
 		SHORT_MAX,
 		"s_muffin_marker",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_MARKER_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -68,6 +74,9 @@ namespace macaque
 		global_muffin_type_struct,
 		"global_muffin_type_struct",
 		"s_muffin_type",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MUFFIN_TYPE_STRUCT_ID)
 	{
 		{ _field_short_block_index, "mesh", &muffin_permutation_name_block },
@@ -96,6 +105,9 @@ namespace macaque
 		muffin_scalar_function_struct,
 		"muffin_scalar_function_struct",
 		"s_muffin_scalar_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

@@ -26,6 +26,9 @@ namespace macaque
 		"spring_linear_acceleration_block",
 		k_dimensions_in_3d_count,
 		"s_spring_acceleration_linear_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPRING_LINEAR_ACCELERATION_BLOCK_ID)
 	{
 		{ _field_real, "acceleration range", "world units" },
@@ -43,6 +46,8 @@ namespace macaque
 		spring_acceleration_struct_definition,
 		"spring_acceleration_struct_definition",
 		"s_spring_acceleration_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPRING_ACCELERATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "linear acceleartions", &spring_linear_acceleration_block },

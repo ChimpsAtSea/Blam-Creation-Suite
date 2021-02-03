@@ -13,6 +13,8 @@ namespace macaque
 		"performance_template_block",
 		1,
 		"s_performance_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -62,6 +64,8 @@ namespace macaque
 		"scenario_profiles_block",
 		MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK,
 		"scenario_starting_profile",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PROFILES_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -97,6 +101,8 @@ namespace macaque
 		"performance_template_actor_block",
 		MAXIMUM_ACTORS_PER_PERFORMANCE,
 		"s_performance_template_actor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_TEMPLATE_ACTOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &scenario_performance_actor_flags_definition },
@@ -116,6 +122,8 @@ namespace macaque
 		"scenario_performance_line_block",
 		MAXIMUM_LINES_PER_PERFORMANCE,
 		"s_scenario_performance_line",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -140,6 +148,8 @@ namespace macaque
 		"scenario_performance_line_script_fragment_block",
 		MAXIMUM_SCRIPT_FRAGMENTS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_script_fragment",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SCRIPT_FRAGMENT_BLOCK_ID)
 	{
 		{ _field_enum, "fragment placement", &scenario_performance_fragment_placement_definition },
@@ -155,6 +165,8 @@ namespace macaque
 		"scenario_performance_line_point_interaction_block",
 		MAXIMUM_POINT_INTERACTIONS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_point_interaction",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_POINT_INTERACTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "interaction type", &scenario_performance_line_point_interaction_type_definition },
@@ -171,6 +183,9 @@ namespace macaque
 		"scenario_performance_line_animation_block",
 		MAXIMUM_ANIMATIONS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_animation",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_ANIMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_performance_line_animation_flags_definition },
@@ -190,6 +205,9 @@ namespace macaque
 		"scenario_performance_line_sync_action_block",
 		MAXIMUM_SYNC_ACTIONS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_sync_action",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SYNC_ACTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "sync action name" },
@@ -206,6 +224,8 @@ namespace macaque
 		"scenario_performance_line_sync_action_actor_block",
 		MAXIMUM_ACTORS_PER_PERFORMANCE,
 		"s_scenario_sync_action_actor",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SYNC_ACTION_ACTOR_BLOCK_ID)
 	{
 		{ _field_custom_short_block_index, "Actor type" },
@@ -219,6 +239,9 @@ namespace macaque
 		"scenario_performance_line_scenery_sync_action_block",
 		MAXIMUM_SCENERY_SYNC_ACTIONS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_scenery_sync_action",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SCENERY_SYNC_ACTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "scenery object name" },
@@ -237,6 +260,9 @@ namespace macaque
 		"scenario_performance_line_dialog_block",
 		MAXIMUM_DIALOG_LINES_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_dialog",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_DIALOG_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "dialog" },
@@ -250,6 +276,8 @@ namespace macaque
 		"scenario_performance_line_sound_block",
 		MAXIMUM_SOUNDS_PER_PERFORMANCE_LINE,
 		"s_scenario_performance_line_sound",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_LINE_SOUND_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound effect", &global_sound_reference },
@@ -265,6 +293,8 @@ namespace macaque
 		"performance_template_point_block",
 		32,
 		"s_performance_template_point",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_TEMPLATE_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "Point name" },
@@ -279,6 +309,9 @@ namespace macaque
 		"scenario_structure_bsp_reference_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"scenario_structure_bsp_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_BSP_REFERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "structure bsp", &structure_bsp_reference_non_resolving },
@@ -317,6 +350,8 @@ namespace macaque
 		"scenario_sky_reference_block",
 		MAXIMUM_SKIES_PER_SCENARIO,
 		"s_scenario_sky_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SKY_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sky", &scenery_reference$2 },
@@ -336,6 +371,8 @@ namespace macaque
 		"scenario_object_names_block",
 		MAXIMUM_OBJECT_NAMES_PER_SCENARIO,
 		"scenario_object_name",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_NAMES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -350,6 +387,8 @@ namespace macaque
 		"scenarioBspReferenceBlock",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"Tag::Reference<structure_bsp>",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOBSPREFERENCEBLOCK_ID)
 	{
 		{ _field_tag_reference, "structure design", &structureBspReferenceNonDependency },
@@ -362,6 +401,8 @@ namespace macaque
 		"scenario_child_references_block",
 		MAXIMUM_CHILD_SCENARIOS_PER_SCENARIO,
 		"scenario_child_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHILD_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "tag", &Tag::Reference<struct Scenario>::s_defaultDefinition },
@@ -374,6 +415,8 @@ namespace macaque
 		"scenario_design_reference_block",
 		MAXIMUM_STRUCTURE_DESIGNS_PER_SCENARIO,
 		"s_scenario_structure_design_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESIGN_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "structure design", &structure_design_reference },
@@ -387,6 +430,8 @@ namespace macaque
 		"scenario_zone_set_pvs_block",
 		k_maximum_scenario_zone_set_count+1,
 		"s_scenario_zone_set_pvs",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_PVS_BLOCK_ID)
 	{
 		{ _field_dword_integer, "structure bsp mask" },
@@ -404,6 +449,8 @@ namespace macaque
 		"scenario_zone_set_bsp_checksum_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_CHECKSUM_BLOCK_ID)
 	{
 		{ _field_dword_integer, "bsp checksum" },
@@ -416,6 +463,8 @@ namespace macaque
 		"scenario_zone_set_bsp_pvs_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_scenario_zone_set_structure_bsp_pvs",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_PVS_BLOCK_ID)
 	{
 		{ _field_block, "cluster pvs", &scenario_zone_set_cluster_pvs_block },
@@ -430,6 +479,8 @@ namespace macaque
 		"scenario_zone_set_cluster_pvs_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_zone_set_cluster_pvs",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_CLUSTER_PVS_BLOCK_ID)
 	{
 		{ _field_block, "cluster pvs bit vectors", &scenario_zone_set_bsp_bits_block },
@@ -442,6 +493,8 @@ namespace macaque
 		"scenario_zone_set_bsp_bits_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_scenario_zone_set_bsp_bits",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_BITS_BLOCK_ID)
 	{
 		{ _field_block, "bits", &scenario_zone_set_cluster_pvs_bit_vector_block },
@@ -454,6 +507,8 @@ namespace macaque
 		"scenario_zone_set_cluster_pvs_bit_vector_block",
 		((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_CLUSTER_PVS_BIT_VECTOR_BLOCK_ID)
 	{
 		{ _field_dword_integer, "dword" },
@@ -466,6 +521,8 @@ namespace macaque
 		"scenario_zone_set_bsp_seam_cluster_mappings_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_zone_set_cluster_seam_cluster_mappings",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_SEAM_CLUSTER_MAPPINGS_BLOCK_ID)
 	{
 		{ _field_block, "root clusters", &scenario_zone_set_cluster_reference_block },
@@ -480,6 +537,8 @@ namespace macaque
 		"scenario_zone_set_cluster_reference_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_cluster_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_CLUSTER_REFERENCE_BLOCK_ID)
 	{
 		{ _field_char_integer, "bsp index" },
@@ -493,6 +552,8 @@ namespace macaque
 		"scenario_zone_set_block",
 		k_maximum_scenario_zone_set_count,
 		"s_scenario_zone_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -526,6 +587,8 @@ namespace macaque
 		"scenario_budget_references_block",
 		k_maximum_budget_references_per_scenario,
 		"s_scenario_budget_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_BUDGET_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &scenario_budget_references_block_reference_reference },
@@ -538,6 +601,8 @@ namespace macaque
 		"scenario_zone_set_budget_override_block",
 		1,
 		"ScenarioZoneSetBudgetOverride",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BUDGET_OVERRIDE_BLOCK_ID)
 	{
 		{ _field_long_integer, "env bitmap", "megs" },
@@ -553,6 +618,8 @@ namespace macaque
 		"scenario_zone_set_lipsync_block",
 		SHORT_MAX,
 		"ScenarioZoneSetBudgetOverride",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_LIPSYNC_BLOCK_ID)
 	{
 		{ _field_tag_reference, "dummy", &sound_reference$3 },
@@ -565,6 +632,8 @@ namespace macaque
 		"scenario_lighting_zone_set_block",
 		k_maximum_scenario_zone_set_count,
 		"s_scenario_lighting_zone_set_obsolete",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTING_ZONE_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -579,6 +648,8 @@ namespace macaque
 		"scenario_function_block",
 		MAXIMUM_FUNCTIONS_PER_SCENARIO,
 		"scenario_function",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &scenario_function_flags },
@@ -615,6 +686,8 @@ namespace macaque
 		"editor_comment_block",
 		MAXIMUM_EDITOR_COMMENTS,
 		"editor_comment_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EDITOR_COMMENT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -630,6 +703,8 @@ namespace macaque
 		"dont_use_me_scenario_environment_object_block",
 		MAXIMUM_ENVIRONMENT_OBJECTS_PER_SCENARIO,
 		"scenario_environment_object",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_environment_unknown),
@@ -649,6 +724,8 @@ namespace macaque
 		"scenarioAttachedEffectsBlock",
 		ScenarioAttachedEffect::k_maxLoopingEffectsAllowed,
 		"ScenarioAttachedEffect",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOATTACHEDEFFECTSBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
@@ -662,6 +739,8 @@ namespace macaque
 		"scenarioAttachedLensFlaresBlock",
 		ScenarioAttachedEffect::k_maxLensFlaresAllowed,
 		"ScenarioAttachedEffect",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOATTACHEDLENSFLARESBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
@@ -675,6 +754,8 @@ namespace macaque
 		"scenarioAttachedLightConesBlock",
 		ScenarioAttachedLightCone::k_maxLightConesAllowed,
 		"ScenarioAttachedLightCone",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOATTACHEDLIGHTCONESBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
@@ -692,6 +773,8 @@ namespace macaque
 		"scenario_soft_ceilings_block",
 		MAXIMUM_SCENARIO_SOFT_CEILINGS_PER_SCENARIO,
 		"s_scenario_soft_ceiling",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SOFT_CEILINGS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_soft_ceiling_flags_definition },
@@ -708,6 +791,8 @@ namespace macaque
 		"scenario_players_block",
 		MAXIMUM_SCENARIO_PLAYERS_PER_BLOCK,
 		"scenario_player_starting_location",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SCENARIO_PLAYERS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -734,6 +819,8 @@ namespace macaque
 		"trigger_volume_point_block",
 		k_maximum_points_per_sector,
 		"s_real_sector_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGER_VOLUME_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -747,6 +834,8 @@ namespace macaque
 		"trigger_volume_runtime_triangles_block",
 		k_maximum_points_per_sector-2,
 		"s_trigger_volume_triangle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGER_VOLUME_RUNTIME_TRIANGLES_BLOCK_ID,
 		4)
 	{
@@ -768,6 +857,8 @@ namespace macaque
 		"scenario_kill_trigger_volumes_block",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"s_scenario_kill_trigger_volume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_KILL_TRIGGER_VOLUMES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
@@ -782,6 +873,8 @@ namespace macaque
 		"scenario_atmosphere_palette_block",
 		MAXIMUM_ATMOSPHERE_PALETTE_ENTRIES_PER_STRUCTURE,
 		"scenario_atmosphere_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ATMOSPHERE_PALETTE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -797,6 +890,8 @@ namespace macaque
 		"scenario_weather_palette_block",
 		MAXIMUM_WEATHER_PALETTE_ENTRIES_PER_STRUCTURE,
 		"scenario_weather_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_WEATHER_PALETTE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -810,6 +905,8 @@ namespace macaque
 		"scenario_zone_set_switch_trigger_volume_block",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"s_scenario_zone_set_switch_trigger_volume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_SWITCH_TRIGGER_VOLUME_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_zone_set_switch_trigger_volume_flags_definition },
@@ -825,6 +922,9 @@ namespace macaque
 		"scenario_decals_block",
 		MAXIMUM_DECALS_PER_SCENARIO,
 		"scenario_decal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECALS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
@@ -846,6 +946,8 @@ namespace macaque
 		"scenario_decal_palette_block",
 		MAXIMUM_DECAL_PALETTES_PER_SCENARIO,
 		"scenario_decal_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECAL_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &decal_system_reference },
@@ -859,6 +961,8 @@ namespace macaque
 		"scenario_detail_object_collection_palette_block",
 		MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE,
 		"scenario_detail_object_collection_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "name", &global_detail_object_collection_reference },
@@ -872,6 +976,8 @@ namespace macaque
 		"scenario_cutscene_flag_block",
 		MAXIMUM_CUTSCENE_FLAGS_PER_SCENARIO,
 		"scenario_cutscene_flag",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUTSCENE_FLAG_BLOCK_ID)
 	{
 		FIELD_PAD("MMNGQBXC", nullptr, 4),
@@ -889,6 +995,8 @@ namespace macaque
 		"scenario_cutscene_camera_point_block",
 		MAXIMUM_CUTSCENE_CAMERA_POINTS_PER_SCENARIO,
 		"scenario_cutscene_camera_point",
+		SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUTSCENE_CAMERA_POINT_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_cutscene_camera_flags },
@@ -911,6 +1019,8 @@ namespace macaque
 		"scenario_safe_zone_trigger_volumes_block",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"s_scenario_safe_zone_trigger_volume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SAFE_ZONE_TRIGGER_VOLUMES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
@@ -925,6 +1035,8 @@ namespace macaque
 		"trigger_volume_mopp_code_block",
 		1,
 		"s_trigger_volume_mopp",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGER_VOLUME_MOPP_CODE_BLOCK_ID)
 	{
 		{ _field_long_integer, "trigger volume checksum" },
@@ -938,6 +1050,8 @@ namespace macaque
 		"scenario_requisition_trigger_volumes_block",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"s_scenario_requisition_trigger_volume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_REQUISITION_TRIGGER_VOLUMES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
@@ -951,6 +1065,8 @@ namespace macaque
 		"scenario_location_name_trigger_volumes_block",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"s_scenario_location_name_trigger_volume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LOCATION_NAME_TRIGGER_VOLUMES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
@@ -964,6 +1080,8 @@ namespace macaque
 		"scenarioUnsafeSpawnZoneTriggerVolumesBlock",
 		MAXIMUM_TRIGGER_VOLUMES_PER_SCENARIO,
 		"ScenarioUnsafeSpawnVolume",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOUNSAFESPAWNZONETRIGGERVOLUMESBLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &scenario_trigger_volume_block },
@@ -976,6 +1094,8 @@ namespace macaque
 		"scenario_camera_fx_palette_block",
 		MAXIMUM_CAMERA_FX_PALETTE_ENTRIES_PER_STRUCTURE,
 		"scenario_camera_fx_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CAMERA_FX_PALETTE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -997,6 +1117,8 @@ namespace macaque
 		"scenario_cluster_data_block",
 		MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO,
 		"s_scenario_cluster_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_DATA_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bsp", &structure_bsp_reference_non_resolving },
@@ -1016,6 +1138,8 @@ namespace macaque
 		"scenario_cluster_points_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_POINTS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "centroid" },
@@ -1028,6 +1152,8 @@ namespace macaque
 		"scenario_cluster_acoustics_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_cluster_property",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "type", &scenario_acoustics_palette_block_definition_block },
@@ -1041,6 +1167,8 @@ namespace macaque
 		"scenario_cluster_atmosphere_properties_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_cluster_property",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_ATMOSPHERE_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", &scenario_atmosphere_palette_block },
@@ -1054,6 +1182,8 @@ namespace macaque
 		"scenario_cluster_camera_fx_properties_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_cluster_property",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", &scenario_camera_fx_palette_block },
@@ -1067,6 +1197,8 @@ namespace macaque
 		"scenario_cluster_weather_properties_block",
 		MAXIMUM_CLUSTERS_PER_STRUCTURE,
 		"s_scenario_cluster_property",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "type", &scenario_weather_palette_block },
@@ -1080,6 +1212,8 @@ namespace macaque
 		"scenario_spawn_data_block",
 		1,
 		"s_scenario_spawn_data",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SPAWN_DATA_BLOCK_ID)
 	{
 		{ _field_real, "game object reset height" },
@@ -1092,6 +1226,8 @@ namespace macaque
 		"SoundSubtitleBlock",
 		MAXIMUM_SUBTITLES_PER_SCENARIO,
 		"SoundSubtitle",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDSUBTITLEBLOCK_ID)
 	{
 		{ _field_long_integer, "tagIndex" },
@@ -1105,6 +1241,8 @@ namespace macaque
 		"scenario_cheap_particle_system_palette_block",
 		s_scenario_cheap_particle_emitter_palette_entry::k_maximum_scenario_cheap_particle_system_palette_entries,
 		"s_scenario_cheap_particle_emitter_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHEAP_PARTICLE_SYSTEM_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "definition", &cheap_particle_emitter_reference },
@@ -1117,6 +1255,8 @@ namespace macaque
 		"scenario_cheap_particle_systems_block",
 		s_scenario_cheap_particle_system::k_maximum_scenario_cheap_particle_systems,
 		"s_scenario_cheap_particle_system",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHEAP_PARTICLE_SYSTEMS_BLOCK_ID)
 	{
 		{ _field_short_block_index, "palette index", &scenario_cheap_particle_system_palette_block },
@@ -1132,6 +1272,8 @@ namespace macaque
 		"scenario_cinematic_lighting_palette_block",
 		k_maximum_scenario_cinematic_lighting_palette_entry_count,
 		"s_scenario_cinematic_lighting_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CINEMATIC_LIGHTING_PALETTE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -1145,6 +1287,8 @@ namespace macaque
 		"scenario_airprobes_block",
 		k_max_airprobes_per_scenario,
 		"s_scenario_airprobe_info",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AIRPROBES_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "airprobe position" },
@@ -1159,6 +1303,8 @@ namespace macaque
 		"model_references_block",
 		SHORT_MAX,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "model reference", &model_reference$5 },
@@ -1171,6 +1317,9 @@ namespace macaque
 		"scenario_performances_block",
 		MAXIMUM_PERFORMANCES_PER_SCENARIO,
 		"s_scenario_performance",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCES_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -1201,6 +1350,8 @@ namespace macaque
 		"scenario_performance_actor_block",
 		MAXIMUM_ACTORS_PER_PERFORMANCE,
 		"s_scenario_performance_actor",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_ACTOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &scenario_performance_actor_flags_definition },
@@ -1219,6 +1370,8 @@ namespace macaque
 		"scenario_performance_task_block",
 		MAXIMUM_TASKS_PER_PERFORMANCE,
 		"s_stimulus_distribution_task",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PERFORMANCE_TASK_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "objective", &objectives_block },
@@ -1232,6 +1385,8 @@ namespace macaque
 		"scenarioRandomOrdnanceDropSetBlock",
 		k_maximum_scenario_ordnance_drop_sets,
 		"scenarioOrdnanceDropSet",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIORANDOMORDNANCEDROPSETBLOCK_ID)
 	{
 		{ _field_word_flags, "drop set flags", &ordnance_dropset_flags },
@@ -1249,6 +1404,8 @@ namespace macaque
 		"scenarioRandomOrdnanceDropPointBlock",
 		k_maximum_random_ordnance_drop_points,
 		"scenarioOrdnanceDropPoint",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIORANDOMORDNANCEDROPPOINTBLOCK_ID)
 	{
 		{ _field_short_block_index, "Drop point", &scenario_scenery_block },
@@ -1267,6 +1424,8 @@ namespace macaque
 		"loadScreenReferenceBlock",
 		SHORT_MAX,
 		"LoadScreenReferenceBlock",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADSCREENREFERENCEBLOCK_ID)
 	{
 		{ _field_explanation, "Map IDs", "These are pulled from levels_map_id_constants.h\nk_mp_z00_testchamber_map_id\t\t\t10777)\nk_mp_wraparound_map_id\t\t\t\t\t10080)  \nk_mp_z05_cliffside_map_id              10085)  // complex \nk_mp_z11_valhalla_id\t\t\t\t\t10091)\nk_mp_ca_gore_valley_map_id\t\t\t\t10200)\nk_mp_ca_tower_map_id\t\t\t\t\t10202)\nk_mp_ca_warhouse_map_id\t\t\t\t10210)\nk_mp_ca_blood_cavern_map_id\t\t\t10225)\nk_mp_ca_blood_crash_map_id\t\t\t\t10226)\nk_mp_ca_forge_erosion_map_id\t\t\t10245)\nk_mp_ca_redoubt_map_id\t\t\t\t\t10252)\nk_mp_ca_forge_bonanza_map_id\t\t\t10255)\nk_mp_ca_forge_ravine_map_id\t\t\t10256)\nk_mp_ca_canyon_map_id\t\t\t\t\t10261)\nk_mp_zd_02_grind_map_id\t\t\t\t10102)\n\nk_ff81_courtyard_map_id\t\t\t\t11081)\nk_ff82_scurve_map_id\t\t\t\t\t11071)\nk_ff83_breach_map_id\t\t\t\t\t11061)\nk_ff84_temple_map_id\t\t\t\t\t11084)\nk_ff85_island_map_id\t\t\t\t\t11091)\nk_ff86_sniperalley_map_id\t\t\t\t11101)\nk_ff87_chopperbowl_map_id\t\t\t\t11111)\nk_ff88_horseshou_map_id\t\t\t\t11121)\nk_ff89_infinity_map_id\t\t\t\t\t11131)\nk_ff90_fortsw_map_id\t\t\t\t\t11141)\n\nk_sp_intro_map_id\t\t\t\t\t\t12000)\nk_sp_m10_crash_map_id\t\t\t\t\t12010)\nk_sp_m20_haven_map_id\t\t\t\t\t12020)\nk_sp_m30_cryptum_map_id\t\t\t\t12030)\nk_sp_m40_invasion_map_id\t\t\t\t12040)\nk_sp_m60_rescue_map_id\t\t\t\t\t12060)\nk_sp_m70_liftoff_map_id\t\t\t\t12070)\nk_sp_m80_delta_map_id\t\t\t\t\t12080)\nk_sp_m90_sacrifice_map_id\t\t\t\t12090)\n\nk_sp_max_environment_solo_map_id\t\t12499)\n" },
@@ -1282,6 +1441,8 @@ namespace macaque
 		"scenarioFloatingShadowCascadeSettingsArray",
 		4,
 		"scenarioFloatingShadowCascadeSettings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOFLOATINGSHADOWCASCADESETTINGSARRAY_ID)
 	{
 		FIELD_CUSTOM("CASCADE", nullptr, _field_id_function_group_begin),
@@ -1301,6 +1462,8 @@ namespace macaque
 		"object_salt_storage_array",
 		k_maximum_number_of_object_salts,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SALT_STORAGE_ARRAY_ID)
 	{
 		{ _field_long_integer, "salt" },
@@ -1312,6 +1475,9 @@ namespace macaque
 		scenario_struct_definition,
 		"scenario_struct_definition",
 		"Scenario",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "child scenarios", &scenario_child_references_block },
@@ -1528,6 +1694,8 @@ namespace macaque
 		scenario_required_resource_struct_definition,
 		"scenario_required_resource_struct_definition",
 		"s_scenario_required_resources",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_REQUIRED_RESOURCE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "resources", &scenario_budget_references_block },
@@ -1539,6 +1707,8 @@ namespace macaque
 		scenarioVolumetricLightShaftSettingsStruct,
 		"scenarioVolumetricLightShaftSettingsStruct",
 		"scenarioVolumetricLightShaftSettings",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOVOLUMETRICLIGHTSHAFTSETTINGSSTRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &scenarioVolumetricLightShaftSettingsFlags },
@@ -1555,6 +1725,8 @@ namespace macaque
 		scenarioFloatingShadowSettingsStruct,
 		"scenarioFloatingShadowSettingsStruct",
 		"scenarioFloatingShadowSettings",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOFLOATINGSHADOWSETTINGSSTRUCT_ID)
 	{
 		{ _field_byte_integer, "number of cascades" },
@@ -1571,6 +1743,8 @@ namespace macaque
 		scenario_lightmap_setting_struct,
 		"scenario_lightmap_setting_struct",
 		"scenario_lightmap_setting",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_LIGHTMAP_SETTING_STRUCT_ID)
 	{
 		{ _field_explanation, "Lightmap resolution for each buckets", "relative to world unit per texel. default:\n1-> 1\n2-> 4\n2-> 16\n3-> 64\n5-> 128\n6-> 256\n7-> 512" },
@@ -1594,6 +1768,8 @@ namespace macaque
 		manualBspFlagsReferences,
 		"manualBspFlagsReferences",
 		"ManualBspReferenceFlags",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MANUALBSPFLAGSREFERENCES_ID)
 	{
 		FIELD_CUSTOM("manual bsp flags", nullptr, _field_id_manual_bsp_flags),
@@ -1607,6 +1783,8 @@ namespace macaque
 		scenario_trigger_volume_struct,
 		"scenario_trigger_volume_struct",
 		"scenario_trigger_volume_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SCENARIO_TRIGGER_VOLUME_STRUCT_ID)
 	{
 		{ _field_explanation, "naming", "the name of the trigger volume specifies what kind of volume it is:\n\'zone_set:\'\n\'begin_zone_set:\'\n\'kill\' (plus \'_soft\' for soft kill volume)\n\'playerkill\' (plus \'_soft\' for soft kill volume) for player only kill volume \n\'safe_zone\' (plus \'_soft\' for soft kill volume)\n\'location_\'\n\'ordnance_bounds\'\n\'unsafe_spawn\'\nappend \':*\' to zone set names to allow vehicles to teleport along with their players." },
@@ -1642,6 +1820,8 @@ namespace macaque
 		ScenarioUnitRecordingBlock_struct,
 		"ScenarioUnitRecordingBlock_struct",
 		"ScenarioUnitRecording",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOUNITRECORDINGBLOCK_STRUCT_ID)
 	{
 		{ _field_string, "name" },

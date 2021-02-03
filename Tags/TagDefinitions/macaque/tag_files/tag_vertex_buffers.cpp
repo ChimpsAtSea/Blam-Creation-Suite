@@ -12,6 +12,8 @@ namespace macaque
 		render_vertex_buffer_descriptor_struct,
 		"render_vertex_buffer_descriptor_struct",
 		"s_render_vertex_buffer_descriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_VERTEX_BUFFER_DESCRIPTOR_STRUCT_ID)
 	{
 		{ _field_long_integer, "vertex count" },
@@ -26,6 +28,8 @@ namespace macaque
 		render_index_buffer_descriptor_struct,
 		"render_index_buffer_descriptor_struct",
 		"s_render_index_buffer_descriptor",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_INDEX_BUFFER_DESCRIPTOR_STRUCT_ID)
 	{
 		{ _field_long_integer, "primitive type" },

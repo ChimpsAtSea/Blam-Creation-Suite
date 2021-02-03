@@ -12,6 +12,8 @@ namespace macaque
 		boat_physics_definition_struct,
 		"boat_physics_definition_struct",
 		"s_boat_physics_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOAT_PHYSICS_DEFINITION_STRUCT_ID)
 	{
 		{ _field_explanation, "water hull physics", "" },

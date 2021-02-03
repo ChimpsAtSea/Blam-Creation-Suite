@@ -13,6 +13,9 @@ namespace macaque
 		"bitmap_block",
 		1,
 		"bitmap_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("show bitmap", nullptr, _field_id_bitmap_show),
@@ -59,6 +62,8 @@ namespace macaque
 		"bitmap_texture_interleaved_interop_block",
 		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
 		"s_tag_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_BLOCK_STRUCT_ID)
 	{
 		{ _field_pageable, "interleaved texture resource", &bitmap_texture_interleaved_interop_resource_struct },
@@ -71,6 +76,8 @@ namespace macaque
 		"bitmap_texture_interop_block",
 		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
 		"s_tag_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID)
 	{
 		{ _field_pageable, "texture resource", &bitmap_texture_interop_resource_struct },
@@ -83,6 +90,8 @@ namespace macaque
 		"stitchable_bitmap_texture_interop_block",
 		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
 		"s_tag_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STITCHABLE_BITMAP_TEXTURE_INTEROP_BLOCK_STRUCT_ID)
 	{
 		{ _field_pageable, "texture resource", &stitchable_bitmap_texture_interop_resource_struct },
@@ -94,6 +103,8 @@ namespace macaque
 		bitmap_texture_interleaved_interop_resource_struct,
 		"bitmap_texture_interleaved_interop_resource_struct",
 		"c_tag_d3d_texture_interleaved_interop",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		BITMAP_TEXTURE_INTERLEAVED_INTEROP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_api_interop, "interleaved texture interop", &render_texture_interleaved_interop_definition_struct },
@@ -105,6 +116,8 @@ namespace macaque
 		bitmap_texture_interop_resource_struct,
 		"bitmap_texture_interop_resource_struct",
 		"c_tag_d3d_texture_interop",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct },
@@ -116,6 +129,8 @@ namespace macaque
 		stitchable_bitmap_texture_interop_resource_struct,
 		"stitchable_bitmap_texture_interop_resource_struct",
 		"c_tag_d3d_texture_interop",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		STITCHABLE_BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct },

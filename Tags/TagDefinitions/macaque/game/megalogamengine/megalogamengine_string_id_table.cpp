@@ -26,6 +26,8 @@ namespace macaque
 		"megalo_string_id_block",
 		k_maximum_megalo_string_ids,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MEGALO_STRING_ID_BLOCK_ID)
 	{
 		{ _field_string_id, "string_id" },
@@ -38,6 +40,8 @@ namespace macaque
 		"megalo_string_id_to_sprite_index_block",
 		k_maximum_megalo_string_ids,
 		"MegaloStringIdSpriteMappingTableDefinition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MEGALO_STRING_ID_TO_SPRITE_INDEX_BLOCK_ID)
 	{
 		{ _field_custom_long_block_index, "from megalo string_id" },
@@ -50,6 +54,8 @@ namespace macaque
 		megalo_string_id_table_struct_definition,
 		"megalo_string_id_table_struct_definition",
 		"s_megalo_string_id_table_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEGALO_STRING_ID_TABLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "megalo string_ids", &megalo_string_id_block },

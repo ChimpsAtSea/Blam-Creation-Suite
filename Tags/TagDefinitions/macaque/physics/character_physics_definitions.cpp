@@ -12,6 +12,8 @@ namespace macaque
 		character_physics_struct,
 		"character_physics_struct",
 		"s_character_physics_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PHYSICS_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &character_physics_flags },
@@ -43,6 +45,8 @@ namespace macaque
 		character_physics_ground_struct,
 		"character_physics_ground_struct",
 		"s_character_physics_ground_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PHYSICS_GROUND_STRUCT_ID)
 	{
 		{ _field_angle, "maximum slope angle", "degrees" },
@@ -70,6 +74,8 @@ namespace macaque
 		character_physics_flying_struct,
 		"character_physics_flying_struct",
 		"s_character_physics_flying_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PHYSICS_FLYING_STRUCT_ID)
 	{
 		{ _field_angle, "bank angle", "angle at which we bank left/right when sidestepping or turning while moving forwards", "degrees" },

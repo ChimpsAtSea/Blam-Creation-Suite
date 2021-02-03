@@ -26,6 +26,8 @@ namespace macaque
 		"predicted_bitmaps_block",
 		8,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PREDICTED_BITMAPS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bitmap", &global_bitmap_reference },
@@ -37,6 +39,10 @@ namespace macaque
 		item_struct_definition,
 		"item_struct_definition",
 		"_item_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ITEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },

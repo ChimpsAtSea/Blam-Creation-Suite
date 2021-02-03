@@ -25,6 +25,9 @@ namespace macaque
 		shield_impact_struct_definition,
 		"shield_impact_struct_definition",
 		"s_shield_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_IMPACT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Shield Controls", "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n" },
@@ -90,6 +93,9 @@ namespace macaque
 		shield_color_function_struct,
 		"shield_color_function_struct",
 		"s_shield_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_COLOR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
@@ -104,6 +110,9 @@ namespace macaque
 		shield_scalar_function_struct,
 		"shield_scalar_function_struct",
 		"s_shield_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

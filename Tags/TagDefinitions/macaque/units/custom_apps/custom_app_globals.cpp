@@ -26,6 +26,8 @@ namespace macaque
 		"custom_app_block",
 		k_maximum_custom_app_count,
 		"s_custom_app_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -49,6 +51,8 @@ namespace macaque
 		"custom_app_damage_modifier_block",
 		k_maximum_custom_app_damage_modifier_count,
 		"s_custom_app_damage_modifier_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_DAMAGE_MODIFIER_BLOCK_ID)
 	{
 		{ _field_string_id, "damage type" },
@@ -62,6 +66,8 @@ namespace macaque
 		custom_app_globals_struct_definition,
 		"custom_app_globals_struct_definition",
 		"s_custom_app_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "maximum active apps", "(-1 = unlimited)" },

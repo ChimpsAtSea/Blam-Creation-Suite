@@ -26,6 +26,9 @@ namespace macaque
 		"structure_lighting_generic_light_definition_block",
 		SHORT_MAX,
 		"s_structure_lighting_generic_light_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
 	{
 		{ _field_int64_integer, "Definition Identifier" },
@@ -50,6 +53,8 @@ namespace macaque
 		"structure_lighting_generic_light_instance_block",
 		SHORT_MAX,
 		"s_structure_lighting_generic_light_instance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID)
 	{
 		{ _field_int64_integer, "Light Definition ID" },
@@ -74,6 +79,8 @@ namespace macaque
 		"screen_space_light_shader_override_block",
 		SHORT_MAX,
 		"s_screen_space_light_shader_override",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_SPACE_LIGHT_SHADER_OVERRIDE_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "specular color normal" },
@@ -98,6 +105,8 @@ namespace macaque
 		"structureLightingCinematicObjectBlock",
 		SHORT_MAX,
 		"StructureLightingCinematicObject",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURELIGHTINGCINEMATICOBJECTBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -109,6 +118,9 @@ namespace macaque
 		scenario_structure_lighting_info_struct_definition,
 		"scenario_structure_lighting_info_struct_definition",
 		"s_structure_lighting_info",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "import info checksum" },
@@ -125,6 +137,8 @@ namespace macaque
 		structureLightingCinematicLightInstanceBlock_struct,
 		"structureLightingCinematicLightInstanceBlock_struct",
 		"StructureLightingCinematicLightInfo",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURELIGHTINGCINEMATICLIGHTINSTANCEBLOCK_STRUCT_ID)
 	{
 		{ _field_int64_integer, "Light Instance ID" },

@@ -26,6 +26,8 @@ namespace macaque
 		"GameGlobalsGrenadeBlock",
 		eUGT_count,
 		"GameGlobalsGrenade",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEGLOBALSGRENADEBLOCK_ID)
 	{
 		{ _field_short_integer, "maximum count" },
@@ -55,6 +57,8 @@ namespace macaque
 		game_globals_grenade_list_struct_definition,
 		"game_globals_grenade_list_struct_definition",
 		"GameGlobalsGrenadeList",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_GLOBALS_GRENADE_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "grenades", &GameGlobalsGrenadeBlock_block },

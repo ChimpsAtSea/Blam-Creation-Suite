@@ -26,6 +26,8 @@ namespace macaque
 		"death_program_special_block",
 		k_maximum_death_program_special_types,
 		"s_death_program_selector_special",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_SPECIAL_BLOCK_ID)
 	{
 		{ _field_long_enum, "special type", &object_damage_aftermath_special_damage_type_enum },
@@ -39,6 +41,8 @@ namespace macaque
 		"death_program_damage_reporting_block",
 		k_maximum_death_program_damage_types,
 		"s_death_program_selector_damage_type",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_DAMAGE_REPORTING_BLOCK_ID)
 	{
 		{ _field_long_enum, "damage type", &global_damage_reporting_enum_definition },
@@ -52,6 +56,8 @@ namespace macaque
 		"death_program_velocity_gate_block",
 		k_maximum_death_program_velocity_gates,
 		"s_death_program_selector_velocity_gate",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_VELOCITY_GATE_BLOCK_ID)
 	{
 		{ _field_real, "minimum velocity", "this death program will be selected if the biped\'s velocity is above this number^", "wu/s" },
@@ -66,6 +72,8 @@ namespace macaque
 		death_program_selector_struct_definition,
 		"death_program_selector_struct_definition",
 		"s_death_program_selector",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_SELECTOR_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Explanation", nullptr, _field_id_function_group_begin),

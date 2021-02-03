@@ -13,6 +13,8 @@ namespace macaque
 		"sound_classes_block",
 		1,
 		"s_sound_classes_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CLASSES_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "sound classes", &sound_class_block },
@@ -32,6 +34,8 @@ namespace macaque
 		"sound_class_block",
 		NUMBER_OF_SOUND_CLASSES,
 		"sound_class_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_CLASS_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_integer, "max sounds per tag ", "maximum number of sounds playing per individual sound tag" },

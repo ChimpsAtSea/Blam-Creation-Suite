@@ -13,6 +13,8 @@ namespace macaque
 		"forge_globals_block",
 		1,
 		"GameEngineSandboxGlobalsDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORGE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "forge colors", &forge_color_block },
@@ -50,6 +52,8 @@ namespace macaque
 		"forge_color_block",
 		k_forge_named_color_count,
 		"s_named_rgb_color",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FORGE_COLOR_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },

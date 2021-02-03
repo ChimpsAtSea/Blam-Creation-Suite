@@ -13,6 +13,8 @@ namespace macaque
 		"global_render_model_instance_placement_block",
 		k_maximum_instance_placements_per_render_model,
 		"s_render_model_instance_placement",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RENDER_MODEL_INSTANCE_PLACEMENT_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -31,6 +33,8 @@ namespace macaque
 		"structure_bsp_instanced_geometry_instances_block",
 		k_maximum_instance_geometry_instances_per_structure_bsp,
 		"structure_bsp_instanced_geometry_instances_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_BLOCK_ID)
 	{
 		{ _field_real, "scale" },
@@ -79,6 +83,8 @@ namespace macaque
 		"structure_bsp_instanced_geometry_definition_block",
 		k_maximum_instance_geometry_definitions_per_structure_bsp,
 		"structure_instanced_geometry_definition",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID)
 	{
 		{ _field_long_integer, "checksum" },
@@ -97,6 +103,8 @@ namespace macaque
 		"structure_bsp_instanced_geometry_instances_names_block",
 		k_maximum_instance_geometry_instances_per_structure_bsp,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -121,6 +129,8 @@ namespace macaque
 		"structure_bsp_instanced_geometry_instances_without_names_block",
 		k_maximum_instance_geometry_instances_per_structure_bsp,
 		"structure_instanced_geometry_instance",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_WITHOUT_NAMES_BLOCK_ID)
 	{
 		{ _field_real, "scale" },
@@ -166,6 +176,8 @@ namespace macaque
 		structureIOHavokDataBlock_struct,
 		"structureIOHavokDataBlock_struct",
 		"StructureIOSerializedHavokData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREIOHAVOKDATABLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "version" },
@@ -184,6 +196,8 @@ namespace macaque
 		SerializedHavokGeometryDataBlock_struct,
 		"SerializedHavokGeometryDataBlock_struct",
 		"SerializedHavokGeometry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SERIALIZEDHAVOKGEOMETRYDATABLOCK_STRUCT_ID)
 	{
 		{ _field_data, "Serialized Havok Data" },

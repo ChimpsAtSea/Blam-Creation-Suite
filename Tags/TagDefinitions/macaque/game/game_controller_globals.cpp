@@ -13,6 +13,8 @@ namespace macaque
 		"gamepad_stick_info_block",
 		1,
 		"s_gamepad_stick_settings",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEPAD_STICK_INFO_BLOCK_ID)
 	{
 		{ _field_char_enum, "input shape", &input_mapping_shape_enum },
@@ -31,6 +33,9 @@ namespace macaque
 		"input_mapping_function_block",
 		1,
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUT_MAPPING_FUNCTION_BLOCK_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct },
@@ -43,6 +48,8 @@ namespace macaque
 		"controller_input_block",
 		1,
 		"s_game_globals_input_abstraction",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROLLER_INPUT_BLOCK_ID)
 	{
 		{ _field_real, "axial dead zone" },
@@ -56,6 +63,8 @@ namespace macaque
 		"player_control_block",
 		1,
 		"s_game_globals_player_control",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_CONTROL_BLOCK_ID)
 	{
 		{ _field_block, "controller button mappings", &controller_mapping_reference_block },
@@ -157,6 +166,8 @@ namespace macaque
 		"controller_mapping_reference_block",
 		k_button_presets_count,
 		"s_controller_mapping_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROLLER_MAPPING_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "mapping", &global_controller_mapping_reference },

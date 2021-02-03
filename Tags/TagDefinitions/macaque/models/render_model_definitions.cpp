@@ -20,6 +20,9 @@ namespace macaque
 		"render_model_block",
 		1,
 		"render_model_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -84,6 +87,8 @@ namespace macaque
 		"imposter_mode_node_block",
 		k_kilo,
 		"s_model_node_map_node",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		IMPOSTER_MODE_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -98,6 +103,8 @@ namespace macaque
 		"region",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"render_model_region",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -111,6 +118,8 @@ namespace macaque
 		"permutation",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"render_model_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -130,6 +139,8 @@ namespace macaque
 		"node",
 		MAXIMUM_NODES_PER_MODEL,
 		"render_model_node",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -163,6 +174,8 @@ namespace macaque
 		"marker group",
 		MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL,
 		"render_model_marker_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_MARKER_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -176,6 +189,8 @@ namespace macaque
 		"marker",
 		MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP,
 		"render_model_marker",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_MARKER_BLOCK_ID)
 	{
 		{ _field_char_integer, "region index" },
@@ -195,6 +210,8 @@ namespace macaque
 		"instance_node_map_mapping_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANCE_NODE_MAP_MAPPING_BLOCK_ID)
 	{
 		{ _field_short_integer, "instance_node map region node index" },
@@ -207,6 +224,8 @@ namespace macaque
 		"volume_samples_block",
 		k_max_volume_samples_per_render_model,
 		"s_volume_sample",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOLUME_SAMPLES_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "position" },
@@ -220,6 +239,8 @@ namespace macaque
 		"default_node_orientations_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"real_orientation",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_NODE_ORIENTATIONS_BLOCK_ID,
 		4)
 	{
@@ -235,6 +256,8 @@ namespace macaque
 		"bone_group",
 		MAXIMUM_BONE_GROUPS_PER_MODEL,
 		"RenderModelBoneGroup",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDERMODELBONEGROUPBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -248,6 +271,8 @@ namespace macaque
 		"node_index",
 		MAXIMUM_NODES_PER_MODEL,
 		"short",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDERMODELNODEINDEXBLOCK_ID)
 	{
 		{ _field_short_block_index, "node index", &render_model_node_block },
@@ -260,6 +285,8 @@ namespace macaque
 		"radiance_transfer_matrix",
 		9*9,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RADIANCE_TRANSFER_MATRIX_ID)
 	{
 		{ _field_real, "element" },
@@ -271,6 +298,9 @@ namespace macaque
 		imposter_model_struct_definition,
 		"imposter_model_struct_definition",
 		"s_imposter_model",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		IMPOSTER_MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -290,6 +320,9 @@ namespace macaque
 		render_model_lightmap_atlas_struct_definition,
 		"render_model_lightmap_atlas_struct_definition",
 		"RenderModelLightmapAtlas",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_MODEL_LIGHTMAP_ATLAS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "atlas geometry", &global_render_geometry_struct },

@@ -13,6 +13,8 @@ namespace macaque
 		"user_hint_block",
 		1,
 		"user_hint_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_BLOCK_ID)
 	{
 		{ _field_block, "line segment geometry", &user_hint_line_segment_block },
@@ -36,6 +38,8 @@ namespace macaque
 		"user_hint_line_segment_block",
 		k_max_hint_geometries,
 		"user_hint_line_segment",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		USER_HINT_LINE_SEGMENT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
@@ -54,6 +58,8 @@ namespace macaque
 		"user_hint_parallelogram_block",
 		k_max_hint_geometries,
 		"user_hint_parallelogram",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_PARALLELOGRAM_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
@@ -80,6 +86,8 @@ namespace macaque
 		"user_hint_jump_block",
 		k_max_hint_geometries,
 		"user_hint_jump",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		USER_HINT_JUMP_BLOCK_ID)
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
@@ -102,6 +110,8 @@ namespace macaque
 		"hint_vertex_block",
 		(1024),
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINT_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
@@ -114,6 +124,8 @@ namespace macaque
 		"user_hint_climb_block",
 		k_max_climb_hints,
 		"user_hint_climb",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		USER_HINT_CLIMB_BLOCK_ID)
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
@@ -136,6 +148,8 @@ namespace macaque
 		"user_hint_well_block",
 		k_max_hint_geometries,
 		"user_hint_well",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_WELL_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &user_hint_well_geometry_flags },
@@ -149,6 +163,8 @@ namespace macaque
 		"user_hint_well_point_block",
 		k_max_hint_geometries,
 		"user_hint_well_point",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		USER_HINT_WELL_POINT_BLOCK_ID)
 	{
 		{ _field_enum, "type", &user_hint_well_point_type_enum },
@@ -166,6 +182,8 @@ namespace macaque
 		"user_hint_flight_block",
 		k_max_flight_hints_per_bsp,
 		"user_flight_hint",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_FLIGHT_BLOCK_ID)
 	{
 		{ _field_block, "points", &user_hint_flight_point_block },
@@ -178,6 +196,8 @@ namespace macaque
 		"user_hint_flight_point_block",
 		k_max_points_per_flight_hint,
 		"user_hint_flight_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_FLIGHT_POINT_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "point" },
@@ -196,6 +216,8 @@ namespace macaque
 		"user_hint_spline_block",
 		k_max_spline_hints_per_bsp,
 		"s_user_hint_spline",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_SPLINE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -214,6 +236,8 @@ namespace macaque
 		"user_hint_spline_control_point_block",
 		k_max_control_points_per_spline_hint,
 		"s_user_hint_spline_control_point",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_SPLINE_CONTROL_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &user_hint_spline_segment_flags },
@@ -230,6 +254,8 @@ namespace macaque
 		"user_hint_spline_intersect_point_block",
 		2,
 		"s_user_hint_spline_intersect_point",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_SPLINE_INTERSECT_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "volume index", &user_hint_volume_avoidance_block },
@@ -245,6 +271,9 @@ namespace macaque
 		"user_hint_cookie_cutter_block",
 		k_max_cookie_cutters,
 		"s_cookie_cutter",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		USER_HINT_COOKIE_CUTTER_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
@@ -270,6 +299,8 @@ namespace macaque
 		"user_hint_sector_point_block",
 		k_maximum_points_per_sector,
 		"s_ai_sector_point",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		USER_HINT_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
@@ -285,6 +316,8 @@ namespace macaque
 		"hint_object_id_block",
 		k_maximum_points_per_sector,
 		"c_object_identifier",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINT_OBJECT_ID_BLOCK_ID)
 	{
 		{ _field_struct, "object ID", &scenario_object_id_struct },
@@ -297,6 +330,9 @@ namespace macaque
 		"user_hint_navmesh_area_block",
 		k_max_navmesh_areas,
 		"NavMeshArea",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		USER_HINT_NAVMESH_AREA_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
@@ -333,6 +369,8 @@ namespace macaque
 		"user_hint_giant_block",
 		1,
 		"s_user_hint_giant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_GIANT_BLOCK_ID)
 	{
 		{ _field_block, "giant sector hints", &user_hint_giant_sector_block },
@@ -346,6 +384,8 @@ namespace macaque
 		"user_hint_giant_sector_block",
 		k_max_hint_geometries,
 		"s_user_hint_sector",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_GIANT_SECTOR_BLOCK_ID)
 	{
 		{ _field_block, "points", &user_hint_sector_point_block },
@@ -358,6 +398,8 @@ namespace macaque
 		"user_hint_giant_rail_block",
 		k_max_hint_geometries,
 		"s_user_hint_giant_rail",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_GIANT_RAIL_BLOCK_ID)
 	{
 		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
@@ -371,6 +413,8 @@ namespace macaque
 		"user_hint_flood_block",
 		1,
 		"s_user_hint_flood",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_FLOOD_BLOCK_ID)
 	{
 		{ _field_block, "flood sector hints", &user_hint_flood_sector_block },
@@ -383,6 +427,8 @@ namespace macaque
 		"user_hint_flood_sector_block",
 		k_max_hint_geometries,
 		"s_user_hint_sector",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_FLOOD_SECTOR_BLOCK_ID)
 	{
 		{ _field_block, "points", &user_hint_sector_point_block },
@@ -395,6 +441,8 @@ namespace macaque
 		"special_movement_block",
 		1,
 		"special_movement_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIAL_MOVEMENT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Special movement 1", &special_movement_flags },
@@ -406,6 +454,8 @@ namespace macaque
 		user_hint_volume_avoidance_struct,
 		"user_hint_volume_avoidance_struct",
 		"s_avoidance_volume",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_VOLUME_AVOIDANCE_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &user_hint_avoidance_volume_enum },

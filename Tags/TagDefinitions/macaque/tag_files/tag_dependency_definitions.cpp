@@ -26,6 +26,8 @@ namespace macaque
 		"one_dependency_block_definition",
 		k_kilo*10,
 		"s_one_dependency",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ONE_DEPENDENCY_BLOCK_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "tag reference", &dependency_reference_definition },
@@ -37,6 +39,8 @@ namespace macaque
 		dependency_struct_definition,
 		"dependency_struct_definition",
 		"s_dependency_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEPENDENCY_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "dependency list", &one_dependency_block_definition_block },

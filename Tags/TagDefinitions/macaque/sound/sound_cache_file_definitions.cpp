@@ -39,6 +39,8 @@ namespace macaque
 		"sound_gestalt_codec_block",
 		SHORT_MAX,
 		"s_cache_file_sound_codec",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_CODEC_BLOCK_ID)
 	{
 		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
@@ -53,6 +55,8 @@ namespace macaque
 		"sound_gestalt_playback_block",
 		SHORT_MAX,
 		"s_sound_definition_playback_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PLAYBACK_BLOCK_ID)
 	{
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
@@ -65,6 +69,8 @@ namespace macaque
 		"sound_gestalt_scale_block",
 		SHORT_MAX,
 		"s_sound_definition_scale_modifiers",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_SCALE_BLOCK_ID)
 	{
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
@@ -77,6 +83,8 @@ namespace macaque
 		"sound_gestalt_import_names_block",
 		SHORT_MAX,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_IMPORT_NAMES_BLOCK_ID)
 	{
 		{ _field_string_id, "import name" },
@@ -89,6 +97,8 @@ namespace macaque
 		"sound_gestalt_pitch_range_parameters_block",
 		SHORT_MAX,
 		"s_cache_file_sound_pitch_range_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_short_integer, "natural pitch", "cents" },
@@ -105,6 +115,8 @@ namespace macaque
 		"sound_gestalt_pitch_ranges_block",
 		SHORT_MAX,
 		"s_cache_file_sound_pitch_range",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_PITCH_RANGES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
@@ -121,6 +133,8 @@ namespace macaque
 		"sound_gestalt_permutations_block",
 		k_maximum_sound_cache_file_gestalt_permutations,
 		"s_cache_file_sound_permutation",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PERMUTATIONS_BLOCK_ID)
 	{
 		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
@@ -141,6 +155,8 @@ namespace macaque
 		"sound_gestalt_permutation_languages_block",
 		k_maximum_sound_cache_file_gestalt_permutation_languages,
 		"s_cache_file_sound_permutation_languages",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PERMUTATION_LANGUAGES_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "permutation index" },
@@ -204,6 +220,8 @@ namespace macaque
 		"sound_gestalt_custom_playback_block",
 		SHORT_MAX,
 		"s_platform_sound_playback_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_CUSTOM_PLAYBACK_BLOCK_ID)
 	{
 		{ _field_struct, "playback definition", &platform_sound_playback_struct },
@@ -216,6 +234,8 @@ namespace macaque
 		"sound_gestalt_runtime_permutation_bit_vector_block",
 		SHORT_MAX,
 		"char",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID)
 	{
 		{ _field_char_integer, "runtime permutation bit vector" },
@@ -228,6 +248,8 @@ namespace macaque
 		"sound_gestalt_promotions_block",
 		127 + 1,
 		"s_sound_promotion_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_PROMOTIONS_BLOCK_ID)
 	{
 		{ _field_struct, "runtime promotion storage", &sound_promotion_parameters_struct },
@@ -240,6 +262,8 @@ namespace macaque
 		"sound_gestalt_facial_animation_block",
 		SHORT_MAX,
 		"s_tag_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_FACIAL_ANIMATION_BLOCK_ID)
 	{
 		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct },
@@ -252,6 +276,8 @@ namespace macaque
 		"sound_gestalt_layer_markers_block",
 		SHORT_MAX,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_LAYER_MARKERS_BLOCK_ID)
 	{
 		{ _field_long_integer, "sample offset" },
@@ -263,6 +289,8 @@ namespace macaque
 		cache_file_sound_struct_definition,
 		"cache_file_sound_struct_definition",
 		"s_cache_file_sound_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		CACHE_FILE_SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &sound_definition_flags },
@@ -289,6 +317,8 @@ namespace macaque
 		sound_cache_file_gestalt_struct_definition,
 		"sound_cache_file_gestalt_struct_definition",
 		"s_sound_cache_file_gestalt_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "codecs", &sound_gestalt_codec_block },

@@ -26,6 +26,8 @@ namespace macaque
 		"style_palette_block",
 		50,
 		"style_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STYLE_PALETTE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &style_reference$2 },
@@ -38,6 +40,8 @@ namespace macaque
 		"behavior_names_block",
 		k_maximum_behavior_count,
 		"style_behavior_name",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BEHAVIOR_NAMES_BLOCK_ID)
 	{
 		{ _field_string, "behavior name" },
@@ -49,6 +53,8 @@ namespace macaque
 		style_struct_definition,
 		"style_struct_definition",
 		"style_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STYLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string, "name" },

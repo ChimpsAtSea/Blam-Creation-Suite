@@ -13,6 +13,8 @@ namespace macaque
 		"objectives_block",
 		k_maximum_objectives_per_map,
 		"s_objective",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECTIVES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -31,6 +33,8 @@ namespace macaque
 		"opposing_objective_block",
 		k_maximum_opposing_objectives,
 		"s_opposing_objective",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OPPOSING_OBJECTIVE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "objective", &objectives_block },
@@ -44,6 +48,8 @@ namespace macaque
 		"tasks_block",
 		k_maximum_tasks_per_objective,
 		"s_task",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		TASKS_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &task_flags_definition },
@@ -96,6 +102,8 @@ namespace macaque
 		"script_fragment_block",
 		1,
 		"s_script_fragment",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPT_FRAGMENT_BLOCK_ID)
 	{
 		{ _field_string_id, "script name" },
@@ -111,6 +119,8 @@ namespace macaque
 		"area_reference_block",
 		k_maximum_areas_per_task,
 		"s_area_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_REFERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_enum, "area type", &zone_set_type_enum },
@@ -138,6 +148,8 @@ namespace macaque
 		"task_direction_point_block",
 		k_max_points_per_task_direction,
 		"s_task_direction_point",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		TASK_DIRECTION_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point0" },
@@ -151,6 +163,8 @@ namespace macaque
 		task_direction_block_v2_struct,
 		"task_direction_block_v2_struct",
 		"s_task_direction_v2",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TASK_DIRECTION_BLOCK_V2_STRUCT_ID)
 	{
 		{ _field_block, "points", &task_direction_point_block },

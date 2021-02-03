@@ -13,6 +13,8 @@ namespace macaque
 		"materials_block",
 		k_maximum_editable_material_types,
 		"s_global_material_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -38,6 +40,8 @@ namespace macaque
 		"object_type_drag_properties_block",
 		NUMBER_OF_OBJECT_TYPES,
 		"s_global_material_object_drag_properties",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_TYPE_DRAG_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "drag properties", &water_physics_drag_properties_reference },
@@ -50,6 +54,8 @@ namespace macaque
 		"underwater_proxies_block",
 		k_maximum_material_types,
 		"s_global_material_underwater_proxy",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNDERWATER_PROXIES_BLOCK_ID)
 	{
 		{ _field_explanation, "when this material is encounted under a material of this type ...", "" },
@@ -67,6 +73,8 @@ namespace macaque
 		"runtime_materials_block",
 		k_maximum_material_types,
 		"s_global_material_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_MATERIALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -91,6 +99,8 @@ namespace macaque
 		wet_proxies_struct,
 		"wet_proxies_struct",
 		"s_global_material_wet_proxy",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WET_PROXIES_STRUCT_ID)
 	{
 		{ _field_explanation, "when rained on, we report this material", "" },
@@ -105,6 +115,8 @@ namespace macaque
 		material_physics_properties_struct,
 		"material_physics_properties_struct",
 		"material_physics_properties_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_PHYSICS_PROPERTIES_STRUCT_ID)
 	{
 		{ _field_long_integer, "flags" },
@@ -130,6 +142,8 @@ namespace macaque
 		materials_sweeteners_struct,
 		"materials_sweeteners_struct",
 		"s_global_material_sweeteners_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALS_SWEETENERS_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound sweetener (small)", &global_sound_reference },

@@ -26,6 +26,8 @@ namespace macaque
 		"color_block",
 		MAXIMUM_COLORS_PER_COLOR_TABLE_GROUP,
 		"color_table_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -38,6 +40,8 @@ namespace macaque
 		color_table_struct_definition,
 		"color_table_struct_definition",
 		"color_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_TABLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "colors", &color_block },

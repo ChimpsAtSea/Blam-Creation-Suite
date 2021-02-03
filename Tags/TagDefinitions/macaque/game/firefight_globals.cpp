@@ -13,6 +13,8 @@ namespace macaque
 		"firefight_globals_block",
 		1,
 		"FirefightGlobalsDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FIREFIGHT_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "wave templates", &firefightWaveTemplatesBlock_block },
@@ -40,6 +42,8 @@ namespace macaque
 		firefightWaveTemplatesBlock_struct,
 		"firefightWaveTemplatesBlock_struct",
 		"FirefightWaveTemplateDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIREFIGHTWAVETEMPLATESBLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },

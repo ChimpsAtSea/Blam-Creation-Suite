@@ -39,6 +39,8 @@ namespace macaque
 		"medalChallengeAggregator",
 		MedalChallengeAggregator::k_medalChallengeAggregatorMaxCount,
 		"MedalChallengeAggregator",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALCHALLENGEAGGREGATOR_ID)
 	{
 		{ _field_string_id, "challenge to increment" },
@@ -52,6 +54,8 @@ namespace macaque
 		"medalAggregatorEntry",
 		MedalAggregatorEntry::k_medalAggregatorEntryMaxCount,
 		"MedalAggregatorEntry",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALAGGREGATORENTRY_ID)
 	{
 		{ _field_string_id, "medal name" },
@@ -64,6 +68,8 @@ namespace macaque
 		"medalCommendationAggregator",
 		MedalCommendationAggregator::k_medalCommendationAggregatorMaxCount,
 		"MedalCommendationAggregator",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALCOMMENDATIONAGGREGATOR_ID)
 	{
 		{ _field_string_id, "commendation to award" },
@@ -76,6 +82,8 @@ namespace macaque
 		medal_challenge_aggregator_list_struct_definition,
 		"medal_challenge_aggregator_list_struct_definition",
 		"MedalChallengeAggregatorList",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDAL_CHALLENGE_AGGREGATOR_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "lists", &medalChallengeAggregator_block },
@@ -87,6 +95,8 @@ namespace macaque
 		medal_commendation_aggregator_list_struct_definition,
 		"medal_commendation_aggregator_list_struct_definition",
 		"MedalCommendationAggregatorList",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDAL_COMMENDATION_AGGREGATOR_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "lists", &medalCommendationAggregator_block },
@@ -98,6 +108,8 @@ namespace macaque
 		medalAggregator,
 		"medalAggregator",
 		"MedalAggregator",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALAGGREGATOR_ID)
 	{
 		{ _field_string_id, "display name" },

@@ -13,6 +13,8 @@ namespace macaque
 		"scenario load parameters",
 		k_scenario_load_maximum_parameter_blocks,
 		"s_scenario_load_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_explanation, "SCENARIO LOAD PARAMETERS", "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only" },

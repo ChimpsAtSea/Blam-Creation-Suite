@@ -26,6 +26,8 @@ namespace macaque
 		"mux_generator_material_block",
 		s_mux_generator::k_max_materials,
 		"s_mux_generator_material",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUX_GENERATOR_MATERIAL_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -38,6 +40,8 @@ namespace macaque
 		mux_generator_struct_definition,
 		"mux_generator_struct_definition",
 		"s_mux_generator",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MUX_GENERATOR_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("generate", nullptr, _field_id_unknown_compile),

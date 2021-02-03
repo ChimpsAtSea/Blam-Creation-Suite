@@ -13,6 +13,8 @@ namespace macaque
 		"recorded_animation_block",
 		MAXIMUM_RECORDED_ANIMATIONS_PER_MAP,
 		"recorded_animation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RECORDED_ANIMATION_BLOCK_ID)
 	{
 		{ _field_string, "name" },

@@ -26,6 +26,8 @@ namespace macaque
 		"mission_dialogue_lines_block",
 		k_max_lines_per_scenario,
 		"mission_dialogue_line",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MISSION_DIALOGUE_LINES_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -40,6 +42,8 @@ namespace macaque
 		"mission_dialogue_variants_block",
 		k_max_variants_per_line,
 		"mission_dialogue_variant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MISSION_DIALOGUE_VARIANTS_BLOCK_ID)
 	{
 		{ _field_string_id, "variant designation", "3-letter designation for the character^" },
@@ -54,6 +58,8 @@ namespace macaque
 		"ai_scene_block",
 		k_max_scenes_per_scenario,
 		"ai_scene",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -70,6 +76,8 @@ namespace macaque
 		"ai_scene_trigger_block",
 		1,
 		"ai_scene_trigger",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
@@ -84,6 +92,8 @@ namespace macaque
 		"ai_scene_role_block",
 		k_max_roles_per_scene,
 		"ai_scene_role",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_ROLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -100,6 +110,8 @@ namespace macaque
 		"ai_scene_role_variants_block",
 		k_max_variants_per_line,
 		"ai_scene_role_variant",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_ROLE_VARIANTS_BLOCK_ID)
 	{
 		{ _field_string_id, "variant designation" },
@@ -112,6 +124,8 @@ namespace macaque
 		"ai_scenario_mission_dialogue_block",
 		1,
 		"ai_scenario_mission_dialogue",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENARIO_MISSION_DIALOGUE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "mission dialogue", &ai_mission_dialogue_reference },
@@ -123,6 +137,8 @@ namespace macaque
 		ai_mission_dialogue_struct_definition,
 		"ai_mission_dialogue_struct_definition",
 		"ai_mission_dialogue",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_MISSION_DIALOGUE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "lines", &mission_dialogue_lines_block },

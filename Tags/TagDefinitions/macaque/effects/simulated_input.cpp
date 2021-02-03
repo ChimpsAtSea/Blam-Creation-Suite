@@ -25,6 +25,9 @@ namespace macaque
 		simulated_input_struct_definition,
 		"simulated_input_struct_definition",
 		"s_simulated_input_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATED_INPUT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Simulated Input (SI)", "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)" },
@@ -43,6 +46,9 @@ namespace macaque
 		simulated_input_stick_struct,
 		"simulated_input_stick_struct",
 		"s_simulated_input_stick_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATED_INPUT_STICK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &simulated_input_flags },

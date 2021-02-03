@@ -13,6 +13,9 @@ namespace macaque
 		"big_battle_creature_block",
 		1,
 		"s_big_battle_creature_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIG_BATTLE_CREATURE_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("CREATURE", nullptr, _field_id_function_group_begin),
@@ -70,6 +73,9 @@ namespace macaque
 		"creature_scalar_timing_block",
 		1,
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CREATURE_SCALAR_TIMING_BLOCK_ID)
 	{
 		{ _field_struct, "function_curve", &scalar_function_named_struct },
@@ -81,6 +87,10 @@ namespace macaque
 		creature_struct_definition,
 		"creature_struct_definition",
 		"s_creature_definition_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CREATURE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },

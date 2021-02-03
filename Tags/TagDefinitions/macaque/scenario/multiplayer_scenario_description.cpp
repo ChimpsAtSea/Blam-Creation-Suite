@@ -26,6 +26,8 @@ namespace macaque
 		"scenario_description_block",
 		MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS,
 		"multiplayer_scenario_description_item",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESCRIPTION_BLOCK_ID)
 	{
 		{ _field_explanation, "net map info", "these provide the info required by the UI to load a net map" },
@@ -41,6 +43,8 @@ namespace macaque
 		multiplayer_scenario_description_struct_definition,
 		"multiplayer_scenario_description_struct_definition",
 		"multiplayer_scenario_description_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_SCENARIO_DESCRIPTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "multiplayer scenarios", &scenario_description_block },

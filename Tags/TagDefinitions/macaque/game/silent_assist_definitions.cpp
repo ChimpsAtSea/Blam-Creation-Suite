@@ -26,6 +26,8 @@ namespace macaque
 		"silentAssistLevelBlock",
 		SilentAssistGlobals::k_maxSilentAssistLevel+1,
 		"SilentAssistLevel",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SILENTASSISTLEVELBLOCK_ID)
 	{
 		{ _field_real, "grenade damage" },
@@ -48,6 +50,8 @@ namespace macaque
 		silent_assist_globals_struct_definition,
 		"silent_assist_globals_struct_definition",
 		"SilentAssistGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SILENT_ASSIST_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "levels", &silentAssistLevelBlock_block },

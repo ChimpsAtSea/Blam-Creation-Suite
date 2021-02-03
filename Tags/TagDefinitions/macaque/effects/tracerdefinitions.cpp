@@ -26,6 +26,9 @@ namespace macaque
 		"tracerDefinitionBlock",
 		TracerSystemDefinition::k_maxTracers,
 		"TracerDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERDEFINITIONBLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -80,6 +83,8 @@ namespace macaque
 		tracer_system_struct_definition,
 		"tracer_system_struct_definition",
 		"TracerSystemDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACER_SYSTEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "tracer system flags", &tracerSystemFlags },
@@ -97,6 +102,9 @@ namespace macaque
 		tracerProperty_real_Struct,
 		"tracerProperty_real_Struct",
 		"TracerProperty_real",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
@@ -116,6 +124,9 @@ namespace macaque
 		tracerProperty_real_vector3d_Struct,
 		"tracerProperty_real_vector3d_Struct",
 		"TracerProperty_real_vector3d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_VECTOR3D_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
@@ -137,6 +148,9 @@ namespace macaque
 		tracerProperty_real_point2d_Struct,
 		"tracerProperty_real_point2d_Struct",
 		"TracerProperty_real_point2d",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_POINT2D_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
@@ -158,6 +172,9 @@ namespace macaque
 		tracerProperty_real_rgb_color_Struct,
 		"tracerProperty_real_rgb_color_Struct",
 		"TracerProperty_real_rgb_color",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_RGB_COLOR_STRUCT_ID)
 	{
 		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },

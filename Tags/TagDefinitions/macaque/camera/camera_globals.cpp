@@ -13,6 +13,9 @@ namespace macaque
 		"camera_block",
 		1,
 		"s_game_globals_camera",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_BLOCK_ID)
 	{
 		{ _field_tag_reference, "default unit camera track", &global_camera_track_reference },

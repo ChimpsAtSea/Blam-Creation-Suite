@@ -19,6 +19,9 @@ namespace macaque
 		"scenario_acoustic_sector_block",
 		s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors,
 		"s_scenario_acoustic_sector",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_SECTOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "points", &acoustic_sector_point_block },
@@ -39,6 +42,8 @@ namespace macaque
 		"acoustic_sector_point_block",
 		k_maximum_points_per_sector,
 		"s_acoustic_sector_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ACOUSTIC_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -51,6 +56,9 @@ namespace macaque
 		"scenario_acoustic_transition_block",
 		s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions,
 		"s_scenario_acoustic_transition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | 
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_TRANSITION_BLOCK_STRUCT_ID)
 	{
 		{ _field_real_point_3d, "center" },
@@ -74,6 +82,8 @@ namespace macaque
 		scenario_acoustics_palette_block_definition_struct,
 		"scenario_acoustics_palette_block_definition_struct",
 		"s_scenario_acoustics_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -92,6 +102,8 @@ namespace macaque
 		scenario_acoustics_environment_definition,
 		"scenario_acoustics_environment_definition",
 		"s_scenario_acoustics_environment",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTICS_ENVIRONMENT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
@@ -106,6 +118,8 @@ namespace macaque
 		scenario_acoustics_ambience_definition,
 		"scenario_acoustics_ambience_definition",
 		"s_scenario_acoustics_ambience",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTICS_AMBIENCE_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
@@ -126,6 +140,8 @@ namespace macaque
 		scenario_acoustic_location_definition,
 		"scenario_acoustic_location_definition",
 		"s_scenario_acoustic_location",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_LOCATION_DEFINITION_ID)
 	{
 		{ _field_short_block_index, "sector index", &scenario_acoustic_sector_block },
@@ -138,6 +154,8 @@ namespace macaque
 		scenario_acoustic_cluster_reference_definition,
 		"scenario_acoustic_cluster_reference_definition",
 		"s_cluster_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_CLUSTER_REFERENCE_DEFINITION_ID)
 	{
 		{ _field_char_integer, "bsp index" },

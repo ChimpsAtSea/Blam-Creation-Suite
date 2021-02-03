@@ -26,6 +26,8 @@ namespace macaque
 		"multiplayer_object_type_block",
 		k_multiplayer_object_type_maximum_count,
 		"s_multiplayer_object_type",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_TYPE_BLOCK_ID)
 	{
 		{ _field_explanation, "WARNING", "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face." },
@@ -64,6 +66,8 @@ namespace macaque
 		"multiplayer_weapon_remap_table_block",
 		k_maximum_number_of_multiplayer_weapon_sets,
 		"s_multiplayer_object_remap_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_WEAPON_REMAP_TABLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -77,6 +81,8 @@ namespace macaque
 		"multiplayer_weapon_remap_table_entry_block",
 		k_maximum_number_of_multiplayer_remap_table_entries,
 		"s_multiplayer_object_remap_table_entry",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_WEAPON_REMAP_TABLE_ENTRY_BLOCK_ID)
 	{
 		{ _field_custom_long_block_index, "from object" },
@@ -90,6 +96,8 @@ namespace macaque
 		"multiplayer_vehicle_remap_table_block",
 		k_maximum_number_of_multiplayer_weapon_sets,
 		"s_multiplayer_object_remap_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_VEHICLE_REMAP_TABLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -103,6 +111,8 @@ namespace macaque
 		"multiplayer_vehicle_remap_table_entry_block",
 		k_maximum_number_of_multiplayer_remap_table_entries,
 		"s_multiplayer_object_remap_table_entry",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_VEHICLE_REMAP_TABLE_ENTRY_BLOCK_ID)
 	{
 		{ _field_custom_long_block_index, "from object" },
@@ -116,6 +126,8 @@ namespace macaque
 		"multiplayer_equipment_remap_table_block",
 		k_maximum_number_of_multiplayer_weapon_sets,
 		"s_multiplayer_object_remap_table",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_EQUIPMENT_REMAP_TABLE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -129,6 +141,8 @@ namespace macaque
 		"multiplayer_equipment_remap_table_entry_block",
 		k_maximum_number_of_multiplayer_remap_table_entries,
 		"s_multiplayer_object_remap_table_entry",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_EQUIPMENT_REMAP_TABLE_ENTRY_BLOCK_ID)
 	{
 		{ _field_custom_long_block_index, "from object" },
@@ -141,6 +155,8 @@ namespace macaque
 		multiplayer_object_type_list_struct_definition,
 		"multiplayer_object_type_list_struct_definition",
 		"s_multiplayer_object_type_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_TYPE_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "MEGALO", "After changing this tag you will need to run the tool command multiplayer-generate-global-object-type-list (once) and rebuild the .mapinfo file for each multiplayer scenario in order to use the new objects in megalo" },
@@ -165,6 +181,8 @@ namespace macaque
 		multiplayer_object_collection_struct,
 		"multiplayer_object_collection_struct",
 		"s_multiplayer_object_collection_entry",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_COLLECTION_STRUCT_ID)
 	{
 		{ _field_long_block_index, "object type", &multiplayer_object_type_block },

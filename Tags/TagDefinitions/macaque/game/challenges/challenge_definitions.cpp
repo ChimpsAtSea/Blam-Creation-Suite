@@ -26,6 +26,8 @@ namespace macaque
 		"challenge_category_block",
 		k_roomEnoughToConvertAllExistingCategories,
 		"s_challenge_category_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_CATEGORY_BLOCK_ID)
 	{
 		{ _field_string_id, "category_name" },
@@ -41,6 +43,8 @@ namespace macaque
 		"challenge_block",
 		k_maximum_challenges_per_category,
 		"s_challenge_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "challenge_name" },
@@ -79,6 +83,8 @@ namespace macaque
 		challenge_globals_definition_struct_definition,
 		"challenge_globals_definition_struct_definition",
 		"s_challenge_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalChallengeAggregatorList>::s_defaultDefinition },

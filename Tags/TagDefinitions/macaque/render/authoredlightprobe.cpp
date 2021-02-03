@@ -13,6 +13,9 @@ namespace macaque
 		"authored_light_probe_block",
 		1,
 		"AuthoredLightProbe",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AUTHORED_LIGHT_PROBE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Character Lighting", "\n" },
@@ -44,6 +47,8 @@ namespace macaque
 		"authored_light_probe_lights_block",
 		1,
 		"AuthoredLightProbeLights",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AUTHORED_LIGHT_PROBE_LIGHTS_BLOCK_ID)
 	{
 		FIELD_CUSTOM("Authored Light Probe", nullptr, _field_id_authored_light_probe),
@@ -74,6 +79,8 @@ namespace macaque
 		"real_rgb_lightprobe_array",
 		((3)*(3)) * 3,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REAL_RGB_LIGHTPROBE_ARRAY_ID)
 	{
 		{ _field_real, "sh data" },

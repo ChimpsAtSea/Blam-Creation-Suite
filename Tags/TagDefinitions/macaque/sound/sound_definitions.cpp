@@ -13,6 +13,8 @@ namespace macaque
 		"soundbank_block",
 		1,
 		"SoundBankDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDBANK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundBankDefinitionFlags },
@@ -37,6 +39,8 @@ namespace macaque
 		"sound_global_propagation_block",
 		1,
 		"s_sound_global_propagation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GLOBAL_PROPAGATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "underwater propagation globals", "" },
@@ -57,6 +61,9 @@ namespace macaque
 		"sound_block",
 		1,
 		"SoundEventDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
@@ -88,6 +95,9 @@ namespace macaque
 		"sound_old_block",
 		1,
 		"sound_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_OLD_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
@@ -128,6 +138,9 @@ namespace macaque
 		"sound2_block",
 		1,
 		"sound_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND2_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
@@ -168,6 +181,8 @@ namespace macaque
 		"sound_mix_block",
 		1,
 		"s_sound_mix_configuration_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_MIX_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "default transmission settings", &sound_transmission_definition_struct },
@@ -212,6 +227,8 @@ namespace macaque
 		"sound_globals_block",
 		1,
 		"s_sound_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GLOBALS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound classes", &sound_classes_reference },
@@ -235,6 +252,8 @@ namespace macaque
 		"StreamingPackBlock",
 		k_maximum_streaming_packs,
 		"StreamPackBlockDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STREAMINGPACKBLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &StreamingPackBlockFlags },
@@ -248,6 +267,8 @@ namespace macaque
 		"campaign_unspatialized_sounds_block",
 		k_maximum_campaign_unspatialized_sounds,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_UNSPATIALIZED_SOUNDS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -260,6 +281,8 @@ namespace macaque
 		"SoundBankBlock",
 		k_maximumSoundBanksPerTag,
 		"SoundBankBlockDefinition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDBANKBLOCK_ID)
 	{
 		{ _field_string_id, "Sound bank name", "Name of the main sound bank." },
@@ -284,6 +307,8 @@ namespace macaque
 		"facial_animation_language_block",
 		k_language_count,
 		"s_facial_animation_language",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_LANGUAGE_BLOCK_STRUCT_ID)
 	{
 		{ _field_pageable, "facial animation resource", &facial_animation_resource_definition_struct },
@@ -297,6 +322,8 @@ namespace macaque
 		"sound_promotion_rule_block",
 		k_maximum_promotion_rules_per_sound,
 		"s_sound_promotion_rule",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PROMOTION_RULE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "pitch range", &sound_pitch_range_block },
@@ -313,6 +340,9 @@ namespace macaque
 		"sound_pitch_range_block",
 		MAXIMUM_PITCH_RANGES_PER_SOUND,
 		"s_sound_pitch_range",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_PITCH_RANGE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", "the name of the imported pitch range directory" },
@@ -337,6 +367,8 @@ namespace macaque
 		"sound_permutations_block",
 		MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE,
 		"s_sound_permutation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATIONS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_sound_player),
@@ -360,6 +392,8 @@ namespace macaque
 		"sound_permutation_languages_block",
 		k_language_count,
 		"s_sound_permutation_language",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_LANGUAGES_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "uncompressed sample count" },
@@ -373,6 +407,8 @@ namespace macaque
 		"sound_permutation_chunk_block",
 		UNSIGNED_SHORT_MAX*4,
 		"sound_permutation_chunk_block",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_PERMUTATION_CHUNK_BLOCK_ID)
 	{
 		{ _field_long_integer, "file offset" },
@@ -389,6 +425,8 @@ namespace macaque
 		"sound_promotion_runtime_timer_block",
 		k_maximum_promotion_rules_per_sound,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_PROMOTION_RUNTIME_TIMER_BLOCK_ID)
 	{
 		{ _field_long_integer, "timer storage" },
@@ -401,6 +439,8 @@ namespace macaque
 		"sound_platform_sound_playback_block",
 		1,
 		"s_sound_definition_custom_playback_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PLATFORM_SOUND_PLAYBACK_BLOCK_ID)
 	{
 		{ _field_struct, "playback definition", &platform_sound_playback_struct },
@@ -413,6 +453,9 @@ namespace macaque
 		"sound_extra_info_block",
 		1,
 		"s_sound_definition_extra_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EXTRA_INFO_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "language permutation info", &sound_definition_language_permutation_info_block },
@@ -426,6 +469,8 @@ namespace macaque
 		"sound_definition_language_permutation_info_block",
 		MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE*2,
 		"s_sound_definition_language_permutation_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_DEFINITION_LANGUAGE_PERMUTATION_INFO_BLOCK_ID)
 	{
 		{ _field_block, "raw info block", &sound_permutation_raw_info_block },
@@ -438,6 +483,8 @@ namespace macaque
 		"sound_permutation_raw_info_block",
 		2*k_language_count,
 		"s_sound_permutation_raw_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_RAW_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "skip fraction name" },
@@ -460,6 +507,8 @@ namespace macaque
 		"sound_permutation_marker_block",
 		MAXIMUM_MARKERS_PER_PERMUTATION,
 		"s_sound_permutation_marker",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_MARKER_BLOCK_ID)
 	{
 		{ _field_long_integer, "marker id" },
@@ -475,6 +524,8 @@ namespace macaque
 		"sound_xma2_seek_table_block",
 		MAXIMUM_SOUND_DATA_SIZE/k_kilo,
 		"s_sound_xma2_seek_table_entry",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_XMA2_SEEK_TABLE_BLOCK_ID)
 	{
 		{ _field_long_integer, "block relative sample start" },
@@ -498,6 +549,8 @@ namespace macaque
 		"facial_animation_permutation_block",
 		MAXIMUM_PITCH_RANGES_PER_SOUND*MAXIMUM_PERMUTATIONS_PER_PITCH_RANGE,
 		"s_facial_animation_permutation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_PERMUTATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "start time" },
@@ -514,6 +567,8 @@ namespace macaque
 		"facial_animation_curve_block",
 		k_facial_animation_track_count,
 		"s_facial_animation_curve",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_CURVE_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_enum, "facial animation track", &facial_animation_track_enum_definition },
@@ -527,6 +582,8 @@ namespace macaque
 		sound_dialogue_constants_struct_definition,
 		"sound_dialogue_constants_struct_definition",
 		"s_sound_dialogue_constants_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_DIALOGUE_CONSTANTS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "named playing fractions", "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares\?)" },
@@ -543,6 +600,8 @@ namespace macaque
 		sound_distance_parameters_struct,
 		"sound_distance_parameters_struct",
 		"s_sound_distance_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_DISTANCE_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_explanation, "attenuation distances", "these settings vary how the sound fades as you move closer or further away from it." },
@@ -562,6 +621,8 @@ namespace macaque
 		sound_propagation_definition_struct,
 		"sound_propagation_definition_struct",
 		"s_sound_propagation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PROPAGATION_DEFINITION_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
@@ -578,6 +639,9 @@ namespace macaque
 		soundLipSyncInfoBlock_struct,
 		"soundLipSyncInfoBlock_struct",
 		"soundLipSyncInfo",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDLIPSYNCINFOBLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "number of usable facial animations" },
@@ -591,6 +655,8 @@ namespace macaque
 		deterministicSpeechEventBlock_struct,
 		"deterministicSpeechEventBlock_struct",
 		"deterministicSpeechEventInfo",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETERMINISTICSPEECHEVENTBLOCK_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &SpeechEventInfoFlags },
@@ -605,6 +671,8 @@ namespace macaque
 		sound_playback_parameters_struct,
 		"sound_playback_parameters_struct",
 		"s_sound_definition_playback_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PLAYBACK_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_long_integer, "internal flags" },
@@ -636,6 +704,8 @@ namespace macaque
 		sound_scale_modifiers_struct,
 		"sound_scale_modifiers_struct",
 		"s_sound_definition_scale_modifiers",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_SCALE_MODIFIERS_STRUCT_ID)
 	{
 		{ _field_explanation, "scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)" },
@@ -650,6 +720,8 @@ namespace macaque
 		sound_promotion_parameters_struct,
 		"sound_promotion_parameters_struct",
 		"sound_promotion_parameters_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PROMOTION_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_block, "promotion rules", &sound_promotion_rule_block },
@@ -665,6 +737,8 @@ namespace macaque
 		sound_transmission_definition_struct,
 		"sound_transmission_definition_struct",
 		"s_sound_transmission_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_TRANSMISSION_DEFINITION_STRUCT_ID)
 	{
 		{ _field_explanation, "default obstruction settings", "" },
@@ -679,6 +753,8 @@ namespace macaque
 		sound_stereo_mix_struct,
 		"sound_stereo_mix_struct",
 		"s_sound_stereo_mix_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_STEREO_MIX_STRUCT_ID)
 	{
 		{ _field_real, "left stereo gain", "dB" },
@@ -691,6 +767,8 @@ namespace macaque
 		sound_surround_mix_struct,
 		"sound_surround_mix_struct",
 		"s_sound_stereo_mix_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_SURROUND_MIX_STRUCT_ID)
 	{
 		{ _field_real, "front speaker gain", "dB" },
@@ -703,6 +781,8 @@ namespace macaque
 		sound_global_mix_struct,
 		"sound_global_mix_struct",
 		"s_sound_global_mix_configuration",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GLOBAL_MIX_STRUCT_ID)
 	{
 		{ _field_real, "mono unspatialized gain", "dB" },
@@ -736,6 +816,8 @@ namespace macaque
 		sound_center_mix_struct,
 		"sound_center_mix_struct",
 		"s_sound_center_mix_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_CENTER_MIX_STRUCT_ID)
 	{
 		{ _field_real, "front speaker gain", "dB" },
@@ -748,6 +830,8 @@ namespace macaque
 		sound_resource_definition_struct,
 		"sound_resource_definition_struct",
 		"s_sound_resource_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESOURCE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_data, "sample data" },
@@ -759,6 +843,8 @@ namespace macaque
 		facial_animation_resource_definition_struct,
 		"facial_animation_resource_definition_struct",
 		"s_facial_animation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FACIAL_ANIMATION_RESOURCE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_block, "facial animation permutations", &facial_animation_permutation_block },

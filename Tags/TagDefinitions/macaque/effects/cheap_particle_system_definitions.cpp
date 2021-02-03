@@ -39,6 +39,9 @@ namespace macaque
 		"cheap_particle_type_block",
 		s_cheap_particle_type::k_maximum_types,
 		"s_cheap_particle_type",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_TYPE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -74,6 +77,8 @@ namespace macaque
 		"cheapParticleTurbulenceTypeBlock",
 		CheapParticleTurbulenceType::k_maxTypes,
 		"CheapParticleTurbulenceType",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAPPARTICLETURBULENCETYPEBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -91,6 +96,8 @@ namespace macaque
 		"cheap_particle_bitmap_reference_block",
 		s_cheap_particle_type_library::k_max_textures,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_BITMAP_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "bitmap", &bitmap_reference$5 },
@@ -102,6 +109,9 @@ namespace macaque
 		cheap_particle_emitter_struct_definition,
 		"cheap_particle_emitter_struct_definition",
 		"s_cheap_particle_emitter",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_EMITTER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &cheap_particle_emitter_flags },
@@ -155,6 +165,8 @@ namespace macaque
 		cheap_particle_type_library_struct_definition,
 		"cheap_particle_type_library_struct_definition",
 		"s_cheap_particle_type_library",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_TYPE_LIBRARY_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("compile", nullptr, _field_id_unknown_compile),
@@ -173,6 +185,9 @@ namespace macaque
 		cheap_particle_scalar_object_function_struct,
 		"cheap_particle_scalar_object_function_struct",
 		"s_cheap_particle_scalar_object_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

@@ -12,6 +12,8 @@ namespace macaque
 		game_mode_flags_struct,
 		"game_mode_flags_struct",
 		"s_game_mode_flags",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_MODE_FLAGS_STRUCT_ID)
 	{
 		{ _field_byte_flags, "game mode", &game_type_enum_definition },

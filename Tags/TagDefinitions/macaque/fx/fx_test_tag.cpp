@@ -26,6 +26,9 @@ namespace macaque
 		"fx_property_block",
 		s_fx_test::k_max_properties,
 		"s_fx_property",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FX_PROPERTY_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -52,6 +55,8 @@ namespace macaque
 		"fx_property_default_block",
 		s_fx_test::k_max_defaults,
 		"s_fx_property::s_default",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FX_PROPERTY_DEFAULT_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -63,6 +68,8 @@ namespace macaque
 		fx_test_struct_definition,
 		"fx_test_struct_definition",
 		"s_fx_test",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FX_TEST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "properties", &fx_property_block },
@@ -74,6 +81,9 @@ namespace macaque
 		fx_test_scalar_function_struct,
 		"fx_test_scalar_function_struct",
 		"s_fx_test_scalar_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FX_TEST_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

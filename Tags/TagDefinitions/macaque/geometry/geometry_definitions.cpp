@@ -13,6 +13,8 @@ namespace macaque
 		"mesh",
 		(8*1024-1),
 		"s_mesh",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MESH_BLOCK_ID)
 	{
 		{ _field_block, "parts", &part_block },
@@ -44,6 +46,8 @@ namespace macaque
 		"part_block",
 		BYTE_MAX,
 		"s_part",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PART_BLOCK_ID)
 	{
 		{ _field_short_block_index, "render method index", &global_geometry_material_block },
@@ -66,6 +70,8 @@ namespace macaque
 		"sorting_position_block",
 		UNSIGNED_SHORT_MAX,
 		"s_positioning",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SORTING_POSITION_BLOCK_ID)
 	{
 		{ _field_real_plane_3d, "plane" },
@@ -82,6 +88,8 @@ namespace macaque
 		"subpart_block",
 		UNSIGNED_SHORT_MAX,
 		"s_subpart",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUBPART_BLOCK_ID)
 	{
 		{ _field_long_integer, "index start" },
@@ -98,6 +106,8 @@ namespace macaque
 		"global_instance_bucket_block",
 		(2*1024),
 		"s_instance_bucket",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_INSTANCE_BUCKET_BLOCK_ID)
 	{
 		{ _field_short_integer, "mesh index" },
@@ -112,6 +122,8 @@ namespace macaque
 		"instance_index_word_block",
 		UNSIGNED_SHORT_MAX,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANCE_INDEX_WORD_BLOCK_ID)
 	{
 		{ _field_short_integer, "instance index" },
@@ -124,6 +136,8 @@ namespace macaque
 		"indices_word_block",
 		2147483647L,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDICES_WORD_BLOCK_ID)
 	{
 		{ _field_short_integer, "word" },
@@ -136,6 +150,8 @@ namespace macaque
 		"vertexKeyBlock",
 		MAXIMUM_VERTICES_PER_GEOMETRY_SECTION,
 		"s_mesh::VertexKey",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXKEYBLOCK_ID)
 	{
 		{ _field_long_integer, "key1" },
@@ -149,6 +165,8 @@ namespace macaque
 		"PCAMeshIndexBlock",
 		(8*1024-1),
 		"long",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAMESHINDEXBLOCK_ID)
 	{
 		{ _field_long_block_index, "mesh index", &global_mesh_block },
@@ -161,6 +179,8 @@ namespace macaque
 		"compression_info_block",
 		1+UNSIGNED_SHORT_MAX,
 		"s_compression_info",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPRESSION_INFO_BLOCK_ID)
 	{
 		{ _field_word_flags, "compression flags", &compression_flags },
@@ -181,6 +201,8 @@ namespace macaque
 		"user_data_block",
 		64,
 		"s_render_geometry_user_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_DATA_BLOCK_ID)
 	{
 		{ _field_struct, "user data header", &global_render_geometry_user_data_header_struct },
@@ -194,6 +216,8 @@ namespace macaque
 		"per_mesh_raw_data_block",
 		(8*1024-1),
 		"s_per_mesh_raw_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_RAW_DATA_BLOCK_ID)
 	{
 		{ _field_block, "raw vertices", &raw_vertex_block },
@@ -216,6 +240,8 @@ namespace macaque
 		"raw_vertex_block",
 		MAXIMUM_VERTICES_PER_GEOMETRY_SECTION,
 		"s_raw_vertex",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
@@ -237,6 +263,8 @@ namespace macaque
 		"indices_dword_block",
 		2147483647L,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDICES_DWORD_BLOCK_ID)
 	{
 		{ _field_long_integer, "dword" },
@@ -249,6 +277,8 @@ namespace macaque
 		"raw_water_block",
 		1024,
 		"s_raw_water_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_WATER_BLOCK_ID)
 	{
 		{ _field_block, "raw water indices", &indices_word_block },
@@ -262,6 +292,8 @@ namespace macaque
 		"raw_water_append_block",
 		UNSIGNED_SHORT_MAX,
 		"s_raw_water_append",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_WATER_APPEND_BLOCK_ID)
 	{
 		{ _field_real_point_2d, "base texcoord" },
@@ -274,6 +306,8 @@ namespace macaque
 		"raw_imposter_brdf_block",
 		UNSIGNED_SHORT_MAX,
 		"s_raw_imposter_brdf",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_IMPOSTER_BRDF_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "diffuse" },
@@ -292,6 +326,8 @@ namespace macaque
 		"raw_instance_imposter_block",
 		UNSIGNED_SHORT_MAX,
 		"s_raw_instance_imposter_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_INSTANCE_IMPOSTER_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "position" },
@@ -306,6 +342,8 @@ namespace macaque
 		"raw_blendshape_block",
 		MAXIMUM_VERTICES_PER_GEOMETRY_SECTION,
 		"RawBlendshapeVertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_BLENDSHAPE_BLOCK_ID)
 	{
 		{ _field_real_vector_3d, "position" },
@@ -320,6 +358,8 @@ namespace macaque
 		"per_mesh_node_map_block",
 		(8*1024-1),
 		"s_per_mesh_node_map",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_NODE_MAP_BLOCK_ID)
 	{
 		{ _field_block, "node map", &node_map_byte_block },
@@ -332,6 +372,8 @@ namespace macaque
 		"node_map_byte_block",
 		BYTE_MAX,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_MAP_BYTE_BLOCK_ID)
 	{
 		{ _field_char_integer, "node index" },
@@ -344,6 +386,8 @@ namespace macaque
 		"per_mesh_subpart_visibility_block",
 		64,
 		"s_per_mesh_subpart_visibility",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_SUBPART_VISIBILITY_BLOCK_ID)
 	{
 		{ _field_block, "bounding_sphere", &sorting_position_block },
@@ -356,6 +400,8 @@ namespace macaque
 		"per_mesh_prt_data_block",
 		(8*1024-1),
 		"s_per_mesh_prt_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_PRT_DATA_BLOCK_ID)
 	{
 		{ _field_data, "mesh pca data" },
@@ -369,6 +415,8 @@ namespace macaque
 		"per_instance_prt_data_block",
 		UNSIGNED_SHORT_MAX,
 		"s_per_instance_prt_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_INSTANCE_PRT_DATA_BLOCK_ID)
 	{
 		{ _field_data, "mesh pca data" },
@@ -381,6 +429,8 @@ namespace macaque
 		"per_instance_lightmap_texcoords_block",
 		UNSIGNED_SHORT_MAX,
 		"s_per_instance_lightmap_texcoords",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_INSTANCE_LIGHTMAP_TEXCOORDS_BLOCK_ID)
 	{
 		{ _field_block, "texture coordinates", &raw_vertex_block },
@@ -396,6 +446,8 @@ namespace macaque
 		"raw_texcoord_block",
 		MAXIMUM_VERTICES_PER_GEOMETRY_SECTION,
 		"s_raw_texcoord",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_TEXCOORD_BLOCK_ID)
 	{
 		{ _field_real_point_2d, "texcoord" },
@@ -408,6 +460,8 @@ namespace macaque
 		"water_bounding_box_block",
 		(8*1024-1),
 		"s_water_bounding_box",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_BOUNDING_BOX_BLOCK_ID)
 	{
 		{ _field_short_integer, "mesh index" },
@@ -423,6 +477,8 @@ namespace macaque
 		"vertex_buffers_block",
 		UNSIGNED_SHORT_MAX,
 		"c_rasterizer_vertex_buffer",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_BUFFERS_BLOCK_ID)
 	{
 		{ _field_byte_integer, "declaration type" },
@@ -439,6 +495,8 @@ namespace macaque
 		"index_buffers_block",
 		(8*1024-1),
 		"c_rasterizer_index_buffer",
+		SET_DELETE_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDEX_BUFFERS_BLOCK_ID)
 	{
 		{ _field_byte_integer, "declaration type" },
@@ -455,6 +513,8 @@ namespace macaque
 		"render_vertex_buffer_block",
 		UNSIGNED_SHORT_MAX,
 		"s_tag_interop",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		RENDER_VERTEX_BUFFER_BLOCK_ID)
 	{
 		{ _field_api_interop, "vertex buffer interop", &render_vertex_buffer_descriptor_struct },
@@ -467,6 +527,8 @@ namespace macaque
 		"render_index_buffer_block",
 		(8*1024-1),
 		"s_tag_interop",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		RENDER_INDEX_BUFFER_BLOCK_ID)
 	{
 		{ _field_api_interop, "index buffer interop", &render_index_buffer_descriptor_struct },
@@ -479,6 +541,8 @@ namespace macaque
 		"render_geometry_pvs_data_block",
 		16,
 		"s_render_geometry_pvs_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_GEOMETRY_PVS_DATA_BLOCK_ID)
 	{
 		{ _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block },
@@ -499,6 +563,8 @@ namespace macaque
 		"render_geometry_pvs_data_visibility_value_block",
 		UNSIGNED_SHORT_MAX,
 		"dword",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_GEOMETRY_PVS_DATA_VISIBILITY_VALUE_BLOCK_ID)
 	{
 		{ _field_dword_integer, "Value" },
@@ -511,6 +577,8 @@ namespace macaque
 		"render_geometry_pvs_data_visibility_index_block",
 		UNSIGNED_SHORT_MAX,
 		"word",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_GEOMETRY_PVS_DATA_VISIBILITY_INDEX_BLOCK_ID)
 	{
 		{ _field_word_integer, "Index" },
@@ -523,6 +591,8 @@ namespace macaque
 		"shapeNameBlock",
 		8192,
 		"s_render_geometry::ShapeName",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHAPENAMEBLOCK_ID)
 	{
 		{ _field_long_integer, "key" },
@@ -536,6 +606,8 @@ namespace macaque
 		"node_indices_array",
 		4,
 		"byte",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_INDICES_ARRAY_ID)
 	{
 		{ _field_byte_integer, "node index" },
@@ -548,6 +620,8 @@ namespace macaque
 		"node_weights_implicit_array",
 		4-1,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_WEIGHTS_IMPLICIT_ARRAY_ID)
 	{
 		{ _field_real, "node weight" },
@@ -560,6 +634,8 @@ namespace macaque
 		"vertex_buffer_indices_word_array",
 		((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))),
 		"(((s_mesh *",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_BUFFER_INDICES_WORD_ARRAY_ID)
 	{
 		{ _field_word_integer, "vertex buffer index" },
@@ -572,6 +648,8 @@ namespace macaque
 		"node_weights_complete_array",
 		4,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_WEIGHTS_COMPLETE_ARRAY_ID)
 	{
 		{ _field_real, "node weight" },
@@ -583,6 +661,9 @@ namespace macaque
 		global_render_geometry_struct,
 		"global_render_geometry_struct",
 		"s_render_geometry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RENDER_GEOMETRY_STRUCT_ID)
 	{
 		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
@@ -610,6 +691,8 @@ namespace macaque
 		global_render_geometry_user_data_header_struct,
 		"global_render_geometry_user_data_header_struct",
 		"s_render_geometry_user_data_header",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID)
 	{
 		{ _field_char_enum, "data type", &render_geometry_user_data_type_definition },
@@ -623,6 +706,8 @@ namespace macaque
 		render_geometry_api_resource_definition_struct,
 		"render_geometry_api_resource_definition_struct",
 		"s_render_geometry_api_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_GEOMETRY_API_RESOURCE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_block, "pc vertex buffers", &vertex_buffers_block },

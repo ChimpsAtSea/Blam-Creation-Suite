@@ -26,6 +26,8 @@ namespace macaque
 		"UserInterfaceStyleSheetLanguagesBlock",
 		k_language_count,
 		"UserInterfaceStyleSheets",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETLANGUAGESBLOCK_ID)
 	{
 		{ _field_long_enum, "language", &style_sheet_language_enum_definition },
@@ -40,6 +42,8 @@ namespace macaque
 		"UserInterfaceStyleSheetsFontBlock",
 		k_maximumNumberOfStyleSheets,
 		"StyleFontData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETSFONTBLOCK_ID)
 	{
 		{ _field_string_id, "style sheet name" },
@@ -58,6 +62,8 @@ namespace macaque
 		"UserInterfaceStyleSheetFontIdBlock",
 		1,
 		"FontId",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETFONTIDBLOCK_ID)
 	{
 		{ _field_long_enum, "font id", &global_font_id_enum_definition },
@@ -70,6 +76,8 @@ namespace macaque
 		"UserInterfaceStyleSheetTextCaseBlock",
 		1,
 		"TextCase",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETTEXTCASEBLOCK_ID)
 	{
 		{ _field_long_enum, "text case", &text_case_enum },
@@ -82,6 +90,8 @@ namespace macaque
 		"UserInterfaceStyleSheetJustificationBlock",
 		1,
 		"TextJustification",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETJUSTIFICATIONBLOCK_ID)
 	{
 		{ _field_long_enum, "justification", &justification_enum },
@@ -94,6 +104,8 @@ namespace macaque
 		"UserInterfaceStyleSheetAlignmentBlock",
 		1,
 		"TextAlignment",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETALIGNMENTBLOCK_ID)
 	{
 		{ _field_long_enum, "alignment", &alignment_enum },
@@ -106,6 +118,8 @@ namespace macaque
 		"UserInterfaceStyleSheetScaleBlock",
 		1,
 		"float",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETSCALEBLOCK_ID)
 	{
 		{ _field_real, "value" },
@@ -118,6 +132,8 @@ namespace macaque
 		"UserInterfaceStyleSheetFixedHeightBlock",
 		1,
 		"float",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETFIXEDHEIGHTBLOCK_ID)
 	{
 		{ _field_real, "height" },
@@ -130,6 +146,8 @@ namespace macaque
 		"UserInterfaceStyleSheetsVisualBlock",
 		k_maximumNumberOfStyleSheets,
 		"StyleVisualData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETSVISUALBLOCK_ID)
 	{
 		{ _field_string_id, "style sheet name" },
@@ -148,6 +166,8 @@ namespace macaque
 		"UserInterfaceStyleSheetDropShadowStyleBlock",
 		1,
 		"TextDropShadowStyle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETDROPSHADOWSTYLEBLOCK_ID)
 	{
 		{ _field_long_enum, "drop shadow style", &drop_shadow_style_enum },
@@ -160,6 +180,8 @@ namespace macaque
 		"UserInterfaceStyleSheetColorBlock",
 		1,
 		"real_argb_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETCOLORBLOCK_ID)
 	{
 		{ _field_real_argb_color, "color" },
@@ -172,6 +194,8 @@ namespace macaque
 		"UserInterfaceStyleSheetGradientBlock",
 		32,
 		"UserInterfaceStyleGradient",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETGRADIENTBLOCK_ID)
 	{
 		{ _field_string_id, "gradient name" },
@@ -193,6 +217,8 @@ namespace macaque
 		"UserInterfaceStyleSheetDropshadowBlock",
 		32,
 		"UserInterfaceStyleDropshadow",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETDROPSHADOWBLOCK_ID)
 	{
 		{ _field_string_id, "dropshadow name" },
@@ -210,6 +236,8 @@ namespace macaque
 		"UserInterfaceStyleSheetOuterGlowBlock",
 		32,
 		"UserInterfaceStyleOuterGlow",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETOUTERGLOWBLOCK_ID)
 	{
 		{ _field_string_id, "outer glow name" },
@@ -224,6 +252,8 @@ namespace macaque
 		style_sheet_list_struct_definition,
 		"style_sheet_list_struct_definition",
 		"UserInterfaceStyleSheetLanguages",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STYLE_SHEET_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block },

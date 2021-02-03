@@ -39,6 +39,8 @@ namespace macaque
 		"GameGlobalsOrdnanceBlock",
 		k_maximumNumberOfMultiplayerOrdnanceSelections,
 		"OrdnanceLoadoutData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEGLOBALSORDNANCEBLOCK_ID)
 	{
 		{ _field_string_id, "ordnance name" },
@@ -60,6 +62,8 @@ namespace macaque
 		"OrdnanceRemappingVariantBlock",
 		64,
 		"OrdnanceRemappingVariant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDNANCEREMAPPINGVARIANTBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -74,6 +78,8 @@ namespace macaque
 		"OrdnanceRemappingBlock",
 		128,
 		"OrdnanceRemapping",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDNANCEREMAPPINGBLOCK_ID)
 	{
 		{ _field_string_id, "from", "This must match one of the global ordnance objects." },
@@ -87,6 +93,8 @@ namespace macaque
 		"RandomOrdnanceItemBlock",
 		k_maximum_random_ordnance_items,
 		"randomOrdnanceItem",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RANDOMORDNANCEITEMBLOCK_ID)
 	{
 		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
@@ -99,6 +107,8 @@ namespace macaque
 		"PlayerOrdnanceGroupBlock",
 		3,
 		"playerOrdnanceGroup",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYERORDNANCEGROUPBLOCK_ID)
 	{
 		{ _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock_block },
@@ -111,6 +121,8 @@ namespace macaque
 		"PlayerOrdnanceItemBlock",
 		8,
 		"playerOrdnanceItem",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYERORDNANCEITEMBLOCK_ID)
 	{
 		{ _field_string, "ordnance name", "This must match one of the global ordnance objects." },
@@ -123,6 +135,8 @@ namespace macaque
 		game_globals_ordnance_list_struct_definition,
 		"game_globals_ordnance_list_struct_definition",
 		"GameGlobalsOrdnance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_GLOBALS_ORDNANCE_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_real, "ordnance map width", "world units" },
@@ -139,6 +153,8 @@ namespace macaque
 		scenario_ordnance_list_struct_definition,
 		"scenario_ordnance_list_struct_definition",
 		"ScenarioOrdnance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ORDNANCE_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock_block },

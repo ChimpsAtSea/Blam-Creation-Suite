@@ -13,6 +13,8 @@ namespace macaque
 		"game_globals_damage_block",
 		s_damage_globals_definition::k_numBlockElements,
 		"s_damage_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_GLOBALS_DAMAGE_BLOCK_ID)
 	{
 		{ _field_block, "damage groups", &damage_group_block },
@@ -25,6 +27,8 @@ namespace macaque
 		"damage_group_block",
 		k_maximum_material_types,
 		"s_damage_group_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -38,6 +42,8 @@ namespace macaque
 		"armor_modifier_block",
 		k_maximum_material_types,
 		"s_armor_modifier_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMOR_MODIFIER_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -51,6 +57,8 @@ namespace macaque
 		"damage_globals_block",
 		1,
 		"s_game_globals_damage",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_GLOBALS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "falling damage", &global_damage_reference },
@@ -82,6 +90,8 @@ namespace macaque
 		"shield_boost_block",
 		1,
 		"s_game_globals_shield_boost",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_BOOST_BLOCK_ID)
 	{
 		{ _field_explanation, "shield boosting", "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source" },
@@ -96,6 +106,8 @@ namespace macaque
 		damage_decay_struct,
 		"damage_decay_struct",
 		"s_damage_decay",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_DECAY_STRUCT_ID)
 	{
 		{ _field_real, "current damage decay delay", "current damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)", "seconds" },

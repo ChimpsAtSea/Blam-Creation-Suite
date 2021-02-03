@@ -13,6 +13,8 @@ namespace macaque
 		"hud_unit_sound_block",
 		1,
 		"HudUnitSoundDefinitions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HUD_UNIT_SOUND_BLOCK_ID)
 	{
 		{ _field_block, "Hud audio cues", &hud_unit_sound_cue_block },
@@ -35,6 +37,8 @@ namespace macaque
 		"hud_unit_sound_cue_block",
 		k_maximumHudUnitSoundCues,
 		"HudUnitSoundCueDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HUD_UNIT_SOUND_CUE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },

@@ -20,6 +20,8 @@ namespace macaque
 		"progressionGlobalsBlock",
 		1,
 		"ProgressionGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROGRESSION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "ordnance points gained on killing another player" },

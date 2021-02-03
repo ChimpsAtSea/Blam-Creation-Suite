@@ -25,6 +25,9 @@ namespace macaque
 		curve_scalar_struct_definition,
 		"curve_scalar_struct_definition",
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CURVE_SCALAR_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct_default_one },
@@ -36,6 +39,9 @@ namespace macaque
 		mapping_function,
 		"mapping_function",
 		"mapping_function",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAPPING_FUNCTION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
@@ -49,6 +55,9 @@ namespace macaque
 		scalar_function_named_struct_default_one,
 		"scalar_function_named_struct_default_one",
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALAR_FUNCTION_NAMED_STRUCT_DEFAULT_ONE_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -61,6 +70,9 @@ namespace macaque
 		mapping_function_default_one,
 		"mapping_function_default_one",
 		"mapping_function_default_one",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAPPING_FUNCTION_DEFAULT_ONE_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
@@ -74,6 +86,9 @@ namespace macaque
 		scalar_function_named_struct,
 		"scalar_function_named_struct",
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALAR_FUNCTION_NAMED_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -86,6 +101,9 @@ namespace macaque
 		color_function_named_struct,
 		"color_function_named_struct",
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_FUNCTION_NAMED_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

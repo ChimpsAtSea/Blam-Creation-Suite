@@ -25,6 +25,8 @@ namespace macaque
 		sound_looping_struct_definition,
 		"sound_looping_struct_definition",
 		"looping_sound_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_LOOPING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &looping_sound_flags },

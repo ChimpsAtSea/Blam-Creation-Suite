@@ -26,6 +26,8 @@ namespace macaque
 		"game_completion_rewards_difficulty_block",
 		1,
 		"s_game_completion_rewards_category",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_DIFFICULTY_BLOCK_ID)
 	{
 		{ _field_block, "easy matchmaking", &game_completion_rewards_definition_block },
@@ -42,6 +44,8 @@ namespace macaque
 		"game_completion_rewards_definition_block",
 		eCT_count,
 		"s_game_completion_rewards_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_DEFINITION_BLOCK_ID)
 	{
 		{ _field_long_integer, "initial amount per minute", "base amount of reward given for each minute of play up until the start of the falloff curve" },
@@ -59,6 +63,8 @@ namespace macaque
 		"game_completion_rewards_falloff_point_block",
 		s_game_completion_rewards_globals::k_max_falloff_curve_points,
 		"s_game_completion_rewards_falloff_point",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_FALLOFF_POINT_BLOCK_ID)
 	{
 		{ _field_short_integer, "start time", "minutes into the game after which this new reward rate applies" },
@@ -72,6 +78,8 @@ namespace macaque
 		"game_completion_rewards_multiplayer_block",
 		1,
 		"s_game_completion_rewards_category",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_MULTIPLAYER_BLOCK_ID)
 	{
 		{ _field_block, "matchmaking", &game_completion_rewards_definition_block },
@@ -87,6 +95,8 @@ namespace macaque
 		game_completion_rewards_globals_struct_definition,
 		"game_completion_rewards_globals_struct_definition",
 		"s_game_completion_rewards_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "campaign", &game_completion_rewards_difficulty_block },

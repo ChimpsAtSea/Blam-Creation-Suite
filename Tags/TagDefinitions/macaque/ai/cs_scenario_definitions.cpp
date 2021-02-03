@@ -13,6 +13,8 @@ namespace macaque
 		"cs_script_data_block",
 		1,
 		"cs_script_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CS_SCRIPT_DATA_BLOCK_ID)
 	{
 		{ _field_block, "point sets", &cs_point_set_block },
@@ -27,6 +29,8 @@ namespace macaque
 		"cs_point_set_block",
 		k_max_point_sets_per_map,
 		"cs_point_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CS_POINT_SET_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -46,6 +50,8 @@ namespace macaque
 		"cs_point_block",
 		32,
 		"cs_point",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		CS_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string, "name" },
@@ -63,6 +69,8 @@ namespace macaque
 		"cs_animation_point_block",
 		k_max_animation_points_per_map,
 		"cs_animation_point",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CS_ANIMATION_POINT_BLOCK_ID)
 	{
 		{ _field_string, "name" },

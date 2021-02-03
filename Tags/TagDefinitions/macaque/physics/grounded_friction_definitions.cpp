@@ -25,6 +25,9 @@ namespace macaque
 		grounded_friction_struct_definition,
 		"grounded_friction_struct_definition",
 		"s_grounded_friction_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GROUNDED_FRICTION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "GROUNDED FRICTION", "Defines friction to be applied to grounded things (rolling or sliding) relative to the time they\'ve been rolling/sliding. Friction of 1.0 will stop them completely in a single tick.  Friction of 0.0 is the same as no friction at all.  The on-ground timer used to access this graph resets if the object leaves the ground for any period of time (bounces, is blown off the ground, etc). \n\nFOR EXAMPLE: Set up the graph as a \"Curve\", set the range to 0-1 (using the boxes at the top and bottom of the right-hand side of the graph), and set the domain min and max to 0 and 5, respectively. Set the maximum slope for friction to 90 (vertical walls).  The in-game result is that any object using this grounded friction will have friction of 0 (no friction) applied the instant they stop bouncing and start rolling/sliding, and that friction will ramp up (using the curve you provided) to 1 over the course of 5 seconds.  After 5 seconds of sliding/rolling, the object will come to a stop, no matter what (even if it\'s sliding down an 85 degree slope, because you set the maximum slope for friction to 90).  See daldridge or Sage w/ further questions." },

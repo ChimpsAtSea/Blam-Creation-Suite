@@ -26,6 +26,8 @@ namespace macaque
 		"antenna_vertex_block",
 		MAXIMUM_NUMBER_OF_ANTENNA_VERTICES,
 		"antenna_vertex",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTENNA_VERTEX_BLOCK_ID)
 	{
 		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex!" },
@@ -44,6 +46,8 @@ namespace macaque
 		antenna_struct_definition,
 		"antenna_struct_definition",
 		"antenna_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTENNA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_old_string_id, "attachment marker name", "the marker name where the antenna should be attached" },

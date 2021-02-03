@@ -52,24 +52,23 @@ extern s_tag_group CONCAT(tag_group_name, _group);
 #define TAG_FIELDS(tag_fields_name) \
 s_tag_field CONCAT(tag_fields_name, _fields)[] =
 
-
 // symbol, pretty_name, struct_name, persistent_identifier, [aligmnment_bits]
-#define TAG_STRUCT(symbol, pretty_name, struct_name, persistent_identifier, ...) \
+#define TAG_STRUCT(symbol, pretty_name, struct_name, runtime_flags, memory_attributes, persistent_identifier, ...) \
 extern s_tag_field symbol##_fields[]; \
-s_tag_struct_definition symbol = s_tag_struct_definition(pretty_name, #symbol, struct_name, __FILE__, __LINE__, persistent_identifier, symbol##_fields, __VA_ARGS__); \
+s_tag_struct_definition symbol = s_tag_struct_definition(pretty_name, #symbol, struct_name, __FILE__, __LINE__, runtime_flags, memory_attributes, persistent_identifier, symbol##_fields, __VA_ARGS__); \
 s_tag_field symbol##_fields[] =
 
 // symbol, pretty_name, max_count, struct_name, persistent_identifier, [aligmnment_bits]
-#define TAG_BLOCK(symbol, pretty_name, max_count, struct_name, persistent_identifier, ...) \
+#define TAG_BLOCK(symbol, pretty_name, max_count, struct_name, runtime_flags, memory_attributes, persistent_identifier, ...) \
 extern s_tag_field symbol##_struct_definition_fields[]; \
-s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#symbol "_struct_definition", #symbol "_struct_definition", struct_name, __FILE__, __LINE__, persistent_identifier, symbol##_struct_definition_fields, __VA_ARGS__); \
+s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#symbol "_struct_definition", #symbol "_struct_definition", struct_name, __FILE__, __LINE__, runtime_flags, memory_attributes, persistent_identifier, symbol##_struct_definition_fields, __VA_ARGS__); \
 s_tag_block_definition symbol = s_tag_block_definition(#symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(max_count); }, #max_count, symbol##_struct_definition ); \
 s_tag_field symbol##_struct_definition_fields[] =
 
 // symbol, pretty_name, count, struct_name, persistent_identifier, [aligmnment_bits]
-#define TAG_ARRAY(symbol, pretty_name, count, struct_name, persistent_identifier, ...) \
+#define TAG_ARRAY(symbol, pretty_name, count, struct_name, runtime_flags, memory_attributes, persistent_identifier, ...) \
 extern s_tag_field symbol##_struct_definition_fields[]; \
-s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#symbol "_struct_definition", #symbol "_struct_definition", struct_name, __FILE__, __LINE__, persistent_identifier, symbol##_struct_definition_fields, __VA_ARGS__); \
+s_tag_struct_definition symbol##_struct_definition = s_tag_struct_definition(#symbol "_struct_definition", #symbol "_struct_definition", struct_name, __FILE__, __LINE__, runtime_flags, memory_attributes, persistent_identifier, symbol##_struct_definition_fields, __VA_ARGS__); \
 s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](e_engine_type engine_type) { using namespace blofeld; return static_cast<uint32_t>(count); }, #count, symbol##_struct_definition }; \
 s_tag_field symbol##_struct_definition_fields[] =
 

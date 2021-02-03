@@ -13,6 +13,8 @@ namespace macaque
 		"material",
 		MAXIMUM_MATERIALS_PER_GEOMETRY,
 		"geometry_material",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_GEOMETRY_MATERIAL_BLOCK_ID)
 	{
 		{ _field_tag_reference, "render method", &global_geometry_material_block_render_method_reference },

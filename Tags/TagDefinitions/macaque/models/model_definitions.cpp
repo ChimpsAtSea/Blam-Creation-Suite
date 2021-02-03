@@ -13,6 +13,9 @@ namespace macaque
 		"model_block",
 		1,
 		"s_model_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "MODEL", "" },
@@ -104,6 +107,8 @@ namespace macaque
 		"variant",
 		k_maximum_variants_per_model,
 		"s_model_variant",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -122,6 +127,8 @@ namespace macaque
 		"region",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_model_variant_region",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "region name", "must match region name in render_model" },
@@ -140,6 +147,8 @@ namespace macaque
 		"permutation",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"s_model_variant_permutation",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_string_id, "permutation name" },
@@ -159,6 +168,8 @@ namespace macaque
 		"model_variant_state_block",
 		MAXIMUM_STATES_PER_MODEL_PERMUTATION,
 		"s_model_variant_state",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_STATE_BLOCK_ID)
 	{
 		{ _field_string_id, "permutation name" },
@@ -175,6 +186,8 @@ namespace macaque
 		"object",
 		k_maximum_objects_per_model_variant,
 		"s_model_variant_object",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_OBJECT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -196,6 +209,8 @@ namespace macaque
 		"instance group",
 		k_maximum_instance_groups_per_model,
 		"c_model_instance_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name", "name of this instance group" },
@@ -211,6 +226,8 @@ namespace macaque
 		"instance group member",
 		k_maximum_members_per_instance_group,
 		"c_model_instance_group_member",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID)
 	{
 		{ _field_long_block_index, "subgroup", &global_model_instance_group_block },
@@ -229,6 +246,8 @@ namespace macaque
 		"muted node",
 		k_maximum_muted_nodes_per_model_variant,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_MUTED_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "node name", "must match node name in render_model" },
@@ -241,6 +260,8 @@ namespace macaque
 		"region_name_block",
 		k_kilo,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REGION_NAME_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -253,6 +274,8 @@ namespace macaque
 		"material",
 		MAXIMUM_MATERIALS_PER_MODEL,
 		"s_model_material",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_MATERIAL_BLOCK_NEW_ID)
 	{
 		{ _field_string_id, "material name" },
@@ -272,6 +295,8 @@ namespace macaque
 		"model_target_block_old",
 		MAXIMUM_MODEL_TARGETS_PER_MODEL,
 		"s_model_target_old",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_BLOCK_OLD_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -292,6 +317,8 @@ namespace macaque
 		"model_target_block_new",
 		MAXIMUM_MODEL_TARGETS_PER_MODEL,
 		"s_model_target",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_BLOCK_NEW_ID)
 	{
 		{ _field_byte_flags, "flags", &model_target_flags_definition },
@@ -314,6 +341,8 @@ namespace macaque
 		"model_region_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_model_region",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -330,6 +359,8 @@ namespace macaque
 		"model_permutation_block",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"s_model_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -346,6 +377,8 @@ namespace macaque
 		"model_node_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"s_model_node",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -369,6 +402,8 @@ namespace macaque
 		"game mode render model override",
 		k_maximum_model_game_mode_types,
 		"s_model_game_mode_render_model_override",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_GAME_MODE_RENDER_MODEL_OVERRIDE_ID)
 	{
 		{ _field_enum, "game mode", &model_game_mode_types },
@@ -383,6 +418,8 @@ namespace macaque
 		"model_self_shadow_region_cast_override_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_prt_region_shadow_cast_override",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_SELF_SHADOW_REGION_CAST_OVERRIDE_BLOCK_ID)
 	{
 		{ _field_string_id, "region" },
@@ -396,6 +433,8 @@ namespace macaque
 		"model_self_shadow_region_receive_override_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_prt_region_shadow_receive_override",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_SELF_SHADOW_REGION_RECEIVE_OVERRIDE_BLOCK_ID)
 	{
 		{ _field_string_id, "region" },
@@ -409,6 +448,8 @@ namespace macaque
 		"model_occlusion_sphere_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_model_occlusion_sphere",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_OCCLUSION_SPHERE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -427,6 +468,8 @@ namespace macaque
 		"runtime_region_index_array",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"char",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_REGION_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "runtime region index" },
@@ -439,6 +482,8 @@ namespace macaque
 		"model_state_permutation_index_array",
 		k_number_of_model_states,
 		"char",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_STATE_PERMUTATION_INDEX_ARRAY_ID)
 	{
 		{ _field_char_integer, "runtime permutation index" },
@@ -450,6 +495,8 @@ namespace macaque
 		model_target_lock_on_data_struct,
 		"model_target_lock_on_data_struct",
 		"s_model_target_lock_on_data",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "lock-on fields", "" },

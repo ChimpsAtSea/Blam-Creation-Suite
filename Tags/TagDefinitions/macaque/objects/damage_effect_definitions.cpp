@@ -26,6 +26,8 @@ namespace macaque
 		"custom_damage_response_label_block",
 		8,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_DAMAGE_RESPONSE_LABEL_BLOCK_ID)
 	{
 		{ _field_string_id, "custom label", "label used to control what damage response will fire.^" },
@@ -38,6 +40,8 @@ namespace macaque
 		"damage_effect_sound_block",
 		4,
 		"s_damage_effect_sound",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_EFFECT_SOUND_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -51,6 +55,9 @@ namespace macaque
 		damage_effect_struct_definition,
 		"damage_effect",
 		"damage_effect_group",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "area of effect behavior equipment", &behavior_object_reference },
@@ -137,6 +144,8 @@ namespace macaque
 		damage_outer_cone_angle_struct,
 		"damage_outer_cone_angle_struct",
 		"damage_outer_cone_angle_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_OUTER_CONE_ANGLE_STRUCT_ID)
 	{
 		{ _field_angle, "dmg outer cone angle" },

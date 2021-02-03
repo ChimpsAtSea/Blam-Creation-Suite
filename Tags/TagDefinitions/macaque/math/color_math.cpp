@@ -13,6 +13,8 @@ namespace macaque
 		"half_sh_terms",
 		((3)*(3)),
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HALF_SH_TERMS_ID)
 	{
 		{ _field_short_integer, "coefficient" },
@@ -24,6 +26,8 @@ namespace macaque
 		half_rgb_lightprobe_struct,
 		"half_rgb_lightprobe_struct",
 		"half_rgb_lightprobe",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HALF_RGB_LIGHTPROBE_STRUCT_ID)
 	{
 		{ _field_array, "red sh terms", &half_sh_terms_array },

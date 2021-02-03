@@ -13,6 +13,9 @@ namespace macaque
 		"particle_system_definition_block_new",
 		c_particle_system_definition::k_maximum_particle_systems_per_block,
 		"c_particle_system_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_SYSTEM_DEFINITION_BLOCK_NEW_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -57,6 +60,9 @@ namespace macaque
 		"particle_system_emitter_definition_block",
 		c_particle_system_definition::k_maximum_emitters_per_definition,
 		"c_particle_emitter_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -125,6 +131,8 @@ namespace macaque
 		"emitterGlobalForceBlock",
 		4,
 		"ParticleEmitterGlobalForce",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMITTERGLOBALFORCEBLOCK_ID)
 	{
 		{ _field_struct, "global force", &effect_global_force_struct_definition },
@@ -139,6 +147,8 @@ namespace macaque
 		"emitterClipSphereBlock",
 		1,
 		"ParticleEmitterClipSphere",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMITTERCLIPSPHEREBLOCK_ID)
 	{
 		{ _field_real_vector_3d, "offset" },
@@ -152,6 +162,8 @@ namespace macaque
 		"gpu_property_block",
 		k_max_gpu_properties,
 		"c_particle_emitter_definition::s_gpu_data::s_property",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_BLOCK_ID,
 		4)
 	{
@@ -165,6 +177,8 @@ namespace macaque
 		"gpu_function_block",
 		k_max_gpu_functions,
 		"c_particle_emitter_definition::s_gpu_data::s_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_FUNCTION_BLOCK_ID,
 		4)
 	{
@@ -178,6 +192,8 @@ namespace macaque
 		"gpu_color_block",
 		k_max_gpu_colors,
 		"c_particle_emitter_definition::s_gpu_data::s_color",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_COLOR_BLOCK_ID,
 		4)
 	{
@@ -191,6 +207,8 @@ namespace macaque
 		"gpu_property_sub_array",
 		c_particle_emitter_gpu::_sizeof_gpu_property/sizeof(real),
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_property_real" },
@@ -203,6 +221,8 @@ namespace macaque
 		"gpu_function_sub_array",
 		c_particle_emitter_gpu::_sizeof_gpu_function/sizeof(real),
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_FUNCTION_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_function_real" },
@@ -215,6 +235,8 @@ namespace macaque
 		"gpu_color_sub_array",
 		c_particle_emitter_gpu::_sizeof_gpu_color/sizeof(real),
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_COLOR_SUB_ARRAY_ID)
 	{
 		{ _field_real, "runtime gpu_color_real" },
@@ -226,6 +248,8 @@ namespace macaque
 		gpu_property_function_color_struct,
 		"gpu_property_function_color_struct",
 		"c_particle_emitter_definition::s_gpu_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID)
 	{
 		{ _field_block, "runtime gpu_property_block", &gpu_property_block },

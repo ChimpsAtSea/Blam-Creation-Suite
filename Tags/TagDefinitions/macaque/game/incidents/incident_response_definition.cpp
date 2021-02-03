@@ -13,6 +13,8 @@ namespace macaque
 		"game_incident_response_block",
 		MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK,
 		"s_game_incident_response",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		GAME_INCIDENT_RESPONSE_BLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM("allowed game modes", nullptr, _field_id_function_group_begin),
@@ -43,6 +45,8 @@ namespace macaque
 		"game_incident_daily_challenge_to_increment_block",
 		MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK,
 		"s_daily_challenge_to_increment",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_INCIDENT_DAILY_CHALLENGE_TO_INCREMENT_BLOCK_ID)
 	{
 		{ _field_string_id, "daily challenge" },
@@ -55,6 +59,8 @@ namespace macaque
 		"specialized_incident_fanfare_block",
 		1,
 		"IncidentFanfareImplementDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_FANFARE_BLOCK_ID)
 	{
 		{ _field_long_integer, "priority", "0 is highest prioroty" },

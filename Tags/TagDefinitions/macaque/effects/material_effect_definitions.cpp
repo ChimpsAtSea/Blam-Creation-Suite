@@ -13,6 +13,8 @@ namespace macaque
 		"material_effects_block",
 		1,
 		"s_material_effects_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_EFFECTS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "effects", &material_effect_block_v2_block },
@@ -33,6 +35,8 @@ namespace macaque
 		"material_effect_block_v2",
 		k_material_effect_type_count,
 		"s_material_effect",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_EFFECT_BLOCK_V2_ID)
 	{
 		{ _field_block, "old materials (DO NOT USE)", &old_material_effect_material_block },
@@ -47,6 +51,8 @@ namespace macaque
 		"old_material_effect_material_block",
 		33,
 		"s_material_effect_material_old",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OLD_MATERIAL_EFFECT_MATERIAL_BLOCK_ID)
 	{
 		{ _field_tag_reference, "effect", &global_effect_reference },
@@ -66,6 +72,8 @@ namespace macaque
 		"material_effect_material_block",
 		k_maximum_material_effect_blocks,
 		"material_effect_material_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_EFFECT_MATERIAL_BLOCK_ID)
 	{
 		{ _field_tag_reference, "tag (effect or sound)", &material_effect_material_block_tag_effect_or_sound_reference },

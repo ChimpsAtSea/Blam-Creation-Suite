@@ -26,6 +26,8 @@ namespace macaque
 		"character_variants_block",
 		k_maximum_variants_per_model,
 		"character_variant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VARIANTS_BLOCK_ID)
 	{
 		{ _field_string_id, "variant name" },
@@ -42,6 +44,8 @@ namespace macaque
 		"character_voice_block",
 		k_maximum_variants_per_model,
 		"s_character_voice",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOICE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "dialogue", &dialogue_reference$2 },
@@ -57,6 +61,8 @@ namespace macaque
 		"character_voice_region_filter_block",
 		MAXIMUM_REGIONS_PER_MODEL,
 		"s_character_voice_region_filter",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOICE_REGION_FILTER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "region name" },
@@ -70,6 +76,8 @@ namespace macaque
 		"character_voice_region_permutation_filter_block",
 		MAXIMUM_PERMUTATIONS_PER_MODEL_REGION,
 		"s_character_voice_region_permutation_filter",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOICE_REGION_PERMUTATION_FILTER_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "permutation name" },
@@ -82,6 +90,8 @@ namespace macaque
 		"character_voice_properties_block",
 		c_character_voice_properties_internal::k_block_count,
 		"c_character_voice_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOICE_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_block, "voices", &character_voice_block },
@@ -95,6 +105,8 @@ namespace macaque
 		"character_general_block",
 		c_character_general_properties_internal::k_block_count,
 		"c_character_general_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_GENERAL_BLOCK_ID)
 	{
 		{ _field_long_flags, "general flags", &general_flags },
@@ -121,6 +133,8 @@ namespace macaque
 		"disallowed_weapons_for_trading_block",
 		32,
 		"s_disallowed_weapons_from_trading",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DISALLOWED_WEAPONS_FOR_TRADING_BLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference$2 },
@@ -133,6 +147,8 @@ namespace macaque
 		"character_proto_spawn_block",
 		c_character_proto_spawn_properties_internal::k_block_count,
 		"c_character_proto_spawn_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PROTO_SPAWN_BLOCK_ID)
 	{
 		{ _field_enum, "Proto Spawn Type ", &proto_spawn_type_enum },
@@ -146,6 +162,8 @@ namespace macaque
 		"character_interact_block",
 		c_character_interact_properties_internal::k_block_count,
 		"c_character_interact_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_INTERACT_BLOCK_ID)
 	{
 		{ _field_real, "default maximum object interact range", "wu" },
@@ -158,6 +176,8 @@ namespace macaque
 		"character_emotions_block",
 		c_character_emotions_properties_internal::k_block_count,
 		"c_character_emotions_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMOTIONS_BLOCK_ID)
 	{
 		{ _field_block, "situational danger", &character_emotions_situational_danger_block },
@@ -172,6 +192,8 @@ namespace macaque
 		"character_emotions_situational_danger_block",
 		NUMBER_OF_PROP_CLASSES,
 		"s_ai_character_emotion_situational_danger_properties",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMOTIONS_SITUATIONAL_DANGER_BLOCK_ID)
 	{
 		{ _field_enum, "highest prop class", &prop_class_enum },
@@ -186,6 +208,8 @@ namespace macaque
 		"character_vitality_block",
 		c_character_vitality_properties_internal::k_block_count,
 		"c_character_vitality_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VITALITY_BLOCK_ID)
 	{
 		{ _field_long_flags, "vitality flags", &vitality_flags },
@@ -220,6 +244,8 @@ namespace macaque
 		"character_placement_block",
 		c_character_placement_properties_internal::k_block_count,
 		"c_character_placement_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PLACEMENT_BLOCK_ID)
 	{
 		FIELD_PAD("YJQV", nullptr, 4),
@@ -244,6 +270,9 @@ namespace macaque
 		"character_perception_block",
 		c_character_perception_properties_internal::k_block_count,
 		"c_character_perception_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PERCEPTION_BLOCK_STRUCT_ID)
 	{
 		{ _field_enum, "perception_mode", &actor_perception_mode_definition },
@@ -286,6 +315,8 @@ namespace macaque
 		"character_target_block",
 		c_character_target_properties_internal::k_block_count,
 		"c_character_target_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_TARGET_BLOCK_STRUCT_ID)
 	{
 		{ _field_real, "player preference", "How interested in the player I am on a scale of 0-1" },
@@ -298,6 +329,8 @@ namespace macaque
 		"character_look_block",
 		c_character_look_properties_internal::k_block_count,
 		"c_character_look_properties_internal",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_LOOK_BLOCK_ID)
 	{
 		{ _field_real_euler_angles_2d, "maximum aiming deviation", "how far we can turn our weapon", "degrees" },
@@ -321,6 +354,8 @@ namespace macaque
 		"character_hopping_block",
 		1,
 		"c_character_hopping_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_HOPPING_BLOCK_ID)
 	{
 		{ _field_long_flags, "Hopping Flags", &hopping_flags },
@@ -334,6 +369,8 @@ namespace macaque
 		"characterHopDefinitionBlock",
 		1,
 		"CharacterHopDefinitionSet",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTERHOPDEFINITIONBLOCK_ID)
 	{
 		FIELD_CUSTOM("Default", nullptr, _field_id_function_group_begin),
@@ -354,6 +391,9 @@ namespace macaque
 		"character_movement_block",
 		1,
 		"c_character_movement_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_MOVEMENT_BLOCK_ID)
 	{
 		{ _field_long_flags, "movement flags", &movement_flags },
@@ -421,6 +461,8 @@ namespace macaque
 		"movement_stationary_pause_block",
 		8,
 		" s_character_movement_stationary_pause_settings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_STATIONARY_PAUSE_BLOCK_ID)
 	{
 		{ _field_explanation, "Inertial pause settings", "These values tell the actor to remain stationary for the specified number of ticks if he changes his direction of movement by at least \'change angle\'. Specifying an angle of 0 means pause this much every time you get to your destination." },
@@ -435,6 +477,8 @@ namespace macaque
 		"movement_throttle_control_block",
 		NUMBER_OF_ACTOR_COMBAT_STATUS_LEVELS,
 		"s_character_movement_throttle_per_combat_status_settings",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_THROTTLE_CONTROL_BLOCK_ID)
 	{
 		{ _field_enum, "combat status", &combat_status_enum_definition },
@@ -449,6 +493,8 @@ namespace macaque
 		"movement_throttle_block",
 		16,
 		"s_character_movement_throttle_control_settings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_THROTTLE_BLOCK_ID)
 	{
 		{ _field_real, "distance", "If AI needs to move at greater or equal to this distance, they will move at the given throttle", "wus" },
@@ -462,6 +508,9 @@ namespace macaque
 		"character_throttle_style_block",
 		c_character_throttle_style_properties_internal::k_block_count,
 		"c_character_throttle_style_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_THROTTLE_STYLE_BLOCK_ID)
 	{
 		{ _field_string_id, "style name" },
@@ -480,6 +529,8 @@ namespace macaque
 		"character_movement_set_block",
 		k_max_movement_sets,
 		"character_movement_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_MOVEMENT_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -493,6 +544,8 @@ namespace macaque
 		"movement_mapping_block",
 		k_max_movement_variants,
 		"character_movement_mapping",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_MAPPING_BLOCK_ID)
 	{
 		{ _field_real, "chance" },
@@ -521,6 +574,8 @@ namespace macaque
 		"character_flocking_block",
 		c_character_flocking_properties_internal::k_block_count,
 		"c_character_flocking_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FLOCKING_BLOCK_ID)
 	{
 		{ _field_explanation, "Jaime, don\'t touch this", "Ever." },
@@ -538,6 +593,8 @@ namespace macaque
 		"character_swarm_block",
 		c_character_swarm_properties_internal::k_block_count,
 		"c_character_swarm_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_SWARM_BLOCK_ID)
 	{
 		{ _field_short_integer, "scatter killed count", "After the given number of deaths, the swarm scatters" },
@@ -562,6 +619,8 @@ namespace macaque
 		"character_firing_point_evaluator_block",
 		c_character_firing_point_evaluation_properties_internal::k_block_count,
 		"c_character_firing_point_evaluation_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIRING_POINT_EVALUATOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_enum, "mode", &evaluation_modes },
@@ -577,6 +636,8 @@ namespace macaque
 		"evaluator_definition_block",
 		k_fp_evaluator_count,
 		"s_evaluator_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EVALUATOR_DEFINITION_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "EVALUATOR", "The firing point evaluation properties for a single evaluator. Treat with great care and respect." },
@@ -593,6 +654,8 @@ namespace macaque
 		"character_ready_block",
 		c_character_ready_properties_internal::k_block_count,
 		"c_character_ready_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_READY_BLOCK_ID)
 	{
 		{ _field_real_bounds, "ready time bounds", "Character will pause for given time before engaging threat" },
@@ -605,6 +668,8 @@ namespace macaque
 		"character_engage_block",
 		c_character_engage_properties_internal::k_block_count,
 		"c_character_engage_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_ENGAGE_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &engage_flags },
@@ -636,6 +701,8 @@ namespace macaque
 		"character_charge_block",
 		c_character_charge_properties_internal::k_block_count,
 		"c_character_charge_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_CHARGE_BLOCK_ID)
 	{
 		{ _field_long_flags, "Charge flags", &charge_flags },
@@ -684,6 +751,8 @@ namespace macaque
 		"character_charge_difficulty_limits_block",
 		k_campaign_difficulty_levels_count,
 		"character_charge_difficulty_limits",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_CHARGE_DIFFICULTY_LIMITS_BLOCK_ID)
 	{
 		{ _field_explanation, "Difficulty Limits", "Per difficulty values to limit the number of guys in particular behaviours" },
@@ -699,6 +768,8 @@ namespace macaque
 		"character_evasion_block",
 		c_character_evasion_properties_internal::k_block_count,
 		"c_character_evasion_properties_internal",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EVASION_BLOCK_ID)
 	{
 		{ _field_real, "Evasion danger threshold", "Consider evading when immediate danger surpasses threshold" },
@@ -715,6 +786,8 @@ namespace macaque
 		"character_cover_block",
 		c_character_cover_properties_internal::k_block_count,
 		"c_character_cover_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COVER_BLOCK_ID)
 	{
 		{ _field_long_flags, "cover flags", &cover_flags },
@@ -751,6 +824,8 @@ namespace macaque
 		"character_retreat_block",
 		c_character_retreat_properties_internal::k_block_count,
 		"c_character_retreat_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_RETREAT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Retreat flags", &character_retreat_flags },
@@ -779,6 +854,8 @@ namespace macaque
 		"character_search_block",
 		c_character_search_properties_internal::k_block_count,
 		"c_character_search_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_SEARCH_BLOCK_ID)
 	{
 		{ _field_long_flags, "Search flags", &character_search_flags },
@@ -801,6 +878,8 @@ namespace macaque
 		"character_presearch_block",
 		c_character_presearch_properties_internal::k_block_count,
 		"c_character_presearch_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PRESEARCH_BLOCK_ID)
 	{
 		{ _field_long_flags, "Pre-search flags", &generic_flags },
@@ -823,6 +902,8 @@ namespace macaque
 		"character_idle_block",
 		c_character_idle_properties_internal::k_block_count,
 		"c_character_idle_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_IDLE_BLOCK_ID)
 	{
 		FIELD_PAD("ZTG", nullptr, 4),
@@ -837,6 +918,8 @@ namespace macaque
 		"character_vocalization_block",
 		c_character_vocalization_properties_internal::k_block_count,
 		"c_character_vocalization_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOCALIZATION_BLOCK_ID)
 	{
 		{ _field_explanation, "Skip Fraction", "For vocalization with priority < react, multiplies the skip fraction in the dialogue globals tag.\nFor priorities > react, multiplies the vocalization WEIGHT (i.e. the desire of that character to vocalize RELATIVE to other characters in the scene).\nThus if you hurt the arbiter, say, he\'s still going to yell at you, no matter what, and if you kill somebody and nobody else is there to witness it, he will yell at you.\nAs always, 0 means speak normally, 1 means skip everything (don\'t say shit)" },
@@ -852,6 +935,8 @@ namespace macaque
 		"character_boarding_block",
 		c_character_boarding_properties_internal::k_block_count,
 		"c_character_boarding_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BOARDING_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &boarding_flags },
@@ -870,6 +955,8 @@ namespace macaque
 		"character_vehicle_boarding_block",
 		s_character_vehicle_boarding_properties::k_block_count,
 		"s_character_vehicle_boarding_properties",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VEHICLE_BOARDING_BLOCK_ID)
 	{
 		{ _field_tag_reference, "vehicle", &unit_reference$2 },
@@ -883,6 +970,8 @@ namespace macaque
 		"character_kungfu_block",
 		c_character_kungfu_properties_internal::k_block_count,
 		"c_character_kungfu_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_KUNGFU_BLOCK_ID)
 	{
 		{ _field_real, "kungfu override distance", "If the player is within this distance, open fire, even if your task is kungfu-fight disallowed", "wus" },
@@ -896,6 +985,8 @@ namespace macaque
 		"character_bunker_block",
 		c_character_bunker_properties_internal::k_block_count,
 		"c_character_bunker_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BUNKER_BLOCK_ID)
 	{
 		{ _field_explanation, "DEFAULT TIMINGS", "" },
@@ -915,6 +1006,8 @@ namespace macaque
 		"character_guardian_block",
 		c_character_guardian_properties_internal::k_block_count,
 		"c_character_guardian_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_GUARDIAN_BLOCK_ID)
 	{
 		{ _field_real, "surge time", "length of time for which the guardian surges", "seconds" },
@@ -932,6 +1025,8 @@ namespace macaque
 		"character_combatform_block",
 		c_character_combatform_properties_internal::k_block_count,
 		"c_character_combatform_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COMBATFORM_BLOCK_ID)
 	{
 		{ _field_real, "berserk distance", "distance at which combatform will be forced into berserk", "wu" },
@@ -945,6 +1040,8 @@ namespace macaque
 		"character_engineer_block",
 		c_character_engineer_properties_internal::k_block_count,
 		"c_character_engineer_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_ENGINEER_BLOCK_ID)
 	{
 		{ _field_real, "death height", "try and rise this amount before dying", "wu" },
@@ -968,6 +1065,8 @@ namespace macaque
 		"character_inspect_block",
 		c_character_inspect_properties_internal::k_block_count,
 		"c_character_inspect_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_INSPECT_BLOCK_ID)
 	{
 		{ _field_real, "stop distance", "distance from object at which to stop and turn on the inspection light", "wu" },
@@ -982,6 +1081,8 @@ namespace macaque
 		"character_scarab_block",
 		c_character_scarab_properties_internal::k_block_count,
 		"c_character_scarab_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_SCARAB_BLOCK_ID)
 	{
 		{ _field_real, "fighting min distance", "When target within this distance, the scarab will back up", "wus" },
@@ -998,6 +1099,8 @@ namespace macaque
 		"character_weapons_block",
 		c_character_weapon_properties_internal::k_block_count,
 		"c_character_weapon_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_WEAPONS_BLOCK_ID)
 	{
 		{ _field_long_flags, "weapons flags", &weapon_flags },
@@ -1049,6 +1152,8 @@ namespace macaque
 		"character_firing_pattern_properties_block",
 		c_character_firing_pattern_properties_internal::k_block_count,
 		"c_character_firing_pattern_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIRING_PATTERN_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "weapon", &weapon_reference$2 },
@@ -1062,6 +1167,8 @@ namespace macaque
 		"character_firing_pattern_block",
 		2+(k_num_ai_trait_weapon-2),
 		"character_firing_pattern",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIRING_PATTERN_BLOCK_ID)
 	{
 		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
@@ -1087,6 +1194,8 @@ namespace macaque
 		"character_grenades_block",
 		c_character_grenade_properties_internal::k_block_count,
 		"c_character_grenade_properties_internal",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_GRENADES_BLOCK_ID)
 	{
 		{ _field_long_flags, "grenades flags", &grenades_flags },
@@ -1116,6 +1225,8 @@ namespace macaque
 		"character_vehicle_block",
 		c_character_vehicle_properties_internal::k_block_count,
 		"c_character_vehicle_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VEHICLE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "unit", &unit_reference$2 },
@@ -1212,6 +1323,8 @@ namespace macaque
 		"character_flying_movement_block",
 		c_character_flying_movement_properties_internal::k_block_count,
 		"c_character_flying_movement_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FLYING_MOVEMENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "vehicle", &unit_reference$2 },
@@ -1281,6 +1394,8 @@ namespace macaque
 		"character_morph_block",
 		c_character_morph_properties_internal::k_block_count,
 		"c_character_morph_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_MORPH_BLOCK_ID)
 	{
 		{ _field_tag_reference, "ranged character", &character_reference$3 },
@@ -1327,6 +1442,8 @@ namespace macaque
 		"character_equipment_block",
 		8,
 		"character_equipment_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EQUIPMENT_BLOCK_ID)
 	{
 		{ _field_explanation, "Equipment", "Create one of these for each equipment type that you would like a character to be able to use. If you specify a relative drop chance of greater than zero then the character will use and drop this type of equipment with that (relative) chance. If you leave the equipment field empty, then there will be that (relative) chance of using and dropping no equipment at all." },
@@ -1343,6 +1460,8 @@ namespace macaque
 		"character_equipment_usage_block",
 		k_character_equipment_usage_when_count,
 		"character_equipment_usage",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EQUIPMENT_USAGE_BLOCK_ID)
 	{
 		{ _field_explanation, "Equipment Use", "How should I use this equipment\?" },
@@ -1360,6 +1479,8 @@ namespace macaque
 		"character_stimuli_response_block",
 		k_max_character_stimuli_responses,
 		"s_character_stimuli_response_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_STIMULI_RESPONSE_BLOCK_ID)
 	{
 		{ _field_explanation, "Stimulus Response", "Here you can define a character tag which will be applied on top of this one when the named stimulus is present on a character.In the case of multiple stimulus with character tag responses being present, the first listed will be used." },
@@ -1374,6 +1495,8 @@ namespace macaque
 		"character_activity_object_block",
 		32,
 		"character_activity_objects",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_ACTIVITY_OBJECT_BLOCK_ID)
 	{
 		{ _field_string_id, "activity name" },
@@ -1391,6 +1514,8 @@ namespace macaque
 		"character_pain_screen_block",
 		c_character_pain_screen_properties_internal::k_block_count,
 		"c_character_pain_screen_properties_internal",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PAIN_SCREEN_BLOCK_ID)
 	{
 		{ _field_explanation, "Pain Reactions", "" },
@@ -1411,6 +1536,8 @@ namespace macaque
 		"character_bishop_block",
 		c_character_bishop_properties_internal::k_block_count,
 		"c_character_bishop_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BISHOP_BLOCK_ID)
 	{
 		{ _field_tag_reference, "junk collect effect", &effect_reference },
@@ -1456,6 +1583,8 @@ namespace macaque
 		"character_combotron_parent_block",
 		c_character_combotron_parent_properties_internal::k_block_count,
 		"c_character_combotron_parent_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COMBOTRON_PARENT_BLOCK_ID)
 	{
 		{ _field_explanation, "combotron parent props", "" },
@@ -1475,6 +1604,8 @@ namespace macaque
 		"character_combotron_child_block",
 		c_character_combotron_child_properties_internal::k_block_count,
 		"c_character_combotron_child_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COMBOTRON_CHILD_BLOCK_ID)
 	{
 		{ _field_explanation, "combotron child props (anything that can socket into a rook)", "" },
@@ -1495,6 +1626,8 @@ namespace macaque
 		"character_handle_dismemberment_block",
 		c_character_handle_dismemberment_properties_internal::k_block_count,
 		"c_character_handle_dismemberment_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_HANDLE_DISMEMBERMENT_BLOCK_ID)
 	{
 		{ _field_explanation, "dismemberment props", "" },
@@ -1511,6 +1644,8 @@ namespace macaque
 		"character_cover_fight_block",
 		c_character_cover_fight_properties_internal::k_block_count,
 		"c_character_cover_fight_properties_internal",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COVER_FIGHT_BLOCK_ID)
 	{
 		{ _field_real_bounds, "Cover fight min / max (in world units)", "Character will prefer to use cover fighting between min/max distances" },
@@ -1541,6 +1676,8 @@ namespace macaque
 		"character_emerge_block",
 		c_character_emerge_properties_internal::k_block_count,
 		"c_character_emerge_properties_internal",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMERGE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "Wall effect", &effect_reference },
@@ -1554,6 +1691,8 @@ namespace macaque
 		"dynamic_task_block",
 		c_character_dynamic_task_properties_internal::k_block_count,
 		"c_character_dynamic_task_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DYNAMIC_TASK_BLOCK_ID)
 	{
 		{ _field_long_flags, "Agent Filter Flags ", &agent_filter_flags },
@@ -1575,6 +1714,8 @@ namespace macaque
 		"character_advance_block",
 		c_character_advance_properties_internal::k_block_count,
 		"c_character_advance_properties_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_ADVANCE_BLOCK_ID)
 	{
 		{ _field_real_fraction, "Initiate Chance ", "Chance per second that actor will initiate an advance when able." },
@@ -1609,6 +1750,8 @@ namespace macaque
 		"character_cover_evasion_block",
 		c_character_cover_evasion_properties_internal::k_block_count,
 		"c_character_cover_evasion_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_COVER_EVASION_BLOCK_ID)
 	{
 		{ _field_real, "Initiate Danger Threshold ", "Danger level needed to trigger behavior." },
@@ -1629,6 +1772,8 @@ namespace macaque
 		"character_pack_stalk_block",
 		c_character_pack_stalk_properties_internal::k_block_count,
 		"c_character_pack_stalk_properties_internal",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PACK_STALK_BLOCK_ID)
 	{
 		{ _field_real, "Min Wander Distance ", "Minimum distance pack must move when search for new cover position." },
@@ -1644,6 +1789,9 @@ namespace macaque
 		"character_fight_circle_block",
 		c_character_fight_circle_properties_internal::k_block_count,
 		"c_character_fight_circle_properties_internal",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIGHT_CIRCLE_BLOCK_ID)
 	{
 		{ _field_real_bounds, "Strafe Time ", "Time spent facing the player and strafing after reaching a position." },
@@ -1663,6 +1811,8 @@ namespace macaque
 		"character_hamstring_charge_block",
 		c_character_hamstring_charge_properties_internal::k_block_count,
 		"c_character_hamstring_charge_properties_internal",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_HAMSTRING_CHARGE_BLOCK_ID)
 	{
 		{ _field_angle, "Flank Angle ", "Angle from player facing where charge will begin." },
@@ -1682,6 +1832,8 @@ namespace macaque
 		"character_forerunner_block",
 		c_character_forerunner_properties_internal::k_block_count,
 		"c_character_forerunner_properties_internal",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FORERUNNER_BLOCK_ID)
 	{
 		{ _field_long_flags, "forerunner flags", &forerunner_flags },
@@ -1700,6 +1852,8 @@ namespace macaque
 		"character_gravity_jump_block",
 		c_character_gravity_jump_properties_internal::k_block_count,
 		"c_character_gravity_jump_properties_internal",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_GRAVITY_JUMP_BLOCK_ID)
 	{
 		{ _field_real, "Retreat Radius ", "Look for destination point within this distance." },
@@ -1718,6 +1872,8 @@ namespace macaque
 		character_struct_definition,
 		"character_struct_definition",
 		"character_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "Character flags", &character_flags },
@@ -1797,6 +1953,8 @@ namespace macaque
 		active_camo_perception_properties,
 		"active_camo_perception_properties",
 		"s_active_camo_perception_properties",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ACTIVE_CAMO_PERCEPTION_PROPERTIES_ID)
 	{
 		{ _field_real_fraction, "partial invis amount", "this amount of active camouflage makes a target \'partially invisible\'" },
@@ -1813,6 +1971,8 @@ namespace macaque
 		character_hop_struct,
 		"character_hop_struct",
 		"CharacterHopDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_HOP_STRUCT_ID)
 	{
 		{ _field_real, "Min hop distance", "Pathing shorter than this, no hopping" },
@@ -1828,6 +1988,8 @@ namespace macaque
 		SmoothThrottleStruct,
 		"SmoothThrottleStruct",
 		"CharacterSmoothThrottleDefinition",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SMOOTHTHROTTLESTRUCT_ID)
 	{
 		FIELD_CUSTOM("Smooth Throttle", nullptr, _field_id_function_group_begin),
@@ -1850,6 +2012,8 @@ namespace macaque
 		SmoothStoppingStruct,
 		"SmoothStoppingStruct",
 		"CharacterSmoothStoppingDefinition",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SMOOTHSTOPPINGSTRUCT_ID)
 	{
 		FIELD_CUSTOM("Smooth Stopping", nullptr, _field_id_function_group_begin),
@@ -1869,6 +2033,8 @@ namespace macaque
 		character_bunker_timings_struct,
 		"character_bunker_timings_struct",
 		"s_bunker_timings",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BUNKER_TIMINGS_STRUCT_ID)
 	{
 		{ _field_real_bounds, "open time", "How long we should open for", "seconds" },

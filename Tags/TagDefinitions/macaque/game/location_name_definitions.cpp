@@ -26,6 +26,8 @@ namespace macaque
 		"location_name_block",
 		s_location_name_globals_tag_definition::k_maximum_location_names,
 		"s_location_name_tag_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOCATION_NAME_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -37,6 +39,8 @@ namespace macaque
 		location_name_globals_definition_struct_definition,
 		"location_name_globals_definition_struct_definition",
 		"s_location_name_globals_tag_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LOCATION_NAME_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "location names", &location_name_block },

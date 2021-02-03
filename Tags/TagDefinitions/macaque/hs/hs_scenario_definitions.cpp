@@ -20,6 +20,8 @@ namespace macaque
 		"hs_source_files_block",
 		k_maximum_hs_source_files_per_context,
 		"hs_source_file",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HSC_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string, "name" },
@@ -34,6 +36,8 @@ namespace macaque
 		"hs_references_block",
 		k_maximum_hs_references_per_context,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "reference", &hs_references_block_reference_reference },
@@ -46,6 +50,8 @@ namespace macaque
 		"hs_scripts_block",
 		k_maximum_hs_scripts_per_context,
 		"hs_script",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPTS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -64,6 +70,8 @@ namespace macaque
 		"hs_script_parameters_block",
 		k_maximum_hs_parameters_per_script,
 		"hs_script_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -77,6 +85,8 @@ namespace macaque
 		"hs_globals_block",
 		k_maximum_hs_globals_per_context,
 		"HSInternalGlobal",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_GLOBALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -91,6 +101,8 @@ namespace macaque
 		"HSInstancedVariablesBlock",
 		k_maximum_hs_instanced_variables_per_context,
 		"HSInternalInstanced",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HSINSTANCEDVARIABLESBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -105,6 +117,8 @@ namespace macaque
 		"hs_unit_seat_block",
 		k_maximum_hs_unit_seat_mappings,
 		"s_hs_unit_seat_mapping",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_UNIT_SEAT_BLOCK_ID)
 	{
 		{ _field_long_integer, "unit definition tag index" },
@@ -119,6 +133,8 @@ namespace macaque
 		"hs_syntax_datum_block",
 		k_maximum_hs_syntax_nodes_per_context,
 		"HSSyntaxNode",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		HS_SYNTAX_DATUM_BLOCK_ID)
 	{
 		{ _field_short_integer, "datum header" },
@@ -139,6 +155,8 @@ namespace macaque
 		"HSImportManifestBlock",
 		128,
 		"HSImportManifest",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HSIMPORTMANIFESTBLOCK_ID)
 	{
 		{ _field_tag, "callee tag" },
@@ -153,6 +171,8 @@ namespace macaque
 		"HSImportManifestEntryBlock",
 		k_maximum_hs_scripts_per_context,
 		"HSImportManifestEntry",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		HSIMPORTMANIFESTENTRYBLOCK_ID)
 	{
 		{ _field_string_id, "script name" },

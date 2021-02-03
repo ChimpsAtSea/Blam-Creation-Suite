@@ -13,6 +13,9 @@ namespace macaque
 		"player_information_block",
 		k_player_character_type_count,
 		"s_game_globals_player_information",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_INFORMATION_BLOCK_ID)
 	{
 		{ _field_real, "walking speed", "world units per second" },
@@ -52,6 +55,8 @@ namespace macaque
 		"player_momentum_data_block",
 		k_player_momentum_count,
 		"s_game_globals_player_momentum_data",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_MOMENTUM_DATA_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flag", &MomentumFlag },
@@ -78,6 +83,8 @@ namespace macaque
 		"player_representation_block",
 		k_player_character_type_count,
 		"s_game_globals_player_representation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_REPRESENTATION_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &player_representation_flags },
@@ -102,6 +109,8 @@ namespace macaque
 		"firstPersonpHiddenBodyRegionsBlock",
 		32,
 		"FirstPersonHiddenBodyRegion",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIRSTPERSONPHIDDENBODYREGIONSBLOCK_ID)
 	{
 		{ _field_string_id, "hidden region" },

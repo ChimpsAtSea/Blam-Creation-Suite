@@ -26,6 +26,8 @@ namespace macaque
 		"sidecarBlock",
 		1,
 		"SidecarPathDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SIDECARBLOCK_ID)
 	{
 		{ _field_long_string, "sidecar path" },
@@ -38,6 +40,8 @@ namespace macaque
 		"object_early_mover_obb_block",
 		1,
 		"s_object_early_mover_obb_definition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_EARLY_MOVER_OBB_BLOCK_ID)
 	{
 		{ _field_string_id, "node name", "empty mean object space" },
@@ -58,6 +62,8 @@ namespace macaque
 		"object_ai_properties_block",
 		1,
 		"object_ai_properties",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_AI_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "ai flags", &ai_properties_flags },
@@ -74,6 +80,9 @@ namespace macaque
 		"object_function_block",
 		k_maximum_object_functions,
 		"s_object_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
@@ -96,6 +105,8 @@ namespace macaque
 		"object_function_interpolation_block",
 		2,
 		"s_object_function_interpolation_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_FUNCTION_INTERPOLATION_BLOCK_ID)
 	{
 		{ _field_long_enum, "interpolation mode", &object_function_interpolation_mode_enum },
@@ -114,6 +125,8 @@ namespace macaque
 		"object_runtime_interpolator_functions_block",
 		k_maximum_object_functions,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_RUNTIME_INTERPOLATOR_FUNCTIONS_BLOCK_ID)
 	{
 		{ _field_long_integer, "runtime interpolator to object function mapping" },
@@ -126,6 +139,8 @@ namespace macaque
 		"objectFunctionSwitchBlock",
 		ObjectFunctionSwitchDefinition::k_maxCount,
 		"ObjectFunctionSwitchDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECTFUNCTIONSWITCHBLOCK_ID)
 	{
 		{ _field_string_id, "switch function name" },
@@ -140,6 +155,8 @@ namespace macaque
 		"objectFunctionSwitchFunctionBlock",
 		ObjectFunctionSwitchDefinition::Function::k_maxCount,
 		"ObjectFunctionSwitchDefinition::Function",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECTFUNCTIONSWITCHFUNCTIONBLOCK_ID)
 	{
 		{ _field_real_bounds, "selection bounds", "if the switch function is between these values, this function will be picked" },
@@ -153,6 +170,8 @@ namespace macaque
 		"global_object_attachment_block",
 		k_maximum_number_of_attachments_per_object,
 		"object_attachment_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN3 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "type", &global_object_attachment_block_type_reference },
@@ -172,6 +191,8 @@ namespace macaque
 		"object_widget_block",
 		MAXIMUM_WIDGETS_PER_OBJECT,
 		"object_definition_widget",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_WIDGET_BLOCK_ID)
 	{
 		{ _field_tag_reference, "type", &object_widget_block_type_reference },
@@ -185,6 +206,8 @@ namespace macaque
 		"object_change_colors",
 		k_object_change_color_count,
 		"object_change_color_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_CHANGE_COLORS_ID)
 	{
 		{ _field_useless_pad, "" },
@@ -199,6 +222,8 @@ namespace macaque
 		"object_change_color_initial_permutation",
 		MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_INITIAL_PERMUTATIONS,
 		"object_change_color_initial_permutation",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_CHANGE_COLOR_INITIAL_PERMUTATION_ID)
 	{
 		{ _field_real, "weight" },
@@ -214,6 +239,8 @@ namespace macaque
 		"object_change_color_function",
 		MAXIMUM_NUMBER_OF_OBJECT_CHANGE_COLOR_FUNCTIONS,
 		"object_change_color_function",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_CHANGE_COLOR_FUNCTION_ID)
 	{
 		FIELD_PAD("TJJWBYNU", nullptr, 4),
@@ -231,6 +258,8 @@ namespace macaque
 		"multiplayer_object_block",
 		k_maximum_multiplayer_object_blocks,
 		"s_multiplayer_object_properties_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_BLOCK_ID)
 	{
 		{ _field_explanation, "GAME ENGINE INCLUSION", "Set which game engines you desire this object to appear in" },
@@ -283,6 +312,8 @@ namespace macaque
 		"object_spawn_effects_block",
 		1,
 		"s_object_spawn_effects",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPAWN_EFFECTS_BLOCK_ID)
 	{
 		{ _field_explanation, "Spawn Effects", "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created." },
@@ -297,6 +328,9 @@ namespace macaque
 		object_struct_definition,
 		"object_struct_definition",
 		"_object_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("OBJECT", nullptr, _field_id_function_group_begin),
@@ -362,6 +396,8 @@ namespace macaque
 		object_abandonment_struct,
 		"object_abandonment_struct",
 		"ObjectAbandonmentDefinition",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_ABANDONMENT_STRUCT_ID)
 	{
 		{ _field_real, "Vitality Limit To Start Countdown" },

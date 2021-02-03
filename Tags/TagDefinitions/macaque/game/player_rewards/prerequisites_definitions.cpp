@@ -13,6 +13,8 @@ namespace macaque
 		"purchase_prerequisite_grade_definition_block",
 		1,
 		"s_purchase_prerequisite_grade_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITE_GRADE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_long_integer, "enlistment index" },
@@ -26,6 +28,8 @@ namespace macaque
 		"purchase_prerequisite_commendation_definition_block",
 		1,
 		"s_purchase_prerequisite_commendation_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITE_COMMENDATION_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "commendation id", "This must match one of the commendation names." },
@@ -41,6 +45,8 @@ namespace macaque
 		"PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock",
 		20,
 		"s_purchase_prerequisite_purchased_item_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPREREQUISITEPURCHASEDAPPEARANCEITEMDEFINITIONBLOCK_ID)
 	{
 		{ _field_struct, "item reference", &PurchaseAppearanceDefinitionReferenceStruct },
@@ -53,6 +59,8 @@ namespace macaque
 		"PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock",
 		20,
 		"s_purchase_prerequisite_purchased_item_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPREREQUISITEPURCHASEDLOADOUTITEMDEFINITIONBLOCK_ID)
 	{
 		{ _field_struct, "item reference", &PurchaseLoadoutDefinitionReferenceStruct },
@@ -65,6 +73,8 @@ namespace macaque
 		"PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock",
 		20,
 		"s_purchase_prerequisite_purchased_item_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPREREQUISITEPURCHASEDORDNANCEITEMDEFINITIONBLOCK_ID)
 	{
 		{ _field_struct, "item reference", &PurchaseOrdnanceDefinitionReferenceStruct },
@@ -77,6 +87,8 @@ namespace macaque
 		"purchase_prerequisites_unlockable_definition_block",
 		10,
 		"s_purchase_prerequisite_unlockable_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITES_UNLOCKABLE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "unlockable name" },
@@ -89,6 +101,8 @@ namespace macaque
 		"purchase_prerequisites_offer_definition_block",
 		10,
 		"PurchasePrerequisiteOfferDefinition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITES_OFFER_DEFINITION_BLOCK_ID)
 	{
 		{ _field_char_enum, "offer type", &MarketplaceOfferTypeEnum },
@@ -101,6 +115,8 @@ namespace macaque
 		PurchasePrerequisitesUnifiedDefinitionBlock,
 		"PurchasePrerequisitesUnifiedDefinitionBlock",
 		"PurchasePrerequisitesUnifiedDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPREREQUISITESUNIFIEDDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "prerequisite purchased item error string" },
@@ -122,6 +138,8 @@ namespace macaque
 		PurchaseAppearanceDefinitionReferenceStruct,
 		"PurchaseAppearanceDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEAPPEARANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", &CookiePurchaseAppearanceDefinitionBlock_block },
@@ -134,6 +152,8 @@ namespace macaque
 		PurchaseLoadoutDefinitionReferenceStruct,
 		"PurchaseLoadoutDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASELOADOUTDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", &CookiePurchaseLoadoutDefinitionBlock_block },
@@ -146,6 +166,8 @@ namespace macaque
 		PurchaseOrdnanceDefinitionReferenceStruct,
 		"PurchaseOrdnanceDefinitionReferenceStruct",
 		"s_cookie_purchase_definition_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEORDNANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
 		{ _field_short_block_index, "item reference", &CookiePurchaseOrdnanceDefinitionBlock_block },

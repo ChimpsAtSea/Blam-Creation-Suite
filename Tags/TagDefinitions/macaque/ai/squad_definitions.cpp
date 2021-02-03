@@ -13,6 +13,8 @@ namespace macaque
 		"squad_template_block",
 		1,
 		"s_squad_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -33,6 +35,8 @@ namespace macaque
 		"squad_groups_block",
 		k_max_squad_groups_per_map,
 		"squad_group_definition",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_GROUPS_BLOCK_ID)
 	{
 		{ _field_string, "name" },
@@ -49,6 +53,9 @@ namespace macaque
 		"squads_block",
 		k_maximum_squads_per_map,
 		"s_squad_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUADS_BLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
@@ -77,6 +84,9 @@ namespace macaque
 		"spawn_formation_block",
 		k_maximum_spawn_formations_per_squad,
 		"s_spawn_formation_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SPAWN_FORMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -107,6 +117,8 @@ namespace macaque
 		"patrol_point_block",
 		32,
 		"s_patrol_point",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		PATROL_POINT_BLOCK_ID)
 	{
 		{ _field_custom_short_block_index, "point" },
@@ -128,6 +140,9 @@ namespace macaque
 		"spawn_points_block",
 		k_maximum_spawn_points_per_squad,
 		"s_spawn_point_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SPAWN_POINTS_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -176,6 +191,9 @@ namespace macaque
 		"cell_block",
 		k_maximum_cells_per_squad,
 		"s_cell_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		CELL_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
@@ -207,6 +225,8 @@ namespace macaque
 		"character_palette_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_palette_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -222,6 +242,8 @@ namespace macaque
 		"weapon_palette_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_palette_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -237,6 +259,8 @@ namespace macaque
 		"equipment_palette_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_palette_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -252,6 +276,8 @@ namespace macaque
 		"cell_template_block",
 		k_maximum_cells_per_squad,
 		"s_cell_template_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CELL_TEMPLATE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -277,6 +303,9 @@ namespace macaque
 		"character_ref_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_ref_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -292,6 +321,9 @@ namespace macaque
 		"weapon_ref_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_ref_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -307,6 +339,9 @@ namespace macaque
 		"equipment_ref_choice_block",
 		k_maximum_palette_choices,
 		"s_cell_ref_choice",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
@@ -321,6 +356,8 @@ namespace macaque
 		squad_definition_internal_struct,
 		"squad_definition_internal_struct",
 		"s_squad_definition_internal",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_DEFINITION_INTERNAL_STRUCT_ID)
 	{
 		{ _field_block, "cells", &cell_block },

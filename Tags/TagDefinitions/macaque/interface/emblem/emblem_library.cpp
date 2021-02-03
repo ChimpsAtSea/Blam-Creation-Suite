@@ -26,6 +26,9 @@ namespace macaque
 		"emblem_bitmap_list",
 		s_emblem_library::k_max_bitmap_list_count,
 		"s_emblem_library::s_bitmap",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_BITMAP_LIST_ID)
 	{
 		{ _field_string_id, "name" },
@@ -41,6 +44,9 @@ namespace macaque
 		"emblem_shape_list",
 		s_emblem_library::k_max_shape_list_count,
 		"s_emblem_library::s_shape",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_SHAPE_LIST_ID)
 	{
 		{ _field_string_id, "name" },
@@ -58,6 +64,9 @@ namespace macaque
 		"emblem_front_list",
 		s_emblem_library::k_max_front_emblem_count,
 		"s_emblem_library::s_emblem_front",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_FRONT_LIST_ID)
 	{
 		{ _field_string_id, "name" },
@@ -78,6 +87,9 @@ namespace macaque
 		"emblem_back_list",
 		s_emblem_library::k_max_back_emblem_count,
 		"s_emblem_library::s_emblem_back",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_BACK_LIST_ID)
 	{
 		{ _field_string_id, "name" },
@@ -92,6 +104,8 @@ namespace macaque
 		"emblem_runtime_front_list",
 		s_emblem_library::k_max_front_emblem_count,
 		"s_emblem_library::s_emblem_front_runtime",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_RUNTIME_FRONT_LIST_ID)
 	{
 		{ _field_string_id, "name0" },
@@ -132,6 +146,8 @@ namespace macaque
 		"emblem_runtime_back_list",
 		s_emblem_library::k_max_back_emblem_count,
 		"s_emblem_library::s_emblem_runtime",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_RUNTIME_BACK_LIST_ID)
 	{
 		{ _field_string_id, "name" },
@@ -155,6 +171,9 @@ namespace macaque
 		emblem_library_struct_definition,
 		"emblem_library_struct_definition",
 		"s_emblem_library",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LIBRARY_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Emblem Library", "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n" },
@@ -183,6 +202,8 @@ namespace macaque
 		emblem_transform,
 		"emblem_transform",
 		"s_emblem_library::s_transform",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_TRANSFORM_ID)
 	{
 		{ _field_real_point_2d, "scale" },
@@ -199,6 +220,8 @@ namespace macaque
 		emblem_layer,
 		"emblem_layer",
 		"s_emblem_library::s_layer",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LAYER_ID)
 	{
 		{ _field_explanation, "Shape 0", "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n" },

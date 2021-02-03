@@ -13,6 +13,8 @@ namespace macaque
 		"pca_animation_block",
 		1,
 		"PcaAnimationTag",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCA_ANIMATION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "Links", "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually" },
@@ -42,6 +44,8 @@ namespace macaque
 		"PCAImportedFrameDatablock",
 		64 * k_meg,
 		"PCAImportedFrameData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAIMPORTEDFRAMEDATABLOCK_ID)
 	{
 		{ _field_data, "Coefficients" },
@@ -54,6 +58,8 @@ namespace macaque
 		"PCAImportedMeshDataBlock",
 		(8*1024-1),
 		"PCAImportedMeshData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAIMPORTEDMESHDATABLOCK_ID)
 	{
 		{ _field_long_integer, "render mesh index" },
@@ -80,6 +86,8 @@ namespace macaque
 		"PCAImportedAnimationDataBlock",
 		k_max_animations_per_graph,
 		"PCAImportedAnimationData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAIMPORTEDANIMATIONDATABLOCK_ID)
 	{
 		{ _field_string_id, "Name" },
@@ -97,6 +105,8 @@ namespace macaque
 		pca_coefficients_resource_definition_struct,
 		"pca_coefficients_resource_definition_struct",
 		"PCAImportedFrameData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCA_COEFFICIENTS_RESOURCE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_data, "Coefficients" },

@@ -13,6 +13,8 @@ namespace macaque
 		"breakable_surface_set_block",
 		k_maximum_breakable_surface_sets,
 		"s_breakable_surface_set_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BREAKABLE_SURFACE_SET_BLOCK_ID)
 	{
 		{ _field_array, "supported bitfield", &supported_bitfield_array },
@@ -25,6 +27,8 @@ namespace macaque
 		"supported_bitfield",
 		((((k_maximum_breakable_surfaces_per_breakable_surface_set)+(k_int32_bits-1))>>k_int32_bits_bits)),
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPORTED_BITFIELD_ID)
 	{
 		{ _field_long_integer, "bitvector data" },

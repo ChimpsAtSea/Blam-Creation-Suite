@@ -13,6 +13,8 @@ namespace macaque
 		"material_shader_bank_block",
 		1,
 		"c_material_shader_bank",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_BANK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "compiled vertex shaders", &compiled_vertex_shader_block },
@@ -36,6 +38,8 @@ namespace macaque
 		"compiled_shader_hash_block",
 		kshaderBlockCount,
 		"long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPILED_SHADER_HASH_BLOCK_ID)
 	{
 		{ _field_long_integer, "hash" },
@@ -48,6 +52,8 @@ namespace macaque
 		"vertexShaderUniqueBindingInfoBlock",
 		kshaderBlockCount,
 		"VertexShaderUniqueBindingInfo",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXSHADERUNIQUEBINDINGINFOBLOCK_ID)
 	{
 		{ _field_long_integer, "VertexType" },

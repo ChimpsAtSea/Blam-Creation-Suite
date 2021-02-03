@@ -25,6 +25,8 @@ namespace macaque
 		vector_hud_definition_struct_definition,
 		"vector_hud_definition_struct_definition",
 		"s_vector_hud_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VECTOR_HUD_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_data, "raw hud data" },

@@ -13,6 +13,10 @@ namespace macaque
 		"weapon_block",
 		1,
 		"_weapon_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN3 | SET_UNKNOWN4 | 
+		SET_UNKNOWN5 | SET_UNKNOWN7 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_UNKNOWN18,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "item", &item_struct_definition },
@@ -168,6 +172,8 @@ namespace macaque
 		"melee_damage_parameters_block",
 		k_melee_damage_class_count,
 		"s_melee_damage_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MELEE_DAMAGE_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_explanation, "melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target" },
@@ -196,6 +202,8 @@ namespace macaque
 		"globalAimAssistBlock",
 		3,
 		"aim_assist_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBALAIMASSISTBLOCK_ID)
 	{
 		{ _field_real, "autoaim stick time", "the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in", "seconds" },
@@ -221,6 +229,8 @@ namespace macaque
 		"globalAimSwimBlock",
 		3,
 		"aimSwimParameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBALAIMSWIMBLOCK_ID)
 	{
 		{ _field_explanation, "x axis curve", "" },
@@ -245,6 +255,8 @@ namespace macaque
 		"weapon_first_person_interface_block",
 		k_first_person_interface_count,
 		"weapon_first_person_interface_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_FIRST_PERSON_INTERFACE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "first person model", &render_model_reference$10 },
@@ -260,6 +272,8 @@ namespace macaque
 		"magazines",
 		MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON,
 		"magazines",
+		SET_UNKNOWN0 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAGAZINES_ID)
 	{
 		{ _field_long_flags, "flags", &magazine_flags },
@@ -292,6 +306,8 @@ namespace macaque
 		"magazine_objects",
 		MAXIMUM_NUMBER_OF_MAGAZINE_OBJECTS_PER_MAGAZINE,
 		"magazine_objects",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAGAZINE_OBJECTS_ID)
 	{
 		{ _field_short_integer, "rounds" },
@@ -306,6 +322,8 @@ namespace macaque
 		"weapon_triggers",
 		k_weapon_trigger_count,
 		"weapon_trigger_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN4 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGERS_ID)
 	{
 		{ _field_long_flags, "flags", &weapon_trigger_definition_flags },
@@ -329,6 +347,9 @@ namespace macaque
 		"weapon_barrels",
 		k_weapon_barrel_count,
 		"weapon_barrels",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARRELS_ID)
 	{
 		{ _field_long_flags, "flags", &weapon_barrel_flags },
@@ -386,6 +407,8 @@ namespace macaque
 		"projectileDistributionCustomVector",
 		k_projectile_maximum_custom_vectors,
 		"s_ProjectileDistributionCustomVector",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROJECTILEDISTRIBUTIONCUSTOMVECTOR_ID)
 	{
 		{ _field_real_point_2d, "Point offset", "x-y offset - +x is right, +y is up" },
@@ -398,6 +421,9 @@ namespace macaque
 		"weapon_barrel_function_block",
 		1,
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_FUNCTION_BLOCK_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct },
@@ -410,6 +436,8 @@ namespace macaque
 		"weapon_barrel_first_person_offset_block",
 		k_first_person_weapon_offset_type_count,
 		"real_point3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_FIRST_PERSON_OFFSET_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "first person offset", "+x is forward, +z is up, +y is left", "world units" },
@@ -422,6 +450,8 @@ namespace macaque
 		"barrel_firing_effect_block",
 		k_weapon_barrel_effect_count,
 		"barrel_firing_effect_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BARREL_FIRING_EFFECT_BLOCK_ID)
 	{
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
@@ -450,6 +480,8 @@ namespace macaque
 		"weapon_trigger_charging_fire_fraction",
 		MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGER_CHARGING_FIRE_FRACTION_ID)
 	{
 		{ _field_real_fraction, "charge fraction", "charging fraction at which the weapon should additionally fire a shot." },
@@ -462,6 +494,8 @@ namespace macaque
 		"weaponScaleshotStruct",
 		1,
 		"WeaponScaleshotDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSCALESHOTSTRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotFlags },
@@ -479,6 +513,8 @@ namespace macaque
 		"weaponScaleshotLevelStruct",
 		WeaponScaleshotLevelDefinition::k_maxLevels,
 		"WeaponScaleshotLevelDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSCALESHOTLEVELSTRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &weaponScaleshotLevelFlags },
@@ -496,6 +532,8 @@ namespace macaque
 		"weapon_screen_effect_block",
 		4,
 		"s_weapon_screen_effect_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_SCREEN_EFFECT_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
@@ -510,6 +548,8 @@ namespace macaque
 		"WeaponSoundRTPCBlock",
 		k_maxWeaponSoundRTPCBlocks,
 		"WeaponSoundRTPCBlockDefinition",
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSOUNDRTPCBLOCK_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
@@ -525,6 +565,8 @@ namespace macaque
 		"WeaponSoundSweetenerBlock",
 		k_maxWeaponSoundSweetenerBlocks,
 		"WeaponSoundSweetenerBlockDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONSOUNDSWEETENERBLOCK_ID)
 	{
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
@@ -539,6 +581,8 @@ namespace macaque
 		aim_assist_struct,
 		"aim_assist_struct",
 		"aim_assist_parameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AIM_ASSIST_STRUCT_ID)
 	{
 		{ _field_real, "autoaim stick time", "the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in", "seconds" },
@@ -563,6 +607,8 @@ namespace macaque
 		WeaponBarrelIronSightsStruct,
 		"WeaponBarrelIronSightsStruct",
 		"s_IronSightsParameters",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPONBARRELIRONSIGHTSSTRUCT_ID)
 	{
 		{ _field_real, "spread multiplier", "multiplies the spread error - use < 1.0 for more accuracy" },
@@ -577,6 +623,8 @@ namespace macaque
 		weapon_interface_struct,
 		"weapon_interface_struct",
 		"weapon_interface_definition_new",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_INTERFACE_STRUCT_ID)
 	{
 		{ _field_explanation, "interface", "" },
@@ -592,6 +640,8 @@ namespace macaque
 		weapon_shared_interface_struct,
 		"weapon_shared_interface_struct",
 		"s_tag_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_SHARED_INTERFACE_STRUCT_ID)
 	{
 		FIELD_PAD("PWGUS", nullptr, 16),
@@ -603,6 +653,8 @@ namespace macaque
 		weapon_barrel_firing_parameters_struct,
 		"weapon_barrel_firing_parameters_struct",
 		"s_weapon_barrel_firing_params_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_FIRING_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real_bounds, "rounds per second", "the number of firing effects created per second" },
@@ -625,6 +677,8 @@ namespace macaque
 		weapon_barrel_firing_error_struct,
 		"weapon_barrel_firing_error_struct",
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_FIRING_ERROR_STRUCT_ID)
 	{
 		{ _field_real, "deceleration time", "the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n\'globals@Player information.momentum and sprinting.min weapon error\'", "seconds" },
@@ -640,6 +694,8 @@ namespace macaque
 		weapon_barrel_projectile_accuracy_penalty_struct,
 		"weapon_barrel_projectile_accuracy_penalty_struct",
 		"s_projectile_accuracy_penalty_info",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
 	{
 		FIELD_CUSTOM("accuracy penalties", nullptr, _field_id_function_group_begin),
@@ -663,6 +719,8 @@ namespace macaque
 		weapon_barrel_projectile_accuracy_penalty_function_struct,
 		"weapon_barrel_projectile_accuracy_penalty_function_struct",
 		"s_projectile_accuracy_penalty_functions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID)
 	{
 		{ _field_block, "firing penalty function", &weapon_barrel_function_block },
@@ -678,6 +736,8 @@ namespace macaque
 		weapon_barrel_damage_effect_struct,
 		"weapon_barrel_damage_effect_struct",
 		"weapon_barrel_damage_effect_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_DAMAGE_EFFECT_STRUCT_ID)
 	{
 		{ _field_tag_reference, "damage effect", &global_damage_reference },
@@ -689,6 +749,8 @@ namespace macaque
 		weapon_trigger_autofire_struct,
 		"weapon_trigger_autofire_struct",
 		"weapon_trigger_definition::s_autofire",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGER_AUTOFIRE_STRUCT_ID)
 	{
 		{ _field_explanation, "AUTOFIRE", "" },
@@ -704,6 +766,8 @@ namespace macaque
 		weapon_trigger_charging_struct,
 		"weapon_trigger_charging_struct",
 		"weapon_trigger_definition::s_charging",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TRIGGER_CHARGING_STRUCT_ID)
 	{
 		{ _field_explanation, "CHARGING", "" },

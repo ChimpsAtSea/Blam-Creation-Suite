@@ -25,6 +25,9 @@ namespace macaque
 		particle_model_struct_definition,
 		"particle_model_struct_definition",
 		"c_particle_model_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN14 | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Import model", nullptr, _field_id_import_model),
@@ -41,6 +44,8 @@ namespace macaque
 		gpu_data_struct,
 		"gpu_data_struct",
 		"c_particle_model_definition::s_gpu_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_DATA_STRUCT_ID)
 	{
 		{ _field_block, "m_variants", &gpu_variants_block },

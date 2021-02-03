@@ -13,6 +13,8 @@ namespace macaque
 		"rasterizer_constant_block",
 		c_rasterizer_constant_table_definition::k_max_constants,
 		"c_rasterizer_constant_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_CONSTANT_BLOCK_ID)
 	{
 		{ _field_string_id, "constant name" },
@@ -27,6 +29,8 @@ namespace macaque
 		global_rasterizer_constant_table_struct,
 		"global_rasterizer_constant_table_struct",
 		"c_rasterizer_constant_table_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID)
 	{
 		{ _field_block, "constants", &rasterizer_constant_block },

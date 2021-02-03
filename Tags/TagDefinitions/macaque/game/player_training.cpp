@@ -13,6 +13,8 @@ namespace macaque
 		"player_training_entry_data_block",
 		k_player_training_count,
 		"s_player_training_entry_data",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAINING_ENTRY_DATA_BLOCK_ID)
 	{
 		{ _field_string_id, "display string", "comes out of the HUD text globals" },

@@ -26,6 +26,9 @@ namespace macaque
 		"light_volume_definition_block",
 		c_light_volume_system_definition::k_max_light_volume,
 		"c_light_volume_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -67,6 +70,8 @@ namespace macaque
 		"light_volume_precompiled_vert_block",
 		c_light_volume_definition::k_max_precompiled_profiles,
 		"c_light_volume_definition::s_precompiled_vertex",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_PRECOMPILED_VERT_BLOCK_ID)
 	{
 		{ _field_word_integer, "r" },
@@ -81,6 +86,8 @@ namespace macaque
 		light_volume_system_struct_definition,
 		"light_volume_system_struct_definition",
 		"c_light_volume_system_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_SYSTEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "light_volumes", &light_volume_definition_block },
@@ -92,6 +99,9 @@ namespace macaque
 		light_volume_property_real,
 		"light_volume_property_real",
 		"c_light_volume_property_real",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_PROPERTY_REAL_ID)
 	{
 		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },
@@ -111,6 +121,9 @@ namespace macaque
 		light_volume_property_real_rgb_color,
 		"light_volume_property_real_rgb_color",
 		"c_light_volume_property_real_rgb_color",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_PROPERTY_REAL_RGB_COLOR_ID)
 	{
 		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },

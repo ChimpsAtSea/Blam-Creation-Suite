@@ -13,6 +13,8 @@ namespace macaque
 		"bitmap_tight_bounds_block_def",
 		(4 * k_maxTightBoundsSets),
 		"real_point2d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_TIGHT_BOUNDS_BLOCK_DEF_ID)
 	{
 		{ _field_real_point_2d, "uv" },

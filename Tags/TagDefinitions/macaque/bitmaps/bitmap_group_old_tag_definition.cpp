@@ -13,6 +13,8 @@ namespace macaque
 		"bitmap_group_sequence_block_def",
 		MAXIMUM_SEQUENCES_PER_BITMAP_GROUP,
 		"bitmap_group_sequence",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_GROUP_SEQUENCE_BLOCK_DEF_ID)
 	{
 		{ _field_string, "name" },
@@ -29,6 +31,8 @@ namespace macaque
 		"bitmap_group_sprite_block_def",
 		MAXIMUM_SPRITES_PER_SEQUENCE,
 		"bitmap_group_sprite",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_GROUP_SPRITE_BLOCK_DEF_ID)
 	{
 		{ _field_short_integer, "bitmap index" },

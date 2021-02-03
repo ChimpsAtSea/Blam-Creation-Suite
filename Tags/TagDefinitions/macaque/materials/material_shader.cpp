@@ -13,6 +13,8 @@ namespace macaque
 		"material_shader_block",
 		1,
 		"c_material_shader",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &material_shader_flags },
@@ -40,6 +42,8 @@ namespace macaque
 		"material_shader_source_file_block",
 		MATERIAL_SHADER_MAX_SOURCE_FILES,
 		"s_material_shader_source_file",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_SOURCE_FILE_BLOCK_ID)
 	{
 		{ _field_long_string, "shader path" },
@@ -53,6 +57,8 @@ namespace macaque
 		"compiled_effects_block",
 		k_number_of_platforms,
 		"s_tag_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPILED_EFFECTS_BLOCK_ID)
 	{
 		{ _field_data, "compiled effect data" },
@@ -65,6 +71,8 @@ namespace macaque
 		"material_vertex_shader_entry_point_block",
 		k_number_of_entry_points + 8,
 		"s_material_vertex_shader_entry_point",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_VERTEX_SHADER_ENTRY_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "vertex type shader indices", &compiled_vertex_shader_refererence_block },
@@ -77,6 +85,8 @@ namespace macaque
 		"compiled_vertex_shader_refererence_block",
 		k_number_of_vertex_types + 8,
 		"s_compiled_material_shader_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPILED_VERTEX_SHADER_REFERERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "hash" },
@@ -90,6 +100,8 @@ namespace macaque
 		"compiled_pixel_shader_refererence_block",
 		k_number_of_entry_points + 8,
 		"s_compiled_material_shader_reference",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPILED_PIXEL_SHADER_REFERERENCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_integer, "hash" },

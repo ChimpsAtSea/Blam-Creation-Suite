@@ -13,6 +13,9 @@ namespace macaque
 		"dialogue_block",
 		1,
 		"s_dialogue_definition",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DIALOGUE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "global dialogue info", &global_dialogue_reference },
@@ -35,6 +38,8 @@ namespace macaque
 		"sound_references_block",
 		500,
 		"sound_references_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_REFERENCES_BLOCK_ID)
 	{
 		{ _field_string_id, "vocalization" },
@@ -48,6 +53,8 @@ namespace macaque
 		"vocalization_stimuli_block_definition",
 		6,
 		"s_vocalization_stimulus",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_STIMULI_BLOCK_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &vocalization_stimulus_flags },

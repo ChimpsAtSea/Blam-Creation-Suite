@@ -10,7 +10,7 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 	size(struct_header->size),
 	size_string(h4_va_to_pointer(h4_data, struct_header->size_string_address)),
 	alignment_bits(struct_header->alignment_bits),
-	legacy_struct_tag{ struct_header->legacy_struct_tag[0] , struct_header->legacy_struct_tag[1] , struct_header->legacy_struct_tag[2] },
+	legacy_struct_tag{ struct_header->legacy_struct_tag[0] , struct_header->legacy_struct_tag[1] },
 	tag_fields(),
 	offset(offset),
 	runtime_flags(struct_header->runtime_flags),
@@ -30,6 +30,14 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 		debug_point;
 	}
 
+	int highest_runtime_flag = 31 - static_cast<int>(__lzcnt(runtime_flags));
+	ASSERT(highest_runtime_flag == -1 || highest_runtime_flag < k_num_h4_runtime_flags);
+
+	ASSERT(memory_attributes.memory_type < k_num_tag_memory_type);
+	
+	int highest_memory_usage_flag = 31 - static_cast<int>(__lzcnt(memory_attributes.usage_flags));
+	ASSERT(highest_memory_usage_flag == -1 || highest_memory_usage_flag < k_num_h4_tag_memory_usage_bits);
+	
 	const s_h4_tag_field_definition* field_definition = fields;
 	uint32_t field_index = 0;
 	e_h4_field_type field_type = field_definition->field_type;

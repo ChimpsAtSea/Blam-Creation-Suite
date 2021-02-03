@@ -26,6 +26,8 @@ namespace macaque
 		"rewardDefinitionBlock",
 		RewardGlobalDefinition::k_maximum_count,
 		"RewardGlobalDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REWARDDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -40,6 +42,8 @@ namespace macaque
 		reward_globals_definition_struct_definition,
 		"reward_globals_definition_struct_definition",
 		"RewardGlobalsDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REWARD_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "reward definitions", &rewardDefinitionBlock_block },

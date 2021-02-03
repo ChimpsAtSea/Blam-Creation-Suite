@@ -13,6 +13,8 @@ namespace macaque
 		"global_target_tracking_parameters_block",
 		1,
 		"s_target_tracking_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_block, "tracking types", &tracking_type_block },
@@ -30,6 +32,8 @@ namespace macaque
 		"tracking_type_block",
 		16,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACKING_TYPE_BLOCK_ID)
 	{
 		{ _field_string_id, "tracking type" },

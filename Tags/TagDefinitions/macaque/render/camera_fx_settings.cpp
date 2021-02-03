@@ -13,6 +13,9 @@ namespace macaque
 		"camera_fx_settings_block",
 		1,
 		"c_camera_fx_settings",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SETTINGS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -49,6 +52,8 @@ namespace macaque
 		camera_fx_exposure_struct,
 		"camera_fx_exposure_struct",
 		"c_camera_fx_settings::s_real_exposure_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_EXPOSURE_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -73,6 +78,8 @@ namespace macaque
 		camera_fx_exposure_sensitivity_struct,
 		"camera_fx_exposure_sensitivity_struct",
 		"c_camera_fx_settings::s_real_instant_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID)
 	{
 		{ _field_explanation, "AUTO EXPOSURE SENSITIVITY", "How sensitive auto exposure is to small bright patches on the screen (like the sun)" },
@@ -87,6 +94,8 @@ namespace macaque
 		camera_fx_bloom_highlight_struct,
 		"camera_fx_bloom_highlight_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_HIGHLIGHT_STRUCT_ID)
 	{
 		{ _field_explanation, "HIGHLIGHT BLOOM", "These parameters control bloom off the highlights (really bright stuff)" },
@@ -103,6 +112,8 @@ namespace macaque
 		camera_fx_bloom_inherent_struct,
 		"camera_fx_bloom_inherent_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INHERENT_STRUCT_ID)
 	{
 		{ _field_explanation, "INHERENT BLOOM", "These parameters control bloom off everything (bright and dark)" },
@@ -119,6 +130,8 @@ namespace macaque
 		camera_fx_bloom_self_illum_struct,
 		"camera_fx_bloom_self_illum_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SELF_ILLUM_STRUCT_ID)
 	{
 		{ _field_explanation, "SELF-ILLUM BLOOM", "These parameters control off of self-illum pixels" },
@@ -135,6 +148,8 @@ namespace macaque
 		camera_fx_bloom_intensity_struct,
 		"camera_fx_bloom_intensity_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID)
 	{
 		{ _field_explanation, "BLOOM INTENSITY", "These parameters control how bright the bloom is, relative to the underlying scene" },
@@ -151,6 +166,8 @@ namespace macaque
 		camera_fx_bloom_large_color_struct,
 		"camera_fx_bloom_large_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID)
 	{
 		{ _field_explanation, "BLOOM LARGE COLOR", "These parameters control the color of the large bloom" },
@@ -165,6 +182,8 @@ namespace macaque
 		camera_fx_bloom_medium_color_struct,
 		"camera_fx_bloom_medium_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID)
 	{
 		{ _field_explanation, "BLOOM MEDIUM COLOR", "These parameters control the color of the medium bloom" },
@@ -179,6 +198,8 @@ namespace macaque
 		camera_fx_bloom_small_color_struct,
 		"camera_fx_bloom_small_color_struct",
 		"c_camera_fx_settings::s_color_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID)
 	{
 		{ _field_explanation, "BLOOM SMALL COLOR", "These parameters control the color of the small bloom" },
@@ -193,6 +214,8 @@ namespace macaque
 		camera_fx_bling_intensity_struct,
 		"camera_fx_bling_intensity_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_INTENSITY_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -208,6 +231,8 @@ namespace macaque
 		camera_fx_bling_size_struct,
 		"camera_fx_bling_size_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_SIZE_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -223,6 +248,8 @@ namespace macaque
 		camera_fx_bling_angle_struct,
 		"camera_fx_bling_angle_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_ANGLE_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
@@ -238,6 +265,8 @@ namespace macaque
 		camera_fx_bling_count_struct,
 		"camera_fx_bling_count_struct",
 		"c_camera_fx_settings::s_word_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_COUNT_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_bling_spikes },
@@ -250,6 +279,8 @@ namespace macaque
 		camera_fx_self_illum_preferred_struct,
 		"camera_fx_self_illum_preferred_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID)
 	{
 		{ _field_explanation, "SELF ILLUM EXPOSURE", "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure" },
@@ -266,6 +297,8 @@ namespace macaque
 		camera_fx_self_illum_scale_struct,
 		"camera_fx_self_illum_scale_struct",
 		"c_camera_fx_settings::s_real_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID)
 	{
 		{ _field_explanation, "SELF ILLUM CHANGE", "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure" },
@@ -282,6 +315,8 @@ namespace macaque
 		camera_fx_color_grading_struct,
 		"camera_fx_color_grading_struct",
 		"c_camera_fx_settings::s_color_grading_parameter",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_COLOR_GRADING_STRUCT_ID)
 	{
 		{ _field_explanation, "Color Grading", "set the color grading texture" },
@@ -296,6 +331,8 @@ namespace macaque
 		camera_fx_filmic_tone_curve_struct,
 		"camera_fx_filmic_tone_curve_struct",
 		"c_camera_fx_settings::s_filmic_tone_curve_parameter",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_FILMIC_TONE_CURVE_STRUCT_ID)
 	{
 		{ _field_explanation, "Filmic Tone Curve", "set the values for the filmic tone curve" },

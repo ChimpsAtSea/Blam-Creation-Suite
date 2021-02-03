@@ -104,6 +104,8 @@ namespace macaque
 		"InfinityMissionSeasonImagesDefinition",
 		k_infinityMaximumSeasonCount,
 		"InfinityMissionSeasonImages",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INFINITYMISSIONSEASONIMAGESDEFINITION_ID)
 	{
 		{ _field_explanation, "Season Images", "This block should contain a season\'s worth of Infinity mission images" },
@@ -119,6 +121,8 @@ namespace macaque
 		"InfinityMissionImagesDefinition",
 		k_infinityMaximumMissionsPerSeason,
 		"InfinityMissionImages",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INFINITYMISSIONIMAGESDEFINITION_ID)
 	{
 		{ _field_tag_reference, "card image", &global_bitmap_reference },
@@ -134,6 +138,8 @@ namespace macaque
 		"pgcr_enemy_to_category_list_block",
 		k_pgcr_maximum_number_of_categories_per_bucket,
 		"s_pgcr_enemy_to_category_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_ENEMY_TO_CATEGORY_LIST_BLOCK_ID)
 	{
 		{ _field_string_id, "category display name" },
@@ -151,6 +157,8 @@ namespace macaque
 		"pgcr_player_to_category_entry_block",
 		k_pgcr_maximum_number_of_player_entries_per_category,
 		"s_pgcr_player_to_category_entry",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_PLAYER_TO_CATEGORY_ENTRY_BLOCK_ID)
 	{
 		{ _field_char_enum, "player type", &pgcr_player_type_enum },
@@ -164,6 +172,8 @@ namespace macaque
 		"pgcr_enemy_to_category_entry_block",
 		k_pgcr_maximum_number_of_ai_entries_per_category,
 		"s_pgcr_enemy_to_category_entry",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_ENEMY_TO_CATEGORY_ENTRY_BLOCK_ID)
 	{
 		{ _field_char_enum, "character type", &campaign_metagame_bucket_type_with_none_enum },
@@ -178,6 +188,8 @@ namespace macaque
 		"pgcr_damage_type_image_block",
 		k_damage_reporting_type_count,
 		"PgcrDamageTypeImageBlock",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_DAMAGE_TYPE_IMAGE_BLOCK_ID)
 	{
 		{ _field_long_enum, "damage type", &global_damage_reporting_enum_definition },
@@ -194,6 +206,8 @@ namespace macaque
 		"gui_portrait_pose_block",
 		k_maxPortraitPoses,
 		"GuiPortraitPose",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_PORTRAIT_POSE_BLOCK_ID)
 	{
 		{ _field_string_id, "pose name" },
@@ -209,6 +223,8 @@ namespace macaque
 		"cui_component_screen_reference_block_definition",
 		k_maximum_number_of_screen_widgets,
 		"s_cui_component_screen_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_COMPONENT_SCREEN_REFERENCE_BLOCK_DEFINITION_ID)
 	{
 		{ _field_string_id, "name", "for use in code" },
@@ -222,6 +238,8 @@ namespace macaque
 		"cui_overlay_camera_block_definition",
 		k_cui_max_overlay_count,
 		"s_cui_overlay_camera_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_OVERLAY_CAMERA_BLOCK_DEFINITION_ID)
 	{
 		{ _field_string_id, "resolution name" },
@@ -240,6 +258,8 @@ namespace macaque
 		"cui_player_model_camera_settings_definition",
 		s_cui_player_model_camera_settings_definition::k_maximum_count,
 		"s_cui_player_model_camera_settings_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_PLAYER_MODEL_CAMERA_SETTINGS_DEFINITION_ID)
 	{
 		{ _field_explanation, "Camera Settings", "These are model-viewing camera parameters that you can control\n* FOV is the field of view used by the texture camera\n  if left 0, a suitable default FOV is used\n* Initial Radial Offset is the initial radial distance of the camera from the target model\n* Final Radial Offset is the final radial distance of the camera from the target model\n* Camera Radial Step Size is the incremental change in input to the radial transition function per tick\n* Initial Vertical Offset is the initial vertical distance of the camera from the target\'s center\n* Final Vertical Offset is the final vertical distance of the camera from the target\'s center\n* Camera Vertical Step Size is the incremental change in input to the vertical transition function per tick\n* Camera Rotational Step Size is the incremental change in camera rotation per game tick\n* The Transition Functions are used to control the camera zoom with controller input\n  if left empty, a linear interpolation is used for camera zoom" },
@@ -263,6 +283,9 @@ namespace macaque
 		"cui_player_model_controller_settings_definition",
 		s_cui_player_model_control_settings_definition::k_maximum_count,
 		"s_cui_player_model_control_settings_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_PLAYER_MODEL_CONTROLLER_SETTINGS_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
@@ -282,6 +305,9 @@ namespace macaque
 		"cui_player_model_transition_settings_definition",
 		s_cui_player_model_transition_settings_definition::k_maximum_count,
 		"s_cui_player_model_transition_settings_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_PLAYER_MODEL_TRANSITION_SETTINGS_DEFINITION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -295,6 +321,9 @@ namespace macaque
 		"cui_active_roster_settings_block",
 		s_cui_active_roster_settings_definition::k_max_count,
 		"s_cui_active_roster_settings_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_ACTIVE_ROSTER_SETTINGS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -308,6 +337,8 @@ namespace macaque
 		"campaign_state_screen_script_block_definition",
 		s_campaign_state_screen_script::k_max_count,
 		"s_campaign_state_screen_script",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_STATE_SCREEN_SCRIPT_BLOCK_DEFINITION_ID)
 	{
 		{ _field_long_integer, "map ID" },
@@ -322,6 +353,8 @@ namespace macaque
 		"UserInterfaceGameScreenSequenceStepDefinition",
 		UserInterfaceGameScreenSequenceStep::k_maxCount,
 		"UserInterfaceGameScreenSequenceStep",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACEGAMESCREENSEQUENCESTEPDEFINITION_ID)
 	{
 		{ _field_byte_flags, "flags", &UIGameStartSequenceFlagsDefinition },
@@ -338,6 +371,8 @@ namespace macaque
 		"SwapTagReferenceDefinition",
 		SwapTagReferences::k_maxCount,
 		"SwapTagReferences",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SWAPTAGREFERENCEDEFINITION_ID)
 	{
 		{ _field_tag_reference, "original tag", &SwapTagReferenceDefinition_original_tag_reference },
@@ -351,6 +386,8 @@ namespace macaque
 		"color_presets_block",
 		s_color_preset::k_maximum_color_presets,
 		"s_color_preset",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_PRESETS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -364,6 +401,8 @@ namespace macaque
 		"tint_colors_block",
 		1,
 		"s_tint_colors",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TINT_COLORS_BLOCK_ID)
 	{
 		{ _field_block, "text player", &color_list_block },
@@ -388,6 +427,8 @@ namespace macaque
 		"color_list_block",
 		((k_player_color_index_count)>(k_multiplayer_team_game_team_count+1)?(k_player_color_index_count):(k_multiplayer_team_game_team_count+1)),
 		"real_argb_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_LIST_BLOCK_ID)
 	{
 		{ _field_real_argb_color, "color" },
@@ -400,6 +441,8 @@ namespace macaque
 		"gui_alert_description_block",
 		s_gui_alert_description::k_maximum_gui_error_types_count,
 		"s_gui_alert_description",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_ALERT_DESCRIPTION_BLOCK_ID)
 	{
 		{ _field_string_id, "error name" },
@@ -418,6 +461,8 @@ namespace macaque
 		"gui_dialog_description_block",
 		s_gui_dialog_description::k_maximum_gui_dialog_types_count,
 		"s_gui_dialog_description",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_DIALOG_DESCRIPTION_BLOCK_ID)
 	{
 		{ _field_string_id, "dialog name" },
@@ -441,6 +486,9 @@ namespace macaque
 		"pgcr_incident_block",
 		s_cui_pgcr_incident::k_maximum_count,
 		"s_cui_pgcr_incident",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_INCIDENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "incident name" },
@@ -453,6 +501,8 @@ namespace macaque
 		InfinityUIImages_struct_definition,
 		"InfinityUIImages_struct_definition",
 		"InfinityUIImages",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INFINITYUIIMAGES_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "seasons", &InfinityMissionSeasonImagesDefinition_block },
@@ -464,6 +514,8 @@ namespace macaque
 		pgcr_enemy_to_category_mapping_definition_struct_definition,
 		"pgcr_enemy_to_category_mapping_definition_struct_definition",
 		"s_pgcr_enemy_to_category_mapping",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "character categories", &pgcr_enemy_to_category_list_block },
@@ -476,6 +528,8 @@ namespace macaque
 		pgcr_damage_type_image_mapping_definition_struct_definition,
 		"pgcr_damage_type_image_mapping_definition_struct_definition",
 		"PgcrDamageTypeImageMapping",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_DAMAGE_TYPE_IMAGE_MAPPING_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "damage type mapping", &pgcr_damage_type_image_block },
@@ -487,6 +541,8 @@ namespace macaque
 		portrait_poses_definition_struct_definition,
 		"portrait_poses_definition_struct_definition",
 		"UserInterfacePortraitPosesDefinitions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PORTRAIT_POSES_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "portrait poses", &gui_portrait_pose_block },
@@ -498,6 +554,8 @@ namespace macaque
 		user_interface_sounds_definition_struct_definition,
 		"user_interface_sounds_definition_struct_definition",
 		"s_user_interface_sounds",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_SOUNDS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("Controller Input Events", nullptr, _field_id_function_group_begin),
@@ -606,6 +664,8 @@ namespace macaque
 		user_interface_globals_definition_struct_definition,
 		"user_interface_globals_definition_struct_definition",
 		"s_user_interface_tag_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &UserInterfaceTagGlobalsFlagsDefinition },
@@ -647,6 +707,9 @@ namespace macaque
 		user_interface_shared_globals_definition_struct_definition,
 		"user_interface_shared_globals_definition_struct_definition",
 		"s_user_interface_shared_globals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "UI Rendering Globals", "miscellaneous rendering globals, more below..." },

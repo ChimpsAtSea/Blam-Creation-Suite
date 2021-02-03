@@ -25,6 +25,9 @@ namespace macaque
 		rumble_struct_definition,
 		"rumble_struct_definition",
 		"s_rumble_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "rumble", &rumble_definition_struct },
@@ -36,6 +39,9 @@ namespace macaque
 		rumble_definition_struct,
 		"rumble_definition_struct",
 		"s_rumble_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_explanation, "low frequency rumble", "" },
@@ -50,6 +56,9 @@ namespace macaque
 		rumble_frequency_definition_struct,
 		"rumble_frequency_definition_struct",
 		"s_rumble_frequency_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_UNKNOWN5 | 
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
 		{ _field_real, "duration", "seconds" },

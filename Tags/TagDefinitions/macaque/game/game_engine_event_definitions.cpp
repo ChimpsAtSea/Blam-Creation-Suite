@@ -13,6 +13,8 @@ namespace macaque
 		"game_engine_event_block",
 		k_maximum_game_engine_event_responses,
 		"s_game_engine_event_response_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_EVENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -45,6 +47,8 @@ namespace macaque
 		"sound_response_definition_block",
 		10,
 		"s_game_engine_event_sound_response_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESPONSE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_struct, "sound_response_definition_struct", &sound_response_definition_struct },
@@ -56,6 +60,8 @@ namespace macaque
 		sound_response_definition_struct,
 		"sound_response_definition_struct",
 		"s_game_engine_event_sound_response_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RESPONSE_DEFINITION_STRUCT_ID)
 	{
 		{ _field_byte_flags, "sound flags", &game_engine_sound_response_flags_definition },

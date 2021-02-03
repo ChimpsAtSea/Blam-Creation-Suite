@@ -25,6 +25,8 @@ namespace macaque
 		controller_mapping_struct_definition,
 		"controller_mapping_struct_definition",
 		"s_controller_mapping_definition",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROLLER_MAPPING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "auto zoom out ticks", "set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },

@@ -12,6 +12,9 @@ namespace macaque
 		midnight_light_struct,
 		"midnight_light_struct",
 		"s_midnight_light_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MIDNIGHT_LIGHT_STRUCT_ID)
 	{
 		{ _field_long_integer, "Version" },

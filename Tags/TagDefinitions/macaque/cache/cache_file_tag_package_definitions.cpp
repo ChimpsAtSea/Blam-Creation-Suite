@@ -13,6 +13,8 @@ namespace macaque
 		"tag_package_manifest_block",
 		1,
 		"CacheFiles::TagPackageManifest",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TAG_PACKAGE_MANIFEST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "patches", &tag_patch_block },
@@ -32,6 +34,8 @@ namespace macaque
 		"tag_patch_block",
 		8192,
 		"CacheFiles::TagPatch",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TAG_PATCH_BLOCK_STRUCT_ID)
 	{
 		{ _field_tag_reference, "new tag", &tag_patch_block_struct_new_tag_reference },

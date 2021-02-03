@@ -26,6 +26,8 @@ namespace macaque
 		"damage_response_class_block",
 		2,
 		"s_damage_response_class_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_CLASS_BLOCK_ID)
 	{
 		{ _field_enum, "type", &damage_response_class_type_enum },
@@ -53,6 +55,9 @@ namespace macaque
 		"damage_response_global_sound_effect_block",
 		1,
 		"s_damage_response_global_sound_effect_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_GLOBAL_SOUND_EFFECT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "effect name" },
@@ -67,6 +72,9 @@ namespace macaque
 		"area_control_block",
 		1,
 		"s_area_control_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_BLOCK_STRUCT_ID)
 	{
 		{ _field_explanation, "AREA CONTROL", "Higher level scale controls for camera shake, camera impulse and rumble." },
@@ -87,6 +95,8 @@ namespace macaque
 		damage_response_definition_struct_definition,
 		"damage_response_definition_struct_definition",
 		"s_damage_response_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "classes", &damage_response_class_block },
@@ -99,6 +109,8 @@ namespace macaque
 		damage_response_directional_flash_struct,
 		"damage_response_directional_flash_struct",
 		"s_damage_response_directional_flash_definition",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_DIRECTIONAL_FLASH_STRUCT_ID)
 	{
 		{ _field_real, "indicator duration" },
@@ -121,6 +133,8 @@ namespace macaque
 		damage_response_motion_sensor_ping,
 		"damage_response_motion_sensor_ping",
 		"s_damage_response_motion_sensor_ping_definition",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_MOTION_SENSOR_PING_ID)
 	{
 		{ _field_short_integer, "ping duration", "ticks" },
@@ -133,6 +147,9 @@ namespace macaque
 		area_control_scalar_function_struct,
 		"area_control_scalar_function_struct",
 		"s_area_control_scalar_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -145,6 +162,9 @@ namespace macaque
 		area_control_scalar_object_function_struct,
 		"area_control_scalar_object_function_struct",
 		"s_area_control_scalar_object_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },

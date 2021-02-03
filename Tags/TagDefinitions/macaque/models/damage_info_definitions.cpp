@@ -13,6 +13,8 @@ namespace macaque
 		"new_global_damage_section_block",
 		MAXIMUM_DAMAGE_SECTIONS_PER_MODEL,
 		"s_new_model_damage_section",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -56,6 +58,9 @@ namespace macaque
 		"damage_section_recharge_speed_curve_block",
 		1,
 		"s_damage_section_recharge_speed_multiplier_curve",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SECTION_RECHARGE_SPEED_CURVE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
@@ -69,6 +74,8 @@ namespace macaque
 		"damage_section_segmented_recharge_fraction",
 		16,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SECTION_SEGMENTED_RECHARGE_FRACTION_ID)
 	{
 		{ _field_real_fraction, "vitality percentage", "recharge will stop once this percentage of vitality is reached." },
@@ -81,6 +88,8 @@ namespace macaque
 		"new_instantaneous_damage_response_block",
 		MAXIMUM_RESPONSES_PER_DAMAGE_SECTION,
 		"s_new_instantaneous_damage_response",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
@@ -118,6 +127,8 @@ namespace macaque
 		"damage_response_region_transition_block",
 		16,
 		"s_region_transition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_REGION_TRANSITION_BLOCK_ID)
 	{
 		{ _field_string_id, "region" },
@@ -132,6 +143,8 @@ namespace macaque
 		"damage_transfer_block",
 		MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL,
 		"s_damage_transfer",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_TRANSFER_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &damage_transfer_flags_definition },
@@ -148,6 +161,8 @@ namespace macaque
 		"seat_ejection_block",
 		8,
 		"string_id",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SEAT_EJECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "seat label" },
@@ -160,6 +175,8 @@ namespace macaque
 		"damage_section_rendering_paramters",
 		1,
 		"s_damage_section_rendering_parameters",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SECTION_RENDERING_PARAMTERS_ID)
 	{
 		{ _field_tag_reference, "3rd person impact parameters", &global_shield_parameters_reference },
@@ -173,6 +190,8 @@ namespace macaque
 		"global_damage_info_block",
 		1,
 		"global_damage_info_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DAMAGE_INFO_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &model_damage_info_flags_definition },
@@ -208,6 +227,8 @@ namespace macaque
 		"global_damage_section_block",
 		MAXIMUM_DAMAGE_SECTIONS_PER_MODEL,
 		"s_model_damage_section",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -232,6 +253,8 @@ namespace macaque
 		"instantaneous_damage_repsonse_block",
 		MAXIMUM_RESPONSES_PER_DAMAGE_SECTION,
 		"s_instantaneous_damage_response",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANTANEOUS_DAMAGE_REPSONSE_BLOCK_ID)
 	{
 		{ _field_enum, "response type", &damage_response_type_enum_definition },
@@ -281,6 +304,8 @@ namespace macaque
 		"global_damage_nodes_block",
 		MAXIMUM_NODES_PER_MODEL,
 		"s_damage_node",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DAMAGE_NODES_BLOCK_ID)
 	{
 		{ _field_short_integer, "runtime damage part" },
@@ -295,6 +320,8 @@ namespace macaque
 		"damage_seat_info_block",
 		MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL,
 		"s_damage_seat_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SEAT_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "seat label" },
@@ -312,6 +339,8 @@ namespace macaque
 		"damage_seat_region_setting_block",
 		1,
 		"s_damage_seat_region_setting",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SEAT_REGION_SETTING_BLOCK_ID)
 	{
 		{ _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
@@ -336,6 +365,8 @@ namespace macaque
 		"damage_constraint_info_block",
 		MAXIMUM_DAMAGE_CONSTRAINT_INFOS_PER_MODEL,
 		"s_damage_constraint_info",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_CONSTRAINT_INFO_BLOCK_ID)
 	{
 		{ _field_string_id, "physics model constraint name" },
@@ -352,6 +383,8 @@ namespace macaque
 		instantaneous_response_damage_effect_struct,
 		"instantaneous_response_damage_effect_struct",
 		"instantaneous_response_damage_effect_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_STRUCT_ID)
 	{
 		{ _field_tag_reference, "transition damage effect", &global_damage_reference },
@@ -363,6 +396,8 @@ namespace macaque
 		instantaneous_response_damage_effect_marker_struct,
 		"instantaneous_response_damage_effect_marker_struct",
 		"instantaneous_response_damage_effect_marker_struct",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANTANEOUS_RESPONSE_DAMAGE_EFFECT_MARKER_STRUCT_ID)
 	{
 		{ _field_string_id, "damage effect marker name" },
@@ -374,6 +409,8 @@ namespace macaque
 		damage_body_parameters_struct,
 		"damage_body_parameters_struct",
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_BODY_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum vitality" },
@@ -389,6 +426,8 @@ namespace macaque
 		damage_shield_parameters_struct,
 		"damage_shield_parameters_struct",
 		"damage_shield_parameters_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SHIELD_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
@@ -410,6 +449,8 @@ namespace macaque
 		model_damage_info_struct,
 		"model_damage_info_struct",
 		"s_new_model_damage_info",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_DAMAGE_INFO_STRUCT_ID)
 	{
 		{ _field_explanation, "Damage Info", "" },

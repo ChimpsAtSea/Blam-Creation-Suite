@@ -26,6 +26,9 @@ namespace macaque
 		"spawn_influence_weight_falloff_function_block",
 		1,
 		"c_function_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPAWN_INFLUENCE_WEIGHT_FALLOFF_FUNCTION_BLOCK_ID)
 	{
 		{ _field_struct, "function", &scalar_function_named_struct },
@@ -38,6 +41,8 @@ namespace macaque
 		"multiplayer_universal_block",
 		1,
 		"s_multiplayer_universal_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_UNIVERSAL_BLOCK_ID)
 	{
 		{ _field_tag_reference, "random player names", &global_multilingual_unicode_string_list_reference },
@@ -59,6 +64,8 @@ namespace macaque
 		"teamDefinitionBlock",
 		k_multiplayer_team_game_team_count,
 		"TeamDefinition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEAMDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -82,6 +89,8 @@ namespace macaque
 		"requisition_constants_block",
 		1,
 		"s_requisition_constants",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REQUISITION_CONSTANTS_BLOCK_ID)
 	{
 		{ _field_real, "FTL bonus fraction", "multiplier to apply to money earned by minions to also give to the fireteam leader" },
@@ -122,6 +131,8 @@ namespace macaque
 		"requisition_palette_block",
 		k_infinity_requisition_palette_maximum_count,
 		"s_infinity_requisition_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REQUISITION_PALETTE_BLOCK_ID)
 	{
 		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
@@ -137,6 +148,8 @@ namespace macaque
 		"multiplayer_runtime_block",
 		1,
 		"multiplayer_runtime_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_RUNTIME_BLOCK_ID)
 	{
 		{ _field_tag_reference, "editor biped", &unit_reference$4 },
@@ -175,6 +188,8 @@ namespace macaque
 		"sounds_block",
 		k_maximum_multiplayer_sounds,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -187,6 +202,8 @@ namespace macaque
 		"looping_sounds_block",
 		k_maximum_multiplayer_sounds,
 		"s_tag_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOOPING_SOUNDS_BLOCK_ID)
 	{
 		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
@@ -199,6 +216,8 @@ namespace macaque
 		"multiplayer_constants_block",
 		1,
 		"s_multiplayer_constants",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_CONSTANTS_BLOCK_ID)
 	{
 		{ _field_explanation, "PLAYER SPAWN INFLUENCERS", "These are the default spawn influencer settings which can be overridden by scenario tags" },
@@ -233,6 +252,8 @@ namespace macaque
 		"game_engine_status_response_block",
 		k_maximum_status_response_count,
 		"s_game_engine_status_response",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_STATUS_RESPONSE_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &game_engine_status_flags_definition },
@@ -252,6 +273,8 @@ namespace macaque
 		"multiplayer_color_block",
 		32,
 		"real_rgb_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "color" },
@@ -263,6 +286,8 @@ namespace macaque
 		multiplayer_globals_struct_definition,
 		"multiplayer_globals_struct_definition",
 		"s_multiplayer_globals_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "universal", &multiplayer_universal_block },

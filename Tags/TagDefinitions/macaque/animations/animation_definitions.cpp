@@ -20,6 +20,9 @@ namespace macaque
 		"model_animation_graph_block",
 		1,
 		"c_model_animation_graph",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_RESOURCES | 
+		SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_GRAPH_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "definitions", &animation_graph_definitions_struct },
@@ -50,6 +53,8 @@ namespace macaque
 		"animation_graph_sound_reference_block",
 		k_max_sound_references_per_graph,
 		"animation_graph_sound_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_sound_reference },
@@ -66,6 +71,8 @@ namespace macaque
 		"animation_graph_effect_reference_block",
 		k_max_effect_references_per_graph,
 		"animation_graph_effect_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_EFFECT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "effect", &global_effect_reference },
@@ -82,6 +89,8 @@ namespace macaque
 		"import_animation_event_block",
 		2*k_max_animations_per_graph,
 		"s_import_animation_event",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		IMPORT_ANIMATION_EVENT_BLOCK_ID)
 	{
 		{ _field_string_id, "animation name" },
@@ -100,6 +109,8 @@ namespace macaque
 		"import_frame_event_block",
 		k_max_frame_events,
 		"s_import_frame_event",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		IMPORT_FRAME_EVENT_BLOCK_ID)
 	{
 		{ _field_string_id, "event name" },
@@ -118,6 +129,8 @@ namespace macaque
 		"animation_sound_event_block_extended",
 		k_max_frame_events,
 		"s_sound_event_extended",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SOUND_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
@@ -135,6 +148,8 @@ namespace macaque
 		"animation_effects_event_block_extended",
 		k_max_frame_events,
 		"s_effect_event_extended",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EFFECTS_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
@@ -154,6 +169,8 @@ namespace macaque
 		"animation_dialogue_event_block_extended",
 		k_max_frame_events,
 		"s_dialogue_event_extended",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DIALOGUE_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
@@ -169,6 +186,8 @@ namespace macaque
 		"animation_script_event_block_extended",
 		k_max_frame_events,
 		"s_script_event_extended",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SCRIPT_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
@@ -183,6 +202,8 @@ namespace macaque
 		"animation_usage_block",
 		k_animation_node_usage_count,
 		"s_animation_node_usage_entry",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_USAGE_BLOCK_ID)
 	{
 		{ _field_enum, "usage", &animation_usage_enumeration },
@@ -196,6 +217,8 @@ namespace macaque
 		"animation_graph_node_block",
 		k_max_nodes_per_animation,
 		"animation_graph_node_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -220,6 +243,8 @@ namespace macaque
 		"animation_node_mask_block",
 		k_animation_maximum_node_mask_count,
 		"s_animation_node_mask",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_NODE_MASK_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -234,6 +259,8 @@ namespace macaque
 		"animation_node_mask_entry_block",
 		k_max_nodes_per_animation,
 		"s_animation_node_mask_entry",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_NODE_MASK_ENTRY_BLOCK_ID)
 	{
 		{ _field_short_block_index, "node", &animation_graph_node_block },
@@ -247,6 +274,9 @@ namespace macaque
 		"animation_function_block",
 		k_animation_maximum_function_count,
 		"s_animation_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FUNCTION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -260,6 +290,8 @@ namespace macaque
 		"model_animation_variant_block",
 		k_animation_maximum_model_variants,
 		"s_model_animation_variant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "variant name" },
@@ -274,6 +306,8 @@ namespace macaque
 		"mode_or_stance_alias_block",
 		k_animation_maximum_mode_or_stance_aliases,
 		"s_mode_or_stance_alias",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODE_OR_STANCE_ALIAS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "mode or stance" },
@@ -287,6 +321,8 @@ namespace macaque
 		"animation_blend_screen_block",
 		k_animation_maximum_blend_screens,
 		"s_animation_blend_screen",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_BLEND_SCREEN_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -300,6 +336,8 @@ namespace macaque
 		"foot_tracking_member_block",
 		k_max_tracked_feet,
 		"s_foot_tracking_member",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_TRACKING_MEMBER_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -319,6 +357,9 @@ namespace macaque
 		"animation_pool_block",
 		k_max_animations_per_graph,
 		"c_model_animation",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_POOL_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -346,6 +387,8 @@ namespace macaque
 		"shared_model_animation_block",
 		1,
 		"c_shared_model_animation",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_MODEL_ANIMATION_BLOCK_ID)
 	{
 		{ _field_short_integer, "frame count" },
@@ -391,6 +434,8 @@ namespace macaque
 		"animation_frame_event_block",
 		k_max_frame_events,
 		"s_frame_event",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FRAME_EVENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_enum, "type", &frame_event_type_new },
@@ -404,6 +449,8 @@ namespace macaque
 		"animation_sound_event_block",
 		k_max_frame_events,
 		"s_sound_event",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SOUND_EVENT_BLOCK_ID)
 	{
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
@@ -419,6 +466,8 @@ namespace macaque
 		"animation_effect_event_block",
 		k_max_frame_events,
 		"animation_effect_event_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EFFECT_EVENT_BLOCK_ID)
 	{
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
@@ -436,6 +485,8 @@ namespace macaque
 		"animation_dialogue_event_block",
 		k_max_frame_events,
 		"s_dialogue_event",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DIALOGUE_EVENT_BLOCK_ID)
 	{
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
@@ -449,6 +500,8 @@ namespace macaque
 		"animation_script_event_block",
 		k_max_frame_events,
 		"s_script_event",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SCRIPT_EVENT_BLOCK_ID)
 	{
 		{ _field_string_id, "script name" },
@@ -463,6 +516,8 @@ namespace macaque
 		"object_space_node_data_block",
 		k_max_nodes_per_animation,
 		"s_object_space_node_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_NODE_DATA_BLOCK_ID)
 	{
 		{ _field_short_block_index, "node index", &animation_graph_node_block },
@@ -477,6 +532,8 @@ namespace macaque
 		"foot_tracking_block",
 		k_max_tracked_feet,
 		"s_foot_tracking_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_TRACKING_BLOCK_ID)
 	{
 		{ _field_short_block_index, "foot", &foot_tracking_member_block },
@@ -491,6 +548,8 @@ namespace macaque
 		"foot_lock_cycle_block",
 		k_max_cycles_per_tracked_foot,
 		"s_foot_lock_cycle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_LOCK_CYCLE_BLOCK_ID)
 	{
 		{ _field_short_integer, "start locking" },
@@ -507,6 +566,8 @@ namespace macaque
 		"object_space_offset_node_block",
 		k_max_object_space_offset_node_count,
 		"s_object_space_offset_node_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_OFFSET_NODE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "object space offset node", &animation_graph_node_block },
@@ -520,6 +581,8 @@ namespace macaque
 		"fik_anchor_node_block",
 		k_max_fik_anchor_node_count,
 		"s_fik_anchor_node_reference",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIK_ANCHOR_NODE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "anchor node", &animation_graph_node_block },
@@ -563,6 +626,9 @@ namespace macaque
 		"new_animation_blend_screen_block",
 		k_animation_maximum_blend_screens,
 		"s_new_animation_blend_screen",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_ANIMATION_BLEND_SCREEN_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
@@ -591,6 +657,9 @@ namespace macaque
 		"new_animation_function_overlay_block",
 		k_animation_maximum_function_overlays,
 		"s_new_animation_function_overlay",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_ANIMATION_FUNCTION_OVERLAY_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -612,6 +681,8 @@ namespace macaque
 		"overlay_group_definition_block",
 		k_animation_maximum_overlay_groups,
 		"s_overlay_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		OVERLAY_GROUP_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -626,6 +697,8 @@ namespace macaque
 		"blend_screen_item_definition_block",
 		k_animation_maximum_mixing_board_pose_overlays,
 		"s_blend_screen_item",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BLEND_SCREEN_ITEM_DEFINITION_BLOCK_ID)
 	{
 		{ _field_short_block_index, "blend screen", &new_animation_blend_screen_block },
@@ -641,6 +714,8 @@ namespace macaque
 		"function_overlay_item_definition_block",
 		k_animation_maximum_function_overlays,
 		"s_function_overlay_item",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FUNCTION_OVERLAY_ITEM_DEFINITION_BLOCK_ID)
 	{
 		{ _field_short_block_index, "function overlay", &new_animation_function_overlay_block },
@@ -654,6 +729,8 @@ namespace macaque
 		"animation_gait_block",
 		k_animation_maximum_gaits,
 		"s_animation_gait",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GAIT_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -671,6 +748,8 @@ namespace macaque
 		"animation_gait_group_block",
 		k_animation_maximum_gait_groups,
 		"s_animation_gait_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GAIT_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -684,6 +763,8 @@ namespace macaque
 		"animation_gait_item_block",
 		k_animation_maximum_gaits,
 		"s_animation_gait_item",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GAIT_ITEM_BLOCK_ID)
 	{
 		{ _field_short_block_index, "animation gait", &animation_gait_block },
@@ -697,6 +778,8 @@ namespace macaque
 		"animation_ik_block",
 		k_max_ik_points,
 		"s_animation_ik_point",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -713,6 +796,8 @@ namespace macaque
 		"animation_ik_set",
 		k_max_ik_sets,
 		"s_animation_ik_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_SET_ID)
 	{
 		{ _field_string_id, "name" },
@@ -726,6 +811,8 @@ namespace macaque
 		"animation_ik_set_item",
 		k_max_ik_points_per_set,
 		"s_animation_ik_set_item",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_SET_ITEM_ID)
 	{
 		{ _field_short_block_index, "ik point", &animation_ik_block },
@@ -739,6 +826,8 @@ namespace macaque
 		"animation_ik_chain_block",
 		k_animation_maximum_ik_chains,
 		"s_animation_ik_chain",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_CHAIN_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -757,6 +846,8 @@ namespace macaque
 		"PCAGroupSettingsBlock",
 		k_max_animations_per_graph,
 		"PCAGroupSettings",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAGROUPSETTINGSBLOCK_ID)
 	{
 		{ _field_string_id, "Group Name" },
@@ -770,6 +861,9 @@ namespace macaque
 		"animation_mode_block",
 		k_max_modes_per_graph,
 		"c_animation_mode",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_MODE_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -788,6 +882,8 @@ namespace macaque
 		"weapon_class_block",
 		k_max_weapon_classes,
 		"c_weapon_class",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_CLASS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label" },
@@ -806,6 +902,8 @@ namespace macaque
 		"weapon_type_block",
 		k_max_weapon_types,
 		"c_weapon_type",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_TYPE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label" },
@@ -821,6 +919,8 @@ namespace macaque
 		"animation_set_block",
 		k_max_animation_sets,
 		"c_animation_set",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -842,6 +942,9 @@ namespace macaque
 		"animation_entry_block",
 		k_max_animations_per_block,
 		"s_animation_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_ENTRY_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -857,6 +960,8 @@ namespace macaque
 		"damage_animation_block",
 		k_max_death_and_damage_actions,
 		"s_animation_damage_actions",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_ANIMATION_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -870,6 +975,8 @@ namespace macaque
 		"damage_direction_block",
 		k_total_damage_directions,
 		"s_animation_damage_direction",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_DIRECTION_BLOCK_ID)
 	{
 		{ _field_block, "regions", &damage_region_block },
@@ -882,6 +989,8 @@ namespace macaque
 		"damage_region_block",
 		k_total_damage_regions,
 		"c_animation_id",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_REGION_BLOCK_ID)
 	{
 		{ _field_struct, "animation", &animation_index_struct },
@@ -894,6 +1003,8 @@ namespace macaque
 		"animation_transition_source_block",
 		k_max_animations_per_block,
 		"s_animation_transition_source",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_TRANSITION_SOURCE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "state name", "name of the state this transition starts in" },
@@ -907,6 +1018,9 @@ namespace macaque
 		"animation_transition_destination_block",
 		k_max_transition_animations,
 		"s_animation_transition_destination",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_TRANSITION_DESTINATION_BLOCK_ID)
 	{
 		{ _field_string_id, "mode name", "name of the mode this transition ends in" },
@@ -921,6 +1035,8 @@ namespace macaque
 		"animation_velocity_boundaries_block",
 		1,
 		"s_animation_velocity_boundaries",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_VELOCITY_BOUNDARIES_BLOCK_ID)
 	{
 		{ _field_array, "velocity boundary entries", &animation_velocity_boundaries_array },
@@ -933,6 +1049,8 @@ namespace macaque
 		"animation_ik_block_v1",
 		k_max_ik_points,
 		"s_animation_ik_point_v1",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_BLOCK_V1_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -948,6 +1066,8 @@ namespace macaque
 		"animation_ranged_action_block",
 		k_max_ranged_actions,
 		"s_animation_ranged_action",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_RANGED_ACTION_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -966,6 +1086,8 @@ namespace macaque
 		"ranged_animation_entry_block",
 		k_max_animations_per_block,
 		"s_ranged_animation_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RANGED_ANIMATION_ENTRY_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
@@ -982,6 +1104,8 @@ namespace macaque
 		"triangulation_entry_block",
 		1,
 		"s_triangulation_tag_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGULATION_ENTRY_BLOCK_ID)
 	{
 		{ _field_block, "points", &triangulation_point_block },
@@ -995,6 +1119,8 @@ namespace macaque
 		"triangulation_point_block",
 		k_max_triangulation_tag_points,
 		"real_point2d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGULATION_POINT_BLOCK_ID)
 	{
 		{ _field_real_vector_2d, "point" },
@@ -1007,6 +1133,8 @@ namespace macaque
 		"triangulation_triangle_block",
 		k_max_triangulation_tag_triangles,
 		"s_blend_screen_delaunay_triangle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGULATION_TRIANGLE_BLOCK_ID)
 	{
 		{ _field_byte_integer, "vertex1" },
@@ -1025,6 +1153,8 @@ namespace macaque
 		"animation_sync_action_group_block",
 		k_max_sync_action_groups,
 		"s_animation_sync_action_group",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SYNC_ACTION_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -1038,6 +1168,8 @@ namespace macaque
 		"animation_sync_action_block",
 		k_max_sync_actions,
 		"s_animation_sync_action",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SYNC_ACTION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
@@ -1052,6 +1184,8 @@ namespace macaque
 		"animation_sync_action_same_type_participant",
 		k_max_sync_action_participants,
 		"s_animation_sync_action_same_type_participant",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SYNC_ACTION_SAME_TYPE_PARTICIPANT_ID)
 	{
 		{ _field_long_flags, "flags", &animation_sync_action_flags_definition },
@@ -1070,6 +1204,8 @@ namespace macaque
 		"animation_sync_action_other_type_participant",
 		k_max_sync_action_participants,
 		"s_animation_sync_action_other_type_participant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_SYNC_ACTION_OTHER_TYPE_PARTICIPANT_ID)
 	{
 		{ _field_long_flags, "flags", &animation_sync_action_other_type_flags_definition },
@@ -1083,6 +1219,8 @@ namespace macaque
 		"foot_tracking_defaults",
 		k_max_tracked_feet,
 		"s_foot_tracking_default",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_TRACKING_DEFAULTS_ID)
 	{
 		{ _field_short_block_index, "foot", &foot_tracking_member_block },
@@ -1096,6 +1234,9 @@ namespace macaque
 		"vehicle_suspension_block",
 		k_max_vehicle_suspensions,
 		"c_vehicle_suspension",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_SUSPENSION_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -1122,6 +1263,9 @@ namespace macaque
 		"function_overlay_animation_block",
 		k_max_function_overlays_per_graph,
 		"s_function_overlay",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FUNCTION_OVERLAY_ANIMATION_BLOCK_ID)
 	{
 		{ _field_string_id, "label" },
@@ -1139,6 +1283,8 @@ namespace macaque
 		"inherited_animation_block",
 		k_max_animation_inheritence_levels,
 		"s_animation_inheritance",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INHERITED_ANIMATION_BLOCK_ID)
 	{
 		{ _field_tag_reference, "inherited graph", &model_animation_graph_reference },
@@ -1155,6 +1301,8 @@ namespace macaque
 		"inherited_animation_node_map_block",
 		k_max_nodes_per_animation,
 		"short",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INHERITED_ANIMATION_NODE_MAP_BLOCK_ID)
 	{
 		{ _field_short_integer, "local node" },
@@ -1167,6 +1315,8 @@ namespace macaque
 		"inherited_animation_node_map_flag_block",
 		k_max_nodes_per_animation,
 		"unsigned long",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INHERITED_ANIMATION_NODE_MAP_FLAG_BLOCK_ID)
 	{
 		{ _field_long_integer, "local node flags" },
@@ -1179,6 +1329,8 @@ namespace macaque
 		"weapon_class_lookup_block",
 		k_max_weapon_types,
 		"s_weapon_class_listing",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_CLASS_LOOKUP_BLOCK_ID)
 	{
 		{ _field_string_id, "weapon name" },
@@ -1192,6 +1344,8 @@ namespace macaque
 		"additional_node_data_block",
 		k_max_nodes_per_animation,
 		"s_additional_node_data",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ADDITIONAL_NODE_DATA_BLOCK_ID)
 	{
 		{ _field_string_id, "node name" },
@@ -1209,6 +1363,8 @@ namespace macaque
 		"model_animation_tag_resource_group",
 		k_max_animations_per_graph*3,
 		"c_model_animation_tag_refrence_counted_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_TAG_RESOURCE_GROUP_ID)
 	{
 		{ _field_long_integer, "reference_count" },
@@ -1222,6 +1378,8 @@ namespace macaque
 		"shared_static_data_codec_rotation_block",
 		k_max_animations_per_graph * k_max_nodes_per_animation,
 		"c_quantized_quaternion_8byte_revised",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_ROTATION_BLOCK_ID)
 	{
 		{ _field_short_integer, "i" },
@@ -1237,6 +1395,8 @@ namespace macaque
 		"shared_static_data_codec_translation_block",
 		k_max_animations_per_graph * k_max_nodes_per_animation,
 		"real_vector3d",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_TRANSLATION_BLOCK_ID)
 	{
 		{ _field_real, "x" },
@@ -1251,6 +1411,8 @@ namespace macaque
 		"shared_static_data_codec_scale_block",
 		k_max_animations_per_graph * k_max_nodes_per_animation,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_SCALE_BLOCK_ID)
 	{
 		{ _field_real, "scale" },
@@ -1263,6 +1425,8 @@ namespace macaque
 		"model_animation_tag_resource_member",
 		k_max_animations_per_graph,
 		"c_model_animation_tag_resource_member",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_UNKNOWN8 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_TAG_RESOURCE_MEMBER_ID)
 	{
 		{ _field_long_integer, "animation_index" },
@@ -1281,6 +1445,8 @@ namespace macaque
 		"g_node_flag_storage_array",
 		c_node_flags::k_flag_chunk_count,
 		"c_big_flags_chunk_type",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		G_NODE_FLAG_STORAGE_ARRAY_ID)
 	{
 		{ _field_long_integer, "flag data" },
@@ -1293,6 +1459,8 @@ namespace macaque
 		"animation_velocity_boundaries",
 		k_animation_maximum_velocity_boundary_entries,
 		"real",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_VELOCITY_BOUNDARIES_ID)
 	{
 		{ _field_real, "values" },
@@ -1304,6 +1472,8 @@ namespace macaque
 		frame_event_list_struct_definition,
 		"frame_event_list_struct_definition",
 		"c_animation_frame_event_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FRAME_EVENT_LIST_STRUCT_DEFINITION_ID)
 	{
 		{ _field_explanation, "IMPORTANT TAG NOTES", "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n" },
@@ -1318,6 +1488,9 @@ namespace macaque
 		animation_graph_definitions_struct,
 		"animation_graph_definitions_struct",
 		"s_animation_graph_definitions",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID)
 	{
 		{ _field_explanation, "GRAPH DATA", "" },
@@ -1358,6 +1531,8 @@ namespace macaque
 		animation_aiming_screen_struct,
 		"animation_aiming_screen_struct",
 		"animation_aiming_screen_bounds",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_AIMING_SCREEN_STRUCT_ID)
 	{
 		{ _field_angle, "right yaw per frame" },
@@ -1376,6 +1551,9 @@ namespace macaque
 		shared_animation_reference_block,
 		"shared_animation_reference_block",
 		"s_shared_model_animation_reference",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | 
+		SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_ANIMATION_REFERENCE_BLOCK_ID)
 	{
 		{ _field_tag_reference, "graph reference", &model_animation_graph_reference },
@@ -1389,6 +1567,8 @@ namespace macaque
 		quantized_orientation_struct,
 		"quantized_orientation_struct",
 		"c_quantized_orientation",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		QUANTIZED_ORIENTATION_STRUCT_ID)
 	{
 		{ _field_short_integer, "rotation x" },
@@ -1405,6 +1585,8 @@ namespace macaque
 		animation_ik_chain_events_struct,
 		"animation_ik_chain_events_struct",
 		"s_animation_ik_chain_event",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_CHAIN_EVENTS_STRUCT_ID)
 	{
 		{ _field_explanation, "REFERENCE IK CHAIN INFO", "" },
@@ -1431,6 +1613,9 @@ namespace macaque
 		animation_ik_chain_proxies_struct,
 		"animation_ik_chain_proxies_struct",
 		"s_animation_ik_chain_proxy",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_CHAIN_PROXIES_STRUCT_ID)
 	{
 		{ _field_long_integer, "id" },
@@ -1446,6 +1631,9 @@ namespace macaque
 		animation_facial_wrinkle_events_struct,
 		"animation_facial_wrinkle_events_struct",
 		"s_animation_wrinkle_event",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FACIAL_WRINKLE_EVENTS_STRUCT_ID)
 	{
 		{ _field_explanation, "REFERENCE FACIAL WRINKLE EVENT INFO", "" },
@@ -1467,6 +1655,9 @@ namespace macaque
 		animation_extended_events_struct,
 		"animation_extended_events_struct",
 		"s_animation_extended_event",
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | 
+		SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EXTENDED_EVENTS_STRUCT_ID)
 	{
 		{ _field_explanation, "IMPORTED EXTENDED DATA EVENT INFO", "" },
@@ -1484,6 +1675,9 @@ namespace macaque
 		animation_object_functions_struct,
 		"animation_object_functions_struct",
 		"s_animation_object_function",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_OBJECT_FUNCTIONS_STRUCT_ID)
 	{
 		{ _field_string_id, "real_name" },
@@ -1499,6 +1693,8 @@ namespace macaque
 		animation_index_struct,
 		"animation_index_struct",
 		"c_animation_id",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_INDEX_STRUCT_ID)
 	{
 		{ _field_short_integer, "graph index" },
@@ -1511,6 +1707,8 @@ namespace macaque
 		PCAAnimationDataStruct,
 		"PCAAnimationDataStruct",
 		"PCAAnimationData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAANIMATIONDATASTRUCT_ID)
 	{
 		{ _field_explanation, "Group Settings", "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field" },
@@ -1527,6 +1725,8 @@ namespace macaque
 		animation_graph_contents_struct,
 		"animation_graph_contents_struct",
 		"c_model_animation_graph_contents",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_CONTENTS_STRUCT_ID)
 	{
 		{ _field_explanation, "MODE-n-STATE GRAPH", "" },
@@ -1544,6 +1744,8 @@ namespace macaque
 		model_animation_runtime_data_struct,
 		"model_animation_runtime_data_struct",
 		"s_model_animation_runtime_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "RUN-TIME DATA", "" },
@@ -1561,6 +1763,8 @@ namespace macaque
 		animation_codec_data_struct,
 		"animation_codec_data_struct",
 		"s_animation_codec_data",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_CODEC_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "CODEC-SPECIFIC DATA", "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit." },
@@ -1573,6 +1777,8 @@ namespace macaque
 		shared_static_data_codec_graph_data_struct,
 		"shared_static_data_codec_graph_data_struct",
 		"s_shared_static_data_codec_graph_data",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID)
 	{
 		{ _field_explanation, "Shared Static Codec", "" },
@@ -1587,6 +1793,8 @@ namespace macaque
 		model_animation_tag_resource_struct,
 		"model_animation_tag_resource_struct",
 		"c_model_animation_tag_animation_group_resource",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_TAG_RESOURCE_STRUCT_ID)
 	{
 		{ _field_block, "group_members", &model_animation_tag_resource_member_block },
@@ -1598,6 +1806,8 @@ namespace macaque
 		packed_data_sizes_struct,
 		"packed_data_sizes_struct",
 		"c_animation_data_sizes",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PACKED_DATA_SIZES_STRUCT_ID)
 	{
 		{ _field_long_integer, "static_node_flags" },

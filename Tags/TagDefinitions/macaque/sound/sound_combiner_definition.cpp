@@ -13,6 +13,8 @@ namespace macaque
 		"sound_combiner_block",
 		1,
 		"s_sound_combiner_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_COMBINER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entries", &sound_combiner_definition_entry_block },
@@ -35,6 +37,8 @@ namespace macaque
 		"sound_combiner_definition_entry_block",
 		k_maximum_sound_combiner_defintion_entry_count,
 		"s_sound_combiner_definition_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_COMBINER_DEFINITION_ENTRY_BLOCK_ID)
 	{
 		{ _field_tag_reference, "sound", &global_force_sound_only_reference },
