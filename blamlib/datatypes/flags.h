@@ -56,11 +56,23 @@ public:
 	{
 		return m_stored;
 	}
+
+	void set_unsafe(t_storage value)
+	{
+		m_stored = value;
+	}
+
+	c_flags_no_init operator|(c_flags_no_init value) const
+	{
+		c_flags_no_init result;
+		result.set_unsafe(this->m_stored | value.m_stored);
+		return result;
+	}
 };
 
 template <
 	typename t_enum,
-	typename t_storage,
+	typename t_storage = __underlying_type(t_enum),
 	const long k_number_of_bits = sizeof(t_storage) * 8>
 class c_flags :
 	public c_flags_no_init<t_enum, t_storage, k_number_of_bits>
@@ -80,5 +92,12 @@ public:
     c_flags(const t_storage &value)
     {
         m_stored = value;
-    }
+	}
+
+	c_flags operator|(c_flags value) const
+	{
+		c_flags result;
+		result.set_unsafe(this->m_stored | value.m_stored);
+		return result;
+	}
 };
