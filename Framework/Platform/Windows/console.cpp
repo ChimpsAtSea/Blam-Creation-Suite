@@ -415,10 +415,11 @@ void c_console::write_line(const char* format, ...)
 	va_end(args);
 }
 
-std::mutex console_mutex;
 int (__cdecl *c_console::console_printf_impl)(const char* format, ...) = printf;
 void c_console::write_line_internal(const char* format, va_list args)
 {
+	static std::mutex console_mutex;
+	
 	std::lock_guard console_mutex_lockguard(console_mutex);
 
 	c_fixed_string_4096 fixed_string;
