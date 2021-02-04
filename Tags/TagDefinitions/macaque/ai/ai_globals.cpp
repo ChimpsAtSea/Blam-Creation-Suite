@@ -73,15 +73,15 @@ namespace macaque
 		{ _field_real, "player scariness" },
 		{ _field_real, "berserking actor scariness" },
 		{ _field_real, "kamikazeing actor scariness" },
-		{ _field_real, "invincible scariness", "when an actor\'s target is invincible, he is this much more scared" },
+		{ _field_real, "invincible scariness", "when an actor's target is invincible, he is this much more scared" },
 		FIELD_EXPLANATION("RESURRECTION", nullptr, "A few properties to help define when it is safe for a mission critical character to ressurect."),
 		{ _field_real, "min death time", "I will be dead for at least this long", "seconds" },
-		{ _field_real, "projectile distance", "If there is a projectile within this distance of me, I\'ll stay dead", "wu" },
-		{ _field_real, "idle clump distance", "If there is any enemy clump within this distance of me, I\'ll stay dead", "wu" },
-		{ _field_real, "dangerous clump distance", "If there is any enemy clump with a status higher than idle within this distance of me, I\'ll stay dead", "wu" },
+		{ _field_real, "projectile distance", "If there is a projectile within this distance of me, I'll stay dead", "wu" },
+		{ _field_real, "idle clump distance", "If there is any enemy clump within this distance of me, I'll stay dead", "wu" },
+		{ _field_real, "dangerous clump distance", "If there is any enemy clump with a status higher than idle within this distance of me, I'll stay dead", "wu" },
 		FIELD_EXPLANATION("TELEPORTATION", nullptr, "A few properties to help define when it is safe for a mission critical character to teleport."),
 		{ _field_real, "cover search duration", "The number of seconds that must elapse before we try to look for a firing point behind cover to teleport to.", "seconds" },
-		{ _field_real, "task direction search duration", "The number of seconds we try to look for a firing point that aligns us with the actor\'s task direction.", "seconds" },
+		{ _field_real, "task direction search duration", "The number of seconds we try to look for a firing point that aligns us with the actor's task direction.", "seconds" },
 		{ _field_block, "spawn formations", &ai_globals_formation_block },
 		{ _field_block, "squad template folders", &ai_globals_squad_template_folder_block },
 		{ _field_block, "performance template folders", &ai_globals_performance_template_folder_block },
@@ -272,7 +272,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Vision Traits", nullptr, "Traits that affect the AI\'s vision"),
 		{ _field_real, "vision distance scale", "Scale the distance at which an AI can see their target." },
-		{ _field_real, "vision angle scale", "Scale the angles of the AI\'s vision cone." },
+		{ _field_real, "vision angle scale", "Scale the angles of the AI's vision cone." },
 		{ _field_terminator }
 	};
 
@@ -287,7 +287,7 @@ namespace macaque
 		AI_TRAIT_SOUND_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("Sound Traits", nullptr, "Traits that affect the AI\'s sound awareness"),
-		{ _field_real, "hearing distance scale", "Scale the character\'s hearing distance." },
+		{ _field_real, "hearing distance scale", "Scale the character's hearing distance." },
 		{ _field_terminator }
 	};
 
@@ -329,7 +329,7 @@ namespace macaque
 		FIELD_EXPLANATION("Grenade Traits", nullptr, "Traits that affect the AI\'s grenade use"),
 		{ _field_real, "velocity scale", "Scale the velocity at which AI throws grenades" },
 		{ _field_real, "throw grenade delay scale", "Scale the time between grenade throws." },
-		{ _field_real, "don\'t drop grenades chance scale" },
+		{ _field_real, "don't drop grenades chance scale" },
 		{ _field_real, "grenade uncover chance scale" },
 		{ _field_real, "retreat throw grenade chance scale" },
 		{ _field_real, "anti vehicle grenade chance scale" },

@@ -91,7 +91,7 @@ namespace macaque
 		{ _field_block, "parentages", &cache_file_tag_parentage_block },
 		{ _field_struct, "prediction table", &cache_file_tag_resource_prediction_table },
 		{ _field_long_integer, "Mat is in a really bad mood campaign id" },
-		{ _field_long_integer, "Next time we don\'t put things that the game depends on outside of tool, guerilla, or sapien map id" },
+		{ _field_long_integer, "Next time we don't put things that the game depends on outside of tool, guerilla, or sapien map id" },
 		{ _field_terminator }
 	};
 

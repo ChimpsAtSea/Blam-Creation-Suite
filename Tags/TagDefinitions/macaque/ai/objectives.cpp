@@ -59,7 +59,7 @@ namespace macaque
 		{ _field_enum, "follow", &task_follow_enum },
 		{ _field_short_block_index, "follow squad", &squads_block },
 		{ _field_real, "follow radius" },
-		{ _field_real, "follow Z clamp", "Don\'t follow at areas outside of this vertical margin", "wus" },
+		{ _field_real, "follow Z clamp", "Don't follow at areas outside of this vertical margin", "wus" },
 		{ _field_word_flags, "follow players", &task_follow_player_flags },
 		FIELD_PAD("post-follow-players", nullptr, 2),
 		{ _field_real, "player front radius" },

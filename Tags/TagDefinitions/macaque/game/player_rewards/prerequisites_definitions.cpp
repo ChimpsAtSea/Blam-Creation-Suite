@@ -34,7 +34,7 @@ namespace macaque
 	{
 		{ _field_string_id, "commendation id", "This must match one of the commendation names.", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		{ _field_char_integer, "minimum level", "This field is ignored if \'type\' is set to \'aggregator\'." },
+		{ _field_char_integer, "minimum level", "This field is ignored if 'type' is set to 'aggregator'." },
 		FIELD_PAD("PAD1", nullptr, 2),
 		{ _field_terminator }
 	};

@@ -42,7 +42,7 @@ namespace macaque
 		{ _field_block, "marker groups", &render_model_marker_group_block },
 		{ _field_block, "materials", &global_geometry_material_block },
 		{ _field_block, "errors", &global_error_report_categories_block },
-		{ _field_real, "don\'t draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
+		{ _field_real, "don't draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
 		{ _field_block, "node map mapping", &instance_node_map_mapping_block },
 		{ _field_block, "volume samples", &volume_samples_block },

@@ -743,7 +743,7 @@ namespace macaque
 		FIELD_PAD("NCIUNE", nullptr, 2),
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", &scenario_structure_bsp_reference_block },
-		{ _field_real, "Directional Acceleration Mult. ", "Multiplier applied to all phantoms\' direction acceleration factors.  Used to scale man-cannon strength." },
+		{ _field_real, "Directional Acceleration Mult. ", "Multiplier applied to all phantoms' direction acceleration factors.  Used to scale man-cannon strength." },
 		{ _field_block, "Command Links", &commandLinkBlock_block },
 		{ _field_terminator }
 	};
@@ -981,7 +981,7 @@ namespace macaque
 		SCENARIO_CONTROL_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &scenario_control_flags },
-		{ _field_short_integer, "DON\'T TOUCH THIS", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, _field_id_unknown_ugh },
+		{ _field_short_integer, "DON'T TOUCH THIS", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, _field_id_unknown_ugh },
 		{ _field_short_integer, "health station charges", "if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" },
 		{ _field_enum, "allowed players", &scenario_control_character_types },
 		FIELD_PAD("SCSP1", nullptr, 2),

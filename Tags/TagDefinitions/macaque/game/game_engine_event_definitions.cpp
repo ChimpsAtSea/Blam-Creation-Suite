@@ -32,7 +32,7 @@ namespace macaque
 		FIELD_EXPLANATION("SOUND PRIORITIZATION", nullptr, "A data-driven way to choose between halo 3 mp\'s always-queue behavior vs. odst firefight\'s always-suppress-older-multikills behavior."),
 		{ _field_string_id, "category_for_prioritization", "which family does this response live in for announcer-spew-suppression?  e.g. all multi-kills should use the same string_id here." },
 		{ _field_long_integer, "sound priority", "higher numbers mean more important" },
-		{ _field_real, "priority_suppression_age_max_seconds", "If a sound from this event has been queued for more than this long, it can\'t be suppressed anymore.  Higher values cause a shallower announcer queue for these sounds.", "seconds" },
+		{ _field_real, "priority_suppression_age_max_seconds", "If a sound from this event has been queued for more than this long, it can't be suppressed anymore.  Higher values cause a shallower announcer queue for these sounds.", "seconds" },
 		FIELD_EXPLANATION("SOUND PAIR CULLING", nullptr, "A way to say flag taken + flag dropped = silence."),
 		{ _field_string_id, "category_for_pair_culling", "e.g. flag taken and flag dropped should use the same id here, while ball taken and ball dropped should use another shared id." },
 		{ _field_long_integer, "pair_id", "0 or 1, used to recognized matched pairs.  If both a 0 and a 1 are in the queue at the same time, and neither has started playing, both are removed." },

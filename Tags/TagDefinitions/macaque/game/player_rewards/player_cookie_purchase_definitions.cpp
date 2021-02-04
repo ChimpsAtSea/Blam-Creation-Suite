@@ -135,7 +135,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCESLOTBLOCK_ID)
 	{
-		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed.", FIELD_FLAG_INDEX },
+		{ _field_byte_integer, "slot_count", "Total slots you're allowed.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_LOADOUT_SLOT_BLOCK_ID)
 	{
-		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed.", FIELD_FLAG_INDEX },
+		{ _field_byte_integer, "slot_count", "Total slots you're allowed.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -195,8 +195,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APP_MOD_SLOT_BLOCK_ID)
 	{
-		{ _field_byte_integer, "app_count", "Total apps you\'re allowed (from 0 to 2).", FIELD_FLAG_INDEX },
-		{ _field_byte_integer, "mod_count", "Total mods you\'re allowed (from 0 to 1).", FIELD_FLAG_INDEX },
+		{ _field_byte_integer, "app_count", "Total apps you're allowed (from 0 to 2).", FIELD_FLAG_INDEX },
+		{ _field_byte_integer, "mod_count", "Total mods you're allowed (from 0 to 1).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

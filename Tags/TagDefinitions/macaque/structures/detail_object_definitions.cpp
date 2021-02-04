@@ -128,7 +128,7 @@ namespace macaque
 	{
 		{ _field_enum, "collection type", &detail_object_collection_type_enum_definition },
 		FIELD_PAD("YN", nullptr, 2),
-		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don\'t float above the ground" },
+		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don't float above the ground" },
 		FIELD_PAD("EBGQ", nullptr, 44),
 		{ _field_tag_reference, "sprite plate", &global_bitmap_reference },
 		{ _field_block, "types", &detail_object_type_block },

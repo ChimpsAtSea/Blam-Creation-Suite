@@ -82,7 +82,7 @@ namespace macaque
 		{ _field_real, "gravity_scale" },
 		FIELD_PAD("VM", nullptr, 2),
 		{ _field_short_integer, "minimum autolevelling ticks", "amount of time player needs to move and not look up or down for autolevelling to kick in" },
-		{ _field_angle, "minimum angle for vehicle flipping", "0 means the vehicle\'s up vector is along the ground, 90 means the up vector is pointing straight up:degrees" },
+		{ _field_angle, "minimum angle for vehicle flipping", "0 means the vehicle's up vector is along the ground, 90 means the up vector is pointing straight up:degrees" },
 		FIELD_EXPLANATION("weapons may optionally be set to require extra button hold time (e.g. ordnance power weapon drops)", nullptr, ""),
 		{ _field_real, "minimum action hold time", "time that player needs to press ACTION to register as a HOLD", "seconds" },
 		{ _field_real, "minimum action hold time for teammates", "teammates of player who dropped/spawned weapon", "seconds" },

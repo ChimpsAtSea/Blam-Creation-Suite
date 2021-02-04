@@ -335,7 +335,7 @@ namespace macaque
 		{ _field_block, "runtime permutation flags", &sound_gestalt_runtime_permutation_bit_vector_block },
 		{ _field_data, "naive sample data" },
 		{ _field_long_integer, "no one listens to me" },
-		{ _field_long_integer, "but now I\'m used to it" },
+		{ _field_long_integer, "but now I'm used to it" },
 		{ _field_block, "chunks", &sound_permutation_chunk_block },
 		{ _field_block, "promotions", &sound_gestalt_promotions_block },
 		{ _field_block, "facial animations", &sound_gestalt_facial_animation_block },

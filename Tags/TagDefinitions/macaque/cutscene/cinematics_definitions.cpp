@@ -159,7 +159,7 @@ namespace macaque
 		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array },
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", nullptr, "Used in combination with the override creation flags above"),
-		{ _field_struct, "custom don\'t create condition", &cinematic_custom_script_block },
+		{ _field_struct, "custom don't create condition", &cinematic_custom_script_block },
 		{ _field_block, "attachments", &scene_object_attachment_block },
 		{ _field_terminator }
 	};

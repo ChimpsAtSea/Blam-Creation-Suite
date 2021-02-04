@@ -136,7 +136,7 @@ namespace macaque
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block },
-		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
@@ -155,7 +155,7 @@ namespace macaque
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block },
-		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
@@ -175,7 +175,7 @@ namespace macaque
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
 		{ _field_enum, "dialogue event", &animation_dialogue_event_enum },
-		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -191,7 +191,7 @@ namespace macaque
 		ANIMATION_SCRIPT_EVENT_BLOCK_EXTENDED_ID)
 	{
 		{ _field_short_block_index, "frame event", &import_frame_event_block },
-		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it\'s absolute." },
+		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
 		{ _field_string_id, "script name" },
 		{ _field_terminator }
 	};
@@ -1246,7 +1246,7 @@ namespace macaque
 		{ _field_string_id, "marker name", "this marker should be parented to the vehicle root node" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "contact marker name", "this marker should be parented to the wheel node" },
-		{ _field_real, "mass point offset", "distance along the vehicle\'s up direction to move the wheel from the marker location" },
+		{ _field_real, "mass point offset", "distance along the vehicle's up direction to move the wheel from the marker location" },
 		{ _field_real, "full extension ground_depth", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "full compression ground_depth", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("Destroyed Suspension", nullptr, "Only Necessary for suspensions with a destroyed state"),

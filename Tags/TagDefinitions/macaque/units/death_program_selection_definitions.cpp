@@ -60,7 +60,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_VELOCITY_GATE_BLOCK_ID)
 	{
-		{ _field_real, "minimum velocity", "this death program will be selected if the biped\'s velocity is above this number", "wu/s", FIELD_FLAG_INDEX },
+		{ _field_real, "minimum velocity", "this death program will be selected if the biped's velocity is above this number", "wu/s", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "death program", &death_program_result_enum },
 		{ _field_real, "death program scale", "input to the death program to scale the result (only affects ragdolls)" },
 		{ _field_string_id, "death animation stance", "Override stance that contains the death animations for this gait speed when using animate then ragdoll option." },

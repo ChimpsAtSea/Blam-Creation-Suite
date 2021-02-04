@@ -459,7 +459,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		FIELD_PAD("blah", nullptr, 3),
-		{ _field_angle, "tank control forward arc", "only used when \'use tank controls\' is checked above", "degrees" },
+		{ _field_angle, "tank control forward arc", "only used when 'use tank controls' is checked above", "degrees" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1?" },

@@ -60,9 +60,8 @@ void escape_string(
 		}
 		case '\'':
 		{
-			if (unescaped_comma) 
+			if (!unescaped_comma) 
 			{
-				
 				(*buffer_pos++) = '\\';
 			}
 			(*buffer_pos++) = '\'';

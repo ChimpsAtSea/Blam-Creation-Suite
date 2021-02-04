@@ -64,10 +64,10 @@ namespace macaque
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
 		{ _field_useless_pad, "" },
 		FIELD_EXPLANATION("penetration", nullptr, ""),
-		{ _field_real, "initial friction", "the fraction of the projectile\'s velocity lost on penetration" },
+		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
 		FIELD_EXPLANATION("reflection", nullptr, ""),
-		{ _field_real, "parallel friction", "the fraction of the projectile\'s velocity parallel to the surface lost on impact" },
-		{ _field_real, "perpendicular friction", "the fraction of the projectile\'s velocity perpendicular to the surface lost on impact" },
+		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
+		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
 		{ _field_terminator }
 	};
 
@@ -95,10 +95,10 @@ namespace macaque
 		{ _field_angle, "angular noise", "the angle of incidence is randomly perturbed by at most this amount to simulate irregularity.", "degrees" },
 		{ _field_real, "velocity noise", "the velocity is randomly perturbed by at most this amount to simulate irregularity.", "world units per second" },
 		FIELD_EXPLANATION("overpenetration", nullptr, ""),
-		{ _field_real, "initial friction", "the fraction of the projectile\'s velocity lost on penetration" },
+		{ _field_real, "initial friction", "the fraction of the projectile's velocity lost on penetration" },
 		FIELD_EXPLANATION("reflection", nullptr, ""),
-		{ _field_real, "parallel friction", "the fraction of the projectile\'s velocity parallel to the surface lost on impact" },
-		{ _field_real, "perpendicular friction", "the fraction of the projectile\'s velocity perpendicular to the surface lost on impact" },
+		{ _field_real, "parallel friction", "the fraction of the projectile's velocity parallel to the surface lost on impact" },
+		{ _field_real, "perpendicular friction", "the fraction of the projectile's velocity perpendicular to the surface lost on impact" },
 		{ _field_terminator }
 	};
 
@@ -207,11 +207,11 @@ namespace macaque
 		{ _field_long_flags, "secondary flags", &secondary_projectile_flags },
 		{ _field_enum, "detonation timer starts", &projectile_detonation_timer_modes },
 		{ _field_enum, "impact noise", &ai_sound_volume_enum },
-		{ _field_real, "detonation biped proximity", "if >0, both \'detonation timer starts\' + a biped must be within this proximity for condition to be met; see \'biped proximity enemies only\' flag", "wu" },
+		{ _field_real, "detonation biped proximity", "if >0, both 'detonation timer starts' + a biped must be within this proximity for condition to be met; see 'biped proximity enemies only' flag", "wu" },
 		{ _field_real, "max lifetime to detonate", "if >0, projectile will detonate regardless of other conditions after this total time", "seconds" },
 		{ _field_real, "collision radius", nullptr, "world units" },
 		FIELD_EXPLANATION("detonation", nullptr, ""),
-		{ _field_real, "arming time", "won\'t detonate before this time elapses", "seconds" },
+		{ _field_real, "arming time", "won't detonate before this time elapses", "seconds" },
 		{ _field_real, "danger radius", nullptr, "world units" },
 		{ _field_real, "danger stimuli radius", "Overrides the danger radius when non-zero for stimuli related danger radius calculations.", "world units" },
 		{ _field_short_integer, "danger group burst count", "The number of projectiles in this burst before this burst is considered dangerous" },
@@ -259,8 +259,8 @@ namespace macaque
 		{ _field_real_bounds, "air damage range", "the range over which damage is scaled when the projectile is in air.", "world units" },
 		{ _field_real, "water gravity scale", "the proportion of normal gravity applied to the projectile when in water." },
 		{ _field_real_bounds, "water damage range", "the range over which damage is scaled when the projectile is in water.", "world units" },
-		{ _field_real, "initial velocity", "bullet\'s velocity when inflicting maximum damage", "world units per second" },
-		{ _field_real, "final velocity", "bullet\'s velocity when inflicting minimum damage", "world units per second" },
+		{ _field_real, "initial velocity", "bullet's velocity when inflicting maximum damage", "world units per second" },
+		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
 		{ _field_real, "indirect fire velocity", "base velocity used for ballistics calculations for indirect firing.", "world units per second" },
 		{ _field_real, "ai velocity scale (normal)", "scale on the initial velocity when fired by the ai on normal difficulty (0 defaults to 1.0" },
 		{ _field_real, "ai velocity scale (heroic)", "scale on the initial velocity when fired by the ai on heroic difficulty (0 defaults to 1.0)" },

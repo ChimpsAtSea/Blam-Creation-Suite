@@ -23,7 +23,7 @@ namespace macaque
 		{ _field_string_id, "shield material name", "set this to make this damage section a shield" },
 		FIELD_EXPLANATION("stun", nullptr, ""),
 		{ _field_real, "stun time", nullptr, "seconds" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
 		FIELD_EXPLANATION("recharge", nullptr, ""),
 		{ _field_real, "recharge time", nullptr, "seconds" },
 		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block },
@@ -414,7 +414,7 @@ namespace macaque
 		DAMAGE_BODY_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum vitality" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
 		{ _field_real, "stun time", "the length of time the health stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 		{ _field_real_fraction, "recharge fraction", "0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
@@ -432,7 +432,7 @@ namespace macaque
 	{
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
 		{ _field_string_id, "global shield material name" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s shields" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 		{ _field_real, "shield overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
@@ -455,7 +455,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Damage Info", nullptr, ""),
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
-		{ _field_real, "maximum vitality", "value of zero implies \'damage sections\' should be empty" },
+		{ _field_real, "maximum vitality", "value of zero implies 'damage sections' should be empty" },
 		{ _field_string_id, "indirect material name", "absorbes AOE or child damage" },
 		{ _field_short_block_index, "indirect damage section", &new_global_damage_section_block },
 		{ _field_short_block_index, "shielded state damage section", &new_global_damage_section_block },
