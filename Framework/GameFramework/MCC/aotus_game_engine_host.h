@@ -1,10 +1,10 @@
 #pragma once
 
-class c_opus_game_engine_host : public IGameEngineHost
+class c_aotus_game_engine_host : public IGameEngineHost
 {
 public:
-	c_opus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime);
-	virtual ~c_opus_game_engine_host();
+	c_aotus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime);
+	virtual ~c_aotus_game_engine_host();
 
 	// MCC Functions
 
@@ -66,7 +66,7 @@ public:
 	virtual __int64 __fastcall function63(float a1); /* added in 1896 */
 	virtual __int64 __fastcall function64(__int64, unsigned int, int, __int64, float*); /* added in 1896 */
 
-	// Opus Functionality
+	// Aotus Functionality
 	virtual void render_ui() const = 0;
 	virtual IGameEngine* get_game_engine() const = 0;
 

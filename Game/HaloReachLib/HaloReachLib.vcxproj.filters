@@ -18,7 +18,7 @@
     <ClCompile Include="haloreachlib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opus_legacy\HaloReach.cpp">
+    <ClCompile Include="aotus_legacy\HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="haloreach_engine_state_command.cpp">
@@ -38,16 +38,16 @@
     <ClInclude Include="haloreachlib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\HaloReach.h">
+    <ClInclude Include="aotus_legacy\HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\c_network.h">
+    <ClInclude Include="aotus_legacy\c_network.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\input_types.h">
+    <ClInclude Include="aotus_legacy\input_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\local_types.h">
+    <ClInclude Include="aotus_legacy\local_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloreach_engine_state_command.h">

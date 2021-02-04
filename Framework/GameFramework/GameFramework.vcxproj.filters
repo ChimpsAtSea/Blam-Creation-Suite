@@ -24,18 +24,6 @@
     <ClCompile Include="RuntimeManipulation\SystemPatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationReflection\globalreference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform_configuration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\opus_game_engine_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MCC\game_runtime.cpp">
@@ -93,6 +78,21 @@
     <ClCompile Include="FileSystem\map_info.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MCC\aotus_game_engine_host.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\aotus_legacy\IFileAccess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\aotus_legacy\IGameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\aotus_legacy\IGameEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RuntimeManipulation\aotus_legacy\detour_helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h">
@@ -119,34 +119,7 @@
     <ClInclude Include="RuntimeManipulation\SystemPatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IDataAccess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IFileAccess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IGameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IGameEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IGameVariant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IMapVariant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\ISaveFilmMetadata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCC\MCC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ApplicationReflection\globalreference.h">
@@ -168,9 +141,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_game_engine_host.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\game_runtime.h">
@@ -222,6 +192,36 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\game_options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_game_engine_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IDataAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IFileAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IGameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IGameEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IGameVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IMapVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\ISaveFilmMetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\aotus_legacy\IVariantAccessorBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeManipulation\aotus_legacy\detour_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

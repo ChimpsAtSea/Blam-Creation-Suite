@@ -252,7 +252,7 @@ void rebase_executable_code(uintptr_t new_virtual_address, char* raw_image_data,
 
 void insert_virtual_address_padding(DWORD virtual_address_padding, const char* custom_section_name, char* raw_image_data, IMAGE_NT_HEADERS* raw_nt_headers, IMAGE_SECTION_HEADER* raw_section_header)
 {
-	IMAGE_SECTION_HEADER* raw_opus_section = nullptr;
+	IMAGE_SECTION_HEADER* raw_aotus_section = nullptr;
 	bool insert_section = true;
 	bool insert_front = true;
 	if (insert_section)
@@ -267,11 +267,11 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 				raw_section_header[i + 1] = raw_section_header[i];
 			}
 			raw_section_header[0] = {};
-			raw_opus_section = raw_section_header;
+			raw_aotus_section = raw_section_header;
 		}
 		else
 		{
-			raw_opus_section = raw_section_header + raw_nt_headers->FileHeader.NumberOfSections;
+			raw_aotus_section = raw_section_header + raw_nt_headers->FileHeader.NumberOfSections;
 		}
 
 		constexpr DWORD custom_characteristics = //0xe00000a0;
@@ -282,26 +282,26 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 			IMAGE_SCN_CNT_INITIALIZED_DATA |
 			IMAGE_SCN_MEM_READ;
 
-		raw_opus_section->Misc.VirtualSize = virtual_address_padding;
+		raw_aotus_section->Misc.VirtualSize = virtual_address_padding;
 		if (insert_front)
 		{
-			raw_opus_section->VirtualAddress = 0x1000;
+			raw_aotus_section->VirtualAddress = 0x1000;
 		}
 		else
 		{
-			raw_opus_section->VirtualAddress = align(raw_section_header[raw_nt_headers->FileHeader.NumberOfSections - 1].Misc.VirtualSize, raw_nt_headers->OptionalHeader.SectionAlignment, raw_section_header[raw_nt_headers->FileHeader.NumberOfSections - 1].VirtualAddress);
+			raw_aotus_section->VirtualAddress = align(raw_section_header[raw_nt_headers->FileHeader.NumberOfSections - 1].Misc.VirtualSize, raw_nt_headers->OptionalHeader.SectionAlignment, raw_section_header[raw_nt_headers->FileHeader.NumberOfSections - 1].VirtualAddress);
 		}
 
-		raw_opus_section->SizeOfRawData = 0;
-		raw_opus_section->PointerToRawData = 0;
-		raw_opus_section->Characteristics = custom_characteristics;
-		strncpy(reinterpret_cast<char*>(raw_opus_section->Name), custom_section_name, __min(strlen(custom_section_name), 8));
+		raw_aotus_section->SizeOfRawData = 0;
+		raw_aotus_section->PointerToRawData = 0;
+		raw_aotus_section->Characteristics = custom_characteristics;
+		strncpy(reinterpret_cast<char*>(raw_aotus_section->Name), custom_section_name, __min(strlen(custom_section_name), 8));
 
 		raw_nt_headers->FileHeader.NumberOfSections++;
 	}
 
-	WORD startSectionIndex = raw_opus_section ? (insert_front ? 1 : 0) : 0;
-	WORD endSectionIndex = raw_nt_headers->FileHeader.NumberOfSections - (raw_opus_section ? (insert_front ? 0 : 1) : 0);
+	WORD startSectionIndex = raw_aotus_section ? (insert_front ? 1 : 0) : 0;
+	WORD endSectionIndex = raw_nt_headers->FileHeader.NumberOfSections - (raw_aotus_section ? (insert_front ? 0 : 1) : 0);
 
 	if (insert_front)
 	{
@@ -318,9 +318,9 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 	}
 
 
-	if (raw_opus_section)
+	if (raw_aotus_section)
 	{
-		DWORD inserted_size = raw_opus_section->Misc.VirtualSize;
+		DWORD inserted_size = raw_aotus_section->Misc.VirtualSize;
 
 		raw_nt_headers->OptionalHeader.SizeOfImage += inserted_size; // increase the total size of the image to make room for the padding. this ensures there is enough room for everything
 		raw_nt_headers->OptionalHeader.SizeOfHeapCommit += inserted_size;
@@ -700,10 +700,10 @@ int main(int argc, const char* argv[])
 			uintptr_t new_virtual_address = application_virtual_address + inserted_data_size;
 			uintptr_t virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 
-			IMAGE_SECTION_HEADER* opus_section_header = get_section_header(custom_section_name, raw_nt_headers, raw_section_header);
-			if (opus_section_header)
+			IMAGE_SECTION_HEADER* aotus_section_header = get_section_header(custom_section_name, raw_nt_headers, raw_section_header);
+			if (aotus_section_header)
 			{
-				printf(".opus section already exists. skipping virtual address padding.\n");
+				printf(".aotus section already exists. skipping virtual address padding.\n");
 			}
 			else
 			{

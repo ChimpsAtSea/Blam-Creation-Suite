@@ -101,9 +101,9 @@
     </Link>
     <PostBuildEvent>
       <Command>if "$(Platform)" == "Win32" (
-  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x400000 0x0760A000
 ) else (
-  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x140000000 0x20000000
 )
 $(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
@@ -139,9 +139,9 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     </Link>
     <PostBuildEvent>
       <Command>if "$(Platform)" == "Win32" (
-  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x400000 0x0760A000
 ) else (
-  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x140000000 0x20000000
 )
 $(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
@@ -180,9 +180,9 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     </Link>
     <PostBuildEvent>
       <Command>if "$(Platform)" == "Win32" (
-  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x400000 0x0760A000
 ) else (
-  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x140000000 0x20000000
 )
 $(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
@@ -222,9 +222,9 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     </Link>
     <PostBuildEvent>
       <Command>if "$(Platform)" == "Win32" (
-  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+  $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x400000 0x0760A000
 ) else (
-  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+  rem $(OutputPath)ImageRelocateTool.exe $(OutputPath)Mustard.exe .aotus 0x140000000 0x20000000
 )
 $(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 

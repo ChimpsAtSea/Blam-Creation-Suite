@@ -19,7 +19,7 @@ void register_halo5lib()
 }
 
 c_halo5_game_host::c_halo5_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, *g_halo5_game_runtime)
+	c_aotus_game_engine_host(engine_type, build, *g_halo5_game_runtime)
 {
 
 }

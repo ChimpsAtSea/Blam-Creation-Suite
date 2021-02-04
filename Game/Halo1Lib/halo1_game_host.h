@@ -5,7 +5,7 @@
 /* ---------- types */
 /* ---------- classes */
 
-class c_halo1_game_host : public c_opus_game_engine_host
+class c_halo1_game_host : public c_aotus_game_engine_host
 {
 public:
 	c_halo1_game_host(e_engine_type engine_type, e_build build);
@@ -14,7 +14,7 @@ public:
 	// IGameEngineHost functionality
 	void frame_end(IDXGISwapChain* swap_chain, _QWORD) override;
 
-	// c_opus_game_engine_host functionality
+	// c_aotus_game_engine_host functionality
 	virtual void render_ui() const override;
 	virtual IGameEngine* get_game_engine() const override;
 

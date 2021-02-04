@@ -9,7 +9,7 @@
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
-const char* c_console::g_console_executable_name = "Opus";
+const char* c_console::g_console_executable_name = "Aotus";
 c_window* window = nullptr;
 
 int WINAPI WinMain(
@@ -39,7 +39,7 @@ int WINAPI WinMain(
 	auto update_callback = [&discord]()
 	{
 		c_render::begin_frame(true, &clearColor.x);
-		c_game_launcher::opus_tick();
+		c_game_launcher::aotus_tick();
 		c_render::end_frame();
 	};
 	void(*DestroyCallback)() = []()
@@ -48,9 +48,9 @@ int WINAPI WinMain(
 	};
 
 #ifdef _DEBUG
-	const wchar_t* k_window_title = L"Opus Debug";
+	const wchar_t* k_window_title = L"Aotus Debug";
 #else
-	const wchar_t* k_window_title = L"Opus";
+	const wchar_t* k_window_title = L"Aotus";
 #endif
 	c_console::write_line("creating window");
 	window = new c_window(hInstance, k_window_title, L"mandrill", _window_icon_blam_creation_suite, nShowCmd);

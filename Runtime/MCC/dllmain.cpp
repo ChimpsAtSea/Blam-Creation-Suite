@@ -71,7 +71,7 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 
 }
 
-void init_opus()
+void init_aotus()
 {
 	register_platforms();
 
@@ -95,7 +95,7 @@ void init_opus()
 	end_detours();
 }
 
-void deinit_opus()
+void deinit_aotus()
 {
 
 }
@@ -106,12 +106,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	{
 	case DLL_PROCESS_ATTACH:
 	{
-		init_opus();
+		init_aotus();
 	}
 	break;
 	case DLL_PROCESS_DETACH:
 	{
-		deinit_opus();
+		deinit_aotus();
 	}
 	break;
 	case DLL_THREAD_ATTACH:
@@ -136,7 +136,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	void(*UpdateCallback)() = []()
 	{
 		c_render::BeginFrame(true, &clearColor.x);
-		GameLauncher::OpusTick();
+		GameLauncher::AotusTick();
 		c_render::EndFrame();
 	};
 	void(*DestroyCallback)() = []()
@@ -144,7 +144,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 		s_running = false;
 	};
 	
-	Window::Init("Opus", "OpusConsole", "opus");
+	Window::Init("Aotus", "AotusConsole", "aotus");
 	c_render::Init(hInstance);
 	MandrillGUI::Init(true);
 	GameLauncher::Init();

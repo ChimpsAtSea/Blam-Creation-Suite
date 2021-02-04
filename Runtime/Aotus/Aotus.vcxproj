@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{0D2234CA-029E-4055-944E-DB8B67498309}</ProjectGuid>
-    <RootNamespace>Opus</RootNamespace>
-    <ProjectName>Opus (Game Launcher)</ProjectName>
+    <RootNamespace>Aotus</RootNamespace>
+    <ProjectName>Aotus (Game Launcher)</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -26,7 +26,7 @@ public:
 	static void init_game_launcher(c_window& window);
 	static void deinit_game_launcher();
 	static void add_supported_engine(e_engine_type engine_type);
-	static void opus_tick();
+	static void aotus_tick();
 	static void game_exited_callback();
 	static void window_destroy_callback();
 	inline static bool is_game_running() { return s_is_game_running; }

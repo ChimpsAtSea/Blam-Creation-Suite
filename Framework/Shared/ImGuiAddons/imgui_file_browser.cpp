@@ -4,7 +4,7 @@
  * Licensed under the MIT license.
  * Commit master / 730f379845f1a874ab4f33d66d4a066d3b0b187a
  *
- * Modifications made for project Opus
+ * Modifications made for project Aotus
  */
 
 #include "shared-private-pch.h"

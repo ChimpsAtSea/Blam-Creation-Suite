@@ -5,7 +5,7 @@
 /* ---------- types */
 /* ---------- classes */
 
-class c_halo5_game_host : public c_opus_game_engine_host
+class c_halo5_game_host : public c_aotus_game_engine_host
 {
 public:
 	c_halo5_game_host(e_engine_type engine_type, e_build build);

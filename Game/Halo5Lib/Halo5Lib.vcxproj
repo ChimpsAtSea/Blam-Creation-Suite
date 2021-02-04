@@ -97,13 +97,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="opus_legacy\c_network.h" />
+    <ClInclude Include="aotus_legacy\c_network.h" />
     <ClInclude Include="halo5_game_host.h" />
     <ClInclude Include="halo5lib-private-pch.h" />
     <ClInclude Include="halo5lib-public-pch.h" />
-    <ClInclude Include="opus_legacy\Halo5.h" />
-    <ClInclude Include="opus_legacy\input_types.h" />
-    <ClInclude Include="opus_legacy\local_types.h" />
+    <ClInclude Include="aotus_legacy\Halo5.h" />
+    <ClInclude Include="aotus_legacy\input_types.h" />
+    <ClInclude Include="aotus_legacy\local_types.h" />
     <ClInclude Include="tls_data.h" />
   </ItemGroup>
   <ItemGroup>

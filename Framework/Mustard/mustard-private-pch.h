@@ -8,7 +8,7 @@
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <GameFramework\gameframework-public-pch.h>
 
-// #TODO: Move any interface here inside of Opus Framework
+// #TODO: Move any interface here inside of Aotus Framework
 #include <EldoradoLib\eldoradolib-public-pch.h>
 #include <Halo5Lib\halo5lib-public-pch.h>
 
