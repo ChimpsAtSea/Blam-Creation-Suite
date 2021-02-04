@@ -2,9 +2,15 @@
 
 #ifndef NO_TBB
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
+#pragma warning( push )
+#pragma warning( disable : 4180 )
+
 #include <tbb/tbb.h>
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
+
+#pragma warning( pop )
+
 using namespace tbb;
 
 template<typename F>

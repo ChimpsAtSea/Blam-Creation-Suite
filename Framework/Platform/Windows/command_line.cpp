@@ -35,7 +35,7 @@ std::string c_command_line::get_command_line_arg(const char* command)
 {
 	static LPSTR const command_line = GetCommandLineA();
 
-	uint32_t command_length = strlen(command);
+	size_t command_length = strlen(command);
 
 	const char* command_start = command_line;
 	while (command_start = strstr(command_start, command))

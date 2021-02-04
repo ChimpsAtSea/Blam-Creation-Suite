@@ -420,7 +420,7 @@ public:
 		uint32_t result = 0;
 		if(isspace(*data))
 		{
-			uint32_t memory_size = size() + 1;
+			size_t memory_size = size() + 1;
 			char* buffer = new(alloca(memory_size)) char[memory_size];
 			memcpy(buffer, data, memory_size);
 

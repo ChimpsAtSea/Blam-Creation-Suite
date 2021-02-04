@@ -533,7 +533,7 @@ void c_haloreach_game_option_selection_legacy::select_game_variant()
 
 			if (should_show)
 			{
-				if (const const char* filename = file_array.get_filename(file_index))
+				if (const char* filename = file_array.get_filename(file_index))
 				{
 					bool selected = filename == last_filename;
 

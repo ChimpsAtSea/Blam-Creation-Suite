@@ -27,14 +27,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 		return;
 	}
 
-	static int x = 0;
-	int y = strlen(_string);
-	if (y > x)
-	{
-		x = y;
-		c_console::write_line("new length %i", x);
-	}
-
 	// bespoke fixups
 	for (std::pair<const char*, const char*>& fixup : bespoke_fixups)
 	{
@@ -64,23 +56,6 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 
 	c_fixed_string_64 flags;
 	flags.format("%s%s%s", flags0.data, flags1.data, flags2.data);
-
-	static c_fixed_string_64 symbols;
-
-	for (int i = 0; i < flags.size(); i++)
-	{
-		char c = flags[i];
-
-		if (!symbols.contains(c))
-		{
-			char buf[2] = { c, 0 };
-			c_console::write_line("found flag '%s'", buf);
-
-			symbols += buf;
-		}
-
-		debug_point;
-	}
 
 	read_only = flags.contains('*');
 	is_index = flags.contains('^');
@@ -177,7 +152,7 @@ void c_blamlib_string_parser::cleanup_code_name()
 }
 
 c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
-	buffer_length(string ? (strlen(string) + 1) : 0),
+	buffer_length(string ? static_cast<uint32_t>(strlen(string) + 1u) : 0u),
 	buffer_aggregate(string ? new char[k_num_buffers * buffer_length]{} : nullptr),
 	name(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_name * buffer_length])),
 	old_name(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_old_name * buffer_length])),

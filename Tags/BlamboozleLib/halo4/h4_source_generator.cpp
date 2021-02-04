@@ -1394,8 +1394,6 @@ std::string c_h4_source_generator::create_struct_definition_runtime_flags(unsign
 	return runtime_flags_buffer;
 }
 
-#define TEST_BIT(value, bit) (((value) & (1 << (bit))) != 0)  // #todo move this globally
-
 std::string c_h4_source_generator::create_struct_definition_memory_attributes(unsigned long memory_type, unsigned long usage_flags, const char* new_line_format)
 {
 	const char* comment = nullptr;
@@ -1434,7 +1432,7 @@ std::string c_h4_source_generator::create_struct_definition_memory_attributes(un
 
 		{
 			bool make_new_line = false;
-			uint32_t line_characters = strlen(allocation_type_macro);
+			size_t line_characters = strlen(allocation_type_macro);
 			for (unsigned long usage_flag = 0; usage_flag < k_num_h4_tag_memory_usage_bits; usage_flag++)
 			{
 				unsigned long usage_flag_bit = 1 << usage_flag;
