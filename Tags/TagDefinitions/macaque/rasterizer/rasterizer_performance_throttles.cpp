@@ -67,7 +67,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PERFORMANCE_THROTTLES_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Performance Throttles", "Split-screen throttle settings should be more aggresive than non-local co-op settings\nblock index 0:\tdefault non split screen\nblock index 1: two way split screen\nblock index 2: three way split screen\nblock index 3: four way split screen\nblock index 4: one additional non-local player\nblock index 5: two additional non-local players\nblock index 6: three additional non-local players\n\n" },
+		FIELD_EXPLANATION("Performance Throttles", nullptr, "Split-screen throttle settings should be more aggresive than non-local co-op settings\nblock index 0:\tdefault non split screen\nblock index 1: two way split screen\nblock index 2: three way split screen\nblock index 3: four way split screen\nblock index 4: one additional non-local player\nblock index 5: two additional non-local players\nblock index 6: three additional non-local players\n\n"),
 		{ _field_block, "Performance Throttles", &performane_throttle_block },
 		{ _field_terminator }
 	};

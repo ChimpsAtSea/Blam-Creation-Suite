@@ -45,6 +45,11 @@ public:
 		va_end(args);
 	}
 
+	void operator =(const t_char_type* string)
+	{
+		snprintf(data, length, "%s", string);
+	}
+
 	void operator +=(const t_char_type* string)
 	{
 		strncat(data, string, length - 1);
@@ -107,6 +112,31 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void clear()
+	{
+		data[0] = 0;
+	}
+
+	size_t size()
+	{
+		return strlen(data);
+	}
+
+	t_char_type* str()
+	{
+		return data;
+	}
+
+	const t_char_type* c_str() const
+	{
+		return data;
+	}
+
+	bool empty() const
+	{
+		return data[0] != 0;
 	}
 };
 

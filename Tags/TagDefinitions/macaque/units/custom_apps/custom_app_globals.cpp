@@ -35,12 +35,12 @@ namespace macaque
 		{ _field_string_id, "helpText" },
 		{ _field_string_id, "iconStringId" },
 		{ _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
-		{ _field_explanation, "Locked flag", "If you lock an app that you currently have installed and then XSync, the game may assert.  If so, relaunch and you\'ll be fine.  It\'s nothing to worry about." },
+		FIELD_EXPLANATION("Locked flag", nullptr, "If you lock an app that you currently have installed and then XSync, the game may assert.  If so, relaunch and you\'ll be fine.  It\'s nothing to worry about."),
 		{ _field_byte_flags, "flags", &custom_app_flags },
 		FIELD_PAD("woooo", nullptr, 3),
-		{ _field_explanation, "Player Traits", "Player traits that are applied to the player when they have this app." },
+		FIELD_EXPLANATION("Player Traits", nullptr, "Player traits that are applied to the player when they have this app."),
 		{ _field_block, "player traits", &game_engine_player_traits_block },
-		{ _field_explanation, "Damage Type Modifiers", "Damage modifiers per damage type." },
+		FIELD_EXPLANATION("Damage Type Modifiers", nullptr, "Damage modifiers per damage type."),
 		{ _field_block, "damage type modifiers", &custom_app_damage_modifier_block },
 		{ _field_terminator }
 	};
@@ -56,7 +56,7 @@ namespace macaque
 		CUSTOM_APP_DAMAGE_MODIFIER_BLOCK_ID)
 	{
 		{ _field_string_id, "damage type" },
-		{ _field_explanation, "damage resistance", "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"." },
+		FIELD_EXPLANATION("damage resistance", nullptr, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance multiplier" },
 		{ _field_terminator }
 	};
@@ -71,7 +71,7 @@ namespace macaque
 		CUSTOM_APP_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "maximum active apps", "(-1 = unlimited)" },
-		{ _field_explanation, "Update Frequency", "The players can enter the Custom App menu at any time during a game and change their apps.  This enum determines when those changes take effect, in terms of gameplay effects." },
+		FIELD_EXPLANATION("Update Frequency", nullptr, "The players can enter the Custom App menu at any time during a game and change their apps.  This enum determines when those changes take effect, in terms of gameplay effects."),
 		{ _field_enum, "custom app update frequency", &custom_app_update_frequencies },
 		FIELD_PAD("wahoo", nullptr, 2),
 		{ _field_block, "custom apps", &custom_app_block },

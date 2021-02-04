@@ -53,7 +53,7 @@ namespace macaque
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
 		FIELD_PAD("post-cubemap-resolution-pad", nullptr, 2),
-		{ _field_explanation, "bsps it could belong to", "empty masks mean automatic selection." },
+		FIELD_EXPLANATION("bsps it could belong to", nullptr, "empty masks mean automatic selection."),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_block, "reference points", &cubemap_reference_points_block },
 		{ _field_terminator }

@@ -34,7 +34,7 @@ namespace macaque
 		{ _field_int64_integer, "Definition Identifier" },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct },
 		{ _field_long_integer, "Source File Identifier" },
-		{ _field_explanation, "Static Only Parameters", "" },
+		FIELD_EXPLANATION("Static Only Parameters", nullptr, ""),
 		{ _field_real, "indirect amplification factor" },
 		{ _field_real, "jitter sphere radius" },
 		{ _field_real, "jitter angle" },

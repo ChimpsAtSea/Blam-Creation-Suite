@@ -48,7 +48,7 @@ namespace macaque
 		{ _field_block, "volume samples", &volume_samples_block },
 		{ _field_block, "runtime node orientations", &default_node_orientations_block },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block },
-		{ _field_explanation, "Static Lightmap", "" },
+		FIELD_EXPLANATION("Static Lightmap", nullptr, ""),
 		{ _field_tag_reference, "structure meta data", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "forge lightmap atlases", &RenderModelLightmapAtlasReference },

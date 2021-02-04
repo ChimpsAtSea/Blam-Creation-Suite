@@ -36,7 +36,7 @@ namespace macaque
 		PLAYER_TRAITS_VITALITY_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
-		{ _field_explanation, "damage resistance", "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"." },
+		FIELD_EXPLANATION("damage resistance", nullptr, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance" },
 		{ _field_real, "shield multiplier" },
 		{ _field_real, "body multiplier" },
@@ -108,7 +108,7 @@ namespace macaque
 		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
 		FIELD_PAD("weapons_padding", nullptr, 1),
-		{ _field_explanation, "initial weapons/equipment", "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list." },
+		FIELD_EXPLANATION("initial weapons/equipment", nullptr, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
 		{ _field_string_id, "initial equipment" },
@@ -156,7 +156,7 @@ namespace macaque
 		{ _field_char_enum, "waypoint", &player_trait_waypoint },
 		{ _field_char_enum, "gamertag visible", &player_trait_waypoint },
 		{ _field_char_enum, "aura", &player_trait_aura },
-		{ _field_explanation, "death effect/attached effect", "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects." },
+		FIELD_EXPLANATION("death effect/attached effect", nullptr, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
 		{ _field_string_id, "death effect" },
 		{ _field_string_id, "attached effect" },
 		{ _field_terminator }

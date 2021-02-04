@@ -58,9 +58,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNDERWATER_PROXIES_BLOCK_ID)
 	{
-		{ _field_explanation, "when this material is encounted under a material of this type ...", "" },
+		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr, ""),
 		{ _field_string_id, "underwater material" },
-		{ _field_explanation, "... we report it as this material", "" },
+		FIELD_EXPLANATION("... we report it as this material", nullptr, ""),
 		{ _field_string_id, "proxy material" },
 		{ _field_short_integer, "underwater material type" },
 		{ _field_short_integer, "proxy material type" },
@@ -103,7 +103,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WET_PROXIES_STRUCT_ID)
 	{
-		{ _field_explanation, "when rained on, we report this material", "" },
+		FIELD_EXPLANATION("when rained on, we report this material", nullptr, ""),
 		{ _field_string_id, "wet material" },
 		{ _field_short_integer, "runtime proxy material index" },
 		FIELD_PAD("wpb1", nullptr, 2),
@@ -123,10 +123,10 @@ namespace macaque
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "density", "kg/m" },
-		{ _field_explanation, "Drag", "" },
+		FIELD_EXPLANATION("Drag", nullptr, ""),
 		{ _field_tag_reference, "water physics drag properties", &water_physics_drag_properties_reference },
 		{ _field_block, "drag overrides", &object_type_drag_properties_block },
-		{ _field_explanation, "Floatation", "objects of this flotation category have this density relative to being in this material (1.0f==neutral)" },
+		FIELD_EXPLANATION("Floatation", nullptr, "objects of this flotation category have this density relative to being in this material (1.0f==neutral)"),
 		FIELD_PAD("default", nullptr, 4),
 		{ _field_real, "super floater" },
 		{ _field_real, "floater" },
@@ -163,7 +163,7 @@ namespace macaque
 		{ _field_tag_reference, "water ripple (small)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (medium)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (large)", &render_water_ripple_reference },
-		{ _field_explanation, "sweetener inheritance flags", "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play" },
+		FIELD_EXPLANATION("sweetener inheritance flags", nullptr, "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play"),
 		{ _field_long_flags, "sweetener inheritance flags", &materials_sweeteners_inheritance_flags },
 		{ _field_terminator }
 	};

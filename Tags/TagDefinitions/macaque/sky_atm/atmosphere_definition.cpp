@@ -28,7 +28,7 @@ namespace macaque
 		{ _field_word_flags, "Flags", &atmosphere_flags },
 		{ _field_byte_integer, "Version" },
 		FIELD_PAD("ABCDEFGH", nullptr, 1),
-		{ _field_explanation, "Ambient Fog Parameters", "All heights are absolute world space height\n" },
+		FIELD_EXPLANATION("Ambient Fog Parameters", nullptr, "All heights are absolute world space height\n"),
 		{ _field_real, "distance bias", "negative means into the screen", "world units" },
 		FIELD_CUSTOM("Sky Fog", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "sky fog", &solo_fog_parameters_struct_definition },
@@ -42,7 +42,7 @@ namespace macaque
 		FIELD_CUSTOM("Fog Light", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "fog light", &fog_light_struct_definition },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_explanation, "Patchy Fog Per-Cluster Parameters", "Sheet density.............Intensity scaling factor applied to all sheets\nFull intensity height.....Height above 0 below which fog should be at full intensity\nHalf intensity height.....Height at which fog should be attenuated to half intensity\nWind......................Direction and intensity of fog motion due to wind\n\n" },
+		FIELD_EXPLANATION("Patchy Fog Per-Cluster Parameters", nullptr, "Sheet density.............Intensity scaling factor applied to all sheets\nFull intensity height.....Height above 0 below which fog should be at full intensity\nHalf intensity height.....Height at which fog should be attenuated to half intensity\nWind......................Direction and intensity of fog motion due to wind\n\n"),
 		{ _field_real, "Sheet density" },
 		{ _field_real_rgb_color, "Color tint" },
 		{ _field_real_rgb_color, "Color tint inner" },
@@ -57,7 +57,7 @@ namespace macaque
 		FIELD_CUSTOM("Light Shafts", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "light shaft", &LightShaftParametersDefinition },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_explanation, "Weather effect", "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n" },
+		FIELD_EXPLANATION("Weather effect", nullptr, "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n"),
 		{ _field_tag_reference, "Weather effect", &global_effect_reference },
 		{ _field_terminator }
 	};

@@ -182,7 +182,7 @@ namespace macaque
 		STRUCTURE_SEAMS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "structure manifest", &structure_manifest_struct },
-		{ _field_explanation, "This tag defines the geometry between seam connected structures bsp.", "" },
+		FIELD_EXPLANATION("This tag defines the geometry between seam connected structures bsp.", nullptr, ""),
 		{ _field_long_integer, "version" },
 		{ _field_block, "errors", &global_error_report_categories_block },
 		{ _field_block, "seams", &structure_seam_block },

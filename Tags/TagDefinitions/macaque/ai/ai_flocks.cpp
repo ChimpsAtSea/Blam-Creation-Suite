@@ -117,7 +117,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Simple flocking", "" },
+		FIELD_EXPLANATION("Simple flocking", nullptr, ""),
 		{ _field_real, "forward weight", "weight given to boid\'s desire to fly straight ahead" },
 		{ _field_real, "leveling force weight", "weight given to boids desire to fly level" },
 		{ _field_real, "destination weight", "weight given to boid\'s desire to fly towards its sinks" },
@@ -131,10 +131,10 @@ namespace macaque
 		{ _field_real, "target delay time", "amount of time we need to be locked onto a target before we might start killing it", "seconds" },
 		{ _field_real, "target kill chance", "probability of killing your target in one second", "chance per second" },
 		{ _field_real, "ai destroy chance", "if targetted by AI, the probability of dying in one second", "chance per second" },
-		{ _field_explanation, "Perlin noise parameters", "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3" },
+		FIELD_EXPLANATION("Perlin noise parameters", nullptr, "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3"),
 		{ _field_real, "random offset weight", "weight given to boid\'s random heading offset" },
 		{ _field_real_bounds, "random offset period", "seconds" },
-		{ _field_explanation, "Complex Flocking", "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n" },
+		FIELD_EXPLANATION("Complex Flocking", nullptr, "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n"),
 		{ _field_real, "neighborhood radius", "distance within which one boid is affected by another", "world units" },
 		{ _field_angle, "perception angle", "angle-from-forward within which one boid can perceive and react to another", "degrees" },
 		{ _field_real, "avoidance weight", "weight given to boid\'s desire to avoid collisions with other boids, when within the avoidance radius" },

@@ -68,7 +68,7 @@ namespace macaque
 		FIELD_PAD("BVCG", nullptr, 3),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier },
 		{ _field_real, "time period", "seconds", _field_id_function_unknown },
-		{ _field_explanation, "FUNCTION", "" },
+		FIELD_EXPLANATION("FUNCTION", nullptr, ""),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }

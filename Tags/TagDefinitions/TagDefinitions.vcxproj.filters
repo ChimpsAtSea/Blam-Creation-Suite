@@ -3655,5 +3655,14 @@
     <None Include="macaque\sound\looping_sound_track_definition.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="types\tag_field.ctor.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blamlib_string_parser.cpp.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blamlib_string_parser.h.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

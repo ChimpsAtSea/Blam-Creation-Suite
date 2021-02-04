@@ -196,7 +196,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		CELL_BLOCK_STRUCT_ID)
 	{
-		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
+		FIELD_EXPLANATION("Character Build", nullptr, "Specify the distribution of characters and weapons in the cell sub-folders"),
 		{ _field_string_id, "name" },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
@@ -284,7 +284,7 @@ namespace macaque
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
-		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
+		FIELD_EXPLANATION("Character Build", nullptr, "Specify the distribution of characters and weapons in the following blocks"),
 		{ _field_block, "character type", &character_ref_choice_block },
 		{ _field_block, "initial weapon", &weapon_ref_choice_block },
 		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block },

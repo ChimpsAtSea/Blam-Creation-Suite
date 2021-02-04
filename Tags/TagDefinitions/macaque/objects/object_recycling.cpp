@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GARBAGE_COLLECTION_BLOCK_ID)
 	{
-		{ _field_explanation, "Garbage Times", "time before the game considers that following entities as garbage" },
+		FIELD_EXPLANATION("Garbage Times", nullptr, "time before the game considers that following entities as garbage"),
 		{ _field_real, "Dropped item", "seconds" },
 		{ _field_real, "Dropped item by player", "seconds" },
 		{ _field_real, "Dropped item in multiplayer", "seconds" },

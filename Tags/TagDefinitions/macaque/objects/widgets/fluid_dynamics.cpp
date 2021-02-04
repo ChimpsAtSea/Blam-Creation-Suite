@@ -123,7 +123,7 @@ namespace macaque
 		{ _field_block, "inflow", &fluid_dynamics_inflow_block },
 		{ _field_block, "outflow", &fluid_dynamics_outflow_block },
 		{ _field_block, "obstacles", &fluid_dynamics_obstacle_block },
-		{ _field_explanation, "Cylinder map", "" },
+		FIELD_EXPLANATION("Cylinder map", nullptr, ""),
 		{ _field_struct, "cylindrical radius", &g_single_scalar_function_evaluation_struct },
 		{ _field_terminator }
 	};

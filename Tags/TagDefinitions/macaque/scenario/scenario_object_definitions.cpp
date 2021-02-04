@@ -623,7 +623,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_REQUISITION_PALETTE_BLOCK_ID)
 	{
-		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
+		FIELD_EXPLANATION("CUSTOM APPS", nullptr, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
 		{ _field_tag_reference, "name", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "second name", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "third name", &scenario_requisition_palette_block_name_reference },
@@ -807,7 +807,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_MULTIPLAYER_OBJECT_STRUCT_ID)
 	{
-		{ _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
+		FIELD_EXPLANATION("Multiplayer Data", nullptr, "object data for multiplayer game use"),
 		{ _field_string, "megalo label" },
 		{ _field_string, "megalo label 2" },
 		{ _field_string, "megalo label 3" },

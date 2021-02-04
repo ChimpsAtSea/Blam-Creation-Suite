@@ -492,7 +492,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Game Engine Settings", "This contains the definitions for the built-in custom multiplayer game variants" },
+		FIELD_EXPLANATION("Game Engine Settings", nullptr, "This contains the definitions for the built-in custom multiplayer game variants"),
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
 		{ _field_block, "player traits", &game_engine_player_traits_list_block },
 		{ _field_block, "ai traits", &game_engine_ai_traits_list_block },

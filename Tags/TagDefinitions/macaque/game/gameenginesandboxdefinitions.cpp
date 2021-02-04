@@ -18,7 +18,7 @@ namespace macaque
 		FORGE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "forge colors", &forge_color_block },
-		{ _field_explanation, "Magnets", "Forge magnet parameters" },
+		FIELD_EXPLANATION("Magnets", nullptr, "Forge magnet parameters"),
 		{ _field_tag_reference, "magnet effect scenery", &effect_scenery_reference },
 		{ _field_string_id, "parent magnet marker name" },
 		{ _field_string_id, "child magnet marker name" },
@@ -30,7 +30,7 @@ namespace macaque
 		{ _field_real, "v.high magnetism factor", "multiplied against selected object bounding sphere radius" },
 		{ _field_real, "magnetism angle", "degrees#multiplied against selected object bounding sphere radius" },
 		{ _field_real_fraction, "magnet offset influence", "influence of magnet selection based on selection center in forge" },
-		{ _field_explanation, "Forge Camera Manipulation", "Forge camera and manipulator parameters" },
+		FIELD_EXPLANATION("Forge Camera Manipulation", nullptr, "Forge camera and manipulator parameters"),
 		{ _field_real, "object grab range", "how close you must be to an object in order to grab it for manipulation" },
 		{ _field_real, "default focal distance", "default manipulation camera distance" },
 		{ _field_real, "minimum focal distance", "minimum manipulation camera distance" },

@@ -87,11 +87,11 @@ namespace macaque
 		SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_explanation, "SOUND ENVIRONMENT", "" },
+		FIELD_EXPLANATION("SOUND ENVIRONMENT", nullptr, ""),
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition },
-		{ _field_explanation, "BACKGROUND SOUND", "" },
+		FIELD_EXPLANATION("BACKGROUND SOUND", nullptr, ""),
 		{ _field_struct, "ambience", &scenario_acoustics_ambience_definition },
-		{ _field_explanation, "SOUND BANK", "" },
+		FIELD_EXPLANATION("SOUND BANK", nullptr, ""),
 		{ _field_tag_reference, "Sound bank tag", &global_soundbank_reference },
 		{ _field_tag_reference, "DVD Only sound bank tag", &global_soundbank_reference },
 		{ _field_terminator }

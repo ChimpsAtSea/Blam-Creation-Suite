@@ -50,9 +50,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_STRUCT_ID)
 	{
-		{ _field_explanation, "build identifer", "" },
+		FIELD_EXPLANATION("build identifer", nullptr, ""),
 		{ _field_struct, "build identifer", &structure_manifest_build_identifier_struct },
-		{ _field_explanation, "parent build identifier", "" },
+		FIELD_EXPLANATION("parent build identifier", nullptr, ""),
 		{ _field_struct, "parent build identifer", &structure_manifest_build_identifier_struct },
 		{ _field_block, "bsp manifest", &structure_manifest_bsp_block },
 		{ _field_terminator }

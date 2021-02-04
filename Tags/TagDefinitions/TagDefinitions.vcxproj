@@ -2728,12 +2728,15 @@
     <ClInclude Include="types\tag_struct_definition.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="blamlib_string_parser.cpp.inl" />
+    <None Include="blamlib_string_parser.h.inl" />
     <None Include="blofeld\sound\looping_sound_definition.inl" />
     <None Include="blofeld\sound\looping_sound_detail_definition.inl" />
     <None Include="blofeld\sound\looping_sound_track_definition.inl" />
     <None Include="macaque\sound\looping_sound_definition.inl" />
     <None Include="macaque\sound\looping_sound_detail_definition.inl" />
     <None Include="macaque\sound\looping_sound_track_definition.inl" />
+    <None Include="types\tag_field.ctor.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

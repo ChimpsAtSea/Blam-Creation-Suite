@@ -57,7 +57,7 @@ namespace macaque
 		CAMERA_FX_EXPOSURE_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
-		{ _field_explanation, "EXPOSURE", "Controls the brightness of the scene, like exposure time on your camera.\nThe actual exposure always blends towards the target exposure.\nWith auto-exposure on, the target exposure is calculated relative to the brightness of what is on screen.\n" },
+		FIELD_EXPLANATION("EXPOSURE", nullptr, "Controls the brightness of the scene, like exposure time on your camera.\nThe actual exposure always blends towards the target exposure.\nWith auto-exposure on, the target exposure is calculated relative to the brightness of what is on screen.\n"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_auto_adjust },
 		FIELD_PAD("MKRGRF", nullptr, 2),
 		{ _field_real, "exposure", "the target exposure (ONLY USED WHEN AUTO-EXPOSURE IS OFF)", "stops" },
@@ -82,7 +82,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_EXPOSURE_SENSITIVITY_STRUCT_ID)
 	{
-		{ _field_explanation, "AUTO EXPOSURE SENSITIVITY", "How sensitive auto exposure is to small bright patches on the screen (like the sun)" },
+		FIELD_EXPLANATION("AUTO EXPOSURE SENSITIVITY", nullptr, "How sensitive auto exposure is to small bright patches on the screen (like the sun)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("MAKAMAKAHEY", nullptr, 2),
 		{ _field_real, "sensitivity (0-1)" },
@@ -98,7 +98,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_HIGHLIGHT_STRUCT_ID)
 	{
-		{ _field_explanation, "HIGHLIGHT BLOOM", "These parameters control bloom off the highlights (really bright stuff)" },
+		FIELD_EXPLANATION("HIGHLIGHT BLOOM", nullptr, "These parameters control bloom off the highlights (really bright stuff)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("LOTPRER", nullptr, 2),
 		{ _field_real, "highlight bloom" },
@@ -116,7 +116,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INHERENT_STRUCT_ID)
 	{
-		{ _field_explanation, "INHERENT BLOOM", "These parameters control bloom off everything (bright and dark)" },
+		FIELD_EXPLANATION("INHERENT BLOOM", nullptr, "These parameters control bloom off everything (bright and dark)"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("ERIRLE", nullptr, 2),
 		{ _field_real, "inherent bloom" },
@@ -134,7 +134,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SELF_ILLUM_STRUCT_ID)
 	{
-		{ _field_explanation, "SELF-ILLUM BLOOM", "These parameters control off of self-illum pixels" },
+		FIELD_EXPLANATION("SELF-ILLUM BLOOM", nullptr, "These parameters control off of self-illum pixels"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("ERIRLE", nullptr, 2),
 		{ _field_real, "self-illum bloom bloom" },
@@ -152,7 +152,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_INTENSITY_STRUCT_ID)
 	{
-		{ _field_explanation, "BLOOM INTENSITY", "These parameters control how bright the bloom is, relative to the underlying scene" },
+		FIELD_EXPLANATION("BLOOM INTENSITY", nullptr, "These parameters control how bright the bloom is, relative to the underlying scene"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("SEMIFMD", nullptr, 2),
 		{ _field_real, "bloom intensity" },
@@ -170,7 +170,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_LARGE_COLOR_STRUCT_ID)
 	{
-		{ _field_explanation, "BLOOM LARGE COLOR", "These parameters control the color of the large bloom" },
+		FIELD_EXPLANATION("BLOOM LARGE COLOR", nullptr, "These parameters control the color of the large bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("KKROFI", nullptr, 2),
 		{ _field_real_rgb_color, "large color" },
@@ -186,7 +186,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_MEDIUM_COLOR_STRUCT_ID)
 	{
-		{ _field_explanation, "BLOOM MEDIUM COLOR", "These parameters control the color of the medium bloom" },
+		FIELD_EXPLANATION("BLOOM MEDIUM COLOR", nullptr, "These parameters control the color of the medium bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("LEORPP", nullptr, 2),
 		{ _field_real_rgb_color, "medium color" },
@@ -202,7 +202,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLOOM_SMALL_COLOR_STRUCT_ID)
 	{
-		{ _field_explanation, "BLOOM SMALL COLOR", "These parameters control the color of the small bloom" },
+		FIELD_EXPLANATION("BLOOM SMALL COLOR", nullptr, "These parameters control the color of the small bloom"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("JSIRWSFGAOD", nullptr, 2),
 		{ _field_real_rgb_color, "small color" },
@@ -283,7 +283,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID)
 	{
-		{ _field_explanation, "SELF ILLUM EXPOSURE", "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure" },
+		FIELD_EXPLANATION("SELF ILLUM EXPOSURE", nullptr, "These parameters control the self-illumination exposure\npreferred is the preferred exposure, and scale controls\nhow much it varies from the preferred exposure"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("JJFJFJKE", nullptr, 2),
 		{ _field_real, "preferred exposure", "the preferred exposure for self illum", "stops" },
@@ -301,7 +301,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_SELF_ILLUM_SCALE_STRUCT_ID)
 	{
-		{ _field_explanation, "SELF ILLUM CHANGE", "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure" },
+		FIELD_EXPLANATION("SELF ILLUM CHANGE", nullptr, "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("WOOGATCHOU", nullptr, 2),
 		{ _field_real, "exposure change", "how much the self illum is allowed to change, as a percentage of the normal exposure change" },
@@ -319,7 +319,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_COLOR_GRADING_STRUCT_ID)
 	{
-		{ _field_explanation, "Color Grading", "set the color grading texture" },
+		FIELD_EXPLANATION("Color Grading", nullptr, "set the color grading texture"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("SKHFDNV", nullptr, 2),
 		{ _field_tag_reference, "color grading texture", &global_bitmap_reference },
@@ -335,7 +335,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_FILMIC_TONE_CURVE_STRUCT_ID)
 	{
-		{ _field_explanation, "Filmic Tone Curve", "set the values for the filmic tone curve" },
+		FIELD_EXPLANATION("Filmic Tone Curve", nullptr, "set the values for the filmic tone curve"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_enabled },
 		FIELD_PAD("MKRGRF", nullptr, 2),
 		{ _field_real, "shoulder strength", "How intense the shoulder is" },

@@ -43,10 +43,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEATHER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "global textures", "0: ............... random noise\n" },
+		FIELD_EXPLANATION("global textures", nullptr, "0: ............... random noise\n"),
 		{ _field_block, "global textures", &global_textures_refs_block },
 		{ _field_tag_reference, "default rain", &global_rain_definition_reference },
-		{ _field_explanation, "ripple settings (TO BE REMOVED)", "we are going to use a new method to render and control of ripple effects\n" },
+		FIELD_EXPLANATION("ripple settings (TO BE REMOVED)", nullptr, "we are going to use a new method to render and control of ripple effects\n"),
 		{ _field_struct, "rain ripple setting", &rain_ripple_setting_block },
 		{ _field_terminator }
 	};

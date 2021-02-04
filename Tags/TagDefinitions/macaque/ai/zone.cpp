@@ -37,7 +37,7 @@ namespace macaque
 		{ _field_array, "cluster occupancy", &area_cluster_occupancy_bitvector_array },
 		{ _field_block, "flight_hints", &flight_reference_block },
 		{ _field_block, "points", &area_sector_point_block },
-		{ _field_explanation, "Generation Properties", "" },
+		FIELD_EXPLANATION("Generation Properties", nullptr, ""),
 		{ _field_enum, "preset", &generate_preset_enum },
 		{ _field_short_integer, "runtimeCarverInversion" },
 		{ _field_long_flags, "flags", &generate_flags },

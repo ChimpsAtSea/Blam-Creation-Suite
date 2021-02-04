@@ -18,9 +18,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_ENVIRONMENT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Reverb Settings", "" },
+		FIELD_EXPLANATION("Reverb Settings", nullptr, ""),
 		{ _field_struct, "reverb settings", &global_sound_reverb_block },
-		{ _field_explanation, "Forced Lowpass", "This will override obstruction and occlusion if you set the cutoff frequency to a non-zero value. Use the individual classes\' \"forced lowpass wet mix\" value to alter the mix." },
+		FIELD_EXPLANATION("Forced Lowpass", nullptr, "This will override obstruction and occlusion if you set the cutoff frequency to a non-zero value. Use the individual classes\' \"forced lowpass wet mix\" value to alter the mix."),
 		{ _field_struct, "lowpass settings", &global_sound_lowpass_block },
 		{ _field_terminator }
 	};

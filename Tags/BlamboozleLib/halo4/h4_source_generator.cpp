@@ -977,38 +977,23 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			bool write_tag = custom_field_type != nullptr;
 			bool write_pointer = false; // todo
 			bool write_flags = false; // todo
-			bool write_description = !field_description.empty();
 			bool write_units = !field_units.empty();
+			bool write_description = !field_description.empty();
 			bool write_min_max = !field_minimum.empty() || !field_maximum.empty();
 
 			ss << "\t\t{ ";
 			ss << field_generic_type_name << ", ";
 			ss << "\"" << field_name.c_str() << "\"";
-			if (write_description)
-			{
-				ss << ", " << "\"" << field_description.c_str() << "\"";
-			}
-			if (write_units)
-			{
-				ss << ", " << "\"" << field_units.c_str() << "\"";
-			}
+			if (write_description) ss << ", " << "\"" << field_description.c_str() << "\"";
+			if (write_units) ss << ", " << "\"" << field_units.c_str() << "\"";
 			if (write_min_max)
 			{
 				ss << ", " << "\"" << field_minimum.c_str() << "\"";
 				ss << ", " << "\"" << field_maximum.c_str() << "\"";
 			}
-			if (write_flags)
-			{
-				ss << ", " << "FLAGS";
-			}
-			if (write_pointer)
-			{
-				ss << ", " << "nullptr";
-			}
-			if (write_tag)
-			{
-				ss << ", " << custom_field_type;
-			}
+			if (write_flags) ss << ", " << "FLAGS";
+			if (write_pointer) ss << ", " << "nullptr";
+			if (write_tag) ss << ", " << custom_field_type;
 			ss << " }," << std::endl;
 
 			break;
@@ -1053,6 +1038,68 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 			break;
 		}
+		case _h4_field_type_explanation:
+		{
+			c_h4_tag_field_explanation* explanation_field = dynamic_cast<c_h4_tag_field_explanation*>(tag_field);
+			ASSERT(explanation_field);
+			ASSERT(explanation_field->name);
+
+			ss << "\t\tFIELD_EXPLANATION(";
+			if (!field_name.empty()) ss << "\"" << field_name.c_str() << "\"";
+			else ss << "nullptr";
+			if (!field_description.empty()) ss << ", \"" << field_description.c_str() << "\"";
+			else ss << ", nullptr";
+			if (explanation_field->definition != nullptr)
+			{
+				std::string explanation = escape_string(explanation_field->definition);
+				ss << ", \"" << explanation << "\"";
+			}
+			else ss << ", nullptr";
+			ss << ")," << std::endl;
+
+			break;
+			
+
+
+			//bool write_tag = custom_field_type != nullptr;
+			//bool write_flags = false; // todo
+			//bool write_explanation = explanation_field->definition != nullptr;
+			//bool write_description = write_explanation || !field_description.empty();
+			//bool write_units = !field_units.empty();
+			//bool write_min_max = !field_minimum.empty() || !field_maximum.empty();
+
+			//ss << "\t\t{ ";
+			//ss << field_generic_type_name << ", ";
+			//ss << "\"" << field_name.c_str() << "\"";
+			//if (write_description)
+			//{
+			//	if(!field_description.empty()) ss << ", " << "\"" << field_description.c_str() << "\"";
+			//	else ss << ", nullptr";
+			//}
+			//else ss << ", " << "\"" << field_description.c_str() << "\"";
+
+			//if (write_units) ss << ", " << "\"" << field_units.c_str() << "\"";
+			//if (write_min_max)
+			//{
+			//	ss << ", " << "\"" << field_minimum.c_str() << "\"";
+			//	ss << ", " << "\"" << field_maximum.c_str() << "\"";
+			//}
+			//if (write_flags) ss << ", " << "FLAGS";
+			//if (write_explanation)
+			//{
+			//	std::string explanation = escape_string(explanation_field->definition);
+			//	ss << ", \"" << explanation << "\"";
+			//}
+			//else ss << ", nullptr";
+			//	
+			//if (write_tag)
+			//{
+			//	ss << ", " << custom_field_type;
+			//}
+			//ss << " }," << std::endl;
+				
+			break;
+		}
 		case _h4_field_type_pageable:
 		{
 			c_h4_tag_resource_definition* resource_field = dynamic_cast<c_h4_tag_resource_definition*>(tag_field);
@@ -1063,8 +1110,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			ASSERT(tag_struct_container);
 
 			ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << " }," << std::endl;
-
-			break;
 
 			break;
 		}
@@ -1089,25 +1134,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 			break;
 
-			break;
-		}
-		case _h4_field_type_explanation:
-		{
-
-			c_h4_tag_field_explanation* explanation_field = dynamic_cast<c_h4_tag_field_explanation*>(tag_field);
-			ASSERT(explanation_field);
-			ASSERT(explanation_field->name);
-
-			if (explanation_field->definition == nullptr)
-			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
-			}
-			else
-			{
-
-				std::string explanation = escape_string(explanation_field->definition);
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", \"" << explanation << "\" }," << std::endl;
-			}
 			break;
 		}
 		case _h4_field_type_tag_reference:

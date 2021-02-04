@@ -414,6 +414,27 @@ public:
 			data[new_size] = 0;
 		}
 	}
+
+	uint32_t trim_front()
+	{
+		uint32_t result = 0;
+		if(isspace(*data))
+		{
+			uint32_t memory_size = size() + 1;
+			char* buffer = new(alloca(memory_size)) char[memory_size];
+			memcpy(buffer, data, memory_size);
+
+			char* new_string = buffer;
+			do
+			{
+				result++;
+				new_string++; // first character is known whitespace
+			} while (isspace(*new_string));
+
+			*this = new_string;
+		}
+		return result;
+	}
 };
 
 using c_fixed_path = c_fixed_string<0x8000>;

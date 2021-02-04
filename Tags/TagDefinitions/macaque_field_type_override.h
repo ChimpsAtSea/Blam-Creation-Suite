@@ -1,8 +1,23 @@
 #pragma once
 
-#define FIELD_CUSTOM(name, description, type) { _field_custom, (const char*)(name), (const char*)(description), (void*)nullptr, (type) }
-#define FIELD_PAD(name, description, size) { _field_pad, (const char*)(name), (const char*)(description), (void*)(size) }
-#define FIELD_SKIP(name, description, size) { _field_skip, (const char*)(name), (const char*)(description), (void*)(size) }
+#define __FIELD_MACRO_HELPER(type, name, description, data)\
+{														\
+	type,											\
+	(const char*)(name),								\
+	(const char*)(description),							\
+	nullptr,											\
+	nullptr,											\
+	nullptr,											\
+	nullptr,											\
+	0,													\
+	(data),										\
+	_field_id_default									\
+}
+
+#define FIELD_CUSTOM(name, description, type) { _field_custom, (const char*)(name), (const char*)(description), (type) }
+#define FIELD_PAD(name, description, size) __FIELD_MACRO_HELPER(_field_pad, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
+#define FIELD_SKIP(name, description, size) __FIELD_MACRO_HELPER(_field_skip, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
+#define FIELD_EXPLANATION(name, description, explanation) __FIELD_MACRO_HELPER(_field_skip, name, description, static_cast<const void*>(explanation))
 
 #ifndef __INTELLISENSE__
 

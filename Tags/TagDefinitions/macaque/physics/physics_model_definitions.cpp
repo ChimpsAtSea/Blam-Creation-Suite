@@ -53,7 +53,7 @@ namespace macaque
 		FIELD_PAD("flags pad", nullptr, 3),
 		{ _field_string_id, "global material name" },
 		{ _field_short_block_index, "phantom type", &phantom_types_block },
-		{ _field_explanation, "collision group override", "This value overrides the default collision group.  It is overridden by any values specified rigid bodies block that overlap. Values set here can be overridden per shape through the shape primitive blocks." },
+		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default collision group.  It is overridden by any values specified rigid bodies block that overlap. Values set here can be overridden per shape through the shape primitive blocks."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_char_integer, "runtime collision group" },
 		{ _field_terminator }
@@ -78,7 +78,7 @@ namespace macaque
 		{ _field_string_id, "marker name", "you don\'t need this if you\'re just generating effects.  If empty it defaults to the up of the object" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "alignment marker name", "you don\'t need this if you\'re just generating effects.  If empty it defaults to \"marker name\"" },
-		{ _field_explanation, "Linear Motion", "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction" },
+		FIELD_EXPLANATION("Linear Motion", nullptr, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
 		FIELD_PAD("WTBFO", nullptr, 8),
 		{ _field_real, "hookes law e", "0 if you don\'t want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
@@ -91,7 +91,7 @@ namespace macaque
 		{ _field_real, "orbit acc", "negative values spin the opposite direction from positive ones" },
 		{ _field_real, "orbit max vel" },
 		FIELD_PAD("TF", nullptr, 28),
-		{ _field_explanation, "Angular Motion", "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis" },
+		FIELD_EXPLANATION("Angular Motion", nullptr, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
 		{ _field_real, "alignment hookes law e", "0 if you don\'t want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
@@ -340,11 +340,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_RAGDOLL_MOTORS_BLOCK_ID)
 	{
-		{ _field_explanation, "twist", "" },
+		FIELD_EXPLANATION("twist", nullptr, ""),
 		{ _field_struct, "twist motor", &physics_model_motor_reference_struct },
-		{ _field_explanation, "cone", "" },
+		FIELD_EXPLANATION("cone", nullptr, ""),
 		{ _field_struct, "cone motor", &physics_model_motor_reference_struct },
-		{ _field_explanation, "plane", "" },
+		FIELD_EXPLANATION("plane", nullptr, ""),
 		{ _field_struct, "plane motor", &physics_model_motor_reference_struct },
 		{ _field_terminator }
 	};
@@ -383,10 +383,10 @@ namespace macaque
 		{ _field_word_flags, "flags", &rigid_body_flags },
 		{ _field_short_block_index, "no phantom power alt", &rigid_bodies_block },
 		{ _field_char_enum, "motion type", &rigid_body_motion_enum },
-		{ _field_explanation, "collision group override", "This value overrides the default group.  It also overrides values specified in the materials block of this tag. Values set here can be overridden per shape through the shape primitive blocks." },
+		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default group.  It also overrides values specified in the materials block of this tag. Values set here can be overridden per shape through the shape primitive blocks."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_enum, "size", &rigid_body_size_enum },
-		{ _field_explanation, "inertia tensor scales", "if you want to set he scale uniforml just set \"inertia tensor scale\".  If you want to set the values seperately per axis you can set \"inertia tensor scale x\\y\\z\"" },
+		FIELD_EXPLANATION("inertia tensor scales", nullptr, "if you want to set he scale uniforml just set \"inertia tensor scale\".  If you want to set the values seperately per axis you can set \"inertia tensor scale x\\y\\z\""),
 		{ _field_real, "inertia tensor scale", "0.0 defaults to 1.0" },
 		{ _field_real, "inertia tensor scale x", "0.0 defaults to 1.0" },
 		{ _field_real, "inertia tensor scale y", "0.0 defaults to 1.0" },
@@ -394,7 +394,7 @@ namespace macaque
 		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real_vector_3d, "center off mass offset" },
-		{ _field_explanation, "water physics bounding box", "if any of these fields are non-zero, this overrides the bounding box used for water physics" },
+		FIELD_EXPLANATION("water physics bounding box", nullptr, "if any of these fields are non-zero, this overrides the bounding box used for water physics"),
 		{ _field_real, "water physics x0", "x0 value of the water physics aabb" },
 		{ _field_real, "water physics x1", "x1 value of the water physics aabb" },
 		{ _field_real, "water physics y0", "y0 value of the water physics aabb" },
@@ -417,7 +417,7 @@ namespace macaque
 		{ _field_char_enum, "collision quality override type", &rigid_body_collision_quality_enum },
 		FIELD_PAD("pad3", nullptr, 1),
 		{ _field_short_integer, "runtime_flags" },
-		{ _field_explanation, "Stupid mass override", "If you want to override what the calculated mass distribution or artist set mass is, this is where you do it. Also, this will show up as n/100 in the game debugger. Awesome." },
+		FIELD_EXPLANATION("Stupid mass override", nullptr, "If you want to override what the calculated mass distribution or artist set mass is, this is where you do it. Also, this will show up as n/100 in the game debugger. Awesome."),
 		{ _field_real, "Mass body override" },
 		FIELD_PAD("pad4", nullptr, 8),
 		{ _field_terminator }
@@ -909,7 +909,7 @@ namespace macaque
 		{ _field_real, "mass" },
 		{ _field_short_integer, "mass distribution index" },
 		{ _field_char_block_index, "phantom", &phantoms_block },
-		{ _field_explanation, "collision group override", "This value overrides the default group, model, and rigid body." },
+		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default group, model, and rigid body."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_terminator }
 	};

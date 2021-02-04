@@ -183,7 +183,7 @@ namespace macaque
 		{ _field_tag_reference, "death program selector", &death_program_selector_reference },
 		{ _field_string_id, "ragdoll region name", "when the biped transitions to ragdoll, this region will change to the destroyed state" },
 		{ _field_string_id, "assassination chud text", "The string id for the assassination action text in the CHUD" },
-		{ _field_explanation, "jumping and landing", "" },
+		FIELD_EXPLANATION("jumping and landing", nullptr, ""),
 		{ _field_real, "jump velocity", "world units per second" },
 		{ _field_block, "tricks", &unit_trick_definition_block },
 		{ _field_useless_pad, "" },
@@ -194,7 +194,7 @@ namespace macaque
 		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
 		{ _field_useless_pad, "" },
 		{ _field_real, "stun duration", "0 is the default.  Bipeds are stunned when damaged by vehicle collisions, also some are when they take emp damage" },
-		{ _field_explanation, "camera, collision, and autoaim", "" },
+		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr, ""),
 		{ _field_real, "standing camera height", "world units" },
 		{ _field_real, "running camera height", "world units" },
 		{ _field_real, "crouching camera height", "world units" },
@@ -268,7 +268,7 @@ namespace macaque
 		BIPED_LEAPING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("wall-leaping", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "wall-leaping fields", "" },
+		FIELD_EXPLANATION("wall-leaping fields", nullptr, ""),
 		{ _field_long_flags, "leap flags", &biped_leap_flags_definition },
 		{ _field_real_fraction, "dampening scale" },
 		{ _field_real_fraction, "roll delay" },
@@ -292,7 +292,7 @@ namespace macaque
 		BIPED_VAULTING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("vaulting", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "vaulting fields", "The cost of the vault check is scaled by max horizontal distance divided by min object size.  Try to keep that number reasonably low." },
+		FIELD_EXPLANATION("vaulting fields", nullptr, "The cost of the vault check is scaled by max horizontal distance divided by min object size.  Try to keep that number reasonably low."),
 		{ _field_real_bounds, "vault height bounds", "wus" },
 		{ _field_real, "vault max horizontal distance", "wus" },
 		{ _field_real_fraction, "vault arc amount", "1= heavy arc, 0= no arc" },
@@ -312,7 +312,7 @@ namespace macaque
 		BIPED_GRAB_BIPED_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("grab biped", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "grab biped fields", "Allows a biped to grab and be grabbed by other bipeds." },
+		FIELD_EXPLANATION("grab biped fields", nullptr, "Allows a biped to grab and be grabbed by other bipeds."),
 		{ _field_string_id, "grab biped animation class" },
 		{ _field_char_enum, "throw biped control mode", &grab_biped_throw_control_modes },
 		FIELD_PAD("hurgh", nullptr, 3),
@@ -330,7 +330,7 @@ namespace macaque
 		BIPED_GRAB_OBJECT_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("grab object", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "grab object fields", "Allows a biped to grab and throw crate objects." },
+		FIELD_EXPLANATION("grab object fields", nullptr, "Allows a biped to grab and throw crate objects."),
 		{ _field_block, "grab object animation sets", &biped_grab_object_animation_set_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
@@ -346,7 +346,7 @@ namespace macaque
 		BIPED_GROUND_FITTING_DATA_STRUCT_ID)
 	{
 		FIELD_CUSTOM("ground fitting", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "ground fitting data", "" },
+		FIELD_EXPLANATION("ground fitting data", nullptr, ""),
 		{ _field_long_flags, "ground fitting flags", &biped_ground_fitting_flags_definition },
 		{ _field_real_fraction, "ground normal dampening", "react to slope changes (0=slow, 1= fast)" },
 		{ _field_real, "root offset max scale idle", "vertical drop to ground allowed (0=none, 1=full)" },
@@ -372,10 +372,10 @@ namespace macaque
 		{ _field_real, "foot turn blend off time", "time to blend off the foot turn effect (seconds)" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("pivot-on-foot", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "pivot-on-foot data", "" },
+		FIELD_EXPLANATION("pivot-on-foot data", nullptr, ""),
 		{ _field_real_fraction, "pivot-on-foot scale", " (0=none, 1= full)" },
 		{ _field_real, "pivot min foot delta", " vert world units to find lowest foot" },
-		{ _field_real, "pivot stride length scale", " leg length " },
+		{ _field_real, "pivot stride length scale", "leg length * this = stride length" },
 		{ _field_real_fraction, "pivot throttle scale", "pivoting slows throttle (0=none, 1= full)" },
 		{ _field_real_fraction, "pivot offset dampening", "react to pivot changes (0=slow, 1= fast)" },
 		{ _field_real_fraction, "pivot force turn rate", "turn no matter what the pivot state is (0=control turn, 1= always turn)" },
@@ -385,7 +385,7 @@ namespace macaque
 		{ _field_real, "ideal pelvis over low foot scale", "ideal ratio of distance from the pelvis to pedestal to place pelvis over the lowest foot", " ratio of pedestal to pelvis distance " },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("Ledge Push", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "Pushing over Ledges", "When a locked foot is unsupported, meaning it can\'t reach the ground, the biped is considered to be hanging over a ledge. You can provide a velocity that will either push the character over the ledge or away from it" },
+		FIELD_EXPLANATION("Pushing over Ledges", nullptr, "When a locked foot is unsupported, meaning it can\'t reach the ground, the biped is considered to be hanging over a ledge. You can provide a velocity that will either push the character over the ledge or away from it"),
 		{ _field_real, "push over mag", " magnitude of throttle to push over ledges. 0= no push" },
 		{ _field_real, "push back mag", " magnitude of throttle to push back from ledges. 0= no push" },
 		{ _field_real, "ledgeIKSuccessRange", " when unable to IK at least this close, consider the IK failed." },
@@ -409,7 +409,7 @@ namespace macaque
 		BIPEDMOVEMENTHIPLEANINGSTRUCT_ID)
 	{
 		FIELD_CUSTOM("Movement Hip Leaning", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "Movement Hip Leaning", "Allows a biped to lean based on movement." },
+		FIELD_EXPLANATION("Movement Hip Leaning", nullptr, "Allows a biped to lean based on movement."),
 		{ _field_real, "prediction seconds", "predict ahead to determine lean. 0= off, more time=more lean" },
 		{ _field_real, "max lean angle", "(degrees) maximum lean amount" },
 		{ _field_real_fraction, "max vertical dip", "(fraction of leg length)" },

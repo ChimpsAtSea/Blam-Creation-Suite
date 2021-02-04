@@ -373,9 +373,9 @@ namespace macaque
 		{ _field_short_block_index, "next animation", &animation_pool_block },
 		{ _field_word_flags, "production flags", &production_status_flags },
 		{ _field_short_block_index, "composite", &g_compositeTag_block },
-		{ _field_explanation, "PCA Group Link", "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block." },
+		FIELD_EXPLANATION("PCA Group Link", nullptr, "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block."),
 		{ _field_string_id, "pca group name" },
-		{ _field_explanation, "Shared Animation Data", "data which may be shared by one or more animations" },
+		FIELD_EXPLANATION("Shared Animation Data", nullptr, "data which may be shared by one or more animations"),
 		{ _field_struct, "shared animation reference", &shared_animation_reference_block },
 		{ _field_block, "shared animation data", &shared_model_animation_block },
 		{ _field_terminator }
@@ -409,13 +409,13 @@ namespace macaque
 		{ _field_real, "heading angle" },
 		{ _field_real, "average translation magnitude" },
 		{ _field_real, "average pivot yaw" },
-		{ _field_explanation, "a", "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n" },
+		FIELD_EXPLANATION("a", nullptr, "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n"),
 		{ _field_block, "frame events|ABCDCC", &animation_frame_event_block },
 		{ _field_block, "sound events|ABCDCC", &animation_sound_event_block },
 		{ _field_block, "effect events|ABCDCC", &animation_effect_event_block },
 		{ _field_block, "dialogue events|ABCDCC", &animation_dialogue_event_block },
 		{ _field_block, "script events|ABCDCC", &animation_script_event_block },
-		{ _field_explanation, "b", "" },
+		FIELD_EXPLANATION("b", nullptr, ""),
 		{ _field_block, "object-space parent nodes|ABCDCC", &object_space_node_data_block },
 		{ _field_block, "foot tracking|ABCDCC", &foot_tracking_block },
 		{ _field_block, "object space offset nodes|ABCDCC", &object_space_offset_node_block },
@@ -664,7 +664,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &function_overlay_definition_flags },
-		{ _field_explanation, "Frame Ratio or Playback Speed", "Enter either or leave blank.  Entering both will default to frame ratio option for playback control." },
+		FIELD_EXPLANATION("Frame Ratio or Playback Speed", nullptr, "Enter either or leave blank.  Entering both will default to frame ratio option for playback control."),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "frame ratio object function" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
@@ -1249,7 +1249,7 @@ namespace macaque
 		{ _field_real, "mass point offset", "distance along the vehicle\'s up direction to move the wheel from the marker location" },
 		{ _field_real, "full extension ground_depth" },
 		{ _field_real, "full compression ground_depth" },
-		{ _field_explanation, "Destroyed Suspension", "Only Necessary for suspensions with a destroyed state" },
+		FIELD_EXPLANATION("Destroyed Suspension", nullptr, "Only Necessary for suspensions with a destroyed state"),
 		{ _field_string_id, "region name" },
 		{ _field_real, "destroyed mass point offset" },
 		{ _field_real, "destroyed full extension ground_depth" },
@@ -1476,7 +1476,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FRAME_EVENT_LIST_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "IMPORTANT TAG NOTES", "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n" },
+		FIELD_EXPLANATION("IMPORTANT TAG NOTES", nullptr, "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n"),
 		{ _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block },
 		{ _field_block, "effect references|ABCDCC", &animation_graph_effect_reference_block },
 		{ _field_block, "frame events|ABCDCC", &import_animation_event_block },
@@ -1493,7 +1493,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_DEFINITIONS_STRUCT_ID)
 	{
-		{ _field_explanation, "GRAPH DATA", "" },
+		FIELD_EXPLANATION("GRAPH DATA", nullptr, ""),
 		{ _field_tag_reference, "parent animation graph", &model_animation_graph_reference },
 		{ _field_byte_flags, "inheritance flags", &public_animation_graph_flags },
 		{ _field_byte_flags, "private flags", &private_animation_graph_flags },
@@ -1589,12 +1589,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_CHAIN_EVENTS_STRUCT_ID)
 	{
-		{ _field_explanation, "REFERENCE IK CHAIN INFO", "" },
+		FIELD_EXPLANATION("REFERENCE IK CHAIN INFO", nullptr, ""),
 		{ _field_string_id, "chain name" },
 		{ _field_enum, "chain type", &animation_ik_chain_type_enumeration },
 		{ _field_short_block_index, "chain start node", &animation_graph_node_block },
 		{ _field_short_block_index, "chain effector node", &animation_graph_node_block },
-		{ _field_explanation, "IMPORTED IK CHAIN INFO", "" },
+		FIELD_EXPLANATION("IMPORTED IK CHAIN INFO", nullptr, ""),
 		{ _field_enum, "chain usage", &animation_ik_chain_event_usage },
 		{ _field_string_id, "proxy marker" },
 		{ _field_long_integer, "proxy id" },
@@ -1602,7 +1602,7 @@ namespace macaque
 		{ _field_byte_integer, "effector transform data index" },
 		{ _field_byte_integer, "effector weight data index" },
 		{ _field_byte_integer, "pole point data index" },
-		{ _field_explanation, "POST PROCESS IK CHAIN INFO", "" },
+		FIELD_EXPLANATION("POST PROCESS IK CHAIN INFO", nullptr, ""),
 		{ _field_byte_integer, "chain index" },
 		FIELD_PAD("aikcep", nullptr, 3),
 		{ _field_terminator }
@@ -1636,15 +1636,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_FACIAL_WRINKLE_EVENTS_STRUCT_ID)
 	{
-		{ _field_explanation, "REFERENCE FACIAL WRINKLE EVENT INFO", "" },
+		FIELD_EXPLANATION("REFERENCE FACIAL WRINKLE EVENT INFO", nullptr, ""),
 		{ _field_string_id, "wrinkle name" },
 		{ _field_real, "default value" },
-		{ _field_explanation, "IMPORTED FACIAL WRINKLE INFO", "" },
+		FIELD_EXPLANATION("IMPORTED FACIAL WRINKLE INFO", nullptr, ""),
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
 		{ _field_char_enum, "region", &animation_facial_wrinkle_region },
 		FIELD_PAD("PADDNG", nullptr, 3),
-		{ _field_explanation, "POST PROCESS WRINKLE EVENT INFO", "" },
+		FIELD_EXPLANATION("POST PROCESS WRINKLE EVENT INFO", nullptr, ""),
 		{ _field_short_integer, "wrinkle data index" },
 		FIELD_PAD("aikcep", nullptr, 2),
 		{ _field_terminator }
@@ -1660,7 +1660,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EXTENDED_EVENTS_STRUCT_ID)
 	{
-		{ _field_explanation, "IMPORTED EXTENDED DATA EVENT INFO", "" },
+		FIELD_EXPLANATION("IMPORTED EXTENDED DATA EVENT INFO", nullptr, ""),
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "start frame" },
 		{ _field_short_integer, "frame count" },
@@ -1711,9 +1711,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCAANIMATIONDATASTRUCT_ID)
 	{
-		{ _field_explanation, "Group Settings", "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field" },
+		FIELD_EXPLANATION("Group Settings", nullptr, "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field"),
 		{ _field_block, "PCA Groups", &PCAGroupSettingsBlock_block },
-		{ _field_explanation, "PCA Animation Tag", "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you." },
+		FIELD_EXPLANATION("PCA Animation Tag", nullptr, "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you."),
 		{ _field_tag_reference, "pca animation|ABCDCC", &global_pca_animation_tag_reference },
 		{ _field_long_integer, "PCA Animation Count" },
 		{ _field_long_integer, "PCA Checksum" },
@@ -1729,11 +1729,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_CONTENTS_STRUCT_ID)
 	{
-		{ _field_explanation, "MODE-n-STATE GRAPH", "" },
+		FIELD_EXPLANATION("MODE-n-STATE GRAPH", nullptr, ""),
 		{ _field_short_block_index, "default gait group|CCAABB", &animation_gait_group_block },
 		FIELD_PAD("agcsfap", nullptr, 2),
 		{ _field_block, "modes|AABBCC", &animation_mode_block },
-		{ _field_explanation, "SPECIAL CASE ANIMS", "" },
+		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr, ""),
 		{ _field_block, "vehicle suspension|CCAABB", &vehicle_suspension_block },
 		{ _field_block, "function overlays", &function_overlay_animation_block },
 		{ _field_terminator }
@@ -1748,7 +1748,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID)
 	{
-		{ _field_explanation, "RUN-TIME DATA", "" },
+		FIELD_EXPLANATION("RUN-TIME DATA", nullptr, ""),
 		{ _field_block, "inheritence list", &inherited_animation_block },
 		{ _field_block, "new inheritance list", &inherited_animation_block },
 		{ _field_block, "weapon list|BBAAAA", &weapon_class_lookup_block },
@@ -1767,7 +1767,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_CODEC_DATA_STRUCT_ID)
 	{
-		{ _field_explanation, "CODEC-SPECIFIC DATA", "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit." },
+		FIELD_EXPLANATION("CODEC-SPECIFIC DATA", nullptr, "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit."),
 		{ _field_struct, "shared_static_codec", &shared_static_data_codec_graph_data_struct },
 		{ _field_terminator }
 	};
@@ -1781,7 +1781,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID)
 	{
-		{ _field_explanation, "Shared Static Codec", "" },
+		FIELD_EXPLANATION("Shared Static Codec", nullptr, ""),
 		{ _field_block, "rotations", &shared_static_data_codec_rotation_block },
 		{ _field_block, "translations", &shared_static_data_codec_translation_block },
 		{ _field_block, "scale", &shared_static_data_codec_scale_block },

@@ -17,16 +17,16 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PCA_ANIMATION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Links", "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually" },
+		FIELD_EXPLANATION("Links", nullptr, "links to the tags this data is associated with. These will be set by the importer, you don\'t need to do it manually"),
 		{ _field_tag_reference, "RenderModel", &render_model_reference$6 },
 		{ _field_tag_reference, "AnimationGraph", &global_animation_graph_reference },
 		{ _field_long_flags, "pcaFlags", &pca_animation_tag_flags },
 		{ _field_long_integer, "PCA Animation Count" },
 		{ _field_long_integer, "PCA Checksum" },
-		{ _field_explanation, "Imported Data", "imported data" },
+		FIELD_EXPLANATION("Imported Data", nullptr, "imported data"),
 		{ _field_block, "frame data", &PCAImportedFrameDatablock_block },
 		{ _field_block, "mesh data", &PCAImportedMeshDataBlock_block },
-		{ _field_explanation, "Resource Data", "vertex buffers" },
+		FIELD_EXPLANATION("Resource Data", nullptr, "vertex buffers"),
 		{ _field_pageable, "api resource", &render_geometry_api_resource_definition_struct },
 		{ _field_terminator }
 	};
@@ -73,9 +73,9 @@ namespace macaque
 		{ _field_real, "stretch scale" },
 		{ _field_real_vector_3d, "normal offset" },
 		{ _field_real, "stretch offset" },
-		{ _field_explanation, "Animations", "all imported animations for this mesh" },
+		FIELD_EXPLANATION("Animations", nullptr, "all imported animations for this mesh"),
 		{ _field_block, "animations", &PCAImportedAnimationDataBlock_block },
-		{ _field_explanation, "Vertices", "all imported blend shape vertices for this mesh" },
+		FIELD_EXPLANATION("Vertices", nullptr, "all imported blend shape vertices for this mesh"),
 		{ _field_block, "raw blendshape verts", &raw_blendshape_block },
 		{ _field_terminator }
 	};
@@ -95,7 +95,7 @@ namespace macaque
 		{ _field_long_integer, "Count" },
 		{ _field_long_integer, "PCA Shape Offset" },
 		{ _field_long_integer, "PCA coefficient Count" },
-		{ _field_explanation, "Resource Data", "coefficients" },
+		FIELD_EXPLANATION("Resource Data", nullptr, "coefficients"),
 		{ _field_pageable, "CoefficientResource", &pca_coefficients_resource_definition_struct },
 		{ _field_terminator }
 	};

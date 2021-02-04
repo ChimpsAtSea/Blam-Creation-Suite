@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_COLLISION_FILTER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "specify what each group collides with", "" },
+		FIELD_EXPLANATION("specify what each group collides with", nullptr, ""),
 		{ _field_block, "groups", &havok_collision_filter_group_block },
 		FIELD_PAD("alignment_pad", nullptr, 4),
 		{ _field_struct, "group filter", &havok_group_filter_filter_struct },

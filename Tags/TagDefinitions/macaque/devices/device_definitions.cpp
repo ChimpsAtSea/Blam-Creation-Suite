@@ -224,7 +224,7 @@ namespace macaque
 		DEVICE_MACHINE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		{ _field_explanation, "$$$ MACHINE $$$", "" },
+		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr, ""),
 		{ _field_enum, "type", &machine_types },
 		{ _field_word_flags, "flags", &machine_flags },
 		{ _field_real, "door open time", "seconds" },
@@ -252,7 +252,7 @@ namespace macaque
 		DEVICE_TERMINAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		{ _field_explanation, "$$$ TERMINAL $$$", "" },
+		FIELD_EXPLANATION("$$$ TERMINAL $$$", nullptr, ""),
 		{ _field_long_integer, "bah bah" },
 		{ _field_string_id, "action string" },
 		{ _field_string_id, "name", "text pulled from strings tag above" },

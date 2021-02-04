@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SELF_ILLUMINATION_STATE_ID)
 	{
-		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
+		FIELD_EXPLANATION("Self-Illumination State", nullptr, "An animated self-illumination controller state."),
 		{ _field_string_id, "Name" },
 		{ _field_long_flags, "Flags", &self_illumination_flags },
 		{ _field_real, "Length ", "Length of illumination animation in seconds." },

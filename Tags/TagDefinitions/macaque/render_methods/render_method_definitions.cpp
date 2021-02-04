@@ -115,7 +115,7 @@ namespace macaque
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
 		{ _field_real, "time period", "seconds", _field_id_function_unknown },
-		{ _field_explanation, "FUNCTION", "" },
+		FIELD_EXPLANATION("FUNCTION", nullptr, ""),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }
@@ -507,7 +507,7 @@ namespace macaque
 		{ _field_tag_reference, "shared vertex shaders", &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
 		{ _field_dword_integer, "version", "bump to force recompile" },
-		{ _field_explanation, "source file location", "like templated\\shader ..." },
+		FIELD_EXPLANATION("source file location", nullptr, "like templated\\shader ..."),
 		{ _field_long_string, "location" },
 		{ _field_terminator }
 	};

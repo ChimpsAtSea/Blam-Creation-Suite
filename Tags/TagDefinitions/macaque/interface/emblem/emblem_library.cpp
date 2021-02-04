@@ -70,11 +70,11 @@ namespace macaque
 		EMBLEM_FRONT_LIST_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_explanation, "Layer 0 (foreground)", "Composed of two shapes\n" },
+		FIELD_EXPLANATION("Layer 0 (foreground)", nullptr, "Composed of two shapes\n"),
 		{ _field_struct, "layer 0", &emblem_layer },
-		{ _field_explanation, "Layer 1 (midground)", "This layer is behind the foreground, and in front of the background\n" },
+		FIELD_EXPLANATION("Layer 1 (midground)", nullptr, "This layer is behind the foreground, and in front of the background\n"),
 		{ _field_struct, "layer 1", &emblem_layer },
-		{ _field_explanation, "Misc", "Extra configuration\n" },
+		FIELD_EXPLANATION("Misc", nullptr, "Extra configuration\n"),
 		{ _field_char_enum, "primary layer", &front_emblem_primary_layer },
 		FIELD_PAD("pad0", nullptr, 1),
 		FIELD_PAD("pad1", nullptr, 2),
@@ -93,7 +93,7 @@ namespace macaque
 		EMBLEM_BACK_LIST_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_explanation, "Layer 2 (background)", "\n" },
+		FIELD_EXPLANATION("Layer 2 (background)", nullptr, "\n"),
 		{ _field_struct, "layer 2", &emblem_layer },
 		{ _field_terminator }
 	};
@@ -176,20 +176,20 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LIBRARY_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Emblem Library", "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n" },
+		FIELD_EXPLANATION("Emblem Library", nullptr, "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n"),
 		{ _field_short_integer, "version" },
 		FIELD_PAD("jfejkjjg", nullptr, 2),
 		FIELD_CUSTOM("Bitmaps", nullptr, _field_id_function_group_begin),
-		{ _field_explanation, "Bitmaps", "\n" },
+		FIELD_EXPLANATION("Bitmaps", nullptr, "\n"),
 		{ _field_real, "bitmap resolution", "used to calculate appropriate antialiasing settings", "pixels" },
 		{ _field_real, "antialias sharpen", "default 1.0, global control on antialias sharpness" },
 		{ _field_tag_reference, "emblem bitmaps", &global_bitmap_reference },
 		{ _field_tag_reference, "emblem bitmaps hi rez", &global_bitmap_reference },
 		{ _field_block, "bitmaps", &emblem_bitmap_list_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_explanation, "Shapes", "\n" },
+		FIELD_EXPLANATION("Shapes", nullptr, "\n"),
 		{ _field_block, "shapes", &emblem_shape_list_block },
-		{ _field_explanation, "Emblems", "\n" },
+		FIELD_EXPLANATION("Emblems", nullptr, "\n"),
 		{ _field_block, "front emblems", &emblem_front_list_block },
 		{ _field_block, "back emblems", &emblem_back_list_block },
 		{ _field_block, "runtime front", &emblem_runtime_front_list_block },
@@ -224,12 +224,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LAYER_ID)
 	{
-		{ _field_explanation, "Shape 0", "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n" },
+		FIELD_EXPLANATION("Shape 0", nullptr, "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n"),
 		{ _field_short_block_index, "shape 0", &emblem_shape_list_block },
 		FIELD_PAD("fkkfkll", nullptr, 2),
 		{ _field_real, "multiplier 0" },
 		{ _field_struct, "transform 0", &emblem_transform },
-		{ _field_explanation, "Shape 1", "\n" },
+		FIELD_EXPLANATION("Shape 1", nullptr, "\n"),
 		{ _field_short_block_index, "shape 1", &emblem_shape_list_block },
 		FIELD_PAD("fkkfkllf", nullptr, 2),
 		{ _field_real, "multiplier 1" },

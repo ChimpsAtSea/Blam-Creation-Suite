@@ -31,7 +31,7 @@ namespace macaque
 		SOUND_EFFECT_TEMPLATES_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
-		{ _field_explanation, "WARNING", "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING" },
+		FIELD_EXPLANATION("WARNING", nullptr, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
 		{ _field_data, "explanation" },
 		{ _field_long_flags, "flags", &sound_effect_template_flags_definition },
 		{ _field_short_integer, "dsp state offset" },

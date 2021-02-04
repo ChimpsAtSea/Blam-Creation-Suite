@@ -39,7 +39,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_PRIMITIVE_DEFINITION_ID)
 	{
-		{ _field_explanation, "", "" },
+		FIELD_EXPLANATION(nullptr, nullptr, ""),
 		{ _field_word_flags, "flags", &formation_primitive_flags },
 		{ _field_short_integer, "priority" },
 		{ _field_short_integer, "capacity" },
@@ -62,7 +62,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_POINT_DEFINITION_ID)
 	{
-		{ _field_explanation, "", "" },
+		FIELD_EXPLANATION(nullptr, nullptr, ""),
 		{ _field_angle, "angle" },
 		{ _field_real, "offset" },
 		{ _field_terminator }

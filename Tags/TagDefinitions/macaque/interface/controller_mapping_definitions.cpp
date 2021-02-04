@@ -30,7 +30,7 @@ namespace macaque
 		CONTROLLER_MAPPING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "auto zoom out ticks", "set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },
-		{ _field_explanation, "Start/Back", "Start and Back buttons are not remappable and do not appear in this list." },
+		FIELD_EXPLANATION("Start/Back", nullptr, "Start and Back buttons are not remappable and do not appear in this list."),
 		{ _field_enum, "jump", &gamepad_button_definition },
 		{ _field_enum, "switch weapon", &gamepad_button_definition },
 		{ _field_enum, "contextual action", &gamepad_button_definition },

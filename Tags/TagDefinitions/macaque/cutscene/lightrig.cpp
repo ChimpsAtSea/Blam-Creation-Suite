@@ -50,7 +50,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPTABLELIGHTRIGBLOCK_ID)
 	{
-		{ _field_explanation, "Scriptable Light Rig", "" },
+		FIELD_EXPLANATION("Scriptable Light Rig", nullptr, ""),
 		{ _field_string_id, "string" },
 		{ _field_tag_reference, "light rig", &global_lightRig_reference },
 		{ _field_terminator }
@@ -65,7 +65,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_RIG_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Character Light Rig", "" },
+		FIELD_EXPLANATION("Character Light Rig", nullptr, ""),
 		FIELD_CUSTOM("Environment vmf lobe weight", nullptr, _field_id_slider_editor),
 		{ _field_real, "Environment vmf lobe weight", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Rig fill color" },

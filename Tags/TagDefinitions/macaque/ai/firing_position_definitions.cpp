@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		FIRING_POSITIONS_BLOCK_ID)
 	{
-		{ _field_explanation, "CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points." },
+		FIELD_EXPLANATION("CONTROLS", nullptr, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref" },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },

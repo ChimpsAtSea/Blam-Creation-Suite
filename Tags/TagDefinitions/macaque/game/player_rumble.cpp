@@ -44,9 +44,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_DEFINITION_STRUCT_ID)
 	{
-		{ _field_explanation, "low frequency rumble", "" },
+		FIELD_EXPLANATION("low frequency rumble", nullptr, ""),
 		{ _field_struct, "low frequency rumble", &rumble_frequency_definition_struct },
-		{ _field_explanation, "high frequency rumble", "" },
+		FIELD_EXPLANATION("high frequency rumble", nullptr, ""),
 		{ _field_struct, "high frequency rumble", &rumble_frequency_definition_struct },
 		{ _field_terminator }
 	};

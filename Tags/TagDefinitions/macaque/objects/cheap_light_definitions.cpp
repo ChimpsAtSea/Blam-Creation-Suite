@@ -30,13 +30,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_LIGHT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Cheap Lights", "These are the cheapest light possible. They are spherical, have a color with an intensity and a radius - and that\'s it. They should be small: 0.5 or smaller if you can get close to them. That\'s why they are so cheap." },
+		FIELD_EXPLANATION("Cheap Lights", nullptr, "These are the cheapest light possible. They are spherical, have a color with an intensity and a radius - and that\'s it. They should be small: 0.5 or smaller if you can get close to them. That\'s why they are so cheap."),
 		{ _field_char_enum, "function input", &cheapLightFunctionInputEnum },
 		FIELD_PAD("clblah", nullptr, 3),
-		{ _field_explanation, "COLOR", "color and intensity of the light" },
+		FIELD_EXPLANATION("COLOR", nullptr, "color and intensity of the light"),
 		{ _field_struct, "color", &light_color_function_struct },
 		{ _field_struct, "intensity", &light_scalar_function_struct },
-		{ _field_explanation, "SIZE", "radius of the spherical light" },
+		FIELD_EXPLANATION("SIZE", nullptr, "radius of the spherical light"),
 		{ _field_struct, "Falloff End", &light_scalar_function_struct },
 		{ _field_real, "Falloff Begin Ratio", "Ratio of falloff start to falloff end" },
 		{ _field_real, "near fade distance", "world units" },

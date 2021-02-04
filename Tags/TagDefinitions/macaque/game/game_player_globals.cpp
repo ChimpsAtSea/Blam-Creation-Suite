@@ -44,7 +44,7 @@ namespace macaque
 		{ _field_real, "fire team objective range" },
 		{ _field_real, "fire team sandbox range" },
 		{ _field_real, "fire team cone angle", " in degrees" },
-		{ _field_explanation, "sprinting/momentum", "" },
+		FIELD_EXPLANATION("sprinting/momentum", nullptr, ""),
 		{ _field_block, "momentum and sprinting", &player_momentum_data_block },
 		{ _field_terminator }
 	};

@@ -57,7 +57,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_ENLISTMENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Enlistments", "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!" },
+		FIELD_EXPLANATION("Enlistments", nullptr, "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!"),
 		{ _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block },
 		{ _field_terminator }
 	};

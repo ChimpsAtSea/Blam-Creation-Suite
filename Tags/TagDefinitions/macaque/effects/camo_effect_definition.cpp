@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMO_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Active Camo Controls", "" },
+		FIELD_EXPLANATION("Active Camo Controls", nullptr, ""),
 		{ _field_word_flags, "Flags", &camo_flags },
 		FIELD_PAD("KKHKKHKKL", nullptr, 2),
 		{ _field_struct, "Active Camo Amount", &camo_scalar_function_struct },

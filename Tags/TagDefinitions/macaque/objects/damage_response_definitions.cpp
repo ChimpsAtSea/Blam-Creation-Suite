@@ -32,19 +32,19 @@ namespace macaque
 	{
 		{ _field_enum, "type", &damage_response_class_type_enum },
 		{ _field_word_flags, "flags", &damage_response_class_flags },
-		{ _field_explanation, "directional flash", "" },
+		FIELD_EXPLANATION("directional flash", nullptr, ""),
 		{ _field_struct, "directional flash", &damage_response_directional_flash_struct },
-		{ _field_explanation, "motion sensor ping", "WARNING \'motion sensor ping\' section no longer functions post CHUD-2-CUI switchover!" },
+		FIELD_EXPLANATION("motion sensor ping", nullptr, "WARNING \'motion sensor ping\' section no longer functions post CHUD-2-CUI switchover!"),
 		{ _field_struct, "motion sensor ping", &damage_response_motion_sensor_ping },
-		{ _field_explanation, "rumble", "" },
+		FIELD_EXPLANATION("rumble", nullptr, ""),
 		{ _field_tag_reference, "rumble", &global_rumble_reference },
-		{ _field_explanation, "camera shake and impulse data", "" },
+		FIELD_EXPLANATION("camera shake and impulse data", nullptr, ""),
 		{ _field_tag_reference, "camera shake", &global_camera_shake_reference },
 		{ _field_tag_reference, "camera shake zoomed", &global_camera_shake_reference },
-		{ _field_explanation, "simulated input", "" },
+		FIELD_EXPLANATION("simulated input", nullptr, ""),
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
 		{ _field_tag_reference, "simulated_input zoomed ", &global_simulated_input_reference },
-		{ _field_explanation, "global sound effect", "" },
+		FIELD_EXPLANATION("global sound effect", nullptr, ""),
 		{ _field_block, "global sound effect", &damage_response_global_sound_effect_block },
 		{ _field_terminator }
 	};
@@ -77,15 +77,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_BLOCK_STRUCT_ID)
 	{
-		{ _field_explanation, "AREA CONTROL", "Higher level scale controls for camera shake, camera impulse and rumble." },
+		FIELD_EXPLANATION("AREA CONTROL", nullptr, "Higher level scale controls for camera shake, camera impulse and rumble."),
 		{ _field_word_flags, "flags", &area_control_flags },
 		FIELD_PAD("DRCS", nullptr, 2),
-		{ _field_explanation, "Distance Falloff", "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects" },
+		FIELD_EXPLANATION("Distance Falloff", nullptr, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "maximum distance", "the maximum distance this player feedback will affect", "world units" },
 		{ _field_struct, "distance falloff", &area_control_scalar_function_struct },
-		{ _field_explanation, "Angle Falloff", "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects" },
+		FIELD_EXPLANATION("Angle Falloff", nullptr, "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
 		{ _field_struct, "angle falloff", &area_control_scalar_function_struct },
-		{ _field_explanation, "Object Falloff", "applies a falloff based on an object function - ignored if the effect is not attached to an object" },
+		FIELD_EXPLANATION("Object Falloff", nullptr, "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
 		{ _field_struct, "object falloff", &area_control_scalar_object_function_struct },
 		{ _field_terminator }
 	};

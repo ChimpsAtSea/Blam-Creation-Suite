@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WALKER_PHYSICS_LEG_BLOCK_ID)
 	{
-		{ _field_explanation, "walker physics", "" },
+		FIELD_EXPLANATION("walker physics", nullptr, ""),
 		{ _field_char_enum, "leg group", &walker_physics_leg_group_enum },
 		{ _field_char_enum, "leg side", &walker_physics_leg_side_enum },
 		{ _field_char_integer, "leg side order", "for each side order the legs from 0-n where 0 is the most forward leg" },

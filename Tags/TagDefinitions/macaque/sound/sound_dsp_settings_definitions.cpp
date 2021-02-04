@@ -17,11 +17,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_RADIO_SETTINGS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "mix settings", "" },
+		FIELD_EXPLANATION("mix settings", nullptr, ""),
 		{ _field_long_enum, "mix", &radio_mix_setting_definition },
-		{ _field_explanation, "distortion settings", "" },
+		FIELD_EXPLANATION("distortion settings", nullptr, ""),
 		{ _field_struct, "distortion settings", &global_sound_look_up_table_distortion_block },
-		{ _field_explanation, "equalizer settings", "" },
+		FIELD_EXPLANATION("equalizer settings", nullptr, ""),
 		{ _field_struct, "equalizer settings", &global_sound_equalizer_block },
 		{ _field_terminator }
 	};
@@ -102,7 +102,7 @@ namespace macaque
 		{ _field_real, "density", _field_id_slider_editor },
 		FIELD_CUSTOM("hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", _field_id_slider_editor),
 		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _field_id_slider_editor },
-		{ _field_explanation, "WWise Environment", "Use these values for WWise reverb. Above stuff will be removed eventually." },
+		FIELD_EXPLANATION("WWise Environment", nullptr, "Use these values for WWise reverb. Above stuff will be removed eventually."),
 		{ _field_string_id, "Environment name", "Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
 		FIELD_CUSTOM("Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor),
 		{ _field_real, "Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },

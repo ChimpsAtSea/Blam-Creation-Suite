@@ -19,7 +19,7 @@ namespace macaque
 		BITMAP_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("show bitmap", nullptr, _field_id_bitmap_show),
-		{ _field_explanation, "IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n" },
+		FIELD_EXPLANATION("IMPORT SETTINGS", nullptr, "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
 		{ _field_long_enum, "Usage", &bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
 		{ _field_short_integer, "sprite spacing", "number of pixels between adjacent sprites (0 uses default, negative numbers set no spacing)" },
@@ -35,7 +35,7 @@ namespace macaque
 		{ _field_real, "tight bounds threshold", "This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" },
 		{ _field_block, "usage override", &bitmap_usage_block },
 		{ _field_block, "manual_sequences", &bitmap_group_sequence_block_def_block },
-		{ _field_explanation, "IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" },
+		FIELD_EXPLANATION("IMPORT DATA", nullptr, "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
 		{ _field_block, "tight bounds", &bitmap_tight_bounds_block_def_block },
 		{ _field_data, "source data" },
 		{ _field_data, "processed pixel data" },

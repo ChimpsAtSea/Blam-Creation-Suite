@@ -362,7 +362,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
-		{ _field_explanation, "CLUSTER INFO", "" },
+		FIELD_EXPLANATION("CLUSTER INFO", nullptr, ""),
 		{ _field_real_bounds, "bounds x" },
 		{ _field_real_bounds, "bounds y" },
 		{ _field_real_bounds, "bounds z" },

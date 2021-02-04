@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLEMAN_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
+		FIELD_EXPLANATION("Particleize Settings", nullptr, "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n"),
 		{ _field_enum, "Shape", &particleize_shape_enum },
 		{ _field_word_flags, "Flags", &particleize_flags },
 		{ _field_real, "Duration", "sec" },

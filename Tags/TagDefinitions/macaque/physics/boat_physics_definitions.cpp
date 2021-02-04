@@ -16,7 +16,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOAT_PHYSICS_DEFINITION_STRUCT_ID)
 	{
-		{ _field_explanation, "water hull physics", "" },
+		FIELD_EXPLANATION("water hull physics", nullptr, ""),
 		{ _field_real, "ground vertical extrusion", "for hull surfaces that drive on ground this is how far we pretend the water is above everything physical" },
 		{ _field_terminator }
 	};

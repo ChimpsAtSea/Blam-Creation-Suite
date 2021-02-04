@@ -37,7 +37,7 @@ namespace macaque
 		{ _field_real, "headshot aim assist", "increases autoaim for headshot weapons" },
 		{ _field_real, "melee cone" },
 		{ _field_real, "aim assist", "unimplemented" },
-		{ _field_explanation, "Level Change", "These fields show how many kills/deaths it takes to move between levels" },
+		FIELD_EXPLANATION("Level Change", nullptr, "These fields show how many kills/deaths it takes to move between levels"),
 		{ _field_byte_flags, "flags", &g_silentAssistFlags },
 		FIELD_PAD("SXIX", nullptr, 3),
 		{ _field_long_integer, "kills to decrease level" },

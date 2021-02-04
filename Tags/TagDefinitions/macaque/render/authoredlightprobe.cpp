@@ -18,7 +18,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AUTHORED_LIGHT_PROBE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_explanation, "Character Lighting", "\n" },
+		FIELD_EXPLANATION("Character Lighting", nullptr, "\n"),
 		{ _field_block, "Lights", &authored_light_probe_lights_block },
 		FIELD_CUSTOM("Authored Light Probe Intensity Scale", nullptr, _field_id_slider_editor),
 		{ _field_real, "Authored Light Probe Intensity Scale", _field_id_slider_editor },
@@ -28,7 +28,7 @@ namespace macaque
 		{ _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition },
 		FIELD_PAD("pdd", nullptr, 2),
-		{ _field_explanation, "Object Shadows (all objects, not just characters)", "\n" },
+		FIELD_EXPLANATION("Object Shadows (all objects, not just characters)", nullptr, "\n"),
 		FIELD_CUSTOM("IO Direct Lighting Minimum Percentage (When in Shadow)", nullptr, _field_id_slider_editor),
 		{ _field_real, "IO Direct Lighting Minimum Percentage (When in Shadow)", _field_id_slider_editor },
 		{ _field_terminator }
