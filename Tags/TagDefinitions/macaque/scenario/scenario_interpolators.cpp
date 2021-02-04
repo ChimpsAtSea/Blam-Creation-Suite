@@ -33,9 +33,9 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &scenario_interpolator_flags },
 		FIELD_PAD("SCBP1", nullptr, 2),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "function", &scalar_function_named_struct },
-		{ _field_real, "duration", "seconds" },
+		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_long_enum, "map reset type", &scenario_interpolator_reset_value_enum },
 		{ _field_real_fraction, "custom map reset value" },
 		{ _field_long_enum, "start type", &scenario_interpolator_start_value_enum },

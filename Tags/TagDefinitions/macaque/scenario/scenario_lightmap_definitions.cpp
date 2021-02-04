@@ -47,8 +47,8 @@ namespace macaque
 		{ _field_block, "New AO Data", &scenario_lightmap_new_ao_data_block },
 		{ _field_block, "Adjacent Bounce Vertices", &scenario_lightmap_adjacent_bounce_vertex_block },
 		{ _field_block, "Adjacent Bounce Indices", &scenario_lightmap_adjacent_bounce_index_block },
-		{ _field_long_integer, "Parameterization Method Checksum" },
-		{ _field_long_integer, "New AO checksum" },
+		{ _field_long_integer, "Parameterization Method Checksum", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "New AO checksum", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "Material Count" },
 		{ _field_long_integer, "Mesh Count" },
 		{ _field_short_integer, "lightmap parameterization width" },
@@ -320,7 +320,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGLE_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "word" },
+		{ _field_long_integer, "word", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -428,8 +428,8 @@ namespace macaque
 		SCENARIO_LIGHTMAP_AIRPROBE_VALUE_ID)
 	{
 		{ _field_real_point_3d, "airprobe position" },
-		{ _field_string_id, "airprobe name" },
-		{ _field_long_integer, "BSP index" },
+		{ _field_string_id, "airprobe name", FIELD_FLAG_INDEX },
+		{ _field_long_integer, "BSP index", FIELD_FLAG_INDEX },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_struct, "sh terms", &half_rgb_lightprobe_struct },
 		{ _field_terminator }
@@ -519,7 +519,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DUAL_VMF_TERMS_ID)
 	{
-		{ _field_short_integer, "dual vmf coefficient" },
+		{ _field_short_integer, "dual vmf coefficient", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

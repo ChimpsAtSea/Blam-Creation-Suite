@@ -32,11 +32,11 @@ namespace macaque
 		LENS_FLARE_REFLECTION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &lens_flare_reflection_flags_definition },
 		{ _field_short_integer, "bitmap index" },
 		{ _field_tag_reference, "bitmap override", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		{ _field_real, "rotation offset", "degrees" },
+		{ _field_real, "rotation offset", nullptr, "degrees" },
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "offset bounds", "the axis offset times corona offset is clamped between these values" },
 		{ _field_struct, "radius curve", &scalar_function_named_struct },
@@ -92,8 +92,8 @@ namespace macaque
 		LENS_FLARE_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("LENS FLARE", nullptr, ""),
-		{ _field_angle, "falloff angle", "degrees" },
-		{ _field_angle, "cutoff angle", "degrees" },
+		{ _field_angle, "falloff angle", nullptr, "degrees" },
+		{ _field_angle, "cutoff angle", nullptr, "degrees" },
 		FIELD_EXPLANATION("OCCLUSION", nullptr, "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
 		{ _field_long_integer, "occlusion reflection index", "occlusion information will be generated against the size of this reflection" },
 		{ _field_real, "occlusion offset distance", "distance along offset direction used to test occlusion", "world units" },
@@ -106,10 +106,10 @@ namespace macaque
 		{ _field_real, "far fade distance", "distance at which the lens flare brightness is minimum; set to zero to disable distance fading", "world units" },
 		{ _field_tag_reference, "bitmap", &global_bitmap_reference },
 		{ _field_word_flags, "flags", &lens_flare_flags_definition },
-		{ _field_short_integer, "runtime flags" },
+		{ _field_short_integer, "runtime flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_enum, "rotation function", &lens_flare_corona_rotation_function_enum_definition },
 		FIELD_PAD("WWZC", nullptr, 2),
-		{ _field_angle, "rotation function scale", "degrees" },
+		{ _field_angle, "rotation function scale", nullptr, "degrees" },
 		FIELD_EXPLANATION("EFFECT PARAMETERS", nullptr, "Only affects lens flares created by effects."),
 		{ _field_enum, "falloff function", &global_reverse_transition_functions_enum },
 		FIELD_PAD("COYUTLR", nullptr, 2),
@@ -136,11 +136,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_COLOR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		{ _field_enum, "Output Modifier", &output_mod_enum },
 		FIELD_PAD("BVCG1", nullptr, 2),
-		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier },
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "lens flare color mapping", &mapping_function },
 		{ _field_terminator }

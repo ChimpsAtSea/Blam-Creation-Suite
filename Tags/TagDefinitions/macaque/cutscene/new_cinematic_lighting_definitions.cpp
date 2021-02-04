@@ -36,7 +36,7 @@ namespace macaque
 		{ _field_real, "Direction", _field_id_slider_editor },
 		FIELD_CUSTOM("Front-Back", nullptr, _field_id_slider_editor),
 		{ _field_real, "Front-Back", _field_id_slider_editor },
-		{ _field_real, "Distance", "world units" },
+		{ _field_real, "Distance", nullptr, "world units" },
 		{ _field_tag_reference, "light", &global_light_definition_reference },
 		{ _field_terminator }
 	};
@@ -53,7 +53,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM("Cinematic Lighting", nullptr, _field_id_function_group_begin),
 		FIELD_CUSTOM("Cinema Lighting", nullptr, _field_id_cinematic_version),
-		{ _field_long_integer, "version" },
+		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("Direction&Direction(D)", nullptr, _field_id_slider_editor),
 		{ _field_real, "Direction&Direction(D)", _field_id_slider_editor },
 		FIELD_CUSTOM("Front-Back&Front-Back(D)", nullptr, _field_id_slider_editor),

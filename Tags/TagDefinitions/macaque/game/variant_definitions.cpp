@@ -32,7 +32,7 @@ namespace macaque
 	{
 		{ _field_data, "metadata" },
 		{ _field_data, "full_data" },
-		{ _field_long_string, "filename" },
+		{ _field_long_string, "filename", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -47,7 +47,7 @@ namespace macaque
 		FALLBACKHOPPERFILEBLOCK_ID)
 	{
 		{ _field_data, "file_data" },
-		{ _field_long_string, "filename" },
+		{ _field_long_string, "filename", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

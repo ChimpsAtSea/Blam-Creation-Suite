@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_LOADOUT_PALETTE_ENTRY_BLOCK_ID)
 	{
-		{ _field_string_id, "palette name" },
+		{ _field_string_id, "palette name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -96,7 +96,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_NAME_BLOCK_ID)
 	{
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -131,7 +131,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_DEFINITION_STRUCT_ID)
 	{
-		{ _field_string_id, "loadout name" },
+		{ _field_string_id, "loadout name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "app1", "name of an element from custom_app_globals/custom_apps.  Can be left empty." },
 		{ _field_string_id, "app2", "see above" },
 		{ _field_string_id, "initial primary weapon", "name of an element from global starting weapons block. Other values:\n(empty) - unchanged\nunchanged - unchanged\ndefault - take from starting profiles in scenario\nnone - no weapon\nrandom - use random item from valid starting weapons" },

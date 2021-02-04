@@ -18,9 +18,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ACTIVE_CAMO_GLOBALS_BLOCK_ID)
 	{
-		{ _field_real, "biped speed reference", "for bipeds, the speed at which you are on the far right of the 'speed to max camo' graph", "wu/s" },
-		{ _field_real, "vehicle speed reference", "for vehicles, the speed at which you are on the far right of the 'speed to max camo' graph", "wu/s" },
-		{ _field_real_fraction, "camo value for game name", "minimum active camo percentage at which a player's game name will start becoming visible" },
+		{ _field_real, "biped speed reference", "for bipeds, the speed at which you are on the far right of the \'speed to max camo\' graph", "wu/s" },
+		{ _field_real, "vehicle speed reference", "for vehicles, the speed at which you are on the far right of the \'speed to max camo\' graph", "wu/s" },
+		{ _field_real_fraction, "camo value for game name", "minimum active camo percentage at which a player\'s game name will start becoming visible" },
 		{ _field_struct, "camo value to distortion", &scalar_function_named_struct },
 		{ _field_struct, "camo value to transparency", &scalar_function_named_struct },
 		{ _field_struct, "camo value to fp transparency", &scalar_function_named_struct },

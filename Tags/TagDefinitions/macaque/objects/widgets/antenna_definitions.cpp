@@ -30,14 +30,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTENNA_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex" },
+		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "length", "distance between this vertex and the next", "world units" },
-		{ _field_short_integer, "sequence index", "bitmap group sequence index for this vertex's texture" },
+		{ _field_short_integer, "sequence index", "bitmap group sequence index for this vertex\'s texture" },
 		FIELD_PAD("NTCTQQF", nullptr, 2),
 		{ _field_real_argb_color, "color", "color at this vertex" },
-		{ _field_real_argb_color, "LOD color", "color at this vertex for the low-LOD line primitives" },
-		{ _field_real, "hermite t" },
-		{ _field_real_vector_3d, "vector to next" },
+		{ _field_real_argb_color, "LOD color", "color at this vertex for the low-LOD line primitives", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "hermite t", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_vector_3d, "vector to next", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -55,12 +55,12 @@ namespace macaque
 		{ _field_tag_reference, "physics", &global_point_physics_reference },
 		{ _field_real_fraction, "spring strength coefficient", "strength of the spring (larger values make the spring stronger)" },
 		{ _field_real, "texel to world width scale" },
-		{ _field_real, "falloff pixels" },
-		{ _field_real, "cutoff pixels" },
+		{ _field_real, "falloff pixels", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "cutoff pixels", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "point of bend", "[0,1]" },
 		{ _field_real, "starting bend", "[0,1]" },
 		{ _field_real, "ending bend", "[0,1]" },
-		{ _field_real, "runtime total length" },
+		{ _field_real, "runtime total length", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "vertices", &antenna_vertex_block },
 		{ _field_terminator }
 	};

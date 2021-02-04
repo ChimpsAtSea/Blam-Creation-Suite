@@ -34,8 +34,8 @@ namespace macaque
 		{ _field_byte_flags, "flags", &particle_controller_flags },
 		FIELD_PAD("KNTXOMS", nullptr, 1),
 		{ _field_block, "parameters", &particle_controller_parameters_block },
-		{ _field_long_integer, "runtime m_constant_parameters" },
-		{ _field_long_integer, "runtime m_used_particle_states" },
+		{ _field_long_integer, "runtime m_constant_parameters", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -66,9 +66,9 @@ namespace macaque
 	{
 		{ _field_tag_reference, "template", &particle_movement_definition },
 		{ _field_word_flags, "flags", &particle_movement_flags },
-		{ _field_char_integer, "collision controller index" },
-		{ _field_char_integer, "turbulence controller index" },
-		{ _field_char_integer, "global force controller index" },
+		{ _field_char_integer, "collision controller index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "turbulence controller index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("pphys", nullptr, 3),
 		{ _field_block, "movements", &particle_controller_block },
 		{ _field_tag_reference, "turbulence texture", &global_bitmap_reference },
@@ -86,9 +86,9 @@ namespace macaque
 	{
 		{ _field_tag_reference, "template", &particle_movement_definition },
 		{ _field_word_flags, "flags", &particle_movement_flags },
-		{ _field_char_integer, "collision controller index" },
-		{ _field_char_integer, "turbulence controller index" },
-		{ _field_char_integer, "global force controller index" },
+		{ _field_char_integer, "collision controller index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "turbulence controller index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "global force controller index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("pphys", nullptr, 3),
 		{ _field_block, "movements", &particle_controller_block },
 		{ _field_tag_reference, "turbulence texture", &global_bitmap_reference },

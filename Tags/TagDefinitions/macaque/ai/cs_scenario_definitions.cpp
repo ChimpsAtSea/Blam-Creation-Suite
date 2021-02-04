@@ -33,7 +33,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CS_POINT_SET_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "points", &cs_point_block },
 		{ _field_short_block_index, "bsp index", &scenario_structure_bsp_reference_block },
 		FIELD_PAD("PAD1", nullptr, 2),
@@ -54,11 +54,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		CS_POINT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string, "name" },
-		{ _field_string_id, "name_id" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
+		{ _field_string_id, "name_id", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "facing direction" },
 		{ _field_terminator }
 	};
@@ -73,9 +73,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CS_ANIMATION_POINT_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_block_index, "Animating Object", &scenario_object_names_block },
-		{ _field_long_integer, "Animating Object Index" },
+		{ _field_long_integer, "Animating Object Index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "Animation Name" },
 		{ _field_long_integer, "Animation Bone to Track" },
 		{ _field_real_point_3d, "Offset From Bone" },

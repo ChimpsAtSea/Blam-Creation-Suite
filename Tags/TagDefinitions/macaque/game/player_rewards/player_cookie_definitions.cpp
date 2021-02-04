@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		REWARDDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &rewardTypeEnum },
 		FIELD_PAD("PJB1", nullptr, 3),
 		{ _field_block, "rewards", &rewardBlock_block },

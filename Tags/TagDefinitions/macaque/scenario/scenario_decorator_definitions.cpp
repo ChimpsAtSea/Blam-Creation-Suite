@@ -19,12 +19,12 @@ namespace macaque
 		SCENARIO_DECORATOR_BLOCK_ID)
 	{
 		{ _field_struct, "brush", &decorator_brush_struct },
-		{ _field_long_integer, "decorator count" },
-		{ _field_long_integer, "current bsp count" },
-		{ _field_real_vector_3d, "global offset" },
-		{ _field_real_vector_3d, "global x" },
-		{ _field_real_vector_3d, "global y" },
-		{ _field_real_vector_3d, "global z" },
+		{ _field_long_integer, "decorator count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "current bsp count", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "global offset", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_vector_3d, "global x", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_vector_3d, "global y", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_vector_3d, "global z", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "palette", &decorator_palette_block },
 		{ _field_block, "sets", &decorator_scenario_set_block },
 		{ _field_terminator }
@@ -40,7 +40,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_PALETTE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "decorator set 0", &decorator_scenario_set_block },
 		{ _field_word_integer, "decorator weight 0" },
 		{ _field_short_block_index, "decorator set 1", &decorator_scenario_set_block },
@@ -95,9 +95,9 @@ namespace macaque
 		{ _field_real_point_3d, "tint color" },
 		{ _field_real_point_3d, "original point" },
 		{ _field_real_point_3d, "original normal" },
-		{ _field_long_integer, "bsp index" },
-		{ _field_short_integer, "cluster index" },
-		{ _field_short_integer, "cluster decorator set index" },
+		{ _field_long_integer, "bsp index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "cluster decorator set index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -116,8 +116,8 @@ namespace macaque
 		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition },
 		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition },
 		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition },
-		{ _field_real, "outer radius" },
-		{ _field_real, "feather percent" },
+		{ _field_real, "outer radius", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "feather percent", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "reapply flags", &decorator_brush_reapply_flags_definition },
 		{ _field_byte_flags, "render flags", &decorator_brush_render_flags_definition },
 		{ _field_byte_flags, "action flags", &decorator_brush_action_flags_definition },

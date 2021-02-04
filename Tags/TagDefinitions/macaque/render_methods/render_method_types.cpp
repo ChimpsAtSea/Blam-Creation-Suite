@@ -306,7 +306,7 @@ namespace macaque
 		SHADER_DECAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_long_integer, "specular_modulate" },
+		{ _field_long_integer, "specular_modulate", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -441,7 +441,7 @@ namespace macaque
 		{ _field_struct, "material type 1", &material_type_struct },
 		{ _field_struct, "material type 2", &material_type_struct },
 		{ _field_struct, "material type 3", &material_type_struct },
-		{ _field_long_integer, "single material" },
+		{ _field_long_integer, "single material", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -517,7 +517,7 @@ namespace macaque
 		{ _field_struct, "material type 1", &material_type_struct },
 		{ _field_struct, "material type 2", &material_type_struct },
 		{ _field_struct, "material type 3", &material_type_struct },
-		{ _field_long_integer, "single material" },
+		{ _field_long_integer, "single material", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

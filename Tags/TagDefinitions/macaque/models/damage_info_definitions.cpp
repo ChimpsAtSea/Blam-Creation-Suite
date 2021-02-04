@@ -17,15 +17,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality" },
 		{ _field_string_id, "shield material name", "set this to make this damage section a shield" },
 		FIELD_EXPLANATION("stun", nullptr, ""),
-		{ _field_real, "stun time", "seconds" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
+		{ _field_real, "stun time", nullptr, "seconds" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
 		FIELD_EXPLANATION("recharge", nullptr, ""),
-		{ _field_real, "recharge time", "seconds" },
+		{ _field_real, "recharge time", nullptr, "seconds" },
 		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block },
 		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
 		{ _field_tag_reference, "recharging effect", &global_effect_reference },
@@ -45,10 +45,10 @@ namespace macaque
 		{ _field_block, "instant responses", &new_instantaneous_damage_response_block },
 		{ _field_block, "section damage transfers", &damage_transfer_block },
 		{ _field_block, "rendering", &damage_section_rendering_paramters_block },
-		{ _field_real, "runtime recharge velocity" },
-		{ _field_real, "runtime overcharge velocity" },
-		{ _field_short_integer, "runtime resurrection restored region index" },
-		{ _field_short_integer, "runtime global shield material type" },
+		{ _field_real, "runtime recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "runtime overcharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "runtime resurrection restored region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "runtime global shield material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -133,7 +133,7 @@ namespace macaque
 	{
 		{ _field_string_id, "region" },
 		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index" },
+		{ _field_short_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -165,7 +165,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SEAT_EJECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "seat label" },
+		{ _field_string_id, "seat label", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -210,11 +210,11 @@ namespace macaque
 		{ _field_struct, "shield", &damage_shield_parameters_struct },
 		{ _field_block, "damage sections", &global_damage_section_block },
 		{ _field_block, "nodes", &global_damage_nodes_block },
-		{ _field_short_integer, "runtime shield material type" },
-		{ _field_short_integer, "runtime indirect material type" },
-		{ _field_real, "runtime shield recharge velocity" },
-		{ _field_real, "runtime overcharge velocity" },
-		{ _field_real, "runtime health recharge velocity" },
+		{ _field_short_integer, "runtime shield material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "runtime shield recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "runtime overcharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "runtime health recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "damage seats", &damage_seat_info_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
 		FIELD_EXPLANATION("overshield", nullptr, ""),
@@ -231,18 +231,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DAMAGE_SECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("damage section flags", nullptr, "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields"),
 		{ _field_long_flags, "flags", &damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage", "percentage of total object vitality" },
 		{ _field_block, "instant responses", &instantaneous_damage_repsonse_block },
 		{ _field_block, "unused0", &g_null_block },
 		{ _field_block, "unused1", &g_null_block },
-		{ _field_real, "stun time", "seconds" },
-		{ _field_real, "recharge time", "seconds" },
-		{ _field_real, "runtime recharge velocity" },
+		{ _field_real, "stun time", nullptr, "seconds" },
+		{ _field_real, "recharge time", nullptr, "seconds" },
+		{ _field_real, "runtime recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_string_id, "resurrection restored region name" },
-		{ _field_short_integer, "runtime resurrection restored region index" },
+		{ _field_short_integer, "runtime resurrection restored region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("AG", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -273,10 +273,10 @@ namespace macaque
 		{ _field_struct, "damage effect", &instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
 		{ _field_enum, "new state", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index" },
+		{ _field_short_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_string_id, "region (secondary)" },
 		{ _field_enum, "new state (secondary)", &model_state_enum_definition },
-		{ _field_short_integer, "runtime region index (secondary)" },
+		{ _field_short_integer, "runtime region index (secondary)", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "destroy instance group", &global_model_instance_group_block },
 		{ _field_enum, "custom response behavior", &damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
@@ -308,7 +308,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DAMAGE_NODES_BLOCK_ID)
 	{
-		{ _field_short_integer, "runtime damage part" },
+		{ _field_short_integer, "runtime damage part", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("EOT", nullptr, 2),
 		FIELD_PAD("SBFL", nullptr, 12),
 		{ _field_terminator }
@@ -324,7 +324,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_SEAT_INFO_BLOCK_ID)
 	{
-		{ _field_string_id, "seat label" },
+		{ _field_string_id, "seat label", FIELD_FLAG_INDEX },
 		{ _field_real_fraction, "direct damage scale", "0==no damage, 1==full damage" },
 		{ _field_real, "damage transfer fall-off radius" },
 		{ _field_real, "maximum transfer damage scale" },
@@ -345,7 +345,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("region-state-specific-damage", nullptr, "for fields below, 0.0==inherit from damage seat"),
 		{ _field_string_id, "damage region name" },
-		{ _field_short_integer, "runtime damage region index" },
+		{ _field_short_integer, "runtime damage region index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("EOQ", nullptr, 2),
 		{ _field_real, "direct damage scale (minor)" },
 		{ _field_real, "Max. transfer scale (minor)" },
@@ -373,8 +373,8 @@ namespace macaque
 		{ _field_string_id, "damage constraint name" },
 		{ _field_string_id, "damage constraint group name" },
 		{ _field_real, "group probability scale" },
-		{ _field_short_integer, "runtime constraint type" },
-		{ _field_short_integer, "runtime constraint index" },
+		{ _field_short_integer, "runtime constraint type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "runtime constraint index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -414,7 +414,7 @@ namespace macaque
 		DAMAGE_BODY_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum vitality" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's health" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s health" },
 		{ _field_real, "stun time", "the length of time the health stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 		{ _field_real_fraction, "recharge fraction", "0 defaults to 1 - to what maximum level the body health will be allowed to recharge" },
@@ -432,7 +432,7 @@ namespace macaque
 	{
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
 		{ _field_string_id, "global shield material name" },
-		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
+		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object\'s shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
 		{ _field_real, "shield overcharge fraction", "fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
@@ -455,7 +455,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Damage Info", nullptr, ""),
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
-		{ _field_real, "maximum vitality", "value of zero implies 'damage sections' should be empty" },
+		{ _field_real, "maximum vitality", "value of zero implies \'damage sections\' should be empty" },
 		{ _field_string_id, "indirect material name", "absorbes AOE or child damage" },
 		{ _field_short_block_index, "indirect damage section", &new_global_damage_section_block },
 		{ _field_short_block_index, "shielded state damage section", &new_global_damage_section_block },
@@ -465,7 +465,7 @@ namespace macaque
 		{ _field_block, "damage sections", &new_global_damage_section_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
 		{ _field_block, "nodes", &global_damage_nodes_block },
-		{ _field_short_integer, "runtime indirect material type" },
+		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("MDIBP1", nullptr, 2),
 		{ _field_terminator }
 	};

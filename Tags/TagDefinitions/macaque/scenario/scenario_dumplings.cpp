@@ -71,8 +71,8 @@ namespace macaque
 		{ _field_real, "sink" },
 		{ _field_real, "inner value" },
 		{ _field_real, "outer value" },
-		{ _field_real_point_3d, "center point" },
-		{ _field_real, "trivial cull radius squared" },
+		{ _field_real_point_3d, "center point", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "trivial cull radius squared", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

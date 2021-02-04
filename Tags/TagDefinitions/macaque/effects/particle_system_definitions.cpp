@@ -35,22 +35,22 @@ namespace macaque
 		{ _field_real, "size scale", "multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
 		{ _field_real, "camera offset", "the particle is pushed away from the camera this distance (can be negative)", "world units" },
 		FIELD_CUSTOM("Estimate overdraw threshold", nullptr, _field_id_particle_estimate_overdraw_unknown),
-		{ _field_real, "Pixel budget", "ms" },
+		{ _field_real, "Pixel budget", nullptr, "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
-		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units" },
+		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "near fade override", "distance in front of camera where fade is complete", "world units" },
 		{ _field_real, "far fade range", "distance before cutoff over which particles fade", "world units" },
 		{ _field_real, "far fade cutoff", "distance from camera where fade is complete", "world units" },
 		{ _field_real, "LOD in distance" },
 		{ _field_real, "LOD feather in delta", "minimum is 0.0001" },
-		{ _field_real, "inverse LOD feather in" },
+		{ _field_real, "inverse LOD feather in", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "LOD out distance", "defaults to 20.0" },
 		{ _field_real, "LOD feather out delta", "0 defaults to 5.0, minimum is 0.0001" },
-		{ _field_real, "inverse LOD feather out" },
+		{ _field_real, "inverse LOD feather out", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_block, "emitters", &particle_system_emitter_definition_block },
-		{ _field_real, "runtime max lifespan" },
-		{ _field_real, "runtime overdraw" },
+		{ _field_real, "runtime max lifespan", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "runtime overdraw", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -66,7 +66,7 @@ namespace macaque
 		PARTICLE_SYSTEM_EMITTER_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
-		{ _field_string_id, "emitter name" },
+		{ _field_string_id, "emitter name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("EMITTER SETTINGS", nullptr, _field_id_function_group_begin),
 		{ _field_char_enum, "emission shape", &emission_shape_enum },
 		{ _field_byte_flags, "flags", &emitter_flags },
@@ -76,10 +76,10 @@ namespace macaque
 		FIELD_PAD("Pad0", nullptr, 3),
 		{ _field_tag_reference, "custom shape", &particle_emitter_custom_shape_reference },
 		{ _field_tag_reference, "boat hull", &particle_emitter_boat_hull_shape_reference },
-		{ _field_real, "bounding radius estimate", "used if override is zero", "world units" },
+		{ _field_real, "bounding radius estimate", "used if override is zero", "world units", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "bounding radius override", "used if non-zero", "world units" },
 		{ _field_real_point_3d, "axis scale", "NOTE - setting this will break automatic bounding sphere calculation, you must enter radius manually" },
-		{ _field_real_vector_2d, "uv scrolling", "tiles per second" },
+		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_struct, "translational offset", &particle_property_real_point3d_struct_new },
 		{ _field_struct, "relative direction", &particle_property_real_euler_angles2d_struct_new },
@@ -118,9 +118,9 @@ namespace macaque
 		{ _field_struct, "particle alpha white point", &particle_property_scalar_struct_new },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
-		{ _field_long_integer, "runtime m_constant_per_particle_properties" },
-		{ _field_long_integer, "runtime m_constant_over_time_properties" },
-		{ _field_long_integer, "runtime m_used_particle_states" },
+		{ _field_long_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "runtime m_constant_over_time_properties", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "runtime m_gpu_data", &gpu_property_function_color_struct },
 		{ _field_terminator }
 	};
@@ -211,7 +211,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_property_real" },
+		{ _field_real, "runtime gpu_property_real", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -225,7 +225,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_FUNCTION_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_function_real" },
+		{ _field_real, "runtime gpu_function_real", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -239,7 +239,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_COLOR_SUB_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_color_real" },
+		{ _field_real, "runtime gpu_color_real", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

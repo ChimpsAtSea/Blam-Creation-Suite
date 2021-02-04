@@ -18,9 +18,9 @@ namespace macaque
 		SOUND_COMBINER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entries", &sound_combiner_definition_entry_block },
-		{ _field_real, "maximum play seconds", "this is determined at post process time" },
-		{ _field_real, "minimum distance default", "this is determined at post process time" },
-		{ _field_real, "maximum distance default", "this is determined at post process time" },
+		{ _field_real, "maximum play seconds", "this is determined at post process time", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "minimum distance default", "this is determined at post process time", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "maximum distance default", "this is determined at post process time", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

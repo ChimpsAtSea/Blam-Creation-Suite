@@ -32,7 +32,7 @@ namespace macaque
 		LIGHT_VOLUME_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
-		{ _field_string_id, "light_volume name" },
+		{ _field_string_id, "light_volume name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
 		{ _field_struct, "actual material?", &material_struct },
@@ -41,12 +41,12 @@ namespace macaque
 		FIELD_PAD("SONGWEOINGEW", nullptr, 2),
 		{ _field_real, "brightness ratio", "avg. brightness head-on/side-view" },
 		{ _field_long_flags, "flags", &light_volume_flags },
-		{ _field_real, "LOD in distance", "defaults to 0.0, ignored if 'lod enabled' not checked above" },
-		{ _field_real, "LOD feather in delta", "defaults to 0.0, ignored if 'lod enabled' not checked above" },
-		{ _field_real, "inverse LOD feather in" },
-		{ _field_real, "LOD out distance", "defaults to 30.0, ignored if 'lod enabled' not checked above" },
-		{ _field_real, "LOD feather out delta", "defaults to 10.0, ignored if 'lod enabled' not checked above" },
-		{ _field_real, "inverse LOD feather out" },
+		{ _field_real, "LOD in distance", "defaults to 0.0, ignored if \'lod enabled\' not checked above" },
+		{ _field_real, "LOD feather in delta", "defaults to 0.0, ignored if \'lod enabled\' not checked above" },
+		{ _field_real, "inverse LOD feather in", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "LOD out distance", "defaults to 30.0, ignored if \'lod enabled\' not checked above" },
+		{ _field_real, "LOD feather out delta", "defaults to 10.0, ignored if \'lod enabled\' not checked above" },
+		{ _field_real, "inverse LOD feather out", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "length", &light_volume_property_real },
 		{ _field_struct, "offset", &light_volume_property_real },
 		{ _field_struct, "profile_density", &light_volume_property_real },
@@ -56,9 +56,9 @@ namespace macaque
 		{ _field_struct, "profile_alpha", &light_volume_property_real },
 		{ _field_struct, "profile_intensity", &light_volume_property_real },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
-		{ _field_dword_integer, "runtime m_constant_per_profile_properties" },
-		{ _field_dword_integer, "runtime m_used_states" },
-		{ _field_dword_integer, "runtime m_max_profile_count" },
+		{ _field_dword_integer, "runtime m_constant_per_profile_properties", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_used_states", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_max_profile_count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "runtime m_gpu_data", &gpu_property_function_color_struct },
 		{ _field_block, "precompiled vertices", &light_volume_precompiled_vert_block },
 		{ _field_terminator }
@@ -110,8 +110,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -132,8 +132,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_terminator }
 	};

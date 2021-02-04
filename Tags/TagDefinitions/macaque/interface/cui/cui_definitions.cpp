@@ -71,7 +71,7 @@ namespace macaque
 		COMPONENT_DEFINITION_ID)
 	{
 		{ _field_string_id, "type" },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "parent" },
 		{ _field_word_flags, "flags", &component_definition_flags },
 		{ _field_short_block_index, "template instantiation index", &template_instantiation_block_definition_block },
@@ -88,7 +88,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_INDEX_BLOCK_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "component definition index", &component_definition_block },
 		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
@@ -121,7 +121,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_PROPERTIES_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "property values", &properties_struct },
 		{ _field_terminator }
 	};
@@ -136,7 +136,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_LONG_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
@@ -151,7 +151,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_REAL_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real, "value" },
 		{ _field_terminator }
 	};
@@ -166,7 +166,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_STRING_ID_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "value" },
 		{ _field_terminator }
 	};
@@ -181,7 +181,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTYCOMPONENTPTRVALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "value" },
 		{ _field_byte_flags, "flags", &propertyComponentPtrFlags },
 		FIELD_PAD("pad0", nullptr, 3),
@@ -198,7 +198,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_TAG_REFERENCE_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "value", &property_tag_reference_value_value_reference },
 		{ _field_terminator }
 	};
@@ -213,7 +213,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_TEXT_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_string, "value" },
 		{ _field_terminator }
 	};
@@ -228,7 +228,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_ARGB_COLOR_VALUE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_argb_color, "value" },
 		{ _field_terminator }
 	};
@@ -243,7 +243,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real, "time base offset" },
 		{ _field_real, "time exponential offset" },
 		{ _field_char_enum, "animation input", &animationInputType },
@@ -262,7 +262,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_integer, "total milliseconds" },
 		{ _field_block, "real properties", &animation_component_real_property_block },
 		{ _field_block, "argb color properties", &animation_component_argb_color_property_block },
@@ -279,7 +279,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_REAL_PROPERTY_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
 		FIELD_PAD("pad0", nullptr, 1),
@@ -315,7 +315,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_COMPONENT_ARGB_COLOR_PROPERTY_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "composition", &animation_property_composition_type },
 		{ _field_byte_flags, "flags", &animation_property_flags },
 		FIELD_PAD("pad0", nullptr, 1),
@@ -370,7 +370,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPONENT_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "properties editor only", &property_editor_only_definition_block },
 		{ _field_terminator }
 	};
@@ -385,7 +385,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROPERTY_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &editor_property_info_flags },
 		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_terminator }
@@ -401,7 +401,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_EDITOR_ONLY_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "components editor only", &component_editor_only_definition_block },
 		{ _field_terminator }
 	};
@@ -453,7 +453,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_DATA_TABLE_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "mock data for component", "a component on this screen that gets replaced in simulation with this data table" },
 		{ _field_struct, "static data", &static_data_struct },
 		{ _field_terminator }
@@ -469,7 +469,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_DATA_COLUMN_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "type", &property_type },
 		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
@@ -491,7 +491,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EXPRESSION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_string, "expression text" },
 		{ _field_block, "steps", &expression_step_block },
 		{ _field_terminator }
@@ -526,7 +526,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ENCAPSULATEDPROPERTIES_ID)
 	{
-		{ _field_string_id, "encapsulation name" },
+		{ _field_string_id, "encapsulation name", FIELD_FLAG_INDEX },
 		{ _field_block, "properties", &static_data_column_block },
 		{ _field_terminator }
 	};

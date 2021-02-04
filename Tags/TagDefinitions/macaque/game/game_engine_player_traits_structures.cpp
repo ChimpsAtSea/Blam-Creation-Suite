@@ -174,7 +174,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
 		{ _field_real, "motion tracker range" },
-		{ _field_real, "nemesis duration", "seconds" },
+		{ _field_real, "nemesis duration", nullptr, "seconds" },
 		{ _field_char_enum, "motion tracker", &player_trait_motion_tracker },
 		{ _field_char_enum, "motion tracker while zoomed", &player_trait_bool_enum },
 		{ _field_char_enum, "directional damage indicator", &player_trait_bool_enum },
@@ -196,7 +196,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_PLAYER_TRAITS_LIST_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "vitality traits", &player_traits_vitality_block },
 		{ _field_block, "weapon traits", &player_traits_weapons_block },
 		{ _field_block, "movement traits", &player_traits_movement_block },

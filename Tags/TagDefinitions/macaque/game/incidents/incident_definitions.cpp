@@ -64,7 +64,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_DEFINITION_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("PROPERTIES", nullptr, _field_id_function_group_begin),
 		{ _field_byte_flags, "flags", &incident_definition_flags },
 		FIELD_PAD("JKOPEIE", nullptr, 3),
@@ -93,7 +93,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSED_INCIDENT_BLOCK_ID)
 	{
-		{ _field_string_id, "incident name" },
+		{ _field_string_id, "incident name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "suppression type", &suppressed_incident_flags },
 		FIELD_PAD("VNJESHFHV", nullptr, 3),
 		{ _field_terminator }
@@ -123,7 +123,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_BLOCK_ID)
 	{
-		{ _field_string_id, "base incident" },
+		{ _field_string_id, "base incident", FIELD_FLAG_INDEX },
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block },
 		{ _field_block, "cause object", &specialized_incident_object_properties_block },
 		{ _field_block, "effect object", &specialized_incident_object_properties_block },
@@ -209,7 +209,7 @@ namespace macaque
 		SPECIALIZEDINCIDENTGAMEOVERBLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &specializedIncidentGameOverFlags },
-		{ _field_short_integer, "minimum game length", "seconds" },
+		{ _field_short_integer, "minimum game length", nullptr, "seconds" },
 		{ _field_char_integer, "megalo category index", "only used if the \"check megalo category\" flag is set" },
 		FIELD_PAD("PAD1", nullptr, 3),
 		{ _field_terminator }
@@ -225,7 +225,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZEDINCIDENTRANDOMORDNANCEBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
+		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -257,7 +257,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
 		FIELD_PAD("PAD1", nullptr, 3),
-		{ _field_long_integer, "distance between effect and cause player", "wu" },
+		{ _field_long_integer, "distance between effect and cause player", nullptr, "wu" },
 		{ _field_terminator }
 	};
 
@@ -340,18 +340,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INCIDENT_GLOBAL_PROPERTIES_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "campaign multikill time", "s" },
-		{ _field_real, "survival multikill time", "s" },
-		{ _field_real, "multiplayer multikill time", "s" },
+		{ _field_real, "campaign multikill time", nullptr, "s" },
+		{ _field_real, "survival multikill time", nullptr, "s" },
+		{ _field_real, "multiplayer multikill time", nullptr, "s" },
 		{ _field_real, "low health threshold" },
 		{ _field_real, "shield recharge threshold" },
-		{ _field_real, "maximum vengeance time", "s" },
+		{ _field_real, "maximum vengeance time", nullptr, "s" },
 		{ _field_real, "lifesaver damage threshold" },
-		{ _field_real, "avenger dead time", "s" },
-		{ _field_real, "hologram recently used maximum time", "s" },
+		{ _field_real, "avenger dead time", nullptr, "s" },
+		{ _field_real, "hologram recently used maximum time", nullptr, "s" },
 		{ _field_long_enum, "active camouflage incident minimum level", &active_camo_enum_definition },
-		{ _field_real, "thruster pack recently used maximum time", "s" },
-		{ _field_real, "active shield recently used maximum time", "s" },
+		{ _field_real, "thruster pack recently used maximum time", nullptr, "s" },
+		{ _field_real, "active shield recently used maximum time", nullptr, "s" },
 		{ _field_real, "damage threshold for hologram incidents" },
 		{ _field_real, "damage threshold for distraction incident killer" },
 		{ _field_real, "damage threshold for distraction incident distractor" },

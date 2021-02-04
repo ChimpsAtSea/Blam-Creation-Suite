@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_BOAT_HULL_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "marker group" },
+		{ _field_string_id, "marker group", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

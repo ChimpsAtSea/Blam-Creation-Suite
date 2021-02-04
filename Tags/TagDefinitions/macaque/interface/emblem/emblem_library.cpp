@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_BITMAP_LIST_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "bitmap index", "the index of the bitmap in the bitmap group" },
 		FIELD_PAD("ASDFJIJJGHJFL", nullptr, 2),
 		{ _field_real, "gradient size", "the size of the gradient (from white to black) in this bitmap", "pixels" },
@@ -49,7 +49,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_SHAPE_LIST_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "bitmap", &emblem_bitmap_list_block },
 		{ _field_enum, "address mode x", &render_method_bitmap_address_mode_enum },
 		{ _field_enum, "address mode y", &render_method_bitmap_address_mode_enum },
@@ -69,7 +69,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_FRONT_LIST_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("Layer 0 (foreground)", nullptr, "Composed of two shapes\n"),
 		{ _field_struct, "layer 0", &emblem_layer },
 		FIELD_EXPLANATION("Layer 1 (midground)", nullptr, "This layer is behind the foreground, and in front of the background\n"),
@@ -92,7 +92,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_BACK_LIST_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("Layer 2 (background)", nullptr, "\n"),
 		{ _field_struct, "layer 2", &emblem_layer },
 		{ _field_terminator }
@@ -177,7 +177,7 @@ namespace macaque
 		EMBLEM_LIBRARY_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Emblem Library", nullptr, "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n"),
-		{ _field_short_integer, "version" },
+		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("jfejkjjg", nullptr, 2),
 		FIELD_CUSTOM("Bitmaps", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Bitmaps", nullptr, "\n"),

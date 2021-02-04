@@ -44,11 +44,11 @@ namespace macaque
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref0" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref0" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_point_3d, "Point 1" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref1" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref1" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -64,17 +64,17 @@ namespace macaque
 	{
 		{ _field_long_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_real_point_3d, "Point 0" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref0" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref0" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref0", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_point_3d, "Point 1" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref1" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref1" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref1", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_point_3d, "Point 2" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref2" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref2" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref2", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_point_3d, "Point 3" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref3" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref3" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "invalid_points", &parallelogram_points_invalid_flags },
 		FIELD_PAD("KJHIUF", nullptr, 2),
 		{ _field_terminator }
@@ -93,10 +93,10 @@ namespace macaque
 		{ _field_enum, "hint type", &hint_type_enum },
 		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
 		{ _field_block, "hint vertices", &hint_vertex_block },
-		{ _field_long_integer, "hint data 0" },
-		{ _field_short_integer, "hint data 1" },
-		{ _field_byte_integer, "hint data 2" },
-		{ _field_byte_integer, "pad1" },
+		{ _field_long_integer, "hint data 0", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "hint data 1", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "hint data 2", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "pad1", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &user_hint_parallelogram_block },
 		{ _field_enum, "force jump height", &global_ai_jump_height_enum },
@@ -114,7 +114,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINT_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point" },
+		{ _field_real_point_3d, "point", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -131,10 +131,10 @@ namespace macaque
 		{ _field_enum, "hint type", &hint_type_enum },
 		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
 		{ _field_block, "hint vertices", &hint_vertex_block },
-		{ _field_long_integer, "hint data 0" },
-		{ _field_short_integer, "hint data 1" },
-		{ _field_byte_integer, "hint data 2" },
-		{ _field_byte_integer, "pad1" },
+		{ _field_long_integer, "hint data 0", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "hint data 1", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "hint data 2", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "pad1", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
 		{ _field_enum, "force hoist height", &forced_hoist_height_enum },
@@ -170,8 +170,8 @@ namespace macaque
 		{ _field_enum, "type", &user_hint_well_point_type_enum },
 		FIELD_PAD("CNXLP", nullptr, 2),
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
@@ -221,8 +221,8 @@ namespace macaque
 		USER_HINT_SPLINE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_real, "radius", "wus" },
-		{ _field_real, "time between points", "sec" },
+		{ _field_real, "radius", nullptr, "wus" },
+		{ _field_real, "time between points", nullptr, "sec" },
 		{ _field_block, "control points", &user_hint_spline_control_point_block },
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
 		FIELD_PAD("post-bsp-pad", nullptr, 2),
@@ -244,7 +244,7 @@ namespace macaque
 		FIELD_PAD("post-flags-pad", nullptr, 2),
 		{ _field_real_point_3d, "point", _field_id_point },
 		{ _field_real_vector_3d, "tangent" },
-		{ _field_real, "segment arc length" },
+		{ _field_real, "segment arc length", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -276,20 +276,20 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		USER_HINT_COOKIE_CUTTER_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
-		{ _field_short_integer, "size" },
-		{ _field_short_integer, "count" },
+		{ _field_long_integer, "hkaiVolume vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "points", &user_hint_sector_point_block },
 		{ _field_block, "pointsObjectIds", &hint_object_id_block },
 		{ _field_real, "z height" },
 		{ _field_real, "z sink" },
 		{ _field_enum, "type", &cookie_cutter_type_enum },
-		{ _field_short_integer, "pad" },
-		{ _field_long_integer, "runtimeObjectTransformOverrideIndex" },
-		{ _field_char_integer, "invalid" },
-		{ _field_char_integer, "pad2" },
-		{ _field_char_integer, "pad3" },
-		{ _field_char_integer, "pad4" },
+		{ _field_short_integer, "pad", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "runtimeObjectTransformOverrideIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_char_integer, "invalid", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "pad2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "pad3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "pad4", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -304,8 +304,8 @@ namespace macaque
 		USER_HINT_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
@@ -335,15 +335,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		USER_HINT_NAVMESH_AREA_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
-		{ _field_short_integer, "size" },
-		{ _field_short_integer, "count" },
+		{ _field_long_integer, "hkaiVolume vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "points", &user_hint_sector_point_block },
 		{ _field_real, "z height" },
 		{ _field_real, "z sink" },
 		{ _field_real, "step height" },
 		{ _field_long_enum, "type", &navmesh_area_type_enum },
-		{ _field_real, "isValid" },
+		{ _field_real, "isValid", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_EXPLANATION("Max CONVEX Border Simplify Area", nullptr, "This controls the amount of simplification applied to internal segments and convex boundary segments"),
 		{ _field_real, "Max CONVEX Border Simplify Area" },
 		FIELD_EXPLANATION("Max Border Distance Error", nullptr, "When simplifying internal segments and convex boundary segments, this controls the maximum projected distance by which the simplified segment can deviate from the unsimplified segment"),
@@ -464,9 +464,9 @@ namespace macaque
 		{ _field_real_vector_3d, "facing vector", "for pills" },
 		{ _field_real, "height", "for pills" },
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
-		{ _field_short_integer, "spline_count" },
-		{ _field_short_integer, "zone_index" },
-		{ _field_short_integer, "area_index" },
+		{ _field_short_integer, "spline_count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "zone_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "area_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

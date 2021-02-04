@@ -44,7 +44,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BEHAVIOR_NAMES_BLOCK_ID)
 	{
-		{ _field_string, "behavior name" },
+		{ _field_string, "behavior name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -57,7 +57,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STYLE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("Combat status decay options", nullptr, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
 		{ _field_enum, "Combat status decay options", &combat_status_enum },
 		FIELD_PAD("hghq", nullptr, 2),

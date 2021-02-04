@@ -44,11 +44,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_COLOR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		{ _field_enum, "Output Modifier", &output_mod_enum },
 		FIELD_PAD("BVCG", nullptr, 2),
-		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier },
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
@@ -64,11 +64,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		{ _field_enum, "Output Modifier", &output_mod_enum },
 		FIELD_PAD("BVCG", nullptr, 2),
-		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier },
+		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }

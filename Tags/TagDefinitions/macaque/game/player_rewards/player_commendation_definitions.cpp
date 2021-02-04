@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONAGGREGATOR_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description text" },
 		{ _field_block, "rewards", &commendationRewardBlock_block },
 		{ _field_char_integer, "sequence index" },
@@ -86,7 +86,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 		{ _field_byte_flags, "flags", &commendationFlags },
 		FIELD_PAD("CB_PAD0", nullptr, 3),
@@ -113,7 +113,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONLEVELBLOCK_ID)
 	{
-		{ _field_string_id, "level name" },
+		{ _field_string_id, "level name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "progress ticks to level", "number of ticks to reach this level" },
 		{ _field_short_integer, "progress display interval", "number of ticks between displaying progress toast; 0=never display progress, 1=display every tick, 2=every other, etc." },
 		{ _field_string_id, "achievement" },
@@ -146,8 +146,8 @@ namespace macaque
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalCommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "commendation text", &global_multilingual_unicode_string_list_reference },
-		{ _field_short_integer, "progress display time", "seconds" },
-		{ _field_short_integer, "complete display time", "seconds" },
+		{ _field_short_integer, "progress display time", nullptr, "seconds" },
+		{ _field_short_integer, "complete display time", nullptr, "seconds" },
 		{ _field_block, "commendations", &commendationBlock_block },
 		{ _field_terminator }
 	};
@@ -163,7 +163,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
 		FIELD_PAD("PAD1", nullptr, 3),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

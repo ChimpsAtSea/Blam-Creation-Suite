@@ -17,16 +17,16 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BREAKABLE_SURFACE_KEY_TABLE_BLOCK_ID)
 	{
-		{ _field_short_integer, "instanced geometry index" },
-		{ _field_byte_integer, "breakable surface set index" },
-		{ _field_byte_integer, "breakable surface index" },
-		{ _field_long_integer, "seed surface index" },
-		{ _field_real, "x0" },
-		{ _field_real, "x1" },
-		{ _field_real, "y0" },
-		{ _field_real, "y1" },
-		{ _field_real, "z0" },
-		{ _field_real, "z1" },
+		{ _field_short_integer, "instanced geometry index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "breakable surface set index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "breakable surface index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "seed surface index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "x0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "x1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "y0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "y1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "z0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "z1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -59,7 +59,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOFT_CEILING_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_enum, "type", &soft_ceiling_type_enum },
 		FIELD_PAD("fresh", nullptr, 2),
 		{ _field_block, "soft ceiling triangles", &structure_soft_ceiling_triangle_block },
@@ -76,12 +76,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOFT_CEILING_TRIANGLE_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane" },
-		{ _field_real_point_3d, "bounding sphere center" },
-		{ _field_real, "bounding sphere radius" },
-		{ _field_real_point_3d, "vertex0" },
-		{ _field_real_point_3d, "vertex1" },
-		{ _field_real_point_3d, "vertex2" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "bounding sphere center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "bounding sphere radius", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "vertex0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "vertex1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "vertex2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -95,7 +95,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_GROUPS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -111,14 +111,14 @@ namespace macaque
 	{
 		{ _field_short_block_index, "group", &structure_water_groups_block },
 		FIELD_PAD("PAD0", nullptr, 2),
-		{ _field_real_vector_3d, "flow velocity" },
-		{ _field_real_argb_color, "fog color" },
-		{ _field_real, "fog murkiness" },
+		{ _field_real_vector_3d, "flow velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_argb_color, "fog color", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "fog murkiness", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "water planes block", &structure_water_instance_planes_block },
 		{ _field_block, "water debug triangles block", &structure_water_instance_debug_triangles_block },
-		{ _field_real_bounds, "bounds x" },
-		{ _field_real_bounds, "bounds y" },
-		{ _field_real_bounds, "bounds z" },
+		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -132,7 +132,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCE_PLANES_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -146,9 +146,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCE_DEBUG_TRIANGLES_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point0" },
-		{ _field_real_point_3d, "point1" },
-		{ _field_real_point_3d, "point2" },
+		{ _field_real_point_3d, "point0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "point1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "point2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -175,7 +175,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID)
 	{
-		{ _field_long_integer, "importer version" },
+		{ _field_long_integer, "importer version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "soft ceiling mopp code block", &mopp_code_definition_block },
 		{ _field_block, "soft ceilings block", &structure_soft_ceiling_block },
 		{ _field_block, "water mopp code", &mopp_code_definition_block },

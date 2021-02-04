@@ -17,9 +17,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RASTERIZER_CONSTANT_BLOCK_ID)
 	{
-		{ _field_string_id, "constant name" },
-		{ _field_word_integer, "register start" },
-		{ _field_byte_integer, "register count" },
+		{ _field_string_id, "constant name", FIELD_FLAG_INDEX },
+		{ _field_word_integer, "register start", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "register count", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "register set", &register_set_enum },
 		{ _field_terminator }
 	};

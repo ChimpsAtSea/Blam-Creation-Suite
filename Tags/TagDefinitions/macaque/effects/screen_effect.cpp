@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_SCREEN_EFFECT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &area_screen_effect_flags_definition },
 		{ _field_word_flags, "hidden flags", &area_screen_effect_hidden_flags_definition },
 		FIELD_EXPLANATION("DISTANCE FALLOFF", nullptr, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
@@ -47,7 +47,7 @@ namespace macaque
 		{ _field_struct, "object falloff", &screen_effect_scalar_object_function_struct },
 		FIELD_EXPLANATION("EFFECTS", nullptr, "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken"),
 		{ _field_tag_reference, "color grading look-up-texture", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
-		{ _field_real, "runtime color grading strength", "do not edit" },
+		{ _field_real, "runtime color grading strength", "do not edit", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "exposure boost", "increase in exposure", "stops" },
 		{ _field_real, "exposure deboost", "decrease in exposure", "stops" },
 		{ _field_real, "hue left", "shifts hue R->G->B", "degrees " },
@@ -62,11 +62,11 @@ namespace macaque
 		{ _field_real_rgb_color, "color filter", "this color is multiplied on top" },
 		{ _field_real_rgb_color, "color floor", "this color is subtracted" },
 		{ _field_real_fraction, "color replace strength", "used to blend in the color replace below" },
-		{ _field_real_rgb_color, "color replace", "this color is blended in place of the screen's color" },
+		{ _field_real_rgb_color, "color replace", "this color is blended in place of the screen\'s color" },
 		{ _field_real, "tron", "adds a full-screen tron effect" },
 		{ _field_real, "motion suck", "adds motion-blur towards or away from this screen effect" },
 		{ _field_real, "bloom buffer motion suck", "adds cheap bloom buffer motion-blur towards or away from this screen effect" },
-		{ _field_real_vector_3d, "motion suck direction", "do not edit" },
+		{ _field_real_vector_3d, "motion suck direction", "do not edit", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "horizontal blur", "blurs the entire screen" },
 		{ _field_real, "vertical blur", "blurs the entire screen" },
 		{ _field_real, "vision mode", "turns on the global vision mode" },
@@ -119,8 +119,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }

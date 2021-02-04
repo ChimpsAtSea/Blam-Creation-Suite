@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESIGNER_ZONE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "references", &scenarioDesignerZoneTagReferenceBlock_block },
 		FIELD_CUSTOM("biped", nullptr, _field_id_block_index_flags),
 		{ _field_block, "biped", &biped_block_index_flags_block },

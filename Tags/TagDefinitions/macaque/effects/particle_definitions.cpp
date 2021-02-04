@@ -80,7 +80,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_SINGLE_CONSTANT_REGISTER_ARRAY_ID)
 	{
-		{ _field_real, "runtime gpu_real" },
+		{ _field_real, "runtime gpu_real", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -105,7 +105,7 @@ namespace macaque
 		{ _field_short_integer, "sequence count" },
 		{ _field_real, "low res switch distance", "the distance at which we switch from low res (close) to high res (far)", "wu" },
 		{ _field_real_point_2d, "center offset" },
-		{ _field_real, "curvature", "0=flat, 1=hemisphere" },
+		{ _field_real, "curvature", nullptr, "0=flat, 1=hemisphere" },
 		{ _field_real, "angle fade range", "degrees beyond cutoff over which particles fade", "degrees" },
 		{ _field_real, "angle fade cutoff", "degrees away from edge-on where fade is total", "degrees" },
 		{ _field_real, "motion blur translation scale", "affects billboard tilt from observer motion" },
@@ -134,9 +134,9 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
 		{ _field_struct, "actual shader?", &shader_particle_struct_definition },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
-		{ _field_dword_integer, "runtime m_used_particle_states" },
-		{ _field_dword_integer, "runtime m_constant_per_particle_properties" },
-		{ _field_dword_integer, "runtime m_constant_over_time_properties" },
+		{ _field_dword_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_constant_over_time_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "runtime m_gpu_data", &gpu_data_struct$2 },
 		{ _field_terminator }
 	};

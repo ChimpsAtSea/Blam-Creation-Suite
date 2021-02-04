@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_PALETTE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_block, "entries", &map_variant_palette_entry_block },
@@ -34,9 +34,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_PALETTE_ENTRY_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "variants", &map_variant_object_variant_block },
-		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are 'unlimited' (up to a reasonable code-defined maximum)" },
+		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are \'unlimited\' (up to a reasonable code-defined maximum)" },
 		{ _field_long_integer, "price per instance" },
 		{ _field_terminator }
 	};
@@ -51,7 +51,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_VARIANT_OBJECT_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "object", &object_reference$9 },
 		{ _field_string_id, "variant name" },
 		{ _field_struct, "resource dependencies", &mapVariantResourceManifest },

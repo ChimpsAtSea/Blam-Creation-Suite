@@ -32,7 +32,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_FACE_BLOCK_ID)
 	{
-		{ _field_long_integer, "node index" },
+		{ _field_long_integer, "node index", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "vertices", &map_leaf_face_vertex_block },
 		{ _field_terminator }
 	};
@@ -47,7 +47,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_FACE_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "vertex" },
+		{ _field_real_point_3d, "vertex", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -61,7 +61,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAP_LEAF_CONNECTION_INDEX_BLOCK_ID)
 	{
-		{ _field_long_integer, "connection index" },
+		{ _field_long_integer, "connection index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -75,11 +75,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LEAF_CONNECTION_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane index" },
-		{ _field_long_integer, "back leaf index" },
-		{ _field_long_integer, "front leaf index" },
+		{ _field_long_integer, "plane index", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "back leaf index", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "front leaf index", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "vertices", &leaf_connection_vertex_block },
-		{ _field_real, "area" },
+		{ _field_real, "area", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -93,7 +93,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LEAF_CONNECTION_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "vertex" },
+		{ _field_real_point_3d, "vertex", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

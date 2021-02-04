@@ -32,7 +32,7 @@ namespace macaque
 		TRACERDEFINITIONBLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
-		{ _field_string_id, "tracer name" },
+		{ _field_string_id, "tracer name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &tracerFlags },
 		FIELD_CUSTOM("Tracer Shape", nullptr, _field_id_function_group_begin),
 		{ _field_char_enum, "profile shape", &tracerProfileShapeEnum },
@@ -60,7 +60,7 @@ namespace macaque
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
-		{ _field_real_vector_2d, "uv scrolling", "tiles per second" },
+		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
 		{ _field_real, "angle fade range", "radial (from tracer axis) degrees beyond beginning angle over which tracer fades", "degrees" },
 		{ _field_real, "angle fade begin", "radial (from tracer axis) degrees away from face-on where fade begins", "degrees" },
 		{ _field_struct, "profile color", &tracerProperty_real_rgb_color_Struct },
@@ -71,9 +71,9 @@ namespace macaque
 		{ _field_struct, "profile intensity", &tracerProperty_real_Struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
-		{ _field_dword_integer, "runtime m_constantPerProfileProperties" },
-		{ _field_dword_integer, "runtime m_usedStates" },
-		{ _field_dword_integer, "runtime m_maxProfileCount" },
+		{ _field_dword_integer, "runtime m_constantPerProfileProperties", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_usedStates", FIELD_FLAG_UNKNOWN0 },
+		{ _field_dword_integer, "runtime m_maxProfileCount", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "runtime m_gpuData", &gpu_property_function_color_struct },
 		{ _field_terminator }
 	};
@@ -113,8 +113,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -135,8 +135,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_real_vector_3d, "Starting interpolant" },
 		{ _field_real_vector_3d, "Ending interpolant" },
@@ -159,8 +159,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_real_vector_2d, "Starting interpolant" },
 		{ _field_real_vector_2d, "Ending interpolant" },
@@ -183,8 +183,8 @@ namespace macaque
 		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
-		{ _field_real, "runtime m_constant_value" },
-		{ _field_word_integer, "runtime m_flags" },
+		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
+		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
 		{ _field_terminator }
 	};

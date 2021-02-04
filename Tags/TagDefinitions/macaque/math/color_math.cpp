@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HALF_SH_TERMS_ID)
 	{
-		{ _field_short_integer, "coefficient" },
+		{ _field_short_integer, "coefficient", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

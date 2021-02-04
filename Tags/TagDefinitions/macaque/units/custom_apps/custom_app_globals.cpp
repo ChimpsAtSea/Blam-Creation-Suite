@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "headerText" },
 		{ _field_string_id, "helpText" },
 		{ _field_string_id, "iconStringId" },
@@ -55,7 +55,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_DAMAGE_MODIFIER_BLOCK_ID)
 	{
-		{ _field_string_id, "damage type" },
+		{ _field_string_id, "damage type", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("damage resistance", nullptr, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance multiplier" },
 		{ _field_terminator }
@@ -70,7 +70,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_APP_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "maximum active apps", "(-1 = unlimited)" },
+		{ _field_long_integer, "maximum active apps", nullptr, "(-1 = unlimited)" },
 		FIELD_EXPLANATION("Update Frequency", nullptr, "The players can enter the Custom App menu at any time during a game and change their apps.  This enum determines when those changes take effect, in terms of gameplay effects."),
 		{ _field_enum, "custom app update frequency", &custom_app_update_frequencies },
 		FIELD_PAD("wahoo", nullptr, 2),

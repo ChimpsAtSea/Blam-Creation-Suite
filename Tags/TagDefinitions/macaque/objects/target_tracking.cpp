@@ -18,9 +18,9 @@ namespace macaque
 		GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_block, "tracking types", &tracking_type_block },
-		{ _field_real, "acquire time", "s" },
-		{ _field_real, "grace time", "s" },
-		{ _field_real, "decay time", "s" },
+		{ _field_real, "acquire time", nullptr, "s" },
+		{ _field_real, "grace time", nullptr, "s" },
+		{ _field_real, "decay time", nullptr, "s" },
 		{ _field_tag_reference, "tracking sound", &global_sound_and_looping_sound_reference },
 		{ _field_tag_reference, "locked sound", &global_sound_and_looping_sound_reference },
 		{ _field_terminator }
@@ -36,7 +36,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACKING_TYPE_BLOCK_ID)
 	{
-		{ _field_string_id, "tracking type" },
+		{ _field_string_id, "tracking type", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

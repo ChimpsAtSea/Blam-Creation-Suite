@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOM_DAMAGE_RESPONSE_LABEL_BLOCK_ID)
 	{
-		{ _field_string_id, "custom label", "label used to control what damage response will fire." },
+		{ _field_string_id, "custom label", "label used to control what damage response will fire.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -61,7 +61,7 @@ namespace macaque
 		DAMAGE_EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "area of effect behavior equipment", &behavior_object_reference },
-		{ _field_real_bounds, "radius", "world units" },
+		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_fraction, "cutoff scale" },
 		{ _field_long_flags, "effect flags", &damage_effect_flags },
 		FIELD_EXPLANATION("damage", nullptr, ""),
@@ -79,7 +79,7 @@ namespace macaque
 		{ _field_struct, "blah", &damage_outer_cone_angle_struct },
 		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged" },
 		{ _field_real, "stun", "amount of stun added to damaged unit" },
-		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount" },
+		{ _field_real, "maximum stun", "damaged unit\'s stun will never exceed this amount" },
 		{ _field_real, "stun time", "duration of stun due to this damage", "seconds" },
 		{ _field_long_integer, "damage stun", "how long we stun recovering current body damage", "ticks" },
 		{ _field_real, "instantaneous acceleration" },
@@ -97,8 +97,8 @@ namespace macaque
 		{ _field_string_id, "general_damage" },
 		{ _field_string_id, "specific_damage" },
 		{ _field_block, "custom response labels", &custom_damage_response_label_block },
-		{ _field_real, "AI stun radius", "world units" },
-		{ _field_real_bounds, "AI stun bounds", "(0-1)" },
+		{ _field_real, "AI stun radius", nullptr, "world units" },
+		{ _field_real_bounds, "AI stun bounds", nullptr, "(0-1)" },
 		{ _field_real, "shake radius" },
 		{ _field_real, "EMP radius" },
 		{ _field_real, "aoe spike radius" },
@@ -108,9 +108,9 @@ namespace macaque
 		{ _field_real, "stasis time dilation" },
 		{ _field_real, "stasis max biped turning rate" },
 		{ _field_real, "stasis gravity multiplier" },
-		{ _field_real, "equipment hack time", "seconds" },
-		FIELD_EXPLANATION("if 'Apply Tree Of Life'", nullptr, ""),
-		{ _field_real, "tree_of_life shield regen modifier", "regen velocity of TOL:if non-1.0 this overrides any 'shield recharge rate' trait" },
+		{ _field_real, "equipment hack time", nullptr, "seconds" },
+		FIELD_EXPLANATION("if \'Apply Tree Of Life\'", nullptr, ""),
+		{ _field_real, "tree_of_life shield regen modifier", "regen velocity of TOL:if non-1.0 this overrides any \'shield recharge rate\' trait" },
 		{ _field_real, "minimum shield level", "when hit, shield will be reset to this percentage of full strength if it is below" },
 		{ _field_real, "shield stun time", "time after damage applied before shield recharges", "seconds" },
 		{ _field_real, "minimum health level", "when hit, health will be reset to this percentage of full health if it is below" },
@@ -119,8 +119,8 @@ namespace macaque
 		{ _field_real, "maximum energy level", "cap equipment energy to this" },
 		{ _field_real, "equipment stun time", "time after damage applied before equipment recharges", "seconds" },
 		FIELD_EXPLANATION("Modifies TOL logic so that (above) unstun will only happen if (below) minimum stun time has passed", nullptr, ""),
-		{ _field_real, "shield minimum stun time", "seconds" },
-		{ _field_real, "health minimum stun time", "seconds" },
+		{ _field_real, "shield minimum stun time", nullptr, "seconds" },
+		{ _field_real, "health minimum stun time", nullptr, "seconds" },
 		FIELD_EXPLANATION("damage response", nullptr, ""),
 		{ _field_tag_reference, "damage response", &global_damage_response_definition_reference },
 		FIELD_EXPLANATION("sound", nullptr, ""),
@@ -128,12 +128,12 @@ namespace macaque
 		{ _field_block, "damage sounds", &damage_effect_sound_block },
 		{ _field_useless_pad, "" },
 		FIELD_EXPLANATION("breaking effect", nullptr, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),
-		{ _field_real, "forward velocity", "world units per second" },
-		{ _field_real, "forward radius", "world units" },
+		{ _field_real, "forward velocity", nullptr, "world units per second" },
+		{ _field_real, "forward radius", nullptr, "world units" },
 		{ _field_real, "forward exponent" },
 		{ _field_useless_pad, "" },
-		{ _field_real, "outward velocity", "world units per second" },
-		{ _field_real, "outward radius", "world units" },
+		{ _field_real, "outward velocity", nullptr, "world units per second" },
+		{ _field_real, "outward radius", nullptr, "world units" },
 		{ _field_real, "outward exponent" },
 		{ _field_useless_pad, "" },
 		{ _field_terminator }

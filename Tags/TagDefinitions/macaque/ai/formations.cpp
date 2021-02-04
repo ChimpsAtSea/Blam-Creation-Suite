@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "primitives", &formation_primitive_definition_block },
 		{ _field_terminator }
 	};
@@ -42,7 +42,7 @@ namespace macaque
 		FIELD_EXPLANATION(nullptr, nullptr, ""),
 		{ _field_word_flags, "flags", &formation_primitive_flags },
 		{ _field_short_integer, "priority" },
-		{ _field_short_integer, "capacity" },
+		{ _field_short_integer, "capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("post-capacity-pad", nullptr, 2),
 		{ _field_real, "dist forwards" },
 		{ _field_real, "dist backwards" },

@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_ACHIEVEMENT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &global_achievement_enum },
 		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
 		FIELD_PAD("VJNOSNJER", nullptr, 2),
@@ -48,7 +48,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SINGLE_ACHIEVEMENT_RESTRICTED_LEVEL_BLOCK_ID)
 	{
-		{ _field_string_id, "level name", "Compared to map name in scenario" },
+		{ _field_string_id, "level name", "Compared to map name in scenario", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

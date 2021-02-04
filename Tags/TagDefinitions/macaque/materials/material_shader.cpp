@@ -20,8 +20,8 @@ namespace macaque
 		{ _field_long_flags, "flags", &material_shader_flags },
 		{ _field_block, "source shader files", &material_shader_source_file_block },
 		{ _field_block, "compiled effects", &compiled_effects_block },
-		{ _field_long_integer, "source shader hash" },
-		{ _field_long_integer, "compiled shader hash" },
+		{ _field_long_integer, "source shader hash", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "compiled shader hash", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "shader bank", &material_shader_bank_reference },
 		{ _field_block, "vertex shader entry points", &material_vertex_shader_entry_point_block },
 		{ _field_block, "pixel shader entry points", &compiled_pixel_shader_refererence_block },
@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_SOURCE_FILE_BLOCK_ID)
 	{
-		{ _field_long_string, "shader path" },
+		{ _field_long_string, "shader path", FIELD_FLAG_INDEX },
 		{ _field_data, "shader data" },
 		{ _field_terminator }
 	};

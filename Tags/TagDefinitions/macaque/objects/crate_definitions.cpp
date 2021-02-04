@@ -36,7 +36,7 @@ namespace macaque
 		{ _field_word_flags, "flags", &crate_flags },
 		FIELD_PAD("KOQVK", nullptr, 2),
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
-		{ _field_long_integer, "self destruction timer", "seconds" },
+		{ _field_long_integer, "self destruction timer", nullptr, "seconds" },
 		{ _field_tag_reference, "particleize", &global_particleize_parameters_reference },
 		{ _field_string_id, "grab animation set", "the animation set to use when this crate is grabbed" },
 		{ _field_string_id, "grab pickup string", "the string to display when the player can grab this object, from ui/hud/hud_messages" },

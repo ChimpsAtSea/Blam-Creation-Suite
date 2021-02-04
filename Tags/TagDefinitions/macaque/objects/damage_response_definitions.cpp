@@ -137,7 +137,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_RESPONSE_MOTION_SENSOR_PING_ID)
 	{
-		{ _field_short_integer, "ping duration", "ticks" },
+		{ _field_short_integer, "ping duration", nullptr, "ticks" },
 		{ _field_short_integer, "ping scale" },
 		{ _field_terminator }
 	};
@@ -167,8 +167,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CONTROL_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }

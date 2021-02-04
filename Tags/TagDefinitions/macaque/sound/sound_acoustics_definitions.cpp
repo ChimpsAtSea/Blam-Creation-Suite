@@ -25,8 +25,8 @@ namespace macaque
 		SCENARIO_ACOUSTIC_SECTOR_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "points", &acoustic_sector_point_block },
-		{ _field_real_plane_3d, "top plane" },
-		{ _field_real_plane_3d, "bottom plane" },
+		{ _field_real_plane_3d, "top plane", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_plane_3d, "bottom plane", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_flags, "flags", &acousticPaletteFlags },
 		{ _field_real, "occlusion value" },
 		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
@@ -61,13 +61,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_TRANSITION_BLOCK_STRUCT_ID)
 	{
-		{ _field_real_point_3d, "center" },
-		{ _field_real_point_3d, "forward" },
-		{ _field_real_point_3d, "up" },
-		{ _field_real, "half width" },
-		{ _field_real, "half height" },
-		{ _field_real, "sample point offset 0" },
-		{ _field_real, "sample point offset 1" },
+		{ _field_real_point_3d, "center", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_point_3d, "forward", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_point_3d, "up", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "half width", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "half height", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "sample point offset 0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "sample point offset 1", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "sample 0", &scenario_acoustics_palette_block_definition_block },
 		{ _field_short_block_index, "sample 1", &scenario_acoustics_palette_block_definition_block },
 		{ _field_struct, "location 0", &scenario_acoustic_location_definition },
@@ -86,7 +86,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTICS_PALETTE_BLOCK_DEFINITION_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_EXPLANATION("SOUND ENVIRONMENT", nullptr, ""),
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition },
 		FIELD_EXPLANATION("BACKGROUND SOUND", nullptr, ""),
@@ -109,7 +109,7 @@ namespace macaque
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", "seconds" },
+		{ _field_real, "interpolation time", nullptr, "seconds" },
 		{ _field_terminator }
 	};
 
@@ -127,11 +127,11 @@ namespace macaque
 		{ _field_tag_reference, "entry sound", &global_sound_reference },
 		{ _field_tag_reference, "exit sound", &global_sound_reference },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", "seconds" },
+		{ _field_real, "interpolation time", nullptr, "seconds" },
 		{ _field_long_flags, "scale flags DEPRICATED", &background_sound_scale_flags_definition },
-		{ _field_real_fraction, "interior scale DEPRICATED" },
-		{ _field_real_fraction, "portal scale DEPRICATED" },
-		{ _field_real_fraction, "exterior scale DEPRICATED" },
+		{ _field_real_fraction, "interior scale DEPRICATED", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_fraction, "portal scale DEPRICATED", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_fraction, "exterior scale DEPRICATED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -158,8 +158,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_CLUSTER_REFERENCE_DEFINITION_ID)
 	{
-		{ _field_char_integer, "bsp index" },
-		{ _field_byte_integer, "cluster index" },
+		{ _field_char_integer, "bsp index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "cluster index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

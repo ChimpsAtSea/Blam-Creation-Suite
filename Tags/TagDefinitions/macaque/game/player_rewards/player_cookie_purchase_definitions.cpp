@@ -31,7 +31,7 @@ namespace macaque
 		COOKIEPURCHASEAPPEARANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
@@ -61,7 +61,7 @@ namespace macaque
 		COOKIEPURCHASELOADOUTDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
@@ -92,7 +92,7 @@ namespace macaque
 		COOKIEPURCHASEORDNANCEDEFINITIONBLOCK_ID)
 	{
 		{ _field_string_id, "purchase id" },
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
@@ -121,7 +121,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCEITEMBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
+		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -135,7 +135,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERORDNANCESLOTBLOCK_ID)
 	{
-		{ _field_byte_integer, "slot_count", "Total slots you're allowed." },
+		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -151,7 +151,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "item_category", &player_item_category_enum },
 		FIELD_PAD("pad1", nullptr, 3),
-		{ _field_string_id, "object_name", "This must match one of the global objects." },
+		{ _field_string_id, "object_name", "This must match one of the global objects.", FIELD_FLAG_INDEX },
 		{ _field_byte_integer, "object variant index", "e.g. used for weapon skins" },
 		FIELD_PAD("ppib", nullptr, 3),
 		{ _field_terminator }
@@ -167,7 +167,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APP_BLOCK_ID)
 	{
-		{ _field_string_id, "object_name", "This must match an item in the custom app globals." },
+		{ _field_string_id, "object_name", "This must match an item in the custom app globals.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_LOADOUT_SLOT_BLOCK_ID)
 	{
-		{ _field_byte_integer, "slot_count", "Total slots you're allowed." },
+		{ _field_byte_integer, "slot_count", "Total slots you\'re allowed.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -195,8 +195,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APP_MOD_SLOT_BLOCK_ID)
 	{
-		{ _field_byte_integer, "app_count", "Total apps you're allowed (from 0 to 2)." },
-		{ _field_byte_integer, "mod_count", "Total mods you're allowed (from 0 to 1)." },
+		{ _field_byte_integer, "app_count", "Total apps you\'re allowed (from 0 to 2).", FIELD_FLAG_INDEX },
+		{ _field_byte_integer, "mod_count", "Total mods you\'re allowed (from 0 to 1).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -212,7 +212,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "model_region", &player_model_customization_area_enum },
 		FIELD_PAD("pad1", nullptr, 3),
-		{ _field_string_id, "model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region)." },
+		{ _field_string_id, "model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -228,7 +228,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "non_model_region", &player_non_model_customization_area_enum },
 		FIELD_PAD("pad1", nullptr, 3),
-		{ _field_string_id, "non_model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region)." },
+		{ _field_string_id, "non_model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -242,7 +242,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_VISOR_TINT_BLOCK_ID)
 	{
-		{ _field_string_id, "visor color name" },
+		{ _field_string_id, "visor color name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -256,7 +256,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_EMBLEM_INDEX_BLOCK_ID)
 	{
-		{ _field_char_integer, "emblem index" },
+		{ _field_char_integer, "emblem index", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -270,7 +270,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEPLAYERAPPEARANCEPOSEBLOCK_ID)
 	{
-		{ _field_string_id, "pose name" },
+		{ _field_string_id, "pose name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -284,7 +284,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYAPPEARANCEDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
+		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints).", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display_description" },
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
@@ -316,7 +316,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYLOADOUTDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
+		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints).", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display_description" },
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
@@ -348,7 +348,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIEPURCHASEFAMILYORDNANCEDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints)." },
+		{ _field_string_id, "display title", "If this is left blank, this family will be treated as a list of top-level items (items w/o a family, e.g. visor tints).", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display_description" },
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },

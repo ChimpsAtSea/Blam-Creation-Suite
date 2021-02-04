@@ -133,7 +133,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISOR_COLOR_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "tertiary color" },
 		{ _field_real_rgb_color, "quaternary color" },
 		{ _field_terminator }
@@ -223,8 +223,8 @@ namespace macaque
 		FIELD_EXPLANATION("global material types", nullptr, ""),
 		{ _field_string_id, "global water material", "the default value for what material type water is" },
 		{ _field_string_id, "global air material", "the default value for what material type air is" },
-		{ _field_short_integer, "global water material type" },
-		{ _field_short_integer, "global air material type" },
+		{ _field_short_integer, "global water material type", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "global air material type", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "effect globals", &global_effect_globals_reference },
 		{ _field_tag_reference, "havok collision filter", &havok_collision_filter_reference },
 		{ _field_tag_reference, "default item grounded friction", &global_grounded_friction_reference },

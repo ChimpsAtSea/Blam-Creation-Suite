@@ -20,20 +20,20 @@ namespace macaque
 		{ _field_block, "parts", &part_block },
 		{ _field_block, "subparts", &subpart_block },
 		{ _field_array, "vertex buffer indices", &vertex_buffer_indices_word_array },
-		{ _field_short_integer, "index buffer index" },
-		{ _field_short_integer, "index buffer tessellation" },
+		{ _field_short_integer, "index buffer index", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "index buffer tessellation", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "mesh flags", &mesh_flags },
-		{ _field_char_integer, "rigid node index" },
+		{ _field_char_integer, "rigid node index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "vertex type", &mesh_vertex_type_definition },
 		{ _field_char_enum, "PRT vertex type", &mesh_transfer_vertex_type_definition },
 		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
 		{ _field_char_enum, "index buffer type", &mesh_index_buffer_type_definition },
 		FIELD_PAD("BAASDFIR", nullptr, 1),
-		{ _field_short_integer, "pca mesh index" },
+		{ _field_short_integer, "pca mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "instance buckets", &global_instance_bucket_block },
 		{ _field_block, "water indices start", &indices_word_block },
-		{ _field_real, "runtime bounding radius", "world units" },
-		{ _field_real_point_3d, "runtime bounding offset" },
+		{ _field_real, "runtime bounding radius", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "runtime bounding offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "vertex keys", &vertexKeyBlock_block },
 		{ _field_short_block_index, "clone index", &global_mesh_block },
 		{ _field_short_integer, "cumulative part count (initialized by PVS building code)" },
@@ -52,11 +52,11 @@ namespace macaque
 	{
 		{ _field_short_block_index, "render method index", &global_geometry_material_block },
 		{ _field_short_block_index, "transparent sorting index", &sorting_position_block },
-		{ _field_long_integer, "index start" },
-		{ _field_long_integer, "index count" },
-		{ _field_short_integer, "subpart start" },
-		{ _field_short_integer, "subpart count" },
-		{ _field_char_integer, "part type" },
+		{ _field_long_integer, "index start", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "index count", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "subpart start", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "subpart count", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "part type", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "specialized render", &specialized_render_definition },
 		{ _field_word_flags, "part flags", &part_flags },
 		{ _field_word_integer, "budget vertex count" },
@@ -74,9 +74,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SORTING_POSITION_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane" },
-		{ _field_real_point_3d, "position" },
-		{ _field_real, "radius" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "radius", FIELD_FLAG_READ_ONLY },
 		{ _field_array, "node indices", &node_indices_array },
 		{ _field_array, "node weights", &node_weights_implicit_array },
 		{ _field_terminator }
@@ -92,8 +92,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUBPART_BLOCK_ID)
 	{
-		{ _field_long_integer, "index start" },
-		{ _field_long_integer, "index count" },
+		{ _field_long_integer, "index start", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "index count", FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "part index", &part_block },
 		{ _field_word_integer, "budget vertex count" },
 		{ _field_dword_integer, "analytical light index" },
@@ -110,8 +110,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_INSTANCE_BUCKET_BLOCK_ID)
 	{
-		{ _field_short_integer, "mesh index" },
-		{ _field_short_integer, "definition index" },
+		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "definition index", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "instances", &instance_index_word_block },
 		{ _field_terminator }
 	};
@@ -126,7 +126,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INSTANCE_INDEX_WORD_BLOCK_ID)
 	{
-		{ _field_short_integer, "instance index" },
+		{ _field_short_integer, "instance index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -140,7 +140,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDICES_WORD_BLOCK_ID)
 	{
-		{ _field_short_integer, "word" },
+		{ _field_short_integer, "word", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -154,8 +154,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXKEYBLOCK_ID)
 	{
-		{ _field_long_integer, "key1" },
-		{ _field_long_integer, "key2" },
+		{ _field_long_integer, "key1", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "key2", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -186,12 +186,12 @@ namespace macaque
 		{ _field_word_flags, "compression flags", &compression_flags },
 		FIELD_PAD("JOJOBOMO", nullptr, 2),
 		FIELD_EXPLANATION("WARNING", nullptr, "The following fields are mislabeled for legacy reasons.The actual order is:\nposition_bounds.x0 position_bounds.x1 position_bounds.y0\nposition_bounds.y1 position_bounds.z0 position_bounds.z1\n\ntexcoord_bounds.x0 texcoord_bounds.x1\ntexcoord_bounds.y0 texcoord_bounds.y1\n"),
-		{ _field_real_point_3d, "position bounds 0" },
-		{ _field_real_point_3d, "position bounds 1" },
-		{ _field_real_point_2d, "texcoord bounds 0" },
-		{ _field_real_point_2d, "texcoord bounds 1" },
-		{ _field_real, "unused0" },
-		{ _field_real, "unused1" },
+		{ _field_real_point_3d, "position bounds 0", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "position bounds 1", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_2d, "texcoord bounds 0", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_2d, "texcoord bounds 1", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "unused0", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "unused1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -206,7 +206,7 @@ namespace macaque
 		USER_DATA_BLOCK_ID)
 	{
 		{ _field_struct, "user data header", &global_render_geometry_user_data_header_struct },
-		{ _field_data, "user data" },
+		{ _field_data, "user data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -244,16 +244,16 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "position" },
-		{ _field_real_point_2d, "texcoord" },
-		{ _field_real_point_3d, "normal" },
-		{ _field_real_point_3d, "binormal" },
-		{ _field_real_point_3d, "tangent" },
-		{ _field_real_point_2d, "lightmap texcoord" },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_2d, "texcoord", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "normal", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "binormal", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "tangent", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_2d, "lightmap texcoord", FIELD_FLAG_READ_ONLY },
 		{ _field_array, "node indices", &node_indices_array },
 		{ _field_array, "node weights", &node_weights_complete_array },
-		{ _field_real_point_3d, "vertex color" },
-		{ _field_real_point_2d, "texcoord1" },
+		{ _field_real_point_3d, "vertex color", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_2d, "texcoord1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -267,7 +267,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDICES_DWORD_BLOCK_ID)
 	{
-		{ _field_long_integer, "dword" },
+		{ _field_long_integer, "dword", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -296,7 +296,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_WATER_APPEND_BLOCK_ID)
 	{
-		{ _field_real_point_2d, "base texcoord" },
+		{ _field_real_point_2d, "base texcoord", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -346,9 +346,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_BLENDSHAPE_BLOCK_ID)
 	{
-		{ _field_real_vector_3d, "position" },
-		{ _field_real_vector_3d, "normal" },
-		{ _field_real_argb_color, "tension and ambient occlusion" },
+		{ _field_real_vector_3d, "position", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "normal", FIELD_FLAG_READ_ONLY },
+		{ _field_real_argb_color, "tension and ambient occlusion", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -376,7 +376,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_MAP_BYTE_BLOCK_ID)
 	{
-		{ _field_char_integer, "node index" },
+		{ _field_char_integer, "node index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -404,7 +404,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_MESH_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data" },
+		{ _field_data, "mesh pca data", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "per instance prt data", &per_instance_prt_data_block },
 		{ _field_terminator }
 	};
@@ -419,7 +419,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PER_INSTANCE_PRT_DATA_BLOCK_ID)
 	{
-		{ _field_data, "mesh pca data" },
+		{ _field_data, "mesh pca data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -435,7 +435,7 @@ namespace macaque
 	{
 		{ _field_block, "texture coordinates", &raw_vertex_block },
 		{ _field_block, "texture coordinates (concise)", &raw_texcoord_block },
-		{ _field_short_integer, "vertex buffer index" },
+		{ _field_short_integer, "vertex buffer index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("HTJIAHA", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -450,7 +450,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAW_TEXCOORD_BLOCK_ID)
 	{
-		{ _field_real_point_2d, "texcoord" },
+		{ _field_real_point_2d, "texcoord", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -481,11 +481,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_BUFFERS_BLOCK_ID)
 	{
-		{ _field_byte_integer, "declaration type" },
-		{ _field_byte_integer, "stride" },
+		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("vertex buffer pad", nullptr, 2),
-		{ _field_dword_integer, "count" },
-		{ _field_long_integer, "d3d hardware format" },
+		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -499,11 +499,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDEX_BUFFERS_BLOCK_ID)
 	{
-		{ _field_byte_integer, "declaration type" },
-		{ _field_byte_integer, "stride" },
+		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("vertex buffer pad", nullptr, 2),
-		{ _field_dword_integer, "count" },
-		{ _field_long_integer, "d3d hardware format" },
+		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -595,8 +595,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHAPENAMEBLOCK_ID)
 	{
-		{ _field_long_integer, "key" },
-		{ _field_long_string, "name" },
+		{ _field_long_integer, "key", FIELD_FLAG_READ_ONLY },
+		{ _field_long_string, "name", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -610,7 +610,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_INDICES_ARRAY_ID)
 	{
-		{ _field_byte_integer, "node index" },
+		{ _field_byte_integer, "node index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -624,7 +624,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_WEIGHTS_IMPLICIT_ARRAY_ID)
 	{
-		{ _field_real, "node weight" },
+		{ _field_real, "node weight", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -638,7 +638,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEX_BUFFER_INDICES_WORD_ARRAY_ID)
 	{
-		{ _field_word_integer, "vertex buffer index" },
+		{ _field_word_integer, "vertex buffer index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -652,7 +652,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		NODE_WEIGHTS_COMPLETE_ARRAY_ID)
 	{
-		{ _field_real, "node weight" },
+		{ _field_real, "node weight", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -696,8 +696,8 @@ namespace macaque
 		GLOBAL_RENDER_GEOMETRY_USER_DATA_HEADER_STRUCT_ID)
 	{
 		{ _field_char_enum, "data type", &render_geometry_user_data_type_definition },
-		{ _field_char_integer, "data count" },
-		{ _field_word_integer, "data size" },
+		{ _field_char_integer, "data count", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "data size", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

@@ -33,7 +33,7 @@ namespace macaque
 		{ _field_angle, "stabilization angular acceleration", "how quickly the boat can accelerate to the desired orientation", "deg/s/s" },
 		{ _field_angle, "stabilization desired inclination", "how far pitched back the boat tries to achieve (0 is perfectly flat)", "deg" },
 		FIELD_EXPLANATION("drag", nullptr, ""),
-		{ _field_real, "drag input range velocity", "wu/s" },
+		{ _field_real, "drag input range velocity", nullptr, "wu/s" },
 		{ _field_struct, "normal drag", &scalar_function_named_struct },
 		{ _field_struct, "boost drag", &scalar_function_named_struct },
 		{ _field_struct, "air drag", &scalar_function_named_struct },

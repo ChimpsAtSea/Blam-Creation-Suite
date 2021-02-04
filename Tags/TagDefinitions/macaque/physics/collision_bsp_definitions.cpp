@@ -18,7 +18,7 @@ namespace macaque
 		BSP3D_NODES_BLOCK_STRUCT_ID,
 		3)
 	{
-		{ _field_int64_integer, "node data designator" },
+		{ _field_int64_integer, "node data designator", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -33,38 +33,38 @@ namespace macaque
 		BSP3D_KD_SUPDERNODES_BLOCK_ID,
 		7)
 	{
-		{ _field_real, "plane 0" },
-		{ _field_real, "plane 1" },
-		{ _field_real, "plane 2" },
-		{ _field_real, "plane 3" },
-		{ _field_real, "plane 4" },
-		{ _field_real, "plane 5" },
-		{ _field_real, "plane 6" },
-		{ _field_real, "plane 7" },
-		{ _field_real, "plane 8" },
-		{ _field_real, "plane 9" },
-		{ _field_real, "plane10" },
-		{ _field_real, "plane11" },
-		{ _field_real, "plane12" },
-		{ _field_real, "plane13" },
-		{ _field_real, "plane14" },
-		{ _field_long_integer, "plane dimensions" },
-		{ _field_long_integer, "child index 0" },
-		{ _field_long_integer, "child index 1" },
-		{ _field_long_integer, "child index 2" },
-		{ _field_long_integer, "child index 3" },
-		{ _field_long_integer, "child index 4" },
-		{ _field_long_integer, "child index 5" },
-		{ _field_long_integer, "child index 6" },
-		{ _field_long_integer, "child index 7" },
-		{ _field_long_integer, "child index 8" },
-		{ _field_long_integer, "child index 9" },
-		{ _field_long_integer, "child index10" },
-		{ _field_long_integer, "child index11" },
-		{ _field_long_integer, "child index12" },
-		{ _field_long_integer, "child index13" },
-		{ _field_long_integer, "child index14" },
-		{ _field_long_integer, "child index15" },
+		{ _field_real, "plane 0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 4", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 5", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 6", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 7", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 8", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane 9", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane10", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane11", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane12", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane13", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "plane14", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "plane dimensions", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 4", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 5", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 6", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 7", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 8", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index 9", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index10", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index11", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index12", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index13", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index14", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "child index15", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -79,7 +79,7 @@ namespace macaque
 		PLANES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_plane_3d, "plane" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -100,8 +100,8 @@ namespace macaque
 		BSP2D_REFERENCES_BLOCK_ID,
 		2)
 	{
-		{ _field_short_integer, "plane" },
-		{ _field_short_integer, "bsp2d node" },
+		{ _field_short_integer, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "bsp2d node", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -116,9 +116,9 @@ namespace macaque
 		BSP2D_NODES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_plane_2d, "plane" },
-		{ _field_short_integer, "left child" },
-		{ _field_short_integer, "right child" },
+		{ _field_real_plane_2d, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "left child", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "right child", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -132,13 +132,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURFACES_BLOCK_STRUCT_ID)
 	{
-		{ _field_word_integer, "plane index" },
-		{ _field_word_integer, "first edge" },
-		{ _field_short_integer, "material" },
-		{ _field_short_integer, "breakable surface set" },
-		{ _field_short_integer, "breakable surface" },
+		{ _field_word_integer, "plane index", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "first edge", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "material", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "breakable surface set", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "breakable surface", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_flags, "flags", &surface_flags },
-		{ _field_byte_integer, "best plane calculation vertex index " },
+		{ _field_byte_integer, "best plane calculation vertex index ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -152,12 +152,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EDGES_BLOCK_ID)
 	{
-		{ _field_word_integer, "start vertex" },
-		{ _field_word_integer, "end vertex" },
-		{ _field_word_integer, "forward edge" },
-		{ _field_word_integer, "reverse edge" },
-		{ _field_word_integer, "left surface" },
-		{ _field_word_integer, "right surface" },
+		{ _field_word_integer, "start vertex", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "end vertex", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "forward edge", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "reverse edge", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "left surface", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "right surface", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -172,9 +172,9 @@ namespace macaque
 		VERTICES_BLOCK_ID,
 		4)
 	{
-		{ _field_real_point_3d, "point" },
-		{ _field_word_integer, "first edge" },
-		{ _field_short_integer, "sink" },
+		{ _field_real_point_3d, "point", FIELD_FLAG_READ_ONLY },
+		{ _field_word_integer, "first edge", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "sink", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -232,9 +232,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP3D_NODES_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane" },
-		{ _field_long_integer, "back child" },
-		{ _field_long_integer, "front child" },
+		{ _field_long_integer, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "back child", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "front child", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -249,8 +249,8 @@ namespace macaque
 		LARGE_LEAVES_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &leaf_flags },
-		{ _field_short_integer, "bsp2d reference count" },
-		{ _field_long_integer, "first bsp2d reference" },
+		{ _field_short_integer, "bsp2d reference count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "first bsp2d reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -264,8 +264,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP2D_REFERENCES_BLOCK_ID)
 	{
-		{ _field_long_integer, "plane" },
-		{ _field_long_integer, "bsp2d node" },
+		{ _field_long_integer, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "bsp2d node", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -279,9 +279,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_BSP2D_NODES_BLOCK_ID)
 	{
-		{ _field_real_plane_2d, "plane" },
-		{ _field_long_integer, "left child" },
-		{ _field_long_integer, "right child" },
+		{ _field_real_plane_2d, "plane", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "left child", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "right child", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -295,13 +295,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_SURFACES_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "plane index" },
-		{ _field_long_integer, "first edge" },
-		{ _field_short_integer, "material" },
-		{ _field_short_integer, "breakable surface set" },
-		{ _field_short_integer, "breakable surface" },
+		{ _field_long_integer, "plane index", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "first edge", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "material", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "breakable surface set", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "breakable surface", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_flags, "flags", &surface_flags },
-		{ _field_byte_integer, "best plane calculation vertex index " },
+		{ _field_byte_integer, "best plane calculation vertex index ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -315,12 +315,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_EDGES_BLOCK_ID)
 	{
-		{ _field_long_integer, "start vertex" },
-		{ _field_long_integer, "end vertex" },
-		{ _field_long_integer, "forward edge" },
-		{ _field_long_integer, "reverse edge" },
-		{ _field_long_integer, "left surface" },
-		{ _field_long_integer, "right surface" },
+		{ _field_long_integer, "start vertex", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "end vertex", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "forward edge", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "reverse edge", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "left surface", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "right surface", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -334,9 +334,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_VERTICES_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point" },
-		{ _field_long_integer, "first edge" },
-		{ _field_long_integer, "sink" },
+		{ _field_real_point_3d, "point", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "first edge", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "sink", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -373,8 +373,8 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &leaf_flags },
 		FIELD_PAD("pad", nullptr, 1),
-		{ _field_word_integer, "bsp2d reference count" },
-		{ _field_dword_integer, "first bsp2d reference" },
+		{ _field_word_integer, "bsp2d reference count", FIELD_FLAG_READ_ONLY },
+		{ _field_dword_integer, "first bsp2d reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

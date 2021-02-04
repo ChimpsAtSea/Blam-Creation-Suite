@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_CATEGORY_BLOCK_ID)
 	{
-		{ _field_string_id, "category_name" },
+		{ _field_string_id, "category_name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "challenge category", &challenge_category_enum_definition },
 		FIELD_PAD("WAT1", nullptr, 3),
 		{ _field_block, "challenges", &challenge_block },
@@ -47,7 +47,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHALLENGE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "challenge_name" },
+		{ _field_string_id, "challenge_name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "display_string", "in the UI, name and description" },
 		{ _field_string_id, "display_name", "in the UI, name" },
 		{ _field_string_id, "display_description", "in the UI, description" },

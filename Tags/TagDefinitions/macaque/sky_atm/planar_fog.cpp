@@ -72,8 +72,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_REFERENCE_DEFINITION_BLOCK_ID)
 	{
-		{ _field_short_integer, "structure design index" },
-		{ _field_short_integer, "fog index" },
+		{ _field_short_integer, "structure design index", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "fog index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -91,8 +91,8 @@ namespace macaque
 		{ _field_tag_reference, "appearance settings", &global_planar_fog_reference },
 		{ _field_block, "vertices", &planar_fog_vertex_block },
 		{ _field_block, "triangles", &planar_fog_triangle_block },
-		{ _field_real, "depth" },
-		{ _field_real_vector_3d, "normal" },
+		{ _field_real, "depth", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "normal", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -106,7 +106,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "position" },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -134,7 +134,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_TRIANGLE_PLANES_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -150,8 +150,8 @@ namespace macaque
 		{ _field_word_flags, "flags", &planar_fog_flags },
 		FIELD_PAD("ABCDadf", nullptr, 2),
 		{ _field_real, "fog thickness" },
-		{ _field_real, "per-vertex fog thickness modulation", "(only for transparents)" },
-		{ _field_real, "full fog depth", "world units" },
+		{ _field_real, "per-vertex fog thickness modulation", nullptr, "(only for transparents)" },
+		{ _field_real, "full fog depth", nullptr, "world units" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity" },
 		{ _field_tag_reference, "palette texture", &global_bitmap_reference },
@@ -159,20 +159,20 @@ namespace macaque
 		{ _field_tag_reference, "patchy texture", &global_bitmap_reference },
 		{ _field_real_rgb_color, "patchy color" },
 		{ _field_real, "patchy color intensity" },
-		{ _field_real, "patchy texture tile size", "world units" },
-		{ _field_real, "patchy distance between sheets", "world units" },
+		{ _field_real, "patchy texture tile size", nullptr, "world units" },
+		{ _field_real, "patchy distance between sheets", nullptr, "world units" },
 		{ _field_real, "patchy z-buffer fade factor" },
-		{ _field_real, "patchy distance falloff start", "world units" },
-		{ _field_real, "patchy distance falloff power", "world units" },
+		{ _field_real, "patchy distance falloff start", nullptr, "world units" },
+		{ _field_real, "patchy distance falloff power", nullptr, "world units" },
 		{ _field_real, "patchy density" },
-		{ _field_real, "patchy surface depth", "world units" },
-		{ _field_real, "patchy fade range", "world units" },
-		{ _field_real_vector_3d, "patchy wind direction", "world units" },
+		{ _field_real, "patchy surface depth", nullptr, "world units" },
+		{ _field_real, "patchy fade range", nullptr, "world units" },
+		{ _field_real_vector_3d, "patchy wind direction", nullptr, "world units" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("LoD settings (N/A yet)", nullptr, _field_id_function_group_begin),
-		{ _field_real, "max fog draw distance", "world units" },
-		{ _field_real, "patchy fade start distance", "world units" },
-		{ _field_real, "patchy fade end distance", "world units" },
+		{ _field_real, "max fog draw distance", nullptr, "world units" },
+		{ _field_real, "patchy fade start distance", nullptr, "world units" },
+		{ _field_real, "patchy fade end distance", nullptr, "world units" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};

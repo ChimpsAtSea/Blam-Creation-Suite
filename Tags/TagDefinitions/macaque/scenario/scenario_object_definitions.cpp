@@ -82,7 +82,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_NODE_ORIENTATIONS_BLOCK_ID)
 	{
-		{ _field_short_integer, "node count" },
+		{ _field_short_integer, "node count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("paddington", nullptr, 2),
 		{ _field_block, "bit vector", &scenario_object_node_orientations_bit_vector_block },
 		{ _field_block, "orientations", &scenario_object_node_orientations_orientations_block },
@@ -99,7 +99,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_NODE_ORIENTATIONS_BIT_VECTOR_BLOCK_ID)
 	{
-		{ _field_byte_integer, "data" },
+		{ _field_byte_integer, "data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -113,7 +113,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_NODE_ORIENTATIONS_ORIENTATIONS_BLOCK_ID)
 	{
-		{ _field_short_integer, "number" },
+		{ _field_short_integer, "number", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -127,7 +127,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPTLISTBLOCK_ID)
 	{
-		{ _field_string_id, "script name" },
+		{ _field_string_id, "script name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -451,7 +451,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEVICE_GROUP_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_real, "initial value" },
 		{ _field_long_flags, "flags", &device_group_flags },
 		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
@@ -627,7 +627,7 @@ namespace macaque
 		{ _field_tag_reference, "name", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "second name", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "third name", &scenario_requisition_palette_block_name_reference },
-		{ _field_string_id, "display_name" },
+		{ _field_string_id, "display_name", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "Submenu", &requisition_submenu_global_enum },
 		{ _field_long_integer, "maximum allowed", "cant buy more if there are too many in play" },
 		{ _field_real, "price per instance" },
@@ -640,11 +640,11 @@ namespace macaque
 		{ _field_long_enum, "special buy", &requisition_special_buy_enum },
 		{ _field_long_integer, "starting ammo", "1..100 for ammoless weapons, 0 = default for all weapons" },
 		{ _field_real, "warm-up time", "item will be unavailable until x seconds into the scenario", "seconds" },
-		{ _field_real, "player purchase frequency", "seconds" },
-		{ _field_real, "team purchase frequency", "seconds" },
+		{ _field_real, "player purchase frequency", nullptr, "seconds" },
+		{ _field_real, "team purchase frequency", nullptr, "seconds" },
 		{ _field_real, "price increase factor", "price = original-price x increase-factor to-the n_times_bought" },
-		{ _field_byte_integer, "maximum buy count", "per player" },
-		{ _field_byte_integer, "total maximum buy count", "per team" },
+		{ _field_byte_integer, "maximum buy count", nullptr, "per player" },
+		{ _field_byte_integer, "total maximum buy count", nullptr, "per team" },
 		FIELD_PAD("SMYE", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -699,7 +699,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_ID_STRUCT_ID)
 	{
-		{ _field_long_integer, "unique id", _field_id_object_id },
+		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY, _field_id_object_id },
 		{ _field_short_block_index, "origin bsp index", &scenario_structure_bsp_reference_block },
 		{ _field_char_enum, "type", &object_type_enum_definition },
 		{ _field_char_enum, "source", &object_source_enum_definition },
@@ -738,12 +738,12 @@ namespace macaque
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
-		{ _field_non_cache_runtime_value, "runtimeObjectHandle" },
+		{ _field_non_cache_runtime_value, "runtimeObjectHandle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
 		FIELD_PAD("NCIUNE", nullptr, 2),
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", &scenario_structure_bsp_reference_block },
-		{ _field_real, "Directional Acceleration Mult. ", "Multiplier applied to all phantoms' direction acceleration factors.  Used to scale man-cannon strength." },
+		{ _field_real, "Directional Acceleration Mult. ", "Multiplier applied to all phantoms\' direction acceleration factors.  Used to scale man-cannon strength." },
 		{ _field_block, "Command Links", &commandLinkBlock_block },
 		{ _field_terminator }
 	};
@@ -817,11 +817,11 @@ namespace macaque
 		{ _field_char_enum, "owner team", &global_multiplayer_team_designator_enum_definition },
 		{ _field_byte_flags, "spawn flags", &multiplayer_object_placement_spawn_flags },
 		{ _field_char_integer, "quota minimum" },
-		{ _field_char_integer, "quota maximum", "<=0 for unlimited" },
+		{ _field_char_integer, "quota maximum", nullptr, "<=0 for unlimited" },
 		{ _field_char_enum, "remapping policy", &multiplayer_object_remapping_policy },
 		{ _field_char_enum, "teleporter channel", &multiplayer_teleporter_channel },
 		{ _field_byte_flags, "teleporter passability", &teleporter_passability_flags },
-		{ _field_char_integer, "spawn order", "-1 for random" },
+		{ _field_char_integer, "spawn order", nullptr, "-1 for random" },
 		{ _field_char_integer, "user data 2" },
 		{ _field_char_enum, "trait zone channel", &multiplayer_teleporter_channel },
 		{ _field_real, "boundary width or radius" },
@@ -830,8 +830,8 @@ namespace macaque
 		{ _field_real, "boundary negative height" },
 		{ _field_char_enum, "boundary shape", &multiplayer_goal_area_boundary_shape_enum },
 		FIELD_PAD("boundary_pad", nullptr, 3),
-		{ _field_short_integer, "spawn time", "seconds" },
-		{ _field_short_integer, "abandonment time", "seconds" },
+		{ _field_short_integer, "spawn time", nullptr, "seconds" },
+		{ _field_short_integer, "abandonment time", nullptr, "seconds" },
 		{ _field_string_id, "location name" },
 		{ _field_struct, "map variant parent", &scenario_object_parent_struct },
 		{ _field_terminator }
@@ -876,8 +876,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_REFERENCE_STRUCT_ID)
 	{
-		{ _field_short_integer, "object index" },
-		{ _field_short_integer, "scenario object index" },
+		{ _field_short_integer, "object index", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "scenario object index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -894,7 +894,7 @@ namespace macaque
 		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", &pathfinding_object_index_list_block },
-		{ _field_short_integer, "havok mopp index" },
+		{ _field_short_integer, "havok mopp index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "ai spawning squad", &squads_block },
 		{ _field_terminator }
 	};
@@ -981,7 +981,7 @@ namespace macaque
 		SCENARIO_CONTROL_STRUCT_ID)
 	{
 		{ _field_long_flags, "flags", &scenario_control_flags },
-		{ _field_short_integer, "DON'T TOUCH THIS", _field_id_unknown_ugh },
+		{ _field_short_integer, "DON\'T TOUCH THIS", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, _field_id_unknown_ugh },
 		{ _field_short_integer, "health station charges", "if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" },
 		{ _field_enum, "allowed players", &scenario_control_character_types },
 		FIELD_PAD("SCSP1", nullptr, 2),
@@ -1014,7 +1014,7 @@ namespace macaque
 		{ _field_long_enum, "volume type", &sound_volume_type_enumeration },
 		{ _field_real, "height" },
 		{ _field_angle_bounds, "override cone angle bounds" },
-		{ _field_real, "override outer cone gain", "dB" },
+		{ _field_real, "override outer cone gain", nullptr, "dB" },
 		{ _field_struct, "override distance parameters", &sound_distance_parameters_struct },
 		{ _field_terminator }
 	};

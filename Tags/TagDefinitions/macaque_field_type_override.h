@@ -17,7 +17,7 @@
 #define FIELD_CUSTOM(name, description, type) { _field_custom, (const char*)(name), (const char*)(description), (type) }
 #define FIELD_PAD(name, description, size) __FIELD_MACRO_HELPER(_field_pad, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_SKIP(name, description, size) __FIELD_MACRO_HELPER(_field_skip, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_EXPLANATION(name, description, explanation) __FIELD_MACRO_HELPER(_field_skip, name, description, static_cast<const void*>(explanation))
+#define FIELD_EXPLANATION(name, description, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, static_cast<const void*>(explanation))
 
 #ifndef __INTELLISENSE__
 

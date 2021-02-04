@@ -32,9 +32,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITE_COMMENDATION_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "commendation id", "This must match one of the commendation names." },
+		{ _field_string_id, "commendation id", "This must match one of the commendation names.", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		{ _field_char_integer, "minimum level", "This field is ignored if 'type' is set to 'aggregator'." },
+		{ _field_char_integer, "minimum level", "This field is ignored if \'type\' is set to \'aggregator\'." },
 		FIELD_PAD("PAD1", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -91,7 +91,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITES_UNLOCKABLE_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "unlockable name" },
+		{ _field_string_id, "unlockable name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

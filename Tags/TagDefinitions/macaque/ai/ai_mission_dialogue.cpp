@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MISSION_DIALOGUE_LINES_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "variants", &mission_dialogue_variants_block },
 		{ _field_string_id, "default sound effect" },
 		{ _field_terminator }
@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MISSION_DIALOGUE_VARIANTS_BLOCK_ID)
 	{
-		{ _field_string_id, "variant designation", "3-letter designation for the character" },
+		{ _field_string_id, "variant designation", "3-letter designation for the character", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "sound", &sound_reference },
 		{ _field_string_id, "sound effect" },
 		{ _field_terminator }
@@ -62,7 +62,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &scene_flags },
 		{ _field_block, "trigger conditions", &ai_scene_trigger_block },
 		{ _field_useless_pad, "" },
@@ -96,7 +96,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_ROLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "group", &role_group_enum },
 		FIELD_PAD("XZUW", nullptr, 2),
 		{ _field_useless_pad, "" },
@@ -114,7 +114,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_SCENE_ROLE_VARIANTS_BLOCK_ID)
 	{
-		{ _field_string_id, "variant designation" },
+		{ _field_string_id, "variant designation", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

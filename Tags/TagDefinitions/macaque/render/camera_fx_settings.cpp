@@ -220,9 +220,9 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("QREWRER", nullptr, 2),
-		{ _field_real, "bling intensity" },
-		{ _field_real, "maximum change" },
-		{ _field_real, "blend speed (0-1)" },
+		{ _field_real, "bling intensity", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -237,9 +237,9 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("LSDFPO", nullptr, 2),
-		{ _field_real, "bling length" },
-		{ _field_real, "maximum change" },
-		{ _field_real, "blend speed (0-1)" },
+		{ _field_real, "bling length", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -254,9 +254,9 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("ILJS", nullptr, 2),
-		{ _field_real, "bling angle" },
-		{ _field_real, "maximum change" },
-		{ _field_real, "blend speed (0-1)" },
+		{ _field_real, "bling angle", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "blend speed (0-1)", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -270,7 +270,7 @@ namespace macaque
 		CAMERA_FX_BLING_COUNT_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_bling_spikes },
-		{ _field_short_integer, "bling spikes" },
+		{ _field_short_integer, "bling spikes", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

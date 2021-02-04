@@ -51,7 +51,7 @@ namespace macaque
 		SCRIPTABLELIGHTRIGBLOCK_ID)
 	{
 		FIELD_EXPLANATION("Scriptable Light Rig", nullptr, ""),
-		{ _field_string_id, "string" },
+		{ _field_string_id, "string", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "light rig", &global_lightRig_reference },
 		{ _field_terminator }
 	};

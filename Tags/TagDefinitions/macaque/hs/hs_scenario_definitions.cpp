@@ -24,8 +24,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HSC_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string, "name" },
-		{ _field_data, "source" },
+		{ _field_string, "name", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "source", FIELD_FLAG_READ_ONLY },
 		{ _field_long_flags, "flags", &hs_source_file_flags },
 		{ _field_terminator }
 	};
@@ -54,11 +54,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPTS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_enum, "script type", &hs_script_types_enum },
 		{ _field_word_flags, "script flags", &scriptFlagsEnumDefinition },
 		{ _field_long_enum, "return type", &hs_types_enum },
-		{ _field_long_integer, "root expression index" },
+		{ _field_long_integer, "root expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "locals stack space" },
 		{ _field_block, "parameters", &hs_script_parameters_block },
 		{ _field_terminator }
@@ -74,7 +74,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_long_enum, "return type", &hs_types_enum },
 		{ _field_terminator }
 	};
@@ -89,9 +89,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_GLOBALS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
 		{ _field_long_enum, "type", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index" },
+		{ _field_long_integer, "initialization expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -105,9 +105,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HSINSTANCEDVARIABLESBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
 		{ _field_long_enum, "type", &hs_types_enum },
-		{ _field_long_integer, "initialization expression index" },
+		{ _field_long_integer, "initialization expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -121,9 +121,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_UNIT_SEAT_BLOCK_ID)
 	{
-		{ _field_long_integer, "unit definition tag index" },
-		{ _field_long_integer, "unit seats" },
-		{ _field_long_integer, "unit seats2" },
+		{ _field_long_integer, "unit definition tag index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "unit seats", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "unit seats2", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -137,7 +137,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		HS_SYNTAX_DATUM_BLOCK_ID)
 	{
-		{ _field_short_integer, "datum header" },
+		{ _field_short_integer, "datum header", FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "script index/function index/constant type union" },
 		{ _field_long_integer, "next node" },
 		{ _field_long_integer, "source data" },
@@ -159,7 +159,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HSIMPORTMANIFESTBLOCK_ID)
 	{
-		{ _field_tag, "callee tag" },
+		{ _field_tag, "callee tag", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "script table", &HSImportManifestEntryBlock_block },
 		{ _field_block, "variable table", &HSImportManifestEntryBlock_block },
 		{ _field_terminator }
@@ -175,9 +175,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		HSIMPORTMANIFESTENTRYBLOCK_ID)
 	{
-		{ _field_string_id, "script name" },
-		{ _field_long_integer, "argCount" },
-		{ _field_long_integer, "index" },
+		{ _field_string_id, "script name", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "argCount", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 

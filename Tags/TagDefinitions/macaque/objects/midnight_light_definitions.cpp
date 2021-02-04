@@ -17,9 +17,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MIDNIGHT_LIGHT_STRUCT_ID)
 	{
-		{ _field_long_integer, "Version" },
+		{ _field_long_integer, "Version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("Dynamic/Static Shared Light Parameters", nullptr, ""),
-		{ _field_string_id, "haloLightNode", "Light node name in DCC." },
+		{ _field_string_id, "haloLightNode", "Light node name in DCC.", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "Light Type", &midnight_light_type_enum_definition },
 		{ _field_real_rgb_color, "Light Color" },
 		{ _field_struct, "Intensity", &light_scalar_function_struct },

@@ -30,24 +30,24 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID)
 	{
-		{ _field_string_id, "string id" },
-		{ _field_long_integer, "english offset" },
-		{ _field_long_integer, "japanese offset" },
-		{ _field_long_integer, "german offset" },
-		{ _field_long_integer, "french offset" },
-		{ _field_long_integer, "spanish offset" },
-		{ _field_long_integer, "mexican spanish offset" },
-		{ _field_long_integer, "italian offset" },
-		{ _field_long_integer, "korean offset" },
-		{ _field_long_integer, "traditional chinese offset" },
-		{ _field_long_integer, "simplified chinese offset" },
-		{ _field_long_integer, "portuguese offset" },
-		{ _field_long_integer, "polish offset" },
-		{ _field_long_integer, "russian offset" },
-		{ _field_long_integer, "danish offset" },
-		{ _field_long_integer, "finnish offset" },
-		{ _field_long_integer, "dutch offset" },
-		{ _field_long_integer, "norwegian offset" },
+		{ _field_string_id, "string id", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_long_integer, "english offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "japanese offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "german offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "french offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "spanish offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "mexican spanish offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "italian offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "korean offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "traditional chinese offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "simplified chinese offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "portuguese offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "polish offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "russian offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "danish offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "finnish offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "dutch offset", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "norwegian offset", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -61,9 +61,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRING_SUBSTITUTION_PAIR_BLOCK_ID)
 	{
-		{ _field_string_id, "first string id" },
-		{ _field_string_id, "second string id" },
-		{ _field_long_integer, "associated value" },
+		{ _field_string_id, "first string id", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_string_id, "second string id", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "associated value", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -77,7 +77,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DATA_HASH_DEFINITION_ID)
 	{
-		{ _field_byte_integer, "hash byte" },
+		{ _field_byte_integer, "hash byte", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -91,8 +91,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_LANGUAGE_PACK_OFFSETS_ID)
 	{
-		{ _field_short_integer, "start index" },
-		{ _field_short_integer, "string count" },
+		{ _field_short_integer, "start index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "string count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -109,7 +109,7 @@ namespace macaque
 		FIELD_CUSTOM("import clean", nullptr, _field_id_text_unknown),
 		{ _field_block, "string references", &multilingual_unicode_string_reference_block },
 		{ _field_block, "substitution pairs", &string_substitution_pair_block },
-		{ _field_data, "string data utf8" },
+		{ _field_data, "string data utf8", FIELD_FLAG_READ_ONLY },
 		{ _field_array, "language pack offsets", &multilingual_unicode_string_list_language_pack_offsets_array },
 		{ _field_terminator }
 	};
@@ -123,15 +123,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		LANGUAGE_PACK_DEFINITION_ID)
 	{
-		{ _field_long_integer, "string reference pointer", _field_id_zero_data },
-		{ _field_long_integer, "string data pointer", _field_id_zero_data },
-		{ _field_long_integer, "number of strings" },
-		{ _field_long_integer, "string data size" },
-		{ _field_long_integer, "string reference cache offset" },
-		{ _field_long_integer, "string data cache offset" },
+		{ _field_long_integer, "string reference pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "string data pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "number of strings", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "string data size", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "string reference cache offset", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "string data cache offset", FIELD_FLAG_UNKNOWN0 },
 		{ _field_array, "string reference checksum", &data_hash_definition_array },
 		{ _field_array, "string data checksum", &data_hash_definition_array },
-		{ _field_long_integer, "data loaded boolean" },
+		{ _field_long_integer, "data loaded boolean", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 

@@ -31,9 +31,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_int64_integer, "Definition Identifier" },
+		{ _field_int64_integer, "Definition Identifier", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct },
-		{ _field_long_integer, "Source File Identifier" },
+		{ _field_long_integer, "Source File Identifier", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("Static Only Parameters", nullptr, ""),
 		{ _field_real, "indirect amplification factor" },
 		{ _field_real, "jitter sphere radius" },
@@ -57,10 +57,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_LIGHTING_GENERIC_LIGHT_INSTANCE_BLOCK_ID)
 	{
-		{ _field_int64_integer, "Light Definition ID" },
-		{ _field_int64_integer, "Light Instance ID" },
-		{ _field_long_integer, "Light Definition Index" },
-		{ _field_long_integer, "Maya Source Hash" },
+		{ _field_int64_integer, "Light Definition ID", FIELD_FLAG_UNKNOWN0 },
+		{ _field_int64_integer, "Light Instance ID", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "Light Definition Index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "Maya Source Hash", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "runtime definition", &Tag::Reference<struct dynamic_light_definition>::s_defaultDefinition },
 		{ _field_long_enum, "light mode", &structure_lighting_light_mode_enum },
 		{ _field_real_point_3d, "origin" },
@@ -141,7 +141,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURELIGHTINGCINEMATICLIGHTINSTANCEBLOCK_STRUCT_ID)
 	{
-		{ _field_int64_integer, "Light Instance ID" },
+		{ _field_int64_integer, "Light Instance ID", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_block_index, "Light Definition Index", &structure_lighting_generic_light_definition_block },
 		{ _field_long_block_index, "Light Instance Index", &structure_lighting_generic_light_instance_block },
 		{ _field_array, "Active Shots", &g_cinematicShotFlagArray_array },

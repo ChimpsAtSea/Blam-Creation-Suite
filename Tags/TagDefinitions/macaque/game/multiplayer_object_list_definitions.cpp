@@ -31,7 +31,7 @@ namespace macaque
 		MULTIPLAYER_OBJECT_TYPE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("WARNING", nullptr, "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face."),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "object", &object_reference$6 },
 		{ _field_terminator }
 	};
@@ -70,7 +70,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_WEAPON_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "remap table", &multiplayer_weapon_remap_table_entry_block },
 		{ _field_terminator }
 	};
@@ -100,7 +100,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_VEHICLE_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "remap table", &multiplayer_vehicle_remap_table_entry_block },
 		{ _field_terminator }
 	};
@@ -130,7 +130,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_EQUIPMENT_REMAP_TABLE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "remap table", &multiplayer_equipment_remap_table_entry_block },
 		{ _field_terminator }
 	};

@@ -69,7 +69,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHTMAPPER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_integer, "Version" },
+		{ _field_long_integer, "Version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("GLOBAL QUALITY SETTINGS", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -96,8 +96,8 @@ namespace macaque
 		{ _field_long_enum, "Direct shadow map resolution", &lightmap_direct_shadow_map_resolution_enum },
 		{ _field_long_enum, "Super-sampling factor", &lightmap_supersampling_factor_enum },
 		{ _field_long_enum, "AO Sample Quality", &lightmap_ao_quality_enum },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Min" },
-		{ _field_real_vector_3d, "Indirect Restrict AABB Max" },
+		{ _field_real_vector_3d, "Indirect Restrict AABB Min", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_vector_3d, "Indirect Restrict AABB Max", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

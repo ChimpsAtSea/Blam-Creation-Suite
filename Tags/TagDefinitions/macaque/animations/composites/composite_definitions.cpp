@@ -23,19 +23,19 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPOSITEAXISDEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
-		{ _field_string_id, "animation source" },
+		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_string_id, "animation source", FIELD_FLAG_READ_ONLY },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_function),
 		{ _field_string_id, "input function" },
 		{ _field_real_bounds, "animation bounds" },
 		{ _field_real_bounds, "input bounds" },
 		{ _field_real_bounds, "clamp bounds" },
-		{ _field_real, "blend limit" },
+		{ _field_real, "blend limit", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "dead zones", &CompositeDeadZoneDefinition_block },
-		{ _field_char_integer, "divisions" },
-		{ _field_char_integer, "priority" },
-		{ _field_char_integer, "update" },
-		{ _field_char_integer, "functionIndex" },
+		{ _field_char_integer, "divisions", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "priority", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "update", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "functionIndex", FIELD_FLAG_READ_ONLY },
 		{ _field_long_flags, "flags", &CompositeAxisFlags },
 		{ _field_terminator }
 	};
@@ -52,10 +52,10 @@ namespace macaque
 	{
 		{ _field_real_bounds, "bounds" },
 		{ _field_real, "rate" },
-		{ _field_real, "center" },
-		{ _field_real, "radius" },
-		{ _field_real, "amount" },
-		{ _field_long_integer, "delay" },
+		{ _field_real, "center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "radius", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "amount", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "delay", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -69,11 +69,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPOSITEENTRYDEFINITION_ID)
 	{
-		{ _field_string_id, "source" },
+		{ _field_string_id, "source", FIELD_FLAG_INDEX },
 		{ _field_block, "values", &CompositeEntryValueDefinition_block },
-		{ _field_long_integer, "overridden" },
-		{ _field_short_integer, "animIndex" },
-		{ _field_char_integer, "slideAxis" },
+		{ _field_long_integer, "overridden", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "animIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "slideAxis", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("PAD", nullptr, 1),
 		{ _field_terminator }
 	};
@@ -88,7 +88,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPOSITEENTRYVALUEDEFINITION_ID)
 	{
-		{ _field_real, "value" },
+		{ _field_real, "value", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -102,18 +102,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPOSITEPHASESETDEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_string_id, "timing source" },
 		{ _field_block, "sync points", &SyncKeyBlock_block },
-		{ _field_data, "sync frames" },
-		{ _field_data, "facets" },
-		{ _field_data, "neighbors" },
-		{ _field_data, "containment" },
-		{ _field_data, "example grid" },
+		{ _field_data, "sync frames", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_data, "facets", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "neighbors", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "containment", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "example grid", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "normalized bounds" },
-		{ _field_char_integer, "offset" },
+		{ _field_char_integer, "offset", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("PAD", nullptr, 1),
-		{ _field_short_integer, "timingAnimIndex" },
+		{ _field_short_integer, "timingAnimIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -141,7 +141,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRINGBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -154,13 +154,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		G_COMPOSITETAG_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_block, "axes", &CompositeAxisDefinition_block },
 		{ _field_block, "anims", &CompositeEntryDefinition_block },
 		{ _field_block, "sets", &CompositePhaseSetDefinition_block },
 		{ _field_block, "strings", &StringBlock_block },
 		{ _field_string_id, "timing source" },
-		{ _field_short_integer, "timingAnimIndex" },
+		{ _field_short_integer, "timingAnimIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("PAD", nullptr, 2),
 		{ _field_terminator }
 	};

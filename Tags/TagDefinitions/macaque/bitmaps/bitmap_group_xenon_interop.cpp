@@ -22,8 +22,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_INTERLEAVED_INTEROP_DEFINITION_STRUCT_ID)
 	{
-		{ _field_data, "pixel data" },
-		{ _field_data, "medium res data" },
+		{ _field_data, "pixel data", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "medium res data", FIELD_FLAG_READ_ONLY },
 		{ _field_array, "interleaved textures", &render_interleaved_texture_array_definition_array },
 		{ _field_terminator }
 	};
@@ -37,10 +37,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_FORMAT_DEFINITION_ID)
 	{
-		{ _field_short_integer, "width" },
-		{ _field_short_integer, "height" },
-		{ _field_char_integer, "depth" },
-		{ _field_char_integer, "total mipmap count" },
+		{ _field_short_integer, "width", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "height", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "depth", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "total mipmap count", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "type", &bitmap_types },
 		{ _field_char_integer, "pad1_1" },
 		{ _field_char_enum, "is high res bitmap", &boolean_enum_definition },
@@ -48,7 +48,7 @@ namespace macaque
 		{ _field_char_enum, "pad2_1", &boolean_enum_definition },
 		{ _field_char_enum, "pad2_2", &boolean_enum_definition },
 		{ _field_long_integer, "exponent bias" },
-		{ _field_long_integer, "xenon d3d format" },
+		{ _field_long_integer, "xenon d3d format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -61,13 +61,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_TEXTURE_INTEROP_DEFINITION_STRUCT_ID)
 	{
-		{ _field_data, "pixel data" },
-		{ _field_data, "medium res data" },
-		{ _field_data, "high res data" },
-		{ _field_short_integer, "width" },
-		{ _field_short_integer, "height" },
-		{ _field_char_integer, "depth" },
-		{ _field_char_integer, "total mipmap count" },
+		{ _field_data, "pixel data", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "medium res data", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "high res data", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "width", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "height", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "depth", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "total mipmap count", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "type", &bitmap_types },
 		{ _field_char_integer, "pad1_1" },
 		{ _field_char_enum, "is high res bitmap", &boolean_enum_definition },
@@ -75,7 +75,7 @@ namespace macaque
 		{ _field_char_enum, "pad2_1", &boolean_enum_definition },
 		{ _field_char_enum, "pad2_2", &boolean_enum_definition },
 		{ _field_long_integer, "exponent bias" },
-		{ _field_long_integer, "xenon d3d format" },
+		{ _field_long_integer, "xenon d3d format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

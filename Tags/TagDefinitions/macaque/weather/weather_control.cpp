@@ -61,8 +61,8 @@ namespace macaque
 		RAIN_RIPPLE_SETTING_BLOCK_ID)
 	{
 		{ _field_tag_reference, "rain ripple texture", &global_bitmap_reference },
-		{ _field_real, "group period time", "seconds" },
-		{ _field_real, "texture tile size", "world units" },
+		{ _field_real, "group period time", nullptr, "seconds" },
+		{ _field_real, "texture tile size", nullptr, "world units" },
 		{ _field_real, "reflection intensify" },
 		{ _field_terminator }
 	};

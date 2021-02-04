@@ -66,7 +66,7 @@ namespace macaque
 		FIELD_CUSTOM("HOLOGRAM", nullptr, _field_id_function_group_begin),
 		FIELD_CUSTOM("Intensity", nullptr, _field_id_slider_editor),
 		{ _field_real, "Intensity", _field_id_slider_editor },
-		{ _field_real, "Intensity Input" },
+		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "Transparency Mode", &hologramTransparencyMode },
 		FIELD_PAD("PADDING1", nullptr, 3),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -98,10 +98,10 @@ namespace macaque
 		{ _field_real, "Front-Back", _field_id_slider_editor },
 		FIELD_CUSTOM("Intensity", nullptr, _field_id_slider_editor),
 		{ _field_real, "Intensity", _field_id_slider_editor },
-		{ _field_real, "Intensity Input" },
-		{ _field_real, "Forward Input" },
-		{ _field_real, "Right Input" },
-		{ _field_real, "Up Input" },
+		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Forward Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Right Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Up Input", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

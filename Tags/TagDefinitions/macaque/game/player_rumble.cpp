@@ -61,7 +61,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
-		{ _field_real, "duration", "seconds" },
+		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "dirty whore", &mapping_function },
 		{ _field_useless_pad, "" },

@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MEGALO_STRING_ID_BLOCK_ID)
 	{
-		{ _field_string_id, "string_id" },
+		{ _field_string_id, "string_id", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_TEMPLATE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "cell templates", &cell_template_block },
 		{ _field_terminator }
 	};
@@ -39,7 +39,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_GROUPS_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "parent", &squad_groups_block },
 		{ _field_short_block_index, "initial objective", &objectives_block },
 		FIELD_PAD("soon to be an initial task", nullptr, 2),
@@ -59,7 +59,7 @@ namespace macaque
 		SQUADS_BLOCK_STRUCT_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_enum, "team", &ai_team_enum },
 		{ _field_short_block_index, "parent", &squad_groups_block },
@@ -71,7 +71,7 @@ namespace macaque
 		{ _field_block, "spawn points", &spawn_points_block },
 		{ _field_long_enum, "wave placement filter", &wave_placement_filter_enum },
 		{ _field_string_id, "template" },
-		{ _field_long_integer, "squad template index" },
+		{ _field_long_integer, "squad template index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "designer", &squad_definition_internal_struct },
 		{ _field_struct, "templated", &squad_definition_internal_struct },
@@ -90,16 +90,16 @@ namespace macaque
 		SPAWN_FORMATION_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", "degrees" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
 		{ _field_string_id, "formation" },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_enum, "initial movement mode", &actor_movement_modes },
-		{ _field_short_integer, "placement script index" },
+		{ _field_short_integer, "placement script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_string_id, "placement script", _field_id_halo_script_block },
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
@@ -121,15 +121,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_custom_short_block_index, "point" },
+		{ _field_custom_short_block_index, "point", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &patrol_point_flags },
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
 		{ _field_string_id, "activity name" },
 		{ _field_enum, "activity", &g_activity_enum },
-		{ _field_short_integer, "activity variant" },
+		{ _field_short_integer, "activity variant", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "command script", _field_id_halo_script_block },
-		{ _field_short_integer, "command script index" },
+		{ _field_short_integer, "command script index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("post-command-script", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -146,13 +146,13 @@ namespace macaque
 		SPAWN_POINTS_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_custom_short_block_index, "cell" },
 		FIELD_PAD("post-cell-index-pad", nullptr, 2),
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
-		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", "degrees" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
 		{ _field_word_flags, "flags", &starting_location_flags },
 		{ _field_short_block_index, "character type", &character_palette_block },
@@ -173,7 +173,7 @@ namespace macaque
 		{ _field_short_block_index, "giant body", &scenario_giant_block },
 		{ _field_short_block_index, "biped body", &scenario_biped_block },
 		{ _field_string_id, "placement script", _field_id_halo_script_block },
-		{ _field_short_integer, "placement script index" },
+		{ _field_short_integer, "placement script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("post-placement-script-pad", nullptr, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
@@ -197,7 +197,7 @@ namespace macaque
 		CELL_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("Character Build", nullptr, "Specify the distribution of characters and weapons in the cell sub-folders"),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
@@ -209,7 +209,7 @@ namespace macaque
 		{ _field_short_block_index, "vehicle type", &scenario_vehicle_palette_block },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "Placement script", _field_id_halo_script_block },
-		{ _field_short_integer, "placement script index" },
+		{ _field_short_integer, "placement script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("plsc", nullptr, 2),
 		{ _field_string_id, "activity name" },
 		{ _field_string_id, "movement set" },
@@ -280,7 +280,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CELL_TEMPLATE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },

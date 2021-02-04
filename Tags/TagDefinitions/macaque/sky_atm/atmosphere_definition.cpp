@@ -26,7 +26,7 @@ namespace macaque
 		ATMOSPHERE_FOG_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "Flags", &atmosphere_flags },
-		{ _field_byte_integer, "Version" },
+		{ _field_byte_integer, "Version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("ABCDEFGH", nullptr, 1),
 		FIELD_EXPLANATION("Ambient Fog Parameters", nullptr, "All heights are absolute world space height\n"),
 		{ _field_real, "distance bias", "negative means into the screen", "world units" },
@@ -87,8 +87,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOLO_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "base height", "world units" },
-		{ _field_real, "fog height", "world units" },
+		{ _field_real, "base height", nullptr, "world units" },
+		{ _field_real, "fog height", nullptr, "world units" },
 		{ _field_real, "fog thickness" },
 		{ _field_real, "fog falloff end" },
 		{ _field_real_rgb_color, "fog color" },
@@ -106,9 +106,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOG_LIGHT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "pitch angle", "degree" },
-		{ _field_real, "yaw angle", "degree" },
-		{ _field_real, "angular radius", "degree" },
+		{ _field_real, "pitch angle", nullptr, "degree" },
+		{ _field_real, "yaw angle", nullptr, "degree" },
+		{ _field_real, "angular radius", nullptr, "degree" },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "tint color intensity" },
 		{ _field_real, "angular falloff steepness" },

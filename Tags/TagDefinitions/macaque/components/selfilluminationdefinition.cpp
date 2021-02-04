@@ -32,7 +32,7 @@ namespace macaque
 		SELF_ILLUMINATION_STATE_ID)
 	{
 		FIELD_EXPLANATION("Self-Illumination State", nullptr, "An animated self-illumination controller state."),
-		{ _field_string_id, "Name" },
+		{ _field_string_id, "Name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "Flags", &self_illumination_flags },
 		{ _field_real, "Length ", "Length of illumination animation in seconds." },
 		{ _field_string_id, "Next State ", "Used to automatically transition to another state when finished." },

@@ -17,15 +17,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RECORDED_ANIMATION_BLOCK_ID)
 	{
-		{ _field_string, "name" },
-		{ _field_char_integer, "version" },
-		{ _field_char_integer, "raw animation data" },
-		{ _field_char_integer, "unit control data version" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
+		{ _field_char_integer, "version", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "raw animation data", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "unit control data version", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("DVU", nullptr, 1),
-		{ _field_short_integer, "length of animation", "ticks" },
+		{ _field_short_integer, "length of animation", nullptr, "ticks", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("DCAU", nullptr, 2),
 		FIELD_PAD("HL", nullptr, 4),
-		{ _field_data, "recorded animation event stream" },
+		{ _field_data, "recorded animation event stream", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

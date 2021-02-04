@@ -1041,20 +1041,24 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				string_parser.flag_unknown3 ||
 				string_parser.flag_pointer;
 			bool write_units = !units.empty();
-			bool write_description = !description.empty();
+			bool write_description = write_units || !description.empty();
 			bool write_min_max = !field_minimum.empty() || !field_maximum.empty();
 
 			ss << "\t\t{ ";
 			ss << field_generic_type_name << ", ";
 			ss << "\"" << name.c_str() << "\"";
-			if (write_description) ss << ", " << "\"" << description.c_str() << "\"";
+			if (write_description)
+			{
+				if(!description.empty()) ss << ", " << "\"" << description.c_str() << "\"";
+				else ss << ", " << "nullptr";
+			}
 			if (write_units) ss << ", " << "\"" << units.c_str() << "\"";
 			if (write_min_max)
 			{
 				ss << ", " << "\"" << field_minimum.c_str() << "\"";
 				ss << ", " << "\"" << field_maximum.c_str() << "\"";
 			}
-			if (write_flags && false)
+			if (write_flags)
 			{
 				ss << ", ";
 
@@ -1196,6 +1200,13 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		}
 		case _h4_field_type_pageable:
 		{
+			bool write_flags =
+				string_parser.flag_unknown0 ||
+				string_parser.flag_read_only ||
+				string_parser.flag_index ||
+				string_parser.flag_unknown3 ||
+				string_parser.flag_pointer;
+				
 			c_h4_tag_resource_definition* resource_field = dynamic_cast<c_h4_tag_resource_definition*>(tag_field);
 			ASSERT(resource_field);
 			ASSERT(resource_field->name);
@@ -1203,7 +1214,8 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(resource_field->tag_resource_definition->tag_struct);
 			ASSERT(tag_struct_container);
 
-			ss << "\t\t{ " << field_generic_type_name << ", \"" << name << "\", &" << tag_struct_container->name << " }," << std::endl;
+			ss << "\t\t{ " << field_generic_type_name << ", \"" << name << "\", ";
+				ss << "&" << tag_struct_container->name << " }," << std::endl;
 
 			break;
 		}
@@ -1216,15 +1228,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(interop_field->tag_interop_definition->tag_struct);
 			ASSERT(tag_struct_container);
 
-
-			if (tag_struct_container->is_block)
-			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << name << "\", &" << tag_struct_container->name << " }," << std::endl;
-			}
-			else
-			{
-				ss << "\t\t{ " << field_generic_type_name << ", \"" << name << "\", &" << tag_struct_container->name << " }," << std::endl;
-			}
+			ss << "\t\t{ " << field_generic_type_name << ", \"" << name << "\", &" << tag_struct_container->name << " }," << std::endl;
 
 			break;
 

@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPORTED_BITFIELD_ID)
 	{
-		{ _field_long_integer, "bitvector data" },
+		{ _field_long_integer, "bitvector data", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

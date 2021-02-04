@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_RECORDING_REFERENCE_BLOCK_ID)
 	{
-		{ _field_string, "recording name" },
+		{ _field_string, "recording name", FIELD_FLAG_INDEX },
 		FIELD_PAD("INYRGOR", nullptr, 8),
 		{ _field_terminator }
 	};

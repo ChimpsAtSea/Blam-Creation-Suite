@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SIDECARBLOCK_ID)
 	{
-		{ _field_long_string, "sidecar path" },
+		{ _field_long_string, "sidecar path", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -45,7 +45,7 @@ namespace macaque
 		OBJECT_EARLY_MOVER_OBB_BLOCK_ID)
 	{
 		{ _field_string_id, "node name", "empty mean object space" },
-		{ _field_long_integer, "runtime node index" },
+		{ _field_long_integer, "runtime node index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "x0" },
 		{ _field_real, "x1" },
 		{ _field_real, "y0" },
@@ -86,7 +86,7 @@ namespace macaque
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
-		{ _field_string_id, "import name", "if you leave this field blank then you can set this function's input value with the hs_function object_set_function_variable" },
+		{ _field_string_id, "import name", "if you leave this field blank then you can set this function\'s input value with the hs_function object_set_function_variable" },
 		{ _field_string_id, "export name" },
 		{ _field_string_id, "turn off with", "if the specified function is off, so is this function" },
 		{ _field_string_id, "ranged interpolation name", "if you have the ranged button checked" },
@@ -129,7 +129,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_RUNTIME_INTERPOLATOR_FUNCTIONS_BLOCK_ID)
 	{
-		{ _field_long_integer, "runtime interpolator to object function mapping" },
+		{ _field_long_integer, "runtime interpolator to object function mapping", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -160,7 +160,7 @@ namespace macaque
 		OBJECTFUNCTIONSWITCHFUNCTIONBLOCK_ID)
 	{
 		{ _field_real_bounds, "selection bounds", "if the switch function is between these values, this function will be picked" },
-		{ _field_string_id, "function name" },
+		{ _field_string_id, "function name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -276,12 +276,12 @@ namespace macaque
 		{ _field_char_enum, "boundary shape", &multiplayer_object_boundary_shape },
 		FIELD_PAD("pad_shape", nullptr, 3),
 		FIELD_EXPLANATION("SPAWNING DATA", nullptr, "These fields are used for default spawning times and remapping"),
-		{ _field_short_integer, "default spawn time", "seconds" },
-		{ _field_short_integer, "default abandonment time", "seconds" },
+		{ _field_short_integer, "default spawn time", nullptr, "seconds" },
+		{ _field_short_integer, "default abandonment time", nullptr, "seconds" },
 		{ _field_word_flags, "flags", &multiplayer_object_flags },
 		FIELD_PAD("pad1", nullptr, 2),
 		FIELD_EXPLANATION("RESPAWN ZONE DATA", nullptr, "These are respawn zone weights, used only for respawn zones"),
-		{ _field_real, "normal weight", "aka natural weight" },
+		{ _field_real, "normal weight", nullptr, "aka natural weight" },
 		{ _field_block, "falloff function", &spawn_influence_weight_falloff_function_block },
 		FIELD_EXPLANATION("MARKER DATA", nullptr, "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient"),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -334,7 +334,7 @@ namespace macaque
 		OBJECT_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("OBJECT", nullptr, _field_id_function_group_begin),
-		{ _field_short_integer, "runtime object type" },
+		{ _field_short_integer, "runtime object type", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum },
 		{ _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum },
 		{ _field_real_vector_3d, "Nav Mesh Cutting OBB Offset" },
@@ -348,7 +348,7 @@ namespace macaque
 		{ _field_enum, "lightmap shadow mode", &lightmap_shadow_mode_enum },
 		{ _field_char_enum, "sweetener size", &sweetener_size_enum },
 		{ _field_char_enum, "water density", &water_density_type_enum },
-		{ _field_long_integer, "runtime flags" },
+		{ _field_long_integer, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "dynamic light sphere radius", "sphere to use for dynamic lights and shadows. only used if not 0" },
 		{ _field_real_point_3d, "dynamic light sphere offset", "only used if radius not 0" },
 		{ _field_string_id, "generic hud text" },

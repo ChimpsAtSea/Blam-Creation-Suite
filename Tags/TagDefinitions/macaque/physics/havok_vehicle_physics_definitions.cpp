@@ -18,7 +18,7 @@ namespace macaque
 		ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name" },
+		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &anti_gravity_point_definition_flags },
 		{ _field_long_enum, "damping", &anti_gravity_point_definition_damping },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
@@ -31,8 +31,8 @@ namespace macaque
 		{ _field_real, "radius" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_string_id, "collision global material name" },
-		{ _field_short_integer, "runtime global material index" },
-		{ _field_short_integer, "WU" },
+		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "WU", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "damage source region name" },
 		{ _field_real, "default state error" },
 		{ _field_real, "minor damage error" },
@@ -53,7 +53,7 @@ namespace macaque
 		FRICTION_POINT_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name" },
+		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &friction_point_definition_flags },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
 		{ _field_real, "fraction of total mass", "(0.0-1.0) fraction of total vehicle mass" },
@@ -69,11 +69,11 @@ namespace macaque
 		{ _field_real, "e-brake moving friction vel diff" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
 		{ _field_string_id, "collision global material name" },
-		{ _field_short_integer, "runtime global material index" },
+		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("friction point destruction data", nullptr, ""),
 		{ _field_enum, "model state destroyed", &model_state_enum_definition },
 		{ _field_string_id, "region name", "only need point can destroy flag set" },
-		{ _field_long_integer, "runtime region index" },
+		{ _field_long_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -102,7 +102,7 @@ namespace macaque
 		{ _field_enum, "maximum update period ticks", &physics_update_period_enum },
 		{ _field_enum, "maximum remote update period ticks", &physics_update_period_enum },
 		{ _field_long_integer, "iteration count", "0 defaults to 1.  Number of iterations per frame of physics" },
-		{ _field_long_integer, "suspension count" },
+		{ _field_long_integer, "suspension count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "anti gravity points", &anti_gravity_point_definition_block },
 		{ _field_block, "friction points", &friction_point_definition_block },
 		{ _field_struct, "boat physics", &boat_physics_definition_struct },

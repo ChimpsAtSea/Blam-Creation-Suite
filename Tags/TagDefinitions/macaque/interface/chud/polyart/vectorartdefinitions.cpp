@@ -21,7 +21,7 @@ namespace macaque
 		FIELD_PAD("MERP", nullptr, 3),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_real, "import fudge factor (suggested 0.5)" },
-		{ _field_real_point_2d, "bounds" },
+		{ _field_real_point_2d, "bounds", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "curve smoothness" },
 		{ _field_block, "vertices", &polyartVertexBlock_block },
 		{ _field_block, "indices", &polyartIndexBlock_block },
@@ -48,7 +48,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VECTORARTVERTEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "vertices" },
+		{ _field_data, "vertices", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

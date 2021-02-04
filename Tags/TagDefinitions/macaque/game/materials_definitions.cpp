@@ -17,14 +17,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "parent name" },
-		{ _field_short_integer, "runtime material index" },
+		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &global_material_flags_definition },
 		{ _field_string_id, "general armor" },
 		{ _field_string_id, "specific armor" },
 		{ _field_struct, "wet proxies", &wet_proxies_struct },
-		{ _field_short_integer, "runtime dry base material index" },
+		{ _field_short_integer, "runtime dry base material index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("RMBP1", nullptr, 2),
 		{ _field_struct, "physics properties", &material_physics_properties_struct },
 		{ _field_tag_reference, "breakable surface", &global_breakable_surface_reference },
@@ -62,8 +62,8 @@ namespace macaque
 		{ _field_string_id, "underwater material" },
 		FIELD_EXPLANATION("... we report it as this material", nullptr, ""),
 		{ _field_string_id, "proxy material" },
-		{ _field_short_integer, "underwater material type" },
-		{ _field_short_integer, "proxy material type" },
+		{ _field_short_integer, "underwater material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "proxy material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -77,14 +77,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_MATERIALS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "parent name" },
-		{ _field_short_integer, "runtime material index" },
+		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &global_material_flags_definition },
 		{ _field_string_id, "general armor" },
 		{ _field_string_id, "specific armor" },
 		{ _field_struct, "wet proxies", &wet_proxies_struct },
-		{ _field_short_integer, "runtime dry base material index" },
+		{ _field_short_integer, "runtime dry base material index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("RMBP1", nullptr, 2),
 		{ _field_struct, "physics properties", &material_physics_properties_struct },
 		{ _field_tag_reference, "breakable surface", &global_breakable_surface_reference },
@@ -105,7 +105,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("when rained on, we report this material", nullptr, ""),
 		{ _field_string_id, "wet material" },
-		{ _field_short_integer, "runtime proxy material index" },
+		{ _field_short_integer, "runtime proxy material index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("wpb1", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -119,10 +119,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_PHYSICS_PROPERTIES_STRUCT_ID)
 	{
-		{ _field_long_integer, "flags" },
+		{ _field_long_integer, "flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
-		{ _field_real, "density", "kg/m^3" },
+		{ _field_real, "density", nullptr, "kg/m^3" },
 		FIELD_EXPLANATION("Drag", nullptr, ""),
 		{ _field_tag_reference, "water physics drag properties", &water_physics_drag_properties_reference },
 		{ _field_block, "drag overrides", &object_type_drag_properties_block },

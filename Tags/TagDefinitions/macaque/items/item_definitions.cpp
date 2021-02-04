@@ -65,7 +65,7 @@ namespace macaque
 		{ _field_tag_reference, "collision sound", &global_sound_reference },
 		{ _field_block, "predicted bitmaps", &predicted_bitmaps_block },
 		{ _field_tag_reference, "detonation damage effect", &global_damage_reference },
-		{ _field_real_bounds, "detonation delay", "seconds" },
+		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
 		{ _field_tag_reference, "detonating effect", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect", &global_effect_reference },
 		FIELD_EXPLANATION("Item scale settings", nullptr, "because grenades look better as coconuts. 0==1"),

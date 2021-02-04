@@ -20,7 +20,7 @@ namespace macaque
 		FIELD_CUSTOM("link to render model", nullptr, _field_id_unknown_compile),
 		{ _field_tag_reference, "render model", &render_model_reference$5 },
 		{ _field_block, "render model permutation names", &muffin_permutation_name_block },
-		{ _field_long_integer, "render model permutation name valid count" },
+		{ _field_long_integer, "render model permutation name valid count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "muffin markers", &muffin_marker_block },
 		{ _field_block, "muffin types", &global_muffin_type_block },
 		{ _field_terminator }
@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_PERMUTATION_NAME_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -57,7 +57,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_MARKER_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_word_integer, "muffinage chance", "how often muffins will appear on this marker", "percent " },
 		{ _field_word_block_flags, "allowed muffin types", &global_muffin_type_block },
 		{ _field_terminator }
@@ -85,7 +85,7 @@ namespace macaque
 		FIELD_EXPLANATION("SCALE", nullptr, "animates the size of the muffin"),
 		{ _field_real_bounds, "random scale" },
 		{ _field_struct, "initial growth", &muffin_scalar_function_struct },
-		{ _field_real, "growth time", "seconds" },
+		{ _field_real, "growth time", nullptr, "seconds" },
 		{ _field_struct, "periodic noise", &muffin_scalar_function_struct },
 		FIELD_EXPLANATION("JIGGLE", nullptr, "Jigglypuff will kick your ass..."),
 		{ _field_real, "jiggle", "how much the muffin jiggles (0 = perfectly rigid, 1 = full jiggle, subject to parameters below)" },

@@ -32,7 +32,7 @@ namespace macaque
 		{ _field_string_id, "avatar award" },
 		{ _field_block, "challenges", &game_incident_daily_challenge_to_increment_block },
 		{ _field_string_id, "hs script" },
-		{ _field_short_integer, "internal hs script index" },
+		{ _field_short_integer, "internal hs script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("VHSLKJNE", nullptr, 2),
 		{ _field_block, "fanfare", &specialized_incident_fanfare_block },
 		{ _field_tag_reference, "sound response", &sound_incident_response_group_reference },
@@ -49,7 +49,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_INCIDENT_DAILY_CHALLENGE_TO_INCREMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "daily challenge" },
+		{ _field_string_id, "daily challenge", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 

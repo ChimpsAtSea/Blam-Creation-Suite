@@ -66,7 +66,7 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &game_engine_miscellaneous_options_flags },
 		{ _field_char_integer, "early victory win count" },
-		{ _field_char_integer, "round time limit", "minutes" },
+		{ _field_char_integer, "round time limit", nullptr, "minutes" },
 		{ _field_char_integer, "number of rounds" },
 		{ _field_char_enum, "mosh difficulty level", &mosh_difficulty },
 		{ _field_byte_integer, "overshield deplete time" },
@@ -106,15 +106,15 @@ namespace macaque
 		{ _field_word_flags, "flags", &game_engine_respawn_options_flags },
 		{ _field_char_integer, "lives per round" },
 		{ _field_char_integer, "team lives per round" },
-		{ _field_char_integer, "min respawn time", "seconds" },
-		{ _field_char_integer, "respawn time", "seconds" },
-		{ _field_char_integer, "suicide penalty", "seconds" },
-		{ _field_char_integer, "betrayal penalty", "seconds" },
-		{ _field_char_integer, "respawn growth", "seconds" },
+		{ _field_char_integer, "min respawn time", nullptr, "seconds" },
+		{ _field_char_integer, "respawn time", nullptr, "seconds" },
+		{ _field_char_integer, "suicide penalty", nullptr, "seconds" },
+		{ _field_char_integer, "betrayal penalty", nullptr, "seconds" },
+		{ _field_char_integer, "respawn growth", nullptr, "seconds" },
 		FIELD_PAD("EOTOTRXV", nullptr, 3),
 		{ _field_string_id, "respawn player traits name" },
 		{ _field_char_integer, "initial loadout selection time", "delay before spawning in at start of round", "seconds" },
-		{ _field_char_integer, "respawn player traits duration", "seconds" },
+		{ _field_char_integer, "respawn player traits duration", nullptr, "seconds" },
 		FIELD_PAD("woman bound for glory, why you leaving me again?", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -151,18 +151,18 @@ namespace macaque
 		{ _field_string_id, "blue powerup traits name" },
 		{ _field_string_id, "yellow powerup traits name" },
 		{ _field_string_id, "custom powerup traits name" },
-		{ _field_char_integer, "red powerup duration", "seconds" },
-		{ _field_char_integer, "blue powerup duration", "seconds" },
-		{ _field_char_integer, "yellow powerup duration", "seconds" },
-		{ _field_char_integer, "custom powerup duration", "seconds" },
+		{ _field_char_integer, "red powerup duration", nullptr, "seconds" },
+		{ _field_char_integer, "blue powerup duration", nullptr, "seconds" },
+		{ _field_char_integer, "yellow powerup duration", nullptr, "seconds" },
+		{ _field_char_integer, "custom powerup duration", nullptr, "seconds" },
 		{ _field_string_id, "red powerup secondary traits name" },
 		{ _field_string_id, "blue powerup secondary traits name" },
 		{ _field_string_id, "yellow powerup secondary traits name" },
 		{ _field_string_id, "custom powerup secondary traits name" },
-		{ _field_char_integer, "red powerup secondary duration", "seconds" },
-		{ _field_char_integer, "blue powerup secondary duration", "seconds" },
-		{ _field_char_integer, "yellow powerup secondary duration", "seconds" },
-		{ _field_char_integer, "custom powerup secondary duration", "seconds" },
+		{ _field_char_integer, "red powerup secondary duration", nullptr, "seconds" },
+		{ _field_char_integer, "blue powerup secondary duration", nullptr, "seconds" },
+		{ _field_char_integer, "yellow powerup secondary duration", nullptr, "seconds" },
+		{ _field_char_integer, "custom powerup secondary duration", nullptr, "seconds" },
 		{ _field_byte_flags, "flags", &game_engine_map_override_options_flags },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_terminator }
@@ -241,7 +241,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTWAVEPROPERTIESBLOCK_ID)
 	{
-		{ _field_string_id, "squad type", "survival_mode_get_wave_squad" },
+		{ _field_string_id, "squad type", "survival_mode_get_wave_squad", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "Delivery type", &FirefightWaveDeliveryMethod },
 		{ _field_char_integer, "AI allowed before next wave spawns" },
 		{ _field_char_integer, "Enemies Left Before HUD Marking" },
@@ -265,7 +265,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_AI_TRAITS_LIST_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "ai traits", &game_engine_ai_traits_struct },
 		{ _field_terminator }
 	};
@@ -280,7 +280,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SANDBOX_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "localizable name" },
+		{ _field_string_id, "localizable name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
@@ -307,7 +307,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "localizable name" },
+		{ _field_string_id, "localizable name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
@@ -389,7 +389,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURVIVAL_WAVE_SQUAD_BLOCK_ID)
 	{
-		{ _field_string_id, "squad type", "survival_mode_get_wave_squad" },
+		{ _field_string_id, "squad type", "survival_mode_get_wave_squad", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -433,7 +433,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_CAMPAIGN_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "localizable name" },
+		{ _field_string_id, "localizable name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
@@ -512,7 +512,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEENGINEFIREFIGHTVARIANTDEFINITION_ID)
 	{
-		{ _field_string_id, "localizable name" },
+		{ _field_string_id, "localizable name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block },
 		{ _field_block, "prototype options", &game_engine_prototype_options_block },
@@ -595,7 +595,7 @@ namespace macaque
 		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
 	{
 		{ _field_long_flags, "skulls", &skull_flags },
-		{ _field_short_integer, "duration", "s" },
+		{ _field_short_integer, "duration", nullptr, "s" },
 		FIELD_PAD("CLKJSDF", nullptr, 2),
 		{ _field_struct, "base properties", &game_engine_survival_wave_properties_struct },
 		{ _field_terminator }

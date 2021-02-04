@@ -18,20 +18,20 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_INFORMATION_BLOCK_ID)
 	{
-		{ _field_real, "walking speed", "world units per second" },
-		{ _field_real, "run forward", "world units per second" },
-		{ _field_real, "run backward", "world units per second" },
-		{ _field_real, "run sideways", "world units per second" },
-		{ _field_real, "run acceleration", "world units per second squared" },
-		{ _field_real, "sneak forward", "world units per second" },
-		{ _field_real, "sneak backward", "world units per second" },
-		{ _field_real, "sneak sideways", "world units per second" },
-		{ _field_real, "sneak acceleration", "world units per second squared" },
-		{ _field_real, "airborne acceleration", "world units per second squared" },
+		{ _field_real, "walking speed", nullptr, "world units per second" },
+		{ _field_real, "run forward", nullptr, "world units per second" },
+		{ _field_real, "run backward", nullptr, "world units per second" },
+		{ _field_real, "run sideways", nullptr, "world units per second" },
+		{ _field_real, "run acceleration", nullptr, "world units per second squared" },
+		{ _field_real, "sneak forward", nullptr, "world units per second" },
+		{ _field_real, "sneak backward", nullptr, "world units per second" },
+		{ _field_real, "sneak sideways", nullptr, "world units per second" },
+		{ _field_real, "sneak acceleration", nullptr, "world units per second squared" },
+		{ _field_real, "airborne acceleration", nullptr, "world units per second squared" },
 		{ _field_real, "weapon ready anim scaler" },
 		{ _field_real_point_3d, "grenade origin" },
 		{ _field_struct, "grenade aiming", &scalar_function_named_struct },
-		{ _field_real_bounds, "first person idle time", "seconds" },
+		{ _field_real_bounds, "first person idle time", nullptr, "seconds" },
 		{ _field_real_fraction, "first person skip fraction" },
 		{ _field_tag_reference, "coop countdown sound", &global_sound_reference },
 		{ _field_tag_reference, "coop respawn sound", &global_sound_reference },
@@ -43,7 +43,7 @@ namespace macaque
 		{ _field_tag_reference, "night vision off", &global_sound_reference },
 		{ _field_real, "fire team objective range" },
 		{ _field_real, "fire team sandbox range" },
-		{ _field_real, "fire team cone angle", "in degrees" },
+		{ _field_real, "fire team cone angle", nullptr, "in degrees" },
 		FIELD_EXPLANATION("sprinting/momentum", nullptr, ""),
 		{ _field_block, "momentum and sprinting", &player_momentum_data_block },
 		{ _field_terminator }
@@ -68,12 +68,12 @@ namespace macaque
 		{ _field_real, "sprint turn multiplier", "how much faster to turn when sprinting" },
 		{ _field_real, "pegged magnitude", "how far the stick needs to be pressed before being considered pegged" },
 		{ _field_real, "pegged angular threshold", "how far off straight up (in degrees) we consider pegged" },
-		{ _field_angle, "max look yaw velocity", "degrees per second" },
-		{ _field_angle, "max look pitch velocity", "degrees per second" },
-		{ _field_real, "minimum player velocity to be considered in a momentum state", "world units per second" },
-		{ _field_real, "look window length", "period of time over which we record the biped's look angle for deciding if we should drop him out of momentum", "seconds" },
+		{ _field_angle, "max look yaw velocity", nullptr, "degrees per second" },
+		{ _field_angle, "max look pitch velocity", nullptr, "degrees per second" },
+		{ _field_real, "minimum player velocity to be considered in a momentum state", nullptr, "world units per second" },
+		{ _field_real, "look window length", "period of time over which we record the biped\'s look angle for deciding if we should drop him out of momentum", "seconds" },
 		{ _field_string_id, "momentum animation stance" },
-		{ _field_real, "min weapon error", "[0, 1] while using this type of momentum, the player's weapon error cannot drop below this value" },
+		{ _field_real, "min weapon error", "[0, 1] while using this type of momentum, the player\'s weapon error cannot drop below this value" },
 		{ _field_terminator }
 	};
 
@@ -113,7 +113,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIRSTPERSONPHIDDENBODYREGIONSBLOCK_ID)
 	{
-		{ _field_string_id, "hidden region" },
+		{ _field_string_id, "hidden region", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &FpBodyRegionFlags },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_terminator }

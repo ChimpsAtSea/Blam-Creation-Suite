@@ -36,10 +36,10 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
-		{ _field_real, "angle fade range", "degrees" },
-		{ _field_real, "angle fade cutoff", "degrees" },
-		{ _field_real, "far fade range", "wus" },
-		{ _field_real, "far fade cutoff", "wus" },
+		{ _field_real, "angle fade range", nullptr, "degrees" },
+		{ _field_real, "angle fade cutoff", nullptr, "degrees" },
+		{ _field_real, "far fade range", nullptr, "wus" },
+		{ _field_real, "far fade cutoff", nullptr, "wus" },
 		{ _field_terminator }
 	};
 

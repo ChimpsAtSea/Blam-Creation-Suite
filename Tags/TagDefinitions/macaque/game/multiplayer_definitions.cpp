@@ -68,7 +68,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEAMDEFINITIONBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
 		FIELD_CUSTOM("- Emblem Data", nullptr, _field_id_function_group_begin),
@@ -98,7 +98,7 @@ namespace macaque
 		{ _field_long_integer, "Kill" },
 		{ _field_long_integer, "Assist" },
 		{ _field_long_integer, "Fire team leader kill" },
-		{ _field_long_integer, "vehicle kill", "Default, only applies if the vehicle doesn't have a custom award amount in the scenario requisition palette." },
+		{ _field_long_integer, "vehicle kill", "Default, only applies if the vehicle doesn\'t have a custom award amount in the scenario requisition palette." },
 		{ _field_long_integer, "objective destroyed", "awarded to entire team" },
 		{ _field_long_integer, "objective armed", "awarded to entire team" },
 		{ _field_long_integer, "objective disarmed", "awarded to entire team" },
@@ -106,7 +106,7 @@ namespace macaque
 		{ _field_long_integer, "neutral territory owned", "awarded every 3 seconds to entire team that owns BFG" },
 		{ _field_long_integer, "served as reinforcement target", "awarded to a reinforcement target when a teammate spawns on him (to encourage cooperation)" },
 		{ _field_long_integer, "uberassault gun captured", "awarded on gaining ownership of a gun to every member of the new owning team" },
-		{ _field_long_integer, "uberassault gun owned", "awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you'll get 3x this money every 3 seconds)." },
+		{ _field_long_integer, "uberassault gun owned", "awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you\'ll get 3x this money every 3 seconds)." },
 		FIELD_EXPLANATION("PENALTY AMOUNTS", nullptr, "Requisition penalties for various discouraged actions"),
 		{ _field_long_integer, "Betrayed a teammate" },
 		FIELD_EXPLANATION("FIRE TEAM TIER KILL REQUIREMENTS", nullptr, "Number of kills a fireteam must have to reach each fire team tier"),
@@ -137,7 +137,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("CUSTOM APPS", nullptr, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
 		{ _field_tag_reference, "name", &requisition_palette_block_name_reference },
-		{ _field_string_id, "display_name" },
+		{ _field_string_id, "display_name", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "special_buy", &requisition_special_buy_enum },
 		{ _field_terminator }
 	};
@@ -223,7 +223,7 @@ namespace macaque
 		FIELD_EXPLANATION("PLAYER SPAWN INFLUENCERS", nullptr, "These are the default spawn influencer settings which can be overridden by scenario tags"),
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
 		FIELD_EXPLANATION("MORE MP CONSTANTS", nullptr, "More old Halo2 stuff follows..."),
-		{ _field_real, "teleporter recharge time", "seconds" },
+		{ _field_real, "teleporter recharge time", nullptr, "seconds" },
 		{ _field_tag_reference, "sandbox effect", &global_effect_reference },
 		{ _field_string_id, "blocked teleporter string" },
 		FIELD_EXPLANATION("RESPAWN STRINGS", nullptr, "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above"),

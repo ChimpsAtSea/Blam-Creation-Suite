@@ -27,9 +27,9 @@ namespace macaque
 	{
 		{ _field_struct, "build identifier", &structure_manifest_build_identifier_struct },
 		{ _field_struct, "parent build identifier", &structure_manifest_build_identifier_struct },
-		{ _field_long_integer, "import info checksum" },
+		{ _field_long_integer, "import info checksum", FIELD_FLAG_READ_ONLY },
 		{ _field_tag_reference, "structure lighting_info", &structure_lighting_bsp_reference },
-		{ _field_long_integer, "import version" },
+		{ _field_long_integer, "import version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_tag_reference, "structure meta data", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_word_flags, "flags", &structure_bsp_flags_definition },
 		{ _field_word_flags, "content policy flags", &structure_bsp_content_policy_flag },
@@ -44,9 +44,9 @@ namespace macaque
 		{ _field_block, "super node recursable_masks", &super_node_recursable_masks_block },
 		{ _field_block, "structure_super_node_traversal_geometry_block", &structure_super_node_traversal_geometry_block },
 		{ _field_struct, "instance kd hierarchy", &collision_kd_hierarchy_static_struct },
-		{ _field_real_bounds, "world bounds x" },
-		{ _field_real_bounds, "world bounds y" },
-		{ _field_real_bounds, "world bounds z" },
+		{ _field_real_bounds, "world bounds x", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "world bounds y", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "world bounds z", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "large structure surfaces", &structure_surface_block },
 		{ _field_block, "structure surface to triangle mapping", &structure_surface_to_triangle_mapping_block },
 		{ _field_block, "cluster portals", &structure_bsp_cluster_portal_block },
@@ -60,7 +60,7 @@ namespace macaque
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
 		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
 		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
-		{ _field_data, "sound PAS data" },
+		{ _field_data, "sound PAS data", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "markers", &structure_bsp_marker_block },
 		{ _field_block, "marker light palette", &structure_bsp_marker_light_palette_block },
 		{ _field_block, "marker light palette index", &structure_bsp_marker_light_index_block },
@@ -79,7 +79,7 @@ namespace macaque
 		{ _field_block, "instanced geometry instance names", &structure_bsp_instanced_geometry_instances_names_block },
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
-		{ _field_long_integer, "Instance Geometry Tag Instance Count" },
+		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("decorator info", nullptr, _field_id_function_group_begin),
 		{ _field_block, "decorator sets", &runtime_decorator_set_block },
 		{ _field_struct, "decorator instance buffer", &global_render_geometry_struct },
@@ -102,7 +102,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
-		{ _field_long_integer, "base material count" },
+		{ _field_long_integer, "base material count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "obb volume list", &structure_bsp_obb_volume_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
 		{ _field_block, "pupAnimations", &AnimGraphDependencyBlock_block },
@@ -132,8 +132,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_EDGE_TO_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
-		{ _field_short_integer, "seam_index" },
-		{ _field_short_integer, "seam_edge_index" },
+		{ _field_short_integer, "seam_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "seam_edge_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -149,7 +149,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "render method", &structure_collision_materials_block_render_method_reference },
 		{ _field_string_id, "override material name" },
-		{ _field_short_integer, "runtime global material index" },
+		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "conveyor surface index", &structure_bsp_conveyor_surface_block },
 		{ _field_short_block_index, "seam mapping index", &structure_seam_mapping_block },
 		{ _field_word_flags, "flags", &structure_collision_materialg_flags },
@@ -181,7 +181,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_LEAF_BLOCK_ID)
 	{
-		{ _field_byte_integer, "cluster" },
+		{ _field_byte_integer, "cluster", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -214,13 +214,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
-		{ _field_short_integer, "parent_super_node_index" },
-		{ _field_char_integer, "parent_internal_node_index" },
+		{ _field_short_integer, "parent_super_node_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "parent_internal_node_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_byte_flags, "flags", &structure_super_node_mapping_flags },
-		{ _field_long_integer, "has_traversal_geometry_mask" },
+		{ _field_long_integer, "has_traversal_geometry_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "first_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
 		{ _field_short_block_index, "first_aabb_index", &structure_super_node_aabbs_block },
-		{ _field_long_integer, "aabb_mask" },
+		{ _field_long_integer, "aabb_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "non_terminal_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
@@ -236,7 +236,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_INDICES_BLOCK_ID)
 	{
-		{ _field_short_integer, "index" },
+		{ _field_short_integer, "index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -250,7 +250,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_RECURSABLE_MASKS_BLOCK_ID)
 	{
-		{ _field_short_integer, "mask" },
+		{ _field_short_integer, "mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -279,8 +279,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SURFACE_BLOCK_ID)
 	{
-		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index" },
-		{ _field_long_integer, "structure_surface_to_triangle_mapping_count" },
+		{ _field_long_integer, "first_structure_surface_to_triangle_mapping_index", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "structure_surface_to_triangle_mapping_count", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -294,7 +294,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SURFACE_TO_TRIANGLE_MAPPING_BLOCK_STRUCT_ID)
 	{
-		{ _field_dword_integer, "manual byteswarp1" },
+		{ _field_dword_integer, "manual byteswarp1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -309,11 +309,11 @@ namespace macaque
 		STRUCTURE_BSP_CLUSTER_PORTAL_BLOCK_ID)
 	{
 		{ _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block },
-		{ _field_short_integer, "back cluster" },
-		{ _field_short_integer, "front cluster" },
-		{ _field_long_integer, "plane index" },
-		{ _field_real_point_3d, "centroid" },
-		{ _field_real, "bounding radius" },
+		{ _field_short_integer, "back cluster", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "front cluster", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "plane index", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "centroid", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "bounding radius", FIELD_FLAG_READ_ONLY },
 		{ _field_long_flags, "flags", &structure_bsp_cluster_portal_flags_definition },
 		{ _field_block, "vertices", &structure_bsp_cluster_portal_vertex_block },
 		{ _field_terminator }
@@ -329,7 +329,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "point" },
+		{ _field_real_point_3d, "point", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -363,22 +363,22 @@ namespace macaque
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("CLUSTER INFO", nullptr, ""),
-		{ _field_real_bounds, "bounds x" },
-		{ _field_real_bounds, "bounds y" },
-		{ _field_real_bounds, "bounds z" },
+		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
+		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("DING", nullptr, 1),
-		{ _field_char_integer, "atmosphere index" },
-		{ _field_char_integer, "camera fx index" },
-		{ _field_char_integer, "weather index" },
+		{ _field_char_integer, "atmosphere index", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "camera fx index", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "weather index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
 		{ _field_short_integer, "acoustics sound cluster index" },
-		{ _field_short_integer, "runtime first decal index" },
-		{ _field_short_integer, "runtime decal cound" },
+		{ _field_short_integer, "runtime first decal index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "runtime decal cound", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &structure_cluster_flags },
 		FIELD_PAD("ERERRFQ", nullptr, 2),
 		{ _field_block, "predicted resources", &g_null_block },
 		{ _field_block, "portals", &structure_bsp_cluster_portal_index_block },
-		{ _field_short_integer, "mesh index" },
+		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "instance imposter cluster mopp index" },
 		{ _field_block, "seam indices", &seam_indices_block_definition_block },
 		{ _field_block, "decorator groups", &decorator_runtime_cluster_block },
@@ -399,7 +399,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_INDEX_BLOCK_ID)
 	{
-		{ _field_short_integer, "portal index" },
+		{ _field_short_integer, "portal index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -413,7 +413,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SEAM_INDICES_BLOCK_DEFINITION_ID)
 	{
-		{ _field_char_integer, "seam index" },
+		{ _field_char_integer, "seam index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -442,7 +442,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
 	{
-		{ _field_short_integer, "marker index" },
+		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("ldajk", nullptr, 2),
 		{ _field_tag_reference, "cheap light", &cheap_light_reference },
 		{ _field_terminator }
@@ -507,7 +507,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_SKY_OWNER_CLUSTER_BLOCK_ID)
 	{
-		{ _field_short_integer, "cluster owner" },
+		{ _field_short_integer, "cluster owner", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -539,9 +539,9 @@ namespace macaque
 	{
 		{ _field_char_enum, "marker type", &structure_marker_type_enum },
 		FIELD_PAD("pad", nullptr, 3),
-		{ _field_string, "marker parameter" },
+		{ _field_string, "marker parameter", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "rotation" },
-		{ _field_real_point_3d, "position" },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -583,13 +583,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID)
 	{
-		{ _field_short_integer, "decal palette index" },
+		{ _field_short_integer, "decal palette index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("post-decal-palette-index-pad", nullptr, 2),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
-		{ _field_real_quaternion, "rotation" },
-		{ _field_real_point_3d, "position" },
-		{ _field_real, "scale_x" },
-		{ _field_real, "scale_y" },
+		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "scale_x", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "scale_y", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "cull angle" },
 		{ _field_terminator }
 	};
@@ -606,7 +606,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "definition", &object_reference$8 },
 		{ _field_tag_reference, "model", &render_model_reference$9 },
-		{ _field_long_integer, "GVEYN" },
+		{ _field_long_integer, "GVEYN", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -620,14 +620,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "translation" },
 		{ _field_real, "scale" },
 		{ _field_short_block_index, "palette_index", &structure_bsp_environment_object_palette_block },
 		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
 		FIELD_PAD("QHUGQ", nullptr, 1),
-		{ _field_long_integer, "unique id" },
+		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
 		{ _field_tag, "exported object type" },
 		{ _field_string_id, "scenario object name" },
 		{ _field_string_id, "variant name" },
@@ -677,9 +677,9 @@ namespace macaque
 		{ _field_real, "radius" },
 		{ _field_short_integer, "cluster count" },
 		{ _field_word_flags, "flags", &structure_instance_group_flags },
-		{ _field_real, "maximum imposter distance" },
-		{ _field_real, "minimum centrifugal distance from group center" },
-		{ _field_real, "minimum imposter distance squared" },
+		{ _field_real, "maximum imposter distance", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "minimum centrifugal distance from group center", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "minimum imposter distance squared", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "instance indices", &index_list_block },
 		{ _field_terminator }
 	};
@@ -725,18 +725,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BSP_PREPLACED_DECAL_SET_REFERENCE_BLOCK_ID)
 	{
-		{ _field_long_integer, "decal definition index" },
-		{ _field_char_integer, "location bsp 0" },
-		{ _field_byte_integer, "location cluster 0" },
-		{ _field_char_integer, "location bsp 1" },
-		{ _field_byte_integer, "location cluster 1" },
-		{ _field_char_integer, "location bsp 2" },
-		{ _field_byte_integer, "location cluster 2" },
-		{ _field_char_integer, "location bsp 3" },
-		{ _field_byte_integer, "location cluster 3" },
-		{ _field_real_point_3d, "center" },
-		{ _field_short_integer, "first decal ref index" },
-		{ _field_short_integer, "decal ref count" },
+		{ _field_long_integer, "decal definition index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "location bsp 0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_byte_integer, "location cluster 0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "location bsp 1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_byte_integer, "location cluster 1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "location bsp 2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_byte_integer, "location cluster 2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_integer, "location bsp 3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_byte_integer, "location cluster 3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_point_3d, "center", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "first decal ref index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "decal ref count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -826,11 +826,11 @@ namespace macaque
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
 		{ _field_enum, "type", &structure_bsp_debug_info_render_line_type_enum },
-		{ _field_short_integer, "code" },
-		{ _field_short_integer, "pad thai" },
+		{ _field_short_integer, "code", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "pad thai", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("BNQS", nullptr, 2),
-		{ _field_real_point_3d, "point 0" },
-		{ _field_real_point_3d, "point 1" },
+		{ _field_real_point_3d, "point 0", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "point 1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -844,7 +844,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_INDICES_BLOCK_ID)
 	{
-		{ _field_long_integer, "index" },
+		{ _field_long_integer, "index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -858,9 +858,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_long_integer, "fog zone index" },
+		{ _field_long_integer, "fog zone index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("WZGH", nullptr, 24),
-		{ _field_long_integer, "connected plane designator" },
+		{ _field_long_integer, "connected plane designator", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "intersected cluster indices", &structure_bsp_debug_info_indices_block },
 		{ _field_block, "inf. extent cluster indices", &structure_bsp_debug_info_indices_block },
@@ -877,8 +877,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_FOG_ZONE_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_long_integer, "media index", "scenario fog plane" },
-		{ _field_long_integer, "base fog plane index" },
+		{ _field_long_integer, "media index", nullptr, "scenario fog plane", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "base fog plane index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("RB", nullptr, 24),
 		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "immersed cluster indices", &structure_bsp_debug_info_indices_block },
@@ -897,7 +897,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIDGET_REFERENCE_BLOCK_ID)
 	{
-		{ _field_short_integer, "marker index" },
+		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("gnlao", nullptr, 2),
 		{ _field_tag_reference, "widget ref", &leaf_system_reference },
 		{ _field_terminator }
@@ -928,18 +928,18 @@ namespace macaque
 		STRUCTURE_EXTERNAL_INSTANCED_GEOMETRY_REFERENCES_BLOCK_ID)
 	{
 		{ _field_tag_reference, "prefab reference", &prefab_reference },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "left" },
 		{ _field_real_vector_3d, "up" },
 		{ _field_real_point_3d, "position" },
-		{ _field_short_integer, "mesh count" },
-		{ _field_short_integer, "mesh block index" },
-		{ _field_short_integer, "light count" },
-		{ _field_short_integer, "light instance block index" },
-		{ _field_short_integer, "dynamic object count" },
-		{ _field_short_integer, "dynamic object block index" },
+		{ _field_short_integer, "mesh count", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "mesh block index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "light count", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "light instance block index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "dynamic object count", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "dynamic object block index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "override flags", &instanced_geometry_flags },
 		FIELD_PAD("SDFSDEE", nullptr, 2),
 		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
@@ -997,9 +997,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREBSPFXMARKERBLOCK_ID)
 	{
-		{ _field_string, "marker name" },
-		{ _field_real_quaternion, "rotation" },
-		{ _field_real_point_3d, "position" },
+		{ _field_string, "marker name", FIELD_FLAG_INDEX },
+		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 		{ _field_tag_reference, "optional attached effect", &structureBspFxMarkerBlock_optional_attached_effect_reference },
 		{ _field_terminator }
 	};
@@ -1014,7 +1014,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREMETADATALIGHTCONEMARKERBLOCK_ID)
 	{
-		{ _field_string, "marker name" },
+		{ _field_string, "marker name", FIELD_FLAG_INDEX },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real, "length" },
@@ -1048,9 +1048,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_PORTAL_ORIENTED_BOUNDS_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "center" },
-		{ _field_real_vector_3d, "extents" },
-		{ _field_real_quaternion, "orientation" },
+		{ _field_real_point_3d, "center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_quaternion, "orientation", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -1067,7 +1067,7 @@ namespace macaque
 		{ _field_block, "raw_resources", &structure_bsp_raw_resources_block },
 		{ _field_pageable, "tag_resources", &structure_bsp_tag_resources_struct },
 		{ _field_pageable, "cache_file_resources", &structure_bsp_cache_file_tag_resources_struct },
-		{ _field_long_integer, "use resource items" },
+		{ _field_long_integer, "use resource items", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

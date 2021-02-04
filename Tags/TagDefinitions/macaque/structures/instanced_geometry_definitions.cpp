@@ -17,13 +17,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RENDER_MODEL_INSTANCE_PLACEMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_long_block_index, "node_index", &render_model_node_block },
-		{ _field_real, "scale" },
-		{ _field_real_vector_3d, "forward" },
-		{ _field_real_vector_3d, "left" },
-		{ _field_real_vector_3d, "up" },
-		{ _field_real_point_3d, "position" },
+		{ _field_real, "scale", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "forward", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "left", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "up", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -51,17 +51,17 @@ namespace macaque
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
-		{ _field_real, "bounds x0" },
-		{ _field_real, "bounds x1" },
-		{ _field_real, "bounds y0" },
-		{ _field_real, "bounds y1" },
-		{ _field_real, "bounds z0" },
-		{ _field_real, "bounds z1" },
-		{ _field_real_point_3d, "world bounding sphere center" },
-		{ _field_real, "world bounding sphere radius" },
-		{ _field_real, "imposter transition complete distance" },
-		{ _field_real, "imposter brightness" },
-		{ _field_long_integer, "checksum" },
+		{ _field_real, "bounds x0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds x1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds y0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds y1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds z0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds z1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_point_3d, "world bounding sphere center", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "world bounding sphere radius", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "imposter transition complete distance", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "imposter brightness", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "checksum", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "imposter policy", &instanced_geometry_imposter_policy_enum },
@@ -70,10 +70,10 @@ namespace macaque
 		FIELD_PAD("strpad", nullptr, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
-		{ _field_short_integer, "group_index" },
-		{ _field_short_integer, "group_list_index" },
-		{ _field_string_id, "name" },
-		{ _field_long_string, "source file name" },
+		{ _field_short_integer, "group_index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "group_list_index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_long_string, "source file name", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -87,7 +87,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID)
 	{
-		{ _field_long_integer, "checksum" },
+		{ _field_long_integer, "checksum", FIELD_FLAG_READ_ONLY },
 		{ _field_long_flags, "flags", &instanced_geometry_definition_flags },
 		{ _field_short_integer, "mesh index" },
 		{ _field_short_integer, "compression index" },
@@ -107,7 +107,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_NAMES_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -147,17 +147,17 @@ namespace macaque
 		{ _field_long_integer, "seam bit vector 1" },
 		{ _field_long_integer, "seam bit vector 2" },
 		{ _field_long_integer, "seam bit vector 3" },
-		{ _field_real, "bounds x0" },
-		{ _field_real, "bounds x1" },
-		{ _field_real, "bounds y0" },
-		{ _field_real, "bounds y1" },
-		{ _field_real, "bounds z0" },
-		{ _field_real, "bounds z1" },
-		{ _field_real_point_3d, "world bounding sphere center" },
-		{ _field_real, "world bounding sphere radius" },
-		{ _field_real, "imposter transition complete distance" },
-		{ _field_real, "imposter brightness" },
-		{ _field_long_integer, "checksum" },
+		{ _field_real, "bounds x0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds x1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds y0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds y1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds z0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "bounds z1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_point_3d, "world bounding sphere center", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "world bounding sphere radius", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "imposter transition complete distance", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "imposter brightness", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "checksum", FIELD_FLAG_READ_ONLY },
 		{ _field_char_enum, "pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "imposter policy", &instanced_geometry_imposter_policy_enum },
@@ -166,8 +166,8 @@ namespace macaque
 		FIELD_PAD("strpad", nullptr, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
-		{ _field_short_integer, "group_index" },
-		{ _field_short_integer, "group_list_index" },
+		{ _field_short_integer, "group_index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "group_list_index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -180,14 +180,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTUREIOHAVOKDATABLOCK_STRUCT_ID)
 	{
-		{ _field_long_integer, "version" },
-		{ _field_long_integer, "RuntimeDeserializedBody Pointer" },
-		{ _field_long_integer, "RuntimeDeserializedData Pointer" },
-		{ _field_long_integer, "Prefab Index" },
-		{ _field_data, "Serialized Havok Data" },
+		{ _field_long_integer, "version", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "RuntimeDeserializedBody Pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "RuntimeDeserializedData Pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "Prefab Index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_data, "Serialized Havok Data", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "Serialized Per Collision Type Havok Geometry", &SerializedHavokGeometryDataBlock_block },
-		{ _field_real_point_3d, "Shapes bounds min" },
-		{ _field_real_point_3d, "Shapes bounds max" },
+		{ _field_real_point_3d, "Shapes bounds min", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "Shapes bounds max", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -200,11 +200,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SERIALIZEDHAVOKGEOMETRYDATABLOCK_STRUCT_ID)
 	{
-		{ _field_data, "Serialized Havok Data" },
-		{ _field_data, "Serialized Static Havok Data" },
+		{ _field_data, "Serialized Havok Data", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "Serialized Static Havok Data", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "collision type" },
-		{ _field_long_integer, "RuntimeDeserializedBody Pointer" },
-		{ _field_long_integer, "RuntimeDeserializedData Pointer" },
+		{ _field_long_integer, "RuntimeDeserializedBody Pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "RuntimeDeserializedData Pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

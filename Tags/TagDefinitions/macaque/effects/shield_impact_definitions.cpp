@@ -32,7 +32,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Shield Controls", nullptr, "You can use the following variables as inputs to the functions here, in addition to any object variables\n    shield_vitality        percentage of shield remaining\n    shield_intensity       mixture of recent and current damage (see below)\n    current_shield_damage\n    recent_shield_damage\n"),
 		{ _field_word_flags, "flags", &shield_flags },
-		{ _field_short_integer, "version" },
+		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("Shield Intensity", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Shield Intensity", nullptr, "Shield intensity is a combination of recent damage and current damage.\nThese controls let you adjust the relative intensity contribution from each.\n\'shield_intensity\' can be used as an input to any of the animation function curves below."),
 		{ _field_real, "Recent Damage Intensity" },
@@ -40,7 +40,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("Shield Edge", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Shield Edge", nullptr, "These controls allow you to define the location and width of the shield edges.\nThe edge is faded as a function of the surface normal with respect to the camera.\nRadius 1.0 corresponds to the glancing edges of the surface (the silhouette edges).\nRadius 0.0 corresponds to the area of the surface directly facing the camera (the center).\nYou can control separately the inner and outer fades."),
-		{ _field_real, "Depth Fade Range", "world units" },
+		{ _field_real, "Depth Fade Range", nullptr, "world units" },
 		{ _field_real, "Outer Fade Radius" },
 		{ _field_real, "Center Radius" },
 		{ _field_real, "Inner Fade Radius" },
@@ -49,7 +49,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("Plasma", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Plasma", nullptr, "These controls allow you to define the appearance of the plasma effect.\nThe plasma is calculated using the standard formula (1-abs(tex0-tex1))^(sharpness).\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
-		{ _field_real, "Plasma Depth Fade Range", "world units" },
+		{ _field_real, "Plasma Depth Fade Range", nullptr, "world units" },
 		{ _field_tag_reference, "Plasma Noise Texture 0", &global_bitmap_reference },
 		{ _field_tag_reference, "Plasma Noise Texture 1", &global_bitmap_reference },
 		{ _field_real, "Tiling Scale" },
@@ -75,16 +75,16 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("Hit Response", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Hit Response", nullptr, "These controls allow you to define the color variation in the area surrounding projectile impacts.\nYou can control the color, and the size of the colored area.\nThe default input is time since impact.\n"),
-		{ _field_real, "Hit Time", "seconds" },
+		{ _field_real, "Hit Time", nullptr, "seconds" },
 		{ _field_struct, "Hit Color", &shield_color_function_struct },
 		{ _field_struct, "Hit Intensity", &shield_scalar_function_struct },
 		{ _field_struct, "Hit Radius", &shield_scalar_function_struct },
 		{ _field_tag_reference, "hit blob texture (adds significant cost)", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_real_quaternion, "edge_scales" },
-		{ _field_real_quaternion, "edge_offsets" },
-		{ _field_real_quaternion, "plasma_scales" },
-		{ _field_real_quaternion, "depth_fade_params" },
+		{ _field_real_quaternion, "edge_scales", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "edge_offsets", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "plasma_scales", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "depth_fade_params", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -98,8 +98,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_COLOR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
@@ -115,8 +115,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }

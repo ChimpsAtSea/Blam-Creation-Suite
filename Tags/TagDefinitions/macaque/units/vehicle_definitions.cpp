@@ -107,8 +107,8 @@ namespace macaque
 		FIELD_EXPLANATION("deployed mode", nullptr, ""),
 		{ _field_real, "turret deployment time", "time it takes for turret and support legs to deploy", "seconds" },
 		{ _field_real, "turret holster time", "time it takes for turret and support legs to pack up", "seconds" },
-		{ _field_real, "runtime inverse turret deployment time" },
-		{ _field_real, "runtime inverse turret holster time" },
+		{ _field_real, "runtime inverse turret deployment time", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "runtime inverse turret holster time", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "deployed camera yaw scale." },
 		{ _field_terminator }
 	};
@@ -459,7 +459,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		FIELD_PAD("blah", nullptr, 3),
-		{ _field_angle, "tank control forward arc", "only used when 'use tank controls' is checked above", "degrees" },
+		{ _field_angle, "tank control forward arc", "only used when \'use tank controls\' is checked above", "degrees" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
 		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1?" },
@@ -487,8 +487,8 @@ namespace macaque
 		{ _field_real, "full throttle speed", "maximum speed when throttle = 1.0", "wu/s" },
 		{ _field_real, "neutral throttle speed", "speed when throttle = 0.0", "wu/s" },
 		{ _field_real, "reverse throttle speed", "speed when throttle = -1.0", "wu/s" },
-		{ _field_real, "speed acceleration", "wu/s/s" },
-		{ _field_real, "speed deceleration", "wu/s/s" },
+		{ _field_real, "speed acceleration", nullptr, "wu/s/s" },
+		{ _field_real, "speed deceleration", nullptr, "wu/s/s" },
 		{ _field_real, "maximum left slide" },
 		{ _field_real, "maximum right slide" },
 		{ _field_real, "slide acceleration" },
@@ -604,7 +604,7 @@ namespace macaque
 		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
 		{ _field_string_id, "Function", "Function to drive the RTPC" },
 		{ _field_string_id, "RTPC Name", "WWise RTPC string name" },
-		{ _field_long_integer, "RTPC name hash value" },
+		{ _field_long_integer, "RTPC name hash value", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -672,8 +672,8 @@ namespace macaque
 		{ _field_real, "complex suspension wheel width" },
 		{ _field_real, "minimum flipping angular velocity" },
 		{ _field_real, "maximum flipping angular velocity" },
-		{ _field_real, "crouch transition time", "seconds" },
-		{ _field_real, "HOOJYTSU" },
+		{ _field_real, "crouch transition time", nullptr, "seconds" },
+		{ _field_real, "HOOJYTSU", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "seat enterance acceleration scale", "how much do we scale the force the vehicle the applies down on the seat when he enters. 0 == no acceleration" },
 		{ _field_real, "seat exit accelersation scale", "how much do we scale the force the vehicle the applies down on the seat when he exits. 0 == no acceleration" },
 		{ _field_real, "blur speed" },
@@ -780,7 +780,7 @@ namespace macaque
 		VEHICLE_STEERING_CONTROL_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("steering overdampening", nullptr, "when the steering is off by more than the cusp angle\nthe steering will overcompensate more and more.  when it\nis less, it overcompensates less and less.  the exponent\nshould be something in the neighborhood of 2.0\n"),
-		{ _field_real, "overdampen cusp angle", "degrees" },
+		{ _field_real, "overdampen cusp angle", nullptr, "degrees" },
 		{ _field_real, "overdampen exponent" },
 		{ _field_terminator }
 	};
@@ -844,7 +844,7 @@ namespace macaque
 		VTOL_DESCENT_FUNCTION_STRUCT_ID)
 	{
 		{ _field_struct, "descent to boost", &scalar_function_named_struct },
-		{ _field_real, "max downward speed", "wu/s", _field_id_function_unknown },
+		{ _field_real, "max downward speed", nullptr, "wu/s", _field_id_function_unknown },
 		{ _field_terminator }
 	};
 

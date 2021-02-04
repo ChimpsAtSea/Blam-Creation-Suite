@@ -45,8 +45,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_VERTICES_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "initial position" },
-		{ _field_real_vector_2d, "uv" },
+		{ _field_real_point_3d, "initial position", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_2d, "uv", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -60,7 +60,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_INDICES_BLOCK_ID)
 	{
-		{ _field_short_integer, "index" },
+		{ _field_short_integer, "index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -74,9 +74,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_LINKS_BLOCK_ID)
 	{
-		{ _field_real, "default_distance" },
-		{ _field_long_integer, "index1" },
-		{ _field_long_integer, "index2" },
+		{ _field_real, "default_distance", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "index1", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "index2", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("vmx_pad", nullptr, 4),
 		{ _field_terminator }
 	};

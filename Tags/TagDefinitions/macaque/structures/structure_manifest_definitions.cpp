@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_struct, "build identifer", &structure_manifest_build_identifier_struct },
 		{ _field_struct, "parent build identifer", &structure_manifest_build_identifier_struct },
-		{ _field_long_string, "bsp name" },
+		{ _field_long_string, "bsp name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -32,12 +32,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_MANIFEST_BUILD_IDENTIFIER_STRUCT_ID)
 	{
-		{ _field_long_integer, "manifest_id0" },
-		{ _field_long_integer, "manifest_id1" },
-		{ _field_long_integer, "manifest_id2" },
-		{ _field_long_integer, "manifest_id3" },
-		{ _field_long_integer, "build_index" },
-		{ _field_long_integer, "structure importer version" },
+		{ _field_long_integer, "manifest_id0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "manifest_id1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "manifest_id2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "manifest_id3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "build_index", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "structure importer version", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

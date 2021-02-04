@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_TRICK_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "animation name" },
+		{ _field_string_id, "animation name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "activation type", &unit_trick_activation_type_enum },
 		{ _field_char_enum, "velocity preservation", &unit_trick_velocity_preservation_mode_enum },
 		{ _field_byte_flags, "flags", &unit_trick_flags },

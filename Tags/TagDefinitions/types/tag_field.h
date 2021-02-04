@@ -212,9 +212,17 @@ namespace blofeld
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, uint32_t flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
+		// type, name, FLAGS
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, uint32_t flags, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, nullptr, flags, nullptr, id) {};
+
 		// type, name, description
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, description
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, uint32_t flags) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, e_field_id id) :
@@ -223,6 +231,14 @@ namespace blofeld
 		// type, name, description, units
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
+
+		// type, name, description, units
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, uint32_t flags) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
+
+		// type, name, description, units, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, uint32_t flags, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, nullptr, flags, nullptr, id) {};
 
 		// type, name, description, units, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, e_field_id id) :

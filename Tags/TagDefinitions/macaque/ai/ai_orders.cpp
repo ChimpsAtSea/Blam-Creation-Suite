@@ -34,7 +34,7 @@ namespace macaque
 		TRIGGERS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "trigger flags", &trigger_flags },
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		FIELD_PAD("XXCMMRUP", nullptr, 2),
@@ -65,7 +65,7 @@ namespace macaque
 		FIELD_PAD("VZNEYGLW", nullptr, 2),
 		{ _field_useless_pad, "" },
 		{ _field_string, "Exit condition script", _field_id_halo_script_block },
-		{ _field_short_integer, "script index" },
+		{ _field_short_integer, "script index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("LEV", nullptr, 2),
 		{ _field_useless_pad, "" },
 		{ _field_long_flags, "flags", &completion_condition_flags },
@@ -83,14 +83,14 @@ namespace macaque
 		ORDERS_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "Style", &style_palette_block },
 		FIELD_PAD("YATIWNRNR", nullptr, 2),
 		{ _field_long_flags, "flags", &order_flags },
 		{ _field_enum, "Force combat status", &force_combat_status_enum },
 		FIELD_PAD("PWY", nullptr, 2),
 		{ _field_string, "Entry Script", _field_id_halo_script_block },
-		{ _field_short_integer, "Script index" },
+		{ _field_short_integer, "Script index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "Follow squad", &squads_block },
 		{ _field_real, "follow radius" },
 		{ _field_block, "Primary area set", &area_reference_block },

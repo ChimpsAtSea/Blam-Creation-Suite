@@ -42,7 +42,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_REFERENCES_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "vocalization", FIELD_FLAG_INDEX },
 		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block },
 		{ _field_terminator }
 	};
@@ -59,7 +59,7 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &vocalization_stimulus_flags },
 		FIELD_PAD("AN", nullptr, 2),
-		{ _field_string_id, "stimulus" },
+		{ _field_string_id, "stimulus", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "sound", &sound_reference$4 },
 		{ _field_terminator }
 	};

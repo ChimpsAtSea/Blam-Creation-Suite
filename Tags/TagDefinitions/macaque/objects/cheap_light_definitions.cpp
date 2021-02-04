@@ -39,9 +39,9 @@ namespace macaque
 		FIELD_EXPLANATION("SIZE", nullptr, "radius of the spherical light"),
 		{ _field_struct, "Falloff End", &light_scalar_function_struct },
 		{ _field_real, "Falloff Begin Ratio", "Ratio of falloff start to falloff end" },
-		{ _field_real, "near fade distance", "world units" },
-		{ _field_real, "far fade begin", "world units" },
-		{ _field_real, "far fade cutoff", "world units" },
+		{ _field_real, "near fade distance", nullptr, "world units" },
+		{ _field_real, "far fade begin", nullptr, "world units" },
+		{ _field_real, "far fade cutoff", nullptr, "world units" },
 		{ _field_terminator }
 	};
 

@@ -17,12 +17,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTVERTEXBLOCK_ID)
 	{
-		{ _field_short_integer, "half x" },
-		{ _field_short_integer, "half y" },
-		{ _field_short_integer, "half z" },
-		{ _field_short_integer, "half alpha" },
-		{ _field_short_integer, "half u" },
-		{ _field_short_integer, "half v" },
+		{ _field_short_integer, "half x", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "half y", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "half z", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "half alpha", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "half u", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "half v", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -36,7 +36,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTINDEXBLOCK_ID)
 	{
-		{ _field_short_integer, "index" },
+		{ _field_short_integer, "index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -61,11 +61,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXBUFFERSBLOCK_STRUCT_ID)
 	{
-		{ _field_byte_integer, "declaration type" },
-		{ _field_byte_integer, "stride" },
+		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("vertex buffer pad", nullptr, 2),
-		{ _field_dword_integer, "count" },
-		{ _field_long_integer, "d3d hardware format" },
+		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -78,11 +78,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INDEXBUFFERSBLOCK_STRUCT_ID)
 	{
-		{ _field_byte_integer, "declaration type" },
-		{ _field_byte_integer, "stride" },
+		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("vertex buffer pad", nullptr, 2),
-		{ _field_dword_integer, "count" },
-		{ _field_long_integer, "d3d hardware format" },
+		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

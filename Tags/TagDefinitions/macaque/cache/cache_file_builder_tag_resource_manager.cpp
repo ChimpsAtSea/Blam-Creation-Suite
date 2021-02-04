@@ -74,7 +74,7 @@ namespace macaque
 		{ _field_block, "resource owners", &cache_file_resource_owner_block },
 		{ _field_block, "model variant usage", &cache_file_model_variant_usage_block },
 		{ _field_block, "character usage", &cache_file_character_usage_block },
-		{ _field_data, "naive resource control data" },
+		{ _field_data, "naive resource control data", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "minimum complete resource size" },
 		{ _field_long_integer, "minimum required resource size" },
 		{ _field_long_integer, "minimum dvd resource size" },
@@ -91,7 +91,7 @@ namespace macaque
 		{ _field_block, "parentages", &cache_file_tag_parentage_block },
 		{ _field_struct, "prediction table", &cache_file_tag_resource_prediction_table },
 		{ _field_long_integer, "Mat is in a really bad mood campaign id" },
-		{ _field_long_integer, "Next time we don't put things that the game depends on outside of tool, guerilla, or sapien map id" },
+		{ _field_long_integer, "Next time we don\'t put things that the game depends on outside of tool, guerilla, or sapien map id" },
 		{ _field_terminator }
 	};
 
@@ -129,7 +129,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_SHARED_FILE_BLOCK_ID)
 	{
-		{ _field_long_string, "dvd relative path" },
+		{ _field_long_string, "dvd relative path", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &cache_file_shared_file_flags_definition },
 		{ _field_short_integer, "global shared location offset" },
 		{ _field_long_integer, "io offset" },
@@ -203,7 +203,7 @@ namespace macaque
 		{ _field_long_integer, "identifier part 2" },
 		{ _field_long_integer, "identifier part 3" },
 		{ _field_long_integer, "definition flags" },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array },
 		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_terminator }
@@ -223,7 +223,7 @@ namespace macaque
 		{ _field_long_integer, "identifier part 1" },
 		{ _field_long_integer, "identifier part 2" },
 		{ _field_long_integer, "identifier part 3" },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -261,8 +261,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_FIXUP_LOCATION_BLOCK_ID)
 	{
-		{ _field_long_integer, "encoded fixup location" },
-		{ _field_long_integer, "encoded fixup value" },
+		{ _field_long_integer, "encoded fixup location", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "encoded fixup value", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -276,7 +276,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_INTEROP_LOCATION_BLOCK_ID)
 	{
-		{ _field_long_integer, "encoded interop location" },
+		{ _field_long_integer, "encoded interop location", FIELD_FLAG_READ_ONLY },
 		{ _field_long_block_index, "interop type index", &cache_file_interop_type_identifier_block },
 		{ _field_terminator }
 	};
@@ -325,7 +325,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_TAG_RESOURCE_USAGE_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_array, "page sizes", &resource_usage_page_size_array_definition_array },
 		{ _field_long_integer, "deferred required size" },
 		{ _field_long_integer, "streamed resource size" },
@@ -360,7 +360,7 @@ namespace macaque
 		CACHE_FILE_RESOURCE_OWNER_BLOCK_ID)
 	{
 		{ _field_tag_reference, "resource owner", &g_non_traversed_reference_definition },
-		{ _field_long_integer, "actual tag index" },
+		{ _field_long_integer, "actual tag index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -418,7 +418,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_ZONE_SET_ZONE_USAGE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &scenario_zone_set_flags_definition },
 		{ _field_long_block_flags, "required bsp zones", &cache_file_bsp_zone_block },
 		{ _field_long_block_flags, "expected touched bsp zones", &cache_file_bsp_zone_block },
@@ -907,7 +907,7 @@ namespace macaque
 	{
 		{ _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block },
 		{ _field_block, "streamed resource bitvector", &cache_file_tag_resources_bitvector_block },
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_array, "page sizes", &resource_usage_page_size_array_definition_array },
 		{ _field_long_integer, "deferred required size" },
 		{ _field_long_integer, "streamed resource size" },
@@ -918,10 +918,10 @@ namespace macaque
 		{ _field_block, "active resource owners", &cache_file_tag_resources_bitvector_block },
 		{ _field_block, "top level resource owners", &cache_file_tag_resources_bitvector_block },
 		{ _field_block, "visitation hierarchy", &cache_file_zone_resource_visit_node_block },
-		{ _field_long_integer, "active bsp mask" },
-		{ _field_long_integer, "touched bsp mask" },
-		{ _field_long_integer, "cinematic zone mask" },
-		{ _field_qword_integer, "designer zone mask" },
+		{ _field_long_integer, "active bsp mask", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "touched bsp mask", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "cinematic zone mask", FIELD_FLAG_UNKNOWN0 },
+		{ _field_qword_integer, "designer zone mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

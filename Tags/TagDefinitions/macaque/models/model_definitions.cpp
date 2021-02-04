@@ -25,8 +25,8 @@ namespace macaque
 		{ _field_tag_reference, "animation", &global_animation_graph_reference },
 		{ _field_tag_reference, "physics_model", &physics_model_reference },
 		{ _field_tag_reference, "imposter model", &imposter_model_reference$2 },
-		{ _field_long_integer, "runtime render checksum" },
-		{ _field_long_integer, "runtime collision checksum" },
+		{ _field_long_integer, "runtime render checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "runtime collision checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_EXPLANATION("Optional Static Lightmap", nullptr, "\n"),
 		{ _field_tag_reference, "Lighting Info", &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
@@ -38,18 +38,18 @@ namespace macaque
 		{ _field_long_integer, "PVS sampling subdivision per axis ", "How many sample subdivisions we perform per PVS block when generating the data : [good initial value 2]" },
 		{ _field_real, "PVS visibility threshold ", "Minimum amount we need to see of an individual part mesh to care about it : [good initial value 0.004]" },
 		FIELD_EXPLANATION("level of detail", nullptr, "\n"),
-		{ _field_real, "disappear distance", "world units" },
-		{ _field_real, "begin fade distance", "world units" },
-		{ _field_real, "animation lod distance", "world units" },
+		{ _field_real, "disappear distance", nullptr, "world units" },
+		{ _field_real, "begin fade distance", nullptr, "world units" },
+		{ _field_real, "animation lod distance", nullptr, "world units" },
 		{ _field_real, "shadow fade distance", "NOTE this is only a maximum distance, shadows may fade closer when you exceed the shadow budget, you should balance the total shadows in a scene", "world units" },
-		{ _field_real, "imposter render distance", "world units" },
+		{ _field_real, "imposter render distance", nullptr, "world units" },
 		{ _field_enum, "imposter quality", &imposter_quality_definition },
 		{ _field_enum, "imposter policy", &imposter_policy_definition },
 		{ _field_real, "imposter brightness adjustment" },
-		{ _field_real, "instance disappear distance", "world units" },
+		{ _field_real, "instance disappear distance", nullptr, "world units" },
 		{ _field_real, "midrange detail disappear distance", "distance at which the midrange detail disappears", "world units" },
 		{ _field_real, "close detail disappear distance", "distance at which the close detail disappears", "world units" },
-		{ _field_real, "tessellation max draw distance", "world units" },
+		{ _field_real, "tessellation max draw distance", nullptr, "world units" },
 		{ _field_long_flags, "resource distance override flags", &model_lod_resource_distance_flags_definition },
 		{ _field_real, "medium priority distance" },
 		{ _field_real, "low priority distance" },
@@ -63,7 +63,7 @@ namespace macaque
 		{ _field_block, "model targets", &model_target_block_new_block },
 		{ _field_block, "runtime regions", &model_region_block },
 		{ _field_block, "runtime nodes", &model_node_block },
-		{ _field_long_integer, "runtime node list checksum" },
+		{ _field_long_integer, "runtime node list checksum", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("more stuff", nullptr, ""),
 		{ _field_tag_reference, "default dialogue", &dialogue_reference$3 },
 		{ _field_tag_reference, "default dialogue female", &dialogue_reference$3 },
@@ -89,8 +89,8 @@ namespace macaque
 		FIELD_EXPLANATION("Shield impact overrides", nullptr, "Regular and 1st person shield impact effect overrides\n"),
 		{ _field_tag_reference, "shield impact parameter override", &global_shield_parameters_reference },
 		{ _field_tag_reference, "1st person shield impact parameter override", &global_shield_parameters_reference },
-		{ _field_real, "runtime bounding radius", "world units" },
-		{ _field_real_point_3d, "runtime bounding offset" },
+		{ _field_real, "runtime bounding radius", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "runtime bounding offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -111,7 +111,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_array, "runtime variant region indices", &runtime_region_index_array },
 		{ _field_block, "regions", &model_variant_region_block },
 		{ _field_block, "objects", &model_variant_object_block },
@@ -131,9 +131,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_REGION_BLOCK_ID)
 	{
-		{ _field_string_id, "region name", "must match region name in render_model" },
-		{ _field_char_integer, "runtime region index" },
-		{ _field_byte_integer, "runtime flags" },
+		{ _field_string_id, "region name", nullptr, "must match region name in render_model", FIELD_FLAG_INDEX },
+		{ _field_char_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_byte_integer, "runtime flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "parent variant", &model_variant_block },
 		{ _field_block, "permutations", &model_variant_permutation_block },
 		{ _field_enum, "sort order", &region_sort_enum },
@@ -151,11 +151,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_string_id, "permutation name" },
-		{ _field_char_integer, "runtime permutation index" },
+		{ _field_string_id, "permutation name", FIELD_FLAG_INDEX },
+		{ _field_char_integer, "runtime permutation index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "flags", &model_variant_permutation_flags_definition },
 		FIELD_PAD("KSJOSR", nullptr, 2),
-		{ _field_real, "probability", "(0,+inf)" },
+		{ _field_real, "probability", nullptr, "(0,+inf)" },
 		{ _field_block, "states", &model_variant_state_block },
 		{ _field_array, "runtime state permutation indices", &model_state_permutation_index_array },
 		FIELD_PAD("LOOEL", nullptr, 7),
@@ -173,7 +173,7 @@ namespace macaque
 		MODEL_VARIANT_STATE_BLOCK_ID)
 	{
 		{ _field_string_id, "permutation name" },
-		{ _field_char_integer, "runtime permutation index" },
+		{ _field_char_integer, "runtime permutation index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "property flags", &model_state_property_flags_definition },
 		{ _field_enum, "state", &model_state_enum_definition },
 		{ _field_real_fraction, "initial probability" },
@@ -191,8 +191,8 @@ namespace macaque
 		MODEL_VARIANT_OBJECT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "parent marker" },
-		{ _field_string_id, "parent controlling seat label", "the seat in my parent that will control me" },
+		{ _field_string_id, "parent marker", FIELD_FLAG_INDEX },
+		{ _field_string_id, "parent controlling seat label", "the seat in my parent that will control me", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "child marker" },
 		{ _field_string_id, "child variant name", "optional" },
@@ -213,10 +213,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID)
 	{
-		{ _field_string_id, "name", "name of this instance group" },
+		{ _field_string_id, "name", "name of this instance group", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "choice", &model_instance_group_choice_enum },
 		{ _field_block, "member list", &model_instance_group_member_block },
-		{ _field_real, "total probability" },
+		{ _field_real, "total probability", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -233,10 +233,10 @@ namespace macaque
 		{ _field_long_block_index, "subgroup", &global_model_instance_group_block },
 		{ _field_string_id, "instances", "instance name, a partial name will choose all matching instances, leave blank for NONE" },
 		{ _field_real, "probability", "higher numbers make it more likely", "> 0.0" },
-		{ _field_long_integer, "instance placement mask 0" },
-		{ _field_long_integer, "instance placement mask 1" },
-		{ _field_long_integer, "instance placement mask 2" },
-		{ _field_long_integer, "instance placement mask 3" },
+		{ _field_long_integer, "instance placement mask 0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "instance placement mask 1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "instance placement mask 2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "instance placement mask 3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -250,7 +250,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_MUTED_NODE_BLOCK_ID)
 	{
-		{ _field_string_id, "node name", "must match node name in render_model" },
+		{ _field_string_id, "node name", nullptr, "must match node name in render_model", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -278,13 +278,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_MATERIAL_BLOCK_NEW_ID)
 	{
-		{ _field_string_id, "material name" },
+		{ _field_string_id, "material name", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("unused flags", nullptr, 2),
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
-		{ _field_short_integer, "runtime collision material index" },
-		{ _field_short_integer, "runtime damager material index" },
+		{ _field_short_integer, "runtime collision material index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "runtime damager material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "global material name" },
-		{ _field_short_integer, "runtime global material index" },
+		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("SEWETKHRE", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -300,9 +300,9 @@ namespace macaque
 		MODEL_TARGET_BLOCK_OLD_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
+		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius", FIELD_FLAG_INDEX },
 		{ _field_real, "size", "sphere radius" },
-		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
+		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker\'s x axis" },
 		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section" },
 		{ _field_short_block_index, "variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
@@ -324,9 +324,9 @@ namespace macaque
 		{ _field_byte_flags, "flags", &model_target_flags_definition },
 		FIELD_PAD("MTBNP1", nullptr, 3),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
+		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius", FIELD_FLAG_INDEX },
 		{ _field_real, "size", "sphere radius" },
-		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
+		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker\'s x axis" },
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
 		{ _field_short_block_index, "variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
@@ -345,9 +345,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_REGION_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
-		{ _field_char_integer, "collision region index" },
-		{ _field_char_integer, "physics region index" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_char_integer, "collision region index", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "physics region index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("QDSJS", nullptr, 2),
 		{ _field_block, "permutations", &model_permutation_block },
 		{ _field_terminator }
@@ -363,10 +363,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &model_permutation_flags_definition },
-		{ _field_char_integer, "collision permutation index" },
-		{ _field_char_integer, "physics permutation index" },
+		{ _field_char_integer, "collision permutation index", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "physics permutation index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("AVZQS", nullptr, 1),
 		{ _field_terminator }
 	};
@@ -381,18 +381,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_NODE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "parent node", &model_node_block },
 		{ _field_short_block_index, "first child node", &model_node_block },
 		{ _field_short_block_index, "next sibling node", &model_node_block },
 		FIELD_PAD("GHTI", nullptr, 2),
-		{ _field_real_point_3d, "default translation" },
-		{ _field_real_quaternion, "default rotation" },
-		{ _field_real, "default inverse scale" },
-		{ _field_real_vector_3d, "default inverse forward" },
-		{ _field_real_vector_3d, "default inverse left" },
-		{ _field_real_vector_3d, "default inverse up" },
-		{ _field_real_point_3d, "default inverse position" },
+		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
+		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "default inverse scale", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "default inverse forward", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "default inverse left", FIELD_FLAG_READ_ONLY },
+		{ _field_real_vector_3d, "default inverse up", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "default inverse position", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -472,7 +472,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_REGION_INDEX_ARRAY_ID)
 	{
-		{ _field_char_integer, "runtime region index" },
+		{ _field_char_integer, "runtime region index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -486,7 +486,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_STATE_PERMUTATION_INDEX_ARRAY_ID)
 	{
-		{ _field_char_integer, "runtime permutation index" },
+		{ _field_char_integer, "runtime permutation index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -503,7 +503,7 @@ namespace macaque
 		{ _field_byte_flags, "flags", &model_target_lock_on_flags_definition },
 		FIELD_PAD("SVLKJERAF", nullptr, 3),
 		{ _field_real, "lock on distance" },
-		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon's tracking block" },
+		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon\'s tracking block" },
 		{ _field_terminator }
 	};
 

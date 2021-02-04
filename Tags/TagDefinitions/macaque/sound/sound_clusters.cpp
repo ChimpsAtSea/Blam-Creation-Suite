@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_SOUND_CLUSTER_BLOCK_ID)
 	{
-		{ _field_short_integer, "palette index" },
+		{ _field_short_integer, "palette index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("HRSFKJT", nullptr, 2),
 		{ _field_block, "enclosing portal designators", &structure_sound_cluster_portal_designators_block },
 		{ _field_block, "interior cluster indices", &structure_sound_cluster_interior_cluster_indices_block },
@@ -34,7 +34,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOUND_CLUSTER_PORTAL_DESIGNATORS_ID)
 	{
-		{ _field_short_integer, "portal designator" },
+		{ _field_short_integer, "portal designator", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -48,7 +48,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SOUND_CLUSTER_INTERIOR_CLUSTER_INDICES_ID)
 	{
-		{ _field_short_integer, "interior cluster index" },
+		{ _field_short_integer, "interior cluster index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

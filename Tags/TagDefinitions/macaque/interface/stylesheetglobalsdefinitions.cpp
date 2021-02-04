@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETSFONTBLOCK_ID)
 	{
-		{ _field_string_id, "style sheet name" },
+		{ _field_string_id, "style sheet name", FIELD_FLAG_INDEX },
 		{ _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
 		{ _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block },
 		{ _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block },
@@ -150,7 +150,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETSVISUALBLOCK_ID)
 	{
-		{ _field_string_id, "style sheet name" },
+		{ _field_string_id, "style sheet name", FIELD_FLAG_INDEX },
 		{ _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
 		{ _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block },
 		{ _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block },
@@ -198,7 +198,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETGRADIENTBLOCK_ID)
 	{
-		{ _field_string_id, "gradient name" },
+		{ _field_string_id, "gradient name", FIELD_FLAG_INDEX },
 		{ _field_real_argb_color, "color1" },
 		{ _field_real_argb_color, "color2" },
 		{ _field_real_argb_color, "color3" },
@@ -221,7 +221,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETDROPSHADOWBLOCK_ID)
 	{
-		{ _field_string_id, "dropshadow name" },
+		{ _field_string_id, "dropshadow name", FIELD_FLAG_INDEX },
 		{ _field_real_argb_color, "color" },
 		{ _field_real, "angle" },
 		{ _field_real, "distance" },
@@ -240,7 +240,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETOUTERGLOWBLOCK_ID)
 	{
-		{ _field_string_id, "outer glow name" },
+		{ _field_string_id, "outer glow name", FIELD_FLAG_INDEX },
 		{ _field_real_argb_color, "color" },
 		{ _field_real, "spread" },
 		{ _field_real, "size" },

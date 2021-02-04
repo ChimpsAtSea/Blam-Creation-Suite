@@ -33,9 +33,9 @@ namespace macaque
 		FIELD_EXPLANATION("Particleize Settings", nullptr, "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n"),
 		{ _field_enum, "Shape", &particleize_shape_enum },
 		{ _field_word_flags, "Flags", &particleize_flags },
-		{ _field_real, "Duration", "sec" },
+		{ _field_real, "Duration", nullptr, "sec" },
 		{ _field_real, "Density" },
-		{ _field_real, "Size", "world units" },
+		{ _field_real, "Size", nullptr, "world units" },
 		{ _field_struct, "Curve", &particleize_scalar_function_struct },
 		{ _field_terminator }
 	};

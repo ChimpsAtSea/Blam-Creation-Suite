@@ -23,7 +23,7 @@ namespace macaque
 		{ _field_block, "navClimbs", &NavClimbBlock_block },
 		{ _field_block, "user edges", &user_edge_block },
 		{ _field_block, "hints", &user_hint_block },
-		{ _field_byte_integer, "already Converted" },
+		{ _field_byte_integer, "already Converted", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("fuckPad", nullptr, 3),
 		{ _field_terminator }
 	};
@@ -46,14 +46,14 @@ namespace macaque
 		PATHFINDING_DATA_BLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		FIELD_PAD("pads", nullptr, 4),
-		{ _field_data, "navGraphData" },
-		{ _field_data, "navMediatorData" },
+		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
-		{ _field_long_integer, "structure checksum" },
+		{ _field_long_integer, "structure checksum", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("pads2", nullptr, 8),
 		{ _field_terminator }
 	};
@@ -68,10 +68,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		FACEUSERDATABLOCK_ID)
 	{
-		{ _field_short_integer, "m_flags" },
+		{ _field_short_integer, "m_flags", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("pad", nullptr, 2),
-		{ _field_real, "currentMinPathDistance" },
-		{ _field_real, "currentMinTargetApproachDistance" },
+		{ _field_real, "currentMinPathDistance", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real, "currentMinTargetApproachDistance", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -87,12 +87,12 @@ namespace macaque
 		MOBILENAVMESHBLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		FIELD_PAD("pads2", nullptr, 4),
-		{ _field_data, "navGraphData" },
-		{ _field_data, "navMediatorData" },
+		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_byte_flags, "flags", &MobileNavMeshFlagsDefinition },
@@ -110,11 +110,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		NAVVOLUMEBLOCK_ID)
 	{
-		{ _field_short_integer, "zoneIndex" },
-		{ _field_short_integer, "areaIndex" },
-		{ _field_long_integer, "runtimeNavVolume", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
-		{ _field_data, "navMediatorData" },
+		{ _field_short_integer, "zoneIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "areaIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "runtimeNavVolume", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -129,15 +129,15 @@ namespace macaque
 		NAVCLIMBBLOCK_ID,
 		4)
 	{
-		{ _field_long_integer, "runtimeNavMesh", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavGraph", _field_id_zero_data },
-		{ _field_long_integer, "runtimeNavMediator", _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		FIELD_PAD("pads", nullptr, 4),
-		{ _field_data, "navGraphData" },
-		{ _field_data, "navMediatorData" },
+		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", &FaceUserDataBlock_block },
-		{ _field_short_integer, "zoneIndex" },
-		{ _field_short_integer, "areaIndex" },
+		{ _field_short_integer, "zoneIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "areaIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("pads2", nullptr, 8),
 		{ _field_terminator }
 	};
@@ -153,21 +153,21 @@ namespace macaque
 		USER_EDGE_BLOCK_ID,
 		4)
 	{
-		{ _field_real_vector_3d, "m_x" },
-		{ _field_real, "havok w m_x" },
-		{ _field_real_vector_3d, "m_y" },
-		{ _field_real, "havok w m_y" },
-		{ _field_real_vector_3d, "m_z" },
-		{ _field_real, "havok w m_z" },
-		{ _field_long_integer, "m_meshUidA" },
-		{ _field_long_integer, "m_meshUidB" },
-		{ _field_long_integer, "m_faceA" },
-		{ _field_long_integer, "m_faceB" },
-		{ _field_long_integer, "m_userDataA" },
-		{ _field_long_integer, "m_userDataB" },
-		{ _field_short_integer, "m_costAtoB" },
-		{ _field_short_integer, "m_costBtoA" },
-		{ _field_char_integer, "m_direction" },
+		{ _field_real_vector_3d, "m_x", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real, "havok w m_x", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real_vector_3d, "m_y", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real, "havok w m_y", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real_vector_3d, "m_z", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real, "havok w m_z", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_meshUidA", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_meshUidB", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_faceA", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_faceB", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_userDataA", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_long_integer, "m_userDataB", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "m_costAtoB", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "m_costBtoA", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_char_integer, "m_direction", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("padding", nullptr, 3),
 		{ _field_terminator }
 	};

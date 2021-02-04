@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEMEDALTIERS_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 		{ _field_short_integer, "sequence index" },
 		{ _field_short_integer, "point value" },
@@ -47,7 +47,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_MEDAL_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 		{ _field_short_integer, "sequence index" },
 		{ _field_char_enum, "medal class", &medal_class_enum },
@@ -55,7 +55,7 @@ namespace macaque
 		{ _field_long_integer, "ordnance points", "The number of ordnance points that are awarded to the player when they earn this medal." },
 		{ _field_byte_integer, "ordnance multiplier", "The ordnance multiplier to add to players ordnance multiplier when they earn this medal." },
 		{ _field_byte_integer, "tier index", "the tier that this medal belongs to" },
-		{ _field_short_integer, "override point value", "if greater than zero, this point value will be awarded to players instead of the tier's point value" },
+		{ _field_short_integer, "override point value", "if greater than zero, this point value will be awarded to players instead of the tier\'s point value" },
 		{ _field_terminator }
 	};
 

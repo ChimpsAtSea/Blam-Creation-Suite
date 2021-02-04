@@ -44,7 +44,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODELDISSOLVEPERREGIONTIMEOFFSETBLOCK_ID)
 	{
-		{ _field_string_id, "region name" },
+		{ _field_string_id, "region name", FIELD_FLAG_INDEX },
 		{ _field_real, "region time offset" },
 		{ _field_terminator }
 	};

@@ -18,13 +18,13 @@ namespace macaque
 		JETWASH_DEFINITION_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name" },
+		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_real, "radius" },
-		{ _field_long_integer, "maximum traces", "traces per second" },
-		{ _field_real, "maximum emission length", "world units" },
-		{ _field_angle_bounds, "trace yaw angle", "degrees" },
-		{ _field_angle_bounds, "trace pitch angle", "degrees" },
-		{ _field_real, "particle offset", "world units" },
+		{ _field_long_integer, "maximum traces", nullptr, "traces per second", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "maximum emission length", nullptr, "world units" },
+		{ _field_angle_bounds, "trace yaw angle", nullptr, "degrees" },
+		{ _field_angle_bounds, "trace pitch angle", nullptr, "degrees" },
+		{ _field_real, "particle offset", nullptr, "world units" },
 		{ _field_terminator }
 	};
 

@@ -34,7 +34,7 @@ namespace macaque
 		CUBEMAP_REFERENCE_POINTS_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "reference point" },
-		{ _field_long_integer, "point index" },
+		{ _field_long_integer, "point index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

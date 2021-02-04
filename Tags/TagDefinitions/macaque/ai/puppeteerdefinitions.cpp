@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PUPPETSHOWSBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "designerZone" },
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_byte_flags, "flags", &PuppetShowFlagsDefinition },
@@ -81,14 +81,14 @@ namespace macaque
 		{ _field_dword_integer, "color" },
 		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 3),
-		{ _field_long_integer, "startFrame" },
-		{ _field_long_integer, "endFrame" },
-		{ _field_long_integer, "blendFrame" },
-		{ _field_long_integer, "startPixel" },
-		{ _field_long_integer, "endPixel" },
-		{ _field_long_integer, "blendPixel" },
-		{ _field_long_integer, "blendInDrag" },
-		{ _field_long_integer, "lengthDrag" },
+		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "blendFrame", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "startPixel", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "endPixel", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "blendPixel", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "blendInDrag", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "lengthDrag", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -121,13 +121,13 @@ namespace macaque
 		{ _field_byte_integer, "subTrack" },
 		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 2),
-		{ _field_long_integer, "startFrame" },
-		{ _field_long_integer, "endFrame" },
-		{ _field_long_integer, "startPixel" },
-		{ _field_long_integer, "endPixel" },
-		{ _field_long_integer, "subTrackDrag" },
-		{ _field_long_integer, "startOffsetDrag" },
-		{ _field_long_integer, "endOffsetDrag" },
+		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "startPixel", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "endPixel", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "subTrackDrag", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "startOffsetDrag", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "endOffsetDrag", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -143,7 +143,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "targetAction" },
 		{ _field_string_id, "conditionScriptName" },
-		{ _field_long_integer, "condition" },
+		{ _field_long_integer, "condition", FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -171,7 +171,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUBTRACKSBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -252,12 +252,12 @@ namespace macaque
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "type", &PuppetHeaderStruct_type_reference },
 		{ _field_string_id, "objectName" },
-		{ _field_long_integer, "index" },
+		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN3 },
 		{ _field_struct, "position", &PuppetPathPointStruct },
 		{ _field_string_id, "startScriptName" },
 		{ _field_string_id, "endScriptName" },
-		{ _field_short_integer, "startScript" },
-		{ _field_short_integer, "endScript" },
+		{ _field_short_integer, "startScript", FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "endScript", FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "firstAction" },
 		{ _field_short_integer, "actionCount" },
 		{ _field_short_integer, "firstSubAction" },
@@ -280,7 +280,7 @@ namespace macaque
 		{ _field_char_enum, "indexType", &PuppetIndexTypeEnum },
 		FIELD_PAD("pad", nullptr, 1),
 		{ _field_string_id, "objectName" },
-		{ _field_long_integer, "index" },
+		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN3 },
 		{ _field_string_id, "marker" },
 		{ _field_real_point_3d, "pos" },
 		{ _field_real_euler_angles_3d, "rot" },
@@ -326,7 +326,7 @@ namespace macaque
 		{ _field_long_integer, "repeatCount" },
 		{ _field_real, "scale" },
 		{ _field_string_id, "conditionScriptName" },
-		{ _field_long_integer, "condition" },
+		{ _field_long_integer, "condition", FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -361,8 +361,8 @@ namespace macaque
 		{ _field_long_integer, "startOffset" },
 		{ _field_string_id, "startConditionScriptName" },
 		{ _field_string_id, "endConditionScriptName" },
-		{ _field_short_integer, "startCondition" },
-		{ _field_short_integer, "endCondition" },
+		{ _field_short_integer, "startCondition", FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "endCondition", FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "endAction" },
 		{ _field_long_integer, "endOffset" },
 		{ _field_long_integer, "comment" },
@@ -410,7 +410,7 @@ namespace macaque
 		PUPPETSUBACTIONSCRIPTSTRUCT_ID)
 	{
 		{ _field_string_id, "scriptName" },
-		{ _field_long_integer, "script" },
+		{ _field_long_integer, "script", FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 

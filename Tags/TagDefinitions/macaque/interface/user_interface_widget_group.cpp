@@ -109,7 +109,7 @@ namespace macaque
 		INFINITYMISSIONSEASONIMAGESDEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Season Images", nullptr, "This block should contain a season\'s worth of Infinity mission images"),
-		{ _field_long_integer, "season number" },
+		{ _field_long_integer, "season number", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "epilogue image", &global_bitmap_reference },
 		{ _field_block, "season images", &InfinityMissionImagesDefinition_block },
 		{ _field_terminator }
@@ -142,7 +142,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_ENEMY_TO_CATEGORY_LIST_BLOCK_ID)
 	{
-		{ _field_string_id, "category display name" },
+		{ _field_string_id, "category display name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "sprite index" },
 		{ _field_byte_flags, "flags", &pgcr_enemy_to_category_entry_flags },
 		FIELD_PAD("pad0", nullptr, 1),
@@ -210,7 +210,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_PORTRAIT_POSE_BLOCK_ID)
 	{
-		{ _field_string_id, "pose name" },
+		{ _field_string_id, "pose name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "animation name" },
 		{ _field_string_id, "camera view name" },
 		{ _field_long_integer, "scenario profile index" },
@@ -227,7 +227,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUI_COMPONENT_SCREEN_REFERENCE_BLOCK_DEFINITION_ID)
 	{
-		{ _field_string_id, "name", "for use in code" },
+		{ _field_string_id, "name", "for use in code", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "cui screen tag", &cui_screen_reference },
 		{ _field_terminator }
 	};
@@ -268,12 +268,12 @@ namespace macaque
 		{ _field_real_point_3d, "minimum world position" },
 		{ _field_real_point_3d, "maximum world position" },
 		{ _field_string_id, "viewed model marker name" },
-		{ _field_real_point_3d, "minimum camera offset", "wu" },
-		{ _field_real_point_3d, "minimum camera focal offset", "wu" },
-		{ _field_real_point_3d, "maximum camera offset", "wu" },
-		{ _field_real_point_3d, "maximum camera focal offset", "wu" },
+		{ _field_real_point_3d, "minimum camera offset", nullptr, "wu" },
+		{ _field_real_point_3d, "minimum camera focal offset", nullptr, "wu" },
+		{ _field_real_point_3d, "maximum camera offset", nullptr, "wu" },
+		{ _field_real_point_3d, "maximum camera focal offset", nullptr, "wu" },
 		{ _field_real, "initial zoom" },
-		{ _field_real, "fov", "degrees" },
+		{ _field_real, "fov", nullptr, "degrees" },
 		{ _field_terminator }
 	};
 
@@ -289,13 +289,13 @@ namespace macaque
 		CUI_PLAYER_MODEL_CONTROLLER_SETTINGS_DEFINITION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_real, "zoom speed", "wu per tick" },
+		{ _field_real, "zoom speed", nullptr, "wu per tick" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "zoom transition function", &mapping_function },
-		{ _field_real_euler_angles_2d, "initial rotation", "degrees" },
-		{ _field_real_euler_angles_2d, "minimum rotation", "degrees" },
-		{ _field_real_euler_angles_2d, "maximum rotation", "degrees" },
-		{ _field_real, "rotation speed", "degrees per tick" },
+		{ _field_real_euler_angles_2d, "initial rotation", nullptr, "degrees" },
+		{ _field_real_euler_angles_2d, "minimum rotation", nullptr, "degrees" },
+		{ _field_real_euler_angles_2d, "maximum rotation", nullptr, "degrees" },
+		{ _field_real, "rotation speed", nullptr, "degrees per tick" },
 		{ _field_terminator }
 	};
 
@@ -360,8 +360,8 @@ namespace macaque
 		{ _field_byte_flags, "flags", &UIGameStartSequenceFlagsDefinition },
 		FIELD_PAD("UMPKIU", nullptr, 3),
 		{ _field_tag_reference, "screen", &cui_screen_reference },
-		{ _field_short_integer, "startTime", "ticks" },
-		{ _field_short_integer, "endTime", "ticks" },
+		{ _field_short_integer, "startTime", nullptr, "ticks" },
+		{ _field_short_integer, "endTime", nullptr, "ticks" },
 		{ _field_terminator }
 	};
 
@@ -390,7 +390,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_PRESETS_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_argb_color, "color" },
 		{ _field_terminator }
 	};
@@ -445,7 +445,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_ALERT_DESCRIPTION_BLOCK_ID)
 	{
-		{ _field_string_id, "error name" },
+		{ _field_string_id, "error name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &gui_alert_flags },
 		{ _field_char_enum, "error category", &gui_error_category_enum },
 		{ _field_char_enum, "error icon", &gui_error_icon_enum },
@@ -465,7 +465,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GUI_DIALOG_DESCRIPTION_BLOCK_ID)
 	{
-		{ _field_string_id, "dialog name" },
+		{ _field_string_id, "dialog name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &gui_dialog_flags },
 		FIELD_PAD("pad0", nullptr, 2),
 		{ _field_string_id, "title" },
@@ -491,8 +491,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_INCIDENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "incident name" },
-		{ _field_long_integer, "maximum stat count", "number of times this can happen before the PGCR stops tracking them" },
+		{ _field_string_id, "incident name", FIELD_FLAG_INDEX },
+		{ _field_long_integer, "maximum stat count", "number of times this can happen before the PGCR stops tracking them", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -690,7 +690,7 @@ namespace macaque
 		{ _field_tag_reference, "pgcr damage types definitions", &pgcr_damage_type_image_mapping_definition_reference },
 		FIELD_EXPLANATION("Campaign State Screen Scripts", nullptr, "Contains a mapping of campaign map IDs and screen scripts used to implement lobby backgrounds that track campaign state. This block should only be non-empty for the main menu."),
 		{ _field_block, "campaign state screen scripts", &campaign_state_screen_script_block_definition_block },
-		{ _field_real, "spawn-timer countdown rate", "counts/sec" },
+		{ _field_real, "spawn-timer countdown rate", nullptr, "counts/sec" },
 		{ _field_block, "game intro sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
 		{ _field_block, "game round end sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
 		{ _field_block, "game next round sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
@@ -713,11 +713,11 @@ namespace macaque
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("UI Rendering Globals", nullptr, "miscellaneous rendering globals, more below..."),
-		{ _field_short_integer, "inc. text update period", "milliseconds" },
-		{ _field_short_integer, "inc. text block character", "ASCII code" },
-		{ _field_real, "near clip plane distance", "objects closer than this are not drawn" },
-		{ _field_real, "projection plane distance", "distance at which objects are rendered when z=0 (normal size)" },
-		{ _field_real, "far clip plane distance", "objects farther than this are not drawn" },
+		{ _field_short_integer, "inc. text update period", nullptr, "milliseconds" },
+		{ _field_short_integer, "inc. text block character", nullptr, "ASCII code" },
+		{ _field_real, "near clip plane distance", nullptr, "objects closer than this are not drawn" },
+		{ _field_real, "projection plane distance", nullptr, "distance at which objects are rendered when z=0 (normal size)" },
+		{ _field_real, "far clip plane distance", nullptr, "objects farther than this are not drawn" },
 		FIELD_EXPLANATION("Global Text Strings", nullptr, "Global UI Text goes here"),
 		{ _field_tag_reference, "unicode string list tag", &global_multilingual_unicode_string_list_reference },
 		{ _field_tag_reference, "unicode damage reporting string list tag", &global_multilingual_unicode_string_list_reference },
@@ -726,7 +726,7 @@ namespace macaque
 		FIELD_EXPLANATION("Main menu music", nullptr, "Looping sound that plays while the main menu is active"),
 		{ _field_tag_reference, "main menu music", &global_looping_sound_reference },
 		{ _field_tag_reference, "main menu alternate music", &global_looping_sound_reference },
-		{ _field_long_integer, "music fade time", "milliseconds" },
+		{ _field_long_integer, "music fade time", nullptr, "milliseconds" },
 		FIELD_EXPLANATION("Default Text and Shadow Colors", nullptr, "These are the default values used for text glyphs and text shadows"),
 		{ _field_real_argb_color, "text color" },
 		{ _field_real_argb_color, "shadow color" },
@@ -768,7 +768,7 @@ namespace macaque
 		{ _field_struct, "spinner tab speed function", &mapping_function },
 		{ _field_long_integer, "max input time (x) on the graph (msec)" },
 		FIELD_EXPLANATION("Attract Mode Settings", nullptr, "These control behavior of the attract mode movies"),
-		{ _field_long_integer, "delay", "seconds" },
+		{ _field_long_integer, "delay", nullptr, "seconds" },
 		{ _field_block, "PGCR per player tracked incidents", &pgcr_incident_block },
 		{ _field_terminator }
 	};

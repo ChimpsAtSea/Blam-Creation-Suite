@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALCHALLENGEAGGREGATOR_ID)
 	{
-		{ _field_string_id, "challenge to increment" },
+		{ _field_string_id, "challenge to increment", FIELD_FLAG_INDEX },
 		{ _field_struct, "medals", &medalAggregator },
 		{ _field_terminator }
 	};
@@ -58,7 +58,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALAGGREGATORENTRY_ID)
 	{
-		{ _field_string_id, "medal name" },
+		{ _field_string_id, "medal name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -72,7 +72,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALCOMMENDATIONAGGREGATOR_ID)
 	{
-		{ _field_string_id, "commendation to award" },
+		{ _field_string_id, "commendation to award", FIELD_FLAG_INDEX },
 		{ _field_struct, "medals", &medalAggregator },
 		{ _field_terminator }
 	};
@@ -112,7 +112,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MEDALAGGREGATOR_ID)
 	{
-		{ _field_string_id, "display name" },
+		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("allowed game modes", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),

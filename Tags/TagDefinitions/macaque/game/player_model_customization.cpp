@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOMIZED_MODEL_SELECTION_BLOCK_ID)
 	{
-		{ _field_string_id, "selection name" },
+		{ _field_string_id, "selection name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "app name", "Which player-stats modifier should be activated when this item is equipped" },
 		{ _field_block, "customized bits", &customized_model_player_bits_block },
 		{ _field_terminator }
@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOMIZED_MODEL_PLAYER_BITS_BLOCK_ID)
 	{
-		{ _field_string_id, "region name" },
+		{ _field_string_id, "region name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "permutation name" },
 		{ _field_byte_flags, "flags", &model_customization_player_permutation_flags },
 		FIELD_PAD("pad1", nullptr, 3),

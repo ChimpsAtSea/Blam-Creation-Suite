@@ -44,7 +44,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_TYPE_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("physics", nullptr, _field_id_function_group_begin),
 		{ _field_real, "drag" },
 		{ _field_real, "gravity" },
@@ -63,7 +63,7 @@ namespace macaque
 		{ _field_real_argb_color, "color0" },
 		{ _field_real, "intensity0" },
 		{ _field_real, "fade start", "point in particles lifetime at which fade begins" },
-		{ _field_real_bounds, "size", "world units" },
+		{ _field_real_bounds, "size", nullptr, "world units" },
 		{ _field_real, "motion blur stretch", "how much the particle stretches as it moves" },
 		{ _field_long_block_index, "texture", &cheap_particle_bitmap_reference_block },
 		{ _field_real, "texture y scale", "scales the texture in the y direction" },
@@ -81,7 +81,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAPPARTICLETURBULENCETYPEBLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "turbulence", &bitmap_reference$5 },
 		{ _field_real, "turb du dt", "change in u coordinate over time" },
 		{ _field_real, "turb dv dt", "change in v coordinate over time" },
@@ -115,8 +115,8 @@ namespace macaque
 		CHEAP_PARTICLE_EMITTER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &cheap_particle_emitter_flags },
-		{ _field_word_integer, "version" },
-		{ _field_real, "spawn rate", "particles per second" },
+		{ _field_word_integer, "version", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "spawn rate", nullptr, "particles per second", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("SPAWN RATE", nullptr, "how many particles to spawn per second"),
 		{ _field_struct, "spawnrate", &cheap_particle_scalar_object_function_struct },
 		FIELD_EXPLANATION("LOD", nullptr, "reduces the number of particles at distance"),
@@ -134,7 +134,7 @@ namespace macaque
 		{ _field_real, "weight 3" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_EXPLANATION("LIFETIME", nullptr, "how long the spawned particles will last"),
-		{ _field_real_bounds, "lifetime", "seconds" },
+		{ _field_real_bounds, "lifetime", nullptr, "seconds" },
 		FIELD_EXPLANATION("EMITTER PARAMETERS", nullptr, "controls where a particle spawns, and its initial velocity"),
 		{ _field_tag_reference, "position texture", &bitmap_reference$5 },
 		{ _field_real, "position scale" },
@@ -151,11 +151,11 @@ namespace macaque
 		{ _field_real, "lighting offset", "adjust overall brightness in all areas" },
 		{ _field_real, "lighting min", "clamps darkest particles to this exposure" },
 		{ _field_real, "lighting max", "clamps brightest particles to this exposure" },
-		{ _field_real_quaternion, "spawn_params0" },
-		{ _field_real_quaternion, "spawn_params1" },
-		{ _field_real_quaternion, "spawn_params2" },
-		{ _field_real_quaternion, "spawn_params3" },
-		{ _field_real_quaternion, "spawn_params4" },
+		{ _field_real_quaternion, "spawn_params0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "spawn_params1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "spawn_params2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "spawn_params3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_quaternion, "spawn_params4", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "global type library", &cheap_particle_type_library_reference },
 		{ _field_terminator }
 	};
@@ -190,8 +190,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
 	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }

@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DEFAULT_STIMULUS_SUPPRESSOR_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "stimulus" },
+		{ _field_string_id, "stimulus", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -44,7 +44,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		VOCALIZATION_DEFINITIONS_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization" },
+		{ _field_string_id, "vocalization", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "parent index", &vocalization_definitions_block },
 		{ _field_enum, "priority", &priority_enum },
 		{ _field_long_flags, "flags", &vocalization_flags_definition },
@@ -61,8 +61,8 @@ namespace macaque
 		{ _field_real, "post voc. delay", "How long speech is suppressed in the speaking unit after vocalizing", "seconds" },
 		{ _field_real, "repeat delay", "How long before the same vocalization can be repeated", "seconds" },
 		{ _field_real, "weight", "Inherent weight of this vocalization" },
-		{ _field_real, "speaker freeze time", "speaker won't move for the given amount of time" },
-		{ _field_real, "listener freeze time", "listener won't move for the given amount of time (from start of vocalization)" },
+		{ _field_real, "speaker freeze time", "speaker won\'t move for the given amount of time" },
+		{ _field_real, "listener freeze time", "listener won\'t move for the given amount of time (from start of vocalization)" },
 		{ _field_enum, "speaker emotion", &dialogue_emotion_enum },
 		{ _field_enum, "listener emotion", &dialogue_emotion_enum },
 		{ _field_real, "player speaker skip fraction" },
@@ -88,9 +88,9 @@ namespace macaque
 	{
 		{ _field_string_id, "vocalization name" },
 		{ _field_word_flags, "flags", &response_flags },
-		{ _field_short_integer, "vocalization index" },
+		{ _field_short_integer, "vocalization index", FIELD_FLAG_READ_ONLY },
 		{ _field_enum, "response type", &response_type_enum },
-		{ _field_short_integer, "dialogue index (import)" },
+		{ _field_short_integer, "dialogue index (import)", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -145,8 +145,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DIALOGUE_DATA_BLOCK_ID)
 	{
-		{ _field_short_integer, "start index (postprocess)" },
-		{ _field_short_integer, "length (postprocess)" },
+		{ _field_short_integer, "start index (postprocess)", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "length (postprocess)", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -160,7 +160,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INVOLUNTARY_DATA_BLOCK_ID)
 	{
-		{ _field_short_integer, "involuntary vocalization index" },
+		{ _field_short_integer, "involuntary vocalization index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("JXIFX", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -175,7 +175,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PREDICTED_DATA_BLOCK_ID)
 	{
-		{ _field_long_integer, "predicted vocalization index" },
+		{ _field_long_integer, "predicted vocalization index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -189,8 +189,8 @@ namespace macaque
 		AI_DIALOGUE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Global timing", nullptr, ""),
-		{ _field_real_bounds, "strike delay bounds", "secs" },
-		{ _field_real, "remind delay", "secs" },
+		{ _field_real_bounds, "strike delay bounds", nullptr, "secs" },
+		{ _field_real, "remind delay", nullptr, "secs" },
 		{ _field_real, "cover curse chance" },
 		FIELD_EXPLANATION("Player look settings", nullptr, "used to play look and look_longtime dialogue in campain and firefight"),
 		{ _field_real, "player look max distance", "defaults to 10 wu", "wu" },
@@ -204,7 +204,7 @@ namespace macaque
 		{ _field_string_id, "space dialogue effect", "used for dialog lines started by a pattern with \"speaker in space\" set" },
 		FIELD_EXPLANATION("Default stimulus suppressors", nullptr, "when these stimuli are active on an actor, default stimulus permutations will be suppressed."),
 		{ _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block },
-		FIELD_EXPLANATION("Imported Data. Don't touch me.", nullptr, ""),
+		FIELD_EXPLANATION("Imported Data. Don\'t touch me.", nullptr, ""),
 		{ _field_block, "vocalizations", &vocalization_definitions_block },
 		{ _field_block, "patterns", &vocalization_patterns_block },
 		FIELD_PAD("WWKMVLL", nullptr, 12),

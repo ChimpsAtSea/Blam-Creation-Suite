@@ -43,8 +43,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAMEGLOBALSORDNANCEBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance name" },
-		{ _field_string, "ordnance internal name" },
+		{ _field_string_id, "ordnance name", FIELD_FLAG_INDEX },
+		{ _field_string, "ordnance internal name", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "activation point cost" },
 		{ _field_string_id, "drop pod variant name", "is pod with this power weapon, else if blank is remote strike (remote strike equipment)" },
 		{ _field_tag_reference, "remote strike equipment", &global_equipment_reference },
@@ -52,7 +52,7 @@ namespace macaque
 		{ _field_byte_integer, "equipment count" },
 		{ _field_byte_flags, "premium flag", &GuiOrdnancePrimiumFlag },
 		FIELD_PAD("PAD", nullptr, 1),
-		{ _field_real_point_3d, "navpoint marker offset" },
+		{ _field_real_point_3d, "navpoint marker offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -67,7 +67,7 @@ namespace macaque
 		ORDNANCEREMAPPINGVARIANTBLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_string, "internal name" },
+		{ _field_string, "internal name", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "remappings", &OrdnanceRemappingBlock_block },
 		{ _field_terminator }
 	};
@@ -82,8 +82,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDNANCEREMAPPINGBLOCK_ID)
 	{
-		{ _field_string_id, "from", "This must match one of the global ordnance objects." },
-		{ _field_string_id, "to", "This must match one of the global ordnance objects." },
+		{ _field_string_id, "from", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
+		{ _field_string_id, "to", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -97,7 +97,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RANDOMORDNANCEITEMBLOCK_ID)
 	{
-		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects." },
+		{ _field_string_id, "ordnance_name", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -125,7 +125,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYERORDNANCEITEMBLOCK_ID)
 	{
-		{ _field_string, "ordnance name", "This must match one of the global ordnance objects." },
+		{ _field_string, "ordnance name", "This must match one of the global ordnance objects.", FIELD_FLAG_INDEX },
 		{ _field_real, "ordnance frequency", "chance that an ordnance from this group will be chosen" },
 		{ _field_terminator }
 	};
@@ -139,8 +139,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_GLOBALS_ORDNANCE_LIST_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "ordnance map width", "world units" },
-		{ _field_real, "random ordnance fanfare duration", "seconds" },
+		{ _field_real, "ordnance map width", nullptr, "world units" },
+		{ _field_real, "random ordnance fanfare duration", nullptr, "seconds" },
 		{ _field_tag_reference, "drop pod cleanup effect", &global_effect_reference },
 		{ _field_block, "ordnances", &GameGlobalsOrdnanceBlock_block },
 		{ _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock_block },

@@ -31,7 +31,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "downsample", &ssao_downsample_enum_definition },
 		{ _field_char_enum, "ssao type", &ssao_type_enum_definition },
-		{ _field_byte_integer, "version" },
+		{ _field_byte_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("BKGKKELQIF", nullptr, 1),
 		{ _field_real, "hdao ambient shadow", "how much ssao shadowing darkens the ambient lighting" },
 		{ _field_real, "hdao point shadow", "how much ssao shadowing darkens the point lighting ie the sun" },
@@ -48,13 +48,13 @@ namespace macaque
 		{ _field_real, "near fade width", "distance over which the ssao fades in", "world units" },
 		{ _field_real, "far clip", "completely removes ssao on anything farther than this", "world units" },
 		{ _field_real, "far fade width", "distance over which the ssao fades in", "world units" },
-		{ _field_real_argb_color, "runtime_data_0" },
-		{ _field_real_argb_color, "runtime_data_1" },
-		{ _field_real_argb_color, "runtime_data_2" },
-		{ _field_real_argb_color, "runtime_data_3" },
-		{ _field_real_argb_color, "runtime_data_4" },
-		{ _field_real_argb_color, "runtime_data_5" },
-		{ _field_real_argb_color, "runtime_data_7" },
+		{ _field_real_argb_color, "runtime_data_0", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_4", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_5", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_argb_color, "runtime_data_7", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

@@ -18,7 +18,7 @@ namespace macaque
 		GLOBAL_PIXEL_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &global_shader_entry_point_block },
-		{ _field_dword_integer, "version" },
+		{ _field_dword_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "compiled shaders", &compiled_pixel_shader_block },
 		{ _field_terminator }
 	};
@@ -41,7 +41,7 @@ namespace macaque
 		GLOBAL_VERTEX_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "vertex types", &global_vertex_shader_vertex_types_block },
-		{ _field_dword_integer, "version" },
+		{ _field_dword_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "compiled shaders", &compiled_vertex_shader_block },
 		{ _field_terminator }
 	};
@@ -78,7 +78,7 @@ namespace macaque
 		PIXEL_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &pixel_entry_point_block },
-		{ _field_dword_integer, "version" },
+		{ _field_dword_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "compiled shaders", &compiled_pixel_shader_block },
 		{ _field_terminator }
 	};
@@ -101,7 +101,7 @@ namespace macaque
 		VERTEX_SHADER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "entry points", &vertex_entry_point_block },
-		{ _field_dword_integer, "version" },
+		{ _field_dword_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "compiled shaders", &compiled_vertex_shader_block },
 		{ _field_terminator }
 	};
@@ -180,7 +180,7 @@ namespace macaque
 		COMPILED_PIXEL_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
-		{ _field_long_integer, "runtime shader ", _field_id_shader_unknown },
+		{ _field_long_integer, "runtime shader ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, _field_id_shader_unknown },
 		{ _field_terminator }
 	};
 
@@ -209,7 +209,7 @@ namespace macaque
 		COMPILED_VERTEX_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &rasterizer_compiled_shader_struct },
-		{ _field_long_integer, "runtime shader ", _field_id_shader_unknown },
+		{ _field_long_integer, "runtime shader ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, _field_id_shader_unknown },
 		{ _field_terminator }
 	};
 
@@ -304,7 +304,7 @@ namespace macaque
 		FIELD_EXPLANATION("DX9 constant table", nullptr, ""),
 		{ _field_struct, "dx9 rasterizer constant table", &global_rasterizer_constant_table_struct },
 		{ _field_dword_integer, "gprs" },
-		{ _field_long_integer, "cache file reference" },
+		{ _field_long_integer, "cache file reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

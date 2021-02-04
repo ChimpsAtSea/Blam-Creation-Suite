@@ -31,15 +31,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DECAL_DEFINITION_BLOCK_ID)
 	{
-		{ _field_string_id, "decal name" },
+		{ _field_string_id, "decal name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &decal_flags },
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
-		{ _field_real_bounds, "radius", "world units" },
-		{ _field_real_bounds, "decay time", "seconds" },
-		{ _field_real_bounds, "lifespan", "seconds" },
+		{ _field_real_bounds, "radius", nullptr, "world units" },
+		{ _field_real_bounds, "decay time", nullptr, "seconds", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_bounds, "lifespan", nullptr, "seconds", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "clamp angle", "Projections at greater than this angle will be clamped to this angle", "degrees" },
 		{ _field_real, "cull angle", "Projections at greater than this angle will not be drawn", "degrees" },
 		{ _field_real, "depth bias" },
@@ -47,7 +47,7 @@ namespace macaque
 		{ _field_real, "strip U-coordinate tile length" },
 		{ _field_real, "strip max profile distance" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_real, "runtime bitmap aspect" },
+		{ _field_real, "runtime bitmap aspect", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -68,7 +68,7 @@ namespace macaque
 		FIELD_EXPLANATION("Decal bucket sharing", nullptr, "For the index bounds below, if non-zero, sprites will be chosen between low and high bounds, inclusive.\nUse this to keep multiple different decals in the same bucket.\nIf multiple decal systems use the same bitmap set and the same material definition, they will be combined at runtime and share their vertex bucket.\nThis is more efficient in memory and more performant to render."),
 		{ _field_short_bounds, "random sprite index bounds", "if zero, will use random sprite" },
 		{ _field_block, "decals", &decal_definition_block },
-		{ _field_real, "runtime max radius" },
+		{ _field_real, "runtime max radius", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

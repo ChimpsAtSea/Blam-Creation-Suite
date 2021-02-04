@@ -33,7 +33,7 @@ namespace macaque
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
 		FIELD_PAD("pad0", nullptr, 2),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
-		{ _field_string_id, "marker name" },
+		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_real, "radius" },
 		{ _field_block, "drag", &water_physics_material_override_block },
 		{ _field_terminator }
@@ -50,7 +50,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_MATERIAL_OVERRIDE_ID)
 	{
-		{ _field_string_id, "material" },
+		{ _field_string_id, "material", FIELD_FLAG_INDEX },
 		{ _field_struct, "drag", &water_physics_drag_properties_struct },
 		{ _field_terminator }
 	};
@@ -102,7 +102,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "velocity to pressure", &mapping_function },
-		{ _field_real, "max velocity", "wu/s" },
+		{ _field_real, "max velocity", nullptr, "wu/s" },
 		{ _field_terminator }
 	};
 

@@ -57,8 +57,8 @@ namespace macaque
 	{
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
-		{ _field_string_id, "material name" },
-		{ _field_short_integer, "runtime material index" },
+		{ _field_string_id, "material name", FIELD_FLAG_INDEX },
+		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("KTRVUIKB", nullptr, 2),
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
 		FIELD_PAD("QNGPTA", nullptr, 3),
@@ -78,8 +78,8 @@ namespace macaque
 	{
 		{ _field_tag_reference, "tag (effect or sound)", &material_effect_material_block_tag_effect_or_sound_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &material_effect_material_block_tag_effect_or_sound_reference },
-		{ _field_string_id, "material name" },
-		{ _field_short_integer, "runtime material index" },
+		{ _field_string_id, "material name", FIELD_FLAG_INDEX },
+		{ _field_short_integer, "runtime material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
 		FIELD_PAD("L", nullptr, 1),
 		{ _field_real, "max_visibility_distance", "manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." },

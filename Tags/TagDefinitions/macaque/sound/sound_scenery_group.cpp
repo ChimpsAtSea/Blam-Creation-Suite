@@ -32,10 +32,10 @@ namespace macaque
 		SOUND_SCENERY_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		{ _field_long_integer, "YJNXHAWAO1" },
-		{ _field_long_integer, "YJNXHAWAO2" },
-		{ _field_long_integer, "YJNXHAWAO3" },
-		{ _field_long_integer, "YJNXHAWAO4" },
+		{ _field_long_integer, "YJNXHAWAO1", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "YJNXHAWAO2", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "YJNXHAWAO3", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "YJNXHAWAO4", FIELD_FLAG_UNKNOWN0 },
 		{ _field_useless_pad, "" },
 		{ _field_terminator }
 	};

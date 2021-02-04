@@ -47,7 +47,7 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 
 		c_blamlib_string_parser blofeld_string_parser = c_blamlib_string_parser(blofeld_field->name);
 
-		
+
 
 		switch (macaque_field->field_type)
 		{
@@ -77,7 +77,11 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 			break;
 		}
 		}
-	} while (blofeld_field++->field_type != _field_terminator && macaque_field++->field_type != _field_terminator);
+
+		blofeld_field++;
+		macaque_field++;
+	}
+	while (blofeld_field->field_type != _field_terminator && macaque_field->field_type != _field_terminator);
 };
 
 int WINAPI wWinMain(

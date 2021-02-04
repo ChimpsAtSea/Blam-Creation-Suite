@@ -66,8 +66,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTVERTEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "vertices" },
-		{ _field_long_integer, "vertex type" },
+		{ _field_data, "vertices", FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "vertex type", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -80,7 +80,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		POLYARTINDEXBUFFERDESCRIPTORSTRUCT_ID)
 	{
-		{ _field_data, "index_data" },
+		{ _field_data, "index_data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

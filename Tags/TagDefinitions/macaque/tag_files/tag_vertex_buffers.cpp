@@ -16,10 +16,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_VERTEX_BUFFER_DESCRIPTOR_STRUCT_ID)
 	{
-		{ _field_long_integer, "vertex count" },
-		{ _field_short_integer, "declaration" },
-		{ _field_short_integer, "stride" },
-		{ _field_data, "vertices" },
+		{ _field_long_integer, "vertex count", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "declaration", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "stride", FIELD_FLAG_READ_ONLY },
+		{ _field_data, "vertices", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -32,10 +32,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_INDEX_BUFFER_DESCRIPTOR_STRUCT_ID)
 	{
-		{ _field_long_integer, "primitive type" },
-		{ _field_char_integer, "is index32" },
+		{ _field_long_integer, "primitive type", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "is index32", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("index buffer descicriptor padding", nullptr, 3),
-		{ _field_data, "index_data" },
+		{ _field_data, "index_data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

@@ -30,15 +30,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAIL_OBJECT_TYPE_BLOCK_ID)
 	{
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_char_integer, "sequence index" },
 		{ _field_byte_flags, "type flags", &detail_object_type_flags_definition },
 		FIELD_PAD("VYF", nullptr, 2),
 		{ _field_real_fraction, "color override factor", "fraction of detail object color to use instead of the base map color in the environment:[0,1]" },
 		FIELD_PAD("QMOOJ", nullptr, 8),
-		{ _field_real, "near fade distance", "world units" },
-		{ _field_real, "far fade distance", "world units" },
-		{ _field_real, "size", "world units per pixel" },
+		{ _field_real, "near fade distance", nullptr, "world units" },
+		{ _field_real, "far fade distance", nullptr, "world units" },
+		{ _field_real, "size", nullptr, "world units per pixel" },
 		FIELD_PAD("TDAQ", nullptr, 4),
 		{ _field_real_rgb_color, "minimum color" },
 		{ _field_real_rgb_color, "maximum color" },
@@ -57,13 +57,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_CELLS_BLOCK_ID)
 	{
-		{ _field_short_integer, "cell x" },
-		{ _field_short_integer, "cell y" },
-		{ _field_short_integer, "cell z" },
-		{ _field_short_integer, "offset z" },
-		{ _field_long_integer, "valid layers flags" },
-		{ _field_long_integer, "start index" },
-		{ _field_long_integer, "count index" },
+		{ _field_short_integer, "cell x", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "cell y", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "cell z", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "offset z", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "valid layers flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "start index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "count index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("OHF", nullptr, 12),
 		{ _field_terminator }
 	};
@@ -78,11 +78,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_BLOCK_ID)
 	{
-		{ _field_char_integer, "position x" },
-		{ _field_char_integer, "position y" },
-		{ _field_char_integer, "position z" },
-		{ _field_char_integer, "data" },
-		{ _field_short_integer, "color" },
+		{ _field_char_integer, "position x", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "position y", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "position z", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "color", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -96,7 +96,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_DETAIL_OBJECT_COUNTS_BLOCK_ID)
 	{
-		{ _field_short_integer, "count" },
+		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -110,10 +110,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_Z_REFERENCE_VECTOR_BLOCK_ID)
 	{
-		{ _field_real, "z reference i" },
-		{ _field_real, "z reference j" },
-		{ _field_real, "z reference k" },
-		{ _field_real, "z reference l" },
+		{ _field_real, "z reference i", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "z reference j", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "z reference k", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_real, "z reference l", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -128,7 +128,7 @@ namespace macaque
 	{
 		{ _field_enum, "collection type", &detail_object_collection_type_enum_definition },
 		FIELD_PAD("YN", nullptr, 2),
-		{ _field_real, "global z offset", "applied to all detail objects of in this collection so they don't float above the ground" },
+		{ _field_real, "global z offset", nullptr, "applied to all detail objects of in this collection so they don\'t float above the ground" },
 		FIELD_PAD("EBGQ", nullptr, 44),
 		{ _field_tag_reference, "sprite plate", &global_bitmap_reference },
 		{ _field_block, "types", &detail_object_type_block },

@@ -22,36 +22,36 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
-		{ _field_long_integer, "hkaiVolume vtable", _field_id_zero_data },
-		{ _field_short_integer, "size" },
-		{ _field_short_integer, "count" },
-		{ _field_string, "name" },
+		{ _field_long_integer, "hkaiVolume vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "area flags", &area_flags },
-		{ _field_real_point_3d, "runtime relative mean point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
-		{ _field_real, "runtime standard deviation" },
-		{ _field_short_integer, "runtime starting index" },
-		{ _field_short_integer, "runtime count" },
+		{ _field_real_point_3d, "runtime relative mean point", FIELD_FLAG_UNKNOWN0 },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_real, "runtime standard deviation", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "runtime starting index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "runtime count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "Nav Mesh Attachments", &NavMeshAttachmentsStruct },
 		{ _field_array, "cluster occupancy", &area_cluster_occupancy_bitvector_array },
 		{ _field_block, "flight_hints", &flight_reference_block },
 		{ _field_block, "points", &area_sector_point_block },
 		FIELD_EXPLANATION("Generation Properties", nullptr, ""),
 		{ _field_enum, "preset", &generate_preset_enum },
-		{ _field_short_integer, "runtimeCarverInversion" },
+		{ _field_short_integer, "runtimeCarverInversion", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_flags, "flags", &generate_flags },
 		{ _field_real, "extrusion" },
 		{ _field_real, "sink" },
 		{ _field_angle, "firing point orientation" },
 		{ _field_angle, "grid orientation" },
 		{ _field_real, "nav volume cell size" },
-		{ _field_real, "spacing" },
-		{ _field_real, "airborne spacing" },
-		{ _field_real, "min cover length" },
-		{ _field_real, "cover spacing" },
-		{ _field_real, "cover offset distance" },
-		{ _field_real, "too close distance" },
+		{ _field_real, "spacing", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "airborne spacing", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "min cover length", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "cover spacing", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "cover offset distance", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "too close distance", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -97,8 +97,8 @@ namespace macaque
 		AREA_SECTOR_POINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "point" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "normal" },
 		{ _field_terminator }
 	};
@@ -117,7 +117,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
-		{ _field_string, "name" },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &zone_flags },
 		{ _field_short_block_index, "editor folder index", &g_scenario_editor_folder_block },
 		{ _field_block, "firing positions", &firing_positions_block },
@@ -137,7 +137,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_CLUSTER_OCCUPANCY_BITVECTOR_ARRAY_ID)
 	{
-		{ _field_long_integer, "bitvector data" },
+		{ _field_long_integer, "bitvector data", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 

@@ -87,7 +87,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_IMPORT_NAMES_BLOCK_ID)
 	{
-		{ _field_string_id, "import name" },
+		{ _field_string_id, "import name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
 
@@ -101,11 +101,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PITCH_RANGE_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_short_integer, "natural pitch", "cents" },
+		{ _field_short_integer, "natural pitch", nullptr, "cents" },
 		{ _field_short_integer, "PAD" },
 		{ _field_short_bounds, "bend bounds", "the range of pitches that will be represented using this sample.", "cents" },
-		{ _field_short_bounds, "max gain pitch bounds", "cents" },
-		{ _field_short_bounds, "playback pitch bounds", "cents" },
+		{ _field_short_bounds, "max gain pitch bounds", nullptr, "cents" },
+		{ _field_short_bounds, "playback pitch bounds", nullptr, "cents" },
 		{ _field_terminator }
 	};
 
@@ -122,7 +122,7 @@ namespace macaque
 		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
 		{ _field_short_block_index, "parameters", &sound_gestalt_pitch_range_parameters_block },
 		{ _field_short_integer, "encoded permutation data" },
-		{ _field_short_integer, "first runtime permutation flag index" },
+		{ _field_short_integer, "first runtime permutation flag index", FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "encoded first permutation and counts" },
 		{ _field_terminator }
 	};
@@ -142,7 +142,7 @@ namespace macaque
 		{ _field_long_integer, "uncompressed sample count" },
 		{ _field_long_integer, "first chunk index" },
 		{ _field_short_integer, "chunk count" },
-		{ _field_char_integer, "encoded gain", "dB" },
+		{ _field_char_integer, "encoded gain", nullptr, "dB" },
 		{ _field_char_integer, "permutation info index" },
 		{ _field_word_integer, "first layer marker index" },
 		{ _field_word_integer, "layer marker count" },
@@ -238,7 +238,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_RUNTIME_PERMUTATION_BIT_VECTOR_BLOCK_ID)
 	{
-		{ _field_char_integer, "runtime permutation bit vector" },
+		{ _field_char_integer, "runtime permutation bit vector", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 
@@ -299,7 +299,7 @@ namespace macaque
 		{ _field_short_integer, "codec index" },
 		{ _field_short_integer, "first pitch range index" },
 		{ _field_short_integer, "first language duration pitch range index" },
-		{ _field_short_integer, "runtime gestalt index storage" },
+		{ _field_short_integer, "runtime gestalt index storage", FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "sub priority" },
 		{ _field_short_integer, "playback index" },
 		{ _field_short_integer, "scale index" },
@@ -307,7 +307,7 @@ namespace macaque
 		{ _field_char_integer, "custom playback index" },
 		{ _field_short_integer, "extra info index" },
 		FIELD_PAD("pad", nullptr, 2),
-		{ _field_long_integer, "maximum play time", "ms" },
+		{ _field_long_integer, "maximum play time", nullptr, "ms" },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
 		{ _field_terminator }
 	};
@@ -335,7 +335,7 @@ namespace macaque
 		{ _field_block, "runtime permutation flags", &sound_gestalt_runtime_permutation_bit_vector_block },
 		{ _field_data, "naive sample data" },
 		{ _field_long_integer, "no one listens to me" },
-		{ _field_long_integer, "but now I'm used to it" },
+		{ _field_long_integer, "but now I\'m used to it" },
 		{ _field_block, "chunks", &sound_permutation_chunk_block },
 		{ _field_block, "promotions", &sound_gestalt_promotions_block },
 		{ _field_block, "facial animations", &sound_gestalt_facial_animation_block },

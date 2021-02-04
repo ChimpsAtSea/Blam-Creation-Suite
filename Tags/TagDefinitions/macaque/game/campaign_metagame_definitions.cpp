@@ -57,7 +57,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_METAGAME_STYLE_TYPE_BLOCK_ID)
 	{
-		{ _field_string_id, "incident name" },
+		{ _field_string_id, "incident name", FIELD_FLAG_INDEX },
 		{ _field_real, "style multiplier" },
 		{ _field_terminator }
 	};

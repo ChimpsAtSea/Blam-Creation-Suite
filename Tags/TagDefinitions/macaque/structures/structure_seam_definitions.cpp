@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_EDGE_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "structure edge index" },
+		{ _field_long_integer, "structure edge index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -60,8 +60,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_CLUSTER_MAPPING_BLOCK_ID)
 	{
-		{ _field_long_integer, "cluster_index" },
-		{ _field_real_point_3d, "cluster center" },
+		{ _field_long_integer, "cluster_index", FIELD_FLAG_READ_ONLY },
+		{ _field_real_point_3d, "cluster center", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -91,8 +91,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "original vertex" },
-		{ _field_long_integer, "final point index" },
+		{ _field_real_point_3d, "original vertex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "final point index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "plane normals", &structure_seam_original_vertex_plane_normals_block },
 		{ _field_terminator }
 	};
@@ -107,7 +107,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_ORIGINAL_VERTEX_PLANE_NORMALS_BLOCK_ID)
 	{
-		{ _field_real_vector_3d, "triangle normal" },
+		{ _field_real_vector_3d, "triangle normal", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -121,7 +121,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_PLANES_BLOCK_ID)
 	{
-		{ _field_real_plane_3d, "plane" },
+		{ _field_real_plane_3d, "plane", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -135,7 +135,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_POINTS_BLOCK_ID)
 	{
-		{ _field_real_point_3d, "final point" },
+		{ _field_real_point_3d, "final point", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 
@@ -149,7 +149,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_FINAL_TRIANGLES_BLOCK_ID)
 	{
-		{ _field_long_integer, "final plane" },
+		{ _field_long_integer, "final plane", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "final point0", &structure_seam_final_points_block },
 		{ _field_short_block_index, "final point1", &structure_seam_final_points_block },
 		{ _field_short_block_index, "final point2", &structure_seam_final_points_block },
@@ -183,7 +183,7 @@ namespace macaque
 	{
 		{ _field_struct, "structure manifest", &structure_manifest_struct },
 		FIELD_EXPLANATION("This tag defines the geometry between seam connected structures bsp.", nullptr, ""),
-		{ _field_long_integer, "version" },
+		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "errors", &global_error_report_categories_block },
 		{ _field_block, "seams", &structure_seam_block },
 		{ _field_block, "seam triangle mopp code block", &mopp_code_definition_block },
@@ -199,10 +199,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SEAM_IDENTIFIER_STRUCT_ID)
 	{
-		{ _field_long_integer, "seam_id0" },
-		{ _field_long_integer, "seam_id1" },
-		{ _field_long_integer, "seam_id2" },
-		{ _field_long_integer, "seam_id3" },
+		{ _field_long_integer, "seam_id0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "seam_id1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "seam_id2", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "seam_id3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

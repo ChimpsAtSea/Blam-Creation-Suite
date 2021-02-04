@@ -38,7 +38,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_BLOCK_STRUCT_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "playback", &platform_sound_playback_struct },
 		{ _field_terminator }
 	};
@@ -53,8 +53,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_LOWPASS_BLOCK_STRUCT_ID)
 	{
-		{ _field_real, "attack", "seconds" },
-		{ _field_real, "release", "seconds" },
+		{ _field_real, "attack", nullptr, "seconds" },
+		{ _field_real, "release", nullptr, "seconds" },
 		{ _field_struct, "settings", &global_sound_lowpass_block },
 		{ _field_terminator }
 	};

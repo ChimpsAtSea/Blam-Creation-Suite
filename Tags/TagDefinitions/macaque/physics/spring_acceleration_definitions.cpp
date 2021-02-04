@@ -31,8 +31,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SPRING_LINEAR_ACCELERATION_BLOCK_ID)
 	{
-		{ _field_real, "acceleration range", "world units" },
-		{ _field_real, "inverse acceleration range", "world units" },
+		{ _field_real, "acceleration range", nullptr, "world units" },
+		{ _field_real, "inverse acceleration range", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "world acceleration scale", "0 defaults to 1, scale the acceleration the object itself applies on this system." },
 		FIELD_EXPLANATION("damping", nullptr, "feed velocity into this function and damp by the value that comes out"),
 		{ _field_struct, "spring damping", &scalar_function_named_struct },

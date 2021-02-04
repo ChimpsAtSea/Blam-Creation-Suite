@@ -17,10 +17,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_DATA_BLOCK_ID)
 	{
-		{ _field_long_integer, "node index" },
-		{ _field_long_integer, "key a" },
-		{ _field_long_integer, "key b" },
-		{ _field_long_integer, "key c" },
+		{ _field_long_integer, "node index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "key a", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "key b", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "key c", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -34,7 +34,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_SHORT_BLOCK_ID)
 	{
-		{ _field_short_integer, "index" },
+		{ _field_short_integer, "index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -53,7 +53,7 @@ namespace macaque
 		{ _field_short_block_index, "child below", &collision_kd_hierarchy_static_nodes_block },
 		{ _field_short_block_index, "child above", &collision_kd_hierarchy_static_nodes_block },
 		{ _field_short_block_index, "parent", &collision_kd_hierarchy_static_nodes_block },
-		{ _field_short_integer, "cluster index" },
+		{ _field_short_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -68,11 +68,11 @@ namespace macaque
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_HEADERS_BLOCK_ID)
 	{
 		{ _field_word_flags, "cull flags", &collision_kd_hierarchy_static_hash_table_cull_flags },
-		{ _field_short_integer, "instance index" },
-		{ _field_long_integer, "instance index dword mask" },
-		{ _field_short_integer, "bsp index" },
+		{ _field_short_integer, "instance index", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "instance index dword mask", FIELD_FLAG_UNKNOWN0 },
+		{ _field_short_integer, "bsp index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("bsp-index-pad", nullptr, 2),
-		{ _field_long_integer, "bsp mask" },
+		{ _field_long_integer, "bsp mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -86,7 +86,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_IN_USE_MASKS_BLOCK_ID)
 	{
-		{ _field_long_integer, "mask" },
+		{ _field_long_integer, "mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
 
@@ -142,7 +142,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_STRUCT_ID)
 	{
-		{ _field_long_integer, "hash total_count" },
+		{ _field_long_integer, "hash total_count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "hash data", &collision_kd_hierarchy_static_hash_table_data_block },
 		{ _field_block, "hash entry count", &collision_kd_hierarchy_static_hash_table_short_block },
 		{ _field_block, "original hash entry count", &collision_kd_hierarchy_static_hash_table_short_block },

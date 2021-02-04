@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUX_GENERATOR_MATERIAL_BLOCK_ID)
 	{
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "mux material", &Tag::Reference<class c_render_method_shader_mux_material>::s_defaultDefinition },
 		{ _field_terminator }
 	};

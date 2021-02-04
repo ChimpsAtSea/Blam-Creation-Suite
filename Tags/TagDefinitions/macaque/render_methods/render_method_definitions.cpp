@@ -83,7 +83,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_PARAMETER_BLOCK_ID)
 	{
-		{ _field_string_id, "parameter name" },
+		{ _field_string_id, "parameter name", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
 		{ _field_tag_reference, "bitmap", &bitmap_reference },
 		{ _field_real, "real" },
@@ -114,7 +114,7 @@ namespace macaque
 		{ _field_long_enum, "type", &render_method_animated_parameter_type_enum },
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
-		{ _field_real, "time period", "seconds", _field_id_function_unknown },
+		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr, ""),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
@@ -143,7 +143,7 @@ namespace macaque
 		{ _field_block, "overlays", &render_method_animated_parameter_block },
 		{ _field_long_integer, "blend mode" },
 		{ _field_long_integer, "flags" },
-		{ _field_long_integer, "im_so_fired_pad" },
+		{ _field_long_integer, "im_so_fired_pad", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
 		{ _field_terminator }
 	};
@@ -439,7 +439,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry_points" },
+		{ _field_dword_integer, "available entry_points", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "entry points", &tag_block_index_block },
 		{ _field_block, "passes", &render_method_template_pass_block },
 		{ _field_block, "routing info", &render_method_routing_info_block },
@@ -484,7 +484,7 @@ namespace macaque
 		{ _field_block, "locked parameters", &render_method_locked_parameter_block },
 		{ _field_word_flags, "shader flags", &global_render_method_flags_defintion },
 		{ _field_char_enum, "sort layer", &global_sort_layer_enum_defintion },
-		{ _field_char_integer, "version" },
+		{ _field_char_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block },
 		{ _field_terminator }
@@ -506,7 +506,7 @@ namespace macaque
 		{ _field_tag_reference, "shared pixel shaders", &global_pixel_shader_reference },
 		{ _field_tag_reference, "shared vertex shaders", &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
-		{ _field_dword_integer, "version", "bump to force recompile" },
+		{ _field_dword_integer, "version", nullptr, "bump to force recompile" },
 		FIELD_EXPLANATION("source file location", nullptr, "like templated\\shader ..."),
 		{ _field_long_string, "location" },
 		{ _field_terminator }
@@ -536,7 +536,7 @@ namespace macaque
 	{
 		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
 		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
-		{ _field_dword_integer, "available entry points" },
+		{ _field_dword_integer, "available entry points", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "entry points", &tag_block_index_block },
 		{ _field_block, "passes", &render_method_template_pass_block },
 		{ _field_block, "routing info", &render_method_routing_info_block },

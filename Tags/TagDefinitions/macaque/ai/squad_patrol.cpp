@@ -18,7 +18,7 @@ namespace macaque
 		SQUAD_PATROL_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
-		{ _field_string_id, "name" },
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "squads", &squad_patrol_member_block },
 		{ _field_block, "points", &squad_patrol_point_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block },
@@ -92,8 +92,8 @@ namespace macaque
 		SQUAD_PATROL_WAYPOINT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
-		{ _field_custom_long_block_index, "packedKeyOffaceref" },
-		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 

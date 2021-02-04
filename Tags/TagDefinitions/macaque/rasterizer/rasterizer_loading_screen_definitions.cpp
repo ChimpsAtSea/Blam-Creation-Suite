@@ -39,7 +39,7 @@ namespace macaque
 		{ _field_real, "particle acceleration", "This is the acceleration rate when particles spawn in and move to their ultimate destination.  Higher numbers move faster." },
 		{ _field_real, "particle initial offset multiplier", "If flag particles spawn radially is set, this is the multiple of the particle location along the radial axis.\nIf not, this the random spawn distance from the particle destination." },
 		FIELD_EXPLANATION("Generated data", nullptr, "the following are generated from running the tool generate-loadscreen command on this tag."),
-		{ _field_long_integer, "computed model vertex count", "vertices" },
+		{ _field_long_integer, "computed model vertex count", nullptr, "vertices" },
 		{ _field_block, "model vertices", &vertexBlock_block },
 		{ _field_terminator }
 	};
@@ -54,7 +54,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VERTEXBLOCK_ID)
 	{
-		{ _field_real_point_3d, "point" },
+		{ _field_real_point_3d, "point", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
 

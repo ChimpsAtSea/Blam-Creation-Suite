@@ -53,7 +53,7 @@ namespace macaque
 		{ _field_block, "near audio settings", &aural_enhancement_audio_settings_block },
 		{ _field_block, "far audio settings", &aural_enhancement_audio_settings_block },
 		FIELD_EXPLANATION("Enhanced HUD (battle awareness)", nullptr, ""),
-		{ _field_real, "range", "world units" },
+		{ _field_real, "range", nullptr, "world units" },
 		FIELD_EXPLANATION("Stealth", nullptr, ""),
 		{ _field_byte_flags, "flags", &stealthFlagsDefs },
 		FIELD_PAD("agspad", nullptr, 3),
