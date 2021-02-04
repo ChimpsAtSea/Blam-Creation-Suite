@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "designerZone" },
-		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
+		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 		{ _field_byte_flags, "flags", &PuppetShowFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_string, "icsPoint0" },
@@ -58,7 +58,7 @@ namespace macaque
 		{ _field_long_string, "startScript" },
 		{ _field_long_string, "endScript" },
 		{ _field_short_integer, "height" },
-		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 1),
 		{ _field_terminator }
 	};
@@ -79,7 +79,7 @@ namespace macaque
 		{ _field_long_string, "comment" },
 		{ _field_long_string, "animCondition" },
 		{ _field_dword_integer, "color" },
-		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
@@ -119,7 +119,7 @@ namespace macaque
 		{ _field_block, "branchConditions", &PuppetScriptTextBlock_block },
 		{ _field_dword_integer, "color" },
 		{ _field_byte_integer, "subTrack" },
-		{ _field_byte_flags, "editorFlags", &PuppetEditorFlagsDefinition },
+		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
@@ -247,7 +247,7 @@ namespace macaque
 		PUPPETHEADERSTRUCT_ID)
 	{
 		{ _field_byte_flags, "flags", &PuppetFlagsDefinition },
-		{ _field_char_enum, "indexType", &PuppetIndexTypeEnum },
+		{ _field_char_enum, "indexType", FIELD_FLAG_UNKNOWN3, &PuppetIndexTypeEnum },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "type", &PuppetHeaderStruct_type_reference },
@@ -277,7 +277,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "type", &PuppetPathPointTypeEnum },
 		{ _field_byte_flags, "flags", &PuppetPathPointFlagsDefinition },
-		{ _field_char_enum, "indexType", &PuppetIndexTypeEnum },
+		{ _field_char_enum, "indexType", FIELD_FLAG_UNKNOWN3, &PuppetIndexTypeEnum },
 		FIELD_PAD("pad", nullptr, 1),
 		{ _field_string_id, "objectName" },
 		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN3 },

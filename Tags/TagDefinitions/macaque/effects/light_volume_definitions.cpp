@@ -59,7 +59,7 @@ namespace macaque
 		{ _field_dword_integer, "runtime m_constant_per_profile_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_used_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_max_profile_count", FIELD_FLAG_UNKNOWN0 },
-		{ _field_struct, "runtime m_gpu_data", &gpu_property_function_color_struct },
+		{ _field_struct, "runtime m_gpu_data", FIELD_FLAG_UNKNOWN0, &gpu_property_function_color_struct },
 		{ _field_block, "precompiled vertices", &light_volume_precompiled_vert_block },
 		{ _field_terminator }
 	};

@@ -103,10 +103,10 @@ namespace macaque
 		FIELD_EXPLANATION("Cloth Properties", nullptr, ""),
 		{ _field_struct, "properties", &cloth_properties },
 		FIELD_EXPLANATION("Import or grid data", nullptr, ""),
-		{ _field_block, "vertices", &cloth_vertices_block },
-		{ _field_block, "indices", &cloth_indices_block },
-		{ _field_block, "strip indices", &cloth_indices_block },
-		{ _field_block, "links", &cloth_links_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &cloth_vertices_block },
+		{ _field_block, "indices", FIELD_FLAG_READ_ONLY, &cloth_indices_block },
+		{ _field_block, "strip indices", FIELD_FLAG_READ_ONLY, &cloth_indices_block },
+		{ _field_block, "links", FIELD_FLAG_READ_ONLY, &cloth_links_block },
 		{ _field_terminator }
 	};
 
@@ -119,7 +119,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CLOTH_PROPERTIES_ID)
 	{
-		{ _field_enum, "Integration type", &cloth_integration_enum },
+		{ _field_enum, "Integration type", FIELD_FLAG_READ_ONLY, &cloth_integration_enum },
 		{ _field_short_integer, "Number iterations", "[1-8] sug 1" },
 		{ _field_real, "weight", "[-10.0 - 10.0] sug 1.0" },
 		{ _field_real, "drag", "[0.0 - 0.5] sug 0.07" },

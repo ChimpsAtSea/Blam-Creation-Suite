@@ -40,7 +40,7 @@ namespace macaque
 		{ _field_real, "particle initial offset multiplier", "If flag particles spawn radially is set, this is the multiple of the particle location along the radial axis.\nIf not, this the random spawn distance from the particle destination." },
 		FIELD_EXPLANATION("Generated data", nullptr, "the following are generated from running the tool generate-loadscreen command on this tag."),
 		{ _field_long_integer, "computed model vertex count", nullptr, "vertices" },
-		{ _field_block, "model vertices", &vertexBlock_block },
+		{ _field_block, "model vertices", FIELD_FLAG_READ_ONLY, &vertexBlock_block },
 		{ _field_terminator }
 	};
 

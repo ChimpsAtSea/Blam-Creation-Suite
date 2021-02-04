@@ -22,7 +22,7 @@ namespace macaque
 		{ _field_block, "squads", &squad_patrol_member_block },
 		{ _field_block, "points", &squad_patrol_point_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -37,7 +37,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_MEMBER_BLOCK_ID)
 	{
-		{ _field_short_block_index, "squad", &squads_block },
+		{ _field_short_block_index, "squad", FIELD_FLAG_INDEX, &squads_block },
 		FIELD_PAD("post-squad-pad", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -52,7 +52,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUAD_PATROL_POINT_BLOCK_ID)
 	{
-		{ _field_short_block_index, "objective", &objectives_block },
+		{ _field_short_block_index, "objective", FIELD_FLAG_INDEX, &objectives_block },
 		FIELD_PAD("post-objective-pad", nullptr, 2),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds" },

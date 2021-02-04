@@ -49,6 +49,7 @@ extern s_tag_block_definition CONCAT(tag_block_name, _block);
 extern s_tag_group CONCAT(tag_group_name, _group);
 
 	// #TODO
+#define FIELD_FLAG_NONE 0u
 #define FIELD_FLAG_UNKNOWN0 0u
 #define FIELD_FLAG_READ_ONLY 0u
 #define FIELD_FLAG_INDEX 0u

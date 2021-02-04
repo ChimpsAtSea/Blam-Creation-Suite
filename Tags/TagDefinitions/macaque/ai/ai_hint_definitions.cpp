@@ -75,7 +75,7 @@ namespace macaque
 		{ _field_real_point_3d, "Point 3" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref3", FIELD_FLAG_UNKNOWN0 },
-		{ _field_word_flags, "invalid_points", &parallelogram_points_invalid_flags },
+		{ _field_word_flags, "invalid_points", FIELD_FLAG_READ_ONLY, &parallelogram_points_invalid_flags },
 		FIELD_PAD("KJHIUF", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -92,13 +92,13 @@ namespace macaque
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
 		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
-		{ _field_block, "hint vertices", &hint_vertex_block },
+		{ _field_block, "hint vertices", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &hint_vertex_block },
 		{ _field_long_integer, "hint data 0", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "hint data 1", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "hint data 2", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "pad1", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
-		{ _field_short_block_index, "geometry index", &user_hint_parallelogram_block },
+		{ _field_short_block_index, "geometry index", FIELD_FLAG_READ_ONLY, &user_hint_parallelogram_block },
 		{ _field_enum, "force jump height", &global_ai_jump_height_enum },
 		{ _field_word_flags, "control flags", &jump_flags },
 		{ _field_terminator }
@@ -130,13 +130,13 @@ namespace macaque
 	{
 		{ _field_enum, "hint type", &hint_type_enum },
 		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
-		{ _field_block, "hint vertices", &hint_vertex_block },
+		{ _field_block, "hint vertices", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &hint_vertex_block },
 		{ _field_long_integer, "hint data 0", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "hint data 1", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "hint data 2", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "pad1", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
-		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
+		{ _field_short_block_index, "geometry index", FIELD_FLAG_READ_ONLY, &user_hint_line_segment_block },
 		{ _field_enum, "force hoist height", &forced_hoist_height_enum },
 		FIELD_PAD("post-forced-hoist-height", nullptr, 2),
 		{ _field_terminator }
@@ -226,7 +226,7 @@ namespace macaque
 		{ _field_block, "control points", &user_hint_spline_control_point_block },
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
 		FIELD_PAD("post-bsp-pad", nullptr, 2),
-		{ _field_block, "volume intersect points", &user_hint_spline_intersect_point_block },
+		{ _field_block, "volume intersect points", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &user_hint_spline_intersect_point_block },
 		{ _field_terminator }
 	};
 
@@ -320,7 +320,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINT_OBJECT_ID_BLOCK_ID)
 	{
-		{ _field_struct, "object ID", &scenario_object_id_struct },
+		{ _field_struct, "object ID", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_id_struct },
 		{ _field_terminator }
 	};
 
@@ -402,7 +402,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_HINT_GIANT_RAIL_BLOCK_ID)
 	{
-		{ _field_short_block_index, "geometry index", &user_hint_line_segment_block },
+		{ _field_short_block_index, "geometry index", FIELD_FLAG_READ_ONLY, &user_hint_line_segment_block },
 		FIELD_PAD("JLOU", nullptr, 2),
 		{ _field_terminator }
 	};

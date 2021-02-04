@@ -56,7 +56,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LEAF_SYSTEM_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_flags, "flags", &leaf_flags },
+		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0, &leaf_flags },
 		{ _field_string_id, "marker attach name" },
 		{ _field_tag_reference, "bitmap sprite plate", &global_bitmap_reference },
 		{ _field_real_bounds, "emission rate", "seconds" },

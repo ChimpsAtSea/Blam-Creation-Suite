@@ -46,7 +46,7 @@ namespace macaque
 		FIELD_EXPLANATION("specify what each group collides with", nullptr, ""),
 		{ _field_block, "groups", &havok_collision_filter_group_block },
 		FIELD_PAD("alignment_pad", nullptr, 4),
-		{ _field_struct, "group filter", &havok_group_filter_filter_struct },
+		{ _field_struct, "group filter", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &havok_group_filter_filter_struct },
 		{ _field_terminator }
 	};
 

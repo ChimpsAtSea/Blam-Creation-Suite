@@ -60,9 +60,9 @@ namespace macaque
 		STRUCTURE_SOFT_CEILING_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_enum, "type", &soft_ceiling_type_enum },
+		{ _field_enum, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &soft_ceiling_type_enum },
 		FIELD_PAD("fresh", nullptr, 2),
-		{ _field_block, "soft ceiling triangles", &structure_soft_ceiling_triangle_block },
+		{ _field_block, "soft ceiling triangles", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_soft_ceiling_triangle_block },
 		{ _field_terminator }
 	};
 
@@ -109,13 +109,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_WATER_INSTANCES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "group", &structure_water_groups_block },
+		{ _field_short_block_index, "group", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_groups_block },
 		FIELD_PAD("PAD0", nullptr, 2),
 		{ _field_real_vector_3d, "flow velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_argb_color, "fog color", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "fog murkiness", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_block, "water planes block", &structure_water_instance_planes_block },
-		{ _field_block, "water debug triangles block", &structure_water_instance_debug_triangles_block },
+		{ _field_block, "water planes block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_instance_planes_block },
+		{ _field_block, "water debug triangles block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_instance_debug_triangles_block },
 		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
@@ -161,7 +161,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_STRUCTURE_PHYSICS_STRUCT_ID)
 	{
-		{ _field_block, "breakable surfaces mopp code block", &mopp_code_definition_block },
+		{ _field_block, "breakable surfaces mopp code block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
 		{ _field_block, "breakable surfaace key table", &breakable_surface_key_table_block },
 		{ _field_terminator }
 	};
@@ -176,11 +176,11 @@ namespace macaque
 		GLOBAL_STRUCTURE_PHYSICS_DESIGN_STRUCT_ID)
 	{
 		{ _field_long_integer, "importer version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_block, "soft ceiling mopp code block", &mopp_code_definition_block },
-		{ _field_block, "soft ceilings block", &structure_soft_ceiling_block },
-		{ _field_block, "water mopp code", &mopp_code_definition_block },
-		{ _field_block, "water groups block", &structure_water_groups_block },
-		{ _field_block, "water instances block", &structure_water_instances_block },
+		{ _field_block, "soft ceiling mopp code block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
+		{ _field_block, "soft ceilings block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_soft_ceiling_block },
+		{ _field_block, "water mopp code", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
+		{ _field_block, "water groups block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_groups_block },
+		{ _field_block, "water instances block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_instances_block },
 		{ _field_terminator }
 	};
 

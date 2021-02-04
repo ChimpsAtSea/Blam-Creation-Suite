@@ -100,7 +100,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_BITMAP_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "bitmap", &bitmap_reference$5 },
+		{ _field_tag_reference, "bitmap", FIELD_FLAG_INDEX, &bitmap_reference$5 },
 		{ _field_terminator }
 	};
 
@@ -156,7 +156,7 @@ namespace macaque
 		{ _field_real_quaternion, "spawn_params2", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_quaternion, "spawn_params3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_quaternion, "spawn_params4", FIELD_FLAG_UNKNOWN0 },
-		{ _field_tag_reference, "global type library", &cheap_particle_type_library_reference },
+		{ _field_tag_reference, "global type library", FIELD_FLAG_UNKNOWN0, &cheap_particle_type_library_reference },
 		{ _field_terminator }
 	};
 
@@ -174,9 +174,9 @@ namespace macaque
 		{ _field_block, "textures", &cheap_particle_bitmap_reference_block },
 		{ _field_tag_reference, "random", &bitmap_reference$5 },
 		{ _field_block, "turbulence types", &cheapParticleTurbulenceTypeBlock_block },
-		{ _field_tag_reference, "type_texture", &bitmap_reference$5 },
-		{ _field_tag_reference, "render_texture", &bitmap_reference$5 },
-		{ _field_tag_reference, "turbulenceTexture", &bitmap_reference$5 },
+		{ _field_tag_reference, "type_texture", FIELD_FLAG_UNKNOWN0, &bitmap_reference$5 },
+		{ _field_tag_reference, "render_texture", FIELD_FLAG_UNKNOWN0, &bitmap_reference$5 },
+		{ _field_tag_reference, "turbulenceTexture", FIELD_FLAG_UNKNOWN0, &bitmap_reference$5 },
 		{ _field_terminator }
 	};
 

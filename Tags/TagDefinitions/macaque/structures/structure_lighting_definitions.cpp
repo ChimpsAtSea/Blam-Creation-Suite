@@ -61,7 +61,7 @@ namespace macaque
 		{ _field_int64_integer, "Light Instance ID", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "Light Definition Index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "Maya Source Hash", FIELD_FLAG_UNKNOWN0 },
-		{ _field_tag_reference, "runtime definition", &Tag::Reference<struct dynamic_light_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "runtime definition", FIELD_FLAG_UNKNOWN0, &Tag::Reference<struct dynamic_light_definition>::s_defaultDefinition },
 		{ _field_long_enum, "light mode", &structure_lighting_light_mode_enum },
 		{ _field_real_point_3d, "origin" },
 		{ _field_real_vector_3d, "forward" },

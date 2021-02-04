@@ -111,7 +111,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_ANIMATED_PARAMETER_BLOCK_ID)
 	{
-		{ _field_long_enum, "type", &render_method_animated_parameter_type_enum },
+		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &render_method_animated_parameter_type_enum },
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
@@ -474,7 +474,7 @@ namespace macaque
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
-		{ _field_tag_reference, "definition", &render_method_definition_reference },
+		{ _field_tag_reference, "definition", FIELD_FLAG_READ_ONLY, &render_method_definition_reference },
 		{ _field_tag_reference, "reference", &render_method_reference },
 		{ _field_block, "options", &short_block },
 		{ _field_block, "parameters", &render_method_parameter_block },
@@ -482,11 +482,11 @@ namespace macaque
 		{ _field_long_integer, "is template" },
 		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
 		{ _field_block, "locked parameters", &render_method_locked_parameter_block },
-		{ _field_word_flags, "shader flags", &global_render_method_flags_defintion },
-		{ _field_char_enum, "sort layer", &global_sort_layer_enum_defintion },
+		{ _field_word_flags, "shader flags", FIELD_FLAG_READ_ONLY, &global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", FIELD_FLAG_READ_ONLY, &global_sort_layer_enum_defintion },
 		{ _field_char_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "Custom fog setting index" },
-		{ _field_long_block_index, "prediction atom index", &g_null_block },
+		{ _field_long_block_index, "prediction atom index", FIELD_FLAG_UNKNOWN0, &g_null_block },
 		{ _field_terminator }
 	};
 
@@ -503,8 +503,8 @@ namespace macaque
 		{ _field_block, "categories", &render_method_category_block },
 		{ _field_block, "entry_points", &render_method_entry_points_block },
 		{ _field_block, "vertex_types", &vertex_types_block },
-		{ _field_tag_reference, "shared pixel shaders", &global_pixel_shader_reference },
-		{ _field_tag_reference, "shared vertex shaders", &global_vertex_shader_reference },
+		{ _field_tag_reference, "shared pixel shaders", FIELD_FLAG_READ_ONLY, &global_pixel_shader_reference },
+		{ _field_tag_reference, "shared vertex shaders", FIELD_FLAG_READ_ONLY, &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
 		{ _field_dword_integer, "version", nullptr, "bump to force recompile" },
 		FIELD_EXPLANATION("source file location", nullptr, "like templated\\shader ..."),

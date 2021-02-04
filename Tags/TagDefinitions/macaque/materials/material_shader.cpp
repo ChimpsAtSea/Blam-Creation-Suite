@@ -17,15 +17,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_STRUCT_DEFINITION_ID)
 	{
-		{ _field_long_flags, "flags", &material_shader_flags },
-		{ _field_block, "source shader files", &material_shader_source_file_block },
-		{ _field_block, "compiled effects", &compiled_effects_block },
+		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0, &material_shader_flags },
+		{ _field_block, "source shader files", FIELD_FLAG_UNKNOWN0, &material_shader_source_file_block },
+		{ _field_block, "compiled effects", FIELD_FLAG_UNKNOWN0, &compiled_effects_block },
 		{ _field_long_integer, "source shader hash", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "compiled shader hash", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "shader bank", &material_shader_bank_reference },
-		{ _field_block, "vertex shader entry points", &material_vertex_shader_entry_point_block },
-		{ _field_block, "pixel shader entry points", &compiled_pixel_shader_refererence_block },
-		{ _field_block, "material parameters", &material_shader_parameter_block },
+		{ _field_block, "vertex shader entry points", FIELD_FLAG_READ_ONLY, &material_vertex_shader_entry_point_block },
+		{ _field_block, "pixel shader entry points", FIELD_FLAG_READ_ONLY, &compiled_pixel_shader_refererence_block },
+		{ _field_block, "material parameters", FIELD_FLAG_READ_ONLY, &material_shader_parameter_block },
 		{ _field_terminator }
 	};
 

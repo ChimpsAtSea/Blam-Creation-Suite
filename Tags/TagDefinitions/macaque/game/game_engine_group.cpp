@@ -220,7 +220,7 @@ namespace macaque
 		{ _field_string_id, "ai traits" },
 		{ _field_string, "Start Event" },
 		{ _field_string, "End Event" },
-		{ _field_long_flags, "skulls", &skull_flags },
+		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_char_integer, "objective 1" },
 		{ _field_char_integer, "objective 2" },
 		{ _field_char_integer, "objective 3" },
@@ -352,7 +352,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", &skull_flags },
+		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_terminator }
 	};
 
@@ -366,7 +366,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", &skull_flags },
+		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
 		FIELD_CUSTOM("initial wave", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "initial waves", &game_engine_survival_wave_properties_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -594,7 +594,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
 	{
-		{ _field_long_flags, "skulls", &skull_flags },
+		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_short_integer, "duration", nullptr, "s" },
 		FIELD_PAD("CLKJSDF", nullptr, 2),
 		{ _field_struct, "base properties", &game_engine_survival_wave_properties_struct },

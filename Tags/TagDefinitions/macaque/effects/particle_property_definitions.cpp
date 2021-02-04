@@ -73,7 +73,7 @@ namespace macaque
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		{ _field_byte_flags, "force flags", &force_flags_definition },
+		{ _field_byte_flags, "force flags", FIELD_FLAG_UNKNOWN0, &force_flags_definition },
 		FIELD_PAD("DSFDSGLKJ", nullptr, 1),
 		{ _field_terminator }
 	};

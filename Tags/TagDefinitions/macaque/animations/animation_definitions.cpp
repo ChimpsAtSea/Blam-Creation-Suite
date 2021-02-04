@@ -30,7 +30,7 @@ namespace macaque
 		{ _field_struct, "run time data", &model_animation_runtime_data_struct },
 		{ _field_block, "additional node data", &additional_node_data_block },
 		{ _field_block, "tag resource groups", &model_animation_tag_resource_group_block },
-		{ _field_struct, "codec data", &animation_codec_data_struct },
+		{ _field_struct, "codec data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_codec_data_struct },
 		{ _field_terminator }
 	};
 
@@ -57,9 +57,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_SOUND_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &global_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
-		{ _field_word_flags, "internal_flags", &key_event_internal_flags_enum },
+		{ _field_word_flags, "internal_flags", FIELD_FLAG_UNKNOWN0, &key_event_internal_flags_enum },
 		{ _field_tag_reference, "model", &model_reference$3 },
 		{ _field_string_id, "variant", "optional. only allow this event when used on this model variant" },
 		{ _field_terminator }
@@ -75,9 +75,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GRAPH_EFFECT_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "effect", &global_effect_reference },
+		{ _field_tag_reference, "effect", FIELD_FLAG_INDEX, &global_effect_reference },
 		{ _field_word_flags, "flags", &key_event_flags_enum },
-		{ _field_word_flags, "internal_flags", &key_event_internal_flags_enum },
+		{ _field_word_flags, "internal_flags", FIELD_FLAG_UNKNOWN0, &key_event_internal_flags_enum },
 		{ _field_tag_reference, "model", &model_reference$3 },
 		{ _field_string_id, "variant", "optional. only allow this event when used on this model variant" },
 		{ _field_terminator }
@@ -117,7 +117,7 @@ namespace macaque
 		{ _field_string_id, "animation name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "frame" },
 		{ _field_short_integer, "frame offset" },
-		{ _field_enum, "type", &frame_event_type_new },
+		{ _field_enum, "type", FIELD_FLAG_READ_ONLY, &frame_event_type_new },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_long_integer, "unique ID", "(Do not change this)", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -206,7 +206,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_USAGE_BLOCK_ID)
 	{
-		{ _field_enum, "usage", &animation_usage_enumeration },
+		{ _field_enum, "usage", FIELD_FLAG_INDEX, &animation_usage_enumeration },
 		{ _field_short_block_index, "node to use", &animation_graph_node_block },
 		{ _field_terminator }
 	};
@@ -222,10 +222,10 @@ namespace macaque
 		ANIMATION_GRAPH_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "next sibling node index", &animation_graph_node_block },
-		{ _field_short_block_index, "first child node index", &animation_graph_node_block },
-		{ _field_short_block_index, "parent node index", &animation_graph_node_block },
-		{ _field_byte_flags, "model flags", &animation_node_model_flags },
+		{ _field_short_block_index, "next sibling node index", FIELD_FLAG_READ_ONLY, &animation_graph_node_block },
+		{ _field_short_block_index, "first child node index", FIELD_FLAG_READ_ONLY, &animation_graph_node_block },
+		{ _field_short_block_index, "parent node index", FIELD_FLAG_READ_ONLY, &animation_graph_node_block },
+		{ _field_byte_flags, "model flags", FIELD_FLAG_READ_ONLY, &animation_node_model_flags },
 		{ _field_byte_flags, "node joint flags", &node_joint_flags },
 		{ _field_byte_flags, "additional flags", &node_info_flags },
 		FIELD_PAD("NOD", nullptr, 3),
@@ -249,7 +249,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_block, "nodes", &animation_node_mask_entry_block },
-		{ _field_array, "node flags", &g_node_flag_storage_array },
+		{ _field_array, "node flags", FIELD_FLAG_UNKNOWN0, &g_node_flag_storage_array },
 		{ _field_terminator }
 	};
 
@@ -263,7 +263,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_NODE_MASK_ENTRY_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node", &animation_graph_node_block },
+		{ _field_short_block_index, "node", FIELD_FLAG_INDEX, &animation_graph_node_block },
 		FIELD_PAD("anbfp", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -326,7 +326,7 @@ namespace macaque
 		ANIMATION_BLEND_SCREEN_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_struct, "aiming screen", &animation_aiming_screen_struct },
+		{ _field_struct, "aiming screen", FIELD_FLAG_READ_ONLY, &animation_aiming_screen_struct },
 		{ _field_terminator }
 	};
 
@@ -369,14 +369,14 @@ namespace macaque
 		{ _field_word_flags, "user flags", &animation_index_flags },
 		{ _field_real, "override blend in time" },
 		{ _field_real, "override blend out time" },
-		{ _field_short_block_index, "parent animation", &animation_pool_block },
-		{ _field_short_block_index, "next animation", &animation_pool_block },
+		{ _field_short_block_index, "parent animation", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_pool_block },
+		{ _field_short_block_index, "next animation", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_pool_block },
 		{ _field_word_flags, "production flags", &production_status_flags },
-		{ _field_short_block_index, "composite", &g_compositeTag_block },
+		{ _field_short_block_index, "composite", FIELD_FLAG_READ_ONLY, &g_compositeTag_block },
 		FIELD_EXPLANATION("PCA Group Link", nullptr, "If this animation contains PCA blend shape animation,\nprovide the name of the PCA Group to which it belongs.\nThese groups should be present in the PCA Groups block."),
 		{ _field_string_id, "pca group name" },
 		FIELD_EXPLANATION("Shared Animation Data", nullptr, "data which may be shared by one or more animations"),
-		{ _field_struct, "shared animation reference", &shared_animation_reference_block },
+		{ _field_struct, "shared animation reference", FIELD_FLAG_UNKNOWN0, &shared_animation_reference_block },
 		{ _field_block, "shared animation data", &shared_model_animation_block },
 		{ _field_terminator }
 	};
@@ -393,12 +393,12 @@ namespace macaque
 	{
 		{ _field_short_integer, "frame count", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "node count", FIELD_FLAG_READ_ONLY },
-		{ _field_char_enum, "animation type", &animation_type_enum },
-		{ _field_char_enum, "frame info type", &frame_info_type_enum },
-		{ _field_char_enum, "desired frame info type", &frame_info_type_enum },
+		{ _field_char_enum, "animation type", FIELD_FLAG_READ_ONLY, &animation_type_enum },
+		{ _field_char_enum, "frame info type", FIELD_FLAG_READ_ONLY, &frame_info_type_enum },
+		{ _field_char_enum, "desired frame info type", FIELD_FLAG_READ_ONLY, &frame_info_type_enum },
 		{ _field_char_enum, "desired compression", &compression_settings },
-		{ _field_char_enum, "current compression", &compression_settings },
-		{ _field_word_flags, "internal flags", &internal_animation_flags },
+		{ _field_char_enum, "current compression", FIELD_FLAG_READ_ONLY, &compression_settings },
+		{ _field_word_flags, "internal flags", FIELD_FLAG_READ_ONLY, &internal_animation_flags },
 		{ _field_short_integer, "compressor_version", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "uid", FIELD_FLAG_READ_ONLY },
 		{ _field_string_id, "shared id", FIELD_FLAG_READ_ONLY },
@@ -420,10 +420,10 @@ namespace macaque
 		{ _field_block, "foot tracking", &foot_tracking_block },
 		{ _field_block, "object space offset nodes", &object_space_offset_node_block },
 		{ _field_block, "forward-invert kinetic anchor nodes", &fik_anchor_node_block },
-		{ _field_block, "ik chain events", &animation_ik_chain_events_block },
-		{ _field_block, "ik chain proxies", &animation_ik_chain_proxies_block },
-		{ _field_block, "facial wrinkle events", &animation_facial_wrinkle_events_block },
-		{ _field_block, "extended data events", &animation_extended_events_block },
+		{ _field_block, "ik chain events", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_ik_chain_events_block },
+		{ _field_block, "ik chain proxies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_ik_chain_proxies_block },
+		{ _field_block, "facial wrinkle events", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_facial_wrinkle_events_block },
+		{ _field_block, "extended data events", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_extended_events_block },
 		{ _field_block, "animation object functions", &animation_object_functions_block },
 		{ _field_terminator }
 	};
@@ -520,9 +520,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_NODE_DATA_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node index", &animation_graph_node_block },
-		{ _field_word_flags, "flags", &object_space_node_flags },
-		{ _field_struct, "parent orientation", &quantized_orientation_struct },
+		{ _field_short_block_index, "node index", FIELD_FLAG_INDEX, &animation_graph_node_block },
+		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &object_space_node_flags },
+		{ _field_struct, "parent orientation", FIELD_FLAG_READ_ONLY, &quantized_orientation_struct },
 		{ _field_terminator }
 	};
 
@@ -570,7 +570,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_OFFSET_NODE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "object space offset node", &animation_graph_node_block },
+		{ _field_short_block_index, "object space offset node", FIELD_FLAG_INDEX, &animation_graph_node_block },
 		FIELD_PAD("wsonbp", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -585,7 +585,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FIK_ANCHOR_NODE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "anchor node", &animation_graph_node_block },
+		{ _field_short_block_index, "anchor node", FIELD_FLAG_INDEX, &animation_graph_node_block },
 		FIELD_PAD("dse", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -701,7 +701,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BLEND_SCREEN_ITEM_DEFINITION_BLOCK_ID)
 	{
-		{ _field_short_block_index, "blend screen", &new_animation_blend_screen_block },
+		{ _field_short_block_index, "blend screen", FIELD_FLAG_INDEX, &new_animation_blend_screen_block },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
 		{ _field_short_block_index, "node mask", &animation_node_mask_block },
 		FIELD_PAD("bsidbfp", nullptr, 2),
@@ -718,7 +718,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FUNCTION_OVERLAY_ITEM_DEFINITION_BLOCK_ID)
 	{
-		{ _field_short_block_index, "function overlay", &new_animation_function_overlay_block },
+		{ _field_short_block_index, "function overlay", FIELD_FLAG_INDEX, &new_animation_function_overlay_block },
 		{ _field_word_flags, "flags", &pose_overlay_item_definition_block_flags },
 		{ _field_terminator }
 	};
@@ -767,7 +767,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_GAIT_ITEM_BLOCK_ID)
 	{
-		{ _field_short_block_index, "animation gait", &animation_gait_block },
+		{ _field_short_block_index, "animation gait", FIELD_FLAG_INDEX, &animation_gait_block },
 		FIELD_PAD("agibfap", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -815,7 +815,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_SET_ITEM_ID)
 	{
-		{ _field_short_block_index, "ik point", &animation_ik_block },
+		{ _field_short_block_index, "ik point", FIELD_FLAG_INDEX, &animation_ik_block },
 		{ _field_word_flags, "flags", &animation_ik_set_item_flags },
 		{ _field_terminator }
 	};
@@ -869,7 +869,7 @@ namespace macaque
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
-		{ _field_long_flags, "flags", &animation_mode_flags },
+		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &animation_mode_flags },
 		{ _field_block, "weapon class", &weapon_class_block },
 		{ _field_block, "mode ik", &animation_ik_block_v1_block },
 		{ _field_block, "foot defaults", &foot_tracking_defaults_block },
@@ -932,7 +932,7 @@ namespace macaque
 		{ _field_block, "overlay animations", &animation_entry_block },
 		{ _field_block, "death and damage", &damage_animation_block },
 		{ _field_block, "transitions", &animation_transition_source_block },
-		{ _field_block, "velocity boundaries", &animation_velocity_boundaries_block },
+		{ _field_block, "velocity boundaries", FIELD_FLAG_UNKNOWN0, &animation_velocity_boundaries_block },
 		{ _field_terminator }
 	};
 
@@ -965,7 +965,7 @@ namespace macaque
 		DAMAGE_ANIMATION_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_block, "directions", &damage_direction_block },
+		{ _field_block, "directions", FIELD_FLAG_READ_ONLY, &damage_direction_block },
 		{ _field_terminator }
 	};
 
@@ -979,7 +979,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_DIRECTION_BLOCK_ID)
 	{
-		{ _field_block, "regions", &damage_region_block },
+		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &damage_region_block },
 		{ _field_terminator }
 	};
 
@@ -993,7 +993,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DAMAGE_REGION_BLOCK_ID)
 	{
-		{ _field_struct, "animation", &animation_index_struct },
+		{ _field_struct, "animation", FIELD_FLAG_READ_ONLY, &animation_index_struct },
 		{ _field_terminator }
 	};
 
@@ -1039,7 +1039,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_VELOCITY_BOUNDARIES_BLOCK_ID)
 	{
-		{ _field_array, "velocity boundary entries", &animation_velocity_boundaries_array },
+		{ _field_array, "velocity boundary entries", FIELD_FLAG_UNKNOWN0, &animation_velocity_boundaries_array },
 		{ _field_terminator }
 	};
 
@@ -1072,7 +1072,7 @@ namespace macaque
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
 		{ _field_block, "animations", &ranged_animation_entry_block },
-		{ _field_block, "triangulation data", &triangulation_entry_block },
+		{ _field_block, "triangulation data", FIELD_FLAG_UNKNOWN0, &triangulation_entry_block },
 		{ _field_enum, "horizontal source", &ranged_action_variable_sources },
 		{ _field_enum, "vertical source", &ranged_action_variable_sources },
 		{ _field_enum, "start key", &frame_event_type_new },
@@ -1240,7 +1240,7 @@ namespace macaque
 		VEHICLE_SUSPENSION_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_struct, "animation", &animation_index_struct },
+		{ _field_struct, "animation", FIELD_FLAG_READ_ONLY, &animation_index_struct },
 		{ _field_string_id, "function name" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name", "this marker should be parented to the vehicle root node" },
@@ -1269,7 +1269,7 @@ namespace macaque
 		FUNCTION_OVERLAY_ANIMATION_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_struct, "animation", &animation_index_struct },
+		{ _field_struct, "animation", FIELD_FLAG_READ_ONLY, &animation_index_struct },
 		FIELD_PAD("VQWLKE", nullptr, 2),
 		{ _field_enum, "function controls", &function_overlay_animation_mode },
 		{ _field_string_id, "function" },
@@ -1287,9 +1287,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		INHERITED_ANIMATION_BLOCK_ID)
 	{
-		{ _field_tag_reference, "inherited graph", &model_animation_graph_reference },
-		{ _field_block, "node map", &inherited_animation_node_map_block },
-		{ _field_block, "node map flags", &inherited_animation_node_map_flag_block },
+		{ _field_tag_reference, "inherited graph", FIELD_FLAG_READ_ONLY, &model_animation_graph_reference },
+		{ _field_block, "node map", FIELD_FLAG_READ_ONLY, &inherited_animation_node_map_block },
+		{ _field_block, "node map flags", FIELD_FLAG_READ_ONLY, &inherited_animation_node_map_flag_block },
 		{ _field_long_integer, "inheritance_flags", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "uniform translation scale", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -1433,8 +1433,8 @@ namespace macaque
 		{ _field_dword_integer, "animation_checksum" },
 		{ _field_short_integer, "frame count", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "node count", FIELD_FLAG_READ_ONLY },
-		{ _field_char_enum, "movement_data_type", &frame_info_type_enum },
-		{ _field_struct, "data sizes", &packed_data_sizes_struct },
+		{ _field_char_enum, "movement_data_type", FIELD_FLAG_READ_ONLY, &frame_info_type_enum },
+		{ _field_struct, "data sizes", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &packed_data_sizes_struct },
 		{ _field_data, "animation_data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -1496,23 +1496,23 @@ namespace macaque
 		FIELD_EXPLANATION("GRAPH DATA", nullptr, ""),
 		{ _field_tag_reference, "parent animation graph", &model_animation_graph_reference },
 		{ _field_byte_flags, "inheritance flags", &public_animation_graph_flags },
-		{ _field_byte_flags, "private flags", &private_animation_graph_flags },
+		{ _field_byte_flags, "private flags", FIELD_FLAG_READ_ONLY, &private_animation_graph_flags },
 		{ _field_short_integer, "animation codec pack", FIELD_FLAG_READ_ONLY },
-		{ _field_enum, "force compression setting", &compression_force_settings },
+		{ _field_enum, "force compression setting", FIELD_FLAG_READ_ONLY, &compression_force_settings },
 		{ _field_word_flags, "misc graph flags", &animation_graph_misc_flags },
 		{ _field_long_integer, "skeleton checksum" },
 		{ _field_long_integer, "skeleton checksum lite" },
 		{ _field_tag_reference, "imported events", &global_frame_event_list_reference },
-		{ _field_block, "node usage", &animation_usage_block },
+		{ _field_block, "node usage", FIELD_FLAG_READ_ONLY, &animation_usage_block },
 		{ _field_block, "node masks", &animation_node_mask_block },
 		{ _field_block, "functions", &animation_function_block },
 		{ _field_block, "model animation variants", &model_animation_variant_block },
-		{ _field_block, "skeleton nodes", &animation_graph_node_block },
+		{ _field_block, "skeleton nodes", FIELD_FLAG_READ_ONLY, &animation_graph_node_block },
 		{ _field_block, "sound references", &animation_graph_sound_reference_block },
 		{ _field_block, "effect references", &animation_graph_effect_reference_block },
 		{ _field_block, "blend screens", &animation_blend_screen_block },
 		{ _field_block, "foot markers", &foot_tracking_member_block },
-		{ _field_block, "animations", &animation_pool_block },
+		{ _field_block, "animations", FIELD_FLAG_READ_ONLY, &animation_pool_block },
 		{ _field_block, "NEW blend screens", &new_animation_blend_screen_block },
 		{ _field_block, "NEW function overlays", &new_animation_function_overlay_block },
 		{ _field_block, "overlay groups", &overlay_group_definition_block },
@@ -1556,8 +1556,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHARED_ANIMATION_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "graph reference", &model_animation_graph_reference },
-		{ _field_short_block_index, "shared animation index", &shared_model_animation_block },
+		{ _field_tag_reference, "graph reference", FIELD_FLAG_UNKNOWN0, &model_animation_graph_reference },
+		{ _field_short_block_index, "shared animation index", FIELD_FLAG_UNKNOWN0, &shared_model_animation_block },
 		FIELD_PAD("sarbp", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -1749,11 +1749,11 @@ namespace macaque
 		MODEL_ANIMATION_RUNTIME_DATA_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("RUN-TIME DATA", nullptr, ""),
-		{ _field_block, "inheritence list", &inherited_animation_block },
-		{ _field_block, "new inheritance list", &inherited_animation_block },
+		{ _field_block, "inheritence list", FIELD_FLAG_READ_ONLY, &inherited_animation_block },
+		{ _field_block, "new inheritance list", FIELD_FLAG_READ_ONLY, &inherited_animation_block },
 		{ _field_block, "weapon list", &weapon_class_lookup_block },
-		{ _field_array, "left arm bit vector", &g_node_flag_storage_array },
-		{ _field_array, "right arm bit vector", &g_node_flag_storage_array },
+		{ _field_array, "left arm bit vector", FIELD_FLAG_UNKNOWN0, &g_node_flag_storage_array },
+		{ _field_array, "right arm bit vector", FIELD_FLAG_UNKNOWN0, &g_node_flag_storage_array },
 		{ _field_data, "animationPlayCounts", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
@@ -1768,7 +1768,7 @@ namespace macaque
 		ANIMATION_CODEC_DATA_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("CODEC-SPECIFIC DATA", nullptr, "fields used by varous compression codecs to store shared or global data for this graph. Do not manually edit."),
-		{ _field_struct, "shared_static_codec", &shared_static_data_codec_graph_data_struct },
+		{ _field_struct, "shared_static_codec", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_graph_data_struct },
 		{ _field_terminator }
 	};
 
@@ -1782,9 +1782,9 @@ namespace macaque
 		SHARED_STATIC_DATA_CODEC_GRAPH_DATA_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("Shared Static Codec", nullptr, ""),
-		{ _field_block, "rotations", &shared_static_data_codec_rotation_block },
-		{ _field_block, "translations", &shared_static_data_codec_translation_block },
-		{ _field_block, "scale", &shared_static_data_codec_scale_block },
+		{ _field_block, "rotations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_rotation_block },
+		{ _field_block, "translations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_translation_block },
+		{ _field_block, "scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &shared_static_data_codec_scale_block },
 		{ _field_terminator }
 	};
 

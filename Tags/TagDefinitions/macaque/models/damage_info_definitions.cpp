@@ -209,7 +209,7 @@ namespace macaque
 		FIELD_EXPLANATION("shield", nullptr, ""),
 		{ _field_struct, "shield", &damage_shield_parameters_struct },
 		{ _field_block, "damage sections", &global_damage_section_block },
-		{ _field_block, "nodes", &global_damage_nodes_block },
+		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &global_damage_nodes_block },
 		{ _field_short_integer, "runtime shield material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime shield recharge velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -464,7 +464,7 @@ namespace macaque
 		FIELD_PAD("MDIBP0", nullptr, 2),
 		{ _field_block, "damage sections", &new_global_damage_section_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block },
-		{ _field_block, "nodes", &global_damage_nodes_block },
+		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &global_damage_nodes_block },
 		{ _field_short_integer, "runtime indirect material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("MDIBP1", nullptr, 2),
 		{ _field_terminator }

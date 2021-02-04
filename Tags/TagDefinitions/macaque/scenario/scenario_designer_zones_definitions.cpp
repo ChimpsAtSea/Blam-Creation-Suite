@@ -18,7 +18,7 @@ namespace macaque
 		SCENARIO_DESIGNER_ZONE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_block, "references", &scenarioDesignerZoneTagReferenceBlock_block },
+		{ _field_block, "references", FIELD_FLAG_READ_ONLY, &scenarioDesignerZoneTagReferenceBlock_block },
 		FIELD_CUSTOM("biped", nullptr, _field_id_block_index_flags),
 		{ _field_block, "biped", &biped_block_index_flags_block },
 		FIELD_CUSTOM("vehicle", nullptr, _field_id_block_index_flags),
@@ -55,7 +55,7 @@ namespace macaque
 		{ _field_block, "budget_reference", &budget_reference_block_index_flags_block },
 		FIELD_CUSTOM("bink", nullptr, _field_id_block_index_flags),
 		{ _field_block, "bink", &bink_block_index_flags_block },
-		{ _field_block, "resource dependencies", &scenarioDesignerResourceDependenciesBlock_block },
+		{ _field_block, "resource dependencies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenarioDesignerResourceDependenciesBlock_block },
 		{ _field_terminator }
 	};
 
@@ -69,7 +69,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODESIGNERZONETAGREFERENCEBLOCK_ID)
 	{
-		{ _field_tag_reference, "tag", &scenarioDesignerZoneTagReferenceBlock_tag_reference },
+		{ _field_tag_reference, "tag", FIELD_FLAG_INDEX, &scenarioDesignerZoneTagReferenceBlock_tag_reference },
 		{ _field_terminator }
 	};
 
@@ -83,7 +83,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_biped_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_biped_palette_block },
 		{ _field_terminator }
 	};
 
@@ -97,7 +97,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VEHICLE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_vehicle_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_vehicle_palette_block },
 		{ _field_terminator }
 	};
 
@@ -111,7 +111,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_weapon_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_weapon_palette_block },
 		{ _field_terminator }
 	};
 
@@ -125,7 +125,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_equipment_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_equipment_palette_block },
 		{ _field_terminator }
 	};
 
@@ -139,7 +139,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_scenery_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -153,7 +153,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MACHINE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_machine_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_machine_palette_block },
 		{ _field_terminator }
 	};
 
@@ -167,7 +167,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TERMINAL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_terminal_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_terminal_palette_block },
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROL_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_control_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_control_palette_block },
 		{ _field_terminator }
 	};
 
@@ -195,7 +195,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DISPENSER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &ScenarioDispenserPaletteBlock_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &ScenarioDispenserPaletteBlock_block },
 		{ _field_terminator }
 	};
 
@@ -209,7 +209,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_sound_scenery_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_sound_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -223,7 +223,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CRATE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_crate_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_crate_palette_block },
 		{ _field_terminator }
 	};
 
@@ -237,7 +237,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CREATURE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_creature_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_creature_palette_block },
 		{ _field_terminator }
 	};
 
@@ -251,7 +251,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GIANT_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_giant_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_giant_palette_block },
 		{ _field_terminator }
 	};
 
@@ -265,7 +265,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_SCENERY_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_effect_scenery_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_effect_scenery_palette_block },
 		{ _field_terminator }
 	};
 
@@ -279,7 +279,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &character_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &character_palette_block },
 		{ _field_terminator }
 	};
 
@@ -293,7 +293,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPAWNER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_spawner_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_spawner_palette_block },
 		{ _field_terminator }
 	};
 
@@ -307,7 +307,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BUDGET_REFERENCE_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_budget_references_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_budget_references_block },
 		{ _field_terminator }
 	};
 
@@ -321,7 +321,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINK_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "palette index", &binkPaletteBlock_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &binkPaletteBlock_block },
 		{ _field_terminator }
 	};
 
@@ -335,7 +335,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODESIGNERRESOURCEDEPENDENCIESBLOCK_ID)
 	{
-		{ _field_tag_reference, "tag", &scenarioDesignerResourceDependenciesBlock_tag_reference },
+		{ _field_tag_reference, "tag", FIELD_FLAG_INDEX, &scenarioDesignerResourceDependenciesBlock_tag_reference },
 		{ _field_terminator }
 	};
 

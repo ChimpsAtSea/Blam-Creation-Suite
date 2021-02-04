@@ -31,7 +31,7 @@ namespace macaque
 		PARTICLE_CONTROLLER_ID)
 	{
 		{ _field_enum, "type", &particle_movement_type },
-		{ _field_byte_flags, "flags", &particle_controller_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &particle_controller_flags },
 		FIELD_PAD("KNTXOMS", nullptr, 1),
 		{ _field_block, "parameters", &particle_controller_parameters_block },
 		{ _field_long_integer, "runtime m_constant_parameters", FIELD_FLAG_UNKNOWN0 },

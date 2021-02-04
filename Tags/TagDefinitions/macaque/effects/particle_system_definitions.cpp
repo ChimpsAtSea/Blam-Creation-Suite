@@ -69,7 +69,7 @@ namespace macaque
 		{ _field_string_id, "emitter name", FIELD_FLAG_INDEX },
 		FIELD_CUSTOM("EMITTER SETTINGS", nullptr, _field_id_function_group_begin),
 		{ _field_char_enum, "emission shape", &emission_shape_enum },
-		{ _field_byte_flags, "flags", &emitter_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &emitter_flags },
 		{ _field_byte_flags, "emitter flags", &visible_emitter_flags },
 		{ _field_char_enum, "particle axis (for models)", &emission_axis_enum },
 		{ _field_char_enum, "particle reference axis", &emission_reference_axis_enum },
@@ -121,7 +121,7 @@ namespace macaque
 		{ _field_long_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime m_constant_over_time_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
-		{ _field_struct, "runtime m_gpu_data", &gpu_property_function_color_struct },
+		{ _field_struct, "runtime m_gpu_data", FIELD_FLAG_UNKNOWN0, &gpu_property_function_color_struct },
 		{ _field_terminator }
 	};
 
@@ -167,7 +167,7 @@ namespace macaque
 		GPU_PROPERTY_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_property_sub_array", &gpu_property_sub_array },
+		{ _field_array, "runtime gpu_property_sub_array", FIELD_FLAG_UNKNOWN0, &gpu_property_sub_array },
 		{ _field_terminator }
 	};
 
@@ -182,7 +182,7 @@ namespace macaque
 		GPU_FUNCTION_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_function_sub_array", &gpu_function_sub_array },
+		{ _field_array, "runtime gpu_function_sub_array", FIELD_FLAG_UNKNOWN0, &gpu_function_sub_array },
 		{ _field_terminator }
 	};
 
@@ -197,7 +197,7 @@ namespace macaque
 		GPU_COLOR_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_color_sub_array", &gpu_color_sub_array },
+		{ _field_array, "runtime gpu_color_sub_array", FIELD_FLAG_UNKNOWN0, &gpu_color_sub_array },
 		{ _field_terminator }
 	};
 
@@ -252,9 +252,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_PROPERTY_FUNCTION_COLOR_STRUCT_ID)
 	{
-		{ _field_block, "runtime gpu_property_block", &gpu_property_block },
-		{ _field_block, "runtime gpu_functions_block", &gpu_function_block },
-		{ _field_block, "runtime gpu_colors_block", &gpu_color_block },
+		{ _field_block, "runtime gpu_property_block", FIELD_FLAG_UNKNOWN0, &gpu_property_block },
+		{ _field_block, "runtime gpu_functions_block", FIELD_FLAG_UNKNOWN0, &gpu_function_block },
+		{ _field_block, "runtime gpu_colors_block", FIELD_FLAG_UNKNOWN0, &gpu_color_block },
 		{ _field_terminator }
 	};
 

@@ -18,8 +18,8 @@ namespace macaque
 		SOUNDBANK_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundBankDefinitionFlags },
-		{ _field_long_flags, "import flags", &sound_import_flags },
-		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", FIELD_FLAG_UNKNOWN0, &sound_import_flags },
+		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_block, "Sound bank list", &SoundBankBlock_block },
 		{ _field_long_integer, "Bank priority", "the importance of this bank over others. 1 is highest priority (ie will bump all others)" },
 		{ _field_long_integer, "Bank unique ID" },
@@ -67,8 +67,8 @@ namespace macaque
 		SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &SoundEventDefinitionFlags },
-		{ _field_long_flags, "import flags", &sound_import_flags },
-		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", FIELD_FLAG_UNKNOWN0, &sound_import_flags },
+		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_string_id, "Event Name", "Sound event name." },
 		{ _field_string_id, "Player Event Name", "Optional sound event name for player only." },
 		{ _field_string_id, "Fallback Event Name", "Fallback sound event if the others don't play - should be an a guaranteed bank." },
@@ -101,27 +101,27 @@ namespace macaque
 		SOUND_OLD_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
-		{ _field_long_flags, "import flags", &sound_import_flags },
-		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", FIELD_FLAG_UNKNOWN0, &sound_import_flags },
+		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
-		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
+		{ _field_char_enum, "sample rate", FIELD_FLAG_READ_ONLY, &sound_sample_rate_enum },
 		{ _field_char_integer, "override xma compression" },
-		{ _field_char_enum, "import type", &sound_import_type_enum },
+		{ _field_char_enum, "import type", FIELD_FLAG_READ_ONLY, &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
 		FIELD_EXPLANATION("sub priority", nullptr, "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)"),
 		{ _field_real, "sub priority" },
 		FIELD_EXPLANATION("import properties", nullptr, ""),
-		{ _field_char_enum, "encoding", &sound_encoding_enum },
-		{ _field_char_enum, "compression", &sound_compression_enum },
+		{ _field_char_enum, "encoding", FIELD_FLAG_READ_ONLY, &sound_encoding_enum },
+		{ _field_char_enum, "compression", FIELD_FLAG_READ_ONLY, &sound_compression_enum },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
 		FIELD_PAD("runtime pad", nullptr, 4),
-		{ _field_block, "pitch ranges", &sound_pitch_range_block },
+		{ _field_block, "pitch ranges", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
-		{ _field_block, "extra info", &sound_extra_info_block },
-		{ _field_block, "language info", &sound_language_info_block },
+		{ _field_block, "extra info", FIELD_FLAG_UNKNOWN0, &sound_extra_info_block },
+		{ _field_block, "language info", FIELD_FLAG_UNKNOWN0, &sound_language_info_block },
 		{ _field_terminator }
 	};
 
@@ -144,27 +144,27 @@ namespace macaque
 		SOUND2_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &sound_definition_flags },
-		{ _field_long_flags, "import flags", &sound_import_flags },
-		{ _field_long_flags, "xsync flags", &sound_xsync_flags },
+		{ _field_long_flags, "import flags", FIELD_FLAG_UNKNOWN0, &sound_import_flags },
+		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
-		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
+		{ _field_char_enum, "sample rate", FIELD_FLAG_READ_ONLY, &sound_sample_rate_enum },
 		{ _field_char_integer, "override xma compression" },
-		{ _field_char_enum, "import type", &sound_import_type_enum },
+		{ _field_char_enum, "import type", FIELD_FLAG_READ_ONLY, &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
 		FIELD_EXPLANATION("sub priority", nullptr, "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)"),
 		{ _field_real, "sub priority" },
 		FIELD_EXPLANATION("import properties", nullptr, ""),
-		{ _field_char_enum, "encoding", &sound_encoding_enum },
-		{ _field_char_enum, "compression", &sound_compression_enum },
+		{ _field_char_enum, "encoding", FIELD_FLAG_READ_ONLY, &sound_encoding_enum },
+		{ _field_char_enum, "compression", FIELD_FLAG_READ_ONLY, &sound_compression_enum },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
 		FIELD_PAD("runtime pad", nullptr, 4),
-		{ _field_block, "pitch ranges", &sound_pitch_range_block },
+		{ _field_block, "pitch ranges", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
-		{ _field_block, "extra info", &sound_extra_info_block },
-		{ _field_block, "language info", &sound_language_info_block },
+		{ _field_block, "extra info", FIELD_FLAG_UNKNOWN0, &sound_extra_info_block },
+		{ _field_block, "language info", FIELD_FLAG_UNKNOWN0, &sound_language_info_block },
 		{ _field_terminator }
 	};
 
@@ -271,7 +271,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMPAIGN_UNSPATIALIZED_SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &global_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -326,7 +326,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PROMOTION_RULE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "pitch range", &sound_pitch_range_block },
+		{ _field_short_block_index, "pitch range", FIELD_FLAG_INDEX, &sound_pitch_range_block },
 		{ _field_short_integer, "maximum playing count" },
 		{ _field_real, "suppression time", "time from when first permutation plays to when another sound from an equal or lower promotion can play", "seconds" },
 		{ _field_long_integer, "runtime rollover time", FIELD_FLAG_UNKNOWN0 },
@@ -355,9 +355,9 @@ namespace macaque
 		{ _field_struct, "distance parameters", &sound_distance_parameters_struct },
 		FIELD_PAD("YAMTVB", nullptr, 4),
 		{ _field_char_integer, "runtime usable permutation count", FIELD_FLAG_UNKNOWN0 },
-		{ _field_byte_flags, "xsync flags", &sound_pitch_range_internal_xsync_flags },
+		{ _field_byte_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_pitch_range_internal_xsync_flags },
 		FIELD_PAD("asdf", nullptr, 2),
-		{ _field_block, "permutations", &sound_permutations_block },
+		{ _field_block, "permutations", FIELD_FLAG_READ_ONLY, &sound_permutations_block },
 		{ _field_terminator }
 	};
 
@@ -378,11 +378,11 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_custom_short_block_index, "raw info", FIELD_FLAG_UNKNOWN0 },
-		{ _field_short_block_index, "play fraction type", &g_null_block },
+		{ _field_short_block_index, "play fraction type", FIELD_FLAG_UNKNOWN0, &g_null_block },
 		{ _field_short_bounds, "mission range", "first and last mission ids this permutation can play in (zero values are ignored)" },
 		{ _field_word_flags, "permutation flags", &sound_permutation_external_flags },
-		{ _field_word_flags, "flags", &sound_permutation_flags },
-		{ _field_block, "languages", &sound_permutation_languages_block },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &sound_permutation_flags },
+		{ _field_block, "languages", FIELD_FLAG_UNKNOWN0, &sound_permutation_languages_block },
 		{ _field_terminator }
 	};
 
@@ -413,7 +413,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "file offset", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "encoded size and flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		{ _field_long_block_index, "cache index", &g_null_block },
+		{ _field_long_block_index, "cache index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, &g_null_block },
 		{ _field_long_integer, "xma2_source_buffer_sample_start", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "xma2_source_buffer_sample_end", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -489,11 +489,11 @@ namespace macaque
 	{
 		{ _field_string_id, "skip fraction name" },
 		{ _field_data, "samples", "sampled sound data", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "markers", &sound_permutation_marker_block },
-		{ _field_block, "layer markers", &sound_permutation_marker_block },
-		{ _field_block, "xma2 seek table", &sound_xma2_seek_table_block },
-		{ _field_enum, "compression", &sound_compression_enum },
-		{ _field_char_enum, "language", &sound_language_enum_definition },
+		{ _field_block, "markers", FIELD_FLAG_UNKNOWN0, &sound_permutation_marker_block },
+		{ _field_block, "layer markers", FIELD_FLAG_UNKNOWN0, &sound_permutation_marker_block },
+		{ _field_block, "xma2 seek table", FIELD_FLAG_UNKNOWN0, &sound_xma2_seek_table_block },
+		{ _field_enum, "compression", FIELD_FLAG_READ_ONLY, &sound_compression_enum },
+		{ _field_char_enum, "language", FIELD_FLAG_READ_ONLY, &sound_language_enum_definition },
 		FIELD_PAD("ZHDGBHWS", nullptr, 1),
 		{ _field_long_integer, "sample count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "resource sample offset", FIELD_FLAG_UNKNOWN0 },
@@ -725,7 +725,7 @@ namespace macaque
 		SOUND_PROMOTION_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_block, "promotion rules", &sound_promotion_rule_block },
-		{ _field_block, "runtime timers", &sound_promotion_runtime_timer_block },
+		{ _field_block, "runtime timers", FIELD_FLAG_UNKNOWN0, &sound_promotion_runtime_timer_block },
 		{ _field_long_integer, "runtime active promotion index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime last promotion time", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "runtime suppression timeout", FIELD_FLAG_UNKNOWN0 },

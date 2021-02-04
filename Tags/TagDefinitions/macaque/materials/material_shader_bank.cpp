@@ -17,11 +17,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_BANK_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "compiled vertex shaders", &compiled_vertex_shader_block },
-		{ _field_block, "compiled vertex shader hashes", &compiled_shader_hash_block },
-		{ _field_block, "compiled vertex shader binding info", &vertexShaderUniqueBindingInfoBlock_block },
-		{ _field_block, "compiled pixel shaders", &compiled_pixel_shader_block },
-		{ _field_block, "compiled pixel shader hashes", &compiled_shader_hash_block },
+		{ _field_block, "compiled vertex shaders", FIELD_FLAG_READ_ONLY, &compiled_vertex_shader_block },
+		{ _field_block, "compiled vertex shader hashes", FIELD_FLAG_READ_ONLY, &compiled_shader_hash_block },
+		{ _field_block, "compiled vertex shader binding info", FIELD_FLAG_READ_ONLY, &vertexShaderUniqueBindingInfoBlock_block },
+		{ _field_block, "compiled pixel shaders", FIELD_FLAG_READ_ONLY, &compiled_pixel_shader_block },
+		{ _field_block, "compiled pixel shader hashes", FIELD_FLAG_READ_ONLY, &compiled_shader_hash_block },
 		{ _field_terminator }
 	};
 

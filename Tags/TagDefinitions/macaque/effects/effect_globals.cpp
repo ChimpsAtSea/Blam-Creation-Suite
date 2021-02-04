@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_COMPONENT_HOLDBACKS_BLOCK_ID)
 	{
-		{ _field_long_enum, "holdback type", &effect_holdback_type_enum },
+		{ _field_long_enum, "holdback type", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &effect_holdback_type_enum },
 		{ _field_dword_integer, "overall budget", "from code", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "priorities", &effect_component_holdback_block },
 		{ _field_terminator }
@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_COMPONENT_HOLDBACK_BLOCK_ID)
 	{
-		{ _field_long_enum, "priority type", &global_effect_priority_enum },
+		{ _field_long_enum, "priority type", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &global_effect_priority_enum },
 		FIELD_EXPLANATION("SET ONE OF THE FOLLOWING", nullptr, "Whichever is larger will be used"),
 		{ _field_dword_integer, "absolute count" },
 		{ _field_real, "relative percentage", nullptr, "/ 100" },

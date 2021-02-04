@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		USERINTERFACESTYLESHEETLANGUAGESBLOCK_ID)
 	{
-		{ _field_long_enum, "language", &style_sheet_language_enum_definition },
+		{ _field_long_enum, "language", FIELD_FLAG_INDEX, &style_sheet_language_enum_definition },
 		{ _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
 		{ _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block },
 		{ _field_terminator }

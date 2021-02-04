@@ -185,7 +185,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_OBJECT_COLLECTION_STRUCT_ID)
 	{
-		{ _field_long_block_index, "object type", &multiplayer_object_type_block },
+		{ _field_long_block_index, "object type", FIELD_FLAG_INDEX, &multiplayer_object_type_block },
 		{ _field_string_id, "object description" },
 		{ _field_string_id, "object header text" },
 		{ _field_string_id, "object help text" },

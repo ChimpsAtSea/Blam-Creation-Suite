@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FLOCK_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &flock_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &flock_reference },
 		{ _field_terminator }
 	};
 
@@ -99,7 +99,7 @@ namespace macaque
 		FLOCK_DESTINATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_long_enum, "type", &destination_type_enum },
+		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &destination_type_enum },
 		{ _field_real_vector_3d, "position" },
 		{ _field_real, "radius" },
 		{ _field_real, "max destination volume penetration", "The farthest the boid will go inside our destination volume", "wu" },

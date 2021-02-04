@@ -86,7 +86,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_VEHICLE_PHYSICS_STRUCT_ID)
 	{
-		{ _field_long_flags, "flags", &havok_vehicle_physics_definition_flags },
+		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &havok_vehicle_physics_definition_flags },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
 		{ _field_real, "ground friction", "this sucks.  for friction based vehicles only" },
 		{ _field_real, "ground depth", "this sucks.  for friction based vehicles only" },

@@ -40,7 +40,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_REFERENCES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &hs_references_block_reference_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &hs_references_block_reference_reference },
 		{ _field_terminator }
 	};
 
@@ -55,9 +55,9 @@ namespace macaque
 		HS_SCRIPTS_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_enum, "script type", &hs_script_types_enum },
-		{ _field_word_flags, "script flags", &scriptFlagsEnumDefinition },
-		{ _field_long_enum, "return type", &hs_types_enum },
+		{ _field_enum, "script type", FIELD_FLAG_READ_ONLY, &hs_script_types_enum },
+		{ _field_word_flags, "script flags", FIELD_FLAG_READ_ONLY, &scriptFlagsEnumDefinition },
+		{ _field_long_enum, "return type", FIELD_FLAG_READ_ONLY, &hs_types_enum },
 		{ _field_long_integer, "root expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "locals stack space" },
 		{ _field_block, "parameters", &hs_script_parameters_block },
@@ -75,7 +75,7 @@ namespace macaque
 		HS_SCRIPT_PARAMETERS_BLOCK_ID)
 	{
 		{ _field_string, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_long_enum, "return type", &hs_types_enum },
+		{ _field_long_enum, "return type", FIELD_FLAG_READ_ONLY, &hs_types_enum },
 		{ _field_terminator }
 	};
 
@@ -90,7 +90,7 @@ namespace macaque
 		HS_GLOBALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
-		{ _field_long_enum, "type", &hs_types_enum },
+		{ _field_long_enum, "type", FIELD_FLAG_READ_ONLY, &hs_types_enum },
 		{ _field_long_integer, "initialization expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -106,7 +106,7 @@ namespace macaque
 		HSINSTANCEDVARIABLESBLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
-		{ _field_long_enum, "type", &hs_types_enum },
+		{ _field_long_enum, "type", FIELD_FLAG_READ_ONLY, &hs_types_enum },
 		{ _field_long_integer, "initialization expression index", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -160,8 +160,8 @@ namespace macaque
 		HSIMPORTMANIFESTBLOCK_ID)
 	{
 		{ _field_tag, "callee tag", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "script table", &HSImportManifestEntryBlock_block },
-		{ _field_block, "variable table", &HSImportManifestEntryBlock_block },
+		{ _field_block, "script table", FIELD_FLAG_READ_ONLY, &HSImportManifestEntryBlock_block },
+		{ _field_block, "variable table", FIELD_FLAG_READ_ONLY, &HSImportManifestEntryBlock_block },
 		{ _field_terminator }
 	};
 

@@ -31,7 +31,7 @@ namespace macaque
 		CHALLENGE_CATEGORY_BLOCK_ID)
 	{
 		{ _field_string_id, "category_name", FIELD_FLAG_INDEX },
-		{ _field_char_enum, "challenge category", &challenge_category_enum_definition },
+		{ _field_char_enum, "challenge category", FIELD_FLAG_INDEX, &challenge_category_enum_definition },
 		FIELD_PAD("WAT1", nullptr, 3),
 		{ _field_block, "challenges", &challenge_block },
 		{ _field_terminator }

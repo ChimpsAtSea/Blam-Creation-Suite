@@ -95,7 +95,7 @@ namespace macaque
 		{ _field_struct, "default function", &mapping_function },
 		{ _field_string_id, "scale by" },
 		{ _field_block, "interpolation", &object_function_interpolation_block },
-		{ _field_long_block_index, "runtime interpolator index", &object_runtime_interpolator_functions_block },
+		{ _field_long_block_index, "runtime interpolator index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &object_runtime_interpolator_functions_block },
 		{ _field_terminator }
 	};
 
@@ -174,7 +174,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
-		{ _field_tag_reference, "type", &global_object_attachment_block_type_reference },
+		{ _field_tag_reference, "type", FIELD_FLAG_INDEX, &global_object_attachment_block_type_reference },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_old_string_id, "marker" },
 		{ _field_char_enum, "change color", &global_object_change_color_enum },
@@ -368,7 +368,7 @@ namespace macaque
 		{ _field_real, "self-destruct time", "if non-zero, any instances of this object will destroy themselves after this many seconds.", "seconds" },
 		{ _field_block, "ai properties", &object_ai_properties_block },
 		{ _field_block, "functions", &object_function_block },
-		{ _field_block, "runtime interpolator functions", &object_runtime_interpolator_functions_block },
+		{ _field_block, "runtime interpolator functions", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &object_runtime_interpolator_functions_block },
 		{ _field_block, "function switches", &objectFunctionSwitchBlock_block },
 		{ _field_short_integer, "hud text message index" },
 		{ _field_word_flags, "secondary flags", &object_definition_secondary_flags },
@@ -377,12 +377,12 @@ namespace macaque
 		{ _field_block, "jetwash", &jetwash_definition_block },
 		{ _field_block, "widgets", &object_widget_block },
 		{ _field_block, "change colors", &object_change_colors_block },
-		{ _field_block, "predicted resources", &g_null_block },
+		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "multiplayer object", &multiplayer_object_block },
 		{ _field_tag_reference, "simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_block, "spawn effects", &object_spawn_effects_block },
 		{ _field_block, "model dissolve data", &modelDissolveDataBlock_block },
-		{ _field_struct, "script data", &hs_script_data_struct },
+		{ _field_struct, "script data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hs_script_data_struct },
 		{ _field_block, "script tagalongs", &hs_references_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
 		FIELD_EXPLANATION("Object Abandoment", nullptr, ""),

@@ -138,7 +138,7 @@ namespace macaque
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		{ _field_enum, "Output Modifier", &output_mod_enum },
+		{ _field_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &output_mod_enum },
 		FIELD_PAD("BVCG1", nullptr, 2),
 		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),

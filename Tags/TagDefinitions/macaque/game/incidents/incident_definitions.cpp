@@ -145,7 +145,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_KILL_IMPLEMENT_BLOCK_ID)
 	{
-		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
+		{ _field_char_enum, "damage reporting type", FIELD_FLAG_INDEX, &global_damage_reporting_enum_definition },
 		FIELD_PAD("ACNUIEHF", nullptr, 3),
 		{ _field_terminator }
 	};
@@ -161,8 +161,8 @@ namespace macaque
 		SPECIALIZED_INCIDENT_OBJECT_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &specialized_incident_kill_bucket_flags },
-		{ _field_char_enum, "bucket type", &campaign_metagame_bucket_type_with_none_enum },
-		{ _field_char_enum, "bucket class", &campaign_metagame_bucket_class_with_none_enum },
+		{ _field_char_enum, "bucket type", FIELD_FLAG_INDEX, &campaign_metagame_bucket_type_with_none_enum },
+		{ _field_char_enum, "bucket class", FIELD_FLAG_INDEX, &campaign_metagame_bucket_class_with_none_enum },
 		FIELD_PAD("PAD0", nullptr, 2),
 		{ _field_string, "gamertag" },
 		{ _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block },
@@ -193,7 +193,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SPECIALIZED_INCIDENT_SPECIAL_KILL_TYPE_BLOCK_ID)
 	{
-		{ _field_char_enum, "special kill type", &specialized_incident_special_kill_type_enum },
+		{ _field_char_enum, "special kill type", FIELD_FLAG_INDEX, &specialized_incident_special_kill_type_enum },
 		FIELD_PAD("CVUIHEN", nullptr, 3),
 		{ _field_terminator }
 	};
@@ -355,7 +355,7 @@ namespace macaque
 		{ _field_real, "damage threshold for hologram incidents" },
 		{ _field_real, "damage threshold for distraction incident killer" },
 		{ _field_real, "damage threshold for distraction incident distractor" },
-		{ _field_tag_reference, "reward globals", &reward_globals_definition_reference },
+		{ _field_tag_reference, "reward globals", FIELD_FLAG_UNKNOWN0, &reward_globals_definition_reference },
 		{ _field_tag_reference, "commendation globals", &commendation_globals_definition_reference },
 		FIELD_CUSTOM("HEAT", nullptr, _field_id_function_group_begin),
 		{ _field_short_integer, "maximum heat" },
@@ -365,7 +365,7 @@ namespace macaque
 		{ _field_real, "betrayal heat stun time", "seconds from the time you are at maximum heat until it starts decaying again", "s" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_tag_reference, "incident definitions", &incident_globals_definition_reference },
-		{ _field_block, "default incident definition", &incident_definition_block },
+		{ _field_block, "default incident definition", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &incident_definition_block },
 		{ _field_terminator }
 	};
 

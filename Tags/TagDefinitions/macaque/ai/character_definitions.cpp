@@ -48,7 +48,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VOICE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "dialogue", &dialogue_reference$2 },
+		{ _field_tag_reference, "dialogue", FIELD_FLAG_INDEX, &dialogue_reference$2 },
 		{ _field_string_id, "designator", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "weight" },
 		{ _field_block, "region filters", &character_voice_region_filter_block },
@@ -196,7 +196,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMOTIONS_SITUATIONAL_DANGER_BLOCK_ID)
 	{
-		{ _field_enum, "highest prop class", &prop_class_enum },
+		{ _field_enum, "highest prop class", FIELD_FLAG_INDEX, &prop_class_enum },
 		FIELD_PAD("obligatory pad", nullptr, 2),
 		{ _field_real, "situational danger", "What should be the situational danger level for the prop class selected above" },
 		{ _field_terminator }
@@ -275,7 +275,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PERCEPTION_BLOCK_STRUCT_ID)
 	{
-		{ _field_enum, "perception_mode", &actor_perception_mode_definition },
+		{ _field_enum, "perception_mode", FIELD_FLAG_INDEX, &actor_perception_mode_definition },
 		{ _field_word_flags, "flags", &perception_flags },
 		{ _field_real, "maximum vision distance", "maximum range of sight", "world units" },
 		{ _field_real, "reliable vision distance", "reliable range of sight", "world units" },
@@ -623,7 +623,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIRING_POINT_EVALUATOR_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_enum, "mode", &evaluation_modes },
+		{ _field_long_enum, "mode", FIELD_FLAG_INDEX, &evaluation_modes },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_EXPLANATION("DESIGNERS BEWARE", nullptr, "If you want to screw the AI up, here\'s a great place to start. Please try not to."),
 		{ _field_block, "evaluators", &evaluator_definition_block },
@@ -641,7 +641,7 @@ namespace macaque
 		EVALUATOR_DEFINITION_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("EVALUATOR", nullptr, "The firing point evaluation properties for a single evaluator. Treat with great care and respect."),
-		{ _field_long_enum, "evaluator", &evaluator_enum },
+		{ _field_long_enum, "evaluator", FIELD_FLAG_INDEX, &evaluator_enum },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_real, "preference weight" },
 		{ _field_real, "avoidance weight" },
@@ -959,7 +959,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VEHICLE_BOARDING_BLOCK_ID)
 	{
-		{ _field_tag_reference, "vehicle", &unit_reference$2 },
+		{ _field_tag_reference, "vehicle", FIELD_FLAG_INDEX, &unit_reference$2 },
 		{ _field_long_flags, "flags", &vehicle_boarding_flags },
 		{ _field_terminator }
 	};
@@ -1104,7 +1104,7 @@ namespace macaque
 		CHARACTER_WEAPONS_BLOCK_ID)
 	{
 		{ _field_long_flags, "weapons flags", &weapon_flags },
-		{ _field_tag_reference, "weapon", &weapon_reference$2 },
+		{ _field_tag_reference, "weapon", FIELD_FLAG_INDEX, &weapon_reference$2 },
 		FIELD_EXPLANATION("Combat ranges", nullptr, ""),
 		{ _field_real, "maximum firing range", "we can only fire our weapon at targets within this distance", "world units" },
 		{ _field_real, "minimum firing range", "weapon will not be fired at target closer than given distance" },
@@ -1156,7 +1156,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FIRING_PATTERN_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "weapon", &weapon_reference$2 },
+		{ _field_tag_reference, "weapon", FIELD_FLAG_INDEX, &weapon_reference$2 },
 		{ _field_block, "firing patterns", &character_firing_pattern_block },
 		{ _field_terminator }
 	};
@@ -1199,7 +1199,7 @@ namespace macaque
 		CHARACTER_GRENADES_BLOCK_ID)
 	{
 		{ _field_long_flags, "grenades flags", &grenades_flags },
-		{ _field_enum, "grenade type", &global_grenade_type_enum },
+		{ _field_enum, "grenade type", FIELD_FLAG_INDEX, &global_grenade_type_enum },
 		{ _field_enum, "trajectory type", &actor_grenade_trajectory_enum },
 		FIELD_PAD("YZNPI", nullptr, 2),
 		{ _field_short_integer, "minimum enemy count", "how many enemies must be within the radius of the grenade before we will consider throwing there" },
@@ -1229,8 +1229,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_VEHICLE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "unit", &unit_reference$2 },
-		{ _field_tag_reference, "style", &style_reference },
+		{ _field_tag_reference, "unit", FIELD_FLAG_INDEX, &unit_reference$2 },
+		{ _field_tag_reference, "style", FIELD_FLAG_INDEX, &style_reference },
 		FIELD_EXPLANATION("Flying Avoidance", nullptr, ""),
 		{ _field_real, "lookahead_time", "How much in the future should we estimate a collision (affects collision ray length)", "seconds" },
 		{ _field_real, "roll change magnitude", "How fast to control the roll avoidance", "degrees" },
@@ -1327,7 +1327,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_FLYING_MOVEMENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "vehicle", &unit_reference$2 },
+		{ _field_tag_reference, "vehicle", FIELD_FLAG_INDEX, &unit_reference$2 },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_EXPLANATION("Vector Weights", nullptr, "Think of this as firing point evaluation; how much do we want to weight each of the various vectors affecting our movement in space."),
 		{ _field_real, "facing", "How much our current movement vector affects our new vector selection." },
@@ -1465,7 +1465,7 @@ namespace macaque
 		CHARACTER_EQUIPMENT_USAGE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Equipment Use", nullptr, "How should I use this equipment?"),
-		{ _field_enum, "use when", &character_equipment_usage_when_enum },
+		{ _field_enum, "use when", FIELD_FLAG_INDEX, &character_equipment_usage_when_enum },
 		{ _field_enum, "use how", &character_equipment_usage_how_enum },
 		FIELD_EXPLANATION("Skip Fraction", nullptr, "Given that we have decided to use this equipment, should we do so? (0= always use it, 1= never use it). Heroic skip fraction is the average of normal and legendary chances."),
 		{ _field_real, "easy/normal", nullptr, "0-1" },

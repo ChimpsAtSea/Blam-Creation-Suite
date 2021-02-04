@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BINKPALETTEBLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &bink_reference$2 },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &bink_reference$2 },
 		{ _field_terminator }
 	};
 
@@ -45,7 +45,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "frame count", FIELD_FLAG_READ_ONLY },
 		{ _field_pageable, "bink resource", &bink_resource_struct },
-		{ _field_tag_reference, "external sound track", &global_sound_reference },
+		{ _field_tag_reference, "external sound track", FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_terminator }
 	};
 

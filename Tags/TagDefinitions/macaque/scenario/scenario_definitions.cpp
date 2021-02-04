@@ -90,7 +90,7 @@ namespace macaque
 		{ _field_tag_reference, "starting equipment", &equipment_reference$2 },
 		{ _field_string_id, "starting tactical package" },
 		{ _field_string_id, "starting support upgrade" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		FIELD_PAD("AHDVHJE", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -314,9 +314,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_BSP_REFERENCE_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "structure bsp", &structure_bsp_reference_non_resolving },
-		{ _field_tag_reference, "local structure bsp", &structure_bsp_reference_non_resolving },
-		{ _field_tag_reference, "structure metadata", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
+		{ _field_tag_reference, "structure bsp", FIELD_FLAG_INDEX, &structure_bsp_reference_non_resolving },
+		{ _field_tag_reference, "local structure bsp", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_bsp_reference_non_resolving },
+		{ _field_tag_reference, "structure metadata", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		FIELD_EXPLANATION("Size Class", nullptr, "Tells lightmapper desired res for structure bitmaps.\nNumbers in parens are final sizes after compression"),
 		{ _field_long_enum, "size class", &scenario_structure_size_enum },
 		{ _field_long_enum, "refinement size class", &scenario_structure_refinement_size_enum },
@@ -359,9 +359,9 @@ namespace macaque
 		{ _field_real, "cloud speed", "cloud movement speed" },
 		{ _field_real, "cloud direction", "cloud movement direction, 0-360 degree" },
 		{ _field_tag_reference, "cloud texture", &global_bitmap_reference },
-		{ _field_short_block_index, "name", &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
 		FIELD_PAD("post-name-pad", nullptr, 2),
-		{ _field_long_block_flags, "active on bsps", &scenario_structure_bsp_reference_block },
+		{ _field_long_block_flags, "active on bsps", FIELD_FLAG_UNKNOWN0, &scenario_structure_bsp_reference_block },
 		{ _field_terminator }
 	};
 
@@ -391,7 +391,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOBSPREFERENCEBLOCK_ID)
 	{
-		{ _field_tag_reference, "structure design", &structureBspReferenceNonDependency },
+		{ _field_tag_reference, "structure design", FIELD_FLAG_INDEX, &structureBspReferenceNonDependency },
 		{ _field_terminator }
 	};
 
@@ -405,7 +405,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHILD_REFERENCES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "tag", &Tag::Reference<struct Scenario>::s_defaultDefinition },
+		{ _field_tag_reference, "tag", FIELD_FLAG_INDEX, &Tag::Reference<struct Scenario>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
@@ -419,8 +419,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DESIGN_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "structure design", &structure_design_reference },
-		{ _field_tag_reference, "local structure design", &structure_design_reference },
+		{ _field_tag_reference, "structure design", FIELD_FLAG_INDEX, &structure_design_reference },
+		{ _field_tag_reference, "local structure design", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_design_reference },
 		{ _field_terminator }
 	};
 
@@ -436,10 +436,10 @@ namespace macaque
 	{
 		{ _field_dword_integer, "structure bsp mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_word_flags, "flags", &scenario_zone_set_pvs_flags },
-		{ _field_block, "bsp checksums", &scenario_zone_set_bsp_checksum_block },
-		{ _field_block, "structure bsp pvs", &scenario_zone_set_bsp_pvs_block },
-		{ _field_block, "portal=>device mapping", &structure_portal_device_mapping_block },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_pvs_flags },
+		{ _field_block, "bsp checksums", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_bsp_checksum_block },
+		{ _field_block, "structure bsp pvs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_bsp_pvs_block },
+		{ _field_block, "portal=>device mapping", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_portal_device_mapping_block },
 		{ _field_terminator }
 	};
 
@@ -467,9 +467,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_PVS_BLOCK_ID)
 	{
-		{ _field_block, "cluster pvs", &scenario_zone_set_cluster_pvs_block },
-		{ _field_block, "cluster pvs doors closed", &scenario_zone_set_cluster_pvs_block },
-		{ _field_block, "bsp cluster mapings", &scenario_zone_set_bsp_seam_cluster_mappings_block },
+		{ _field_block, "cluster pvs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_pvs_block },
+		{ _field_block, "cluster pvs doors closed", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_pvs_block },
+		{ _field_block, "bsp cluster mapings", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_bsp_seam_cluster_mappings_block },
 		{ _field_terminator }
 	};
 
@@ -483,7 +483,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_CLUSTER_PVS_BLOCK_ID)
 	{
-		{ _field_block, "cluster pvs bit vectors", &scenario_zone_set_bsp_bits_block },
+		{ _field_block, "cluster pvs bit vectors", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_bsp_bits_block },
 		{ _field_terminator }
 	};
 
@@ -497,7 +497,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_BITS_BLOCK_ID)
 	{
-		{ _field_block, "bits", &scenario_zone_set_cluster_pvs_bit_vector_block },
+		{ _field_block, "bits", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_pvs_bit_vector_block },
 		{ _field_terminator }
 	};
 
@@ -525,9 +525,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_SET_BSP_SEAM_CLUSTER_MAPPINGS_BLOCK_ID)
 	{
-		{ _field_block, "root clusters", &scenario_zone_set_cluster_reference_block },
-		{ _field_block, "attached clusters", &scenario_zone_set_cluster_reference_block },
-		{ _field_block, "connected clusters", &scenario_zone_set_cluster_reference_block },
+		{ _field_block, "root clusters", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_reference_block },
+		{ _field_block, "attached clusters", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_reference_block },
+		{ _field_block, "connected clusters", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_cluster_reference_block },
 		{ _field_terminator }
 	};
 
@@ -558,18 +558,18 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_long_string, "name string", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_long_block_index, "pvs index", &scenario_zone_set_pvs_block },
+		{ _field_long_block_index, "pvs index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_pvs_block },
 		{ _field_long_flags, "flags", &scenario_zone_set_flags_definition },
 		{ _field_long_block_flags, "bsp zone flags", &scenario_structure_bsp_reference_block },
 		{ _field_long_block_flags, "structure design zone flags", &scenario_design_reference_block },
-		{ _field_long_block_flags, "runtime bsp zone flags", &scenario_structure_bsp_reference_block },
-		{ _field_long_block_flags, "sruntime tructure design zone flags", &scenario_design_reference_block },
+		{ _field_long_block_flags, "runtime bsp zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
+		{ _field_long_block_flags, "sruntime tructure design zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_design_reference_block },
 		{ _field_long_block_flags, "required designer zones", &scenario_designer_zone_block },
 		{ _field_qword_integer, "runtime designer zone flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_block_flags, "cinematic zones", &scenario_cinematics_block },
 		{ _field_long_block_index, "hint previous zone set", &scenario_zone_set_block },
-		{ _field_long_block_index, "audibility index", &game_audibility_block },
-		{ _field_block, "planar fog visibility", &planar_fog_zone_set_visibility_definition_block },
+		{ _field_long_block_index, "audibility index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &game_audibility_block },
+		{ _field_block, "planar fog visibility", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &planar_fog_zone_set_visibility_definition_block },
 		{ _field_block, "budget overrides", &scenario_zone_set_budget_override_block },
 		{ _field_tag_reference, "streaming_reference_tag", &streamingzoneset_reference },
 		{ _field_real_point_3d, "world bounds min", "Physics world will include this min point" },
@@ -591,7 +591,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_BUDGET_REFERENCES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &scenario_budget_references_block_reference_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &scenario_budget_references_block_reference_reference },
 		{ _field_terminator }
 	};
 
@@ -691,7 +691,7 @@ namespace macaque
 		EDITOR_COMMENT_BLOCK_ID)
 	{
 		{ _field_real_point_3d, "position" },
-		{ _field_long_enum, "type", &editor_comment_type_enum_definition },
+		{ _field_long_enum, "type", FIELD_FLAG_UNKNOWN0, &editor_comment_type_enum_definition },
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_string, "comment" },
 		{ _field_terminator }
@@ -708,7 +708,7 @@ namespace macaque
 		DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_environment_unknown),
-		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
+		{ _field_short_block_index, "bsp", FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 		{ _field_short_integer, "runtime object type", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("WOQHKQB", nullptr, 4),
@@ -729,7 +729,7 @@ namespace macaque
 		SCENARIOATTACHEDEFFECTSBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
-		{ _field_tag_reference, "effect reference", &globalEffectReferenceNonResourceDependency },
+		{ _field_tag_reference, "effect reference", FIELD_FLAG_INDEX, &globalEffectReferenceNonResourceDependency },
 		{ _field_terminator }
 	};
 
@@ -744,7 +744,7 @@ namespace macaque
 		SCENARIOATTACHEDLENSFLARESBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
-		{ _field_tag_reference, "lens flare reference", &globalLensFlareReferenceNonResourceDependency },
+		{ _field_tag_reference, "lens flare reference", FIELD_FLAG_INDEX, &globalLensFlareReferenceNonResourceDependency },
 		{ _field_terminator }
 	};
 
@@ -759,7 +759,7 @@ namespace macaque
 		SCENARIOATTACHEDLIGHTCONESBLOCK_ID)
 	{
 		{ _field_long_integer, "cutscene flag index" },
-		{ _field_tag_reference, "light cone reference", &Tag::Reference<struct LightConeDefinition>::s_defaultDefinition },
+		{ _field_tag_reference, "light cone reference", FIELD_FLAG_INDEX, &Tag::Reference<struct LightConeDefinition>::s_defaultDefinition },
 		{ _field_real_argb_color, "color" },
 		{ _field_real_point_2d, "size" },
 		{ _field_real, "intensity" },
@@ -778,7 +778,7 @@ namespace macaque
 		SCENARIO_SOFT_CEILINGS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_soft_ceiling_flags_definition },
-		{ _field_word_flags, "runtime flags", &scenario_soft_ceiling_flags_definition },
+		{ _field_word_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_soft_ceiling_flags_definition },
 		{ _field_string_id, "name" },
 		{ _field_enum, "type", &soft_ceiling_type_enum },
 		FIELD_PAD("my name is", nullptr, 2),
@@ -802,7 +802,7 @@ namespace macaque
 		{ _field_angle, "pitch", nullptr, "degrees" },
 		{ _field_short_integer, "insertion point index" },
 		{ _field_word_flags, "flags", &scenario_player_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		FIELD_PAD("ANDYNDGE", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -880,7 +880,7 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "Atmosphere Setting Index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("XQLJZUE", nullptr, 2),
-		{ _field_tag_reference, "atmosphere", &global_atmosphere_definition_reference },
+		{ _field_tag_reference, "atmosphere", FIELD_FLAG_INDEX, &global_atmosphere_definition_reference },
 		{ _field_terminator }
 	};
 
@@ -931,7 +931,7 @@ namespace macaque
 		{ _field_short_block_index, "decal palette index", &scenario_decal_palette_block },
 		{ _field_byte_flags, "flags", &decal_placement_flags },
 		FIELD_PAD("post-decal-palette-index-pad", nullptr, 1),
-		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
+		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "scale x" },
@@ -950,7 +950,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECAL_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &decal_system_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &decal_system_reference },
 		{ _field_long_integer, "max static bucket size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -965,7 +965,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DETAIL_OBJECT_COLLECTION_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "name", &global_detail_object_collection_reference },
+		{ _field_tag_reference, "name", FIELD_FLAG_INDEX, &global_detail_object_collection_reference },
 		FIELD_PAD("XBMYUIKEJ", nullptr, 32),
 		{ _field_terminator }
 	};
@@ -984,8 +984,8 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "facing" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
-		{ _field_short_block_index, "source bsp", &scenario_structure_bsp_reference_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "source bsp", FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
 		{ _field_terminator }
 	};
 
@@ -1040,7 +1040,7 @@ namespace macaque
 		TRIGGER_VOLUME_MOPP_CODE_BLOCK_ID)
 	{
 		{ _field_long_integer, "trigger volume checksum" },
-		{ _field_block, "mopp code", &mopp_code_definition_block },
+		{ _field_block, "mopp code", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
 		{ _field_terminator }
 	};
 
@@ -1121,14 +1121,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_DATA_BLOCK_ID)
 	{
-		{ _field_tag_reference, "bsp", &structure_bsp_reference_non_resolving },
+		{ _field_tag_reference, "bsp", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_bsp_reference_non_resolving },
 		{ _field_long_integer, "bsp checksum", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "cluster centroids", &scenario_cluster_points_block },
+		{ _field_block, "cluster centroids", FIELD_FLAG_READ_ONLY, &scenario_cluster_points_block },
 		{ _field_long_block_index, "default acoustic palette", &scenario_acoustics_palette_block_definition_block },
-		{ _field_block, "acoustics", &scenario_cluster_acoustics_block },
-		{ _field_block, "atmospheric properties", &scenario_cluster_atmosphere_properties_block },
-		{ _field_block, "camera fx properties", &scenario_cluster_camera_fx_properties_block },
-		{ _field_block, "weather properties", &scenario_cluster_weather_properties_block },
+		{ _field_block, "acoustics", FIELD_FLAG_READ_ONLY, &scenario_cluster_acoustics_block },
+		{ _field_block, "atmospheric properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_atmosphere_properties_block },
+		{ _field_block, "camera fx properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_camera_fx_properties_block },
+		{ _field_block, "weather properties", FIELD_FLAG_READ_ONLY, &scenario_cluster_weather_properties_block },
 		{ _field_terminator }
 	};
 
@@ -1156,7 +1156,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_ACOUSTICS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "type", &scenario_acoustics_palette_block_definition_block },
+		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_acoustics_palette_block_definition_block },
 		FIELD_PAD("XQQ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -1171,7 +1171,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_ATMOSPHERE_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "type", &scenario_atmosphere_palette_block },
+		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_atmosphere_palette_block },
 		FIELD_PAD("XQQ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -1186,7 +1186,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_CAMERA_FX_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "type", &scenario_camera_fx_palette_block },
+		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_camera_fx_palette_block },
 		FIELD_PAD("XQQ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -1201,7 +1201,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CLUSTER_WEATHER_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "type", &scenario_weather_palette_block },
+		{ _field_short_block_index, "type", FIELD_FLAG_INDEX, &scenario_weather_palette_block },
 		FIELD_PAD("XQQ", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -1245,7 +1245,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHEAP_PARTICLE_SYSTEM_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "definition", &cheap_particle_emitter_reference },
+		{ _field_tag_reference, "definition", FIELD_FLAG_INDEX, &cheap_particle_emitter_reference },
 		{ _field_terminator }
 	};
 
@@ -1259,7 +1259,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CHEAP_PARTICLE_SYSTEMS_BLOCK_ID)
 	{
-		{ _field_short_block_index, "palette index", &scenario_cheap_particle_system_palette_block },
+		{ _field_short_block_index, "palette index", FIELD_FLAG_INDEX, &scenario_cheap_particle_system_palette_block },
 		FIELD_PAD("VLKSJLER", nullptr, 2),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "rotation" },
@@ -1307,7 +1307,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_REFERENCES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "model reference", &model_reference$5 },
+		{ _field_tag_reference, "model reference", FIELD_FLAG_INDEX, &model_reference$5 },
 		{ _field_terminator }
 	};
 
@@ -1326,7 +1326,7 @@ namespace macaque
 		{ _field_string_id, "script name", "The name of a custom script used to drive the performance. If none is given, a default script is uses that goes through the lines in sequence" },
 		{ _field_string_id, "global name", "The name of a script global that will be declared for this performance." },
 		{ _field_word_flags, "flags", &performance_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_custom_short_block_index, "Point set" },
 		FIELD_PAD("padding", nullptr, 2),
 		{ _field_block, "Actors", &scenario_performance_actor_block },
@@ -1338,7 +1338,7 @@ namespace macaque
 		{ _field_real_fraction, "attraction probability per second", "The probability that an actor be attracted once inside the thespian radius, every second." },
 		{ _field_string_id, "template" },
 		{ _field_long_integer, "template index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "tasks", &scenario_performance_task_block },
+		{ _field_block, "tasks", FIELD_FLAG_UNKNOWN0, &scenario_performance_task_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_terminator }
@@ -1484,7 +1484,7 @@ namespace macaque
 		FIELD_CUSTOM("link to scenario lightmap", nullptr, _field_id_unknown_compile),
 		{ _field_enum, "type", &scenario_type_enum },
 		{ _field_word_flags, "flags", &scenario_flags },
-		{ _field_long_flags, "runtime trigger volume flags", &scenario_runtime_trigger_volume_flags },
+		{ _field_long_flags, "runtime trigger volume flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_runtime_trigger_volume_flags },
 		{ _field_long_integer, "campaign id" },
 		{ _field_long_integer, "map id" },
 		{ _field_string_id, "map name", "Used to associate external resources with this map - e.g. PDA camera setting block names." },
@@ -1507,18 +1507,18 @@ namespace macaque
 		{ _field_block, "structure bsps", &scenario_structure_bsp_reference_block },
 		{ _field_block, "structure designs", &scenario_design_reference_block },
 		{ _field_tag_reference, "structure seams", &structure_seams_reference },
-		{ _field_tag_reference, "local structure seams", &structure_seams_reference },
+		{ _field_tag_reference, "local structure seams", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seams_reference },
 		{ _field_block, "skies", &scenario_sky_reference_block },
-		{ _field_block, "zone set pvs", &scenario_zone_set_pvs_block },
-		{ _field_block, "zone set audibility", &game_audibility_block },
+		{ _field_block, "zone set pvs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_zone_set_pvs_block },
+		{ _field_block, "zone set audibility", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &game_audibility_block },
 		{ _field_block, "zone sets", &scenario_zone_set_block },
-		{ _field_block, "lighting zone sets", &scenario_lighting_zone_set_block },
-		{ _field_block, "predicted resources", &g_null_block },
+		{ _field_block, "lighting zone sets", FIELD_FLAG_UNKNOWN0, &scenario_lighting_zone_set_block },
+		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "functions", &scenario_function_block },
 		{ _field_data, "editor scenario data" },
 		{ _field_block, "comments", &editor_comment_block },
-		{ _field_block, "unused scenario environment objects", &dont_use_me_scenario_environment_object_block },
-		{ _field_block, "object names", &scenario_object_names_block },
+		{ _field_block, "unused scenario environment objects", FIELD_FLAG_UNKNOWN0, &dont_use_me_scenario_environment_object_block },
+		{ _field_block, "object names", FIELD_FLAG_READ_ONLY, &scenario_object_names_block },
 		{ _field_block, "scenery", &scenario_scenery_block },
 		{ _field_block, "scenery palette", &scenario_scenery_palette_block },
 		{ _field_block, "bipeds", &scenario_biped_block },
@@ -1566,7 +1566,7 @@ namespace macaque
 		{ _field_block, "atmosphere dumplings", &scenario_atmosphere_dumpling_block },
 		{ _field_block, "weather dumplings", &scenario_weather_dumpling_block },
 		{ _field_block, "recorded animations", &recorded_animation_block },
-		{ _field_block, "zone set switch trigger volumes", &scenario_zone_set_switch_trigger_volume_block },
+		{ _field_block, "zone set switch trigger volumes", FIELD_FLAG_UNKNOWN3, &scenario_zone_set_switch_trigger_volume_block },
 		{ _field_block, "named location volumes", &scenario_named_location_volume_block },
 		FIELD_EXPLANATION("SPAWN INFLUENCE OVERRIDES", nullptr, "You can use the following to override multiplayer global spawn influencers for the scenario.  Default settings are defined in multiplayer/multiplayer_globals.multiplayer_globals."),
 		{ _field_tag_reference, "Spawn Settings", &g_spawnSettingsReference },
@@ -1582,7 +1582,7 @@ namespace macaque
 		{ _field_block, "squads", &squads_block },
 		{ _field_block, "zones", &zone_block },
 		{ _field_block, "squad patrols", &squad_patrol_block },
-		{ _field_block, "actual cues", &ai_cue_block },
+		{ _field_block, "actual cues", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
 		{ _field_block, "full cues", &ai_full_cue_block },
 		{ _field_block, "quick cues", &ai_quick_cue_block },
 		{ _field_block, "mission scenes", &ai_scene_block },
@@ -1590,9 +1590,9 @@ namespace macaque
 		{ _field_tag_reference, "ai pathfinding data", &Tag::Reference<struct ai_pathfinding>::s_defaultDefinition },
 		{ _field_block, "ai user hint data", &user_hint_block },
 		{ _field_block, "ai recording references", &ai_recording_reference_block },
-		{ _field_struct, "script data", &hs_script_data_struct },
+		{ _field_struct, "script data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hs_script_data_struct },
 		{ _field_block, "manual script file references", &hs_source_reference_block },
-		{ _field_tag_reference, "compiled global scripts", &Tag::Reference<struct HSScriptContainer>::s_defaultDefinition },
+		{ _field_tag_reference, "compiled global scripts", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &Tag::Reference<struct HSScriptContainer>::s_defaultDefinition },
 		{ _field_block, "scripting data", &cs_script_data_block },
 		{ _field_block, "cutscene flags", &scenario_cutscene_flag_block },
 		{ _field_block, "cutscene camera points", &scenario_cutscene_camera_point_block },
@@ -1601,7 +1601,7 @@ namespace macaque
 		{ _field_tag_reference, "chapter title text", &global_multilingual_unicode_string_list_reference },
 		{ _field_block, "scenario kill triggers", &scenario_kill_trigger_volumes_block },
 		{ _field_block, "scenario safe zone triggers", &scenario_safe_zone_trigger_volumes_block },
-		{ _field_block, "scenario trigger volumes mopp code", &trigger_volume_mopp_code_block },
+		{ _field_block, "scenario trigger volumes mopp code", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &trigger_volume_mopp_code_block },
 		{ _field_block, "scenario requisition triggers", &scenario_requisition_trigger_volumes_block },
 		{ _field_block, "scenario location name triggers", &scenario_location_name_trigger_volumes_block },
 		{ _field_block, "scenario unsafe spawn trigger volumes", &scenarioUnsafeSpawnZoneTriggerVolumesBlock_block },
@@ -1614,7 +1614,7 @@ namespace macaque
 		{ _field_block, "camera fx palette", &scenario_camera_fx_palette_block },
 		{ _field_block, "weather palette", &scenario_weather_palette_block },
 		{ _field_block, "scenario cluster data", &scenario_cluster_data_block },
-		{ _field_array, "object_salts", &object_salt_storage_array },
+		{ _field_array, "object_salts", FIELD_FLAG_READ_ONLY, &object_salt_storage_array },
 		{ _field_block, "spawn data", &scenario_spawn_data_block },
 		{ _field_tag_reference, "sound effect collection", &global_sound_effect_collection_reference },
 		{ _field_block, "crates", &scenario_crate_block },
@@ -1622,11 +1622,11 @@ namespace macaque
 		{ _field_block, "flock palette", &flock_palette_block },
 		{ _field_block, "flocks", &flock_instance_block },
 		{ _field_tag_reference, "subtitles", &global_multilingual_unicode_string_list_reference },
-		{ _field_block, "soundSubtitles", &SoundSubtitleBlock_block },
+		{ _field_block, "soundSubtitles", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &SoundSubtitleBlock_block },
 		{ _field_block, "creatures", &scenario_creature_block },
 		{ _field_block, "creature palette", &scenario_creature_palette_block },
 		{ _field_block, "big battle creature palette", &big_battle_creature_palette_block },
-		{ _field_block, "editor folders", &g_scenario_editor_folder_block },
+		{ _field_block, "editor folders", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_tag_reference, "game engine strings", &global_multilingual_unicode_string_list_reference },
 		FIELD_PAD("QVUC", nullptr, 4),
 		{ _field_block, "mission dialogue", &ai_scenario_mission_dialogue_block },
@@ -1642,7 +1642,7 @@ namespace macaque
 		{ _field_tag_reference, "performance throttles", &global_performance_throttles_reference },
 		{ _field_block, "ai objectives", &objectives_block },
 		{ _field_block, "designer zones", &scenario_designer_zone_block },
-		{ _field_block, "zone debugger", &scenario_zone_debugger_block_definition_block },
+		{ _field_block, "zone debugger", FIELD_FLAG_UNKNOWN0, &scenario_zone_debugger_block_definition_block },
 		{ _field_block, "decorators", &scenario_decorator_block },
 		{ _field_block, "neuticle palette", &scenario_cheap_particle_system_palette_block },
 		{ _field_block, "neuticles", &scenario_cheap_particle_systems_block },
@@ -1656,7 +1656,7 @@ namespace macaque
 		{ _field_block, "cubemaps", &scenario_cubemap_block },
 		{ _field_block, "airprobes", &scenario_airprobes_block },
 		{ _field_block, "budget references", &scenario_budget_references_block },
-		{ _field_block, "model references", &model_references_block },
+		{ _field_block, "model references", FIELD_FLAG_READ_ONLY, &model_references_block },
 		{ _field_block, "thespian", &scenario_performances_block },
 		{ _field_block, "puppetShows", &PuppetShowsBlock_block },
 		{ _field_tag_reference, "location name globals", &global_location_name_globals_reference },
@@ -1734,7 +1734,7 @@ namespace macaque
 		{ _field_char_enum, "quality", &floatingShadowQualityDefinition },
 		{ _field_char_enum, "resolution", &floatingShadowBufferResolution },
 		{ _field_real, "static shadow sharpening" },
-		{ _field_array, "frustums", &scenarioFloatingShadowCascadeSettingsArray_array },
+		{ _field_array, "frustums", FIELD_FLAG_READ_ONLY, &scenarioFloatingShadowCascadeSettingsArray_array },
 		{ _field_terminator }
 	};
 
@@ -1773,7 +1773,7 @@ namespace macaque
 		MANUALBSPFLAGSREFERENCES_ID)
 	{
 		FIELD_CUSTOM("manual bsp flags", nullptr, _field_id_manual_bsp_flags),
-		{ _field_block, "references block", &scenarioBspReferenceBlock_block },
+		{ _field_block, "references block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenarioBspReferenceBlock_block },
 		{ _field_long_integer, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -1802,7 +1802,7 @@ namespace macaque
 		{ _field_real_point_3d, "extents" },
 		{ _field_real, "z sink", "this is only valid for sector type trigger volumes" },
 		{ _field_block, "sector points", &trigger_volume_point_block },
-		{ _field_block, "runtime triangles", &trigger_volume_runtime_triangles_block },
+		{ _field_block, "runtime triangles", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &trigger_volume_runtime_triangles_block },
 		{ _field_real, "runtime sector bounds x0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime sector bounds x1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime sector bounds y0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -1810,8 +1810,8 @@ namespace macaque
 		{ _field_real, "runtime sector bounds z0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "runtime sector bounds z1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "C", FIELD_FLAG_UNKNOWN0 },
-		{ _field_short_block_index, "kill trigger volume", &scenario_kill_trigger_volumes_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "kill trigger volume", FIELD_FLAG_READ_ONLY, &scenario_kill_trigger_volumes_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_terminator }
 	};
 

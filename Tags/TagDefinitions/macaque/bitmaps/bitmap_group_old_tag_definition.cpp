@@ -21,7 +21,7 @@ namespace macaque
 		{ _field_short_integer, "first bitmap index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "bitmap count", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("OTXYKQ", nullptr, 16),
-		{ _field_block, "sprites", &bitmap_group_sprite_block_def_block },
+		{ _field_block, "sprites", FIELD_FLAG_READ_ONLY, &bitmap_group_sprite_block_def_block },
 		{ _field_terminator }
 	};
 

@@ -39,7 +39,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_EFFECT_BLOCK_V2_ID)
 	{
-		{ _field_block, "old materials (DO NOT USE)", &old_material_effect_material_block },
+		{ _field_block, "old materials (DO NOT USE)", FIELD_FLAG_UNKNOWN0, &old_material_effect_material_block },
 		{ _field_block, "sounds", &material_effect_material_block },
 		{ _field_block, "effects", &material_effect_material_block },
 		{ _field_terminator }

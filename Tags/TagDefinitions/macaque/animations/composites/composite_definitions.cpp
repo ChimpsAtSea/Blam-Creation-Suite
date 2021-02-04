@@ -36,7 +36,7 @@ namespace macaque
 		{ _field_char_integer, "priority", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "update", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "functionIndex", FIELD_FLAG_READ_ONLY },
-		{ _field_long_flags, "flags", &CompositeAxisFlags },
+		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &CompositeAxisFlags },
 		{ _field_terminator }
 	};
 
@@ -70,7 +70,7 @@ namespace macaque
 		COMPOSITEENTRYDEFINITION_ID)
 	{
 		{ _field_string_id, "source", FIELD_FLAG_INDEX },
-		{ _field_block, "values", &CompositeEntryValueDefinition_block },
+		{ _field_block, "values", FIELD_FLAG_READ_ONLY, &CompositeEntryValueDefinition_block },
 		{ _field_long_integer, "overridden", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "animIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "slideAxis", FIELD_FLAG_READ_ONLY },
@@ -127,7 +127,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SYNCKEYBLOCK_ID)
 	{
-		{ _field_enum, "key", &frame_event_type_new },
+		{ _field_enum, "key", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &frame_event_type_new },
 		{ _field_terminator }
 	};
 
@@ -155,10 +155,10 @@ namespace macaque
 		G_COMPOSITETAG_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_block, "axes", &CompositeAxisDefinition_block },
-		{ _field_block, "anims", &CompositeEntryDefinition_block },
-		{ _field_block, "sets", &CompositePhaseSetDefinition_block },
-		{ _field_block, "strings", &StringBlock_block },
+		{ _field_block, "axes", FIELD_FLAG_READ_ONLY, &CompositeAxisDefinition_block },
+		{ _field_block, "anims", FIELD_FLAG_READ_ONLY, &CompositeEntryDefinition_block },
+		{ _field_block, "sets", FIELD_FLAG_READ_ONLY, &CompositePhaseSetDefinition_block },
+		{ _field_block, "strings", FIELD_FLAG_READ_ONLY, &StringBlock_block },
 		{ _field_string_id, "timing source" },
 		{ _field_short_integer, "timingAnimIndex", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("PAD", nullptr, 2),

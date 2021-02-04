@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_SCREEN_EFFECT_BLOCK_ID)
 	{
-		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
+		{ _field_tag_reference, "screen effect", FIELD_FLAG_INDEX, &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -146,7 +146,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_WEAPON_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "weapon", &weapon_reference },
+		{ _field_tag_reference, "weapon", FIELD_FLAG_INDEX, &weapon_reference },
 		{ _field_string_id, "variant name" },
 		{ _field_long_enum, "position", &initial_weapon_position },
 		{ _field_real, "maximum firing cone angle", "must be greater than zero for turret to fire", "degrees" },
@@ -297,7 +297,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BOARDING_SEAT_BLOCK_ID)
 	{
-		{ _field_short_block_index, "seat", &unit_seat_block },
+		{ _field_short_block_index, "seat", FIELD_FLAG_INDEX, &unit_seat_block },
 		FIELD_PAD("PAD", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -584,7 +584,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_BIRTH_STRUCT_ID)
 	{
-		{ _field_short_block_index, "seat", &unit_seat_block },
+		{ _field_short_block_index, "seat", FIELD_FLAG_INDEX, &unit_seat_block },
 		FIELD_PAD("PAD", nullptr, 2),
 		{ _field_string_id, "birthing region", "if found, this region will be set to destroyed during birth" },
 		{ _field_terminator }

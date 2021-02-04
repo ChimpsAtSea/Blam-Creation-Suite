@@ -107,10 +107,10 @@ namespace macaque
 	{
 		FIELD_CUSTOM("import", nullptr, _field_id_text_unknown),
 		FIELD_CUSTOM("import clean", nullptr, _field_id_text_unknown),
-		{ _field_block, "string references", &multilingual_unicode_string_reference_block },
-		{ _field_block, "substitution pairs", &string_substitution_pair_block },
+		{ _field_block, "string references", FIELD_FLAG_READ_ONLY, &multilingual_unicode_string_reference_block },
+		{ _field_block, "substitution pairs", FIELD_FLAG_READ_ONLY, &string_substitution_pair_block },
 		{ _field_data, "string data utf8", FIELD_FLAG_READ_ONLY },
-		{ _field_array, "language pack offsets", &multilingual_unicode_string_list_language_pack_offsets_array },
+		{ _field_array, "language pack offsets", FIELD_FLAG_UNKNOWN0, &multilingual_unicode_string_list_language_pack_offsets_array },
 		{ _field_terminator }
 	};
 
@@ -129,8 +129,8 @@ namespace macaque
 		{ _field_long_integer, "string data size", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "string reference cache offset", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "string data cache offset", FIELD_FLAG_UNKNOWN0 },
-		{ _field_array, "string reference checksum", &data_hash_definition_array },
-		{ _field_array, "string data checksum", &data_hash_definition_array },
+		{ _field_array, "string reference checksum", FIELD_FLAG_UNKNOWN0, &data_hash_definition_array },
+		{ _field_array, "string data checksum", FIELD_FLAG_UNKNOWN0, &data_hash_definition_array },
 		{ _field_long_integer, "data loaded boolean", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};

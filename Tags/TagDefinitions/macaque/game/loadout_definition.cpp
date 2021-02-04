@@ -81,7 +81,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOADOUT_INDEX_BLOCK_ID)
 	{
-		{ _field_short_block_index, "loadout", &loadout_definition_block },
+		{ _field_short_block_index, "loadout", FIELD_FLAG_INDEX, &loadout_definition_block },
 		FIELD_PAD("padding0", nullptr, 2),
 		{ _field_terminator }
 	};

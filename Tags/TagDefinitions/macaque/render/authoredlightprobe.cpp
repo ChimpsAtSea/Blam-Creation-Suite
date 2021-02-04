@@ -19,12 +19,12 @@ namespace macaque
 		AUTHORED_LIGHT_PROBE_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Character Lighting", nullptr, "\n"),
-		{ _field_block, "Lights", &authored_light_probe_lights_block },
+		{ _field_block, "Lights", FIELD_FLAG_READ_ONLY, &authored_light_probe_lights_block },
 		FIELD_CUSTOM("Authored Light Probe Intensity Scale", nullptr, _field_id_slider_editor),
 		{ _field_real, "Authored Light Probe Intensity Scale", FIELD_FLAG_UNKNOWN0, _field_id_slider_editor },
 		FIELD_CUSTOM("Generated Air Probe Intensity Scale", nullptr, _field_id_slider_editor),
 		{ _field_real, "Generated Air Probe Intensity Scale", FIELD_FLAG_UNKNOWN0, _field_id_slider_editor },
-		{ _field_array, "raw sh data", &real_rgb_lightprobe_array },
+		{ _field_array, "raw sh data", FIELD_FLAG_UNKNOWN0, &real_rgb_lightprobe_array },
 		{ _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition },
 		FIELD_PAD("pdd", nullptr, 2),

@@ -18,8 +18,8 @@ namespace macaque
 		MUFFIN_STRUCT_DEFINITION_ID)
 	{
 		FIELD_CUSTOM("link to render model", nullptr, _field_id_unknown_compile),
-		{ _field_tag_reference, "render model", &render_model_reference$5 },
-		{ _field_block, "render model permutation names", &muffin_permutation_name_block },
+		{ _field_tag_reference, "render model", FIELD_FLAG_READ_ONLY, &render_model_reference$5 },
+		{ _field_block, "render model permutation names", FIELD_FLAG_UNKNOWN0, &muffin_permutation_name_block },
 		{ _field_long_integer, "render model permutation name valid count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_block, "muffin markers", &muffin_marker_block },
 		{ _field_block, "muffin types", &global_muffin_type_block },
@@ -79,7 +79,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MUFFIN_TYPE_STRUCT_ID)
 	{
-		{ _field_short_block_index, "mesh", &muffin_permutation_name_block },
+		{ _field_short_block_index, "mesh", FIELD_FLAG_INDEX, &muffin_permutation_name_block },
 		{ _field_word_flags, "flags", &muffin_type_flags_definition },
 		{ _field_real_bounds, "spawn delay", "how long to wait before spawning these muffins", "seconds" },
 		FIELD_EXPLANATION("SCALE", nullptr, "animates the size of the muffin"),

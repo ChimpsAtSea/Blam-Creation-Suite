@@ -81,7 +81,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block },
 		{ _field_block, "Cortana Lighting", &hologramLightingBlock_block },
-		{ _field_block, "dynamic lights", &cinematic_dynamic_light_block },
+		{ _field_block, "dynamic lights", FIELD_FLAG_UNKNOWN0, &cinematic_dynamic_light_block },
 		{ _field_terminator }
 	};
 

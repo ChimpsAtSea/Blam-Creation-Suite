@@ -57,7 +57,7 @@ namespace macaque
 		VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_long_enum, "setting category", &game_engine_settings },
+		{ _field_long_enum, "setting category", FIELD_FLAG_INDEX, &game_engine_settings },
 		{ _field_block, "options", &variant_option_block },
 		{ _field_terminator }
 	};

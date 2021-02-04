@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STYLE_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &style_reference$2 },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &style_reference$2 },
 		{ _field_terminator }
 	};
 

@@ -74,7 +74,7 @@ namespace macaque
 		{ _field_dword_integer, "runtime m_constantPerProfileProperties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_usedStates", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_maxProfileCount", FIELD_FLAG_UNKNOWN0 },
-		{ _field_struct, "runtime m_gpuData", &gpu_property_function_color_struct },
+		{ _field_struct, "runtime m_gpuData", FIELD_FLAG_UNKNOWN0, &gpu_property_function_color_struct },
 		{ _field_terminator }
 	};
 

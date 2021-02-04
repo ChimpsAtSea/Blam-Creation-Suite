@@ -507,7 +507,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EXPRESSION_STEP_ID)
 	{
-		{ _field_char_enum, "step type", &step_type },
+		{ _field_char_enum, "step type", FIELD_FLAG_INDEX, &step_type },
 		{ _field_char_enum, "operator", &step_operator },
 		{ _field_char_enum, "variable", &step_variable },
 		FIELD_PAD("pad0", nullptr, 1),

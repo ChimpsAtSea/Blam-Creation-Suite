@@ -192,8 +192,8 @@ namespace macaque
 		FIELD_EXPLANATION("Emblems", nullptr, "\n"),
 		{ _field_block, "front emblems", &emblem_front_list_block },
 		{ _field_block, "back emblems", &emblem_back_list_block },
-		{ _field_block, "runtime front", &emblem_runtime_front_list_block },
-		{ _field_block, "runtime back", &emblem_runtime_back_list_block },
+		{ _field_block, "runtime front", FIELD_FLAG_UNKNOWN0, &emblem_runtime_front_list_block },
+		{ _field_block, "runtime back", FIELD_FLAG_UNKNOWN0, &emblem_runtime_back_list_block },
 		{ _field_terminator }
 	};
 

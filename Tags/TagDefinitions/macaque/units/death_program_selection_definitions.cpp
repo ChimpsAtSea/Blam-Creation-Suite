@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_SPECIAL_BLOCK_ID)
 	{
-		{ _field_long_enum, "special type", &object_damage_aftermath_special_damage_type_enum },
+		{ _field_long_enum, "special type", FIELD_FLAG_INDEX, &object_damage_aftermath_special_damage_type_enum },
 		{ _field_block, "damage type", &death_program_damage_reporting_block },
 		{ _field_terminator }
 	};
@@ -45,7 +45,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DEATH_PROGRAM_DAMAGE_REPORTING_BLOCK_ID)
 	{
-		{ _field_long_enum, "damage type", &global_damage_reporting_enum_definition },
+		{ _field_long_enum, "damage type", FIELD_FLAG_INDEX, &global_damage_reporting_enum_definition },
 		{ _field_block, "velocity", &death_program_velocity_gate_block },
 		{ _field_terminator }
 	};

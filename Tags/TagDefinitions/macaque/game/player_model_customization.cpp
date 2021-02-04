@@ -63,21 +63,21 @@ namespace macaque
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "spartan render model", &render_model_reference$7 },
-		{ _field_tag_reference, "elite render model", &render_model_reference$7 },
+		{ _field_tag_reference, "elite render model", FIELD_FLAG_UNKNOWN0, &render_model_reference$7 },
 		{ _field_block, "helmet selections", &customized_model_selection_block },
 		{ _field_block, "chest selections", &customized_model_selection_block },
-		{ _field_block, "elite selections", &customized_model_selection_block },
+		{ _field_block, "elite selections", FIELD_FLAG_UNKNOWN0, &customized_model_selection_block },
 		{ _field_block, "left shoulder", &customized_model_selection_block },
 		{ _field_block, "right shoulder", &customized_model_selection_block },
 		{ _field_block, "arms", &customized_model_selection_block },
 		{ _field_block, "legs", &customized_model_selection_block },
-		{ _field_block, "unused 5", &customized_model_selection_block },
+		{ _field_block, "unused 5", FIELD_FLAG_UNKNOWN0, &customized_model_selection_block },
 		{ _field_block, "spartan armor effect selections", &customized_model_selection_block },
-		{ _field_block, "elite armor effect selections", &customized_model_selection_block },
+		{ _field_block, "elite armor effect selections", FIELD_FLAG_UNKNOWN0, &customized_model_selection_block },
 		{ _field_block, "male spartan selections", &customized_model_player_bits_block },
 		{ _field_block, "female spartan selections", &customized_model_player_bits_block },
 		{ _field_block, "spartan model defaults", &customized_model_player_bits_block },
-		{ _field_block, "elite model defaults", &customized_model_player_bits_block },
+		{ _field_block, "elite model defaults", FIELD_FLAG_UNKNOWN0, &customized_model_player_bits_block },
 		{ _field_terminator }
 	};
 

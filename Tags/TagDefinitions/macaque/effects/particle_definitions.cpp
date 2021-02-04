@@ -31,7 +31,7 @@ namespace macaque
 		GPU_VARIANTS_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime m_count", &gpu_single_constant_register_array },
+		{ _field_array, "runtime m_count", FIELD_FLAG_UNKNOWN0, &gpu_single_constant_register_array },
 		{ _field_terminator }
 	};
 
@@ -66,7 +66,7 @@ namespace macaque
 		GPU_SPRITE_BLOCK_ID,
 		4)
 	{
-		{ _field_array, "runtime gpu_sprite_array", &gpu_single_constant_register_array },
+		{ _field_array, "runtime gpu_sprite_array", FIELD_FLAG_UNKNOWN0, &gpu_single_constant_register_array },
 		{ _field_terminator }
 	};
 
@@ -137,7 +137,7 @@ namespace macaque
 		{ _field_dword_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_constant_over_time_properties", FIELD_FLAG_UNKNOWN0 },
-		{ _field_struct, "runtime m_gpu_data", &gpu_data_struct$2 },
+		{ _field_struct, "runtime m_gpu_data", FIELD_FLAG_UNKNOWN0, &gpu_data_struct$2 },
 		{ _field_terminator }
 	};
 
@@ -150,8 +150,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GPU_DATA_STRUCT$2_ID)
 	{
-		{ _field_block, "runtime m_sprite", &gpu_sprite_block },
-		{ _field_block, "runtime m_frames", &gpu_variants_block },
+		{ _field_block, "runtime m_sprite", FIELD_FLAG_UNKNOWN0, &gpu_sprite_block },
+		{ _field_block, "runtime m_frames", FIELD_FLAG_UNKNOWN0, &gpu_variants_block },
 		{ _field_terminator }
 	};
 

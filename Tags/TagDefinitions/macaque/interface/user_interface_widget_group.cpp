@@ -125,7 +125,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INFINITYMISSIONIMAGESDEFINITION_ID)
 	{
-		{ _field_tag_reference, "card image", &global_bitmap_reference },
+		{ _field_tag_reference, "card image", FIELD_FLAG_INDEX, &global_bitmap_reference },
 		{ _field_tag_reference, "detail image", &global_bitmap_reference },
 		{ _field_tag_reference, "lobby image", &global_bitmap_reference },
 		{ _field_tag_reference, "match image", &global_bitmap_reference },
@@ -192,7 +192,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PGCR_DAMAGE_TYPE_IMAGE_BLOCK_ID)
 	{
-		{ _field_long_enum, "damage type", &global_damage_reporting_enum_definition },
+		{ _field_long_enum, "damage type", FIELD_FLAG_INDEX, &global_damage_reporting_enum_definition },
 		{ _field_string_id, "display name" },
 		{ _field_tag_reference, "sprite", &global_bitmap_reference },
 		{ _field_short_integer, "sprite index" },
@@ -359,7 +359,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &UIGameStartSequenceFlagsDefinition },
 		FIELD_PAD("UMPKIU", nullptr, 3),
-		{ _field_tag_reference, "screen", &cui_screen_reference },
+		{ _field_tag_reference, "screen", FIELD_FLAG_INDEX, &cui_screen_reference },
 		{ _field_short_integer, "startTime", nullptr, "ticks" },
 		{ _field_short_integer, "endTime", nullptr, "ticks" },
 		{ _field_terminator }
@@ -375,7 +375,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SWAPTAGREFERENCEDEFINITION_ID)
 	{
-		{ _field_tag_reference, "original tag", &SwapTagReferenceDefinition_original_tag_reference },
+		{ _field_tag_reference, "original tag", FIELD_FLAG_INDEX, &SwapTagReferenceDefinition_original_tag_reference },
 		{ _field_tag_reference, "replacement tag", &SwapTagReferenceDefinition_original_tag_reference },
 		{ _field_terminator }
 	};

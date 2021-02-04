@@ -17,18 +17,18 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		VECTORART_ASSET_STRUCT_DEFINITION_ID)
 	{
-		{ _field_char_enum, "runtime flags", &g_polyartAssetStateFlags },
+		{ _field_char_enum, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_polyartAssetStateFlags },
 		FIELD_PAD("MERP", nullptr, 3),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_real, "import fudge factor (suggested 0.5)" },
 		{ _field_real_point_2d, "bounds", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "curve smoothness" },
-		{ _field_block, "vertices", &polyartVertexBlock_block },
-		{ _field_block, "indices", &polyartIndexBlock_block },
-		{ _field_block, "pc vertex buffers", &vertexBuffersBlock_block },
-		{ _field_block, "pc index buffers", &indexBuffersBlock_block },
-		{ _field_api_interop, "vertex buffer interop", &vectorartVertexBufferDescriptorStruct },
-		{ _field_api_interop, "index buffer interop", &polyartIndexBufferDescriptorStruct },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &polyartVertexBlock_block },
+		{ _field_block, "indices", FIELD_FLAG_READ_ONLY, &polyartIndexBlock_block },
+		{ _field_block, "pc vertex buffers", FIELD_FLAG_READ_ONLY, &vertexBuffersBlock_block },
+		{ _field_block, "pc index buffers", FIELD_FLAG_READ_ONLY, &indexBuffersBlock_block },
+		{ _field_api_interop, "vertex buffer interop", FIELD_FLAG_READ_ONLY, &vectorartVertexBufferDescriptorStruct },
+		{ _field_api_interop, "index buffer interop", FIELD_FLAG_READ_ONLY, &polyartIndexBufferDescriptorStruct },
 		{ _field_terminator }
 	};
 

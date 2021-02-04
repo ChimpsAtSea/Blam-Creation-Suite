@@ -32,7 +32,7 @@ namespace macaque
 		{ _field_char_integer, "int8 m_buildType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("total shit pad2", nullptr, 3),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_block, "mopp data block ", &mopp_code_data_definition_block },
+		{ _field_block, "mopp data block ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_data_definition_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_char_integer, "mopp build type", "they say it only matters for ps3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("explicit alignment pad 3", nullptr, 3),

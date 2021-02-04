@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_GEOMETRY_MATERIAL_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", &global_geometry_material_block_render_method_reference },
+		{ _field_tag_reference, "render method", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &global_geometry_material_block_render_method_reference },
 		{ _field_long_integer, "imported material index", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "lightmap resolution scale" },
 		{ _field_long_integer, "lightmap additive transparency color" },

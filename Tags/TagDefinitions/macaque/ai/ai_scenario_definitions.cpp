@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &character_reference$6 },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &character_reference$6 },
 		{ _field_terminator }
 	};
 
@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIG_BATTLE_CREATURE_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &big_battle_creature_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &big_battle_creature_reference },
 		{ _field_terminator }
 	};
 

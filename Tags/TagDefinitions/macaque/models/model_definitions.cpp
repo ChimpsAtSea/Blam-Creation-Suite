@@ -28,7 +28,7 @@ namespace macaque
 		{ _field_long_integer, "runtime render checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime collision checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_EXPLANATION("Optional Static Lightmap", nullptr, "\n"),
-		{ _field_tag_reference, "Lighting Info", &structure_lighting_bsp_reference },
+		{ _field_tag_reference, "Lighting Info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 		{ _field_long_enum, "Size Class", &scenario_structure_size_enum },
 		{ _field_long_flags, "Lightmap Flags", &model_lightmap_flags_definition },
 		{ _field_long_block_index, "Lightmap Variant", &model_variant_block },
@@ -56,22 +56,22 @@ namespace macaque
 		{ _field_block, "variants", &model_variant_block },
 		{ _field_block, "region sort", &region_name_block },
 		{ _field_block, "instance groups", &global_model_instance_group_block },
-		{ _field_block, "model materials", &model_material_block_new_block },
-		{ _field_block, "new damage info", &global_damage_info_block },
+		{ _field_block, "model materials", FIELD_FLAG_READ_ONLY, &model_material_block_new_block },
+		{ _field_block, "new damage info", FIELD_FLAG_UNKNOWN0, &global_damage_info_block },
 		{ _field_struct, "damage info", &model_damage_info_struct },
-		{ _field_block, "targets old", &model_target_block_old_block },
+		{ _field_block, "targets old", FIELD_FLAG_UNKNOWN0, &model_target_block_old_block },
 		{ _field_block, "model targets", &model_target_block_new_block },
-		{ _field_block, "runtime regions", &model_region_block },
-		{ _field_block, "runtime nodes", &model_node_block },
+		{ _field_block, "runtime regions", FIELD_FLAG_UNKNOWN0, &model_region_block },
+		{ _field_block, "runtime nodes", FIELD_FLAG_UNKNOWN0, &model_node_block },
 		{ _field_long_integer, "runtime node list checksum", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("more stuff", nullptr, ""),
 		{ _field_tag_reference, "default dialogue", &dialogue_reference$3 },
 		{ _field_tag_reference, "default dialogue female", &dialogue_reference$3 },
 		{ _field_long_flags, "flags", &model_flags_definition },
 		{ _field_string_id, "default dialogue effect", "The default dialogue tag for this model (overriden by variants)" },
-		{ _field_array, "render-only node flags", &g_node_flag_storage_array },
-		{ _field_array, "render-only section flags", &g_node_flag_storage_array },
-		{ _field_long_flags, "runtime flags", &model_private_flags_definition },
+		{ _field_array, "render-only node flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array },
+		{ _field_array, "render-only section flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array },
+		{ _field_long_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &model_private_flags_definition },
 		{ _field_block, "scenario load parameters", &global_scenario_load_parameters_block },
 		{ _field_block, "game mode render model override", &model_game_mode_render_model_override_block },
 		{ _field_real_fraction, "Sky parallax percent", "If flag checked % between sky pos and camera pos 0=camera" },
@@ -80,15 +80,15 @@ namespace macaque
 		{ _field_real, "shadow depth compare bias (dynamic lights)", "Default is 0.0008" },
 		{ _field_real, "shadow slope scale bias (dynamic lights)", "controls cutoff point for shadows around edges.  Default is 81 degrees", "degrees" },
 		FIELD_EXPLANATION("PRT Shadows (soft self-shadow)", nullptr, "By default, the shadows on each permutation are computed using the first permutation in\nevery other region as shadow casters.  You can override this behavior below by specifying\nwhich permutation to use as a shadow caster in a given region.\n\n  PRT shadow bounces:\n    the number of light bounces to use when computing the global illumination.\n    (0 bounces gets only direct light).  Increasing the number of bounces\n    increases the calculation time.  1 or 2 bounces should be good enough for\n    almost all models.\n"),
-		{ _field_char_enum, "PRT shadow detail", &model_self_shadow_detail_definition },
+		{ _field_char_enum, "PRT shadow detail", FIELD_FLAG_UNKNOWN0, &model_self_shadow_detail_definition },
 		{ _field_char_enum, "PRT shadow bounces", &model_self_shadow_bounces_definition },
 		FIELD_PAD("NCFGBA", nullptr, 2),
 		{ _field_block, "shadow cast override", &model_self_shadow_region_cast_override_block },
 		{ _field_block, "shadow receive override", &model_self_shadow_region_receive_override_block },
 		{ _field_block, "occlusion spheres", &model_occlusion_sphere_block },
 		FIELD_EXPLANATION("Shield impact overrides", nullptr, "Regular and 1st person shield impact effect overrides\n"),
-		{ _field_tag_reference, "shield impact parameter override", &global_shield_parameters_reference },
-		{ _field_tag_reference, "1st person shield impact parameter override", &global_shield_parameters_reference },
+		{ _field_tag_reference, "shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
+		{ _field_tag_reference, "1st person shield impact parameter override", FIELD_FLAG_UNKNOWN0, &global_shield_parameters_reference },
 		{ _field_real, "runtime bounding radius", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "runtime bounding offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -112,12 +112,12 @@ namespace macaque
 		MODEL_VARIANT_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_array, "runtime variant region indices", &runtime_region_index_array },
+		{ _field_array, "runtime variant region indices", FIELD_FLAG_UNKNOWN0, &runtime_region_index_array },
 		{ _field_block, "regions", &model_variant_region_block },
 		{ _field_block, "objects", &model_variant_object_block },
 		{ _field_long_block_index, "instance group", &global_model_instance_group_block },
 		{ _field_block, "muted nodes", &model_variant_muted_node_block },
-		{ _field_array, "muted flag", &g_node_flag_storage_array },
+		{ _field_array, "muted flag", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array },
 		{ _field_terminator }
 	};
 
@@ -157,7 +157,7 @@ namespace macaque
 		FIELD_PAD("KSJOSR", nullptr, 2),
 		{ _field_real, "probability", nullptr, "(0,+inf)" },
 		{ _field_block, "states", &model_variant_state_block },
-		{ _field_array, "runtime state permutation indices", &model_state_permutation_index_array },
+		{ _field_array, "runtime state permutation indices", FIELD_FLAG_UNKNOWN0, &model_state_permutation_index_array },
 		FIELD_PAD("LOOEL", nullptr, 7),
 		{ _field_terminator }
 	};
@@ -175,7 +175,7 @@ namespace macaque
 		{ _field_string_id, "permutation name" },
 		{ _field_char_integer, "runtime permutation index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "property flags", &model_state_property_flags_definition },
-		{ _field_enum, "state", &model_state_enum_definition },
+		{ _field_enum, "state", FIELD_FLAG_INDEX, &model_state_enum_definition },
 		{ _field_real_fraction, "initial probability" },
 		{ _field_terminator }
 	};
@@ -349,7 +349,7 @@ namespace macaque
 		{ _field_char_integer, "collision region index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "physics region index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("QDSJS", nullptr, 2),
-		{ _field_block, "permutations", &model_permutation_block },
+		{ _field_block, "permutations", FIELD_FLAG_READ_ONLY, &model_permutation_block },
 		{ _field_terminator }
 	};
 
@@ -364,7 +364,7 @@ namespace macaque
 		MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_byte_flags, "flags", &model_permutation_flags_definition },
+		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &model_permutation_flags_definition },
 		{ _field_char_integer, "collision permutation index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "physics permutation index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("AVZQS", nullptr, 1),
@@ -382,9 +382,9 @@ namespace macaque
 		MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "parent node", &model_node_block },
-		{ _field_short_block_index, "first child node", &model_node_block },
-		{ _field_short_block_index, "next sibling node", &model_node_block },
+		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &model_node_block },
+		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &model_node_block },
+		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &model_node_block },
 		FIELD_PAD("GHTI", nullptr, 2),
 		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
@@ -406,7 +406,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_GAME_MODE_RENDER_MODEL_OVERRIDE_ID)
 	{
-		{ _field_enum, "game mode", &model_game_mode_types },
+		{ _field_enum, "game mode", FIELD_FLAG_INDEX, &model_game_mode_types },
 		FIELD_PAD("BL", nullptr, 2),
 		{ _field_tag_reference, "render model override", &render_model_reference$3 },
 		{ _field_terminator }

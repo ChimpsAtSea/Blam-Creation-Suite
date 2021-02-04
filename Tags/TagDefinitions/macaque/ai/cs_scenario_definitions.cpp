@@ -39,7 +39,7 @@ namespace macaque
 		FIELD_PAD("PAD1", nullptr, 2),
 		{ _field_long_flags, "flags", &point_set_flags },
 		{ _field_long_flags, "traversal flags", &point_set_traversal_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		FIELD_PAD("AJDEYNFD", nullptr, 2),
 		{ _field_terminator }
 	};

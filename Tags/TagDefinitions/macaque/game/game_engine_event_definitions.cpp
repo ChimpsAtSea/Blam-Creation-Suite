@@ -18,7 +18,7 @@ namespace macaque
 		GAME_ENGINE_EVENT_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_char_enum, "audience", &game_engine_event_audience_enum_definition },
+		{ _field_char_enum, "audience", FIELD_FLAG_INDEX, &game_engine_event_audience_enum_definition },
 		FIELD_PAD("pad0", nullptr, 3),
 		{ _field_string_id, "display string", "This string can use a bunch of neat tokens for substitution of runtime data (e.g. player names).  See an engineer for more info." },
 		{ _field_char_enum, "required field", &game_engine_event_input_enum_definition },
@@ -66,7 +66,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "sound flags", &game_engine_sound_response_flags_definition },
 		FIELD_PAD("AGQD", nullptr, 3),
-		{ _field_tag_reference, "sound", &global_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_real, "probability", "Ignored for the default sound - used for sound permutation block entries only." },
 		{ _field_terminator }
 	};

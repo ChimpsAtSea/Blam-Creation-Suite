@@ -66,9 +66,9 @@ namespace macaque
 		{ _field_real_point_3d, "position", FIELD_FLAG_UNKNOWN0 },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		{ _field_word_flags, "flags", &g_firing_position_flags },
-		{ _field_word_flags, "posture flags", &g_firing_position_posture_flags },
-		{ _field_short_block_index, "area", &areas_block },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &g_firing_position_flags },
+		{ _field_word_flags, "posture flags", FIELD_FLAG_UNKNOWN0, &g_firing_position_posture_flags },
+		{ _field_short_block_index, "area", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_INDEX, &areas_block },
 		{ _field_short_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "cluster bsp", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "bits and pad", FIELD_FLAG_UNKNOWN0 },
@@ -229,7 +229,7 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &cue_flags },
 		{ _field_char_integer, "quick cue", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_real_point_3d, "position" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -243,7 +243,7 @@ namespace macaque
 		FIELD_CUSTOM("payload", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_long_block_index, "cue definition index", &ai_cue_block },
+		{ _field_long_block_index, "cue definition index", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
 		{ _field_terminator }
 	};
 
@@ -260,17 +260,17 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &quick_cue_flags },
 		FIELD_PAD("post-flags", nullptr, 1),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_real_point_3d, "position" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "facing", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "roll", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "tasks", &task_distribution_block },
+		{ _field_block, "tasks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &task_distribution_block },
 		{ _field_short_block_index, "character", &character_palette_block },
 		{ _field_short_block_index, "weapon", &scenario_weapon_palette_block },
 		{ _field_string_id, "template" },
-		{ _field_long_block_index, "cue definition index", &ai_cue_block },
+		{ _field_long_block_index, "cue definition index", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
 		{ _field_terminator }
 	};
 
@@ -283,7 +283,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CUE_DISTRIBUTION_STRUCT_ID)
 	{
-		{ _field_block, "tasks", &task_distribution_block },
+		{ _field_block, "tasks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &task_distribution_block },
 		{ _field_struct, "distribution", &cue_stimulus_distribution_struct },
 		{ _field_terminator }
 	};

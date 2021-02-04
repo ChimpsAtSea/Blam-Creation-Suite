@@ -25,87 +25,87 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCTURE_BSP_STRUCT_DEFINITION_ID)
 	{
-		{ _field_struct, "build identifier", &structure_manifest_build_identifier_struct },
-		{ _field_struct, "parent build identifier", &structure_manifest_build_identifier_struct },
+		{ _field_struct, "build identifier", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
+		{ _field_struct, "parent build identifier", FIELD_FLAG_READ_ONLY, &structure_manifest_build_identifier_struct },
 		{ _field_long_integer, "import info checksum", FIELD_FLAG_READ_ONLY },
-		{ _field_tag_reference, "structure lighting_info", &structure_lighting_bsp_reference },
+		{ _field_tag_reference, "structure lighting_info", FIELD_FLAG_INDEX, &structure_lighting_bsp_reference },
 		{ _field_long_integer, "import version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_tag_reference, "structure meta data", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
-		{ _field_word_flags, "flags", &structure_bsp_flags_definition },
-		{ _field_word_flags, "content policy flags", &structure_bsp_content_policy_flag },
-		{ _field_word_flags, "failed content policy flags", &structure_bsp_content_policy_flag },
+		{ _field_tag_reference, "structure meta data", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
+		{ _field_word_flags, "content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
+		{ _field_word_flags, "failed content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
 		FIELD_PAD("faild policy pad", nullptr, 2),
-		{ _field_block, "seam identifiers", &structure_seam_mapping_block },
-		{ _field_block, "edge to seam edge", &structure_edge_to_seam_edge_mapping_block },
-		{ _field_block, "collision materials", &structure_collision_materials_block },
-		{ _field_block, "leaves", &structure_bsp_leaf_block },
-		{ _field_block, "super aabbs", &structure_super_node_aabbs_block },
-		{ _field_block, "super node parent mappings", &super_node_mappings_block },
-		{ _field_block, "super node recursable_masks", &super_node_recursable_masks_block },
-		{ _field_block, "structure_super_node_traversal_geometry_block", &structure_super_node_traversal_geometry_block },
-		{ _field_struct, "instance kd hierarchy", &collision_kd_hierarchy_static_struct },
+		{ _field_block, "seam identifiers", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_mapping_block },
+		{ _field_block, "edge to seam edge", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "collision materials", FIELD_FLAG_READ_ONLY, &structure_collision_materials_block },
+		{ _field_block, "leaves", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_leaf_block },
+		{ _field_block, "super aabbs", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_aabbs_block },
+		{ _field_block, "super node parent mappings", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_struct },
 		{ _field_real_bounds, "world bounds x", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "world bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "world bounds z", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "large structure surfaces", &structure_surface_block },
-		{ _field_block, "structure surface to triangle mapping", &structure_surface_to_triangle_mapping_block },
-		{ _field_block, "cluster portals", &structure_bsp_cluster_portal_block },
-		{ _field_block, "detail objects", &structure_bsp_detail_object_data_block },
-		{ _field_block, "clusters", &structure_bsp_cluster_block },
-		{ _field_block, "materials", &global_geometry_material_block },
-		{ _field_block, "emissive materials", &structure_material_lighting_info_block },
-		{ _field_block, "sky owner cluster", &structure_bsp_sky_owner_cluster_block },
-		{ _field_block, "conveyor surfaces", &structure_bsp_conveyor_surface_block },
-		{ _field_block, "breakable surface sets", &breakable_surface_set_block },
+		{ _field_block, "large structure surfaces", FIELD_FLAG_READ_ONLY, &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping", FIELD_FLAG_READ_ONLY, &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "cluster portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_block },
+		{ _field_block, "detail objects", FIELD_FLAG_READ_ONLY, &structure_bsp_detail_object_data_block },
+		{ _field_block, "clusters", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_block },
+		{ _field_block, "materials", FIELD_FLAG_READ_ONLY, &global_geometry_material_block },
+		{ _field_block, "emissive materials", FIELD_FLAG_READ_ONLY, &structure_material_lighting_info_block },
+		{ _field_block, "sky owner cluster", FIELD_FLAG_READ_ONLY, &structure_bsp_sky_owner_cluster_block },
+		{ _field_block, "conveyor surfaces", FIELD_FLAG_READ_ONLY, &structure_bsp_conveyor_surface_block },
+		{ _field_block, "breakable surface sets", FIELD_FLAG_READ_ONLY, &breakable_surface_set_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
 		{ _field_block, "cookie cutters", &structure_cookie_cutter_definition_block },
 		{ _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition_block },
 		{ _field_data, "sound PAS data", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "markers", &structure_bsp_marker_block },
-		{ _field_block, "marker light palette", &structure_bsp_marker_light_palette_block },
-		{ _field_block, "marker light palette index", &structure_bsp_marker_light_index_block },
-		{ _field_block, "runtime decals", &structure_bsp_runtime_decal_block },
-		{ _field_block, "(DEPRECATED) environment object palette", &structure_bsp_environment_object_palette_block },
-		{ _field_block, "(DEPRECATED) environment objects", &structure_bsp_environment_object_block },
+		{ _field_block, "markers", FIELD_FLAG_READ_ONLY, &structure_bsp_marker_block },
+		{ _field_block, "marker light palette", FIELD_FLAG_READ_ONLY, &structure_bsp_marker_light_palette_block },
+		{ _field_block, "marker light palette index", FIELD_FLAG_READ_ONLY, &structure_bsp_marker_light_index_block },
+		{ _field_block, "runtime decals", FIELD_FLAG_READ_ONLY, &structure_bsp_runtime_decal_block },
+		{ _field_block, "(DEPRECATED) environment object palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
+		{ _field_block, "(DEPRECATED) environment objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
 		FIELD_PAD("IMISWXUG", nullptr, 4),
-		{ _field_block, "leaf map leaves", &global_map_leaf_block },
-		{ _field_block, "leaf map connections", &global_leaf_connection_block },
-		{ _field_block, "errors", &global_error_report_categories_block },
+		{ _field_block, "leaf map leaves", FIELD_FLAG_READ_ONLY, &global_map_leaf_block },
+		{ _field_block, "leaf map connections", FIELD_FLAG_READ_ONLY, &global_leaf_connection_block },
+		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
 		{ _field_block, "cluster to instance group mopps", &mopp_code_definition_block },
 		{ _field_block, "instance group to instance mopps", &mopp_code_definition_block },
 		{ _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block },
 		{ _field_block, "instance group to instance spheres", &structure_instance_group_definition_block },
-		{ _field_block, "instanced geometry instances", &structure_bsp_instanced_geometry_instances_block },
-		{ _field_block, "instanced geometry instance names", &structure_bsp_instanced_geometry_instances_names_block },
+		{ _field_block, "instanced geometry instances", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_block },
+		{ _field_block, "instanced geometry instance names", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_names_block },
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("decorator info", nullptr, _field_id_function_group_begin),
-		{ _field_block, "decorator sets", &runtime_decorator_set_block },
-		{ _field_struct, "decorator instance buffer", &global_render_geometry_struct },
+		{ _field_block, "decorator sets", FIELD_FLAG_READ_ONLY, &runtime_decorator_set_block },
+		{ _field_struct, "decorator instance buffer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("decals info", nullptr, _field_id_function_group_begin),
-		{ _field_block, "preplaced decal sets", &bsp_preplaced_decal_set_reference_block },
-		{ _field_block, "preplaced decals", &bsp_preplaced_decal_reference_block },
-		{ _field_struct, "preplaced decal geometry", &global_render_geometry_struct },
+		{ _field_block, "preplaced decal sets", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_set_reference_block },
+		{ _field_block, "preplaced decals", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_reference_block },
+		{ _field_struct, "preplaced decal geometry", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_block, "acoustics sound clusters", &structure_bsp_sound_cluster_block },
-		{ _field_block, "transparent planes", &transparent_planes_block },
-		{ _field_block, "debug info", &structure_bsp_debug_info_block },
-		{ _field_struct, "structure_physics", &global_structure_physics_struct },
-		{ _field_struct, "render geometry", &global_render_geometry_struct },
+		{ _field_block, "acoustics sound clusters", FIELD_FLAG_UNKNOWN0, &structure_bsp_sound_cluster_block },
+		{ _field_block, "transparent planes", FIELD_FLAG_READ_ONLY, &transparent_planes_block },
+		{ _field_block, "debug info", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_block },
+		{ _field_struct, "structure_physics", FIELD_FLAG_READ_ONLY, &global_structure_physics_struct },
+		{ _field_struct, "render geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "widget references", &widget_reference_block },
 		{ _field_block, "cheap light references", &cheap_light_reference_block },
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
 		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, _field_id_function_group_begin),
-		{ _field_block, "Any Platform Temp Havok Data", &structureIOHavokDataBlock_block },
+		{ _field_block, "Any Platform Temp Havok Data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
 		{ _field_long_integer, "base material count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_block, "obb volume list", &structure_bsp_obb_volume_block },
 		{ _field_block, "scripted dependencies", &hs_references_block },
-		{ _field_block, "pupAnimations", &AnimGraphDependencyBlock_block },
+		{ _field_block, "pupAnimations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &AnimGraphDependencyBlock_block },
 		{ _field_terminator }
 	};
 
@@ -147,12 +147,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", &structure_collision_materials_block_render_method_reference },
+		{ _field_tag_reference, "render method", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
 		{ _field_string_id, "override material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_short_block_index, "conveyor surface index", &structure_bsp_conveyor_surface_block },
-		{ _field_short_block_index, "seam mapping index", &structure_seam_mapping_block },
-		{ _field_word_flags, "flags", &structure_collision_materialg_flags },
+		{ _field_short_block_index, "conveyor surface index", FIELD_FLAG_READ_ONLY, &structure_bsp_conveyor_surface_block },
+		{ _field_short_block_index, "seam mapping index", FIELD_FLAG_READ_ONLY, &structure_seam_mapping_block },
+		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &structure_collision_materialg_flags },
 		{ _field_terminator }
 	};
 
@@ -216,12 +216,12 @@ namespace macaque
 	{
 		{ _field_short_integer, "parent_super_node_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "parent_internal_node_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_byte_flags, "flags", &structure_super_node_mapping_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_mapping_flags },
 		{ _field_long_integer, "has_traversal_geometry_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "first_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
-		{ _field_short_block_index, "first_aabb_index", &structure_super_node_aabbs_block },
+		{ _field_short_block_index, "first_traversal_geometry_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
+		{ _field_short_block_index, "first_aabb_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_aabbs_block },
 		{ _field_long_integer, "aabb_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "non_terminal_traversal_geometry_index", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_short_block_index, "non_terminal_traversal_geometry_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -264,8 +264,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_SUPER_NODE_TRAVERSAL_GEOMETRY_BLOCK_ID)
 	{
-		{ _field_block, "portal_indices", &structure_super_node_traversal_geometry_indices_block },
-		{ _field_block, "seam_indices", &structure_super_node_traversal_geometry_indices_block },
+		{ _field_block, "portal_indices", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
+		{ _field_block, "seam_indices", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
 		{ _field_terminator }
 	};
 
@@ -314,8 +314,8 @@ namespace macaque
 		{ _field_long_integer, "plane index", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "centroid", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "bounding radius", FIELD_FLAG_READ_ONLY },
-		{ _field_long_flags, "flags", &structure_bsp_cluster_portal_flags_definition },
-		{ _field_block, "vertices", &structure_bsp_cluster_portal_vertex_block },
+		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_flags_definition },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_vertex_block },
 		{ _field_terminator }
 	};
 
@@ -370,21 +370,21 @@ namespace macaque
 		{ _field_char_integer, "atmosphere index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "camera fx index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "weather index", FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
+		{ _field_short_block_index, "acoustics", FIELD_FLAG_READ_ONLY, &scenario_acoustics_palette_block_definition_block },
 		{ _field_short_integer, "acoustics sound cluster index" },
 		{ _field_short_integer, "runtime first decal index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime decal cound", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &structure_cluster_flags },
 		FIELD_PAD("ERERRFQ", nullptr, 2),
-		{ _field_block, "predicted resources", &g_null_block },
-		{ _field_block, "portals", &structure_bsp_cluster_portal_index_block },
+		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
+		{ _field_block, "portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_index_block },
 		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "instance imposter cluster mopp index" },
-		{ _field_block, "seam indices", &seam_indices_block_definition_block },
-		{ _field_block, "decorator groups", &decorator_runtime_cluster_block },
-		{ _field_block, "cheap light marker refs", &cheap_light_marker_ref_block },
-		{ _field_block, "pvs bound object identifiers", &pvs_bound_object_identifiers_block },
-		{ _field_block, "pvs bound object references", &pvs_bound_object_references_block },
+		{ _field_block, "seam indices", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &seam_indices_block_definition_block },
+		{ _field_block, "decorator groups", FIELD_FLAG_READ_ONLY, &decorator_runtime_cluster_block },
+		{ _field_block, "cheap light marker refs", FIELD_FLAG_READ_ONLY, &cheap_light_marker_ref_block },
+		{ _field_block, "pvs bound object identifiers", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &pvs_bound_object_identifiers_block },
+		{ _field_block, "pvs bound object references", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &pvs_bound_object_references_block },
 		{ _field_block, "cluster cubemaps", &structure_cluster_cubemap_block },
 		{ _field_terminator }
 	};
@@ -444,7 +444,7 @@ namespace macaque
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("ldajk", nullptr, 2),
-		{ _field_tag_reference, "cheap light", &cheap_light_reference },
+		{ _field_tag_reference, "cheap light", FIELD_FLAG_READ_ONLY, &cheap_light_reference },
 		{ _field_terminator }
 	};
 
@@ -458,7 +458,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PVS_BOUND_OBJECT_IDENTIFIERS_BLOCK_ID)
 	{
-		{ _field_struct, "object ID", &scenario_object_id_struct },
+		{ _field_struct, "object ID", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_id_struct },
 		{ _field_terminator }
 	};
 
@@ -472,7 +472,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PVS_BOUND_OBJECT_REFERENCES_BLOCK_ID)
 	{
-		{ _field_struct, "scenario object reference", &scenario_object_reference_struct },
+		{ _field_struct, "scenario object reference", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_object_reference_struct },
 		{ _field_terminator }
 	};
 
@@ -537,7 +537,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_MARKER_BLOCK_ID)
 	{
-		{ _field_char_enum, "marker type", &structure_marker_type_enum },
+		{ _field_char_enum, "marker type", FIELD_FLAG_READ_ONLY, &structure_marker_type_enum },
 		FIELD_PAD("pad", nullptr, 3),
 		{ _field_string, "marker parameter", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "rotation" },
@@ -604,7 +604,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_ENVIRONMENT_OBJECT_PALETTE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "definition", &object_reference$8 },
+		{ _field_tag_reference, "definition", FIELD_FLAG_INDEX, &object_reference$8 },
 		{ _field_tag_reference, "model", &render_model_reference$9 },
 		{ _field_long_integer, "GVEYN", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
@@ -711,7 +711,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RUNTIME_DECORATOR_SET_BLOCK_ID)
 	{
-		{ _field_tag_reference, "decorator set reference", &global_decorator_set_reference },
+		{ _field_tag_reference, "decorator set reference", FIELD_FLAG_READ_ONLY, &global_decorator_set_reference },
 		{ _field_terminator }
 	};
 
@@ -788,9 +788,9 @@ namespace macaque
 		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
 	{
 		FIELD_PAD("BRQYEF", nullptr, 64),
-		{ _field_block, "clusters", &structure_bsp_cluster_debug_info_block },
-		{ _field_block, "fog planes", &structure_bsp_fog_plane_debug_info_block },
-		{ _field_block, "fog zones", &structure_bsp_fog_zone_debug_info_block },
+		{ _field_block, "clusters", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_debug_info_block },
+		{ _field_block, "fog planes", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_plane_debug_info_block },
+		{ _field_block, "fog zones", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_zone_debug_info_block },
 		{ _field_terminator }
 	};
 
@@ -804,14 +804,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_DEBUG_INFO_BLOCK_ID)
 	{
-		{ _field_word_flags, "errors", &structure_bsp_debug_info_cluster_error_flags },
-		{ _field_word_flags, "warnings", &structure_bsp_debug_info_cluster_warning_flags },
+		{ _field_word_flags, "errors", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_error_flags },
+		{ _field_word_flags, "warnings", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_warning_flags },
 		FIELD_PAD("KHWRB", nullptr, 28),
-		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "fog plane indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "visible fog plane indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "vis-fog omission cluster indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "containing fog zone indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "visible fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "vis-fog omission cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "containing fog zone indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -825,7 +825,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_RENDER_LINE_BLOCK_ID)
 	{
-		{ _field_enum, "type", &structure_bsp_debug_info_render_line_type_enum },
+		{ _field_enum, "type", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "pad thai", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("BNQS", nullptr, 2),
@@ -861,9 +861,9 @@ namespace macaque
 		{ _field_long_integer, "fog zone index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("WZGH", nullptr, 24),
 		{ _field_long_integer, "connected plane designator", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "intersected cluster indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "inf. extent cluster indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "intersected cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "inf. extent cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -880,10 +880,10 @@ namespace macaque
 		{ _field_long_integer, "media index", nullptr, "scenario fog plane", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "base fog plane index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("RB", nullptr, 24),
-		{ _field_block, "lines", &structure_bsp_debug_info_render_line_block },
-		{ _field_block, "immersed cluster indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "bounding fog plane indices", &structure_bsp_debug_info_indices_block },
-		{ _field_block, "collision fog plane indices", &structure_bsp_debug_info_indices_block },
+		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
+		{ _field_block, "immersed cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "bounding fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
+		{ _field_block, "collision fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_terminator }
 	};
 
@@ -899,7 +899,7 @@ namespace macaque
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("gnlao", nullptr, 2),
-		{ _field_tag_reference, "widget ref", &leaf_system_reference },
+		{ _field_tag_reference, "widget ref", FIELD_FLAG_READ_ONLY, &leaf_system_reference },
 		{ _field_terminator }
 	};
 
@@ -945,7 +945,7 @@ namespace macaque
 		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "override lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "override imposter policy", &instanced_geometry_imposter_policy_enum },
-		{ _field_char_enum, "override streaming priority", &instanced_geometry_streamingpriority_enum },
+		{ _field_char_enum, "override streaming priority", FIELD_FLAG_READ_ONLY, &instanced_geometry_streamingpriority_enum },
 		{ _field_real, "override lightmap resolution scale" },
 		{ _field_real, "override imposter transition distance" },
 		{ _field_real, "override imposter brightness" },
@@ -1080,10 +1080,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_RESOURCE_STRUCT_ID)
 	{
-		{ _field_block, "collision bsp", &global_collision_bsp_block },
-		{ _field_block, "large collision bsp", &global_large_collision_bsp_block },
-		{ _field_block, "instanced geometries definitions", &structure_bsp_instanced_geometry_definition_block },
-		{ _field_block, "Havok Data", &structureIOHavokDataBlock_block },
+		{ _field_block, "collision bsp", FIELD_FLAG_READ_ONLY, &global_collision_bsp_block },
+		{ _field_block, "large collision bsp", FIELD_FLAG_READ_ONLY, &global_large_collision_bsp_block },
+		{ _field_block, "instanced geometries definitions", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_definition_block },
+		{ _field_block, "Havok Data", FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
 		{ _field_terminator }
 	};
 
@@ -1109,15 +1109,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CACHE_FILE_TAG_RESOURCES_STRUCT_ID)
 	{
-		{ _field_block, "large structure surfaces", &structure_surface_block },
-		{ _field_block, "structure surface to triangle mapping", &structure_surface_to_triangle_mapping_block },
-		{ _field_block, "edge to seam edge", &structure_edge_to_seam_edge_mapping_block },
+		{ _field_block, "large structure surfaces", FIELD_FLAG_READ_ONLY, &structure_surface_block },
+		{ _field_block, "structure surface to triangle mapping", FIELD_FLAG_READ_ONLY, &structure_surface_to_triangle_mapping_block },
+		{ _field_block, "edge to seam edge", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_edge_to_seam_edge_mapping_block },
 		{ _field_block, "pathfinding data", &pathfinding_data_block },
-		{ _field_block, "instanced geometry instances without names", &structure_bsp_instanced_geometry_instances_without_names_block },
-		{ _field_block, "super node parent mappings", &super_node_mappings_block },
-		{ _field_block, "super node recursable_masks", &super_node_recursable_masks_block },
-		{ _field_block, "structure_super_node_traversal_geometry_block", &structure_super_node_traversal_geometry_block },
-		{ _field_struct, "instance kd hierarchy", &collision_kd_hierarchy_static_struct },
+		{ _field_block, "instanced geometry instances without names", FIELD_FLAG_READ_ONLY, &structure_bsp_instanced_geometry_instances_without_names_block },
+		{ _field_block, "super node parent mappings", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_mappings_block },
+		{ _field_block, "super node recursable_masks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &super_node_recursable_masks_block },
+		{ _field_block, "structure_super_node_traversal_geometry_block", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_block },
+		{ _field_struct, "instance kd hierarchy", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_struct },
 		{ _field_terminator }
 	};
 

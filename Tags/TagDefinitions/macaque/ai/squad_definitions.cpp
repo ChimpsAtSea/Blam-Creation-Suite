@@ -43,7 +43,7 @@ namespace macaque
 		{ _field_short_block_index, "parent", &squad_groups_block },
 		{ _field_short_block_index, "initial objective", &objectives_block },
 		FIELD_PAD("soon to be an initial task", nullptr, 2),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
 		{ _field_terminator }
 	};
 
@@ -66,15 +66,15 @@ namespace macaque
 		{ _field_short_block_index, "initial zone", &zone_block },
 		{ _field_short_block_index, "initial objective", &objectives_block },
 		{ _field_custom_short_block_index, "initial task" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block },
-		{ _field_block, "spawn formations", &spawn_formation_block },
-		{ _field_block, "spawn points", &spawn_points_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_block, "spawn formations", FIELD_FLAG_UNKNOWN0, &spawn_formation_block },
+		{ _field_block, "spawn points", FIELD_FLAG_UNKNOWN0, &spawn_points_block },
 		{ _field_long_enum, "wave placement filter", &wave_placement_filter_enum },
 		{ _field_string_id, "template" },
 		{ _field_long_integer, "squad template index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "designer", &squad_definition_internal_struct },
-		{ _field_struct, "templated", &squad_definition_internal_struct },
+		{ _field_struct, "templated", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &squad_definition_internal_struct },
 		{ _field_terminator }
 	};
 
@@ -126,7 +126,7 @@ namespace macaque
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
 		{ _field_string_id, "activity name" },
-		{ _field_enum, "activity", &g_activity_enum },
+		{ _field_enum, "activity", FIELD_FLAG_UNKNOWN0, &g_activity_enum },
 		{ _field_short_integer, "activity variant", FIELD_FLAG_UNKNOWN0 },
 		{ _field_string_id, "command script", _field_id_halo_script_block },
 		{ _field_short_integer, "command script index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -215,7 +215,7 @@ namespace macaque
 		{ _field_string_id, "movement set" },
 		{ _field_custom_short_block_index, "point set" },
 		{ _field_enum, "patrol mode", &patrol_mode_enum },
-		{ _field_block, "points", &patrol_point_block },
+		{ _field_block, "points", FIELD_FLAG_UNKNOWN0, &patrol_point_block },
 		{ _field_terminator }
 	};
 
@@ -230,7 +230,7 @@ namespace macaque
 		CHARACTER_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "character type", &character_palette_block },
+		{ _field_short_block_index, "character type", FIELD_FLAG_INDEX, &character_palette_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
@@ -247,7 +247,7 @@ namespace macaque
 		WEAPON_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "weapon type", &scenario_weapon_palette_block },
+		{ _field_short_block_index, "weapon type", FIELD_FLAG_INDEX, &scenario_weapon_palette_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
@@ -264,7 +264,7 @@ namespace macaque
 		EQUIPMENT_PALETTE_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_short_block_index, "equipment type", &scenario_equipment_palette_block },
+		{ _field_short_block_index, "equipment type", FIELD_FLAG_INDEX, &scenario_equipment_palette_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
@@ -309,7 +309,7 @@ namespace macaque
 		CHARACTER_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "character type", &character_reference$7 },
+		{ _field_tag_reference, "character type", FIELD_FLAG_INDEX, &character_reference$7 },
 		{ _field_short_integer, "chance" },
 		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }
@@ -327,7 +327,7 @@ namespace macaque
 		WEAPON_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "weapon type", &weapon_reference$8 },
+		{ _field_tag_reference, "weapon type", FIELD_FLAG_INDEX, &weapon_reference$8 },
 		{ _field_short_integer, "chance" },
 		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }
@@ -345,7 +345,7 @@ namespace macaque
 		EQUIPMENT_REF_CHOICE_BLOCK_STRUCT_ID)
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
-		{ _field_tag_reference, "equipment type", &equipment_reference$4 },
+		{ _field_tag_reference, "equipment type", FIELD_FLAG_INDEX, &equipment_reference$4 },
 		{ _field_short_integer, "chance" },
 		FIELD_PAD("post-chance", nullptr, 2),
 		{ _field_terminator }

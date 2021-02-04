@@ -20,7 +20,7 @@ namespace macaque
 		{ _field_string_id, "constant name", FIELD_FLAG_INDEX },
 		{ _field_word_integer, "register start", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "register count", FIELD_FLAG_READ_ONLY },
-		{ _field_char_enum, "register set", &register_set_enum },
+		{ _field_char_enum, "register set", FIELD_FLAG_READ_ONLY, &register_set_enum },
 		{ _field_terminator }
 	};
 
@@ -33,8 +33,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID)
 	{
-		{ _field_block, "constants", &rasterizer_constant_block },
-		{ _field_char_enum, "type", &rasterizer_constant_table_type_enum },
+		{ _field_block, "constants", FIELD_FLAG_READ_ONLY, &rasterizer_constant_block },
+		{ _field_char_enum, "type", FIELD_FLAG_READ_ONLY, &rasterizer_constant_table_type_enum },
 		FIELD_PAD("qersaui", nullptr, 3),
 		{ _field_terminator }
 	};

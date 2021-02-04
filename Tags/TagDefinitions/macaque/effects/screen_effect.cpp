@@ -33,7 +33,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &area_screen_effect_flags_definition },
-		{ _field_word_flags, "hidden flags", &area_screen_effect_hidden_flags_definition },
+		{ _field_word_flags, "hidden flags", FIELD_FLAG_UNKNOWN0, &area_screen_effect_hidden_flags_definition },
 		FIELD_EXPLANATION("DISTANCE FALLOFF", nullptr, "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "maximum distance", "the maximum distance this screen effect will affect", "world units" },
 		{ _field_struct, "distance falloff", &screen_effect_scalar_function_struct },
@@ -89,7 +89,7 @@ namespace macaque
 		AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "global flags", &area_screen_effect_global_flags_definition },
-		{ _field_word_flags, "global hidden flags", &area_screen_effect_global_hidden_flags_definition },
+		{ _field_word_flags, "global hidden flags", FIELD_FLAG_UNKNOWN0, &area_screen_effect_global_hidden_flags_definition },
 		{ _field_block, "screen effects", &single_screen_effect_block },
 		{ _field_terminator }
 	};

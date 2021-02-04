@@ -105,7 +105,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PREREQUISITES_OFFER_DEFINITION_BLOCK_ID)
 	{
-		{ _field_char_enum, "offer type", &MarketplaceOfferTypeEnum },
+		{ _field_char_enum, "offer type", FIELD_FLAG_INDEX, &MarketplaceOfferTypeEnum },
 		FIELD_PAD("pad1", nullptr, 3),
 		{ _field_terminator }
 	};
@@ -142,7 +142,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEAPPEARANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference", &CookiePurchaseAppearanceDefinitionBlock_block },
+		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseAppearanceDefinitionBlock_block },
 		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -156,7 +156,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASELOADOUTDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference", &CookiePurchaseLoadoutDefinitionBlock_block },
+		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseLoadoutDefinitionBlock_block },
 		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -170,7 +170,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASEORDNANCEDEFINITIONREFERENCESTRUCT_ID)
 	{
-		{ _field_short_block_index, "item reference", &CookiePurchaseOrdnanceDefinitionBlock_block },
+		{ _field_short_block_index, "item reference", FIELD_FLAG_INDEX, &CookiePurchaseOrdnanceDefinitionBlock_block },
 		FIELD_PAD("pad1", nullptr, 2),
 		{ _field_terminator }
 	};

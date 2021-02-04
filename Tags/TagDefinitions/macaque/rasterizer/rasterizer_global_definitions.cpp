@@ -61,7 +61,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "explicit vertex shader", &explicit_shader_refs_block_explicit_vertex_shader_reference },
-		{ _field_tag_reference, "explicit pixel shader", &explicit_shader_refs_block_explicit_pixel_shader_reference },
+		{ _field_tag_reference, "explicit pixel shader", FIELD_FLAG_INDEX, &explicit_shader_refs_block_explicit_pixel_shader_reference },
 		{ _field_terminator }
 	};
 

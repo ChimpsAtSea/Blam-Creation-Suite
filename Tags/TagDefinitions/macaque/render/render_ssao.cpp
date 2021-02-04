@@ -29,8 +29,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SSAO_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_char_enum, "downsample", &ssao_downsample_enum_definition },
-		{ _field_char_enum, "ssao type", &ssao_type_enum_definition },
+		{ _field_char_enum, "downsample", FIELD_FLAG_READ_ONLY, &ssao_downsample_enum_definition },
+		{ _field_char_enum, "ssao type", FIELD_FLAG_READ_ONLY, &ssao_type_enum_definition },
 		{ _field_byte_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("BKGKKELQIF", nullptr, 1),
 		{ _field_real, "hdao ambient shadow", "how much ssao shadowing darkens the ambient lighting" },

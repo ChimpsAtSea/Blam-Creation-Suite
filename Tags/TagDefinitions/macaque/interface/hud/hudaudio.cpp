@@ -41,7 +41,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HUD_UNIT_SOUND_CUE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_and_looping_sound_reference },
 		{ _field_long_flags, "latched to", &hud_sound_cue_flags },
 		{ _field_real, "scale" },
 		{ _field_terminator }

@@ -41,7 +41,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_COMBINER_DEFINITION_ENTRY_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &global_force_sound_only_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_force_sound_only_reference },
 		{ _field_real_bounds, "delay bounds", "delay before this sound is played", "seconds" },
 		{ _field_terminator }
 	};

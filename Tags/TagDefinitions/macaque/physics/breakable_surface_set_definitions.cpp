@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BREAKABLE_SURFACE_SET_BLOCK_ID)
 	{
-		{ _field_array, "supported bitfield", &supported_bitfield_array },
+		{ _field_array, "supported bitfield", FIELD_FLAG_UNKNOWN0, &supported_bitfield_array },
 		{ _field_terminator }
 	};
 

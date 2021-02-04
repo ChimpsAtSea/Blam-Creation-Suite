@@ -20,11 +20,11 @@ namespace macaque
 	{
 		FIELD_CUSTOM("link to render model", nullptr, _field_id_unknown_compile),
 		FIELD_EXPLANATION("Render models", nullptr, ""),
-		{ _field_tag_reference, "Base", &render_model_reference },
-		{ _field_tag_reference, "Lod2", &render_model_reference },
-		{ _field_tag_reference, "Lod3", &render_model_reference },
-		{ _field_tag_reference, "Lod4", &render_model_reference },
-		{ _field_block, "render model instance names", &decorator_set_instance_name_block },
+		{ _field_tag_reference, "Base", FIELD_FLAG_READ_ONLY, &render_model_reference },
+		{ _field_tag_reference, "Lod2", FIELD_FLAG_READ_ONLY, &render_model_reference },
+		{ _field_tag_reference, "Lod3", FIELD_FLAG_READ_ONLY, &render_model_reference },
+		{ _field_tag_reference, "Lod4", FIELD_FLAG_READ_ONLY, &render_model_reference },
+		{ _field_block, "render model instance names", FIELD_FLAG_UNKNOWN0, &decorator_set_instance_name_block },
 		{ _field_long_integer, "render model instance name valid count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_tag_reference, "texture", &bitmap_reference$6 },
 		FIELD_EXPLANATION("RENDERING", nullptr, "\n"),
@@ -137,7 +137,7 @@ namespace macaque
 		GLOBAL_DECORATOR_TYPE_STRUCT_ID)
 	{
 		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_long_block_index, "mesh", &decorator_set_instance_name_block },
+		{ _field_long_block_index, "mesh", FIELD_FLAG_INDEX, &decorator_set_instance_name_block },
 		{ _field_long_flags, "flags", &decorator_type_flags_definition },
 		{ _field_real, "scale min" },
 		{ _field_real, "scale max" },

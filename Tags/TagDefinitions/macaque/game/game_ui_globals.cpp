@@ -26,7 +26,7 @@ namespace macaque
 		{ _field_tag_reference, "motion sensor sweep bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "motion sensor sweep bitmap mask", &global_bitmap_reference },
 		{ _field_tag_reference, "multiplayer hud bitmap", &global_bitmap_reference },
-		{ _field_tag_reference, "unused", &g_non_traversed_reference_definition },
+		{ _field_tag_reference, "unused", FIELD_FLAG_UNKNOWN0, &g_non_traversed_reference_definition },
 		{ _field_tag_reference, "motion sensor blip bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "interface goo map1", &global_bitmap_reference },
 		{ _field_tag_reference, "interface goo map2", &global_bitmap_reference },

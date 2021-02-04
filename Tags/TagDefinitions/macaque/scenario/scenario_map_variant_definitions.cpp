@@ -54,7 +54,7 @@ namespace macaque
 		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "object", &object_reference$9 },
 		{ _field_string_id, "variant name" },
-		{ _field_struct, "resource dependencies", &mapVariantResourceManifest },
+		{ _field_struct, "resource dependencies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mapVariantResourceManifest },
 		{ _field_terminator }
 	};
 

@@ -45,7 +45,7 @@ namespace macaque
 		VOCALIZATION_DEFINITIONS_BLOCK_ID)
 	{
 		{ _field_string_id, "vocalization", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "parent index", &vocalization_definitions_block },
+		{ _field_short_block_index, "parent index", FIELD_FLAG_READ_ONLY, &vocalization_definitions_block },
 		{ _field_enum, "priority", &priority_enum },
 		{ _field_long_flags, "flags", &vocalization_flags_definition },
 		{ _field_enum, "glance behavior", &glance_type_enum },

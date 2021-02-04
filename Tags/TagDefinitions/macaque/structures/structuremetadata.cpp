@@ -29,11 +29,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_META_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "Effects markers", &structureBspFxMarkerBlock_block },
-		{ _field_block, "Airprobes", &scenario_airprobes_block },
-		{ _field_block, "Light Cones", &structureMetadataLightConeMarkerBlock_block },
-		{ _field_block, "Object Palette", &structure_bsp_environment_object_palette_block },
-		{ _field_block, "Objects", &structure_bsp_environment_object_block },
+		{ _field_block, "Effects markers", FIELD_FLAG_READ_ONLY, &structureBspFxMarkerBlock_block },
+		{ _field_block, "Airprobes", FIELD_FLAG_READ_ONLY, &scenario_airprobes_block },
+		{ _field_block, "Light Cones", FIELD_FLAG_READ_ONLY, &structureMetadataLightConeMarkerBlock_block },
+		{ _field_block, "Object Palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
+		{ _field_block, "Objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
 		{ _field_terminator }
 	};
 

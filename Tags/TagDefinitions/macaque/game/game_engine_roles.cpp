@@ -17,8 +17,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_TEAM_ROLE_BLOCK_ID)
 	{
-		{ _field_long_flags, "flags", &team_role_flags },
-		{ _field_enum, "team", &global_multiplayer_team_designator_enum_definition },
+		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0, &team_role_flags },
+		{ _field_enum, "team", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_INDEX, &global_multiplayer_team_designator_enum_definition },
 		FIELD_PAD("QVO", nullptr, 2),
 		{ _field_block, "player roles", &player_role_block },
 		{ _field_terminator }
@@ -35,7 +35,7 @@ namespace macaque
 		PLAYER_ROLE_BLOCK_ID)
 	{
 		{ _field_string_id, "role name", FIELD_FLAG_INDEX },
-		{ _field_long_flags, "flags", &player_role_flags },
+		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0, &player_role_flags },
 		{ _field_tag_reference, "primary weapon", &weapon_reference$4 },
 		{ _field_short_integer, "primary weapon rounds loaded" },
 		{ _field_short_integer, "primary weapon rounds total" },
@@ -46,7 +46,7 @@ namespace macaque
 		{ _field_short_integer, "plasma grenade count" },
 		{ _field_short_integer, "UNUSED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "spawn location index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_tag_reference, "starting equipment", &global_equipment_reference },
+		{ _field_tag_reference, "starting equipment", FIELD_FLAG_UNKNOWN0, &global_equipment_reference },
 		{ _field_string, "display name" },
 		{ _field_long_flags, "installed apps", &custom_app_flags },
 		{ _field_long_integer, "killstreak bonus time", nullptr, "secs" },

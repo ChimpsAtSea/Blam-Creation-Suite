@@ -28,10 +28,10 @@ namespace macaque
 		{ _field_struct, "bloom_large_color", &camera_fx_bloom_large_color_struct },
 		{ _field_struct, "bloom_medium_color", &camera_fx_bloom_medium_color_struct },
 		{ _field_struct, "bloom_small_color", &camera_fx_bloom_small_color_struct },
-		{ _field_struct, "bling_intensity", &camera_fx_bling_intensity_struct },
-		{ _field_struct, "bling_size", &camera_fx_bling_size_struct },
-		{ _field_struct, "bling_angle", &camera_fx_bling_angle_struct },
-		{ _field_struct, "bling_count", &camera_fx_bling_count_struct },
+		{ _field_struct, "bling_intensity", FIELD_FLAG_UNKNOWN0, &camera_fx_bling_intensity_struct },
+		{ _field_struct, "bling_size", FIELD_FLAG_UNKNOWN0, &camera_fx_bling_size_struct },
+		{ _field_struct, "bling_angle", FIELD_FLAG_UNKNOWN0, &camera_fx_bling_angle_struct },
+		{ _field_struct, "bling_count", FIELD_FLAG_UNKNOWN0, &camera_fx_bling_count_struct },
 		{ _field_struct, "self_illum_preferred", &camera_fx_self_illum_preferred_struct },
 		{ _field_struct, "self_illum_scale", &camera_fx_self_illum_scale_struct },
 		{ _field_struct, "color_grading", &camera_fx_color_grading_struct },
@@ -218,7 +218,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_INTENSITY_STRUCT_ID)
 	{
-		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("QREWRER", nullptr, 2),
 		{ _field_real, "bling intensity", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
@@ -235,7 +235,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_SIZE_STRUCT_ID)
 	{
-		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("LSDFPO", nullptr, 2),
 		{ _field_real, "bling length", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
@@ -252,7 +252,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_ANGLE_STRUCT_ID)
 	{
-		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("ILJS", nullptr, 2),
 		{ _field_real, "bling angle", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum change", FIELD_FLAG_UNKNOWN0 },
@@ -269,7 +269,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_FX_BLING_COUNT_STRUCT_ID)
 	{
-		{ _field_word_flags, "flags", &camera_fx_parameter_flags_bling_spikes },
+		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0, &camera_fx_parameter_flags_bling_spikes },
 		{ _field_short_integer, "bling spikes", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};

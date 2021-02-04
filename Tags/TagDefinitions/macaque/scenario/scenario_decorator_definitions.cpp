@@ -70,8 +70,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SCENARIO_SET_BLOCK_ID)
 	{
-		{ _field_tag_reference, "decorator set", &global_decorator_set_reference },
-		{ _field_block, "placements", &global_decorator_placement_block },
+		{ _field_tag_reference, "decorator set", FIELD_FLAG_INDEX, &global_decorator_set_reference },
+		{ _field_block, "placements", FIELD_FLAG_READ_ONLY, &global_decorator_placement_block },
 		{ _field_terminator }
 	};
 

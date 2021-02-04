@@ -48,11 +48,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_NODES_BLOCK_ID)
 	{
-		{ _field_block, "render only headers", &collision_kd_hierarchy_static_hash_table_headers_block },
-		{ _field_block, "collidable headers", &collision_kd_hierarchy_static_hash_table_headers_block },
-		{ _field_short_block_index, "child below", &collision_kd_hierarchy_static_nodes_block },
-		{ _field_short_block_index, "child above", &collision_kd_hierarchy_static_nodes_block },
-		{ _field_short_block_index, "parent", &collision_kd_hierarchy_static_nodes_block },
+		{ _field_block, "render only headers", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_hash_table_headers_block },
+		{ _field_block, "collidable headers", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_hash_table_headers_block },
+		{ _field_short_block_index, "child below", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_block_index, "child above", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_block_index, "parent", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_nodes_block },
 		{ _field_short_integer, "cluster index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
@@ -67,7 +67,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_KD_HIERARCHY_STATIC_HASH_TABLE_HEADERS_BLOCK_ID)
 	{
-		{ _field_word_flags, "cull flags", &collision_kd_hierarchy_static_hash_table_cull_flags },
+		{ _field_word_flags, "cull flags", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_hash_table_cull_flags },
 		{ _field_short_integer, "instance index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_long_integer, "instance index dword mask", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "bsp index", FIELD_FLAG_UNKNOWN0 },
@@ -114,7 +114,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPINGS_BLOCK_ID)
 	{
-		{ _field_array, "indices", &super_node_mapping_index_array },
+		{ _field_array, "indices", FIELD_FLAG_UNKNOWN0, &super_node_mapping_index_array },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -129,7 +129,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPER_NODE_MAPPING_INDEX_ARRAY_ID)
 	{
-		{ _field_short_block_index, "index", &collision_kd_hierarchy_static_nodes_block },
+		{ _field_short_block_index, "index", FIELD_FLAG_UNKNOWN0, &collision_kd_hierarchy_static_nodes_block },
 		{ _field_terminator }
 	};
 

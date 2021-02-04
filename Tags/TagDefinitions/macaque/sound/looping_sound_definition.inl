@@ -33,7 +33,7 @@ namespace macaque
 		{ _field_real_bounds, "marty's music time", nullptr, "seconds" },
 		{ _field_real_bounds, "runtime distance bounds", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum flyby range distance" },
-		{ _field_enum, "runtime sound class", &sound_class_enum },
+		{ _field_enum, "runtime sound class", FIELD_FLAG_UNKNOWN0, &sound_class_enum },
 		FIELD_PAD("asdf", nullptr, 2),
 		{ _field_string_id, "master marker track", "This track's markers, flags, gain and fade settings are copied to the other tracks. Its gain and fadeout settings are also copied to the details. If you want to change the master track use the sound-looping tool command", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "maximum radius" },

@@ -43,9 +43,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_CODEC_BLOCK_ID)
 	{
-		{ _field_char_enum, "sample rate", &sound_sample_rate_enum },
-		{ _field_char_enum, "encoding", &sound_encoding_enum },
-		{ _field_char_enum, "compression", &sound_compression_enum },
+		{ _field_char_enum, "sample rate", FIELD_FLAG_READ_ONLY, &sound_sample_rate_enum },
+		{ _field_char_enum, "encoding", FIELD_FLAG_READ_ONLY, &sound_encoding_enum },
+		{ _field_char_enum, "compression", FIELD_FLAG_READ_ONLY, &sound_compression_enum },
 		{ _field_terminator }
 	};
 
@@ -59,7 +59,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PLAYBACK_BLOCK_ID)
 	{
-		{ _field_struct, "playback", &sound_playback_parameters_struct },
+		{ _field_struct, "playback", FIELD_FLAG_UNKNOWN0, &sound_playback_parameters_struct },
 		{ _field_terminator }
 	};
 
@@ -73,7 +73,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_SCALE_BLOCK_ID)
 	{
-		{ _field_struct, "scale", &sound_scale_modifiers_struct },
+		{ _field_struct, "scale", FIELD_FLAG_UNKNOWN0, &sound_scale_modifiers_struct },
 		{ _field_terminator }
 	};
 
@@ -119,7 +119,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_PITCH_RANGES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &sound_gestalt_import_names_block },
 		{ _field_short_block_index, "parameters", &sound_gestalt_pitch_range_parameters_block },
 		{ _field_short_integer, "encoded permutation data" },
 		{ _field_short_integer, "first runtime permutation flag index", FIELD_FLAG_UNKNOWN3 },
@@ -137,7 +137,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PERMUTATIONS_BLOCK_ID)
 	{
-		{ _field_short_block_index, "name", &sound_gestalt_import_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &sound_gestalt_import_names_block },
 		{ _field_short_integer, "encoded skip fraction" },
 		{ _field_long_integer, "uncompressed sample count" },
 		{ _field_long_integer, "first chunk index" },
@@ -252,7 +252,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_GESTALT_PROMOTIONS_BLOCK_ID)
 	{
-		{ _field_struct, "runtime promotion storage", &sound_promotion_parameters_struct },
+		{ _field_struct, "runtime promotion storage", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, &sound_promotion_parameters_struct },
 		{ _field_terminator }
 	};
 
@@ -294,7 +294,7 @@ namespace macaque
 		CACHE_FILE_SOUND_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &sound_definition_flags },
-		{ _field_char_enum, "sound class", &sound_class_enum },
+		{ _field_char_enum, "sound class", FIELD_FLAG_READ_ONLY, &sound_class_enum },
 		{ _field_char_integer, "pitch range count" },
 		{ _field_short_integer, "codec index" },
 		{ _field_short_integer, "first pitch range index" },

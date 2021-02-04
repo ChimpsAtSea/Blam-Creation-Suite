@@ -192,7 +192,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &global_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -206,7 +206,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LOOPING_SOUNDS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
+		{ _field_tag_reference, "looping sound", FIELD_FLAG_INDEX, &global_looping_sound_reference },
 		{ _field_terminator }
 	};
 
@@ -258,11 +258,11 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &game_engine_status_flags_definition },
 		FIELD_PAD("FAW", nullptr, 2),
-		{ _field_enum, "state", &game_engine_status_enum_definition },
+		{ _field_enum, "state", FIELD_FLAG_INDEX, &game_engine_status_enum_definition },
 		FIELD_PAD("BNYFIDDGX", nullptr, 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
-		{ _field_tag_reference, "unused", &g_non_traversed_reference_definition },
+		{ _field_tag_reference, "unused", FIELD_FLAG_UNKNOWN0, &g_non_traversed_reference_definition },
 		FIELD_PAD("GTL", nullptr, 4),
 		{ _field_terminator }
 	};

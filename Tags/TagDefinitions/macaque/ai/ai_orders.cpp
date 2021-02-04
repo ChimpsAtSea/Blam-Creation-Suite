@@ -18,7 +18,7 @@ namespace macaque
 		TRIGGER_REFERENCES_ID)
 	{
 		{ _field_long_flags, "Trigger flags", &trigger_ref_flags },
-		{ _field_short_block_index, "trigger", &triggers_block },
+		{ _field_short_block_index, "trigger", FIELD_FLAG_INDEX, &triggers_block },
 		FIELD_PAD("LPQYXEA", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -53,7 +53,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_COMPLETION_CONDITION_ID)
 	{
-		{ _field_enum, "rule type", &condition_type_enum },
+		{ _field_enum, "rule type", FIELD_FLAG_INDEX, &condition_type_enum },
 		{ _field_short_block_index, "squad", &squads_block },
 		{ _field_short_block_index, "squad group", &squad_groups_block },
 		{ _field_short_integer, "a" },
@@ -128,7 +128,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDER_ENDING_BLOCK_ID)
 	{
-		{ _field_short_block_index, "next order", &orders_block },
+		{ _field_short_block_index, "next order", FIELD_FLAG_INDEX, &orders_block },
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		{ _field_real, "delay time" },
 		{ _field_enum, "dialogue type", &order_ending_dialogue_enum },

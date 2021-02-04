@@ -267,9 +267,9 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &nodes_flags },
-		{ _field_short_block_index, "parent", &nodes_block },
-		{ _field_short_block_index, "sibling", &nodes_block },
-		{ _field_short_block_index, "child", &nodes_block },
+		{ _field_short_block_index, "parent", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_short_block_index, "sibling", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_short_block_index, "child", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
 		{ _field_terminator }
 	};
 
@@ -303,9 +303,9 @@ namespace macaque
 	{
 		{ _field_short_integer, "runtime material type a", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime material type b", FIELD_FLAG_UNKNOWN0 },
-		{ _field_short_block_index, "node a", &nodes_block },
-		{ _field_short_block_index, "node b", &nodes_block },
-		{ _field_block, "constraints", &physics_model_constraint_edge_constraint_block },
+		{ _field_short_block_index, "node a", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_short_block_index, "node b", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_block, "constraints", FIELD_FLAG_READ_ONLY, &physics_model_constraint_edge_constraint_block },
 		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a" },
 		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has" },
 		{ _field_terminator }
@@ -321,7 +321,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_CONSTRAINT_EDGE_CONSTRAINT_BLOCK_ID)
 	{
-		{ _field_enum, "type", &rigid_constraint_types_enum },
+		{ _field_enum, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &rigid_constraint_types_enum },
 		{ _field_custom_short_block_index, "index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_flags, "flags", &rigid_body_constraint_edge_constraint_flags_definition },
 		{ _field_real, "friction", "0 is the default (takes what it was set in max) anything else overrides that value" },
@@ -374,10 +374,10 @@ namespace macaque
 		RIGID_BODIES_BLOCK_ID,
 		4)
 	{
-		{ _field_short_block_index, "node", &nodes_block },
-		{ _field_short_block_index, "region", &regions_block },
+		{ _field_short_block_index, "node", FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_short_block_index, "region", FIELD_FLAG_READ_ONLY, &regions_block },
 		{ _field_custom_short_block_index, "permutattion", FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "serialized shapes", &RigidBodySerializedShapesBlock_block },
+		{ _field_short_block_index, "serialized shapes", FIELD_FLAG_READ_ONLY, &RigidBodySerializedShapesBlock_block },
 		{ _field_real_point_3d, "bouding sphere offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "bounding sphere radius", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "flags", &rigid_body_flags },
@@ -463,7 +463,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RIGID_BODY_INDICES_BLOCK_ID)
 	{
-		{ _field_short_block_index, "rigid body", &rigid_bodies_block },
+		{ _field_short_block_index, "rigid body", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &rigid_bodies_block },
 		{ _field_terminator }
 	};
 
@@ -514,7 +514,7 @@ namespace macaque
 		{ _field_struct, "sphere rep shape", &havok_shape_struct },
 		{ _field_long_integer, "num spheres", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("bull434", nullptr, 12),
-		{ _field_array, "four vectors storage", &multi_sphere_vector_storage_array },
+		{ _field_array, "four vectors storage", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &multi_sphere_vector_storage_array },
 		{ _field_terminator }
 	};
 
@@ -676,7 +676,7 @@ namespace macaque
 		{ _field_real_vector_3d, "m_codeInfoCopy", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w m_codeInfoCopy", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "child shape vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		{ _field_struct, "childShapePointer", &havok_shape_reference_struct },
+		{ _field_struct, "childShapePointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, &havok_shape_reference_struct },
 		{ _field_long_integer, "child size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		FIELD_PAD("mopp alignment", nullptr, 4),
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -694,7 +694,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HINGE_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("JENFOXHY", nullptr, 4),
 		{ _field_terminator }
 	};
@@ -709,7 +709,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RAGDOLL_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("OVIM", nullptr, 4),
 		{ _field_real, "min twist", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max twist", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -732,9 +732,9 @@ namespace macaque
 		POINT_TO_PATH_CURVE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "node index", &nodes_block },
+		{ _field_short_block_index, "node index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
 		FIELD_PAD("TNLRSOSY", nullptr, 2),
-		{ _field_block, "points", &point_to_path_curve_point_block },
+		{ _field_block, "points", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &point_to_path_curve_point_block },
 		{ _field_terminator }
 	};
 
@@ -763,7 +763,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIMITED_HINGE_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("TC", nullptr, 4),
 		{ _field_real, "limit friction", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "limit min angle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -781,7 +781,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BALL_AND_SOCKET_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("UPDLSKB", nullptr, 4),
 		{ _field_terminator }
 	};
@@ -796,7 +796,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STIFF_SPRING_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("KGB", nullptr, 4),
 		{ _field_real, "spring_length", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -812,7 +812,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PRISMATIC_CONSTRAINTS_BLOCK_ID)
 	{
-		{ _field_struct, "constraint bodies", &constraint_bodies_struct },
+		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
 		FIELD_PAD("XVEPD", nullptr, 4),
 		{ _field_real, "min_limit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max_limit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -858,34 +858,34 @@ namespace macaque
 		{ _field_block, "position motors", &physics_model_position_motor_block },
 		{ _field_block, "phantom types", &phantom_types_block },
 		{ _field_block, "powered chains", &physics_model_powered_chains_block },
-		{ _field_block, "node edges", &physics_model_node_constraint_edge_block },
-		{ _field_block, "rigid bodies", &rigid_bodies_block },
-		{ _field_block, "materials", &materials_block },
-		{ _field_block, "spheres", &spheres_block },
-		{ _field_block, "multi spheres", &multi_spheres_block },
-		{ _field_block, "pills", &pills_block },
-		{ _field_block, "boxes", &boxes_block },
-		{ _field_block, "triangles", &triangles_block },
-		{ _field_block, "polyhedra", &polyhedra_block },
-		{ _field_block, "polyhedron four vectors", &polyhedron_four_vectors_block },
-		{ _field_block, "polyhedron plane equations", &polyhedron_plane_equations_block },
-		{ _field_block, "mass distributions", &mass_distributions_block },
-		{ _field_block, "lists", &lists_block },
-		{ _field_block, "list shapes", &list_shapes_block },
-		{ _field_block, "mopps", &mopps_block },
+		{ _field_block, "node edges", FIELD_FLAG_READ_ONLY, &physics_model_node_constraint_edge_block },
+		{ _field_block, "rigid bodies", FIELD_FLAG_READ_ONLY, &rigid_bodies_block },
+		{ _field_block, "materials", FIELD_FLAG_READ_ONLY, &materials_block },
+		{ _field_block, "spheres", FIELD_FLAG_READ_ONLY, &spheres_block },
+		{ _field_block, "multi spheres", FIELD_FLAG_READ_ONLY, &multi_spheres_block },
+		{ _field_block, "pills", FIELD_FLAG_READ_ONLY, &pills_block },
+		{ _field_block, "boxes", FIELD_FLAG_READ_ONLY, &boxes_block },
+		{ _field_block, "triangles", FIELD_FLAG_READ_ONLY, &triangles_block },
+		{ _field_block, "polyhedra", FIELD_FLAG_READ_ONLY, &polyhedra_block },
+		{ _field_block, "polyhedron four vectors", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &polyhedron_four_vectors_block },
+		{ _field_block, "polyhedron plane equations", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &polyhedron_plane_equations_block },
+		{ _field_block, "mass distributions", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mass_distributions_block },
+		{ _field_block, "lists", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &lists_block },
+		{ _field_block, "list shapes", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &list_shapes_block },
+		{ _field_block, "mopps", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopps_block },
 		{ _field_data, "mopp codes", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_block, "hinge constraints", &hinge_constraints_block },
-		{ _field_block, "ragdoll constraints", &ragdoll_constraints_block },
-		{ _field_block, "regions", &regions_block },
-		{ _field_block, "nodes", &nodes_block },
-		{ _field_block, "errors", &global_error_report_categories_block },
-		{ _field_block, "point to path curves", &point_to_path_curve_block },
-		{ _field_block, "limited hinge constraints", &limited_hinge_constraints_block },
-		{ _field_block, "ball and socket constraints", &ball_and_socket_constraints_block },
-		{ _field_block, "stiff spring constraints", &stiff_spring_constraints_block },
-		{ _field_block, "prismatic constraints", &prismatic_constraints_block },
-		{ _field_block, "phantoms", &phantoms_block },
-		{ _field_block, "RigidBody Serialized Shapes", &RigidBodySerializedShapesBlock_block },
+		{ _field_block, "hinge constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hinge_constraints_block },
+		{ _field_block, "ragdoll constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ragdoll_constraints_block },
+		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &regions_block },
+		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_block, "errors", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
+		{ _field_block, "point to path curves", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &point_to_path_curve_block },
+		{ _field_block, "limited hinge constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &limited_hinge_constraints_block },
+		{ _field_block, "ball and socket constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ball_and_socket_constraints_block },
+		{ _field_block, "stiff spring constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &stiff_spring_constraints_block },
+		{ _field_block, "prismatic constraints", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &prismatic_constraints_block },
+		{ _field_block, "phantoms", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &phantoms_block },
+		{ _field_block, "RigidBody Serialized Shapes", FIELD_FLAG_READ_ONLY, &RigidBodySerializedShapesBlock_block },
 		{ _field_terminator }
 	};
 
@@ -899,8 +899,8 @@ namespace macaque
 		HAVOK_PRIMITIVE_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_char_block_index, "material", &materials_block },
-		{ _field_byte_flags, "material flags", &physics_material_flags },
+		{ _field_char_block_index, "material", FIELD_FLAG_READ_ONLY, &materials_block },
+		{ _field_byte_flags, "material flags", FIELD_FLAG_READ_ONLY, &physics_material_flags },
 		{ _field_short_integer, "runtime material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real, "relative mass scale" },
 		{ _field_real_fraction, "friction" },
@@ -908,7 +908,7 @@ namespace macaque
 		{ _field_real, "volume ", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "mass", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "mass distribution index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_char_block_index, "phantom", &phantoms_block },
+		{ _field_char_block_index, "phantom", FIELD_FLAG_READ_ONLY, &phantoms_block },
 		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default group, model, and rigid body."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_terminator }
@@ -943,7 +943,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_REFERENCE_STRUCT_ID)
 	{
-		{ _field_enum, "shape type", &shape_enum },
+		{ _field_enum, "shape type", FIELD_FLAG_READ_ONLY | FIELD_FLAG_POINTER, &shape_enum },
 		{ _field_custom_short_block_index, "shape", FIELD_FLAG_READ_ONLY | FIELD_FLAG_POINTER },
 		{ _field_terminator }
 	};
@@ -1076,8 +1076,8 @@ namespace macaque
 		CONSTRAINT_BODIES_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "node a", &nodes_block },
-		{ _field_short_block_index, "node b", &nodes_block },
+		{ _field_short_block_index, "node a", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
+		{ _field_short_block_index, "node b", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
 		{ _field_real, "a scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "a forward", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "a left", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -1088,7 +1088,7 @@ namespace macaque
 		{ _field_real_vector_3d, "b left", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "b up", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "b position", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "edge index", &physics_model_node_constraint_edge_block },
+		{ _field_short_block_index, "edge index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &physics_model_node_constraint_edge_block },
 		FIELD_PAD("H", nullptr, 2),
 		{ _field_terminator }
 	};

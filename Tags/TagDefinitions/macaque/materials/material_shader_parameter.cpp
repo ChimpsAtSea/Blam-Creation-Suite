@@ -19,7 +19,7 @@ namespace macaque
 		MATERIAL_SHADER_PARAMETER_BLOCK_ID)
 	{
 		{ _field_string_id, "parameter name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_long_enum, "parameter type", &material_shader_parameter_type_enum },
+		{ _field_long_enum, "parameter type", FIELD_FLAG_READ_ONLY, &material_shader_parameter_type_enum },
 		{ _field_long_integer, "parameter index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_tag_reference, "bitmap", &bitmap_reference$7 },
 		{ _field_string_id, "bitmap path" },
@@ -46,7 +46,7 @@ namespace macaque
 		{ _field_byte_integer, "register index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "register offset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "register count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_char_enum, "register set", &register_set_enum },
+		{ _field_char_enum, "register set", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &register_set_enum },
 		{ _field_terminator }
 	};
 
@@ -61,10 +61,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIAL_SHADER_FUNCTION_PARAMETER_BLOCK_ID)
 	{
-		{ _field_long_enum, "type", &material_animated_parameter_type_enum },
+		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &material_animated_parameter_type_enum },
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", &materialFunctionOutputModEnum },
+		{ _field_char_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &materialFunctionOutputModEnum },
 		FIELD_PAD("BVCG", nullptr, 3),
 		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },

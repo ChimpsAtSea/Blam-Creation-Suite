@@ -152,7 +152,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_FORMATION_BLOCK_ID)
 	{
-		{ _field_tag_reference, "formation", &formation_reference },
+		{ _field_tag_reference, "formation", FIELD_FLAG_INDEX, &formation_reference },
 		{ _field_terminator }
 	};
 
@@ -197,7 +197,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_SQUAD_TEMPLATE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "squad_template", &squad_template_reference },
+		{ _field_tag_reference, "squad_template", FIELD_FLAG_INDEX, &squad_template_reference },
 		{ _field_terminator }
 	};
 
@@ -242,7 +242,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_PERFORMANCE_TEMPLATE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "thespian_template", &performance_template_reference },
+		{ _field_tag_reference, "thespian_template", FIELD_FLAG_INDEX, &performance_template_reference },
 		{ _field_terminator }
 	};
 

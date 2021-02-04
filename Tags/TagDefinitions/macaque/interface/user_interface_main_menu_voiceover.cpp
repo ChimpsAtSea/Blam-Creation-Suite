@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MAIN_MENU_VOICEOVER_LINES_BLOCK_ID)
 	{
-		{ _field_tag_reference, "sound", &sound_reference$2 },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &sound_reference$2 },
 		{ _field_terminator }
 	};
 

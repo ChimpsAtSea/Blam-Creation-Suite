@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SOURCE_REFERENCE_BLOCK_ID)
 	{
-		{ _field_tag_reference, "reference", &hsc_reference },
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &hsc_reference },
 		{ _field_terminator }
 	};
 
@@ -69,15 +69,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "source files", &hs_source_files_block },
-		{ _field_block, "scripts", &hs_scripts_block },
-		{ _field_block, "globals", &hs_globals_block },
-		{ _field_block, "instanced variables", &HSInstancedVariablesBlock_block },
-		{ _field_block, "references", &hs_references_block },
-		{ _field_block, "hs unit seats", &hs_unit_seat_block },
-		{ _field_block, "hs syntax datums", &hs_syntax_datum_block },
+		{ _field_block, "source files", FIELD_FLAG_READ_ONLY, &hs_source_files_block },
+		{ _field_block, "scripts", FIELD_FLAG_READ_ONLY, &hs_scripts_block },
+		{ _field_block, "globals", FIELD_FLAG_READ_ONLY, &hs_globals_block },
+		{ _field_block, "instanced variables", FIELD_FLAG_READ_ONLY, &HSInstancedVariablesBlock_block },
+		{ _field_block, "references", FIELD_FLAG_READ_ONLY, &hs_references_block },
+		{ _field_block, "hs unit seats", FIELD_FLAG_UNKNOWN0, &hs_unit_seat_block },
+		{ _field_block, "hs syntax datums", FIELD_FLAG_READ_ONLY, &hs_syntax_datum_block },
 		{ _field_data, "script string data" },
-		{ _field_block, "import manifest", &HSImportManifestBlock_block },
+		{ _field_block, "import manifest", FIELD_FLAG_READ_ONLY, &HSImportManifestBlock_block },
 		{ _field_terminator }
 	};
 
@@ -90,9 +90,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		HS_SCRIPT_DATA_STRUCT_ID)
 	{
-		{ _field_block, "source file references", &hs_source_reference_block },
+		{ _field_block, "source file references", FIELD_FLAG_READ_ONLY, &hs_source_reference_block },
 		{ _field_block, "external source references", &hs_source_reference_block },
-		{ _field_tag_reference, "compiled script", &Tag::Reference<struct HSCompiledScript>::s_defaultDefinition },
+		{ _field_tag_reference, "compiled script", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &Tag::Reference<struct HSCompiledScript>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 

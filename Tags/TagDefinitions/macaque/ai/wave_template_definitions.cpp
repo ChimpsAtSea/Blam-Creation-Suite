@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WAVE_SQUAD_SPECIFICATION_STRUCT_STRUCT_ID)
 	{
-		{ _field_tag_reference, "squad template", &squad_template_reference$2 },
+		{ _field_tag_reference, "squad template", FIELD_FLAG_INDEX, &squad_template_reference$2 },
 		{ _field_struct, "spawn conditions", &ai_spawn_conditions_struct },
 		{ _field_short_integer, "weight", "The relative weight given to this squad spawning" },
 		FIELD_EXPLANATION("MIN/MAX SPAWN COUNTS", nullptr, "When spawning a number of squads from this wave template, try and spawn at least the minimum number, and at most the maximum number. Once these min/max bounds have been met, probabilistic distribution will continue."),

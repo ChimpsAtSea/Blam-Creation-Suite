@@ -84,9 +84,9 @@ namespace macaque
 	{
 		{ _field_block, "matchmaking", &game_completion_rewards_definition_block },
 		{ _field_block, "custom", &game_completion_rewards_definition_block },
-		{ _field_block, "unused0", &game_completion_rewards_definition_block },
-		{ _field_block, "unused1", &game_completion_rewards_definition_block },
-		{ _field_block, "unused2", &game_completion_rewards_definition_block },
+		{ _field_block, "unused0", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
+		{ _field_block, "unused1", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
+		{ _field_block, "unused2", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
 		{ _field_terminator }
 	};
 

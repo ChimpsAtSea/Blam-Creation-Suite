@@ -18,12 +18,12 @@ namespace macaque
 		GLOBAL_ERROR_REPORT_CATEGORIES_BLOCK_ID)
 	{
 		{ _field_long_string, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_enum, "report type", &error_report_types },
-		{ _field_word_flags, "flags", &error_report_flags },
+		{ _field_enum, "report type", FIELD_FLAG_READ_ONLY, &error_report_types },
+		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &error_report_flags },
 		{ _field_short_integer, "runtime generation flags", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("WVTP", nullptr, 2),
 		{ _field_long_integer, "runtime something", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		{ _field_block, "reports", &error_reports_block },
+		{ _field_block, "reports", FIELD_FLAG_READ_ONLY, &error_reports_block },
 		{ _field_terminator }
 	};
 
@@ -37,19 +37,19 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORTS_BLOCK_ID)
 	{
-		{ _field_char_enum, "type", &error_report_types },
-		{ _field_char_enum, "source", &error_report_source },
-		{ _field_word_flags, "flags", &error_report_flags },
+		{ _field_char_enum, "type", FIELD_FLAG_READ_ONLY, &error_report_types },
+		{ _field_char_enum, "source", FIELD_FLAG_READ_ONLY, &error_report_source },
+		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &error_report_flags },
 		{ _field_data, "text", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "source identifier", FIELD_FLAG_READ_ONLY },
 		{ _field_string, "source filename", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "source line number", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "vertices", &error_report_vertices_block },
-		{ _field_block, "vectors", &error_report_vectors_block },
-		{ _field_block, "lines", &error_report_lines_block },
-		{ _field_block, "triangles", &error_report_triangles_block },
-		{ _field_block, "quads", &error_report_quads_block },
-		{ _field_block, "comments", &error_report_comments_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &error_report_vertices_block },
+		{ _field_block, "vectors", FIELD_FLAG_READ_ONLY, &error_report_vectors_block },
+		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &error_report_lines_block },
+		{ _field_block, "triangles", FIELD_FLAG_READ_ONLY, &error_report_triangles_block },
+		{ _field_block, "quads", FIELD_FLAG_READ_ONLY, &error_report_quads_block },
+		{ _field_block, "comments", FIELD_FLAG_READ_ONLY, &error_report_comments_block },
 		{ _field_long_integer, "report key", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "node index", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
@@ -102,7 +102,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_LINES_BLOCK_ID)
 	{
-		{ _field_array, "points", &error_report_line_point_array },
+		{ _field_array, "points", FIELD_FLAG_READ_ONLY, &error_report_line_point_array },
 		{ _field_real_argb_color, "color", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -117,7 +117,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_TRIANGLES_BLOCK_ID)
 	{
-		{ _field_array, "points", &error_report_triangle_point_array },
+		{ _field_array, "points", FIELD_FLAG_READ_ONLY, &error_report_triangle_point_array },
 		{ _field_real_argb_color, "color", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -132,7 +132,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ERROR_REPORT_QUADS_BLOCK_ID)
 	{
-		{ _field_array, "points", &error_report_quad_point_array },
+		{ _field_array, "points", FIELD_FLAG_READ_ONLY, &error_report_quad_point_array },
 		{ _field_real_argb_color, "color", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -233,8 +233,8 @@ namespace macaque
 		ERROR_REPORT_POINT_DEFINITION_ID)
 	{
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
-		{ _field_array, "node indices", &error_point_node_index_array },
-		{ _field_array, "node weights", &error_point_node_weight_array },
+		{ _field_array, "node indices", FIELD_FLAG_READ_ONLY, &error_point_node_index_array },
+		{ _field_array, "node weights", FIELD_FLAG_READ_ONLY, &error_point_node_weight_array },
 		{ _field_terminator }
 	};
 

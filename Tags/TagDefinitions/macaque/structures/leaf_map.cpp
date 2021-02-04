@@ -17,8 +17,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_MAP_LEAF_BLOCK_ID)
 	{
-		{ _field_block, "faces", &map_leaf_face_block },
-		{ _field_block, "connection indices", &map_leaf_connection_index_block },
+		{ _field_block, "faces", FIELD_FLAG_READ_ONLY, &map_leaf_face_block },
+		{ _field_block, "connection indices", FIELD_FLAG_READ_ONLY, &map_leaf_connection_index_block },
 		{ _field_terminator }
 	};
 
@@ -33,7 +33,7 @@ namespace macaque
 		MAP_LEAF_FACE_BLOCK_ID)
 	{
 		{ _field_long_integer, "node index", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "vertices", &map_leaf_face_vertex_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &map_leaf_face_vertex_block },
 		{ _field_terminator }
 	};
 
@@ -78,7 +78,7 @@ namespace macaque
 		{ _field_long_integer, "plane index", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "back leaf index", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "front leaf index", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "vertices", &leaf_connection_vertex_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &leaf_connection_vertex_block },
 		{ _field_real, "area", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};

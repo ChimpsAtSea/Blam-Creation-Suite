@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_ZONE_SET_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
-		{ _field_block, "structure visiblity", &planar_fog_structure_visibility_definition_block },
+		{ _field_block, "structure visiblity", FIELD_FLAG_READ_ONLY, &planar_fog_structure_visibility_definition_block },
 		{ _field_terminator }
 	};
 
@@ -44,7 +44,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_STRUCTURE_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
-		{ _field_block, "cluster visiblity", &planar_fog_cluster_visibility_definition_block },
+		{ _field_block, "cluster visiblity", FIELD_FLAG_READ_ONLY, &planar_fog_cluster_visibility_definition_block },
 		{ _field_terminator }
 	};
 
@@ -58,7 +58,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_CLUSTER_VISIBILITY_DEFINITION_BLOCK_ID)
 	{
-		{ _field_block, "attached fogs", &planar_fog_reference_definition_block },
+		{ _field_block, "attached fogs", FIELD_FLAG_READ_ONLY, &planar_fog_reference_definition_block },
 		{ _field_terminator }
 	};
 
@@ -89,8 +89,8 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "appearance settings", &global_planar_fog_reference },
-		{ _field_block, "vertices", &planar_fog_vertex_block },
-		{ _field_block, "triangles", &planar_fog_triangle_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &planar_fog_vertex_block },
+		{ _field_block, "triangles", FIELD_FLAG_READ_ONLY, &planar_fog_triangle_block },
 		{ _field_real, "depth", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "normal", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -120,7 +120,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLANAR_FOG_TRIANGLE_BLOCK_ID)
 	{
-		{ _field_block, "planes", &planar_fog_triangle_planes_block },
+		{ _field_block, "planes", FIELD_FLAG_READ_ONLY, &planar_fog_triangle_planes_block },
 		{ _field_terminator }
 	};
 
@@ -187,7 +187,7 @@ namespace macaque
 		PLANAR_FOG_SET_DEFINITION_STRUCT_ID)
 	{
 		{ _field_block, "planar fogs", &planar_fog_definition_block },
-		{ _field_block, "mopp code", &mopp_code_definition_block },
+		{ _field_block, "mopp code", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
 		{ _field_terminator }
 	};
 

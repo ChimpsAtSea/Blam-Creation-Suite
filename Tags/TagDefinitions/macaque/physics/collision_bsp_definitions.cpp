@@ -137,7 +137,7 @@ namespace macaque
 		{ _field_short_integer, "material", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "breakable surface set", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "breakable surface", FIELD_FLAG_READ_ONLY },
-		{ _field_byte_flags, "flags", &surface_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &surface_flags },
 		{ _field_byte_integer, "best plane calculation vertex index ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -188,15 +188,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_COLLISION_BSP_BLOCK_ID)
 	{
-		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes", &planes_block },
-		{ _field_block, "leaves", &leaves_block },
-		{ _field_block, "bsp2d references", &bsp2d_references_block },
-		{ _field_block, "bsp2d nodes", &bsp2d_nodes_block },
-		{ _field_block, "surfaces", &surfaces_block },
-		{ _field_block, "edges", &edges_block },
-		{ _field_block, "vertices", &vertices_block },
+		{ _field_block, "bsp3d nodes", FIELD_FLAG_READ_ONLY, &bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", FIELD_FLAG_READ_ONLY, &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", FIELD_FLAG_READ_ONLY, &planes_block },
+		{ _field_block, "leaves", FIELD_FLAG_READ_ONLY, &leaves_block },
+		{ _field_block, "bsp2d references", FIELD_FLAG_READ_ONLY, &bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", FIELD_FLAG_READ_ONLY, &bsp2d_nodes_block },
+		{ _field_block, "surfaces", FIELD_FLAG_READ_ONLY, &surfaces_block },
+		{ _field_block, "edges", FIELD_FLAG_READ_ONLY, &edges_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &vertices_block },
 		{ _field_terminator }
 	};
 
@@ -210,15 +210,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LARGE_COLLISION_BSP_BLOCK_ID)
 	{
-		{ _field_block, "bsp3d nodes", &large_bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes", &planes_block },
-		{ _field_block, "leaves", &large_leaves_block },
-		{ _field_block, "bsp2d references", &large_bsp2d_references_block },
-		{ _field_block, "bsp2d nodes", &large_bsp2d_nodes_block },
-		{ _field_block, "surfaces", &large_surfaces_block },
-		{ _field_block, "edges", &large_edges_block },
-		{ _field_block, "vertices", &large_vertices_block },
+		{ _field_block, "bsp3d nodes", FIELD_FLAG_READ_ONLY, &large_bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", FIELD_FLAG_READ_ONLY, &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", FIELD_FLAG_READ_ONLY, &planes_block },
+		{ _field_block, "leaves", FIELD_FLAG_READ_ONLY, &large_leaves_block },
+		{ _field_block, "bsp2d references", FIELD_FLAG_READ_ONLY, &large_bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", FIELD_FLAG_READ_ONLY, &large_bsp2d_nodes_block },
+		{ _field_block, "surfaces", FIELD_FLAG_READ_ONLY, &large_surfaces_block },
+		{ _field_block, "edges", FIELD_FLAG_READ_ONLY, &large_edges_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &large_vertices_block },
 		{ _field_terminator }
 	};
 
@@ -248,7 +248,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LARGE_LEAVES_BLOCK_ID)
 	{
-		{ _field_word_flags, "flags", &leaf_flags },
+		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &leaf_flags },
 		{ _field_short_integer, "bsp2d reference count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "first bsp2d reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -300,7 +300,7 @@ namespace macaque
 		{ _field_short_integer, "material", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "breakable surface set", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "breakable surface", FIELD_FLAG_READ_ONLY },
-		{ _field_byte_flags, "flags", &surface_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &surface_flags },
 		{ _field_byte_integer, "best plane calculation vertex index ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -349,15 +349,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_COLLISION_BSP_STRUCT_ID)
 	{
-		{ _field_block, "bsp3d nodes", &bsp3d_nodes_block },
-		{ _field_block, "bsp3d supernodes", &bsp3d_kd_supdernodes_block },
-		{ _field_block, "planes", &planes_block },
-		{ _field_block, "leaves", &leaves_block },
-		{ _field_block, "bsp2d references", &bsp2d_references_block },
-		{ _field_block, "bsp2d nodes", &bsp2d_nodes_block },
-		{ _field_block, "surfaces", &surfaces_block },
-		{ _field_block, "edges", &edges_block },
-		{ _field_block, "vertices", &vertices_block },
+		{ _field_block, "bsp3d nodes", FIELD_FLAG_READ_ONLY, &bsp3d_nodes_block },
+		{ _field_block, "bsp3d supernodes", FIELD_FLAG_READ_ONLY, &bsp3d_kd_supdernodes_block },
+		{ _field_block, "planes", FIELD_FLAG_READ_ONLY, &planes_block },
+		{ _field_block, "leaves", FIELD_FLAG_READ_ONLY, &leaves_block },
+		{ _field_block, "bsp2d references", FIELD_FLAG_READ_ONLY, &bsp2d_references_block },
+		{ _field_block, "bsp2d nodes", FIELD_FLAG_READ_ONLY, &bsp2d_nodes_block },
+		{ _field_block, "surfaces", FIELD_FLAG_READ_ONLY, &surfaces_block },
+		{ _field_block, "edges", FIELD_FLAG_READ_ONLY, &edges_block },
+		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &vertices_block },
 		{ _field_terminator }
 	};
 
@@ -371,7 +371,7 @@ namespace macaque
 		COLLISION_LEAF_STRUCT_ID,
 		2)
 	{
-		{ _field_byte_flags, "flags", &leaf_flags },
+		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &leaf_flags },
 		FIELD_PAD("pad", nullptr, 1),
 		{ _field_word_integer, "bsp2d reference count", FIELD_FLAG_READ_ONLY },
 		{ _field_dword_integer, "first bsp2d reference", FIELD_FLAG_READ_ONLY },

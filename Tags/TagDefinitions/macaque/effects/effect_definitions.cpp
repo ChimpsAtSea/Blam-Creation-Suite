@@ -24,7 +24,7 @@ namespace macaque
 		{ _field_real, "continue if within", nullptr, "world units" },
 		{ _field_real, "death_delay" },
 		{ _field_short_block_index, "loop start event", &effect_event_block },
-		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
 		FIELD_PAD("asdfsdf", nullptr, 1),
 		{ _field_real, "global size scale" },
 		{ _field_string_id, "scale A override", "Handle with care. FYI only works if the effect is attached to an object" },
@@ -62,7 +62,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_old_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &effect_location_flags },
-		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
 		FIELD_PAD("RGEWNQIG", nullptr, 1),
 		{ _field_terminator }
 	};
@@ -79,7 +79,7 @@ namespace macaque
 	{
 		{ _field_string_id, "event name", FIELD_FLAG_INDEX },
 		{ _field_word_flags, "flags", &event_flags },
-		{ _field_char_enum, "priority", &global_effect_priority_enum },
+		{ _field_char_enum, "priority", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_effect_priority_enum },
 		FIELD_PAD("EVUIQSNDS", nullptr, 1),
 		{ _field_real_fraction, "skip fraction", "chance that this event will be skipped entirely" },
 		FIELD_CUSTOM("delay bounds", "delay before this event takes place", _field_id_unknown_mela),
@@ -115,7 +115,7 @@ namespace macaque
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
 		FIELD_PAD("JCIOEHR", nullptr, 2),
-		{ _field_tag_reference, "type", &effect_part_block_type_reference },
+		{ _field_tag_reference, "type", FIELD_FLAG_INDEX, &effect_part_block_type_reference },
 		FIELD_CUSTOM("velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", _field_id_unknown_mela),
 		{ _field_real_bounds, "velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", "world units per second" },
 		{ _field_real_euler_angles_2d, "velocity orientation (yaw, pitch)", "NOT USED", FIELD_FLAG_UNKNOWN0 },
@@ -162,7 +162,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_LOOPING_SOUND_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "looping sound", &global_looping_sound_reference },
+		{ _field_tag_reference, "looping sound", FIELD_FLAG_INDEX, &global_looping_sound_reference },
 		{ _field_short_block_index, "location", &effect_locations_block },
 		{ _field_short_block_index, "bind scale to event", &effect_event_block },
 		{ _field_terminator }

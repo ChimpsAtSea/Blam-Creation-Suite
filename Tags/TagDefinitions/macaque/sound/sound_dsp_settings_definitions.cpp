@@ -43,7 +43,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EQUALIZER_BAND_SETTINGS_BLOCK_STRUCT_ID)
 	{
-		{ _field_long_enum, "type", &equalizer_band_type_definition },
+		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &equalizer_band_type_definition },
 		FIELD_CUSTOM("frequency", nullptr, _field_id_slider_editor),
 		{ _field_real, "frequency", nullptr, "Hz", _field_id_slider_editor },
 		FIELD_CUSTOM("gain", nullptr, _field_id_slider_editor),

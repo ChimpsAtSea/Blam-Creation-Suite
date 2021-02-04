@@ -437,10 +437,10 @@ namespace macaque
 		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the mux shader" },
 		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the mux shader" },
 		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the mux shader" },
-		{ _field_struct, "material type 0", &material_type_struct },
-		{ _field_struct, "material type 1", &material_type_struct },
-		{ _field_struct, "material type 2", &material_type_struct },
-		{ _field_struct, "material type 3", &material_type_struct },
+		{ _field_struct, "material type 0", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 1", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 2", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 3", FIELD_FLAG_UNKNOWN0, &material_type_struct },
 		{ _field_long_integer, "single material", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};
@@ -513,10 +513,10 @@ namespace macaque
 		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader" },
 		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader" },
 		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader" },
-		{ _field_struct, "material type 0", &material_type_struct },
-		{ _field_struct, "material type 1", &material_type_struct },
-		{ _field_struct, "material type 2", &material_type_struct },
-		{ _field_struct, "material type 3", &material_type_struct },
+		{ _field_struct, "material type 0", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 1", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 2", FIELD_FLAG_UNKNOWN0, &material_type_struct },
+		{ _field_struct, "material type 3", FIELD_FLAG_UNKNOWN0, &material_type_struct },
 		{ _field_long_integer, "single material", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};

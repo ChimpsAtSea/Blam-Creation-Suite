@@ -19,13 +19,13 @@ namespace macaque
 		COLLISION_MODEL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "import_info_checksum", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_block, "errors", &global_error_report_categories_block },
-		{ _field_long_flags, "flags", &collision_model_flags },
-		{ _field_block, "materials", &collision_model_material_block },
-		{ _field_block, "regions", &collision_model_region_block },
-		{ _field_block, "cookie cutters", &collision_model_region_block },
-		{ _field_block, "pathfinding spheres", &collision_model_pathfinding_sphere_block },
-		{ _field_block, "nodes", &collision_model_node_block },
+		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
+		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &collision_model_flags },
+		{ _field_block, "materials", FIELD_FLAG_READ_ONLY, &collision_model_material_block },
+		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &collision_model_region_block },
+		{ _field_block, "cookie cutters", FIELD_FLAG_READ_ONLY, &collision_model_region_block },
+		{ _field_block, "pathfinding spheres", FIELD_FLAG_READ_ONLY, &collision_model_pathfinding_sphere_block },
+		{ _field_block, "nodes", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_pageable, "regions resource", &collision_model_resource_struct },
 		{ _field_terminator }
 	};
@@ -62,7 +62,7 @@ namespace macaque
 		COLLISION_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		{ _field_block, "permutations", &collision_model_permutation_block },
+		{ _field_block, "permutations", FIELD_FLAG_READ_ONLY, &collision_model_permutation_block },
 		{ _field_terminator }
 	};
 
@@ -79,9 +79,9 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_short_integer, "resourceBspOffset", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "resourceBspCount", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_block, "bsps", &collision_model_bsp_block },
-		{ _field_block, "bsp_physics", &collision_bsp_physics_block },
-		{ _field_block, "mopp_codes", &mopp_code_definition_block },
+		{ _field_block, "bsps", FIELD_FLAG_READ_ONLY, &collision_model_bsp_block },
+		{ _field_block, "bsp_physics", FIELD_FLAG_READ_ONLY, &collision_bsp_physics_block },
+		{ _field_block, "mopp_codes", FIELD_FLAG_READ_ONLY, &mopp_code_definition_block },
 		{ _field_terminator }
 	};
 
@@ -101,7 +101,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_MODEL_PATHFINDING_SPHERE_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node", &collision_model_node_block },
+		{ _field_short_block_index, "node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_word_flags, "flags", &pathfinding_sphere_flags },
 		{ _field_useless_pad, "" },
 		{ _field_real_point_3d, "center", FIELD_FLAG_READ_ONLY },
@@ -121,9 +121,9 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		FIELD_PAD("PFPPD", nullptr, 2),
-		{ _field_short_block_index, "parent node", &collision_model_node_block },
-		{ _field_short_block_index, "next sibling node", &collision_model_node_block },
-		{ _field_short_block_index, "first child node", &collision_model_node_block },
+		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
+		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
+		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_terminator }
 	};
 
@@ -145,7 +145,7 @@ namespace macaque
 		{ _field_short_integer, "node index", FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("KXGCEIEI", nullptr, 2),
 		{ _field_useless_pad, "" },
-		{ _field_struct, "bsp", &global_collision_bsp_struct },
+		{ _field_struct, "bsp", FIELD_FLAG_READ_ONLY, &global_collision_bsp_struct },
 		{ _field_terminator }
 	};
 

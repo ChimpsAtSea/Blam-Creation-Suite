@@ -69,7 +69,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLATFORM_SOUND_PLAYBACK_COMPONENT_BLOCK_STRUCT_ID)
 	{
-		{ _field_tag_reference, "sound", &global_sound_and_looping_sound_reference },
+		{ _field_tag_reference, "sound", FIELD_FLAG_INDEX, &global_sound_and_looping_sound_reference },
 		{ _field_real, "gain", "additional attenuation to sound", "dB" },
 		{ _field_long_flags, "flags", &platform_sound_playback_component_flags },
 		{ _field_terminator }

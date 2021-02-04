@@ -312,7 +312,7 @@ namespace macaque
 	{
 		{ _field_short_integer, "rounds" },
 		FIELD_PAD("DTDPY", nullptr, 2),
-		{ _field_tag_reference, "equipment", &global_equipment_reference },
+		{ _field_tag_reference, "equipment", FIELD_FLAG_INDEX, &global_equipment_reference },
 		{ _field_terminator }
 	};
 
@@ -456,18 +456,18 @@ namespace macaque
 	{
 		{ _field_short_integer, "shot count lower bound", "the minimum number of times this firing effect will be used, once it has been chosen" },
 		{ _field_short_integer, "shot count upper bound", "the maximum number of times this firing effect will be used, once it has been chosen" },
-		{ _field_tag_reference, "firing effect", &weapon_block_struct_ready_effect_reference },
-		{ _field_tag_reference, "critical effect", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "firing effect", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "critical effect", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "misfire effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "empty effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "optional secondary firing effect", &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "firing damage", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "critical damage", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "critical damage", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "misfire damage", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "empty damage", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "optional secondary firing damage", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "firing rider damage", &global_damage_effect_or_response_definition_reference },
-		{ _field_tag_reference, "critical rider damage", &weapon_block_struct_ready_effect_reference },
+		{ _field_tag_reference, "critical rider damage", FIELD_FLAG_INDEX, &weapon_block_struct_ready_effect_reference },
 		{ _field_tag_reference, "misfire rider damage", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "empty rider damage", &global_damage_effect_or_response_definition_reference },
 		{ _field_tag_reference, "optional secondary firing rider damage", &global_damage_effect_or_response_definition_reference },
@@ -538,7 +538,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &weapon_screen_effect_flags },
 		FIELD_PAD("LKSZJFSE", nullptr, 3),
-		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
+		{ _field_tag_reference, "screen effect", FIELD_FLAG_INDEX, &global_area_screen_effect_reference },
 		{ _field_terminator }
 	};
 

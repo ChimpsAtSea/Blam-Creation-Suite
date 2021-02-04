@@ -51,7 +51,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM("import", nullptr, _field_id_unknown_compile),
 		FIELD_EXPLANATION("PARTICLE POINTS", nullptr, "Explanation goes here.\nWoo....\n"),
-		{ _field_tag_reference, "source reference", &particle_model_reference },
+		{ _field_tag_reference, "source reference", FIELD_FLAG_UNKNOWN0, &particle_model_reference },
 		{ _field_real_vector_3d, "compression scale" },
 		{ _field_real_vector_3d, "compression offset" },
 		{ _field_block, "points", &particle_emitter_custom_point_block },

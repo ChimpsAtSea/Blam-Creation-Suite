@@ -64,7 +64,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &equipment_activation_flags },
 		{ _field_long_flags, "secondary flags", &equipmentActivationSecondaryFlags },
 		{ _field_short_integer, "charges", "-1 means unlimited charges" },
-		{ _field_char_enum, "activation mode", &equipment_activation_mode },
+		{ _field_char_enum, "activation mode", FIELD_FLAG_INDEX, &equipment_activation_mode },
 		{ _field_char_integer, "object noise adjustment", "for AI perception.\nwhile active, adjusts noises made by the owner unit by this many 'notches'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
 		FIELD_CUSTOM("Type Definitions", nullptr, _field_id_function_group_begin),
 		{ _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock_block },
