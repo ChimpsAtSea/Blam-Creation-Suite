@@ -179,7 +179,7 @@ namespace macaque
 		{ _field_string_id, "alert mode effect primary scale" },
 		{ _field_string_id, "alert mode effect secondary scale" },
 		{ _field_block, "sentry properties", &SentryPropertiesBlock_block },
-		{ _field_real, "target camouflage threshold", " 0 - 1 : target when players camo level falls below this threshold, full camo = 1" },
+		{ _field_real, "target camouflage threshold", "0 - 1 : target when players camo level falls below this threshold, full camo = 1" },
 		{ _field_terminator }
 	};
 
@@ -344,11 +344,11 @@ namespace macaque
 		{ _field_real, "hard death threshold" },
 		{ _field_real, "feign death threshold" },
 		{ _field_real, "feign death time", "seconds" },
-		{ _field_real, "pain screen duration", "The duration of the pain function\n0 defaults to 0.5", "seconds|CCBBAA" },
-		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds|CCBBAA" },
+		{ _field_real, "pain screen duration", "The duration of the pain function\n0 defaults to 0.5", "seconds" },
+		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds" },
 		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region." },
-		{ _field_angle, "pain screen angle tolerance", "The tolerance angle between next and previous damage directions, below which we randomly vary the ping direction.", "degrees|CCBBAA" },
-		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it\'s too close to the previous ping.", "degrees|CCBBAA" },
+		{ _field_angle, "pain screen angle tolerance", "The tolerance angle between next and previous damage directions, below which we randomly vary the ping direction.", "degrees" },
+		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it\'s too close to the previous ping.", "degrees" },
 		{ _field_real, "defensive screen duration", "The duration of the defensive function\n0 defaults to 2.0", "seconds" },
 		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to." },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),

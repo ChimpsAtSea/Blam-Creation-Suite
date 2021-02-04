@@ -69,7 +69,7 @@ void c_tag_project_tab::render_search_box()
 	ImGuiInputTextFlags input_text_flags = 0;
 	ImVec2 pos = ImGui::GetCursorScreenPos();
 	ImGui::InputText("##Search", search_buffer.str(), search_buffer.capacity(), input_text_flags);
-	if (!ImGui::IsItemActive() && search_buffer.is_empty())
+	if (!ImGui::IsItemActive() && search_buffer.empty())
 	{
 		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), search_reccomendation);
 	}
@@ -93,7 +93,7 @@ void c_tag_project_tab::render_tags_list_search()
 		//	? tag_interface.get_path_with_group_name_cstr()
 		//	: tag_interface.get_name_with_group_name_cstr();
 
-		if (!search_buffer.is_empty())
+		if (!search_buffer.empty())
 		{
 			if (strstr(tag->tag_filepath.data, search_buffer.c_str()) == nullptr)
 			{
@@ -163,7 +163,7 @@ void c_tag_project_tab::render_explorer_bar()
 
 	ImGui::Dummy({ 0.0f, 10.0f });
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 25, 8 });
-	if (search_buffer.is_empty())
+	if (search_buffer.empty())
 	{
 		if (ImGui::BeginTabBar("##fileview"))
 		{

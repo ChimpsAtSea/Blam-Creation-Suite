@@ -257,7 +257,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &numeric_comparison_flags },
 		FIELD_PAD("PAD1", nullptr, 3),
-		{ _field_long_integer, "distance between effect and cause player", " wu" },
+		{ _field_long_integer, "distance between effect and cause player", "wu" },
 		{ _field_terminator }
 	};
 

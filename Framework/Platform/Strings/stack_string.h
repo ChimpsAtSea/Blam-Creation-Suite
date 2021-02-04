@@ -12,17 +12,19 @@ public:
 	static constexpr bool is_wchar_type = std::is_same<t_char_type, wchar_t>::value;
 
 #ifndef __INTELLISENSE__ // prevent automatic suggestion for this
-	c_stack_string(char* data, size_t length) :
+	c_stack_string(char* data, size_t allocation_size) :
 		data(data),
-		length(length)
+		allocation_size(allocation_size)
 	{
-		DEBUG_ASSERT(length > 0);
-		data[0] = 0;
+		if(allocation_size > 0)
+		{
+			data[0] = 0;
+		}
 	}
 #endif
 
 	t_char_type* data;
-	size_t length;
+	size_t allocation_size;
 
 	void format(const t_char_type* format, ...)
 	{
@@ -32,7 +34,7 @@ public:
 
 		if constexpr (is_char_type)
 		{
-			vsnprintf(data, length - 1, format, args);
+			vsnprintf(data, allocation_size - 1, format, args);
 		}
 		else if constexpr (is_wchar_type)
 		{
@@ -40,48 +42,48 @@ public:
 		}
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
 
-		data[length - 1] = 0; // ensure null terminated
+		data[allocation_size - 1] = 0; // ensure null terminated
 
 		va_end(args);
 	}
 
 	void operator =(const t_char_type* string)
 	{
-		snprintf(data, length, "%s", string);
+		snprintf(data, allocation_size, "%s", string);
 	}
 
 	void operator +=(const t_char_type* string)
 	{
-		strncat(data, string, length - 1);
+		strncat(data, string, allocation_size - 1);
 	}
 
 	template<size_t size>
 	void operator +=(const c_fixed_string<size, char>& string)
 	{
-		strncat(data, string.data, length - 1);
+		strncat(data, string.data, allocation_size - 1);
 	}
 
 	void operator +=(const c_stack_string& string)
 	{
-		strncat(data, string.data, length - 1);
+		strncat(data, string.data, allocation_size - 1);
 	}
 
 	c_stack_string& operator +(const char* string)
 	{
-		strncat(data, string, length - 1);
+		strncat(data, string, allocation_size - 1);
 		return *this;
 	}
 
 	template<size_t size>
 	c_stack_string& operator +(const c_fixed_string<size, char>& string)
 	{
-		strncat(data, string.data, length - 1);
+		strncat(data, string.data, allocation_size - 1);
 		return *this;
 	}
 
 	c_stack_string& operator +(const c_stack_string& string)
 	{
-		strncat(data, string.data, length - 1);
+		strncat(data, string.data, allocation_size - 1);
 		return *this;
 	}
 
@@ -97,7 +99,7 @@ public:
 
 	char operator [](size_t index) const
 	{
-		DEBUG_ASSERT(index < length);
+		DEBUG_ASSERT(index < allocation_size);
 		return data[index];
 	}
 

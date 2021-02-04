@@ -168,7 +168,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	{
-		bool const has_description = !field.string_parser.description.is_empty();
+		bool const has_description = !field.string_parser.description.empty();
 
 		if (has_description)
 		{
@@ -763,7 +763,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	{
-		bool const has_description = !field.string_parser.description.is_empty();
+		bool const has_description = !field.string_parser.description.empty();
 
 		if (has_description)
 		{
@@ -1000,7 +1000,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
-				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+				bool const current_string_has_tooltip = !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
@@ -1098,7 +1098,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 
 		if (const c_blamlib_string_parser* selected_string_parser = string_list_values[value])
 		{
-			if (current_string_has_tooltip = !selected_string_parser->description.is_empty())
+			if (current_string_has_tooltip = !selected_string_parser->description.empty())
 			{
 				ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 			}
@@ -1111,7 +1111,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
-				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+				bool const current_string_has_tooltip = !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));

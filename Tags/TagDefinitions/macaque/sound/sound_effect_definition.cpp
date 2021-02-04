@@ -78,7 +78,7 @@ namespace macaque
 		{ _field_string_id, "dsp effect" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "low frequency sound", &mapping_function },
-		{ _field_real, "time period", " seconds", _field_id_function_unknown },
+		{ _field_real, "time period", "seconds", _field_id_function_unknown },
 		{ _field_terminator }
 	};
 

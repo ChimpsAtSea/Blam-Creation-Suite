@@ -149,7 +149,7 @@ namespace macaque
 	{
 		{ _field_word_flags, "flags", &planar_fog_flags },
 		FIELD_PAD("ABCDadf", nullptr, 2),
-		{ _field_real, "fog thickness " },
+		{ _field_real, "fog thickness" },
 		{ _field_real, "per-vertex fog thickness modulation", "(only for transparents)" },
 		{ _field_real, "full fog depth", "world units" },
 		{ _field_real_rgb_color, "fog color" },

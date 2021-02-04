@@ -372,7 +372,7 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 
 	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
 
-	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	bool const current_string_has_tooltip = !field_formatter.description.empty();
 	if (current_string_has_tooltip)
 	{
 		ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
@@ -384,7 +384,7 @@ bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag
 		ImGui::TextUnformatted(field_formatter.display_name.c_str());
 	}
 
-	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	if (!field_formatter.description.empty() && ImGui::IsItemHovered())
 	{
 		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
@@ -452,7 +452,7 @@ void c_blofeld_tag_editor_tab::render_string(void* data, const blofeld::s_tag_fi
 
 	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
 
-	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	bool const current_string_has_tooltip = !field_formatter.description.empty();
 	if (current_string_has_tooltip)
 	{
 		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
@@ -462,7 +462,7 @@ void c_blofeld_tag_editor_tab::render_string(void* data, const blofeld::s_tag_fi
 		ImGui::Text(field_formatter.display_name.c_str());
 	}
 
-	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	if (!field_formatter.description.empty() && ImGui::IsItemHovered())
 	{
 		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
@@ -527,7 +527,7 @@ void c_blofeld_tag_editor_tab::render_string_id(void* data, const blofeld::s_tag
 	bool is_valid = string_id_value != nullptr;
 	if (!is_valid) string_id_value = "<invalid string_id>";
 
-	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	bool const current_string_has_tooltip = !field_formatter.description.empty();
 	if (current_string_has_tooltip)
 	{
 		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
@@ -537,7 +537,7 @@ void c_blofeld_tag_editor_tab::render_string_id(void* data, const blofeld::s_tag
 		ImGui::Text(field_formatter.display_name.c_str());
 	}
 
-	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	if (!field_formatter.description.empty() && ImGui::IsItemHovered())
 	{
 		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
@@ -804,7 +804,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 
 	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name);
 
-	bool const current_string_has_tooltip = !field_formatter.description.is_empty();
+	bool const current_string_has_tooltip = !field_formatter.description.empty();
 	if (current_string_has_tooltip)
 	{
 		ImGui::TextColored(MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA), field_formatter.display_name.c_str());
@@ -814,7 +814,7 @@ void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s
 		ImGui::Text(field_formatter.display_name.c_str());
 	}
 
-	if (!field_formatter.description.is_empty() && ImGui::IsItemHovered())
+	if (!field_formatter.description.empty() && ImGui::IsItemHovered())
 	{
 		ImGui::SetTooltip(field_formatter.description.c_str());
 	}
@@ -1231,7 +1231,7 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
-				bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+				bool const current_string_has_tooltip = !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
@@ -1282,7 +1282,7 @@ void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld
 		}
 	}
 
-	if (!field.string_parser.units.is_empty())
+	if (!field.string_parser.units.empty())
 	{
 		ImGui::SameLine();
 		ImGui::Text(field.string_parser.units.c_str());
@@ -1348,7 +1348,7 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 			{
 				const c_blamlib_string_parser& selected_string_parser = *string_parsers[value];
 				selected_string_value = selected_string_parser.display_name.c_str();
-				selected_string_has_tooltip = !selected_string_parser.description.is_empty();
+				selected_string_has_tooltip = !selected_string_parser.description.empty();
 				if (selected_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
@@ -1360,7 +1360,7 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 				for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
 				{
 					const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
-					bool const current_string_has_tooltip = !current_string_parser.description.is_empty();
+					bool const current_string_has_tooltip = !current_string_parser.description.empty();
 					if (current_string_has_tooltip)
 					{
 						ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
@@ -1407,7 +1407,7 @@ void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld:
 		}
 	}
 
-	if (!field.string_parser.units.is_empty())
+	if (!field.string_parser.units.empty())
 	{
 		ImGui::SameLine();
 		ImGui::Text(field.string_parser.units.c_str());
@@ -1649,7 +1649,7 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 				ImGui::SameLine();
 
 				static const ImVec4 explanation_color = MANDRILL_THEME_COMMENT_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA);
-				if (!string_parser.display_name.is_empty())
+				if (!string_parser.display_name.empty())
 				{
 					ImVec2 header_start = ImGui::GetCursorPos();
 					ImGui::TextColored(explanation_color, string_parser.display_name.c_str());
@@ -1671,7 +1671,7 @@ uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char*
 				ImGui::Dummy({ 5.0f, 5.0f });
 			}
 			ImGui::EndGroup();
-			if (!string_parser.description.is_empty() && ImGui::IsItemHovered())
+			if (!string_parser.description.empty() && ImGui::IsItemHovered())
 			{
 				ImGui::SetTooltip(string_parser.description.c_str());
 			}

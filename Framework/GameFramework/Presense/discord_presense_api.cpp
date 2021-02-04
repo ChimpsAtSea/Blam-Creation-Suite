@@ -57,7 +57,7 @@ void c_discord_presense_api::set_state_impl(s_presense_info* presense_info)
 			engine_nice_name = "Main Menu";
 		}
 
-		if (!presense_info->gametype_name.is_empty())
+		if (!presense_info->gametype_name.empty())
 		{
 			details.format("%s: %s", engine_nice_name, presense_info->gametype_name.c_str());
 		}

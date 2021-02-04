@@ -147,7 +147,7 @@ void c_low_level_tag_source_generator::generate_header() const
 				break;
 			case _field_custom:
 				stream << "\t\t\t" << "// " << field_type_string;
-				if (!field_formatter.code_name.is_empty())
+				if (!field_formatter.code_name.empty())
 				{
 					stream << " " << field_formatter.code_name.c_str();
 				}
@@ -288,7 +288,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			default:
 			{
 				const char* field_source_type = field_type_to_low_level_source_type(platform_type, current_field->field_type);
-				ASSERT(!field_formatter.code_name.is_empty());
+				ASSERT(!field_formatter.code_name.empty());
 				stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
 			}
 			}
@@ -304,7 +304,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			case _field_explanation:
 				break;
 			default:
-				if (!field_formatter.description.is_empty() || k_write_field_types)
+				if (!field_formatter.description.empty() || k_write_field_types)
 				{
 					stream << " // ";
 					if constexpr (k_write_field_types) stream << field_type_string << " ";
@@ -402,7 +402,7 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 			stream << "\t\t\t" << " // " << string_parser.display_name.c_str() << std::endl;
 
 			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
-			if (!string_parser.description.is_empty())
+			if (!string_parser.description.empty())
 			{
 				stream << " /* " << string_parser.description.c_str() << " */" << std::endl;
 				stream << std::endl;

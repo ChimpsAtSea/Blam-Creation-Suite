@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "input shape", &input_mapping_shape_enum },
 		FIELD_PAD("F", nullptr, 3),
-		{ _field_real_fraction, "peg threshold ", "magnitude of analog input for pegged acceleration to kick in" },
+		{ _field_real_fraction, "peg threshold", "magnitude of analog input for pegged acceleration to kick in" },
 		{ _field_real_point_2d, "pegged time", "time for a pegged look to reach maximum effect" },
 		{ _field_real_point_2d, "pegged scale", "the maximum effect achieved over the duration of the pegged time." },
 		{ _field_angle, "peg max angular velocity", "the maximum turning speed during peg", "degrees per sec" },

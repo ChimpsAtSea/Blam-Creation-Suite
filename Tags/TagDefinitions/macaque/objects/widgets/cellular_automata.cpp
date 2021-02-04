@@ -31,9 +31,9 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("parameters", nullptr, ""),
 		{ _field_short_integer, "updates per second", "Hz" },
-		{ _field_short_integer, " x (width)", "cells" },
-		{ _field_short_integer, " y (depth)", "cells" },
-		{ _field_short_integer, " z (height)", "cells" },
+		{ _field_short_integer, "x (width)", "cells" },
+		{ _field_short_integer, "y (depth)", "cells" },
+		{ _field_short_integer, "z (height)", "cells" },
 		{ _field_real, "x (width)", "world units" },
 		{ _field_real, "y (depth)", "world units" },
 		{ _field_real, "z (height)", "world units" },

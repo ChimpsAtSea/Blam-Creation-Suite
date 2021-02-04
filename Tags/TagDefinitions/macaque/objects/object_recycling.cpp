@@ -25,7 +25,7 @@ namespace macaque
 		{ _field_real, "Dead unit", "seconds" },
 		{ _field_real, "Dead player", "seconds" },
 		{ _field_real, "Dead MP Player", "seconds" },
-		{ _field_real, "Dead MP Player overloaded", " seconds" },
+		{ _field_real, "Dead MP Player overloaded", "seconds" },
 		{ _field_long_integer, "Max dead body count ", "above this number, overloaded mp time is used to garbage collect dead bodies" },
 		{ _field_terminator }
 	};

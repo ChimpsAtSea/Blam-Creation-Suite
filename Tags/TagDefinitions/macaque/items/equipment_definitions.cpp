@@ -793,12 +793,12 @@ namespace macaque
 		{ _field_real_fraction, "Chance to Collect ", "Percent chance (0-1) that collector has to collect each grenade.  Will only attempt to collect each grenade once." },
 		{ _field_real_bounds, "Collect Cooldown ", "Number of seconds collector must wait between successful collections." },
 		{ _field_real_bounds, "Attack Delay ", "Number of seconds collector must wait before throwing a collected projectile at a target." },
-		{ _field_real, "Max Collect Range", " Max range in world units that collector can collect and hold onto projectiles." },
-		{ _field_real_bounds, "Orbit Radius", " Collector will try to keep collected projectiles orbiting in this range." },
-		{ _field_real, "Orbit Speed", " Speed at which collected projectiles orbit." },
-		{ _field_real, "Vertical Offset", " Orbit vertical offset amount." },
-		{ _field_real, "Strength", " Controls amount of acceleration applied to projectile." },
-		{ _field_real, "Attack Speed", " Initial speed of projectiles when thrown as an attack." },
+		{ _field_real, "Max Collect Range", "Max range in world units that collector can collect and hold onto projectiles." },
+		{ _field_real_bounds, "Orbit Radius", "Collector will try to keep collected projectiles orbiting in this range." },
+		{ _field_real, "Orbit Speed", "Speed at which collected projectiles orbit." },
+		{ _field_real, "Vertical Offset", "Orbit vertical offset amount." },
+		{ _field_real, "Strength", "Controls amount of acceleration applied to projectile." },
+		{ _field_real, "Attack Speed", "Initial speed of projectiles when thrown as an attack." },
 		{ _field_tag_reference, "Collect Effect ", &effect_reference$2 },
 		{ _field_terminator }
 	};

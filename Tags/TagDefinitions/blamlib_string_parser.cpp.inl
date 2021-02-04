@@ -22,9 +22,17 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	is_index(false),
 	is_pointer(false)
 {
-	if (string.is_empty())
+	if (string.empty())
 	{
 		return;
+	}
+
+	static int x = 0;
+	int y = strlen(_string);
+	if (y > x)
+	{
+		x = y;
+		c_console::write_line("new length %i", x);
 	}
 
 	// bespoke fixups
@@ -53,17 +61,17 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	flags0.trim_front();
 	flags1.trim_front();
 	flags2.trim_front();
-	
+
 	c_fixed_string_64 flags;
 	flags.format("%s%s%s", flags0.data, flags1.data, flags2.data);
 
 	static c_fixed_string_64 symbols;
 
-	for(int i=0;i<flags.size();i++)
+	for (int i = 0; i < flags.size(); i++)
 	{
 		char c = flags[i];
 
-		if(!symbols.contains(c))
+		if (!symbols.contains(c))
 		{
 			char buf[2] = { c, 0 };
 			c_console::write_line("found flag '%s'", buf);
@@ -73,7 +81,7 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 
 		debug_point;
 	}
-	
+
 	read_only = flags.contains('*');
 	is_index = flags.contains('^');
 	is_pointer = flags.contains('\1');
@@ -96,7 +104,7 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	{
 		code_name += "_block";
 	}
-	else if (!units.is_empty() && units.size() < 6)
+	else if (!units.empty() && units.size() < 6)
 	{
 		code_name += "_";
 		code_name += units;
@@ -167,3 +175,269 @@ void c_blamlib_string_parser::cleanup_code_name()
 	code_name.remove(';');
 	code_name.remove('\"');
 }
+
+c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
+	buffer_length(string ? (strlen(string) + 1) : 0),
+	buffer_aggregate(string ? new char[k_num_buffers * buffer_length]{} : nullptr),
+	name(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_name * buffer_length])),
+	old_name(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_old_name * buffer_length])),
+	flags(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_flags * buffer_length])),
+	units(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_units * buffer_length])),
+	limits(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_limits * buffer_length])),
+	limits_legacy(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_limits_legacy * buffer_length])),
+	meta(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_meta * buffer_length])),
+	description(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_description * buffer_length])),
+	flag_unknown0(false),
+	flag_unknown1(false),
+	flag_unknown2(false),
+	flag_unknown3(false),
+	flag_unknown4(false),
+	flag_unknown5(false)
+{
+	if (string == nullptr)
+	{
+		return;
+	}
+
+	// these strings have been incorrectly entered by Bungie/343.
+	// if you are responsible for this, fuck you. you wasted so
+	// much of my fucking time.
+	struct s_string_replacement { const char* const old_string; const char* const new_string; };
+	const s_string_replacement bad_strings[] =
+	{
+		{ "scale_x(scale}*", "scale_x{scale}*" }, // what a bag of dicks
+	{ "name^`", "name^" }, // it's okay, get a third party reverse engineer to review your code years later
+	};
+	for (const s_string_replacement& string_replacement : bad_strings)
+	{
+		if (strcmp(string, string_replacement.old_string) == 0)
+		{
+			string = string_replacement.new_string;
+			break;
+		}
+	}
+
+	const char* read_position = string;
+
+	{
+		//#define NAME_SEARCH_PATTERN "%[^][:|#{]"
+#define NAME_SEARCH_PATTERN " %[^:|#{] "
+#define OLD_NAME_SEARCH_PATTERN " {%[^}]} "
+#define FLAGS_SEARCH_PATTERN " %[^][:|#] "
+
+		// read name, alt names, and flags
+		int search_for_name_and_alt_name = sscanf(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, name, old_name, flags);
+
+		if (search_for_name_and_alt_name >= 1) // found name
+		{
+			read_position = strstr(read_position, name) + strlen(name);
+
+			// name flags cleanup
+			fixup_flags(name);
+		}
+		if (search_for_name_and_alt_name >= 2) // found old_name
+		{
+			read_position = strstr(read_position, old_name) + strlen(old_name);
+			read_position += 1; // ]
+		}
+		if (search_for_name_and_alt_name >= 3) // found flags
+		{
+			read_position = strstr(read_position, flags) + strlen(flags);
+		}
+
+		debug_point;
+
+#undef NAME_SEARCH_PATTERN
+#undef OLD_NAME_SEARCH_PATTERN
+#undef FLAGS_SEARCH_PATTERN
+
+#define NAME_IGNORE_SEARCH_PATTERN " %*[^[] "
+#define LIMITS_LEGACY_SEARCH_PATTERN " [%[^]]] "
+
+		{
+			// limits_legacy
+			int search_for_limits_legacy = sscanf(name, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy);
+
+			// only try to fixup specific formats
+			// otherwise some fields with array names will break eg. 'havok w m_pad256[1]*~!!'
+			if (strstr(limits_legacy, ",") != nullptr || strstr(limits_legacy, " to ") != nullptr)
+			{
+				if (search_for_limits_legacy >= 1)
+				{
+					char* name_end = strstr(name, limits_legacy) - 1;
+					while (name_end > name && isspace(name_end[-1])) name_end--; // remove any whitespace from name
+					*name_end = 0; // terminator
+					debug_point;
+				}
+			}
+
+			debug_point;
+		}
+
+#undef NAME_IGNORE_SEARCH_PATTERN
+#undef LIMITS_LEGACY_SEARCH_PATTERN
+	}
+
+	while (isspace(*read_position)) read_position++;
+
+	if (*read_position == ':') // has description
+	{
+#define UNIT_SEARCH_PATTERN " %[^][|#] "
+#define LIMITS_SEARCH_PATTERN " %[^|#] "
+		int search_for_description_and_units = sscanf(read_position, ":" UNIT_SEARCH_PATTERN LIMITS_SEARCH_PATTERN, units, limits);
+
+		read_position += 1; // colon
+		if (search_for_description_and_units == 0) // couldn't find units, check for limits
+		{
+			int search_for_limits = sscanf(read_position, LIMITS_SEARCH_PATTERN, limits);
+			if (search_for_limits >= 1) // found limits
+			{
+				read_position = strstr(read_position, limits) + strlen(limits);
+
+				// limits flags cleanup
+				fixup_flags(limits);
+			}
+		}
+		if (search_for_description_and_units >= 1) // found units
+		{
+			read_position = strstr(read_position, units) + strlen(units);
+
+			// units flags cleanup
+			fixup_flags(units);
+		}
+		if (search_for_description_and_units >= 2) // found limits
+		{
+			read_position = strstr(read_position, limits) + strlen(limits);
+
+			// limits flags cleanup
+			fixup_flags(limits);
+		}
+
+		debug_point;
+
+#undef UNIT_SEARCH_PATTERN
+#undef LIMITS_SEARCH_PATTERN
+	}
+
+	while (isspace(*read_position)) read_position++;
+
+	if (*read_position == '|') // has meta
+	{
+#define META_SEARCH_PATTERN "%[^][#]"
+		int search_for_meta = sscanf(read_position, "|" META_SEARCH_PATTERN, meta);
+
+		read_position += 1; // vertical bar
+		if (search_for_meta >= 1) // found meta
+		{
+			read_position += strlen(meta);
+		}
+
+		debug_point;
+
+#undef META_SEARCH_PATTERN
+	}
+
+	while (isspace(*read_position)) read_position++;
+
+	if (*read_position == '#') // has description
+	{
+#define DESCRIPTION_SEARCH_PATTERN " %[^\xFF] "
+		int search_for_description = sscanf(read_position, "#" DESCRIPTION_SEARCH_PATTERN, description);
+
+		read_position += 1; // hash
+		if (search_for_description >= 1) // found description
+		{
+			read_position = strstr(read_position, description) + strlen(description);
+		}
+
+		debug_point;
+
+#undef DESCRIPTION_SEARCH_PATTERN
+	}
+
+	while (isspace(*read_position)) read_position++;
+
+	ASSERT(read_position == string + strlen(string));
+
+
+
+	for (const char* flag = flags; *flag; flag++)
+	{
+		switch (*flag)
+		{
+		case flag_unknown0_id:
+			flag_unknown0 = true;
+			break;
+		case flag_unknown1_id:
+			flag_unknown1 = true;
+			break;
+		case flag_unknown2_id:
+			flag_unknown2 = true;
+			break;
+		case flag_unknown3_id:
+			flag_unknown3 = true;
+			break;
+		case flag_unknown4_id:
+			flag_unknown4 = true;
+			break;
+		case flag_unknown5_id:
+			flag_unknown5 = true;
+			break;
+		default:
+			c_console::write_line("unhandled flag '%.1s' 0x%02X example:'%s'", flag, static_cast<int>(*flag), string);
+			FATAL_ERROR(L"Unknown flag");
+		}
+
+		debug_point;
+	}
+}
+
+c_blamlib_string_parser_v2::~c_blamlib_string_parser_v2()
+{
+	delete[] buffer_aggregate;
+}
+
+void c_blamlib_string_parser_v2::fixup_flags(char* string)
+{
+	size_t length = strlen(string);
+	if (length == 0)
+	{
+		return;
+	}
+
+	char* const flags_search_start = string;
+	char* const flags_search_end = string + length;
+
+	uint32_t flags_found = 0;
+	char* flags_search_position = flags_search_end;
+	while (
+		flags_search_position > flags_search_start
+		&& flags_search_position--
+		&& !(
+			isalnum(*flags_search_position) ||
+			isspace(*flags_search_position) ||
+			*flags_search_position == '\'' ||
+			*flags_search_position == ' ' ||
+			*flags_search_position == '$' ||
+			*flags_search_position == '%' ||
+			*flags_search_position == ']' ||
+			*flags_search_position == ')' ||
+			*flags_search_position == '.'))
+	{
+		flags_found++;
+		debug_point;
+	}
+	flags_search_position = flags_search_end - flags_found;
+
+	if (flags_search_position != flags_search_end)
+	{
+		// copies to the end of flags
+		char* const flags_end = flags + strlen(flags);
+
+		strcpy(flags_end, flags_search_position);
+		flags_search_position[0] = 0; // terminate the field name buffer
+	}
+
+	debug_point;
+}
+

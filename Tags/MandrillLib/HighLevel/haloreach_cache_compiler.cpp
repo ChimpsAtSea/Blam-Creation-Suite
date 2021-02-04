@@ -420,7 +420,7 @@ void c_haloreach_cache_compiler::compile_object(const h_tag& tag, const h_object
 				string_id& stringid = *reinterpret_cast<string_id*>(current_data_position);
 				const h_string_id& stringid_storage = *reinterpret_cast<decltype(&stringid_storage)>(high_level_field_data);
 				stringid = string_id_manager.commit_string(stringid_storage.c_str());
-				DEBUG_ASSERT(stringid_storage.is_empty() || stringid != 0);
+				DEBUG_ASSERT(stringid_storage.empty() || stringid != 0);
 
 				break;
 			}

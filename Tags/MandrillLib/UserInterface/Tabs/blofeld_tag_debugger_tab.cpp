@@ -118,7 +118,7 @@ void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_typ
 	ImGui::InputScalarN("", data_type, data, (int)count, nullptr, nullptr, format, ImGuiInputTextFlags_ReadOnly);
 	render_field_name_and_information(field, result);
 	ImGui::EndGroup();
-	if (!formatter.description.is_empty() && ImGui::IsItemHovered())
+	if (!formatter.description.empty() && ImGui::IsItemHovered())
 	{
 		ImGui::BeginTooltip();
 		ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);

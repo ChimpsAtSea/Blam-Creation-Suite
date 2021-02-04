@@ -410,16 +410,16 @@ namespace macaque
 		{ _field_real, "average translation magnitude" },
 		{ _field_real, "average pivot yaw" },
 		FIELD_EXPLANATION("a", nullptr, "IMPORTANT NOTES ABOUT FRAME EVENTS\n1) The following four fields (hidden except in expert mode) are legacy Halo3-style tag blocks.\n2) New frame events (attached to animations in Maya) will automagically be exported to\n   the frame_event_list any time a model sidecar is imported with the tool import command.\n3) Do not add new frame events, fx events, audio events, or dialog events here.  Instead,\n   please use the frame_event_list tag referenced in \'imported events\' (it\'s right above the\n   \'animations\' tag block).\n4) The only time you should be editing the following hidden fields is to remove legacy\n   frame events that have been replaced by events generated in Maya.\n"),
-		{ _field_block, "frame events|ABCDCC", &animation_frame_event_block },
-		{ _field_block, "sound events|ABCDCC", &animation_sound_event_block },
-		{ _field_block, "effect events|ABCDCC", &animation_effect_event_block },
-		{ _field_block, "dialogue events|ABCDCC", &animation_dialogue_event_block },
-		{ _field_block, "script events|ABCDCC", &animation_script_event_block },
+		{ _field_block, "frame events", &animation_frame_event_block },
+		{ _field_block, "sound events", &animation_sound_event_block },
+		{ _field_block, "effect events", &animation_effect_event_block },
+		{ _field_block, "dialogue events", &animation_dialogue_event_block },
+		{ _field_block, "script events", &animation_script_event_block },
 		FIELD_EXPLANATION("b", nullptr, ""),
-		{ _field_block, "object-space parent nodes|ABCDCC", &object_space_node_data_block },
-		{ _field_block, "foot tracking|ABCDCC", &foot_tracking_block },
-		{ _field_block, "object space offset nodes|ABCDCC", &object_space_offset_node_block },
-		{ _field_block, "forward-invert kinetic anchor nodes|ABCDCC", &fik_anchor_node_block },
+		{ _field_block, "object-space parent nodes", &object_space_node_data_block },
+		{ _field_block, "foot tracking", &foot_tracking_block },
+		{ _field_block, "object space offset nodes", &object_space_offset_node_block },
+		{ _field_block, "forward-invert kinetic anchor nodes", &fik_anchor_node_block },
 		{ _field_block, "ik chain events", &animation_ik_chain_events_block },
 		{ _field_block, "ik chain proxies", &animation_ik_chain_proxies_block },
 		{ _field_block, "facial wrinkle events", &animation_facial_wrinkle_events_block },
@@ -538,7 +538,7 @@ namespace macaque
 	{
 		{ _field_short_block_index, "foot", &foot_tracking_member_block },
 		FIELD_PAD("f00t2", nullptr, 2),
-		{ _field_block, "cycles|ABCDCC", &foot_lock_cycle_block },
+		{ _field_block, "cycles", &foot_lock_cycle_block },
 		{ _field_terminator }
 	};
 
@@ -687,7 +687,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_block, "blend screens", &blend_screen_item_definition_block },
-		{ _field_block, "function overlays|CCBBAA", &function_overlay_item_definition_block },
+		{ _field_block, "function overlays", &function_overlay_item_definition_block },
 		{ _field_terminator }
 	};
 
@@ -801,7 +801,7 @@ namespace macaque
 		ANIMATION_IK_SET_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "ik points|CCBBAA", &animation_ik_set_item_block },
+		{ _field_block, "ik points", &animation_ik_set_item_block },
 		{ _field_terminator }
 	};
 
@@ -870,9 +870,9 @@ namespace macaque
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_long_flags, "flags", &animation_mode_flags },
-		{ _field_block, "weapon class|AABBCC", &weapon_class_block },
-		{ _field_block, "mode ik|AABBCC", &animation_ik_block_v1_block },
-		{ _field_block, "foot defaults|AABBCC", &foot_tracking_defaults_block },
+		{ _field_block, "weapon class", &weapon_class_block },
+		{ _field_block, "mode ik", &animation_ik_block_v1_block },
+		{ _field_block, "foot defaults", &foot_tracking_defaults_block },
 		{ _field_terminator }
 	};
 
@@ -889,8 +889,8 @@ namespace macaque
 		{ _field_string_id, "label" },
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
-		{ _field_block, "weapon type|AABBCC", &weapon_type_block },
-		{ _field_block, "weapon ik|AABBCC", &animation_ik_block_v1_block },
+		{ _field_block, "weapon type", &weapon_type_block },
+		{ _field_block, "weapon ik", &animation_ik_block_v1_block },
 		{ _field_block, "ranged actions", &animation_ranged_action_block },
 		{ _field_block, "sync actions groups", &animation_sync_action_group_block },
 		{ _field_terminator }
@@ -909,7 +909,7 @@ namespace macaque
 		{ _field_string_id, "label" },
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
-		{ _field_block, "sets|AABBCC", &animation_set_block },
+		{ _field_block, "sets", &animation_set_block },
 		{ _field_terminator }
 	};
 
@@ -926,12 +926,12 @@ namespace macaque
 		{ _field_string_id, "label" },
 		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
-		{ _field_short_block_index, "gait group|AABBCC", &animation_gait_group_block },
+		{ _field_short_block_index, "gait group", &animation_gait_group_block },
 		FIELD_PAD("asbfap", nullptr, 2),
-		{ _field_block, "actions|AABBCC", &animation_entry_block },
+		{ _field_block, "actions", &animation_entry_block },
 		{ _field_block, "overlay animations", &animation_entry_block },
-		{ _field_block, "death and damage|AABBCC", &damage_animation_block },
-		{ _field_block, "transitions|AABBCC", &animation_transition_source_block },
+		{ _field_block, "death and damage", &damage_animation_block },
+		{ _field_block, "transitions", &animation_transition_source_block },
 		{ _field_block, "velocity boundaries", &animation_velocity_boundaries_block },
 		{ _field_terminator }
 	};
@@ -1477,9 +1477,9 @@ namespace macaque
 		FRAME_EVENT_LIST_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("IMPORTANT TAG NOTES", nullptr, "1) DO NOT XSYNC THIS TAG DIRECTLY.  Due to the nature of how this tag is processed, it is never\nloaded in-game.  Instead, xsync the parent model_animation_graph tag.  You can do this without\nchecking out the parent model_animation_graph; just find the tag in question in Bonobo, right-click it\nand select \'Force XSync\'.\n\n2) Legacy events are generated by the parent model_animation_graph.  They are generated when the model\nsidecar is imported, and the importer will try to resolve duplicated events with the frame_event_list.\nIf you need to delete a legacy animation event (or audio/effect event or reference for that matter) it \nmust be deleted from both the model_animation_graph tag AND the frame_event_list tag.\n\n3) The internal pipeline process for animation events now is:\n\t- When a sidecar is imported, if animation, effect, or audio events exist, they are copied into the\n\t  frame_event_list tag.  If the event already exists in the frame_event_list, its values are\n\t  retained.  Otherwise, default values are assigned such that the event behaves exactly as \n\t  it used to.  For the event ID, it is assigned the word \'Legacy\' with zero frame offset.\n\t- New frame events should be specified and saved in the frame_event_list tag (you\'re looking\n\t  at it).\n\t- When the model_animation_graph is compiled, the processor opens the associated frame_event_list\n\t  if one exists, reads and processes the data, and stores it back into the original \n\t  model_animation_graph on the xbox (or cache file), so no additional runtime memory or processing \n\t  time should be required.\n"),
-		{ _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block },
-		{ _field_block, "effect references|ABCDCC", &animation_graph_effect_reference_block },
-		{ _field_block, "frame events|ABCDCC", &import_animation_event_block },
+		{ _field_block, "sound references", &animation_graph_sound_reference_block },
+		{ _field_block, "effect references", &animation_graph_effect_reference_block },
+		{ _field_block, "frame events", &import_animation_event_block },
 		{ _field_terminator }
 	};
 
@@ -1502,25 +1502,25 @@ namespace macaque
 		{ _field_word_flags, "misc graph flags", &animation_graph_misc_flags },
 		{ _field_long_integer, "skeleton checksum" },
 		{ _field_long_integer, "skeleton checksum lite" },
-		{ _field_tag_reference, "imported events|ABCDCC", &global_frame_event_list_reference },
+		{ _field_tag_reference, "imported events", &global_frame_event_list_reference },
 		{ _field_block, "node usage", &animation_usage_block },
-		{ _field_block, "node masks|ABCDCC", &animation_node_mask_block },
-		{ _field_block, "functions|ABCDCC", &animation_function_block },
-		{ _field_block, "model animation variants|ABCDCC", &model_animation_variant_block },
+		{ _field_block, "node masks", &animation_node_mask_block },
+		{ _field_block, "functions", &animation_function_block },
+		{ _field_block, "model animation variants", &model_animation_variant_block },
 		{ _field_block, "skeleton nodes", &animation_graph_node_block },
-		{ _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block },
-		{ _field_block, "effect references|ABCDCC", &animation_graph_effect_reference_block },
-		{ _field_block, "blend screens|ABCDCC", &animation_blend_screen_block },
-		{ _field_block, "foot markers|ABCDCC", &foot_tracking_member_block },
+		{ _field_block, "sound references", &animation_graph_sound_reference_block },
+		{ _field_block, "effect references", &animation_graph_effect_reference_block },
+		{ _field_block, "blend screens", &animation_blend_screen_block },
+		{ _field_block, "foot markers", &foot_tracking_member_block },
 		{ _field_block, "animations", &animation_pool_block },
-		{ _field_block, "NEW blend screens|CCBBAA", &new_animation_blend_screen_block },
-		{ _field_block, "NEW function overlays|CCAABB", &new_animation_function_overlay_block },
+		{ _field_block, "NEW blend screens", &new_animation_blend_screen_block },
+		{ _field_block, "NEW function overlays", &new_animation_function_overlay_block },
 		{ _field_block, "overlay groups", &overlay_group_definition_block },
-		{ _field_block, "gaits|ABCDCC", &animation_gait_block },
-		{ _field_block, "gait groups|ABCDCC", &animation_gait_group_block },
-		{ _field_block, "ik data|CCBBAA", &animation_ik_block },
-		{ _field_block, "ik sets|CCBBAA", &animation_ik_set_block },
-		{ _field_block, "ik chains|CCBBAA", &animation_ik_chain_block },
+		{ _field_block, "gaits", &animation_gait_block },
+		{ _field_block, "gait groups", &animation_gait_group_block },
+		{ _field_block, "ik data", &animation_ik_block },
+		{ _field_block, "ik sets", &animation_ik_set_block },
+		{ _field_block, "ik chains", &animation_ik_chain_block },
 		{ _field_block, "composites", &g_compositeTag_block },
 		{ _field_struct, "pca data", &PCAAnimationDataStruct },
 		{ _field_terminator }
@@ -1714,7 +1714,7 @@ namespace macaque
 		FIELD_EXPLANATION("Group Settings", nullptr, "For each PCA Group desired, provide a unique name and desired number of blend shapes.\nThen, assign animations to these groups by setting their pca group name field"),
 		{ _field_block, "PCA Groups", &PCAGroupSettingsBlock_block },
 		FIELD_EXPLANATION("PCA Animation Tag", nullptr, "This is where all the imported pca blend shape animation will be stored.\nIf any animations in this graph contain PCA blend shape animation,\ncreate a unique pca_animation tag for this animation graph and link it here.\nOtherwise, one will be created for you."),
-		{ _field_tag_reference, "pca animation|ABCDCC", &global_pca_animation_tag_reference },
+		{ _field_tag_reference, "pca animation", &global_pca_animation_tag_reference },
 		{ _field_long_integer, "PCA Animation Count" },
 		{ _field_long_integer, "PCA Checksum" },
 		{ _field_terminator }
@@ -1730,11 +1730,11 @@ namespace macaque
 		ANIMATION_GRAPH_CONTENTS_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("MODE-n-STATE GRAPH", nullptr, ""),
-		{ _field_short_block_index, "default gait group|CCAABB", &animation_gait_group_block },
+		{ _field_short_block_index, "default gait group", &animation_gait_group_block },
 		FIELD_PAD("agcsfap", nullptr, 2),
-		{ _field_block, "modes|AABBCC", &animation_mode_block },
+		{ _field_block, "modes", &animation_mode_block },
 		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr, ""),
-		{ _field_block, "vehicle suspension|CCAABB", &vehicle_suspension_block },
+		{ _field_block, "vehicle suspension", &vehicle_suspension_block },
 		{ _field_block, "function overlays", &function_overlay_animation_block },
 		{ _field_terminator }
 	};
@@ -1751,7 +1751,7 @@ namespace macaque
 		FIELD_EXPLANATION("RUN-TIME DATA", nullptr, ""),
 		{ _field_block, "inheritence list", &inherited_animation_block },
 		{ _field_block, "new inheritance list", &inherited_animation_block },
-		{ _field_block, "weapon list|BBAAAA", &weapon_class_lookup_block },
+		{ _field_block, "weapon list", &weapon_class_lookup_block },
 		{ _field_array, "left arm bit vector", &g_node_flag_storage_array },
 		{ _field_array, "right arm bit vector", &g_node_flag_storage_array },
 		{ _field_data, "animationPlayCounts" },

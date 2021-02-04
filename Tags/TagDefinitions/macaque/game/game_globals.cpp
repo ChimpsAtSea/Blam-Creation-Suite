@@ -166,7 +166,7 @@ namespace macaque
 		{ _field_block, "co-op difficulty", &coop_difficulty_block },
 		{ _field_block, "soft ceilings", &soft_ceiling_globals_block },
 		{ _field_block, "interface tags", &interface_tag_references_block },
-		{ _field_block, "weapon list", &cheat_weapons_block },
+		{ _field_block, "@weapon list (update _weapon_list enum in game_globals.h)", &cheat_weapons_block },
 		{ _field_block, "@cheat powerups", &cheat_powerups_block },
 		{ _field_block, "@player information", &player_information_block },
 		{ _field_block, "@player representation", &player_representation_block },

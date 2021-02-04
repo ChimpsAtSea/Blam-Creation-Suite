@@ -60,8 +60,8 @@ namespace macaque
 		{ _field_real, "maximum turn", "in degrees, how much can this walker turn in one step" },
 		{ _field_block, "legs", &walker_physics_leg_block },
 		{ _field_real, "leg apex fraction", "0-1 fraction.  where the leg tansitions from lift to drop" },
-		{ _field_real, "lift exponent", " x(0-1) power exponent" },
-		{ _field_real, "drop exponent", " x(0-1) power exponent" },
+		{ _field_real, "lift exponent", "x(0-1) power exponent" },
+		{ _field_real, "drop exponent", "x(0-1) power exponent" },
 		{ _field_real_vector_3d, "object space pivot position" },
 		{ _field_terminator }
 	};

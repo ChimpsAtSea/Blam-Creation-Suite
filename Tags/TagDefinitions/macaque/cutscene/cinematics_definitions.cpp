@@ -941,9 +941,9 @@ namespace macaque
 		FIELD_PAD("padding", nullptr, 2),
 		{ _field_rgb_color, "text color" },
 		{ _field_rgb_color, "shadow color" },
-		{ _field_real, "fade in time " },
-		{ _field_real, "up time " },
-		{ _field_real, "fade out time " },
+		{ _field_real, "fade in time [seconds]" },
+		{ _field_real, "up time [seconds]" },
+		{ _field_real, "fade out time [seconds]" },
 		{ _field_real, "letter print time", "seconds" },
 		{ _field_terminator }
 	};

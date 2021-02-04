@@ -800,14 +800,14 @@ namespace macaque
 		{ _field_real, "stereo unspatialized gain", "dB" },
 		{ _field_real, "quad route to lfe gain", "dB" },
 		FIELD_EXPLANATION("last minute values", nullptr, ""),
-		{ _field_real, "solo player fade out delay", " seconds" },
-		{ _field_real, "solo player fade out time", " seconds" },
-		{ _field_real, "solo player fade in time", " seconds" },
-		{ _field_real, "game music fade out time", " seconds" },
+		{ _field_real, "solo player fade out delay", "seconds" },
+		{ _field_real, "solo player fade out time", "seconds" },
+		{ _field_real, "solo player fade in time", "seconds" },
+		{ _field_real, "game music fade out time", "seconds" },
 		FIELD_EXPLANATION("debugging stuff", nullptr, ""),
 		{ _field_tag_reference, "play on unplayable sound", &global_force_sound_only_reference },
 		{ _field_real, "left/right bleed" },
-		{ _field_real, "remote voice boost", " output= (1 + boost)" },
+		{ _field_real, "remote voice boost", "output= (1 + boost)*input" },
 		{ _field_terminator }
 	};
 

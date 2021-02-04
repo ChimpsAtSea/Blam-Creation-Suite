@@ -38,10 +38,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		SOUND_CLASS_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_integer, "max sounds per tag ", "maximum number of sounds playing per individual sound tag" },
-		{ _field_short_integer, "max sounds per object per tag ", "maximum number of sounds per individual sound tag playing on an object" },
-		{ _field_short_integer, "max sounds per class ", "maximum number of sounds playing of this class. zero means ignore." },
-		{ _field_short_integer, "max sounds per object per class ", "maximum number of sounds of this class playing on an object. zero means ignore." },
+		{ _field_short_integer, "max sounds per tag", "maximum number of sounds playing per individual sound tag" },
+		{ _field_short_integer, "max sounds per object per tag", "maximum number of sounds per individual sound tag playing on an object" },
+		{ _field_short_integer, "max sounds per class", "maximum number of sounds playing of this class. zero means ignore." },
+		{ _field_short_integer, "max sounds per object per class", "maximum number of sounds of this class playing on an object. zero means ignore." },
 		{ _field_long_integer, "preemption time", "replaces other instances after this many milliseconds", "ms" },
 		{ _field_word_flags, "internal flags", &sound_class_internal_flags_definition },
 		{ _field_word_flags, "flags", &sound_class_external_flags_definition },

@@ -84,6 +84,16 @@ public:
 		return strcmp(data, string.data) == 0;
 	}
 
+	operator t_char_type* ()
+	{
+		return data;
+	}
+
+	operator const t_char_type* () const
+	{
+		return data;
+	}
+
 	template<typename ...Args>
 	void format(const t_char_type* format, Args ...args)
 	{
@@ -207,16 +217,6 @@ public:
 		return result;
 	}
 
-	explicit operator t_char_type* ()
-	{
-		return data;
-	}
-
-	explicit operator const t_char_type* () const
-	{
-		return data;
-	}
-
 	t_char_type* str()
 	{
 		return data;
@@ -328,7 +328,7 @@ public:
 		return false;
 	}
 
-	bool is_empty() const
+	bool empty() const
 	{
 		return *data == 0;
 	}

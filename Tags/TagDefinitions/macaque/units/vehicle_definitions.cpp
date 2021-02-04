@@ -636,9 +636,9 @@ namespace macaque
 		PHYSICS_TRANSITIONS_BLOCK_ID)
 	{
 		{ _field_real, "transition velocity", "speed at which flight model transition occurs", "wu/s" },
-		{ _field_real, "velocity threshold side", "0 if velocity should be smaller than transition value, else 1", " 0 or 1" },
+		{ _field_real, "velocity threshold side", "0 if velocity should be smaller than transition value, else 1", "0 or 1" },
 		{ _field_real, "transition throttle", "throttle input at which physics model transition occurs", "-1 to 1" },
-		{ _field_real, "throttle threshold side", "0 if throttle should be smaller than transition value, else 1", " 0 or 1" },
+		{ _field_real, "throttle threshold side", "0 if throttle should be smaller than transition value, else 1", "0 or 1" },
 		{ _field_char_enum, "transition target vehicle type", &vehicle_type_enum },
 		FIELD_PAD("pad after transition target vehicle type", nullptr, 3),
 		{ _field_terminator }

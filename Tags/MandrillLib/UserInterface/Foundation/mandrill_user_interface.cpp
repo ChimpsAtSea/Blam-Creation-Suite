@@ -143,7 +143,7 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, cons
 
 				tag_name.clear();
 			}
-			if (!selected_tag_name.is_empty())
+			if (!selected_tag_name.empty())
 			{
 				tag_project_tab->open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
 			}
@@ -306,7 +306,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 	// #TODO: this is a hack. 
 	// store a pointer to the selected tab, and make it selected using the pointer
 	// rather than opening up the tab again
-	if (!selected_map_path.is_empty()) 
+	if (!selected_map_path.empty()) 
 	{
 		if (use_projects)
 		{
@@ -336,7 +336,7 @@ void c_mandrill_user_interface::save_current_session()
 		{
 			c_tag_project& tag_project = tag_project_tab->get_tag_project();
 
-			if (!open_projects_path.is_empty())
+			if (!open_projects_path.empty())
 			{
 				open_projects_path += ';';
 			}
@@ -378,7 +378,7 @@ void c_mandrill_user_interface::save_current_session()
 		}
 		else if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
-			if (!open_maps_path.is_empty())
+			if (!open_maps_path.empty())
 			{
 				open_maps_path += ';';
 			}

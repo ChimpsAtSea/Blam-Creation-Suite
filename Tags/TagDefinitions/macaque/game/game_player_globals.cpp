@@ -43,7 +43,7 @@ namespace macaque
 		{ _field_tag_reference, "night vision off", &global_sound_reference },
 		{ _field_real, "fire team objective range" },
 		{ _field_real, "fire team sandbox range" },
-		{ _field_real, "fire team cone angle", " in degrees" },
+		{ _field_real, "fire team cone angle", "in degrees" },
 		FIELD_EXPLANATION("sprinting/momentum", nullptr, ""),
 		{ _field_block, "momentum and sprinting", &player_momentum_data_block },
 		{ _field_terminator }

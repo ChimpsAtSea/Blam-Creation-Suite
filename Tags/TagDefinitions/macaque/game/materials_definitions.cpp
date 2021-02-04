@@ -122,7 +122,7 @@ namespace macaque
 		{ _field_long_integer, "flags" },
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
-		{ _field_real, "density", "kg/m" },
+		{ _field_real, "density", "kg/m^3" },
 		FIELD_EXPLANATION("Drag", nullptr, ""),
 		{ _field_tag_reference, "water physics drag properties", &water_physics_drag_properties_reference },
 		{ _field_block, "drag overrides", &object_type_drag_properties_block },

@@ -89,7 +89,7 @@ namespace macaque
 	{
 		{ _field_real, "base height", "world units" },
 		{ _field_real, "fog height", "world units" },
-		{ _field_real, "fog thickness " },
+		{ _field_real, "fog thickness" },
 		{ _field_real, "fog falloff end" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity", "scales color up or down to allow for HDR values" },
@@ -106,9 +106,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOG_LIGHT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_real, "pitch angle " },
-		{ _field_real, "yaw angle " },
-		{ _field_real, "angular radius " },
+		{ _field_real, "pitch angle", "degree" },
+		{ _field_real, "yaw angle", "degree" },
+		{ _field_real, "angular radius", "degree" },
 		{ _field_real_rgb_color, "tint color" },
 		{ _field_real, "tint color intensity" },
 		{ _field_real, "angular falloff steepness" },

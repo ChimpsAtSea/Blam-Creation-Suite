@@ -575,7 +575,7 @@ void c_haloreach_game_option_selection_legacy::select_map_variant()
 	c_fixed_string_128& selected_map_variant = hopper_map_variant[current_game_mode];
 
 	const char* map_name = file_array.get_name(selected_map_variant.c_str());
-	if (!map_name || selected_map_variant.is_empty())
+	if (!map_name || selected_map_variant.empty())
 	{
 		selected_map_variant = "";
 		map_name = "<Default Variant>";

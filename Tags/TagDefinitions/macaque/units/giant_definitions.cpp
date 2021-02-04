@@ -40,7 +40,7 @@ namespace macaque
 		{ _field_real, "pause time (heroic)", "seconds to wait" },
 		{ _field_real, "pause time (legendary)", "seconds to wait" },
 		FIELD_EXPLANATION("optional buckle gravity", nullptr, "overrides lower time and curve when not 0"),
-		{ _field_real, "buckle gravity scale", " use gravity to control descent when not 0" },
+		{ _field_real, "buckle gravity scale", "use gravity to control descent when not 0" },
 		FIELD_EXPLANATION("buckling search", nullptr, ""),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "buckling marker", "marker that shows bottom of giant and center of search area" },
