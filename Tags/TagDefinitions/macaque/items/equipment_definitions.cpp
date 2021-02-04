@@ -53,7 +53,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("Energy", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("Energy", nullptr, "All these fields are additive, meaning a negative number will reduce energy and a positive one will increase energy.  Every piece of equipment starts at 1.0 energy"),
-		{ _field_real, "minimum activation energy", "energy must be at least this high to activate\nLike activation cost, but doesn\'t actually change energy levels" },
+		{ _field_real, "minimum activation energy", "energy must be at least this high to activate\nLike activation cost, but doesn't actually change energy levels" },
 		{ _field_real, "low energy warning threshold", "used by UI" },
 		{ _field_real, "activation energy cost" },
 		{ _field_real, "deactivation energy cost" },
@@ -65,7 +65,7 @@ namespace macaque
 		{ _field_long_flags, "secondary flags", &equipmentActivationSecondaryFlags },
 		{ _field_short_integer, "charges", "-1 means unlimited charges" },
 		{ _field_char_enum, "activation mode", &equipment_activation_mode },
-		{ _field_char_integer, "object noise adjustment", "for AI perception.\nwhile active, adjusts noises made by the owner unit by this many \'notches\'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
+		{ _field_char_integer, "object noise adjustment", "for AI perception.\nwhile active, adjusts noises made by the owner unit by this many 'notches'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" },
 		FIELD_CUSTOM("Type Definitions", nullptr, _field_id_function_group_begin),
 		{ _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock_block },
 		{ _field_block, "spawner", &equipmentAbilityTypeSpawnerBlock_block },
@@ -140,7 +140,7 @@ namespace macaque
 	{
 		{ _field_real, "spawn radius", "distance from players eyeball on the z-plane that this effect spawns" },
 		{ _field_real, "spawn z offset", "z-offset of effect spawn" },
-		{ _field_real, "spawn area radius", "need a sphere of radius r\'s free space in order to spawn, otherwise we pick a new spawn location" },
+		{ _field_real, "spawn area radius", "need a sphere of radius r's free space in order to spawn, otherwise we pick a new spawn location" },
 		{ _field_real, "spawn velocity", "WU/sec" },
 		{ _field_enum, "type", &equipment_spawner_spawn_type },
 		FIELD_PAD("LSJ", nullptr, 2),
@@ -161,7 +161,7 @@ namespace macaque
 	{
 		{ _field_real, "spawn radius", "distance from players eyeball on the z-plane that this effect spawns" },
 		{ _field_real, "spawn z offset", "z-offset of effect spawn" },
-		{ _field_real, "spawn area radius", "need a sphere of radius r\'s free space in order to spawn, otherwise we pick a new spawn location" },
+		{ _field_real, "spawn area radius", "need a sphere of radius r's free space in order to spawn, otherwise we pick a new spawn location" },
 		{ _field_real, "spawn velocity", "WU/sec" },
 		{ _field_enum, "type", &equipment_spawner_spawn_type },
 		FIELD_PAD("RFD", nullptr, 2),
@@ -415,7 +415,7 @@ namespace macaque
 		{ _field_tag_reference, "child object", &object_reference$4 },
 		{ _field_word_flags, "flags", &equipmentAbilityTypeDaddyVisibleFlags },
 		FIELD_PAD("dada", nullptr, 2),
-		{ _field_real, "shield damage to energy scale", "scale factor for energy gain from shield damage to child.\nDamage is normalized, so if this value is -1.0 then the equipment will lose all its energy when its child\'s shield is depleted." },
+		{ _field_real, "shield damage to energy scale", "scale factor for energy gain from shield damage to child.\nDamage is normalized, so if this value is -1.0 then the equipment will lose all its energy when its child's shield is depleted." },
 		{ _field_real, "starting warm up object scale", "if >0 (and warm up time is >0), object size will scale up from this up to 1.0 over course of warm up time and down over cooldown time" },
 		{ _field_real_point_3d, "offset from parent", "the root of the child is offset by this amount from the root of the parent biped" },
 		{ _field_real, "vertical offset in world space", "used to adjust hight per biped, regardless of aim direction" },
@@ -530,7 +530,7 @@ namespace macaque
 		{ _field_struct, "Infinite energy thrust to acceleration function", &scalar_function_named_struct },
 		{ _field_real, "thrust attack time", "s" },
 		{ _field_real, "thrust decay time", "s" },
-		{ _field_real, "negative velocity acceleration scale", "when falling, scale the thrust by this (so you can \'catch\' yourself easier)" },
+		{ _field_real, "negative velocity acceleration scale", "when falling, scale the thrust by this (so you can 'catch' yourself easier)" },
 		{ _field_real, "airborne acceleration scale" },
 		{ _field_real, "grounded acceleration magnitude", "how hard to kick you upwards if you activate while grounded" },
 		{ _field_real, "landing anticipation time", "how many seconds before landing the jetpack user enters the airborne arc", "s" },
@@ -561,7 +561,7 @@ namespace macaque
 		{ _field_real, "cow catcher front width", "world units, the width of the flat front portion of the cow-catcher" },
 		{ _field_real, "cow catcher side width", "world units, the width of the angled side portion of the cow-catcher" },
 		{ _field_real, "cow catcher side depth", "world units, the depth of the angled side portion of the cow-catcher" },
-		{ _field_real_vector_3d, "cow catcher offset", "offset from the unit\'s origin to put the origin of the cow-catcher at" },
+		{ _field_real_vector_3d, "cow catcher offset", "offset from the unit's origin to put the origin of the cow-catcher at" },
 		{ _field_tag_reference, "collision damage override", &collision_damage_reference$4 },
 		{ _field_terminator }
 	};
@@ -676,9 +676,9 @@ namespace macaque
 		FIELD_PAD("blurgh", nullptr, 3),
 		{ _field_real, "teleport distance" },
 		{ _field_real, "travel speed", "the speed at which you cross the teleporter distance; 0 means instant" },
-		{ _field_real, "deactivation speed", "the speed you return to at the end of the teleport, if \"hide unit during transit\" isn\'t checked" },
+		{ _field_real, "deactivation speed", "the speed you return to at the end of the teleport, if \"hide unit during transit\" isn't checked" },
 		{ _field_tag_reference, "trace effect", &global_effect_reference },
-		{ _field_real_vector_3d, "trace effect offset", "offset from the unit\'s origin to put the effects at" },
+		{ _field_real_vector_3d, "trace effect offset", "offset from the unit's origin to put the effects at" },
 		{ _field_real, "max pitch (airborne)", "[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport in the air" },
 		{ _field_real, "max pitch (ground)", "[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport on the ground" },
 		FIELD_CUSTOM("Search Vector", nullptr, _field_id_function_group_begin),
@@ -749,9 +749,9 @@ namespace macaque
 	{
 		{ _field_byte_flags, "Flags", &equipmentVisionModeFlags },
 		FIELD_PAD("vmbf", nullptr, 3),
-		{ _field_real, "maximum tell distance", "\'Other activation tell effect\' will be applied to players within this distance", "wu" },
+		{ _field_real, "maximum tell distance", "'Other activation tell effect' will be applied to players within this distance", "wu" },
 		{ _field_tag_reference, "activation tell effect", &global_effect_reference },
-		{ _field_long_integer, "motion sensor tell blip ticks", "within \'maxiumum tell distance\' blip duration if \'Generate tell motion sensor blip\' is checked" },
+		{ _field_long_integer, "motion sensor tell blip ticks", "within 'maxiumum tell distance' blip duration if 'Generate tell motion sensor blip' is checked" },
 		{ _field_tag_reference, "vision mode", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
@@ -770,7 +770,7 @@ namespace macaque
 		{ _field_real, "Recharge Time ", "Number of seconds between shield projections." },
 		{ _field_real, "Warmup Time ", "Number of seconds it takes to activate a projection." },
 		{ _field_real_fraction, "Max Move Percentage ", "Percentage of distance between current and desired positions a shield can be moved per update tick." },
-		{ _field_real, "Offset Amount ", "Distance from defender\'s position to project the shield." },
+		{ _field_real, "Offset Amount ", "Distance from defender's position to project the shield." },
 		{ _field_real, "Min Projection Distance ", "Minimum distance between defender and attacker required to project shield." },
 		{ _field_real, "Max Projection Distance ", "Max distance from equipment that shield can be projected." },
 		{ _field_real_fraction, "Min Required Energy Level ", "Min energy required to activate shield." },
@@ -872,7 +872,7 @@ namespace macaque
 		{ _field_tag_reference, "hologram spawner", &object_reference$4 },
 		{ _field_tag_reference, "vehicle", &object_reference$4 },
 		{ _field_string_id, "seat label", "hologram gets loaded into this seat in the vehicle" },
-		{ _field_string_id, "spawn position flag", "position of scenerio flag with this name. Empty will default to flag named \'remote_vehicle_start_position\'" },
+		{ _field_string_id, "spawn position flag", "position of scenerio flag with this name. Empty will default to flag named 'remote_vehicle_start_position'" },
 		{ _field_terminator }
 	};
 
@@ -935,7 +935,7 @@ namespace macaque
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_real, "Switch point", "value of the function (between 0 and 1) where the sound is triggered" },
-		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come\?)" },
+		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come?)" },
 		{ _field_terminator }
 	};
 
@@ -954,7 +954,7 @@ namespace macaque
 		FIELD_CUSTOM("$$$ EQUIPMENT $$$", nullptr, _field_id_function_group_begin),
 		FIELD_CUSTOM("Energy", nullptr, _field_id_function_group_begin),
 		{ _field_real, "initial energy" },
-		{ _field_real, "energy recovery time", "after deactivation, energy stays constant for this long before starting to change by \'inactive energy rate\'", "seconds" },
+		{ _field_real, "energy recovery time", "after deactivation, energy stays constant for this long before starting to change by 'inactive energy rate'", "seconds" },
 		{ _field_real, "inactive energy rate", "energy/second" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_long_flags, "flags", &equipment_flags },
@@ -966,7 +966,7 @@ namespace macaque
 		FIELD_CUSTOM("AI", nullptr, _field_id_function_group_begin),
 		FIELD_EXPLANATION("AI", nullptr, "Settings which the AI use to know how they should react to this equipment"),
 		{ _field_real, "danger radius", "How large a danger zone we should create around this equipment (0 means no danger zone)" },
-		{ _field_real, "min deployment distance", "How far does my target have to be for me to throw this at them\?", "wus" },
+		{ _field_real, "min deployment distance", "How far does my target have to be for me to throw this at them?", "wus" },
 		{ _field_real, "awareness time", "How long I should go unnoticed by nearby enemies", "seconds" },
 		{ _field_string_id, "ai dialogue equipment type", "The equipment ability type name used by the ai dialog system used to filter equipment activation dialogue events." },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),

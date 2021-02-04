@@ -31,8 +31,8 @@ namespace macaque
 		INFLUENCERSPAWNSETTINGSBLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &InfluencerSpawnSettingsFlagsDefinition },
-		{ _field_real, "Minimum Influence", "Only used if \'Pin\' flag is set" },
-		{ _field_real, "Maximum Influence", "Only used if \'Pin\' flag is set" },
+		{ _field_real, "Minimum Influence", "Only used if 'Pin' flag is set" },
+		{ _field_real, "Maximum Influence", "Only used if 'Pin' flag is set" },
 		{ _field_terminator }
 	};
 
@@ -66,8 +66,8 @@ namespace macaque
 	{
 		{ _field_tag_reference, "vehicle", &vehicle_reference$4 },
 		{ _field_real, "box width", "wu" },
-		{ _field_real, "box min height", "How far influencer will extend below unit\'s origin.  Will usually be negative.  (If min and max are both 0, unit radius is used)", "wu" },
-		{ _field_real, "box max height", "How far influencer will extend above unit\'s origin.  Will usually be positive.  (If min and max are both 0, unit radius is used)", "wu" },
+		{ _field_real, "box min height", "How far influencer will extend below unit's origin.  Will usually be negative.  (If min and max are both 0, unit radius is used)", "wu" },
+		{ _field_real, "box max height", "How far influencer will extend above unit's origin.  Will usually be positive.  (If min and max are both 0, unit radius is used)", "wu" },
 		{ _field_real, "lead time", "seconds" },
 		{ _field_real, "minimum velocity", "wu/sec" },
 		{ _field_real, "weight" },
@@ -119,9 +119,9 @@ namespace macaque
 		{ _field_real, "min acceptable spawn score", "spawns with a score lower than this will never be used" },
 		FIELD_EXPLANATION("Spawn Randomization", nullptr, "Values that affect randomization of respawn point selection\nRuntime will use the largest of \'% best weight to use\' and \'Min absolute weight range\'"),
 		{ _field_real, "maximum random spawn bias", "Controls how large of a random value gets added to each spawn point", "0 disables" },
-		{ _field_real_fraction, "% num spawn points to use", "Example -\nOn a map with 140 respawn points, a value of 0.1 here\nwill choose randomly between up to the best 14 points.\nNumber of points considered is also limited by the following parameters and flags.\nIf next two parameters are 0, only points with the exact same weight as the highest\nscoring respawn point will be considered.  If \'Min absolute weight range\' is 25 then\nthe best \'X\' points within 25 points of the highest scoring point will be considered.", "0 uses only best point" },
-		{ _field_real_fraction, "% best weight to use", "Example -\nValue of 0.25 will consider all points with weight within 25% of the highest scoring point.\nNote - At run-time, the larger of \'% best weight to use\' and \'Min absolute weight range\' will be used.\nFor instance if \'% best weight\' is 0.1 and \'Min absolute weight\' is 5.0\' a max weight\nof 150 will use 15, but a max weight of 10 will fall back on the min weight of 5", "0 disables" },
-		{ _field_real, "Min absolute weight range", "Example -\nValue of 50 will consider all points within 50 of the highest scoring point.\nNote - At run-time, the larger of \'% best weight to use\' and \'Min absolute weight range\' will be used.\n", "0 disables" },
+		{ _field_real_fraction, "% num spawn points to use", "Example -\nOn a map with 140 respawn points, a value of 0.1 here\nwill choose randomly between up to the best 14 points.\nNumber of points considered is also limited by the following parameters and flags.\nIf next two parameters are 0, only points with the exact same weight as the highest\nscoring respawn point will be considered.  If 'Min absolute weight range' is 25 then\nthe best 'X' points within 25 points of the highest scoring point will be considered.", "0 uses only best point" },
+		{ _field_real_fraction, "% best weight to use", "Example -\nValue of 0.25 will consider all points with weight within 25% of the highest scoring point.\nNote - At run-time, the larger of '% best weight to use' and 'Min absolute weight range' will be used.\nFor instance if '% best weight' is 0.1 and 'Min absolute weight' is 5.0' a max weight\nof 150 will use 15, but a max weight of 10 will fall back on the min weight of 5", "0 disables" },
+		{ _field_real, "Min absolute weight range", "Example -\nValue of 50 will consider all points within 50 of the highest scoring point.\nNote - At run-time, the larger of '% best weight to use' and 'Min absolute weight range' will be used.\n", "0 disables" },
 		{ _field_long_flags, "Flags", &SpawnSettingsFlagsDefinition },
 		FIELD_EXPLANATION("Spawn Settings", nullptr, "block index 0: influencer - Enemy Forbid\nblock index 1: influencer - Enemy Bias\nblock index 2: influencer - Ally Bias\nblock index 3: influencer - Selected Ally Bias\nblock index 4: influencer - Dead Teammate\nblock index 5: influencer - Respawn Zone\nblock index 6: influencer - Weapon\nblock index 7: influencer - Vehicle\nblock index 8: influencer - Projectile\nblock index 9: influencer - Equipment\nblock index 10: influencer - Fireteam 1 zone\nblock index 11: influencer - Fireteam 2 zone\nblock index 12: influencer - Fireteam 3 zone\nblock index 13: influencer - Fireteam 4 zone\nblock index 14: influencer - Drop Pod\nblock index 15: influencer - Auto Turret\n"),
 		{ _field_block, "Spawn Settings", &influencerSpawnSettingsBlock_block },

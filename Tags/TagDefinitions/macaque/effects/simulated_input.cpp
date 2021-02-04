@@ -58,7 +58,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "duration", "seconds" },
-		{ _field_real, "inverse duration", "if >0.f, accumulated inpulse will be \'undone\' over the give time span", "seconds" },
+		{ _field_real, "inverse duration", "if >0.f, accumulated inpulse will be 'undone' over the give time span", "seconds" },
 		{ _field_real, "inverse random length", "15.0 would randomly adjust length of accumulated impulse +/-15%", "percent" },
 		{ _field_real_bounds, "inverse random angle", "apply random adjustment to direction of accumulated impulse", "degrees" },
 		{ _field_real, "linear zoom penalty", "linear multiplier of zoom that increases effect; computed for no change at zoom 1" },

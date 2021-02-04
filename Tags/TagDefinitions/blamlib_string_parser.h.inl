@@ -39,12 +39,11 @@ private:
 		k_num_buffers
 	};
 
-	static constexpr char flag_unknown0_id = '!';
-	static constexpr char flag_unknown1_id = '*';
-	static constexpr char flag_unknown2_id = '^';
-	static constexpr char flag_unknown3_id = '~';
-	static constexpr char flag_unknown4_id = '?';
-	static constexpr char flag_unknown5_id = '\x1';
+	static constexpr char field_flag_id_unknown0 = '!';
+	static constexpr char field_flag_id_read_only = '*';
+	static constexpr char field_flag_id_index = '^';
+	static constexpr char field_flag_id_unknown3 = '~';
+	static constexpr char field_flag_id_pointer = '\x1';
 
 public:
 
@@ -67,9 +66,9 @@ public:
 	char(&description)[];
 
 	bool flag_unknown0;
-	bool flag_unknown1;
-	bool flag_unknown2;
+	bool flag_read_only;
+	bool flag_index;
 	bool flag_unknown3;
 	bool flag_unknown4;
-	bool flag_unknown5;
+	bool flag_pointer;
 };

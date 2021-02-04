@@ -302,7 +302,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
-		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker\'s x axis" },
+		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
 		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section" },
 		{ _field_short_block_index, "variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
@@ -326,7 +326,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
-		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker\'s x axis" },
+		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
 		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
 		{ _field_short_block_index, "variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
@@ -503,7 +503,7 @@ namespace macaque
 		{ _field_byte_flags, "flags", &model_target_lock_on_flags_definition },
 		FIELD_PAD("SVLKJERAF", nullptr, 3),
 		{ _field_real, "lock on distance" },
-		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon\'s tracking block" },
+		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon's tracking block" },
 		{ _field_terminator }
 	};
 

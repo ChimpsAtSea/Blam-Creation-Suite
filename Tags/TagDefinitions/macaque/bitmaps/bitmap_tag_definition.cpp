@@ -26,7 +26,7 @@ namespace macaque
 		{ _field_enum, "format", &bitmap_formats },
 		{ _field_byte_flags, "flags", &bitmap_flags },
 		{ _field_char_integer, "exponent bias" },
-		{ _field_point_2d, "registration point", "the \'center\' of the bitmap - i.e. for particles" },
+		{ _field_point_2d, "registration point", "the 'center' of the bitmap - i.e. for particles" },
 		{ _field_char_integer, "mipmap count", "DO NOT CHANGE (not counting the highest resolution)" },
 		{ _field_char_enum, "curve", &bitmap_curve_enum },
 		{ _field_char_block_index, "interleaved interop", &bitmap_texture_interleaved_interop_block },

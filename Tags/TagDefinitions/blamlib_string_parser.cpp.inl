@@ -188,11 +188,11 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
 	meta(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_meta * buffer_length])),
 	description(*reinterpret_cast<char(*)[]>(&buffer_aggregate[_buffer_description * buffer_length])),
 	flag_unknown0(false),
-	flag_unknown1(false),
-	flag_unknown2(false),
+	flag_read_only(false),
+	flag_index(false),
 	flag_unknown3(false),
 	flag_unknown4(false),
-	flag_unknown5(false)
+	flag_pointer(false)
 {
 	if (string == nullptr)
 	{
@@ -348,6 +348,9 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
 		if (search_for_description >= 1) // found description
 		{
 			read_position = strstr(read_position, description) + strlen(description);
+
+			// description flags cleanup
+			fixup_flags(description);
 		}
 
 		debug_point;
@@ -365,23 +368,20 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
 	{
 		switch (*flag)
 		{
-		case flag_unknown0_id:
+		case field_flag_id_unknown0:
 			flag_unknown0 = true;
 			break;
-		case flag_unknown1_id:
-			flag_unknown1 = true;
+		case field_flag_id_read_only:
+			flag_read_only = true;
 			break;
-		case flag_unknown2_id:
-			flag_unknown2 = true;
+		case field_flag_id_index:
+			flag_index = true;
 			break;
-		case flag_unknown3_id:
+		case field_flag_id_unknown3:
 			flag_unknown3 = true;
 			break;
-		case flag_unknown4_id:
-			flag_unknown4 = true;
-			break;
-		case flag_unknown5_id:
-			flag_unknown5 = true;
+		case field_flag_id_pointer:
+			flag_pointer = true;
 			break;
 		default:
 			c_console::write_line("unhandled flag '%.1s' 0x%02X example:'%s'", flag, static_cast<int>(*flag), string);
@@ -417,10 +417,12 @@ void c_blamlib_string_parser_v2::fixup_flags(char* string)
 			isalnum(*flags_search_position) ||
 			isspace(*flags_search_position) ||
 			*flags_search_position == '\'' ||
+			*flags_search_position == '\"' ||
 			*flags_search_position == ' ' ||
 			*flags_search_position == '$' ||
 			*flags_search_position == '%' ||
 			*flags_search_position == ']' ||
+			*flags_search_position == '?' ||
 			*flags_search_position == ')' ||
 			*flags_search_position == '.'))
 	{

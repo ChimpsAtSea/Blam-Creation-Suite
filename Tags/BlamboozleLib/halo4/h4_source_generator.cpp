@@ -17,7 +17,6 @@ std::string escape_string(std::string str)
 			{
 			case '\'': result += "\\'"; break;
 			case '\"': result += "\\\""; break;
-			case '\?': result += "\\?"; break;
 			case '\\': result += "\\\\"; break;
 			case '\a': result += "\\a"; break;
 			case '\b': result += "\\b"; break;
@@ -37,7 +36,11 @@ std::string escape_string(std::string str)
 	return result;
 }
 
-void escape_string(const char* source, char* destination, bool ignore_return)
+void escape_string(
+	const char* source,
+	char* destination,
+	bool remove_return,
+	bool unescaped_comma)
 {
 	const char* source_pos = source;
 	char* buffer_pos = destination;
@@ -47,27 +50,35 @@ void escape_string(const char* source, char* destination, bool ignore_return)
 		switch (*source_pos)
 		{
 		case '\r':
-		if(!ignore_return)
 		{
-			(*buffer_pos++) = '\\'; (*buffer_pos++) = '\r';
+			if (!remove_return)
+			{
+				(*buffer_pos++) = '\\';
+				(*buffer_pos++) = '\r';
+			}
+			continue;
 		}
-		break;
-		case '\'': (*buffer_pos++) = '\\'; (*buffer_pos++) = '\''; break;
-		case '\"': (*buffer_pos++) = '\\'; (*buffer_pos++) = '\"'; break;
-		case '\?': (*buffer_pos++) = '\\'; (*buffer_pos++) = '?'; break;
-		case '\\': (*buffer_pos++) = '\\'; (*buffer_pos++) = '\\'; break;
-		case '\a': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'a'; break;
-		case '\b': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'b'; break;
-		case '\f': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'f'; break;
-		case '\n': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'n'; break;
-		case '\t': (*buffer_pos++) = '\\'; (*buffer_pos++) = 't'; break;
-		case '\v': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'v'; break;
-		case '\1': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'x'; (*buffer_pos++) = '1'; break;
-		default:
+		case '\'':
 		{
-			(*buffer_pos++) = *source_pos; break;
+			if (unescaped_comma) 
+			{
+				
+				(*buffer_pos++) = '\\';
+			}
+			(*buffer_pos++) = '\'';
+			continue;
 		}
+		case '\"': (*buffer_pos++) = '\\'; (*buffer_pos++) = '\"'; continue;
+		case '\\': (*buffer_pos++) = '\\'; (*buffer_pos++) = '\\'; continue;
+		case '\a': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'a'; continue;
+		case '\b': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'b'; continue;
+		case '\f': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'f'; continue;
+		case '\n': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'n'; continue;
+		case '\t': (*buffer_pos++) = '\\'; (*buffer_pos++) = 't'; continue;
+		case '\v': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'v'; continue;
+		case '\1': (*buffer_pos++) = '\\'; (*buffer_pos++) = 'x'; (*buffer_pos++) = '1'; continue;
 		}
+		(*buffer_pos++) = *source_pos;
 	} while (*source_pos++);
 }
 
@@ -958,10 +969,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 		if (tag_field->name)
 		{
-			escape_string(string_parser.name, name, true);
-			escape_string(string_parser.description, description, true);
-			escape_string(string_parser.units, units, true);
-			escape_string(string_parser.limits, limits, true);
+			escape_string(string_parser.name, name, true, true);
+			escape_string(string_parser.description, description, true, true);
+			escape_string(string_parser.units, units, true, true);
+			escape_string(string_parser.limits, limits, true, true);
 		}
 
 		std::string field_minimum;
@@ -1023,7 +1034,12 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		{
 			bool write_tag = custom_field_type != nullptr;
 			bool write_pointer = false; // todo
-			bool write_flags = false; // todo
+			bool write_flags =
+				string_parser.flag_unknown0 ||
+				string_parser.flag_read_only ||
+				string_parser.flag_index ||
+				string_parser.flag_unknown3 ||
+				string_parser.flag_pointer;
 			bool write_units = !units.empty();
 			bool write_description = !description.empty();
 			bool write_min_max = !field_minimum.empty() || !field_maximum.empty();
@@ -1038,7 +1054,38 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", " << "\"" << field_minimum.c_str() << "\"";
 				ss << ", " << "\"" << field_maximum.c_str() << "\"";
 			}
-			if (write_flags) ss << ", " << "FLAGS";
+			if (write_flags && false)
+			{
+				ss << ", ";
+
+				uint32_t flags_written = 0;
+
+				if (string_parser.flag_unknown0)
+				{
+					if (flags_written++) ss << " | ";
+					ss << "FIELD_FLAG_UNKNOWN0";
+				}
+				if (string_parser.flag_read_only)
+				{
+					if (flags_written++) ss << " | ";
+					ss << "FIELD_FLAG_READ_ONLY";
+				}
+				if (string_parser.flag_index)
+				{
+					if (flags_written++) ss << " | ";
+					ss << "FIELD_FLAG_INDEX";
+				}
+				if (string_parser.flag_unknown3)
+				{
+					if (flags_written++) ss << " | ";
+					ss << "FIELD_FLAG_UNKNOWN3";
+				}
+				if (string_parser.flag_pointer)
+				{
+					if (flags_written++) ss << " | ";
+					ss << "FIELD_FLAG_POINTER";
+				}
+			}
 			if (write_pointer) ss << ", " << "nullptr";
 			if (write_tag) ss << ", " << custom_field_type;
 			ss << " }," << std::endl;

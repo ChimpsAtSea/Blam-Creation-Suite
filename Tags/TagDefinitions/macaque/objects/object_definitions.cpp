@@ -86,7 +86,7 @@ namespace macaque
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
-		{ _field_string_id, "import name", "if you leave this field blank then you can set this function\'s input value with the hs_function object_set_function_variable" },
+		{ _field_string_id, "import name", "if you leave this field blank then you can set this function's input value with the hs_function object_set_function_variable" },
 		{ _field_string_id, "export name" },
 		{ _field_string_id, "turn off with", "if the specified function is off, so is this function" },
 		{ _field_string_id, "ranged interpolation name", "if you have the ranged button checked" },

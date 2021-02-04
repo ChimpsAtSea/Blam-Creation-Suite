@@ -62,7 +62,7 @@ namespace macaque
 		{ _field_real_rgb_color, "color filter", "this color is multiplied on top" },
 		{ _field_real_rgb_color, "color floor", "this color is subtracted" },
 		{ _field_real_fraction, "color replace strength", "used to blend in the color replace below" },
-		{ _field_real_rgb_color, "color replace", "this color is blended in place of the screen\'s color" },
+		{ _field_real_rgb_color, "color replace", "this color is blended in place of the screen's color" },
 		{ _field_real, "tron", "adds a full-screen tron effect" },
 		{ _field_real, "motion suck", "adds motion-blur towards or away from this screen effect" },
 		{ _field_real, "bloom buffer motion suck", "adds cheap bloom buffer motion-blur towards or away from this screen effect" },

@@ -138,7 +138,7 @@ namespace macaque
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_real, "Switch point", "value of the function (between 0 and 1) where the sound is triggered" },
-		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come\?)" },
+		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come?)" },
 		{ _field_terminator }
 	};
 
@@ -205,7 +205,7 @@ namespace macaque
 		{ _field_block, "camera heights", &biped_camera_height_block },
 		{ _field_angle, "camera interpolation start", "looking-downward angle that starts camera interpolation to fp position", "degrees" },
 		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
-		{ _field_real_vector_3d, "camera offset", "amount of fp camera movement in (forward, right, down) when pitched down by \'camera interpolation end\' above", "wu" },
+		{ _field_real_vector_3d, "camera offset", "amount of fp camera movement in (forward, right, down) when pitched down by 'camera interpolation end' above", "wu" },
 		{ _field_real, "root offset camera scale" },
 		{ _field_real, "root offset camera dampening" },
 		{ _field_real, "autoaim width", "world units" },
@@ -413,8 +413,8 @@ namespace macaque
 		{ _field_real, "prediction seconds", "predict ahead to determine lean. 0= off, more time=more lean" },
 		{ _field_real, "max lean angle", "(degrees) maximum lean amount" },
 		{ _field_real_fraction, "max vertical dip", "(fraction of leg length)" },
-		{ _field_real, "max lean angle sine", "set on post-process, don\'t edit" },
-		{ _field_real, "max lean angle cosine", "set on post-process, don\'t edit" },
+		{ _field_real, "max lean angle sine", "set on post-process, don't edit" },
+		{ _field_real, "max lean angle cosine", "set on post-process, don't edit" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_terminator }
 	};

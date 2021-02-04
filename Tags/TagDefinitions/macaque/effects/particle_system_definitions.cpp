@@ -37,7 +37,7 @@ namespace macaque
 		FIELD_CUSTOM("Estimate overdraw threshold", nullptr, _field_id_particle_estimate_overdraw_unknown),
 		{ _field_real, "Pixel budget", "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
-		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete*", "world units" },
+		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units" },
 		{ _field_real, "near fade override", "distance in front of camera where fade is complete", "world units" },
 		{ _field_real, "far fade range", "distance before cutoff over which particles fade", "world units" },
 		{ _field_real, "far fade cutoff", "distance from camera where fade is complete", "world units" },

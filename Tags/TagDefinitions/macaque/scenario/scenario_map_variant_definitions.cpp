@@ -36,7 +36,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_block, "variants", &map_variant_object_variant_block },
-		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are \'unlimited\' (up to a reasonable code-defined maximum)" },
+		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are 'unlimited' (up to a reasonable code-defined maximum)" },
 		{ _field_long_integer, "price per instance" },
 		{ _field_terminator }
 	};

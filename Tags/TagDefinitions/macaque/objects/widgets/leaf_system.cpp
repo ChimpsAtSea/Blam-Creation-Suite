@@ -64,7 +64,7 @@ namespace macaque
 		{ _field_real_bounds, "wind min/max", "default 0,0" },
 		{ _field_real, "wind scale" },
 		{ _field_real, "time scale" },
-		{ _field_real_bounds, "fade distance", "from maximum movement range (10+). default 0!" },
+		{ _field_real_bounds, "fade distance", "from maximum movement range (10+). default 0" },
 		{ _field_real, "emissions sphere radius" },
 		{ _field_real, "movement cylinder radius" },
 		{ _field_real, "fade in time" },

@@ -22,7 +22,7 @@ namespace macaque
 		{ _field_word_integer, "display count", "how many times a training message will get displayed (0-3 only!)" },
 		{ _field_word_integer, "dissapear delay", "how long a displayed but untriggered message stays up" },
 		{ _field_word_integer, "redisplay delay", "how long after display this message will stay hidden" },
-		{ _field_real, "display delay (s)", "how long the event can be triggered before it\'s displayed" },
+		{ _field_real, "display delay (s)", "how long the event can be triggered before it's displayed" },
 		{ _field_word_flags, "flags", &player_training_flags },
 		FIELD_PAD("HURLUV", nullptr, 2),
 		{ _field_terminator }

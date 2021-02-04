@@ -57,7 +57,7 @@ namespace macaque
 		{ _field_long_integer, "XP reward", "XP for completing this challenge; can be overridden by LSP" },
 		{ _field_long_integer, "progress_tracking_interval", "Frequency we toast your progress (think pink and deadly)." },
 		{ _field_string_id, "chud_progress_string", "progress toast string (presumably very concise)." },
-		{ _field_long_integer, "chud_progress_bitmap_sequence_index", "What icon is shown in the progress toast\?" },
+		{ _field_long_integer, "chud_progress_bitmap_sequence_index", "What icon is shown in the progress toast?" },
 		{ _field_byte_flags, "flags", &challenge_definition_flags },
 		{ _field_char_enum, "icon", &challengeIconDefinition },
 		FIELD_PAD("PJB1", nullptr, 2),

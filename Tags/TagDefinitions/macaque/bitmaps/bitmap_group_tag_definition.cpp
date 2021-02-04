@@ -152,7 +152,7 @@ namespace macaque
 		"tight bounds from alpha channel#unchecked, tight bounds are generated from the color channel",
 		"do not generate required section#bitmap will have data split between medium and low optional sections",
 		"do not allow stitching#bitmap will not be available for stitching (2-priority only) - note, raises REQUIRED resource level",
-		"apply max resolution after slicing#allows use of \"max resolution\" on bitmaps that have multiple frames, but may be buggy...\?",
+		"apply max resolution after slicing#allows use of \"max resolution\" on bitmaps that have multiple frames, but may be buggy...?",
 		"generate black-point tight bounds#generate a set of polygonal bounding boxes for various alpha black points"
 	};
 	STRING_LIST(bitmap_group_flags_def, bitmap_group_flags_def_strings, _countof(bitmap_group_flags_def_strings));

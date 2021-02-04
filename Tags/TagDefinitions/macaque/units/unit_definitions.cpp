@@ -60,7 +60,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_BLOCK_ID)
 	{
-		{ _field_real, "maximum camera velocity", "how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don\'t set this too low.\n0 defaults to infinite.", "wu/s" },
+		{ _field_real, "maximum camera velocity", "how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don't set this too low.\n0 defaults to infinite.", "wu/s" },
 		FIELD_EXPLANATION(nullptr, nullptr, "For each of the following functions, if 1 instance of the block is specified, the offsets are symmetric.\nIf 2 instances are specified, then the first instance is used for positive displacement and the second is used for negative displacement."),
 		{ _field_struct, "forward/back", &unit_camera_acceleration_displacement_function_struct },
 		{ _field_struct, "left/right", &unit_camera_acceleration_displacement_function_struct },
@@ -114,7 +114,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DIALOGUE_VARIANT_BLOCK_ID)
 	{
-		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit\'s model)" },
+		{ _field_short_integer, "variant number", "variant number to use this dialogue with (must match the suffix in the permutations on the unit's model)" },
 		FIELD_PAD("BQCVEMF", nullptr, 2),
 		{ _field_useless_pad, "" },
 		{ _field_tag_reference, "dialogue", &dialogue_reference },
@@ -172,7 +172,7 @@ namespace macaque
 		{ _field_real, "idle scanning yaw max", "(0 to 180) how far it will look around past its initial rotation", "degrees" },
 		{ _field_real, "idle scanning pitch min", "(-180 to 0) how far it will look around past its initial rotation", "degrees" },
 		{ _field_real, "idle scanning pitch max", "(0 to 180) how far it will look around past its initial rotation", "degrees" },
-		{ _field_real, "idle scanning min interest distance", "0 = infinite.  Idle scanning won\'t look at something that is closer than this distance", "world units" },
+		{ _field_real, "idle scanning min interest distance", "0 = infinite.  Idle scanning won't look at something that is closer than this distance", "world units" },
 		{ _field_tag_reference, "alert mode effect", &global_effect_reference },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
 		{ _field_string_id, "alert mode effect marker" },
@@ -247,7 +247,7 @@ namespace macaque
 		{ _field_enum, "ai seat type", &global_ai_seat_type_enum },
 		{ _field_short_block_index, "boarding seat", &unit_seat_block },
 		{ _field_block, "additional boarding seats", &boarding_seat_block },
-		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant\'s head" },
+		{ _field_real_fraction, "listener interpolation factor", "how far to interpolate listener position from camera to occupant's head" },
 		FIELD_EXPLANATION("speed dependant turn rates", nullptr, "when the unit velocity is 0, the yaw/pitch rates are the left values\nat [max speed reference], the yaw/pitch rates are the right values.\nthe max speed reference is what the code uses to generate a clamped speed from 0..1\nthe exponent controls how midrange speeds are interpreted.\nIOW: As velocity exceeds \'min speed\' and approaches \'max speed\', turn rates are scaled from low --> high"),
 		{ _field_real_bounds, "yaw rate bounds", "degrees per second" },
 		{ _field_real_bounds, "pitch rate bounds", "degrees per second" },
@@ -283,7 +283,7 @@ namespace macaque
 		FIELD_EXPLANATION("seat death grab crate", nullptr, "If this unit dies while this seat is occupied, the occupant will be handed an instance of this crate for throwing purposes."),
 		{ _field_tag_reference, "seat death grab crate", &crate_reference$2 },
 		{ _field_string_id, "Seat Selection String" },
-		{ _field_real, "bailout velocity", "if exiting in bailout fashion, how much velocity to add in the entry_marker\'s forward direction", "wu/s" },
+		{ _field_real, "bailout velocity", "if exiting in bailout fashion, how much velocity to add in the entry_marker's forward direction", "wu/s" },
 		{ _field_terminator }
 	};
 
@@ -348,7 +348,7 @@ namespace macaque
 		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds" },
 		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region." },
 		{ _field_angle, "pain screen angle tolerance", "The tolerance angle between next and previous damage directions, below which we randomly vary the ping direction.", "degrees" },
-		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it\'s too close to the previous ping.", "degrees" },
+		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it's too close to the previous ping.", "degrees" },
 		{ _field_real, "defensive screen duration", "The duration of the defensive function\n0 defaults to 2.0", "seconds" },
 		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to." },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -367,7 +367,7 @@ namespace macaque
 		{ _field_short_bounds, "spawned actor count", "number of actors which we spawn" },
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
 		FIELD_CUSTOM("aiming/looking", nullptr, _field_id_function_group_begin),
-		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn\'t move when the barrel pitches up and down." },
+		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn't move when the barrel pitches up and down." },
 		{ _field_angle, "aiming velocity maximum", "degrees per second" },
 		{ _field_angle, "aiming acceleration maximum", "degrees per second squared" },
 		{ _field_real_fraction, "casual aiming modifier" },
@@ -418,7 +418,7 @@ namespace macaque
 		{ _field_block, "seats", &unit_seat_block },
 		FIELD_CUSTOM("open/close", nullptr, _field_id_function_group_begin),
 		{ _field_real, "opening time", "how long the unit takes to open when the hs_function unit_open is called\nThe current open state can be retrieved from the object function unit_open", "s" },
-		{ _field_real, "closing time", "you don\'t have to go home, but you can\'t stay here", "s" },
+		{ _field_real, "closing time", "you don't have to go home, but you can't stay here", "s" },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("EMP Disabling", nullptr, _field_id_function_group_begin),
 		{ _field_real, "emp disabled time", "seconds" },

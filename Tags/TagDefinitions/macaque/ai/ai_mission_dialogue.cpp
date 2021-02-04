@@ -46,7 +46,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MISSION_DIALOGUE_VARIANTS_BLOCK_ID)
 	{
-		{ _field_string_id, "variant designation", "3-letter designation for the character^" },
+		{ _field_string_id, "variant designation", "3-letter designation for the character" },
 		{ _field_tag_reference, "sound", &sound_reference },
 		{ _field_string_id, "sound effect" },
 		{ _field_terminator }

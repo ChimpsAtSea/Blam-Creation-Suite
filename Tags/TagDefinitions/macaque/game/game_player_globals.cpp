@@ -71,9 +71,9 @@ namespace macaque
 		{ _field_angle, "max look yaw velocity", "degrees per second" },
 		{ _field_angle, "max look pitch velocity", "degrees per second" },
 		{ _field_real, "minimum player velocity to be considered in a momentum state", "world units per second" },
-		{ _field_real, "look window length", "period of time over which we record the biped\'s look angle for deciding if we should drop him out of momentum", "seconds" },
+		{ _field_real, "look window length", "period of time over which we record the biped's look angle for deciding if we should drop him out of momentum", "seconds" },
 		{ _field_string_id, "momentum animation stance" },
-		{ _field_real, "min weapon error", "[0, 1] while using this type of momentum, the player\'s weapon error cannot drop below this value" },
+		{ _field_real, "min weapon error", "[0, 1] while using this type of momentum, the player's weapon error cannot drop below this value" },
 		{ _field_terminator }
 	};
 

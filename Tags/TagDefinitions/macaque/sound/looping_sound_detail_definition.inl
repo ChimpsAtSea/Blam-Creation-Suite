@@ -27,9 +27,9 @@ namespace macaque
 		{ _field_long_enum, "fade out mode", &looping_sound_fade_modes },
 		{ _field_long_flags, "flags", &looping_sound_detail_flags },
 		FIELD_EXPLANATION("random spatialization", nullptr, "if the flag above is not set, this detail will be randomly spatialized according to the following constraints. if both lower and upper bounds are zero for any of the following fields, the sound\'s position will be randomly selected from all possible directions or distances."),
-		{ _field_angle_bounds, "yaw bounds", "the sound\'s position along the horizon will be randomly selected from this range.", "degrees" },
-		{ _field_angle_bounds, "pitch bounds", "the sound\'s position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
-		{ _field_real_bounds, "distance bounds", "the sound\'s distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
+		{ _field_angle_bounds, "yaw bounds", "the sound's position along the horizon will be randomly selected from this range.", "degrees" },
+		{ _field_angle_bounds, "pitch bounds", "the sound's position above (positive values) or below (negative values) the horizon will be randomly selected from this range.", "degrees" },
+		{ _field_real_bounds, "distance bounds", "the sound's distance (from its spatialized looping sound or from the listener if the looping sound is stereo) will be randomly selected from this range.", "world units" },
 		{ _field_terminator }
 	};
 

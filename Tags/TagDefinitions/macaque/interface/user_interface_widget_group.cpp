@@ -741,7 +741,7 @@ namespace macaque
 		{ _field_tag_reference, "default sounds", &user_interface_sounds_definition_reference },
 		FIELD_EXPLANATION("HaloX Alerts", nullptr, "Alerts are triggered by specific events that happen in the game.  The game can require that an error be resolved before the dialog can be dismissed.  Once the error is resolved (or if it doesn\'t require resolution,) the user can dismiss it."),
 		{ _field_block, "alert descriptions", &gui_alert_description_block },
-		FIELD_EXPLANATION("HaloX Dialogs", nullptr, "Dialogs are brought up by individual screens or UI systems to ask the user a question, typically of the Ok/Cancel sort such as: \'Are you sure you want to leave the game\?\'.\nNotes:\n- first item defaults to \'ok\', second item defaults to \'cancel.  third and fourth items don\'t display if they\'re not set\n- if \'b button action\' is set to \'button ignored\' then the b button doesn\'t do anything (such as cancelling)"),
+		FIELD_EXPLANATION("HaloX Dialogs", nullptr, "Dialogs are brought up by individual screens or UI systems to ask the user a question, typically of the Ok/Cancel sort such as: \'Are you sure you want to leave the game?\'.\nNotes:\n- first item defaults to \'ok\', second item defaults to \'cancel.  third and fourth items don\'t display if they\'re not set\n- if \'b button action\' is set to \'button ignored\' then the b button doesn\'t do anything (such as cancelling)"),
 		{ _field_block, "dialog descriptions", &gui_dialog_description_block },
 		FIELD_EXPLANATION("Content Aspect Ratio Scaling", nullptr, "These define the scaling that will get applied to UI content and animations when running at the specified display modes"),
 		{ _field_real_vector_2d, "16x9" },

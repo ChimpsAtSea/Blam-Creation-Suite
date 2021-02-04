@@ -115,7 +115,7 @@ namespace macaque
 		{ _field_string_id, "respawn player traits name" },
 		{ _field_char_integer, "initial loadout selection time", "delay before spawning in at start of round", "seconds" },
 		{ _field_char_integer, "respawn player traits duration", "seconds" },
-		FIELD_PAD("woman bound for glory, why you leaving me again", nullptr, 2),
+		FIELD_PAD("woman bound for glory, why you leaving me again?", nullptr, 2),
 		{ _field_terminator }
 	};
 

@@ -459,10 +459,10 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		FIELD_PAD("blah", nullptr, 3),
-		{ _field_angle, "tank control forward arc", "only used when \'use tank controls\' is checked above", "degrees" },
+		{ _field_angle, "tank control forward arc", "only used when 'use tank controls' is checked above", "degrees" },
 		{ _field_struct, "steering control", &vehicle_steering_control_struct },
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1\?" },
+		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1?" },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
 		{ _field_block, "boat engine", &boat_engine_definition_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
@@ -621,7 +621,7 @@ namespace macaque
 		{ _field_string_id, "Function", "Function to trigger the sweetener" },
 		{ _field_tag_reference, "sound", &global_sound_reference },
 		{ _field_real, "Switch point", "value of the function (between 0 and 1) where the sound is triggered" },
-		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come\?)" },
+		{ _field_long_integer, "Mode", "0 for triggering while function is decreasing, 1 for increasing (more modes to come?)" },
 		{ _field_terminator }
 	};
 

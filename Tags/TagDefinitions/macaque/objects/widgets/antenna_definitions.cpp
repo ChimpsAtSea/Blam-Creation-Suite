@@ -30,12 +30,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTENNA_VERTEX_BLOCK_ID)
 	{
-		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex!" },
+		{ _field_real_euler_angles_2d, "angles", "direction toward next vertex" },
 		{ _field_real, "length", "distance between this vertex and the next", "world units" },
-		{ _field_short_integer, "sequence index", "bitmap group sequence index for this vertex\'s texture" },
+		{ _field_short_integer, "sequence index", "bitmap group sequence index for this vertex's texture" },
 		FIELD_PAD("NTCTQQF", nullptr, 2),
 		{ _field_real_argb_color, "color", "color at this vertex" },
-		{ _field_real_argb_color, "LOD color", "color at this vertex for the low-LOD line primitives!" },
+		{ _field_real_argb_color, "LOD color", "color at this vertex for the low-LOD line primitives" },
 		{ _field_real, "hermite t" },
 		{ _field_real_vector_3d, "vector to next" },
 		{ _field_terminator }

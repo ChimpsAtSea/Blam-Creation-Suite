@@ -57,7 +57,7 @@ namespace macaque
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
 		{ _field_real_vector_2d, "uv scrolling", "tiles per second" },

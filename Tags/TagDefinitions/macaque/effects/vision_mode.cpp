@@ -33,7 +33,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
@@ -51,7 +51,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
@@ -91,7 +91,7 @@ namespace macaque
 		{ _field_long_flags, "render for", &visionModeBipedTeamTypes },
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
@@ -127,7 +127,7 @@ namespace macaque
 		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
@@ -161,7 +161,7 @@ namespace macaque
 	{
 		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
-		{ _field_struct, "actual material", &material_struct },
+		{ _field_struct, "actual material?", &material_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
 		{ _field_terminator }
 	};
