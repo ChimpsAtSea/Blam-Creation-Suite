@@ -30,7 +30,7 @@ c_data_patch<halo3_start_menu_screen_patch_offset> halo3_start_menu_screen_patch
 	{
 		copy_to_address(&data[3], &jump, sizeof(jump));
 	}
-	else if (build == _build_mcc_1_1955_0_0)
+	else if (build >= _build_mcc_1_1955_0_0)
 	{
 		copy_to_address(&data[4], &jump, sizeof(jump));
 	}
