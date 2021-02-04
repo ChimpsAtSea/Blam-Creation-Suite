@@ -135,7 +135,7 @@ int WINAPI wWinMain(
 			"Mustard",
 			"NoesisGUI",
 
-			"Opus",
+			"Aotus",
 			"Platform",
 
 			"ResourcesPackager",

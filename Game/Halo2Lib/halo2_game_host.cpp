@@ -22,7 +22,7 @@ void register_halo2lib()
 }
 
 c_halo2_game_host::c_halo2_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, get_game_runtime())
+	c_aotus_game_engine_host(engine_type, build, get_game_runtime())
 {
 	c_console::write_line_verbose("Init %s", __func__);
 
@@ -58,7 +58,7 @@ void c_halo2_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
 
-	c_opus_game_engine_host::frame_end(swap_chain, unknown1);
+	c_aotus_game_engine_host::frame_end(swap_chain, unknown1);
 }
 
 void c_halo2_game_host::render_ui() const

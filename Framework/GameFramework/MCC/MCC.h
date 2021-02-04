@@ -5,17 +5,17 @@
 #include "map_id.h"
 
 
-/* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"
-/* LEGACY */ #include "opus_legacy\IGameVariant.h"
-/* LEGACY */ #include "opus_legacy\IMapVariant.h"
-/* LEGACY */ #include "opus_legacy\IGameEvents.h"
+/* LEGACY */ #include "aotus_legacy\IVariantAccessorBase.h"
+/* LEGACY */ #include "aotus_legacy\IGameVariant.h"
+/* LEGACY */ #include "aotus_legacy\IMapVariant.h"
+/* LEGACY */ #include "aotus_legacy\IGameEvents.h"
 #include "game_options.h"
-/* LEGACY */ #include "opus_legacy\IGameEngine.h"
+/* LEGACY */ #include "aotus_legacy\IGameEngine.h"
 #include "player_configuration.h"
 #include "IGameEngineHost.h"
-/* LEGACY */ #include "opus_legacy\ISaveFilmMetadata.h"
-/* LEGACY */ #include "opus_legacy\IDataAccess.h"
-/* LEGACY */ #include "opus_legacy\IFileAccess.h"
+/* LEGACY */ #include "aotus_legacy\ISaveFilmMetadata.h"
+/* LEGACY */ #include "aotus_legacy\IDataAccess.h"
+/* LEGACY */ #include "aotus_legacy\IFileAccess.h"
 
 #include "mouse_input.h"
 #include "game_launcher.h"
@@ -24,6 +24,6 @@
 #endif
 #include "game_runtime.h"
 
-#include "opus_game_engine_host.h"
+#include "aotus_game_engine_host.h"
 
 

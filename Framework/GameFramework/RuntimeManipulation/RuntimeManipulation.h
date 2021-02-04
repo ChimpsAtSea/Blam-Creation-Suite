@@ -14,6 +14,6 @@
 
 #pragma optimize("", on)
 
-/* LEGACY */ #include "opus_legacy/detour_helpers.h"
+/* LEGACY */ #include "aotus_legacy/detour_helpers.h"
 #include "SystemPatch.h"
 #include "data_patch.h"

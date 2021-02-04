@@ -34,7 +34,7 @@ void register_halo1lib()
 }
 
 c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, get_game_runtime())
+	c_aotus_game_engine_host(engine_type, build, get_game_runtime())
 {
 	c_console::write_line_verbose("Init %s", __func__);
 
@@ -86,7 +86,7 @@ void c_halo1_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 
 
 	update_camera_data();
-	c_opus_game_engine_host::frame_end(swap_chain, unknown1);
+	c_aotus_game_engine_host::frame_end(swap_chain, unknown1);
 }
 
 void c_halo1_game_host::render_ui() const

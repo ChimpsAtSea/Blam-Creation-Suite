@@ -97,13 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="groundhog_engine_state_command.h" />
-    <ClInclude Include="opus_legacy\c_network.h" />
+    <ClInclude Include="aotus_legacy\c_network.h" />
     <ClInclude Include="groundhog_game_host.h" />
     <ClInclude Include="groundhoglib-private-pch.h" />
     <ClInclude Include="groundhoglib-public-pch.h" />
-    <ClInclude Include="opus_legacy\Halo1.h" />
-    <ClInclude Include="opus_legacy\input_types.h" />
-    <ClInclude Include="opus_legacy\local_types.h" />
+    <ClInclude Include="aotus_legacy\Halo1.h" />
+    <ClInclude Include="aotus_legacy\input_types.h" />
+    <ClInclude Include="aotus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="groundhog_game_host.memory.inl" />

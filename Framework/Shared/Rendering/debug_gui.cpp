@@ -14,7 +14,7 @@ struct WndProcMessage
 ThreadSafeQueue<WndProcMessage> windowQueue;
 
 
-// #WIP Start Resize Synchronization Across Opus and Game Thread
+// #WIP Start Resize Synchronization Across Aotus and Game Thread
 #include <shared_mutex>
 
 enum class DebugUIState : uint32_t
@@ -28,7 +28,7 @@ enum class DebugUIState : uint32_t
 
 std::atomic<uint32_t> s_uiState = underlying_cast(DebugUIState::Uninitialized);
 std::shared_mutex s_mutex;
-// #WIP End Resize Synchronization Across Opus and Game Thread
+// #WIP End Resize Synchronization Across Aotus and Game Thread
 
 bool c_debug_gui::s_visible = false;
 ID3D11DeviceContext* c_debug_gui::s_pContext = nullptr;
@@ -52,12 +52,12 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 	DEBUG_ASSERT(pDevice);
 	DEBUG_ASSERT(pContext);
 
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Uninitialized);
 	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Initializing)));
 	DEBUG_ASSERT(s_uiState == underlying_cast(DebugUIState::Initializing));
 	s_mutex.lock();
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 	{
 		c_console::write_line_verbose("DebugUI::Init");
 
@@ -142,20 +142,20 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 		s_pDevice->CreateRenderTargetView(back_buffer, NULL, &s_mainRenderTargetView);
 		back_buffer->Release();
 	}
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	s_mutex.unlock();
 	s_uiState.store(underlying_cast(DebugUIState::Initialized));
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 }
 
 void c_debug_gui::Deinit()
 {
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
 	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Deinitializing)));
 	DEBUG_ASSERT(s_uiState == underlying_cast(DebugUIState::Deinitializing));
 	s_mutex.lock();
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 	{
 		c_console::write_line_verbose("DebugUI::Deinit");
 
@@ -170,10 +170,10 @@ void c_debug_gui::Deinit()
 		s_swap_chain = nullptr;
 		s_swapChainDescription = {};
 	}
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	s_uiState.store(underlying_cast(DebugUIState::Uninitialized));
 	s_mutex.unlock();
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 }
 
 bool c_debug_gui::is_rendering()
@@ -186,7 +186,7 @@ void c_debug_gui::start_frame()
 {
 	ProcessWindowMessages();
 
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	s_mutex.lock();
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
 	bool allowRendering = s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::RenderingFrame));
@@ -195,7 +195,7 @@ void c_debug_gui::start_frame()
 		return;
 	}
 	//assert(s_uiState == underlying_cast(DebugUIState::RenderingFrame));
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 
 	// #TODO: Very inefficient
 	ImGuiIO& rImguiIO = ImGui::GetIO();
@@ -238,10 +238,10 @@ void c_debug_gui::end_frame()
 	s_pContext->OMSetRenderTargets(1, &s_mainRenderTargetView, NULL);
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-	// #WIP Start Resize Synchronization Across Opus and Game Thread
+	// #WIP Start Resize Synchronization Across Aotus and Game Thread
 	s_uiState.store(underlying_cast(DebugUIState::Initialized));
 	s_mutex.unlock();
-	// #WIP End Resize Synchronization Across Opus and Game Thread
+	// #WIP End Resize Synchronization Across Aotus and Game Thread
 }
 
 void c_debug_gui::RenderFrame()

@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{91D344E6-BECA-4173-A875-EAE40D504152}</ProjectGuid>
-    <RootNamespace>OpusFramework</RootNamespace>
+    <RootNamespace>AotusFramework</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -187,11 +187,11 @@
     <ClCompile Include="RuntimeManipulation\data_patch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="FileSystem\blam_file_parser.cpp" />
-    <ClCompile Include="MCC\opus_game_engine_host.cpp" />
+    <ClCompile Include="MCC\aotus_game_engine_host.cpp" />
     <ClCompile Include="MCC\game_runtime.cpp" />
     <ClCompile Include="MCC\haloreach_game_option_selection_legacy.cpp" />
     <ClCompile Include="platform_configuration.cpp" />
-    <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
+    <ClCompile Include="RuntimeManipulation\aotus_legacy\detour_helpers.cpp" />
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -201,10 +201,10 @@
     <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp" />
     <ClCompile Include="MCC\game_launcher.cpp" />
     <ClCompile Include="ApplicationReflection\globalreference.cpp" />
-    <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp" />
-    <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
+    <ClCompile Include="MCC\aotus_legacy\IFileAccess.cpp" />
+    <ClCompile Include="MCC\aotus_legacy\IGameEngine.cpp" />
     <ClCompile Include="MCC\IGameEngineHost.cpp" />
-    <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp" />
+    <ClCompile Include="MCC\aotus_legacy\IGameEvents.cpp" />
     <ClCompile Include="FileSystem\map_info.cpp" />
     <ClCompile Include="FileSystem\map_info_manager.cpp" />
     <ClCompile Include="MCC\mouse_input.cpp" />
@@ -229,26 +229,26 @@
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="FileSystem\blam_file_parser.h" />
     <ClInclude Include="FileSystem\FileSystem.h" />
-    <ClInclude Include="MCC\opus_game_engine_host.h" />
+    <ClInclude Include="MCC\aotus_game_engine_host.h" />
     <ClInclude Include="MCC\game_runtime.h" />
     <ClInclude Include="MCC\haloreach_game_option_selection_legacy.h" />
     <ClInclude Include="MCC\MCC.h" />
     <ClInclude Include="platform_configuration.h" />
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h" />
-    <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
+    <ClInclude Include="RuntimeManipulation\aotus_legacy\detour_helpers.h" />
     <ClInclude Include="MCC\game_launcher.h" />
     <ClInclude Include="ApplicationReflection\globalreference.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
-    <ClInclude Include="MCC\opus_legacy\IDataAccess.h" />
-    <ClInclude Include="MCC\opus_legacy\IFileAccess.h" />
-    <ClInclude Include="MCC\opus_legacy\IGameEngine.h" />
+    <ClInclude Include="MCC\aotus_legacy\IDataAccess.h" />
+    <ClInclude Include="MCC\aotus_legacy\IFileAccess.h" />
+    <ClInclude Include="MCC\aotus_legacy\IGameEngine.h" />
     <ClInclude Include="MCC\IGameEngineHost.h" />
-    <ClInclude Include="MCC\opus_legacy\IGameEvents.h" />
-    <ClInclude Include="MCC\opus_legacy\IGameVariant.h" />
-    <ClInclude Include="MCC\opus_legacy\IMapVariant.h" />
-    <ClInclude Include="MCC\opus_legacy\ISaveFilmMetadata.h" />
-    <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h" />
+    <ClInclude Include="MCC\aotus_legacy\IGameEvents.h" />
+    <ClInclude Include="MCC\aotus_legacy\IGameVariant.h" />
+    <ClInclude Include="MCC\aotus_legacy\IMapVariant.h" />
+    <ClInclude Include="MCC\aotus_legacy\ISaveFilmMetadata.h" />
+    <ClInclude Include="MCC\aotus_legacy\IVariantAccessorBase.h" />
     <ClInclude Include="FileSystem\map_info.h" />
     <ClInclude Include="FileSystem\map_info_manager.h" />
     <ClInclude Include="MCC\mouse_input.h" />

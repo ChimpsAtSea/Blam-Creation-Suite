@@ -7,7 +7,7 @@ c_mouse_input* c_game_launcher::s_mouse_input = nullptr;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_startup_events;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_shutdown_events;
 bool c_game_launcher::s_is_game_running = false;
-c_opus_game_engine_host* current_game_host = nullptr;
+c_aotus_game_engine_host* current_game_host = nullptr;
 e_campaign_difficulty_level difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 c_mandrill_user_interface* c_game_launcher::mandrill_user_interface = nullptr;
 uint64_t ownership_mask = ~0ull;
@@ -293,7 +293,7 @@ void c_game_launcher::load_settings()
 	s_mouse_input->set_sensitivity(horizontalSensitivity, verticalSensitivity);
 }
 
-void c_game_launcher::opus_tick()
+void c_game_launcher::aotus_tick()
 {
 	if (!s_is_game_running)
 	{
@@ -301,8 +301,8 @@ void c_game_launcher::opus_tick()
 	}
 
 	c_presense_api::update();
-	c_debug_gui::start_frame(); // OpusUITick is registered to the DebugUI
-	//OpusUITick();
+	c_debug_gui::start_frame(); // AotusUITick is registered to the DebugUI
+	//AotusUITick();
 	if (c_debug_gui::is_rendering() && s_is_game_running) // render a debug layer for the game to render text to
 	{
 		constexpr ImGuiWindowFlags k_debug_window_flags =
@@ -424,7 +424,7 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 }
 #ifdef _WIN64
 
-c_opus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
+c_aotus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
 {
 	e_build build = _build_not_set;
 	switch (engine_type)
@@ -1205,7 +1205,7 @@ bool c_game_launcher::load_save_from_file(GameOptions *options, LPCSTR file_name
 {
 	if (should_run)
 	{
-		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
+		std::string file_path = std::string("aotus/autosave/").append(file_name).append(".bin");
 		size_t game_state_header_size = 0;
 		if (filesystem_read_file_to_memory(file_path.c_str(), &options->game_state_header, &game_state_header_size))
 		{
@@ -1257,7 +1257,7 @@ std::vector<std::string>& c_game_launcher::variant_files_get(e_engine_type engin
 	LPCSTR user_profile_path = get_user_profile_environment_variable();
 	std::vector<std::string> file_directories =
 	{
-		std::string("opus/").append(type_name).append("_variants/"),
+		std::string("aotus/").append(type_name).append("_variants/"),
 		std::string(engine_folder_name).append("/").append(type_name).append("_variants/"),
 		std::string(engine_folder_name).append("/hopper_").append(type_name).append("_variants/"),
 		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_type == _engine_type_groundhog ? "Halo2A" : engine_folder_name).append("/").append(type_nice_name).append("/"),

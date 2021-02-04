@@ -101,13 +101,13 @@
     <ClInclude Include="halo1_dev_console_command.h" />
     <ClInclude Include="halo1_engine_state_command.h" />
     <ClInclude Include="halo1_halo_script_command.h" />
-    <ClInclude Include="opus_legacy\c_network.h" />
+    <ClInclude Include="aotus_legacy\c_network.h" />
     <ClInclude Include="halo1_game_host.h" />
     <ClInclude Include="halo1lib-private-pch.h" />
     <ClInclude Include="halo1lib-public-pch.h" />
-    <ClInclude Include="opus_legacy\Halo1.h" />
-    <ClInclude Include="opus_legacy\input_types.h" />
-    <ClInclude Include="opus_legacy\local_types.h" />
+    <ClInclude Include="aotus_legacy\Halo1.h" />
+    <ClInclude Include="aotus_legacy\input_types.h" />
+    <ClInclude Include="aotus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="halo1_game_host.console.inl" />

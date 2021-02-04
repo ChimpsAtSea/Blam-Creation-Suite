@@ -12,7 +12,7 @@
 #include <Ketchup\ketchup-public-pch.h>
 
 /* LEGACY */ //#include "c_network.h"
-///* LEGACY */ #include "opus_legacy/HaloReach.h"
+///* LEGACY */ #include "aotus_legacy/HaloReach.h"
 
 #include "haloreachlib-public-pch.h"
 

@@ -33,7 +33,7 @@ void register_haloreachlib()
 }
 
 c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, g_haloreach_game_runtime)
+	c_aotus_game_engine_host(engine_type, build, g_haloreach_game_runtime)
 {
 	current_host = this;
 
@@ -83,7 +83,7 @@ void c_haloreach_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown
 	}
 
 	update_camera_data();
-	c_opus_game_engine_host::frame_end(swap_chain, unknown1);
+	c_aotus_game_engine_host::frame_end(swap_chain, unknown1);
 }
 
 void c_haloreach_game_host::render_ui() const

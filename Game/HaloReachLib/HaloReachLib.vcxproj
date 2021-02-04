@@ -90,7 +90,7 @@
   <ItemGroup>
     <ClCompile Include="haloreach_camera_command.cpp" />
     <ClCompile Include="haloreach_engine_state_command.cpp" />
-    <ClCompile Include="opus_legacy\HaloReach.cpp" />
+    <ClCompile Include="aotus_legacy\HaloReach.cpp" />
     <ClCompile Include="haloreach_game_host.cpp" />
     <ClCompile Include="haloreachlib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -100,13 +100,13 @@
   <ItemGroup>
     <ClInclude Include="haloreach_camera_command.h" />
     <ClInclude Include="haloreach_engine_state_command.h" />
-    <ClInclude Include="opus_legacy\c_network.h" />
+    <ClInclude Include="aotus_legacy\c_network.h" />
     <ClInclude Include="haloreach_game_host.h" />
     <ClInclude Include="haloreachlib-private-pch.h" />
     <ClInclude Include="haloreachlib-public-pch.h" />
-    <ClInclude Include="opus_legacy\HaloReach.h" />
-    <ClInclude Include="opus_legacy\input_types.h" />
-    <ClInclude Include="opus_legacy\local_types.h" />
+    <ClInclude Include="aotus_legacy\HaloReach.h" />
+    <ClInclude Include="aotus_legacy\input_types.h" />
+    <ClInclude Include="aotus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="haloreach_game_host.camera.inl" />

@@ -23,13 +23,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="opus_legacy\c_network.h">
+    <ClInclude Include="aotus_legacy\c_network.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\input_types.h">
+    <ClInclude Include="aotus_legacy\input_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\local_types.h">
+    <ClInclude Include="aotus_legacy\local_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tls_data.h">
@@ -44,7 +44,7 @@
     <ClInclude Include="halo5lib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus_legacy\Halo5.h">
+    <ClInclude Include="aotus_legacy\Halo5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
