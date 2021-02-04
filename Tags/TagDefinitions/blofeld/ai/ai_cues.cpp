@@ -18,25 +18,6 @@ namespace blofeld
 
 	V5_TAG_BLOCK(combat_cue_payload_block, 1)
 	{
-		/*
-		NOTE: For Halo Reach this was the best looking outcome based purely on trying
-		to make some kind of data look pretty. There are demons here!!!!
-
-		This data doesn't appear to change in each level so maybe as long as it is 
-		initialized correctly this won't be a problem? - Squaresome
-		*/
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
-		{
-			_field_legacy,
-			_field_explanation, 
-			"THIS STRUCTURE DEFINITION IS FICTIONAL", 
-			"NOTE: For Halo Reach this was the best looking outcome based purely on trying\n"
-			"to make some kind of data look pretty. There are demons here!!!!\n"
-			"\n"
-			"This data doesn't appear to change in each level so maybe as long as it is\n"
-			"initialized correctly this won't be a problem? - Squaresome"
-		},
-
 		{ _field_legacy, _field_real_point_3d, "position!" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
