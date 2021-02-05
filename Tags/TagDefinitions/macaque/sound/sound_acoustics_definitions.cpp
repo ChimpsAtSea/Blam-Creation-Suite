@@ -30,7 +30,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &acousticPaletteFlags },
 		{ _field_real, "occlusion value" },
 		{ _field_short_block_index, "acoustics", FIELD_FLAG_INDEX, &scenario_acoustics_palette_block_definition_block },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_real, "height" },
 		{ _field_real, "sink" },
 		{ _field_terminator }
@@ -72,7 +72,7 @@ namespace macaque
 		{ _field_short_block_index, "sample 1", FIELD_FLAG_READ_ONLY, &scenario_acoustics_palette_block_definition_block },
 		{ _field_struct, "location 0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_acoustic_location_definition },
 		{ _field_struct, "location 1", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_acoustic_location_definition },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		FIELD_PAD("CKJEWRSDF", nullptr, 2),
 		{ _field_terminator }
 	};

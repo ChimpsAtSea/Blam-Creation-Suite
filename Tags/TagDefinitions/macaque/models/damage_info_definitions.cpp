@@ -92,8 +92,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_INSTANTANEOUS_DAMAGE_RESPONSE_BLOCK_ID)
 	{
-		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1 },
-		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2 },
+		{ _field_long_flags, "flags", &newDamageResponseFlagsPart1, _field_id_dumb },
+		{ _field_long_flags, "flags2", &newDamageResponseFlagsPart2, _field_id_dumb },
 		{ _field_string_id, "label" },
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
 		{ _field_tag_reference, "transition effect (generic)", &global_effect_reference },
@@ -263,8 +263,8 @@ namespace macaque
 		FIELD_EXPLANATION("Constraint destruction", nullptr, "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n"),
 		{ _field_string_id, "constraint/group name" },
 		FIELD_EXPLANATION("Damage response flags", nullptr, "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed"),
-		{ _field_long_flags, "flags", &damage_response_set1 },
-		{ _field_long_flags, "flags2", &damage_response_set2 },
+		{ _field_long_flags, "flags", &damage_response_set1, _field_id_dumb },
+		{ _field_long_flags, "flags2", &damage_response_set2, _field_id_dumb },
 		{ _field_real_fraction, "damage threshold", "response fires after crossing this threshold.  1=full health" },
 		{ _field_long_flags, "body threshold flags", &damage_response_body_threshold_flags_definition },
 		{ _field_real, "body damage threshold", "response fires after object body damage crosses this threshold, numbers can be negative.  You need to set the flag \"body threshold active\" for this number to be used. 1=full health" },

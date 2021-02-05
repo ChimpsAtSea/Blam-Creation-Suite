@@ -315,8 +315,8 @@ namespace macaque
 	{
 		{ _field_struct, "object", &object_struct_definition },
 		FIELD_CUSTOM("$$$ UNIT $$$", nullptr, _field_id_function_group_begin),
-		{ _field_long_flags, "flags", &unit_flags_part1 },
-		{ _field_long_flags, "flags2", &unit_flags_part2 },
+		{ _field_long_flags, "flags", &unit_flags_part1, _field_id_dumb },
+		{ _field_long_flags, "flags2", &unit_flags_part2, _field_id_dumb },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "constant sound volume", &ai_sound_volume_enum },
 		{ _field_tag_reference, "hologram unit reference", &unit_struct_definition_hologram_unit_reference_reference },
@@ -489,7 +489,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_ACCELERATION_DISPLACEMENT_FUNCTION_STRUCT_ID)
 	{
-		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input },
+		{ _field_char_enum, "Input Variable", &unit_camera_acceleration_displacement_input, _field_id_function_input_scalar },
 		FIELD_PAD("blah", nullptr, 3),
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },

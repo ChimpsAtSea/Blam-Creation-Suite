@@ -127,7 +127,7 @@ namespace macaque
 		{ _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block },
 		{ _field_block, "generic light instances", &structure_lighting_generic_light_instance_block },
 		{ _field_block, "screen space light shader override", &screen_space_light_shader_override_block },
-		{ _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock_block },
+		{ _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock_block, _field_id_slap },
 		{ _field_struct, "Sun Intensity Multiplier", &light_scalar_function_struct },
 		{ _field_terminator }
 	};

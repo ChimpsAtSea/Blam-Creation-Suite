@@ -104,10 +104,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_PROPERTY_REAL_ID)
 	{
-		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },
-		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum },
+		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -126,10 +126,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_PROPERTY_REAL_RGB_COLOR_ID)
 	{
-		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum },
-		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum },
+		{ _field_char_enum, "Input Variable", &light_volume_state_input_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },

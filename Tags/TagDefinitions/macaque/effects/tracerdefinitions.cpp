@@ -107,10 +107,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_STRUCT_ID)
 	{
-		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
+		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -129,10 +129,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_VECTOR3D_STRUCT_ID)
 	{
-		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
+		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -153,10 +153,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_POINT2D_STRUCT_ID)
 	{
-		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
+		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -177,10 +177,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRACERPROPERTY_REAL_RGB_COLOR_STRUCT_ID)
 	{
-		{ _field_char_enum, "Input Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Range Variable", &tracerStateInputEnum },
-		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum },
-		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum },
+		{ _field_char_enum, "Input Variable", &tracerStateInputEnum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &tracerStateInputEnum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &tracerStateOutputModEnum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &tracerStateInputEnum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },

@@ -626,7 +626,7 @@ namespace macaque
 		{ _field_long_enum, "mode", FIELD_FLAG_INDEX, &evaluation_modes },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		FIELD_EXPLANATION("DESIGNERS BEWARE", nullptr, "If you want to screw the AI up, here\'s a great place to start. Please try not to."),
-		{ _field_block, "evaluators", &evaluator_definition_block },
+		{ _field_block, "evaluators", &evaluator_definition_block, _field_id_grid },
 		{ _field_terminator }
 	};
 
@@ -945,7 +945,7 @@ namespace macaque
 		{ _field_real, "max speed", "maximum speed at which we will consider boarding", "wu/s" },
 		{ _field_real, "board time", "maximum time we will melee board for", "seconds" },
 		{ _field_real_bounds, "boarding timeout", "The amount of time after boarding before we'll consider boarding again", "seconds" },
-		{ _field_block, "vehicle specific properties", &character_vehicle_boarding_block },
+		{ _field_block, "vehicle specific properties", &character_vehicle_boarding_block, _field_id_sort },
 		{ _field_terminator }
 	};
 
@@ -1919,12 +1919,12 @@ namespace macaque
 		{ _field_block, "engineer properties", &character_engineer_block },
 		{ _field_block, "inspect properties", &character_inspect_block },
 		{ _field_block, "scarab properties", &character_scarab_block },
-		{ _field_block, "weapons properties", &character_weapons_block },
-		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block },
-		{ _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block },
-		{ _field_block, "grenades properties", &character_grenades_block },
-		{ _field_block, "vehicle properties", &character_vehicle_block },
-		{ _field_block, "flying movement properties", &character_flying_movement_block },
+		{ _field_block, "weapons properties", &character_weapons_block, _field_id_sort },
+		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block, _field_id_sort },
+		{ _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block, _field_id_sort },
+		{ _field_block, "grenades properties", &character_grenades_block, _field_id_sort },
+		{ _field_block, "vehicle properties", &character_vehicle_block, _field_id_sort },
+		{ _field_block, "flying movement properties", &character_flying_movement_block, _field_id_sort },
 		{ _field_block, "morph properties", &character_morph_block },
 		{ _field_block, "equipment definitions", &character_equipment_block },
 		{ _field_block, "stimuli responses", &character_stimuli_response_block },

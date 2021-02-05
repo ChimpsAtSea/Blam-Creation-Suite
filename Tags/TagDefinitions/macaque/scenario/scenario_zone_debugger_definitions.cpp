@@ -22,7 +22,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ZONE_DEBUGGER_BLOCK_DEFINITION_STRUCT_ID)
 	{
-		{ _field_long_block_flags, "active designer zones", &scenario_designer_zone_block },
+		{ _field_long_block_flags, "active designer zones", &scenario_designer_zone_block, _field_id_block_flags_32bit },
 		{ _field_terminator }
 	};
 

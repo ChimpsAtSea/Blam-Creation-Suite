@@ -100,7 +100,7 @@ namespace macaque
 		DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "classes", &damage_response_class_block },
-		{ _field_block, "area control", &area_control_block },
+		{ _field_block, "area control", &area_control_block, _field_id_slap },
 		{ _field_terminator }
 	};
 

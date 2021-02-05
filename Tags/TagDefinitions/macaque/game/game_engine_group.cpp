@@ -494,12 +494,12 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Game Engine Settings", nullptr, "This contains the definitions for the built-in custom multiplayer game variants"),
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
-		{ _field_block, "player traits", &game_engine_player_traits_list_block },
-		{ _field_block, "ai traits", &game_engine_ai_traits_list_block },
-		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block },
-		{ _field_block, "survival variants", &game_engine_survival_variant_block },
-		{ _field_block, "new firefight variants", &GameEngineFirefightVariantShellBlock_block },
-		{ _field_block, "campaign variants", &game_engine_campaign_variant_block },
+		{ _field_block, "player traits", &game_engine_player_traits_list_block, _field_id_slap },
+		{ _field_block, "ai traits", &game_engine_ai_traits_list_block, _field_id_slap },
+		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block, _field_id_slap },
+		{ _field_block, "survival variants", &game_engine_survival_variant_block, _field_id_slap },
+		{ _field_block, "new firefight variants", &GameEngineFirefightVariantShellBlock_block, _field_id_slap },
+		{ _field_block, "campaign variants", &game_engine_campaign_variant_block, _field_id_slap },
 		{ _field_terminator }
 	};
 

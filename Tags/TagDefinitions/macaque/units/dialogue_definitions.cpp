@@ -43,7 +43,7 @@ namespace macaque
 		SOUND_REFERENCES_BLOCK_ID)
 	{
 		{ _field_string_id, "vocalization", FIELD_FLAG_INDEX },
-		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block },
+		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block, _field_id_grid },
 		{ _field_terminator }
 	};
 

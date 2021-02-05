@@ -154,13 +154,13 @@ namespace macaque
 		{ _field_string_id, "variant name" },
 		{ _field_long_flags, "flags", &scene_object_flags },
 		FIELD_CUSTOM("lightmap shadow flags", nullptr, _field_id_cinematic_scene_flags),
-		{ _field_array, "lightmap shadow flags", &g_cinematicShotFlagArray_array },
+		{ _field_array, "lightmap shadow flags", &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
 		FIELD_CUSTOM("high res flags", nullptr, _field_id_cinematic_scene_flags),
-		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array },
+		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", nullptr, "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &cinematic_custom_script_block },
-		{ _field_block, "attachments", &scene_object_attachment_block },
+		{ _field_block, "attachments", &scene_object_attachment_block, _field_id_slap },
 		{ _field_terminator }
 	};
 
@@ -214,13 +214,13 @@ namespace macaque
 		{ _field_tag_reference, "Camera Effects", &global_camera_fx_settings_reference },
 		{ _field_tag_reference, "Cubemap", &global_bitmap_reference },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_block, "lighting", &cinematic_shot_lighting_block },
-		{ _field_block, "clip", &cinematic_shot_clip_block },
-		{ _field_block, "music", &cinematic_shot_music_block },
-		{ _field_block, "object functions", &cinematic_shot_object_function_block },
-		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block },
-		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block },
-		{ _field_block, "texture movies", &cinematicShotTextureMovieBlock_block },
+		{ _field_block, "lighting", &cinematic_shot_lighting_block, _field_id_slap },
+		{ _field_block, "clip", &cinematic_shot_clip_block, _field_id_slap },
+		{ _field_block, "music", &cinematic_shot_music_block, _field_id_slap },
+		{ _field_block, "object functions", &cinematic_shot_object_function_block, _field_id_slap },
+		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block, _field_id_slap },
+		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block, _field_id_slap },
+		{ _field_block, "texture movies", &cinematicShotTextureMovieBlock_block, _field_id_slap },
 		FIELD_CUSTOM("Footer", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -261,7 +261,7 @@ namespace macaque
 		{ _field_long_integer, "frame start", _field_id_cinematic_frame_index },
 		FIELD_CUSTOM("frame end", nullptr, _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame end", _field_id_cinematic_frame_index },
-		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block },
+		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block, _field_id_slap },
 		{ _field_terminator }
 	};
 
@@ -415,13 +415,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICDATASHOTBLOCK_ID)
 	{
-		{ _field_block, "dialogue", &cinematic_shot_dialogue_block },
-		{ _field_block, "effects", &cinematic_shot_effect_block },
-		{ _field_block, "custom script", &cinematic_shot_custom_script_block },
+		{ _field_block, "dialogue", &cinematic_shot_dialogue_block, _field_id_slap },
+		{ _field_block, "effects", &cinematic_shot_effect_block, _field_id_slap },
+		{ _field_block, "custom script", &cinematic_shot_custom_script_block, _field_id_slap },
 		{ _field_long_integer, "frame count", FIELD_FLAG_READ_ONLY },
-		{ _field_block, "frame data", FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_block },
-		{ _field_block, "dynamic frame data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_dynamic_block },
-		{ _field_block, "constant frame data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_constant_block },
+		{ _field_block, "frame data", FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_block, _field_id_slap },
+		{ _field_block, "dynamic frame data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_dynamic_block, _field_id_slap },
+		{ _field_block, "constant frame data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &cinematic_shot_frame_constant_block, _field_id_slap },
 		{ _field_terminator }
 	};
 
@@ -564,7 +564,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID)
 	{
-		{ _field_block, "frame data", &cinematic_extra_camera_frame_block },
+		{ _field_block, "frame data", &cinematic_extra_camera_frame_block, _field_id_slap },
 		{ _field_terminator }
 	};
 
@@ -752,9 +752,9 @@ namespace macaque
 		FIELD_CUSTOM("Header", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_block, "objects", FIELD_FLAG_READ_ONLY, &cinematic_scene_object_block },
+		{ _field_block, "objects", FIELD_FLAG_READ_ONLY, &cinematic_scene_object_block, _field_id_slap },
 		{ _field_block, "shots", &cinematic_shot_block },
-		{ _field_block, "lights", &cinematicStructureLightingBlock_block },
+		{ _field_block, "lights", &cinematicStructureLightingBlock_block, _field_id_slap },
 		FIELD_CUSTOM("Footer", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
@@ -771,9 +771,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_DATA_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "objects", FIELD_FLAG_READ_ONLY, &cinematicSceneDataObjectBlock_block },
+		{ _field_block, "objects", FIELD_FLAG_READ_ONLY, &cinematicSceneDataObjectBlock_block, _field_id_slap },
 		{ _field_block, "shots", FIELD_FLAG_READ_ONLY, &cinematicDataShotBlock_block },
-		{ _field_block, "extra camera frame data", FIELD_FLAG_READ_ONLY, &cinematic_shot_extra_camera_block },
+		{ _field_block, "extra camera frame data", FIELD_FLAG_READ_ONLY, &cinematic_shot_extra_camera_block, _field_id_slap },
 		{ _field_long_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -836,7 +836,7 @@ namespace macaque
 		{ _field_tag_reference, "model animation graph", FIELD_FLAG_READ_ONLY, &global_animation_graph_reference },
 		{ _field_tag_reference, "object type", FIELD_FLAG_READ_ONLY, &scene_object_attachment_block_attachment_type_reference },
 		FIELD_CUSTOM("shots active flags", nullptr, _field_id_cinematic_scene_flags),
-		{ _field_array, "shots active flags", FIELD_FLAG_READ_ONLY, &g_cinematicShotFlagArray_array },
+		{ _field_array, "shots active flags", FIELD_FLAG_READ_ONLY, &g_cinematicShotFlagArray_array, _field_id_cinematic_scene_flags },
 		{ _field_terminator }
 	};
 

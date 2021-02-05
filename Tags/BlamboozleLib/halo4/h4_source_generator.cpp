@@ -1019,6 +1019,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			custom_field_type = h4_field_id_type_to_generic_field_id_type(static_cast<e_h4_field_id_type>(tag_field->tool_tag));
 		}
 
+		bool write_tag = custom_field_type != nullptr;
 		bool write_flags =
 			string_parser.flag_unknown0 ||
 			string_parser.flag_read_only ||
@@ -1074,7 +1075,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_qword_integer:
 		case _h4_field_type_useless_pad:
 		{
-			bool write_tag = custom_field_type != nullptr;
 			bool write_pointer = false; // todo
 			bool write_units = !units.empty();
 			bool write_description = write_units || !description.empty();
@@ -1183,7 +1183,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_struct_container->name << " }," << std::endl;
+			ss << ", &" << tag_struct_container->name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 
 			break;
 		}
@@ -1202,7 +1204,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_struct_container->name << " }," << std::endl;
+			ss << ", &" << tag_struct_container->name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 
 			break;
 
@@ -1222,7 +1226,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_reference_container->name << " }," << std::endl;
+			ss << ", &" << tag_reference_container->name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 
 			break;
 		}
@@ -1240,7 +1246,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_struct_container->name << " }," << std::endl;
+			ss << ", &" << tag_struct_container->name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 
 			break;
 		}
@@ -1259,7 +1267,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_block_container->symbol_name << " }," << std::endl;
+			ss << ", &" << tag_block_container->symbol_name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 			break;
 		}
 		case _h4_field_type_long_block_flags:
@@ -1283,7 +1293,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_block_container->symbol_name << " }," << std::endl;
+			ss << ", &" << tag_block_container->symbol_name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 			break;
 		}
 		case _h4_field_type_char_enum:
@@ -1304,7 +1316,9 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << ", ";
 				generate_tag_field_flags(ss, string_parser);
 			}
-			ss << ", &" << tag_field_enum->tag_enum->name << " }," << std::endl;
+			ss << ", &" << tag_field_enum->tag_enum->name;
+			if (write_tag) ss << ", " << custom_field_type;
+			ss << " }," << std::endl;
 
 			break;
 		}

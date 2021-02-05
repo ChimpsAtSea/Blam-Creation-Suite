@@ -22,7 +22,7 @@ namespace macaque
 		{ _field_word_flags, "objective flags", &objective_flags },
 		{ _field_short_block_index, "zone index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &zone_block },
 		{ _field_short_block_index, "first task index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &tasks_block },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_block, "tasks", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &tasks_block },
 		{ _field_terminator }
 	};
@@ -81,7 +81,7 @@ namespace macaque
 		{ _field_short_integer, "priority", FIELD_FLAG_READ_ONLY, _field_id_unknown_ohoc },
 		{ _field_short_block_index, "first_child", FIELD_FLAG_READ_ONLY, &tasks_block },
 		{ _field_short_block_index, "next_sibling", FIELD_FLAG_READ_ONLY, &tasks_block },
-		{ _field_short_block_index, "parent", FIELD_FLAG_READ_ONLY, &tasks_block },
+		{ _field_short_block_index, "parent", FIELD_FLAG_READ_ONLY, &tasks_block, _field_id_unknown_ohoc },
 		{ _field_block, "activation script", &script_fragment_block },
 		{ _field_short_block_index, "script index ", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &hs_scripts_block },
 		{ _field_short_integer, "lifetime count", "task will never want to suck in more then n guys over lifetime (soft ceiling only applied when limit exceeded" },

@@ -61,9 +61,9 @@ namespace macaque
 		SCENARIO_VEHICLE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_vehicle_palette_block },
+		{ _field_short_block_index, "type", &scenario_vehicle_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &scenario_unit_struct },
@@ -176,9 +176,9 @@ namespace macaque
 		SCENARIO_GIANT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_giant_palette_block },
+		{ _field_short_block_index, "type", &scenario_giant_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &scenario_unit_struct },
@@ -212,9 +212,9 @@ namespace macaque
 		SCENARIO_BIPED_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_biped_palette_block },
+		{ _field_short_block_index, "type", &scenario_biped_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &scenario_unit_struct },
@@ -388,9 +388,9 @@ namespace macaque
 		SCENARIO_SCENERY_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_scenery_palette_block },
+		{ _field_short_block_index, "type", &scenario_scenery_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v4 },
@@ -410,9 +410,9 @@ namespace macaque
 		SCENARIO_EQUIPMENT_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_equipment_palette_block },
+		{ _field_short_block_index, "type", &scenario_equipment_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
@@ -431,9 +431,9 @@ namespace macaque
 		SCENARIO_WEAPON_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_weapon_palette_block },
+		{ _field_short_block_index, "type", &scenario_weapon_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "weapon data", &scenario_weapon_datum_struct },
@@ -454,7 +454,7 @@ namespace macaque
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_real, "initial value" },
 		{ _field_long_flags, "flags", &device_group_flags },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		FIELD_PAD("WAFNDIO", nullptr, 2),
 		{ _field_terminator }
 	};
@@ -471,9 +471,9 @@ namespace macaque
 		SCENARIO_MACHINE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_machine_palette_block },
+		{ _field_short_block_index, "type", &scenario_machine_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -494,9 +494,9 @@ namespace macaque
 		SCENARIO_TERMINAL_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_terminal_palette_block },
+		{ _field_short_block_index, "type", &scenario_terminal_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -516,9 +516,9 @@ namespace macaque
 		SCENARIO_CONTROL_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_control_palette_block },
+		{ _field_short_block_index, "type", &scenario_control_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -539,9 +539,9 @@ namespace macaque
 		SCENARIODISPENSERBLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &ScenarioDispenserPaletteBlock_block },
+		{ _field_short_block_index, "type", &ScenarioDispenserPaletteBlock_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -562,9 +562,9 @@ namespace macaque
 		SCENARIO_SOUND_SCENERY_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block },
+		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
 		{ _field_terminator }
@@ -582,9 +582,9 @@ namespace macaque
 		SCENARIO_EFFECT_SCENERY_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_effect_scenery_palette_block },
+		{ _field_short_block_index, "type", &scenario_effect_scenery_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
@@ -603,9 +603,9 @@ namespace macaque
 		SCENARIO_SPAWNER_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_spawner_palette_block },
+		{ _field_short_block_index, "type", &scenario_spawner_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "Entity Data", &ScenarioEntityStruct },
@@ -661,9 +661,9 @@ namespace macaque
 		SCENARIO_CRATE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_crate_palette_block },
+		{ _field_short_block_index, "type", &scenario_crate_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "crate data", &scenario_crate_datum_struct },
@@ -683,9 +683,9 @@ namespace macaque
 		SCENARIO_CREATURE_BLOCK_ID)
 	{
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "type", &scenario_creature_palette_block },
+		{ _field_short_block_index, "type", &scenario_creature_palette_block, _field_id_type },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_filter),
-		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block },
+		{ _field_short_block_index, "name", FIELD_FLAG_INDEX, &scenario_object_names_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_terminator }
 	};
@@ -700,9 +700,9 @@ namespace macaque
 		SCENARIO_OBJECT_ID_STRUCT_ID)
 	{
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY, _field_id_object_id },
-		{ _field_short_block_index, "origin bsp index", FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },
-		{ _field_char_enum, "type", FIELD_FLAG_READ_ONLY, &object_type_enum_definition },
-		{ _field_char_enum, "source", FIELD_FLAG_READ_ONLY, &object_source_enum_definition },
+		{ _field_short_block_index, "origin bsp index", FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block, _field_id_object_id },
+		{ _field_char_enum, "type", FIELD_FLAG_READ_ONLY, &object_type_enum_definition, _field_id_object_id },
+		{ _field_char_enum, "source", FIELD_FLAG_READ_ONLY, &object_source_enum_definition, _field_id_object_id },
 		{ _field_terminator }
 	};
 
@@ -725,7 +725,7 @@ namespace macaque
 		{ _field_real, "gravity override" },
 		{ _field_byte_flags, "gravity flags", &object_gravity_flags },
 		FIELD_PAD("ZEE", nullptr, 1),
-		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition },
+		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
 		{ _field_byte_flags, "script flags", &scenarioObjectScriptFlagsDefinition },
 		{ _field_block, "force enabled scripts", &scriptListBlock_block },
 		{ _field_block, "disabled scripts", &scriptListBlock_block },
@@ -739,7 +739,7 @@ namespace macaque
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_long_flags, "Light Channels", &channelDefinitionFlags },
 		{ _field_non_cache_runtime_value, "runtimeObjectHandle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		FIELD_PAD("NCIUNE", nullptr, 2),
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &scenario_structure_bsp_reference_block },

@@ -22,7 +22,7 @@ namespace macaque
 		{ _field_block, "squads", &squad_patrol_member_block },
 		{ _field_block, "points", &squad_patrol_point_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		FIELD_PAD("pad", nullptr, 2),
 		{ _field_terminator }
 	};

@@ -17,10 +17,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_POINT3D_STRUCT_NEW_ID)
 	{
-		{ _field_char_enum, "Input Variable", &game_state_type_enum },
-		{ _field_char_enum, "Range Variable", &game_state_type_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum },
+		{ _field_char_enum, "Input Variable", &game_state_type_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -41,10 +41,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_EULER_ANGLES2D_STRUCT_NEW_ID)
 	{
-		{ _field_char_enum, "Input Variable", &game_state_type_enum },
-		{ _field_char_enum, "Range Variable", &game_state_type_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum },
+		{ _field_char_enum, "Input Variable", &game_state_type_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -65,10 +65,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_SCALAR_STRUCT_NEW_ID)
 	{
-		{ _field_char_enum, "Input Variable", &game_state_type_enum },
-		{ _field_char_enum, "Range Variable", &game_state_type_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum },
+		{ _field_char_enum, "Input Variable", &game_state_type_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -88,10 +88,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_REAL_VECTOR3D_STRUCT_NEW_ID)
 	{
-		{ _field_char_enum, "Input Variable", &game_state_type_enum },
-		{ _field_char_enum, "Range Variable", &game_state_type_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum },
+		{ _field_char_enum, "Input Variable", &game_state_type_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
@@ -112,10 +112,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_PROPERTY_COLOR_STRUCT_NEW_ID)
 	{
-		{ _field_char_enum, "Input Variable", &game_state_type_enum },
-		{ _field_char_enum, "Range Variable", &game_state_type_enum },
-		{ _field_char_enum, "Output Modifier", &output_mod_enum },
-		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum },
+		{ _field_char_enum, "Input Variable", &game_state_type_enum, _field_id_function_input_scalar },
+		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
+		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
+		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },

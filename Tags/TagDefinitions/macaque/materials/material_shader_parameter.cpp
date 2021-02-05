@@ -64,7 +64,7 @@ namespace macaque
 		{ _field_long_enum, "type", FIELD_FLAG_INDEX, &material_animated_parameter_type_enum },
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
-		{ _field_char_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &materialFunctionOutputModEnum },
+		{ _field_char_enum, "Output Modifier", FIELD_FLAG_UNKNOWN0, &materialFunctionOutputModEnum, _field_id_fnop },
 		FIELD_PAD("BVCG", nullptr, 3),
 		{ _field_string_id, "Output Modifier Input", FIELD_FLAG_UNKNOWN0, _field_id_function_output_modifier },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },

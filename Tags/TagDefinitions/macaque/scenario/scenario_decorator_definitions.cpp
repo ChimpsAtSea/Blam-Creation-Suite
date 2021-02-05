@@ -110,12 +110,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_BRUSH_STRUCT_ID)
 	{
-		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition },
-		{ _field_long_enum, "middle button brush", &decorator_right_brush_type_enum_definition },
-		{ _field_long_enum, "control+left button brush", &decorator_left_brush_type_enum_definition },
-		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition },
-		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition },
-		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition },
+		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "control+left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
 		{ _field_real, "outer radius", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "feather percent", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "reapply flags", &decorator_brush_reapply_flags_definition },

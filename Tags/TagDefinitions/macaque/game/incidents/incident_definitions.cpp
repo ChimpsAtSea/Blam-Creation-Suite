@@ -71,13 +71,13 @@ namespace macaque
 		FIELD_CUSTOM("DISALLOWED GAME MODES", nullptr, _field_id_function_group_begin),
 		{ _field_struct, "disallowed game modes", &game_mode_flags_struct },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		{ _field_block, "suppressed incidents", &suppressed_incident_block },
-		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block },
+		{ _field_block, "suppressed incidents", &suppressed_incident_block, _field_id_slap },
+		{ _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block, _field_id_slap },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		FIELD_CUSTOM("CREATION", nullptr, _field_id_function_group_begin),
-		{ _field_block, "specialized incidents", &specialized_incident_block },
-		{ _field_block, "accumulator incidents", &incident_accumulator_block },
-		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block },
+		{ _field_block, "specialized incidents", &specialized_incident_block, _field_id_slap },
+		{ _field_block, "accumulator incidents", &incident_accumulator_block, _field_id_slap },
+		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block, _field_id_slap },
 		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
 		{ _field_block, "response", &game_incident_response_block },
 		{ _field_terminator }
@@ -378,7 +378,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSEDINCIDENT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "suppressed incidents", &suppressed_incident_block },
+		{ _field_block, "suppressed incidents", &suppressed_incident_block, _field_id_slap },
 		{ _field_terminator }
 	};
 

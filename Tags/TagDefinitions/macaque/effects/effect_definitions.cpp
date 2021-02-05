@@ -30,7 +30,7 @@ namespace macaque
 		{ _field_string_id, "scale A override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_string_id, "scale B override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_real, "runtime danger radius", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "locations", &effect_locations_block },
+		{ _field_block, "locations", &effect_locations_block, _field_id_slap },
 		{ _field_block, "events", &effect_event_block },
 		{ _field_block, "looping sounds", &effect_looping_sound_block },
 		{ _field_real, "always play distance" },

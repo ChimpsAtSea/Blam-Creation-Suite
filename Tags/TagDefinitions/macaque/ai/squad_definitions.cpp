@@ -40,10 +40,10 @@ namespace macaque
 		SQUAD_GROUPS_BLOCK_ID)
 	{
 		{ _field_string, "name", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "parent", &squad_groups_block },
+		{ _field_short_block_index, "parent", &squad_groups_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &objectives_block },
 		FIELD_PAD("soon to be an initial task", nullptr, 2),
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_terminator }
 	};
 
@@ -62,11 +62,11 @@ namespace macaque
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_enum, "team", &ai_team_enum },
-		{ _field_short_block_index, "parent", &squad_groups_block },
+		{ _field_short_block_index, "parent", &squad_groups_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial zone", &zone_block },
 		{ _field_short_block_index, "initial objective", &objectives_block },
 		{ _field_custom_short_block_index, "initial task" },
-		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block },
+		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_block, "spawn formations", FIELD_FLAG_UNKNOWN0, &spawn_formation_block },
 		{ _field_block, "spawn points", FIELD_FLAG_UNKNOWN0, &spawn_points_block },
 		{ _field_long_enum, "wave placement filter", &wave_placement_filter_enum },
@@ -285,10 +285,10 @@ namespace macaque
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
 		FIELD_EXPLANATION("Character Build", nullptr, "Specify the distribution of characters and weapons in the following blocks"),
-		{ _field_block, "character type", &character_ref_choice_block },
-		{ _field_block, "initial weapon", &weapon_ref_choice_block },
-		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block },
-		{ _field_block, "initial equipment", &equipment_ref_choice_block },
+		{ _field_block, "character type", &character_ref_choice_block, _field_id_grid },
+		{ _field_block, "initial weapon", &weapon_ref_choice_block, _field_id_grid },
+		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block, _field_id_grid },
+		{ _field_block, "initial equipment", &equipment_ref_choice_block, _field_id_grid },
 		{ _field_enum, "grenade type", &global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade", nullptr, 2),
 		{ _field_tag_reference, "vehicle type", &vehicle_reference$3 },

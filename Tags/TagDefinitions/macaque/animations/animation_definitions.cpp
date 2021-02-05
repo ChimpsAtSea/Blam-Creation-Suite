@@ -1512,7 +1512,7 @@ namespace macaque
 		{ _field_block, "effect references", &animation_graph_effect_reference_block },
 		{ _field_block, "blend screens", &animation_blend_screen_block },
 		{ _field_block, "foot markers", &foot_tracking_member_block },
-		{ _field_block, "animations", FIELD_FLAG_READ_ONLY, &animation_pool_block },
+		{ _field_block, "animations", FIELD_FLAG_READ_ONLY, &animation_pool_block, _field_id_wide },
 		{ _field_block, "NEW blend screens", &new_animation_blend_screen_block },
 		{ _field_block, "NEW function overlays", &new_animation_function_overlay_block },
 		{ _field_block, "overlay groups", &overlay_group_definition_block },
