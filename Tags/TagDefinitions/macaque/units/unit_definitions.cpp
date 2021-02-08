@@ -314,18 +314,35 @@ namespace macaque
 		UNIT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ UNIT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &unit_flags_part1, _field_id_dumb },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "flags2", &unit_flags_part2, _field_id_dumb },
+		
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "constant sound volume", &ai_sound_volume_enum },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "hologram unit reference", &unit_struct_definition_hologram_unit_reference_reference },
+		
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "screen effects", &unit_screen_effect_block },
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_tag_reference, "integrated_light_toggle", &integrated_light_toggle_reference },
+		{ _field_legacy, _field_angle, "camera field of view" },
+		
 		{ _field_real, "camera stiffness" },
 		{ _field_struct, "unit camera", &unit_camera_struct },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		FIELD_EXPLANATION("sync action camera fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "sync action camera", &unit_camera_struct },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_reference },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
@@ -335,15 +352,26 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_reference },
-		FIELD_CUSTOM("pings", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_real_vector_3d, "acceleration range#ranges i,j,k" },
+		{ _field_legacy, _field_real, "acceleration action scale" },
+		{ _field_legacy, _field_real, "acceleration attach scale" },
+		
+		FIELD_CUSTOM("pings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "soft ping interrupt time", nullptr, "seconds" },
 		{ _field_real, "hard ping threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "hard ping interrupt time", nullptr, "seconds" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "soft death direction speed threshold", "moving faster than this means you will soft death in the movement direction. zero defaults to damage direction.", "wu/s" },
 		{ _field_real, "hard death threshold", nullptr, nullptr, "[0,1]" },
+
 		{ _field_real, "feign death threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign death time", nullptr, "seconds" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 7 },
 		{ _field_real, "pain screen duration", "The duration of the pain function\n0 defaults to 0.5", "seconds" },
 		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds" },
 		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region.", nullptr, "[0,1]" },
@@ -351,98 +379,156 @@ namespace macaque
 		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it's too close to the previous ping.", "degrees" },
 		{ _field_real, "defensive screen duration", "The duration of the defensive function\n0 defaults to 2.0", "seconds" },
 		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to.", nullptr, "[0,1]" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _field_legacy, _field_real, "distance of evade anim:world units#this must be set to tell the AI how far it should expect our evade animation to move us" },
+		
 		{ _field_real, "distance of dive anim", "this must be set to tell the AI how far it should expect our dive animation to move us", "world units" },
 		{ _field_real_fraction, "terminal velocity fall ratio", "ratio of airborne_arc animation to switch off falling overlay" },
-		FIELD_CUSTOM("stun", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+
+		FIELD_CUSTOM("stun", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "stun movement penalty", "1.0 prevents moving while stunned", nullptr, "[0,1]" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
 		{ _field_real, "stun turning penalty", "1.0 prevents turning while stunned", nullptr, "[0,1]" },
 		{ _field_real, "stun jumping penalty", "1.0 prevents jumping while stunned", nullptr, "[0,1]" },
 		{ _field_real, "minimum stun time", "all stunning damage will last for at least this long", "seconds" },
 		{ _field_real, "maximum stun time", "no stunning damage will last for longer than this", "seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
 		{ _field_real, "feign death chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "feign repeat chance", nullptr, nullptr, "[0,1]" },
 		{ _field_tag_reference, "spawned turret character", "automatically created character when this unit is driven", &character_reference },
 		{ _field_short_bounds, "spawned actor count", "number of actors which we spawn" },
 		{ _field_real, "spawned velocity", "velocity at which we throw spawned actors" },
-		FIELD_CUSTOM("aiming/looking", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		
+		FIELD_CUSTOM("aiming/looking", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_string_id, "target aiming pivot marker name", "set this to have your weapon barrel point at its calcualed target instead of matching the aiming of the unit controlling it.  This marker should be along the barrel at point that doesn't move when the barrel pitches up and down." },
+
 		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "aiming acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_real_fraction, "casual aiming modifier", nullptr, nullptr, "[0,1]" },
 		{ _field_angle, "looking velocity maximum", nullptr, "degrees per second" },
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_real, "object velocity maximum", "Debug value for object velocity that corresponds to a blend screen weight of 1, 0 defaults to 5.0", "world units per second", FIELD_FLAG_UNKNOWN0 },
+
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
 		{ _field_struct, "more damn nodes", &unit_additional_node_names_struct },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_enum, "melee damage class", &global_melee_class_enum_definition },
 		FIELD_PAD("PAD", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_CUSTOM("melee damage", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		
+		FIELD_CUSTOM("melee damage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_tag_reference, "melee damage", &global_damage_reference },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_tag_reference, "native melee override", "when set, characters will melee with these settings rather than their actual held weapon. (for characters that melee with an off hand)", &weapon_reference },
+
 		{ _field_struct, "your momma", &unit_boarding_melee_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
 		{ _field_enum, "item owner size", &unit_item_owner_size_enum },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_string_id, "equipment variant name" },
 		{ _field_string_id, "grounded equipment variant name" },
+		
 		{ _field_block, "postures", &unit_postures_block },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_block, "HUD Interfaces", &unit_hud_interfaces_block_block },
+		
 		{ _field_block, "Hud audio cues", &hud_unit_sound_block },
 		{ _field_block, "dialogue variants", &dialogue_variant_block },
-		FIELD_CUSTOM("standard grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		
+		FIELD_CUSTOM("standard grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_real, "grenade angle", nullptr, "degrees" },
 		{ _field_real, "grenade angle max elevation", nullptr, "degrees" },
 		{ _field_real, "grenade angle min elevation", nullptr, "degrees" },
+		
 		{ _field_real, "grenade velocity", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("sprinting grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 6 },
+		FIELD_CUSTOM("sprinting grenade throw", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "grenade angle (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade angle max elevation (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade angle min elevation (sprinting)", nullptr, "degrees" },
 		{ _field_real, "grenade velocity (sprinting)", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("primary weapon toss", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
+		FIELD_CUSTOM("primary weapon toss", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "weapon angle", nullptr, "degrees" },
 		{ _field_real, "weapon angle max elevation", nullptr, "degrees" },
 		{ _field_real, "weapon angle min elevation", nullptr, "degrees" },
 		{ _field_real, "weapon velocity", nullptr, "world units per second" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
 		{ _field_enum, "grenade type", &global_grenade_type_enum },
 		{ _field_short_integer, "grenade count" },
 		{ _field_block, "powered seats", &powered_seat_block },
 		{ _field_block, "weapons", &unit_weapon_block },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 1 },
 		{ _field_block, "target tracking", &global_target_tracking_parameters_block },
+		
 		{ _field_block, "seats", &unit_seat_block },
-		FIELD_CUSTOM("open/close", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 4 },
+		FIELD_CUSTOM("open/close", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "opening time", "how long the unit takes to open when the hs_function unit_open is called\nThe current open state can be retrieved from the object function unit_open", "s" },
 		{ _field_real, "closing time", "you don't have to go home, but you can't stay here", "s" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("EMP Disabling", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
+		FIELD_CUSTOM("EMP Disabling", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "emp disabled time", nullptr, "seconds" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "emp disabled time (PVP)", "Set to -1 for not disabled in MP but disabled in SP", "seconds " },
+		
 		{ _field_tag_reference, "emp disabled effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Boost", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
+		FIELD_CUSTOM("Boost", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "boost", &unit_boost_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
 		FIELD_EXPLANATION("Lipsync", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "lipsync", &unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "exit and detach damage", &global_damage_reference },
 		{ _field_tag_reference, "exit and detach weapon", &global_weapon_reference },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
 		FIELD_EXPLANATION("Experience", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_integer, "experience for kill" },
 		{ _field_short_integer, "experience for assist" },
 		{ _field_tag_reference, "hero assist equipment", "this is where you stick an equipment that the biped will always have, to implement the bizarrely named hero assist", &global_equipment_reference },
 		{ _field_real, "bailout threshold", "the speed above which units will bail out of a vehicle instead of just exiting", "wu/s" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end), // end unit group
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 },
 		{ _field_real_fraction, "iron sight weapon dampening", "when using iron sights, how much to scale the weapon overlays to steady the gun (0 = rock steady, 1= no dampening)", "(0-1)" },
-		FIELD_CUSTOM("Birthing", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
+		FIELD_CUSTOM("Birthing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "birth", &unit_birth_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		
 		{ _field_terminator }
 	};
 
@@ -456,7 +542,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_CAMERA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Unit Camera", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Unit Camera", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_word_flags, "flags", &unit_camera_flags_definition },
 		FIELD_PAD("doh", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
@@ -475,7 +561,7 @@ namespace macaque
 		{ _field_block, "camera acceleration", &unit_camera_acceleration_displacement_block },
 		{ _field_block, "move stick overrides", &gamepad_stick_info_block },
 		{ _field_block, "look stick overrides", &gamepad_stick_info_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

@@ -44,7 +44,10 @@ namespace macaque
 		{ _field_data, "xenon processed pixel data", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "xenon bitmaps", FIELD_FLAG_READ_ONLY, &bitmap_data_block_def_block },
 		{ _field_block, "hardware textures", &bitmap_texture_interop_block },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block },
+		
 		{ _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block },
 		{ _field_terminator }
 	};
@@ -120,7 +123,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_struct, "texture resource", &render_texture_interop_definition_struct_struct_definition },
+
+		{ _field_legacy, _field_version_not_equal, _engine_type_haloreach },
 		{ _field_api_interop, "texture interop", &render_texture_interop_definition_struct },
+		
 		{ _field_terminator }
 	};
 

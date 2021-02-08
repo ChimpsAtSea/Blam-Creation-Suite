@@ -18,7 +18,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIG_BATTLE_CREATURE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("CREATURE", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("CREATURE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -42,7 +42,7 @@ namespace macaque
 		{ _field_tag_reference, "big battle expensive weapon effect", "this fires a full effect from location up, oriented along vehicle's forward and up axes", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_tag_reference, "imposter model", &imposter_model_reference },
 		{ _field_terminator }
 	};
@@ -94,7 +94,7 @@ namespace macaque
 		CREATURE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -118,7 +118,7 @@ namespace macaque
 		{ _field_tag_reference, "big battle expensive weapon effect", "this fires a full effect from location up, oriented along vehicle's forward and up axes", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

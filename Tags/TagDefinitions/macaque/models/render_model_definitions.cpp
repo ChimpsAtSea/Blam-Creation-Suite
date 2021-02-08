@@ -156,7 +156,7 @@ namespace macaque
 		{ _field_real_point_3d, "inverse position", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "inverse scale", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "distance from parent", FIELD_FLAG_READ_ONLY },
-		FIELD_CUSTOM("Procedural Joint", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Procedural Joint", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
@@ -164,7 +164,7 @@ namespace macaque
 		{ _field_short_block_index, "procedure node B", &render_model_node_block },
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -309,9 +309,9 @@ namespace macaque
 		{ _field_real, "brightness adjustment" },
 		{ _field_block, "node maps", &imposter_mode_node_block },
 		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &render_model_region_block, _field_id_slap },
-		FIELD_CUSTOM("render geometry", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("render geometry", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

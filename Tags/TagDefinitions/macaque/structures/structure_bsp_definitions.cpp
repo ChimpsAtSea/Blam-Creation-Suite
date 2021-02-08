@@ -80,15 +80,15 @@ namespace macaque
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM("decorator info", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("decorator info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "decorator sets", FIELD_FLAG_READ_ONLY, &runtime_decorator_set_block },
 		{ _field_struct, "decorator instance buffer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("decals info", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("decals info", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "preplaced decal sets", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_set_reference_block },
 		{ _field_block, "preplaced decals", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_reference_block },
 		{ _field_struct, "preplaced decal geometry", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "acoustics sound clusters", FIELD_FLAG_UNKNOWN0, &structure_bsp_sound_cluster_block },
 		{ _field_block, "transparent planes", FIELD_FLAG_READ_ONLY, &transparent_planes_block },
 		{ _field_block, "debug info", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_block },
@@ -97,9 +97,9 @@ namespace macaque
 		{ _field_block, "widget references", &widget_reference_block },
 		{ _field_block, "cheap light references", &cheap_light_reference_block },
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
-		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_block, "Any Platform Temp Havok Data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
 		{ _field_long_integer, "base material count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -521,9 +521,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Cookie Cutter", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Cookie Cutter", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "collision model", &global_collision_bsp_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

@@ -30,9 +30,12 @@ namespace macaque
 		{ _field_block, "dead sphere shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &spheres_block },
 		{ _field_block, "pill shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &pills_block },
 		{ _field_block, "sphere shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &spheres_block },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_block, "list sphere shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &spheres_block },
 		{ _field_block, "list shapes", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &lists_block },
 		{ _field_block, "list shape childInfos", "don't be an asshole, edit something else", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &list_shapes_block },
+
 		FIELD_EXPLANATION("ground", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "ground physics", &character_physics_ground_struct },
 		FIELD_EXPLANATION("flying", nullptr, FIELD_FLAG_NONE, ""),

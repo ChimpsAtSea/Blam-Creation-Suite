@@ -300,12 +300,12 @@ namespace macaque
 		{ _field_real, "camouflaged enemy visible distance (legendary)", "Distance below which the AI becomes aware of you even if you are camouflaged, lengendary difficulty", "wu" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
-		FIELD_CUSTOM("Normal active-camo perception", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Normal active-camo perception", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "normal active camo perception", &active_camo_perception_properties },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Legendary active-camo perception", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Legendary active-camo perception", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "legendary active camo perception", &active_camo_perception_properties },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -373,15 +373,15 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTERHOPDEFINITIONBLOCK_ID)
 	{
-		FIELD_CUSTOM("Default", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Default", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Default", &character_hop_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Passive", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Passive", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Passive", &character_hop_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Aggressive", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Aggressive", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "Aggressive", &character_hop_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -418,7 +418,7 @@ namespace macaque
 		{ _field_real, "leap proximity fraction", "How close to the obstacle should the actor be before leaping 1- too close, 0- as soon as he becomes aware of it", nullptr, "[0-1]" },
 		{ _field_real, "avoidance volume turn penalty distance", "The maximum distance penalty applied to an avoidance volume search path if we're facing away from the path. 1000 wu good for space, 5 wu good for ground.", "wus" },
 		{ _field_long_flags, "movement hints", &movement_hint_enum },
-		FIELD_CUSTOM("Throttle and inertia", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Throttle and inertia", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_integer, "minimum movement ticks", "We will move at least this long in a single direction when starting movement", "ticks" },
 		{ _field_real, "minimum movement ticks reset angle", "If the character changes movement direction by more than this angle, he will have to move for at least minimum movement ticks until he can change his mind.", "degrees" },
 		{ _field_block, "change direction pause", &movement_stationary_pause_block },
@@ -430,7 +430,7 @@ namespace macaque
 		{ _field_real, "non direction change juke probability", "Probability to do a juke for a given tick, even if you are not planning to change direction (and provided you have not already performed a juke within the timeout time" },
 		{ _field_real, "non direction change juke timeout", "After you do a change or no change of direction juke, you cannot perform a NON directional change juke for at least this many seconds. Direction change jukes will still happen", "seconds" },
 		{ _field_long_integer, "minimum post juke movement ticks", "How many ticks should the actor keep moving after a juke? This may lower juke frequency.", "ticks" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "stationary turn radius", "If this actor translates during turn animations, enter a radius that encloses the translation.", nullptr, "[wu]" },
 		{ _field_real, "localized move distance", "Distance to move as per the move_localized firing position evaluator (0 value resolves to 5wu)", nullptr, "[wu]" },
 		{ _field_real_bounds, "move distance", "Distance to move as per the move_distance firing position evaluator (0 value resolves to 5wu for min, 10wu for max)", nullptr, "[wu]" },
@@ -438,18 +438,18 @@ namespace macaque
 		{ _field_real, "turn and run distance from target", "Actor will face away from his target and run to his destination if his target at a larger distance than this", "wus" },
 		{ _field_real, "turn and run distance to destination", "Firing point must be at least this distance away from the actor for him to consider turning and running to it", "wus" },
 		{ _field_real, "follow unit buffer distance", "When following a unit, such as the player, this is the additional buffer outside of the task follow radius that we are allowed to position ourselves before full firing position avoidance kicks in", "wus" },
-		FIELD_CUSTOM("Phasing", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Phasing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "phase chance" },
 		{ _field_real, "phase delay seconds", "don't attempt again before given time since last phase" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Movement Facing", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Movement Facing", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("Movement Facing", nullptr, FIELD_FLAG_NONE, "Characters using composite animations can choose to align their facing with their aim-target or their destination. These settings control how the facing is determined."),
 		{ _field_real, "Departure Distance Min", "min distance from departure point where facing should be aligned with aim" },
 		{ _field_real, "Departure Distance Range", "max distance from departure point where facing should be aligned with heading" },
 		{ _field_real, "Arrival Distance Min", "min distance from destination point where facing should be aligned with aim" },
 		{ _field_real, "Arrival Distance Range", "max distance from destination point where facing should be aligned with heading" },
 		{ _field_angle, "Maximum Deviation Angle", "how far we will allow the facing to deviate from the preference." },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_struct, "smooth throttle", "Allows characters to be smooth throttle changes.", &SmoothThrottleStruct },
 		{ _field_struct, "smooth stopping", "Allows characters to slow down smoothly when stopping.", &SmoothStoppingStruct },
 		{ _field_terminator }
@@ -799,11 +799,11 @@ namespace macaque
 		{ _field_real, "Cover shield fraction", "Only cover when shield falls below this level" },
 		{ _field_real, "Cover vitality threshold", "Only cover when vitality falls below this level" },
 		{ _field_real, "Cover danger threshold", "Danger must be this high to cover. " },
-		FIELD_CUSTOM("Aggresive/Defensive cover properties", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Aggresive/Defensive cover properties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "minimum defensive distance from target", "How far from the target should we switch from aggresive to defensive covering (0 always defensive, big number always offensive)", "wus" },
 		{ _field_real, "minimum defensive distance from cover", "If our cover point is less than this distance, we will never consider defensive covering", "wus" },
 		{ _field_real, "always defensive scary threshold", "If the target has scarines bigger or equal to this, we will always cover defensively" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_EXPLANATION("Other", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "Cover check delay", "Amount of time I will wait before trying again after covering (0 value defaults to 2 seconds)", "seconds" },
 		{ _field_real, "Cover pinned down check delay", "Amount of time I will wait before issuing a pinned down message (0 value defaults to 2 seconds)", "seconds" },
@@ -885,14 +885,14 @@ namespace macaque
 		{ _field_long_flags, "Pre-search flags", &generic_flags },
 		{ _field_real_bounds, "max presearch time", "Presearch turns off after the given time", "seconds" },
 		{ _field_real, "max suppress time", "Suppress turns off after the given time (0 defaults to 8 seconds)", "seconds" },
-		FIELD_CUSTOM("Child Weights", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Child Weights", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "suppressing fire weight" },
 		{ _field_real, "uncover weight" },
 		{ _field_real, "leap on cover weight" },
 		{ _field_real, "destroy cover weight" },
 		{ _field_real, "guard weight" },
 		{ _field_real, "investigate weight" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -1992,7 +1992,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SMOOTHTHROTTLESTRUCT_ID)
 	{
-		FIELD_CUSTOM("Smooth Throttle", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Smooth Throttle", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
 		FIELD_EXPLANATION("Override Settings", nullptr, FIELD_FLAG_NONE, "The following setting are applied when the Override option is chosen"),
 		FIELD_PAD("csts_pad_2", nullptr, FIELD_FLAG_NONE, 2),
@@ -2003,7 +2003,7 @@ namespace macaque
 		{ _field_angle, "Max Angular Acceleration", "maximum angular acceleration/deceleration limit for throttle changes.", "degrees per tick" },
 		{ _field_real, "Max Reversal Linear Acceleration", "maximum linear Accel/Decel limit for throttle magnitude when reversing direction.", "throttle units per tick" },
 		{ _field_angle, "Max Reversal Angular Acceleration", "maximum angular Accel/Decel limit for throttle heading when reversing direction.", "degrees per tick" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -2016,7 +2016,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SMOOTHSTOPPINGSTRUCT_ID)
 	{
-		FIELD_CUSTOM("Smooth Stopping", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Smooth Stopping", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
 		FIELD_EXPLANATION("Override Settings", nullptr, FIELD_FLAG_NONE, "The following setting are applied when the Override option is chosen"),
 		FIELD_PAD("csst_pad_2", nullptr, FIELD_FLAG_NONE, 2),
@@ -2024,7 +2024,7 @@ namespace macaque
 		{ _field_real_bounds, "Arrival Throttle", "Throttle magnitude desired upon arrival. Should be non zero, and greater than 0.1 to avoid super-slow stops", "range (0.05, 1.0)" },
 		{ _field_real_bounds, "Stopping Power", "Power value used to determine stopping curve. Values <1 produce sharper stops, >1 produce more ease-in.", "exponent" },
 		{ _field_real_bounds, "Idle Time", "seconds to idle when stopped.", "exponent" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

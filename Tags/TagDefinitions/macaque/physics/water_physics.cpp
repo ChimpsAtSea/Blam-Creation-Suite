@@ -79,12 +79,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Pressure", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Pressure", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "pressure", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Suction", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Suction", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "suction", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "linear damping" },
 		{ _field_real, "angular damping" },
 		{ _field_terminator }

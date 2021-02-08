@@ -41,14 +41,14 @@ namespace macaque
 		{ _field_short_integer, "maximum spawn suppression time", "maximal time that a player can continue to delay his spawn by switching targets" },
 		{ _field_real, "nearby enemy cylinder height" },
 		{ _field_real, "nearby enemy cylinder radius" },
-		FIELD_CUSTOM("Safety Statuses", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Safety Statuses", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_enum, "ready", "safe and ready to spawn - this value currently ignored", &safety_check_mode_enum },
 		{ _field_long_enum, "waiting", "safe but waiting to spawn - this value currently ignored", &safety_check_mode_enum },
 		{ _field_long_enum, "enemy territory", "spawn target is inside enemy territory volumes", &safety_check_mode_enum },
 		{ _field_long_enum, "teammate damaged", "spawn target has recently taken damage", &safety_check_mode_enum },
 		{ _field_long_enum, "enemy nearby", "There is an enemy within the cylinder around the spawn target", &safety_check_mode_enum },
 		{ _field_long_enum, "projectiles", "There are dangerous projectiles in the area", &safety_check_mode_enum },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "failover to influence spawning time", "number of seconds before influence spawning will be used (<= 0 is disabled)" },
 		{ _field_terminator }
 	};

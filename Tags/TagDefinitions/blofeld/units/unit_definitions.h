@@ -34,6 +34,8 @@ namespace blofeld
 	extern s_tag_block_definition unit_seat_block_block;
 	extern s_tag_block_definition unit_block_block;
 
+	extern s_tag_reference_definition integrated_light_toggle_reference;
+	
 	extern s_tag_block_definition unit_hud_interfaces_block_block;
 	extern s_tag_struct_definition unit_hud_interfaces_block_block_struct;
 

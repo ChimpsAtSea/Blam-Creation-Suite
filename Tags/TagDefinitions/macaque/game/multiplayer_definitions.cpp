@@ -71,7 +71,7 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
-		FIELD_CUSTOM("- Emblem Data", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("- Emblem Data", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_byte_integer, "foreground emblem index" },
 		{ _field_byte_integer, "background emblem index" },
 		{ _field_byte_flags, "info flags", &emblemInfoFlags },
@@ -79,7 +79,7 @@ namespace macaque
 		{ _field_char_enum, "secondary color index", &playerColorEnum },
 		{ _field_char_enum, "background color index", &playerColorEnum },
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

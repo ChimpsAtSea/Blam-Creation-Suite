@@ -96,9 +96,9 @@ namespace macaque
 		FIELD_PAD("CB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		FIELD_CUSTOM("unlock prerequisites", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("unlock prerequisites", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "levels", &commendationLevelBlock_block },
 		{ _field_terminator }
 	};

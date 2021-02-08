@@ -32,12 +32,12 @@ namespace macaque
 		SPAWNER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "entity", &entity_struct_definition },
-		FIELD_CUSTOM("$$$ SPAWNER $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ SPAWNER $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_byte_flags, "Spawner Flags", &SpawnerFlags },
 		FIELD_PAD("FlagPad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "Post Spawn Cooldown (ticks)" },
 		{ _field_real, "Activation Task Priority ", "Priority of task to activate this spawner." },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

@@ -226,8 +226,8 @@ inline const char* h4_field_type_to_generic_field_type(e_h4_field_type field_typ
 
 enum e_h4_field_id_type
 {
-	_h4_field_id_function_group_begin = 'fgrb',
-	_h4_field_id_function_group_end = 'fgre',
+	_h4_field_id_field_group_begin = 'fgrb',
+	_h4_field_id_field_group_end = 'fgre',
 	_h4_field_id_point = 'poin',
 	_h4_field_id_orientation = 'orie',
 	_h4_field_id_scale = 'scal',
@@ -315,8 +315,8 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 {
 	switch (custom_field_type)
 	{
-	case _h4_field_id_function_group_begin:						return "_field_id_function_group_begin";
-	case _h4_field_id_function_group_end:					  	return "_field_id_function_group_end";
+	case _h4_field_id_field_group_begin:						return "_field_id_field_group_begin";
+	case _h4_field_id_field_group_end:					  		return "_field_id_field_group_end";
 	case _h4_field_id_point:									return "_field_id_point";
 	case _h4_field_id_orientation:							  	return "_field_id_orientation";
 	case _h4_field_id_scale:									return "_field_id_scale";

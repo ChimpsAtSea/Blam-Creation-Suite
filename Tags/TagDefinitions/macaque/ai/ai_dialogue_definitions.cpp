@@ -122,7 +122,13 @@ namespace macaque
 		{ _field_enum, "danger level", "Speaker must have danger level of at least this much", &danger_enum },
 		{ _field_char_enum, "speaker/subject position", &spatial_relation_enum },
 		{ _field_char_enum, "speaker/cause position", &spatial_relation_enum },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_long_integer, "unknown" }, // likely a block index. #todo that seems sketchy - Squaresome
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "Conditions", &dialogue_condition_flags },
+		
 		FIELD_EXPLANATION("Matching", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "spatial relation", "with respect to the subject, the cause is ...", &spatial_relation_enum },
 		{ _field_enum, "damage type", &damage_enum },

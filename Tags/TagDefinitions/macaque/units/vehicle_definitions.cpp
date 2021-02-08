@@ -656,7 +656,7 @@ namespace macaque
 		VEHICLE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
-		FIELD_CUSTOM("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ VEHICLE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &vehicle_flags },
 		FIELD_EXPLANATION("physics type", nullptr, FIELD_FLAG_NONE, "define one of the following blocks for the type of physics you wish this vehicle to have."),
 		{ _field_struct, "physics types", &vehicle_physics_types_struct },
@@ -693,7 +693,7 @@ namespace macaque
 		{ _field_tag_reference, "rider boost damage effect or response", &global_damage_effect_or_response_definition_reference },
 		{ _field_string_id, "vehicle name" },
 		{ _field_block, "physics transitions", &physics_transitions_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

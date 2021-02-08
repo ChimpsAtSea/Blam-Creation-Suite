@@ -335,9 +335,9 @@ namespace macaque
 		{ _field_block, "elite respawn options", &game_engine_respawn_options_block },
 		{ _field_block, "set properties", &game_engine_survival_set_properties_block },
 		{ _field_block, "round properties", &game_engine_survival_round_properties_block },
-		FIELD_CUSTOM("bonus round", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("bonus round", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "bonus round properties", &game_engine_survival_bonus_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "custom skulls", &game_engine_survival_custom_skull_block },
 		{ _field_terminator }
 	};
@@ -367,15 +367,15 @@ namespace macaque
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), FIELD_FLAG_INDEX, &skull_flags },
-		FIELD_CUSTOM("initial wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("initial wave", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "initial waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("primary wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("primary wave", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "primary waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("boss wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("boss wave", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "boss waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

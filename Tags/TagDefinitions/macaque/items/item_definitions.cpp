@@ -46,7 +46,7 @@ namespace macaque
 		ITEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &item_definition_flags },
 		{ _field_short_integer, "OLD message index" },
 		{ _field_short_integer, "sort order" },
@@ -80,7 +80,7 @@ namespace macaque
 		{ _field_real, "huge unit (stowed)" },
 		{ _field_tag_reference, "grounded friction settings", "If not present, the default from global.globals is used.", &global_grounded_friction_reference },
 		{ _field_tag_reference, "Tossed Override", "Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override.", &object_reference$3 },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

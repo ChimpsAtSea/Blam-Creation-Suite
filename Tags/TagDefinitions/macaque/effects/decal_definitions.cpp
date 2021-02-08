@@ -43,10 +43,10 @@ namespace macaque
 		{ _field_real, "clamp angle", "Projections at greater than this angle will be clamped to this angle", "degrees" },
 		{ _field_real, "cull angle", "Projections at greater than this angle will not be drawn", "degrees" },
 		{ _field_real, "depth bias" },
-		FIELD_CUSTOM("Decal Strip", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Decal Strip", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "strip U-coordinate tile length" },
 		{ _field_real, "strip max profile distance" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_real, "runtime bitmap aspect", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
 	};

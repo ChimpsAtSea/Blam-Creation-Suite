@@ -331,12 +331,12 @@ namespace macaque
 		{ _field_tag_reference, "vehicle authored light probe", &AuthoredLightProbeReference },
 		{ _field_real, "max shadow count scale", "scale up or down the max number of shadows as set in the throttle tag per bsp" },
 		{ _field_real, "decorator sunlight minimum", "0.0 means allow fully dark in the shadows, higher values will brighten up the shadowed decorators", nullptr, "[0.0 to 1.0]" },
-		FIELD_CUSTOM("volumetric light shafts", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("volumetric light shafts", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "volumetric light shaft settings", &scenarioVolumetricLightShaftSettingsStruct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("floating shadows", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("floating shadows", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "floating shadow settings", &scenarioFloatingShadowSettingsStruct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_EXPLANATION("Clones", nullptr, FIELD_FLAG_NONE, "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n"),
 		{ _field_long_block_flags, "cloned bsp flags", &scenario_structure_bsp_reference_block },
 		{ _field_struct, "lightmap setting", MAKE_OLD_NAMES("lightmap resolution buckets"), &scenario_lightmap_setting_struct },
@@ -1445,14 +1445,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIOFLOATINGSHADOWCASCADESETTINGSARRAY_ID)
 	{
-		FIELD_CUSTOM("CASCADE", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("CASCADE", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "cascade half-width" },
 		{ _field_real, "cascade length" },
 		{ _field_real, "cascade offset" },
 		{ _field_real, "bias" },
 		{ _field_real, "filter width" },
 		{ _field_real, "sun direction offset", "if we want to slide the frustum up closer to the sun so that not as much of the frustum is below the ground" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

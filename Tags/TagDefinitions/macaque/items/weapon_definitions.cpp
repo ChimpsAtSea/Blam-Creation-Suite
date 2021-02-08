@@ -20,7 +20,7 @@ namespace macaque
 		WEAPON_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "item", &item_struct_definition },
-		FIELD_CUSTOM("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ WEAPON $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION(nullptr, nullptr, FIELD_FLAG_NONE, "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &weapon_definition_secondary_flags },
@@ -155,7 +155,7 @@ namespace macaque
 		{ _field_block, "Sound Sweeteners", &WeaponSoundSweetenerBlock_block },
 		{ _field_string_id, "Locking Reticle Screen Name" },
 		{ _field_string_id, "Locked On Reticle Screen Name" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -698,19 +698,19 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
 	{
-		FIELD_CUSTOM("accuracy penalties", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("accuracy penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "reload penalty", "percentage accuracy lost when reloading" },
 		{ _field_real, "switch penalty", "percentage accuracy lost when switching weapons" },
 		{ _field_real, "zoom penalty", "percentage accuracy lost when zooming in/out" },
 		{ _field_real, "jump penalty", "percentage accuracy lost when jumping" },
 		FIELD_EXPLANATION("barrel_error penalty functions", nullptr, FIELD_FLAG_NONE, "barrel_error = barrel_error + penaltyfunction(barrel_error)\nWhere input value \'X\' produces output value \'Y\'\n"),
-		FIELD_CUSTOM("single wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("single wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "single wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("dual wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("dual wield penalties", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "dual wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

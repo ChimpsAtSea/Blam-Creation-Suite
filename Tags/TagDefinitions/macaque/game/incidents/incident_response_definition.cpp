@@ -17,13 +17,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_WRITEABLE),
 		GAME_INCIDENT_RESPONSE_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_string_id, "allowed level name", "Can only be triggered on this level." },
 		{ _field_long_flags, "required skulls", "These skulls must be enabled to trigger.", &skull_flags_definition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_long_integer, "heat award" },
 		{ _field_string_id, "game engine event" },
 		{ _field_string_id, "medal" },

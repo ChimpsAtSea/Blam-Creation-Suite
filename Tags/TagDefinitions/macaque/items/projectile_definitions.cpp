@@ -202,7 +202,7 @@ namespace macaque
 		PROJECTILE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ PROJECTILE $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &projectile_flags },
 		{ _field_long_flags, "secondary flags", &secondary_projectile_flags },
 		{ _field_enum, "detonation timer starts", &projectile_detonation_timer_modes },
@@ -283,7 +283,7 @@ namespace macaque
 		{ _field_tag_reference, "grounded friction settings", "If not present, the default from global.globals is used.", &global_grounded_friction_reference },
 		{ _field_tag_reference, "killcam parameters", "if not present, first person will be used.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 		{ _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

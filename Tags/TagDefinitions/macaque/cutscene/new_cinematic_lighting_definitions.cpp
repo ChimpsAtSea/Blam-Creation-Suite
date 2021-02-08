@@ -51,7 +51,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Cinematic Lighting", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Cinematic Lighting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_CUSTOM("Cinema Lighting", nullptr, FIELD_FLAG_NONE, _field_id_cinematic_version),
 		{ _field_long_integer, "version", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM("Direction&Direction(D)", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
@@ -78,7 +78,7 @@ namespace macaque
 		{ _field_real, "Indirect intensity", _field_id_slider_editor },
 		FIELD_CUSTOM("Interpolation", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Interpolation", _field_id_slider_editor },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block },
 		{ _field_block, "Cortana Lighting", &hologramLightingBlock_block },
 		{ _field_block, "dynamic lights", FIELD_FLAG_UNKNOWN0, &cinematic_dynamic_light_block },

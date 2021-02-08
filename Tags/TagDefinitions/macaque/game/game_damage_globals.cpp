@@ -72,15 +72,15 @@ namespace macaque
 		{ _field_tag_reference, "default damage response", "fall back if none is specified in damage effect tags", MAKE_OLD_NAMES("damage response"), &global_damage_response_definition_reference },
 		{ _field_tag_reference, "friendly fire damage response", "anytime your teammate shoots you", &global_damage_response_definition_reference },
 		{ _field_real, "player shield spillover", "the minimum amount of shield vitality needed to prevent spillover from damage types that do not spillover." },
-		FIELD_CUSTOM("damage decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("damage decay", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "damage decay props", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("AI damage decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("AI damage decay", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "ai damage decay props", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("shield impact decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("shield impact decay", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "shield impact decay props", &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

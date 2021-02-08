@@ -108,8 +108,8 @@ namespace blofeld
 	{
 		_field_id_default,
 		
-		_field_id_function_group_begin = 'fgrb',
-		_field_id_function_group_end = 'fgre',
+		_field_id_field_group_begin = 'fgrb',
+		_field_id_field_group_end = 'fgre',
 		_field_id_point = 'poin',
 		_field_id_orientation = 'orie',
 		_field_id_scale = 'scal',

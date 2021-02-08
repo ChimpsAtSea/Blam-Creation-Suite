@@ -72,7 +72,7 @@ namespace macaque
 		GIANT_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
-		FIELD_CUSTOM("$$$ GIANT $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ GIANT $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &giant_definition_flags },
 		FIELD_EXPLANATION("movement", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "accel_time", nullptr, "acceleration time in seconds" },
@@ -88,7 +88,7 @@ namespace macaque
 		{ _field_block, "buckle-settings", &giant_buckle_parameters_block },
 		FIELD_EXPLANATION("ankle ik scale", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ankle ik scale", nullptr, "lower values drop the ankles towards the ground when computing ik" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

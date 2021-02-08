@@ -174,51 +174,101 @@ namespace macaque
 		BIPED_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "unit", &unit_struct_definition },
-		FIELD_CUSTOM("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		
+		FIELD_CUSTOM("$$$ BIPED $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
 		{ _field_long_flags, "flags", &biped_definition_flags },
 		{ _field_angle, "stationary turning threshold" },
 		{ _field_useless_pad, "" },
 		{ _field_useless_pad, "" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "death program selector", &death_program_selector_reference },
 		{ _field_string_id, "ragdoll region name", "when the biped transitions to ragdoll, this region will change to the destroyed state" },
 		{ _field_string_id, "assassination chud text", "The string id for the assassination action text in the CHUD" },
+		
 		FIELD_EXPLANATION("jumping and landing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "jump velocity", nullptr, "world units per second" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "tricks", &unit_trick_definition_block },
+
+		// #TODO: This is assumed to be a tag block. Assert on these values and check if they are non zero
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
+		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
+		{ _field_legacy, _field_long_integer, "unknown@" }, // assembly
+		
 		{ _field_useless_pad, "" },
 		{ _field_real, "maximum soft landing time", "the longest amount of time the biped can take to recover from a soft landing", "seconds" },
 		{ _field_real, "maximum hard landing time", "the longest amount of time the biped can take to recover from a hard landing", "seconds" },
 		{ _field_real, "minimum soft landing velocity", "below this velocity the biped does not react when landing", "world units per second" },
 		{ _field_real, "minimum hard landing velocity", "below this velocity the biped will not do a soft landing when returning to the ground", "world units per second" },
 		{ _field_real, "maximum hard landing velocity", "the velocity corresponding to the maximum landing time", "world units per second" },
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _field_legacy, _field_real, "death hard landing velocity" },
+		
 		{ _field_useless_pad, "" },
 		{ _field_real, "stun duration", "0 is the default.  Bipeds are stunned when damaged by vehicle collisions, also some are when they take emp damage" },
+
 		FIELD_EXPLANATION("camera, collision, and autoaim", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "standing camera height", nullptr, "world units" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "running camera height", nullptr, "world units" },
+		
 		{ _field_real, "crouching camera height", nullptr, "world units" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "crouch walking camera height", nullptr, "world units" },
+		
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
+
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_struct, "camera height velocity function", &mapping_function },
 		{ _field_block, "camera heights", &biped_camera_height_block },
+		
 		{ _field_angle, "camera interpolation start", "looking-downward angle that starts camera interpolation to fp position", "degrees" },
 		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
 		{ _field_real_vector_3d, "camera offset", "amount of fp camera movement in (forward, right, down) when pitched down by 'camera interpolation end' above", "wu" },
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach }, //h2ek
+		{ _field_legacy, _field_real, "camera exclusion distance" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 2 },
 		{ _field_real, "root offset camera scale" },
 		{ _field_real, "root offset camera dampening" },
+		
 		{ _field_real, "autoaim width", nullptr, "world units" },
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach, 2 }, // h2ek / assembly
+		{ _field_legacy, _field_long_flags, "lock-on flags", &biped_lock_on_flags_definition },
+		{ _field_legacy, _field_real, "lock-on distance" },
+		
 		{ _field_short_integer, "runtime physics control node index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("JWSSY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "runtime cosine stationary turning threshold", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime crouch transition velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_real, "runtime_camera_height_velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		
 		{ _field_short_integer, "runtime pelvis node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime head node index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_useless_pad, "" },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_block, "wall proximity feelers", &biped_wall_proximity_block },
+
+		{ _field_legacy, _field_version_less, _engine_type_haloreach },
+		{ _field_legacy, _field_real, "headshot acceleration scale" },
+		
 		{ _field_tag_reference, "area damage effect", &global_effect_reference },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 9 },
 		{ _field_tag_reference, "health station recharge effect", &global_effect_reference },
 		{ _field_block, "movement gates", &biped_movement_gate_block },
 		{ _field_block, "movement gates crouching", &biped_movement_gate_block },
@@ -228,6 +278,7 @@ namespace macaque
 		{ _field_real, "land aim offset duration", nullptr, "seconds" },
 		{ _field_real, "aim compensate minimum distance", nullptr, "world units" },
 		{ _field_real, "aim compensate maximum distance", nullptr, "world units" },
+		
 		{ _field_struct, "physics", &character_physics_struct },
 		{ _field_block, "contact points", "these are the points where the biped touches the ground", &contact_point_block },
 		{ _field_tag_reference, "reanimation character", "when the flood reanimate this guy, he turns into a ...", &character_reference$2 },
@@ -236,14 +287,22 @@ namespace macaque
 		{ _field_short_integer, "death spawn count" },
 		FIELD_PAD("TQYQEWG", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "leaping data", &biped_leaping_data_struct },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_struct, "vaulting data", &biped_vaulting_data_struct },
 		{ _field_struct, "grab biped data", &biped_grab_biped_data_struct },
 		{ _field_struct, "grab object data", &biped_grab_object_data_struct },
+		
 		{ _field_struct, "ground fitting data", &biped_ground_fitting_data_struct },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_tag_reference, "death particleize", "optional particleization effect definition, if you want this to particleize when it dies", &global_particleize_parameters_reference },
 		{ _field_real, "movement speed scale" },
 		{ _field_struct, "movement hip lean", &BipedMovementHipLeaningStruct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 11 },
 		{ _field_tag_reference, "Player biped sound bank", "Intended for biped vehicles (ie mantis)", &global_soundbank_reference },
 		{ _field_tag_reference, "RegenField Looping Sound", "plays when player is inside a RegenField", &global_looping_sound_reference },
 		{ _field_tag_reference, "Crouch down sound", "plays when player starts crouching", &global_sound_reference },
@@ -255,6 +314,7 @@ namespace macaque
 		{ _field_block, "Sound Sweeteners", &BipedSoundSweetenerBlock_block },
 		{ _field_block, "Aiming Fixup", &BipedAimingJointFixupBlock_block },
 		{ _field_tag_reference, "Self Illumination", &self_illumination_reference },
+		
 		{ _field_terminator }
 	};
 
@@ -267,7 +327,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_LEAPING_DATA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("wall-leaping", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("wall-leaping", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("wall-leaping fields", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "leap flags", &biped_leap_flags_definition },
 		{ _field_real_fraction, "dampening scale", nullptr, nullptr, "[0,1] 1= very slow changes" },
@@ -278,7 +338,7 @@ namespace macaque
 		{ _field_real_bounds, "anticipation ratio bounds", nullptr, "current velocity/leap velocity" },
 		{ _field_real_bounds, "reaction force bounds", nullptr, "units per second" },
 		{ _field_real_fraction, "lobbing desire", nullptr, "1= heavy arc, 0= no arc" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -291,14 +351,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_VAULTING_DATA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("vaulting", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("vaulting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("vaulting fields", nullptr, FIELD_FLAG_NONE, "The cost of the vault check is scaled by max horizontal distance divided by min object size.  Try to keep that number reasonably low."),
 		{ _field_real_bounds, "vault height bounds", nullptr, "wus" },
 		{ _field_real, "vault max horizontal distance", nullptr, "wus" },
 		{ _field_real_fraction, "vault arc amount", nullptr, "1= heavy arc, 0= no arc" },
 		{ _field_real, "vault min object size", nullptr, "wus" },
 		{ _field_real, "search width", nullptr, "wus, the side-to-side width of the search path" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -311,12 +371,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GRAB_BIPED_DATA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("grab biped", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("grab biped", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("grab biped fields", nullptr, FIELD_FLAG_NONE, "Allows a biped to grab and be grabbed by other bipeds."),
 		{ _field_string_id, "grab biped animation class" },
 		{ _field_char_enum, "throw biped control mode", &grab_biped_throw_control_modes },
 		FIELD_PAD("hurgh", nullptr, FIELD_FLAG_NONE, 3),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -329,10 +389,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GRAB_OBJECT_DATA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("grab object", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("grab object", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("grab object fields", nullptr, FIELD_FLAG_NONE, "Allows a biped to grab and throw crate objects."),
 		{ _field_block, "grab object animation sets", &biped_grab_object_animation_set_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -345,7 +405,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_GROUND_FITTING_DATA_STRUCT_ID)
 	{
-		FIELD_CUSTOM("ground fitting", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("ground fitting", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("ground fitting data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "ground fitting flags", &biped_ground_fitting_flags_definition },
 		{ _field_real_fraction, "ground normal dampening", nullptr, "react to slope changes (0=slow, 1= fast)" },
@@ -370,8 +430,8 @@ namespace macaque
 		{ _field_real, "foot turn weight dampening", nullptr, "dampening of fitting value for fit to turn radius(0=none, 1=fast)" },
 		{ _field_real, "foot turn blend on time", nullptr, "time to blend on the foot turn effect (seconds)" },
 		{ _field_real, "foot turn blend off time", nullptr, "time to blend off the foot turn effect (seconds)" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("pivot-on-foot", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("pivot-on-foot", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("pivot-on-foot data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_fraction, "pivot-on-foot scale", nullptr, "(0=none, 1= full)" },
 		{ _field_real, "pivot min foot delta", nullptr, "vert world units to find lowest foot" },
@@ -379,23 +439,23 @@ namespace macaque
 		{ _field_real_fraction, "pivot throttle scale", nullptr, "pivoting slows throttle (0=none, 1= full)" },
 		{ _field_real_fraction, "pivot offset dampening", nullptr, "react to pivot changes (0=slow, 1= fast)" },
 		{ _field_real_fraction, "pivot force turn rate", nullptr, "turn no matter what the pivot state is (0=control turn, 1= always turn)" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Ground fitting pelvis elevation settings", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Ground fitting pelvis elevation settings", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "ideal pelvis over high foot scale", "ideal ratio of distance from the pelvis to pedestal to place pelvis over the highest foot", "ratio of pedestal to pelvis distance " },
 		{ _field_real, "ideal pelvis over low foot scale", "ideal ratio of distance from the pelvis to pedestal to place pelvis over the lowest foot", "ratio of pedestal to pelvis distance " },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Ledge Push", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Ledge Push", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("Pushing over Ledges", nullptr, FIELD_FLAG_NONE, "When a locked foot is unsupported, meaning it can\'t reach the ground, the biped is considered to be hanging over a ledge. You can provide a velocity that will either push the character over the ledge or away from it"),
 		{ _field_real, "push over mag", nullptr, "magnitude of throttle to push over ledges. 0= no push" },
 		{ _field_real, "push back mag", nullptr, "magnitude of throttle to push back from ledges. 0= no push" },
 		{ _field_real, "ledgeIKSuccessRange", nullptr, "when unable to IK at least this close, consider the IK failed." },
 		{ _field_real, "ledge warning time", nullptr, "secs to warn the player before pushing over a ledge" },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("Foot locking", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("Foot locking", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_real, "footlock Scale", "how much this biped respects foot lock events", "(0-1) " },
 		{ _field_real, "footlock Min Throttle", "throttle at which foot lock should be fully on (footlockScale)", "(0-1) " },
 		{ _field_real, "footlock Max Throttle", "throttle at which foot lock should be fully off", "(0-1) " },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 
@@ -408,14 +468,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPEDMOVEMENTHIPLEANINGSTRUCT_ID)
 	{
-		FIELD_CUSTOM("Movement Hip Leaning", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("Movement Hip Leaning", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_EXPLANATION("Movement Hip Leaning", nullptr, FIELD_FLAG_NONE, "Allows a biped to lean based on movement."),
 		{ _field_real, "prediction seconds", nullptr, "predict ahead to determine lean. 0= off, more time=more lean" },
 		{ _field_real, "max lean angle", nullptr, "(degrees) maximum lean amount" },
 		{ _field_real_fraction, "max vertical dip", nullptr, "(fraction of leg length)" },
 		{ _field_real, "max lean angle sine", nullptr, "set on post-process, don't edit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max lean angle cosine", nullptr, "set on post-process, don't edit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_terminator }
 	};
 

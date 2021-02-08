@@ -37,9 +37,20 @@ namespace macaque
 		{ _field_real, "launch cooldown", "seconds to wait before the next launch will be ready", "seconds" },
 		{ _field_real, "launch duration", "how long a launch should take to fire all rounds", "seconds" },
 		{ _field_long_integer, "shots per launch", "number of rounds to fire per launch" },
+
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_long_integer, "default shot count" },
+		
 		{ _field_tag_reference, "fire effect", "the effect that will be created when the strike fires.", &global_effect_reference },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_tag_reference, "fire effect (indoor)", "the effect that will be created when the strike fires and is indoors", &global_effect_reference },
+		
 		{ _field_block, "fire offsets", &airstrike_fire_location_block },
+
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_tag_reference, "affected weapon", &weapon_reference },
+		
 		{ _field_terminator }
 	};
 

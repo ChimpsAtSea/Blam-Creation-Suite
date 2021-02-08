@@ -35,7 +35,20 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_VITALITY_BLOCK_ID)
 	{
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 8 },
+		FIELD_EXPLANATION("damage resistance", nullptr, FIELD_FLAG_NONE, nullptr),
+		{ _field_legacy, _field_char_enum, "damage resistance", &player_trait_damage_resistance_enum },
+		{ _field_legacy, _field_char_enum, "body multiplier", &player_trait_body_multiplier_enum },
+		{ _field_legacy, _field_char_enum, "body recharge rate", &player_trait_shield_recharge_rate_enum },
+		{ _field_legacy, _field_char_enum, "shield multiplier", &player_trait_shield_multiplier_enum },
+		{ _field_legacy, _field_char_enum, "shield recharge rate", &player_trait_shield_recharge_rate_enum },
+		{ _field_legacy, _field_char_enum, "shield recharge rate 2", &player_trait_shield_recharge_rate_enum }, // #TODO: Could be shield stun duration? Some research is required.
+		{ _field_legacy, _field_char_enum, "shield vampirism", &player_trait_shield_vampirism_enum },
+		
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
 		FIELD_EXPLANATION("damage resistance", nullptr, FIELD_FLAG_NONE, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance" },
 		{ _field_real, "shield multiplier" },
@@ -50,12 +63,16 @@ namespace macaque
 		{ _field_real, "wheelman armor vehicle recharge time modifier" },
 		{ _field_real, "wheelman armor vehicle emp disabled time modifier" },
 		{ _field_real, "fall damage multiplier" },
+		
 		{ _field_char_enum, "headshot immunity", &player_trait_bool_enum },
 		{ _field_char_enum, "assassination immunity", &player_trait_bool_enum },
 		{ _field_char_enum, "deathless", &player_trait_bool_enum },
 		{ _field_char_enum, "fast track armor", &player_trait_bool_enum },
 		{ _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		
 		{ _field_terminator }
 	};
 
@@ -69,9 +86,21 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_WEAPONS_BLOCK_ID)
 	{
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_weapons_float_flags },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_char_enum, "damage multiplier", &player_trait_damage_modifier_enum },
+		{ _field_legacy, _field_char_enum, "melee damage multiplier", &player_trait_damage_modifier_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_real, "damage multiplier" },
 		{ _field_real, "melee damage multiplier" },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_char_enum, "grenade recharge", &player_trait_bool_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 20 },
 		{ _field_real, "grenade recharge seconds frag" },
 		{ _field_real, "grenade recharge seconds plasma" },
 		{ _field_real, "grenade recharge seconds spike" },
@@ -92,13 +121,25 @@ namespace macaque
 		{ _field_real, "drop recon warning seconds" },
 		{ _field_real, "drop recon distance modifier" },
 		{ _field_real, "assassination speed modifier" },
+
+		
 		{ _field_char_enum, "weapon pickup allowed", &player_trait_bool_enum },
 		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
 		{ _field_char_enum, "infinite ammo", &player_trait_infinite_ammo_enum },
 		{ _field_char_enum, "equipment usage", &player_trait_equipment_usage_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_char_enum, "equipment usage excepting auto turret", "false will disable all equipment except auto turret", &player_trait_equipment_usage_enum },
+
 		{ _field_char_enum, "equipment drop", &player_trait_bool_enum },
 		{ _field_char_enum, "infinite equipment", &player_trait_bool_enum },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_char_integer, "unknown" },
+		{ _field_legacy, _field_char_integer, "unknown" }, // TODO: Some research required
+		{ _field_legacy, _field_char_integer, "unknown" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
 		{ _field_char_enum, "weapons ammopack", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons grenadier", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons explode on death armormod", "spawns projectile specified in globals.globals", &player_trait_bool_enum },
@@ -108,10 +149,13 @@ namespace macaque
 		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
 		FIELD_PAD("weapons_padding", nullptr, FIELD_FLAG_NONE, 1),
+		
 		FIELD_EXPLANATION("initial weapons/equipment", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
 		{ _field_string_id, "initial equipment" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_string_id, "initial tactical package" },
 		{ _field_string_id, "initial support upgrade" },
 		{ _field_terminator }
@@ -127,18 +171,33 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_MOVEMENT_BLOCK_ID)
 	{
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "should apply trait", &player_traits_movement_float_flags },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_char_enum, "speed", &player_trait_movement_speed_enum },
+		{ _field_legacy, _field_char_enum, "gravity multiplier", &player_trait_gravity_scale_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
 		{ _field_real, "speed" },
 		{ _field_real, "gravity multiplier" },
 		{ _field_real, "jump multiplier" },
 		{ _field_real, "turn speed multiplier" },
+		
 		{ _field_char_enum, "vehicle usage", &player_trait_vehicle_usage },
 		{ _field_char_enum, "double jump", &player_trait_double_jump },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
+		{ _field_legacy, _field_explanation, "jump height", "This is a percentage, and can be any integer up to 400. -1 Is unchanged/default." },
+		{ _field_legacy, _field_long_integer, "jump height" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_char_enum, "sprint usage", &player_trait_bool_enum },
 		{ _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
 		{ _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
 		{ _field_char_enum, "stealthy", &player_trait_bool_enum },
 		FIELD_PAD("grue", nullptr, FIELD_FLAG_NONE, 2),
+		
 		{ _field_terminator }
 	};
 
@@ -156,9 +215,20 @@ namespace macaque
 		{ _field_char_enum, "waypoint", &player_trait_waypoint },
 		{ _field_char_enum, "gamertag visible", &player_trait_waypoint },
 		{ _field_char_enum, "aura", &player_trait_aura },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_char_enum, "forced color", &player_trait_forced_color_enum },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
+		{ _field_legacy, _field_char_integer, "unknown" },
+		{ _field_legacy, _field_char_integer, "unknown" }, // TODO: Some research required
+		{ _field_legacy, _field_char_integer, "unknown" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		FIELD_EXPLANATION("death effect/attached effect", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
 		{ _field_string_id, "death effect" },
 		{ _field_string_id, "attached effect" },
+		
 		{ _field_terminator }
 	};
 
@@ -172,17 +242,31 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_TRAITS_SENSORS_BLOCK_ID)
 	{
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
 		{ _field_real, "motion tracker range" },
 		{ _field_real, "nemesis duration", nullptr, "seconds" },
+		
 		{ _field_char_enum, "motion tracker", &player_trait_motion_tracker },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_char_enum, "motion tracker range", &player_trait_motion_tracker_range_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_char_enum, "motion tracker while zoomed", &player_trait_bool_enum },
+		
 		{ _field_char_enum, "directional damage indicator", &player_trait_bool_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_char_enum, "vision mode", &player_trait_bool_enum },
 		{ _field_char_enum, "battle awareness", &player_trait_bool_enum },
 		{ _field_char_enum, "threat view", &player_trait_bool_enum },
 		{ _field_char_enum, "aural enhancement", &player_trait_bool_enum },
 		{ _field_char_enum, "nemesis", &player_trait_bool_enum },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_char_integer, "unknown" }, // TODO: Some research required
+		
 		{ _field_terminator }
 	};
 

@@ -53,8 +53,11 @@ namespace macaque
 		{ _field_real, "Depth fade factor" },
 		{ _field_real, "Transparent sort distance" },
 		{ _field_char_enum, "Transparent sort layer", &global_sort_layer_enum_defintion },
-		FIELD_PAD("UNdfdfdSED", nullptr, FIELD_FLAG_NONE, 3),
+			FIELD_PAD("UNdfdfdSED", nullptr, FIELD_FLAG_NONE, 3),
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_struct, "wind strength across distance", &scalar_function_named_struct_default_one },
+		
 		{ _field_block, "underwater settings", &underwater_setting_block },
 		{ _field_terminator }
 	};

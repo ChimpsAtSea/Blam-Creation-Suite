@@ -475,13 +475,19 @@ namespace macaque
 	{
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_tag_reference, "definition", FIELD_FLAG_READ_ONLY, &render_method_definition_reference },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_tag_reference, "reference", &render_method_reference },
+		
 		{ _field_block, "options", &short_block },
 		{ _field_block, "parameters", &render_method_parameter_block },
 		{ _field_block, "postprocess", &render_method_postprocess_block },
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "is template" },
 		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
 		{ _field_block, "locked parameters", &render_method_locked_parameter_block },
+		
 		{ _field_word_flags, "shader flags", FIELD_FLAG_READ_ONLY, &global_render_method_flags_defintion },
 		{ _field_char_enum, "sort layer", FIELD_FLAG_READ_ONLY, &global_sort_layer_enum_defintion },
 		{ _field_char_integer, "version", FIELD_FLAG_UNKNOWN0 },

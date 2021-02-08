@@ -33,6 +33,10 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct },
+
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_pad, "unknown padding", 4 },
+		
 		FIELD_PAD("algn344", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_struct, "translate shape", &havok_convex_translate_shape_struct },
 		{ _field_terminator }
@@ -130,7 +134,10 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct },
+
+		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc },
 		FIELD_PAD("algn243", nullptr, FIELD_FLAG_NONE, 12),
+		
 		{ _field_real_vector_3d, "bottom", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w bottom", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "top", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -923,14 +930,25 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_SHAPE_STRUCT_ID)
 	{
-		{ _field_long_integer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		// hkBaseObject
+		{ _field_pointer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+
+			// hkReferencedObject
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
 		{ _field_char_integer, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "dispatchType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "bitsPerKey", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "codecType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		{ _field_long_integer, "user data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_pad, "hkReferencedObject 8byte alignment", 4 },
+
+		{ _field_pointer, "user data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
 	};
 

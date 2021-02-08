@@ -18,7 +18,10 @@ namespace macaque
 		AI_CUE_TEMPLATE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_long_flags, "template_flags", &cue_template_flags },
+		
 		{ _field_block, "firing points", &firing_point_payload_block },
 		{ _field_block, "stimulus", &stimulus_payload_block },
 		{ _field_block, "combat cue", &combat_cue_payload_block },
@@ -100,12 +103,12 @@ namespace macaque
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
-		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_PAD("no-cue-definition-index", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
@@ -236,13 +239,13 @@ namespace macaque
 		{ _field_real_euler_angles_2d, "facing", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "roll", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("Distribution", nullptr, FIELD_FLAG_NONE, "The following blocks describe who will receive this cue."),
-		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("distribution", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "distribution", &cue_distribution_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_EXPLANATION("Payload", nullptr, FIELD_FLAG_NONE, "The following blocks describe the type of stimulus and related payload; you should only specify one."),
-		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_CUSTOM("payload", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_struct, "payload", &cue_payload_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		{ _field_long_block_index, "cue definition index", FIELD_FLAG_UNKNOWN0, &ai_cue_block },
 		{ _field_terminator }
 	};
