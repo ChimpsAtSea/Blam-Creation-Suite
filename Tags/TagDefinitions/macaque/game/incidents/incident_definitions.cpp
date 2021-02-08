@@ -126,7 +126,7 @@ namespace macaque
 		{ _field_string_id, "base incident", FIELD_FLAG_INDEX },
 		{ _field_block, "kill implements", &specialized_incident_kill_implement_block },
 		{ _field_block, "cause object", &specialized_incident_object_properties_block },
-		{ _field_block, "effect object", &specialized_incident_object_properties_block },
+		{ _field_block, "effect object", MAKE_OLD_NAMES("kill bucket"), &specialized_incident_object_properties_block },
 		{ _field_block, "special kill type", &specialized_incident_special_kill_type_block },
 		{ _field_block, "game over filter", &specializedIncidentGameOverBlock_block },
 		{ _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block },

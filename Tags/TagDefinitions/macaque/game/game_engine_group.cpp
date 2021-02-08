@@ -220,7 +220,7 @@ namespace macaque
 		{ _field_string_id, "ai traits" },
 		{ _field_string, "Start Event" },
 		{ _field_string, "End Event" },
-		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
+		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_char_integer, "objective 1" },
 		{ _field_char_integer, "objective 2" },
 		{ _field_char_integer, "objective 3" },
@@ -352,7 +352,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
+		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_terminator }
 	};
 
@@ -366,7 +366,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
-		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
+		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), FIELD_FLAG_INDEX, &skull_flags },
 		FIELD_CUSTOM("initial wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "initial waves", &game_engine_survival_wave_properties_struct },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
@@ -461,7 +461,7 @@ namespace macaque
 		{ _field_char_enum, "model override", &game_engine_team_options_player_model_choice },
 		{ _field_byte_integer, "number of fireteams" },
 		{ _field_string_id, "description" },
-		{ _field_rgb_color, "primary color override" },
+		{ _field_rgb_color, "primary color override", MAKE_OLD_NAMES("color override") },
 		{ _field_rgb_color, "secondary color override" },
 		{ _field_argb_color, "ui text tint color override" },
 		{ _field_argb_color, "ui bitmap tint color override" },
@@ -498,7 +498,7 @@ namespace macaque
 		{ _field_block, "ai traits", &game_engine_ai_traits_list_block, _field_id_slap },
 		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block, _field_id_slap },
 		{ _field_block, "survival variants", &game_engine_survival_variant_block, _field_id_slap },
-		{ _field_block, "new firefight variants", &GameEngineFirefightVariantShellBlock_block, _field_id_slap },
+		{ _field_block, "new firefight variants", MAKE_OLD_NAMES("firefight variants new"), &GameEngineFirefightVariantShellBlock_block, _field_id_slap },
 		{ _field_block, "campaign variants", &game_engine_campaign_variant_block, _field_id_slap },
 		{ _field_terminator }
 	};
@@ -594,7 +594,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
 	{
-		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
+		{ _field_long_flags, "skulls", MAKE_OLD_NAMES("primary skulls"), FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_short_integer, "duration", nullptr, "s" },
 		FIELD_PAD("CLKJSDF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "base properties", &game_engine_survival_wave_properties_struct },

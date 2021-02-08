@@ -124,7 +124,7 @@ namespace macaque
 		FIELD_EXPLANATION("damage response", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "damage response", &global_damage_response_definition_reference },
 		FIELD_EXPLANATION("sound", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "old melee sound", &global_sound_reference },
+		{ _field_tag_reference, "old melee sound", MAKE_OLD_NAMES("sound"), &global_sound_reference },
 		{ _field_block, "damage sounds", &damage_effect_sound_block },
 		{ _field_useless_pad, "" },
 		FIELD_EXPLANATION("breaking effect", nullptr, FIELD_FLAG_NONE, "Controls particle velocities when a damage effect shatters a materal.\n\nAll particles created within \'forward radius\' will be kicked along the\ndamage direction with a speed equivalent to \'forward velocity\' at the\nepicenter of the damage and 0 at the outer radius.  \'Forward exponent\'\nis used to modify the velocity scale.  A low exponent (like 0.5) means that\nparticles between the epicenter and the radius will be kicked out with a speed\ncloser to \'forward velocity\' than if a higher exponent (like 2.0) was used\n\nThe outward fields work in a similar way, except instead of kicking along the\ndamage direction, they get kick away from the damage epicenter."),

@@ -366,8 +366,8 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
-		{ _field_word_flags, "user flags", &animation_index_flags },
-		{ _field_real, "override blend in time" },
+		{ _field_word_flags, "user flags", MAKE_OLD_NAMES("playback flags"), &animation_index_flags },
+		{ _field_real, "override blend in time", MAKE_OLD_NAMES("override blend time") },
 		{ _field_real, "override blend out time" },
 		{ _field_short_block_index, "parent animation", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_pool_block },
 		{ _field_short_block_index, "next animation", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &animation_pool_block },
@@ -520,9 +520,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECT_SPACE_NODE_DATA_BLOCK_ID)
 	{
-		{ _field_short_block_index, "node index", FIELD_FLAG_INDEX, &animation_graph_node_block },
+		{ _field_short_block_index, "node index", MAKE_OLD_NAMES("node_index"), FIELD_FLAG_INDEX, &animation_graph_node_block },
 		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &object_space_node_flags },
-		{ _field_struct, "parent orientation", FIELD_FLAG_READ_ONLY, &quantized_orientation_struct },
+		{ _field_struct, "parent orientation", MAKE_OLD_NAMES("orientation"), FIELD_FLAG_READ_ONLY, &quantized_orientation_struct },
 		{ _field_terminator }
 	};
 
@@ -647,7 +647,7 @@ namespace macaque
 		{ _field_string_id, "weight source object function" },
 		{ _field_short_block_index, "weight function", "Function applied to input from weight function source", &animation_function_block },
 		FIELD_PAD("nabsbfp1", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_struct, "animation", &animation_index_struct },
+		{ _field_struct, "animation", MAKE_OLD_NAMES("animation info"), &animation_index_struct },
 		{ _field_terminator }
 	};
 
@@ -686,7 +686,7 @@ namespace macaque
 		OVERLAY_GROUP_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_block, "blend screens", &blend_screen_item_definition_block },
+		{ _field_block, "blend screens", MAKE_OLD_NAMES("blend screen"), &blend_screen_item_definition_block },
 		{ _field_block, "function overlays", &function_overlay_item_definition_block },
 		{ _field_terminator }
 	};
@@ -833,7 +833,7 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_enum, "type", &animation_ik_chain_type_enumeration },
 		FIELD_PAD("aikcbp", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_short_block_index, "start node", &animation_graph_node_block },
+		{ _field_short_block_index, "start node", MAKE_OLD_NAMES("grandparent node"), &animation_graph_node_block },
 		{ _field_short_block_index, "effector node", &animation_graph_node_block },
 		{ _field_short_integer, "rank", "calculated during post process where rank is default ordinal for solving", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "antecedents", "calculated during post process where bit index represents chain index", FIELD_FLAG_UNKNOWN0 },
@@ -867,7 +867,7 @@ namespace macaque
 		ANIMATION_MODE_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_long_flags, "flags", FIELD_FLAG_READ_ONLY, &animation_mode_flags },
 		{ _field_block, "weapon class", &weapon_class_block },
@@ -887,7 +887,7 @@ namespace macaque
 		WEAPON_CLASS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_block, "weapon type", &weapon_type_block },
 		{ _field_block, "weapon ik", &animation_ik_block_v1_block },
@@ -907,7 +907,7 @@ namespace macaque
 		WEAPON_TYPE_BLOCK_STRUCT_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_block, "sets", &animation_set_block },
 		{ _field_terminator }
@@ -924,12 +924,12 @@ namespace macaque
 		ANIMATION_SET_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_short_block_index, "gait group", &animation_gait_group_block },
 		FIELD_PAD("asbfap", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "actions", &animation_entry_block },
-		{ _field_block, "overlay animations", &animation_entry_block },
+		{ _field_block, "overlay animations", MAKE_OLD_NAMES("overlays"), &animation_entry_block },
 		{ _field_block, "death and damage", &damage_animation_block },
 		{ _field_block, "transitions", &animation_transition_source_block },
 		{ _field_block, "velocity boundaries", FIELD_FLAG_UNKNOWN0, &animation_velocity_boundaries_block },
@@ -948,7 +948,7 @@ namespace macaque
 		ANIMATION_ENTRY_BLOCK_ID)
 	{
 		{ _field_string_id, "label", FIELD_FLAG_INDEX },
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
@@ -1090,7 +1090,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RANGED_ANIMATION_ENTRY_BLOCK_STRUCT_ID)
 	{
-		{ _field_short_block_index, "overlay group", &overlay_group_definition_block },
+		{ _field_short_block_index, "overlay group", MAKE_OLD_NAMES("pose overlay|overlay"), &overlay_group_definition_block },
 		{ _field_short_block_index, "ik set", &animation_ik_set_block },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_real, "animation parameter", "Numerical value associated with the ranged action animation (e.g. velocity for jumps)" },
@@ -1515,7 +1515,7 @@ namespace macaque
 		{ _field_block, "animations", FIELD_FLAG_READ_ONLY, &animation_pool_block, _field_id_wide },
 		{ _field_block, "NEW blend screens", &new_animation_blend_screen_block },
 		{ _field_block, "NEW function overlays", &new_animation_function_overlay_block },
-		{ _field_block, "overlay groups", &overlay_group_definition_block },
+		{ _field_block, "overlay groups", MAKE_OLD_NAMES("pose overlays|NEW overlays"), &overlay_group_definition_block },
 		{ _field_block, "gaits", &animation_gait_block },
 		{ _field_block, "gait groups", &animation_gait_group_block },
 		{ _field_block, "ik data", &animation_ik_block },
@@ -1735,7 +1735,7 @@ namespace macaque
 		{ _field_block, "modes", &animation_mode_block },
 		FIELD_EXPLANATION("SPECIAL CASE ANIMS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "vehicle suspension", &vehicle_suspension_block },
-		{ _field_block, "function overlays", &function_overlay_animation_block },
+		{ _field_block, "function overlays", MAKE_OLD_NAMES("object overlays"), &function_overlay_animation_block },
 		{ _field_terminator }
 	};
 

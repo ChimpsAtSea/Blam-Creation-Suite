@@ -147,7 +147,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COLLISION_MATERIALS_BLOCK_ID)
 	{
-		{ _field_tag_reference, "render method", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
+		{ _field_tag_reference, "render method", MAKE_OLD_NAMES("old shader"), FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX, &structure_collision_materials_block_render_method_reference },
 		{ _field_string_id, "override material name" },
 		{ _field_short_integer, "runtime global material index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "conveyor surface index", FIELD_FLAG_READ_ONLY, &structure_bsp_conveyor_surface_block },
@@ -588,7 +588,7 @@ namespace macaque
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
-		{ _field_real, "scale_x", FIELD_FLAG_READ_ONLY },
+		{ _field_real, "scale_x", MAKE_OLD_NAMES("scale"), FIELD_FLAG_READ_ONLY },
 		{ _field_real, "scale_y", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "cull angle" },
 		{ _field_terminator }

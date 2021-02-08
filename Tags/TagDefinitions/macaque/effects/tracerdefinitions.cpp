@@ -38,7 +38,7 @@ namespace macaque
 		{ _field_char_enum, "profile shape", &tracerProfileShapeEnum },
 		{ _field_byte_integer, "number of n-gon sides" },
 		FIELD_PAD("tracpad", nullptr, FIELD_FLAG_NONE, 1),
-		{ _field_real, "origin fade range", "distance beyond cutoff over which tracers fade", "world units" },
+		{ _field_real, "origin fade range", "distance beyond cutoff over which tracers fade", "world units", MAKE_OLD_NAMES("origin fade distance") },
 		{ _field_real, "origin fade cutoff", "distance from tracer origin where fade begins", "world units" },
 		{ _field_real, "edge fade range", "degrees beyond cutoff over which tracers fade", "degrees" },
 		{ _field_real, "edge fade cutoff", "degrees away from edge-on where fade is total", "degrees" },

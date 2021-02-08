@@ -20,7 +20,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", &effect_flags },
 		{ _field_dword_integer, "fixed random seed", "If this is non-zero, the effect will usually be exactly repeatable" },
-		{ _field_real, "restart if within", nullptr, "world units" },
+		{ _field_real, "restart if within", nullptr, "world units", MAKE_OLD_NAMES("overlap threshold") },
 		{ _field_real, "continue if within", nullptr, "world units" },
 		{ _field_real, "death_delay" },
 		{ _field_short_block_index, "loop start event", &effect_event_block },

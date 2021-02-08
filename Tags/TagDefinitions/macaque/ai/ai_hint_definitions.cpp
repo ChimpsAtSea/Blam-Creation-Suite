@@ -459,7 +459,7 @@ namespace macaque
 		USER_HINT_VOLUME_AVOIDANCE_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &user_hint_avoidance_volume_enum },
-		{ _field_real_point_3d, "origin" },
+		{ _field_real_point_3d, "origin", MAKE_OLD_NAMES("center") },
 		{ _field_real, "radius" },
 		{ _field_real_vector_3d, "facing vector", "for pills" },
 		{ _field_real, "height", "for pills" },

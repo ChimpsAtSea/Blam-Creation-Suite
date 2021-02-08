@@ -349,7 +349,7 @@ namespace macaque
 		FIELD_EXPLANATION("ground fitting data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "ground fitting flags", &biped_ground_fitting_flags_definition },
 		{ _field_real_fraction, "ground normal dampening", nullptr, "react to slope changes (0=slow, 1= fast)" },
-		{ _field_real, "root offset max scale idle", nullptr, "vertical drop to ground allowed (0=none, 1=full)" },
+		{ _field_real, "root offset max scale idle", nullptr, "vertical drop to ground allowed (0=none, 1=full)", MAKE_OLD_NAMES("root offset max scale") },
 		{ _field_real, "root offset max scale moving", nullptr, "vertical drop to ground allowed (0=none, 1=full)" },
 		{ _field_real_fraction, "root offset dampening", nullptr, "react to root changes (0=slow, 1= fast)" },
 		{ _field_real_fraction, "following cam scale", nullptr, "root offset effect on following cam (0=none, 1=full)" },

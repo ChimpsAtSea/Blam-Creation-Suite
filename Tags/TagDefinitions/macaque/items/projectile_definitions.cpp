@@ -275,7 +275,7 @@ namespace macaque
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
-		{ _field_block, "old material responses", FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block, _field_id_sort },
+		{ _field_block, "old material responses", MAKE_OLD_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block, _field_id_sort },
 		{ _field_block, "material response", &projectile_material_response_block },
 		{ _field_block, "brute grenade", &brute_grenade_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block },

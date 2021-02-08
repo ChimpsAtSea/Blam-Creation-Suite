@@ -678,7 +678,7 @@ namespace macaque
 		{ _field_long_integer, "internal flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents", _field_id_cents },
-		{ _field_struct, "distance parameters", &sound_distance_parameters_struct },
+		{ _field_struct, "distance parameters", MAKE_OLD_NAMES("."), &sound_distance_parameters_struct },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		FIELD_EXPLANATION("randomization", nullptr, FIELD_FLAG_NONE, "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),

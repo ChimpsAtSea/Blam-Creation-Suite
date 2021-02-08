@@ -50,7 +50,7 @@ namespace macaque
 		FIELD_PAD("CA_PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		{ _field_block, "prerequisites", &commendationAggregatorDependent_block },
+		{ _field_block, "prerequisites", MAKE_OLD_NAMES("contributing commendations"), &commendationAggregatorDependent_block },
 		{ _field_terminator }
 	};
 
@@ -146,8 +146,8 @@ namespace macaque
 		{ _field_tag_reference, "commendation aggregators", &Tag::Reference<struct CommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "medal aggregators", &Tag::Reference<struct MedalCommendationAggregatorList>::s_defaultDefinition },
 		{ _field_tag_reference, "commendation text", &global_multilingual_unicode_string_list_reference },
-		{ _field_short_integer, "progress display time", nullptr, "seconds" },
-		{ _field_short_integer, "complete display time", nullptr, "seconds" },
+		{ _field_short_integer, "progress display time", nullptr, "seconds", MAKE_OLD_NAMES("progression display time") },
+		{ _field_short_integer, "complete display time", nullptr, "seconds", MAKE_OLD_NAMES("callout display time") },
 		{ _field_block, "commendations", &commendationBlock_block },
 		{ _field_terminator }
 	};

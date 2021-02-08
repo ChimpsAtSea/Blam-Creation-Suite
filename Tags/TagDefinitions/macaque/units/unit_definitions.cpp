@@ -533,7 +533,7 @@ namespace macaque
 		{ _field_tag_reference, "flurry melee damage", &global_damage_reference },
 		{ _field_tag_reference, "obstacle smash damage", &global_damage_reference },
 		{ _field_tag_reference, "assassination primary damage", &global_damage_reference },
-		{ _field_tag_reference, "assassination ragdoll damage", &global_damage_reference },
+		{ _field_tag_reference, "assassination ragdoll damage", MAKE_OLD_NAMES("assassination damage"), &global_damage_reference },
 		{ _field_terminator }
 	};
 

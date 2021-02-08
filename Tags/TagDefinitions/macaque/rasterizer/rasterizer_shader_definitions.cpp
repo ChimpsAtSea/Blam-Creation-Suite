@@ -297,13 +297,13 @@ namespace macaque
 		RASTERIZER_COMPILED_SHADER_STRUCT_ID)
 	{
 		{ _field_long_flags, "shader flags", &shader_flags },
-		{ _field_data, "xenon compiled shader" },
-		{ _field_data, "dx9 compiled shader" },
+		{ _field_data, "xenon compiled shader", MAKE_OLD_NAMES("..:xenon compiled shader") },
+		{ _field_data, "dx9 compiled shader", MAKE_OLD_NAMES("..:dx9 compiled shader") },
 		FIELD_EXPLANATION("Xenon constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "xenon rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("DX9 constant table", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "dx9 rasterizer constant table", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_rasterizer_constant_table_struct },
-		{ _field_dword_integer, "gprs" },
+		{ _field_dword_integer, "gprs", MAKE_OLD_NAMES("..:gprs") },
 		{ _field_long_integer, "cache file reference", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};

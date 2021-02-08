@@ -37,9 +37,9 @@ namespace macaque
 		{ _field_struct, "color", &light_color_function_struct },
 		{ _field_struct, "intensity", &light_scalar_function_struct },
 		FIELD_EXPLANATION("SIZE", nullptr, FIELD_FLAG_NONE, "radius of the spherical light"),
-		{ _field_struct, "Falloff End", &light_scalar_function_struct },
+		{ _field_struct, "Falloff End", MAKE_OLD_NAMES("radius"), &light_scalar_function_struct },
 		{ _field_real, "Falloff Begin Ratio", "Ratio of falloff start to falloff end", nullptr, "[0-1]" },
-		{ _field_real, "near fade distance", nullptr, "world units" },
+		{ _field_real, "near fade distance", nullptr, "world units", MAKE_OLD_NAMES("closeup fading distance") },
 		{ _field_real, "far fade begin", nullptr, "world units" },
 		{ _field_real, "far fade cutoff", nullptr, "world units" },
 		{ _field_terminator }

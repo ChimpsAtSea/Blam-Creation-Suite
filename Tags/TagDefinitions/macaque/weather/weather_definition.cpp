@@ -72,7 +72,7 @@ namespace macaque
 		{ _field_real, "rain sheet intensity" },
 		{ _field_real, "rain texture tile scale" },
 		{ _field_real, "rain sheet parallax speed" },
-		{ _field_real, "rain sheet depth fade" },
+		{ _field_real, "rain sheet depth fade", MAKE_OLD_NAMES("rain sheet fade factor") },
 		{ _field_real, "transparent sort distance" },
 		{ _field_real, "transparent sort layer" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),

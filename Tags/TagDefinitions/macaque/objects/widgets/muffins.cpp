@@ -21,7 +21,7 @@ namespace macaque
 		{ _field_tag_reference, "render model", FIELD_FLAG_READ_ONLY, &render_model_reference$5 },
 		{ _field_block, "render model permutation names", FIELD_FLAG_UNKNOWN0, &muffin_permutation_name_block },
 		{ _field_long_integer, "render model permutation name valid count", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", &muffin_marker_block },
+		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", MAKE_OLD_NAMES("default markers"), &muffin_marker_block },
 		{ _field_block, "muffin types", &global_muffin_type_block },
 		{ _field_terminator }
 	};

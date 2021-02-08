@@ -109,7 +109,7 @@ namespace macaque
 		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
 		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds" },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
 		{ _field_terminator }
 	};
 
@@ -127,7 +127,7 @@ namespace macaque
 		{ _field_tag_reference, "entry sound", "plays when entering this area", &global_sound_reference },
 		{ _field_tag_reference, "exit sound", "plays when leaving this area", &global_sound_reference },
 		{ _field_real, "cutoff distance" },
-		{ _field_real, "interpolation time", nullptr, "seconds" },
+		{ _field_real, "interpolation time", nullptr, "seconds", MAKE_OLD_NAMES("interpolation speed") },
 		{ _field_long_flags, "scale flags DEPRICATED", FIELD_FLAG_UNKNOWN0, &background_sound_scale_flags_definition },
 		{ _field_real_fraction, "interior scale DEPRICATED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real_fraction, "portal scale DEPRICATED", FIELD_FLAG_UNKNOWN0 },

@@ -24,7 +24,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
 		{ _field_real, "antigrav strength" },
 		{ _field_real, "antigrav height" },
-		{ _field_real, "antigrav compression damping" },
+		{ _field_real, "antigrav compression damping", MAKE_OLD_NAMES("antigrav damp factor") },
 		{ _field_real, "antigrav extension damping" },
 		{ _field_real, "antigrav normal k1" },
 		{ _field_real, "antigrav normal k0" },

@@ -342,7 +342,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &object_definition_flags },
 		{ _field_real, "bounding radius", "If you edit this field manually, beware that the render model is no longer respected for radius calculation and that you need to set the bounding offset as well." },
 		{ _field_real_point_3d, "bounding offset" },
-		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]" },
+		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]", MAKE_OLD_NAMES("acceleration scale") },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
 		{ _field_enum, "lightmap shadow mode", &lightmap_shadow_mode_enum },

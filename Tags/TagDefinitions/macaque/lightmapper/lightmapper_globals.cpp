@@ -137,7 +137,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_LIGHTMAP_AO_SETTINGS_STRUCT_ID)
 	{
-		{ _field_real, "Radius" },
+		{ _field_real, "Radius", MAKE_OLD_NAMES("Offset") },
 		{ _field_real, "Falloff Power" },
 		{ _field_real, "Multiplier" },
 		{ _field_real, "MaxThreadCount" },

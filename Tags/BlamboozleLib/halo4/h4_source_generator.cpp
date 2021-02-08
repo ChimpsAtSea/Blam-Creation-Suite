@@ -60,7 +60,7 @@ void escape_string(
 		}
 		case '\'':
 		{
-			if (!unescaped_comma) 
+			if (!unescaped_comma)
 			{
 				(*buffer_pos++) = '\\';
 			}
@@ -980,7 +980,7 @@ void c_h4_source_generator::generate_tag_field_flags(std::stringstream& ss, c_bl
 		ss << "FIELD_FLAG_POINTER";
 	}
 
-	if(flags_written == 0)
+	if (flags_written == 0)
 	{
 		ss << "FIELD_FLAG_NONE";
 	}
@@ -1002,6 +1002,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		c_fixed_string_4096 units;
 		c_fixed_string_4096 limits;
 		c_fixed_string_4096 limits_legacy;
+		c_fixed_string_4096 old_name;
 
 		if (tag_field->name)
 		{
@@ -1010,8 +1011,16 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			escape_string(string_parser.units, units, true, true);
 			escape_string(string_parser.limits, limits, true, true);
 			escape_string(string_parser.limits_legacy, limits_legacy, true, true);
+			escape_string(string_parser.old_name, old_name, true, true);
 		}
 
+		name.trim_front();
+		description.trim_front();
+		units.trim_front();
+		limits.trim_front();
+		limits_legacy.trim_front();
+		old_name.trim_front();
+		
 		const char* custom_field_type = nullptr;
 		if (tag_field->tool_tag != 0 && tag_field->tool_tag != 0xFFFFFFFF)
 		{
@@ -1022,13 +1031,14 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		bool write_units = write_limits || !units.empty();
 		bool write_description = write_units || !description.empty();
 		bool write_tag = custom_field_type != nullptr;
+		bool write_old_name = !old_name.empty();
 		bool write_flags =
 			string_parser.flag_unknown0 ||
 			string_parser.flag_read_only ||
 			string_parser.flag_index ||
 			string_parser.flag_unknown3 ||
 			string_parser.flag_pointer;
-		
+
 		switch (tag_field->field_type)
 		{
 		case _h4_field_type_string:
@@ -1084,7 +1094,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			ss << "\"" << name.c_str() << "\"";
 			if (write_description)
 			{
-				if(!description.empty()) ss << ", " << "\"" << description.c_str() << "\"";
+				if (!description.empty()) ss << ", " << "\"" << description.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
 			if (write_units)
@@ -1096,6 +1106,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			{
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1140,6 +1154,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
 			if (write_flags)
 			{
 				ss << ", ";
@@ -1181,6 +1199,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
 			if (write_flags)
 			{
 				ss << ", ";
@@ -1196,7 +1218,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		{
 			//ASSERT(!write_limits);
 			//ASSERT(!write_units);
-				
+
 			ss << "\t\tFIELD_CUSTOM(";
 			if (!name.empty()) ss << "\"" << name.c_str() << "\"";
 			else ss << "nullptr";
@@ -1254,7 +1276,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			ASSERT(explanation_field->name);
 
 			ss << "\t\tFIELD_EXPLANATION(";
-			if(write_units) ss << "\"" << tag_field->name << "\"";
+			if (write_units) ss << "\"" << tag_field->name << "\"";
 			else if (!name.empty()) ss << "\"" << name.c_str() << "\"";
 			else ss << "nullptr";
 			if (!description.empty()) ss << ", \"" << description.c_str() << "\"";
@@ -1297,6 +1319,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
 			if (write_flags)
 			{
 				ss << ", ";
@@ -1334,6 +1360,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			{
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{
@@ -1374,6 +1404,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
 			if (write_flags)
 			{
 				ss << ", ";
@@ -1411,6 +1445,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
 			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
 			if (write_flags)
 			{
 				ss << ", ";
@@ -1431,7 +1469,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(*tag_field_array->tag_array_definition);
 
 			ASSERT(tag_block_container);
-				
+
 			ss << "\t\t{ ";
 			ss << field_generic_type_name << ", ";
 			ss << "\"" << name.c_str() << "\"";
@@ -1449,6 +1487,10 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			{
 				if (!limits.empty()) ss << ", " << "\"" << limits.c_str() << "\"";
 				else ss << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				ss << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
 			}
 			if (write_flags)
 			{

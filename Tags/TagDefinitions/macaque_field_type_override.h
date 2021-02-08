@@ -25,6 +25,7 @@
 #define FIELD_PAD(name, description, flags, size) __FIELD_MACRO_HELPER(_field_pad, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_SKIP(name, description, flags, size) __FIELD_MACRO_HELPER(_field_skip, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_EXPLANATION(name, description, flags, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, flags, static_cast<const void*>(explanation))
+#define MAKE_OLD_NAMES(...) ([]() { static const char* old_names[] = { __VA_ARGS__ }; return old_names; })()
 
 #ifndef __INTELLISENSE__
 
