@@ -21,10 +21,10 @@ namespace macaque
 		{ _field_char_integer, "version", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "raw animation data", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "unit control data version", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("DVU", nullptr, 1),
+		FIELD_PAD("DVU", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "length of animation", nullptr, "ticks", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("DCAU", nullptr, 2),
-		FIELD_PAD("HL", nullptr, 4),
+		FIELD_PAD("DCAU", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD("HL", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "recorded animation event stream", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};

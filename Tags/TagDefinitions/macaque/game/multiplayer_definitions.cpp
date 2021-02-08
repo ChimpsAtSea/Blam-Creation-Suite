@@ -71,15 +71,15 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_real_rgb_color, "primary color" },
 		{ _field_real_rgb_color, "secondary color" },
-		FIELD_CUSTOM("- Emblem Data", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("- Emblem Data", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_byte_integer, "foreground emblem index" },
 		{ _field_byte_integer, "background emblem index" },
 		{ _field_byte_flags, "info flags", &emblemInfoFlags },
 		{ _field_char_enum, "primary color index", &playerColorEnum },
 		{ _field_char_enum, "secondary color index", &playerColorEnum },
 		{ _field_char_enum, "background color index", &playerColorEnum },
-		FIELD_PAD("pad", nullptr, 2),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -94,7 +94,7 @@ namespace macaque
 		REQUISITION_CONSTANTS_BLOCK_ID)
 	{
 		{ _field_real, "FTL bonus fraction", "multiplier to apply to money earned by minions to also give to the fireteam leader" },
-		FIELD_EXPLANATION("AWARD AMOUNTS", nullptr, "These are requisition award amounts for various thing players can get money for"),
+		FIELD_EXPLANATION("AWARD AMOUNTS", nullptr, FIELD_FLAG_NONE, "These are requisition award amounts for various thing players can get money for"),
 		{ _field_long_integer, "Kill" },
 		{ _field_long_integer, "Assist" },
 		{ _field_long_integer, "Fire team leader kill" },
@@ -107,17 +107,17 @@ namespace macaque
 		{ _field_long_integer, "served as reinforcement target", "awarded to a reinforcement target when a teammate spawns on him (to encourage cooperation)" },
 		{ _field_long_integer, "uberassault gun captured", "awarded on gaining ownership of a gun to every member of the new owning team" },
 		{ _field_long_integer, "uberassault gun owned", "awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you'll get 3x this money every 3 seconds)." },
-		FIELD_EXPLANATION("PENALTY AMOUNTS", nullptr, "Requisition penalties for various discouraged actions"),
+		FIELD_EXPLANATION("PENALTY AMOUNTS", nullptr, FIELD_FLAG_NONE, "Requisition penalties for various discouraged actions"),
 		{ _field_long_integer, "Betrayed a teammate" },
-		FIELD_EXPLANATION("FIRE TEAM TIER KILL REQUIREMENTS", nullptr, "Number of kills a fireteam must have to reach each fire team tier"),
+		FIELD_EXPLANATION("FIRE TEAM TIER KILL REQUIREMENTS", nullptr, FIELD_FLAG_NONE, "Number of kills a fireteam must have to reach each fire team tier"),
 		{ _field_long_integer, "Bronze kill minimum" },
 		{ _field_long_integer, "Silver kill minimum" },
 		{ _field_long_integer, "Gold kill minimum" },
-		FIELD_EXPLANATION("FIRE TEAM TIER BONUS MULTIPLIERS", nullptr, "Applied to money earned from biped kills and assists"),
+		FIELD_EXPLANATION("FIRE TEAM TIER BONUS MULTIPLIERS", nullptr, FIELD_FLAG_NONE, "Applied to money earned from biped kills and assists"),
 		{ _field_real, "Bronze multiplier" },
 		{ _field_real, "Silver multiplier" },
 		{ _field_real, "Gold multiplier" },
-		FIELD_EXPLANATION("FIRE TEAM TIER TIME REQUIREMENT", nullptr, "Game time in seconds after which everyone is promoted to at least this tier"),
+		FIELD_EXPLANATION("FIRE TEAM TIER TIME REQUIREMENT", nullptr, FIELD_FLAG_NONE, "Game time in seconds after which everyone is promoted to at least this tier"),
 		{ _field_long_integer, "Bronze advancement time" },
 		{ _field_long_integer, "Silver advancement time" },
 		{ _field_long_integer, "Gold advancement time" },
@@ -135,7 +135,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REQUISITION_PALETTE_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("CUSTOM APPS", nullptr, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
+		FIELD_EXPLANATION("CUSTOM APPS", nullptr, FIELD_FLAG_NONE, "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\""),
 		{ _field_tag_reference, "name", &requisition_palette_block_name_reference },
 		{ _field_string_id, "display_name", FIELD_FLAG_INDEX },
 		{ _field_long_enum, "special_buy", &requisition_special_buy_enum },
@@ -220,13 +220,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_CONSTANTS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("PLAYER SPAWN INFLUENCERS", nullptr, "These are the default spawn influencer settings which can be overridden by scenario tags"),
+		FIELD_EXPLANATION("PLAYER SPAWN INFLUENCERS", nullptr, FIELD_FLAG_NONE, "These are the default spawn influencer settings which can be overridden by scenario tags"),
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
-		FIELD_EXPLANATION("MORE MP CONSTANTS", nullptr, "More old Halo2 stuff follows..."),
+		FIELD_EXPLANATION("MORE MP CONSTANTS", nullptr, FIELD_FLAG_NONE, "More old Halo2 stuff follows..."),
 		{ _field_real, "teleporter recharge time", nullptr, "seconds" },
 		{ _field_tag_reference, "sandbox effect", &global_effect_reference },
 		{ _field_string_id, "blocked teleporter string" },
-		FIELD_EXPLANATION("RESPAWN STRINGS", nullptr, "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above"),
+		FIELD_EXPLANATION("RESPAWN STRINGS", nullptr, FIELD_FLAG_NONE, "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above"),
 		{ _field_string_id, "voluntary respawn control instructions" },
 		{ _field_string_id, "spawn allowed default respawn" },
 		{ _field_string_id, "spawn at player allowed looking at self" },
@@ -257,13 +257,13 @@ namespace macaque
 		GAME_ENGINE_STATUS_RESPONSE_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &game_engine_status_flags_definition },
-		FIELD_PAD("FAW", nullptr, 2),
+		FIELD_PAD("FAW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "state", FIELD_FLAG_INDEX, &game_engine_status_enum_definition },
-		FIELD_PAD("BNYFIDDGX", nullptr, 2),
+		FIELD_PAD("BNYFIDDGX", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "ffa message" },
 		{ _field_string_id, "team message" },
 		{ _field_tag_reference, "unused", FIELD_FLAG_UNKNOWN0, &g_non_traversed_reference_definition },
-		FIELD_PAD("GTL", nullptr, 4),
+		FIELD_PAD("GTL", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 

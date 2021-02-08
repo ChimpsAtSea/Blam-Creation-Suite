@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		G_NULL_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_terminator }
 	};
 

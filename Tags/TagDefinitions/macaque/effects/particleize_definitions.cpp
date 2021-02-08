@@ -30,7 +30,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLEMAN_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Particleize Settings", nullptr, "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n"),
+		FIELD_EXPLANATION("Particleize Settings", nullptr, FIELD_FLAG_NONE, "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n"),
 		{ _field_enum, "Shape", &particleize_shape_enum },
 		{ _field_word_flags, "Flags", &particleize_flags },
 		{ _field_real, "Duration", nullptr, "sec" },
@@ -50,7 +50,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLEIZE_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

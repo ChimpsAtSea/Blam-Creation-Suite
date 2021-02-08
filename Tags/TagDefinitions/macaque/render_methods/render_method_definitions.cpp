@@ -115,8 +115,8 @@ namespace macaque
 		{ _field_string_id, "input name", _field_id_function_input_scalar },
 		{ _field_string_id, "range name", _field_id_function_input_range },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
-		FIELD_EXPLANATION("FUNCTION", nullptr, ""),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_EXPLANATION("FUNCTION", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "function", &mapping_function },
 		{ _field_terminator }
 	};
@@ -319,7 +319,7 @@ namespace macaque
 		RENDER_METHOD_PASS_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &render_method_pass_flags },
-		FIELD_PAD("nothing", nullptr, 2),
+		FIELD_PAD("nothing", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
 		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
 		{ _field_terminator }
@@ -350,7 +350,7 @@ namespace macaque
 		VERTEX_TYPES_BLOCK_ID)
 	{
 		{ _field_enum, "vertex type", &vertex_types_names_enum },
-		FIELD_PAD("blahasdf", nullptr, 2),
+		FIELD_PAD("blahasdf", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -473,7 +473,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_tag_reference, "definition", FIELD_FLAG_READ_ONLY, &render_method_definition_reference },
 		{ _field_tag_reference, "reference", &render_method_reference },
 		{ _field_block, "options", &short_block },
@@ -507,7 +507,7 @@ namespace macaque
 		{ _field_tag_reference, "shared vertex shaders", FIELD_FLAG_READ_ONLY, &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
 		{ _field_dword_integer, "version", nullptr, "bump to force recompile" },
-		FIELD_EXPLANATION("source file location", nullptr, "like templated\\shader ..."),
+		FIELD_EXPLANATION("source file location", nullptr, FIELD_FLAG_NONE, "like templated\\shader ..."),
 		{ _field_long_string, "location" },
 		{ _field_terminator }
 	};

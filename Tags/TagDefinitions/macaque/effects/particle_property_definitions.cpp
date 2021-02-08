@@ -21,11 +21,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "Starting interpolant" },
 		{ _field_real_point_3d, "Ending interpolant" },
 		{ _field_terminator }
@@ -45,11 +45,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_euler_angles_2d, "Direction at 0" },
 		{ _field_real_euler_angles_2d, "Direction at 1" },
 		{ _field_terminator }
@@ -69,12 +69,12 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "force flags", FIELD_FLAG_UNKNOWN0, &force_flags_definition },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 1),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -92,11 +92,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "Starting interpolant" },
 		{ _field_real_vector_3d, "Ending interpolant" },
 		{ _field_terminator }
@@ -116,11 +116,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

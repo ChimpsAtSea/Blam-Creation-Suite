@@ -18,10 +18,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", nullptr, "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", nullptr, FIELD_FLAG_NONE, "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n"),
 		{ _field_struct, "direction", &wind_scalar_function_struct },
 		{ _field_struct, "speed", &wind_scalar_function_struct },
-		FIELD_EXPLANATION("DECORATOR WIND MOTION", nullptr, "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),
+		FIELD_EXPLANATION("DECORATOR WIND MOTION", nullptr, FIELD_FLAG_NONE, "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),
 		{ _field_struct, "bend", &wind_scalar_function_struct },
 		{ _field_struct, "oscillation", &wind_scalar_function_struct },
 		{ _field_struct, "frequency", &wind_scalar_function_struct },
@@ -47,7 +47,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

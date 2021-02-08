@@ -18,6 +18,8 @@ const char* c_console::g_console_executable_name = "UpgradeMacaque";
 
 // c_console::write_line_verbose("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
 
+std::map<const blofeld::s_tag_struct_definition*, const blofeld::s_tag_struct_definition*> structure_definitions;
+
 void validate_structure_definition(const blofeld::s_tag_struct_definition* blofeld, const blofeld::s_tag_struct_definition* macaque)
 {
 	using namespace blofeld;
@@ -34,6 +36,12 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 	const s_tag_field* blofeld_field = blofeld->fields;
 	const s_tag_field* macaque_field = macaque->fields;
 
+	if(structure_definitions.find(blofeld) != structure_definitions.end())
+	{
+		return;
+	}
+	structure_definitions[blofeld] = macaque;
+	
 	do
 	{
 		if (blofeld_field->field_type != macaque_field->field_type)

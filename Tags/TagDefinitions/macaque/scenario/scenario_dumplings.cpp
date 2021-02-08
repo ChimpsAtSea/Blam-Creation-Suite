@@ -20,7 +20,7 @@ namespace macaque
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
 		{ _field_short_block_index, "atmosphere", &scenario_atmosphere_palette_block },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -52,7 +52,7 @@ namespace macaque
 	{
 		{ _field_struct, "dumpling", &scenario_dumpling_struct },
 		{ _field_short_block_index, "weather", &scenario_weather_palette_block },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

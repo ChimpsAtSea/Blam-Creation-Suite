@@ -36,7 +36,7 @@ namespace macaque
 		PLAYER_TRAITS_VITALITY_BLOCK_ID)
 	{
 		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
-		FIELD_EXPLANATION("damage resistance", nullptr, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
+		FIELD_EXPLANATION("damage resistance", nullptr, FIELD_FLAG_NONE, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
 		{ _field_real, "damage resistance" },
 		{ _field_real, "shield multiplier" },
 		{ _field_real, "body multiplier" },
@@ -55,7 +55,7 @@ namespace macaque
 		{ _field_char_enum, "deathless", &player_trait_bool_enum },
 		{ _field_char_enum, "fast track armor", &player_trait_bool_enum },
 		{ _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -107,8 +107,8 @@ namespace macaque
 		{ _field_char_enum, "weapons resourceful", &player_trait_bool_enum },
 		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
 		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
-		FIELD_PAD("weapons_padding", nullptr, 1),
-		FIELD_EXPLANATION("initial weapons/equipment", nullptr, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
+		FIELD_PAD("weapons_padding", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_EXPLANATION("initial weapons/equipment", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
 		{ _field_string_id, "initial primary weapon" },
 		{ _field_string_id, "initial secondary weapon" },
 		{ _field_string_id, "initial equipment" },
@@ -138,7 +138,7 @@ namespace macaque
 		{ _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
 		{ _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
 		{ _field_char_enum, "stealthy", &player_trait_bool_enum },
-		FIELD_PAD("grue", nullptr, 2),
+		FIELD_PAD("grue", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -156,7 +156,7 @@ namespace macaque
 		{ _field_char_enum, "waypoint", &player_trait_waypoint },
 		{ _field_char_enum, "gamertag visible", &player_trait_waypoint },
 		{ _field_char_enum, "aura", &player_trait_aura },
-		FIELD_EXPLANATION("death effect/attached effect", nullptr, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
+		FIELD_EXPLANATION("death effect/attached effect", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
 		{ _field_string_id, "death effect" },
 		{ _field_string_id, "attached effect" },
 		{ _field_terminator }

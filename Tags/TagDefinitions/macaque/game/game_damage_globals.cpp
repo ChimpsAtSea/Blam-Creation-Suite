@@ -72,15 +72,15 @@ namespace macaque
 		{ _field_tag_reference, "default damage response", &global_damage_response_definition_reference },
 		{ _field_tag_reference, "friendly fire damage response", &global_damage_response_definition_reference },
 		{ _field_real, "player shield spillover", "the minimum amount of shield vitality needed to prevent spillover from damage types that do not spillover." },
-		FIELD_CUSTOM("damage decay", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("damage decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "damage decay props", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("AI damage decay", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("AI damage decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "ai damage decay props", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("shield impact decay", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("shield impact decay", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "shield impact decay props", &damage_decay_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -94,7 +94,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SHIELD_BOOST_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("shield boosting", nullptr, "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source"),
+		FIELD_EXPLANATION("shield boosting", nullptr, FIELD_FLAG_NONE, "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source"),
 		{ _field_real, "shield boost decay", "amount of shield-boost to decay per second" },
 		{ _field_real, "shield boost recharge time", "time to recharge full shields when getting boosted" },
 		{ _field_real, "shield boost stun time", "stun time when getting boosted" },

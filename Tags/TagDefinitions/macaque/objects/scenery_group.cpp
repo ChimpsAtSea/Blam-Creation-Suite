@@ -32,12 +32,12 @@ namespace macaque
 		SCENERY_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_EXPLANATION("Pathfinding", nullptr, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
+		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, we should create pathfinding data for this type of scenery"),
 		{ _field_enum, "pathfinding policy", &pathfinding_policy_enum },
 		{ _field_word_flags, "flags", &scenery_flags },
-		FIELD_EXPLANATION("Lightmapping", nullptr, "Indicate whether, by default, how we should lightmap this type of scenery"),
+		FIELD_EXPLANATION("Lightmapping", nullptr, FIELD_FLAG_NONE, "Indicate whether, by default, how we should lightmap this type of scenery"),
 		{ _field_enum, "lightmapping policy", &lightmapping_policy_enum },
-		FIELD_PAD("WGW", nullptr, 2),
+		FIELD_PAD("WGW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "Structure Lighting Tag", &Tag::Reference<struct s_structure_lighting_info>::s_defaultDefinition },
 		{ _field_useless_pad, "" },
 		{ _field_terminator }

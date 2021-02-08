@@ -44,7 +44,7 @@ namespace macaque
 		PARTICLE_EMITTER_BOAT_HULL_SHAPE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_char_enum, "distribution", &particle_emitter_boat_hull_distribution_type },
-		FIELD_PAD("PEBHSP1", nullptr, 3),
+		FIELD_PAD("PEBHSP1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "markers", &particle_emitter_boat_hull_group_block },
 		{ _field_terminator }
 	};

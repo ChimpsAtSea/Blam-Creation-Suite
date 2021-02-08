@@ -35,17 +35,17 @@ namespace macaque
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
 		{ _field_tag_reference, "detail display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "cookie cost" },
-		FIELD_CUSTOM("Prerequisites for visibility", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Prerequisites for visibility", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "visible prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "purchasable prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_struct, "purchase player appearance", &PurchasePlayerAppearanceStruct },
 		{ _field_terminator }
 	};
@@ -65,17 +65,17 @@ namespace macaque
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
 		{ _field_tag_reference, "detail display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "cookie cost" },
-		FIELD_CUSTOM("Prerequisites for visibility", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Prerequisites for visibility", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "visible prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "purchasable prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_string_id, "icon string id" },
 		{ _field_struct, "purchase player loadout", &PurchasePlayerLoadoutStruct },
 		{ _field_terminator }
@@ -96,17 +96,17 @@ namespace macaque
 		{ _field_string_id, "display description" },
 		{ _field_string_id, "Exit Experience Aggregate Group Name" },
 		{ _field_byte_flags, "flags", &cookie_purchase_flags },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "sprite index" },
 		{ _field_tag_reference, "detail display bitmap", &global_bitmap_reference },
 		{ _field_long_integer, "cookie cost" },
-		FIELD_CUSTOM("Prerequisites for visibility", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Prerequisites for visibility", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "visible prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Prerequisites for purchasability", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "purchasable prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_struct, "purchase player ordnance", &PurchasePlayerOrdnanceStruct },
 		{ _field_terminator }
 	};
@@ -150,10 +150,10 @@ namespace macaque
 		PURCHASE_PLAYER_ITEM_BLOCK_ID)
 	{
 		{ _field_char_enum, "item_category", &player_item_category_enum },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "object_name", "This must match one of the global objects.", FIELD_FLAG_INDEX },
 		{ _field_byte_integer, "object variant index", "e.g. used for weapon skins" },
-		FIELD_PAD("ppib", nullptr, 3),
+		FIELD_PAD("ppib", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -211,7 +211,7 @@ namespace macaque
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_char_enum, "model_region", &player_model_customization_area_enum },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
@@ -227,7 +227,7 @@ namespace macaque
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_NON_MODEL_PERMUTATION_BLOCK_ID)
 	{
 		{ _field_char_enum, "non_model_region", &player_non_model_customization_area_enum },
-		FIELD_PAD("pad1", nullptr, 3),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "non_model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};
@@ -421,7 +421,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COOKIE_PURCHASE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Purchase Families", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Purchase Families", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "Helmet purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 		{ _field_block, "Left shoulder purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
 		{ _field_block, "Right shoulder purchasable appearance families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
@@ -442,21 +442,21 @@ namespace macaque
 		{ _field_block, "Ordnance slot purchasable families", &CookiePurchaseFamilyOrdnanceDefinitionBlock_block },
 		{ _field_block, "Ordnance purchasable families", &CookiePurchaseFamilyOrdnanceDefinitionBlock_block },
 		{ _field_block, "Portrait pose purchasable families", &CookiePurchaseFamilyAppearanceDefinitionBlock_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Appearance Items", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Appearance Items", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "purchasable appearance items", &CookiePurchaseAppearanceDefinitionBlock_block },
 		{ _field_block, "DLC appearance unlockables", &CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block },
 		{ _field_block, "Waypoint appearance unlockables", &CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Loadout Items", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Loadout Items", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "purchasable loadout items", &CookiePurchaseLoadoutDefinitionBlock_block },
 		{ _field_block, "DLC loadout unlockables", &CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block },
 		{ _field_block, "Waypoint loadout unlockables", &CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Ordnance Items", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Ordnance Items", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "purchasable ordnance items", &CookiePurchaseOrdnanceDefinitionBlock_block },
 		{ _field_block, "DLC ordnance unlockables", &CookiePurchaseExternalUnlockableBlockOrdnanceDefinition_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

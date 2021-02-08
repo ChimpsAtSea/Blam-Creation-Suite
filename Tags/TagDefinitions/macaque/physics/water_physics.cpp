@@ -31,8 +31,8 @@ namespace macaque
 		WATER_PHYSICS_HULL_SURFACE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
-		FIELD_PAD("pad0", nullptr, 2),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_real, "radius" },
 		{ _field_block, "drag", &water_physics_material_override_block },
@@ -79,12 +79,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		WATER_PHYSICS_DRAG_PROPERTIES_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Pressure", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Pressure", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "pressure", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Suction", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Suction", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "suction", &physics_force_function_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_real, "linear damping" },
 		{ _field_real, "angular damping" },
 		{ _field_terminator }
@@ -100,7 +100,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_FORCE_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "velocity to pressure", &mapping_function },
 		{ _field_real, "max velocity", nullptr, "wu/s" },
 		{ _field_terminator }

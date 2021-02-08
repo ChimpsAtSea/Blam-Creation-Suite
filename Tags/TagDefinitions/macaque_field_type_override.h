@@ -1,6 +1,6 @@
 #pragma once
 
-#define __FIELD_MACRO_HELPER(type, name, description, data)\
+#define __FIELD_MACRO_HELPER(type, name, description, flags, data)\
 {														\
 	type,											\
 	(const char*)(name),								\
@@ -14,10 +14,18 @@
 	_field_id_default									\
 }
 
-#define FIELD_CUSTOM(name, description, type) { _field_custom, (const char*)(name), (const char*)(description), (type) }
-#define FIELD_PAD(name, description, size) __FIELD_MACRO_HELPER(_field_pad, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_SKIP(name, description, size) __FIELD_MACRO_HELPER(_field_skip, name, description, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_EXPLANATION(name, description, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, static_cast<const void*>(explanation))
+// #TODO
+#define FIELD_FLAG_NONE 0u
+#define FIELD_FLAG_UNKNOWN0 0u
+#define FIELD_FLAG_READ_ONLY 0u
+#define FIELD_FLAG_INDEX 0u
+#define FIELD_FLAG_UNKNOWN3 0u
+#define FIELD_FLAG_POINTER 0u
+
+#define FIELD_CUSTOM(name, description, flags, type) __FIELD_MACRO_HELPER(_field_custom, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(type)))
+#define FIELD_PAD(name, description, flags, size) __FIELD_MACRO_HELPER(_field_pad, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
+#define FIELD_SKIP(name, description, flags, size) __FIELD_MACRO_HELPER(_field_skip, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
+#define FIELD_EXPLANATION(name, description, flags, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, flags, static_cast<const void*>(explanation))
 
 #ifndef __INTELLISENSE__
 

@@ -18,7 +18,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		BIG_BATTLE_CREATURE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("CREATURE", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("CREATURE", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -30,9 +30,9 @@ namespace macaque
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
 		{ _field_tag_reference, "impact shield damage", &global_damage_reference },
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
-		FIELD_EXPLANATION("death and destruction", nullptr, ""),
+		FIELD_EXPLANATION("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "destroy after death time", "if non-zero, the creature will destroy itself upon death after this much time", "seconds" },
-		FIELD_EXPLANATION("big battle", nullptr, "The following fields only affect creatures configured as boids for big battle"),
+		FIELD_EXPLANATION("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
 		{ _field_long_flags, "big battle flags", &creature_big_battle_definition_flags },
 		{ _field_tag_reference, "big battle weapon emitter", &global_cheap_particle_emitter_reference },
 		{ _field_real_point_3d, "big battle weapon offset" },
@@ -42,7 +42,7 @@ namespace macaque
 		{ _field_tag_reference, "big battle expensive weapon effect", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_tag_reference, "imposter model", &imposter_model_reference },
 		{ _field_terminator }
 	};
@@ -94,7 +94,7 @@ namespace macaque
 		CREATURE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ CREATURE $$$", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ CREATURE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_long_flags, "flags", &creature_definition_flags },
 		{ _field_enum, "default team", &unit_default_teams },
 		{ _field_enum, "motion sensor blip size", &global_chud_blip_type_definition },
@@ -106,9 +106,9 @@ namespace macaque
 		{ _field_tag_reference, "impact damage", &global_damage_reference },
 		{ _field_tag_reference, "impact shield damage", &global_damage_reference },
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
-		FIELD_EXPLANATION("death and destruction", nullptr, ""),
+		FIELD_EXPLANATION("death and destruction", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "destroy after death time", "if non-zero, the creature will destroy itself upon death after this much time", "seconds" },
-		FIELD_EXPLANATION("big battle", nullptr, "The following fields only affect creatures configured as boids for big battle"),
+		FIELD_EXPLANATION("big battle", nullptr, FIELD_FLAG_NONE, "The following fields only affect creatures configured as boids for big battle"),
 		{ _field_long_flags, "big battle flags", &creature_big_battle_definition_flags },
 		{ _field_tag_reference, "big battle weapon emitter", &global_cheap_particle_emitter_reference },
 		{ _field_real_point_3d, "big battle weapon offset" },
@@ -118,7 +118,7 @@ namespace macaque
 		{ _field_tag_reference, "big battle expensive weapon effect", &global_effect_reference },
 		{ _field_real_bounds, "expensive weapon fire time", nullptr, "seconds" },
 		{ _field_tag_reference, "big battle death effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

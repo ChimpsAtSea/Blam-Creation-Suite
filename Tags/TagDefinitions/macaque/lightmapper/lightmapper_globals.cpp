@@ -70,12 +70,12 @@ namespace macaque
 		LIGHTMAPPER_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "Version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM("GLOBAL QUALITY SETTINGS", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("GLOBAL QUALITY SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("LOCAL SETTINGS", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("LOCAL SETTINGS", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "Local lightmapper settings", &global_lightmap_local_settings_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -115,15 +115,15 @@ namespace macaque
 		{ _field_real, "Indirect amplification factor" },
 		{ _field_real, "Lightmap Compression Maximum" },
 		{ _field_real, "Per Vertex AO Auto Threshold" },
-		FIELD_CUSTOM("Ambient occlusion settings", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Ambient occlusion settings", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "AO settings", &global_lightmap_ao_settings_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Global illumination falloff settings", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Global illumination falloff settings", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "Global illumination falloff settings", &global_lightmap_global_illumination_falloff_settings_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("Quality Overrides", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("Quality Overrides", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "Local lightmapper override settings", &global_lightmap_local_override_settings_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_long_enum, "Forge Lightmap Size Class (if enabled)", &scenario_structure_size_enum },
 		{ _field_terminator }
 	};

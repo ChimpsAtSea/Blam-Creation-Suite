@@ -1112,6 +1112,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			else ss << "nullptr";
 			if (!description.empty()) ss << ", \"" << description.c_str() << "\"";
 			else ss << ", nullptr";
+			ss << ", "; generate_tag_field_flags(ss, string_parser);
 			ss << ", " << (custom_field_type ? custom_field_type : "_field_id_default");
 			ss << ")," << std::endl;
 
@@ -1126,6 +1127,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			else ss << "nullptr";
 			if (!description.empty()) ss << ", \"" << description.c_str() << "\"";
 			else ss << ", nullptr";
+			ss << ", "; generate_tag_field_flags(ss, string_parser);
 			ss << ", " << pad_field->padding;
 			ss << ")," << std::endl;
 
@@ -1140,6 +1142,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			else ss << "nullptr";
 			if (!description.empty()) ss << ", \"" << description.c_str() << "\"";
 			else ss << ", nullptr";
+			ss << ", "; generate_tag_field_flags(ss, string_parser);
 			ss << ", " << skip_field->length;
 			ss << ")," << std::endl;
 
@@ -1156,6 +1159,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			else ss << "nullptr";
 			if (!description.empty()) ss << ", \"" << description.c_str() << "\"";
 			else ss << ", nullptr";
+			ss << ", "; generate_tag_field_flags(ss, string_parser);
 			if (explanation_field->definition != nullptr)
 			{
 				std::string explanation = escape_string(explanation_field->definition);
@@ -1163,8 +1167,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			}
 			else ss << ", nullptr";
 			ss << ")," << std::endl;
-
-			break;
 
 			break;
 		}

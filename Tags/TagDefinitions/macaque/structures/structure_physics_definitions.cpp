@@ -40,12 +40,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOFT_SURFACES_DEFINITION_BLOCK_ID)
 	{
-		FIELD_PAD("CLASS_NONE", nullptr, 4),
+		FIELD_PAD("CLASS_NONE", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "class biped", "max - .2f" },
 		{ _field_real, "class dead biped", "max - .09f" },
 		{ _field_real, "class crates + vehicles", "max - .2f" },
 		{ _field_real, "class debris", "max - .04f" },
-		FIELD_PAD("CLASS_ALL", nullptr, 4),
+		FIELD_PAD("CLASS_ALL", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -61,7 +61,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_enum, "type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &soft_ceiling_type_enum },
-		FIELD_PAD("fresh", nullptr, 2),
+		FIELD_PAD("fresh", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "soft ceiling triangles", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_soft_ceiling_triangle_block },
 		{ _field_terminator }
 	};
@@ -110,7 +110,7 @@ namespace macaque
 		STRUCTURE_WATER_INSTANCES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "group", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_water_groups_block },
-		FIELD_PAD("PAD0", nullptr, 2),
+		FIELD_PAD("PAD0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_vector_3d, "flow velocity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_argb_color, "fog color", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "fog murkiness", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },

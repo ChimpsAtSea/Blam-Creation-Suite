@@ -30,7 +30,7 @@ namespace macaque
 		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &materialFlags },
 		{ _field_byte_flags, "render flags", FIELD_FLAG_UNKNOWN0, &materialRenderFlags },
 		{ _field_char_enum, "Transparent Shadow Policy", &MaterialTransparentShadowPolicyEnum },
-		FIELD_PAD("transparentshadowpad", nullptr, 3),
+		FIELD_PAD("transparentshadowpad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -95,7 +95,7 @@ namespace macaque
 		{ _field_char_integer, "level of smallest mipmap to use" },
 		{ _field_char_integer, "level of largest mipmap to use" },
 		{ _field_byte_integer, "render phase mask" },
-		FIELD_PAD("DHaFS", nullptr, 1),
+		FIELD_PAD("DHaFS", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -198,7 +198,7 @@ namespace macaque
 		{ _field_byte_flags, "flags", FIELD_FLAG_UNKNOWN0, &materialFlags },
 		{ _field_byte_flags, "render flags", FIELD_FLAG_UNKNOWN0, &materialRenderFlags },
 		{ _field_char_enum, "Transparent Shadow Policy", &MaterialTransparentShadowPolicyEnum },
-		FIELD_PAD("transparentshadowpad", nullptr, 3),
+		FIELD_PAD("transparentshadowpad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

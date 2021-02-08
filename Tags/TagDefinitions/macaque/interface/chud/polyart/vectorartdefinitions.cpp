@@ -18,7 +18,7 @@ namespace macaque
 		VECTORART_ASSET_STRUCT_DEFINITION_ID)
 	{
 		{ _field_char_enum, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_polyartAssetStateFlags },
-		FIELD_PAD("MERP", nullptr, 3),
+		FIELD_PAD("MERP", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "antialiasing extent size" },
 		{ _field_real, "import fudge factor (suggested 0.5)" },
 		{ _field_real_point_2d, "bounds", FIELD_FLAG_READ_ONLY },

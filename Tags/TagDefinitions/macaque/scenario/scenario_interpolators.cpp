@@ -32,7 +32,7 @@ namespace macaque
 		SCENARIO_INTERPOLATOR_DATA_BLOCK_ID)
 	{
 		{ _field_word_flags, "flags", &scenario_interpolator_flags },
-		FIELD_PAD("SCBP1", nullptr, 2),
+		FIELD_PAD("SCBP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_struct, "function", &scalar_function_named_struct },
 		{ _field_real, "duration", nullptr, "seconds" },

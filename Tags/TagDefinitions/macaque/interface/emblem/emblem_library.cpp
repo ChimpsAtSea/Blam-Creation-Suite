@@ -33,7 +33,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "bitmap index", "the index of the bitmap in the bitmap group" },
-		FIELD_PAD("ASDFJIJJGHJFL", nullptr, 2),
+		FIELD_PAD("ASDFJIJJGHJFL", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "gradient size", "the size of the gradient (from white to black) in this bitmap", "pixels" },
 		{ _field_terminator }
 	};
@@ -53,7 +53,7 @@ namespace macaque
 		{ _field_short_block_index, "bitmap", &emblem_bitmap_list_block },
 		{ _field_enum, "address mode x", &render_method_bitmap_address_mode_enum },
 		{ _field_enum, "address mode y", &render_method_bitmap_address_mode_enum },
-		FIELD_PAD("FGKKGKHL", nullptr, 2),
+		FIELD_PAD("FGKKGKHL", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "transform", &emblem_transform },
 		{ _field_terminator }
 	};
@@ -70,14 +70,14 @@ namespace macaque
 		EMBLEM_FRONT_LIST_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_EXPLANATION("Layer 0 (foreground)", nullptr, "Composed of two shapes\n"),
+		FIELD_EXPLANATION("Layer 0 (foreground)", nullptr, FIELD_FLAG_NONE, "Composed of two shapes\n"),
 		{ _field_struct, "layer 0", &emblem_layer },
-		FIELD_EXPLANATION("Layer 1 (midground)", nullptr, "This layer is behind the foreground, and in front of the background\n"),
+		FIELD_EXPLANATION("Layer 1 (midground)", nullptr, FIELD_FLAG_NONE, "This layer is behind the foreground, and in front of the background\n"),
 		{ _field_struct, "layer 1", &emblem_layer },
-		FIELD_EXPLANATION("Misc", nullptr, "Extra configuration\n"),
+		FIELD_EXPLANATION("Misc", nullptr, FIELD_FLAG_NONE, "Extra configuration\n"),
 		{ _field_char_enum, "primary layer", &front_emblem_primary_layer },
-		FIELD_PAD("pad0", nullptr, 1),
-		FIELD_PAD("pad1", nullptr, 2),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -93,7 +93,7 @@ namespace macaque
 		EMBLEM_BACK_LIST_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		FIELD_EXPLANATION("Layer 2 (background)", nullptr, "\n"),
+		FIELD_EXPLANATION("Layer 2 (background)", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_struct, "layer 2", &emblem_layer },
 		{ _field_terminator }
 	};
@@ -135,8 +135,8 @@ namespace macaque
 		{ _field_real_quaternion, "bitmap_params2" },
 		{ _field_real_quaternion, "bitmap_params3" },
 		{ _field_char_enum, "primary layer", &front_emblem_primary_layer },
-		FIELD_PAD("pad0", nullptr, 1),
-		FIELD_PAD("pad1", nullptr, 2),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -176,20 +176,20 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LIBRARY_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Emblem Library", nullptr, "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n"),
+		FIELD_EXPLANATION("Emblem Library", nullptr, FIELD_FLAG_NONE, "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n"),
 		{ _field_short_integer, "version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("jfejkjjg", nullptr, 2),
-		FIELD_CUSTOM("Bitmaps", nullptr, _field_id_function_group_begin),
-		FIELD_EXPLANATION("Bitmaps", nullptr, "\n"),
+		FIELD_PAD("jfejkjjg", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_CUSTOM("Bitmaps", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
+		FIELD_EXPLANATION("Bitmaps", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_real, "bitmap resolution", "used to calculate appropriate antialiasing settings", "pixels" },
 		{ _field_real, "antialias sharpen", "default 1.0, global control on antialias sharpness" },
 		{ _field_tag_reference, "emblem bitmaps", &global_bitmap_reference },
 		{ _field_tag_reference, "emblem bitmaps hi rez", &global_bitmap_reference },
 		{ _field_block, "bitmaps", &emblem_bitmap_list_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_EXPLANATION("Shapes", nullptr, "\n"),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_EXPLANATION("Shapes", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_block, "shapes", &emblem_shape_list_block },
-		FIELD_EXPLANATION("Emblems", nullptr, "\n"),
+		FIELD_EXPLANATION("Emblems", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_block, "front emblems", &emblem_front_list_block },
 		{ _field_block, "back emblems", &emblem_back_list_block },
 		{ _field_block, "runtime front", FIELD_FLAG_UNKNOWN0, &emblem_runtime_front_list_block },
@@ -224,14 +224,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EMBLEM_LAYER_ID)
 	{
-		FIELD_EXPLANATION("Shape 0", nullptr, "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n"),
+		FIELD_EXPLANATION("Shape 0", nullptr, FIELD_FLAG_NONE, "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n"),
 		{ _field_short_block_index, "shape 0", &emblem_shape_list_block },
-		FIELD_PAD("fkkfkll", nullptr, 2),
+		FIELD_PAD("fkkfkll", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "multiplier 0" },
 		{ _field_struct, "transform 0", &emblem_transform },
-		FIELD_EXPLANATION("Shape 1", nullptr, "\n"),
+		FIELD_EXPLANATION("Shape 1", nullptr, FIELD_FLAG_NONE, "\n"),
 		{ _field_short_block_index, "shape 1", &emblem_shape_list_block },
-		FIELD_PAD("fkkfkllf", nullptr, 2),
+		FIELD_PAD("fkkfkllf", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "multiplier 1" },
 		{ _field_struct, "transform 1", &emblem_transform },
 		{ _field_terminator }

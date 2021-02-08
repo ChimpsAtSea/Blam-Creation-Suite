@@ -34,7 +34,7 @@ namespace macaque
 		{ _field_string_id, "description", "the string id of the description of this enlistment" },
 		{ _field_short_integer, "sprite index", "the sprite index of the icon for this enlistment" },
 		{ _field_byte_flags, "flags", &playerEnlistmentFlags },
-		FIELD_PAD("PAD0", nullptr, 1),
+		FIELD_PAD("PAD0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_string_id, "unlocked emblem fg" },
 		{ _field_string_id, "unlocked emblem bg" },
 		{ _field_string_id, "unlocked helmet" },
@@ -57,7 +57,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_ENLISTMENT_GLOBALS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Enlistments", nullptr, "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!"),
+		FIELD_EXPLANATION("Enlistments", nullptr, FIELD_FLAG_NONE, "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!"),
 		{ _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block },
 		{ _field_terminator }
 	};

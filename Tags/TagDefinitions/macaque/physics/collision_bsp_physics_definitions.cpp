@@ -34,7 +34,7 @@ namespace macaque
 		4)
 	{
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2 },
-		FIELD_PAD("foobar666", nullptr, 8),
+		FIELD_PAD("foobar666", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_vector_3d, "center", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "half extent", FIELD_FLAG_READ_ONLY },
@@ -46,7 +46,7 @@ namespace macaque
 		{ _field_char_integer, "collision geometry shape type", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "instance index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("3 long pad", nullptr, 12),
+		FIELD_PAD("3 long pad", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -61,8 +61,8 @@ namespace macaque
 		4)
 	{
 		{ _field_struct, "mopp bv tree shape", &havok_shape_struct_2010_2 },
-		FIELD_PAD("m_bvTreeType", nullptr, 1),
-		FIELD_PAD("3 other bytes", nullptr, 3),
+		FIELD_PAD("m_bvTreeType", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, 1),
+		FIELD_PAD("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "mopp code pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -71,9 +71,9 @@ namespace macaque
 		{ _field_long_integer, "child shape vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "child shape pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "child size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("mopp alignment", nullptr, 4),
+		FIELD_PAD("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
 		{ _field_real, "mopp scale", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("final pad", nullptr, 12),
+		FIELD_PAD("final pad", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 

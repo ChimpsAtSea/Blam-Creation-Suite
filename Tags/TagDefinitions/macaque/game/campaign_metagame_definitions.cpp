@@ -20,9 +20,9 @@ namespace macaque
 		{ _field_byte_flags, "flags", &campaign_metagame_bucket_flags },
 		{ _field_char_enum, "type", &campaign_metagame_bucket_type_enum },
 		{ _field_char_enum, "class", &campaign_metagame_bucket_class_enum },
-		FIELD_PAD("pad0", nullptr, 1),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "point count" },
-		FIELD_PAD("pad1", nullptr, 2),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

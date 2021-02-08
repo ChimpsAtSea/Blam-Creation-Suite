@@ -34,7 +34,7 @@ namespace macaque
 		{ _field_int64_integer, "Definition Identifier", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct },
 		{ _field_long_integer, "Source File Identifier", FIELD_FLAG_UNKNOWN0 },
-		FIELD_EXPLANATION("Static Only Parameters", nullptr, ""),
+		FIELD_EXPLANATION("Static Only Parameters", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "indirect amplification factor" },
 		{ _field_real, "jitter sphere radius" },
 		{ _field_real, "jitter angle" },
@@ -43,7 +43,7 @@ namespace macaque
 		{ _field_char_enum, "indirect only", &midnight_boolean_enum_definition },
 		{ _field_long_flags, "flags", &structure_lighting_generic_light_flags },
 		{ _field_char_enum, "static analytic", &midnight_boolean_enum_definition },
-		FIELD_PAD("pdd", nullptr, 3),
+		FIELD_PAD("pdd", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -69,7 +69,7 @@ namespace macaque
 		{ _field_real, "fade out distance" },
 		{ _field_real, "fade start distance" },
 		{ _field_long_integer, "Shadow Geometry Checksum" },
-		FIELD_PAD("pdd", nullptr, 4),
+		FIELD_PAD("pdd", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -146,7 +146,7 @@ namespace macaque
 		{ _field_long_block_index, "Light Instance Index", &structure_lighting_generic_light_instance_block },
 		{ _field_array, "Active Shots", &g_cinematicShotFlagArray_array },
 		{ _field_block, "Linked Objects", &structureLightingCinematicObjectBlock_block },
-		FIELD_PAD("padding", nullptr, 4),
+		FIELD_PAD("padding", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 

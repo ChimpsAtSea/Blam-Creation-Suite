@@ -34,7 +34,7 @@ namespace macaque
 		{ _field_real, "acceleration range", nullptr, "world units" },
 		{ _field_real, "inverse acceleration range", nullptr, "world units", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "world acceleration scale", "0 defaults to 1, scale the acceleration the object itself applies on this system." },
-		FIELD_EXPLANATION("damping", nullptr, "feed velocity into this function and damp by the value that comes out"),
+		FIELD_EXPLANATION("damping", nullptr, FIELD_FLAG_NONE, "feed velocity into this function and damp by the value that comes out"),
 		{ _field_struct, "spring damping", &scalar_function_named_struct },
 		{ _field_real, "velocity domain" },
 		{ _field_struct, "spring acceleration", &scalar_function_named_struct },
@@ -54,7 +54,7 @@ namespace macaque
 		{ _field_short_block_index, "x-axis", &spring_linear_acceleration_block },
 		{ _field_short_block_index, "y-axis", &spring_linear_acceleration_block },
 		{ _field_short_block_index, "z-axis", &spring_linear_acceleration_block },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

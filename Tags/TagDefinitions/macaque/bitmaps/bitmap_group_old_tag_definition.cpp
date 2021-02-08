@@ -20,7 +20,7 @@ namespace macaque
 		{ _field_string, "name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "first bitmap index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "bitmap count", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("OTXYKQ", nullptr, 16),
+		FIELD_PAD("OTXYKQ", nullptr, FIELD_FLAG_NONE, 16),
 		{ _field_block, "sprites", FIELD_FLAG_READ_ONLY, &bitmap_group_sprite_block_def_block },
 		{ _field_terminator }
 	};
@@ -36,8 +36,8 @@ namespace macaque
 		BITMAP_GROUP_SPRITE_BLOCK_DEF_ID)
 	{
 		{ _field_short_integer, "bitmap index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("D", nullptr, 2),
-		FIELD_PAD("GMLJPJIMC", nullptr, 4),
+		FIELD_PAD("D", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_PAD("GMLJPJIMC", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "left", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "right", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "top", FIELD_FLAG_READ_ONLY },

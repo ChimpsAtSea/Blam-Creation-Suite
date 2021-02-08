@@ -33,7 +33,7 @@ namespace macaque
 		{ _field_long_integer, "xp threshold ", "total earned XP needed to reach this rank" },
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "sprite index" },
-		FIELD_PAD("pad0", nullptr, 2),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "time played multiplier", "This is an additional multiplier to rewards given for time played for players at this grade" },
 		{ _field_block, "level up rewards", &rewardBlock_block },
 		{ _field_terminator }

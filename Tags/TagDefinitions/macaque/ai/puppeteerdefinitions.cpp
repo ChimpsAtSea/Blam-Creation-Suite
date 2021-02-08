@@ -21,7 +21,7 @@ namespace macaque
 		{ _field_string_id, "designerZone" },
 		{ _field_struct, "manual bsp flags", FIELD_FLAG_READ_ONLY, &manualBspFlagsReferences },
 		{ _field_byte_flags, "flags", &PuppetShowFlagsDefinition },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string, "icsPoint0" },
 		{ _field_string, "icsPoint1" },
 		{ _field_string, "icsPoint2" },
@@ -59,7 +59,7 @@ namespace macaque
 		{ _field_long_string, "endScript" },
 		{ _field_short_integer, "height" },
 		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
-		FIELD_PAD("pad", nullptr, 1),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -80,7 +80,7 @@ namespace macaque
 		{ _field_long_string, "animCondition" },
 		{ _field_dword_integer, "color" },
 		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "blendFrame", FIELD_FLAG_READ_ONLY },
@@ -120,7 +120,7 @@ namespace macaque
 		{ _field_dword_integer, "color" },
 		{ _field_byte_integer, "subTrack" },
 		{ _field_byte_flags, "editorFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &PuppetEditorFlagsDefinition },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "startFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "endFrame", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "startPixel", FIELD_FLAG_READ_ONLY },
@@ -248,7 +248,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &PuppetFlagsDefinition },
 		{ _field_char_enum, "indexType", FIELD_FLAG_UNKNOWN3, &PuppetIndexTypeEnum },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "type", &PuppetHeaderStruct_type_reference },
 		{ _field_string_id, "objectName" },
@@ -278,7 +278,7 @@ namespace macaque
 		{ _field_char_enum, "type", &PuppetPathPointTypeEnum },
 		{ _field_byte_flags, "flags", &PuppetPathPointFlagsDefinition },
 		{ _field_char_enum, "indexType", FIELD_FLAG_UNKNOWN3, &PuppetIndexTypeEnum },
-		FIELD_PAD("pad", nullptr, 1),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_string_id, "objectName" },
 		{ _field_long_integer, "index", FIELD_FLAG_UNKNOWN3 },
 		{ _field_string_id, "marker" },
@@ -320,7 +320,7 @@ namespace macaque
 		{ _field_struct, "position", &PuppetPathPointStruct },
 		{ _field_byte_flags, "flags", &PuppetAnimationFlagsDefinition },
 		{ _field_char_enum, "posType", &AnimPositionTypeEnum },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "startFrame" },
 		{ _field_long_integer, "endFrame" },
 		{ _field_long_integer, "repeatCount" },
@@ -356,7 +356,7 @@ namespace macaque
 		{ _field_char_enum, "type", &PuppetSubActionTypeEnum },
 		{ _field_char_enum, "startType", &SubActionTimeTypeEnum },
 		{ _field_char_enum, "endType", &SubActionTimeTypeEnum },
-		FIELD_PAD("pad1", nullptr, 1),
+		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "startAction" },
 		{ _field_long_integer, "startOffset" },
 		{ _field_string_id, "startConditionScriptName" },
@@ -367,7 +367,7 @@ namespace macaque
 		{ _field_long_integer, "endOffset" },
 		{ _field_long_integer, "comment" },
 		{ _field_short_integer, "dataIndex" },
-		FIELD_PAD("pad2", nullptr, 2),
+		FIELD_PAD("pad2", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -383,7 +383,7 @@ namespace macaque
 		{ _field_struct, "point", &PuppetPathPointStruct },
 		{ _field_tag_reference, "asset", &PuppetSubActionPointStruct_asset_reference },
 		{ _field_byte_flags, "flags", &SubActionPointFlagsDefinition },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

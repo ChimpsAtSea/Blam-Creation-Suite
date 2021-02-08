@@ -72,16 +72,16 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VARIANT_OPTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("SUB-CATEGORY", nullptr, "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here"),
+		FIELD_EXPLANATION("SUB-CATEGORY", nullptr, FIELD_FLAG_NONE, "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here"),
 		{ _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
-		FIELD_EXPLANATION("PLAYER TRAIT", nullptr, "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here"),
+		FIELD_EXPLANATION("PLAYER TRAIT", nullptr, FIELD_FLAG_NONE, "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here"),
 		{ _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
 		{ _field_long_enum, "player trait category", &game_engine_settings },
-		FIELD_EXPLANATION("CATEGORY NAME", nullptr, "string_id name used for the category labelling (used for both sub-category and player-trait references)"),
+		FIELD_EXPLANATION("CATEGORY NAME", nullptr, FIELD_FLAG_NONE, "string_id name used for the category labelling (used for both sub-category and player-trait references)"),
 		{ _field_string_id, "category name" },
-		FIELD_EXPLANATION("CATEGORY DESCRIPTION", nullptr, "string_id description used for the category description (used for both sub-category and player-trait references)"),
+		FIELD_EXPLANATION("CATEGORY DESCRIPTION", nullptr, FIELD_FLAG_NONE, "string_id description used for the category description (used for both sub-category and player-trait references)"),
 		{ _field_string_id, "category description" },
-		FIELD_EXPLANATION("VALUE-PAIRS", nullptr, "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here"),
+		FIELD_EXPLANATION("VALUE-PAIRS", nullptr, FIELD_FLAG_NONE, "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here"),
 		{ _field_tag_reference, "value pairs", &g_text_value_pair_reference },
 		{ _field_terminator }
 	};
@@ -98,7 +98,7 @@ namespace macaque
 	{
 		{ _field_string_id, "property name" },
 		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		FIELD_PAD("blug", nullptr, 3),
+		FIELD_PAD("blug", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "allowed values", &text_value_pair_reference_block },
 		{ _field_terminator }
 	};
@@ -114,7 +114,7 @@ namespace macaque
 		TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &text_value_pair_flags },
-		FIELD_PAD("grug", nullptr, 3),
+		FIELD_PAD("grug", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "enumerated value" },
 		{ _field_real, "real value" },
 		{ _field_string_id, "string_id value" },
@@ -163,7 +163,7 @@ namespace macaque
 		{ _field_string_id, "name" },
 		{ _field_string_id, "description text" },
 		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		FIELD_PAD("shrug", nullptr, 3),
+		FIELD_PAD("shrug", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "text value pairs", &text_value_pair_reference_block },
 		{ _field_terminator }
 	};

@@ -18,7 +18,7 @@ namespace macaque
 		REWARDBLOCK_ID)
 	{
 		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
-		FIELD_PAD("PJB1", nullptr, 1),
+		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward amount", "Amount of the given currency to be given with this reward." },
 		{ _field_terminator }
 	};

@@ -77,7 +77,7 @@ namespace macaque
 		{ _field_real, "default_distance", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "index1", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "index2", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("vmx_pad", nullptr, 4),
+		FIELD_PAD("vmx_pad", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -94,15 +94,15 @@ namespace macaque
 		{ _field_string_id, "marker attachment name" },
 		{ _field_string_id, "secondary axis attachment name" },
 		{ _field_tag_reference, "Shader", &global_shader_reference },
-		FIELD_EXPLANATION("Default cloth vertices", nullptr, "if not importing from a render model, type a grid size"),
+		FIELD_EXPLANATION("Default cloth vertices", nullptr, FIELD_FLAG_NONE, "if not importing from a render model, type a grid size"),
 		{ _field_short_integer, "grid x dimension" },
 		{ _field_short_integer, "grid y dimension" },
 		{ _field_real, "grid spacing x" },
 		{ _field_real, "grid spacing y" },
 		{ _field_block, "collision spheres", &collision_sphere_block },
-		FIELD_EXPLANATION("Cloth Properties", nullptr, ""),
+		FIELD_EXPLANATION("Cloth Properties", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "properties", &cloth_properties },
-		FIELD_EXPLANATION("Import or grid data", nullptr, ""),
+		FIELD_EXPLANATION("Import or grid data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "vertices", FIELD_FLAG_READ_ONLY, &cloth_vertices_block },
 		{ _field_block, "indices", FIELD_FLAG_READ_ONLY, &cloth_indices_block },
 		{ _field_block, "strip indices", FIELD_FLAG_READ_ONLY, &cloth_indices_block },
@@ -126,7 +126,7 @@ namespace macaque
 		{ _field_real, "wind_scale", "[0.0 - 3.0] sug 1.0" },
 		{ _field_real, "wind_flappiness_scale", "[0.0 - 1.0] sug 0.75" },
 		{ _field_real, "longest_rod", "[1.0 - 10.0] sug 3.5" },
-		FIELD_PAD("WXLH", nullptr, 24),
+		FIELD_PAD("WXLH", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_terminator }
 	};
 

@@ -130,7 +130,7 @@ namespace macaque
 		{ _field_real, "move distance", "drop height for drop to ground" },
 		{ _field_real, "angle snap interval", "rotate brushes will snap to intervals of this" },
 		{ _field_real, "Editor cull distance", "decorators will not draw beyond this distance from the camera" },
-		FIELD_EXPLANATION("KEYS", nullptr, "[] \t brush size\n-= \t brush feathering\n0-9 \t brush opacity\nSHIFT+0-9\t select palette\nSHIFT\t while painting will reverse the operation\n"),
+		FIELD_EXPLANATION("KEYS", nullptr, FIELD_FLAG_NONE, "[] \t brush size\n-= \t brush feathering\n0-9 \t brush opacity\nSHIFT+0-9\t select palette\nSHIFT\t while painting will reverse the operation\n"),
 		{ _field_terminator }
 	};
 

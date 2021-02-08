@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &map_variant_palette_flags },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "entries", &map_variant_palette_entry_block },
 		{ _field_terminator }
 	};

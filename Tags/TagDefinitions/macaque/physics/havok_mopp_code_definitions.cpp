@@ -21,7 +21,7 @@ namespace macaque
 		{ _field_long_integer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("total shit pad1", nullptr, 8),
+		FIELD_PAD("total shit pad1", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "v.i", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "v.j", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "v.k", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -30,12 +30,12 @@ namespace macaque
 		{ _field_long_integer, "int m_size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "int m_capacityAndFlags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "int8 m_buildType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("total shit pad2", nullptr, 3),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		FIELD_PAD("total shit pad2", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
 		{ _field_block, "mopp data block ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_data_definition_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
 		{ _field_char_integer, "mopp build type", "they say it only matters for ps3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("explicit alignment pad 3", nullptr, 3),
+		FIELD_PAD("explicit alignment pad 3", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

@@ -70,7 +70,7 @@ namespace macaque
 		{ _field_char_integer, "number of rounds" },
 		{ _field_char_enum, "mosh difficulty level", &mosh_difficulty },
 		{ _field_byte_integer, "overshield deplete time" },
-		FIELD_PAD("RXXH", nullptr, 1),
+		FIELD_PAD("RXXH", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 
@@ -111,11 +111,11 @@ namespace macaque
 		{ _field_char_integer, "suicide penalty", nullptr, "seconds" },
 		{ _field_char_integer, "betrayal penalty", nullptr, "seconds" },
 		{ _field_char_integer, "respawn growth", nullptr, "seconds" },
-		FIELD_PAD("EOTOTRXV", nullptr, 3),
+		FIELD_PAD("EOTOTRXV", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "respawn player traits name" },
 		{ _field_char_integer, "initial loadout selection time", "delay before spawning in at start of round", "seconds" },
 		{ _field_char_integer, "respawn player traits duration", nullptr, "seconds" },
-		FIELD_PAD("woman bound for glory, why you leaving me again?", nullptr, 2),
+		FIELD_PAD("woman bound for glory, why you leaving me again?", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -164,7 +164,7 @@ namespace macaque
 		{ _field_char_integer, "yellow powerup secondary duration", nullptr, "seconds" },
 		{ _field_char_integer, "custom powerup secondary duration", nullptr, "seconds" },
 		{ _field_byte_flags, "flags", &game_engine_map_override_options_flags },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -181,7 +181,7 @@ namespace macaque
 	{
 		{ _field_char_enum, "model override type", &game_engine_team_options_model_override_type },
 		{ _field_char_enum, "designator switch type", &game_engine_team_options_designator_switch_type },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_array, "teams", &game_engine_team_options_team_block_array },
 		{ _field_terminator }
 	};
@@ -227,7 +227,7 @@ namespace macaque
 		{ _field_char_integer, "objective 4" },
 		{ _field_char_integer, "User Data" },
 		{ _field_char_integer, "start location folder" },
-		FIELD_PAD("BLAH", nullptr, 2),
+		FIELD_PAD("BLAH", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -319,7 +319,7 @@ namespace macaque
 		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
 		{ _field_byte_flags, "flags", &game_engine_survival_variant_flags },
 		{ _field_char_enum, "game difficulty", &global_campaign_difficulty_enum },
-		FIELD_PAD("SDFHJREN", nullptr, 2),
+		FIELD_PAD("SDFHJREN", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_integer, "set count", "survival_mode_get_set_count, -1 to loop last, -2 to loop last 3, -3 to loop all" },
 		{ _field_char_integer, "bonus lives awarded", "survival_mode_get_bonus_lives_awarded" },
 		{ _field_short_integer, "bonus target", "survival_mode_get_bonus_target" },
@@ -335,9 +335,9 @@ namespace macaque
 		{ _field_block, "elite respawn options", &game_engine_respawn_options_block },
 		{ _field_block, "set properties", &game_engine_survival_set_properties_block },
 		{ _field_block, "round properties", &game_engine_survival_round_properties_block },
-		FIELD_CUSTOM("bonus round", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("bonus round", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "bonus round properties", &game_engine_survival_bonus_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_block, "custom skulls", &game_engine_survival_custom_skull_block },
 		{ _field_terminator }
 	};
@@ -367,15 +367,15 @@ namespace macaque
 		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
 	{
 		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
-		FIELD_CUSTOM("initial wave", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("initial wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "initial waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("primary wave", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("primary wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "primary waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("boss wave", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("boss wave", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "boss waves", &game_engine_survival_wave_properties_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -492,7 +492,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SETTINGS_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Game Engine Settings", nullptr, "This contains the definitions for the built-in custom multiplayer game variants"),
+		FIELD_EXPLANATION("Game Engine Settings", nullptr, FIELD_FLAG_NONE, "This contains the definitions for the built-in custom multiplayer game variants"),
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
 		{ _field_block, "player traits", &game_engine_player_traits_list_block, _field_id_slap },
 		{ _field_block, "ai traits", &game_engine_ai_traits_list_block, _field_id_slap },
@@ -565,7 +565,7 @@ namespace macaque
 		{ _field_char_enum, "headshot immunity", &player_trait_bool_enum },
 		{ _field_char_enum, "damage resistance percentage", &player_trait_damage_resistance },
 		{ _field_char_enum, "damage modifier percentage", &player_trait_damage_modifier },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -580,7 +580,7 @@ namespace macaque
 	{
 		{ _field_byte_flags, "flags", &survival_wave_properties_flags },
 		{ _field_char_enum, "wave selection type", &survival_wave_squad_advance_type_enum },
-		FIELD_PAD("VJKNMFEN", nullptr, 2),
+		FIELD_PAD("VJKNMFEN", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "wave squads", &survival_wave_squad_block },
 		{ _field_terminator }
 	};
@@ -596,7 +596,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "skulls", FIELD_FLAG_INDEX, &skull_flags },
 		{ _field_short_integer, "duration", nullptr, "s" },
-		FIELD_PAD("CLKJSDF", nullptr, 2),
+		FIELD_PAD("CLKJSDF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "base properties", &game_engine_survival_wave_properties_struct },
 		{ _field_terminator }
 	};

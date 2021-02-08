@@ -47,7 +47,7 @@ namespace macaque
 		{ _field_string_id, "description text" },
 		{ _field_block, "rewards", &commendationRewardBlock_block },
 		{ _field_char_integer, "sequence index" },
-		FIELD_PAD("CA_PAD1", nullptr, 3),
+		FIELD_PAD("CA_PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
 		{ _field_block, "prerequisites", &commendationAggregatorDependent_block },
@@ -65,7 +65,7 @@ namespace macaque
 		COMMENDATIONREWARDBLOCK_ID)
 	{
 		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
-		FIELD_PAD("CRB_PAD1", nullptr, 1),
+		FIELD_PAD("CRB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward value" },
 		{ _field_terminator }
 	};
@@ -89,16 +89,16 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_string_id, "description" },
 		{ _field_byte_flags, "flags", &commendationFlags },
-		FIELD_PAD("CB_PAD0", nullptr, 3),
+		FIELD_PAD("CB_PAD0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_char_enum, "category", &commendationCategoryEnum },
 		{ _field_char_enum, "subcategory", &commendationSubcategoryEnum },
 		{ _field_char_integer, "sequence index" },
-		FIELD_PAD("CB_PAD1", nullptr, 1),
+		FIELD_PAD("CB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "medal sprite index" },
 		{ _field_short_integer, "game type sprite index" },
-		FIELD_CUSTOM("unlock prerequisites", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("unlock prerequisites", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "prerequisites", &PurchasePrerequisitesUnifiedDefinitionBlock },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_block, "levels", &commendationLevelBlock_block },
 		{ _field_terminator }
 	};
@@ -162,7 +162,7 @@ namespace macaque
 		COMMENDATIONAGGREGATORDEPENDENT_STRUCT_ID)
 	{
 		{ _field_char_enum, "type", &aggregatorDependentTypeEnumDefinition },
-		FIELD_PAD("PAD1", nullptr, 3),
+		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_terminator }
 	};

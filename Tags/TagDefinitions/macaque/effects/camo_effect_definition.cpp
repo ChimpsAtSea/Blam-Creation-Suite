@@ -30,9 +30,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMO_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Active Camo Controls", nullptr, ""),
+		FIELD_EXPLANATION("Active Camo Controls", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_word_flags, "Flags", &camo_flags },
-		FIELD_PAD("KKHKKHKKL", nullptr, 2),
+		FIELD_PAD("KKHKKHKKL", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "Active Camo Amount", &camo_scalar_function_struct },
 		{ _field_struct, "Shadow Amount", &camo_scalar_function_struct },
 		{ _field_terminator }
@@ -50,7 +50,7 @@ namespace macaque
 	{
 		{ _field_string_id, "Input Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", FIELD_FLAG_UNKNOWN0, _field_id_function_input_range },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_terminator }
 	};

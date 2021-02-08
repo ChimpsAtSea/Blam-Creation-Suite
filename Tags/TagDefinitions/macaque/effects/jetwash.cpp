@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JETWASH_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", FIELD_FLAG_INDEX },
 		{ _field_real, "radius" },
 		{ _field_long_integer, "maximum traces", nullptr, "traces per second", FIELD_FLAG_UNKNOWN0 },

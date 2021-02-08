@@ -24,7 +24,7 @@ namespace macaque
 		{ _field_word_integer, "redisplay delay", "how long after display this message will stay hidden" },
 		{ _field_real, "display delay (s)", "how long the event can be triggered before it's displayed" },
 		{ _field_word_flags, "flags", &player_training_flags },
-		FIELD_PAD("HURLUV", nullptr, 2),
+		FIELD_PAD("HURLUV", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

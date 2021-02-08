@@ -32,7 +32,7 @@ namespace macaque
 		AI_RECORDING_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string, "recording name", FIELD_FLAG_INDEX },
-		FIELD_PAD("INYRGOR", nullptr, 8),
+		FIELD_PAD("INYRGOR", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 

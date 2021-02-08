@@ -39,11 +39,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_PRIMITIVE_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION(nullptr, nullptr, ""),
+		FIELD_EXPLANATION(nullptr, nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_word_flags, "flags", &formation_primitive_flags },
 		{ _field_short_integer, "priority" },
 		{ _field_short_integer, "capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("post-capacity-pad", nullptr, 2),
+		FIELD_PAD("post-capacity-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "dist forwards" },
 		{ _field_real, "dist backwards" },
 		{ _field_real, "rank spacing" },
@@ -62,7 +62,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FORMATION_POINT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION(nullptr, nullptr, ""),
+		FIELD_EXPLANATION(nullptr, nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_angle, "angle" },
 		{ _field_real, "offset" },
 		{ _field_terminator }

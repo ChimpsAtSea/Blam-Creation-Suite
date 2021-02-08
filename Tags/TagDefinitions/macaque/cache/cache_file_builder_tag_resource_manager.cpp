@@ -205,7 +205,7 @@ namespace macaque
 		{ _field_long_integer, "definition flags" },
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array },
-		FIELD_PAD("pad0", nullptr, 2),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -344,7 +344,7 @@ namespace macaque
 		CACHE_FILE_ZONE_RESOURCE_VISIT_NODE_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "parent tag", FIELD_FLAG_INDEX, &cache_file_resource_owner_block },
-		FIELD_PAD("sdfasfas", nullptr, 2),
+		FIELD_PAD("sdfasfas", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "children", &cache_file_zone_resource_visit_node_link_block },
 		{ _field_terminator }
 	};
@@ -454,7 +454,7 @@ namespace macaque
 		CACHE_FILE_MODEL_VARIANT_USAGE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "model", FIELD_FLAG_INDEX, &cache_file_resource_owner_block },
-		FIELD_PAD("sdfasfas", nullptr, 2),
+		FIELD_PAD("sdfasfas", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "variant" },
 		{ _field_block, "used materials", &cache_file_resource_owner_reference_block },
 		{ _field_terminator }
@@ -485,7 +485,7 @@ namespace macaque
 		CACHE_FILE_CHARACTER_USAGE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "model", FIELD_FLAG_INDEX, &cache_file_resource_owner_block },
-		FIELD_PAD("sdfasfas", nullptr, 2),
+		FIELD_PAD("sdfasfas", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "used model variants", &cache_file_model_variant_usage_reference_block },
 		{ _field_terminator }
 	};
@@ -595,11 +595,11 @@ namespace macaque
 		{ _field_long_integer, "deferred required resource size" },
 		{ _field_long_integer, "unused resource size" },
 		{ _field_word_flags, "global zone attachment", &cache_file_resource_global_zone_attachment_flags },
-		FIELD_PAD("global-zone-attachment-pad", nullptr, 2),
+		FIELD_PAD("global-zone-attachment-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_block_flags, "bsp zone attachment", &cache_file_bsp_zone_block },
 		{ _field_qword_integer, "designer zone attachment" },
 		{ _field_long_block_flags, "cinematic zone attachment", &cache_file_cinematic_zone_block },
-		FIELD_PAD("64 bit alignment pad", nullptr, 4),
+		FIELD_PAD("64 bit alignment pad", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 

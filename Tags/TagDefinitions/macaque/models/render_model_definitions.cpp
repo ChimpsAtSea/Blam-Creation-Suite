@@ -28,13 +28,13 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
 		{ _field_word_flags, "flags", FIELD_FLAG_READ_ONLY, &render_model_flags_definition },
 		{ _field_word_integer, "version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_checksum_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_checksum_begin),
 		{ _field_long_integer, "runtime import info checksum", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_checksum_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_checksum_end),
 		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &render_model_region_block, _field_id_slap },
 		{ _field_char_integer, "L1 section group index", nullptr, "(low)", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "L2 section group index", nullptr, "(high)", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("PUJJ", nullptr, 2),
+		FIELD_PAD("PUJJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_block_index, "instance mesh index", FIELD_FLAG_READ_ONLY, &global_mesh_block },
 		{ _field_block, "instance placements", &global_render_model_instance_placement_block, _field_id_slap },
 		{ _field_long_integer, "node list checksum", FIELD_FLAG_READ_ONLY },
@@ -48,7 +48,7 @@ namespace macaque
 		{ _field_block, "volume samples", &volume_samples_block, _field_id_slap },
 		{ _field_block, "runtime node orientations", FIELD_FLAG_UNKNOWN0, &default_node_orientations_block, _field_id_slap },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block, _field_id_slap },
-		FIELD_EXPLANATION("Static Lightmap", nullptr, ""),
+		FIELD_EXPLANATION("Static Lightmap", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "structure meta data", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "forge lightmap atlases", &RenderModelLightmapAtlasReference },
@@ -93,7 +93,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
-		FIELD_PAD("WAXI", nullptr, 2),
+		FIELD_PAD("WAXI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -147,7 +147,7 @@ namespace macaque
 		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &render_model_node_block },
 		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &render_model_node_block },
 		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &render_model_node_block },
-		FIELD_PAD("RELFLFLLE", nullptr, 2),
+		FIELD_PAD("RELFLFLLE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "inverse forward", FIELD_FLAG_READ_ONLY },
@@ -156,15 +156,15 @@ namespace macaque
 		{ _field_real_point_3d, "inverse position", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "inverse scale", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "distance from parent", FIELD_FLAG_READ_ONLY },
-		FIELD_CUSTOM("Procedural Joint", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Procedural Joint", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "procedure node A", &render_model_node_block },
 		{ _field_short_block_index, "procedure node B", &render_model_node_block },
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -305,13 +305,13 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "quality" },
-		FIELD_PAD("NBOML", nullptr, 2),
+		FIELD_PAD("NBOML", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "brightness adjustment" },
 		{ _field_block, "node maps", &imposter_mode_node_block },
 		{ _field_block, "regions", FIELD_FLAG_READ_ONLY, &render_model_region_block, _field_id_slap },
-		FIELD_CUSTOM("render geometry", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("render geometry", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

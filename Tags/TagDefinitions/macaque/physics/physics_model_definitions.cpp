@@ -33,7 +33,7 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "sphere shape", &havok_convex_shape_struct },
-		FIELD_PAD("algn344", nullptr, 12),
+		FIELD_PAD("algn344", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_struct, "translate shape", &havok_convex_translate_shape_struct },
 		{ _field_terminator }
 	};
@@ -50,10 +50,10 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_byte_flags, "flags", &physics_material_flags },
-		FIELD_PAD("flags pad", nullptr, 3),
+		FIELD_PAD("flags pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "global material name" },
 		{ _field_short_block_index, "phantom type", &phantom_types_block },
-		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default collision group.  It is overridden by any values specified rigid bodies block that overlap. Values set here can be overridden per shape through the shape primitive blocks."),
+		FIELD_EXPLANATION("collision group override", nullptr, FIELD_FLAG_NONE, "This value overrides the default collision group.  It is overridden by any values specified rigid bodies block that overlap. Values set here can be overridden per shape through the shape primitive blocks."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_char_integer, "runtime collision group", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -73,13 +73,13 @@ namespace macaque
 		{ _field_real, "brittle timer", "objects in this phantom volume will be set to brittle collision damage for this amount of time.", "seconds" },
 		{ _field_char_enum, "minimum size", &rigid_body_size_enum },
 		{ _field_char_enum, "maximum size", &rigid_body_size_enum },
-		FIELD_PAD("OF", nullptr, 2),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_PAD("OF", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
-		FIELD_EXPLANATION("Linear Motion", nullptr, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
-		FIELD_PAD("WTBFO", nullptr, 8),
+		FIELD_EXPLANATION("Linear Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
+		FIELD_PAD("WTBFO", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real, "hookes law e", "0 if you don't want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "linear dead radius", "radius from linear motion origin in which acceleration is dead." },
 		{ _field_real, "center acc" },
@@ -90,12 +90,12 @@ namespace macaque
 		{ _field_real, "direction max vel" },
 		{ _field_real, "orbit acc", "negative values spin the opposite direction from positive ones" },
 		{ _field_real, "orbit max vel" },
-		FIELD_PAD("TF", nullptr, 28),
-		FIELD_EXPLANATION("Angular Motion", nullptr, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
+		FIELD_PAD("TF", nullptr, FIELD_FLAG_NONE, 28),
+		FIELD_EXPLANATION("Angular Motion", nullptr, FIELD_FLAG_NONE, "0 - means do nothing\nALIGNMENT: algin objects in the phantom with the marker\nSPIN: spin the object about the marker axis"),
 		{ _field_real, "alignment hookes law e", "0 if you don't want this to behave like spring.  1 is a good starting point if you do." },
 		{ _field_real, "alignment acc" },
 		{ _field_real, "alignment max vel" },
-		FIELD_PAD("TYXJL", nullptr, 8),
+		FIELD_PAD("TYXJL", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -130,7 +130,7 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "capsule shape", &havok_convex_shape_struct },
-		FIELD_PAD("algn243", nullptr, 12),
+		FIELD_PAD("algn243", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_vector_3d, "bottom", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w bottom", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "top", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -153,7 +153,7 @@ namespace macaque
 		{ _field_long_integer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "child shapes size", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "child shapes capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("nail_in_dick", nullptr, 12),
+		FIELD_PAD("nail_in_dick", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_vector_3d, "aabb half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w aabb half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "aabb center", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -340,11 +340,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PHYSICS_MODEL_RAGDOLL_MOTORS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("twist", nullptr, ""),
+		FIELD_EXPLANATION("twist", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "twist motor", &physics_model_motor_reference_struct },
-		FIELD_EXPLANATION("cone", nullptr, ""),
+		FIELD_EXPLANATION("cone", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "cone motor", &physics_model_motor_reference_struct },
-		FIELD_EXPLANATION("plane", nullptr, ""),
+		FIELD_EXPLANATION("plane", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "plane motor", &physics_model_motor_reference_struct },
 		{ _field_terminator }
 	};
@@ -383,10 +383,10 @@ namespace macaque
 		{ _field_word_flags, "flags", &rigid_body_flags },
 		{ _field_short_block_index, "no phantom power alt", &rigid_bodies_block },
 		{ _field_char_enum, "motion type", &rigid_body_motion_enum },
-		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default group.  It also overrides values specified in the materials block of this tag. Values set here can be overridden per shape through the shape primitive blocks."),
+		FIELD_EXPLANATION("collision group override", nullptr, FIELD_FLAG_NONE, "This value overrides the default group.  It also overrides values specified in the materials block of this tag. Values set here can be overridden per shape through the shape primitive blocks."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_enum, "size", &rigid_body_size_enum },
-		FIELD_EXPLANATION("inertia tensor scales", nullptr, "if you want to set he scale uniforml just set \"inertia tensor scale\".  If you want to set the values seperately per axis you can set \"inertia tensor scale x\\y\\z\""),
+		FIELD_EXPLANATION("inertia tensor scales", nullptr, FIELD_FLAG_NONE, "if you want to set he scale uniforml just set \"inertia tensor scale\".  If you want to set the values seperately per axis you can set \"inertia tensor scale x\\y\\z\""),
 		{ _field_real, "inertia tensor scale", "0.0 defaults to 1.0" },
 		{ _field_real, "inertia tensor scale x", "0.0 defaults to 1.0" },
 		{ _field_real, "inertia tensor scale y", "0.0 defaults to 1.0" },
@@ -394,7 +394,7 @@ namespace macaque
 		{ _field_real, "linear damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_real_vector_3d, "center off mass offset" },
-		FIELD_EXPLANATION("water physics bounding box", nullptr, "if any of these fields are non-zero, this overrides the bounding box used for water physics"),
+		FIELD_EXPLANATION("water physics bounding box", nullptr, FIELD_FLAG_NONE, "if any of these fields are non-zero, this overrides the bounding box used for water physics"),
 		{ _field_real, "water physics x0", "x0 value of the water physics aabb" },
 		{ _field_real, "water physics x1", "x1 value of the water physics aabb" },
 		{ _field_real, "water physics y0", "y0 value of the water physics aabb" },
@@ -415,11 +415,11 @@ namespace macaque
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "bounding sphere pad", "the bounding sphere for this rigid body will be outset by this much" },
 		{ _field_char_enum, "collision quality override type", &rigid_body_collision_quality_enum },
-		FIELD_PAD("pad3", nullptr, 1),
+		FIELD_PAD("pad3", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "runtime_flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_EXPLANATION("Stupid mass override", nullptr, "If you want to override what the calculated mass distribution or artist set mass is, this is where you do it. Also, this will show up as n/100 in the game debugger. Awesome."),
+		FIELD_EXPLANATION("Stupid mass override", nullptr, FIELD_FLAG_NONE, "If you want to override what the calculated mass distribution or artist set mass is, this is where you do it. Also, this will show up as n/100 in the game debugger. Awesome."),
 		{ _field_real, "Mass body override" },
-		FIELD_PAD("pad4", nullptr, 8),
+		FIELD_PAD("pad4", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -513,7 +513,7 @@ namespace macaque
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "sphere rep shape", &havok_shape_struct },
 		{ _field_long_integer, "num spheres", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("bull434", nullptr, 12),
+		FIELD_PAD("bull434", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_array, "four vectors storage", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &multi_sphere_vector_storage_array },
 		{ _field_terminator }
 	};
@@ -531,7 +531,7 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "box shape", &havok_convex_shape_struct },
-		FIELD_PAD("algn3473", nullptr, 12),
+		FIELD_PAD("algn3473", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_vector_3d, "half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_struct, "convex transform shape", &havok_convex_transform_shape_struct },
@@ -554,7 +554,7 @@ namespace macaque
 		{ _field_short_integer, "welding info", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "welding type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "is extruded", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("algn92", nullptr, 8),
+		FIELD_PAD("algn92", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_real_vector_3d, "point a", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w point a", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "point b", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -579,7 +579,7 @@ namespace macaque
 	{
 		{ _field_struct, "base", &havok_primitive_struct },
 		{ _field_struct, "polyhedron shape", &havok_convex_shape_struct },
-		FIELD_PAD("algn743", nullptr, 12),
+		FIELD_PAD("algn743", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_real_vector_3d, "aabb half extents", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "havok w aabb half extents", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "aabb center", FIELD_FLAG_READ_ONLY },
@@ -589,12 +589,12 @@ namespace macaque
 		{ _field_long_integer, "four vectors capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "num vertices", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "m_useSpuBuffer", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("algn434", nullptr, 3),
+		FIELD_PAD("algn434", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "another field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "plane equations size", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "plane equations capacity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "connectivity", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_POINTER, _field_id_zero_data },
-		FIELD_PAD("SAMTRA", nullptr, 12),
+		FIELD_PAD("SAMTRA", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_terminator }
 	};
 
@@ -668,8 +668,8 @@ namespace macaque
 		4)
 	{
 		{ _field_struct, "base", &havok_shape_struct },
-		FIELD_PAD("m_bvTreeType", nullptr, 1),
-		FIELD_PAD("3 other bytes", nullptr, 3),
+		FIELD_PAD("m_bvTreeType", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_long_integer, "mopp code pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data size", FIELD_FLAG_UNKNOWN3 },
@@ -678,9 +678,9 @@ namespace macaque
 		{ _field_long_integer, "child shape vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_struct, "childShapePointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, &havok_shape_reference_struct },
 		{ _field_long_integer, "child size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("mopp alignment", nullptr, 4),
+		FIELD_PAD("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("final alignment", nullptr, 12),
+		FIELD_PAD("final alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 12),
 		{ _field_terminator }
 	};
 
@@ -695,7 +695,7 @@ namespace macaque
 		HINGE_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("JENFOXHY", nullptr, 4),
+		FIELD_PAD("JENFOXHY", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -710,7 +710,7 @@ namespace macaque
 		RAGDOLL_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("OVIM", nullptr, 4),
+		FIELD_PAD("OVIM", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "min twist", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max twist", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "min cone", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -733,7 +733,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_short_block_index, "node index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &nodes_block },
-		FIELD_PAD("TNLRSOSY", nullptr, 2),
+		FIELD_PAD("TNLRSOSY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "points", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &point_to_path_curve_point_block },
 		{ _field_terminator }
 	};
@@ -764,7 +764,7 @@ namespace macaque
 		LIMITED_HINGE_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("TC", nullptr, 4),
+		FIELD_PAD("TC", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "limit friction", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "limit min angle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "limit max angle", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -782,7 +782,7 @@ namespace macaque
 		BALL_AND_SOCKET_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("UPDLSKB", nullptr, 4),
+		FIELD_PAD("UPDLSKB", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -797,7 +797,7 @@ namespace macaque
 		STIFF_SPRING_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("KGB", nullptr, 4),
+		FIELD_PAD("KGB", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "spring_length", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};
@@ -813,7 +813,7 @@ namespace macaque
 		PRISMATIC_CONSTRAINTS_BLOCK_ID)
 	{
 		{ _field_struct, "constraint bodies", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &constraint_bodies_struct },
-		FIELD_PAD("XVEPD", nullptr, 4),
+		FIELD_PAD("XVEPD", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "min_limit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max_limit", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real, "max_friction_force", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -853,7 +853,7 @@ namespace macaque
 		{ _field_real, "custom shape radius", "0 defaults to .016.  This field is intentionally hidden because we should only alter this for very special situations.  Lower number == lower performance", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "maximum penetration depth scale", "0 is default (1). for objects that are prone to falling through the world we can reduce this number at the cost of performance" },
 		{ _field_char_integer, "import version", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("pad0", nullptr, 3),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "damped spring motors", &physics_model_damped_spring_motor_block },
 		{ _field_block, "position motors", &physics_model_position_motor_block },
 		{ _field_block, "phantom types", &phantom_types_block },
@@ -909,7 +909,7 @@ namespace macaque
 		{ _field_real, "mass", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "mass distribution index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_block_index, "phantom", FIELD_FLAG_READ_ONLY, &phantoms_block },
-		FIELD_EXPLANATION("collision group override", nullptr, "This value overrides the default group, model, and rigid body."),
+		FIELD_EXPLANATION("collision group override", nullptr, FIELD_FLAG_NONE, "This value overrides the default group, model, and rigid body."),
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_terminator }
 	};
@@ -993,7 +993,7 @@ namespace macaque
 		{ _field_long_integer, "field pointer skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_char_integer, "disable welding", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "collection type", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("VDVAPBSS", nullptr, 2),
+		FIELD_PAD("VDVAPBSS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -1089,7 +1089,7 @@ namespace macaque
 		{ _field_real_vector_3d, "b up", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "b position", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "edge index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &physics_model_node_constraint_edge_block },
-		FIELD_PAD("H", nullptr, 2),
+		FIELD_PAD("H", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

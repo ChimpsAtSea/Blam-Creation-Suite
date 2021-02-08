@@ -46,14 +46,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		ATMOSPHERE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Patchy Fog Global Parameters", nullptr, "Fog Bitmap................Noise texture to use on the screen-aligned sheets of fog\nTexture repeat rate.......Scaling factor to apply to fog UV coordinates\nDistance between sheets...Separating distance between sheets of fog\nDepth fade factor.........Lower values (approaching 0) cause a smoother fade at scene boundaries. Larger values (1 or more) make for a sharp transition\n\nFalloff start distance....Distance (in world units) at which to begin fading out patchy fog (default: 5)\nDistance falloff power....Rate at which to begin attenuating patchy fog settings (default: 2)\nTransparent sort distance..Distance from the camera where we sort the patchy fog effect (default: 100)\nwind strength across distance..Multiplies the wind strength based upon distance from player\n\n"),
+		FIELD_EXPLANATION("Patchy Fog Global Parameters", nullptr, FIELD_FLAG_NONE, "Fog Bitmap................Noise texture to use on the screen-aligned sheets of fog\nTexture repeat rate.......Scaling factor to apply to fog UV coordinates\nDistance between sheets...Separating distance between sheets of fog\nDepth fade factor.........Lower values (approaching 0) cause a smoother fade at scene boundaries. Larger values (1 or more) make for a sharp transition\n\nFalloff start distance....Distance (in world units) at which to begin fading out patchy fog (default: 5)\nDistance falloff power....Rate at which to begin attenuating patchy fog settings (default: 2)\nTransparent sort distance..Distance from the camera where we sort the patchy fog effect (default: 100)\nwind strength across distance..Multiplies the wind strength based upon distance from player\n\n"),
 		{ _field_tag_reference, "Fog Bitmap", &global_bitmap_reference },
 		{ _field_real, "Texture repeat rate" },
 		{ _field_real, "Distance between sheets" },
 		{ _field_real, "Depth fade factor" },
 		{ _field_real, "Transparent sort distance" },
 		{ _field_char_enum, "Transparent sort layer", &global_sort_layer_enum_defintion },
-		FIELD_PAD("UNdfdfdSED", nullptr, 3),
+		FIELD_PAD("UNdfdfdSED", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_struct, "wind strength across distance", &scalar_function_named_struct_default_one },
 		{ _field_block, "underwater settings", &underwater_setting_block },
 		{ _field_terminator }

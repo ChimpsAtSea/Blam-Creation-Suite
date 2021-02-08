@@ -32,7 +32,7 @@ namespace macaque
 		{ _field_char_enum, "downsample", FIELD_FLAG_READ_ONLY, &ssao_downsample_enum_definition },
 		{ _field_char_enum, "ssao type", FIELD_FLAG_READ_ONLY, &ssao_type_enum_definition },
 		{ _field_byte_integer, "version", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("BKGKKELQIF", nullptr, 1),
+		FIELD_PAD("BKGKKELQIF", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "hdao ambient shadow", "how much ssao shadowing darkens the ambient lighting" },
 		{ _field_real, "hdao point shadow", "how much ssao shadowing darkens the point lighting ie the sun" },
 		{ _field_real, "sharp ambient shadow", "how much the sharp dynamic shadows darken ambient lighting" },

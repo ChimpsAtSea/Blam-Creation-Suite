@@ -44,9 +44,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		RUMBLE_DEFINITION_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("low frequency rumble", nullptr, ""),
+		FIELD_EXPLANATION("low frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "low frequency rumble", &rumble_frequency_definition_struct },
-		FIELD_EXPLANATION("high frequency rumble", nullptr, ""),
+		FIELD_EXPLANATION("high frequency rumble", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "high frequency rumble", &rumble_frequency_definition_struct },
 		{ _field_terminator }
 	};
@@ -62,7 +62,7 @@ namespace macaque
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "dirty whore", &mapping_function },
 		{ _field_useless_pad, "" },
 		{ _field_terminator }

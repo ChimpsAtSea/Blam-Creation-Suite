@@ -31,7 +31,7 @@ namespace macaque
 		LEAF_TYPE_BLOCK_ID)
 	{
 		{ _field_short_integer, "bitmap sprite index", "assumes sequence 0. if no sprites uses full bitmap" },
-		FIELD_PAD("UNAX", nullptr, 2),
+		FIELD_PAD("UNAX", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "frequency" },
 		{ _field_real, "mass" },
 		{ _field_real_bounds, "geometry scale", "default of 0 for both means 0.1" },

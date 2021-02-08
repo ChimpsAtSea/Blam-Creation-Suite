@@ -30,11 +30,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Import model", nullptr, _field_id_import_model),
-		FIELD_EXPLANATION("WHY IS THIS TAG EMPTY?", nullptr, "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n"),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		FIELD_CUSTOM("Import model", nullptr, FIELD_FLAG_NONE, _field_id_import_model),
+		FIELD_EXPLANATION("WHY IS THIS TAG EMPTY?", nullptr, FIELD_FLAG_NONE, "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n"),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
 		{ _field_struct, "render geometry", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
 		{ _field_struct, "m_gpu_data", FIELD_FLAG_UNKNOWN0, &gpu_data_struct },
 		{ _field_terminator }
 	};

@@ -17,10 +17,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SCENARIO_LOAD_PARAMETERS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("SCENARIO LOAD PARAMETERS", nullptr, "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only"),
+		FIELD_EXPLANATION("SCENARIO LOAD PARAMETERS", nullptr, FIELD_FLAG_NONE, "strip-variant <variant-name>\nstrips a given variant out of the model tag\nstrip-dialogue\nstrips all the dialogue for this model i.e. cinematic only"),
 		{ _field_tag_reference, "scenario", FIELD_FLAG_INDEX, &scenario_reference$2 },
 		{ _field_data, "parameters" },
-		FIELD_PAD("BDZDSK", nullptr, 32),
+		FIELD_PAD("BDZDSK", nullptr, FIELD_FLAG_NONE, 32),
 		{ _field_terminator }
 	};
 

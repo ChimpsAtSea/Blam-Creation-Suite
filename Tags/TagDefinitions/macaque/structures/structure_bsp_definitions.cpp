@@ -34,7 +34,7 @@ namespace macaque
 		{ _field_word_flags, "flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_flags_definition },
 		{ _field_word_flags, "content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
 		{ _field_word_flags, "failed content policy flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_bsp_content_policy_flag },
-		FIELD_PAD("faild policy pad", nullptr, 2),
+		FIELD_PAD("faild policy pad", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, 2),
 		{ _field_block, "seam identifiers", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_seam_mapping_block },
 		{ _field_block, "edge to seam edge", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_edge_to_seam_edge_mapping_block },
 		{ _field_block, "collision materials", FIELD_FLAG_READ_ONLY, &structure_collision_materials_block },
@@ -67,7 +67,7 @@ namespace macaque
 		{ _field_block, "runtime decals", FIELD_FLAG_READ_ONLY, &structure_bsp_runtime_decal_block },
 		{ _field_block, "(DEPRECATED) environment object palette", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_palette_block },
 		{ _field_block, "(DEPRECATED) environment objects", FIELD_FLAG_READ_ONLY, &structure_bsp_environment_object_block },
-		FIELD_PAD("IMISWXUG", nullptr, 4),
+		FIELD_PAD("IMISWXUG", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_block, "leaf map leaves", FIELD_FLAG_READ_ONLY, &global_map_leaf_block },
 		{ _field_block, "leaf map connections", FIELD_FLAG_READ_ONLY, &global_leaf_connection_block },
 		{ _field_block, "errors", FIELD_FLAG_READ_ONLY, &global_error_report_categories_block },
@@ -80,15 +80,15 @@ namespace macaque
 		{ _field_tag_reference, "instance imposters", &global_instance_imposter_reference },
 		{ _field_block, "instance imposter infos", &structure_instance_imposter_info_block },
 		{ _field_long_integer, "Instance Geometry Tag Instance Count", FIELD_FLAG_UNKNOWN0 },
-		FIELD_CUSTOM("decorator info", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("decorator info", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "decorator sets", FIELD_FLAG_READ_ONLY, &runtime_decorator_set_block },
 		{ _field_struct, "decorator instance buffer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("decals info", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("decals info", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "preplaced decal sets", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_set_reference_block },
 		{ _field_block, "preplaced decals", FIELD_FLAG_READ_ONLY, &bsp_preplaced_decal_reference_block },
 		{ _field_struct, "preplaced decal geometry", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_block, "acoustics sound clusters", FIELD_FLAG_UNKNOWN0, &structure_bsp_sound_cluster_block },
 		{ _field_block, "transparent planes", FIELD_FLAG_READ_ONLY, &transparent_planes_block },
 		{ _field_block, "debug info", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_block },
@@ -97,9 +97,9 @@ namespace macaque
 		{ _field_block, "widget references", &widget_reference_block },
 		{ _field_block, "cheap light references", &cheap_light_reference_block },
 		{ _field_struct, "resource interface", &structure_bsp_resource_interface },
-		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Any Platform Temporary Storage", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_block, "Any Platform Temp Havok Data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structureIOHavokDataBlock_block },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_block, "external references", &structure_external_instanced_geometry_references_block },
 		{ _field_tag_reference, "dependencies", &Tag::Reference<struct s_dependency_list>::s_defaultDefinition },
 		{ _field_long_integer, "base material count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -222,7 +222,7 @@ namespace macaque
 		{ _field_short_block_index, "first_aabb_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_aabbs_block },
 		{ _field_long_integer, "aabb_mask", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_block_index, "non_terminal_traversal_geometry_index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &structure_super_node_traversal_geometry_indices_block },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -347,8 +347,8 @@ namespace macaque
 		{ _field_block, "instances", &global_detail_object_block },
 		{ _field_block, "counts", &global_detail_object_counts_block },
 		{ _field_block, "z reference vectors", &global_z_reference_vector_block },
-		FIELD_PAD("KXILLD", nullptr, 1),
-		FIELD_PAD("EDFPN", nullptr, 3),
+		FIELD_PAD("KXILLD", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD("EDFPN", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -362,11 +362,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_CLUSTER_BLOCK_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("CLUSTER INFO", nullptr, ""),
+		FIELD_EXPLANATION("CLUSTER INFO", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "bounds x", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds y", FIELD_FLAG_READ_ONLY },
 		{ _field_real_bounds, "bounds z", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("DING", nullptr, 1),
+		FIELD_PAD("DING", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_integer, "atmosphere index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "camera fx index", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "weather index", FIELD_FLAG_READ_ONLY },
@@ -375,7 +375,7 @@ namespace macaque
 		{ _field_short_integer, "runtime first decal index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "runtime decal cound", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "flags", &structure_cluster_flags },
-		FIELD_PAD("ERERRFQ", nullptr, 2),
+		FIELD_PAD("ERERRFQ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "portals", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_portal_index_block },
 		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
@@ -428,7 +428,7 @@ namespace macaque
 		CHEAP_LIGHT_MARKER_REF_BLOCK_ID)
 	{
 		{ _field_short_block_index, "cheap light reference reference", &cheap_light_reference_block },
-		FIELD_PAD("WHATIZZIT", nullptr, 2),
+		FIELD_PAD("WHATIZZIT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -443,7 +443,7 @@ namespace macaque
 		CHEAP_LIGHT_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("ldajk", nullptr, 2),
+		FIELD_PAD("ldajk", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "cheap light", FIELD_FLAG_READ_ONLY, &cheap_light_reference },
 		{ _field_terminator }
 	};
@@ -521,9 +521,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_COOKIE_CUTTER_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Cookie Cutter", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("Cookie Cutter", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "collision model", &global_collision_bsp_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -538,7 +538,7 @@ namespace macaque
 		STRUCTURE_BSP_MARKER_BLOCK_ID)
 	{
 		{ _field_char_enum, "marker type", FIELD_FLAG_READ_ONLY, &structure_marker_type_enum },
-		FIELD_PAD("pad", nullptr, 3),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string, "marker parameter", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
@@ -584,7 +584,7 @@ namespace macaque
 		STRUCTURE_BSP_RUNTIME_DECAL_BLOCK_ID)
 	{
 		{ _field_short_integer, "decal palette index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("post-decal-palette-index-pad", nullptr, 2),
+		FIELD_PAD("post-decal-palette-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences },
 		{ _field_real_quaternion, "rotation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position", FIELD_FLAG_READ_ONLY },
@@ -626,7 +626,7 @@ namespace macaque
 		{ _field_real, "scale" },
 		{ _field_short_block_index, "palette_index", &structure_bsp_environment_object_palette_block },
 		{ _field_byte_flags, "flags", &environmentObjectFlagsDefinition },
-		FIELD_PAD("QHUGQ", nullptr, 1),
+		FIELD_PAD("QHUGQ", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_long_integer, "unique id", FIELD_FLAG_READ_ONLY },
 		{ _field_tag, "exported object type" },
 		{ _field_string_id, "scenario object name" },
@@ -696,7 +696,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_char_integer, "imposter policy" },
-		FIELD_PAD("parasdd", nullptr, 3),
+		FIELD_PAD("parasdd", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "transition distance" },
 		{ _field_terminator }
 	};
@@ -755,7 +755,7 @@ namespace macaque
 		{ _field_short_integer, "vertex start" },
 		{ _field_short_integer, "vertex count" },
 		{ _field_short_integer, "definition block index" },
-		FIELD_PAD("paddddg", nullptr, 2),
+		FIELD_PAD("paddddg", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_2d, "spirit corner" },
 		{ _field_real_vector_2d, "spirit size" },
 		{ _field_terminator }
@@ -787,7 +787,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_DEBUG_INFO_BLOCK_ID)
 	{
-		FIELD_PAD("BRQYEF", nullptr, 64),
+		FIELD_PAD("BRQYEF", nullptr, FIELD_FLAG_NONE, 64),
 		{ _field_block, "clusters", FIELD_FLAG_READ_ONLY, &structure_bsp_cluster_debug_info_block },
 		{ _field_block, "fog planes", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_plane_debug_info_block },
 		{ _field_block, "fog zones", FIELD_FLAG_READ_ONLY, &structure_bsp_fog_zone_debug_info_block },
@@ -806,7 +806,7 @@ namespace macaque
 	{
 		{ _field_word_flags, "errors", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_error_flags },
 		{ _field_word_flags, "warnings", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_cluster_warning_flags },
-		FIELD_PAD("KHWRB", nullptr, 28),
+		FIELD_PAD("KHWRB", nullptr, FIELD_FLAG_NONE, 28),
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_block, "visible fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -828,7 +828,7 @@ namespace macaque
 		{ _field_enum, "type", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_type_enum },
 		{ _field_short_integer, "code", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "pad thai", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("BNQS", nullptr, 2),
+		FIELD_PAD("BNQS", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "point 0", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "point 1", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -859,7 +859,7 @@ namespace macaque
 		STRUCTURE_BSP_FOG_PLANE_DEBUG_INFO_BLOCK_ID)
 	{
 		{ _field_long_integer, "fog zone index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("WZGH", nullptr, 24),
+		FIELD_PAD("WZGH", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_long_integer, "connected plane designator", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "intersected cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -879,7 +879,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "media index", nullptr, "scenario fog plane", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "base fog plane index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("RB", nullptr, 24),
+		FIELD_PAD("RB", nullptr, FIELD_FLAG_NONE, 24),
 		{ _field_block, "lines", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_render_line_block },
 		{ _field_block, "immersed cluster indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
 		{ _field_block, "bounding fog plane indices", FIELD_FLAG_READ_ONLY, &structure_bsp_debug_info_indices_block },
@@ -898,7 +898,7 @@ namespace macaque
 		WIDGET_REFERENCE_BLOCK_ID)
 	{
 		{ _field_short_integer, "marker index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("gnlao", nullptr, 2),
+		FIELD_PAD("gnlao", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "widget ref", FIELD_FLAG_READ_ONLY, &leaf_system_reference },
 		{ _field_terminator }
 	};
@@ -941,7 +941,7 @@ namespace macaque
 		{ _field_short_integer, "dynamic object count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_integer, "dynamic object block index", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "override flags", &instanced_geometry_flags },
-		FIELD_PAD("SDFSDEE", nullptr, 2),
+		FIELD_PAD("SDFSDEE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_char_enum, "override pathfinding policy", &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "override lightmapping policy", &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "override imposter policy", &instanced_geometry_imposter_policy_enum },

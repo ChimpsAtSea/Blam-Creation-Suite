@@ -25,7 +25,7 @@ namespace macaque
 		{ _field_string_id, "specific armor" },
 		{ _field_struct, "wet proxies", &wet_proxies_struct },
 		{ _field_short_integer, "runtime dry base material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("RMBP1", nullptr, 2),
+		FIELD_PAD("RMBP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "physics properties", &material_physics_properties_struct },
 		{ _field_tag_reference, "breakable surface", &global_breakable_surface_reference },
 		{ _field_struct, "sweeteners", &materials_sweeteners_struct },
@@ -58,9 +58,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNDERWATER_PROXIES_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr, ""),
+		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "underwater material" },
-		FIELD_EXPLANATION("... we report it as this material", nullptr, ""),
+		FIELD_EXPLANATION("... we report it as this material", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "proxy material" },
 		{ _field_short_integer, "underwater material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "proxy material type", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -85,7 +85,7 @@ namespace macaque
 		{ _field_string_id, "specific armor" },
 		{ _field_struct, "wet proxies", &wet_proxies_struct },
 		{ _field_short_integer, "runtime dry base material index", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("RMBP1", nullptr, 2),
+		FIELD_PAD("RMBP1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "physics properties", &material_physics_properties_struct },
 		{ _field_tag_reference, "breakable surface", &global_breakable_surface_reference },
 		{ _field_struct, "sweeteners", &materials_sweeteners_struct },
@@ -103,10 +103,10 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WET_PROXIES_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("when rained on, we report this material", nullptr, ""),
+		FIELD_EXPLANATION("when rained on, we report this material", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "wet material" },
 		{ _field_short_integer, "runtime proxy material index", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("wpb1", nullptr, 2),
+		FIELD_PAD("wpb1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -123,17 +123,17 @@ namespace macaque
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "density", nullptr, "kg/m^3" },
-		FIELD_EXPLANATION("Drag", nullptr, ""),
+		FIELD_EXPLANATION("Drag", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "water physics drag properties", &water_physics_drag_properties_reference },
 		{ _field_block, "drag overrides", &object_type_drag_properties_block },
-		FIELD_EXPLANATION("Floatation", nullptr, "objects of this flotation category have this density relative to being in this material (1.0f==neutral)"),
-		FIELD_PAD("default", nullptr, 4),
+		FIELD_EXPLANATION("Floatation", nullptr, FIELD_FLAG_NONE, "objects of this flotation category have this density relative to being in this material (1.0f==neutral)"),
+		FIELD_PAD("default", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_real, "super floater" },
 		{ _field_real, "floater" },
 		{ _field_real, "neutral" },
 		{ _field_real, "sinker" },
 		{ _field_real, "super sinker" },
-		FIELD_PAD("none", nullptr, 4),
+		FIELD_PAD("none", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};
 
@@ -163,7 +163,7 @@ namespace macaque
 		{ _field_tag_reference, "water ripple (small)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (medium)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (large)", &render_water_ripple_reference },
-		FIELD_EXPLANATION("sweetener inheritance flags", nullptr, "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play"),
+		FIELD_EXPLANATION("sweetener inheritance flags", nullptr, FIELD_FLAG_NONE, "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play"),
 		{ _field_long_flags, "sweetener inheritance flags", &materials_sweeteners_inheritance_flags },
 		{ _field_terminator }
 	};

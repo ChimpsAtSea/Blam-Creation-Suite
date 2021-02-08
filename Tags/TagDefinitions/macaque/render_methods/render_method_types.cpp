@@ -493,7 +493,7 @@ namespace macaque
 		{ _field_char_enum, "render layer", &global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &global_screen_shader_flags_definition },
-		FIELD_PAD("fefjjjfrjg", nullptr, 1),
+		FIELD_PAD("fefjjjfrjg", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_terminator }
 	};
 

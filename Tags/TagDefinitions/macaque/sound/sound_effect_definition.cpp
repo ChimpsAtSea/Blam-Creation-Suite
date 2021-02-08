@@ -31,7 +31,7 @@ namespace macaque
 		SOUND_EFFECT_TEMPLATES_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_EXPLANATION("WARNING", nullptr, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
+		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "DON\'T MODIFY THIS TAG UNLESS YOU KNOW WHAT YOU ARE DOING"),
 		{ _field_data, "explanation" },
 		{ _field_long_flags, "flags", &sound_effect_template_flags_definition },
 		{ _field_short_integer, "dsp state offset", FIELD_FLAG_UNKNOWN0 },
@@ -57,7 +57,7 @@ namespace macaque
 		{ _field_long_integer, "hardware offset" },
 		{ _field_long_integer, "default enum integer value" },
 		{ _field_real, "default scalar value" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "default function", &mapping_function },
 		{ _field_real, "minimum scalar value" },
 		{ _field_real, "maximum scalar value" },
@@ -76,7 +76,7 @@ namespace macaque
 		SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "low frequency sound", &mapping_function },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_terminator }

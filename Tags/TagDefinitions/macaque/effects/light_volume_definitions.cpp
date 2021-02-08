@@ -31,14 +31,14 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_VOLUME_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
 		{ _field_string_id, "light_volume name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("material", nullptr, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_begin),
+		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
 		{ _field_word_flags, "appearance flags", &light_volume_appearance_flags },
-		FIELD_PAD("SONGWEOINGEW", nullptr, 2),
+		FIELD_PAD("SONGWEOINGEW", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "brightness ratio", "avg. brightness head-on/side-view" },
 		{ _field_long_flags, "flags", &light_volume_flags },
 		{ _field_real, "LOD in distance", "defaults to 0.0, ignored if 'lod enabled' not checked above" },
@@ -55,7 +55,7 @@ namespace macaque
 		{ _field_struct, "profile_color", &light_volume_property_real_rgb_color },
 		{ _field_struct, "profile_alpha", &light_volume_property_real },
 		{ _field_struct, "profile_intensity", &light_volume_property_real },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
 		{ _field_dword_integer, "runtime m_constant_per_profile_properties", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_used_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_max_profile_count", FIELD_FLAG_UNKNOWN0 },
@@ -108,11 +108,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -130,11 +130,11 @@ namespace macaque
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_fnop },
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "runtime m_constant_value", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_integer, "runtime m_flags", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("DSFDSGLKJ", nullptr, 2),
+		FIELD_PAD("DSFDSGLKJ", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

@@ -46,13 +46,13 @@ namespace macaque
 		ITEM_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_long_flags, "flags", &item_definition_flags },
 		{ _field_short_integer, "OLD message index" },
 		{ _field_short_integer, "sort order" },
 		{ _field_real, "OLD multiplayer on-ground scale" },
 		{ _field_real, "OLD campaign on-ground scale" },
-		FIELD_EXPLANATION("NEW hud messages", nullptr, "everything you need to display shite"),
+		FIELD_EXPLANATION("NEW hud messages", nullptr, FIELD_FLAG_NONE, "everything you need to display shite"),
 		{ _field_string_id, "pickup message" },
 		{ _field_string_id, "swap message" },
 		{ _field_string_id, "pickup message (dual)" },
@@ -68,7 +68,7 @@ namespace macaque
 		{ _field_real_bounds, "detonation delay", nullptr, "seconds" },
 		{ _field_tag_reference, "detonating effect", &global_effect_reference },
 		{ _field_tag_reference, "detonation effect", &global_effect_reference },
-		FIELD_EXPLANATION("Item scale settings", nullptr, "because grenades look better as coconuts. 0==1"),
+		FIELD_EXPLANATION("Item scale settings", nullptr, FIELD_FLAG_NONE, "because grenades look better as coconuts. 0==1"),
 		{ _field_real, "ground scale" },
 		{ _field_real, "small unit (armed)" },
 		{ _field_real, "small unit (stowed)" },
@@ -80,7 +80,7 @@ namespace macaque
 		{ _field_real, "huge unit (stowed)" },
 		{ _field_tag_reference, "grounded friction settings", &global_grounded_friction_reference },
 		{ _field_tag_reference, "Tossed Override", &object_reference$3 },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

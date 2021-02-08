@@ -113,9 +113,9 @@ namespace macaque
 		MEDALAGGREGATOR_ID)
 	{
 		{ _field_string_id, "display name", FIELD_FLAG_INDEX },
-		FIELD_CUSTOM("allowed game modes", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("allowed game modes", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_struct, "allowed game modes", &game_mode_flags_struct },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_block, "contributing medals", &medalAggregatorEntry_block },
 		{ _field_terminator }
 	};

@@ -76,7 +76,7 @@ namespace macaque
 		{ _field_custom_long_block_index, "packedKeyOffaceref3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref3", FIELD_FLAG_UNKNOWN0 },
 		{ _field_word_flags, "invalid_points", FIELD_FLAG_READ_ONLY, &parallelogram_points_invalid_flags },
-		FIELD_PAD("KJHIUF", nullptr, 2),
+		FIELD_PAD("KJHIUF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -138,7 +138,7 @@ namespace macaque
 		{ _field_word_flags, "Flags", &user_hint_geometry_flags },
 		{ _field_short_block_index, "geometry index", FIELD_FLAG_READ_ONLY, &user_hint_line_segment_block },
 		{ _field_enum, "force hoist height", &forced_hoist_height_enum },
-		FIELD_PAD("post-forced-hoist-height", nullptr, 2),
+		FIELD_PAD("post-forced-hoist-height", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -168,7 +168,7 @@ namespace macaque
 		USER_HINT_WELL_POINT_BLOCK_ID)
 	{
 		{ _field_enum, "type", &user_hint_well_point_type_enum },
-		FIELD_PAD("CNXLP", nullptr, 2),
+		FIELD_PAD("CNXLP", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "point" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -225,7 +225,7 @@ namespace macaque
 		{ _field_real, "time between points", nullptr, "sec" },
 		{ _field_block, "control points", &user_hint_spline_control_point_block },
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block },
-		FIELD_PAD("post-bsp-pad", nullptr, 2),
+		FIELD_PAD("post-bsp-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "volume intersect points", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &user_hint_spline_intersect_point_block },
 		{ _field_terminator }
 	};
@@ -241,7 +241,7 @@ namespace macaque
 		USER_HINT_SPLINE_CONTROL_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_word_flags, "flags", &user_hint_spline_segment_flags },
-		FIELD_PAD("post-flags-pad", nullptr, 2),
+		FIELD_PAD("post-flags-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "point", _field_id_point },
 		{ _field_real_vector_3d, "tangent" },
 		{ _field_real, "segment arc length", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -259,7 +259,7 @@ namespace macaque
 		USER_HINT_SPLINE_INTERSECT_POINT_BLOCK_STRUCT_ID)
 	{
 		{ _field_short_block_index, "volume index", &user_hint_volume_avoidance_block },
-		FIELD_PAD("post-volume-index-pad", nullptr, 2),
+		FIELD_PAD("post-volume-index-pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "point" },
 		{ _field_real_vector_3d, "tangent" },
 		{ _field_terminator }
@@ -344,21 +344,21 @@ namespace macaque
 		{ _field_real, "step height" },
 		{ _field_long_enum, "type", &navmesh_area_type_enum },
 		{ _field_real, "isValid", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_EXPLANATION("Max CONVEX Border Simplify Area", nullptr, "This controls the amount of simplification applied to internal segments and convex boundary segments"),
+		FIELD_EXPLANATION("Max CONVEX Border Simplify Area", nullptr, FIELD_FLAG_NONE, "This controls the amount of simplification applied to internal segments and convex boundary segments"),
 		{ _field_real, "Max CONVEX Border Simplify Area" },
-		FIELD_EXPLANATION("Max Border Distance Error", nullptr, "When simplifying internal segments and convex boundary segments, this controls the maximum projected distance by which the simplified segment can deviate from the unsimplified segment"),
+		FIELD_EXPLANATION("Max Border Distance Error", nullptr, FIELD_FLAG_NONE, "When simplifying internal segments and convex boundary segments, this controls the maximum projected distance by which the simplified segment can deviate from the unsimplified segment"),
 		{ _field_real, "Max Border Distance Error" },
-		FIELD_EXPLANATION("Max CONCAVE Border Simplify Area", nullptr, "This controls the amount of simplification applied to concave boundary segments"),
+		FIELD_EXPLANATION("Max CONCAVE Border Simplify Area", nullptr, FIELD_FLAG_NONE, "This controls the amount of simplification applied to concave boundary segments"),
 		{ _field_real, "Max CONCAVE Border Simplify Area" },
-		FIELD_EXPLANATION("Max Walkable Slope", nullptr, "Maximum slope AI will traverse (degrees). Don\'t touch unless necessary."),
+		FIELD_EXPLANATION("Max Walkable Slope", nullptr, FIELD_FLAG_NONE, "Maximum slope AI will traverse (degrees). Don\'t touch unless necessary."),
 		{ _field_real, "Max Walkable Slope" },
-		FIELD_EXPLANATION("Cosine angle merge control", nullptr, "Faces will only be merged if the cosine of the angle between their normals is greater than this."),
+		FIELD_EXPLANATION("Cosine angle merge control", nullptr, FIELD_FLAG_NONE, "Faces will only be merged if the cosine of the angle between their normals is greater than this."),
 		{ _field_real, "Cosine angle merge control" },
-		FIELD_EXPLANATION("Hole replacement area", nullptr, "Holes with area less than this are candidates for conversion to quads"),
+		FIELD_EXPLANATION("Hole replacement area", nullptr, FIELD_FLAG_NONE, "Holes with area less than this are candidates for conversion to quads"),
 		{ _field_real, "Hole replacement area" },
-		FIELD_EXPLANATION("Partition size", nullptr, "The maximum number of faces that can be included in a partition. Basically, don\'t change this."),
+		FIELD_EXPLANATION("Partition size", nullptr, FIELD_FLAG_NONE, "The maximum number of faces that can be included in a partition. Basically, don\'t change this."),
 		{ _field_long_integer, "Partition size" },
-		FIELD_EXPLANATION("Loop shrink factor", nullptr, "The area of any partition loop will not be reduced by more than this fraction"),
+		FIELD_EXPLANATION("Loop shrink factor", nullptr, FIELD_FLAG_NONE, "The area of any partition loop will not be reduced by more than this fraction"),
 		{ _field_real, "Loop shrink factor" },
 		{ _field_terminator }
 	};
@@ -403,7 +403,7 @@ namespace macaque
 		USER_HINT_GIANT_RAIL_BLOCK_ID)
 	{
 		{ _field_short_block_index, "geometry index", FIELD_FLAG_READ_ONLY, &user_hint_line_segment_block },
-		FIELD_PAD("JLOU", nullptr, 2),
+		FIELD_PAD("JLOU", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 

@@ -31,7 +31,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_CAMERA_IMPULSE_BLOCK_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_terminator }
 	};
@@ -46,9 +46,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		CAMERA_SHAKE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("camera impulse", nullptr, ""),
+		FIELD_EXPLANATION("camera impulse", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "camera impulse", &camera_impulse_struct },
-		FIELD_EXPLANATION("camera shake", nullptr, ""),
+		FIELD_EXPLANATION("camera shake", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "camera shake", &camera_shake_struct },
 		{ _field_terminator }
 	};
@@ -64,7 +64,7 @@ namespace macaque
 		CAMERA_IMPULSE_STRUCT_ID)
 	{
 		{ _field_real, "impulse duration", nullptr, "seconds" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_angle, "rotation", nullptr, "degrees" },
 		{ _field_real, "pushback", nullptr, "world units" },
@@ -83,15 +83,15 @@ namespace macaque
 		CAMERA_SHAKE_STRUCT_ID)
 	{
 		{ _field_real, "shake duration", "the effect will last for this duration.", "seconds" },
-		FIELD_EXPLANATION("procedural camera shake", nullptr, ""),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_EXPLANATION("procedural camera shake", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_real, "random translation", "random translation in all directions", "world units" },
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
 		{ _field_enum, "wobble function", &global_periodic_functions_enum },
-		FIELD_EXPLANATION("animated camera shake", nullptr, ""),
+		FIELD_EXPLANATION("animated camera shake", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
 		{ _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },
 		{ _field_tag_reference, "animation graph", &global_animation_graph_reference },

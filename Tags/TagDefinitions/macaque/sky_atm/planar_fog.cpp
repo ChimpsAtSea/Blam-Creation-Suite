@@ -148,14 +148,14 @@ namespace macaque
 		PLANAR_FOG_PARAMETERS_STRUCT_DEFINITION_ID)
 	{
 		{ _field_word_flags, "flags", &planar_fog_flags },
-		FIELD_PAD("ABCDadf", nullptr, 2),
+		FIELD_PAD("ABCDadf", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "fog thickness" },
 		{ _field_real, "per-vertex fog thickness modulation", nullptr, "(only for transparents)" },
 		{ _field_real, "full fog depth", nullptr, "world units" },
 		{ _field_real_rgb_color, "fog color" },
 		{ _field_real, "fog color intensity" },
 		{ _field_tag_reference, "palette texture", &global_bitmap_reference },
-		FIELD_CUSTOM("patchy effect", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("patchy effect", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_tag_reference, "patchy texture", &global_bitmap_reference },
 		{ _field_real_rgb_color, "patchy color" },
 		{ _field_real, "patchy color intensity" },
@@ -168,12 +168,12 @@ namespace macaque
 		{ _field_real, "patchy surface depth", nullptr, "world units" },
 		{ _field_real, "patchy fade range", nullptr, "world units" },
 		{ _field_real_vector_3d, "patchy wind direction", nullptr, "world units" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
-		FIELD_CUSTOM("LoD settings (N/A yet)", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
+		FIELD_CUSTOM("LoD settings (N/A yet)", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_real, "max fog draw distance", nullptr, "world units" },
 		{ _field_real, "patchy fade start distance", nullptr, "world units" },
 		{ _field_real, "patchy fade end distance", nullptr, "world units" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

@@ -51,7 +51,7 @@ namespace macaque
 		{ _field_real, "consideration time" },
 		{ _field_real, "gap after sound" },
 		{ _field_byte_flags, "queue behavior", &sound_response_queue_flags },
-		FIELD_PAD("SRBQXEK", nullptr, 3),
+		FIELD_PAD("SRBQXEK", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "potential responses", &sound_response_permutation_block },
 		{ _field_block, "combiners", &sound_combine_response_block },
 		{ _field_terminator }
@@ -83,7 +83,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "response behavior", &sound_combine_response_flags },
-		FIELD_PAD("SRBQXEK", nullptr, 3),
+		FIELD_PAD("SRBQXEK", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_tag_reference, "response", &sound_response_group_reference },
 		{ _field_terminator }
 	};
@@ -101,7 +101,7 @@ namespace macaque
 		{ _field_byte_flags, "audience", &sound_audience_flags },
 		{ _field_byte_flags, "excluded audience", &sound_audience_flags },
 		{ _field_byte_flags, "split screen flags", &sound_splitscreen_flags },
-		FIELD_PAD("RMPES", nullptr, 1),
+		FIELD_PAD("RMPES", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_tag_reference, "response", &sound_response_group_reference },
 		{ _field_terminator }
 	};

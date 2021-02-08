@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_long_flags, "flags", FIELD_FLAG_UNKNOWN0, &team_role_flags },
 		{ _field_enum, "team", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_INDEX, &global_multiplayer_team_designator_enum_definition },
-		FIELD_PAD("QVO", nullptr, 2),
+		FIELD_PAD("QVO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "player roles", &player_role_block },
 		{ _field_terminator }
 	};

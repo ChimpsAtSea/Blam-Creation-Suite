@@ -31,9 +31,9 @@ namespace macaque
 		DIRECTIONALLIGHTRIGBLOCK_ID)
 	{
 		{ _field_long_flags, "Location", &lightRigLocation },
-		FIELD_CUSTOM("Theta", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Theta", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Theta", _field_id_slider_editor },
-		FIELD_CUSTOM("Phi", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Phi", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Phi", _field_id_slider_editor },
 		{ _field_real, "Distance from location" },
 		{ _field_tag_reference, "Midnight light", &global_midnight_light_definition_reference },
@@ -50,7 +50,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCRIPTABLELIGHTRIGBLOCK_ID)
 	{
-		FIELD_EXPLANATION("Scriptable Light Rig", nullptr, ""),
+		FIELD_EXPLANATION("Scriptable Light Rig", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_string_id, "string", FIELD_FLAG_INDEX },
 		{ _field_tag_reference, "light rig", &global_lightRig_reference },
 		{ _field_terminator }
@@ -65,23 +65,23 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		LIGHT_RIG_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Character Light Rig", nullptr, ""),
-		FIELD_CUSTOM("Environment vmf lobe weight", nullptr, _field_id_slider_editor),
+		FIELD_EXPLANATION("Character Light Rig", nullptr, FIELD_FLAG_NONE, ""),
+		FIELD_CUSTOM("Environment vmf lobe weight", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Environment vmf lobe weight", _field_id_slider_editor },
 		{ _field_real_rgb_color, "Rig fill color" },
-		FIELD_CUSTOM("Rig fill scale", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig fill scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig fill scale", _field_id_slider_editor },
 		{ _field_block, "Directional light rigs", &directionalLightRigBlock_block },
 		{ _field_real_rgb_color, "Rig vmf lobe color" },
-		FIELD_CUSTOM("Rig vmf lobe intensity", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig vmf lobe intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig vmf lobe intensity", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe theta", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig vmf lobe theta", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig vmf lobe theta", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe phi", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig vmf lobe phi", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig vmf lobe phi", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe scale", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig vmf lobe scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig vmf lobe scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe vs fill scale", nullptr, _field_id_slider_editor),
+		FIELD_CUSTOM("Rig vmf lobe vs fill scale", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
 		{ _field_real, "Rig vmf lobe vs fill scale", _field_id_slider_editor },
 		{ _field_terminator }
 	};

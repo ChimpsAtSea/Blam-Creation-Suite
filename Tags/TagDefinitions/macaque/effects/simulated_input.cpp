@@ -30,13 +30,13 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		SIMULATED_INPUT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_EXPLANATION("Simulated Input (SI)", nullptr, "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)"),
-		FIELD_EXPLANATION("Impulse", nullptr, "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input."),
-		FIELD_EXPLANATION("Scalers", nullptr, "Starting scaler value comes from damage multiplier or is set to 1.0 if SI not directly related to damage.\nThat is then scaled by the following:\n * area control falloff\n * function output y: func(SI_elapsed_time/duration) --> y)\n * 1 / zoom magnification\n * tick_delta_secs / tick_length\nresult of this is final scaler value"),
-		FIELD_EXPLANATION("Screen Space angles", nullptr, "0 - pitch up, +/-180 - pitch down\n-90 - yaw left, +90 - yaw right"),
-		FIELD_EXPLANATION("Move", nullptr, ""),
+		FIELD_EXPLANATION("Simulated Input (SI)", nullptr, FIELD_FLAG_NONE, "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)"),
+		FIELD_EXPLANATION("Impulse", nullptr, FIELD_FLAG_NONE, "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input."),
+		FIELD_EXPLANATION("Scalers", nullptr, FIELD_FLAG_NONE, "Starting scaler value comes from damage multiplier or is set to 1.0 if SI not directly related to damage.\nThat is then scaled by the following:\n * area control falloff\n * function output y: func(SI_elapsed_time/duration) --> y)\n * 1 / zoom magnification\n * tick_delta_secs / tick_length\nresult of this is final scaler value"),
+		FIELD_EXPLANATION("Screen Space angles", nullptr, FIELD_FLAG_NONE, "0 - pitch up, +/-180 - pitch down\n-90 - yaw left, +90 - yaw right"),
+		FIELD_EXPLANATION("Move", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "move", &simulated_input_stick_struct },
-		FIELD_EXPLANATION("Look", nullptr, ""),
+		FIELD_EXPLANATION("Look", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "look", &simulated_input_stick_struct },
 		{ _field_terminator }
 	};
@@ -55,7 +55,7 @@ namespace macaque
 		{ _field_enum, "response type", &direction_type_enum_definition },
 		{ _field_enum, "mapping type", &mapping_type_enum_definition },
 		{ _field_real_bounds, "angle", nullptr, "degrees" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "Mapping", &mapping_function },
 		{ _field_real, "duration", nullptr, "seconds" },
 		{ _field_real, "inverse duration", "if >0.f, accumulated inpulse will be 'undone' over the give time span", "seconds" },

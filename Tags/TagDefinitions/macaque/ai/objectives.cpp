@@ -38,7 +38,7 @@ namespace macaque
 		OPPOSING_OBJECTIVE_BLOCK_ID)
 	{
 		{ _field_short_block_index, "objective", &objectives_block },
-		FIELD_PAD("pad0", nullptr, 2),
+		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -61,7 +61,7 @@ namespace macaque
 		{ _field_real, "follow radius" },
 		{ _field_real, "follow Z clamp", "Don't follow at areas outside of this vertical margin", "wus" },
 		{ _field_word_flags, "follow players", &task_follow_player_flags },
-		FIELD_PAD("post-follow-players", nullptr, 2),
+		FIELD_PAD("post-follow-players", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "player front radius" },
 		{ _field_real, "maximum duration", "Exhaust this task after it has been active for this long", "seconds" },
 		{ _field_real, "exhaustion delay", "When a task exhausts, hold actors in the task for this long before releasing them", "seconds" },
@@ -75,8 +75,8 @@ namespace macaque
 		{ _field_enum, "dialogue type", &task_dialogue_enum },
 		{ _field_word_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &task_runtime_flags },
 		{ _field_short_integer, "Kungfu count", "The number of guys under this task that should be allowed to fight the player at a time" },
-		FIELD_PAD("post-kungfu-count", nullptr, 2),
-		FIELD_EXPLANATION("UI-Controlled", nullptr, "You don\'t need to modify these here. They are managed by the objectives ui"),
+		FIELD_PAD("post-kungfu-count", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION("UI-Controlled", nullptr, FIELD_FLAG_NONE, "You don\'t need to modify these here. They are managed by the objectives ui"),
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_short_integer, "priority", FIELD_FLAG_READ_ONLY, _field_id_unknown_ohoc },
 		{ _field_short_block_index, "first_child", FIELD_FLAG_READ_ONLY, &tasks_block },
@@ -109,7 +109,7 @@ namespace macaque
 		{ _field_string_id, "script name", FIELD_FLAG_READ_ONLY },
 		{ _field_long_string, "script source", _field_id_unknown_maeo },
 		{ _field_enum, "compile state", FIELD_FLAG_READ_ONLY, &fragment_state_enum },
-		FIELD_PAD("xcvh", nullptr, 2),
+		FIELD_PAD("xcvh", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -125,7 +125,7 @@ namespace macaque
 	{
 		{ _field_enum, "area type", &zone_set_type_enum },
 		{ _field_byte_flags, "flags", &zone_set_flags },
-		FIELD_PAD("no-character-flags-padding", nullptr, 1),
+		FIELD_PAD("no-character-flags-padding", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_block_index, "zone", FIELD_FLAG_INDEX, &zone_block },
 		{ _field_custom_short_block_index, "area", FIELD_FLAG_INDEX },
 		{ _field_angle, "yaw" },

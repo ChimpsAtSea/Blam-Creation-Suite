@@ -34,7 +34,7 @@ namespace macaque
 	{
 		{ _field_long_integer, "primitive type", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "is index32", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("index buffer descicriptor padding", nullptr, 3),
+		FIELD_PAD("index buffer descicriptor padding", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_data, "index_data", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
 	};

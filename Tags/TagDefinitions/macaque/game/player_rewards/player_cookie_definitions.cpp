@@ -32,7 +32,7 @@ namespace macaque
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "type", &rewardTypeEnum },
-		FIELD_PAD("PJB1", nullptr, 3),
+		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "rewards", &rewardBlock_block },
 		{ _field_terminator }
 	};

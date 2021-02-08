@@ -100,7 +100,7 @@ namespace macaque
 		DEVICE_CONTROL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		FIELD_CUSTOM("$$$ CONTROL $$$", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ CONTROL $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_enum, "type", &control_types },
 		{ _field_enum, "triggers when", &control_triggers },
 		{ _field_real, "call value" },
@@ -118,12 +118,12 @@ namespace macaque
 		{ _field_tag_reference, "action denied sound", &global_sound_reference },
 		{ _field_useless_pad, "" },
 		{ _field_enum, "MP team use restriction", &teamUseRestrictionEnum },
-		FIELD_PAD("turd", nullptr, 2),
+		FIELD_PAD("turd", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_tag_reference, "on", &device_struct_definition_open_up_reference },
 		{ _field_tag_reference, "off", &device_struct_definition_open_up_reference },
 		{ _field_tag_reference, "deny", &device_struct_definition_open_up_reference },
 		{ _field_string_id, "script name" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -139,7 +139,7 @@ namespace macaque
 		DEVICE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ DEVICE $$$", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ DEVICE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_long_flags, "flags", &device_definition_flags },
 		{ _field_real, "power transition time", nullptr, "seconds" },
 		{ _field_real, "power acceleration time", nullptr, "seconds" },
@@ -148,7 +148,7 @@ namespace macaque
 		{ _field_real, "depowered position transition time", nullptr, "seconds" },
 		{ _field_real, "depowered position acceleration time", nullptr, "seconds" },
 		{ _field_word_flags, "lightmap flags", &device_lightmap_flags },
-		FIELD_PAD("ZHBMT", nullptr, 2),
+		FIELD_PAD("ZHBMT", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_tag_reference, "open (up)", &device_struct_definition_open_up_reference },
 		{ _field_tag_reference, "close (down)", &device_struct_definition_open_up_reference },
@@ -160,7 +160,7 @@ namespace macaque
 		{ _field_useless_pad, "" },
 		{ _field_tag_reference, "delay effect", &device_struct_definition_open_up_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -168,7 +168,7 @@ namespace macaque
 		{ _field_real, "min targetable position threshold", "above this value and below the max, object becomes targetable" },
 		{ _field_real, "max targetable position threshold", "below this value and above the min, object becomes targetable" },
 		{ _field_useless_pad, "" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -184,13 +184,13 @@ namespace macaque
 		DEVICE_DISPENSER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		FIELD_CUSTOM("DISPENSER", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("DISPENSER", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_byte_flags, "flags", &DispenserDefinitionFlags },
 		{ _field_char_enum, "triggers when", &DispenserDefinitionTrigger },
 		{ _field_byte_integer, "use cooldown", "The number of seconds that must elapse before this dispenser is usable", "seconds" },
 		{ _field_byte_integer, "abandonment time", "When abandoned for this many seconds the object will be deleted", "seconds" },
 		{ _field_byte_integer, "max quota", "The maximum number of objects that can come from this dispenser", "(between 0 and 8)" },
-		FIELD_PAD("unrealized potential", nullptr, 3),
+		FIELD_PAD("unrealized potential", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "interaction hold time", "How many seconds the user must hold the interaction button before the dispenser triggers", "seconds" },
 		{ _field_string_id, "interaction screen", "A cui_screen to display when someone is using \"interaction held\"-type dispensers" },
 		{ _field_tag_reference, "dispensed object", &device_dispenser_struct_definition_dispensed_object_reference },
@@ -201,14 +201,14 @@ namespace macaque
 		{ _field_string_id, "use cooldown denial string", "Displayed when the use cooldown time hasn't elapsed yet" },
 		{ _field_string_id, "max quota denial string", "Displayed when this dispenser is out of charges" },
 		{ _field_string_id, "interaction in progress denial string", "Displayed when someone is already interacting with this device" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "spawn marker name", "The dispensed object will appear with this marker's position and orientation" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "effect marker name", "Creates the dispense effect at this marker name" },
 		{ _field_tag_reference, "dispense effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_string_id, "dispenser attach marker", "The marker on the dispenser to use for attachment if we attach our dispensed object, origin if undefined" },
 		{ _field_string_id, "dispensed object attach marker", "The marker on the dispensed object to use for attachment if we attach our dispensed object, origin if undefined" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 
@@ -224,7 +224,7 @@ namespace macaque
 		DEVICE_MACHINE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr, ""),
+		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_enum, "type", &machine_types },
 		{ _field_word_flags, "flags", &machine_flags },
 		{ _field_real, "door open time", nullptr, "seconds" },
@@ -234,7 +234,7 @@ namespace macaque
 		{ _field_short_integer, "elevator node" },
 		{ _field_useless_pad, "" },
 		{ _field_enum, "pathfinding policy", &machine_pathfinding_policy_enum },
-		FIELD_PAD("R", nullptr, 2),
+		FIELD_PAD("R", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "shield name", "shield (or any damage section) to control" },
 		{ _field_string_id, "shield function", "shield is on when this function is greater then 0.5f, off otherwise." },
 		{ _field_terminator }
@@ -252,7 +252,7 @@ namespace macaque
 		DEVICE_TERMINAL_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "device", &device_struct_definition },
-		FIELD_EXPLANATION("$$$ TERMINAL $$$", nullptr, ""),
+		FIELD_EXPLANATION("$$$ TERMINAL $$$", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_integer, "bah bah" },
 		{ _field_string_id, "action string" },
 		{ _field_string_id, "name", "text pulled from strings tag above" },

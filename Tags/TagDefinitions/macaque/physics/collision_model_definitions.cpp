@@ -120,7 +120,7 @@ namespace macaque
 		COLLISION_MODEL_NODE_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
-		FIELD_PAD("PFPPD", nullptr, 2),
+		FIELD_PAD("PFPPD", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_block_index, "parent node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_short_block_index, "next sibling node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
 		{ _field_short_block_index, "first child node", FIELD_FLAG_READ_ONLY, &collision_model_node_block },
@@ -143,7 +143,7 @@ namespace macaque
 		COLLISION_MODEL_BSP_STRUCT_ID)
 	{
 		{ _field_short_integer, "node index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("KXGCEIEI", nullptr, 2),
+		FIELD_PAD("KXGCEIEI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_struct, "bsp", FIELD_FLAG_READ_ONLY, &global_collision_bsp_struct },
 		{ _field_terminator }

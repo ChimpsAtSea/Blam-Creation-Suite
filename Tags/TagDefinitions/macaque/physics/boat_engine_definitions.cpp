@@ -19,8 +19,8 @@ namespace macaque
 		BOAT_ENGINE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
-		FIELD_PAD("blah", nullptr, 3),
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_marker),
+		FIELD_PAD("blah", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "propeller marker name" },
 		{ _field_real_fraction, "out of water thrust scale" },
 		{ _field_real_fraction, "out of water torque scale" },
@@ -29,10 +29,10 @@ namespace macaque
 		{ _field_real, "reverse linear acceleration" },
 		{ _field_real, "linear acceleration" },
 		{ _field_real, "angular acceleration" },
-		FIELD_EXPLANATION("Stabilization", nullptr, ""),
+		FIELD_EXPLANATION("Stabilization", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_angle, "stabilization angular acceleration", "how quickly the boat can accelerate to the desired orientation", "deg/s/s" },
 		{ _field_angle, "stabilization desired inclination", "how far pitched back the boat tries to achieve (0 is perfectly flat)", "deg" },
-		FIELD_EXPLANATION("drag", nullptr, ""),
+		FIELD_EXPLANATION("drag", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "drag input range velocity", nullptr, "wu/s" },
 		{ _field_struct, "normal drag", &scalar_function_named_struct },
 		{ _field_struct, "boost drag", &scalar_function_named_struct },

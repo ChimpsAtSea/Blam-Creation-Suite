@@ -24,7 +24,7 @@ namespace macaque
 		{ _field_block, "user edges", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &user_edge_block },
 		{ _field_block, "hints", &user_hint_block },
 		{ _field_byte_integer, "already Converted", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("fuckPad", nullptr, 3),
+		FIELD_PAD("fuckPad", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -49,12 +49,12 @@ namespace macaque
 		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		FIELD_PAD("pads", nullptr, 4),
+		FIELD_PAD("pads", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &FaceUserDataBlock_block },
 		{ _field_long_integer, "structure checksum", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("pads2", nullptr, 8),
+		FIELD_PAD("pads2", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -69,7 +69,7 @@ namespace macaque
 		FACEUSERDATABLOCK_ID)
 	{
 		{ _field_short_integer, "m_flags", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("pad", nullptr, 2),
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "currentMinPathDistance", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real, "currentMinTargetApproachDistance", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_terminator }
@@ -90,13 +90,13 @@ namespace macaque
 		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		FIELD_PAD("pads2", nullptr, 4),
+		FIELD_PAD("pads2", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &FaceUserDataBlock_block },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_byte_flags, "flags", &MobileNavMeshFlagsDefinition },
-		FIELD_PAD("pads", nullptr, 3),
+		FIELD_PAD("pads", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 
@@ -132,13 +132,13 @@ namespace macaque
 		{ _field_long_integer, "runtimeNavMesh", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavGraph", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "runtimeNavMediator", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		FIELD_PAD("pads", nullptr, 4),
+		FIELD_PAD("pads", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_data, "navGraphData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_data, "navMediatorData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_block, "faceUserData", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, &FaceUserDataBlock_block },
 		{ _field_short_integer, "zoneIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "areaIndex", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("pads2", nullptr, 8),
+		FIELD_PAD("pads2", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_terminator }
 	};
 
@@ -168,7 +168,7 @@ namespace macaque
 		{ _field_short_integer, "m_costAtoB", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "m_costBtoA", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_char_integer, "m_direction", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		FIELD_PAD("padding", nullptr, 3),
+		FIELD_PAD("padding", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

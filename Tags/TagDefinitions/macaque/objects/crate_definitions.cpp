@@ -32,16 +32,16 @@ namespace macaque
 		CRATE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_struct, "object", &object_struct_definition },
-		FIELD_CUSTOM("$$$ CRATE $$$", nullptr, _field_id_function_group_begin),
+		FIELD_CUSTOM("$$$ CRATE $$$", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_word_flags, "flags", &crate_flags },
-		FIELD_PAD("KOQVK", nullptr, 2),
+		FIELD_PAD("KOQVK", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
 		{ _field_long_integer, "self destruction timer", nullptr, "seconds" },
 		{ _field_tag_reference, "particleize", &global_particleize_parameters_reference },
 		{ _field_string_id, "grab animation set", "the animation set to use when this crate is grabbed" },
 		{ _field_string_id, "grab pickup string", "the string to display when the player can grab this object, from ui/hud/hud_messages" },
 		{ _field_tag_reference, "projectile bounce effect", &global_effect_reference },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_function_group_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};
 

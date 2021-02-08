@@ -65,9 +65,9 @@ namespace macaque
 		{ _field_char_enum, "pathfinding policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "lightmapping policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "imposter policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_imposter_policy_enum },
-		FIELD_PAD("SDFSDFE", nullptr, 1),
+		FIELD_PAD("SDFSDFE", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_enum, "streaming priority", FIELD_FLAG_READ_ONLY, &instanced_geometry_streamingpriority_enum },
-		FIELD_PAD("strpad", nullptr, 1),
+		FIELD_PAD("strpad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
 		{ _field_short_integer, "group_index", FIELD_FLAG_UNKNOWN0 },
@@ -93,7 +93,7 @@ namespace macaque
 		{ _field_short_integer, "compression index" },
 		{ _field_real, "global lightmap resolution scale" },
 		{ _field_short_integer, "external_index" },
-		FIELD_PAD("useme", nullptr, 2),
+		FIELD_PAD("useme", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -161,9 +161,9 @@ namespace macaque
 		{ _field_char_enum, "pathfinding policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_pathfinding_policy_enum },
 		{ _field_char_enum, "lightmapping policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_lightmapping_policy_enum },
 		{ _field_char_enum, "imposter policy", FIELD_FLAG_READ_ONLY, &instanced_geometry_imposter_policy_enum },
-		FIELD_PAD("SDFSDFE", nullptr, 1),
+		FIELD_PAD("SDFSDFE", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_char_enum, "streaming priority", FIELD_FLAG_READ_ONLY, &instanced_geometry_streamingpriority_enum },
-		FIELD_PAD("strpad", nullptr, 1),
+		FIELD_PAD("strpad", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_real, "lightmap resolution scale" },
 		{ _field_short_integer, "group_index", FIELD_FLAG_UNKNOWN0 },

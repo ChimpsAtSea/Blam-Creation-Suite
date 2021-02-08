@@ -28,7 +28,7 @@ namespace macaque
 		{ _field_char_enum, "PRT vertex type", FIELD_FLAG_READ_ONLY, &mesh_transfer_vertex_type_definition },
 		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
 		{ _field_char_enum, "index buffer type", FIELD_FLAG_READ_ONLY, &mesh_index_buffer_type_definition },
-		FIELD_PAD("BAASDFIR", nullptr, 1),
+		FIELD_PAD("BAASDFIR", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "pca mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_block, "instance buckets", FIELD_FLAG_READ_ONLY, &global_instance_bucket_block },
 		{ _field_block, "water indices start", &indices_word_block },
@@ -184,8 +184,8 @@ namespace macaque
 		COMPRESSION_INFO_BLOCK_ID)
 	{
 		{ _field_word_flags, "compression flags", FIELD_FLAG_READ_ONLY, &compression_flags },
-		FIELD_PAD("JOJOBOMO", nullptr, 2),
-		FIELD_EXPLANATION("WARNING", nullptr, "The following fields are mislabeled for legacy reasons.The actual order is:\nposition_bounds.x0 position_bounds.x1 position_bounds.y0\nposition_bounds.y1 position_bounds.z0 position_bounds.z1\n\ntexcoord_bounds.x0 texcoord_bounds.x1\ntexcoord_bounds.y0 texcoord_bounds.y1\n"),
+		FIELD_PAD("JOJOBOMO", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_EXPLANATION("WARNING", nullptr, FIELD_FLAG_NONE, "The following fields are mislabeled for legacy reasons.The actual order is:\nposition_bounds.x0 position_bounds.x1 position_bounds.y0\nposition_bounds.y1 position_bounds.z0 position_bounds.z1\n\ntexcoord_bounds.x0 texcoord_bounds.x1\ntexcoord_bounds.y0 texcoord_bounds.y1\n"),
 		{ _field_real_point_3d, "position bounds 0", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "position bounds 1", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_2d, "texcoord bounds 0", FIELD_FLAG_READ_ONLY },
@@ -436,7 +436,7 @@ namespace macaque
 		{ _field_block, "texture coordinates", &raw_vertex_block },
 		{ _field_block, "texture coordinates (concise)", &raw_texcoord_block },
 		{ _field_short_integer, "vertex buffer index", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("HTJIAHA", nullptr, 2),
+		FIELD_PAD("HTJIAHA", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -483,7 +483,7 @@ namespace macaque
 	{
 		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		FIELD_PAD("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -501,7 +501,7 @@ namespace macaque
 	{
 		{ _field_byte_integer, "declaration type", FIELD_FLAG_READ_ONLY },
 		{ _field_byte_integer, "stride", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("vertex buffer pad", nullptr, 2),
+		FIELD_PAD("vertex buffer pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_dword_integer, "count", FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "d3d hardware format", FIELD_FLAG_READ_ONLY },
 		{ _field_terminator }
@@ -666,7 +666,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_RENDER_GEOMETRY_STRUCT_ID)
 	{
-		FIELD_EXPLANATION("Render Geometry", nullptr, "\nAll new Halo 3 render geometry definitions!\n\n"),
+		FIELD_EXPLANATION("Render Geometry", nullptr, FIELD_FLAG_NONE, "\nAll new Halo 3 render geometry definitions!\n\n"),
 		{ _field_long_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &render_geometry_flags },
 		{ _field_block, "meshes", FIELD_FLAG_READ_ONLY, &global_mesh_block },
 		{ _field_block, "PCA Mesh Indices", FIELD_FLAG_READ_ONLY, &PCAMeshIndexBlock_block },
@@ -674,7 +674,7 @@ namespace macaque
 		{ _field_block, "part sorting position", FIELD_FLAG_READ_ONLY, &sorting_position_block },
 		{ _field_block, "user data", FIELD_FLAG_READ_ONLY, &user_data_block },
 		{ _field_block, "per mesh temporary", FIELD_FLAG_READ_ONLY, &per_mesh_raw_data_block },
-		FIELD_PAD("pad3", nullptr, 12),
+		FIELD_PAD("pad3", nullptr, FIELD_FLAG_NONE, 12),
 		{ _field_block, "per mesh node map", FIELD_FLAG_READ_ONLY, &per_mesh_node_map_block },
 		{ _field_block, "per mesh subpart visibility", FIELD_FLAG_READ_ONLY, &per_mesh_subpart_visibility_block },
 		{ _field_block, "per_mesh_prt_data", FIELD_FLAG_READ_ONLY, &per_mesh_prt_data_block },

@@ -35,7 +35,7 @@ namespace macaque
 	{
 		{ _field_block, "constants", FIELD_FLAG_READ_ONLY, &rasterizer_constant_block },
 		{ _field_char_enum, "type", FIELD_FLAG_READ_ONLY, &rasterizer_constant_table_type_enum },
-		FIELD_PAD("qersaui", nullptr, 3),
+		FIELD_PAD("qersaui", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

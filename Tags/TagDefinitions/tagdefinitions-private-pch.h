@@ -48,14 +48,6 @@ extern s_tag_block_definition CONCAT(tag_block_name, _block);
 #define V5_TAG_GROUP_FORWARD(tag_group_name) \
 extern s_tag_group CONCAT(tag_group_name, _group);
 
-	// #TODO
-#define FIELD_FLAG_NONE 0u
-#define FIELD_FLAG_UNKNOWN0 0u
-#define FIELD_FLAG_READ_ONLY 0u
-#define FIELD_FLAG_INDEX 0u
-#define FIELD_FLAG_UNKNOWN3 0u
-#define FIELD_FLAG_POINTER 0u
-
 #define TAG_FIELDS(tag_fields_name) \
 s_tag_field CONCAT(tag_fields_name, _fields)[] =
 

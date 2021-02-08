@@ -30,7 +30,7 @@ namespace macaque
 		CONTROLLER_MAPPING_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "auto zoom out ticks", "set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" },
-		FIELD_EXPLANATION("Start/Back", nullptr, "Start and Back buttons are not remappable and do not appear in this list."),
+		FIELD_EXPLANATION("Start/Back", nullptr, FIELD_FLAG_NONE, "Start and Back buttons are not remappable and do not appear in this list."),
 		{ _field_enum, "jump", &gamepad_button_definition },
 		{ _field_enum, "switch weapon", &gamepad_button_definition },
 		{ _field_enum, "contextual action", &gamepad_button_definition },
@@ -48,8 +48,8 @@ namespace macaque
 		{ _field_enum, "vehicle trick secondary", &gamepad_button_definition },
 		{ _field_enum, "secondary contextual action", &gamepad_button_definition },
 		{ _field_enum, "radio message", &gamepad_button_definition },
-		FIELD_SKIP("start", nullptr, 2),
-		FIELD_SKIP("back", nullptr, 2),
+		FIELD_SKIP("start", nullptr, FIELD_FLAG_NONE, 2),
+		FIELD_SKIP("back", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "lean left", &gamepad_button_definition },
 		{ _field_enum, "lean right", &gamepad_button_definition },
 		{ _field_enum, "night vision", &gamepad_button_definition },

@@ -31,21 +31,21 @@ namespace macaque
 		COLLISION_DAMAGE_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "Flags", &collisionDamageFlags },
-		FIELD_EXPLANATION("Applying collision damage", nullptr, "for things that want to cause more or less collision damage"),
+		FIELD_EXPLANATION("Applying collision damage", nullptr, FIELD_FLAG_NONE, "for things that want to cause more or less collision damage"),
 		{ _field_real, "Apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
 		{ _field_real, "Friendly apply collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage, yet go soft on their friends" },
-		FIELD_EXPLANATION("Game collision damage parameters", nullptr, "0 - means take default value from globals.globals"),
+		FIELD_EXPLANATION("Game collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
 		{ _field_real, "minimum velocity for game damage", "if you are going below this velocity we stop all game damage" },
 		{ _field_struct, "game collision damage", &collision_damage_function },
 		{ _field_real_bounds, "game acceleration", "0-Infinity" },
-		FIELD_EXPLANATION("Applying absolute collision damage", nullptr, "for things that want to cause more or less collision damage"),
+		FIELD_EXPLANATION("Applying absolute collision damage", nullptr, FIELD_FLAG_NONE, "for things that want to cause more or less collision damage"),
 		{ _field_real, "Apply absolute collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage" },
 		{ _field_real, "Friendly apply absolute collision damage scale", "0 means 1.  1 is standard scale.  Some things may want to apply more damage, yet go soft on their friends" },
-		FIELD_EXPLANATION("Absolute collision damage parameters", nullptr, "0 - means take default value from globals.globals"),
+		FIELD_EXPLANATION("Absolute collision damage parameters", nullptr, FIELD_FLAG_NONE, "0 - means take default value from globals.globals"),
 		{ _field_real, "minimum velocity for absolute damage", "if you are going below this velocity we stop all absolute damage" },
 		{ _field_struct, "absolute collision damage", &collision_damage_function },
 		{ _field_real_bounds, "absolute acceleration", "0-Infinity" },
-		FIELD_EXPLANATION("Alternative damage effect", nullptr, "Overrides the damage effect from globals.globals"),
+		FIELD_EXPLANATION("Alternative damage effect", nullptr, FIELD_FLAG_NONE, "Overrides the damage effect from globals.globals"),
 		{ _field_tag_reference, "alternative damage effect", &Tag::Reference<struct s_damage_effect_definition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
@@ -60,7 +60,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISION_DAMAGE_FUNCTION_ID)
 	{
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_default),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
 		{ _field_struct, "mapping", &mapping_function },
 		{ _field_terminator }
 	};

@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE),
 		FIRING_POSITIONS_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("CONTROLS", nullptr, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
+		FIELD_EXPLANATION("CONTROLS", nullptr, FIELD_FLAG_UNKNOWN3, "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
@@ -27,9 +27,9 @@ namespace macaque
 		{ _field_short_integer, "cluster index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "cluster bsp", FIELD_FLAG_READ_ONLY },
 		{ _field_char_integer, "bits and pad", FIELD_FLAG_UNKNOWN0 },
-		FIELD_PAD("PAD1", nullptr, 1),
+		FIELD_PAD("PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM(nullptr, nullptr, _field_id_unknown_facing),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_facing),
 		{ _field_angle, "facing" },
 		{ _field_long_integer, "lastAbsoluteRejectionGameTime", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }

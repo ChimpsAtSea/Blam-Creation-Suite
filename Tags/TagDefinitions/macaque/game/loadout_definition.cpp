@@ -31,7 +31,7 @@ namespace macaque
 		GAME_ENGINE_LOADOUT_OPTIONS_BLOCK_ID)
 	{
 		{ _field_byte_flags, "flags", &loadout_flags_definition },
-		FIELD_PAD("DLVKJSER", nullptr, 3),
+		FIELD_PAD("DLVKJSER", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_block, "loadout palettes", &game_engine_loadout_palette_entry_block },
 		{ _field_terminator }
 	};
@@ -82,7 +82,7 @@ namespace macaque
 		LOADOUT_INDEX_BLOCK_ID)
 	{
 		{ _field_short_block_index, "loadout", FIELD_FLAG_INDEX, &loadout_definition_block },
-		FIELD_PAD("padding0", nullptr, 2),
+		FIELD_PAD("padding0", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -140,7 +140,7 @@ namespace macaque
 		{ _field_string_id, "initial secondary weapon variant name" },
 		{ _field_string_id, "initial equipment", "see above" },
 		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
-		FIELD_PAD("SDJCESLRN", nullptr, 3),
+		FIELD_PAD("SDJCESLRN", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
 

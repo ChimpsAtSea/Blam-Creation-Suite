@@ -504,8 +504,8 @@ namespace macaque
 	{
 		{ _field_long_integer, "cluster offset" },
 		{ _field_char_integer, "single probe" },
-		FIELD_PAD("LHWCHFX", nullptr, 1),
-		FIELD_PAD("DWCIEFG", nullptr, 2),
+		FIELD_PAD("LHWCHFX", nullptr, FIELD_FLAG_NONE, 1),
+		FIELD_PAD("DWCIEFG", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
 
@@ -533,7 +533,7 @@ namespace macaque
 		SCENARIO_WETNESS_BSP_DATA_STRUCT_DEFINITION_ID)
 	{
 		{ _field_short_integer, "bsp reference index" },
-		FIELD_PAD("LHWCHFX", nullptr, 2),
+		FIELD_PAD("LHWCHFX", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_long_integer, "structure BSP import checksum" },
 		{ _field_long_integer, "lightmap BSP import checksum" },
 		{ _field_long_integer, "design BSP checksum" },

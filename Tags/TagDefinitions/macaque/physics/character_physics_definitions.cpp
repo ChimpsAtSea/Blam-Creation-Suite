@@ -33,9 +33,9 @@ namespace macaque
 		{ _field_block, "list sphere shapes", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &spheres_block },
 		{ _field_block, "list shapes", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &lists_block },
 		{ _field_block, "list shape childInfos", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &list_shapes_block },
-		FIELD_EXPLANATION("ground", nullptr, ""),
+		FIELD_EXPLANATION("ground", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "ground physics", &character_physics_ground_struct },
-		FIELD_EXPLANATION("flying", nullptr, ""),
+		FIELD_EXPLANATION("flying", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_struct, "flying physics", &character_physics_flying_struct },
 		{ _field_terminator }
 	};
