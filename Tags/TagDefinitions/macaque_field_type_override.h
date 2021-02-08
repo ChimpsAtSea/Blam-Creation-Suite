@@ -2,15 +2,14 @@
 
 #define __FIELD_MACRO_HELPER(type, name, description, flags, data)\
 {														\
-	type,											\
+	type,												\
 	(const char*)(name),								\
 	(const char*)(description),							\
 	nullptr,											\
 	nullptr,											\
 	nullptr,											\
-	nullptr,											\
 	0,													\
-	(data),										\
+	(data),												\
 	_field_id_default									\
 }
 

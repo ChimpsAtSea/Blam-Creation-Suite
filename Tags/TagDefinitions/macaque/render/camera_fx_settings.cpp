@@ -66,9 +66,9 @@ namespace macaque
 		{ _field_real, "minimum", "the absolute target exposure is clamped to this range", "stops" },
 		{ _field_real, "maximum", "the absolute target exposure is clamped to this range", "stops" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
-		{ _field_real, "auto-exposure screen brightness", "how bright you want the screen to be - auto-exposure will make it happen" },
+		{ _field_real, "auto-exposure screen brightness", "how bright you want the screen to be - auto-exposure will make it happen", nullptr, "[0.0001-1]" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_begin),
-		{ _field_real, "auto-exposure delay", "how long to wait before auto-exposure kicks in to adjust the exposure" },
+		{ _field_real, "auto-exposure delay", "how long to wait before auto-exposure kicks in to adjust the exposure", nullptr, "[0.1-1]seconds" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
 		{ _field_terminator }
 	};
@@ -304,7 +304,7 @@ namespace macaque
 		FIELD_EXPLANATION("SELF ILLUM CHANGE", nullptr, FIELD_FLAG_NONE, "How much self illum exposure is allowed to change\n0 means no change at all, 1 means it will\nequal the normal exposure"),
 		{ _field_word_flags, "flags", &camera_fx_parameter_flags_no_auto_adjust },
 		FIELD_PAD("WOOGATCHOU", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_real, "exposure change", "how much the self illum is allowed to change, as a percentage of the normal exposure change" },
+		{ _field_real, "exposure change", "how much the self illum is allowed to change, as a percentage of the normal exposure change", nullptr, "[0-1]" },
 		{ _field_real, "maximum change" },
 		{ _field_real, "blend speed (0-1)" },
 		{ _field_terminator }

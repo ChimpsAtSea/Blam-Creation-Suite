@@ -30,9 +30,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_GLOBALS_DATA_BLOCK_STRUCT_ID)
 	{
-		{ _field_real, "AI infantry-on-AI weapon damage scale", "Global scale on weapon damage made by AI on other AI" },
-		{ _field_real, "AI vehicle-on-AI weapon damage scale", "Global scale on weapon damage made by AI in a vehicle on other AI" },
-		{ _field_real, "AI player vehicle-on-AI weapon damage scale", "Global scale on weapon damage made by AI in a vehicle with the player on other AI" },
+		{ _field_real, "AI infantry-on-AI weapon damage scale", "Global scale on weapon damage made by AI on other AI", nullptr, "[0,1]" },
+		{ _field_real, "AI vehicle-on-AI weapon damage scale", "Global scale on weapon damage made by AI in a vehicle on other AI", nullptr, "[0,1]" },
+		{ _field_real, "AI player vehicle-on-AI weapon damage scale", "Global scale on weapon damage made by AI in a vehicle with the player on other AI", nullptr, "[0,1]" },
 		{ _field_real, "danger broadly facing" },
 		{ _field_real, "danger shooting near" },
 		{ _field_real, "danger shooting at" },

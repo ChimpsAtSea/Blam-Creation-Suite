@@ -58,7 +58,7 @@ namespace macaque
 		{ _field_real, "activation energy cost" },
 		{ _field_real, "deactivation energy cost" },
 		{ _field_real, "active energy rate", nullptr, "energy/second" },
-		{ _field_struct, "movement speed to energy rate", &scalar_function_named_struct },
+		{ _field_struct, "movement speed to energy rate", nullptr, "1/s", &scalar_function_named_struct },
 		{ _field_real, "movement speed domain", nullptr, "wu/s" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_long_flags, "flags", &equipment_activation_flags },
@@ -230,7 +230,7 @@ namespace macaque
 		{ _field_struct, "post-invincibility time to shield level function", &scalar_function_named_struct },
 		{ _field_real, "maximum vertical velocity", "we use this to specify the domain of the active vertical velocity funtion", "WU/SEC" },
 		{ _field_struct, "active vertical velocity damping", &scalar_function_named_struct },
-		{ _field_block, "threshold effects", &equipmentEffectWithThresholdBlock_block },
+		{ _field_block, "threshold effects", "the effect with the highest threshold will play on deactivation", &equipmentEffectWithThresholdBlock_block },
 		{ _field_terminator }
 	};
 
@@ -396,7 +396,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "start radius", nullptr, "wu" },
 		FIELD_EXPLANATION("Ball Lightning", nullptr, FIELD_FLAG_NONE, "Damage effect that passes from one biped to nearby bipeds, recursively"),
-		{ _field_real, "chain radius reduction multiplier", "MUST BE GREATER THAN ZERO - each time lightning chains, this is the multiplier that controls how much the radius is reduced by", FIELD_FLAG_INDEX },
+		{ _field_real, "chain radius reduction multiplier", "MUST BE GREATER THAN ZERO - each time lightning chains, this is the multiplier that controls how much the radius is reduced by", nullptr, "[0.01, 1]", FIELD_FLAG_INDEX },
 		{ _field_real, "chain delay timer", nullptr, "seconds" },
 		{ _field_tag_reference, "lightning damage", &global_damage_reference },
 		{ _field_terminator }
@@ -562,7 +562,7 @@ namespace macaque
 		{ _field_real, "cow catcher side width", "world units, the width of the angled side portion of the cow-catcher" },
 		{ _field_real, "cow catcher side depth", "world units, the depth of the angled side portion of the cow-catcher" },
 		{ _field_real_vector_3d, "cow catcher offset", "offset from the unit's origin to put the origin of the cow-catcher at" },
-		{ _field_tag_reference, "collision damage override", &collision_damage_reference$4 },
+		{ _field_tag_reference, "collision damage override", "if \"hide unit during transit\" isn't checked, this can override the unit's collision damage definition during the teleport", &collision_damage_reference$4 },
 		{ _field_terminator }
 	};
 
@@ -588,7 +588,7 @@ namespace macaque
 		{ _field_tag_reference, "destruction effect", &global_effect_reference },
 		{ _field_real, "shimmer decrease rate", "how fast shimmer decreases", "1.0/s" },
 		{ _field_real, "shimmer bullet ping", "how much to ping shimmer when hit by a bullet", "0-1" },
-		{ _field_struct, "shimmer to camo function", &scalar_function_named_struct },
+		{ _field_struct, "shimmer to camo function", "this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)", &scalar_function_named_struct },
 		{ _field_byte_flags, "flags", &equipmentAbilityTypeHologramFlags },
 		FIELD_PAD("pad after hologram flags", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
@@ -677,7 +677,7 @@ namespace macaque
 		{ _field_real, "teleport distance" },
 		{ _field_real, "travel speed", "the speed at which you cross the teleporter distance; 0 means instant" },
 		{ _field_real, "deactivation speed", "the speed you return to at the end of the teleport, if \"hide unit during transit\" isn't checked" },
-		{ _field_tag_reference, "trace effect", &global_effect_reference },
+		{ _field_tag_reference, "trace effect", "an effect that will follow along the travel path", &global_effect_reference },
 		{ _field_real_vector_3d, "trace effect offset", "offset from the unit's origin to put the effects at" },
 		{ _field_real, "max pitch (airborne)", "[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport in the air" },
 		{ _field_real, "max pitch (ground)", "[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport on the ground" },
@@ -721,19 +721,19 @@ namespace macaque
 		{ _field_real, "max velocity", nullptr, "units per second" },
 		{ _field_real, "max acceleration", nullptr, "units per second squared" },
 		{ _field_real, "turret halt engage time", "amount of time after a moving turret engages a target before it halts movement", "seconds" },
-		{ _field_real, "turret idle equipment drain multiplier", "the multiplier on equipment drain when equipment is in its idle state" },
-		{ _field_real, "turret inactive equipment drain multiplier", "the multiplier on equipment drain when equipment is in its inactive state" },
+		{ _field_real, "turret idle equipment drain multiplier", "the multiplier on equipment drain when equipment is in its idle state", nullptr, "[0.1]" },
+		{ _field_real, "turret inactive equipment drain multiplier", "the multiplier on equipment drain when equipment is in its inactive state", nullptr, "[0.1]" },
 		{ _field_real, "spawn radius", "area that must be clear in order for turret to spawn", "world units" },
 		{ _field_real, "spawn in time", "the turret will be inactive for this duration", "seconds" },
 		{ _field_real_vector_3d, "spawn offset from player", "relative to origin and camera direction without pitch", "world units" },
 		{ _field_real, "vertical bob height", nullptr, "world units" },
 		{ _field_real, "vertical bobs per second" },
-		{ _field_tag_reference, "spawn effect", &global_effect_reference },
+		{ _field_tag_reference, "spawn effect", "effect played on the turret when it is spawned into the world", &global_effect_reference },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "spawn effect marker" },
 		{ _field_string_id, "spawn dissolve type" },
 		{ _field_string_id, "spawn dissolve marker" },
-		{ _field_tag_reference, "collision phase effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "collision phase effect", "effect played on the turret while a biped or vehicle passes through it", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 
@@ -750,7 +750,7 @@ namespace macaque
 		{ _field_byte_flags, "Flags", &equipmentVisionModeFlags },
 		FIELD_PAD("vmbf", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_real, "maximum tell distance", "'Other activation tell effect' will be applied to players within this distance", "wu" },
-		{ _field_tag_reference, "activation tell effect", &global_effect_reference },
+		{ _field_tag_reference, "activation tell effect", "applied to other players within maximum distance", &global_effect_reference },
 		{ _field_long_integer, "motion sensor tell blip ticks", "within 'maxiumum tell distance' blip duration if 'Generate tell motion sensor blip' is checked" },
 		{ _field_tag_reference, "vision mode", &Tag::Reference<struct VisionModeDefinition>::s_defaultDefinition },
 		{ _field_terminator }
@@ -774,9 +774,9 @@ namespace macaque
 		{ _field_real, "Min Projection Distance ", "Minimum distance between defender and attacker required to project shield." },
 		{ _field_real, "Max Projection Distance ", "Max distance from equipment that shield can be projected." },
 		{ _field_real_fraction, "Min Required Energy Level ", "Min energy required to activate shield." },
-		{ _field_tag_reference, "Project Effect ", &effect_reference$2 },
-		{ _field_tag_reference, "Warmup Effect ", &effect_reference$2 },
-		{ _field_tag_reference, "Shield Crate ", &crate_reference$5 },
+		{ _field_tag_reference, "Project Effect ", "Beam effect that links equipment to projected shield.", &effect_reference$2 },
+		{ _field_tag_reference, "Warmup Effect ", "Effect played at eventual shield projection point during warmup period.", &effect_reference$2 },
+		{ _field_tag_reference, "Shield Crate ", "Crate created to represent projected shield.", &crate_reference$5 },
 		{ _field_terminator }
 	};
 
@@ -799,7 +799,7 @@ namespace macaque
 		{ _field_real, "Vertical Offset", "Orbit vertical offset amount." },
 		{ _field_real, "Strength", "Controls amount of acceleration applied to projectile." },
 		{ _field_real, "Attack Speed", "Initial speed of projectiles when thrown as an attack." },
-		{ _field_tag_reference, "Collect Effect ", &effect_reference$2 },
+		{ _field_tag_reference, "Collect Effect ", "Beam effect that links equipment to each collected projectile.", &effect_reference$2 },
 		{ _field_terminator }
 	};
 
@@ -839,8 +839,8 @@ namespace macaque
 		{ _field_real, "Energy recovery delay", "The targeted equipment will not start regenerating energy until at least this much time has gone by." },
 		{ _field_real, "Cone angle degrees", "Degrees away from the reticle at which targets are in the cone." },
 		{ _field_block, "Drain levels", &equipmentHackerDrainLevel_block },
-		{ _field_tag_reference, "cone effect", &global_effect_reference },
-		{ _field_tag_reference, "target effect", &global_effect_reference },
+		{ _field_tag_reference, "cone effect", "an effect that will shoot out of your face", &global_effect_reference },
+		{ _field_tag_reference, "target effect", "an effect that will play on the target", &global_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -869,8 +869,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTABILITYTYPEREMOTEVEHICLEBLOCK_ID)
 	{
-		{ _field_tag_reference, "hologram spawner", &object_reference$4 },
-		{ _field_tag_reference, "vehicle", &object_reference$4 },
+		{ _field_tag_reference, "hologram spawner", "reference the equipment that will spawn the hologram that will pilot the remote vehicle", &object_reference$4 },
+		{ _field_tag_reference, "vehicle", "reference the remote vehicle to be created", &object_reference$4 },
 		{ _field_string_id, "seat label", "hologram gets loaded into this seat in the vehicle", FIELD_FLAG_INDEX },
 		{ _field_string_id, "spawn position flag", "position of scenerio flag with this name. Empty will default to flag named 'remote_vehicle_start_position'" },
 		{ _field_terminator }
@@ -915,7 +915,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENTSOUNDRTPCBLOCK_ID)
 	{
-		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
+		{ _field_long_block_index, "Attachment Index", "Sound attachment to affect", &global_object_attachment_block },
 		{ _field_string_id, "Function", "Function to drive the RTPC" },
 		{ _field_string_id, "RTPC Name", "WWise RTPC string name" },
 		{ _field_long_integer, "RTPC name hash value", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -978,7 +978,7 @@ namespace macaque
 		{ _field_tag_reference, "pickup sound", &global_sound_reference },
 		{ _field_tag_reference, "energy charged effect", &global_effect_reference },
 		{ _field_tag_reference, "unable to activate sound", &global_sound_reference },
-		{ _field_tag_reference, "Player sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Player sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 		{ _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock_block },
 		{ _field_block, "Sound Sweeteners", &EquipmentSoundSweetenerBlock_block },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),

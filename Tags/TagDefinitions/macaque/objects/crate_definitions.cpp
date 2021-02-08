@@ -37,10 +37,10 @@ namespace macaque
 		FIELD_PAD("KOQVK", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block },
 		{ _field_long_integer, "self destruction timer", nullptr, "seconds" },
-		{ _field_tag_reference, "particleize", &global_particleize_parameters_reference },
+		{ _field_tag_reference, "particleize", "optional particleization effect definition, if you want this to particleize when it takes damage", &global_particleize_parameters_reference },
 		{ _field_string_id, "grab animation set", "the animation set to use when this crate is grabbed" },
 		{ _field_string_id, "grab pickup string", "the string to display when the player can grab this object, from ui/hud/hud_messages" },
-		{ _field_tag_reference, "projectile bounce effect", &global_effect_reference },
+		{ _field_tag_reference, "projectile bounce effect", "effect to play when a projectile bounces because of the \"all projectiles bounce off\" flag", &global_effect_reference },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};

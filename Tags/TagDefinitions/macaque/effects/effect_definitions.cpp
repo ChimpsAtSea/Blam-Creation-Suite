@@ -110,7 +110,7 @@ namespace macaque
 		{ _field_short_block_index, "secondary location (beams)", &effect_locations_block },
 		{ _field_word_flags, "flags", &effect_part_flags },
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
-		{ _field_char_enum, "camera mode", &effect_camera_modes },
+		{ _field_char_enum, "camera mode", "Currently, the only supported use is to turn parts off in first-person view.", &effect_camera_modes },
 		{ _field_tag, "runtime base group tag", FIELD_FLAG_UNKNOWN0 },
 		{ _field_char_enum, "game mode", &effectPartGameModeDefinition },
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
@@ -128,7 +128,7 @@ namespace macaque
 		FIELD_EXPLANATION("SCALE MODIFIERS", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "A scales values", &effect_part_scaleable_values },
 		{ _field_long_flags, "B scales values", &effect_part_scaleable_values },
-		{ _field_tag_reference, "particleize", &global_particleize_parameters_reference },
+		{ _field_tag_reference, "particleize", "optional particleization effect definition, if you want this to particleize on spawn", &global_particleize_parameters_reference },
 		{ _field_terminator }
 	};
 
@@ -178,7 +178,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EFFECT_CONICAL_DISTRIBUTION_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("conical_projection", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count"),
+		FIELD_EXPLANATION("conical_projection: AKA shotgun", nullptr, FIELD_FLAG_NONE, "projectile_count = yaw_count*pitch_count"),
 		{ _field_short_integer, "yaw count" },
 		{ _field_short_integer, "pitch count" },
 		{ _field_real, "distribution exponent", "exp==.5 even distribution, exp>.5== tighter" },

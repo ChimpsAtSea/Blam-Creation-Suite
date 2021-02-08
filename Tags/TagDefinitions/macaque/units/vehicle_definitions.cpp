@@ -601,7 +601,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDRTPCBLOCK_ID)
 	{
-		{ _field_long_block_index, "Attachment Index", &global_object_attachment_block },
+		{ _field_long_block_index, "Attachment Index", "Sound attachment to affect", &global_object_attachment_block },
 		{ _field_string_id, "Function", "Function to drive the RTPC" },
 		{ _field_string_id, "RTPC Name", "WWise RTPC string name" },
 		{ _field_long_integer, "RTPC name hash value", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
@@ -639,7 +639,7 @@ namespace macaque
 		{ _field_real, "velocity threshold side", "0 if velocity should be smaller than transition value, else 1", "0 or 1" },
 		{ _field_real, "transition throttle", "throttle input at which physics model transition occurs", "-1 to 1" },
 		{ _field_real, "throttle threshold side", "0 if throttle should be smaller than transition value, else 1", "0 or 1" },
-		{ _field_char_enum, "transition target vehicle type", &vehicle_type_enum },
+		{ _field_char_enum, "transition target vehicle type", "upon reaching transition velocity, act like this vehicle type", &vehicle_type_enum },
 		FIELD_PAD("pad after transition target vehicle type", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }
 	};
@@ -664,7 +664,7 @@ namespace macaque
 		{ _field_struct, "havok vehicle physics", &havok_vehicle_physics_struct },
 		{ _field_block, "tricks", &unit_trick_definition_block },
 		{ _field_char_enum, "player training vehicle type", &player_training_vehicle_type_enum },
-		{ _field_char_enum, "vehicle size", &vehicle_size_enum },
+		{ _field_char_enum, "vehicle size", "The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)", &vehicle_size_enum },
 		{ _field_char_integer, "complex suspension sample count", "How many additional raycasts to perform per side of a tire." },
 		FIELD_PAD("VQWHV", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_angle, "complex suspension distribution angle", "0-90 degrees of the wedge portion of the wheel to test suspension", "degrees" },
@@ -679,7 +679,7 @@ namespace macaque
 		{ _field_real, "blur speed" },
 		{ _field_string_id, "flip message" },
 		FIELD_EXPLANATION("sounds and effects", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "Player vehicle sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Player vehicle sound bank", "High quality player sound bank to be prefetched. Can be empty.", &global_soundbank_reference },
 		{ _field_tag_reference, "suspension sound", &global_sound_reference },
 		{ _field_real, "fake audio speed - speed increase amount", "amount to increase per frame while speeding up(.002 is a good number)" },
 		{ _field_real, "fake audio speed - boost speed increase amount", "amount to increase per frame while boosting (.006 is a good number)" },

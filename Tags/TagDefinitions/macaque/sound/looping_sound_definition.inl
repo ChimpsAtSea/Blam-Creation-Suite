@@ -37,8 +37,8 @@ namespace macaque
 		FIELD_PAD("asdf", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_string_id, "master marker track", "This track's markers, flags, gain and fade settings are copied to the other tracks. Its gain and fadeout settings are also copied to the details. If you want to change the master track use the sound-looping tool command", FIELD_FLAG_READ_ONLY },
 		{ _field_real, "maximum radius" },
-		{ _field_block, "tracks", &looping_sound_track_block },
-		{ _field_block, "detail sounds", &looping_sound_detail_block },
+		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &looping_sound_track_block },
+		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &looping_sound_detail_block },
 		{ _field_terminator }
 	};
 

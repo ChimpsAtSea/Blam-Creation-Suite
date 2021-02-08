@@ -19,7 +19,7 @@ namespace macaque
 	{
 		{ _field_string_id, "animation name", FIELD_FLAG_INDEX },
 		{ _field_char_enum, "activation type", &unit_trick_activation_type_enum },
-		{ _field_char_enum, "velocity preservation", &unit_trick_velocity_preservation_mode_enum },
+		{ _field_char_enum, "velocity preservation", "specifies how pre-trick velocity is maintained during and after the trick\nonly applies to vehicles", &unit_trick_velocity_preservation_mode_enum },
 		{ _field_byte_flags, "flags", &unit_trick_flags },
 		FIELD_PAD("XEKMVZ", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_real, "camera interpolation time", "sloppiness of the camera\nonly applies to vehicles", "s" },

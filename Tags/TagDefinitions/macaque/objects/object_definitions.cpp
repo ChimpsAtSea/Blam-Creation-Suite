@@ -266,7 +266,7 @@ namespace macaque
 		{ _field_byte_flags, "game engine flags", &global_game_engine_type_flags },
 		FIELD_EXPLANATION("TYPE AND FLAGS", nullptr, FIELD_FLAG_NONE, "Type pertains to how you want the game engine to handle this object\nCertain flags applicable only to certain object types, should be self evident"),
 		{ _field_char_enum, "type", &multiplayer_object_type },
-		{ _field_byte_flags, "teleporter passability", &teleporter_passability_flags },
+		{ _field_byte_flags, "teleporter passability", nullptr, "used only for teleporters", &teleporter_passability_flags },
 		{ _field_char_enum, "spawn timer type", &multiplayer_object_spawn_timer_types },
 		FIELD_EXPLANATION("GOAL & RESPAWN ZONE OBJECT BOUNDARY", nullptr, FIELD_FLAG_NONE, "These fields are only used for goal area objects with boundaries, and for respawn zones"),
 		{ _field_real, "boundary width/radius" },
@@ -282,7 +282,7 @@ namespace macaque
 		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		FIELD_EXPLANATION("RESPAWN ZONE DATA", nullptr, FIELD_FLAG_NONE, "These are respawn zone weights, used only for respawn zones"),
 		{ _field_real, "normal weight", nullptr, "aka natural weight" },
-		{ _field_block, "falloff function", &spawn_influence_weight_falloff_function_block },
+		{ _field_block, "falloff function", "Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block },
 		FIELD_EXPLANATION("MARKER DATA", nullptr, FIELD_FLAG_NONE, "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient"),
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "boundary center marker" },
@@ -317,9 +317,9 @@ namespace macaque
 		OBJECT_SPAWN_EFFECTS_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Spawn Effects", nullptr, FIELD_FLAG_NONE, "Effect played when an object of this type spawns in during each game mode.\nUnlike creation effect, it is only played when the object spawns in through certain methods, not whenever one is created."),
-		{ _field_tag_reference, "multiplayer spawn effect", &global_effect_reference },
-		{ _field_tag_reference, "survival spawn effect", &global_effect_reference },
-		{ _field_tag_reference, "campaign spawn effect", &global_effect_reference },
+		{ _field_tag_reference, "multiplayer spawn effect", "effect played when this object spawns in MP games", &global_effect_reference },
+		{ _field_tag_reference, "survival spawn effect", "effect played when this object spawns in Firefight games", &global_effect_reference },
+		{ _field_tag_reference, "campaign spawn effect", "effect played when this object spawns in Campaign games", &global_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -342,7 +342,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &object_definition_flags },
 		{ _field_real, "bounding radius", "If you edit this field manually, beware that the render model is no longer respected for radius calculation and that you need to set the bounding offset as well." },
 		{ _field_real_point_3d, "bounding offset" },
-		{ _field_real, "horizontal acceleration scale" },
+		{ _field_real, "horizontal acceleration scale", nullptr, nullptr, "[0,+inf]" },
 		{ _field_real, "vertical acceleration scale" },
 		{ _field_real, "angular acceleration scale" },
 		{ _field_enum, "lightmap shadow mode", &lightmap_shadow_mode_enum },
@@ -364,7 +364,7 @@ namespace macaque
 		{ _field_block, "early mover OBB", &object_early_mover_obb_block },
 		{ _field_tag_reference, "creation effect", &global_effect_reference },
 		{ _field_tag_reference, "material effects", &global_material_effects_reference },
-		{ _field_tag_reference, "melee sound", &global_sound_reference },
+		{ _field_tag_reference, "melee sound", "this is the sound that is made when I am meleed.  This overrides the sweetener sound of my material.", &global_sound_reference },
 		{ _field_real, "self-destruct time", "if non-zero, any instances of this object will destroy themselves after this many seconds.", "seconds" },
 		{ _field_block, "ai properties", &object_ai_properties_block },
 		{ _field_block, "functions", &object_function_block },
@@ -379,7 +379,7 @@ namespace macaque
 		{ _field_block, "change colors", &object_change_colors_block },
 		{ _field_block, "predicted resources", FIELD_FLAG_READ_ONLY, &g_null_block },
 		{ _field_block, "multiplayer object", &multiplayer_object_block },
-		{ _field_tag_reference, "simulation_interpolation", &global_simulation_interpolation_reference },
+		{ _field_tag_reference, "simulation_interpolation", "Set to a specific interpolation definition, or leave blank to inherit the default for the object type (there are defaults for bipeds, vehicles, and crates in multiplayer_globals).  To disable interpolation on a particular object whose type has interpolation by default, set this reference to the special disable_interpolation.simulation_interpolation tag.", &global_simulation_interpolation_reference },
 		{ _field_block, "spawn effects", &object_spawn_effects_block },
 		{ _field_block, "model dissolve data", &modelDissolveDataBlock_block },
 		{ _field_struct, "script data", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &hs_script_data_struct },

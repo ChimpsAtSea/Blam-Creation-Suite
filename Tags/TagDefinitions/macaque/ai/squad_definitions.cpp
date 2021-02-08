@@ -69,7 +69,7 @@ namespace macaque
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		{ _field_block, "spawn formations", FIELD_FLAG_UNKNOWN0, &spawn_formation_block },
 		{ _field_block, "spawn points", FIELD_FLAG_UNKNOWN0, &spawn_points_block },
-		{ _field_long_enum, "wave placement filter", &wave_placement_filter_enum },
+		{ _field_long_enum, "wave placement filter", "Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
 		{ _field_string_id, "template" },
 		{ _field_long_integer, "squad template index", FIELD_FLAG_UNKNOWN0 },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),

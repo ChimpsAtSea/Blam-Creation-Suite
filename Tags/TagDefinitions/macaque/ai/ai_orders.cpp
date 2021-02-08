@@ -113,7 +113,7 @@ namespace macaque
 		SECONDARY_SET_TRIGGER_BLOCK_ID)
 	{
 		{ _field_enum, "combination rule", &combination_rules_enum },
-		{ _field_enum, "dialogue type", &order_ending_dialogue_enum },
+		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
 		{ _field_block, "triggers", &trigger_references_block },
 		{ _field_terminator }
 	};
@@ -131,7 +131,7 @@ namespace macaque
 		{ _field_short_block_index, "next order", FIELD_FLAG_INDEX, &orders_block },
 		{ _field_enum, "combination rule", &combination_rules_enum },
 		{ _field_real, "delay time" },
-		{ _field_enum, "dialogue type", &order_ending_dialogue_enum },
+		{ _field_enum, "dialogue type", "when this ending is triggered, launch a dialogue event of the given type", &order_ending_dialogue_enum },
 		FIELD_PAD("YVKPCQIYY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_useless_pad, "" },
 		{ _field_block, "triggers", &trigger_references_block },

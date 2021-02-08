@@ -44,7 +44,7 @@ namespace macaque
 		{ _field_string_id, "unlocked arms" },
 		{ _field_string_id, "unlocked legs" },
 		{ _field_string_id, "unlocked visor" },
-		{ _field_block, "grades", &player_grade_definition_block },
+		{ _field_block, "grades", "the grades that define the leveling track for this enlistment", &player_grade_definition_block },
 		{ _field_terminator }
 	};
 

@@ -90,7 +90,7 @@ namespace macaque
 		{ _field_angle, "random rotation", "random rotation in all directions", "degrees" },
 		{ _field_real, "wobble function period", nullptr, "seconds" },
 		{ _field_real_fraction, "wobble weight", "a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
-		{ _field_enum, "wobble function", &global_periodic_functions_enum },
+		{ _field_enum, "wobble function", "a function to perturb the effect's behavior over time", &global_periodic_functions_enum },
 		FIELD_EXPLANATION("animated camera shake", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
 		{ _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },

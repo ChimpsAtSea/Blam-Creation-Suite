@@ -31,7 +31,7 @@ namespace macaque
 		DETAIL_OBJECT_TYPE_BLOCK_ID)
 	{
 		{ _field_string, "name", FIELD_FLAG_INDEX },
-		{ _field_char_integer, "sequence index" },
+		{ _field_char_integer, "sequence index", nullptr, nullptr, "[0,15]" },
 		{ _field_byte_flags, "type flags", &detail_object_type_flags_definition },
 		FIELD_PAD("VYF", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_fraction, "color override factor", "fraction of detail object color to use instead of the base map color in the environment:[0,1]" },
@@ -40,9 +40,9 @@ namespace macaque
 		{ _field_real, "far fade distance", nullptr, "world units" },
 		{ _field_real, "size", nullptr, "world units per pixel" },
 		FIELD_PAD("TDAQ", nullptr, FIELD_FLAG_NONE, 4),
-		{ _field_real_rgb_color, "minimum color" },
-		{ _field_real_rgb_color, "maximum color" },
-		{ _field_argb_color, "ambient color" },
+		{ _field_real_rgb_color, "minimum color", nullptr, nullptr, "[0,1]" },
+		{ _field_real_rgb_color, "maximum color", nullptr, nullptr, "[0,1]" },
+		{ _field_argb_color, "ambient color", nullptr, nullptr, "[0,255]" },
 		FIELD_PAD("VCXJHYY", nullptr, FIELD_FLAG_NONE, 4),
 		{ _field_terminator }
 	};

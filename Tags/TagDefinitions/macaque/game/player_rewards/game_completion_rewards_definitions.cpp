@@ -30,11 +30,11 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_DIFFICULTY_BLOCK_ID)
 	{
-		{ _field_block, "easy matchmaking", &game_completion_rewards_definition_block },
-		{ _field_block, "normal matchmaking", &game_completion_rewards_definition_block },
-		{ _field_block, "heroic matchmaking", &game_completion_rewards_definition_block },
-		{ _field_block, "legendary matchmaking", &game_completion_rewards_definition_block },
-		{ _field_block, "custom", &game_completion_rewards_definition_block },
+		{ _field_block, "easy matchmaking", "this block is used for easy matchmade games", &game_completion_rewards_definition_block },
+		{ _field_block, "normal matchmaking", "this block is used for normal matchmade games", &game_completion_rewards_definition_block },
+		{ _field_block, "heroic matchmaking", "this block is used for heroic matchmade games", &game_completion_rewards_definition_block },
+		{ _field_block, "legendary matchmaking", "this block is used for legendary matchmade games", &game_completion_rewards_definition_block },
+		{ _field_block, "custom", "this block is used for custom games", &game_completion_rewards_definition_block },
 		{ _field_terminator }
 	};
 
@@ -53,7 +53,7 @@ namespace macaque
 		{ _field_real, "winner scaling factor", "if the player is an unambiguous winner, their time-based reward value is multiplied by (this factor - 1) and the result is awarded as a bonus; this value can be overridden by the hopper" },
 		{ _field_real, "performance scaling factor", "if the player is not a winner, but is in the top half of the standings, their time-based reward is multiplied by (this factor - 1) and the result is awarded as a bonus; this value can be overriden by the hopper" },
 		{ _field_real, "score scaling factor", "for score-based modes, the player's normalized score (0..1) is multiplied by this scaling factor and the result is awarded to the player as a bonus; this value can be overridden by the hopper" },
-		{ _field_block, "apm falloff curve", &game_completion_rewards_falloff_point_block },
+		{ _field_block, "apm falloff curve", "amount per minute falloff curve; used to provide diminishing returns for longer play time", &game_completion_rewards_falloff_point_block },
 		{ _field_terminator }
 	};
 
@@ -82,8 +82,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_MULTIPLAYER_BLOCK_ID)
 	{
-		{ _field_block, "matchmaking", &game_completion_rewards_definition_block },
-		{ _field_block, "custom", &game_completion_rewards_definition_block },
+		{ _field_block, "matchmaking", "this block is used for matchmade games", &game_completion_rewards_definition_block },
+		{ _field_block, "custom", "this block is used for custom games", &game_completion_rewards_definition_block },
 		{ _field_block, "unused0", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
 		{ _field_block, "unused1", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
 		{ _field_block, "unused2", FIELD_FLAG_UNKNOWN0, &game_completion_rewards_definition_block },
@@ -99,9 +99,9 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_COMPLETION_REWARDS_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "campaign", &game_completion_rewards_difficulty_block },
-		{ _field_block, "firefight", &game_completion_rewards_difficulty_block },
-		{ _field_block, "multiplayer", &game_completion_rewards_multiplayer_block },
+		{ _field_block, "campaign", "rewards given for playing campaign games online", &game_completion_rewards_difficulty_block },
+		{ _field_block, "firefight", "rewards given for playing firefight games online", &game_completion_rewards_difficulty_block },
+		{ _field_block, "multiplayer", "rewards given for playing PvP multiplayer games online", &game_completion_rewards_multiplayer_block },
 		{ _field_real, "fast track armor modifier", "this multiplier is applied to the combined reward of timespent, score and performance, multiplied by the percentage time the player has the armor mod active" },
 		{ _field_terminator }
 	};

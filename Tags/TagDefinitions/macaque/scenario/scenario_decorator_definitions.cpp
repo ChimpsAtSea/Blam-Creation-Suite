@@ -125,7 +125,7 @@ namespace macaque
 		{ _field_long_block_index, "current palette", &decorator_palette_block },
 		{ _field_long_block_index, "current set", &decorator_scenario_set_block },
 		{ _field_long_integer, "current type", _field_id_decorator_brush_unknown },
-		{ _field_real, "paint rate" },
+		{ _field_real, "paint rate", nullptr, nullptr, "[0 - 1]" },
 		{ _field_real_rgb_color, "paint color" },
 		{ _field_real, "move distance", "drop height for drop to ground" },
 		{ _field_real, "angle snap interval", "rotate brushes will snap to intervals of this" },

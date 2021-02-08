@@ -178,7 +178,7 @@ namespace macaque
 		{ _field_tag_reference, "default_object_simulation_interpolation", &global_simulation_interpolation_reference },
 		{ _field_tag_reference, "co-op spawning globals", &global_coop_spawning_globals_reference },
 		{ _field_tag_reference, "megalo string_id table", &global_megalo_string_id_table_reference },
-		{ _field_tag_reference, "killcam parameters", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
+		{ _field_tag_reference, "killcam parameters", "Used for non projectile killcams.", &Tag::Reference<struct KillCamCameraParameterDefinition>::s_defaultDefinition },
 		{ _field_terminator }
 	};
 

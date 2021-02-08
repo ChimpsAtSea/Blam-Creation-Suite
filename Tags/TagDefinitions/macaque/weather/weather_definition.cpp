@@ -31,7 +31,7 @@ namespace macaque
 		RAIN_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_integer, "version", "INTERNAL TAG USE ONLY DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
-		{ _field_real, "rain amount", "fade control for all rain effects" },
+		{ _field_real, "rain amount", "fade control for all rain effects", nullptr, "[0,1]" },
 		FIELD_EXPLANATION("Rain Effects", nullptr, FIELD_FLAG_NONE, "These effects are applied when this rain is active\n"),
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },

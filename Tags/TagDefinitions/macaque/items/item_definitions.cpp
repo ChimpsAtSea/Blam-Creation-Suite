@@ -78,8 +78,8 @@ namespace macaque
 		{ _field_real, "large unit (stowed)" },
 		{ _field_real, "huge unit (armed)" },
 		{ _field_real, "huge unit (stowed)" },
-		{ _field_tag_reference, "grounded friction settings", &global_grounded_friction_reference },
-		{ _field_tag_reference, "Tossed Override", &object_reference$3 },
+		{ _field_tag_reference, "grounded friction settings", "If not present, the default from global.globals is used.", &global_grounded_friction_reference },
+		{ _field_tag_reference, "Tossed Override", "Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override.", &object_reference$3 },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_terminator }
 	};

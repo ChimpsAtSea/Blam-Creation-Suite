@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		REWARDBLOCK_ID)
 	{
-		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
+		{ _field_char_enum, "currency type", "Type of currency given by this reward.", &currencyTypeEnumDefinition },
 		FIELD_PAD("PJB1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward amount", "Amount of the given currency to be given with this reward." },
 		{ _field_terminator }

@@ -64,7 +64,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMMENDATIONREWARDBLOCK_ID)
 	{
-		{ _field_char_enum, "currency type", &currencyTypeEnumDefinition },
+		{ _field_char_enum, "currency type", "Type of currency given by this reward.", &currencyTypeEnumDefinition },
 		FIELD_PAD("CRB_PAD1", nullptr, FIELD_FLAG_NONE, 1),
 		{ _field_short_integer, "reward value" },
 		{ _field_terminator }
@@ -117,7 +117,7 @@ namespace macaque
 		{ _field_short_integer, "progress ticks to level", "number of ticks to reach this level" },
 		{ _field_short_integer, "progress display interval", "number of ticks between displaying progress toast; 0=never display progress, 1=display every tick, 2=every other, etc." },
 		{ _field_string_id, "achievement" },
-		{ _field_block, "level up rewards", &commendationRewardBlock_block },
+		{ _field_block, "level up rewards", "rewards given for reaching this level", &commendationRewardBlock_block },
 		{ _field_terminator }
 	};
 

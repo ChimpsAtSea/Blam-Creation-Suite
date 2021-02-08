@@ -68,7 +68,7 @@ namespace macaque
 		{ _field_enum, "activate minimap", &gamepad_button_definition },
 		{ _field_enum, "requisition menu", &gamepad_button_definition },
 		{ _field_enum, "loadout menu", &gamepad_button_definition },
-		{ _field_enum, "hero assist", &gamepad_button_definition },
+		{ _field_enum, "hero assist", "aka sprint", &gamepad_button_definition },
 		{ _field_enum, "ordnance", &gamepad_button_definition },
 		{ _field_enum, "skip killcam", &gamepad_button_definition },
 		{ _field_enum, "mantis fire primary", &gamepad_button_definition },

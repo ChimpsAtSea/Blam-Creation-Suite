@@ -149,7 +149,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_ITEM_BLOCK_ID)
 	{
-		{ _field_char_enum, "item_category", &player_item_category_enum },
+		{ _field_char_enum, "item_category", "From the global multiplayer object list.", &player_item_category_enum },
 		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "object_name", "This must match one of the global objects.", FIELD_FLAG_INDEX },
 		{ _field_byte_integer, "object variant index", "e.g. used for weapon skins" },
@@ -210,7 +210,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_MODEL_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_char_enum, "model_region", &player_model_customization_area_enum },
+		{ _field_char_enum, "model_region", "See player customization globals, linked from globals.globals.", &player_model_customization_area_enum },
 		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }
@@ -226,7 +226,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PURCHASE_PLAYER_APPEARANCE_EFFECT_NON_MODEL_PERMUTATION_BLOCK_ID)
 	{
-		{ _field_char_enum, "non_model_region", &player_non_model_customization_area_enum },
+		{ _field_char_enum, "non_model_region", "See player customization globals, linked from globals.globals.", &player_non_model_customization_area_enum },
 		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_string_id, "non_model_customization_selection_name", "This must match one of the selections in the model customization globals (within the selected region).", FIELD_FLAG_INDEX },
 		{ _field_terminator }

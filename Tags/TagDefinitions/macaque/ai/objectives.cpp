@@ -72,7 +72,7 @@ namespace macaque
 		{ _field_short_integer, "Command script index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "Exhaustion script index", FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_block_index, "Squad group filter", &squad_groups_block },
-		{ _field_enum, "dialogue type", &task_dialogue_enum },
+		{ _field_enum, "dialogue type", "when someone enters this task for the first time, they play this type of dialogue", &task_dialogue_enum },
 		{ _field_word_flags, "runtime flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &task_runtime_flags },
 		{ _field_short_integer, "Kungfu count", "The number of guys under this task that should be allowed to fight the player at a time" },
 		FIELD_PAD("post-kungfu-count", nullptr, FIELD_FLAG_NONE, 2),
@@ -90,7 +90,7 @@ namespace macaque
 		{ _field_short_bounds, "capacity" },
 		{ _field_short_integer, "max body count", "task becomes inactive after the given number of casualties" },
 		{ _field_enum, "attitude", &task_attitude_enum },
-		{ _field_real, "min strength", "task becomes inactive after the strength of the participants falls below the given level" },
+		{ _field_real, "min strength", "task becomes inactive after the strength of the participants falls below the given level", nullptr, "[0,1]" },
 		{ _field_block, "areas", &area_reference_block },
 		{ _field_block, "direction", &task_direction_block_v2_block },
 		{ _field_terminator }

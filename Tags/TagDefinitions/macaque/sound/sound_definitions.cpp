@@ -20,7 +20,7 @@ namespace macaque
 		{ _field_long_flags, "flags", &SoundBankDefinitionFlags },
 		{ _field_long_flags, "import flags", FIELD_FLAG_UNKNOWN0, &sound_import_flags },
 		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
-		{ _field_block, "Sound bank list", &SoundBankBlock_block },
+		{ _field_block, "Sound bank list", "List of names of soundbanks. If more than one, one will be randomly chosen at load", &SoundBankBlock_block },
 		{ _field_long_integer, "Bank priority", "the importance of this bank over others. 1 is highest priority (ie will bump all others)" },
 		{ _field_long_integer, "Bank unique ID" },
 		{ _field_terminator }
@@ -76,7 +76,7 @@ namespace macaque
 		{ _field_real, "Max Duration", "Max duration of this event. Enter manually for now - will auto-fill later." },
 		{ _field_real, "Don't play time.", "Time the event will not retrigger for (global)" },
 		{ _field_long_integer, "Hidden runtime info index", FIELD_FLAG_UNKNOWN0 },
-		{ _field_tag_reference, "Sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Sound bank", "Reference to the sound bank tag this event is in. Can be empty.", &global_soundbank_reference },
 		{ _field_block, "lipsync info", &soundLipSyncInfoBlock_block },
 		{ _field_long_integer, "deterministic flag index" },
 		{ _field_terminator }
@@ -105,7 +105,7 @@ namespace macaque
 		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
 		{ _field_char_enum, "sample rate", FIELD_FLAG_READ_ONLY, &sound_sample_rate_enum },
-		{ _field_char_integer, "override xma compression" },
+		{ _field_char_integer, "override xma compression", nullptr, nullptr, "[1-100]" },
 		{ _field_char_enum, "import type", FIELD_FLAG_READ_ONLY, &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
@@ -117,7 +117,7 @@ namespace macaque
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
 		FIELD_PAD("runtime pad", nullptr, FIELD_FLAG_UNKNOWN3, 4),
-		{ _field_block, "pitch ranges", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
 		{ _field_block, "extra info", FIELD_FLAG_UNKNOWN0, &sound_extra_info_block },
@@ -148,7 +148,7 @@ namespace macaque
 		{ _field_long_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_xsync_flags },
 		{ _field_char_enum, "class", &sound_class_enum },
 		{ _field_char_enum, "sample rate", FIELD_FLAG_READ_ONLY, &sound_sample_rate_enum },
-		{ _field_char_integer, "override xma compression" },
+		{ _field_char_integer, "override xma compression", nullptr, nullptr, "[1-100]" },
 		{ _field_char_enum, "import type", FIELD_FLAG_READ_ONLY, &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct },
@@ -160,7 +160,7 @@ namespace macaque
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_struct, "promotion", &sound_promotion_parameters_struct },
 		FIELD_PAD("runtime pad", nullptr, FIELD_FLAG_UNKNOWN3, 4),
-		{ _field_block, "pitch ranges", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", FIELD_FLAG_READ_ONLY, &sound_pitch_range_block },
 		{ _field_block, "platform parameters", &sound_platform_sound_playback_block },
 		{ _field_pageable, "sound data resource", &sound_resource_definition_struct },
 		{ _field_block, "extra info", FIELD_FLAG_UNKNOWN0, &sound_extra_info_block },
@@ -236,11 +236,11 @@ namespace macaque
 		{ _field_tag_reference, "sound mix", &sound_mix_reference },
 		{ _field_tag_reference, "sound combat dialogue constants", &sound_dialogue_constants_reference },
 		{ _field_tag_reference, "sound propagation", &sound_global_propagation_reference },
-		{ _field_tag_reference, "Init sound bank", &global_soundbank_reference },
-		{ _field_tag_reference, "Global sound bank", &global_soundbank_reference },
-		{ _field_tag_reference, "Extra sound bank", &global_soundbank_reference },
-		{ _field_tag_reference, "Campaign sound bank", &global_soundbank_reference },
-		{ _field_tag_reference, "Multiplayer sound bank", &global_soundbank_reference },
+		{ _field_tag_reference, "Init sound bank", "Init sound bank for WWise.", &global_soundbank_reference },
+		{ _field_tag_reference, "Global sound bank", "Global sound bank for WWise.", &global_soundbank_reference },
+		{ _field_tag_reference, "Extra sound bank", "The other sound bank for WWise.", &global_soundbank_reference },
+		{ _field_tag_reference, "Campaign sound bank", "Extra sound bank for WWise - only loaded for Campaign.", &global_soundbank_reference },
+		{ _field_tag_reference, "Multiplayer sound bank", "Extra sound bank for WWise - only loaded for MP - PVP.", &global_soundbank_reference },
 		{ _field_block, "Streaming pack files", &StreamingPackBlock_block },
 		{ _field_block, "un-spatialized campaign sounds", &campaign_unspatialized_sounds_block },
 		{ _field_terminator }
@@ -357,7 +357,7 @@ namespace macaque
 		{ _field_char_integer, "runtime usable permutation count", FIELD_FLAG_UNKNOWN0 },
 		{ _field_byte_flags, "xsync flags", FIELD_FLAG_UNKNOWN0, &sound_pitch_range_internal_xsync_flags },
 		FIELD_PAD("asdf", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_block, "permutations", FIELD_FLAG_READ_ONLY, &sound_permutations_block },
+		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", FIELD_FLAG_READ_ONLY, &sound_permutations_block },
 		{ _field_terminator }
 	};
 
@@ -806,7 +806,7 @@ namespace macaque
 		{ _field_real, "game music fade out time", nullptr, "seconds" },
 		FIELD_EXPLANATION("debugging stuff", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "play on unplayable sound", &global_force_sound_only_reference },
-		{ _field_real, "left/right bleed" },
+		{ _field_real, "left/right bleed", nullptr, nullptr, "[0 = no bleed, 1 = swap left/right, 0.5 = mono" },
 		{ _field_real, "remote voice boost", nullptr, "output= (1 + boost)*input" },
 		{ _field_terminator }
 	};

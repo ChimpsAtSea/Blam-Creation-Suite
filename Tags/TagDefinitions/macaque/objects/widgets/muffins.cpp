@@ -21,7 +21,7 @@ namespace macaque
 		{ _field_tag_reference, "render model", FIELD_FLAG_READ_ONLY, &render_model_reference$5 },
 		{ _field_block, "render model permutation names", FIELD_FLAG_UNKNOWN0, &muffin_permutation_name_block },
 		{ _field_long_integer, "render model permutation name valid count", FIELD_FLAG_UNKNOWN0 },
-		{ _field_block, "muffin markers", &muffin_marker_block },
+		{ _field_block, "muffin markers", "defines where muffins appear, how often, and which types", &muffin_marker_block },
 		{ _field_block, "muffin types", &global_muffin_type_block },
 		{ _field_terminator }
 	};
@@ -58,7 +58,7 @@ namespace macaque
 		MUFFIN_MARKER_BLOCK_ID)
 	{
 		{ _field_string_id, "name", FIELD_FLAG_INDEX },
-		{ _field_word_integer, "muffinage chance", "how often muffins will appear on this marker", "percent " },
+		{ _field_word_integer, "muffinage chance", "how often muffins will appear on this marker", "percent ", "[0 - 100]" },
 		{ _field_word_block_flags, "allowed muffin types", &global_muffin_type_block },
 		{ _field_terminator }
 	};
@@ -83,19 +83,19 @@ namespace macaque
 		{ _field_word_flags, "flags", &muffin_type_flags_definition },
 		{ _field_real_bounds, "spawn delay", "how long to wait before spawning these muffins", "seconds" },
 		FIELD_EXPLANATION("SCALE", nullptr, FIELD_FLAG_NONE, "animates the size of the muffin"),
-		{ _field_real_bounds, "random scale" },
+		{ _field_real_bounds, "random scale", nullptr, nullptr, "[0-1]" },
 		{ _field_struct, "initial growth", &muffin_scalar_function_struct },
 		{ _field_real, "growth time", nullptr, "seconds" },
 		{ _field_struct, "periodic noise", &muffin_scalar_function_struct },
 		FIELD_EXPLANATION("JIGGLE", nullptr, FIELD_FLAG_NONE, "Jigglypuff will kick your ass..."),
-		{ _field_real, "jiggle", "how much the muffin jiggles (0 = perfectly rigid, 1 = full jiggle, subject to parameters below)" },
+		{ _field_real, "jiggle", "how much the muffin jiggles (0 = perfectly rigid, 1 = full jiggle, subject to parameters below)", nullptr, "[0.0 - 1.0]" },
 		{ _field_real, "jiggle spring length", "spring length affects how the spring reacts to the model moving (this should be approximately how far the muffin sticks out from the model)", "world units" },
-		{ _field_real, "jiggle spring strength", "spring strength affects how fast the muffins jiggle (higher numbers jiggle faster)" },
-		{ _field_real, "jiggle velocity damp", "velocity damp affects how long the muffins jiggle (the higher numbers jiggle exponentially longer, 1.0 will never stop jiggling)" },
+		{ _field_real, "jiggle spring strength", "spring strength affects how fast the muffins jiggle (higher numbers jiggle faster)", nullptr, "[0.01 - 1.0]" },
+		{ _field_real, "jiggle velocity damp", "velocity damp affects how long the muffins jiggle (the higher numbers jiggle exponentially longer, 1.0 will never stop jiggling)", nullptr, "[0.5 - 0.95]" },
 		{ _field_real, "jiggle max velocity", "this just clamps how fast the muffin can jiggle, to keep it from exploding", "world units per frame" },
 		FIELD_EXPLANATION("DEATH", nullptr, FIELD_FLAG_NONE, "... and then you will be dead."),
 		{ _field_real_bounds, "lifetime", "how long before the muffins die", "seconds" },
-		{ _field_real, "immortality chance", "the chance that any give muffin of this type will live forever" },
+		{ _field_real, "immortality chance", "the chance that any give muffin of this type will live forever", nullptr, "[0.0 - 1.0]" },
 		{ _field_tag_reference, "death effect", &global_effect_reference },
 		{ _field_terminator }
 	};

@@ -62,7 +62,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_tag_reference, "spartan render model", &render_model_reference$7 },
+		{ _field_tag_reference, "spartan render model", "used for string list generation", &render_model_reference$7 },
 		{ _field_tag_reference, "elite render model", FIELD_FLAG_UNKNOWN0, &render_model_reference$7 },
 		{ _field_block, "helmet selections", &customized_model_selection_block },
 		{ _field_block, "chest selections", &customized_model_selection_block },

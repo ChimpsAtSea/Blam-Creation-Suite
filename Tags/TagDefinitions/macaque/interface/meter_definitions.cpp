@@ -30,8 +30,8 @@ namespace macaque
 		METER_STRUCT_DEFINITION_ID)
 	{
 		{ _field_long_flags, "flags", &meter_flags },
-		{ _field_tag_reference, "stencil bitmaps", &bitmap_reference$9 },
-		{ _field_tag_reference, "source bitmap", &global_bitmap_reference },
+		{ _field_tag_reference, "stencil bitmaps", "two bitmaps specifying the mask and the meter levels", &bitmap_reference$9 },
+		{ _field_tag_reference, "source bitmap", "optional bitmap to draw into the unmasked regions of the meter (modulated by the colors below)", &global_bitmap_reference },
 		{ _field_short_integer, "stencil sequence index" },
 		{ _field_short_integer, "source sequence index" },
 		FIELD_PAD("KBT", nullptr, FIELD_FLAG_NONE, 16),

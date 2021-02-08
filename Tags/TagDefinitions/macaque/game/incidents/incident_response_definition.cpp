@@ -22,7 +22,7 @@ namespace macaque
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		FIELD_CUSTOM("allowed campaign and firefight", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_string_id, "allowed level name", "Can only be triggered on this level." },
-		{ _field_long_flags, "required skulls", &skull_flags_definition },
+		{ _field_long_flags, "required skulls", "These skulls must be enabled to trigger.", &skull_flags_definition },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
 		{ _field_long_integer, "heat award" },
 		{ _field_string_id, "game engine event" },

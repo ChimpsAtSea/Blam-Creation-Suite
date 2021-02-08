@@ -75,7 +75,7 @@ namespace macaque
 		FIELD_EXPLANATION("Layer 1 (midground)", nullptr, FIELD_FLAG_NONE, "This layer is behind the foreground, and in front of the background\n"),
 		{ _field_struct, "layer 1", &emblem_layer },
 		FIELD_EXPLANATION("Misc", nullptr, FIELD_FLAG_NONE, "Extra configuration\n"),
-		{ _field_char_enum, "primary layer", &front_emblem_primary_layer },
+		{ _field_char_enum, "primary layer", "layer that is considered \"primary\" and which will use the primary color", &front_emblem_primary_layer },
 		FIELD_PAD("pad0", nullptr, FIELD_FLAG_NONE, 1),
 		FIELD_PAD("pad1", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }

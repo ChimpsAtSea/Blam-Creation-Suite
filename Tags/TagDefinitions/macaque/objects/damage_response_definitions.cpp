@@ -40,10 +40,10 @@ namespace macaque
 		{ _field_tag_reference, "rumble", &global_rumble_reference },
 		FIELD_EXPLANATION("camera shake and impulse data", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "camera shake", &global_camera_shake_reference },
-		{ _field_tag_reference, "camera shake zoomed", &global_camera_shake_reference },
+		{ _field_tag_reference, "camera shake zoomed", "falls back on camerashake if untuned", &global_camera_shake_reference },
 		FIELD_EXPLANATION("simulated input", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "simulated_input", &global_simulated_input_reference },
-		{ _field_tag_reference, "simulated_input zoomed ", &global_simulated_input_reference },
+		{ _field_tag_reference, "simulated_input zoomed ", "falls back on simulated input if untuned", &global_simulated_input_reference },
 		FIELD_EXPLANATION("global sound effect", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_block, "global sound effect", &damage_response_global_sound_effect_block },
 		{ _field_terminator }
@@ -62,7 +62,7 @@ namespace macaque
 	{
 		{ _field_string_id, "effect name" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
-		{ _field_struct, "scale => duration", &mapping_function },
+		{ _field_struct, "scale => duration", nullptr, "seconds", &mapping_function },
 		{ _field_terminator }
 	};
 

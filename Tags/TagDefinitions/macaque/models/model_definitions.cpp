@@ -65,8 +65,8 @@ namespace macaque
 		{ _field_block, "runtime nodes", FIELD_FLAG_UNKNOWN0, &model_node_block },
 		{ _field_long_integer, "runtime node list checksum", FIELD_FLAG_UNKNOWN0 },
 		FIELD_EXPLANATION("more stuff", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "default dialogue", &dialogue_reference$3 },
-		{ _field_tag_reference, "default dialogue female", &dialogue_reference$3 },
+		{ _field_tag_reference, "default dialogue", "The default dialogue tag for this model (overriden by variants)", &dialogue_reference$3 },
+		{ _field_tag_reference, "default dialogue female", "The default FEMALE dialogue tag for this model (overriden by variants)", &dialogue_reference$3 },
 		{ _field_long_flags, "flags", &model_flags_definition },
 		{ _field_string_id, "default dialogue effect", "The default dialogue tag for this model (overriden by variants)" },
 		{ _field_array, "render-only node flags", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array },
@@ -80,8 +80,8 @@ namespace macaque
 		{ _field_real, "shadow depth compare bias (dynamic lights)", "Default is 0.0008" },
 		{ _field_real, "shadow slope scale bias (dynamic lights)", "controls cutoff point for shadows around edges.  Default is 81 degrees", "degrees" },
 		FIELD_EXPLANATION("PRT Shadows (soft self-shadow)", nullptr, FIELD_FLAG_NONE, "By default, the shadows on each permutation are computed using the first permutation in\nevery other region as shadow casters.  You can override this behavior below by specifying\nwhich permutation to use as a shadow caster in a given region.\n\n  PRT shadow bounces:\n    the number of light bounces to use when computing the global illumination.\n    (0 bounces gets only direct light).  Increasing the number of bounces\n    increases the calculation time.  1 or 2 bounces should be good enough for\n    almost all models.\n"),
-		{ _field_char_enum, "PRT shadow detail", FIELD_FLAG_UNKNOWN0, &model_self_shadow_detail_definition },
-		{ _field_char_enum, "PRT shadow bounces", &model_self_shadow_bounces_definition },
+		{ _field_char_enum, "PRT shadow detail", "how much information is recorded about different light directions", FIELD_FLAG_UNKNOWN0, &model_self_shadow_detail_definition },
+		{ _field_char_enum, "PRT shadow bounces", "0 means direct light only", &model_self_shadow_bounces_definition },
 		FIELD_PAD("NCFGBA", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_block, "shadow cast override", &model_self_shadow_region_cast_override_block },
 		{ _field_block, "shadow receive override", &model_self_shadow_region_receive_override_block },
@@ -115,8 +115,8 @@ namespace macaque
 		{ _field_array, "runtime variant region indices", FIELD_FLAG_UNKNOWN0, &runtime_region_index_array },
 		{ _field_block, "regions", &model_variant_region_block },
 		{ _field_block, "objects", &model_variant_object_block },
-		{ _field_long_block_index, "instance group", &global_model_instance_group_block },
-		{ _field_block, "muted nodes", &model_variant_muted_node_block },
+		{ _field_long_block_index, "instance group", "selects an instance group for this variant", &global_model_instance_group_block },
+		{ _field_block, "muted nodes", "turn off animation on these named nodes and children", &model_variant_muted_node_block },
 		{ _field_array, "muted flag", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &g_node_flag_storage_array },
 		{ _field_terminator }
 	};
@@ -136,7 +136,7 @@ namespace macaque
 		{ _field_byte_integer, "runtime flags", FIELD_FLAG_UNKNOWN0 },
 		{ _field_short_block_index, "parent variant", &model_variant_block },
 		{ _field_block, "permutations", &model_variant_permutation_block },
-		{ _field_enum, "sort order", &region_sort_enum },
+		{ _field_enum, "sort order", "negative values mean closer to the camera", &region_sort_enum },
 		FIELD_PAD("JO", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
@@ -214,7 +214,7 @@ namespace macaque
 		GLOBAL_MODEL_INSTANCE_GROUP_BLOCK_ID)
 	{
 		{ _field_string_id, "name", "name of this instance group", FIELD_FLAG_INDEX },
-		{ _field_long_enum, "choice", &model_instance_group_choice_enum },
+		{ _field_long_enum, "choice", "how to choose members", &model_instance_group_choice_enum },
 		{ _field_block, "member list", &model_instance_group_member_block },
 		{ _field_real, "total probability", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }
@@ -230,7 +230,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID)
 	{
-		{ _field_long_block_index, "subgroup", &global_model_instance_group_block },
+		{ _field_long_block_index, "subgroup", "if this member is chosen, this subgroup will be chosen as well", &global_model_instance_group_block },
 		{ _field_string_id, "instances", "instance name, a partial name will choose all matching instances, leave blank for NONE" },
 		{ _field_real, "probability", "higher numbers make it more likely", "> 0.0" },
 		{ _field_long_integer, "instance placement mask 0", FIELD_FLAG_UNKNOWN0 },
@@ -304,7 +304,7 @@ namespace macaque
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
 		{ _field_custom_short_block_index, "damage section", "the target is associated with this damage section" },
-		{ _field_short_block_index, "variant", &model_variant_block },
+		{ _field_short_block_index, "variant", "the target will only appear with this variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
 		{ _field_real, "aoe exclusion radius", "ignored if zero" },
 		{ _field_struct, "lock-on data", &model_target_lock_on_data_struct },
@@ -327,8 +327,8 @@ namespace macaque
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius", FIELD_FLAG_INDEX },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
-		{ _field_short_block_index, "damage section", &new_global_damage_section_block },
-		{ _field_short_block_index, "variant", &model_variant_block },
+		{ _field_short_block_index, "damage section", "the target is associated with this damage section", &new_global_damage_section_block },
+		{ _field_short_block_index, "variant", "the target will only appear with this variant", &model_variant_block },
 		{ _field_real_fraction, "targeting relevance", "higher relevances turn into stronger magnetisms" },
 		{ _field_real, "aoe exclusion radius", "ignored if zero" },
 		{ _field_struct, "lock-on data", &model_target_lock_on_data_struct },

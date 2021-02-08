@@ -112,7 +112,7 @@ namespace macaque
 		{ _field_long_flags, "general flags", &general_flags },
 		{ _field_enum, "type", &actor_type_enum },
 		{ _field_short_integer, "rank", "the rank of this character, helps us work out who in a squad should be a leader (0 is lowly, 32767 is highest)" },
-		{ _field_enum, "follower positioning", &combat_positioning_enum },
+		{ _field_enum, "follower positioning", "where should my followers try and position themselves when I am their leader?", &combat_positioning_enum },
 		FIELD_PAD("post-combat-position-padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "max leader dist", "don't let my combat range get outside this distance from my leader when in combat (if 0 then defaults to 4wu)" },
 		{ _field_real, "absolute max leader dist", "never select firing positions outside this range from the leader (if 0 then defaults to 8wu)" },
@@ -121,9 +121,9 @@ namespace macaque
 		{ _field_enum, "default grenade type", &global_ai_grenade_type_enum },
 		{ _field_enum, "behavior tree root", &behavior_tree_root_enum },
 		{ _field_block, "disallowed weapons from trading", &disallowed_weapons_for_trading_block },
-		{ _field_tag_reference, "Initial Primary Weapon ", &weapon_reference$3 },
-		{ _field_tag_reference, "Initial Secondary Weapon ", &weapon_reference$3 },
-		{ _field_tag_reference, "Initial Equipment ", &equipment_reference },
+		{ _field_tag_reference, "Initial Primary Weapon ", "Overrides initial primary weapon set in unit tag.", &weapon_reference$3 },
+		{ _field_tag_reference, "Initial Secondary Weapon ", "Overrides initial secondary weapon set in unit tag.", &weapon_reference$3 },
+		{ _field_tag_reference, "Initial Equipment ", "Fallback used if initial equipment not specified as drop item or in scenario.", &equipment_reference },
 		{ _field_terminator }
 	};
 
@@ -151,7 +151,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_PROTO_SPAWN_BLOCK_ID)
 	{
-		{ _field_enum, "Proto Spawn Type ", &proto_spawn_type_enum },
+		{ _field_enum, "Proto Spawn Type ", "Can be used to automatically setup a character to be spawned by another character.", &proto_spawn_type_enum },
 		FIELD_PAD("post-proto-spawn-padding", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_terminator }
 	};
@@ -196,7 +196,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_EMOTIONS_SITUATIONAL_DANGER_BLOCK_ID)
 	{
-		{ _field_enum, "highest prop class", FIELD_FLAG_INDEX, &prop_class_enum },
+		{ _field_enum, "highest prop class", "The prop class that this block is describing", FIELD_FLAG_INDEX, &prop_class_enum },
 		FIELD_PAD("obligatory pad", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real, "situational danger", "What should be the situational danger level for the prop class selected above" },
 		{ _field_terminator }
@@ -232,8 +232,8 @@ namespace macaque
 		{ _field_real, "suicide radius", "when I die and explode, I damage stuff within this distance of me." },
 		{ _field_real, "runtime_body_recharge_velocity", FIELD_FLAG_UNKNOWN0 },
 		{ _field_real, "runtime_shield_recharge_velocity", FIELD_FLAG_UNKNOWN0 },
-		{ _field_tag_reference, "resurrect weapon", &weapon_reference$3 },
-		{ _field_real, "player damage_scale", "If the player is hurting me, scale the damage by this amount. (0 value defaults to 1)" },
+		{ _field_tag_reference, "resurrect weapon", "If I'm being automatically resurrected then I pull out a ...", &weapon_reference$3 },
+		{ _field_real, "player damage_scale", "If the player is hurting me, scale the damage by this amount. (0 value defaults to 1)", nullptr, "[0-1]" },
 		{ _field_real, "projectile attached detonation time scale" },
 		{ _field_terminator }
 	};
@@ -288,12 +288,12 @@ namespace macaque
 		{ _field_angle, "focus exterior angle", "horizontal angle within which we see targets at a range in between maximum and maximum peripheral", "degrees" },
 		{ _field_angle, "peripheral vision angle", "maximum horizontal angle within which we can see targets out of the corner of our eye up to maximum peripheral vision", "degrees" },
 		{ _field_real, "hearing distance", "maximum range at which sounds can be heard", "world units" },
-		{ _field_real, "notice projectile chance", "random chance of noticing a dangerous enemy projectile (e.g. grenade)" },
-		{ _field_real, "notice vehicle chance", "random chance of noticing a dangerous vehicle" },
+		{ _field_real, "notice projectile chance", "random chance of noticing a dangerous enemy projectile (e.g. grenade)", nullptr, "[0,1]" },
+		{ _field_real, "notice vehicle chance", "random chance of noticing a dangerous vehicle", nullptr, "[0,1]" },
 		{ _field_real, "perception time", "time required to acknowledge a visible enemy at optimal range", "seconds" },
 		{ _field_real, "awareness glance level", "How aware of you while acknowledging an AI must be to glance at you" },
 		{ _field_real, "awareness glance delta", "While acknowledging, the awareness delta at which an AI will glance at you" },
-		{ _field_real_fraction, "identify hologram chance", "The chance that an AI identifies a unit is actually a hologram" },
+		{ _field_real_fraction, "identify hologram chance", "The chance that an AI identifies a unit is actually a hologram", nullptr, "[0, 1]" },
 		{ _field_real_bounds, "hologram ignore timer", "The time after which we will ignore the hologram once seen", "seconds" },
 		{ _field_real, "hologram ignore timer shot penalty", "The number of seconds taken off of the ignore timer each time the hologram is shot", "seconds" },
 		{ _field_real, "camouflaged enemy visible distance (normal)", "Distance below which the AI becomes aware of you even if you are camouflaged, normal difficulty", "wu" },
@@ -319,7 +319,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHARACTER_TARGET_BLOCK_STRUCT_ID)
 	{
-		{ _field_real, "player preference", "How interested in the player I am on a scale of 0-1" },
+		{ _field_real, "player preference", "How interested in the player I am on a scale of 0-1", nullptr, "[0-1]" },
 		{ _field_terminator }
 	};
 
@@ -415,26 +415,26 @@ namespace macaque
 		FIELD_PAD("RQEMJY", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_enum, "jump height", &global_ai_jump_height_enum },
 		{ _field_real, "maximum leap height", ".How high can a crate be for this unit to leap it.", "wus" },
-		{ _field_real, "leap proximity fraction", "How close to the obstacle should the actor be before leaping 1- too close, 0- as soon as he becomes aware of it" },
+		{ _field_real, "leap proximity fraction", "How close to the obstacle should the actor be before leaping 1- too close, 0- as soon as he becomes aware of it", nullptr, "[0-1]" },
 		{ _field_real, "avoidance volume turn penalty distance", "The maximum distance penalty applied to an avoidance volume search path if we're facing away from the path. 1000 wu good for space, 5 wu good for ground.", "wus" },
 		{ _field_long_flags, "movement hints", &movement_hint_enum },
 		FIELD_CUSTOM("Throttle and inertia", nullptr, FIELD_FLAG_NONE, _field_id_function_group_begin),
 		{ _field_long_integer, "minimum movement ticks", "We will move at least this long in a single direction when starting movement", "ticks" },
 		{ _field_real, "minimum movement ticks reset angle", "If the character changes movement direction by more than this angle, he will have to move for at least minimum movement ticks until he can change his mind.", "degrees" },
 		{ _field_block, "change direction pause", &movement_stationary_pause_block },
-		{ _field_real, "maximum throttle", "The character will never throttle beyond this value" },
-		{ _field_real, "minimum throttle", "The character will not throttle below this value" },
+		{ _field_real, "maximum throttle", "The character will never throttle beyond this value", nullptr, "[0-1]" },
+		{ _field_real, "minimum throttle", "The character will not throttle below this value", nullptr, "[0-1]" },
 		{ _field_block, "movement throttle control", &movement_throttle_control_block },
-		{ _field_real, "minimum juke throttle", "The character will consider juking at this throttle and above" },
+		{ _field_real, "minimum juke throttle", "The character will consider juking at this throttle and above", nullptr, "[0-1]" },
 		{ _field_angle, "minimum direction change juke angle", "If we change movement direction by more this angle, we will attempt a juke", "deg" },
 		{ _field_real, "non direction change juke probability", "Probability to do a juke for a given tick, even if you are not planning to change direction (and provided you have not already performed a juke within the timeout time" },
 		{ _field_real, "non direction change juke timeout", "After you do a change or no change of direction juke, you cannot perform a NON directional change juke for at least this many seconds. Direction change jukes will still happen", "seconds" },
 		{ _field_long_integer, "minimum post juke movement ticks", "How many ticks should the actor keep moving after a juke? This may lower juke frequency.", "ticks" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		{ _field_real, "stationary turn radius", "If this actor translates during turn animations, enter a radius that encloses the translation." },
-		{ _field_real, "localized move distance", "Distance to move as per the move_localized firing position evaluator (0 value resolves to 5wu)" },
-		{ _field_real_bounds, "move distance", "Distance to move as per the move_distance firing position evaluator (0 value resolves to 5wu for min, 10wu for max)" },
-		{ _field_real_bounds, "vehicle move distance", "Distance to move as per the vehicle_move_distance firing position evaluator (0 value resolves to 5wu for min, 10wu for max)" },
+		{ _field_real, "stationary turn radius", "If this actor translates during turn animations, enter a radius that encloses the translation.", nullptr, "[wu]" },
+		{ _field_real, "localized move distance", "Distance to move as per the move_localized firing position evaluator (0 value resolves to 5wu)", nullptr, "[wu]" },
+		{ _field_real_bounds, "move distance", "Distance to move as per the move_distance firing position evaluator (0 value resolves to 5wu for min, 10wu for max)", nullptr, "[wu]" },
+		{ _field_real_bounds, "vehicle move distance", "Distance to move as per the vehicle_move_distance firing position evaluator (0 value resolves to 5wu for min, 10wu for max)", nullptr, "[wu]" },
 		{ _field_real, "turn and run distance from target", "Actor will face away from his target and run to his destination if his target at a larger distance than this", "wus" },
 		{ _field_real, "turn and run distance to destination", "Firing point must be at least this distance away from the actor for him to consider turning and running to it", "wus" },
 		{ _field_real, "follow unit buffer distance", "When following a unit, such as the player, this is the additional buffer outside of the task follow radius that we are allowed to position ourselves before full firing position avoidance kicks in", "wus" },
@@ -450,8 +450,8 @@ namespace macaque
 		{ _field_real, "Arrival Distance Range", "max distance from destination point where facing should be aligned with heading" },
 		{ _field_angle, "Maximum Deviation Angle", "how far we will allow the facing to deviate from the preference." },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_function_group_end),
-		{ _field_struct, "smooth throttle", &SmoothThrottleStruct },
-		{ _field_struct, "smooth stopping", &SmoothStoppingStruct },
+		{ _field_struct, "smooth throttle", "Allows characters to be smooth throttle changes.", &SmoothThrottleStruct },
+		{ _field_struct, "smooth stopping", "Allows characters to slow down smoothly when stopping.", &SmoothStoppingStruct },
 		{ _field_terminator }
 	};
 
@@ -481,7 +481,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		MOVEMENT_THROTTLE_CONTROL_BLOCK_ID)
 	{
-		{ _field_enum, "combat status", &combat_status_enum_definition },
+		{ _field_enum, "combat status", "When combat status is bigger or equal to this combat status, use the throttle settings below.", &combat_status_enum_definition },
 		{ _field_word_flags, "flags", &movement_throttle_control_flags },
 		{ _field_block, "throttle settings", &movement_throttle_block },
 		{ _field_terminator }
@@ -498,7 +498,7 @@ namespace macaque
 		MOVEMENT_THROTTLE_BLOCK_ID)
 	{
 		{ _field_real, "distance", "If AI needs to move at greater or equal to this distance, they will move at the given throttle", "wus" },
-		{ _field_real, "throttle scale", "Throttle scale between minimum and maximum throttle" },
+		{ _field_real, "throttle scale", "Throttle scale between minimum and maximum throttle", nullptr, "[0-1]" },
 		{ _field_terminator }
 	};
 
@@ -514,11 +514,11 @@ namespace macaque
 		CHARACTER_THROTTLE_STYLE_BLOCK_ID)
 	{
 		{ _field_string_id, "style name", FIELD_FLAG_INDEX },
-		{ _field_real_fraction, "desired throttle" },
+		{ _field_real_fraction, "desired throttle", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "acceleration time", nullptr, "seconds" },
-		{ _field_struct, "acceleration function", &scalar_function_named_struct },
+		{ _field_struct, "acceleration function", "Defines throttle as a function of time from start of style application", &scalar_function_named_struct },
 		{ _field_real, "deceleration distance", nullptr, "wu" },
-		{ _field_struct, "deceleration function", &scalar_function_named_struct },
+		{ _field_struct, "deceleration function", "Defines throttle as a function of distance from the goal", &scalar_function_named_struct },
 		{ _field_string_id, "stance" },
 		{ _field_terminator }
 	};
@@ -604,10 +604,10 @@ namespace macaque
 		{ _field_real, "hound min distance" },
 		{ _field_real, "hound max distance" },
 		{ _field_real_bounds, "infection time", "how long the infection form and its victim will wrestle before the point of no return", "secs" },
-		{ _field_real, "perlin offset scale", "amount of randomness added to creature's throttle" },
+		{ _field_real, "perlin offset scale", "amount of randomness added to creature's throttle", nullptr, "[0-1]" },
 		{ _field_real_bounds, "offset period", "how fast the creature changes random offset to throttle", "s" },
-		{ _field_real, "perlin idle movement threshold", "a random offset lower then given threshold is made 0. (threshold of 1 = no movement)" },
-		{ _field_real, "perlin combat movement threshold", "a random offset lower then given threshold is made 0. (threshold of 1 = no movement)" },
+		{ _field_real, "perlin idle movement threshold", "a random offset lower then given threshold is made 0. (threshold of 1 = no movement)", nullptr, "[0-1]" },
+		{ _field_real, "perlin combat movement threshold", "a random offset lower then given threshold is made 0. (threshold of 1 = no movement)", nullptr, "[0-1]" },
 		{ _field_real, "stuck time", "how long we have to move (stuck distance) before we get deleted" },
 		{ _field_real, "stuck distance", "how far we have to move in (stuck time) to not get deleted" },
 		{ _field_terminator }
@@ -678,8 +678,8 @@ namespace macaque
 		{ _field_real, "Stand danger threshold", "When danger drops below this threshold, the actor can stand again." },
 		{ _field_real, "Fight danger move threshold", "When danger goes above given level, this actor switches firing positions" },
 		{ _field_short_bounds, "Fight danger move threshold cooldown", "Wait at least this many ticks before relocating due to danger", "ticks" },
-		{ _field_real, "fight flank chance", "Chance of flanking when fighting someone who isn't paying attention to me" },
-		{ _field_tag_reference, "override grenade projectile", &projectile_reference$2 },
+		{ _field_real, "fight flank chance", "Chance of flanking when fighting someone who isn't paying attention to me", nullptr, "[0-1]" },
+		{ _field_tag_reference, "override grenade projectile", "when I throw a grenade, forget what type I officially have: throw this type of projectile instead", &projectile_reference$2 },
 		{ _field_real, "minimum throw distance", "Targets closer than this distance will not be attacked with a throw" },
 		{ _field_real, "maximum throw distance", "Targets beyond this distance will not be attacked with a throw" },
 		{ _field_real, "throw search radius", "How far does actor search for throwable items" },
@@ -724,14 +724,14 @@ namespace macaque
 		{ _field_real_bounds, "shield-down berserk chance", "lower bound is chance to berserk at max range, upper bound is chance to berserk at min range, requires shield depleted berserk impulse" },
 		{ _field_real_bounds, "shield-down berserk ranges" },
 		{ _field_real, "friendly killed max berserk distance", "The max range at which we will go berserk if we see a friendly AI of the same type (brute, etc) get killed", "wu" },
-		{ _field_real_fraction, "peer killed berserk chance", "Chance that we will go berserk if we see a friendly AI of the same type (brute, etc) with the same or lower standing get killed" },
-		{ _field_real_fraction, "leader killed berserk chance", "Chance that we will go berserk if we see a friendly AI of the same type (brute, etc) with higher standing get killed" },
-		{ _field_tag_reference, "berserk weapon", &weapon_reference$3 },
+		{ _field_real_fraction, "peer killed berserk chance", "Chance that we will go berserk if we see a friendly AI of the same type (brute, etc) with the same or lower standing get killed", nullptr, "[0,1]" },
+		{ _field_real_fraction, "leader killed berserk chance", "Chance that we will go berserk if we see a friendly AI of the same type (brute, etc) with higher standing get killed", nullptr, "[0,1]" },
+		{ _field_tag_reference, "berserk weapon", "when I berserk, I pull out a ...", &weapon_reference$3 },
 		{ _field_real_fraction, "Play Berserk Anim Chance When Stuck ", "Chance that AI will play berserk anim after getting stuck with a grenade.  Zero is 50%" },
 		{ _field_real, "Beserk cooldown", "Time that I will stay in beserk after losing my target, and then revert back to normal", "seconds" },
 		{ _field_real, "proximity berserk range", "If our target is closer than this distance, and not (in a vehicle/larger size than us/using a melee weapon), we will berserk. If our target is further than this distance, we will stop berserking. Set to 0 to disable proximity berserking.", "world units" },
 		{ _field_real, "proximity berserk outside fp range", "We will never go more than this far outside our firing point areas when proximity-berserking. 0= no limit.", "world units" },
-		{ _field_real_fraction, "proximity berserk chance", "If we have a target close enough to berserk, this is the chance that we will do so. If chance fails, we will try again after timeout." },
+		{ _field_real_fraction, "proximity berserk chance", "If we have a target close enough to berserk, this is the chance that we will do so. If chance fails, we will try again after timeout.", nullptr, "[0,1]" },
 		{ _field_real, "proximity berserk timeout", "We will not proximity-berserk unless it has been at least this long since we last stopped berserking. 0= no timeout.", "seconds" },
 		{ _field_real, "Broken kamikaze chance", "Probability that I will run the kamikaze behaviour when my leader dies." },
 		{ _field_real, "Perimeter Range", "How far we will melee charge outside our firing points before starting perimeter (defaults to 5wu)" },
@@ -844,7 +844,7 @@ namespace macaque
 		{ _field_angle, "zig-zag angle", "The angle from the intended destination direction that a zig-zag will cause", "degrees" },
 		{ _field_real, "zig-zag period", "How long it takes to zig left and then zag right.", "seconds" },
 		{ _field_real, "retreat grenade chance", "The likelihood of throwing down a grenade to cover our retreat" },
-		{ _field_tag_reference, "backup weapon", &weapon_reference$3 },
+		{ _field_tag_reference, "backup weapon", "If I want to flee and I don't have flee animations with my current weapon, throw it away and try a ...", &weapon_reference$3 },
 		{ _field_terminator }
 	};
 
@@ -923,7 +923,7 @@ namespace macaque
 		CHARACTER_VOCALIZATION_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Skip Fraction", nullptr, FIELD_FLAG_NONE, "For vocalization with priority < react, multiplies the skip fraction in the dialogue globals tag.\nFor priorities > react, multiplies the vocalization WEIGHT (i.e. the desire of that character to vocalize RELATIVE to other characters in the scene).\nThus if you hurt the arbiter, say, he\'s still going to yell at you, no matter what, and if you kill somebody and nobody else is there to witness it, he will yell at you.\nAs always, 0 means speak normally, 1 means skip everything (don\'t say shit)"),
-		{ _field_real, "character skip fraction" },
+		{ _field_real, "character skip fraction", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "look comment time", "How long does the player look at an AI before the AI responds?", "s" },
 		{ _field_real, "look long comment time", "How long does the player look at the AI before he responds with his 'long look' comment?", "s" },
 		{ _field_terminator }
@@ -1055,7 +1055,7 @@ namespace macaque
 		{ _field_real, "detonation body vitality" },
 		{ _field_real, "proximity radius", "if target enters within this radius, either detonate or deploy equipment", "wus" },
 		{ _field_real, "proximity detonation chance", "chance of detonating if target enters the drain radius radius" },
-		{ _field_tag_reference, "proximity equipment", &equipment_reference },
+		{ _field_tag_reference, "proximity equipment", "if target enters radius and detonation is not chosen, deploy this equipment.", &equipment_reference },
 		{ _field_terminator }
 	};
 
@@ -1088,8 +1088,8 @@ namespace macaque
 		{ _field_real, "fighting min distance", "When target within this distance, the scarab will back up", "wus" },
 		{ _field_real, "fighting max distance", "When target outside this distance, the scarab will chase", "wus" },
 		{ _field_real_bounds, "anticipated aim radius", "When within these bounds distance from the target, we blend in our anticipated facing vector", "wus" },
-		{ _field_real, "snap forward angle", "When moving forward within this dot of our desired facing, just move forward" },
-		{ _field_real, "snap forward angle max", "When moving forward within this dot of our desired facing, just move forward" },
+		{ _field_real, "snap forward angle", "When moving forward within this dot of our desired facing, just move forward", nullptr, "[0-1]" },
+		{ _field_real, "snap forward angle max", "When moving forward within this dot of our desired facing, just move forward", nullptr, "[0-1]" },
 		{ _field_terminator }
 	};
 
@@ -1115,22 +1115,22 @@ namespace macaque
 		FIELD_EXPLANATION("Ballistic Firing", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "super-ballistic range", "we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
 		{ _field_real_bounds, "Ballistic firing bounds", "At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used", "world units" },
-		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast" },
+		{ _field_real_bounds, "Ballistic fraction bounds", "Controls speed and degree of arc. 0 = high, slow, 1 = low, fast", nullptr, "[0-1]" },
 		FIELD_EXPLANATION("Behavior", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "first burst delay time", nullptr, "seconds" },
 		{ _field_real, "surprise delay time", nullptr, "seconds" },
 		{ _field_real, "surprise fire-wildly time", nullptr, "seconds" },
-		{ _field_real, "death fire-wildly chance" },
+		{ _field_real, "death fire-wildly chance", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "death fire-wildly time", nullptr, "seconds" },
 		{ _field_real_vector_3d, "custom stand gun offset", "custom standing gun offset for overriding the default in the base actor" },
 		{ _field_real_vector_3d, "custom crouch gun offset", "custom crouching gun offset for overriding the default in the base actor" },
 		{ _field_long_integer, "Blocked Shot Count", "Number of projectiles blocked before the character is considered blocked. Zero defaults to 6." },
 		FIELD_EXPLANATION("special-case firing properties", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_enum, "special-fire mode", &actor_special_fire_mode_enum },
-		{ _field_enum, "special-fire situation", &actor_special_fire_situation_enum },
-		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode" },
+		{ _field_enum, "special-fire mode", "the type of special weapon fire that we can use", &actor_special_fire_mode_enum },
+		{ _field_enum, "special-fire situation", "when we will decide to use our special weapon fire mode", &actor_special_fire_situation_enum },
+		{ _field_real, "special-fire chance", "how likely we are to use our special weapon fire mode", nullptr, "[0,1]" },
 		{ _field_real, "special-fire delay", "how long we must wait between uses of our special weapon fire mode", "seconds" },
-		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)" },
+		{ _field_real, "special damage modifier", "damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)", nullptr, "[0,1]" },
 		{ _field_angle, "special projectile error", "projectile error angle for special weapon fire (applied in addition to the normal error)", "degrees" },
 		FIELD_EXPLANATION("Weapon drop when killed", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "drop weapon loaded", "amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
@@ -1172,8 +1172,8 @@ namespace macaque
 		CHARACTER_FIRING_PATTERN_BLOCK_ID)
 	{
 		{ _field_real, "rate of fire", "how many times per second we pull the trigger (zero = continuously held down)" },
-		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position" },
-		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely." },
+		{ _field_real, "target tracking", "how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position", nullptr, "[0,1]" },
+		{ _field_real, "target leading", "how much we lead moving targets. 0.0= no prediction. 1.0= predict completely.", nullptr, "[0,1]" },
 		FIELD_EXPLANATION("burst geometry", nullptr, FIELD_FLAG_NONE, "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst."),
 		{ _field_real, "burst origin radius", "how far away from the target the starting point is", "world units" },
 		{ _field_angle, "burst origin angle", "the range from the horizontal that our starting error can be", "degrees" },
@@ -1199,8 +1199,8 @@ namespace macaque
 		CHARACTER_GRENADES_BLOCK_ID)
 	{
 		{ _field_long_flags, "grenades flags", &grenades_flags },
-		{ _field_enum, "grenade type", FIELD_FLAG_INDEX, &global_grenade_type_enum },
-		{ _field_enum, "trajectory type", &actor_grenade_trajectory_enum },
+		{ _field_enum, "grenade type", "type of grenades that we throw", FIELD_FLAG_INDEX, &global_grenade_type_enum },
+		{ _field_enum, "trajectory type", "how we throw our grenades", &actor_grenade_trajectory_enum },
 		FIELD_PAD("YZNPI", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_short_integer, "minimum enemy count", "how many enemies must be within the radius of the grenade before we will consider throwing there" },
 		{ _field_real, "enemy radius", "we consider enemies within this radius when determining where to throw", "world units" },
@@ -1208,14 +1208,14 @@ namespace macaque
 		{ _field_real, "grenade velocity", "the fastest we can possibly throw our grenades", "world units per second" },
 		{ _field_real_bounds, "grenade ranges", "ranges within which we will consider throwing a grenade", "world units" },
 		{ _field_real, "collateral damage radius", "we won't throw if there are friendlies around our target within this range", "world units" },
-		{ _field_real_fraction, "grenade chance", "how likely we are to throw a grenade in one second" },
+		{ _field_real_fraction, "grenade chance", "how likely we are to throw a grenade in one second", nullptr, "[0,1]" },
 		{ _field_real, "Active Shield Modifier", "Throw chance multiplied by this value when target is using active shield." },
 		{ _field_real, "grenade throw delay", "How long we have to wait after throwing a grenade before we can throw another one", "seconds" },
-		{ _field_real_fraction, "grenade uncover chance", "how likely we are to throw a grenade to flush out a target in one second" },
-		{ _field_real_fraction, "anti-vehicle grenade chance", "how likely we are to throw a grenade against a vehicle" },
+		{ _field_real_fraction, "grenade uncover chance", "how likely we are to throw a grenade to flush out a target in one second", nullptr, "[0,1]" },
+		{ _field_real_fraction, "anti-vehicle grenade chance", "how likely we are to throw a grenade against a vehicle", nullptr, "[0,1]" },
 		FIELD_EXPLANATION("Grenade drop when killed", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_short_bounds, "grenade count", "number of grenades that we start with" },
-		{ _field_real, "dont drop grenades chance", "how likely we are not to drop any grenades when we die, even if we still have some" },
+		{ _field_real, "dont drop grenades chance", "how likely we are not to drop any grenades when we die, even if we still have some", nullptr, "[0,1]" },
 		{ _field_terminator }
 	};
 
@@ -1251,9 +1251,9 @@ namespace macaque
 		{ _field_real, "hover random radius", "The radius of the anchor perturbation. (default=0)", "wu" },
 		{ _field_real, "hover anchor approach speed limit", "If we're traveling faster than this amount toward the anchor inside the max throttle distance, we drop throttle to the min. (default=0.2)", "wu/s" },
 		{ _field_real_bounds, "hover anchor throttle scale distance", "The distance from the anchor at which the min and max throttle scale occur. (default=[0.25, 2.0])", "wu" },
-		{ _field_real_bounds, "hover anchor xy-throttle scale", "The xy-throttle scale at the min and max throttle scale distances. (default=[0.0, 0.2])" },
-		{ _field_real_bounds, "hover anchor z-throttle scale", "The z-throttle scale at the min and max throttle scale distances. (default=[1.0, 1.0])" },
-		{ _field_real, "hover throttle min z", "The minimum the z component of throttle is allowed to be (default=0.2)" },
+		{ _field_real_bounds, "hover anchor xy-throttle scale", "The xy-throttle scale at the min and max throttle scale distances. (default=[0.0, 0.2])", nullptr, "[0,1]" },
+		{ _field_real_bounds, "hover anchor z-throttle scale", "The z-throttle scale at the min and max throttle scale distances. (default=[1.0, 1.0])", nullptr, "[0,1]" },
+		{ _field_real, "hover throttle min z", "The minimum the z component of throttle is allowed to be (default=0.2)", nullptr, "[-1, 1]" },
 		FIELD_EXPLANATION("Pathfinding", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ai pathfinding radius", nullptr, "world units (Ground vehicles)" },
 		{ _field_real, "ai avoidance radius", "If 0, uses pathfinding radius.", "world units (Ground vehicles)" },
@@ -1272,7 +1272,7 @@ namespace macaque
 		{ _field_angle_bounds, "ai oversteering bounds", "Angle to goal at which AI will oversteer", "(banshees)" },
 		{ _field_real, "ai sideslip distance", "Distance within which Ai will strafe to target (as opposed to turning)", "(ghosts, dropships)" },
 		{ _field_real, "ai avoidance distance", "Look-ahead distance for obstacle avoidance", "world units:(banshees)" },
-		{ _field_real, "ai min urgency", "The minimum urgency with which a turn can be made (urgency = percent of maximum steering delta)" },
+		{ _field_real, "ai min urgency", "The minimum urgency with which a turn can be made (urgency = percent of maximum steering delta)", nullptr, "[0-1] (warthogs, banshees)" },
 		{ _field_angle, "destination behind angle", "The angle from facing that is considered to be behind us (we do the ugly floaty slidey turn to things behind us)", "(dropships)" },
 		{ _field_real, "skid scale", "When approaching a corner at speed, we may want to skid around that corner, by turning slightly too early. This is (roughly) how many seconds ahead we should start turning.", "(warthogs)" },
 		{ _field_angle, "aiming velocity maximum", nullptr, "degrees per second" },
@@ -1293,13 +1293,13 @@ namespace macaque
 		{ _field_angle, "ai allowable aim deviation angle" },
 		FIELD_EXPLANATION("Behavior", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "ai charge tight angle distance", "The distance at which the tight angle criterion is used for deciding to vehicle charge", "(all vehicles)" },
-		{ _field_real, "ai charge tight angle", "Angle cosine within which the target must be when target is closer than tight angle distance in order to charge" },
+		{ _field_real, "ai charge tight angle", "Angle cosine within which the target must be when target is closer than tight angle distance in order to charge", nullptr, "[0-1] (all vehicles)" },
 		{ _field_real, "ai charge repeat timeout", "Time delay between vehicle charges", "(all vehicles)" },
 		{ _field_real, "ai charge look-ahead time", "In deciding when to abort vehicle charge, look ahead these many seconds to predict time of contact", "(all vehicles)" },
 		{ _field_real, "ai charge consider distance", "Consider charging the target when it is within this range (0 = infinite distance)", "(all vehicles)" },
 		{ _field_real, "ai charge abort distance", "Abort the charge when the target get more than this far away (0 = never abort)", "(all vehicles)" },
 		{ _field_real, "ai charge abort close distance", "Abort the charge when the target gets closer than this far away (0 = 3 times destination radius for historical purposes.)", "(all vehicles)" },
-		{ _field_real, "ai charge armor locked target chance", "Probability that we decide to charge a target even if they are armor locked" },
+		{ _field_real, "ai charge armor locked target chance", "Probability that we decide to charge a target even if they are armor locked", nullptr, "[0-1] (all vehicles)" },
 		{ _field_real, "vehicle ram timeout", "The ram behavior stops after a maximum of the given number of seconds" },
 		{ _field_real, "ram paralysis time", "The ram behavior freezes the vehicle for a given number of seconds after performing the ram" },
 		{ _field_real, "ai cover damage threshold", "Trigger a cover when recent damage is above given threshold (damage_vehicle_cover impulse)", "(all vehicles)" },
@@ -1359,8 +1359,8 @@ namespace macaque
 		{ _field_real_bounds, "collision avoidance range", "Zero collision avoidance at the high distance, Max avoidance at the low distance.", "wu" },
 		FIELD_EXPLANATION("Evasion", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real_bounds, "evade time", "Bounds on how long we should evade for", "seconds" },
-		{ _field_real_fraction, "evade body damage threshold", "The recent body damage we should sustain before trying to evade." },
-		{ _field_real_fraction, "evade shield damage threshold", "The recent shield damage we should sustain before trying to evade." },
+		{ _field_real_fraction, "evade body damage threshold", "The recent body damage we should sustain before trying to evade.", nullptr, "[0,1]" },
+		{ _field_real_fraction, "evade shield damage threshold", "The recent shield damage we should sustain before trying to evade.", nullptr, "[0,1]" },
 		{ _field_real, "bogey retreat time", "How long we tolerate a bogey in our six, before we retreat back to our area.", "seconds" },
 		{ _field_real, "bogey retreat distance", "How close a bogey has to be before we'll even consider retreating.", "wu" },
 		FIELD_EXPLANATION("Flocking", nullptr, FIELD_FLAG_NONE, ""),
@@ -1413,7 +1413,7 @@ namespace macaque
 		{ _field_real_bounds, "throttle distance", "Throttle the tank from running (far) to walking (near) across this range of distances. (defaults to 5 and 3)" },
 		{ _field_real, "protect damage amount", "Once current damage reaches this amount, protect your special parts until no recent damage" },
 		{ _field_real, "protect time", "How long should we protect our special parts for?", "seconds" },
-		{ _field_tag_reference, "spew infection character", &character_reference$3 },
+		{ _field_tag_reference, "spew infection character", "What character should I throw up all over my target? Carrots?", &character_reference$3 },
 		{ _field_real, "spew chance", "Probability of throwing up a bunch of infection forms when perimeterising" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "spew marker", "From whence should the infection forms cometh?" },
@@ -1447,7 +1447,7 @@ namespace macaque
 		CHARACTER_EQUIPMENT_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Equipment", nullptr, FIELD_FLAG_NONE, "Create one of these for each equipment type that you would like a character to be able to use. If you specify a relative drop chance of greater than zero then the character will use and drop this type of equipment with that (relative) chance. If you leave the equipment field empty, then there will be that (relative) chance of using and dropping no equipment at all."),
-		{ _field_tag_reference, "equipment", &equipment_reference },
+		{ _field_tag_reference, "equipment", "The equipment item that is to be usable", &equipment_reference },
 		{ _field_long_flags, "flags", &character_equipment_def_bits },
 		{ _field_real, "relative drop chance", "The relative chance of this equipment being dropped with respect to the other pieces of equipment specified in this block" },
 		{ _field_block, "equipment use", &character_equipment_usage_block },
@@ -1465,8 +1465,8 @@ namespace macaque
 		CHARACTER_EQUIPMENT_USAGE_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("Equipment Use", nullptr, FIELD_FLAG_NONE, "How should I use this equipment?"),
-		{ _field_enum, "use when", FIELD_FLAG_INDEX, &character_equipment_usage_when_enum },
-		{ _field_enum, "use how", &character_equipment_usage_how_enum },
+		{ _field_enum, "use when", "When should we use this equipment?", FIELD_FLAG_INDEX, &character_equipment_usage_when_enum },
+		{ _field_enum, "use how", "How should we use this equipment?", &character_equipment_usage_how_enum },
 		FIELD_EXPLANATION("Skip Fraction", nullptr, FIELD_FLAG_NONE, "Given that we have decided to use this equipment, should we do so? (0= always use it, 1= never use it). Heroic skip fraction is the average of normal and legendary chances."),
 		{ _field_real, "easy/normal", nullptr, "0-1" },
 		{ _field_real, "legendary", nullptr, "0-1" },
@@ -1521,12 +1521,12 @@ namespace macaque
 		FIELD_EXPLANATION("Pain Reactions", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "pain screen duration", "The duration of the pain function\n0 defaults to 0.5", "seconds" },
 		{ _field_real, "pain screen region fade out duration", "The time it takes to fade out a damage region that is no longer the most recent damage region to be hit", "seconds" },
-		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region." },
+		{ _field_real_fraction, "pain screen region fade out weight threshold", "The threshold weight below which the focus channel must fall before we can cross fade to another region.", nullptr, "[0,1]" },
 		{ _field_angle, "pain screen angle tolerance", "The tolerance angle between next and previous damage directions, below which we randomly vary the ping direction.", "degrees" },
 		{ _field_angle, "pain screen angle randomness", "The maximum random angle to vary the incoming ping direction by if it's too close to the previous ping.", "degrees" },
 		FIELD_EXPLANATION("Defensive Reactions", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_real, "defensive screen duration", "The duration of the defensive function\n0 defaults to 2.0", "seconds" },
-		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to." },
+		{ _field_real_fraction, "defensive screen scrub fallback fraction", "When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to.", nullptr, "[0,1]" },
 		{ _field_terminator }
 	};
 
@@ -1566,12 +1566,12 @@ namespace macaque
 		{ _field_real, "Resurrection Initiation Delay Time (seconds) ", "Time Bishop waits upon arriving at resurrection target before activating resurrection beam." },
 		{ _field_real, "Resurrection Charge Up Time (seconds) ", "Time from resurrection beam activation until actual resurrection is triggered." },
 		{ _field_real, "Resurrection Give Up Time (seconds) ", "If the resurrection target is not reached in this amount of time, the resurrection attempt is aborted." },
-		{ _field_tag_reference, "Resurrection Ground Effect ", &effect_reference },
-		{ _field_tag_reference, "Res. Area Scan Start Effect ", &effect_reference },
-		{ _field_tag_reference, "Res. Area Scan Success Effect ", &effect_reference },
-		{ _field_tag_reference, "Res. Area Scan Failure Effect ", &effect_reference },
-		{ _field_tag_reference, "Shard Object ", &crate_reference$4 },
-		{ _field_tag_reference, "Shard Spawn Ground Effect ", &effect_reference },
+		{ _field_tag_reference, "Resurrection Ground Effect ", "The effect created on the ground when resurrecting a dead ally.", &effect_reference },
+		{ _field_tag_reference, "Res. Area Scan Start Effect ", "The effect created on the ground when scanning for a clear area before resurrection.", &effect_reference },
+		{ _field_tag_reference, "Res. Area Scan Success Effect ", "The effect created on the ground when area scan succeeds.", &effect_reference },
+		{ _field_tag_reference, "Res. Area Scan Failure Effect ", "The effect created on the ground when area scan fails.", &effect_reference },
+		{ _field_tag_reference, "Shard Object ", "Created by bishop when shard spawning.  Runs spawning logic.", &crate_reference$4 },
+		{ _field_tag_reference, "Shard Spawn Ground Effect ", "The effect created on the ground when spawning shards (pawns).", &effect_reference },
 		{ _field_real, "Shard Creation Delay (seconds) ", "Time it takes for bishop to place shards after arriving at destination." },
 		{ _field_real_bounds, "Spawn Delay (seconds) ", "Min/max time it takes for shards to spawn actors." },
 		{ _field_terminator }
@@ -1610,13 +1610,13 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("combotron child props (anything that can socket into a rook)", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_long_flags, "flags", &rook_flags },
-		{ _field_tag_reference, "socket weapon", &weapon_reference$3 },
-		{ _field_tag_reference, "socket child", &object_reference$2 },
-		{ _field_tag_reference, "socket character definition", &character_reference$3 },
+		{ _field_tag_reference, "socket weapon", "When socketed, this guy turns into a weapon of the type referenced here", &weapon_reference$3 },
+		{ _field_tag_reference, "socket child", "When socketed, this guy turns into a child of the type referenced here", &object_reference$2 },
+		{ _field_tag_reference, "socket character definition", "Parent adopts this character definition when this guy is socketed", &character_reference$3 },
 		{ _field_real, "damage threshold when socketed", "How much damage does this guy absorb before de-socketing" },
 		{ _field_real_bounds, "socketing cooldown (seconds)", "After being de-socketed, wait this long before re-socketing" },
 		{ _field_real_bounds, "socketing attach distance (world units)", "at what distance does the client particleize and attach to socket" },
-		{ _field_tag_reference, "effect socketing", &effect_reference },
+		{ _field_tag_reference, "effect socketing", "this effect plays while a child is socketing into a parent", &effect_reference },
 		{ _field_terminator }
 	};
 
@@ -1634,7 +1634,7 @@ namespace macaque
 		{ _field_string_id, "headshot freakout animation (animation string)" },
 		{ _field_string_id, "limb dismembered animation (animation string)" },
 		{ _field_tag_reference, "berserk persistent melee effect", &effect_reference },
-		{ _field_tag_reference, "alternate weapon", &weapon_reference$3 },
+		{ _field_tag_reference, "alternate weapon", "If I lose my firing arm then I pull out a ...", &weapon_reference$3 },
 		{ _field_terminator }
 	};
 
@@ -1695,8 +1695,8 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DYNAMIC_TASK_BLOCK_ID)
 	{
-		{ _field_long_flags, "Agent Filter Flags ", &agent_filter_flags },
-		{ _field_long_flags, "Task Generation Flags ", &task_generation_flags },
+		{ _field_long_flags, "Agent Filter Flags ", "Limits dynamic tasks that can be assigned to this AI.", &agent_filter_flags },
+		{ _field_long_flags, "Task Generation Flags ", "Controls which tasks can be generated by this AI.", &task_generation_flags },
 		{ _field_real_fraction, "Protect Request Shield Level ", "Shield vitality must be less than or equal to this level before AI will post Protect task." },
 		{ _field_real_fraction, "Protect Request Body Level ", "Body vitality must be less than or equal to this level before AI will post Protect task." },
 		{ _field_real_fraction, "Resurrection Req. Chance ", "Percent chance that actor will request to be resurrected on death." },
@@ -1704,7 +1704,7 @@ namespace macaque
 		{ _field_real_bounds, "Protect Task Priorities (Min Health - Max Health) ", "Priority levels of Protect task as health drops." },
 		{ _field_real, "Resurrection Task Priority ", "Priority level of Resurrection task generated by this character." },
 		{ _field_real, "Shield During Resurrection Task Priority ", "Priority of the shield task generated while being resurrected." },
-		{ _field_tag_reference, "Shield Crate Override ", &crate_reference$4 },
+		{ _field_tag_reference, "Shield Crate Override ", "Crate created to represent projected shield.", &crate_reference$4 },
 		{ _field_terminator }
 	};
 
@@ -1739,8 +1739,8 @@ namespace macaque
 		{ _field_real, "Teleport cooldown time ", "Time after attack before trying to get away" },
 		{ _field_real, "Teleport tracking distance ", "How far the landing point can move between jumps" },
 		{ _field_real, "Teleport tracking lockdown dist ", "How far from the target do we stop tracking" },
-		{ _field_tag_reference, "Teleport Launch FX ", &global_effect_reference },
-		{ _field_tag_reference, "Teleport Land FX ", &global_effect_reference },
+		{ _field_tag_reference, "Teleport Launch FX ", "Effect to play at teleport launch point", &global_effect_reference },
+		{ _field_tag_reference, "Teleport Land FX ", "Effect to play at teleport destination point", &global_effect_reference },
 		{ _field_terminator }
 	};
 
@@ -1879,7 +1879,7 @@ namespace macaque
 		{ _field_long_flags, "Character flags", &character_flags },
 		{ _field_tag_reference, "parent character", &character_reference$3 },
 		{ _field_tag_reference, "unit", &unit_reference },
-		{ _field_tag_reference, "creature", &creature_reference },
+		{ _field_tag_reference, "creature", "Creature reference for swarm characters ONLY", &creature_reference },
 		{ _field_tag_reference, "style", &style_reference },
 		{ _field_tag_reference, "major character", &character_reference$3 },
 		{ _field_block, "variants", &character_variants_block },
@@ -1957,12 +1957,12 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ACTIVE_CAMO_PERCEPTION_PROPERTIES_ID)
 	{
-		{ _field_real_fraction, "partial invis amount", "this amount of active camouflage makes a target 'partially invisible'" },
+		{ _field_real_fraction, "partial invis amount", "this amount of active camouflage makes a target 'partially invisible'", nullptr, "[0,1]" },
 		{ _field_real, "partial invis vision distance", "maximum vision distance for partially invisible targets. 0= unlimited", "world units" },
-		{ _field_real, "partial invis awareness multiplier", "multiplier on our awareness speed for partially invisible targets. 0= no change. Should be in (0, 1]." },
-		{ _field_real_fraction, "full invis amount", "this amount of active camouflage makes a target 'fully invisible'" },
+		{ _field_real, "partial invis awareness multiplier", "multiplier on our awareness speed for partially invisible targets. 0= no change. Should be in (0, 1].", nullptr, "[0,1]" },
+		{ _field_real_fraction, "full invis amount", "this amount of active camouflage makes a target 'fully invisible'", nullptr, "[0,1]" },
 		{ _field_real, "full invis vision distance", "maximum vision distance for fully invisible targets. 0= unlimited", "world units" },
-		{ _field_real, "full invis awareness multiplier", "multiplier on our awareness speed for fully invisible targets. 0= no change. Should be in (0, 1]." },
+		{ _field_real, "full invis awareness multiplier", "multiplier on our awareness speed for fully invisible targets. 0= no change. Should be in (0, 1].", nullptr, "[0,1]" },
 		{ _field_terminator }
 	};
 
@@ -2020,7 +2020,7 @@ namespace macaque
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
 		FIELD_EXPLANATION("Override Settings", nullptr, FIELD_FLAG_NONE, "The following setting are applied when the Override option is chosen"),
 		FIELD_PAD("csst_pad_2", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_real_bounds, "Stopping Distance", "Distance at which to begin slowing to a stop. Range provides variance." },
+		{ _field_real_bounds, "Stopping Distance", "Distance at which to begin slowing to a stop. Range provides variance.", nullptr, "[wu]" },
 		{ _field_real_bounds, "Arrival Throttle", "Throttle magnitude desired upon arrival. Should be non zero, and greater than 0.1 to avoid super-slow stops", "range (0.05, 1.0)" },
 		{ _field_real_bounds, "Stopping Power", "Power value used to determine stopping curve. Values <1 produce sharper stops, >1 produce more ease-in.", "exponent" },
 		{ _field_real_bounds, "Idle Time", "seconds to idle when stopped.", "exponent" },

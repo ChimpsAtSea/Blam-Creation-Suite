@@ -45,7 +45,7 @@ namespace macaque
 		ARMORMOD_GLOBALS_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("explode on death", nullptr, FIELD_FLAG_NONE, ""),
-		{ _field_tag_reference, "projectile", &projectile_reference },
+		{ _field_tag_reference, "projectile", "spawned by Explode On Death armormod", &projectile_reference },
 		FIELD_EXPLANATION("aural enhancement", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "looping sound effect", &sound_looping_reference },
 		{ _field_real, "near threshold", "beyond this distance volume is attenuated, far audio settings are applied", "world units" },

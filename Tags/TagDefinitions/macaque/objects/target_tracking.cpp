@@ -17,7 +17,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID)
 	{
-		{ _field_block, "tracking types", &tracking_type_block },
+		{ _field_block, "tracking types", "specify the kinds of targets this tracking system can lock on", &tracking_type_block },
 		{ _field_real, "acquire time", nullptr, "s" },
 		{ _field_real, "grace time", nullptr, "s" },
 		{ _field_real, "decay time", nullptr, "s" },

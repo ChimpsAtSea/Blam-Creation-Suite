@@ -152,7 +152,7 @@ namespace macaque
 		{ _field_tag_reference, "sound sweetener rolling", &global_looping_sound_reference },
 		{ _field_tag_reference, "sound sweetener grinding", &global_looping_sound_reference },
 		{ _field_tag_reference, "sound sweetener (melee small)", &global_sound_reference },
-		{ _field_tag_reference, "sound sweetener (melee)", &global_sound_reference },
+		{ _field_tag_reference, "sound sweetener (melee)", "this is a medium sweetener and was the old default", &global_sound_reference },
 		{ _field_tag_reference, "sound sweetener (melee large)", &global_sound_reference },
 		{ _field_tag_reference, "effect sweetener (small)", &global_effect_reference },
 		{ _field_tag_reference, "effect sweetener (medium)", &global_effect_reference },

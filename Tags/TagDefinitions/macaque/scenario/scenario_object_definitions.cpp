@@ -452,7 +452,7 @@ namespace macaque
 		DEVICE_GROUP_BLOCK_ID)
 	{
 		{ _field_string, "name", FIELD_FLAG_INDEX },
-		{ _field_real, "initial value" },
+		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &device_group_flags },
 		{ _field_short_block_index, "editor folder", FIELD_FLAG_UNKNOWN0, &g_scenario_editor_folder_block, _field_id_hide },
 		FIELD_PAD("WAFNDIO", nullptr, FIELD_FLAG_NONE, 2),
@@ -628,7 +628,7 @@ namespace macaque
 		{ _field_tag_reference, "second name", FIELD_FLAG_INDEX, &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "third name", FIELD_FLAG_INDEX, &scenario_requisition_palette_block_name_reference },
 		{ _field_string_id, "display_name", FIELD_FLAG_INDEX },
-		{ _field_long_enum, "Submenu", &requisition_submenu_global_enum },
+		{ _field_long_enum, "Submenu", "controls which requisition submenu this object should appear in", &requisition_submenu_global_enum },
 		{ _field_long_integer, "maximum allowed", "cant buy more if there are too many in play" },
 		{ _field_real, "price per instance" },
 		{ _field_string_id, "model variant name" },
@@ -758,7 +758,7 @@ namespace macaque
 		SCENARIO_OBJECT_PARENT_STRUCT_ID)
 	{
 		FIELD_PAD("der", nullptr, FIELD_FLAG_NONE, 2),
-		{ _field_short_block_index, "parent object", &scenario_object_names_block },
+		{ _field_short_block_index, "parent object", "if an object with this name exists, we attach to it as a child", &scenario_object_names_block },
 		{ _field_string_id, "parent marker" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_marker),
 		{ _field_string_id, "connection marker" },
@@ -793,7 +793,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_UNIT_STRUCT_ID)
 	{
-		{ _field_real, "body vitality" },
+		{ _field_real, "body vitality", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &scenario_unit_datum_flags },
 		{ _field_terminator }
 	};

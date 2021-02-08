@@ -110,7 +110,7 @@ namespace macaque
 	{
 		FIELD_EXPLANATION("Season Images", nullptr, FIELD_FLAG_NONE, "This block should contain a season\'s worth of Infinity mission images"),
 		{ _field_long_integer, "season number", FIELD_FLAG_INDEX },
-		{ _field_tag_reference, "epilogue image", &global_bitmap_reference },
+		{ _field_tag_reference, "epilogue image", "displayed where the missions would be, when the epilogue is selected", &global_bitmap_reference },
 		{ _field_block, "season images", &InfinityMissionImagesDefinition_block },
 		{ _field_terminator }
 	};
@@ -272,7 +272,7 @@ namespace macaque
 		{ _field_real_point_3d, "minimum camera focal offset", nullptr, "wu" },
 		{ _field_real_point_3d, "maximum camera offset", nullptr, "wu" },
 		{ _field_real_point_3d, "maximum camera focal offset", nullptr, "wu" },
-		{ _field_real, "initial zoom" },
+		{ _field_real, "initial zoom", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "fov", nullptr, "degrees" },
 		{ _field_terminator }
 	};
@@ -696,7 +696,7 @@ namespace macaque
 		{ _field_block, "game next round sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
 		{ _field_block, "game end sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
 		{ _field_block, "game end with killcam sequence", &UserInterfaceGameScreenSequenceStepDefinition_block },
-		{ _field_tag_reference, "HUD globals", &Tag::Reference<struct UserInterfaceHUDGlobalsDefinitions>::s_defaultDefinition },
+		{ _field_tag_reference, "HUD globals", "global settings for the HUD. Set this for ingame globals.", &Tag::Reference<struct UserInterfaceHUDGlobalsDefinitions>::s_defaultDefinition },
 		{ _field_tag_reference, "portrait poses", &portrait_poses_definition_reference },
 		{ _field_block, "swap tags", &SwapTagReferenceDefinition_block },
 		{ _field_terminator }
