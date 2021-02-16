@@ -11,7 +11,6 @@ namespace macaque
 	extern s_tag_block_definition weapon_block;
 	extern s_tag_struct_definition weapon; // weapon_block
 
-
 	extern s_tag_block_definition melee_damage_parameters_block;
 	extern s_tag_struct_definition melee_damage_parameters_block_struct_definition; // melee_damage_parameters_block
 	extern s_tag_block_definition globalAimAssistBlock_block;
