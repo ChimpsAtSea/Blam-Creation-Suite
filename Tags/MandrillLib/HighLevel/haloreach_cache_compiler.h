@@ -1,6 +1,6 @@
 #pragma once
 
-DEBUG_ONLY(class c_haloreach_cache_file);
+class c_haloreach_cache_file;
 
 class h_object;
 class h_interop;
@@ -242,7 +242,7 @@ public:
 class c_haloreach_cache_compiler
 {
 public:
-	c_haloreach_cache_compiler(c_tag_project& tag_project DEBUG_ONLY(, c_haloreach_cache_file* cache_file));
+	c_haloreach_cache_compiler(c_tag_project& tag_project, c_haloreach_cache_file* cache_file);
 	~c_haloreach_cache_compiler();
 	uint32_t calculate_size(h_tag& tag);
 	void calculate_object_memory_footprint(uint32_t& memory_footprint, h_object& object);
@@ -267,7 +267,7 @@ public:
 
 
 protected:
-	DEBUG_ONLY(c_haloreach_cache_file* cache_file);
+	c_haloreach_cache_file* cache_file;
 
 	static constexpr uint32_t page_address_offset_relative = 0x50000000ull;
 	static constexpr uint32_t block_memory_alignment = 16;

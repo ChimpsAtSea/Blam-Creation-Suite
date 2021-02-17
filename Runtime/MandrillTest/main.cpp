@@ -150,7 +150,7 @@ static int run_mandrill_api_test()
 
 	// c_test test(tag_project);
 
-	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_file)));
+	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project, dynamic_cast<c_haloreach_cache_file*>(cache_file));
 
 	{
 		c_stopwatch stopwatch;

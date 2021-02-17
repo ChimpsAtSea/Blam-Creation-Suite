@@ -124,7 +124,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant_setting(e_mcc_ga
 	{
 	case _mcc_game_mode_multiplayer:
 	{
-		c_settings::read_string(_settings_section_launch, k_last_multiplayer_map_variant_setting, hopper_map_variant[game_mode].data, sizeof(hopper_game_variant), "");
+		c_settings::read_string(_settings_section_launch, k_last_multiplayer_map_variant_setting, hopper_map_variant[game_mode].data, sizeof(hopper_map_variant[0]), "");
 		break;
 	}
 	}
@@ -139,17 +139,17 @@ void c_haloreach_game_option_selection_legacy::load_game_variant_setting(e_mcc_g
 		hopper_game_variant[game_mode] = "campaign_default_054";
 		break;
 		// #TODO: is this a thing?
-		c_settings::read_string(_settings_section_launch, k_last_campaign_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant), "campaign_default_054");
+		c_settings::read_string(_settings_section_launch, k_last_campaign_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant[0]), "campaign_default_054");
 		break;
 	}
 	case _mcc_game_mode_multiplayer:
 	{
-		c_settings::read_string(_settings_section_launch, k_last_multiplayer_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant), "slayer_054");
+		c_settings::read_string(_settings_section_launch, k_last_multiplayer_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant[0]), "slayer_054");
 		break;
 	}
 	case _mcc_game_mode_firefight:
 	{
-		c_settings::read_string(_settings_section_launch, k_last_firefight_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant), "ff_firefight_054");
+		c_settings::read_string(_settings_section_launch, k_last_firefight_game_variant_setting, hopper_game_variant[game_mode].data, sizeof(hopper_game_variant[0]), "ff_firefight_054");
 		break;
 	}
 	//case _mcc_game_mode_spartan_ops:

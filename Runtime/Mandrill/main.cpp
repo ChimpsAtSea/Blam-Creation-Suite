@@ -210,7 +210,7 @@ static void build_map(uint32_t index)
 		output_file = output_files[index];
 	}
 
-	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index] DEBUG_ONLY(, dynamic_cast<c_haloreach_cache_file*>(cache_files[index])));
+	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index], dynamic_cast<c_haloreach_cache_file*>(cache_files[index]));
 
 	{
 		c_stopwatch stopwatch;

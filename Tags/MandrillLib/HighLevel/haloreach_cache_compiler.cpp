@@ -75,8 +75,8 @@ h_cache_file_tag_interop_vtable* cache_file_tag_interop_vtable[k_num_interop_typ
 	&structured_buffer_interop_vtable,
 };
 
-c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_project DEBUG_ONLY(, c_haloreach_cache_file* _cache_file)) :
-	DEBUG_ONLY(cache_file(_cache_file), )
+c_haloreach_cache_compiler::c_haloreach_cache_compiler(c_tag_project& tag_project, c_haloreach_cache_file* _cache_file) :
+	cache_file(_cache_file),
 	tag_project(tag_project),
 	string_id_manager(*new c_string_id_manager(17, 8, 7)),
 	cache_file_metadata(*new s_cache_file_metadata()),
@@ -810,7 +810,6 @@ void c_haloreach_cache_compiler::compile_resources()
 	resources_buffer = new char[resources_buffer_size] {};
 	memcpy(resources_buffer, resource_section.data, resources_data_size);
 
-
 #if 0
 	auto resource_layout_table_group = cache_file->get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
 	DEBUG_ASSERT(resource_layout_table_group != nullptr);
@@ -1054,7 +1053,7 @@ void c_haloreach_cache_compiler::pre_compile_interops()
 			}
 		}
 	}
-
+	
 	//tag_api_interops_count = cache_file->haloreach_cache_file_tags_header->tag_interop_table.count;
 	tag_api_interops_count = static_cast<uint32_t>(interop_containers.size());
 	tag_api_interops_data_size = 0;
