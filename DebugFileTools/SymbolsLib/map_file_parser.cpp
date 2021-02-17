@@ -71,6 +71,11 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 	lines = lines_vector.data();
 }
 
+static DWORD max_public_complete_symbol_name_length = 0;
+static DWORD max_public_symbol_name_length = 0;
+static DWORD max_private_complete_symbol_name_length = 0;
+static DWORD max_private_symbol_name_length = 0;
+
 void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t excluded_libs_count)
 {
 	uint32_t thread_count = GetActiveProcessorCount(0);
@@ -96,7 +101,7 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 			section_string = lines[++current_line];
 		}
 	}
-
+	
 	const char* public_symbols_search_string = lines[current_line];
 	if (strstr(public_symbols_search_string, "Address") == public_symbols_search_string)
 	{
@@ -111,7 +116,8 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 			}
 		}
 		uint64_t lines_end = current_line;
-
+		
+		temp_header.public_symbols.reserve(lines_end - lines_start);
 		tbb::parallel_for(lines_start, lines_end, 
 			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
@@ -142,21 +148,15 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 						public_symbol_string,
 						"%x:%x %2047s%llx" // section_index, rva, symbol_name, rva_plus_base
 						"%255s%255s%255s%255s" // auxillary
-						"%255s%255s%255s%255s" // auxillary
-						"%255s%255s%255s%255s" // auxillary
-						"%255s%255s%255s%255s" // auxillary
 						"%3s", // overflow
 						&temp_public.section_index,
 						&temp_public.rva,
 						&temp_public.mangled_symbol_name_buffer,
 						&temp_public.rva_plus_base,
 						&temp_public.auxillary[0], &temp_public.auxillary[1], &temp_public.auxillary[2], &temp_public.auxillary[3],
-						&temp_public.auxillary[3], &temp_public.auxillary[4], &temp_public.auxillary[6], &temp_public.auxillary[7],
-						&temp_public.auxillary[8], &temp_public.auxillary[9], &temp_public.auxillary[10], &temp_public.auxillary[11],
-						&temp_public.auxillary[12], &temp_public.auxillary[13], &temp_public.auxillary[14], &temp_public.auxillary[15],
 						&overflow);
 					ASSERT(count >= 5);
-					ASSERT(count <= 20); // if the overflow buffer is hit, the value will be >19
+					ASSERT(count <= 9);
 
 					//const char* flags[15];
 					//int flags_count = 0;
@@ -181,12 +181,16 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 
 					temp_header.mutex.lock();
 #ifndef _DEBUG
-					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name) - 1, UNDNAME_COMPLETE);
+					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name), UNDNAME_COMPLETE);
+					ASSERT(complete_symbol_name_length != 0);
 					temp_public.complete_symbol_name[complete_symbol_name_length] = 0;
+					max_public_complete_symbol_name_length = __max(complete_symbol_name_length, max_public_complete_symbol_name_length);
 #endif
-					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name) - 1, UNDNAME_NAME_ONLY);
+					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name), UNDNAME_NAME_ONLY);
+					ASSERT(symbol_name_length != 0);
 					temp_public.symbol_name[symbol_name_length] = 0;
-
+					max_public_symbol_name_length = __max(symbol_name_length, max_public_symbol_name_length);
+					
 					temp_header.public_symbols.emplace_back(temp_public);
 					temp_header.mutex.unlock();
 				}
@@ -216,7 +220,7 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 		}
 		uint64_t lines_end = current_line;
 
-
+		temp_header.static_symbols.reserve(lines_end - lines_start);
 		tbb::parallel_for(lines_start, lines_end,
 			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
@@ -263,19 +267,32 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 					}
 
 					temp_header.mutex.lock();
+
 #ifndef _DEBUG
-					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.complete_symbol_name, _countof(temp_static.complete_symbol_name) - 1, UNDNAME_COMPLETE);
+					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.complete_symbol_name, _countof(temp_static.complete_symbol_name), UNDNAME_COMPLETE);
+					ASSERT(complete_symbol_name_length != 0); // failure
 					temp_static.complete_symbol_name[complete_symbol_name_length] = 0;
+					max_private_complete_symbol_name_length = __max(complete_symbol_name_length, max_private_complete_symbol_name_length);
+					
 #endif
-					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.symbol_name, _countof(temp_static.symbol_name) - 1, UNDNAME_NAME_ONLY);
+					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.symbol_name, _countof(temp_static.symbol_name), UNDNAME_NAME_ONLY);
+					ASSERT(symbol_name_length != 0);
 					temp_static.symbol_name[symbol_name_length] = 0;
+					max_private_symbol_name_length = __max(symbol_name_length, max_private_symbol_name_length);
 
 					temp_header.static_symbols.emplace_back(temp_static);
 					temp_header.mutex.unlock();
 				}
 			});
-
 	}
+	
+	ASSERT(max_public_symbol_name_length < _countof(s_symbol_file_public_temp::symbol_name) - 2);
+	ASSERT(max_private_symbol_name_length < _countof(s_symbol_file_static_temp::symbol_name) - 2);
+#ifndef _DEBUG
+	ASSERT(max_public_complete_symbol_name_length < _countof(s_symbol_file_public_temp::complete_symbol_name) - 2);
+	ASSERT(max_private_complete_symbol_name_length < _countof(s_symbol_file_static_temp::complete_symbol_name) - 2);
+#endif
+	debug_point;
 }
 
 void c_map_file_parser::create_symbols_blob()
