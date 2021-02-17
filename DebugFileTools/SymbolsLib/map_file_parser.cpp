@@ -179,11 +179,11 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 						}
 					}
 
+					temp_header.mutex.lock();
 #ifndef _DEBUG
 					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name) - 1, UNDNAME_COMPLETE);
 					temp_public.complete_symbol_name[complete_symbol_name_length] = 0;
 #endif
-					temp_header.mutex.lock();
 					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name) - 1, UNDNAME_NAME_ONLY);
 					temp_public.symbol_name[symbol_name_length] = 0;
 
@@ -262,11 +262,11 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 						}
 					}
 
+					temp_header.mutex.lock();
 #ifndef _DEBUG
 					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.complete_symbol_name, _countof(temp_static.complete_symbol_name) - 1, UNDNAME_COMPLETE);
 					temp_static.complete_symbol_name[complete_symbol_name_length] = 0;
 #endif
-					temp_header.mutex.lock();
 					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_static.symbol_name, _countof(temp_static.symbol_name) - 1, UNDNAME_NAME_ONLY);
 					temp_static.symbol_name[symbol_name_length] = 0;
 
