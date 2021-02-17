@@ -297,7 +297,7 @@ namespace blofeld
 namespace macaque
 {
 
-	extern const s_tag_group* tag_groups[262];
+	extern const s_tag_group* tag_groups[];
 } // namespace macaque
 
 } // namespace blofeld

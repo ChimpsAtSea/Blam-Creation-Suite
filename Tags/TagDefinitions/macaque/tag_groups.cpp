@@ -6,7 +6,7 @@ namespace blofeld
 namespace macaque
 {
 
-const s_tag_group* tag_groups[262] = 
+const s_tag_group* tag_groups[] = 
 {
 	&shader_particle_group,
 	&cache_file_sound_group,
@@ -270,6 +270,7 @@ const s_tag_group* tag_groups[262] =
 	&water_physics_drag_properties_group,
 	&weather_globals_group,
 	&cache_file_resource_gestalt_group,
+	nullptr
 };
 
 } // namespace macaque
