@@ -21,54 +21,69 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 	size_t map_file_size = 0;
 	if (!filesystem_read_file_to_memory(mapping_filepath, &map_file, &map_file_size))
 	{
-		c_console::write_line_verbose("Failed to open input file");
+		c_console::write_line_verbose("Failed to open input file '%S'", mapping_filepath);
 		throw;
 	}
 
-	lines_vector.reserve(0x10000000);
-
-	char* current_read_position = map_file;
-	char* const end_read_position = map_file + map_file_size;
-	while (current_read_position < end_read_position)
 	{
-		constexpr uint32_t iteration_lines_count = 64 * 1024;
-		uint32_t lines_count = 0;
-		char* lines_tmp[iteration_lines_count];
-		while (current_read_position < end_read_position && lines_count < iteration_lines_count)
+		size_t line_buffer_count = 500;
+		char* current_read_position = map_file;
+		char* const end_read_position = map_file + map_file_size;
+		while (current_read_position < end_read_position)
 		{
-			//while (*current_read_position == ' ' || *current_read_position == '\r' || *current_read_position == '\n')
-			while (*current_read_position <= 33) // control characters + space
+			if(*current_read_position == '\n')
 			{
-				current_read_position++; // clear prefix spaces
+				line_buffer_count++;
 			}
-			lines_tmp[lines_count] = current_read_position;
-			lines_count++;
-
-			while (current_read_position < end_read_position)
+			current_read_position++;
+		}
+		lines_vector.reserve(line_buffer_count);
+	}
+	
+	{
+		char* current_read_position = map_file;
+		char* const end_read_position = map_file + map_file_size;
+		while (current_read_position < end_read_position)
+		{
+			constexpr uint32_t iteration_lines_count = 64 * 1024;
+			uint32_t lines_count = 0;
+			char* lines_tmp[iteration_lines_count];
+			while (current_read_position < end_read_position && lines_count < iteration_lines_count)
 			{
-				if (*current_read_position < 32) // control characters
+				//while (*current_read_position == ' ' || *current_read_position == '\r' || *current_read_position == '\n')
+				while (*current_read_position <= 33) // control characters + space
 				{
-					*current_read_position = 0;
-					current_read_position++;
-					if (current_read_position < end_read_position && *current_read_position < 32) // control characters
+					current_read_position++; // clear prefix spaces
+				}
+				lines_tmp[lines_count] = current_read_position;
+				lines_count++;
+
+				while (current_read_position < end_read_position)
+				{
+					if (*current_read_position < 32) // control characters
 					{
 						*current_read_position = 0;
 						current_read_position++;
+						if (current_read_position < end_read_position && *current_read_position < 32) // control characters
+						{
+							*current_read_position = 0;
+							current_read_position++;
+						}
+						break;
 					}
-					break;
-				}
-				else
-				{
-					current_read_position++;
+					else
+					{
+						current_read_position++;
+					}
 				}
 			}
+			lines_vector.insert(lines_vector.end(), (char**)lines_tmp, (char**)lines_tmp + lines_count);
 		}
-		lines_vector.insert(lines_vector.end(), (char**)lines_tmp, (char**)lines_tmp + lines_count);
+
+		lines_vector.push_back("");
+
+		lines = lines_vector.data();
 	}
-
-	lines_vector.push_back("");
-
-	lines = lines_vector.data();
 }
 
 static DWORD max_public_complete_symbol_name_length = 0;
@@ -117,7 +132,7 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 		}
 		uint64_t lines_end = current_line;
 		
-		temp_header.public_symbols.reserve(lines_end - lines_start);
+		//temp_header.public_symbols.reserve(lines_end - lines_start);
 		tbb::parallel_for(lines_start, lines_end, 
 			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
@@ -220,7 +235,7 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 		}
 		uint64_t lines_end = current_line;
 
-		temp_header.static_symbols.reserve(lines_end - lines_start);
+		//temp_header.static_symbols.reserve(lines_end - lines_start);
 		tbb::parallel_for(lines_start, lines_end,
 			[this, excluded_libs, excluded_libs_count](uint64_t line_index)
 			{
