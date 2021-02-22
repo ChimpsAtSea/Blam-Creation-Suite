@@ -2,7 +2,7 @@
 
 void __fatal_error_internal(const wchar_t* reason, const wchar_t* filepath, unsigned int line, ...)
 {
-	wchar_t fatal_error_buffer[2048] = {};
+	wchar_t fatal_error_buffer[4096] = {};
 	va_list va_args;
 	va_start(va_args, line);
 	_vsnwprintf(fatal_error_buffer, _countof(fatal_error_buffer) - 1, reason, va_args);
@@ -10,6 +10,8 @@ void __fatal_error_internal(const wchar_t* reason, const wchar_t* filepath, unsi
 
 	fatal_error_buffer[_countof(fatal_error_buffer) - 1] = 0;
 
+	c_console::write_line("%s(%u): error FATAL: %S", filepath, line, fatal_error_buffer);
+	
 	if (IsDebuggerPresent())
 	{
 		_wassert(fatal_error_buffer, filepath, line);

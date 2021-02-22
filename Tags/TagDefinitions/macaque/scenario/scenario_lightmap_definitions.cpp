@@ -485,9 +485,25 @@ namespace macaque
 	{
 		{ _field_real_point_3d, "airprobe position" },
 		{ _field_string_id, "airprobe name", FIELD_FLAG_INDEX },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 12 },
+		{ _field_legacy, _field_short_integer, "bsp index^" },
+		{ _field_legacy, _field_pad, "post-bsp-index-pad", 2 },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+		{ _field_legacy, _field_long_integer, "unknown" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		{ _field_long_integer, "BSP index", FIELD_FLAG_INDEX },
 		{ _field_dword_integer, "analytical light index" },
 		{ _field_struct, "sh terms", &half_rgb_lightprobe_struct },
+		
 		{ _field_terminator }
 	};
 

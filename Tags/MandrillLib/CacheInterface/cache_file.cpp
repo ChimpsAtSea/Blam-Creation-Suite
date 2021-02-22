@@ -185,7 +185,7 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath, 
 }
 
 c_cache_file::c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type, e_platform_type platform_type) :
-	virtual_memory_container(*new c_virtual_memory_container(1024 * 1024 * 1024)),
+	virtual_memory_container(*new c_virtual_memory_container(2ull * 1024ull * 1024ull * 1024ull)),
 	map_filepath(map_filepath.c_str()),
 	engine_type(engine_type),
 	platform_type(platform_type)

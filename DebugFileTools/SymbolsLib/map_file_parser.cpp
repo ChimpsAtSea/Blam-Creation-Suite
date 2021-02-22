@@ -25,10 +25,12 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 		throw;
 	}
 
+	char* const start_read_position = map_file;
+	char* const end_read_position = start_read_position + map_file_size;
+	
 	{
 		size_t line_buffer_count = 500;
-		char* current_read_position = map_file;
-		char* const end_read_position = map_file + map_file_size;
+		char* current_read_position = start_read_position;
 		while (current_read_position < end_read_position)
 		{
 			if(*current_read_position == '\n')
@@ -41,8 +43,7 @@ void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath
 	}
 	
 	{
-		char* current_read_position = map_file;
-		char* const end_read_position = map_file + map_file_size;
+		char* current_read_position = start_read_position;
 		while (current_read_position < end_read_position)
 		{
 			constexpr uint32_t iteration_lines_count = 64 * 1024;
