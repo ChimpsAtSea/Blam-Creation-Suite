@@ -49,7 +49,7 @@ public:
 	virtual __int64 __fastcall network_sendto_handler(NetworkID network_id, char* buffer, uint32_t buffer_size, int) override;
 	virtual __int64 __fastcall network_recvfrom_handler(char* buffer, uint32_t buffer_size, __int64, s_transport_address* pTransportAddress) override;
 	virtual char* __fastcall function40(unsigned int) override;
-	virtual int __fastcall function41(BYTE* buffer) override;
+	virtual int __fastcall telnet_console_print(const char* buffer) override;
 	virtual bool __fastcall function42(signed int, __int64, __int64) override;
 	virtual void __fastcall firefight_new_handler(__int64, float) override;
 	virtual BOOL __fastcall function44(__int64, __int64) override;

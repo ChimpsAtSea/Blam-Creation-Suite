@@ -804,8 +804,9 @@ char* __fastcall c_aotus_game_engine_host::function40(unsigned int)
 	return 0;
 }
 
-int __fastcall c_aotus_game_engine_host::function41(BYTE* buffer)
+int __fastcall c_aotus_game_engine_host::telnet_console_print(const char* buffer)
 {
+	c_console::write_line_verbose("%s\n", buffer);
 	return 0;
 }
 
