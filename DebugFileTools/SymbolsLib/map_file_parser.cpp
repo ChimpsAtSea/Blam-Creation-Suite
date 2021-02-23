@@ -198,12 +198,20 @@ void c_map_file_parser::parse_mapping_file(const char** excluded_libs, size_t ex
 					temp_header.mutex.lock();
 #ifndef _DEBUG
 					DWORD complete_symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.complete_symbol_name, _countof(temp_public.complete_symbol_name), UNDNAME_COMPLETE);
-					ASSERT(complete_symbol_name_length != 0);
+					DEBUG_ASSERT(complete_symbol_name_length != 0);
+					if (complete_symbol_name_length != 0)
+					{
+						c_console::write_line("%s(%i): warning SYM0: UnDecorateSymbolName failed %S", __FILE__, __LINE__, mangled_symbol_name);
+					}
 					temp_public.complete_symbol_name[complete_symbol_name_length] = 0;
 					max_public_complete_symbol_name_length = __max(complete_symbol_name_length, max_public_complete_symbol_name_length);
 #endif
 					DWORD symbol_name_length = UnDecorateSymbolName(mangled_symbol_name, temp_public.symbol_name, _countof(temp_public.symbol_name), UNDNAME_NAME_ONLY);
-					ASSERT(symbol_name_length != 0);
+					DEBUG_ASSERT(symbol_name_length != 0);
+					if(symbol_name_length != 0)
+					{
+						c_console::write_line("%s(%i): warning SYM1: UnDecorateSymbolName failed %S", __FILE__, __LINE__, mangled_symbol_name);
+					}
 					temp_public.symbol_name[symbol_name_length] = 0;
 					max_public_symbol_name_length = __max(symbol_name_length, max_public_symbol_name_length);
 					
