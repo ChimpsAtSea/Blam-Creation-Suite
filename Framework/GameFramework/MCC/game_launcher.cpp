@@ -923,7 +923,7 @@ void c_game_launcher::render_main_menu()
 		case _engine_type_eldorado:
 			break;
 #endif
-}
+		}
 
 		ImGui::Dummy(ImVec2(0.0f, 30.0f));
 
@@ -987,7 +987,7 @@ next:
 
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
-	
+
 	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
@@ -1038,7 +1038,6 @@ next:
 		}
 	}
 	break;
-		break;
 	case _engine_type_halo1:
 		game_mode = map_id_to_game_mode(g_halo1_map_id);
 		break;
@@ -1058,6 +1057,8 @@ next:
 		game_mode = map_id_to_game_mode(g_groundhog_map_id);
 		break;
 #endif
+	default:
+		break;
 	}
 
 	if (game_mode == _mcc_game_mode_campaign)
@@ -1201,7 +1202,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameOptio
 	return true;
 }
 
-bool c_game_launcher::load_save_from_file(GameOptions *options, LPCSTR file_name, bool should_run)
+bool c_game_launcher::load_save_from_file(GameOptions* options, LPCSTR file_name, bool should_run)
 {
 	if (should_run)
 	{
@@ -1214,7 +1215,7 @@ bool c_game_launcher::load_save_from_file(GameOptions *options, LPCSTR file_name
 			{
 				// take off the last 4 bytes from the size to exclude our added map id
 				options->game_state_header_size -= 4;
-				e_map_id map_id = *reinterpret_cast<e_map_id *>(&options->game_state_header[options->game_state_header_size]);
+				e_map_id map_id = *reinterpret_cast<e_map_id*>(&options->game_state_header[options->game_state_header_size]);
 				options->game_mode = map_id_to_game_mode(map_id);
 				options->map_id = map_id;
 

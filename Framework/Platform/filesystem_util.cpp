@@ -10,7 +10,7 @@ bool filesystem_read_from_file_handle_to_memory(FILE* file_handle, void** out_bu
 	const long long file_end = _ftelli64(file_handle);
 	_fseeki64(file_handle, read_beginning, SEEK_SET);
 
-	size_t max_bytes_to_read = file_end - read_beginning;
+	size_t max_bytes_to_read = static_cast<size_t>(file_end - read_beginning);
 
 	if (out_buffer_size == nullptr)
 	{
