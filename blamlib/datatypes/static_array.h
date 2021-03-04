@@ -93,3 +93,6 @@ public:
 		return &m_elements[k_maximum_count];
 	}
 };
+
+template <typename t_element, const long k_maximum_count>
+using s_static_array = c_static_array<t_element, k_maximum_count>;

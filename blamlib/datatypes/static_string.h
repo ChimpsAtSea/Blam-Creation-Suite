@@ -165,3 +165,6 @@ public:
 		return *this;
 	}
 };
+
+template <const long k_maximum_length>
+using s_static_string = c_static_string<k_maximum_length>;
