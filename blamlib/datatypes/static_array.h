@@ -16,7 +16,7 @@ public:
 		csmemset(m_elements, 0, sizeof(t_element) * k_maximum_count);
 	}
 
-	c_static_array(t_element* m_elements) :
+	c_static_array(const t_element* m_elements) :
 		c_static_array()
 	{
 		blamlib_assert(m_elements);

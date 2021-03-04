@@ -414,4 +414,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="blamlib\datatypes\enum.natvis" />
+  </ItemGroup>
 </Project>

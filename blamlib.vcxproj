@@ -154,6 +154,9 @@
     <ClCompile Include="blamlib\tag_files\tag_groups.cpp" />
     <ClCompile Include="blamlib\tag_files\tag_resource_internals.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="blamlib\datatypes\enum.natvis" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{6686F215-AB57-434D-85E0-8AAA5AB68D36}</ProjectGuid>

@@ -4,7 +4,7 @@
 
 /* ---------- classes */
 
-template <typename t_enum, typename t_storage>
+template <typename t_enum, typename t_storage, t_enum minimum_value = t_enum(), t_enum maximum_value = t_enum()>
 class c_enum_no_init
 {
 	static_assert(__is_enum(t_enum));
@@ -14,6 +14,9 @@ protected:
 	t_storage m_storage;
 
 public:
+	static constexpr t_enum k_minimum_value = minimum_value;
+	static constexpr t_enum k_maximum_value = maximum_value;
+
 	template <typename t_type>
 	static t_enum cast_to_enum(t_type value)
 	{
@@ -39,9 +42,9 @@ public:
 	}
 };
 
-template <typename t_enum, typename t_storage>
+template <typename t_enum, typename t_storage, t_enum minimum_value = t_enum(), t_enum maximum_value = t_enum()>
 class c_enum :
-	public c_enum_no_init<t_enum, t_storage>
+	public c_enum_no_init<t_enum, t_storage, minimum_value, maximum_value>
 {
 public:
 	c_enum() = default;
