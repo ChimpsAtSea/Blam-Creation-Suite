@@ -3,7 +3,7 @@
 class c_aotus_game_engine_host : public IGameEngineHost
 {
 public:
-	c_aotus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime);
+	c_aotus_game_engine_host(s_engine_platform_build engine_platform_build, c_game_runtime& rGameRuntime);
 	virtual ~c_aotus_game_engine_host();
 
 	// MCC Functions

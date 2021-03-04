@@ -5,7 +5,7 @@ typedef void(t_function_hook_callback)(void* user_data);
 class c_function_hook_base
 {
 public:
-	c_function_hook_base(const char* pName, e_engine_type engine_type, e_build build, size_t offset, find_offset_func find_offset)
+	c_function_hook_base(const char* pName, s_engine_platform_build engine_platform_build, size_t offset, find_offset_func find_offset)
 		: engine_type(engine_type)
 		, build(build)
 		, offset(offset)
@@ -24,7 +24,7 @@ public:
 		}
 		else
 		{
-			bool hook_offset_exists = g_last_function_hook->does_offset_exist(engine_type, build, offset);
+			bool hook_offset_exists = g_last_function_hook->does_offset_exist(engine_platform_build, offset);
 			ASSERT(hook_offset_exists == false);
 
 			g_last_function_hook->next_function_hook = this;
@@ -38,8 +38,8 @@ public:
 	[[nodiscard]] inline void* get_callback_userdata() const { return callback_user_data; };
 	[[nodiscard]] inline const char* get_name() const { return name; };
 
-	static void init_function_hook_tree(e_engine_type engine_type, e_build build);
-	static void deinit_function_hook_tree(e_engine_type engine_type, e_build build);
+	static void init_function_hook_tree(s_engine_platform_build engine_platform_build);
+	static void deinit_function_hook_tree(s_engine_platform_build engine_platform_build);
 
 public:
 	bool is_active;
@@ -59,8 +59,8 @@ protected:
 	static c_function_hook_base* g_first_function_hook;
 	static c_function_hook_base* g_last_function_hook;
 
-	[[nodiscard]] c_function_hook_base* init_node(e_engine_type engine_type, e_build build);
-	[[nodiscard]] c_function_hook_base* deinit_node(e_engine_type engine_type, e_build build);
+	[[nodiscard]] c_function_hook_base* init_node(s_engine_platform_build engine_platform_build);
+	[[nodiscard]] c_function_hook_base* deinit_node(s_engine_platform_build engine_platform_build);
 
 	void set_callback(t_function_hook_callback* callback, void* callback_user_data)
 	{
@@ -68,7 +68,7 @@ protected:
 		this->callback_user_data = callback_user_data;
 	}
 
-	bool does_offset_exist(e_engine_type engine_type, e_build build, size_t offset)
+	bool does_offset_exist(s_engine_platform_build engine_platform_build, size_t offset)
 	{
 		if (engine_type == engine_type)
 		{
@@ -83,7 +83,7 @@ protected:
 		}
 		if (next_function_hook)
 		{
-			return next_function_hook->does_offset_exist(engine_type, build, offset);
+			return next_function_hook->does_offset_exist(engine_platform_build, offset);
 		}
 		return false;
 	}

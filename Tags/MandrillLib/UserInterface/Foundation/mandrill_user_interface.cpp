@@ -62,7 +62,8 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, cons
 			}
 		}
 	}
-
+	// #TODO: cache refactor
+	/*
 	long file_version = 0;
 	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
 
@@ -148,7 +149,7 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, cons
 				tag_project_tab->open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
 			}
 		}
-	}
+	}*/
 }
 
 void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, const char* tag_list)
@@ -171,13 +172,15 @@ void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, co
 			// #TODO
 		}
 	}
-
+	// #TODO: cache refactor
+	/*
 	long file_version = 0;
 	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
 	if (engine_type == _engine_type_haloreach)
 	{
 		create_tag_project(filepath);
 	}
+	*/
 }
 
 void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, const char* tag_list)
@@ -192,7 +195,8 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 		c_console::write_line("failed to open %s", filepath);
 		return;
 	}
-
+	// #TODO: cache refactor
+	/*
 	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 	{
 		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
@@ -232,6 +236,7 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 		add_tab(*cache_file_tab);
 		next_selected_tab = cache_file_tab;
 	}
+	*/
 }
 
 void c_mandrill_user_interface::restore_previous_session(bool use_projects)
@@ -378,6 +383,8 @@ void c_mandrill_user_interface::save_current_session()
 		}
 		else if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
+			// #TODO: cache refactor
+			/*
 			if (!open_maps_path.empty())
 			{
 				open_maps_path += ';';
@@ -418,6 +425,7 @@ void c_mandrill_user_interface::save_current_session()
 			{
 				open_maps_path += ']';
 			}
+			*/
 		}
 	}
 

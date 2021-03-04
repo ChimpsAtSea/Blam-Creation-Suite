@@ -129,7 +129,8 @@ public:
 
 static int run_mandrill_api_test()
 {
-	using namespace blofeld;
+	// #TODO: cache refactor
+	/*using namespace blofeld;
 	using namespace blofeld::haloreach;
 
 #define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
@@ -171,7 +172,7 @@ static int run_mandrill_api_test()
 		stopwatch.stop();
 		c_console::write_line_verbose("Loaded generated map in %.2fms", stopwatch.get_miliseconds());
 		debug_point;
-	}
+	}*/
 	
 
 	return 0;

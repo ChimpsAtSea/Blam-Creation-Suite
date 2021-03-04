@@ -2718,7 +2718,6 @@
     <ClInclude Include="tag_group_info.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />
-    <ClInclude Include="types\engine_type_and_platform_and_build.h" />
     <ClInclude Include="types\tag_array_definition.h" />
     <ClInclude Include="types\tag_block_definition.h" />
     <ClInclude Include="types\tag_field.h" />

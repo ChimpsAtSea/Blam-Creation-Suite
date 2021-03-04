@@ -32,8 +32,9 @@ private:
 	{
 		if (tag_interface.get_data() != nullptr)
 		{
-			begin_pointer = tag_interface.get_cache_file().get_tag_block_data(tag_block);
-			end_pointer = begin_pointer + tag_block.count;
+			// #TODO: cache refactor
+			//begin_pointer = tag_interface.get_cache_file().get_tag_block_data(tag_block);
+			//end_pointer = begin_pointer + tag_block.count;
 		}
 	}
 

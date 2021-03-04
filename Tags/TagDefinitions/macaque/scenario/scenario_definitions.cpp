@@ -6,7 +6,6 @@ namespace blofeld
 
 namespace macaque
 {
-
 	#define PERFORMANCE_TEMPLATE_STRUCT_DEFINITION_ID { 0x75BA5372, 0x8E344209, 0x96284F55, 0x56AA1347 }
 	TAG_BLOCK(
 		performance_template_block,

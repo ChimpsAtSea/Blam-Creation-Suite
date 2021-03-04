@@ -1,6 +1,6 @@
 
 #pragma region Shell Debug
-uintptr_t groundhog_external_launch_individual_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t groundhog_external_launch_individual_state_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1477_0_0, 0x18130E224);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1499_0_0, 0x18130E2A4);
@@ -19,7 +19,7 @@ uintptr_t groundhog_external_launch_individual_state_offset(e_engine_type engine
 }
 long& groundhog_external_launch_individual_state = reference_symbol<long>("groundhog_external_launch_individual_state", groundhog_external_launch_individual_state_offset);
 
-uintptr_t groundhog_main_game_launch_offset(e_engine_type engine_type, e_build build)
+uintptr_t groundhog_main_game_launch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1477_0_0, 0x1800265D0);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1499_0_0, 0x1800265D0);

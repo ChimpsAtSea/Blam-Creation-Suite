@@ -2,10 +2,8 @@
 
 using namespace blofeld;
 
-c_low_level_tag_source_generator::c_low_level_tag_source_generator(e_engine_type engine_type, e_platform_type platform_type, e_build build) :
-	engine_type(engine_type),
-	platform_type(platform_type),
-	build(build),
+c_low_level_tag_source_generator::c_low_level_tag_source_generator(s_engine_platform_build engine_platform_build) :
+	engine_platform_build(engine_platform_build),
 	has_error(false)
 {
 
@@ -84,7 +82,10 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_qword_integer:						return "qword";
 	case _field_pointer: // #NONSTANDARD
 	{
-		switch (get_platform_pointer_size(platform_type))
+		uint32_t pointer_size;
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
+
+		switch (pointer_size)
 		{
 		case 8: return "long long";
 		case 4: return "long";
@@ -101,7 +102,9 @@ void c_low_level_tag_source_generator::generate_header() const
 {
 	std::stringstream stream;
 
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
@@ -120,19 +123,27 @@ void c_low_level_tag_source_generator::generate_header() const
 
 		std::map<std::string, int> field_name_unique_counter;
 
-
-
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
-			const char* field_type_string = field_to_string(current_field->field_type);
-
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
+
+			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			switch (current_field->field_type)
+			{
+			case _field_custom:
+				break;
+			default:
+				field_name_unique_counter_ptr = &field_name_unique_counter;
+				break;
+			}
+
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
+			const char* field_type_string = field_to_string(current_field->field_type);
 
 			switch (current_field->field_type)
 			{
@@ -191,7 +202,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count(engine_type) << "];";
+				stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count(engine_platform_build) << "];";
 				break;
 			}
 			case _field_struct:
@@ -287,7 +298,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			}
 			default:
 			{
-				const char* field_source_type = field_type_to_low_level_source_type(platform_type, current_field->field_type);
+				const char* field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 				ASSERT(!field_formatter.code_name.empty());
 				stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
 			}
@@ -328,7 +339,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 		stream << "\t\t" << "};" << std::endl;
 
-		uint32_t struct_size = calculate_struct_size(engine_type, platform_type, build, *tag_struct_definition);
+		uint32_t struct_size = calculate_struct_size(engine_platform_build, *tag_struct_definition);
 
 		// stream << "\t\t" << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
 		// stream << "\t\t" << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
@@ -371,7 +382,9 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 {
 	std::stringstream stream;
 
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
@@ -388,8 +401,8 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 	{
 		string_list_value_unique_counter.clear();
 
-		uint32_t count = string_list_definition->count(engine_type, platform_type);
-		const c_blamlib_string_parser** string_parsers = string_list_definition->strings(engine_type, platform_type);
+		uint32_t count = string_list_definition->count(engine_platform_build);
+		const c_blamlib_string_parser** string_parsers = string_list_definition->strings(engine_platform_build);
 
 		stream << "\t\t" << "enum e_" << string_list_definition->name << " : long" << std::endl;
 		stream << "\t\t" << "{" << std::endl;

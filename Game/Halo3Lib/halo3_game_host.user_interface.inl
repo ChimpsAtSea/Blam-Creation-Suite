@@ -1,7 +1,7 @@
 
 #pragma region Screen Patches
 // skip the `shell_get_external_host()` check that prevents the game from using the built-in start menu
-uintptr_t halo3_start_menu_screen_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_start_menu_screen_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804C176B);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BFD89);
@@ -18,7 +18,7 @@ uintptr_t halo3_start_menu_screen_patch_offset(e_engine_type engine_type, e_buil
 	OFFSET(_engine_type_halo3, _build_mcc_1_2094_0_0, 0x1802BD92E);
 	return ~uintptr_t();
 }
-c_data_patch<halo3_start_menu_screen_patch_offset> halo3_start_menu_screen_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<halo3_start_menu_screen_patch_offset> halo3_start_menu_screen_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	// nop `test    rax, rax` or `test    r9, r9`
 	packet = MAKE_DATAPATCHPACKET(data, 5);
@@ -26,18 +26,18 @@ c_data_patch<halo3_start_menu_screen_patch_offset> halo3_start_menu_screen_patch
 
 	uint8_t jump[1] { 0x85ui8 };
 
-	if (build == _build_mcc_1_1767_0_0)
+	if (engine_platform_build.build == _build_mcc_1_1767_0_0)
 	{
 		copy_to_address(&data[3], &jump, sizeof(jump));
 	}
-	else if (build >= _build_mcc_1_1955_0_0)
+	else if (engine_platform_build.build >= _build_mcc_1_1955_0_0)
 	{
 		copy_to_address(&data[4], &jump, sizeof(jump));
 	}
 } };
 
 // this patch shouldn't be needed
-uintptr_t halo3_settings_menu_patch2_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_settings_menu_patch2_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1804C183A);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804BFE53);
@@ -55,7 +55,7 @@ uintptr_t halo3_settings_menu_patch2_offset(e_engine_type engine_type, e_build b
 	return ~uintptr_t();
 }
 c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
-	[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+	[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 	{
 		packet = MAKE_DATAPATCHPACKET(data, 6);
 		nop_address(data, 6);
@@ -65,7 +65,7 @@ c_data_patch<halo3_settings_menu_patch2_offset> halo3_settings_menu_patch2 = {
 
 #pragma region miscellaneous ui changes
 bool g_halo3_disable_c_ui_view_render = false;
-uintptr_t halo3_c_ui_view_render_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_c_ui_view_render_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180483500);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1804822E0);
@@ -92,7 +92,7 @@ c_function_hook_ex<halo3_c_ui_view_render_offset, void __fastcall(__int64)> halo
 	halo3_c_ui_view_render(this_ptr);
 } };
 
-uintptr_t halo3_version_number_callback_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_version_number_callback_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1805430F0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x1805419B0);
@@ -112,8 +112,11 @@ uintptr_t halo3_version_number_callback_offset(e_engine_type engine_type, e_buil
 c_function_hook_ex<halo3_version_number_callback_offset, bool __fastcall(__int64, wchar_t*, int)> halo3_version_number_callback = { "halo3_version_number_callback", [](__int64 unused, wchar_t* dst, int len)
 {
 	e_build build = c_halo3_game_host::get_game_runtime().get_build();
-	const wchar_t* build_str = get_enum_string<const wchar_t*, true>(build);
-	swprintf_s(dst, len, L"%s", build_str);
+	
+	const char* build_str;
+	ASSERT(BCS_SUCCEEDED(get_build_string(build, &build_str)));
+	
+	swprintf_s(dst, len, L"%S", build_str);
 
 	return true;
 } };

@@ -1,8 +1,5 @@
 #include "haloreachlib-private-pch.h"
 
-extern void init_haloreach(e_engine_type engine_type, e_build build);
-extern void deinit_haloreach(e_engine_type engine_type, e_build build);
-
 /* ---------- private constants */
 /* ---------- private macros */
 /* ---------- private types */
@@ -24,7 +21,6 @@ c_haloreach_game_host* c_haloreach_game_host::current_host = nullptr;
 #include "haloreach_game_host.memory.inl"
 #include "haloreach_game_host.shell.inl"
 #include "haloreach_game_host.scripting.inl"
-#include "haloreach_game_host.legacy.inl"
 #include "haloreach_game_host.testing.inl"
 
 void register_haloreachlib()
@@ -32,8 +28,8 @@ void register_haloreachlib()
 
 }
 
-c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build build) :
-	c_aotus_game_engine_host(engine_type, build, g_haloreach_game_runtime)
+c_haloreach_game_host::c_haloreach_game_host(s_engine_platform_build engine_platform_build) :
+	c_aotus_game_engine_host(engine_platform_build, g_haloreach_game_runtime)
 {
 	current_host = this;
 
@@ -52,7 +48,8 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 	}
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(haloreach_tag_address_get); // #TODO: This is kinda hacky
-	c_mandrill_user_interface::set_get_tag_game_memory_callback(haloreach_tag_definition_get); // #TODO: This is kinda hacky
+	// #TODO: cache refactor
+	//c_mandrill_user_interface::set_get_tag_game_memory_callback(haloreach_tag_definition_get); // #TODO: This is kinda hacky
 }
 
 c_haloreach_game_host::~c_haloreach_game_host()
@@ -126,9 +123,9 @@ void c_haloreach_game_host::init_runtime_modifications(e_build build)
 	}
 
 	init_detours();
-	c_global_reference::init_global_reference_tree(_engine_type_haloreach, build);
-	c_function_hook_base::init_function_hook_tree(_engine_type_haloreach, build);
-	c_data_patch_base::init_data_patch_tree(_engine_type_haloreach, build);
+	c_global_reference::init_global_reference_tree({ _engine_type_haloreach, _platform_type_pc, build });
+	c_function_hook_base::init_function_hook_tree({ _engine_type_haloreach, _platform_type_pc, build });
+	c_data_patch_base::init_data_patch_tree({ _engine_type_haloreach, _platform_type_pc, build });
 	end_detours();
 }
 
@@ -138,9 +135,9 @@ void c_haloreach_game_host::deinit_runtime_modifications(e_build build)
 	delete g_haloreach_camera_command;
 
 	init_detours();
-	c_function_hook_base::deinit_function_hook_tree(_engine_type_haloreach, build);
-	c_data_patch_base::deinit_data_patch_tree(_engine_type_haloreach, build);
-	c_global_reference::deinit_global_reference_tree(_engine_type_haloreach, build);
+	c_function_hook_base::deinit_function_hook_tree({ _engine_type_haloreach, _platform_type_pc, build });
+	c_data_patch_base::deinit_data_patch_tree({ _engine_type_haloreach, _platform_type_pc, build });
+	c_global_reference::deinit_global_reference_tree({ _engine_type_haloreach, _platform_type_pc, build });
 	end_detours();
 }
 

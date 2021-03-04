@@ -3,7 +3,6 @@
 #include "blofeld.h"
 #include "blamlib_string_parser.h"
 #include "blofeld/constants.h"
-#include "types/engine_type_and_platform_and_build.h"
 #include "types/field_type.h"
 #include "types/tag_group.h"
 #include "types/tag_struct_definition.h"

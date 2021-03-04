@@ -69,9 +69,6 @@
     <ClInclude Include="xxhash_cx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="enum_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Strings\strings.h">
       <Filter>Header Files</Filter>
     </ClInclude>

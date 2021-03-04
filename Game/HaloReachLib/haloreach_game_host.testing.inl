@@ -1,6 +1,6 @@
 
 
-uintptr_t sub_180030594_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180030594_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x180030594);
 
@@ -12,7 +12,7 @@ c_function_hook_ex<sub_180030594_offset, char __fastcall (__int64 a1, __int64 a2
 	return result;
 } };
 
-uintptr_t sub_18001384C_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18001384C_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18001384C);
 
@@ -28,7 +28,7 @@ c_function_hook_ex<sub_18001384C_offset, int __fastcall (char* Buffer, size_t Bu
 	return result;
 } };
 
-//uintptr_t sub_1800333D0_offset(e_engine_type engine_type, e_build build)
+//uintptr_t sub_1800333D0_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1800333D0);
 //
@@ -41,7 +41,7 @@ c_function_hook_ex<sub_18001384C_offset, int __fastcall (char* Buffer, size_t Bu
 //} };
 
 #define simple_void_logger(offset) \
-uintptr_t CONCAT(sub_##offset, _offset)(e_engine_type engine_type, e_build build)								\
+uintptr_t CONCAT(sub_##offset, _offset)(s_engine_platform_build engine_platform_build)								\
 {																										\
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x##offset);									\
 	return ~uintptr_t();																				\
@@ -62,7 +62,7 @@ simple_void_logger(180010584);
 simple_void_logger(180010294);
 simple_void_logger(1800101B8);
 
-uintptr_t sub_1803FDA48_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_1803FDA48_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1803FDA48);
 
@@ -76,7 +76,7 @@ c_function_hook_ex<sub_1803FDA48_offset, __int64 __fastcall (__int64 a1)> sub_18
 
 // #TODO investigate this validation function!!!
 
-uintptr_t sub_18004F224_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18004F224_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18004F224);
 
@@ -90,7 +90,7 @@ c_function_hook_ex<sub_18004F224_offset, char __fastcall (__int64 a1, _DWORD* a2
 	return result;
 } };
 
-uintptr_t c_datamine_ctor_offset(e_engine_type engine_type, e_build build)
+uintptr_t c_datamine_ctor_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1800C2FE8);
 
@@ -116,7 +116,7 @@ FunctionHookVarArgsEx<c_datamine_ctor_offset, __int64 __fastcall (__int64 _this,
 } };
 
 //
-//uintptr_t sub_1800333D0_offset(e_engine_type engine_type, e_build build)
+//uintptr_t sub_1800333D0_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1800333D0);
 //
@@ -143,7 +143,7 @@ FunctionHookVarArgsEx<c_datamine_ctor_offset, __int64 __fastcall (__int64 _this,
 //
 //sub_1800333D0(v17, "failed to open '%s', GetLastError()==%d", FileName, v12);
 
-uintptr_t DamagedMediaHaltAndDisplayError_offset(e_engine_type engine_type, e_build build)
+uintptr_t DamagedMediaHaltAndDisplayError_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1802A6068);
 
@@ -160,9 +160,9 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void __fastcall (c
 } };
 
 
-void* (&page_offset_table)[] = reference_symbol<void* []>("page_offset_table", _engine_type_haloreach, _build_mcc_1_1955_0_0, 0x1836726C0);
+void* (&page_offset_table)[] = reference_symbol<void* []>("page_offset_table", { _engine_type_haloreach, _platform_type_pc, _build_mcc_1_1955_0_0 }, 0x1836726C0);
 
-uintptr_t sub_18004CD88_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18004CD88_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1955_0_0, 0x18004CD88);
 

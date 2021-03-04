@@ -426,23 +426,22 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 
 c_aotus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
 {
-	e_build build = _build_not_set;
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_game_host(engine_type, c_haloreach_game_host::get_game_runtime().get_build());
+		return new c_haloreach_game_host({ engine_type, _platform_type_pc, c_haloreach_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo1:
-		return new c_halo1_game_host(engine_type, c_halo1_game_host::get_game_runtime().get_build());
+		return new c_halo1_game_host({ engine_type, _platform_type_pc, c_halo1_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo2:
-		return new c_halo2_game_host(engine_type, c_halo2_game_host::get_game_runtime().get_build());
+		return new c_halo2_game_host({ engine_type, _platform_type_pc, c_halo2_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo3:
-		return new c_halo3_game_host(engine_type, c_halo3_game_host::get_game_runtime().get_build());
+		return new c_halo3_game_host({ engine_type, _platform_type_pc, c_halo3_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo3odst:
-		return new c_halo3odst_game_host(engine_type, c_halo3odst_game_host::get_game_runtime().get_build());
+		return new c_halo3odst_game_host({ engine_type, _platform_type_pc, c_halo3odst_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo4:
-		return new c_halo4_game_host(engine_type, c_halo4_game_host::get_game_runtime().get_build());
+		return new c_halo4_game_host({ engine_type, _platform_type_pc, c_halo4_game_host::get_game_runtime().get_build() });
 	case _engine_type_groundhog:
-		return new c_groundhog_game_host(engine_type, c_groundhog_game_host::get_game_runtime().get_build());
+		return new c_groundhog_game_host({ engine_type, _platform_type_pc, c_groundhog_game_host::get_game_runtime().get_build() });
 	}
 
 	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
@@ -556,11 +555,11 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 	for (t_generic_game_event game_event : s_game_startup_events)
 	{
-		game_event(engine_type, current_game_host->build);
+		game_event(current_game_host->engine_platform_build);
 	}
 
 	GameOptions* game_options = nullptr;
-	c_session_manager::create_game_options(current_game_host->build, &game_options);
+	c_session_manager::create_game_options(current_game_host->engine_platform_build, &game_options);
 	ASSERT(game_options);
 
 	game_options->visual_remaster = use_remastered_visuals;
@@ -672,7 +671,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 	for (t_generic_game_event game_event : s_game_shutdown_events)
 	{
-		game_event(engine_type, current_game_host->build);
+		game_event(current_game_host->engine_platform_build);
 	}
 
 	delete current_game_host;
@@ -760,13 +759,17 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 #ifdef _WIN64
 void display_map_in_ui(std::vector<e_map_id> map_ids, e_map_id& map_id_ref)
 {
-	if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(map_id_ref)))
+	const char* current_map_name = "";
+	get_map_id_pretty_string(map_id_ref, &current_map_name);
+	if (ImGui::BeginCombo("Map", current_map_name))
 	{
 		for (e_map_id map_id : map_ids)
 		{
 			bool is_selected = map_id == map_id_ref;
 
-			if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
+			const char* current_selectable_map_name = "";
+			get_map_id_pretty_string(map_id, &current_selectable_map_name);
+			if (ImGui::Selectable(current_selectable_map_name, is_selected))
 			{
 				map_id_ref = map_id;
 			}
@@ -883,12 +886,14 @@ void c_game_launcher::render_main_menu()
 		ImGui::Columns(2);
 		ImGui::SetColumnOffset(1, s_window->get_width_float() * 0.5f);
 
-		const char* current_engine_name = get_enum_pretty_string<decltype(current_engine_name)>(g_engine_type);
+		const char* current_engine_name = "unknown";
+		get_engine_type_pretty_string(g_engine_type, &current_engine_name);
 		if (ImGui::BeginCombo("Game", current_engine_name))
 		{
 			for (e_engine_type supported_engine_type : g_supported_engine_types)
 			{
-				const char* supported_engine_name = get_enum_pretty_string<decltype(supported_engine_name)>(supported_engine_type);
+				const char* supported_engine_name = "unknown";
+				get_engine_type_pretty_string(supported_engine_type, &supported_engine_name);
 				if (ImGui::Selectable(supported_engine_name))
 				{
 					g_engine_type = supported_engine_type;
@@ -1023,7 +1028,7 @@ next:
 	}
 
 	static e_mcc_game_mode game_mode = _mcc_game_mode_none;
-	switch (current_game_host->engine_type)
+	switch (current_game_host->engine_platform_build.engine_type)
 	{
 #ifdef _WIN64
 	case _engine_type_haloreach:
@@ -1179,13 +1184,20 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameOptio
 		switch (variant_type)
 		{
 		case _variant_type_game:
+		{
 			variant_data = new char[k_game_variant_buffer_size];
 			variant_accessor_base = data_access->game_variant_create_default(variant_data);
 			break;
+		}
 		case _variant_type_map:
-			c_console::write_line_verbose("Creating default variant for '%s'", get_enum_string<const char*, true>(static_cast<e_map_id>(options->map_id)));
+		{
+			const char* current_map_name = "Unknown Map";
+			get_map_id_pretty_string(static_cast<e_map_id>(options->map_id), &current_map_name);
+
+			c_console::write_line_verbose("Creating default variant for '%s'", current_map_name);
 			variant_accessor_base = data_access->map_variant_create_from_map_id(options->map_id);
 			break;
+		}
 		}
 	}
 
@@ -1237,7 +1249,10 @@ std::vector<std::string>& c_game_launcher::variant_files_get(e_engine_type engin
 	const char* type_name = "";
 	const char* type_nice_name = "";
 	const char* type_extension = "";
-	const char* engine_folder_name = engine_type_to_folder_name<decltype(engine_folder_name)>(engine_type);
+
+	const char* engine_folder_name;
+	BCS_RESULT get_engine_type_folder_string_result = get_engine_type_folder_string(engine_type, &engine_folder_name);
+	DEBUG_ASSERT(SUCCEEDED(get_engine_type_folder_string_result));
 
 	switch (variant_type)
 	{

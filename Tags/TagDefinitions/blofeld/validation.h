@@ -18,9 +18,7 @@ namespace blofeld
 	};
 
 	void iterate_structure_fields(
-		e_engine_type engine_type, 
-		e_platform_type platform_type,
-		e_build build, 
+		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
 		bool recursive_block,
@@ -33,9 +31,7 @@ namespace blofeld
 		t_iterate_structure_fields_callback* callback,
 		void* userdata = nullptr);
 	uint32_t calculate_struct_size(
-		e_engine_type engine_type, 
-		e_platform_type platform_type, 
-		e_build build, 
+		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition, 
 		e_validation_result* block_failed_validation = nullptr,
 		bool disable_platform_independent_warnings = false,

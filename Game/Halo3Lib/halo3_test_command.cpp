@@ -116,57 +116,60 @@ std::string c_halo3_test_command::get_command_auto_complete(const std::vector<st
 
 using namespace blofeld::halo3;
 
-extern char* halo3_tag_definition_get(unsigned long group, const char* tag_name);
-extern char* halo3_tag_address_get(uint32_t tag_instance_address);
-extern char* halo3_tag_definition_get(uint32_t index);
-extern const char* halo3_tag_name_get(unsigned long tag_index);
+// #TODO: cache refactor
+//extern char* halo3_tag_definition_get(unsigned long group, const char* tag_name);
+//extern char* halo3_tag_address_get(uint32_t tag_instance_address);
+//extern char* halo3_tag_definition_get(uint32_t index);
+//extern const char* halo3_tag_name_get(unsigned long tag_index);
 
 void print_mainmenu_ui_globals_test_command()
 {
-	// #TODO: the globals structure isn't currently the correct size for Halo 3, someone please fix that
-	//if (s_globals_struct_definition* globals = reinterpret_cast<s_globals_struct_definition*>(halo3_tag_definition_get(blofeld::GLOBALS_TAG, "globals\\globals")); globals)
-	if (char* globals = halo3_tag_definition_get(blofeld::GLOBALS_TAG, "globals\\globals"); globals)
-	{
-		//if (decltype(globals->interface_tags_block) interface_tags_block = globals->interface_tags_block; interface_tags_block.count)
-		if (unsigned long interface_tag_block_count = *reinterpret_cast<unsigned long*>(&globals[0x134] + 0); interface_tag_block_count)
-		{
-			//if (decltype(interface_tags_block.get_element(0)) interface_tag = interface_tags_block.get_element(0); interface_tag)
-			if (char* interface_tag = halo3_tag_address_get(*reinterpret_cast<unsigned long*>(&globals[0x134] + 4)); interface_tag)
-			{
-				//if (decltype(interface_tag->mainmenu_ui_globals) mainmenu_ui_globals_reference = interface_tag->mainmenu_ui_globals; mainmenu_ui_globals_reference.group_tag == blofeld::USER_INTERFACE_GLOBALS_DEFINITION_TAG)
-				if (unsigned long mainmenu_ui_globals_group = *reinterpret_cast<unsigned long*>(&interface_tag[0xE0] + 0); mainmenu_ui_globals_group == blofeld::USER_INTERFACE_GLOBALS_DEFINITION_TAG)
-				{
-					//if (unsigned short mainmenu_ui_globals_index = mainmenu_ui_globals_reference.index; mainmenu_ui_globals_index)
-					if (unsigned short mainmenu_ui_globals_index = *reinterpret_cast<unsigned short*>(&interface_tag[0xE0] + 12); mainmenu_ui_globals_index)
-					{
-						if (char* mainmenu_ui_globals = halo3_tag_definition_get(mainmenu_ui_globals_index); mainmenu_ui_globals)
-						{
-							// #TODO: get full name via the tag reference group index
-							union { uint64_t value; char string[8]; } group;
-							//group.value = _byteswap_ulong(mainmenu_ui_globals_reference.group_tag);
-							group.value = _byteswap_ulong(*reinterpret_cast<unsigned long*>(&interface_tag[0xE0] + 0));
+	// #TODO: cache refactor
+	//// #TODO: the globals structure isn't currently the correct size for Halo 3, someone please fix that
+	////if (s_globals_struct_definition* globals = reinterpret_cast<s_globals_struct_definition*>(halo3_tag_definition_get(blofeld::GLOBALS_TAG, "globals\\globals")); globals)
+	//if (char* globals = halo3_tag_definition_get(blofeld::GLOBALS_TAG, "globals\\globals"); globals)
+	//{
+	//	//if (decltype(globals->interface_tags_block) interface_tags_block = globals->interface_tags_block; interface_tags_block.count)
+	//	if (unsigned long interface_tag_block_count = *reinterpret_cast<unsigned long*>(&globals[0x134] + 0); interface_tag_block_count)
+	//	{
+	//		//if (decltype(interface_tags_block.get_element(0)) interface_tag = interface_tags_block.get_element(0); interface_tag)
+	//		if (char* interface_tag = halo3_tag_address_get(*reinterpret_cast<unsigned long*>(&globals[0x134] + 4)); interface_tag)
+	//		{
+	//			//if (decltype(interface_tag->mainmenu_ui_globals) mainmenu_ui_globals_reference = interface_tag->mainmenu_ui_globals; mainmenu_ui_globals_reference.group_tag == blofeld::USER_INTERFACE_GLOBALS_DEFINITION_TAG)
+	//			if (unsigned long mainmenu_ui_globals_group = *reinterpret_cast<unsigned long*>(&interface_tag[0xE0] + 0); mainmenu_ui_globals_group == blofeld::USER_INTERFACE_GLOBALS_DEFINITION_TAG)
+	//			{
+	//				//if (unsigned short mainmenu_ui_globals_index = mainmenu_ui_globals_reference.index; mainmenu_ui_globals_index)
+	//				if (unsigned short mainmenu_ui_globals_index = *reinterpret_cast<unsigned short*>(&interface_tag[0xE0] + 12); mainmenu_ui_globals_index)
+	//				{
+	//					if (char* mainmenu_ui_globals = halo3_tag_definition_get(mainmenu_ui_globals_index); mainmenu_ui_globals)
+	//					{
+	//						// #TODO: get full name via the tag reference group index
+	//						union { uint64_t value; char string[8]; } group;
+	//						//group.value = _byteswap_ulong(mainmenu_ui_globals_reference.group_tag);
+	//						group.value = _byteswap_ulong(*reinterpret_cast<unsigned long*>(&interface_tag[0xE0] + 0));
 
-							const char* mainmenu_ui_globals_name = halo3_tag_name_get(mainmenu_ui_globals_index);
-							const char* mainmenu_ui_globals_group_short_name = group.string;
-							c_console::write_line_verbose("mainmenu ui globals: '%s.%s'", mainmenu_ui_globals_name, mainmenu_ui_globals_group_short_name);
-						}
-					}
-				}
-				else
-				{
-					c_console::write_line_verbose("no mainmenu ui globals tag exists or has the wrong group tag");
-				}
-			}
-		}
-	}
+	//						const char* mainmenu_ui_globals_name = halo3_tag_name_get(mainmenu_ui_globals_index);
+	//						const char* mainmenu_ui_globals_group_short_name = group.string;
+	//						c_console::write_line_verbose("mainmenu ui globals: '%s.%s'", mainmenu_ui_globals_name, mainmenu_ui_globals_group_short_name);
+	//					}
+	//				}
+	//			}
+	//			else
+	//			{
+	//				c_console::write_line_verbose("no mainmenu ui globals tag exists or has the wrong group tag");
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 s_weapon_block_struct* weapon_get(const char* tag_name)
 {
-	if (char* weapon = halo3_tag_definition_get(blofeld::WEAPON_TAG, tag_name); weapon)
-	{
-		return reinterpret_cast<s_weapon_block_struct*>(weapon);
-	}
+	// #TODO: cache refactor
+	//if (char* weapon = halo3_tag_definition_get(blofeld::WEAPON_TAG, tag_name); weapon)
+	//{
+	//	return reinterpret_cast<s_weapon_block_struct*>(weapon);
+	//}
 	return nullptr;
 }
 

@@ -19,14 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine_type.h" />
+    <ClInclude Include="engine_platform_build.h" />
     <ClInclude Include="game_options_version.h" />
-    <ClInclude Include="platform_type.h" />
     <ClInclude Include="versioning-private-pch.h" />
     <ClInclude Include="versioning-public-pch.h" />
-    <ClInclude Include="build_type.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="engine_platform_build.cpp" />
     <ClCompile Include="game_options_version.cpp" />
     <ClCompile Include="versioning-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -34,7 +33,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="build_type.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build_helpers.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

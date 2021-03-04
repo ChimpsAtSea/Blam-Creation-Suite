@@ -42,7 +42,7 @@ public:
 	friend class c_function_hook_base;
 
 	c_function_hook_ex()
-		: c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
+		: c_function_hook_base(nullptr, { }, 0, find_offset)
 		, hook(nullptr)
 	{
 
@@ -50,14 +50,14 @@ public:
 
 	template<typename hook_assignment_type>
 	c_function_hook_ex(hook_assignment_type func)
-		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
+		:c_function_hook_base(nullptr, { }, 0, find_offset)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	c_function_hook_ex(R(*func)(Args...))
-		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
+		:c_function_hook_base(nullptr, { }, 0, find_offset)
 		, hook(func)
 	{
 
@@ -65,14 +65,14 @@ public:
 
 	template<typename hook_assignment_type>
 	c_function_hook_ex(const char pName[], hook_assignment_type func)
-		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
+		:c_function_hook_base(pName, { }, 0, find_offset)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	c_function_hook_ex(const char pName[], R(*func)(Args...))
-		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
+		:c_function_hook_base(pName, { }, 0, find_offset)
 		, hook(func)
 	{
 

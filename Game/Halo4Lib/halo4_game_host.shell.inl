@@ -1,6 +1,6 @@
 
 #pragma region Shell Debug
-uintptr_t halo4_external_launch_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_external_launch_state_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180F1FA7C);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180F20A7C);
@@ -11,7 +11,7 @@ uintptr_t halo4_external_launch_state_offset(e_engine_type engine_type, e_build 
 }
 long& halo4_external_launch_state = reference_symbol<long>("halo4_external_launch_state", halo4_external_launch_state_offset);
 
-uintptr_t halo4_main_game_launch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_main_game_launch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x18003EBA4);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x18003EBB0);

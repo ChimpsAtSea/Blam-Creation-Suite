@@ -989,8 +989,8 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	ImGui::NextColumn();
 	{
-		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_type, tag_project.platform_type);
-		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_type, tag_project.platform_type);
+		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
+		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
 		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(string_list_count));
@@ -1090,8 +1090,8 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	ImGui::NextColumn();
 	{
-		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_type, tag_project.platform_type);
-		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_type, tag_project.platform_type);
+		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
+		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
 
 		const char* selected_string_value = "<INVALID VALUE>";
 		bool current_string_has_tooltip = false;

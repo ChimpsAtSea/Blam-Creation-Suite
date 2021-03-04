@@ -39,17 +39,19 @@ void c_discord_presense_api::set_state_impl(s_presense_info* presense_info)
 			join_secret.clear();
 		}
 		spectate_secret.clear();
+		
+		const char* engine_name = "unknown";
+		BCS_RESULT get_engine_type_folder_string_result = get_engine_type_folder_string(presense_info->engine_type, &engine_name);
+		DEBUG_ASSERT(BCS_SUCCEEDED(get_engine_type_folder_string_result));
 
-		const char* engine_name = engine_type_to_folder_name<decltype(engine_name)>(presense_info->engine_type);
-		if (engine_name == nullptr)
-		{
-			engine_name = "not_set";
-		}
 		large_image_name.format("engine_%s", engine_name);
 		large_image_name.lowercase();
 		small_image_name.clear();
 
-		const char* engine_nice_name = engine_type_to_folder_nice_name<decltype(engine_nice_name)>(presense_info->engine_type);
+		const char* engine_nice_name = "Unknown";
+		BCS_RESULT get_engine_type_pretty_string_result = get_engine_type_pretty_string(presense_info->engine_type, &engine_nice_name);
+		DEBUG_ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string_result));
+		
 		const char* map_name = presense_info->map_name.c_str();
 		if (presense_info->engine_type == _engine_type_not_set)
 		{

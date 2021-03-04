@@ -5,9 +5,6 @@ template<e_engine_type _engine_type, e_build _build, size_t _offset, typename ba
 struct FunctionHookVarArgs : public c_function_hook_base
 {
 public:
-	static_assert(_build == _build_not_set || _offset >= get_engine_base_address(_engine_type), "_offset is out of bounds");
-	static_assert(_build == _build_not_set || _offset < get_engine_top_address(_engine_type, _build), "_offset is out of bounds");
-
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
 	{
@@ -38,14 +35,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(hook_assignment_type func)
-		:c_function_hook_base(nullptr, _engine_type, _build, _offset, nullptr)
+		:c_function_hook_base(nullptr, { _engine_type, _platform_type_not_set, _build }, _offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(base_type* func)
-		:c_function_hook_base(nullptr, _engine_type, _build, _offset, nullptr)
+		:c_function_hook_base(nullptr, { _engine_type, _platform_type_not_set, _build }, _offset, nullptr)
 		, hook(func)
 	{
 
@@ -53,14 +50,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(const char* pName, hook_assignment_type func)
-		:c_function_hook_base(pName, _engine_type, _build, _offset, nullptr)
+		:c_function_hook_base(pName, { _engine_type, _platform_type_not_set, _build }, _offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(const char* pName, base_type* func)
-		:c_function_hook_base(pName, _engine_type, _build, _offset, nullptr)
+		:c_function_hook_base(pName, { _engine_type, _platform_type_not_set, _build }, _offset, nullptr)
 		, hook(func)
 	{
 

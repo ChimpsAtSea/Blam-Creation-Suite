@@ -11,7 +11,7 @@ int create_source_file()
 	
 	int result = 0;
 
-	std::pair<e_engine_type, e_platform_type> const engine_and_platform_types[] =
+	s_engine_platform_build const engine_and_platform_types[] =
 	{
 		{_engine_type_halo1,				_platform_type_pc },
 		{_engine_type_halo2,				_platform_type_pc },
@@ -28,15 +28,17 @@ int create_source_file()
 	stopwatch.start();
 
 	tbb::task_group g;
-	for (std::pair<e_engine_type, e_platform_type> engine_and_platform_type : engine_and_platform_types)
+	for (s_engine_platform_build engine_platform_build : engine_and_platform_types)
 	{
-		const char* engine_name = get_enum_string<const char*>(engine_and_platform_type.first);
+		
+		const char* engine_name;
+		ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_low_level_tag_source_generator low_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating low level header (%s)", engine_name);
 				low_level_tag_source_generator.generate_header();
 				low_level_tag_source_generator.generate_enum_header();
@@ -48,33 +50,33 @@ int create_source_file()
 				}
 			});
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_virtual_tag_source_generator virtual_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating virtual level header (%s)", engine_name);
 				virtual_tag_source_generator.generate_header();
 				stopwatch.stop();
 				c_console::write_line_verbose("Finished generating virtual level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_virtual_tag_source_generator virtual_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_virtual_tag_source_generator virtual_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating high virtual source (%s)", engine_name);
 				virtual_tag_source_generator.generate_source();
 				stopwatch.stop();
 				c_console::write_line_verbose("Finished generating virtual level source (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating high level header (%s)", engine_name);
 				high_level_tag_source_generator.generate_header();
 				stopwatch.stop();
@@ -84,11 +86,11 @@ int create_source_file()
 		static constexpr uint32_t source_count = 64;
 		for (uint32_t source_index = 0; source_index < source_count; source_index++)
 		{
-			g.run([&result, engine_name, engine_and_platform_type, source_index]
+			g.run([&result, engine_name, engine_platform_build, source_index]
 				{
 					c_stopwatch stopwatch;
 					stopwatch.start();
-					c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+					c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
 					c_console::write_line_verbose("Generating high level source ctor:%u (%s)", source_index, engine_name);
 					high_level_tag_source_generator.generate_ctor_source(source_index, source_count);
 					stopwatch.stop();
@@ -96,22 +98,22 @@ int create_source_file()
 				});
 		}
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating high level source virtual functions (%s)", engine_name);
 				high_level_tag_source_generator.generate_source_virtual();
 				stopwatch.stop();
 				c_console::write_line_verbose("Finished generating high level source virtual functions (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 			});
 
-		g.run([&result, engine_name, engine_and_platform_type]
+		g.run([&result, engine_name, engine_platform_build]
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_and_platform_type.first, engine_and_platform_type.second, _build_not_set);
+				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating high level source misc (%s)", engine_name);
 				high_level_tag_source_generator.generate_source_misc();
 				stopwatch.stop();

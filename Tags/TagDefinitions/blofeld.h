@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-	using t_max_count_func = uint32_t(e_engine_type engine_type);
+	using t_max_count_func = uint32_t(s_engine_platform_build engine_platform_build);
 
 	struct s_tag_group;
 	struct s_tag_struct_definition;

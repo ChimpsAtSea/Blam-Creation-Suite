@@ -1,6 +1,6 @@
 #define __HALO1_GAME_HOST_CONTROLS_RESEARCH_INL
 
-uintptr_t get_local_player_input_blob_offset(e_engine_type engine_type, e_build build)
+uintptr_t get_local_player_input_blob_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180767C10);
 	return ~uintptr_t();
@@ -12,7 +12,7 @@ c_function_hook_ex<get_local_player_input_blob_offset, char __fastcall(__int64 a
 	return result;
 } };
 
-uintptr_t sub_18006ECD0_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18006ECD0_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18006ECD0);
 	return ~uintptr_t();
@@ -25,7 +25,7 @@ c_function_hook_ex<sub_18006ECD0_offset, signed int()> sub_18006ECD0 = { "sub_18
 
 extern BYTE keyboardState[256];
 
-uintptr_t input_update_offset(e_engine_type engine_type, e_build build)
+uintptr_t input_update_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E120);
 	return ~uintptr_t();
@@ -52,14 +52,14 @@ c_function_hook_ex<input_update_offset, void()> input_update = { "input_update",
 static bool disable_input_state = false;
 static thread_local bool disable_input = false;
 
-uintptr_t g_GameInputSource_offset(e_engine_type engine_type, e_build build)
+uintptr_t g_GameInputSource_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18218CDF4);
 	return ~uintptr_t();
 }
 int& g_GameInputSource = reference_symbol<int>("g_GameInputSource", g_GameInputSource_offset);
 
-uintptr_t input_abstraction_update_offset(e_engine_type engine_type, e_build build)
+uintptr_t input_abstraction_update_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071F200);
 	return ~uintptr_t();
@@ -87,7 +87,7 @@ c_function_hook_ex<input_abstraction_update_offset, __int64 __fastcall (__int64 
 
 } };
 
-uintptr_t input_key_is_down_offset(e_engine_type engine_type, e_build build)
+uintptr_t input_key_is_down_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E8B0);
 	return ~uintptr_t();
@@ -102,7 +102,7 @@ bool sub_18071E950_override = 0;
 int32_t sub_18071E950_override_value = 0;
 int16_t sub_18071E950_state = 0;
 
-uintptr_t sub_18071E950_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18071E950_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E950);
 	return ~uintptr_t();
@@ -124,17 +124,17 @@ c_function_hook_ex<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1
 } };
 
 
-//uintptr_t input_abstraction_update_patch_offset(e_engine_type engine_type, e_build build)
+//uintptr_t input_abstraction_update_patch_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071F200);
 //	return ~uintptr_t();
 //}
-//DataPatch<input_abstraction_update_patch_offset> input_abstraction_update_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//DataPatch<input_abstraction_update_patch_offset> input_abstraction_update_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //	char* return_address = data;
 //	packet = MAKE_DATAPATCHPACKET(return_address,  0x18072083F - 0x18071F200);
 //
-//	//nop_address(engine_type, build, 0x18071F5DF, 0x1807207F6 - 0x18071F5DF);
+//	//nop_address(engine_platform_build, 0x18071F5DF, 0x1807207F6 - 0x18071F5DF);
 //
 //	uint8_t data2[] = { 0xC3ui8 };
 //	memcpy_virtual(data + (0x18071F5B1 - 0x18071F200), data2, 1);
@@ -150,7 +150,7 @@ c_function_hook_ex<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
 #define CONTROLLER_JOYSTICK_THRESHOLD 0.15f
 
-uintptr_t mcc_input_update_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_input_update_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_mcc, _build_mcc_1_1389_0_0, 0x1418BFE5C);
 	return ~uintptr_t();
@@ -168,7 +168,7 @@ int32_t sub_18071E690_override_value = 0;
 int16_t sub_18071E690_state = 0;
 
 
-uintptr_t sub_18071E690_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18071E690_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E690);
 	return ~uintptr_t();
@@ -187,7 +187,7 @@ c_function_hook_ex<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __
 	return result;
 } };
 
-//uintptr_t halo1_update_engine_state_offset(e_engine_type engine_type, e_build build)
+//uintptr_t halo1_update_engine_state_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076490);
 //	return ~uintptr_t();
@@ -203,21 +203,21 @@ c_function_hook_ex<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __
 
 //__int64 __fastcall update_engine_state(IGameEngine* _this, e_engine_state status, _QWORD* extraArgument);
 
-uintptr_t dword_18115BB84_offset(e_engine_type engine_type, e_build build)
+uintptr_t dword_18115BB84_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18115BB84);
 	return ~uintptr_t();
 }
 DWORD& dword_18115BB84 = reference_symbol<DWORD>("dword_18115BB84", dword_18115BB84_offset);
 
-uintptr_t byte_1811684DA_offset(e_engine_type engine_type, e_build build)
+uintptr_t byte_1811684DA_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1811684DA);
 	return ~uintptr_t();
 }
 uint8_t(&byte_1811684DA)[128] = reference_symbol<uint8_t[128]>("byte_1811684DA", byte_1811684DA_offset); // SOURCE
 
-uintptr_t word_18115BBB6_offset(e_engine_type engine_type, e_build build)
+uintptr_t word_18115BBB6_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18115BBB6);
 	return ~uintptr_t();
@@ -225,7 +225,7 @@ uintptr_t word_18115BBB6_offset(e_engine_type engine_type, e_build build)
 uint8_t(&word_18115BBB6)[128] = reference_symbol<uint8_t[128]>("word_18115BBB6", word_18115BBB6_offset); // DESTINATION
 
 
-uintptr_t sub_18072FCF0_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_18072FCF0_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18072FCF0);
 	return ~uintptr_t();
@@ -246,13 +246,13 @@ c_function_hook_ex<sub_18072FCF0_offset, void* (__int16 a1)> sub_18072FCF0 = { "
 	}
 } };
 
-uintptr_t g_player_configuration_offset(e_engine_type engine_type, e_build build)
+uintptr_t g_player_configuration_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1820b9900);
 	return ~uintptr_t();
 }
 c_player_configuration& g_player_configuration = reference_symbol<c_player_configuration>("g_player_configuration", g_player_configuration_offset);
-uintptr_t sub_180093240_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180093240_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180093240);
 	return ~uintptr_t();
@@ -265,7 +265,7 @@ c_function_hook_ex<sub_180093240_offset, void __fastcall (c_player_configuration
 } };
 
 
-uintptr_t sub_1807A6200_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_1807A6200_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807A6200);
 	return ~uintptr_t();
@@ -276,7 +276,7 @@ c_function_hook_ex<sub_1807A6200_offset, __int64 __fastcall (__int16* a1, __int1
 	return result;
 } };
 
-uintptr_t sub_180721840_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180721840_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180721840);
 	return ~uintptr_t();

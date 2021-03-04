@@ -23,8 +23,8 @@ void register_halo4lib()
 
 }
 
-c_halo4_game_host::c_halo4_game_host(e_engine_type engine_type, e_build build) :
-	c_aotus_game_engine_host(engine_type, build, get_game_runtime())
+c_halo4_game_host::c_halo4_game_host(s_engine_platform_build engine_platform_build) :
+	c_aotus_game_engine_host(engine_platform_build, get_game_runtime())
 {
 	c_console::write_line_verbose("Init %s", __func__);
 
@@ -93,9 +93,9 @@ void c_halo4_game_host::init_runtime_modifications(e_build build)
 	g_halo4_engine_state_command = new c_halo4_engine_state_command();
 
 	init_detours();
-	c_global_reference::init_global_reference_tree(_engine_type_halo4, build);
-	c_data_patch_base::init_data_patch_tree(_engine_type_halo4, build);
-	c_function_hook_base::init_function_hook_tree(_engine_type_halo4, build);
+	c_global_reference::init_global_reference_tree({ _engine_type_halo4, _platform_type_pc, build });
+	c_data_patch_base::init_data_patch_tree({ _engine_type_halo4, _platform_type_pc, build });
+	c_function_hook_base::init_function_hook_tree({ _engine_type_halo4, _platform_type_pc, build });
 	end_detours();
 }
 
@@ -104,9 +104,9 @@ void c_halo4_game_host::deinit_runtime_modifications(e_build build)
 	delete g_halo4_engine_state_command;
 
 	init_detours();
-	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo4, build);
-	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo4, build);
-	c_global_reference::deinit_global_reference_tree(_engine_type_halo4, build);
+	c_function_hook_base::deinit_function_hook_tree({ _engine_type_halo4, _platform_type_pc, build });
+	c_data_patch_base::deinit_data_patch_tree({ _engine_type_halo4, _platform_type_pc, build });
+	c_global_reference::deinit_global_reference_tree({ _engine_type_halo4, _platform_type_pc, build });
 	end_detours();
 }
 

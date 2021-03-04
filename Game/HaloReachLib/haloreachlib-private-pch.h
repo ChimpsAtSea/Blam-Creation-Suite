@@ -9,7 +9,6 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <GameFramework\gameframework-public-pch.h>
-#include <Ketchup\ketchup-public-pch.h>
 
 /* LEGACY */ //#include "c_network.h"
 ///* LEGACY */ #include "aotus_legacy/HaloReach.h"

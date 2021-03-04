@@ -75,7 +75,8 @@ void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 		return;
 	}
 
-	c_bitmap_texture_interop_resource_entry* resource_entry = cache_file.get_resource_entry<c_bitmap_texture_interop_resource_entry>(bitmap_tag.hardware_textures_block[0].texture_resource.resource_handle.get_absolute_index());
+	// #TODO: cache refactor
+	/*c_bitmap_texture_interop_resource_entry* resource_entry = cache_file.get_resource_entry<c_bitmap_texture_interop_resource_entry>(bitmap_tag.hardware_textures_block[0].texture_resource.resource_handle.get_absolute_index());
 	if (resource_entry == nullptr)
 	{
 		return;
@@ -213,13 +214,13 @@ void c_blofeld_bitmap_viewer_tab::load_bitmap(uint32_t index)
 
 		HRESULT create_shader_resource_view_result = c_render::s_device->CreateShaderResourceView(texture, NULL, &shader_resource_view);
 		//ASSERT(SUCCEEDED(create_shader_resource_view_result));
-	}
+	}*/
 }
 
 c_blofeld_bitmap_viewer_tab::c_blofeld_bitmap_viewer_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent) :
 	c_mandrill_tab("Bitmap Viewer", "Blofeld Bitmap Resource Viewer", &parent, false),
 	tag_interface(tag_interface),
-	cache_file(*dynamic_cast<decltype(&cache_file)>(&tag_interface.get_cache_file())),
+	//cache_file(*dynamic_cast<decltype(&cache_file)>(&tag_interface.get_cache_file())), // #TODO: cache refactor
 	bitmap_tag(*dynamic_cast<decltype(&bitmap_tag)>(tag_interface.get_virtual_tag_interface())),
 	texture(nullptr),
 	shader_resource_view(nullptr)

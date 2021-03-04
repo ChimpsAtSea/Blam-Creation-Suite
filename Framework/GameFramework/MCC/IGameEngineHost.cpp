@@ -23,10 +23,9 @@ void IGameEngineHostEmptyFunction()
 		});
 }
 
-IGameEngineHost::IGameEngineHost(e_engine_type engine_type, e_build build, IGameEvents* game_events) :
+IGameEngineHost::IGameEngineHost(s_engine_platform_build engine_platform_build, IGameEvents* game_events) :
 	game_engine_host_configured(false),
-	engine_type(engine_type),
-	build(build),
+	engine_platform_build(engine_platform_build),
 	game_events_ptr(game_events),
 	__vtbl_dynamic(__vtbl_dynamic_data)
 {
@@ -116,7 +115,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 
 	size_t current_function_index = 0;
 #define enqueue_function(min_build, max_build, function) \
-	__pragma(warning(suppress: 6287)) if((min_build == _build_not_set || build >= min_build) && (max_build == _build_not_set || build <= max_build)) \
+	__pragma(warning(suppress: 6287)) if((min_build == _build_not_set || engine_platform_build.build >= min_build) && (max_build == _build_not_set || engine_platform_build.build <= max_build)) \
 	__vtbl_dynamic_data[current_function_index++] = custom_game_engine_host_vtable[function];
 
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_frame_begin);
@@ -187,14 +186,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 #undef enqueue_function
 
 
-	if (build == _build_mcc_1_887_0_0)
+	if (engine_platform_build.build == _build_mcc_1_887_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[19] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_load_status_handler]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[25] == custom_game_engine_host_vtable[__game_engine_virtual_function_session_membership_update_handler]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_player_configuration_update_handler]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_input_update_handler]);
 	}
-	else if (build == _build_mcc_1_1305_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1305_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -245,7 +244,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
 	}
-	else if (build == _build_mcc_1_1350_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1350_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -297,7 +296,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[48] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
 	}
-	else if (build == _build_mcc_1_1367_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1367_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -347,7 +346,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[45] == custom_game_engine_host_vtable[__game_engine_virtual_function_player_name_update_handler]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
 	}
-	else if (build == _build_mcc_1_1377_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1377_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -398,7 +397,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_player_name_update_handler]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
 	}
-	else if (build == _build_mcc_1_1629_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1629_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -451,7 +450,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[48] == custom_game_engine_host_vtable[__game_engine_virtual_function_function50]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[49] == custom_game_engine_host_vtable[__game_engine_virtual_function_function51]);
 	}
-	else if (build == _build_mcc_1_1658_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1658_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -506,7 +505,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[50] == custom_game_engine_host_vtable[__game_engine_virtual_function_function52]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[51] == custom_game_engine_host_vtable[__game_engine_virtual_function_function53]);
 	}
-	else if (build == _build_mcc_1_1698_0_0)
+	else if (engine_platform_build.build == _build_mcc_1_1698_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_begin]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -565,7 +564,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[54] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
 	}
 
-	switch (build)
+	switch (engine_platform_build.build)
 	{
 	case _build_mcc_1_824_0_0: DEBUG_ASSERT(current_function_index == 43); break;
 	case _build_mcc_1_887_0_0: DEBUG_ASSERT(current_function_index == 43); break;
@@ -592,9 +591,9 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	}
 }
 
-bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_configuration **player_configuration)
+bool IGameEngineHost::PlayerConfigurationFromBuild(c_player_configuration **player_configuration)
 {
-	ASSERT(build != e_build::_build_not_set);
+	ASSERT(engine_platform_build.build != e_build::_build_not_set);
 	ASSERT(player_configuration != nullptr);
 
 	static c_player_configuration* s_player_configuration = nullptr;
@@ -609,7 +608,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 		return true;
 	}
 
-	switch (build)
+	switch (engine_platform_build.build)
 	{
 	case _build_mcc_1_824_0_0:
 	case _build_mcc_1_887_0_0:
@@ -676,7 +675,7 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 		return false;
 	}
 
-	load_player_configuration_from_file(**player_configuration, build, engine_type);
+	load_player_configuration_from_file(**player_configuration, engine_platform_build.build, engine_platform_build.engine_type);
 	(**player_configuration).waiting_on_file_save = true;
 
 	return true;

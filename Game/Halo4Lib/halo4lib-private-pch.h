@@ -9,7 +9,6 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <GameFramework\gameframework-public-pch.h>
-#include <Ketchup\ketchup-public-pch.h>
 
 #include "halo4lib-public-pch.h"
 

@@ -8,10 +8,10 @@
 /* ---------- private prototypes */
 /* ---------- public code */
 
-extern uintptr_t haloreach_player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build);
+extern uintptr_t haloreach_player_mapping_get_local_player_offset(s_engine_platform_build engine_platform_build);
 extern c_function_hook_ex<haloreach_player_mapping_get_local_player_offset, int __stdcall ()> haloreach_player_mapping_get_local_player;
 
-extern uintptr_t haloreach_observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build);
+extern uintptr_t haloreach_observer_try_and_get_camera_offset(s_engine_platform_build engine_platform_build);
 extern c_function_hook_ex<haloreach_observer_try_and_get_camera_offset, s_observer_camera* __fastcall (signed int a1)> haloreach_observer_try_and_get_camera;
 
 void haloreach_debug_save_camera()
@@ -59,7 +59,7 @@ void haloreach_debug_load_camera()
 
 
 // TODO: Add other build offsets
-uintptr_t g_centered_crosshair_offset(e_engine_type engine_type, e_build build)
+uintptr_t g_centered_crosshair_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x7C);
 	return ~uintptr_t();
@@ -67,7 +67,7 @@ uintptr_t g_centered_crosshair_offset(e_engine_type engine_type, e_build build)
 int& g_centered_crosshair = reference_symbol<int>("g_centered_crosshair", g_centered_crosshair_offset);
 
 // TODO: Add other build offsets
-uintptr_t g_field_of_view_offset(e_engine_type engine_type, e_build build)
+uintptr_t g_field_of_view_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x80);
 	return ~uintptr_t();

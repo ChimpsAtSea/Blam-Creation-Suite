@@ -45,7 +45,7 @@ struct hs_syntax_datum
 constexpr size_t hs_syntax_datum_size = sizeof(hs_syntax_datum);
 using hs_syntax_data_array = c_data_array<hs_syntax_datum, 61440>;
 
-uintptr_t hs_syntax_data_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_syntax_data_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180D2A048);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180D2A048);
@@ -53,7 +53,7 @@ uintptr_t hs_syntax_data_offset(e_engine_type engine_type, e_build build)
 }
 hs_syntax_data_array*& g_hs_syntax_data = reference_symbol<hs_syntax_data_array*>("g_hs_syntax_data", hs_syntax_data_offset);
 
-uintptr_t haloreach_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_spawn_ai_with_scripts_and_effects_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x180730287);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18072F047);
@@ -79,13 +79,13 @@ uintptr_t haloreach_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type
 
 // Allows spawning AI via scripts or effects, props to Zeddikins
 c_data_patch<haloreach_spawn_ai_with_scripts_and_effects_patch_offset> haloreach_spawn_ai_with_scripts_and_effects_patch = {
-[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	packet = MAKE_DATAPATCHPACKET(data, 6);
 	nop_address(data, 6);
 } };
 
-uintptr_t haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x18076F581);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x18076E341);
@@ -111,9 +111,9 @@ uintptr_t haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offse
 
 // Allows spawning AI via scripts or effects in multiplayer, props to Zeddikins
 c_data_patch<haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_offset> haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch = {
-[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
-	if (haloreach_spawn_ai_with_scripts_and_effects_patch_offset(engine_type, build) == ~uintptr_t())
+	if (haloreach_spawn_ai_with_scripts_and_effects_patch_offset(engine_platform_build) == ~uintptr_t())
 	{
 		// if this patch offset doesn't exist you can't spawn ai, so return early
 		return;
@@ -124,7 +124,7 @@ c_data_patch<haloreach_spawn_ai_with_scripts_and_effects_in_multiplayer_patch_of
 	copy_to_address(data, jmp, sizeof(jmp));
 } };
 
-uintptr_t allow_night_vision_in_multiplayer_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t allow_night_vision_in_multiplayer_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x1805D66B7);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x1805E18D7);
@@ -150,9 +150,9 @@ uintptr_t allow_night_vision_in_multiplayer_patch_offset(e_engine_type engine_ty
 }
 // Allow the use of night vision in multiplayer, props to Zeddikins
 c_data_patch<allow_night_vision_in_multiplayer_patch_offset> allow_night_vision_in_multiplayer_patch = {
-[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
-	switch (build)
+	switch (engine_platform_build.build)
 	{
 	case _build_mcc_1_1930_0_0:
 	case _build_mcc_1_1955_0_0:
@@ -192,7 +192,7 @@ struct hs_script_op
 };
 #pragma pack(pop)
 
-uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_function_table_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180C33620);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x180D89480);
@@ -224,7 +224,7 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 }
 hs_script_op* (&hs_function_table)[] = reference_symbol<hs_script_op* []>("hs_function_table", hs_function_table_offset);
 
-uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_evaluate_arguments_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x1807351D0);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1803EC060);
@@ -258,7 +258,7 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 template<typename t_parameter>
 c_function_hook_ex<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short* parameters, char execute)> hs_evaluate_arguments;
 
-uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_return_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180734900);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1803EB790);
@@ -303,7 +303,7 @@ t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_
 	return *hs_evaluate_arguments<t_parameter*>(expression_index, hs_function->parameter_count, &hs_function->parameter_types, execute);
 }
 
-uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_inspect_str_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180732290);
 	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1803E9120);

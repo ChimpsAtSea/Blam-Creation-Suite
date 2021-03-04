@@ -1,5 +1,5 @@
-
-uintptr_t halo3_tag_instances_offset(e_engine_type engine_type, e_build build)
+// #TODO: cache refactor
+/*uintptr_t halo3_tag_instances_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CC9970);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180CD8080);
@@ -19,7 +19,7 @@ uintptr_t halo3_tag_instances_offset(e_engine_type engine_type, e_build build)
 gen3::s_cache_file_tag_instance*& halo3_tag_instances = reference_symbol<gen3::s_cache_file_tag_instance*>("halo3_tag_instances", halo3_tag_instances_offset);
 
 // Props to Camden for the name
-uintptr_t k_halo3_virtual_to_physical_base_offset(e_engine_type engine_type, e_build build)
+uintptr_t k_halo3_virtual_to_physical_base_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180D15118);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180D23838);
@@ -38,7 +38,7 @@ uintptr_t k_halo3_virtual_to_physical_base_offset(e_engine_type engine_type, e_b
 }
 const long long& k_halo3_virtual_to_physical_base = reference_symbol<const long long>("k_halo3_virtual_to_physical_base", k_halo3_virtual_to_physical_base_offset);
 
-uintptr_t k_halo3_physical_base_offset(e_engine_type engine_type, e_build build)
+uintptr_t k_halo3_physical_base_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1808842E8);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180892418);
@@ -57,7 +57,7 @@ uintptr_t k_halo3_physical_base_offset(e_engine_type engine_type, e_build build)
 }
 const long long& k_halo3_physical_base = reference_symbol<const long long>("k_halo3_physical_base", k_halo3_physical_base_offset);
 
-uintptr_t halo3_cache_file_header_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_cache_file_header_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CC9998);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180CD80A8);
@@ -76,7 +76,7 @@ uintptr_t halo3_cache_file_header_offset(e_engine_type engine_type, e_build buil
 }
 halo3::s_cache_file_header& halo3_cache_file_header = reference_symbol<halo3::s_cache_file_header>("halo3_cache_file_header", halo3_cache_file_header_offset);
 
-uintptr_t halo3_cache_file_tags_header_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_cache_file_tags_header_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CCC998);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180CDB0A8);
@@ -93,9 +93,9 @@ uintptr_t halo3_cache_file_tags_header_offset(e_engine_type engine_type, e_build
 	OFFSET(_engine_type_halo3, _build_mcc_1_2094_0_0, 0x181D18838);
 	return ~uintptr_t();
 }
-halo3::s_cache_file_tags_header*& halo3_cache_file_tags_header = reference_symbol<halo3::s_cache_file_tags_header*>("halo3_cache_file_tags_header", halo3_cache_file_tags_header_offset);
+halo3::s_cache_file_tags_header*& halo3_cache_file_tags_header = reference_symbol<halo3::s_cache_file_tags_header*>("halo3_cache_file_tags_header", halo3_cache_file_tags_header_offset);*/
 
-uintptr_t halo3_file_table_mapping_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_file_table_mapping_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180CC9978);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180CD8088);
@@ -114,7 +114,8 @@ uintptr_t halo3_file_table_mapping_offset(e_engine_type engine_type, e_build bui
 }
 void*& halo3_file_table_mapping = reference_symbol<void*>("halo3_file_table_mapping", halo3_file_table_mapping_offset);
 
-halo3::s_cache_file_header* halo3_cache_file_header_get()
+// #TODO: cache refactor
+/*halo3::s_cache_file_header* halo3_cache_file_header_get()
 {
 	if (!is_valid(halo3_cache_file_header))
 	{
@@ -216,4 +217,4 @@ template<typename T>
 T& halo3_tag_definition_get(unsigned long group, const char* tag_name)
 {
 	return *reinterpret_cast<T*>(halo3_tag_definition_get(group, tag_name));
-}
+}*/

@@ -1,7 +1,7 @@
 
 #pragma region Screen Patches
 // skip the `shell_get_external_host()` check that prevents the game from using the built-in start menu
-uintptr_t halo3odst_start_menu_screen_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_start_menu_screen_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1802DF294);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1802DEF74);
@@ -14,7 +14,7 @@ uintptr_t halo3odst_start_menu_screen_patch_offset(e_engine_type engine_type, e_
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x18022D3AC);
 	return ~uintptr_t();
 }
-c_data_patch<halo3odst_start_menu_screen_patch_offset> halo3odst_start_menu_screen_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<halo3odst_start_menu_screen_patch_offset> halo3odst_start_menu_screen_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	// nop `test    r9, r9`
 	packet = MAKE_DATAPATCHPACKET(data, 3);
@@ -22,7 +22,7 @@ c_data_patch<halo3odst_start_menu_screen_patch_offset> halo3odst_start_menu_scre
 } };
 
 // this patch shouldn't be needed
-uintptr_t halo3odst_settings_menu_patch2_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_settings_menu_patch2_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1802DF3AC);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1802DF08C);
@@ -36,7 +36,7 @@ uintptr_t halo3odst_settings_menu_patch2_offset(e_engine_type engine_type, e_bui
 	return ~uintptr_t();
 }
 c_data_patch<halo3odst_settings_menu_patch2_offset> halo3odst_settings_menu_patch2 = {
-	[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+	[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 	{
 		packet = MAKE_DATAPATCHPACKET(data, 6);
 		nop_address(data, 6);

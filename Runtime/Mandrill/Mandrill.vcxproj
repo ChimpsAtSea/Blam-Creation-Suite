@@ -89,7 +89,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -116,7 +116,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -145,7 +145,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -174,7 +174,7 @@ lib /ignore:4006 /NOLOGO /OUT:$(OutDir)MandrillSDK.lib Mandrill.lib tbb_static.l
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;Rhesus.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>

@@ -13,12 +13,8 @@ extern void memcpy_virtual(
 	size_t size
 );
 
-extern void copy_from_address(void* pointer, void* data, size_t length);
 extern void copy_to_address(void* pointer, void* data, size_t length);
 extern void nop_address(void* pointer, size_t count);
-extern void copy_from_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length);
-extern void copy_to_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length);
-extern void nop_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, size_t count);
 
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
@@ -81,7 +77,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 }
 
 template<typename Ta, typename Tb>
-LONG create_hook(e_engine_type engine_type, e_build build, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
+LONG create_hook(e_engine_type engine_type, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
 	if (offset == -1)
 	{
@@ -89,11 +85,20 @@ LONG create_hook(e_engine_type engine_type, e_build build, size_t offset, const 
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
+	void* pModule;
+	if (BCS_FAILED(get_engine_runtime_base_address({ engine_type }, &pModule)))
+	{
+		return E_FAIL;
+	}
 	ASSERT(pModule != nullptr);
-	size_t const baseAddress = get_engine_base_address(engine_type);
+	
+	size_t baseAddress;
+	if (BCS_FAILED(get_engine_base_address({ engine_type }, &baseAddress)))
+	{
+		return E_FAIL;
+	}
 
-	rOriginal = (Tb)(pModule + (offset - baseAddress));
+	rOriginal = (Tb)(static_cast<char*>(pModule) + (offset - baseAddress));
 
 	PVOID* ppPointer = reinterpret_cast<void**>(&rOriginal);
 	PVOID pDetour = reinterpret_cast<void*>(hook);
@@ -187,17 +192,4 @@ T get_function_ptr()
 	T result = nullptr;
 	populate_function_ptr<engine_type, offset, T>(result);
 	return result;
-}
-
-template<size_t offset>
-void nop_address_legacy(const char pModuleName[], size_t baseAddress, size_t count)
-{
-	// Find the function address
-	char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));
-	char* const pDataAddress = pBaseAddress + (offset - baseAddress);
-
-	for (size_t i = 0; i < count; i++)
-	{
-		pDataAddress[i] = 0x90;
-	}
 }

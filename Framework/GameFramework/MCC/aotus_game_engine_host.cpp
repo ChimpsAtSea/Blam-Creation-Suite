@@ -4,8 +4,8 @@
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
 #define CONTROLLER_JOYSTICK_THRESHOLD 0.15f
 
-c_aotus_game_engine_host::c_aotus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime) :
-	IGameEngineHost(engine_type, build, &game_events),
+c_aotus_game_engine_host::c_aotus_game_engine_host(s_engine_platform_build engine_platform_build, c_game_runtime& rGameRuntime) :
+	IGameEngineHost(engine_platform_build, &game_events),
 	game_engine(nullptr),
 	window(*c_game_launcher::get_window()),
 	mouse_input(*c_game_launcher::get_mouse_input()),
@@ -14,15 +14,19 @@ c_aotus_game_engine_host::c_aotus_game_engine_host(e_engine_type engine_type, e_
 	frame_timer(),
 	total_frame_cpu_time(0.0)
 {
-	const wchar_t* engine_string = get_enum_string<decltype(engine_string), true>(engine_type);
-	const wchar_t* build_string = build_to_string<decltype(build_string), true>(engine_type, build); //#TODO: MCC product version to string to snag build numbers we don't know about
-	const wchar_t* build_configuration = build_configuration_string<decltype(build_configuration), true>();
+	const char* engine_string = "unknown engine";
+	BCS_RESULT get_engine_type_pretty_string_result = get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_string);
+	DEBUG_ASSERT(SUCCEEDED(get_engine_type_pretty_string_result));
 
-	std::wstring window_title = engine_string;
-	window_title.append(L" : ");
-	window_title.append(build_string);
-	window_title.append(L" ");
-	window_title.append(build_configuration);
+	const char* build_string = "unknown build";
+	BCS_RESULT get_build_pretty_string_result = get_build_pretty_string(engine_platform_build.build, &build_string); //#TODO: MCC product version to string to snag build numbers we don't know about
+	DEBUG_ASSERT(SUCCEEDED(get_build_pretty_string_result));
+
+	const char* build_configuration = get_build_configuration_pretty_string();
+
+	c_fixed_wide_string_256 window_title;
+	window_title.format(L"%S : %S : %S", engine_string, build_string, build_configuration);
+	
 	window.set_title(window_title.c_str()); // #TODO: Replace with push/pop
 }
 
@@ -120,11 +124,10 @@ __int64 __fastcall c_aotus_game_engine_host::game_save_handler(LPVOID buffer, si
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
-	static const wchar_t* engine_name = engine_type_to_folder_name<decltype(engine_name)>(engine_type);
-	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
+	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_platform_build.engine_type)
 	{
 		// TODO: add support for halo reach
-		switch (engine_type)
+		switch (engine_platform_build.engine_type)
 		{
 		//case _engine_type_haloreach:
 		//	map_id = haloreach_map_id;
@@ -152,9 +155,13 @@ __int64 __fastcall c_aotus_game_engine_host::game_save_handler(LPVOID buffer, si
 
 	static wchar_t autosave_path[MAX_PATH + 1] = L"aotus/autosave/";
 	{
+		const char* engine_string;
+		BCS_RESULT get_engine_type_pretty_string_result = get_engine_type_folder_string(engine_platform_build.engine_type, &engine_string);
+		ASSERT(SUCCEEDED(get_engine_type_pretty_string_result));
+		
 		time_t now;
 		time(&now);
-		_snwprintf(autosave_path, MAX_PATH, L"aotus/autosave/%08llX.%s.bin", now, engine_name);
+		_snwprintf(autosave_path, MAX_PATH, L"aotus/autosave/%08llX.%S.bin", now, engine_string);
 	}
 
 	bool result = false;
@@ -259,7 +266,7 @@ void c_aotus_game_engine_host::game_variant_save_handler(IGameVariant* game_vari
 	const wchar_t* file_name   = L"temp";
 	const wchar_t* name	       = L"Temp test gvar";
 	const wchar_t* description = L"This is a temporary test game variant for testing writing to file.";
-	switch (engine_type)
+	switch (engine_platform_build.engine_type)
 	{
 	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
@@ -286,7 +293,7 @@ void c_aotus_game_engine_host::map_variant_save_handler(IMapVariant* map_variant
 	const wchar_t* file_name   = L"temp";
 	const wchar_t* name	       = L"Temp test mvar";
 	const wchar_t* description = L"This is a temporary test map variant for testing writing to file.";
-	switch (engine_type)
+	switch (engine_platform_build.engine_type)
 	{
 	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
@@ -315,7 +322,7 @@ void c_aotus_game_engine_host::function13(const wchar_t*, const wchar_t*, const 
 char c_aotus_game_engine_host::controller_inverted_look_update_handler(int controller_index, bool inverted)
 {
 	static c_player_configuration* player_configuration = nullptr;
-	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	if (PlayerConfigurationFromBuild(&player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
 
@@ -329,7 +336,7 @@ char c_aotus_game_engine_host::controller_inverted_look_update_handler(int contr
 char c_aotus_game_engine_host::game_specific_bindings_get(int controller_index, char(*buffer)[256])
 {
 	static c_player_configuration* player_configuration = nullptr;
-	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	if (PlayerConfigurationFromBuild(&player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
 		memcpy(&player_configuration->GameSpecific, buffer, 256);
@@ -405,7 +412,7 @@ bool __fastcall c_aotus_game_engine_host::game_data_update_handler(char* game_da
 
 	c_console::write_line_verbose(__FUNCTION__);
 
-	if (build >= _build_mcc_1_1896_0_0)
+	if (engine_platform_build.build >= _build_mcc_1_1896_0_0)
 	{
 		GameDataStructV2* game_data_typed = reinterpret_cast<GameDataStructV2*>(game_data);
 
@@ -524,7 +531,7 @@ c_player_configuration* __fastcall c_aotus_game_engine_host::player_configuratio
 	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 
 	static c_player_configuration *player_configuration = nullptr;
-	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	if (PlayerConfigurationFromBuild(&player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
 	}
@@ -537,12 +544,12 @@ BYTE keyboardState[256] = {};
 __int64 __fastcall c_aotus_game_engine_host::player_configuration_update_handler(wchar_t player_names[4][16], c_player_configuration* player_configuration)
 {
 	// #TODO #LEGACY: The format for player_configuration_update_handler changed sometime after 887
-	if (build <= _build_mcc_1_887_0_0 || !is_valid(player_configuration))
+	if (engine_platform_build.build <= _build_mcc_1_887_0_0 || !is_valid(player_configuration))
 	{
 		return false; // skips a large chunk of code that crashes out because the format changed
 	}
 
-	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	if (PlayerConfigurationFromBuild(&player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
 	}

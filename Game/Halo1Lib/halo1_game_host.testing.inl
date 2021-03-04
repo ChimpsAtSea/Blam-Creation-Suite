@@ -1,7 +1,7 @@
 #include "halo1lib-private-pch.h"
 
 //// TODO: get the offset for build 1367
-//uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
+//uintptr_t sub_18019BC50_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18019BC50);
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x1800EB5E0);
@@ -20,7 +20,7 @@
 //	return sub_18019BC50(a1, pFormat, args);
 //} };
 
-//uintptr_t sub_1801FE1B0_offset(e_engine_type engine_type, e_build build)
+//uintptr_t sub_1801FE1B0_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x1801FE1B0);
 //	return ~uintptr_t();
@@ -41,7 +41,7 @@ void terminal_output_print_hook(void *, const char *format, ...)
 }
 
 // TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570
-uintptr_t terminal_output_print_offset(e_engine_type engine_type, e_build build)
+uintptr_t terminal_output_print_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18078ADF0);
 	return ~uintptr_t();
@@ -50,7 +50,7 @@ FunctionHookVarArgsEx<terminal_output_print_offset, void(void *, const char*, ..
 	= { "terminal_output_print", terminal_output_print_hook };
 
 // TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570
-uintptr_t terminal_output_print_needs_developer_mode_greater_than_or_equal_4_offset(e_engine_type engine_type, e_build build)
+uintptr_t terminal_output_print_needs_developer_mode_greater_than_or_equal_4_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18078AD10);
 	return ~uintptr_t();

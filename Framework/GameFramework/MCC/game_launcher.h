@@ -60,7 +60,7 @@ private:
 
 public:
 	static c_mandrill_user_interface* mandrill_user_interface;
-	using t_generic_game_event = void(*)(e_engine_type engine_type, e_build build);
+	using t_generic_game_event = void(*)(s_engine_platform_build engine_platform_build);
 	inline static void register_game_startup_callback(t_generic_game_event event_callback) { s_game_startup_events.push_back(event_callback); }
 	inline static void register_game_shutdown_callback(t_generic_game_event event_callback) { s_game_shutdown_events.push_back(event_callback); }
 	inline static void unregister_game_startup_callback(t_generic_game_event event_callback) { vector_erase_by_value_helper(s_game_startup_events, event_callback); }

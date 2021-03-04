@@ -1,6 +1,6 @@
 
 #pragma region console tests
-uintptr_t hs_doc_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_doc_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180780830);
 	return ~uintptr_t();
@@ -10,7 +10,7 @@ c_function_hook_ex<hs_doc_offset, int()> hs_doc;
 
 //__int64 sub_1807015E0()
 
-uintptr_t console_initialize_offset(e_engine_type engine_type, e_build build)
+uintptr_t console_initialize_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807015E0);
 	return ~uintptr_t();
@@ -21,7 +21,7 @@ c_function_hook_ex<console_initialize_offset, signed int()> console_initialize =
 	return console_initialize();
 } };
 
-uintptr_t console_open_offset(e_engine_type engine_type, e_build build)
+uintptr_t console_open_offset(s_engine_platform_build engine_platform_build)
 {
 	//OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180701760);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1807EC5C0);
@@ -34,7 +34,7 @@ c_function_hook_ex<console_open_offset, signed int()> console_open = { "console_
 	return console_open();
 } };
 
-uintptr_t console_close_offset(e_engine_type engine_type, e_build build)
+uintptr_t console_close_offset(s_engine_platform_build engine_platform_build)
 {
 	//OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180701800);
 	return ~uintptr_t();
@@ -45,7 +45,7 @@ c_function_hook_ex<console_close_offset, signed int()> console_close = { "consol
 	return console_close();
 } };
 
-uintptr_t enable_console_offset(e_engine_type engine_type, e_build build)
+uintptr_t enable_console_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1821C8831);
 	return ~uintptr_t();
@@ -115,7 +115,7 @@ static void draw_console_debug_gui()
 // Scaless you're work is kinda epic dude
 
 // Search for `aRasterizerNear` in IDA to find the offset
-uintptr_t halo1_allow_dev_command_execution_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo1_allow_dev_command_execution_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180A9997F);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x18077F7DF);
@@ -134,7 +134,7 @@ uintptr_t halo1_allow_dev_command_execution_patch_offset(e_engine_type engine_ty
 	OFFSET(_engine_type_halo1, _build_mcc_1_1955_0_0, 0x180B74417);
 	return ~uintptr_t();
 }
-c_data_patch<halo1_allow_dev_command_execution_patch_offset> halo1_allow_dev_command_execution_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<halo1_allow_dev_command_execution_patch_offset> halo1_allow_dev_command_execution_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	uint8_t mov[2] { 0xB0ui8, 0x01ui8 };
 	packet = MAKE_DATAPATCHPACKET(data, sizeof(mov));
@@ -142,7 +142,7 @@ c_data_patch<halo1_allow_dev_command_execution_patch_offset> halo1_allow_dev_com
 } };
 
 // Search for `aMapNameB30` or `aRequestedFunct` in IDA to find the offset
-uintptr_t halo1_execute_dev_command_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo1_execute_dev_command_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180B272D0);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x1807ED020);

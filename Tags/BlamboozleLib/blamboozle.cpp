@@ -84,11 +84,15 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	e_build build = _build_not_set;
 
 	{
-		uint64_t library_file_version = get_library_file_version(binary_filepath);
-		std::wstring library_description = get_library_description(binary_filepath);
-		std::wstring library_product_name = get_library_product_name(binary_filepath);
+		uint64_t library_file_version;
+		wchar_t library_description[2048];
+		wchar_t library_product_name[2048];
 
-		uint64_t tool_version = make_tool_version_runtime(library_file_version, library_description.c_str(), library_product_name.c_str());
+		ASSERT(BCS_SUCCEEDED(get_library_file_version(binary_filepath, &library_file_version)));
+		ASSERT(BCS_SUCCEEDED(get_library_description(binary_filepath, library_description, _countof(library_description))));
+		ASSERT(BCS_SUCCEEDED(get_library_product_name(binary_filepath, library_product_name, _countof(library_product_name))));
+
+		uint64_t tool_version = make_tool_version_runtime(library_file_version, library_description, library_product_name);
 
 		if (tool_version == _build_halo1_guerilla)
 		{
@@ -134,10 +138,13 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 		return 1;
 	}
 
-	const char* build_pretty_name = build_to_string<decltype(build_pretty_name), true>(engine_type, build);
+	const char* build_pretty_name = "unknown";
+	get_build_pretty_string(build, &build_pretty_name);
+	
 	c_console::write_line_verbose("Found %s build", build_pretty_name);
 
-	const char* engine_type_name = get_enum_string<decltype(engine_type_name)>(engine_type);
+	const char* engine_type_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_string(engine_type, &engine_type_name)));
 
 	switch (engine_type)
 	{

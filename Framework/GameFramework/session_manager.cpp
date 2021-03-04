@@ -1,10 +1,10 @@
 #include "gameframework-private-pch.h"
 
-void c_session_manager::create_game_options(e_build build, GameOptions** out_options)
+void c_session_manager::create_game_options(s_engine_platform_build engine_platform_build, GameOptions** out_options)
 {
 	ASSERT(out_options);
 
-	e_game_options_version game_options_version = get_game_options_version_from_build(build);
+	e_game_options_version game_options_version = get_game_options_version_from_build(engine_platform_build.build);
 	switch (game_options_version)
 	{
 	case _game_options_version_0: c_console::write_line_verbose("Using game context version 0"); break;

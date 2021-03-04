@@ -19,8 +19,7 @@ public:
 
 	inline uint16_t get_index() { return group_index; };
 	inline unsigned long get_group_tag() const { return group_tag; }
-
-	void* get_cache_file_tag_group() const { return cache_file_tag_group; };
+	
 	const blofeld::s_tag_group* get_blofeld_tag_group() const { return blofeld_reflection_type; };
 	inline c_tag_interface* const* get_tag_interfaces() const { return tag_interfaces.data(); };
 	inline c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const { return tag_interfaces_sorted_by_name_with_group_id.data(); };
@@ -39,7 +38,6 @@ protected:
 		unsigned long group_tags[3];
 		unsigned long group_tag;
 	};
-	void* cache_file_tag_group;
 
 	const blofeld::s_tag_group* blofeld_reflection_type;
 	std::vector<c_tag_interface*> tag_interfaces;

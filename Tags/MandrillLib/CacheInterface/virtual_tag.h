@@ -15,12 +15,16 @@ public:
 
 	operator c_tag_interface* () const
 	{
-		return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
+		// #TODO: cache refactor
+		//return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
+		throw;
 	}
 
 	operator const c_tag_interface* () const
 	{
-		return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
+		// #TODO: cache refactor
+		//return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
+		throw;
 	}
 
 	template<typename T>

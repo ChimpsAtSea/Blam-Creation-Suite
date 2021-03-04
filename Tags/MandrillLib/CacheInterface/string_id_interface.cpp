@@ -26,8 +26,9 @@ c_string_id_interface::c_string_id_interface(c_gen3_cache_file& cache_file, uint
 		length_mask = (length_mask << 1) | 1;
 	}
 
-	for (uint32_t current_set = 1; current_set < cache_file.string_id_namespace_count; current_set++) // #TODO: pre calculate this table
+	// #TODO: cache refactor
+	/*for (uint32_t current_set = 1; current_set < cache_file.string_id_namespace_count; current_set++) // #TODO: pre calculate this table
 	{
 		first_custom_index += cache_file.string_id_namespace_table[current_set] & 0x1FFFF;
-	}
+	}*/
 }

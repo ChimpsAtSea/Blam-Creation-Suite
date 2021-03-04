@@ -1,6 +1,6 @@
 //struct s_game_options;
 //
-//uintptr_t main_game_start_offset(e_engine_type engine_type, e_build build)
+//uintptr_t main_game_start_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00567E40);
 //	return ~uintptr_t();
@@ -11,7 +11,7 @@
 //	return main_game_start(game_options);
 //}};
 
-uintptr_t c_stop_watch__start_offset(e_engine_type engine_type, e_build build)
+uintptr_t c_stop_watch__start_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x005547F0);
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_604673_Live, 0x004CD0F0);
@@ -25,19 +25,19 @@ c_function_hook_ex<c_stop_watch__start_offset, void()> c_stop_watch__start = { "
 	return c_stop_watch__start();
 }};
 
-//uintptr_t language_patch_offset(e_engine_type engine_type, e_build build)
+//uintptr_t language_patch_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x006333FD);
 //	return ~uintptr_t();
 //}
-//c_data_patch<language_patch_offset> language_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//c_data_patch<language_patch_offset> language_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //		// English patch
 //		packet = MAKE_DATAPATCHPACKET(data, 1);
 //		data[0] = 0i8; // #TODO: Add multi language support
 //}};
 
-std::vector<uintptr_t> enable_tag_edits_patch_offsets(e_engine_type engine_type, e_build build)
+std::vector<uintptr_t> enable_tag_edits_patch_offsets(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23,       0x00501A5B, 0x00502874, 0x005030AA);
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_604673_Live,            0x00482DB4, 0x004830FA, 0x00483AFC);
@@ -45,7 +45,7 @@ std::vector<uintptr_t> enable_tag_edits_patch_offsets(e_engine_type engine_type,
 	return {};
 }
 
-c_multi_data_patch<enable_tag_edits_patch_offsets> enable_tag_edits_patch = { [](e_engine_type engine_type, e_build build, char* data[], DataPatchPackets& packets)
+c_multi_data_patch<enable_tag_edits_patch_offsets> enable_tag_edits_patch = { [](s_engine_platform_build engine_platform_build, char* data[], DataPatchPackets& packets)
 {
 	UINT8 jmp[1] = { 0xEB };
 	packets.push_back(MAKE_DATAPATCHPACKET(data[0], sizeof(jmp)));
@@ -58,12 +58,12 @@ c_multi_data_patch<enable_tag_edits_patch_offsets> enable_tag_edits_patch = { []
 	nop_address(data[2], 2);
 }};
 
-std::vector<uintptr_t> no_account_args_patch_offsets(e_engine_type engine_type, e_build build)
+std::vector<uintptr_t> no_account_args_patch_offsets(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x0083731A, 0x008373AD);
 	return {};
 }
-c_multi_data_patch<no_account_args_patch_offsets> no_account_args_patch = { [](e_engine_type engine_type, e_build build, char* data[], DataPatchPackets& packets)
+c_multi_data_patch<no_account_args_patch_offsets> no_account_args_patch = { [](s_engine_platform_build engine_platform_build, char* data[], DataPatchPackets& packets)
 {
 	// No --account args patch
 	UINT8 patch0[2] = { 0xEB, 0x0E };
@@ -76,7 +76,7 @@ c_multi_data_patch<no_account_args_patch_offsets> no_account_args_patch = { [](e
 	copy_to_address(data[1], patch1, sizeof(patch1));
 }};
 
-uintptr_t GameShieldInit_offset(e_engine_type engine_type, e_build build)
+uintptr_t GameShieldInit_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_604673_Live,            0x00752260);
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x007648E0);
@@ -87,54 +87,54 @@ c_function_hook_ex<GameShieldInit_offset, void()> GameShieldInit = { "GameShield
 	c_console::write_line_verbose("GameShieldInit");
 }};
 
-//uintptr_t network_lobby_patch_offset(e_engine_type engine_type, e_build build)
+//uintptr_t network_lobby_patch_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00AC34B0);
 //	return ~uintptr_t();
 //}
-//c_data_patch<network_lobby_patch_offset> network_lobby_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//c_data_patch<network_lobby_patch_offset> network_lobby_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //	// Fix "Network" setting in lobbies (change broken 0x100B7 menuID to 0x100B6)
 //	packet = MAKE_DATAPATCHPACKET(data, 1);
 //	data[0] = 0xB6i8;
 //}};
 
-//uintptr_t main_menu_ui_elements_patch_offset(e_engine_type engine_type, e_build build)
+//uintptr_t main_menu_ui_elements_patch_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00AAA870);
 //	return ~uintptr_t();
 //}
-//c_data_patch<main_menu_ui_elements_patch_offset> main_menu_ui_elements_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//c_data_patch<main_menu_ui_elements_patch_offset> main_menu_ui_elements_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //	// Fix UI elements automatically closing on mainmenu-loaded maps (todo: find real reason why they close)
 //	packet = MAKE_DATAPATCHPACKET(data, 1);
 //	data[0] = 0xC3i8;
 //}};
 
-//uintptr_t load_level_patch(e_engine_type engine_type, e_build build)
+//uintptr_t load_level_patch(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x006D26DF);
 //	return ~uintptr_t();
 //}
-//c_data_patch<load_level_patch_offset> load_level_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//c_data_patch<load_level_patch_offset> load_level_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //	// Level load patch
 //	packet = MAKE_DATAPATCHPACKET(data, 5);
 //	nop_address(data, 5);
 //}};
 
-//uintptr_t anti_cheat_patch_offset(e_engine_type engine_type, e_build build)
+//uintptr_t anti_cheat_patch_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x006006F0);
 //	return ~uintptr_t();
 //}
-//c_data_patch<anti_cheat_patch_offset> anti_cheat_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//c_data_patch<anti_cheat_patch_offset> anti_cheat_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 //{
 //	packet = MAKE_DATAPATCHPACKET(data, 1);
 //	data[0] = 0xC3i8;
 //}};
 
-uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
+uintptr_t Hf2pInit_offset(s_engine_platform_build engine_platform_build)
 {
 	/*
 	Notes for MS23
@@ -172,7 +172,7 @@ c_function_hook_ex<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 	//InitSoundSystem();
 }};
 
-uintptr_t Hf2pShutdown_offset(e_engine_type engine_type, e_build build)
+uintptr_t Hf2pShutdown_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00600790);
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_604673_Live, ~uintptr_t());
@@ -185,7 +185,7 @@ c_function_hook_ex<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown",
 	//ShutdownSoundSystem();
 }};
 
-//uintptr_t GameClient__Shutdown_offset(e_engine_type engine_type, e_build build)
+//uintptr_t GameClient__Shutdown_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x005056D0);
 //	return ~uintptr_t();
@@ -200,7 +200,7 @@ c_function_hook_ex<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown",
 
 
 
-uintptr_t contrail_crash_fix_offset(e_engine_type engine_type, e_build build)
+uintptr_t contrail_crash_fix_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00A57DC0);
 	//OFFSET(_engine_type_eldorado, _build_eldorado_1_604673_Live, 0x0068A120);

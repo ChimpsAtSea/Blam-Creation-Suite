@@ -1,5 +1,17 @@
 #pragma once
 
+typedef int BCS_RESULT;
+
+#define BCS_E_NOT_IMPLEMENTED -4
+#define BCS_E_UNEXPECTED -3
+#define BCS_E_INVALID_ARGUMENT -2
+#define BCS_E_FAIL -1
+#define BCS_S_OK 0
+#define BCS_S_GOOD_THING 1
+
+#define BCS_FAILED(result) ((result) < 0)
+#define BCS_SUCCEEDED(result) ((result) >= 0)
+
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw
 #define DEBUG_FATAL_ERROR()

@@ -1,5 +1,5 @@
 
-uintptr_t halo4_hs_function_table_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_hs_function_table_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180D97F20);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180D98F10);
@@ -10,7 +10,7 @@ uintptr_t halo4_hs_function_table_offset(e_engine_type engine_type, e_build buil
 }
 void** (&halo4_hs_function_table)[] = reference_symbol<void** []>("halo4_hs_function_table", halo4_hs_function_table_offset);
 
-uintptr_t halo4_hs_compiler_global_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_hs_compiler_global_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x180D97CD0);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180D98CC0);
@@ -21,7 +21,7 @@ uintptr_t halo4_hs_compiler_global_offset(e_engine_type engine_type, e_build bui
 }
 void*& halo4_hs_compiler_global = reference_symbol<void*>("halo4_hs_compiler_global", halo4_hs_compiler_global_offset);
 
-uintptr_t halo4_hs_compiler_register_hs_functions_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_hs_compiler_register_hs_functions_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x18012F554);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180130B14);
@@ -55,7 +55,7 @@ c_function_hook_ex<halo4_hs_compiler_register_hs_functions_offset, __int64 __fas
 	return result;
 } };
 
-uintptr_t halo4_hs_print_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo4_hs_print_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo4, _build_mcc_1_1896_0_0, 0x1802741DC);
 	OFFSET(_engine_type_halo4, _build_mcc_1_1930_0_0, 0x180275F7C);

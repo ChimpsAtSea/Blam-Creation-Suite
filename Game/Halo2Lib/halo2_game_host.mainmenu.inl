@@ -7,7 +7,7 @@ struct s_halo2_map_info
 	const wchar_t* scenario_name_wide;
 };
 
-uintptr_t halo2_map_info_table_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo2_map_info_table_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo2, _build_mcc_1_1477_0_0, 0x180EECE30);
 	OFFSET(_engine_type_halo2, _build_mcc_1_1499_0_0, 0x180EECE30);
@@ -26,13 +26,13 @@ uintptr_t halo2_map_info_table_offset(e_engine_type engine_type, e_build build)
 }
 s_halo2_map_info(&halo2_map_info_table)[40] = reference_symbol<s_halo2_map_info[40]>("halo2_map_info_table", halo2_map_info_table_offset);
 
-uintptr_t halo2_map_info_table_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo2_map_info_table_patch_offset(s_engine_platform_build engine_platform_build)
 {
-	return halo2_map_info_table_offset(engine_type, build);
+	return halo2_map_info_table_offset(engine_platform_build);
 }
 c_data_patch<halo2_map_info_table_patch_offset> halo2_map_info_table_patch =
 {
-	[](e_engine_type engine_type, e_build build, char*, DataPatchPacket& packet)
+	[](s_engine_platform_build engine_platform_build, char*, DataPatchPacket& packet)
 	{
 		packet = MAKE_DATAPATCHPACKET(&halo2_map_info_table, sizeof(halo2_map_info_table));
 

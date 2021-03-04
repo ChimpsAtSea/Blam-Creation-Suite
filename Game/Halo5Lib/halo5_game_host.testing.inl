@@ -2,21 +2,21 @@
 
 
 
-uintptr_t unk_143285930_offset(e_engine_type engine_type, e_build build)
+uintptr_t unk_143285930_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo5, _build_halo5_forge_1_194_6192_2, 0x143285930);
 	return ~uintptr_t();
 }
 _PVFV& unk_143285930 = reference_symbol<_PVFV>("unk_143285930", unk_143285930_offset);
 
-uintptr_t unk_143307FF8_offset(e_engine_type engine_type, e_build build)
+uintptr_t unk_143307FF8_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo5, _build_halo5_forge_1_194_6192_2, 0x143307FF8);
 	return ~uintptr_t();
 }
 _PVFV& unk_143307FF8 = reference_symbol<_PVFV>("unk_143307FF8", unk_143307FF8_offset);
 
-uintptr_t __scrt_common_main_seh_offset(e_engine_type engine_type, e_build build)
+uintptr_t __scrt_common_main_seh_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo5, _build_halo5_forge_1_194_6192_2, 0x1410EB6A8);
 	return ~uintptr_t();
@@ -32,9 +32,11 @@ c_function_hook_ex<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_
 			return __scrt_common_main_seh();
 		}
 
-		_PVFV func_address = (_PVFV)engine_virtual_address_to_pointer(_engine_type_halo5, 0x14001D8E0);
+		_PVFV func_address;
+		ASSERT(BCS_SUCCEEDED(engine_virtual_address_to_pointer({ _engine_type_halo5 }, 0x14001D8E0, reinterpret_cast<void**>(&func_address))));
 
-		char* data_address = engine_virtual_address_to_pointer(_engine_type_halo5, 0x14473EB88);
+		char* data_address;
+		ASSERT(BCS_SUCCEEDED(engine_virtual_address_to_pointer({ _engine_type_halo5 }, 0x14473EB88, reinterpret_cast<void**>(&data_address))));
 
 		constexpr uint32_t blacklist_indices[] =
 		{
@@ -184,9 +186,10 @@ c_function_hook_ex<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_
 };
 c_data_patch<__scrt_common_main_seh_offset> __scrt_common_main_seh_patch =
 {
-	[](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
+	[](s_engine_platform_build engine_platform_build, char*, DataPatchPackets& packets)
 	{
-		char* patch_address = engine_virtual_address_to_pointer(engine_type, 0x1410EB73B);
+		char* patch_address;
+		ASSERT(BCS_SUCCEEDED(engine_virtual_address_to_pointer(engine_platform_build, 0x1410EB73B, reinterpret_cast<void**>(&patch_address))));
 
 		static const uint8_t patch[] = { 0xC3 };
 		packets.push_back(MAKE_DATAPATCHPACKET(patch_address, sizeof(patch)));

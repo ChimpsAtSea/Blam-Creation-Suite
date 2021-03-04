@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CacheInterface\cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\cache_utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -57,64 +54,7 @@
     <ClInclude Include="CacheInterface\virtual_tag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_tag_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_tag_group_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo3\halo3_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo3\halo3_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo2\halo2_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo5\halo5_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_tag_group_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mandrilllib-private-pch.h">
@@ -168,9 +108,6 @@
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserInterface\Tabs\halo_script_editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -180,28 +117,7 @@
     <ClInclude Include="CacheInterface\string_id_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo4\halo4_cache_file_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\cache_cluster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_resource_entries.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_entries.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h">
@@ -225,17 +141,26 @@
     <ClInclude Include="HighLevel\HighLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HighLevel\haloreach_cache_compiler.h">
+    <ClInclude Include="HighLevel\string_id_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HighLevel\string_id_manager.h">
+    <ClInclude Include="CacheInterface\cache_file_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\gen3\gen3_cache_file_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_cache_file_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\cache_byteswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\cache_files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CacheInterface\cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\tag_group_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -266,49 +191,7 @@
     <ClCompile Include="CacheInterface\virtual_tag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_tag_interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_tag_group_interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo3\halo3_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo2\halo2_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo4\halo4_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo5\halo5_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_tag_group_interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mandrilllib-private-pch.cpp">
@@ -356,28 +239,10 @@
     <ClCompile Include="CacheInterface\string_id_guesstimator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\cache_cluster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\string_id_namespace_list.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\string_id_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_resource_entries.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_entries.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_page_file_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_resource_page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp">
@@ -398,10 +263,19 @@
     <ClCompile Include="HighLevel\high_level_cache_file_transplant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HighLevel\haloreach_cache_compiler.cpp">
+    <ClCompile Include="HighLevel\string_id_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HighLevel\string_id_manager.cpp">
+    <ClCompile Include="CacheInterface\cache_file_header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\gen3\gen3_cache_file_header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_cache_file_header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_byteswap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

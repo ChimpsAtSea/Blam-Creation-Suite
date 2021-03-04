@@ -76,7 +76,7 @@ public:
 	static constexpr size_t kTableSize = 128;
 	void* __vtbl_dynamic;
 
-	IGameEngineHost(e_engine_type engine_type, e_build build, IGameEvents* game_events);
+	IGameEngineHost(s_engine_platform_build engine_platform_build, IGameEvents* game_events);
 	IGameEngineHost* GetDynamicGameEngineHost();
 
 	enum class PathType : int
@@ -348,8 +348,7 @@ public:
 	QWORD data1[5863] = {};
 
 	// begin custom data
-	e_engine_type engine_type;
-	e_build build;
+	s_engine_platform_build engine_platform_build;
 	bool game_engine_host_configured;
 	void ConfigureGameEngineHost();
 
@@ -364,7 +363,7 @@ public:
 	uintptr_t __vtbl_known_address0 = known_address0;
 	uintptr_t __vtbl_known_address1 = known_address1;
 
-	bool PlayerConfigurationFromBuild(e_build build, c_player_configuration** player_configuration);
+	bool PlayerConfigurationFromBuild(c_player_configuration** player_configuration);
 	void ConfigurePlayerConfiguration(c_player_configuration& player_configuration);
 };
 //CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);

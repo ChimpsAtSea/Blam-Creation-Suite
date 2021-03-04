@@ -101,7 +101,7 @@ namespace blofeld
 	};
 
 	uint32_t get_blofeld_field_size(e_platform_type platform_type, e_field field);
-	uint32_t get_blofeld_field_size(const s_tag_field& field, e_engine_type engine_type, e_platform_type platform_type, e_build build);
+	uint32_t get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build);
 	const char* field_to_string(e_field field);
 
 	enum e_field_id

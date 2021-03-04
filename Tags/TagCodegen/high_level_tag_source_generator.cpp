@@ -2,10 +2,8 @@
 
 using namespace blofeld;
 
-c_high_level_tag_source_generator::c_high_level_tag_source_generator(e_engine_type engine_type, e_platform_type platform_type, e_build build) :
-	engine_type(engine_type),
-	platform_type(platform_type),
-	build(build)
+c_high_level_tag_source_generator::c_high_level_tag_source_generator(s_engine_platform_build engine_platform_build) :
+	engine_platform_build(engine_platform_build)
 {
 
 }
@@ -97,7 +95,10 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_qword_integer:						return "qword";
 	case _field_pointer: // #NONSTANDARD
 	{
-		switch (get_platform_pointer_size(platform_type))
+		uint32_t pointer_size;
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
+			
+		switch (pointer_size)
 		{
 		case 8: return "long long";
 		case 4: return "long";
@@ -114,7 +115,9 @@ void c_high_level_tag_source_generator::generate_header() const
 {
 	std::stringstream stream;
 
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
@@ -137,7 +140,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -200,7 +203,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				field_index += field_skip_count;
@@ -230,7 +233,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << "> " << field_formatter.code_name.c_str() << ";";
+				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
 				//stream << "\t\t\t\t" << "h_field<h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
@@ -276,7 +279,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			}
 			default:
 			{
-				const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);
+				const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 				ASSERT(field_source_type != nullptr);
 				//stream << "\t\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
 				stream << "\t\t\t\t" << "h_field<" << field_source_type << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
@@ -322,7 +325,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 	for (const s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 		{
 			current_field += field_skip_count;
 			continue;
@@ -398,8 +401,13 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 {
 	std::stringstream stream;
 
-	const char* source_namespace_name = engine_type_to_source_name<const char*>(engine_type);
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
+
+	const char* source_namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
 
 	stream << "#include <highlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
 	stream << std::endl;
@@ -504,7 +512,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 				for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 				{
 					uint32_t field_skip_count;
-					if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 					{
 						current_field += field_skip_count;
 						field_index += field_skip_count;
@@ -535,7 +543,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					case _field_array:
 					{
 						const char* field_source_type = current_field->array_definition->struct_definition.name;
-						stream << "using t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<blofeld::" << namespace_name << "::h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">;" << std::endl;
+						stream << "using t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<blofeld::" << namespace_name << "::h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << ">;" << std::endl;
 						stream << "h_field_func_impl(t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
 						break;
 					}
@@ -580,7 +588,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					}
 					default:
 					{
-						const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);
+						const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 						ASSERT(field_source_type != nullptr);
 						stream << "h_field_func_impl(" << field_source_type << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
 					}
@@ -624,8 +632,13 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 {
 	std::stringstream stream;
 
-	const char* source_namespace_name = engine_type_to_source_name<const char*>(engine_type);
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
+
+	const char* source_namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
 
 	stream << "#include <highlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
 	stream << std::endl;
@@ -652,7 +665,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -666,7 +679,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			blofeld_field_list_count++;
 		}
 
-		uint32_t low_level_type_size = calculate_struct_size(engine_type, platform_type, build, *tag_struct_definition);
+		uint32_t low_level_type_size = calculate_struct_size(engine_platform_build, *tag_struct_definition);
 
 		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::high_level_type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
 		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
@@ -677,7 +690,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				uint32_t field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;
@@ -772,8 +785,13 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 {
 	std::stringstream stream;
 
-	const char* source_namespace_name = engine_type_to_source_name<const char*>(engine_type);
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
+
+	const char* source_namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
 
 	stream << "#include <highlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
 	stream << std::endl;
@@ -846,7 +864,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				uint32_t field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;
@@ -901,7 +919,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				uint32_t field_skip_count;
-				if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
 					field_index += field_skip_count;

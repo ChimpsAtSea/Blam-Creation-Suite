@@ -1,5 +1,5 @@
 
-uintptr_t convert_mcc_map_id_to_map_name_offset(e_engine_type engine_type, e_build build)
+uintptr_t convert_mcc_map_id_to_map_name_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180A47A20);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x18073C810);
@@ -25,7 +25,7 @@ c_function_hook_ex<convert_mcc_map_id_to_map_name_offset, const char* __fastcall
 	}
 } };
 
-uintptr_t halo1_ui_string_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo1_ui_string_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x1816678E4);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x1816678E4);
@@ -37,7 +37,7 @@ uintptr_t halo1_ui_string_offset(e_engine_type engine_type, e_build build)
 }
 char(&halo1_ui_string)[] = reference_symbol<char[]>("halo1_ui_string", halo1_ui_string_offset);
 
-uintptr_t mcc_map_id_parse_to_halo1_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_map_id_parse_to_halo1_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1829_0_0, 0x180090C59 + 3);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1864_0_0, 0x180090C59 + 3);
@@ -47,7 +47,7 @@ uintptr_t mcc_map_id_parse_to_halo1_patch_offset(e_engine_type engine_type, e_bu
 	OFFSET(_engine_type_halo1, _build_mcc_1_2094_0_0, 0x180090BD9 + 3);
 	return ~uintptr_t();
 }
-c_data_patch<mcc_map_id_parse_to_halo1_patch_offset> mcc_map_id_parse_to_halo1_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<mcc_map_id_parse_to_halo1_patch_offset> mcc_map_id_parse_to_halo1_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	packet = MAKE_DATAPATCHPACKET(data, 4);
 

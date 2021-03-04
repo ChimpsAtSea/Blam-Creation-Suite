@@ -67,9 +67,6 @@
     <None Include="haloreach_game_host.memory.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="haloreach_game_host.legacy.inl">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="haloreach_game_host.camera.inl">
       <Filter>Header Files</Filter>
     </None>

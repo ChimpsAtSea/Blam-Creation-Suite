@@ -1,6 +1,6 @@
 #pragma once
 
-#define OFFSET(Engine, Build, ...) if(engine_type == Engine && build == Build) return { __VA_ARGS__ };
+#define OFFSET(Engine, Build, ...) if(engine_platform_build.engine_type == Engine && engine_platform_build.build == Build) return { __VA_ARGS__ };
 
 #include "map_id.h"
 

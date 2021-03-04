@@ -1,7 +1,9 @@
 #include "mandrilllib-private-pch.h"
 
 c_cache_file_tab::c_cache_file_tab(c_cache_file& cache_file, c_mandrill_tab& parent, const char* tag_list) :
-	c_mandrill_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8(), &parent),
+	// #TODO: cache refactor
+	//c_mandrill_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8(), &parent),
+	c_mandrill_tab("c_cache_file_tab", "c_cache_file_tab", &parent),
 	cache_file(cache_file),
 	render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes")),
 	search_buffer(),
@@ -82,11 +84,13 @@ c_virtual_tag_tab& c_cache_file_tab::open_tag_interface_tab(c_tag_interface& tag
 
 void c_cache_file_tab::open_tag_by_search_name(const char* tag_name)
 {
+	// #TODO: cache refactor
+	/*
 	// #TODO: Create a callback function interface that will run on the first frame of the main thread
 	while (cache_file.is_loading()) { Sleep(1); };
 
 	c_tag_interface* tag_interface = nullptr;
-
+	
 	for (c_tag_interface* current_tag_interface : c_range_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 	{
 		if (current_tag_interface->is_null()) continue;
@@ -106,7 +110,7 @@ void c_cache_file_tab::open_tag_by_search_name(const char* tag_name)
 	if (tag_interface)
 	{
 		open_tag_interface_tab(*tag_interface);
-	}
+	}*/
 }
 
 void c_cache_file_tab::render_search_box()
@@ -249,12 +253,13 @@ void c_cache_file_tab::render_menu_gui_impl(e_menu_render_type menu_render_type)
 		ImGui::MenuItem("Extract Tag");
 		ImGui::Separator();
 
-		c_fixed_string_512 save_string;
+		// #TODO: cache refactor
+		/*c_fixed_string_512 save_string;
 		save_string.format("Save %s", cache_file.get_map_path_utf8());
 		if (ImGui::MenuItem(save_string.c_str(), "Ctrl+S"))
 		{
 			cache_file.save_map();
-		}
+		}*/
 		//ImGui::MenuItem("Save As");
 		ImGui::Separator();
 		//ImGui::MenuItem("Compile");
@@ -318,169 +323,176 @@ void c_cache_file_tab::render_game_layer_impl()
 
 void c_cache_file_tab::render_tags_list_tree()
 {
-	c_mandrill_user_interface& user_interface = *search_parent_tab_type<c_mandrill_user_interface>();
-	REFERENCE_ASSERT(user_interface);
-	c_tag_group_interface* const* group_interfaces = cache_file.get_tag_group_interfaces();
+	// #TODO: cache refactor
+	//c_mandrill_user_interface& user_interface = *search_parent_tab_type<c_mandrill_user_interface>();
+	//REFERENCE_ASSERT(user_interface);
+	//c_tag_group_interface* const* group_interfaces = cache_file.get_tag_group_interfaces();
 
-	for (c_tag_group_interface* group_interface : c_range_loop(group_interfaces, cache_file.get_tag_group_count()))
-	{
-		const uint32_t tag_interfaces_count = group_interface->get_tag_interfaces_count();
-		c_tag_interface* const* tag_interfaces = user_interface.get_use_full_file_length_display()
-			? group_interface->get_tag_interfaces_sorted_by_path_with_group_id()
-			: group_interface->get_tag_interfaces_sorted_by_name_with_group_id();
+	//for (c_tag_group_interface* group_interface : c_range_loop(group_interfaces, cache_file.get_tag_group_count()))
+	//{
+	//	const uint32_t tag_interfaces_count = group_interface->get_tag_interfaces_count();
+	//	c_tag_interface* const* tag_interfaces = user_interface.get_use_full_file_length_display()
+	//		? group_interface->get_tag_interfaces_sorted_by_path_with_group_id()
+	//		: group_interface->get_tag_interfaces_sorted_by_name_with_group_id();
 
-		const char* group_name = group_interface->get_full_name();
-		const char* group_short_name = group_interface->get_short_name();
+	//	const char* group_name = group_interface->get_full_name();
+	//	const char* group_short_name = group_interface->get_short_name();
 
-		bool display_group = tag_interfaces_count > 0;
+	//	bool display_group = tag_interfaces_count > 0;
 
-		if (!display_group) continue;
+	//	if (!display_group) continue;
 
 
-		bool tree_node_selected = false;
-		if (c_mandrill_user_interface::use_developer_features)
-		{
-			uint32_t tag_interface_count = 0;
-			uint32_t tag_interface_validated_count = 0;
-			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
-			{
-				tag_interface_count++;
-				if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
-				{
-					if (gen3_tag_interface->get_is_tag_valid())
-					{
-						tag_interface_validated_count++;
-					}
-				}
-				else
-				{
-					tag_interface_validated_count++;
-				}
-			}
+	//	bool tree_node_selected = false;
+	//	if (c_mandrill_user_interface::use_developer_features)
+	//	{
+	//		uint32_t tag_interface_count = 0;
+	//		uint32_t tag_interface_validated_count = 0;
+	//		for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
+	//		{
+	//			tag_interface_count++;
+	//			// #TODO: cache refactor
+	//			/*if (c_gen3_tag_interface* gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface))
+	//			{
+	//				if (gen3_tag_interface->get_is_tag_valid())
+	//				{
+	//					tag_interface_validated_count++;
+	//				}
+	//			}
+	//			else*/
+	//			{
+	//				tag_interface_validated_count++;
+	//			}
+	//		}
 
-			bool is_tag_group_valid = tag_interface_count == 0 || tag_interface_validated_count == tag_interface_count;
-			bool has_valid_tags = tag_interface_validated_count > 0;
+	//		bool is_tag_group_valid = tag_interface_count == 0 || tag_interface_validated_count == tag_interface_count;
+	//		bool has_valid_tags = tag_interface_validated_count > 0;
 
-			if (is_tag_group_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-			else if (has_valid_tags) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
-			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+	//		if (is_tag_group_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+	//		else if (has_valid_tags) ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 0.55f, 1.0f });
+	//		else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
 
-			tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s (%u/%u)", group_name, group_short_name, tag_interface_validated_count, tag_interface_count);
-		}
-		else
-		{
-			tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
-		}
+	//		tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s (%u/%u)", group_name, group_short_name, tag_interface_validated_count, tag_interface_count);
+	//	}
+	//	else
+	//	{
+	//		tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
+	//	}
 
-		if (tree_node_selected)
-		{
+	//	if (tree_node_selected)
+	//	{
 
-			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
-			{
-				if (tag_interface->is_null()) continue;
+	//		for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
+	//		{
+	//			if (tag_interface->is_null()) continue;
 
-				const char* tag_display_with_group_id = user_interface.get_use_full_file_length_display()
-					? tag_interface->get_path_with_group_id_cstr()
-					: tag_interface->get_name_with_group_id_cstr();
+	//			const char* tag_display_with_group_id = user_interface.get_use_full_file_length_display()
+	//				? tag_interface->get_path_with_group_id_cstr()
+	//				: tag_interface->get_name_with_group_id_cstr();
 
-				c_gen3_tag_interface* gen3_tag_interface = nullptr;
-				if (c_mandrill_user_interface::use_developer_features)
-				{
-					gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface);
-					bool is_tag_valid = true;
-					if (gen3_tag_interface)
-					{
-						is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+	//			// #TODO: cache refactor
+	//			/*c_gen3_tag_interface* gen3_tag_interface = nullptr;
+	//			if (c_mandrill_user_interface::use_developer_features)
+	//			{
+	//				gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(tag_interface);
+	//				bool is_tag_valid = true;
+	//				if (gen3_tag_interface)
+	//				{
+	//					is_tag_valid = gen3_tag_interface->get_is_tag_valid();
 
-						if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-						else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
-					}
-				}
+	//					if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+	//					else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+	//				}
+	//			}*/
 
-				static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
-				if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s - 0x%X", tag_display_with_group_id, tag_interface->get_index()))
-				{
-					if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-					{
-						open_tag_interface_tab(*tag_interface);
-					}
-				}
+	//			static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
+	//			if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "%s - 0x%X", tag_display_with_group_id, tag_interface->get_index()))
+	//			{
+	//				if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+	//				{
+	//					open_tag_interface_tab(*tag_interface);
+	//				}
+	//			}
 
-				if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface != nullptr)
-				{
-					ImGui::PopStyleColor();
-				}
-			}
+	//			// #TODO: cache refactor
+	//			/*if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface != nullptr)
+	//			{
+	//				ImGui::PopStyleColor();
+	//			}*/
+	//		}
 
-			ImGui::TreePop();
-		}
+	//		ImGui::TreePop();
+	//	}
 
-		if (c_mandrill_user_interface::use_developer_features)
-		{
-			ImGui::PopStyleColor();
-		}
-	}
+	//	if (c_mandrill_user_interface::use_developer_features)
+	//	{
+	//		ImGui::PopStyleColor();
+	//	}
+	//}
 }
 
 void c_cache_file_tab::render_tags_list_search()
 {
-	c_mandrill_user_interface& user_interface = *search_parent_tab_type<c_mandrill_user_interface>();
-	REFERENCE_ASSERT(user_interface);
+	// #TODO: cache refactor
+	//c_mandrill_user_interface& user_interface = *search_parent_tab_type<c_mandrill_user_interface>();
+	//REFERENCE_ASSERT(user_interface);
 
-	c_tag_interface* const* tag_interfaces = user_interface.get_use_full_file_length_display()
-		? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
-		: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
-	for (c_tag_interface& tag_interface : c_reference_loop(tag_interfaces, cache_file.get_tag_count()))
-	{
-		if (tag_interface.is_null()) continue;
+	//c_tag_interface* const* tag_interfaces = user_interface.get_use_full_file_length_display()
+	//	? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
+	//	: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
+	//for (c_tag_interface& tag_interface : c_reference_loop(tag_interfaces, cache_file.get_tag_count()))
+	//{
+	//	if (tag_interface.is_null()) continue;
 
-		const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
-		const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
+	//	const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
+	//	const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
 
-		const char* tag_display_with_group_name = user_interface.get_use_full_file_length_display()
-			? tag_interface.get_path_with_group_name_cstr()
-			: tag_interface.get_name_with_group_name_cstr();
+	//	const char* tag_display_with_group_name = user_interface.get_use_full_file_length_display()
+	//		? tag_interface.get_path_with_group_name_cstr()
+	//		: tag_interface.get_name_with_group_name_cstr();
 
-		if (!search_buffer.empty())
-		{
-			if (strstr(tag_path_group_name, search_buffer.c_str()) == nullptr && strstr(tag_path_group_id, search_buffer.c_str()) == nullptr)
-			{
-				continue;
-			}
-		}
+	//	if (!search_buffer.empty())
+	//	{
+	//		if (strstr(tag_path_group_name, search_buffer.c_str()) == nullptr && strstr(tag_path_group_id, search_buffer.c_str()) == nullptr)
+	//		{
+	//			continue;
+	//		}
+	//	}
 
-		c_gen3_tag_interface* gen3_tag_interface = nullptr; 
-		if (c_mandrill_user_interface::use_developer_features)
-		{
-			gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
-			bool is_tag_valid = true;
-			if (gen3_tag_interface)
-			{
-				is_tag_valid = gen3_tag_interface->get_is_tag_valid();
+	//	// #TODO: cache refactor
+	//	/*c_gen3_tag_interface* gen3_tag_interface = nullptr; 
+	//	if (c_mandrill_user_interface::use_developer_features)
+	//	{
+	//		gen3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
+	//		bool is_tag_valid = true;
+	//		if (gen3_tag_interface)
+	//		{
+	//			is_tag_valid = gen3_tag_interface->get_is_tag_valid();
 
-				if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
-				else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
-			}
-		}
+	//			if (is_tag_valid) ImGui::PushStyleColor(ImGuiCol_Text, { 0.55f, 1.0f, 0.55f, 1.0f });
+	//			else ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 0.55f, 0.55f, 1.0f });
+	//		}
+	//	}*/
 
-		bool selected = ImGui::Selectable(tag_display_with_group_name, search_selected_tag_interface == &tag_interface, ImGuiSelectableFlags_AllowDoubleClick);
+	//	bool selected = ImGui::Selectable(tag_display_with_group_name, search_selected_tag_interface == &tag_interface, ImGuiSelectableFlags_AllowDoubleClick);
 
-		if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface)
-		{
-			ImGui::PopStyleColor();
-		}
+	//	// #TODO: cache refactor
+	//	/*if (c_mandrill_user_interface::use_developer_features && gen3_tag_interface)
+	//	{
+	//		ImGui::PopStyleColor();
+	//	}*/
 
-		if (ImGui::IsItemHovered())
-		{
-			ImGui::BeginTooltip();
-			ImGui::Text(tag_path_group_name);
-			ImGui::EndTooltip();
-		}
-		if (selected && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
-		{
-			search_selected_tag_interface = &tag_interface;
-			open_tag_interface_tab(tag_interface);
-			search_selected_tag_interface = nullptr;
-		}
-	}
+	//	if (ImGui::IsItemHovered())
+	//	{
+	//		ImGui::BeginTooltip();
+	//		ImGui::Text(tag_path_group_name);
+	//		ImGui::EndTooltip();
+	//	}
+	//	if (selected && ImGui::IsMouseDoubleClicked((ImGuiMouseButton_Left)))
+	//	{
+	//		search_selected_tag_interface = &tag_interface;
+	//		open_tag_interface_tab(tag_interface);
+	//		search_selected_tag_interface = nullptr;
+	//	}
+	//}
 }

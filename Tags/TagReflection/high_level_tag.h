@@ -214,7 +214,7 @@ class h_group :
 	public h_type
 {
 public:
-	h_group(e_engine_type engine_type, e_platform_type platform_type, e_build build, const blofeld::s_tag_group& tag_group);
+	h_group(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group);
 
 	~h_group();
 

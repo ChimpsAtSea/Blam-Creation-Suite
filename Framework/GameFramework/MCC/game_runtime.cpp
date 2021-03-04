@@ -22,7 +22,9 @@ c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* engine_nam
 	}
 	else
 	{
-		game_module = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
+		void* runtime_base_address;
+		ASSERT(SUCCEEDED(get_engine_runtime_base_address({ engine_type }, &runtime_base_address)));
+		game_module = static_cast<HINSTANCE>(runtime_base_address);
 	}
 }
 
@@ -92,7 +94,8 @@ void c_game_runtime::loadLibrary(const char* library_file_name)
 
 e_build c_game_runtime::get_library_file_version(const char* file_path)
 {
-	uint64_t library_file_version = ::get_library_file_version(file_path);
+	uint64_t library_file_version;
+	ASSERT(SUCCEEDED(::get_library_file_version(file_path, &library_file_version)));
 
 	return static_cast<e_build>(library_file_version);
 }

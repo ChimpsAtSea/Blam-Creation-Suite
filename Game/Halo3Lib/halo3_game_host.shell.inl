@@ -1,6 +1,6 @@
 
 #pragma region Shell Debug
-uintptr_t shell_get_external_host_offset(e_engine_type engine_type, e_build build)
+uintptr_t shell_get_external_host_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180014120);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18000E3C0);
@@ -25,7 +25,7 @@ c_function_hook_ex<shell_get_external_host_offset, void* __fastcall(void)> shell
 	//result = nullptr;
 	return result;
 } };
-uintptr_t halo3_external_launch_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_external_launch_state_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18B7CB010);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18B7DF74C);
@@ -44,7 +44,7 @@ uintptr_t halo3_external_launch_state_offset(e_engine_type engine_type, e_build 
 }
 long& halo3_external_launch_state = reference_symbol<long>("halo3_external_launch_state", halo3_external_launch_state_offset);
 
-uintptr_t halo3_main_game_launch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_main_game_launch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1800138E0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x18000DC20);

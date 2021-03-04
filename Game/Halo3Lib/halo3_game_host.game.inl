@@ -1,5 +1,5 @@
 
-uintptr_t halo3_engine_shutdown_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_engine_shutdown_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x1802659D0);
 	return ~uintptr_t();
@@ -11,7 +11,7 @@ c_function_hook_ex<halo3_engine_shutdown_offset, void()> halo3_engine_shutdown =
 } };
 
 bool g_use_30_tick = false;
-uintptr_t halo3_game_time_get_ticks_per_second_constant_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_game_time_get_ticks_per_second_constant_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x180469ED0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1658_0_0, 0x180467DE0);
@@ -26,7 +26,8 @@ c_function_hook_ex<halo3_game_time_get_ticks_per_second_constant_offset, float _
 
 	if (g_use_30_tick)
 	{
-		if (is_valid(k_halo3_physical_base) && k_halo3_physical_base)
+		// #TODO: cache refactor
+		/*if (is_valid(k_halo3_physical_base) && k_halo3_physical_base)
 		{
 			// #TODO: confirm `engine_time_tick` and `time_per_tick` have the same offset from `k_physical_base`
 			e_build build = c_halo3_game_host::get_game_runtime().get_build();
@@ -48,7 +49,7 @@ c_function_hook_ex<halo3_game_time_get_ticks_per_second_constant_offset, float _
 				break;
 			}
 			}
-		}
+		}*/
 	}
 
 	return g_use_30_tick ? 30.0f : result;

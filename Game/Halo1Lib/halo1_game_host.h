@@ -8,7 +8,7 @@
 class c_halo1_game_host : public c_aotus_game_engine_host
 {
 public:
-	c_halo1_game_host(e_engine_type engine_type, e_build build);
+	c_halo1_game_host(s_engine_platform_build engine_platform_build);
 	virtual ~c_halo1_game_host();
 
 	// IGameEngineHost functionality

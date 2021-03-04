@@ -10,8 +10,8 @@ bool s_isHalo1Hooked = false;
 bool init_thread_is_hooked = false;
 void nullsub() {}
 
-extern void init_haloreach(e_engine_type engine_type, e_build build);
-extern void deinit_haloreach(e_engine_type engine_type, e_build build);
+extern void init_haloreach(s_engine_platform_build engine_platform_build);
+extern void deinit_haloreach(s_engine_platform_build engine_platform_build);
 
 void haloreach_dll_loaded_callback()
 {
@@ -89,8 +89,8 @@ void init_aotus()
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
-		c_function_hook_base::init_function_hook_tree(_engine_type_mcc, build);
-		c_global_reference::init_global_reference_tree(_engine_type_mcc, build);
+		c_function_hook_base::init_function_hook_tree({ _engine_type_mcc, _platform_type_pc, build });
+		c_global_reference::init_global_reference_tree({ _engine_type_mcc, _platform_type_pc, build });
 	}
 	end_detours();
 }

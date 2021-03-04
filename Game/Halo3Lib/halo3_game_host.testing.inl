@@ -1,7 +1,7 @@
 
 #pragma region network tests
 
-uintptr_t transport_endpoint_bind_offset(e_engine_type engine_type, e_build build)
+uintptr_t transport_endpoint_bind_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18022C0D0);
 	return ~uintptr_t();
@@ -12,20 +12,20 @@ c_function_hook_ex<transport_endpoint_bind_offset, bool __fastcall(__int64 a1, _
 	return result;
 } };
 
-uintptr_t transport_endpoint_bind_shell_host_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t transport_endpoint_bind_shell_host_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18022C11E);
 	return ~uintptr_t();
 }
 c_data_patch<transport_endpoint_bind_shell_host_patch_offset> transport_endpoint_bind_shell_host_patch = {
-	[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+	[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 	{
 		packet = MAKE_DATAPATCHPACKET(data, 2);
 		nop_address(data, 2);
 	}
 };
 
-uintptr_t sendto_with_error_code_offset(e_engine_type engine_type, e_build build)
+uintptr_t sendto_with_error_code_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18022C820);
 	return ~uintptr_t();
@@ -121,7 +121,7 @@ const long k_number_of_custom_halo3_network_message_types = underlying_cast(e_ha
 
 c_halo3_network_message_type custom_network_message_type_collection[k_number_of_halo3_network_message_types + k_number_of_custom_halo3_network_message_types];
 
-uintptr_t network_message_type_collection_offset(e_engine_type engine_type, e_build build)
+uintptr_t network_message_type_collection_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x180A651F0);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x180A651F0);
@@ -130,7 +130,7 @@ uintptr_t network_message_type_collection_offset(e_engine_type engine_type, e_bu
 c_halo3_network_message_type(&network_message_type_collection)[k_number_of_halo3_network_message_types]
 = reference_symbol<c_halo3_network_message_type[k_number_of_halo3_network_message_types]>("network_message_type_collection", network_message_type_collection_offset);
 
-uintptr_t simulation_view_initialize_offset(e_engine_type engine_type, e_build build)
+uintptr_t simulation_view_initialize_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1801F4E50);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1801F4E50);
@@ -149,7 +149,7 @@ c_function_hook_ex<simulation_view_initialize_offset, char __fastcall(void**, vo
 	return result;
 } };
 
-uintptr_t network_message_types_initialize_offset(e_engine_type engine_type, e_build build)
+uintptr_t network_message_types_initialize_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x1801FBD70);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1716_0_0, 0x1801FBD70);

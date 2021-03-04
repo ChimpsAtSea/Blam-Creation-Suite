@@ -1,5 +1,5 @@
 
-uintptr_t groundhog_hs_print_offset(e_engine_type engine_type, e_build build)
+uintptr_t groundhog_hs_print_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_groundhog, _build_mcc_1_1955_0_0, 0x180275404);
 	OFFSET(_engine_type_groundhog, _build_mcc_1_2028_0_0, 0x180275464);

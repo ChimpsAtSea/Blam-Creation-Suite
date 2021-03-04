@@ -77,13 +77,18 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 	case _field_word_integer:					return sizeof(word);
 	case _field_dword_integer:					return sizeof(dword);
 	case _field_qword_integer:					return sizeof(qword);
-	case _field_pointer:						return get_platform_pointer_size(platform_type); // #NONSTANDARD
+	case _field_pointer:
+	{
+		uint32_t pointer_size;
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
+		return pointer_size;
+	};
 	case _field_half:							return sizeof(uint16_t);
 	default: FATAL_ERROR(L"unknown field type");
 	}
 }
 
-uint32_t blofeld::get_blofeld_field_size(const s_tag_field& field, e_engine_type engine_type, e_platform_type platform_type, e_build build)
+uint32_t blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build)
 {
 	switch (field.field_type)
 	{
@@ -92,17 +97,17 @@ uint32_t blofeld::get_blofeld_field_size(const s_tag_field& field, e_engine_type
 	case _field_skip:							return field.length;
 	case _field_struct:
 	{
-		uint32_t structure_size = blofeld::calculate_struct_size(engine_type, platform_type, build, *field.struct_definition);
+		uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, *field.struct_definition);
 		return structure_size;
 	}
 	case _field_array:
 	{
-		uint32_t structure_size = blofeld::calculate_struct_size(engine_type, platform_type, build, field.array_definition->struct_definition);
-		uint32_t array_element_count = field.array_definition->count(engine_type);
+		uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
+		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
 		uint32_t array_size = structure_size * array_element_count;
 		return array_size;
 	}
-	default: return get_blofeld_field_size(platform_type, field.field_type);
+	default: return get_blofeld_field_size(engine_platform_build.platform_type, field.field_type);
 	}
 }
 

@@ -17,7 +17,6 @@ const char* get_known_legacy_tag_group_name(unsigned long tag_group)
 c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag) :
 	group_index(group_index),
 	group_tags{ group_tag, blofeld::INVALID_TAG, blofeld::INVALID_TAG },
-	cache_file_tag_group(cache_file.get_internal_tag_group_impl(group_index)),
 	blofeld_reflection_type(nullptr),
 	tag_interfaces(),
 	tag_interfaces_sorted_by_name_with_group_id(),

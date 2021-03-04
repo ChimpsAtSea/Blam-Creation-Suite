@@ -1,6 +1,6 @@
 
 #pragma region MCC Parse Hooks
-uintptr_t mcc_map_id_parse_from_halo3odst_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_map_id_parse_from_halo3odst_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180062770);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1800625D0);
@@ -19,7 +19,7 @@ c_function_hook_ex<mcc_map_id_parse_from_halo3odst_offset, long __fastcall(long 
 	return result == -1l ? map_id : result;
 } };
 
-uintptr_t mcc_map_id_parse_to_halo3odst_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_map_id_parse_to_halo3odst_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1800626D0);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x180062530);
@@ -38,7 +38,7 @@ c_function_hook_ex<mcc_map_id_parse_to_halo3odst_offset, long __fastcall(long ma
 	return result == -1l ? map_id : result;
 } };
 
-uintptr_t mcc_game_mode_parse_to_halo3odst_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_game_mode_parse_to_halo3odst_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x18001456D + 1);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x18001456D + 1);
@@ -51,7 +51,7 @@ uintptr_t mcc_game_mode_parse_to_halo3odst_patch_offset(e_engine_type engine_typ
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x1800102C7 + 1);
 	return ~uintptr_t();
 }
-c_data_patch<mcc_game_mode_parse_to_halo3odst_patch_offset> mcc_game_mode_parse_to_halo3odst_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<mcc_game_mode_parse_to_halo3odst_patch_offset> mcc_game_mode_parse_to_halo3odst_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	packet = MAKE_DATAPATCHPACKET(data, 4);
 	int game_mode = 2;
@@ -62,7 +62,7 @@ c_data_patch<mcc_game_mode_parse_to_halo3odst_patch_offset> mcc_game_mode_parse_
 #pragma region Main Menu Patches
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
 // this patch solves the issue of not being able to load `_scenario_type_mainmenu`
-uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x1800A86C2);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1800A84C2);
@@ -75,7 +75,7 @@ uintptr_t halo3odst_enable_mainmenu_scenario_patch_offset(e_engine_type engine_t
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x180084924);
 	return ~uintptr_t();
 }
-c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_mainmenu_scenario_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_mainmenu_scenario_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	packet = MAKE_DATAPATCHPACKET(data, 6);
 	nop_address(data, 6);
@@ -83,7 +83,7 @@ c_data_patch<halo3odst_enable_mainmenu_scenario_patch_offset> halo3odst_enable_m
 
 // prevents to game from exiting and switching the thread mode to single-threaded for safe engine disposal?
 // this patch solves the issue of the mainmenu turning into a slideshow after (overall_timeout=120000)/(individual_state_timeout=60000) milliseconds
-uintptr_t halo3odst_external_launch_timeout_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_external_launch_timeout_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180032701);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x1800327A1);
@@ -96,7 +96,7 @@ uintptr_t halo3odst_external_launch_timeout_patch_offset(e_engine_type engine_ty
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_2094_0_0, 0x18002A877);
 	return ~uintptr_t();
 }
-c_data_patch<halo3odst_external_launch_timeout_patch_offset> halo3odst_external_launch_timeout_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+c_data_patch<halo3odst_external_launch_timeout_patch_offset> halo3odst_external_launch_timeout_patch = { [](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
 	uint8_t jump[6] { 0x90ui8, 0x90ui8, 0x90ui8, 0x90ui8, 0x90ui8, 0x90ui8 };
 	packet = MAKE_DATAPATCHPACKET(data, sizeof(jump));

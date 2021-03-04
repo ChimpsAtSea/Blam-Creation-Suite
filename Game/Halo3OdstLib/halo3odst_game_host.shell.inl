@@ -1,6 +1,6 @@
 
 #pragma region Shell Debug
-uintptr_t halo3odst_external_launch_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_external_launch_state_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180B79E64);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x180B7DF64);
@@ -15,7 +15,7 @@ uintptr_t halo3odst_external_launch_state_offset(e_engine_type engine_type, e_bu
 }
 long& halo3odst_external_launch_state = reference_symbol<long>("halo3odst_external_launch_state", halo3odst_external_launch_state_offset);
 
-uintptr_t halo3odst_main_game_launch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3odst_main_game_launch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1767_0_0, 0x180014270);
 	OFFSET(_engine_type_halo3odst, _build_mcc_1_1778_0_0, 0x180014270);

@@ -6,8 +6,9 @@ c_string_id_guesstimator::c_string_id_guesstimator(c_gen3_cache_file& cache_file
 	set_count = _countof(engine_string_id_guesstimator_data);
 
 	uint32_t current_search_index = 0;
-
-	for (uint32_t set_index = 0; set_index < _countof(engine_string_id_guesstimator_data); set_index++)
+	
+	// #TODO: cache refactor
+	/*for (uint32_t set_index = 0; set_index < _countof(engine_string_id_guesstimator_data); set_index++)
 	{
 		s_engine_string_id_guesstimator_data* const set_guesstimator_data = engine_string_id_guesstimator_data[set_index].first;
 		uint32_t const set_guesstimator_count = engine_string_id_guesstimator_data[set_index].second;
@@ -93,7 +94,7 @@ c_string_id_guesstimator::c_string_id_guesstimator(c_gen3_cache_file& cache_file
 	if (expected_value == nullptr || strcmp(expected_value, "material") != 0)
 	{
 		c_console::write_line_verbose("string_id_guesstimator> Unexpected cache file String ID at index 0. Potential errors in the guesstimator!");
-	}
+	}*/
 }
 
 c_string_id_guesstimator::~c_string_id_guesstimator()

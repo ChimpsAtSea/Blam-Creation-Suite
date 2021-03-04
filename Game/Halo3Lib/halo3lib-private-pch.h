@@ -10,7 +10,6 @@
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
 #include <GameFramework\gameframework-public-pch.h>
-#include <Ketchup\ketchup-public-pch.h>
 
 #include "halo3lib-public-pch.h"
 

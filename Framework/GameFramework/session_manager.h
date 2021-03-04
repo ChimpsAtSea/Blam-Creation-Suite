@@ -15,6 +15,6 @@ public:
 	c_session_player* host;
 	c_session_player* local_players;
 
-	static void create_game_options(e_build build, GameOptions** out_options);
+	static void create_game_options(s_engine_platform_build engine_platform_build, GameOptions** out_options);
 };
 

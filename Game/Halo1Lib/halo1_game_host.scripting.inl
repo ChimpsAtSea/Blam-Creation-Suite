@@ -29,7 +29,7 @@
 //};
 //#pragma pack(pop)
 //
-//uintptr_t halo1_hs_function_table_offset(e_engine_type engine_type, e_build build)
+//uintptr_t halo1_hs_function_table_offset(s_engine_platform_build engine_platform_build)
 //{
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x0);
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x0);
@@ -41,7 +41,7 @@
 //}
 //halo1_hs_script_op *(&halo1_hs_function_table)[] = reference_symbol<halo1_hs_script_op *[]>("halo1_hs_function_table", halo1_hs_function_table_offset);
 //
-//uintptr_t halo1_hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
+//uintptr_t halo1_hs_evaluate_arguments_offset(s_engine_platform_build engine_platform_build)
 //{
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x0);
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x0);
@@ -55,7 +55,7 @@
 //template<typename t_parameter>
 //c_function_hook_ex<halo1_hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short *parameters, char execute)> halo1_hs_evaluate_arguments;
 //
-//uintptr_t halo1_hs_return_offset(e_engine_type engine_type, e_build build)
+//uintptr_t halo1_hs_return_offset(s_engine_platform_build engine_platform_build)
 //{
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x0);
 //	//OFFSET(_engine_type_halo1, _build_mcc_1_1367_0_0, 0x0);

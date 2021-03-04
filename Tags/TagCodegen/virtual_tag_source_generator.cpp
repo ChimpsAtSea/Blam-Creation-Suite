@@ -2,10 +2,8 @@
 
 using namespace blofeld;
 
-c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type engine_type, e_platform_type platform_type, e_build build) :
-	engine_type(engine_type),
-	platform_type(platform_type),
-	build(build)
+c_virtual_tag_source_generator::c_virtual_tag_source_generator(s_engine_platform_build engine_platform_build) :
+	engine_platform_build(engine_platform_build)
 {
 
 }
@@ -14,7 +12,9 @@ void c_virtual_tag_source_generator::generate_header() const
 {
 	std::stringstream stream;
 
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
@@ -44,13 +44,23 @@ void c_virtual_tag_source_generator::generate_header() const
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			switch (current_field->field_type)
+			{
+			case _field_custom:
+				break;
+			default:
+				field_name_unique_counter_ptr = &field_name_unique_counter;
+				break;
+			}
+
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
 
 			if (current_field->field_type > _field_type_non_standard)
 			{
@@ -73,7 +83,7 @@ void c_virtual_tag_source_generator::generate_header() const
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "blofeld::" << namespace_name << "::s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_type) << "];";
+				stream << "\t\t\t\t" << "blofeld::" << namespace_name << "::s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count(engine_platform_build) << "];";
 				break;
 			}
 			case _field_struct:
@@ -113,7 +123,7 @@ void c_virtual_tag_source_generator::generate_header() const
 			}
 			default:
 			{
-				const char* field_source_type = c_low_level_tag_source_generator::field_type_to_low_level_source_type(platform_type, current_field->field_type);
+				const char* field_source_type = c_low_level_tag_source_generator::field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
 				ASSERT(field_source_type != nullptr);
 				stream << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 			}
@@ -153,9 +163,14 @@ void c_virtual_tag_source_generator::generate_header() const
 void c_virtual_tag_source_generator::generate_source() const
 {
 	std::stringstream stream;
+	
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
 
-	const char* source_namespace_name = engine_type_to_source_name<const char*>(engine_type);
-	const char* namespace_name = engine_type_to_folder_name<const char*>(engine_type);
+	const char* source_namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
 
 	stream << "#include <virtual-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
 
@@ -208,13 +223,23 @@ void c_virtual_tag_source_generator::generate_source() const
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			switch (current_field->field_type)
+			{
+			case _field_custom:
+				break;
+			default:
+				field_name_unique_counter_ptr = &field_name_unique_counter;
+				break;
+			}
+
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
 
 			switch (current_field->field_type)
 			{

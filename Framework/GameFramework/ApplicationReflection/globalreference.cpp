@@ -5,8 +5,7 @@ c_global_reference* c_global_reference::last_global_reference = nullptr;
 
 c_global_reference::c_global_reference(const char* pReferenceName, reference_symbol_offset_function* offset_function) :
 	next_global_reference(nullptr),
-	target_engine(_engine_type_not_set),
-	target_build(_build_not_set),
+	engine_platform_build(),
 	offset(~uintptr_t()),
 	reference_name(pReferenceName),
 	offset_function(offset_function),
@@ -16,10 +15,9 @@ c_global_reference::c_global_reference(const char* pReferenceName, reference_sym
 	init();
 }
 
-c_global_reference::c_global_reference(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset) :
+c_global_reference::c_global_reference(const char* pReferenceName, s_engine_platform_build engine_platform_build, intptr_t offset) :
 	next_global_reference(nullptr),
-	target_engine(engine_type),
-	target_build(build),
+	engine_platform_build(engine_platform_build),
 	offset(offset),
 	reference_name(pReferenceName),
 	offset_function(nullptr),
@@ -43,21 +41,21 @@ void c_global_reference::init()
 	}
 }
 
-void c_global_reference::init_global_reference_tree(e_engine_type engine_type, e_build build)
+void c_global_reference::init_global_reference_tree(s_engine_platform_build engine_platform_build)
 {
 	c_global_reference* current_global_reference = first_global_reference;
 	while (current_global_reference)
 	{
-		current_global_reference = current_global_reference->init_node(engine_type, build);
+		current_global_reference = current_global_reference->init_node(engine_platform_build);
 	}
 }
 
-void c_global_reference::deinit_global_reference_tree(e_engine_type engine_type, e_build build)
+void c_global_reference::deinit_global_reference_tree(s_engine_platform_build engine_platform_build)
 {
 	c_global_reference* current_global_reference = first_global_reference;
 	while (current_global_reference)
 	{
-		current_global_reference = current_global_reference->deinit_node(engine_type, build);
+		current_global_reference = current_global_reference->deinit_node(engine_platform_build);
 	}
 }
 
@@ -74,9 +72,9 @@ void c_global_reference::destroy_tree()
 	}
 }
 
-c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_build build)
+c_global_reference* c_global_reference::init_node(s_engine_platform_build engine_platform_build)
 {
-	if ((target_engine == e_engine_type::_engine_type_not_set || target_engine == engine_type) && (target_build == _build_not_set || target_build == build))
+	if ((this->engine_platform_build.engine_type == e_engine_type::_engine_type_not_set || this->engine_platform_build.engine_type == engine_platform_build.engine_type) && (this->engine_platform_build.build == _build_not_set || this->engine_platform_build.build == engine_platform_build.build))
 	{
 		if (data_address != nullptr)
 		{
@@ -114,7 +112,7 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 			intptr_t target_offset = offset;
 			if (offset_function)
 			{
-				target_offset = offset_function(engine_type, build);
+				target_offset = offset_function(engine_platform_build);
 			}
 			if (target_offset == ~uintptr_t())
 			{
@@ -122,10 +120,15 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 			}
 			else
 			{
-				uint64_t engine_virtual_address = get_engine_base_address(engine_type);
-				uint64_t data_virtual_address = static_cast<uint64_t>(target_offset);
-				uint64_t data_relative_virtual_address = data_virtual_address - engine_virtual_address;
-				char* engine_base_address = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
+				uintptr_t virtual_base_address;
+				ASSERT(BCS_SUCCEEDED(get_engine_base_address(engine_platform_build, &virtual_base_address)));
+				
+				void* runtime_base_address;
+				ASSERT(BCS_SUCCEEDED(get_engine_runtime_base_address(engine_platform_build, &runtime_base_address)));
+				
+				uintptr_t data_virtual_address = static_cast<uintptr_t>(target_offset);
+				uintptr_t data_relative_virtual_address = data_virtual_address - virtual_base_address;
+				char* engine_base_address = reinterpret_cast<char*>(runtime_base_address);
 				data_address = engine_base_address + data_relative_virtual_address;
 			}
 
@@ -181,9 +184,9 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 	return next_global_reference;
 }
 	
-c_global_reference* c_global_reference::deinit_node(e_engine_type engine_type, e_build build)
+c_global_reference* c_global_reference::deinit_node(s_engine_platform_build engine_platform_build)
 {
-	if ((target_engine == e_engine_type::_engine_type_not_set || target_engine == engine_type) && (target_build == _build_not_set || target_build == build))
+	if ((this->engine_platform_build.engine_type == e_engine_type::_engine_type_not_set || this->engine_platform_build.engine_type == engine_platform_build.engine_type) && (this->engine_platform_build.build == _build_not_set || this->engine_platform_build.build == engine_platform_build.build))
 	{
 		if (data_address)
 		{

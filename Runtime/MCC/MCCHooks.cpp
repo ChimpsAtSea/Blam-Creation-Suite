@@ -1,7 +1,7 @@
 #include "mcc-private-pch.h"
 
 
-uintptr_t mcc_player_configuration_get_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_player_configuration_get_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1418BFDE8);
 	return ~uintptr_t();
@@ -14,7 +14,7 @@ c_function_hook_ex<mcc_player_configuration_get_offset, c_player_configuration* 
 
 
 
-uintptr_t PlayGame_offset(e_engine_type engine_type, e_build build)
+uintptr_t PlayGame_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076240);
 	//OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180012920);
@@ -27,7 +27,7 @@ c_function_hook_ex<PlayGame_offset, HANDLE __fastcall (IGameEngine*, class IGame
 } };
 
 //.text:0000000180076BA0; void __fastcall sub_180076BA0(struct IGameEngine* thisptr, struct ID3D11Device* pDevice)
-uintptr_t sub_180076BA0_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180076BA0_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076BA0);
 	return ~uintptr_t();
@@ -38,7 +38,7 @@ c_function_hook_ex<sub_180076BA0_offset, void __fastcall (IGameEngine*, struct I
 } };
 
 //.text:0000000180076D60; void __fastcall sub_180076D60(struct IGameEngine* a1, int map_id)
-uintptr_t sub_180076D60_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180076D60_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076D60);
 	return ~uintptr_t();
@@ -49,7 +49,7 @@ c_function_hook_ex<sub_180076D60_offset, void __fastcall (IGameEngine* a1, int m
 } };
 
 
-uintptr_t sub_141806A64_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_141806A64_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x141806A64);
 	return ~uintptr_t();
@@ -62,7 +62,7 @@ c_function_hook_ex<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, 
 } };
 
 
-uintptr_t CreateGameEngine_offset(e_engine_type engine_type, e_build build)
+uintptr_t CreateGameEngine_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18008D2C0);
 	return ~uintptr_t();
@@ -72,7 +72,7 @@ c_function_hook_ex<CreateGameEngine_offset, __int64 __fastcall (QWORD * a1)> Cre
 	return CreateGameEngine(a1);
 } };
 //
-//uintptr_t PlayGame_offset(e_engine_type engine_type, e_build build)
+//uintptr_t PlayGame_offset(s_engine_platform_build engine_platform_build)
 //{
 //	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18008C550);
 //	return ~uintptr_t();

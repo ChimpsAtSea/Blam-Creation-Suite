@@ -12,8 +12,7 @@ c_data_patch_base::c_data_patch_base(
 	t_apply_packets_multi_entry apply_packets_multi_entry,
 	bool apply_on_init) :
 	next_data_patch(nullptr),
-	engine_type(_engine_type_not_set),
-	build(_build_not_set),
+	engine_platform_build(),
 	offsets(),
 	is_enabled(true),
 	apply_on_init(apply_on_init),
@@ -67,21 +66,21 @@ void c_data_patch_base::init()
 	}
 }
 
-void c_data_patch_base::init_data_patch_tree(e_engine_type engine_type, e_build build)
+void c_data_patch_base::init_data_patch_tree(s_engine_platform_build engine_platform_build)
 {
 	c_data_patch_base* current_data_patch = s_first_data_patch;
 	while (current_data_patch)
 	{
-		current_data_patch = current_data_patch->init_node(engine_type, build);
+		current_data_patch = current_data_patch->init_node(engine_platform_build);
 	}
 }
 
-void c_data_patch_base::deinit_data_patch_tree(e_engine_type engine_type, e_build build)
+void c_data_patch_base::deinit_data_patch_tree(s_engine_platform_build engine_platform_build)
 {
 	c_data_patch_base* current_data_patch = s_first_data_patch;
 	while (current_data_patch)
 	{
-		current_data_patch = current_data_patch->deinit_node(engine_type, build);
+		current_data_patch = current_data_patch->deinit_node(engine_platform_build);
 	}
 }
 
@@ -108,10 +107,16 @@ bool c_data_patch_base::ApplyPatch()
 	char** data_addresses = reinterpret_cast<char**>(alloca(sizeof(char*) * offsets.size()));
 	for (size_t i = 0; i < offsets.size(); i++)
 	{
-		uintptr_t const game_virtual_address = get_engine_base_address(engine_type);
+
+		uintptr_t game_virtual_address;
+		ASSERT(BCS_SUCCEEDED(get_engine_base_address(engine_platform_build, &game_virtual_address)));
+		
+		void* runtime_base_address;
+		ASSERT(BCS_SUCCEEDED(get_engine_runtime_base_address(engine_platform_build, &runtime_base_address)));
+		
 		uintptr_t const data_virtual_address = static_cast<uintptr_t>(offsets[i]);
 		uintptr_t const data_relative_address = data_virtual_address - game_virtual_address;
-		char* const game_base_address = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
+		char* const game_base_address = reinterpret_cast<char*>(runtime_base_address);
 		char* const data_address = game_base_address + data_relative_address;
 
 		data_addresses[i] = data_address;
@@ -130,13 +135,13 @@ bool c_data_patch_base::ApplyPatch()
 	{
 		packets.resize(1);
 		packets[0] = DataPatchPacket();
-		apply_packet(engine_type, build, data_addresses[0], packets[0]);
+		apply_packet(engine_platform_build, data_addresses[0], packets[0]);
 
 		ASSERT(packets[0].first != nullptr);
 	}
 	else if (apply_packets)
 	{
-		apply_packets(engine_type, build, data_addresses[0], packets);
+		apply_packets(engine_platform_build, data_addresses[0], packets);
 
 		ASSERT(!packets.empty());
 		for (DataPatchPacket& packet : packets)
@@ -147,7 +152,7 @@ bool c_data_patch_base::ApplyPatch()
 	}
 	else if (apply_packets_multi_entry)
 	{
-		apply_packets_multi_entry(engine_type, build, data_addresses, packets);
+		apply_packets_multi_entry(engine_platform_build, data_addresses, packets);
 
 		ASSERT(!packets.empty());
 		for (DataPatchPacket& packet : packets)
@@ -186,7 +191,7 @@ bool c_data_patch_base::RevertPatch()
 	return true;
 }
 
-c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_build build)
+c_data_patch_base* c_data_patch_base::init_node(s_engine_platform_build engine_platform_build)
 {
 	ASSERT(offsets.empty(), "DataPatch is already patched! This node should be reset before patching again");
 
@@ -197,12 +202,11 @@ c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_bui
 
 	if (search_function)
 	{
-		uintptr_t target_offset = search_function(engine_type, build);
+		uintptr_t target_offset = search_function(engine_platform_build);
 		if (target_offset != ~uintptr_t())
 		{
 			offsets.push_back(target_offset);
-			this->engine_type = engine_type;
-			this->build = build;
+			this->engine_platform_build = engine_platform_build;
 
 			if (apply_on_init)
 			{
@@ -212,12 +216,11 @@ c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_bui
 	}
 	else if (search_function_multi_entry)
 	{
-		std::vector<uintptr_t> target_offsets = search_function_multi_entry(engine_type, build);
+		std::vector<uintptr_t> target_offsets = search_function_multi_entry(engine_platform_build);
 		if (!target_offsets.empty())
 		{
 			offsets = target_offsets;
-			this->engine_type = engine_type;
-			this->build = build;
+			this->engine_platform_build = engine_platform_build;
 
 			if (apply_on_init)
 			{
@@ -230,11 +233,10 @@ c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_bui
 	return next_data_patch;
 }
 
-c_data_patch_base* c_data_patch_base::deinit_node(e_engine_type engine_type, e_build build)
+c_data_patch_base* c_data_patch_base::deinit_node(s_engine_platform_build engine_platform_build)
 {
 	offsets.clear();
-	this->engine_type = _engine_type_not_set;
-	this->build = _build_not_set;
+	this->engine_platform_build = {};
 
 	RevertPatch();
 

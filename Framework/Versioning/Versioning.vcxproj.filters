@@ -21,16 +21,10 @@
     <ClInclude Include="versioning-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="build_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="platform_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game_options_version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine_platform_build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,11 +32,16 @@
     <ClCompile Include="versioning-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="build_type.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="game_options_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine_platform_build.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build_helpers.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

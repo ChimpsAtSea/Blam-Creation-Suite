@@ -3,9 +3,7 @@
 namespace blofeld
 {
 	void iterate_structure_fields(
-		e_engine_type engine_type,
-		e_platform_type platform_type,
-		e_build build,
+		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		bool recursive,
 		bool recursive_block,
@@ -18,7 +16,7 @@ namespace blofeld
 			const char* nice_field_string = field_string + 1;
 
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -50,9 +48,7 @@ namespace blofeld
 				if (next_struct_definition != nullptr)
 				{
 					iterate_structure_fields(
-						engine_type,
-						platform_type,
-						build,
+						engine_platform_build,
 						*next_struct_definition,
 						recursive,
 						recursive_block,
@@ -136,9 +132,7 @@ namespace blofeld
 	};
 
 	uint32_t calculate_struct_size(
-		e_engine_type engine_type, 
-		e_platform_type platform_type, 
-		e_build build, 
+		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		e_validation_result* block_failed_validation,
 		bool disable_platform_independent_warnings,
@@ -156,7 +150,7 @@ namespace blofeld
 			const char* field_string = field_to_string(current_field->field_type);
 
 			uint32_t field_skip_count;
-			if (skip_tag_field_version(*current_field, engine_type, platform_type, build, field_skip_count))
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
 				continue;
@@ -184,7 +178,7 @@ namespace blofeld
 					}
 					else 
 					{
-						uint32_t string_count = current_field->string_list_definition->count(engine_type, platform_type);
+						uint32_t string_count = current_field->string_list_definition->count(engine_platform_build);
 						if (string_count == k_versioned_string_list_table_size)
 						{
 							ADD_WARNING(current_field, _validation_warning_string_table_reached);
@@ -288,7 +282,7 @@ namespace blofeld
 				computed_size += current_field->length;
 				break;
 			case _field_struct:
-				computed_size += calculate_struct_size(engine_type, platform_type, build, *current_field->struct_definition, block_failed_validation, disable_platform_independent_warnings, warnings_tracking);
+				computed_size += calculate_struct_size(engine_platform_build, *current_field->struct_definition, block_failed_validation, disable_platform_independent_warnings, warnings_tracking);
 				break;
 			case _field_array:
 			{
@@ -296,13 +290,13 @@ namespace blofeld
 				REFERENCE_ASSERT(array_definition);
 				const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 				REFERENCE_ASSERT(struct_definition);
-				uint32_t struct_size = calculate_struct_size(engine_type, platform_type, build, struct_definition, block_failed_validation, disable_platform_independent_warnings, warnings_tracking);
-				uint32_t array_data_size = struct_size * array_definition.count(engine_type);
+				uint32_t struct_size = calculate_struct_size(engine_platform_build, struct_definition, block_failed_validation, disable_platform_independent_warnings, warnings_tracking);
+				uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
 				computed_size += array_data_size;
 				break;
 			}
 			default:
-				computed_size += get_blofeld_field_size(platform_type, current_field->field_type);
+				computed_size += get_blofeld_field_size(engine_platform_build.platform_type, current_field->field_type);
 				break;
 			}
 		}
@@ -324,7 +318,7 @@ namespace blofeld
 			const char* const block_name = struct_definition.name;
 
 			e_platform_type platform_type = _platform_type_pc;
-			calculate_struct_size(_engine_type_not_set, _platform_type_pc, _build_not_set, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+			calculate_struct_size({ _engine_type_not_set, _platform_type_pc, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 
 			if (block_failed_validation == _validation_result_ok)
 			{
@@ -355,7 +349,7 @@ namespace blofeld
 			uint32_t const expected_size = struct_validation_data.size;
 
 			e_platform_type platform_type = _platform_type_xbox_360;
-			uint32_t computed_size = calculate_struct_size(_engine_type_gen3_xbox360, platform_type, _build_not_set, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+			uint32_t computed_size = calculate_struct_size({ _engine_type_gen3_xbox360, platform_type, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 
 			if (computed_size != expected_size)
 			{

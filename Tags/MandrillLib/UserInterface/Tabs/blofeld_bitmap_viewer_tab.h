@@ -28,7 +28,7 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_interface& tag_interface;
-	c_haloreach_cache_file& cache_file;
+	//c_haloreach_cache_file& cache_file; // #TODO: cache refactor
 	v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>& bitmap_tag;
 	ID3D11Texture2D* texture;
 	ID3D11ShaderResourceView* shader_resource_view;

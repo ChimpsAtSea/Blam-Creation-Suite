@@ -6,13 +6,13 @@
 typedef std::pair<char*, std::vector<char>> DataPatchPacket;
 typedef std::vector<DataPatchPacket> DataPatchPackets;
 
-typedef uintptr_t(t_search)(e_engine_type, e_build);
-typedef std::vector<uintptr_t>(t_search_multi)(e_engine_type, e_build);
+typedef uintptr_t(t_search)(s_engine_platform_build);
+typedef std::vector<uintptr_t>(t_search_multi)(s_engine_platform_build);
 
 
-typedef void (t_apply_packet_func)(e_engine_type, e_build, char*, DataPatchPacket&);
-typedef void (t_apply_packets_func)(e_engine_type, e_build, char*, DataPatchPackets&);
-typedef void (t_apply_packets_multi_entry_func)(e_engine_type, e_build, char*[], DataPatchPackets&);
+typedef void (t_apply_packet_func)(s_engine_platform_build, char*, DataPatchPacket&);
+typedef void (t_apply_packets_func)(s_engine_platform_build, char*, DataPatchPackets&);
+typedef void (t_apply_packets_multi_entry_func)(s_engine_platform_build, char*[], DataPatchPackets&);
 
 // #TODO: Figure out warning 4927
 using t_apply_packet = std::function<t_apply_packet_func>;
@@ -37,8 +37,8 @@ public:
 	c_data_patch_base(t_search search_function, t_apply_packets apply_packets, bool apply_on_init);
 	c_data_patch_base(t_search_multi search_function_multi_entry, t_apply_packets_multi_entry apply_packets_multi_entry, bool apply_on_init);
 
-	static void init_data_patch_tree(e_engine_type engine_type, e_build build);
-	static void deinit_data_patch_tree(e_engine_type engine_type, e_build build);
+	static void init_data_patch_tree(s_engine_platform_build engine_platform_build);
+	static void deinit_data_patch_tree(s_engine_platform_build engine_platform_build);
 	static void destroy_tree();
 
 	void set_enabled(bool is_enabled) { this->is_enabled = is_enabled; }
@@ -47,12 +47,11 @@ public:
 	bool IsPatched() const { return is_patched; };
 private:
 	void init();
-	c_data_patch_base* init_node(e_engine_type engine_type, e_build build);
-	c_data_patch_base* deinit_node(e_engine_type engine_type, e_build build);
+	c_data_patch_base* init_node(s_engine_platform_build engine_platform_build);
+	c_data_patch_base* deinit_node(s_engine_platform_build engine_platform_build);
 
 	c_data_patch_base* next_data_patch;
-	e_engine_type engine_type;
-	e_build build;
+	s_engine_platform_build engine_platform_build;
 	std::vector<uintptr_t> offsets;
 	bool is_enabled;
 	bool apply_on_init;

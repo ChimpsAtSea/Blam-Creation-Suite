@@ -1,6 +1,6 @@
 
 // load crash fix
-uintptr_t sub_180041770_offset(e_engine_type engine_type, e_build build)
+uintptr_t sub_180041770_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo2, _build_mcc_1_1477_0_0, 0x180041770);
 	OFFSET(_engine_type_halo2, _build_mcc_1_1499_0_0, 0x180041770);

@@ -48,11 +48,13 @@ void c_tag_interface::init_virtual_tag_interface()
 			break;
 		}
 	}
-
+	// #TODO: cache refactor
+	/*
 	if (virtual_tag_interface == nullptr)
 	{
 		virtual_tag_interface = create_virtual_tag_interface(*this, cache_file.engine_type, cache_file.platform_type, _build_not_set, get_group_tag());
 	}
+	*/
 
 	if (virtual_tag_interface == nullptr)
 	{

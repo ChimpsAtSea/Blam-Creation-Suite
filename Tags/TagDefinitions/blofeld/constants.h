@@ -1,7 +1,7 @@
 #pragma once
 
 #if defined(BLOFELD_TAG_DEFINITIONS) && BLOFELD_TAG_DEFINITIONS
-#define BLOFELD_CONST_ARGS engine_type
+#define BLOFELD_CONST_ARGS engine_platform_build
 #endif
 
 namespace blofeld
@@ -13,9 +13,9 @@ namespace blofeld
 		c_constant(const char* name, std::initializer_list<std::pair<e_engine_type, uint32_t>> list);
 		c_constant(std::initializer_list<std::pair<e_engine_type, std::pair<const char*, uint32_t>>> list);
 
-		uint32_t operator()(e_engine_type engine_type)
+		uint32_t operator()(s_engine_platform_build engine_platform_build)
 		{
-			return values[engine_type].second;
+			return values[engine_platform_build.engine_type].second;
 		}
 
 		mutable  std::pair<const char*, uint32_t> values[k_number_of_engine_types];
@@ -1241,7 +1241,7 @@ namespace blofeld
 
 #if defined(BLOFELD_TAG_DEFINITIONS) && BLOFELD_TAG_DEFINITIONS
 
-#define BLOFELD_CONST_ARGS engine_type
+#define BLOFELD_CONST_ARGS engine_platform_build
 
 // manually calculated don't lose difficult 
 

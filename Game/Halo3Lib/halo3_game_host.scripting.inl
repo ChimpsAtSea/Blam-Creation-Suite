@@ -1,5 +1,5 @@
 
-size_t halo3_spawn_ai_with_scripts_and_effects_patch_size(e_engine_type engine_type, e_build build)
+size_t halo3_spawn_ai_with_scripts_and_effects_patch_size(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 2);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 2);
@@ -15,7 +15,7 @@ size_t halo3_spawn_ai_with_scripts_and_effects_patch_size(e_engine_type engine_t
 	OFFSET(_engine_type_halo3, _build_mcc_1_2094_0_0, 6);
 	return ~size_t();
 }
-uintptr_t halo3_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo3_spawn_ai_with_scripts_and_effects_patch_offset(s_engine_platform_build engine_platform_build)
 {
 	OFFSET(_engine_type_halo3, _build_mcc_1_1629_0_0, 0x18063445E);
 	OFFSET(_engine_type_halo3, _build_mcc_1_1698_0_0, 0x18064014E);
@@ -33,9 +33,9 @@ uintptr_t halo3_spawn_ai_with_scripts_and_effects_patch_offset(e_engine_type eng
 }
 // Allows spawning AI via scripts or effects, props to Exhibit
 c_data_patch<halo3_spawn_ai_with_scripts_and_effects_patch_offset> halo3_spawn_ai_with_scripts_and_effects_patch = {
-[](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+[](s_engine_platform_build engine_platform_build, char* data, DataPatchPacket& packet)
 {
-	size_t patch_size = halo3_spawn_ai_with_scripts_and_effects_patch_size(engine_type, build);
+	size_t patch_size = halo3_spawn_ai_with_scripts_and_effects_patch_size(engine_platform_build);
 	if (patch_size != ~size_t())
 	{
 		packet = MAKE_DATAPATCHPACKET(data, patch_size);
