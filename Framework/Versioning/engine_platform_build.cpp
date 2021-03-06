@@ -11,10 +11,7 @@ enum e_engine_type_string_type
 
 static BCS_RESULT get_engine_type_string_impl(e_engine_type engine_type, e_engine_type_string_type engine_type_string_type, const char** result)
 {
-	if (result == nullptr)
-	{
-		return BCS_E_INVALID_ARGUMENT;
-	}
+	BCS_VALIDATE_ARGUMENT(result);
 
 #define engine_type_type_string_pair(engine_type, pretty_name, folder_name, source_name)	\
 	case engine_type:																		\
@@ -72,12 +69,10 @@ BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char** result
 
 static BCS_RESULT get_platform_string_impl(e_platform_type platform_type, bool pretty_name, const char** result)
 {
-	if (result == nullptr)
-	{
-		return BCS_E_INVALID_ARGUMENT;
-	}
+	BCS_VALIDATE_ARGUMENT(IS_VALID_BOOLEAN(pretty_name));
+	BCS_VALIDATE_ARGUMENT(result);
 
-#define platform_type_string_pair(platform_type, pretty_name) case platform_type: *result = (pretty_name ? (#platform_type) : (pretty_name)); return BCS_S_OK;
+#define platform_type_string_pair(platform_type, pretty_name) case platform_type: *result = (!pretty_name ? (#platform_type) : (pretty_name)); return BCS_S_OK;
 	switch (platform_type)
 	{
 		platform_type_string_pair(_platform_type_not_set, "Not Set");
@@ -104,6 +99,8 @@ BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char** 
 
 BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* pointer_size)
 {
+	BCS_VALIDATE_ARGUMENT(pointer_size);
+
 	switch (platform_type)
 	{
 	case _platform_type_xbox:
@@ -122,10 +119,8 @@ BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* po
 
 static BCS_RESULT get_build_string_impl(e_build build, bool pretty_name, const char** result)
 {
-	if (result == nullptr)
-	{
-		return BCS_E_INVALID_ARGUMENT;
-	}
+	BCS_VALIDATE_ARGUMENT(IS_VALID_BOOLEAN(pretty_name));
+	BCS_VALIDATE_ARGUMENT(result);
 
 #define build_string_pair(build, pretty_name) case build: *result = (pretty_name ? (#build) : (pretty_name)); return BCS_S_OK;
 	switch (build)
@@ -217,10 +212,8 @@ static s_engine_info_impl cached_results[k_number_of_engine_types] = {};
 
 static BCS_RESULT get_engine_info_impl(s_engine_platform_build engine_platform_build, s_engine_info_impl** result)
 {
-	if (result == nullptr)
-	{
-		return BCS_E_INVALID_ARGUMENT;
-	}
+	BCS_VALIDATE_ARGUMENT(engine_platform_build);
+	BCS_VALIDATE_ARGUMENT(result);
 
 	s_engine_info_impl& cached_result = cached_results[engine_platform_build.engine_type];
 
@@ -326,11 +319,9 @@ const char* get_build_configuration_string()
 
 BCS_RESULT get_library_file_version(const char* filepath, uint64_t* file_version)
 {
-	size_t buffer_length = strlen(filepath);
-	wchar_t* buffer = new(alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
-	mbstowcs(buffer, filepath, buffer_length + 1);
+	BCS_CHAR_TO_WIDECHAR_STACK(filepath, filepath_wc);
 
-	return get_library_file_version(buffer, file_version);
+	return get_library_file_version(filepath_wc, file_version);
 }
 
 BCS_RESULT get_library_file_version(const wchar_t* file_path, uint64_t* file_version)

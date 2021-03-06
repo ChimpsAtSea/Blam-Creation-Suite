@@ -124,7 +124,7 @@ namespace halo4
 			gen3::s_file_last_modification_date scenario_type_timestamps[3]; // see cached_map_file_dependencies_loaded for more information
 			c_fixed_string<32> name;
 			long unknown1AC;
-			c_static_string<256> scenario_path;
+			c_static_string<256> relative_path;
 			long minor_version;
 			long file_count;
 			long file_table_offset;
@@ -209,7 +209,7 @@ namespace halo4
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::scenario_type_timestamps                                 		) == 0x00000174);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::name                                                     		) == 0x0000018C);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::unknown1AC                                               		) == 0x000001AC);
-		static_assert(offsetof(s_cache_file_header, s_cache_file_header::scenario_path                                            		) == 0x000001B0);
+		static_assert(offsetof(s_cache_file_header, s_cache_file_header::relative_path                                            		) == 0x000001B0);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::minor_version                                            		) == 0x000002B0);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::file_count                                               		) == 0x000002B4);
 		static_assert(offsetof(s_cache_file_header, s_cache_file_header::file_table_offset                                        		) == 0x000002B8);
@@ -258,6 +258,55 @@ namespace halo4
 		static constexpr long k_cache_file_header_size2 = offsetof(s_cache_file_header, s_cache_file_header::footer_signature) + 4;
 		static constexpr long k_cache_file_header_size = sizeof(s_cache_file_header);
 		//static_assert(k_cache_file_header_size == 0x1E000);
+
+		struct s_cache_file_tag_group
+		{
+			unsigned long group_tags[3];
+			unsigned long name;
+		};
+		static_assert(sizeof(s_cache_file_tag_group) == 0x10);
+
+		struct s_cache_file_tag_instance
+		{
+			uint16_t group_index;
+			uint16_t identifier;
+			unsigned long address;
+		};
+		static_assert(sizeof(s_cache_file_tag_instance) == 0x8);
+
+		struct s_cache_file_tag_global_instance
+		{
+			unsigned long group_tag;
+			long datum_index;
+		};
+		static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
+
+		struct s_cache_file_tag_interop
+		{
+			dword page_address;
+			long type_index;
+		};
+		static_assert(sizeof(s_cache_file_tag_interop) == 0x8);
+
+		struct s_section
+		{
+			unsigned long count = 0;
+			intptr32_t address = 0;
+		};
+		static_assert(sizeof(s_section) == 0x8);
+
+		struct s_cache_file_tags_header
+		{
+			s_section tag_groups; // s_cache_file_tag_group
+			s_section tag_instances; // s_cache_file_tag_instance
+			s_section global_tag_instances; // s_cache_file_tag_global_instance
+			s_section tag_interop_table; // s_cache_file_tag_interop
+			long unknown20;
+			dword checksum;
+			unsigned long tags_signature;
+		};
+		static constexpr size_t k_cache_file_tags_header = sizeof(s_cache_file_tags_header);
+		static_assert(k_cache_file_tags_header == 0x2C);
 
 		bool cache_file_header_verify(s_cache_file_header& header);
 	}

@@ -28,6 +28,12 @@ non_copyconstructable(non_copyconstructable&&) = delete; /* redundant */ \
 non_copyconstructable& operator=(non_copyconstructable const&) = delete; \
 non_copyconstructable& operator=(non_copyconstructable&&) = delete; /* redundant */
 
+template<typename T, std::size_t N>
+static constexpr T compile_time_accumulator(T(&A)[N], int const i = 0)
+{
+	return (i < N) ? A[i] + compile_time_accumulator(A, i + 1) : T(0);
+}
+
 template<typename T>
 class c_explicit_storage
 {

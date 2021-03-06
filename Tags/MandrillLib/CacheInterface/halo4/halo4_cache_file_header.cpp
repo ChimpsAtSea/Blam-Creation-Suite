@@ -33,7 +33,7 @@ template<> void byteswap<halo4::xbox360::s_cache_file_header>(halo4::xbox360::s_
 	byteswap(header.scenario_type_timestamps);
 	byteswap(header.name);
 	byteswap(header.unknown1AC);
-	byteswap(header.scenario_path);
+	byteswap(header.relative_path);
 	byteswap(header.minor_version);
 	byteswap(header.file_count);
 	byteswap(header.file_table_offset);
@@ -78,6 +78,48 @@ template<> void byteswap<halo4::xbox360::s_cache_file_header>(halo4::xbox360::s_
 	byteswap(header.cache_file_fixups_address);
 	byteswap(header.gap1D748);
 	byteswap(header.footer_signature);
+}
+
+template<> void byteswap<halo4::xbox360::s_section>(halo4::xbox360::s_section& section)
+{
+	byteswap(section.count);
+	byteswap(section.address);
+}
+
+template<> void byteswap<halo4::xbox360::s_cache_file_tag_group>(halo4::xbox360::s_cache_file_tag_group& tag_group)
+{
+	byteswap(tag_group.group_tags);
+	byteswap(tag_group.name);
+}
+
+template<> void byteswap<halo4::xbox360::s_cache_file_tag_instance>(halo4::xbox360::s_cache_file_tag_instance& tag_instance)
+{
+	byteswap(tag_instance.group_index);
+	byteswap(tag_instance.identifier);
+	byteswap(tag_instance.address);
+}
+
+template<> void byteswap<halo4::xbox360::s_cache_file_tag_global_instance>(halo4::xbox360::s_cache_file_tag_global_instance& tag_global_instance)
+{
+	byteswap(tag_global_instance.group_tag);
+	byteswap(tag_global_instance.datum_index);
+}
+
+template<> void byteswap<halo4::xbox360::s_cache_file_tag_interop>(halo4::xbox360::s_cache_file_tag_interop& tag_interop)
+{
+	byteswap(tag_interop.page_address);
+	byteswap(tag_interop.type_index);
+}
+
+template<> void byteswap<halo4::xbox360::s_cache_file_tags_header>(halo4::xbox360::s_cache_file_tags_header& tags_header)
+{
+	byteswap(tags_header.tag_groups);
+	byteswap(tags_header.tag_instances);
+	byteswap(tags_header.global_tag_instances);
+	byteswap(tags_header.tag_interop_table);
+	byteswap(tags_header.unknown20);
+	byteswap(tags_header.checksum);
+	byteswap(tags_header.tags_signature);
 }
 
 uint32_t cache_file_get_absolute_maximum_size()

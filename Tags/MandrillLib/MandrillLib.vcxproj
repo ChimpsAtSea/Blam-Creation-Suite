@@ -19,16 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CacheInterface\cache_files.h" />
     <ClInclude Include="CacheInterface\cache_file_header.h" />
+    <ClInclude Include="CacheInterface\debug_reader.h" />
     <ClInclude Include="CacheInterface\gen3\gen3_cache_file_header.h" />
     <ClInclude Include="CacheInterface\halo4\halo4_cache_file_header.h" />
     <ClInclude Include="CacheInterface\cache_byteswap.h" />
+    <ClInclude Include="CacheInterface\cache_file_api.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_cache_file_reader.h" />
+    <ClInclude Include="CacheInterface\cache_file_reader.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_debug_reader.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_localization_reader.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_resource_reader.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_tag_reader.h" />
+    <ClInclude Include="CacheInterface\localization_reader.h" />
+    <ClInclude Include="CacheInterface\resource_reader.h" />
+    <ClInclude Include="CacheInterface\tag_reader.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_cache_cluster.h" />
+    <ClInclude Include="CacheInterface\cache_cluster.h" />
     <ClInclude Include="HighLevel\HighLevel.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="HighLevel\string_id_manager.h" />
+    <ClInclude Include="CacheInterface\memory_mapped_file.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\tag_project_configurator_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
     <ClInclude Include="CacheInterface\string_id_interface.h" />
@@ -70,13 +84,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\cache_file_header.cpp" />
+    <ClCompile Include="CacheInterface\debug_reader.cpp" />
     <ClCompile Include="CacheInterface\gen3\gen3_cache_file_header.cpp" />
     <ClCompile Include="CacheInterface\halo4\halo4_cache_file_header.cpp" />
     <ClCompile Include="CacheInterface\cache_byteswap.cpp" />
+    <ClCompile Include="CacheInterface\cache_file_api.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_cache_file_reader.cpp" />
+    <ClCompile Include="CacheInterface\cache_file_reader.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_debug_reader.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_localization_reader.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_resource_reader.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_tag_reader.cpp" />
+    <ClCompile Include="CacheInterface\localization_reader.cpp" />
+    <ClCompile Include="CacheInterface\resource_reader.cpp" />
+    <ClCompile Include="CacheInterface\tag_reader.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_cache_cluster.cpp" />
+    <ClCompile Include="CacheInterface\cache_cluster.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="HighLevel\string_id_manager.cpp" />
+    <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\tag_project_configurator_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="CacheInterface\string_id_interface.cpp" />

@@ -24,7 +24,9 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 
 #ifdef _DEBUG
 #define DEBUG_ONLY(...) __VA_ARGS__
+#define NDEBUG_ONLY(...)
 #else
+#define NDEBUG_ONLY(...) __VA_ARGS__
 #define DEBUG_ONLY(...)
 #endif
 

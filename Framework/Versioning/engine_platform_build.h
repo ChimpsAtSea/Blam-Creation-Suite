@@ -104,6 +104,11 @@ struct s_engine_platform_build
 	e_engine_type engine_type;
 	e_platform_type platform_type;
 	e_build build;
+
+	operator bool() const
+	{
+		return !!(engine_type) || !!(platform_type) || !!(build);
+	}
 };
 
 class c_engine_platform_build

@@ -36,6 +36,7 @@ public:
 	void create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
 	void open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
 	void open_tag_project_tab(const wchar_t* filepath, const char* tag_list = nullptr);
+	void open_tag_project_configurator_tab(const wchar_t* directory);
 	void restore_previous_session(bool use_projects);
 	void save_current_session();
 	void render();

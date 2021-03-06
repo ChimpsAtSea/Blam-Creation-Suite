@@ -156,7 +156,49 @@
     <ClInclude Include="CacheInterface\cache_byteswap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\cache_files.h">
+    <ClInclude Include="CacheInterface\cache_file_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\tag_project_configurator_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\memory_mapped_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_debug_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_cache_file_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\cache_file_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_localization_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_resource_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_tag_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\debug_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\localization_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\resource_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\tag_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_cache_cluster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\cache_cluster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -276,6 +318,51 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\cache_byteswap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_file_api.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\tag_project_configurator_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\memory_mapped_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_debug_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_cache_file_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_file_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_localization_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_resource_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_tag_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\localization_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\resource_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\tag_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\debug_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_cache_cluster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_cluster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

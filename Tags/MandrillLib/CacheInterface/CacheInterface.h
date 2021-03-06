@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cache_byteswap.h"
+#include "memory_mapped_file.h"
 
 //#include "cache_cluster.h"
 
@@ -14,11 +15,30 @@
 #include "virtual_tag.h"
 
 
+
+
 #include "cache_file_header.h"
-
 #include "gen3\gen3_cache_file_header.h"
-
 #include "halo4\halo4_cache_file_header.h"
+
+#include "cache_file_api.h"
+
+#include "cache_file_reader.h"
+#include "cache_cluster.h"
+
+#include "debug_reader.h"
+#include "localization_reader.h"
+#include "resource_reader.h"
+#include "tag_reader.h"
+
+#include "halo4\halo4_cache_file_reader.h"
+#include "halo4\halo4_cache_cluster.h"
+
+#include "halo4\halo4_debug_reader.h"
+#include "halo4\halo4_localization_reader.h"
+#include "halo4\halo4_resource_reader.h"
+#include "halo4\halo4_tag_reader.h"
+
 
 //#include "CacheVersions\cache_file_header.h"
 //

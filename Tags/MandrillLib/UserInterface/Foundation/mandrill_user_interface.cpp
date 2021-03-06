@@ -32,6 +32,12 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	restore_previous_session(false);
 	restore_previous_session(true);
 	open_cache_file_tab(startup_file);
+
+	std::wstring autoproject = c_command_line::get_command_line_warg("-autoproject");
+	if (!autoproject.empty())
+	{
+		open_tag_project_configurator_tab(autoproject.c_str());
+	}
 }
 
 c_mandrill_user_interface::~c_mandrill_user_interface()
@@ -181,6 +187,13 @@ void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, co
 		create_tag_project(filepath);
 	}
 	*/
+}
+
+void c_mandrill_user_interface::open_tag_project_configurator_tab(const wchar_t* directory)
+{
+	c_tag_project_configurator_tab* tag_project_configurator_tab = new c_tag_project_configurator_tab(directory, *this);
+	add_tab(*tag_project_configurator_tab);
+	next_selected_tab = tag_project_configurator_tab;
 }
 
 void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, const char* tag_list)
@@ -590,16 +603,17 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 	{
 		float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
 		float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
-		if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
+		if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".exe,.xex,.dll"))
 		{
 			show_create_tag_project_file_dialogue = false;
 
-			const char* selected_file_path = file_browser->get_selected_file_name();
-			if (selected_file_path)
+			std::string selected_path = file_browser->get_current_path();
+			if (!selected_path.empty())
 			{
-				c_fixed_wide_path selected_file_path_buffer;
-				selected_file_path_buffer.format(L"%S", selected_file_path);
-				open_tag_project_tab(selected_file_path_buffer.c_str());
+				c_settings::write_string(_settings_section_mandrill, k_previous_open_filepath_setting, selected_path.c_str());
+				c_fixed_wide_path selected_path_buffer;
+				selected_path_buffer.format(L"%S", selected_path.c_str());
+				open_tag_project_configurator_tab(selected_path_buffer.c_str());
 			}
 		}
 	}
@@ -614,7 +628,7 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 			const char* selected_file_path = file_browser->get_selected_file_name();
 			if (selected_file_path)
 			{
-				c_settings::write_string(_settings_section_mandrill, k_previous_open_filepath_setting, file_browser->get_current_path());
+				c_settings::write_string(_settings_section_mandrill, k_previous_open_filepath_setting, file_browser->get_current_path().c_str());
 				c_fixed_wide_path selected_file_path_buffer;
 				selected_file_path_buffer.format(L"%S", selected_file_path);
 				open_cache_file_tab(selected_file_path_buffer.c_str());

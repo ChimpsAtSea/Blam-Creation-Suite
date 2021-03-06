@@ -40,6 +40,9 @@ namespace gen3
 	enum e_cache_file_shared_file_type
 	{
 		_shared_file_type_none = NONE,
+		_shared_file_type_unknown0,
+		_shared_file_type_unknown1,
+		_shared_file_type_unknown2,
 		k_number_of_shared_file_types = 3
 	};
 
