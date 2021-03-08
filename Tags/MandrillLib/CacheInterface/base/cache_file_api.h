@@ -131,6 +131,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_buffers(
 BCSAPI BCS_RESULT create_cache_cluster(
 	c_cache_file_reader** cache_readers,
 	uint32_t cache_reader_count,
+	s_engine_platform_build engine_platform_build,
 	c_cache_cluster** cache_cluster
 );
 

@@ -75,6 +75,7 @@ void c_virtual_tag_source_generator::generate_header() const
 			case _field_custom:
 			case _field_terminator:
 			case _field_explanation:
+			case _field_non_cache_runtime_value:
 				continue;
 			}
 
@@ -249,6 +250,7 @@ void c_virtual_tag_source_generator::generate_source() const
 			case _field_custom:
 			case _field_terminator:
 			case _field_explanation:
+			case _field_non_cache_runtime_value:
 				continue;
 			default:
 				stream << "," << std::endl;

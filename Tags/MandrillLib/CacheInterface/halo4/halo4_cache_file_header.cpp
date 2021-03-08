@@ -65,7 +65,7 @@ template<> void byteswap<halo4::xbox360::s_cache_file_header>(halo4::xbox360::s_
 	byteswap(header.unknown4B0);
 	byteswap(header.unknown4B4);
 	byteswap(header.unknown4B8);
-	byteswap(header.gap4BC);
+	//byteswap(header.gap4BC);
 	byteswap(header.unknown18E94);
 	byteswap(header.unknown18E95);
 	byteswap(header.unknown18E96);

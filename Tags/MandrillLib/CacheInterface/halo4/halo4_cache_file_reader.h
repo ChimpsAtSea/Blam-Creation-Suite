@@ -3,7 +3,7 @@
 class c_halo4_cache_file_reader : public c_cache_file_reader
 {
 public:
-	c_halo4_cache_file_reader(const wchar_t* filepath);
+	c_halo4_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build);
 	~c_halo4_cache_file_reader();
 
 	virtual BCS_RESULT get_build_info(s_cache_file_build_info& build_info) const;
@@ -17,9 +17,12 @@ public:
 	virtual BCS_RESULT page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const;
 
 	c_fixed_wide_path filepath;
+	s_engine_platform_build engine_platform_build;
 	t_memory_mapped_file* file;
 	s_memory_mapped_file_info file_info;
 	c_cache_cluster* cache_cluster;
+
+	halo4::xbox360::s_cache_file_header cache_file_header; // #TODO: move this into a wrapper?
 
 
 	static constexpr char k_file_name_encryption_key[] = "LetsAllPlayNice!";

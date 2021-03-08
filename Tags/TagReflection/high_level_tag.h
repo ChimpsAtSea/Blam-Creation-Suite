@@ -221,9 +221,7 @@ public:
 	h_tag& create_tag_instance(const char* filepath);
 
 	std::vector<h_tag*> tags;
-	e_engine_type const engine_type;
-	e_platform_type const platform_type;
-	e_build const build;
+	s_engine_platform_build const engine_platform_build;
 	const blofeld::s_tag_group& tag_group;
 
 protected:

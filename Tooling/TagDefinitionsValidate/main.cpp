@@ -24,10 +24,14 @@ int WINAPI wWinMain(
 )
 {
 	std::map<const blofeld::s_tag_field*, uint64_t> warnings_tracking;
+
+	bool failed_validation = false;
+	failed_validation |= blofeld::validate_gen3_definitions(&warnings_tracking);
+	failed_validation |= blofeld::validate_halo4_xbox360_definitions(&warnings_tracking);
+	failed_validation |= blofeld::validate_all_definitions(&warnings_tracking);
+
 	static bool const fatal_validation = c_command_line::has_command_line_arg("-fatal-validation");
-	bool failed_validation = blofeld::validate_gen3_definitions(&warnings_tracking);
-	failed_validation &= blofeld::validate_all_definitions(&warnings_tracking);
-	return fatal_validation ? fatal_validation : 0;
+	return fatal_validation ? static_cast<int>(fatal_validation) : 0;
 }
 
 int main()

@@ -99,7 +99,7 @@ namespace halo4
 #pragma pack(push, 4)
 		struct s_cache_file_header : ::s_cache_file_header
 		{
-			intptr32_t tags_header_address;
+			uintptr32_t tags_header_address;
 			long tag_buffer_offset;
 			long total_tags_size;
 			c_static_string<256> source_file;
@@ -138,7 +138,7 @@ namespace halo4
 
 			long unknown2D4;
 			c_static_string<32> unknown2D8;
-			intptr32_t expected_base_address;
+			uintptr32_t expected_base_address;
 			unsigned long xdk_version;
 			c_basic_buffer32<void> tag_post_link_buffer;
 			c_basic_buffer32<void> tag_language_dependent_read_only_buffer;
@@ -261,7 +261,7 @@ namespace halo4
 
 		struct s_cache_file_tag_group
 		{
-			unsigned long group_tags[3];
+			tag group_tags[3];
 			unsigned long name;
 		};
 		static_assert(sizeof(s_cache_file_tag_group) == 0x10);

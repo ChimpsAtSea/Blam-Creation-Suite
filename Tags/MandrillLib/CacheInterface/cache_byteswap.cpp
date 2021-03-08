@@ -63,6 +63,162 @@ template<> void byteswap<s_basic_buffer32>(s_basic_buffer32& value)
 	byteswap(value.size);
 }
 
+template<> void byteswap<s_tag_reference>(s_tag_reference& value)
+{
+	byteswap(value.group_tag);
+	byteswap(value.name);
+	byteswap(value.name_length);
+	byteswap(value.datum_index);
+}
 
+template<> void byteswap<s_tag_block>(s_tag_block& value)
+{
+	byteswap(value.count);
+	byteswap(value.address);
+	byteswap(value.definition_address);
+}
 
+template<> void byteswap<float>(float& value)
+{
+	
+}
 
+template<> void byteswap<real_point2d>(real_point2d& value)
+{
+	byteswap(value.x);
+	byteswap(value.y);
+}
+
+template<> void byteswap<real_point3d>(real_point3d& value)
+{
+	byteswap(value.x);
+	byteswap(value.y);
+	byteswap(value.z);
+}
+
+template<> void byteswap<s_point2d>(s_point2d& value)
+{
+	byteswap(value.x);
+	byteswap(value.y);
+}
+
+template<> void byteswap<real_quaternion>(real_quaternion& value)
+{
+	byteswap(value.i);
+	byteswap(value.j);
+	byteswap(value.k);
+	byteswap(value.w);
+}
+
+template<> void byteswap<real_vector2d>(real_vector2d& value)
+{
+	byteswap(value.i);
+	byteswap(value.j);
+}
+
+template<> void byteswap<real_vector3d>(real_vector3d& value)
+{
+	byteswap(value.i);
+	byteswap(value.j);
+	byteswap(value.k);
+}
+
+template<> void byteswap<real_vector4d>(real_vector4d& value)
+{
+	byteswap(value.i);
+	byteswap(value.j);
+	byteswap(value.k);
+	byteswap(value.w);
+}
+
+template<> void byteswap<short_bounds>(short_bounds& value)
+{
+	byteswap(value.lower);
+	byteswap(value.upper);
+}
+
+template<> void byteswap<angle_bounds>(angle_bounds& value)
+{
+	byteswap(value.lower);
+	byteswap(value.upper);
+}
+
+template<> void byteswap<argb_color>(argb_color& value)
+{
+	byteswap(value.alpha);
+	byteswap(value.red);
+	byteswap(value.green);
+	byteswap(value.blue);
+}
+
+template<> void byteswap<real_ahsv_color>(real_ahsv_color& value)
+{
+	byteswap(value.alpha);
+	byteswap(value.hue);
+	byteswap(value.saturation);
+	byteswap(value.value);
+}
+
+template<> void byteswap<real_bounds>(real_bounds& value)
+{
+	byteswap(value.lower);
+	byteswap(value.upper);
+}
+
+template<> void byteswap<real_euler_angles2d>(real_euler_angles2d& value)
+{
+	byteswap(value.yaw);
+	byteswap(value.pitch);
+}
+
+template<> void byteswap<real_euler_angles3d>(real_euler_angles3d& value)
+{
+	byteswap(value.yaw);
+	byteswap(value.pitch);
+	byteswap(value.roll);
+}
+
+template<> void byteswap<real_fraction_bounds>(real_fraction_bounds& value)
+{
+	byteswap(value.lower);
+	byteswap(value.upper);
+}
+
+template<> void byteswap<real_hsv_color>(real_hsv_color& value)
+{
+	byteswap(value.hue);
+	byteswap(value.saturation);
+	byteswap(value.value);
+}
+
+template<> void byteswap<real_plane2d>(real_plane2d& value)
+{
+	byteswap(value.distance);
+	byteswap(value.normal);
+}
+
+template<> void byteswap<real_plane3d>(real_plane3d& value)
+{
+	byteswap(value.distance);
+	byteswap(value.normal);
+}
+
+template<> void byteswap<pixel32>(pixel32& value)
+{
+	byteswap(value.value);
+}
+
+template<> void byteswap<rgb_color>(rgb_color& value)
+{
+	byteswap(value.red);
+	byteswap(value.green);
+	byteswap(value.blue);
+}
+
+template<> void byteswap<s_rectangle2d>(s_rectangle2d& value)
+{
+	byteswap(value.top);
+	byteswap(value.left);
+	byteswap(value.bottom);
+	byteswap(value.right);
+}

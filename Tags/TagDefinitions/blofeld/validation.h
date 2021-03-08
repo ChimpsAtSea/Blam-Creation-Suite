@@ -38,6 +38,7 @@ namespace blofeld
 		std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
 	bool validate_all_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
 	bool validate_gen3_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
+	bool validate_halo4_xbox360_definitions(std::map<const s_tag_field*, uint64_t>* warnings_tracking = nullptr);
 }
 
 

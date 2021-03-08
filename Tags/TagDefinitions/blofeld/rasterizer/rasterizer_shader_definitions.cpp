@@ -146,23 +146,17 @@ namespace blofeld
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_flags, "shader flags", &shader_flags },
 
+		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc, 6 },
 		{ _field_legacy, _field_data, "xenon compiled shader{..:xenon compiled shader}" },
-
-		{ _field_legacy, _field_version_equal, _engine_type_gen3_xbox360, 1 },
-		{ _field_legacy, _field_data, "dx9 compiled shader{..:dx9 compiled shader}" },
-
-		{ _field_legacy, _field_version_not_equal, _engine_type_gen3_xbox360, 2 },
-		{ _field_legacy, _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },
-		{ _field_legacy, _field_data, "durango compiled shader{..:durango compiled shader}" },
-
+		{ _field_legacy, _field_data, "dx9 compiled shader{..:dx9 compiled shader}" }, // legacy
 		{ _field_legacy, _field_explanation, "Xenon constant table", "" },
 		{ _field_legacy, _field_struct, "xenon rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
-
-		{ _field_legacy, _field_version_equal, _engine_type_gen3_xbox360, 2 },
 		{ _field_legacy, _field_explanation, "DX9 constant table", "" },		// legacy #TODO 
 		{ _field_legacy, _field_struct, "dx9 rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },		// legacy
 
-		{ _field_legacy, _field_version_not_equal, _engine_type_gen3_xbox360, 4 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 6 },
+		{ _field_legacy, _field_data, "dx11 compiled shader{..:dx11 compiled shader}" },
+		{ _field_legacy, _field_data, "durango compiled shader{..:durango compiled shader}" },
 		{ _field_legacy, _field_explanation, "dx11 constant table", "" },
 		{ _field_legacy, _field_struct, "dx11 rasterizer constant table*!", &global_rasterizer_constant_table_struct_struct_definition },
 		{ _field_legacy, _field_explanation, "durango constant table", "" },

@@ -81,7 +81,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_pad:								return nullptr;	// dynamic
 	case _field_useless_pad:						return nullptr;	// dynamic
 	case _field_skip:								return nullptr;	// dynamic
-	case _field_non_cache_runtime_value:			return "long";
+	case _field_non_cache_runtime_value:			return nullptr;	// empty
 	case _field_explanation:						return nullptr;	// empty
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
@@ -135,6 +135,11 @@ void c_high_level_tag_source_generator::generate_header() const
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+
+		//if (tag_struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
+		//{
+		//	debug_point;
+		//}
 
 		uint32_t blofeld_field_list_size = 1;
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
@@ -223,6 +228,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			case _field_custom:
 			case _field_terminator:
 			case _field_explanation:
+			case _field_non_cache_runtime_value:
 				continue;
 			}
 
@@ -344,6 +350,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 		case _field_custom:
 		case _field_terminator:
 		case _field_explanation:
+		case _field_non_cache_runtime_value:
 			continue;
 		}
 
@@ -532,6 +539,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					case _field_custom:
 					case _field_terminator:
 					case _field_explanation:
+					case _field_non_cache_runtime_value:
 						continue;
 					}
 
@@ -660,6 +668,11 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+
+		//if (tag_struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
+		//{
+		//	debug_point;
+		//}
 
 		uint32_t blofeld_field_list_count = 1;
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
@@ -884,6 +897,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 				case _field_custom:
 				case _field_terminator:
 				case _field_explanation:
+				case _field_non_cache_runtime_value:
 					continue;
 				}
 

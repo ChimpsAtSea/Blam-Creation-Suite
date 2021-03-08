@@ -32,11 +32,13 @@ protected:
 
 	void render_cache_file_selection();
 	void render_project_settings();
+	void render_display_tags();
 
 	enum e_tag_project_configurator_step
 	{
 		_tag_project_configurator_step_cache_file_selection,
 		_tag_project_configurator_step_project_settings,
+		_tag_project_configurator_step_display_tags,
 	};
 
 	void create_cache_cluster();
@@ -47,4 +49,5 @@ protected:
 	bool is_all_selected;
 	std::vector<s_cache_file_list_entry> entries;
 	c_cache_cluster* cache_cluster;
+	c_high_level_cache_cluster_transplant* cache_cluster_transplant;
 };

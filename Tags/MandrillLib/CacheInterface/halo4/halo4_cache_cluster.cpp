@@ -1,8 +1,10 @@
 #include "mandrilllib-private-pch.h"
 
-c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_readers, uint32_t cache_reader_count) :
+c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
+	engine_platform_build(engine_platform_build),
 	entries()
 {
+	BCS_RESULT rs;
 	BCS_VALIDATE_ARGUMENT_THROW(cache_readers);
 	BCS_VALIDATE_ARGUMENT_THROW(cache_reader_count > 0);
 
@@ -25,20 +27,19 @@ c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_r
 		{
 			entry.debug_reader = new c_halo4_debug_reader(*this, *cache_reader);
 		}
-		if (BCS_SUCCEEDED(cache_reader->get_buffer(_tag_section_buffer, temp_info)))
+
+		debug_point;
+	}
+
+	for (s_halo4_cache_cluster_entry& entry : entries)
+	{
+		c_halo4_cache_file_reader* cache_reader = entry.cache_reader;
+
+		s_cache_file_buffer_info tag_section_buffer;
+		if (BCS_SUCCEEDED(cache_reader->get_buffer(_tag_section_buffer, tag_section_buffer)))
 		{
 			entry.tag_reader = new c_halo4_tag_reader(*this, *cache_reader);
 		}
-		if (BCS_SUCCEEDED(cache_reader->get_buffer(_resources_section_buffer, temp_info)))
-		{
-			entry.resource_reader = new c_halo4_resource_reader(*this, *cache_reader);
-		}
-		if (BCS_SUCCEEDED(cache_reader->get_buffer(_localization_section_buffer, temp_info)))
-		{
-			entry.localization_reader = new c_halo4_localization_reader(*this, *cache_reader);
-		}
-
-		debug_point;
 	}
 
 	for (s_halo4_cache_cluster_entry& entry : entries)
@@ -48,6 +49,16 @@ c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_r
 		if (BCS_SUCCEEDED(cache_reader->get_buffer(_resources_section_buffer, temp_info)))
 		{
 			entry.resource_reader = new c_halo4_resource_reader(*this, *cache_reader);
+		}
+	}
+
+	for (s_halo4_cache_cluster_entry& entry : entries)
+	{
+		c_halo4_cache_file_reader* cache_reader = entry.cache_reader;
+
+		if (BCS_SUCCEEDED(cache_reader->get_buffer(_localization_section_buffer, temp_info)))
+		{
+			entry.localization_reader = new c_halo4_localization_reader(*this, *cache_reader);
 		}
 	}
 }

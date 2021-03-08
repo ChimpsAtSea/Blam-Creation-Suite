@@ -41,9 +41,7 @@ h_object::~h_object()
 
 h_group::h_group(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group) :
 	tags(),
-	engine_type(engine_type),
-	platform_type(platform_type),
-	build(build),
+	engine_platform_build(engine_platform_build),
 	tag_group(tag_group)
 {
 
@@ -76,12 +74,16 @@ namespace blofeld
 	{
 		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
 	}
+	namespace xbox360_gen3
+	{
+		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
+	}
 }
 
 h_tag& h_group::create_tag_instance(const char* filepath)
 {
 	h_tag* tag = nullptr;
-	switch (engine_type)
+	switch (engine_platform_build.engine_type)
 	{
 	case _engine_type_halo3:			
 		tag = blofeld::halo3::create_high_level_tag(*this, filepath);
@@ -97,6 +99,9 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 		break;
 	case _engine_type_groundhog:		
 		tag = blofeld::groundhog::create_high_level_tag(*this, filepath);
+		break;
+	case _engine_type_gen3_xbox360:
+		tag = blofeld::xbox360_gen3::create_high_level_tag(*this, filepath);
 		break;
 	default: FATAL_ERROR(L"Unsupported engine type");
 	}

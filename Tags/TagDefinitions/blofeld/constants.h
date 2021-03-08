@@ -10,8 +10,10 @@ namespace blofeld
 	{
 	public:
 		c_constant(const char* name, uint32_t value);
+#ifdef _INITIALIZER_LIST_
 		c_constant(const char* name, std::initializer_list<std::pair<e_engine_type, uint32_t>> list);
 		c_constant(std::initializer_list<std::pair<e_engine_type, std::pair<const char*, uint32_t>>> list);
+#endif
 
 		uint32_t operator()(s_engine_platform_build engine_platform_build)
 		{

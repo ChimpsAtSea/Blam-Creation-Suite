@@ -68,7 +68,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_pad:								return nullptr;	// dynamic
 	case _field_useless_pad:						return nullptr;	// dynamic
 	case _field_skip:								return nullptr;	// dynamic
-	case _field_non_cache_runtime_value:			return "long";
+	case _field_non_cache_runtime_value:			return nullptr;	// empty
 	case _field_explanation:						return nullptr;	// empty
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
@@ -155,6 +155,9 @@ void c_low_level_tag_source_generator::generate_header() const
 				break;
 			case _field_useless_pad:
 				stream << "\t\t\t" << "// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
+				break;
+			case _field_non_cache_runtime_value:
+				stream << "\t\t\t" << "// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
 				break;
 			case _field_custom:
 				stream << "\t\t\t" << "// " << field_type_string;
@@ -313,6 +316,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			case _field_custom:
 			case _field_terminator:
 			case _field_explanation:
+			case _field_non_cache_runtime_value:
 				break;
 			default:
 				if (!field_formatter.description.empty() || k_write_field_types)

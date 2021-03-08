@@ -1,10 +1,12 @@
 #include "mandrilllib-private-pch.h"
 
-c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath) :
+c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build) :
 	filepath(filepath),
+	engine_platform_build(engine_platform_build),
 	file(nullptr),
 	file_info(),
-	cache_cluster(nullptr)
+	cache_cluster(nullptr),
+	cache_file_header()
 {
 	BCS_RESULT rs;
 	if (BCS_FAILED(rs = create_memory_mapped_file(filepath, true, &file)))
@@ -16,8 +18,8 @@ c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath) :
 		throw(rs);
 	}
 
-
-
+	cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(file_info.file_view_begin); // #TODO: move this into a wrapper?
+	byteswap(cache_file_header);
 }
 
 c_halo4_cache_file_reader::~c_halo4_cache_file_reader()
@@ -27,9 +29,6 @@ c_halo4_cache_file_reader::~c_halo4_cache_file_reader()
 
 BCS_RESULT c_halo4_cache_file_reader::get_build_info(s_cache_file_build_info& build_info) const
 {
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
-
 	build_info.file_version = cache_file_header.file_version;
 	build_info.file_length = cache_file_header.file_length;
 	build_info.file_compressed_length = cache_file_header.file_compressed_length;
@@ -61,9 +60,6 @@ BCS_RESULT c_halo4_cache_file_reader::get_debug_info(s_cache_file_debug_info& de
 
 BCS_RESULT c_halo4_cache_file_reader::get_section_buffer(gen3::e_cache_file_section section_index, s_cache_file_buffer_info& buffer_info) const
 {
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
-
 	long section_size = cache_file_header.section_file_bounds[section_index].size;
 	if (section_size == 0)
 	{
@@ -146,9 +142,6 @@ BCS_RESULT c_halo4_cache_file_reader::associate_cache_cluster(c_cache_cluster& t
 
 BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const
 {
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
-
 	relative_offset = static_cast<int32_t>(virtual_address - cache_file_header.expected_base_address);
 
 	return BCS_S_OK;
@@ -156,5 +149,8 @@ BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t
 
 BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
 {
-	return BCS_E_NOT_IMPLEMENTED;
+	virtual_address = page_offset; // -cache_file_header.expected_base_address;
+
+	return BCS_S_OK;
+	//return BCS_E_NOT_IMPLEMENTED;
 }

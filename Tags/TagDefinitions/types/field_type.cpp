@@ -65,7 +65,7 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 	case _field_pad:							return 0;	// dynamic
 	case _field_useless_pad:					return 0;	// dynamic
 	case _field_skip:							return 0;	// dynamic
-	case _field_non_cache_runtime_value:		return sizeof(long);
+	case _field_non_cache_runtime_value:		return 0;	// empty
 	case _field_explanation:					return 0;	// empty
 	case _field_custom:							return 0;	// empty
 	case _field_struct:							return 0;	// dynamic

@@ -136,8 +136,7 @@ c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster,
 		throw(rs);
 	}
 
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(cache_reader.file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
+	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
 	long string_id_index_buffer_relative_offset = cache_file_header.string_id_index_buffer_offset - buffers_info.debug_section_buffer.offset;
 	string_id_index_buffer = reinterpret_cast<const unsigned long*>(buffers_info.debug_section_buffer.begin + string_id_index_buffer_relative_offset);
@@ -267,8 +266,7 @@ BCS_RESULT c_halo4_debug_reader::string_id_to_string(uint32_t string_id_index, u
 
 BCS_RESULT c_halo4_debug_reader::get_tag_filepath(long tag_index, const char*& filepath)
 {
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(cache_reader.file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
+	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
 	if (tag_index < 0 || tag_index > cache_file_header.file_count)
 	{
@@ -302,8 +300,7 @@ BCS_RESULT c_halo4_debug_reader::string_id_to_index(string_id stringid, uint32_t
 
 BCS_RESULT c_halo4_debug_reader::string_id_to_index(uint32_t string_id_index, uint32_t string_id_namespace, uint32_t string_id_length, uint32_t& string_index)
 {
-	halo4::xbox360::s_cache_file_header cache_file_header = *reinterpret_cast<halo4::xbox360::s_cache_file_header*>(cache_reader.file_info.file_view_begin); // #TODO: move this into a wrapper?
-	byteswap(cache_file_header);
+	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
 	if (string_id_namespace > k_engine_string_id_namespace_count)
 	{
