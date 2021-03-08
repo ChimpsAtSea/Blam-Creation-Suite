@@ -83,10 +83,16 @@ static_assert(sizeof(qword) == 0x8);
 typedef unsigned long tag;
 static_assert(sizeof(tag) == 0x4);
 
-typedef unsigned long intptr32_t;
+typedef long intptr32_t;
 static_assert(sizeof(intptr32_t) == 0x4);
 
-typedef unsigned long long intptr64_t;
+typedef long long intptr64_t;
+static_assert(sizeof(intptr64_t) == 0x8);
+
+typedef unsigned long uintptr32_t;
+static_assert(sizeof(intptr32_t) == 0x4);
+
+typedef unsigned long long uintptr64_t;
 static_assert(sizeof(intptr64_t) == 0x8);
 
 /* ---------- macros */

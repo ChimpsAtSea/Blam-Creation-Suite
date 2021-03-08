@@ -12,8 +12,7 @@ struct s_tag_reference
 	tag group_tag;
 	c_ptr32<char> name;
 	long name_length;
-	unsigned short index;
-	unsigned short datum;
+	long datum_index;
 };
 static_assert(sizeof(s_tag_reference) == 0x10);
 

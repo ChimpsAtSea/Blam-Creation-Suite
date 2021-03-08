@@ -79,5 +79,5 @@ public:
     }
 };
 
-template<typename T>
+template<typename t_type>
 using c_ptr32 = unsigned long;
