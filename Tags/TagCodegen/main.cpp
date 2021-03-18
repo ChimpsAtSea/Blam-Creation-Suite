@@ -55,28 +55,6 @@ int create_source_file()
 			{
 				c_stopwatch stopwatch;
 				stopwatch.start();
-				c_virtual_tag_source_generator virtual_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating virtual level header (%s)", engine_name);
-				virtual_tag_source_generator.generate_header();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating virtual level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-			});
-
-		g.run([&result, engine_name, engine_platform_build]
-			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
-				c_virtual_tag_source_generator virtual_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating high virtual source (%s)", engine_name);
-				virtual_tag_source_generator.generate_source();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating virtual level source (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-			});
-
-		g.run([&result, engine_name, engine_platform_build]
-			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
 				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating high level header (%s)", engine_name);
 				high_level_tag_source_generator.generate_header();

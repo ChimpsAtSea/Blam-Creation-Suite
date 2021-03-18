@@ -87,33 +87,34 @@ static void load_plugins()
 			return true; // continue
 		}
 
-		t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
-		if (create_mandrill_extension == nullptr)
-		{
-			c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
-			if (extension_module)
-			{
-				FreeLibrary(extension_module);
-			}
-			return true; // continue
-		}
+		// #TODO: plugin refactor
+		//t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
+		//if (create_mandrill_extension == nullptr)
+		//{
+		//	c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
+		//	if (extension_module)
+		//	{
+		//		FreeLibrary(extension_module);
+		//	}
+		//	return true; // continue
+		//}
 
-		c_mandrill_extension* extension = create_mandrill_extension();
-		int version = extension->get_version();
-		if (version != BCS_EXTENSION_VERSION)
-		{
-			c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
-			if (extension_module)
-			{
-				FreeLibrary(extension_module);
-			}
-			return true; // continue
-		}
+		//c_mandrill_extension* extension = create_mandrill_extension();
+		//int version = extension->get_version();
+		//if (version != BCS_EXTENSION_VERSION)
+		//{
+		//	c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
+		//	if (extension_module)
+		//	{
+		//		FreeLibrary(extension_module);
+		//	}
+		//	return true; // continue
+		//}
 
-		const char* extension_name = extension->get_name();
-		c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
+		//const char* extension_name = extension->get_name();
+		//c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
 
-		c_mandrill_extension::register_extension(extension);
+		//c_mandrill_extension::register_extension(extension);
 
 		return true;
 	};
@@ -130,110 +131,6 @@ static void load_plugins()
 #include <TagValidate\tagvalidate-public-pch.h>
 
 #include <MandrillLib/mandrilllib-public-pch.h>
-#include <low_level_haloreach/lowlevel-haloreach-public-pch.h>
-#include <virtual_haloreach/virtual-haloreach-public-pch.h>
-
-#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
-
-
-
-
-void compilertest(uint32_t index)
-{
-	// #TODO: cache refactor
-	/*
-	c_haloreach_cache_compiler* cache_compilers[3];
-	c_tag_project* tag_projects[3];
-	c_cache_cluster* cache_clusters[3];
-	c_cache_file* cache_files[3];
-	
-	auto pre_build_map = [&]()
-	{
-		uint32_t map_id;
-		const char* relative_test_file;
-		const wchar_t* test_file;
-		{
-			uint32_t map_ids[] =
-			{
-				9999,
-				9998,
-				9997
-			};
-
-			const wchar_t* test_files[] =
-			{
-					REACH_FOLDER L"maps\\20_sword_slayer.map",
-					REACH_FOLDER L"maps\\m70_a.map", // smallest map
-					REACH_FOLDER L"maps\\m60.map", // biggest map
-			};
-
-			const char* relative_test_files[] =
-			{
-					"maps\\20_sword_slayer.map",
-					"maps\\m70_a.map",
-					"maps\\m60.map",
-			};
-
-			map_id = map_ids[index];
-			relative_test_file = relative_test_files[index];
-			test_file = test_files[index];
-		}
-
-		const wchar_t* cluster_files[] =
-		{
-				test_file,
-				REACH_FOLDER L"maps\\shared.map",
-				REACH_FOLDER L"maps\\campaign.map",
-		};
-
-		using namespace blofeld;
-		using namespace blofeld::haloreach;
-
-		cache_clusters[index] = new c_cache_cluster(cluster_files, sizeof(cluster_files) / sizeof(*cluster_files));
-		cache_files[index] = cache_clusters[index]->get_cache_file_by_dvd_path(relative_test_file);
-		DEBUG_ASSERT(cache_files[index] != nullptr);
-
-		c_tag_group_interface* scenario_group = cache_files[index]->get_tag_group_interface_by_group_id(blofeld::SCENARIO_TAG);
-		c_tag_interface* tag_interface = scenario_group->get_tag_interfaces()[0];
-		c_virtual_tag_interface* virtual_tag_interface = tag_interface->get_virtual_tag_interface();
-		v_tag_interface<blofeld::haloreach::s_scenario_struct_definition>* scenario = dynamic_cast<decltype(scenario)>(virtual_tag_interface);
-		scenario->map_id = map_id;
-
-		tag_projects[index] = new c_tag_project(*cache_clusters[index], *cache_files[index]);
-	};
-
-	tbb::parallel_for(0u, 2u, pre_build_map);
-	
-	const wchar_t* output_file;
-	{
-		const wchar_t* output_files[] =
-		{
-				REACH_FOLDER L"maps\\custom.map",
-				REACH_FOLDER L"maps\\custom2.map", // smallest map
-				REACH_FOLDER L"maps\\custom3.map", // biggest map
-		};
-
-		output_file = output_files[index];
-	}
-
-	cache_compilers[index] = new c_haloreach_cache_compiler(*tag_projects[index], dynamic_cast<c_haloreach_cache_file*>(cache_files[index]));
-
-	{
-		c_stopwatch stopwatch;
-		stopwatch.start();
-		cache_compilers[index]->compile(output_file);
-		stopwatch.stop();
-		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
-	}
-
-	c_haloreach_cache_file* cache_file = (c_haloreach_cache_file*)c_cache_file::create_cache_file(output_file);
-
-	
-	delete cache_clusters[index];
-	delete cache_compilers[index];
-	delete tag_projects[index];
-	*/
-}
 
 static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {

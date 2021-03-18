@@ -10,9 +10,7 @@
 #include <MandrillLib\mandrilllib-public-pch.h>
 
 #include <low_level_halo3/lowlevel-halo3-public-pch.h>
-#include <virtual_halo3/virtual-halo3-public-pch.h>
 #include <low_level_haloreach/lowlevel-haloreach-public-pch.h>
-#include <virtual_haloreach/virtual-haloreach-public-pch.h>
 
 #include "tagvalidate-public-pch.h"
 

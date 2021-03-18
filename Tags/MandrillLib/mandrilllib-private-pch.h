@@ -19,7 +19,6 @@
 #include <zlib/zlib/zlib.h>
 
 #include <low_level_haloreach/lowlevel-haloreach-public-pch.h>
-#include <virtual_haloreach/virtual-haloreach-public-pch.h>
 //#include <high_level_haloreach\highlevel-haloreach-public-pch.h>
 #include <low_level_xbox360_gen3/lowlevel-xbox360gen3-public-pch.h>
 //#include <high_level_xbox360_gen3\highlevel-xbox360gen3-public-pch.h>

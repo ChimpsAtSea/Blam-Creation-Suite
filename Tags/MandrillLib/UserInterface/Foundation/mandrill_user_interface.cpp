@@ -68,94 +68,6 @@ void c_mandrill_user_interface::create_tag_project(const wchar_t* filepath, cons
 			}
 		}
 	}
-	// #TODO: cache refactor
-	/*
-	long file_version = 0;
-	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
-
-	if (engine_type == _engine_type_haloreach)
-	{
-		c_fixed_wide_path directory;
-		LPWSTR filename_position = nullptr;
-		GetFullPathNameW(filepath, directory.capacity(), directory.data, &filename_position);
-		*filename_position = 0;
-
-		c_fixed_wide_path shared = directory;
-		shared += "shared.map";
-		c_fixed_wide_path campaign = directory;
-		campaign += "campaign.map";
-
-		const wchar_t* maps[] =
-		{
-			shared.c_str(),
-			campaign.c_str(),
-			filepath
-		};
-		c_cache_cluster* cache_cluster = new c_cache_cluster(maps, _countof(maps));
-		c_cache_file* cache_file = cache_cluster->cache_files[2];
-
-		c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
-
-		delete cache_cluster;
-
-		c_tag_project_tab* tag_project_tab = new c_tag_project_tab(filepath, *tag_project, *this);
-		tag_project_tab->on_tab_added.register_callback(cache_file, [this](c_mandrill_tab& tab)
-			{
-				save_current_session();
-			});
-		tag_project_tab->on_tab_removed.register_callback(cache_file, [this](c_mandrill_tab& tab)
-			{
-				save_current_session();
-			});
-		tag_project_tab->on_selected_tree_change.register_callback(cache_file, [this](c_mandrill_tab& callee, c_mandrill_tab& target)
-			{
-				save_current_session();
-			});
-		tag_project_tab->on_closed.register_callback(cache_file, [this](c_mandrill_tab& tab)
-			{
-				if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
-				{
-					c_tag_project& tag_project = tag_project_tab->get_tag_project();
-					delete& tag_project;
-				}
-			});
-		add_tab(*tag_project_tab);
-		next_selected_tab = tag_project_tab;
-
-		if (tag_list != nullptr) // #TODO parsing function for this?
-		{
-			c_fixed_path selected_tag_name;
-			c_fixed_path tag_name;
-			const char* read_position = tag_list;
-			while (*read_position != 0)
-			{
-				if (*read_position == ';')
-				{
-					read_position++;
-				}
-				while (*read_position && *read_position != ';' && *read_position != ']' && *read_position != '*')
-				{
-					tag_name += *read_position;
-					read_position++;
-				}
-				if (*read_position == '*')
-				{
-					selected_tag_name = tag_name;
-					read_position++;
-				}
-
-				DEBUG_ASSERT(*read_position == 0 || *read_position == ';');
-
-				tag_project_tab->open_tag_by_search_name(tag_name.c_str());
-
-				tag_name.clear();
-			}
-			if (!selected_tag_name.empty())
-			{
-				tag_project_tab->open_tag_by_search_name(selected_tag_name.c_str()); // kinda hacky but ez way to set the selected tab
-			}
-		}
-	}*/
 }
 
 void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, const char* tag_list)
@@ -175,18 +87,9 @@ void c_mandrill_user_interface::open_tag_project_tab(const wchar_t* filepath, co
 	{
 		if (c_tag_project_tab* tag_project_tab = dynamic_cast<c_tag_project_tab*>(&tab))
 		{
-			// #TODO
+			// #TODO: open existing tab
 		}
 	}
-	// #TODO: cache refactor
-	/*
-	long file_version = 0;
-	e_engine_type engine_type = c_cache_file::get_cache_file_engine_type(filepath, &file_version);
-	if (engine_type == _engine_type_haloreach)
-	{
-		create_tag_project(filepath);
-	}
-	*/
 }
 
 void c_mandrill_user_interface::open_tag_project_configurator_tab(const wchar_t* directory)
@@ -393,52 +296,6 @@ void c_mandrill_user_interface::save_current_session()
 			{
 				open_projects_path += ']';
 			}
-		}
-		else if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
-		{
-			// #TODO: cache refactor
-			/*
-			if (!open_maps_path.empty())
-			{
-				open_maps_path += ';';
-			}
-			open_maps_path += cache_file_tab->get_cache_file().get_map_filepath();
-
-
-			if (tab.is_selected())
-			{
-				open_maps_path += "*";
-			}
-
-			uint32_t cache_file_tab_index = 0;
-			for (c_mandrill_tab& cache_file_child_tab : c_reference_loop(cache_file_tab->get_children(), cache_file_tab->get_child_count()))
-			{
-				if (c_virtual_tag_tab* tag_interface_tab = dynamic_cast<c_virtual_tag_tab*>(&cache_file_child_tab))
-				{
-					if (cache_file_tab_index == 0)
-					{
-						open_maps_path += '[';
-					}
-					else
-					{
-						open_maps_path += ';';
-					}
-
-					open_maps_path += tag_interface_tab->get_tag_interface().get_path_with_group_name_cstr();
-
-					if (tag_interface_tab->is_selected())
-					{
-						open_maps_path += "*";
-					}
-
-					cache_file_tab_index++;
-				}
-			}
-			if (cache_file_tab_index > 0)
-			{
-				open_maps_path += ']';
-			}
-			*/
 		}
 	}
 

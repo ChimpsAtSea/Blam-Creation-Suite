@@ -75,9 +75,8 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HaloScript
 	return halo_script_language;
 }
 
-c_halo_script_editor::c_halo_script_editor(c_cache_file& cache_file, c_mandrill_tab& parent) :
+c_halo_script_editor::c_halo_script_editor(c_mandrill_tab& parent) :
 	c_mandrill_tab("Script Editor", "Halo Script Editor", &parent),
-	cache_file(cache_file),
 	source_code_editor(),
 	source_code_editor_language(TextEditor::LanguageDefinition::HaloScript()),
 	compiler_output(),

@@ -4,11 +4,6 @@
 #include "cache_byteswap.h"
 #include "memory_mapped_file.h"
 
-#include "virtual_tag_interface\tag_group_interface.h"
-#include "virtual_tag_interface\tag_interface.h"
-#include "virtual_tag_interface\virtual_tag.h"
-#include "virtual_tag_interface\virtual_tag_block.h"
-
 #include "gen3\gen3_cache_file_header.h"
 
 #include "base\cache_file_header.h"

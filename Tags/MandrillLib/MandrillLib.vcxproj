@@ -51,21 +51,13 @@
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_configurator_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_tab.h" />
-    <ClInclude Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.h" />
     <ClInclude Include="HighLevel\high_level_cache_cluster_transplant.h" />
-    <ClInclude Include="Extension\mandrill_extension.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_debugger_tab.h" />
     <ClInclude Include="CustomTools\CustomTools.h" />
-    <ClInclude Include="CustomTools\custom_tool_render_model.h" />
     <ClInclude Include="CustomTools\custom_tool_base.h" />
-    <ClInclude Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_dynamic_data.h" />
     <ClInclude Include="UserInterface\shader_profile.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface\tag_group_interface.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface\tag_interface.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface\virtual_tag_block.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface\virtual_tag.h" />
     <ClInclude Include="HaloScript\HaloScript.h" />
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
@@ -77,12 +69,10 @@
     <ClInclude Include="tests.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_tab_container.h" />
     <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor.h" />
-    <ClInclude Include="UserInterface\Tabs\cache_file_tab.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_event_queue.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_user_interface.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_tab.h" />
     <ClInclude Include="UserInterface\Tabs\halo_script_editor.h" />
-    <ClInclude Include="UserInterface\Tabs\virtual_tag_tab.h" />
     <ClInclude Include="UserInterface\UserInterface.h" />
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
@@ -118,18 +108,10 @@
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_configurator_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_tab.cpp" />
-    <ClCompile Include="UserInterface\Tabs\blofeld_bitmap_viewer_tab.cpp" />
     <ClCompile Include="HighLevel\high_level_cache_cluster_transplant.cpp" />
-    <ClCompile Include="Extension\mandrill_extension.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_tag_debugger_tab.cpp" />
-    <ClCompile Include="CustomTools\custom_tool_render_model.cpp" />
     <ClCompile Include="CustomTools\custom_tool_base.cpp" />
-    <ClCompile Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface\tag_group_interface.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface\tag_interface.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface\virtual_tag_block.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface\virtual_tag.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
     <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
@@ -144,16 +126,11 @@
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_tab_container.cpp" />
     <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor.cpp" />
-    <ClCompile Include="UserInterface\Tabs\cache_file_tab.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_event_queue.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\halo_script_editor.cpp" />
-    <ClCompile Include="UserInterface\Tabs\virtual_tag_tab.cpp" />
     <ClCompile Include="virtual_memory_container.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CacheInterface\virtual_tag_interface\tag_group_names.inl" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="CacheInterface\halo4\halo4.natvis" />

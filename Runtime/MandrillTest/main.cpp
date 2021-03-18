@@ -33,33 +33,34 @@ static void load_plugins()
 			return true; // continue
 		}
 
-		t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
-		if (create_mandrill_extension == nullptr)
-		{
-			c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
-			if (extension_module)
-			{
-				FreeLibrary(extension_module);
-			}
-			return true; // continue
-		}
+		// #TODO: plugin refactor
+		//t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
+		//if (create_mandrill_extension == nullptr)
+		//{
+		//	c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
+		//	if (extension_module)
+		//	{
+		//		FreeLibrary(extension_module);
+		//	}
+		//	return true; // continue
+		//}
 
-		c_mandrill_extension* extension = create_mandrill_extension();
-		int version = extension->get_version();
-		if (version != BCS_EXTENSION_VERSION)
-		{
-			c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
-			if (extension_module)
-			{
-				FreeLibrary(extension_module);
-			}
-			return true; // continue
-		}
+		//c_mandrill_extension* extension = create_mandrill_extension();
+		//int version = extension->get_version();
+		//if (version != BCS_EXTENSION_VERSION)
+		//{
+		//	c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
+		//	if (extension_module)
+		//	{
+		//		FreeLibrary(extension_module);
+		//	}
+		//	return true; // continue
+		//}
 
-		const char* extension_name = extension->get_name();
-		c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
+		//const char* extension_name = extension->get_name();
+		//c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
 
-		c_mandrill_extension::register_extension(extension);
+		//c_mandrill_extension::register_extension(extension);
 
 		return true;
 	};
