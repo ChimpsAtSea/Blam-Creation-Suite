@@ -69,27 +69,27 @@ public:
 		return csstrncmp(s, m_string, strnlen_s(s, k_maximum_length)) == 0;
 	}
 
-	c_static_string<k_maximum_length>& clear()
+	c_static_string& clear()
 	{
 		blamlib_assert(csmemset(m_string, 0, k_maximum_length));
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& set(const char* s)
+	c_static_string& set(const char* s)
 	{
 		blamlib_assert(s);
 		blamlib_assert(csstrnzcpy(m_string, s, k_maximum_length) != nullptr);
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& append(const char* s)
+	c_static_string& append(const char* s)
 	{
 		blamlib_assert(s);
 		blamlib_assert(csstrnzcat(m_string, s, k_maximum_length));
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& remove_all(char c)
+	c_static_string& remove_all(char c)
 	{
 		static char temporary[k_maximum_length];
 
@@ -107,7 +107,7 @@ public:
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& replace(char old_value, char new_value)
+	c_static_string& replace(char old_value, char new_value)
 	{
 		unsigned long total_length = length();
 
@@ -118,7 +118,7 @@ public:
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& strip_leading(char c)
+	c_static_string& strip_leading(char c)
 	{
 		unsigned long total_length = length();
 		unsigned long strip_length = 0;
@@ -135,7 +135,7 @@ public:
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& strip_trailing(char c)
+	c_static_string& strip_trailing(char c)
 	{
 		unsigned long total_length = length();
 
@@ -145,7 +145,7 @@ public:
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& to_lower()
+	c_static_string& to_lower()
 	{
 		unsigned long total_length = length();
 
@@ -155,7 +155,7 @@ public:
 		return *this;
 	}
 
-	c_static_string<k_maximum_length>& to_upper()
+	c_static_string& to_upper()
 	{
 		unsigned long total_length = length();
 
