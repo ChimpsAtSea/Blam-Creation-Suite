@@ -97,7 +97,10 @@ namespace blofeld
 
 	struct s_tag_persistent_identifier
 	{
-		unsigned long data[4];
+		unsigned long identifier_part_0;
+		unsigned long identifier_part_1;
+		unsigned long identifier_part_2;
+		unsigned long identifier_part_3;
 	};
 
 	struct s_tag_struct_definition

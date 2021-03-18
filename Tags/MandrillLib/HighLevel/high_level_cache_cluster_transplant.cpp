@@ -419,50 +419,50 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 					//return rs;
 				}
 
-				break;
 			}
+			break;
 			case _field_char_enum:
 			{
 				char data = *reinterpret_cast<const char*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_enum:
 			{
 				short value = *reinterpret_cast<const short*>(current_data_position);
 				byteswap_helper_func(value);
 				long data = value;
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_long_enum:
 			{
 				long data = *reinterpret_cast<const long*>(current_data_position);
 				byteswap_helper_func(data);
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_long_flags:
 			{
 				dword data = *reinterpret_cast<const dword*>(current_data_position);
 				byteswap_helper_func(data);
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_word_flags:
 			{
 				word value = *reinterpret_cast<const word*>(current_data_position);
 				byteswap_helper_func(value);
 				dword data = value;
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_byte_flags:
 			{
 				dword data = *reinterpret_cast<const byte*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
-				break;
 			}
+			break;
 			case _field_block:
 			{
 				const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
@@ -543,8 +543,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				}
 				debug_point;
 
-				break;
 			}
+			break;
 			case _field_pointer:
 			{
 				uint32_t pointer_size;
@@ -555,14 +555,14 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				case 8: basic_memory_read(qword);
 				default: FATAL_ERROR(L"Unknown pointer size");
 				}
-				break;
 			}
+			break;
 			case _field_struct:
 			{
 				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
 				transplant_data(struct_storage, current_data_position, cluster_entry, cache_reader, *field->struct_definition);
-				break;
 			}
+			break;
 			case _field_array:
 			{
 				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
@@ -577,8 +577,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 
 					raw_array_data_position += array_element_storage.get_low_level_type_size();
 				}
-				break;
 			}
+			break;
 			case _field_tag_reference:
 			{
 				s_tag_reference tag_reference = *reinterpret_cast<const s_tag_reference*>(current_data_position);
@@ -598,8 +598,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				}
 
 				tag_ref_storage = tag_reference_high_level_tag;
-				break;
 			}
+			break;
 			case _field_data:
 			{
 				const s_tag_data& tag_data = *reinterpret_cast<decltype(&tag_data)>(current_data_position);
@@ -612,53 +612,68 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				//	data_storage.clear();
 				//	data_storage.insert(data_storage.begin(), tag_data_data, tag_data_data + tag_data.size);
 				//}
-				break;
 			}
+			break;
 			case _field_pageable:
 			{
-				const s_tag_resource& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(current_data_position);
-				h_resource& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+				s_tag_resource tag_resource = *reinterpret_cast<const s_tag_resource*>(current_data_position);
+				byteswap_helper_func(tag_resource);
 
-				resource_storage._original_resource = tag_resource;
-				break;
+				h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+				debug_point;
+
+				c_halo4_tag_reader* tag_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_reader, tag_reader)))
+				{
+					return rs;
+				}
+				debug_point;
+
+				h_resource* resource_container = nullptr;
+
+				// #TODO
+
+				resource_storage = resource_container;
 			}
+			break;
 			case _field_api_interop:
 			{
-				//const s_tag_interop& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(current_data_position);
-				//h_interop& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
+				s_tag_interop tag_interop = *reinterpret_cast<const s_tag_interop*>(current_data_position);
+				byteswap_helper_func(tag_interop);
 
-				//interop_storage._original_interop = tag_interop;
-				//interop_storage._interop_fixup_index = -1;
+				h_interop*& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
+				debug_point;
 
-				//if (c_haloreach_cache_file* haloreach_cache_file = dynamic_cast<decltype(haloreach_cache_file)>(&cache_file))
-				//{
-				//	using namespace blofeld::haloreach;
-				//	using namespace cache_compiler;
+				c_halo4_tag_reader* tag_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_reader, tag_reader)))
+				{
+					return rs;
+				}
+				debug_point;
 
-				//	uint32_t tag_interop_page_offset = haloreach_cache_file->calculate_page_offset_from_pointer(current_data_position);
+				e_halo4_interop_type interop_type = k_num_halo4_interop_types;
+				if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct_struct_definition)
+				{
+					interop_type = _halo4_polyart_vertex_buffer_interop;
+				}
+				else if (field->struct_definition == &blofeld::polyartIndexBufferDescriptorStruct_struct_definition)
+				{
+					interop_type = _halo4_polyart_index_buffer_interop;
+				}
+				else if (field->struct_definition == &blofeld::vectorartVertexBufferDescriptorStruct_struct_definition)
+				{
+					interop_type = _halo4_vectorart_vertex_buffer_interop;
+				}
+				ASSERT(interop_type != k_num_halo4_interop_types);
 
-				//	auto cache_file_tag_interop_type_fixups = reinterpret_cast<s_cache_file_tag_interop_type_fixup*>(haloreach_cache_file->tags_buffer + haloreach_cache_file->convert_virtual_address(haloreach_cache_file->haloreach_cache_file_tags_header->tag_interop_table.address));
-				//	uint32_t tag_interop_count = haloreach_cache_file->haloreach_cache_file_tags_header->tag_interop_table.count;
-				//	for (uint32_t interop_type_fixup_index = 0; interop_type_fixup_index < tag_interop_count; interop_type_fixup_index++)
-				//	{
-				//		s_cache_file_tag_interop_type_fixup& cache_file_tag_interop_type_fixup = cache_file_tag_interop_type_fixups[interop_type_fixup_index];
+				c_halo4_interop_container* interop_container = nullptr;
+				tag_reader->get_interop_container_by_type_and_descriptor(interop_type, tag_interop.descriptor, interop_container);
 
-				//		if (cache_file_tag_interop_type_fixup.page_address == tag_interop_page_offset)
-				//		{
-				//			interop_storage._interop_fixup_index = interop_type_fixup_index;
-				//			debug_point;
-				//		}
+				interop_storage = interop_container;
 
-				//	}
-				//}
-
-				//if (interop_storage._interop_fixup_index == -1)
-				//{
-				//	debug_point;
-				//}
-
-				break;
+				debug_point;
 			}
+			break;
 			case _field_vertex_buffer:
 			{
 				throw; // currently unused

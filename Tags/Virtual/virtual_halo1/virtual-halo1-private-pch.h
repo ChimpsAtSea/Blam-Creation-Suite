@@ -6,8 +6,8 @@
 #include <SymbolsLib\symbolslib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <Shared\shared-public-pch.h>
-#include <MandrillLib\mandrilllib-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
+#include <MandrillLib\mandrilllib-public-pch.h>
 #include <TagValidate\tagvalidate-public-pch.h>
 
 #include <low_level_halo1/lowlevel-halo1-public-pch.h>

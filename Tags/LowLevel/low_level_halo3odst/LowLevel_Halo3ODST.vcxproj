@@ -181,6 +181,7 @@
     <ClInclude Include="lowlevel-halo3odst-public-pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="halo3odst.cpp" />
     <ClCompile Include="lowlevel-halo3odst-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

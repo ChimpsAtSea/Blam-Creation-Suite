@@ -382,6 +382,93 @@ void c_low_level_tag_source_generator::generate_header() const
 	}
 }
 
+void c_low_level_tag_source_generator::generate_source() const
+{
+	std::stringstream stream;
+
+	const char* namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result = get_engine_type_folder_string(engine_platform_build.engine_type, &namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result));
+
+	const char* source_namespace_name;
+	BCS_RESULT engine_type_to_folder_name_result2 = get_engine_type_source_string(engine_platform_build.engine_type, &source_namespace_name);
+	ASSERT(BCS_SUCCEEDED(engine_type_to_folder_name_result2));
+
+	stream << "#include <lowlevel-" << source_namespace_name << "-private-pch.h>" << std::endl << std::endl;
+	stream << std::endl;
+	stream << std::endl;
+
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	{
+		stream << "template<> void byteswap<blofeld::" << namespace_name << "::s_" << tag_struct_definition->name << ">(blofeld::" << namespace_name << "::s_" << tag_struct_definition->name << "& value)" << std::endl;
+		stream << "{" << std::endl;
+
+		std::map<std::string, int> field_name_unique_counter;
+
+		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
+			std::map<std::string, int>* field_name_unique_counter_ptr = nullptr;
+			switch (current_field->field_type)
+			{
+			case _field_custom:
+				break;
+			default:
+				field_name_unique_counter_ptr = &field_name_unique_counter;
+				break;
+			}
+
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
+			const char* field_type_string = field_to_string(current_field->field_type);
+
+			constexpr bool k_write_field_types = false;
+			switch (current_field->field_type)
+			{
+			case _field_pad:
+			case _field_skip:
+			case _field_useless_pad:
+			case _field_custom:
+			case _field_terminator:
+			case _field_explanation:
+			case _field_non_cache_runtime_value:
+				break;
+			default:
+				stream << "\t" << "byteswap(value." << field_formatter.code_name.c_str() << ");" << std::endl;
+			}
+		}
+
+		stream << "}" << std::endl;
+
+		stream << std::endl;
+	}
+
+	std::string source_code = stream.str();
+	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".cpp";
+	bool write_output = true;
+	size_t existing_file_size;
+	const char* existing_file_data;
+	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
+	{
+		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
+		{
+			write_output = false;
+		}
+		delete[] existing_file_data;
+	}
+
+	if (write_output)
+	{
+		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
+		ASSERT(filesystem_write_file_from_memory_result);
+	}
+}
+
 void c_low_level_tag_source_generator::generate_enum_header() const
 {
 	std::stringstream stream;

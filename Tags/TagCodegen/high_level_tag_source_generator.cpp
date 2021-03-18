@@ -86,8 +86,8 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_custom:								return nullptr;	// empty
 	case _field_struct:								return nullptr;	// dynamic
 	case _field_array:								return nullptr;	// dynamic
-	case _field_pageable:							return "h_resource";
-	case _field_api_interop:						return "s_tag_interop";
+	case _field_pageable:							return "h_resource*";
+	case _field_api_interop:						return "h_interop*";
 	case _field_terminator:							return nullptr;	// empty
 	case _field_byte_integer:						return "byte";
 	case _field_word_integer:						return "word";
@@ -241,8 +241,8 @@ void c_high_level_tag_source_generator::generate_header() const
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
 				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
 				//stream << "\t\t\t\t" << "h_field<h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
 			}
+			break;
 			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
@@ -255,14 +255,14 @@ void c_high_level_tag_source_generator::generate_header() const
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
 				stream << "\t\t\t\t" << "h_typed_block<h_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
 				//stream << "\t\t\t\t" << "h_field<h_typed_block<h_" << field_source_type << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
 			}
+			break;
 			case _field_data:
 			{
 				stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
 				//stream << "\t\t\t\t" << "h_field<h_data, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
 			}
+			break;
 			case _field_long_flags:
 			case _field_word_flags:
 			case _field_byte_flags:
@@ -272,8 +272,8 @@ void c_high_level_tag_source_generator::generate_header() const
 				//ASSERT(field_source_type != nullptr);
 
 				stream << "\t\t\t\t" << "h_field<c_flags<e_" << string_list.name << ", dword>, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
 			}
+			break;
 			case _field_char_enum:
 			case _field_enum:
 			case _field_long_enum:
@@ -281,8 +281,8 @@ void c_high_level_tag_source_generator::generate_header() const
 				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 				//stream << "\t\t\t\t" << "e_" << string_list.name << " " << field_formatter.code_name.data << ";";
 				stream << "\t\t\t\t" << "h_field<e_" << string_list.name << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
 			}
+			break;
 			default:
 			{
 				const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);

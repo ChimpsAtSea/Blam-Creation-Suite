@@ -147,7 +147,7 @@ BCS_RESULT c_halo4_cache_file_reader::virtual_address_to_relative_offset(int64_t
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const
+BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(unsigned long page_offset, int64_t& virtual_address) const
 {
 	virtual_address = page_offset; // -cache_file_header.expected_base_address;
 

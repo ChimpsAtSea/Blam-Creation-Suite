@@ -1806,6 +1806,9 @@
     <ClCompile Include="macaque\inline_files.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tag_byteswap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -3630,6 +3633,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="macaque\tag_structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_byteswap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1910,6 +1910,7 @@
     <ClCompile Include="macaque\weather\weather_control.cpp" />
     <ClCompile Include="macaque\weather\weather_definition.cpp" />
     <ClCompile Include="macaque\__unknown\tag_references.cpp" />
+    <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
@@ -2715,6 +2716,7 @@
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
     <ClInclude Include="tagdefinitions-public-pch.h" />
+    <ClInclude Include="tag_byteswap.h" />
     <ClInclude Include="tag_group_info.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />

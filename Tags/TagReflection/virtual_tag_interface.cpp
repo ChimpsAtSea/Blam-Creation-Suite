@@ -35,7 +35,8 @@ c_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_inter
 c_virtual_tag_interface::c_virtual_tag_interface(c_tag_interface& tag_interface) :
 	tag_interface(tag_interface)
 {
-	tag_interface.associate_virtual_tag_interface(*this);
+	// #TODO: cache refactor
+	//tag_interface.associate_virtual_tag_interface(*this);
 }
 
 c_virtual_tag_interface::~c_virtual_tag_interface()

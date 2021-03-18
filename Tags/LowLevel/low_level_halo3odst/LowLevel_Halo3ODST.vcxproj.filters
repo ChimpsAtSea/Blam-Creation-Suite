@@ -32,5 +32,8 @@
     <ClCompile Include="lowlevel-halo3odst-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="halo3odst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

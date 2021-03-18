@@ -262,8 +262,8 @@ h_resource::~h_resource()
 
 }
 
-h_interop::h_interop(h_type* parent) :
-	h_type(parent)
+h_interop::h_interop() :
+	h_type(nullptr)
 {
 
 }

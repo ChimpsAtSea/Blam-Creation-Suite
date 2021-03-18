@@ -94,11 +94,9 @@ class h_interop :
 	public h_type
 {
 public:
-	h_interop(h_type* parent = nullptr);
+	h_interop();
 	virtual ~h_interop();
 
-	s_tag_interop _original_interop;
-	uint32_t _interop_fixup_index;
 };
 
 class h_object :

@@ -32,5 +32,8 @@
     <ClCompile Include="lowlevel-xbox360gen3-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xbox360_gen3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

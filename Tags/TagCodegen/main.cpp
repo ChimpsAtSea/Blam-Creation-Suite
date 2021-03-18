@@ -41,6 +41,7 @@ int create_source_file()
 				c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
 				c_console::write_line_verbose("Generating low level header (%s)", engine_name);
 				low_level_tag_source_generator.generate_header();
+				low_level_tag_source_generator.generate_source();
 				low_level_tag_source_generator.generate_enum_header();
 				stopwatch.stop();
 				c_console::write_line_verbose("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
