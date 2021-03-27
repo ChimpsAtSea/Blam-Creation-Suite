@@ -35,7 +35,8 @@ enum e_tag_resource_fixup_type
 	_tag_resource_fixup_type_unknown5,
 	_tag_resource_fixup_type_unknown6,
 	_tag_resource_fixup_type_unknown7,
-	k_number_of_tag_resource_fixup_types
+	k_number_of_tag_resource_fixup_types,
+	k_number_of_tag_resource_fixup_types_bits = 3
 };
 
 struct s_tag_resource_fixup_setup {};
@@ -82,7 +83,7 @@ class c_tag_resource_fixup
 	};
 
 private:
-	c_long_designator<k_number_of_tag_resource_fixup_types, 0> m_designator;
+	c_long_designator<k_number_of_tag_resource_fixup_types_bits, 0> m_designator;
 
 public:
 	c_tag_resource_fixup();
