@@ -5,6 +5,7 @@
 #include <Shared\shared-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <TagReflection\tagreflection-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <Rhesus\rhesus-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>

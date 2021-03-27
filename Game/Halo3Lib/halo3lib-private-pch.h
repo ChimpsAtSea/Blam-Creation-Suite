@@ -7,8 +7,8 @@
 #include <Shared\shared-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <MandrillLib\mandrilllib-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
+#include <MandrillLib\mandrilllib-public-pch.h>
 #include <GameFramework\gameframework-public-pch.h>
 
 #include "halo3lib-public-pch.h"

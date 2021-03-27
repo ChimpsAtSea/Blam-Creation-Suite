@@ -175,6 +175,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="custom_codegen.cpp" />
     <ClCompile Include="high_level_tag_source_generator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="low_level_tag_source_generator.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="virtual_tag_source_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="custom_codegen.h" />
     <ClInclude Include="high_level_tag_source_generator.h" />
     <ClInclude Include="low_level_tag_source_generator.h" />
     <ClInclude Include="structure_relationship_node.h" />

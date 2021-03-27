@@ -117,7 +117,7 @@ void c_mandrill_user_interface::open_cache_file_tab(const wchar_t* filepath, con
 	{
 		if (c_cache_file_tab* cache_file_tab = dynamic_cast<c_cache_file_tab*>(&tab))
 		{
-			const wchar_t* cache_filepath = cache_file_tab->get_cache_file().get_map_filepath();
+			const wchar_t* cache_filepath = cache_file_tab->get_cache_file	().get_map_filepath();
 			if (wcscmp_ic(cache_filepath, filepath) == 0)
 			{
 				next_selected_tab = &tab;

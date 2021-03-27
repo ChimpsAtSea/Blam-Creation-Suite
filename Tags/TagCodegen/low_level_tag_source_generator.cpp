@@ -116,14 +116,14 @@ void c_low_level_tag_source_generator::generate_header() const
 	stream << "\t{" << std::endl;
 	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
 
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		stream << "\t\t" << "struct s_" << tag_struct_definition->name << std::endl;
+		stream << "\t\t" << "struct s_" << struct_definition->name << std::endl;
 		stream << "\t\t" << "{" << std::endl;
 
 		std::map<std::string, int> field_name_unique_counter;
 
-		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -145,210 +145,214 @@ void c_low_level_tag_source_generator::generate_header() const
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
 			const char* field_type_string = field_to_string(current_field->field_type);
 
-			switch (current_field->field_type)
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_header, stream, "\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
-			case _field_pad:
-				stream << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
-				break;
-			case _field_skip:
-				stream << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
-				break;
-			case _field_useless_pad:
-				stream << "\t\t\t" << "// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
-				break;
-			case _field_non_cache_runtime_value:
-				stream << "\t\t\t" << "// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
-				break;
-			case _field_custom:
-				stream << "\t\t\t" << "// " << field_type_string;
-				if (!field_formatter.code_name.empty())
+				switch (current_field->field_type)
 				{
-					stream << " " << field_formatter.code_name.c_str();
-				}
-				stream << std::endl;
-				break;
-			case _field_terminator:
-				stream << "\t\t\t" << "// " << field_type_string << std::endl;
-				break;
-			case _field_explanation:
-			{
-				if (current_field->name)
-				{
-					if (current_field->explanation && *current_field->explanation)
+				case _field_pad:
+					stream << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
+					break;
+				case _field_skip:
+					stream << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
+					break;
+				case _field_useless_pad:
+					stream << "\t\t\t" << "// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
+					break;
+				case _field_non_cache_runtime_value:
+					stream << "\t\t\t" << "// " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // non cache runtime value" << std::endl;
+					break;
+				case _field_custom:
+					stream << "\t\t\t" << "// " << field_type_string;
+					if (!field_formatter.code_name.empty())
 					{
-						stream << std::endl << "\t\t\t" << "/* " << current_field->name << std::endl;
-						stream << "\t\t\t ";
-						const char* current_pos = current_field->explanation;
+						stream << " " << field_formatter.code_name.c_str();
+					}
+					stream << std::endl;
+					break;
+				case _field_terminator:
+					stream << "\t\t\t" << "// " << field_type_string << std::endl;
+					break;
+				case _field_explanation:
+				{
+					if (current_field->name)
+					{
+						if (current_field->explanation && *current_field->explanation)
+						{
+							stream << std::endl << "\t\t\t" << "/* " << current_field->name << std::endl;
+							stream << "\t\t\t ";
+							const char* current_pos = current_field->explanation;
+							while (*current_pos)
+							{
+								switch (*current_pos)
+								{
+								case '\n':
+									stream << *current_pos;
+									stream << "\t\t\t ";
+									break;
+								default:
+									stream << *current_pos;
+								}
+								current_pos++;
+							}
+							stream << std::endl;
+							stream << "\t\t\t" << "*/" << std::endl << std::endl;
+						}
+						else
+						{
+							stream << std::endl << "\t\t\t" << "/* " << current_field->name << " */" << std::endl << std::endl;
+						}
+					}
+					break;
+				}
+				case _field_array:
+				{
+					const char* field_source_type = current_field->array_definition->struct_definition.name;
+					stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count(engine_platform_build) << "];";
+					break;
+				}
+				case _field_struct:
+				{
+					const char* field_source_type = current_field->struct_definition->name;
+					stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+					break;
+				}
+				case _field_block:
+				{
+					const char* field_source_type = current_field->block_definition->struct_definition.name;
+					stream << "\t\t\t" << "c_typed_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+					break;
+				}
+				case _field_tag_reference:
+				{
+					if (current_field->tag_reference_definition == nullptr)
+					{
+						c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
+						has_error = true;
+					}
+					else
+					{
+						bool handled = false;
+
+						long group_tag = current_field->tag_reference_definition->group_tag;
+						uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
+
+
+
+						std::vector<unsigned long> group_tags;
+
+						if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
+						{
+							group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
+						}
+						else if (current_field->tag_reference_definition->group_tags)
+						{
+							for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+							{
+								group_tags.push_back(*current_group_tag);
+							}
+						}
+
+
+						if (group_tags.empty())
+						{
+							stream << "\t\t\t" << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
+						}
+						else
+						{
+
+							stream << "\t\t\t" << "c_typed_tag_reference<";
+
+							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
+							{
+								const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
+								ASSERT(tag_group != nullptr);
+								if (group_tag_index > 0)
+								{
+									stream << ", ";
+								}
+
+								c_fixed_string_128 tag_group_name = tag_group->name;
+								tag_group_name += "_TAG";
+								tag_group_name.uppercase();
+
+								stream << tag_group_name.data;
+							}
+							stream << "> " << field_formatter.code_name.c_str() << ";";
+						}
+					}
+
+					break;
+				}
+				case _field_char_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
+					break;
+				}
+				case _field_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
+					break;
+				}
+				case _field_long_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
+					break;
+				}
+				default:
+				{
+					const char* field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					ASSERT(!field_formatter.code_name.empty());
+					stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
+				}
+				}
+
+				constexpr bool k_write_field_types = false;
+				switch (current_field->field_type)
+				{
+				case _field_pad:
+				case _field_skip:
+				case _field_useless_pad:
+				case _field_custom:
+				case _field_terminator:
+				case _field_explanation:
+				case _field_non_cache_runtime_value:
+					break;
+				default:
+					if (!field_formatter.description.empty() || k_write_field_types)
+					{
+						stream << " // ";
+						if constexpr (k_write_field_types) stream << field_type_string << " ";
+						const char* current_pos = field_formatter.description.data;
 						while (*current_pos)
 						{
 							switch (*current_pos)
 							{
 							case '\n':
-								stream << *current_pos;
-								stream << "\t\t\t ";
+								stream << ' ';
 								break;
 							default:
 								stream << *current_pos;
 							}
 							current_pos++;
 						}
-						stream << std::endl;
-						stream << "\t\t\t" << "*/" << std::endl << std::endl;
 					}
-					else
-					{
-						stream << std::endl << "\t\t\t" << "/* " << current_field->name << " */" << std::endl << std::endl;
-					}
-				}
-				break;
-			}
-			case _field_array:
-			{
-				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count(engine_platform_build) << "];";
-				break;
-			}
-			case _field_struct:
-			{
-				const char* field_source_type = current_field->struct_definition->name;
-				stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
-				break;
-			}
-			case _field_block:
-			{
-				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				stream << "\t\t\t" << "c_typed_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
-				break;
-			}
-			case _field_tag_reference:
-			{
-				if (current_field->tag_reference_definition == nullptr)
-				{
-					c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
-					has_error = true;
-				}
-				else
-				{
-					bool handled = false;
-
-					long group_tag = current_field->tag_reference_definition->group_tag;
-					uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
-
-
-
-					std::vector<unsigned long> group_tags;
-
-					if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
-					{
-						group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
-					}
-					else if (current_field->tag_reference_definition->group_tags)
-					{
-						for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
-						{
-							group_tags.push_back(*current_group_tag);
-						}
-					}
-
-
-					if (group_tags.empty())
-					{
-						stream << "\t\t\t" << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
-					}
-					else
-					{
-
-						stream << "\t\t\t" << "c_typed_tag_reference<";
-
-						for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
-						{
-							const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
-							ASSERT(tag_group != nullptr);
-							if (group_tag_index > 0)
-							{
-								stream << ", ";
-							}
-
-							c_fixed_string_128 tag_group_name = tag_group->name;
-							tag_group_name += "_TAG";
-							tag_group_name.uppercase();
-
-							stream << tag_group_name.data;
-						}
-						stream << "> " << field_formatter.code_name.c_str() << ";";
-					}
+					stream << std::endl;
 				}
 
-				break;
-			}
-			case _field_char_enum:
-			{
-				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", char> " << field_formatter.code_name.data << ";";
-				break;
-			}
-			case _field_enum:
-			{
-				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", short> " << field_formatter.code_name.data << ";";
-				break;
-			}
-			case _field_long_enum:
-			{
-				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
-				break;
-			}
-			default:
-			{
-				const char* field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
-				ASSERT(!field_formatter.code_name.empty());
-				stream << "\t\t\t" << field_source_type << " " << field_formatter.code_name.data << ";";
-			}
-			}
-
-			constexpr bool k_write_field_types = false;
-			switch (current_field->field_type)
-			{
-			case _field_pad:
-			case _field_skip:
-			case _field_useless_pad:
-			case _field_custom:
-			case _field_terminator:
-			case _field_explanation:
-			case _field_non_cache_runtime_value:
-				break;
-			default:
-				if (!field_formatter.description.empty() || k_write_field_types)
-				{
-					stream << " // ";
-					if constexpr (k_write_field_types) stream << field_type_string << " ";
-					const char* current_pos = field_formatter.description.data;
-					while (*current_pos)
-					{
-						switch (*current_pos)
-						{
-						case '\n':
-							stream << ' ';
-							break;
-						default:
-							stream << *current_pos;
-						}
-						current_pos++;
-					}
-				}
-				stream << std::endl;
 			}
 		}
 
 		stream << "\t\t" << "};" << std::endl;
 
-		uint32_t struct_size = calculate_struct_size(engine_platform_build, *tag_struct_definition);
+		uint32_t struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
 
 		// stream << "\t\t" << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
 		// stream << "\t\t" << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
 
-		stream << "\t\t" << "static_assert(sizeof(s_" << tag_struct_definition->name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
+		stream << "\t\t" << "static_assert(sizeof(s_" << struct_definition->name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << struct_definition->name << " is invalid size\");" << std::endl;
 
 		stream << std::endl;
 
@@ -398,14 +402,14 @@ void c_low_level_tag_source_generator::generate_source() const
 	stream << std::endl;
 	stream << std::endl;
 
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		stream << "template<> void byteswap<blofeld::" << namespace_name << "::s_" << tag_struct_definition->name << ">(blofeld::" << namespace_name << "::s_" << tag_struct_definition->name << "& value)" << std::endl;
+		stream << "template<> void byteswap<blofeld::" << namespace_name << "::s_" << struct_definition->name << ">(blofeld::" << namespace_name << "::s_" << struct_definition->name << "& value)" << std::endl;
 		stream << "{" << std::endl;
 
 		std::map<std::string, int> field_name_unique_counter;
 
-		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -427,19 +431,21 @@ void c_low_level_tag_source_generator::generate_source() const
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
 			const char* field_type_string = field_to_string(current_field->field_type);
 
-			constexpr bool k_write_field_types = false;
-			switch (current_field->field_type)
+			if (!custom_structure_codegen(_custom_structure_codegen_low_level_byteswap, stream, "\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
-			case _field_pad:
-			case _field_skip:
-			case _field_useless_pad:
-			case _field_custom:
-			case _field_terminator:
-			case _field_explanation:
-			case _field_non_cache_runtime_value:
-				break;
-			default:
-				stream << "\t" << "byteswap(value." << field_formatter.code_name.c_str() << ");" << std::endl;
+				switch (current_field->field_type)
+				{
+				case _field_pad:
+				case _field_skip:
+				case _field_useless_pad:
+				case _field_custom:
+				case _field_terminator:
+				case _field_explanation:
+				case _field_non_cache_runtime_value:
+					break;
+				default:
+					stream << "\t" << "byteswap(value." << field_formatter.code_name.c_str() << ");" << std::endl;
+				}
 			}
 		}
 

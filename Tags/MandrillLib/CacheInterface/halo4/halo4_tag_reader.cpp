@@ -460,7 +460,22 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 	s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(global_instance_info->instance_info->instance_data);
 	byteswap(resource_gestalt);
 
+	const s_cache_file_resource_data_block_block_struct* resources;
+	if (BCS_FAILED(rs = page_offset_to_pointer(resource_gestalt.resources_block.address, *reinterpret_cast<const void**>(&resources))))
+	{
+		throw(rs);
+	}
 
+	for (unsigned long resource_index = 0; resource_index < resource_gestalt.resources_block.count; resource_index++)
+	{
+		s_cache_file_resource_data_block_block_struct resource = resources[resource_index];
+		byteswap(resource);
+		
+		e_tag_resource_fixup_type type = resource.root_fixup.get_type();
+		dword fixup_value = resource.root_fixup.get_fixup_value();
+
+		debug_point;
+	}
 
 	return rs;
 }

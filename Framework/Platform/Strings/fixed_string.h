@@ -112,15 +112,17 @@ public:
 
 	void vformat(const t_char_type* format, va_list args)
 	{
+		int result;
 		if constexpr (is_char_type)
 		{
-			vsnprintf(data, k_capacity - 1, format, args);
+			result = vsnprintf(data, k_capacity - 1, format, args);
 		}
 		else if constexpr (is_wchar_type)
 		{
-			_vsnwprintf(data, k_capacity - 1, format, args);
+			result = _vsnwprintf(data, k_capacity - 1, format, args);
 		}
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
+		DEBUG_ASSERT(result >= 0);
 
 		data[k_capacity - 1] = 0; // ensure null terminated
 	}

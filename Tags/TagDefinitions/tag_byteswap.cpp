@@ -248,3 +248,9 @@ template<> void byteswap<c_old_string_id>(c_old_string_id& value)
 {
 	byteswap(value.value);
 }
+
+template<> void byteswap<c_tag_resource_fixup>(c_tag_resource_fixup& value)
+{
+	static_assert(sizeof(c_tag_resource_fixup) == sizeof(unsigned long));
+	byteswap(*reinterpret_cast<unsigned long*>(&value));
+}

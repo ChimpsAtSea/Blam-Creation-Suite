@@ -97,7 +97,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	{
 		uint32_t pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
-			
+
 		switch (pointer_size)
 		{
 		case 8: return "long long";
@@ -132,9 +132,9 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\t\th_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
-		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 		//if (tag_struct_definition == &blofeld::rasterizer_compiled_shader_struct_struct_definition)
 		//{
@@ -142,7 +142,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		//}
 
 		uint32_t blofeld_field_list_size = 1;
-		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
+		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -159,7 +159,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			blofeld_field_list_size++;
 		}
 
-		stream << "\t\t" << "class h_" << tag_struct_definition->name << " : " << std::endl;
+		stream << "\t\t" << "class h_" << struct_definition->name << " : " << std::endl;
 		if (tag_group != nullptr)
 		{
 			stream << "\t\t\t" << "public h_tag" << std::endl;
@@ -170,16 +170,16 @@ void c_high_level_tag_source_generator::generate_header() const
 		}
 		stream << "\t\t" << "{" << std::endl;
 		stream << "\t\t\t" << "public:" << std::endl;
-		stream << "\t\t\t\t" << "friend class std::vector<h_" << tag_struct_definition->name << ">;" << std::endl;
+		stream << "\t\t\t\t" << "friend class std::vector<h_" << struct_definition->name << ">;" << std::endl;
 
 		if (tag_group != nullptr)
 		{
-			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
-			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
+			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
+			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		else
 		{
-			stream << "\t\t\t\t" << "h_" << tag_struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
+			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		stream << std::endl;
 
@@ -205,7 +205,7 @@ void c_high_level_tag_source_generator::generate_header() const
 		stream << std::endl;
 
 		uint32_t field_index = 0;
-		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 		{
 			uint32_t field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -234,64 +234,61 @@ void c_high_level_tag_source_generator::generate_header() const
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
-			switch (current_field->field_type)
+			if (!custom_structure_codegen(_custom_structure_codegen_high_level_header, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
-			case _field_array:
-			{
-				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
-				//stream << "\t\t\t\t" << "h_field<h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_type) << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-			}
-			break;
-			case _field_struct:
-			{
-				const char* field_source_type = current_field->struct_definition->name;
-				stream << "\t\t\t\t" << "h_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
-				//stream << "\t\t\t\t" << "h_field<h_" << field_source_type << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-				break;
-			}
-			case _field_block:
-			{
-				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				stream << "\t\t\t\t" << "h_typed_block<h_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
-				//stream << "\t\t\t\t" << "h_field<h_typed_block<h_" << field_source_type << ">, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-			}
-			break;
-			case _field_data:
-			{
-				stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
-				//stream << "\t\t\t\t" << "h_field<h_data, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-			}
-			break;
-			case _field_long_flags:
-			case _field_word_flags:
-			case _field_byte_flags:
-			{
-				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				//const char* field_source_type = field_type_to_high_level_source_type(platform_type, current_field->field_type);
-				//ASSERT(field_source_type != nullptr);
 
-				stream << "\t\t\t\t" << "h_field<c_flags<e_" << string_list.name << ", dword>, h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				switch (current_field->field_type)
+				{
+				case _field_array:
+				{
+					const char* field_source_type = current_field->array_definition->struct_definition.name;
+					stream << "\t\t\t\t" << "h_typed_array<h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				case _field_struct:
+				{
+					const char* field_source_type = current_field->struct_definition->name;
+					stream << "\t\t\t\t" << "h_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+					break;
+				}
+				case _field_block:
+				{
+					const char* field_source_type = current_field->block_definition->struct_definition.name;
+					stream << "\t\t\t\t" << "h_typed_block<h_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				case _field_data:
+				{
+					stream << "\t\t\t\t" << "h_data " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				case _field_long_flags:
+				case _field_word_flags:
+				case _field_byte_flags:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+
+					stream << "\t\t\t\t" << "h_field<c_flags<e_" << string_list.name << ", dword>, h_" << struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				case _field_char_enum:
+				case _field_enum:
+				case _field_long_enum:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t\t" << "h_field<e_" << string_list.name << ", h_" << struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				break;
+				default:
+				{
+					const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+					ASSERT(field_source_type != nullptr);
+					stream << "\t\t\t\t" << "h_field<" << field_source_type << ", h_" << struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
+				}
+				}
+				stream << std::endl;
+
 			}
-			break;
-			case _field_char_enum:
-			case _field_enum:
-			case _field_long_enum:
-			{
-				const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-				//stream << "\t\t\t\t" << "e_" << string_list.name << " " << field_formatter.code_name.data << ";";
-				stream << "\t\t\t\t" << "h_field<e_" << string_list.name << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-			}
-			break;
-			default:
-			{
-				const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
-				ASSERT(field_source_type != nullptr);
-				//stream << "\t\t\t\t" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
-				stream << "\t\t\t\t" << "h_field<" << field_source_type << ", h_" << tag_struct_definition->name << ", " << field_index << "> " << field_formatter.code_name.c_str() << ";";
-			}
-			}
-			stream << std::endl;
 
 		}
 		field_name_unique_counter.clear();
@@ -325,10 +322,10 @@ void c_high_level_tag_source_generator::generate_header() const
 	}
 }
 
-void c_high_level_tag_source_generator::generate_tag_constructor_params(std::stringstream& stream, const s_tag_struct_definition& tag_struct_definition) const
+void c_high_level_tag_source_generator::generate_tag_constructor_params(std::stringstream& stream, const s_tag_struct_definition& struct_definition) const
 {
 	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -356,50 +353,53 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 
 		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
-		switch (current_field->field_type)
+		if (!custom_structure_codegen(_custom_structure_codegen_high_level_ctor, stream, "\t\t\t\t", &field_formatter, struct_definition, *current_field, nullptr))
 		{
-		case _field_array:
-		{
-			const s_tag_group* tag_group = get_tag_struct_tag_group(current_field->array_definition->struct_definition);
+			switch (current_field->field_type)
+			{
+			case _field_array:
+			{
+				const s_tag_group* tag_group = get_tag_struct_tag_group(current_field->array_definition->struct_definition);
 
-			const char* field_source_type = current_field->array_definition->struct_definition.name;
-			if (tag_group)
+				const char* field_source_type = current_field->array_definition->struct_definition.name;
+				if (tag_group)
+				{
+					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
+				}
+				else
+				{
+					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
+				}
+
+				break;
+			}
+			case _field_struct:
+			{
+				const s_tag_group* tag_group = get_tag_struct_tag_group(*current_field->struct_definition);
+
+				const char* field_source_type = current_field->struct_definition->name;
+				if (tag_group)
+				{
+					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
+				}
+				else
+				{
+					stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
+				}
+
+				break;
+			}
+			case _field_block:
 			{
 				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
+				break;
 			}
-			else
-			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
-			}
-
-			break;
-		}
-		case _field_struct:
-		{
-			const s_tag_group* tag_group = get_tag_struct_tag_group(*current_field->struct_definition);
-
-			const char* field_source_type = current_field->struct_definition->name;
-			if (tag_group)
+			default:
 			{
 				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
+				break;
 			}
-			else
-			{
-				stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
 			}
-
-			break;
-		}
-		case _field_block:
-		{
-			stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "(this)" << std::endl;
-			break;
-		}
-		default:
-		{
-			stream << "\t\t\t\t, " << field_formatter.code_name.c_str() << "()" << std::endl;
-			break;
-		}
 		}
 	}
 }
@@ -508,15 +508,15 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	{
 		std::map<std::string, int> field_name_unique_counter;
 		uint32_t structure_index = 0;
-		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 		{
 			if ((structure_index++ % source_count) == source_index)
 			{
 
-				const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+				const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
 				uint32_t field_index = 0;
-				for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+				for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 				{
 					uint32_t field_skip_count;
 					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -545,63 +545,66 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
+					if (!custom_structure_codegen(_custom_structure_codegen_high_level_field_impl, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+					{
 
-					switch (current_field->field_type)
-					{
-					case _field_array:
-					{
-						const char* field_source_type = current_field->array_definition->struct_definition.name;
-						stream << "using t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<blofeld::" << namespace_name << "::h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << ">;" << std::endl;
-						stream << "h_field_func_impl(t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
+						switch (current_field->field_type)
+						{
+						case _field_array:
+						{
+							const char* field_source_type = current_field->array_definition->struct_definition.name;
+							stream << "using t_" << struct_definition->name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<blofeld::" << namespace_name << "::h_" << field_source_type << ", " << current_field->array_definition->count(engine_platform_build) << ">;" << std::endl;
+							stream << "h_field_func_impl(t_" << struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_struct:
+						{
+							const char* field_source_type = current_field->struct_definition->name;
+							stream << "h_field_func_impl(blofeld::" << namespace_name << "::h_" << field_source_type << ", blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_block:
+						{
+							const char* field_source_type = current_field->block_definition->struct_definition.name;
+							stream << "h_field_func_impl(h_typed_block<blofeld::" << namespace_name << "::h_" << field_source_type << ">, blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_data:
+						{
+							stream << "h_field_func_impl(h_data, blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_tag_reference:
+						{
+							stream << "h_field_func_impl(h_tag*, blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_long_flags:
+						case _field_word_flags:
+						case _field_byte_flags:
+						{
+							const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+							stream << "using t_" << struct_definition->name << "_" << field_formatter.code_name.c_str() << " = c_flags<blofeld::" << namespace_name << "::e_" << string_list.name << ", dword>;" << std::endl;
+							stream << "h_field_func_impl(t_" << struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						case _field_char_enum:
+						case _field_enum:
+						case _field_long_enum:
+						{
+							const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+							stream << "h_field_func_impl(blofeld::" << namespace_name << "::e_" << string_list.name << ", blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+							break;
+						}
+						default:
+						{
+							const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
+							ASSERT(field_source_type != nullptr);
+							stream << "h_field_func_impl(" << field_source_type << ", blofeld::" << namespace_name << "::h_" << struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
+						}
+						}
+						stream << std::endl;
 					}
-					case _field_struct:
-					{
-						const char* field_source_type = current_field->struct_definition->name;
-						stream << "h_field_func_impl(blofeld::" << namespace_name << "::h_" << field_source_type << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					case _field_block:
-					{
-						const char* field_source_type = current_field->block_definition->struct_definition.name;
-						stream << "h_field_func_impl(h_typed_block<blofeld::" << namespace_name << "::h_" << field_source_type << ">, blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					case _field_data:
-					{
-						stream << "h_field_func_impl(h_data, blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					case _field_tag_reference:
-					{
-						stream << "h_field_func_impl(h_tag*, blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					case _field_long_flags:
-					case _field_word_flags:
-					case _field_byte_flags:
-					{
-						const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-						stream << "using t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << " = c_flags<blofeld::" << namespace_name << "::e_" << string_list.name << ", dword>;" << std::endl;
-						stream << "h_field_func_impl(t_" << tag_struct_definition->name << "_" << field_formatter.code_name.c_str() << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					case _field_char_enum:
-					case _field_enum:
-					case _field_long_enum:
-					{
-						const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
-						stream << "h_field_func_impl(blofeld::" << namespace_name << "::e_" << string_list.name << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-						break;
-					}
-					default:
-					{
-						const char* field_source_type = field_type_to_high_level_source_type(engine_platform_build.platform_type, current_field->field_type);
-						ASSERT(field_source_type != nullptr);
-						stream << "h_field_func_impl(" << field_source_type << ", blofeld::" << namespace_name << "::h_" << tag_struct_definition->name << ", " << field_index << ", " << field_formatter.code_name.c_str() << ");";
-					}
-					}
-					stream << std::endl;
 
 				}
 				field_name_unique_counter.clear();
@@ -860,13 +863,13 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 
 	{
 		std::map<std::string, int> field_name_unique_counter;
-		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 		{
-			const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+			const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
-			stream << "\t\t" << "void* h_" << tag_struct_definition->name << "::get_field_data(const blofeld::s_tag_field& field)" << std::endl;
+			stream << "\t\t" << "void* h_" << struct_definition->name << "::get_field_data(const blofeld::s_tag_field& field)" << std::endl;
 			stream << "\t\t{" << std::endl;
-			stream << "\t\t\tintptr_t const _index = &field - " << tag_struct_definition->symbol->symbol_name << ".fields;" << std::endl;
+			stream << "\t\t\tintptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
 			stream << std::endl;
 			stream << "\t\t\tswitch (_index)" << std::endl;
 			stream << "\t\t\t{" << std::endl;
@@ -874,7 +877,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 
 			field_name_unique_counter.clear();
 			uint32_t field_index = 0;
-			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+			for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
 				uint32_t field_skip_count;
 				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
@@ -903,7 +906,10 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 
 				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
 
-				stream << "\t\t\t\tcase " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+				if (!custom_structure_codegen(_custom_structure_codegen_high_level_get_field_data_func, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
+				{
+					stream << "\t\t\t\tcase " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+				}
 			}
 			stream << "\t\t\t\tdefault: return nullptr;" << std::endl;
 

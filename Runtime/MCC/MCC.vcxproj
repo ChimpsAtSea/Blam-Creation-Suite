@@ -58,7 +58,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -94,7 +94,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;Virtual_Halo3.lib;Virtual_Halo3ODST.lib;Virtual_HaloReach.lib;Virtual_Halo4.lib;Virtual_Groundhog.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;GameFramework.lib;SymbolsLib.lib;MandrillLib.lib;d3d11.lib;dxgi.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;version.lib;imgui.lib;detours.lib;Shlwapi.lib;Dbghelp.lib;ketchup.lib;Shcore.lib;HighLevel_Halo3.lib;HighLevel_Halo3ODST.lib;HighLevel_HaloReach.lib;HighLevel_Halo4.lib;HighLevel_Groundhog.lib;HighLevel_Xbox360Gen3.lib;LowLevel_Halo3.lib;LowLevel_Halo3ODST.lib;LowLevel_HaloReach.lib;LowLevel_Halo4.lib;LowLevel_Groundhog.lib;LowLevel_Xbox360Gen3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>

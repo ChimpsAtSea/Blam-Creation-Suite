@@ -6,6 +6,7 @@
 #include <SymbolsLib\symbolslib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
+#include "custom_codegen.h"
 #include "tagcodegen-public-pch.h"
 
 #include "low_level_tag_source_generator.h"
