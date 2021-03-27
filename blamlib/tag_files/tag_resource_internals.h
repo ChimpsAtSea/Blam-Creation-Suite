@@ -38,13 +38,6 @@ enum e_tag_resource_fixup_type
 	k_number_of_tag_resource_fixup_types
 };
 
-struct s_tag_resource_fixup_location
-{
-	dword block_offset;
-	dword address;
-};
-static_assert(sizeof(s_tag_resource_fixup_location) == 0x8);
-
 struct s_tag_resource_fixup_setup {};
 
 struct s_tag_resource_interop_location
@@ -104,6 +97,13 @@ public:
 	void set_type(
 		e_tag_resource_fixup_type new_type);
 };
+
+struct s_tag_resource_fixup_location
+{
+	dword block_offset;
+	c_tag_resource_fixup fixup;
+};
+static_assert(sizeof(s_tag_resource_fixup_location) == 0x8);
 
 class c_tag_resource_fixup_aligned_allocator :
 	public c_aligned_allocator
