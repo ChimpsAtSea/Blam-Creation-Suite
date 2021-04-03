@@ -17,6 +17,31 @@ protected:
 	t_storage m_stored;
 
 public:
+	static t_storage make_N_bit_mask_size_type(long num_bits)
+	{
+		return ~t_storage() >> (k_number_of_bits - num_bits);
+	}
+
+	static t_storage make_mask_with_all_valid_bits_on_size_type()
+	{
+		return make_N_bit_mask_size_type(k_number_of_bits);
+	}
+
+	bool is_clear() const
+	{
+		t_storage mask = make_mask_with_all_valid_bits_on_size_type();
+		return (m_stored & mask)  == 0;
+	}
+
+	c_flags_no_init operator~() const
+	{
+		t_storage mask = make_mask_with_all_valid_bits_on_size_type();
+		c_flags_no_init result;
+		result.set_unsafe((~m_stored) & mask);
+		*this = c_flags_no_init;
+		return result;
+	}
+
 	void clear()
 	{
 		m_stored = 0;
@@ -39,17 +64,8 @@ public:
 
 	bool valid() const
 	{
-		auto total_bits = sizeof(t_storage) * k_uint8_bits;
-
-		for (auto current_bit = k_number_of_bits;
-			current_bit < total_bits;
-			current_bit++)
-		{
-			if (TEST_BIT(m_stored, current_bit))
-				return false;
-		}
-
-		return true;
+		t_storage mask = ~make_mask_with_all_valid_bits_on_size_type();
+		return (m_stored & mask) == 0;
 	}
 
 	t_storage get_unsafe() const
@@ -67,6 +83,11 @@ public:
 		c_flags_no_init result;
 		result.set_unsafe(this->m_stored | value.m_stored);
 		return result;
+	}
+
+	bool operator==(c_flags_no_init const& value) const
+	{
+		return m_stored == value.m_stored;
 	}
 };
 
