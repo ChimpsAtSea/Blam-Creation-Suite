@@ -229,6 +229,7 @@ namespace blofeld
 		"particles die when effect ends{die when orphaned}",
 		"use synchronized random seed#synchronized across particle systems",
 		"use world orientation#particle system uses local-space position but up is always \'global up\'",
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 13 },
 		"render in spawn order#first particle spawned renders first (at the back), last particle spawned renders last (front)",
 		"dynamic particle resolution#use distance and multiplier (below) to tune high- or low-res rendering",
 		"particles live forever",

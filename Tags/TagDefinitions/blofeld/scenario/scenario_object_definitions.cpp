@@ -479,14 +479,37 @@ namespace blofeld
 
 	V5_TAG_STRUCT(scenario_multiplayer_object_struct)
 	{
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 23 },
 		{ _field_legacy, _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_halo3odst, 20 },
+		{ _field_legacy, _field_long_enum, "game engine symmetric placement", &game_engine_symmetry_placement_flags },
+		{ _field_legacy, _field_word_flags, "game engine flags", &global_game_engine_type_flags },
+		{ _field_legacy, _field_char_enum, "owner team", &global_multiplayer_team_designator_enum_definition },
+		{ _field_legacy, _field_pad, "pad", 1 },
+		{ _field_legacy, _field_char_integer, "spawn sequence" }, // assembly
+		{ _field_legacy, _field_char_integer, "quota minimum" },
+		{ _field_legacy, _field_char_integer, "quota maximum:<=0 for unlimited" },
+		{ _field_legacy, _field_byte_flags, "spawn flags", &multiplayer_object_placement_spawn_flags },
+		{ _field_legacy, _field_short_integer, "spawn time:seconds" },
+		{ _field_legacy, _field_short_integer, "abandonment time:seconds" },
+		{ _field_legacy, _field_char_enum, "boundary shape", &multiplayer_goal_area_boundary_shape_enum },
+		{ _field_legacy, _field_pad, "boundary_pad", 1 },
+		{ _field_legacy, _field_char_enum, "teleporter channel", &multiplayer_teleporter_channel },
+		{ _field_legacy, _field_byte_flags, "teleporter passability", &teleporter_passability_flags },
+		{ _field_legacy, _field_real, "boundary width or radius" },
+		{ _field_legacy, _field_real, "boundary box length" },
+		{ _field_legacy, _field_real, "boundary positive height" },
+		{ _field_legacy, _field_real, "boundary negative height" },
+		{ _field_legacy, _field_struct, "map variant parent", &scenario_object_parent_struct_struct_definition },
+		{ _field_legacy, _field_pad, "unknown", 4 },
+
+		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 22 },
 		{ _field_legacy, _field_string, "megalo label" },
 		{ _field_legacy, _field_long_enum, "game engine symmetric placement", &game_engine_symmetry_placement_flags },
 		{ _field_legacy, _field_byte_flags, "game engine flags", &global_game_engine_type_flags },
 		{ _field_legacy, _field_char_enum, "owner team", &global_multiplayer_team_designator_enum_definition },
 		{ _field_legacy, _field_pad, "pad", 2 },
-		{ _field_legacy, _field_char_integer, "unknown" },
+		{ _field_legacy, _field_char_integer, "spawn sequence" }, // assembly
 		{ _field_legacy, _field_char_integer, "quota minimum" },
 		{ _field_legacy, _field_char_integer, "quota maximum:<=0 for unlimited" },
 		{ _field_legacy, _field_byte_flags, "spawn flags", &multiplayer_object_placement_spawn_flags },
@@ -504,8 +527,7 @@ namespace blofeld
 		{ _field_legacy, _field_struct, "map variant parent", &scenario_object_parent_struct_struct_definition },
 		{ _field_legacy, _field_pad, "unknown", 4 },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 27 },
-		{ _field_legacy, _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 26 },
 		{ _field_legacy, _field_string, "megalo label" },
 		{ _field_legacy, _field_string, "megalo label 2" },
 		{ _field_legacy, _field_string, "megalo label 3" },

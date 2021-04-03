@@ -278,6 +278,7 @@ namespace blofeld
 
 	STRINGS(specialized_incident_kill_bucket_flags)
 	{
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 32 },
 		"player",
 		"ai",
 		"343i employee{bungie employee}",

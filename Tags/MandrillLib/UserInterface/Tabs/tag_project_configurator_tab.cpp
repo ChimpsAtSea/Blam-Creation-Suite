@@ -304,6 +304,7 @@ void c_tag_project_configurator_tab::render_project_settings()
 
 void c_tag_project_configurator_tab::render_display_tags()
 {
+	if(cache_cluster_transplant)
 	for (h_tag* tag : cache_cluster_transplant->instances)
 	{
 		ImGui::TextUnformatted(tag->tag_filename);

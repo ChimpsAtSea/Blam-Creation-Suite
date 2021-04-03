@@ -264,11 +264,11 @@ BCS_RESULT c_halo4_debug_reader::string_id_to_string(uint32_t string_id_index, u
 }
 
 
-BCS_RESULT c_halo4_debug_reader::get_tag_filepath(long tag_index, const char*& filepath)
+BCS_RESULT c_halo4_debug_reader::get_tag_filepath(unsigned long tag_index, const char*& filepath)
 {
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
-	if (tag_index < 0 || tag_index > cache_file_header.file_count)
+	if (tag_index < 0 || tag_index > static_cast<unsigned long>(cache_file_header.file_count))
 	{
 		return BCS_E_FAIL;
 	}

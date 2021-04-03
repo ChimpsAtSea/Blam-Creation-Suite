@@ -15,18 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="$(ResourcesFilepath)" />
-    <ResourceCompile Include="$(ResourcesFilepath)" />
-    <ResourceCompile Include="$(ResourcesFilepath)" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mandrill-private-pch.h">
+    <ClInclude Include="lzxlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lxz_decoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lxz_decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

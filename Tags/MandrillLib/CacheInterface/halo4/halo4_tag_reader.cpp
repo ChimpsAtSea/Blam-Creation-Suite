@@ -13,7 +13,9 @@ c_halo4_tag_reader::c_halo4_tag_reader(c_halo4_cache_cluster& cache_cluster, c_h
 	interops(),
 	_resource_type_index_to_halo4_resource_type(nullptr),
 	_interop_type_index_to_halo4_interop_type(nullptr),
-	interop_containers(nullptr)
+	interop_containers(nullptr),
+	_shared_file_index_to_cache_file_reader(nullptr),
+	_shared_file_count(0)
 {
 	BCS_RESULT rs;
 	c_halo4_debug_reader* debug_reader;
@@ -29,7 +31,7 @@ c_halo4_tag_reader::c_halo4_tag_reader(c_halo4_cache_cluster& cache_cluster, c_h
 	}
 
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
-	
+
 	int32_t tags_header_relative_offset;
 	if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(cache_file_header.tags_header_address, tags_header_relative_offset)))
 	{
@@ -85,7 +87,6 @@ c_halo4_tag_reader::c_halo4_tag_reader(c_halo4_cache_cluster& cache_cluster, c_h
 		tag_instance_info.group_info = &groups[tag_instance.group_index];
 		tag_instance_info.index = tag_index;
 
-		const char* tag_name;
 		if (BCS_FAILED(rs = debug_reader->get_tag_filepath(tag_index, tag_instance_info.instance_name)))
 		{
 			throw(rs);
@@ -151,6 +152,7 @@ c_halo4_tag_reader::~c_halo4_tag_reader()
 	delete _resource_type_index_to_halo4_resource_type;
 	delete _interop_type_index_to_halo4_interop_type;
 	delete interop_containers;
+	delete _shared_file_index_to_cache_file_reader;
 }
 
 BCS_RESULT c_halo4_tag_reader::get_global_instance_info(tag group_tag, const s_halo4_tag_global_instance_info*& out_global_instance_info)
@@ -182,6 +184,12 @@ BCS_RESULT c_halo4_tag_reader::get_instance_info(unsigned long tag_index, const 
 BCS_RESULT c_halo4_tag_reader::page_offset_to_pointer(long page_offset, const void*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
+
+	if (page_offset == 0)
+	{
+		data = nullptr;
+		return rs;
+	}
 
 	s_cache_file_buffer_info tag_section_buffer;
 	if (BCS_FAILED(rs = cache_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
@@ -375,7 +383,7 @@ BCS_RESULT c_halo4_tag_reader::interop_type_index_to_halo4_interop_type(long typ
 	s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(global_instance_info->instance_info->instance_data);
 	byteswap(resource_gestalt);
 
-	if (type_index >= resource_gestalt.interop_type_identifiers_block.count)
+	if (static_cast<unsigned long>(type_index) >= resource_gestalt.interop_type_identifiers_block.count)
 	{
 		return BCS_E_FAIL;
 	}
@@ -447,34 +455,353 @@ BCS_RESULT c_halo4_tag_reader::init_resource_table()
 
 BCS_RESULT c_halo4_tag_reader::init_resources()
 {
+	using namespace blofeld::xbox360_gen3;
+
 	BCS_RESULT rs = BCS_S_OK;
 
-	const s_halo4_tag_global_instance_info* global_instance_info;
-	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, global_instance_info)))
+	const s_halo4_tag_global_instance_info* resource_gestalt_global_instance_info;
+	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, resource_gestalt_global_instance_info)))
+	{
+		return rs;
+	}
+	s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(resource_gestalt_global_instance_info->instance_info->instance_data);
+	byteswap(resource_gestalt);
+
+	const s_halo4_tag_global_instance_info* resource_layout_table_global_instance_info;
+	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG, resource_layout_table_global_instance_info)))
 	{
 		return rs;
 	}
 
-	using namespace blofeld::xbox360_gen3;
-
-	s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(global_instance_info->instance_info->instance_data);
-	byteswap(resource_gestalt);
-
 	const s_cache_file_resource_data_block_block_struct* resources;
 	if (BCS_FAILED(rs = page_offset_to_pointer(resource_gestalt.resources_block.address, *reinterpret_cast<const void**>(&resources))))
 	{
-		throw(rs);
+		return rs;
 	}
+
+	c_typed_tag_block<s_cache_file_resource_page_struct> file_pages_block;
+	c_typed_tag_block<s_cache_file_resource_section_block_block_struct> sections_block;
+	if (resource_layout_table_global_instance_info->instance_info->instance_data)
+	{
+		s_cache_file_resource_layout_table_block_struct resource_layout_table = *static_cast<const s_cache_file_resource_layout_table_block_struct*>(resource_layout_table_global_instance_info->instance_info->instance_data);
+		byteswap(resource_layout_table);
+
+		file_pages_block = resource_layout_table.file_pages_block;
+		sections_block = resource_layout_table.sections_block;
+	}
+	else
+	{
+		file_pages_block = resource_gestalt.file_pages_block;
+		sections_block = resource_gestalt.sections_block;
+	}
+
+	const s_cache_file_resource_page_struct* file_pages;
+	if (BCS_FAILED(rs = page_offset_to_pointer(file_pages_block.address, *reinterpret_cast<const void**>(&file_pages))))
+	{
+		return rs;
+	}
+
+	const s_cache_file_resource_section_block_block_struct* sections;
+	if (BCS_FAILED(rs = page_offset_to_pointer(sections_block.address, *reinterpret_cast<const void**>(&sections))))
+	{
+		return rs;
+	}
+
+	const char* naive_resource_control_data;
+	if (BCS_FAILED(rs = page_offset_to_pointer(resource_gestalt.naive_resource_control_data.address, *reinterpret_cast<const void**>(&naive_resource_control_data))))
+	{
+		return rs;
+	}
+
+	//const char* current_naive_resource_control_data_position = naive_resource_control_data;
 
 	for (unsigned long resource_index = 0; resource_index < resource_gestalt.resources_block.count; resource_index++)
 	{
 		s_cache_file_resource_data_block_block_struct resource = resources[resource_index];
 		byteswap(resource);
-		
-		e_tag_resource_fixup_type type = resource.root_fixup.get_type();
-		dword fixup_value = resource.root_fixup.get_fixup_value();
 
-		debug_point;
+		unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(resource.owner_tag.datum_index);
+
+		if (tag_index < UINT16_MAX)
+		{
+			const s_halo4_tag_instance_info* instance_info;
+			if (BCS_FAILED(rs = get_instance_info(tag_index, instance_info)))
+			{
+				return rs;
+			}
+
+			e_halo4_resource_type resource_type;
+			if (BCS_FAILED(rs = resource_type_index_to_halo4_resource_type(resource.resource_type_index, resource_type)))
+			{
+				return rs;
+			}
+
+			ASSERT(resource.page >= 0);
+
+			s_cache_file_resource_section_block_block_struct section = sections[resource.page];
+			byteswap(section);
+
+			const s_cache_file_resource_priority_data_block_block_struct(*priority_level_datas)[3];
+			if (BCS_FAILED(rs = page_offset_to_pointer(resource.priority_level_data_block.address, *reinterpret_cast<const void**>(&priority_level_datas))))
+			{
+				return rs;
+			}
+
+			s_cache_file_resource_priority_data_block_block_struct priority_level_data = (*priority_level_datas)[0];
+			byteswap(priority_level_data);
+			debug_point;
+
+			s_resource_priority_datas resource_priority_datas = {};
+			resource_priority_datas.naive_resource_control_data = naive_resource_control_data + priority_level_data.naive_data_offset;
+			resource_priority_datas.instance_info = instance_info;
+			resource_priority_datas.flags = resource.flags;
+			for (unsigned long priority_level_index = 0; priority_level_index < 3; priority_level_index++)
+			{
+
+				s_resource_priority_data& resource_priority_data = resource_priority_datas.data[priority_level_index];
+				short page_index = section.file_page_indexes[priority_level_index].page_index;
+				resource_priority_data.page_index = page_index;
+				if (page_index == -1) continue;
+
+				long page_offset = section.page_offsets[priority_level_index].offset;
+				resource_priority_data.resource_page_offset = page_offset;
+
+				s_cache_file_resource_page_struct file_page = file_pages[section.file_page_indexes[priority_level_index].page_index];
+				byteswap(file_page);
+
+				e_compression_codec compression_codec = _compression_uncompressed;
+				if (BCS_FAILED(rs = get_compression_codec_by_index(file_page.codec, compression_codec)))
+				{
+					return rs;
+				}
+
+				c_halo4_cache_file_reader* resource_cache_file;
+				if (BCS_FAILED(rs = shared_file_index_to_cache_file_reader(file_page.shared_file, resource_cache_file)))
+				{
+					return rs;
+				}
+
+				s_cache_file_buffer_info buffer_info;
+				resource_cache_file->get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info);
+
+				const char* page_data_pointer = buffer_info.begin + file_page.file_offset;
+				size_t raw_page_data_size = file_page.file_size;
+
+				resource_priority_data.resource_cache_file = resource_cache_file;
+				resource_priority_data.page_file_offset = file_page.file_offset;
+				resource_priority_data.page_file_size = file_page.file_size;
+				resource_priority_data.page_size = file_page.size;
+				resource_priority_data.page_data_pointer = page_data_pointer;
+				resource_priority_data.compression_codec = compression_codec;
+
+				/*
+				#NOTE
+				Resource priority data is pooled inside of the cache cluster removing duplicate resources
+				and decompressing pages to extract multiple resource entries at once.
+				See c_halo4_cache_cluster for initialization of c_halo4_resource_entry_reader
+				*/
+			}
+			resource_priority_datas.make_id();
+
+			c_halo4_resource_container* resource_container = nullptr;
+			if (BCS_FAILED(rs = cache_cluster.get_resource_container(resource_priority_datas, resource_container)) && rs != BCS_E_NOT_FOUND)
+			{
+				return rs;
+			}
+			if (resource_container == nullptr)
+			{
+				switch (resource_type)
+				{
+				case _halo4_bitmap_texture_interop_resource:
+					resource_container = new c_halo4_bitmap_texture_interop_resource(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_sound_resource_definition:
+					resource_container = new c_halo4_sound_resource_definition(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_facial_animation_resource_definition:
+					resource_container = new c_halo4_facial_animation_resource_definition(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_model_animation_tag_resource:
+					resource_container = new c_halo4_model_animation_tag_resource(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_render_geometry_api_resource_definition:
+					resource_container = new c_halo4_render_geometry_api_resource_definition(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_bitmap_texture_interleaved_interop_resource:
+					resource_container = new c_halo4_bitmap_texture_interleaved_interop_resource(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_structure_bsp_tag_resources:
+					resource_container = new c_halo4_structure_bsp_tag_resources(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_structure_bsp_cache_file_tag_resources:
+					resource_container = new c_halo4_structure_bsp_cache_file_tag_resources(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_bink_resource:
+					resource_container = new c_halo4_bink_resource(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_pca_coefficients_resource_definition:
+					resource_container = new c_halo4_pca_coefficients_resource_definition(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_stitchable_bitmap_texture_interop_resource:
+					resource_container = new c_halo4_stitchable_bitmap_texture_interop_resource(*instance_info, resource_priority_datas);
+					break;
+				case _halo4_collision_model_resource:
+					resource_container = new c_halo4_collision_model_resource(*instance_info, resource_priority_datas);
+					break;
+				default:
+					return BCS_E_UNSUPPORTED;
+				}
+				ASSERT(resource_container != nullptr);
+				if (BCS_FAILED(rs = cache_cluster.add_resource_container(*resource_container, true))) // #NOTE: can succeed and return null
+				{
+					return rs;
+				}
+			}
+			ASSERT(resource_container != nullptr);
+		}
+		else
+		{
+			ASSERT(resource.owner_tag.datum_index == 0xFFFFFFFF);
+			ASSERT(resource.resource_salt = -1);
+			ASSERT(resource.resource_type_index == -1);
+			ASSERT(resource.control_alignment_bits == 0);
+			ASSERT(resource.control_size == 0);
+			ASSERT(resource.flags.is_clear());
+			ASSERT(resource.page == -1);
+			ASSERT(resource.root_fixup.get_type() == 0);
+			ASSERT(resource.root_fixup.get_fixup_value() == 0);
+			ASSERT(resource.control_fixups_block.count == 0);
+			ASSERT(resource.interop_locations_block.count == 0);
+			ASSERT(resource.priority_level_data_block.count == 0);
+			debug_point;
+		}
+	}
+
+	//// s_cache_file_resource_priority_data_block_block_struct priority_level_data = (*priority_level_datas)[0];
+	//// byteswap(priority_level_data);
+	//// const char* current_naive_resource_control_data_position = naive_resource_control_data + priority_level_data.naive_data_offset;
+
+	//const s_render_texture_interop_definition_struct* render_texture_interop_definition_ptr = reinterpret_cast<const s_render_texture_interop_definition_struct*>(current_naive_resource_control_data_position);
+	//const s_bitmap_texture_interop_resource_struct* bitmap_texture_interop_resource_ptr = reinterpret_cast<const s_bitmap_texture_interop_resource_struct*>(render_texture_interop_definition_ptr + 1);
+
+	//s_render_texture_interop_definition_struct render_texture_interop_definition = *render_texture_interop_definition_ptr;
+	//byteswap(render_texture_interop_definition);
+
+	//s_bitmap_texture_interop_resource_struct bitmap_texture_interop_resource = *bitmap_texture_interop_resource_ptr;
+	//byteswap(bitmap_texture_interop_resource);
+
+
+	////FILE* f = fopen("compressed.bin", "wb");
+	////fwrite(raw_resource_data, 1, raw_resource_data_size, f);
+	////fflush(f);
+	////fclose(f);
+
+	//
+	////FATAL_ERROR(L"not implemented");
+
+	//debug_point;
+
+	//e_tag_resource_fixup_type root_fixup_type = resource.root_fixup.get_type();
+	//dword root_fixup_value = resource.root_fixup.get_fixup_value();
+
+	debug_point;
+
+	return rs;
+}
+
+BCS_RESULT c_halo4_tag_reader::export_resources()
+{
+	using namespace blofeld::xbox360_gen3;
+
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_halo4_cache_cluster::t_resource_container_cache_reader_map::iterator resource_container_search = cache_cluster.resource_containers_by_cache_reader.find(&cache_reader);
+	if (resource_container_search == cache_cluster.resource_containers_by_cache_reader.end())
+	{
+		return rs; // no work to do here		
+	}
+
+	std::vector<c_halo4_resource_container*> const& resource_containers = resource_container_search->second;
+
+	c_typed_tag_block<s_cache_file_resource_page_struct> file_pages_block;
+	const s_cache_file_resource_page_struct* file_pages;
+	{
+		const s_halo4_tag_global_instance_info* resource_gestalt_global_instance_info;
+		if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, resource_gestalt_global_instance_info)))
+		{
+			return rs;
+		}
+		s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(resource_gestalt_global_instance_info->instance_info->instance_data);
+		byteswap(resource_gestalt);
+
+		const s_halo4_tag_global_instance_info* resource_layout_table_global_instance_info;
+		if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG, resource_layout_table_global_instance_info)))
+		{
+			return rs;
+		}
+
+		if (resource_layout_table_global_instance_info->instance_info->instance_data)
+		{
+			s_cache_file_resource_layout_table_block_struct resource_layout_table = *static_cast<const s_cache_file_resource_layout_table_block_struct*>(resource_layout_table_global_instance_info->instance_info->instance_data);
+			byteswap(resource_layout_table);
+
+			file_pages_block = resource_layout_table.file_pages_block;
+		}
+		else
+		{
+			file_pages_block = resource_gestalt.file_pages_block;
+		}
+
+		if (BCS_FAILED(rs = page_offset_to_pointer(file_pages_block.address, *reinterpret_cast<const void**>(&file_pages))))
+		{
+			return rs;
+		}
+	}
+
+	s_cache_file_buffer_info buffer_info;
+	if (BCS_FAILED(rs = cache_reader.get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info)))
+	{
+		return rs;
+	}
+	
+	const s_cache_file_resource_page_struct* const file_pages_end = file_pages + file_pages_block.count;
+	for (const s_cache_file_resource_page_struct* _current_file_page = file_pages; _current_file_page < file_pages_end; _current_file_page++)
+	{
+		s_cache_file_resource_page_struct file_page = *_current_file_page;
+		byteswap(file_page);
+
+		if (file_page.shared_file != -1) continue; // #TODO: traverse external files
+
+		char* page_data = new char[__max(0x8000, file_page.size)];
+		const char* page_file_data = buffer_info.begin + file_page.file_offset;
+
+		e_compression_codec compression_codec = _compression_uncompressed;
+		if (BCS_FAILED(rs = get_compression_codec_by_index(file_page.codec, compression_codec)))
+		{
+			return rs;
+		}
+
+		switch (compression_codec)
+		{
+		case _compression_uncompressed:
+			ASSERT(file_page.size == file_page.file_size);
+			memcpy(page_data, page_file_data, file_page.size);
+			break;
+		case _compression_xdkcompress:
+			codec_inflate_lzx_xbox360(page_file_data, file_page.file_size, page_data, file_page.size);
+			break;
+		default:
+			return BCS_E_NOT_IMPLEMENTED; // unknown compression codec
+		}
+
+		for (c_halo4_resource_container* resource_container : resource_containers)
+		{
+			unsigned long page_index = static_cast<unsigned long>(_current_file_page - file_pages);
+
+			resource_container->digest_page(cache_reader, page_index, page_data);
+		}
+
+		delete page_data;
 	}
 
 	return rs;
@@ -497,13 +824,98 @@ BCS_RESULT c_halo4_tag_reader::resource_type_index_to_halo4_resource_type(long t
 	s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(global_instance_info->instance_info->instance_data);
 	byteswap(resource_gestalt);
 
-	if (type_index >= resource_gestalt.resource_type_identifiers_block.count)
+	if (static_cast<unsigned long>(type_index) >= resource_gestalt.resource_type_identifiers_block.count)
 	{
 		return BCS_E_FAIL;
 	}
 
 	resource_type = _resource_type_index_to_halo4_resource_type[type_index];
-	
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_halo4_tag_reader::init_shared_files_table()
+{
+	using namespace blofeld::xbox360_gen3;
+	BCS_RESULT rs = BCS_S_OK;
+
+	const s_halo4_tag_global_instance_info* resource_gestalt_global_instance_info;
+	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, resource_gestalt_global_instance_info)))
+	{
+		return rs;
+	}
+
+	const s_halo4_tag_global_instance_info* resource_layout_table_global_instance_info;
+	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG, resource_layout_table_global_instance_info)))
+	{
+		return rs;
+	}
+
+	c_typed_tag_block<s_cache_file_shared_file_block_block_struct> shared_files_block;
+	if (resource_layout_table_global_instance_info->instance_info->instance_data)
+	{
+		s_cache_file_resource_layout_table_block_struct resource_layout_table = *static_cast<const s_cache_file_resource_layout_table_block_struct*>(resource_layout_table_global_instance_info->instance_info->instance_data);
+		byteswap(resource_layout_table);
+
+		shared_files_block = resource_layout_table.shared_files_block;
+	}
+	else if (resource_gestalt_global_instance_info->instance_info->instance_data)
+	{
+		s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(resource_gestalt_global_instance_info->instance_info->instance_data);
+		byteswap(resource_gestalt);
+
+		shared_files_block = resource_gestalt.shared_files_block;
+	}
+
+	const s_cache_file_shared_file_block_block_struct* shared_files;
+	if (BCS_FAILED(rs = page_offset_to_pointer(shared_files_block.address, *reinterpret_cast<const void**>(&shared_files))))
+	{
+		return rs;
+	}
+
+	_shared_file_index_to_cache_file_reader = new c_halo4_cache_file_reader * [shared_files_block.count];
+	_shared_file_count = shared_files_block.count;
+
+	for (unsigned long shared_file_index = 0; shared_file_index < shared_files_block.count; shared_file_index++)
+	{
+		s_cache_file_shared_file_block_block_struct shared_file = shared_files[shared_file_index];
+		byteswap(shared_file);
+
+		const char* dvd_relative_path = shared_file.dvd_relative_path.get_string();
+
+		c_halo4_cache_file_reader* cache_file_reader = nullptr;
+		cache_cluster.get_cache_reader_by_relative_path(dvd_relative_path, cache_file_reader);
+		//if (BCS_FAILED(rs = cache_cluster.get_cache_reader_by_relative_path(dvd_relative_path, cache_file_reader)))
+		//{
+		//	return rs;
+		//}
+
+		_shared_file_index_to_cache_file_reader[shared_file_index] = cache_file_reader;
+
+		debug_point;
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_halo4_tag_reader::shared_file_index_to_cache_file_reader(long shared_file_index, c_halo4_cache_file_reader*& cache_file_reader)
+{
+	BCS_VALIDATE_ARGUMENT(shared_file_index >= -1);
+
+	if (shared_file_index == -1)
+	{
+		cache_file_reader = &cache_reader;
+	}
+	else
+	{
+		if (static_cast<unsigned long>(shared_file_index) > _shared_file_count)
+		{
+			return BCS_E_OUT_OF_RANGE;
+		}
+
+		cache_file_reader = _shared_file_index_to_cache_file_reader[shared_file_index];
+	}
+
 	return BCS_S_OK;
 }
 
@@ -512,7 +924,7 @@ BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_ha
 
 	for (c_halo4_interop_container** interop_container_iter = interop_containers; *interop_container_iter; interop_container_iter++)
 	{
-		if ((*interop_container_iter)->type == interop_type&& (*interop_container_iter)->descriptor == descriptor)
+		if ((*interop_container_iter)->type == interop_type && (*interop_container_iter)->descriptor == descriptor)
 		{
 			interop_container = *interop_container_iter;
 			return BCS_S_OK;
@@ -521,90 +933,66 @@ BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_ha
 	return BCS_E_FAIL;
 }
 
-c_halo4_interop_container::c_halo4_interop_container(e_halo4_interop_type type, unsigned long descriptor, const void* data) :
-	h_interop(),
-	type(type),
-	descriptor(descriptor),
-	data(data)
+BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(long codec_index, e_compression_codec& compression_codec)
 {
+	BCS_RESULT rs = BCS_S_OK;
 
-}
-
-c_halo4_interop_container::~c_halo4_interop_container()
-{
-
-}
-
-c_halo4_vectorart_vertex_buffer_interop::c_halo4_vectorart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
-	c_halo4_interop_container(_halo4_vectorart_vertex_buffer_interop, descriptor, data),
-	vertex_data(),
-	vertex_data_size()
-{
 	using namespace blofeld::xbox360_gen3;
-	s_vectorartVertexBufferDescriptorStruct interop_data = *static_cast<const s_vectorartVertexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
+	const s_halo4_tag_global_instance_info* resource_layout_table_global_instance_info;
+	if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG, resource_layout_table_global_instance_info)))
+	{
+		return rs;
+	}
 
-	const void* source_vertex_data;
-	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
+	c_typed_tag_block<s_cache_file_codec_identifier_block_block_struct> codec_identifiers_block;
+	if (resource_layout_table_global_instance_info->instance_info->instance_data)
+	{
+		s_cache_file_resource_layout_table_block_struct resource_layout_table = *static_cast<const s_cache_file_resource_layout_table_block_struct*>(resource_layout_table_global_instance_info->instance_info->instance_data);
+		byteswap(resource_layout_table);
 
-	vertex_data_size = interop_data.vertices.size;
-	vertex_data = new char[vertex_data_size];
-	memcpy(vertex_data, source_vertex_data, vertex_data_size);
+		codec_identifiers_block = resource_layout_table.codec_identifiers_block;
+	}
+	else
+	{
+		const s_halo4_tag_global_instance_info* resource_gestalt_global_instance_info;
+		if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, resource_gestalt_global_instance_info)))
+		{
+			return rs;
+		}
+		s_cache_file_resource_gestalt_block_struct resource_gestalt = *static_cast<const s_cache_file_resource_gestalt_block_struct*>(resource_gestalt_global_instance_info->instance_info->instance_data);
+		byteswap(resource_gestalt);
 
-	debug_point;
-}
+		codec_identifiers_block = resource_gestalt.codec_identifiers_block;
+	}
 
-c_halo4_vectorart_vertex_buffer_interop::~c_halo4_vectorart_vertex_buffer_interop()
-{
+	const s_cache_file_codec_identifier_block_block_struct* codec_identifiers;
+	if (BCS_FAILED(rs = page_offset_to_pointer(codec_identifiers_block.address, *reinterpret_cast<const void**>(&codec_identifiers))))
+	{
+		return rs;
+	}
 
-}
+	if (codec_index >= 0)
+	{
+		s_cache_file_codec_identifier_block_block_struct codec_identifier = codec_identifiers[codec_index];
+		byteswap(codec_identifier);
 
-c_halo4_polyart_vertex_buffer_interop::c_halo4_polyart_vertex_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
-	c_halo4_interop_container(_halo4_polyart_vertex_buffer_interop, descriptor, data),
-	vertex_data(),
-	vertex_data_size(),
-	vertex_type()
-{
-	using namespace blofeld::xbox360_gen3;
-	s_polyartVertexBufferDescriptorStruct interop_data = *static_cast<const s_polyartVertexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
+		blofeld::s_tag_persistent_identifier identifier =
+		{
+			static_cast<unsigned long>(codec_identifier.identifier_part_0),
+			static_cast<unsigned long>(codec_identifier.identifier_part_1),
+			static_cast<unsigned long>(codec_identifier.identifier_part_2),
+			static_cast<unsigned long>(codec_identifier.identifier_part_3)
+		};
 
-	const void* source_vertex_data;
-	tag_reader.page_offset_to_pointer(interop_data.vertices.address, source_vertex_data);
+		if (memcmp(&identifier, &k_xdkcompress_codec_identifier, sizeof(identifier)) == 0)
+		{
+			compression_codec = _compression_xdkcompress;
+		}
+		else
+		{
+			return BCS_E_UNSUPPORTED; // unsupported codec
+		}
+	}
 
-	vertex_data_size = interop_data.vertices.size;
-	vertex_data = new char[vertex_data_size];
-	memcpy(vertex_data, source_vertex_data, vertex_data_size);
-	vertex_type = interop_data.vertex_type;
-
-	debug_point;
-}
-
-c_halo4_polyart_vertex_buffer_interop::~c_halo4_polyart_vertex_buffer_interop()
-{
-	delete vertex_data;
-}
-
-c_halo4_polyart_index_buffer_interop::c_halo4_polyart_index_buffer_interop(c_halo4_tag_reader& tag_reader, unsigned long descriptor, const void* data) :
-	c_halo4_interop_container(_halo4_polyart_index_buffer_interop, descriptor, data),
-	index_data(),
-	index_data_size()
-{
-	using namespace blofeld::xbox360_gen3;
-	s_polyartIndexBufferDescriptorStruct interop_data = *static_cast<const s_polyartIndexBufferDescriptorStruct*>(data);
-	byteswap(interop_data);
-
-	const void* source_index_data;
-	tag_reader.page_offset_to_pointer(interop_data.index_data.address, source_index_data);
-
-	index_data_size = interop_data.index_data.size;
-	index_data = new char[index_data_size];
-	memcpy(index_data, source_index_data, index_data_size);
-
-	debug_point;
-}
-
-c_halo4_polyart_index_buffer_interop::~c_halo4_polyart_index_buffer_interop()
-{
-	delete index_data;
+	return rs;
 }

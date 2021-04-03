@@ -18,6 +18,9 @@
 #include "base\tag_instance.h"
 #include "base\api_interop.h"
 
+#include "halo4\halo4_codec.h"
+#include "halo4\halo4_resource_container.h"
+#include "halo4\halo4_api_interop.h"
 #include "halo4\halo4_tag_group_hierarchy.h"
 #include "halo4\halo4_cache_file_header.h"
 #include "halo4\halo4_cache_file_reader.h"
@@ -28,4 +31,3 @@
 #include "halo4\halo4_tag_reader.h"
 #include "halo4\halo4_tag_group.h"
 #include "halo4\halo4_tag_instance.h"
-#include "halo4\halo4_api_interop.h"

@@ -21,8 +21,8 @@ void byteswap(s_static_array<t_element, k_maximum_count>& arr)
 	}
 }
 
-template <typename t_enum, typename t_storage>
-void byteswap(c_flags<t_enum, t_storage>& value)
+template <typename t_enum, typename t_storage, const long k_number_of_bits>
+void byteswap(c_flags<t_enum, t_storage, k_number_of_bits>& value)
 {
 	byteswap(*reinterpret_cast<t_storage*>(&value));
 }
@@ -33,8 +33,8 @@ void byteswap(c_enum<t_enum, t_storage>& value)
 	byteswap(*reinterpret_cast<t_storage*>(&value));
 }
 
-template <typename t_enum, typename t_storage>
-void byteswap(c_flags_no_init<t_enum, t_storage>& value)
+template <typename t_enum, typename t_storage, const long k_number_of_bits>
+void byteswap(c_flags_no_init<t_enum, t_storage, k_number_of_bits>& value)
 {
 	byteswap(*reinterpret_cast<t_storage*>(&value));
 }

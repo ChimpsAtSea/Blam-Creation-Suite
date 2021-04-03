@@ -41,6 +41,7 @@
 #include "math_util.h"
 
 #include "error_handling.h"
+#include "xxhash.h"
 #include "xxhash_cx.h"
 using namespace xxhash;
 using namespace xxhash::literals;

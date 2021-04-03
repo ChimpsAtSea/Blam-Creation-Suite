@@ -41,6 +41,8 @@
     <ClInclude Include="CacheInterface\halo4\halo4_tag_instance.h" />
     <ClInclude Include="CacheInterface\halo4\halo4_api_interop.h" />
     <ClInclude Include="CacheInterface\halo4\halo4_tag_group_hierarchy.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_resource_container.h" />
+    <ClInclude Include="CacheInterface\halo4\halo4_codec.h" />
     <ClInclude Include="HighLevel\HighLevel.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="HighLevel\string_id_manager.h" />
@@ -99,6 +101,8 @@
     <ClCompile Include="CacheInterface\halo4\halo4_tag_instance.cpp" />
     <ClCompile Include="CacheInterface\halo4\halo4_api_interop.cpp" />
     <ClCompile Include="CacheInterface\halo4\halo4_tag_group_hierarchy.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_resource_container.cpp" />
+    <ClCompile Include="CacheInterface\halo4\halo4_codec.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="HighLevel\string_id_manager.cpp" />
     <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />

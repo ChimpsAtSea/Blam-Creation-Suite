@@ -183,6 +183,12 @@
     <ClInclude Include="HighLevel\high_level_cache_cluster_transplant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_resource_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo4\halo4_codec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
@@ -330,6 +336,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HighLevel\high_level_cache_cluster_transplant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_resource_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo4\halo4_codec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -501,6 +501,7 @@ namespace blofeld
 		"drop weapons on death",
 		"killcam enabled",
 		"medal scoring enabled",
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, },
 		"asymmetric round scoring"
 	};
 	STRING_LIST(game_engine_miscellaneous_options_flags, game_engine_miscellaneous_options_flags_strings, _countof(game_engine_miscellaneous_options_flags_strings));

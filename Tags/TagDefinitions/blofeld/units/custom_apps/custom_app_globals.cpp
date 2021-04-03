@@ -22,7 +22,7 @@ namespace blofeld
 		{ _field_legacy, _field_string_id, "iconStringId" },
 		{ _field_legacy, _field_tag_reference, "hud screen reference", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_legacy, _field_explanation, "Locked flag", "If you lock an app that you currently have installed and then XSync, the game may assert.  If so, relaunch and you\'ll be fine.  It\'s nothing to worry about." },
-		{ _field_legacy, _field_byte_flags, "flags", &custom_app_flags },
+		{ _field_legacy, _field_byte_flags, "flags", &custom_app_flags$2 },
 		{ _field_legacy, _field_pad, "woooo", 3 },
 		{ _field_legacy, _field_explanation, "Player Traits", "Player traits that are applied to the player when they have this app." },
 		{ _field_legacy, _field_block, "player traits", &game_engine_player_traits_block_block },

@@ -138,6 +138,8 @@ namespace blofeld
 	extern s_string_list_definition chdt_second_state_block_start_value_definition;
 	extern c_versioned_string_list chdt_input_variable_triggers_definition_strings;
 	extern s_string_list_definition chdt_input_variable_triggers_definition;
+	extern c_versioned_string_list chdt_input_variable_triggers2_definition_strings;
+	extern s_string_list_definition chdt_input_variable_triggers2_definition;
 
 	extern c_versioned_string_list chad_flags_definition_strings;
 	extern s_string_list_definition chad_flags_definition;

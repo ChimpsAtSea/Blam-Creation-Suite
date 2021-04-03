@@ -301,6 +301,26 @@ void c_low_level_tag_source_generator::generate_header() const
 					stream << "\t\t\t" << "c_enum<e_" << string_list.name << ", long> " << field_formatter.code_name.data << ";";
 					break;
 				}
+				case _field_byte_flags:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_flags<e_" << string_list.name << ", char, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					break;
+				}
+				case _field_word_flags:
+				{
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_flags<e_" << string_list.name << ", short, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+					break;
+				}
+				case _field_long_flags:
+				{
+					
+					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
+					stream << "\t\t\t" << "c_flags<e_" << string_list.name << ", long, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
+
+					break;
+				}
 				default:
 				{
 					const char* field_source_type = field_type_to_low_level_source_type(engine_platform_build.platform_type, current_field->field_type);
@@ -509,16 +529,16 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 			const c_blamlib_string_parser& original_string_parser = *string_parsers[string_index];
 			c_blamlib_string_parser string_parser = c_blamlib_string_parser(original_string_parser.string.c_str(), false, &string_list_value_unique_counter);
 
-			stream << "\t\t\t" << " // " << string_parser.display_name.c_str() << std::endl;
+			stream << "\t\t\t" << "/* " << string_parser.display_name.c_str() << " */" << std::endl;
 
 			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
 			if (!string_parser.description.empty())
 			{
 				stream << " /* " << string_parser.description.c_str() << " */" << std::endl;
-				stream << std::endl;
 			}
 			stream << std::endl;
 		}
+		stream << "\t\t\tk_" << string_list_definition->name << "_count" << std::endl;;
 
 		stream << "\t\t" << "};" << std::endl;
 		stream << std::endl;
