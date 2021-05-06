@@ -134,41 +134,138 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 		return; // nothing to do. is this bad?
 	}
 
-	//if (this->resource_priority_datas.data[0].page_index != page_index)
-	//{
-	//	return;
-	//}
+	unsigned int debug_index = 0;
+	for (auto& resource_priority_data : resource_priority_datas.data)
+	{
+		if (resource_priority_data.page_index == page_index)
+		{
+			//if (this->resource_priority_datas.data[0].page_index != page_index)
+			//{
+			//	return;
+			//}
 
-	const s_render_texture_interop_definition_struct* render_texture_interop_struct_data = reinterpret_cast<decltype(render_texture_interop_struct_data)>(resource_priority_datas.naive_resource_control_data);
-	s_render_texture_interop_definition_struct render_texture_interop_struct = *render_texture_interop_struct_data;
-	byteswap(render_texture_interop_struct);
+			const s_render_texture_interop_definition_struct* render_texture_interop_struct_data = reinterpret_cast<decltype(render_texture_interop_struct_data)>(resource_priority_datas.naive_resource_control_data);
+			s_render_texture_interop_definition_struct render_texture_interop_struct = *render_texture_interop_struct_data;
+			byteswap(render_texture_interop_struct);
 
-	c_fixed_path filepath;
-	filepath.format("data\\%s.%s.bin", instance_info.instance_name, instance_info.group_info->group_name);
+			unsigned long sub_bitmap_index;
+			ASSERT(BCS_SUCCEEDED(get_sub_bitmap_index_by_resource_index(cache_reader, sub_bitmap_index)));
 
-	filesystem_write_file_from_memory(filepath, page_data, 1);
+			c_fixed_path filepath;
+			filepath.format("data\\%s.%s.%u.%u.bin", instance_info.instance_name, instance_info.group_info->group_name, sub_bitmap_index, debug_index);
 
-	//FILE* file = fopen(filepath.c_str(), "wb");
-	//if (file)
-	//{
-	//	const char* resource_data = page_data + resource_priority_datas.data[0].resource_page_offset;
-	//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_highest_priority_data))
-	//	{
-	//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
-	//	}
-	//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_medium_priority_data))
-	//	{
-	//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
-	//	}
-	//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_low_priority_data))
-	//	{
-	//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
-	//	}
+			filesystem_write_file_from_memory(filepath, page_data, 1);
 
-	//	fflush(file);
-	//	fclose(file);
-	//}
+			//FILE* file = fopen(filepath.c_str(), "wb");
+			//if (file)
+			//{
+			//	const char* resource_data = page_data + resource_priority_datas.data[0].resource_page_offset;
+			//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_highest_priority_data))
+			//	{
+			//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
+			//	}
+			//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_medium_priority_data))
+			//	{
+			//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
+			//	}
+			//	if (resource_priority_datas.flags.test(_cache_file_resource_data_flags_definition_has_low_priority_data))
+			//	{
+			//		fwrite(resource_data, 1, resource_priority_datas.data[0].page_size, file);
+			//	}
 
+			//	fflush(file);
+			//	fclose(file);
+			//}
+		}
+		debug_index++;
+	}
+}
+
+BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, unsigned long& index) const
+{
+	using namespace blofeld::xbox360_gen3;
+
+	s_bitmap_block_struct bitmap = *static_cast<const s_bitmap_block_struct*>(instance_info.instance_data);
+	byteswap(bitmap);
+
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_halo4_tag_reader* tag_reader;
+	if (BCS_FAILED(rs = cache_reader.cache_cluster->get_tag_reader(cache_reader, tag_reader)))
+	{
+		return rs;
+	}
+
+	if(bitmap.hardware_textures_block.count > 0)
+	{
+		const s_bitmap_texture_interop_block_block_struct* hardware_textures_block_data;
+		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.hardware_textures_block.address, *reinterpret_cast<const void**>(&hardware_textures_block_data))))
+		{
+			return rs;
+		}
+
+		for (unsigned long hardware_texture_index = 0; hardware_texture_index < bitmap.hardware_textures_block.count; hardware_texture_index++)
+		{
+			s_bitmap_texture_interop_block_block_struct hardware_texture = hardware_textures_block_data[hardware_texture_index];
+			byteswap(hardware_texture);
+
+			unsigned long resource_index = hardware_texture.texture_resource.resource_handle.get_absolute_index();
+
+			if (resource_index == resource_priority_datas.resource_index)
+			{
+				index = hardware_texture_index;
+				return BCS_S_OK;
+			}
+		}
+	}
+
+	if (bitmap.stitchable_hardware_textures_block.count > 0)
+	{
+		const s_stitchable_bitmap_texture_interop_block_block_struct* stitchable_hardware_textures_block_data;
+		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.stitchable_hardware_textures_block.address, *reinterpret_cast<const void**>(&stitchable_hardware_textures_block_data))))
+		{
+			return rs;
+		}
+
+		for (unsigned long stitchable_hardware_texture_index = 0; stitchable_hardware_texture_index < bitmap.stitchable_hardware_textures_block.count; stitchable_hardware_texture_index++)
+		{
+			s_stitchable_bitmap_texture_interop_block_block_struct stitchable_hardware_texture = stitchable_hardware_textures_block_data[stitchable_hardware_texture_index];
+			byteswap(stitchable_hardware_texture);
+
+			unsigned long resource_index = stitchable_hardware_texture.texture_resource.resource_handle.get_absolute_index();
+
+			if (resource_index == resource_priority_datas.resource_index)
+			{
+				index = stitchable_hardware_texture_index;
+				return BCS_S_OK;
+			}
+		}
+	}
+
+	if (bitmap.interleaved_hardware_textures_block.count > 0)
+	{
+		const s_bitmap_texture_interleaved_interop_block_block_struct* interleaved_hardware_textures_block_data;
+		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.interleaved_hardware_textures_block.address, *reinterpret_cast<const void**>(&interleaved_hardware_textures_block_data))))
+		{
+			return rs;
+		}
+
+		for (unsigned long interleaved_hardware_texture_index = 0; interleaved_hardware_texture_index < bitmap.interleaved_hardware_textures_block.count; interleaved_hardware_texture_index++)
+		{
+			s_bitmap_texture_interleaved_interop_block_block_struct interleaved_hardware_texture = interleaved_hardware_textures_block_data[interleaved_hardware_texture_index];
+			byteswap(interleaved_hardware_texture);
+
+			unsigned long resource_index = interleaved_hardware_texture.interleaved_texture_resource.resource_handle.get_absolute_index();
+
+			if (resource_index == resource_priority_datas.resource_index)
+			{
+				index = interleaved_hardware_texture_index;
+				return BCS_S_OK;
+			}
+		}
+	}
+
+	return BCS_E_FAIL;
 }
 
 c_halo4_sound_resource_definition::c_halo4_sound_resource_definition(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :

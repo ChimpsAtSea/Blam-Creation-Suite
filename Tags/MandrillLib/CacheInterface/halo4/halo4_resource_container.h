@@ -47,6 +47,7 @@ struct s_resource_priority_datas
 	s_resource_priority_data data[3];
 	const char* naive_resource_control_data;
 	const s_halo4_tag_instance_info* instance_info;
+	unsigned long resource_index;
 	c_flags<blofeld::xbox360_gen3::e_cache_file_resource_data_flags_definition, short, blofeld::xbox360_gen3::k_cache_file_resource_data_flags_definition_count> flags;
 
 	void make_id();
@@ -71,6 +72,8 @@ class c_halo4_bitmap_texture_interop_resource :
 public:
 	c_halo4_bitmap_texture_interop_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas);
 	virtual void digest_page(c_halo4_cache_file_reader& cache_reader, unsigned long page_index, const char* page_data);
+
+	BCS_RESULT get_sub_bitmap_index_by_resource_index(c_halo4_cache_file_reader& cache_reader, unsigned long& index) const;
 };
 
 class c_halo4_sound_resource_definition :

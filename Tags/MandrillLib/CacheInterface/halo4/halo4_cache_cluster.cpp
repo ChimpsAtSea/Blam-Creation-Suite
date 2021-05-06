@@ -10,6 +10,16 @@ c_halo4_cache_cluster::c_halo4_cache_cluster(c_halo4_cache_file_reader** cache_r
 
 	s_cache_file_buffer_info temp_info;
 
+	
+
+	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	{
+		c_halo4_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
+		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
+
+		cache_reader->associate_cache_cluster(*this);
+	}
+
 	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo4_cache_file_reader* cache_reader = cache_readers[cache_reader_index];

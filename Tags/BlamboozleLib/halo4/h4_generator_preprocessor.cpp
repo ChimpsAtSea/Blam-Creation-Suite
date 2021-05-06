@@ -236,7 +236,7 @@ bool c_h4_tag_enum_container::operator ==(const c_h4_tag_enum_container& contain
 	return &tag_enum == &container.tag_enum;
 }
 
-#include <MandrillLib\CacheInterface\tag_group_names.inl>
+#include "tag_group_names.inl"
 
 c_h4_tag_reference_container::c_h4_tag_reference_container(c_h4_tag_reference& tag_reference, c_h4_generator_preprocessor& preprocessor) :
 	tag_reference(tag_reference),

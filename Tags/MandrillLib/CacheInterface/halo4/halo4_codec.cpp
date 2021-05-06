@@ -6,6 +6,29 @@ blofeld::s_tag_persistent_identifier k_xdkcompress_codec_identifier = { 0x7EDA2A
 
 int codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
 {
+	// xbox 360 sdk
+	/*{
+		XMEMDECOMPRESSION_CONTEXT context = NULL;
+		HRESULT hr;
+		if (FAILED(hr = XMemCreateDecompressionContext(XMEMCODEC_DEFAULT, NULL, 0, &context)))
+		{
+			return -1;
+		}
+
+		SIZE_T destination_size = uncompressed_buffer_size;
+		hr = XMemDecompress(context, uncompressed_buffer, &destination_size, compressed_buffer, compressed_buffer_size);
+
+		XMemDestroyDecompressionContext(context);
+
+		if (FAILED(hr))
+		{
+			return -1;
+		}
+
+		return static_cast<long>(destination_size);
+	}*/
+
+
 	// #TODO: safety, check uncompressed_buffer_size and ensure not doing nasty things
 
 	signed __int3264 remaining_input_bytes = 0;

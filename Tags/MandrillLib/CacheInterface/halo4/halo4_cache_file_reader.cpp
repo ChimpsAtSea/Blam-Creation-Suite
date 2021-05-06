@@ -132,6 +132,16 @@ BCS_RESULT c_halo4_cache_file_reader::get_buffers(s_cache_file_buffers_info& buf
 
 BCS_RESULT c_halo4_cache_file_reader::associate_cache_cluster(c_cache_cluster& target_cache_cluster)
 {
+	if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(&target_cache_cluster))
+	{
+		return associate_cache_cluster(*halo4_cache_cluster);
+	}
+
+	return BCS_E_FAIL;
+}
+
+BCS_RESULT c_halo4_cache_file_reader::associate_cache_cluster(c_halo4_cache_cluster& target_cache_cluster)
+{
 	if (cache_cluster == nullptr)
 	{
 		cache_cluster = &target_cache_cluster;

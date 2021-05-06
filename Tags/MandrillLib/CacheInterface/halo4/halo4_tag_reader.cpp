@@ -552,6 +552,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 			debug_point;
 
 			s_resource_priority_datas resource_priority_datas = {};
+			resource_priority_datas.resource_index = resource_index;
 			resource_priority_datas.naive_resource_control_data = naive_resource_control_data + priority_level_data.naive_data_offset;
 			resource_priority_datas.instance_info = instance_info;
 			resource_priority_datas.flags = resource.flags;
@@ -725,6 +726,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 
 	c_typed_tag_block<s_cache_file_resource_page_struct> file_pages_block;
 	const s_cache_file_resource_page_struct* file_pages;
+	s_cache_file_buffer_info buffer_info;
 	{
 		const s_halo4_tag_global_instance_info* resource_gestalt_global_instance_info;
 		if (BCS_FAILED(rs = get_global_instance_info(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG, resource_gestalt_global_instance_info)))
@@ -746,10 +748,20 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 			byteswap(resource_layout_table);
 
 			file_pages_block = resource_layout_table.file_pages_block;
+
+			if (BCS_FAILED(rs = cache_reader.get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info)))
+			{
+				return rs;
+			}
 		}
 		else
 		{
 			file_pages_block = resource_gestalt.file_pages_block;
+
+			if (BCS_FAILED(rs = cache_reader.get_buffer(_cache_file_buffer, buffer_info)))
+			{
+				return rs;
+			}
 		}
 
 		if (BCS_FAILED(rs = page_offset_to_pointer(file_pages_block.address, *reinterpret_cast<const void**>(&file_pages))))
@@ -757,12 +769,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 			return rs;
 		}
 	}
-
-	s_cache_file_buffer_info buffer_info;
-	if (BCS_FAILED(rs = cache_reader.get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info)))
-	{
-		return rs;
-	}
+	
 	
 	const s_cache_file_resource_page_struct* const file_pages_end = file_pages + file_pages_block.count;
 	for (const s_cache_file_resource_page_struct* _current_file_page = file_pages; _current_file_page < file_pages_end; _current_file_page++)
@@ -794,12 +801,15 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 			return BCS_E_NOT_IMPLEMENTED; // unknown compression codec
 		}
 
+		//c_console::write_line("start");
 		for (c_halo4_resource_container* resource_container : resource_containers)
 		{
 			unsigned long page_index = static_cast<unsigned long>(_current_file_page - file_pages);
 
+			//c_console::write_line("begin %s", resource_container->instance_info.instance_name);
 			resource_container->digest_page(cache_reader, page_index, page_data);
 		}
+		//c_console::write_line("end");
 
 		delete page_data;
 	}

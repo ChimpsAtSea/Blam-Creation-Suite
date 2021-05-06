@@ -134,39 +134,161 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 	return false;
 }
 
-bool filesystem_write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
+bool filesystem_create_directory_recursive(const wchar_t* path, bool is_filepath)
 {
-	DEBUG_ASSERT(!IsBadReadPtr(buffer, 1));
-	ASSERT(filepath != nullptr);
-	if (buffer_size == 0) return false;
-	ASSERT(buffer != nullptr);
+	HRESULT error;
 
-	char directory_buffer[MAX_PATH + 1];
-	GetFullPathNameA(filepath, MAX_PATH, directory_buffer, NULL);
-	PathRemoveFileSpecA(directory_buffer);
-	bool path_file_exists_result = PathFileExistsA(directory_buffer);
-	if (!path_file_exists_result)
+	wchar_t directory_buffer[MAX_PATH + 1];
+	//strncpy(directory_buffer, filepath, MAX_PATH + 1);
+	GetFullPathNameW(path, MAX_PATH + 1, directory_buffer, NULL);
+	if (is_filepath)
 	{
-		SHCreateDirectoryExA(NULL, directory_buffer, NULL);
+		PathRemoveFileSpecW(directory_buffer);
 	}
 
-	FILE* file_handle = fopen(filepath, "wb");
-	if (file_handle)
+	if (CreateDirectoryW(directory_buffer, NULL) == FALSE && (error = GetLastError()) != ERROR_ALREADY_EXISTS)
 	{
-		fseek(file_handle, 0, SEEK_SET);
+		wchar_t folder_buffer[MAX_PATH + 1];
+		wchar_t* folder_stack[128];
+		wchar_t* folder_buffer_pos = folder_buffer + _countof(folder_buffer);
+		wchar_t** folder_stack_pos = folder_stack;
 
-		size_t bytes_written = 0;
-		while (bytes_written < buffer_size)
+		wchar_t* folder_path = nullptr;
+		do
 		{
-			bytes_written += fwrite(reinterpret_cast<const char*>(buffer) + bytes_written, 1, buffer_size - bytes_written, file_handle);
+			wchar_t folder_buffer[MAX_PATH + 1];
+			wcscpy(folder_buffer, directory_buffer);
+
+			BOOL path_remove_file_spec_result = PathRemoveFileSpecW(directory_buffer);
+
+			if (*folder_buffer != 0)
+			{
+				PathStripPathW(folder_buffer);
+				size_t length = wcslen(folder_buffer);
+				//if (path_remove_file_spec_result == FALSE)
+				//{
+				//	// this indicates a drive letter
+				//	DEBUG_ASSERT(length > 0);
+				//	folder_buffer[length - 1] = 0; // remove drive backslash
+				//}
+				//else
+				//{
+				//	length++; // null terminator
+				//}
+				if (path_remove_file_spec_result != FALSE)
+				{
+					// indicates not hard drive letter
+					length++; // null terminator
+				}
+				folder_buffer_pos -= length;
+				(*folder_stack_pos++) = folder_buffer_pos;
+				memcpy(folder_buffer_pos, folder_buffer, length * sizeof(wchar_t));
+			}
+
+			if (path_remove_file_spec_result == FALSE)
+			{
+				folder_path = folder_buffer_pos;
+				if (*folder_buffer != 0)
+				{
+					// indicates hard drive letter
+					folder_stack_pos--; // skip hard drive
+				}
+				break;
+			}
+
+			debug_point;
+		} while (true);
+
+		while (folder_stack_pos-- > folder_stack)
+		{
+			if (CreateDirectoryW(folder_path, NULL) == FALSE && (error = GetLastError()) != ERROR_ALREADY_EXISTS)
+			{
+				return false;
+			}
+
+			if (folder_stack_pos > folder_stack)
+			{
+				wchar_t* next_folder = folder_stack_pos[-1];
+				wchar_t& end_character = next_folder[-1];
+				end_character = '\\';
+			}
+
+			debug_point;
+		}
+		if (FAILED(error))
+		{
+			return false; // error occured
 		}
 
-		fflush(file_handle);
-		fclose(file_handle);
-
-		return true;
+		debug_point;
 	}
-	return false;
+
+	return true;
+}
+
+bool filesystem_create_directory_recursive(const char* path, bool is_filepath)
+{
+	size_t buffer_length = strlen(path);
+	wchar_t* buffer = new(alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
+	mbstowcs(buffer, path, buffer_length + 1);
+
+	return filesystem_create_directory_recursive(buffer, is_filepath);
+}
+
+bool filesystem_write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
+{
+	if (!filesystem_create_directory_recursive(filepath, true))
+	{
+		return false;
+	}
+
+	HRESULT error;
+	HANDLE file_handle = CreateFileA(filepath, GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (file_handle == INVALID_HANDLE_VALUE)
+	{
+		error = GetLastError();
+		return false;
+	}
+
+	DWORD bytes_written = 0;
+	BOOL write_file_result = WriteFile(file_handle, buffer, buffer_size, &bytes_written, NULL);
+	ASSERT(bytes_written == buffer_size);
+
+	BOOL close_handle_result = CloseHandle(file_handle);
+	DEBUG_ASSERT(close_handle_result != FALSE);
+	return true;
+
+	//DEBUG_ASSERT(!IsBadReadPtr(buffer, 1));
+	//ASSERT(filepath != nullptr);
+	//if (buffer_size == 0) return false;
+	//ASSERT(buffer != nullptr);
+
+	//char directory_buffer[MAX_PATH + 1];
+	//GetFullPathNameA(filepath, MAX_PATH, directory_buffer, NULL);
+	//PathRemoveFileSpecA(directory_buffer);
+	//bool path_file_exists_result = PathFileExistsA(directory_buffer);
+	//if (!path_file_exists_result)
+	//{
+	//	SHCreateDirectoryExA(NULL, directory_buffer, NULL);
+	//}
+
+	//FILE* file_handle = fopen(filepath, "wb");
+	//if (file_handle)
+	//{
+	//	fseek(file_handle, 0, SEEK_SET);
+
+	//	size_t bytes_written = 0;
+	//	while (bytes_written < buffer_size)
+	//	{
+	//		bytes_written += fwrite(reinterpret_cast<const char*>(buffer) + bytes_written, 1, buffer_size - bytes_written, file_handle);
+	//	}
+
+	//	fflush(file_handle);
+	//	fclose(file_handle);
+
+	//	return true;
+	//}
+	//return false;
 }
 
 bool filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size)
