@@ -18,11 +18,11 @@ const char* GetDetourResultStr(LONG detourAttachResult)
 	case ERROR_INVALID_BLOCK:
 		return "ERROR_INVALID_BLOCK";
 	case ERROR_INVALID_HANDLE:
-		return "ERROR_INVALID_BLOCK";
+		return "ERROR_INVALID_HANDLE";
 	case ERROR_INVALID_OPERATION:
-		return "ERROR_INVALID_BLOCK";
+		return "ERROR_INVALID_OPERATION";
 	case ERROR_NOT_ENOUGH_MEMORY:
-		return "ERROR_INVALID_BLOCK";
+		return "ERROR_NOT_ENOUGH_MEMORY";
 	case NO_ERROR:
 		return "NO_ERROR";
 	default:

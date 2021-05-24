@@ -52,7 +52,7 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_network_sendto_handler,
 	__game_engine_virtual_function_network_recvfrom_handler,
 	__game_engine_virtual_function_function40,
-	__game_engine_virtual_function_function41,
+	__game_engine_virtual_function_telnet_console_print,
 	__game_engine_virtual_function_function42,
 	__game_engine_virtual_function_firefight_new_handler,
 	__game_engine_virtual_function_function44,
@@ -316,7 +316,7 @@ public:
 	/* 38 */ virtual __int64 __fastcall network_sendto_handler(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4);
 	/* 39 */ virtual __int64 __fastcall network_recvfrom_handler(char* buffer, uint32_t buffer_size, __int64, s_transport_address* pTransportAddress);
 	/* 40 */ virtual char* __fastcall function40(unsigned int);
-	/* 41 */ virtual int __fastcall function41(BYTE* buffer);
+	/* 41 */ virtual int __fastcall telnet_console_print(const char* buffer);
 	/* 42 */ virtual bool __fastcall function42(signed int, __int64, __int64);
 	/* 43 */ virtual void __fastcall firefight_new_handler(__int64, float);
 	/* 44 */ virtual BOOL __fastcall function44(__int64, __int64);

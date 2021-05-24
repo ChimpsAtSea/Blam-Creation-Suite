@@ -128,10 +128,15 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 	// Find the function address
 	HMODULE hModule = GetModuleHandleA(pModuleName);
 	ASSERT(hModule != NULL);
-	FARPROC RegisterClassExAProc = GetProcAddress(hModule, pProcedureName);
-	ASSERT(RegisterClassExAProc != NULL);
+	FARPROC Procedure = GetProcAddress(hModule, pProcedureName);
+	ASSERT(Procedure != NULL);
 
-	rOriginal = (Tb)RegisterClassExAProc;
+	if (rOriginal)
+	{
+		c_console::write_line_verbose("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, "ERROR_HOOK_ALREADY_ACTIVE");
+		return;
+	}
+	rOriginal = (Tb)Procedure;
 
 	if (hook)
 	{
