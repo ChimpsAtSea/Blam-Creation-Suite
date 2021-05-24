@@ -13,7 +13,7 @@ void load_map(const char* scenario_path, int scenario_type, int game_engine_vari
 	uintptr_t g_game_options_address;
 	uintptr_t main_game_change_immediate_address;
 	
-	s_engine_platform_build engine_platform_build = { e_engine_type::_engine_type_eldorado, _platform_type_pc_legacy, c_eldorado_game_host::get_build() };
+	s_engine_platform_build engine_platform_build = { e_engine_type::_engine_type_eldorado, _platform_type_pc_32bit, c_eldorado_game_host::get_build() };
 
 	switch (engine_platform_build.build)
 	{

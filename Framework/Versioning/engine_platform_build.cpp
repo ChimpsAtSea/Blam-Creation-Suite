@@ -32,6 +32,7 @@ static BCS_RESULT get_engine_type_string_impl(e_engine_type engine_type, e_engin
 		engine_type_type_string_pair(_engine_type_not_set, "Not Set", nullptr, nullptr);
 		engine_type_type_string_pair(_engine_type_mcc, "Master Chief Collection", "mcc", "mcc");
 		engine_type_type_string_pair(_engine_type_halo1, "Halo 1", "halo1", "halo1");
+		engine_type_type_string_pair(_engine_type_stubbs, "Stubbs the Zombie", "stubbs", "stubbs");
 		engine_type_type_string_pair(_engine_type_halo2, "Halo 2", "halo2", "halo2");
 		engine_type_type_string_pair(_engine_type_halo3, "Halo 3", "halo3", "halo3");
 		engine_type_type_string_pair(_engine_type_halo3odst, "Halo 3: ODST", "halo3odst", "halo3odst");
@@ -80,7 +81,7 @@ static BCS_RESULT get_platform_string_impl(e_platform_type platform_type, bool p
 		platform_type_string_pair(_platform_type_xbox_360, "Xbox 360");
 		platform_type_string_pair(_platform_type_xbox_one, "Xbox One");
 		platform_type_string_pair(_platform_type_pc, "PC");
-		platform_type_string_pair(_platform_type_pc_legacy, "PC (Legacy)");
+		platform_type_string_pair(_platform_type_pc_32bit, "PC (32bit)");
 	}
 #undef platform_type_string_pair
 
@@ -104,7 +105,7 @@ BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* po
 	switch (platform_type)
 	{
 	case _platform_type_xbox:
-	case _platform_type_pc_legacy:
+	case _platform_type_pc_32bit:
 	case _platform_type_xbox_360:
 		*pointer_size = 4;
 		return BCS_S_OK;

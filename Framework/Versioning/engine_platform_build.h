@@ -7,6 +7,7 @@ enum e_engine_type : uint8_t
 	_engine_type_not_set,
 	_engine_type_mcc,
 	_engine_type_halo1,
+	_engine_type_stubbs,
 	_engine_type_halo2,
 	_engine_type_halo3,
 	_engine_type_halo3odst,
@@ -25,8 +26,8 @@ enum e_platform_type : uint8_t
 	_platform_type_xbox,
 	_platform_type_xbox_360,
 	_platform_type_xbox_one,
+	_platform_type_pc_32bit,
 	_platform_type_pc,
-	_platform_type_pc_legacy,
 	k_number_of_platform_types
 };
 

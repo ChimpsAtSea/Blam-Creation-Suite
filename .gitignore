@@ -401,9 +401,12 @@ Tags/TagReflection/halo3_virtual.h
 imgui.ini
 *.dmp
 *Settings.ini
+
 Tags/HighLevel/high_level_*/generated/*
 Tags/HighLevel/high_level_*/generated/*
+
 Tags/LowLevel/low_level_*/*.enum.h
+
 Tags/LowLevel/low_level_groundhog/groundhog.h
 Tags/LowLevel/low_level_halo1/halo1.h
 Tags/LowLevel/low_level_halo2/halo2.h
@@ -412,6 +415,8 @@ Tags/LowLevel/low_level_halo3odst/halo3odst.h
 Tags/LowLevel/low_level_halo4/halo4.h
 Tags/LowLevel/low_level_haloreach/haloreach.h
 Tags/LowLevel/low_level_xbox360_gen3/xbox360_gen3.h
+Tags/LowLevel/low_level_stubbs/stubbs.h
+
 Tags/LowLevel/low_level_groundhog/groundhog.cpp
 Tags/LowLevel/low_level_halo1/halo1.cpp
 Tags/LowLevel/low_level_halo2/halo2.cpp
@@ -420,5 +425,7 @@ Tags/LowLevel/low_level_halo3odst/halo3odst.cpp
 Tags/LowLevel/low_level_halo4/halo4.cpp
 Tags/LowLevel/low_level_haloreach/haloreach.cpp
 Tags/LowLevel/low_level_xbox360_gen3/xbox360_gen3.cpp
+Tags/LowLevel/low_level_stubbs/stubbs.cpp
+
 Tags/Virtual/virtual_*/*_virtual.h
 Tags/Virtual/virtual_*/*_virtual.cpp

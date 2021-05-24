@@ -13,14 +13,15 @@ int create_source_file()
 
 	s_engine_platform_build const engine_and_platform_types[] =
 	{
-		{_engine_type_halo1,				_platform_type_pc },
-		{_engine_type_halo2,				_platform_type_pc },
-		{_engine_type_halo3,				_platform_type_pc },
-		{_engine_type_halo3odst,			_platform_type_pc },
-		{_engine_type_haloreach,			_platform_type_pc },
-		{_engine_type_halo4,				_platform_type_pc },
-		{_engine_type_groundhog,			_platform_type_pc },
-		{_engine_type_gen3_xbox360,			_platform_type_xbox_360 },
+		{ _engine_type_halo1,				_platform_type_pc },
+		{ _engine_type_stubbs,				_platform_type_pc },
+		{ _engine_type_halo2,				_platform_type_pc },
+		{ _engine_type_halo3,				_platform_type_pc },
+		{ _engine_type_halo3odst,			_platform_type_pc },
+		{ _engine_type_haloreach,			_platform_type_pc },
+		{ _engine_type_halo4,				_platform_type_pc },
+		{ _engine_type_groundhog,			_platform_type_pc },
+		{ _engine_type_gen3_xbox360,		_platform_type_xbox_360 },
 	};
 
 	c_console::write_line_verbose("Generating tag code");
