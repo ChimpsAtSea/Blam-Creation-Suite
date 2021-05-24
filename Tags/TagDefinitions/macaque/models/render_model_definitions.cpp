@@ -6,6 +6,42 @@ namespace blofeld
 
 namespace macaque
 {
+	V5_TAG_STRUCT(render_model_unknown_sky_struct2)
+	{
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_terminator }
+	};
+
+	V5_TAG_STRUCT(render_model_unknown_struct)
+	{
+		{ _field_legacy, _field_block, "sky light unknown", &g_null_block },
+		{ _field_legacy, _field_struct, "sh sky red", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_legacy, _field_struct, "sh sky green", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_legacy, _field_struct, "sh sky blue", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_legacy, _field_struct, "sh sky alpha", &render_model_unknown_sky_struct2_struct_definition },
+		{ _field_legacy, _field_real_point_3d, "sky light levels#Negative for the opposite direction" },
+		{ _field_legacy, _field_real_rgb_color, "sky light color" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" },
+		{ _field_legacy, _field_real, "unknown" }, // #TODO: Test these values
+		{ _field_legacy, _field_terminator }
+	};
 
 	TAG_GROUP(
 		imposter_model_group,
@@ -45,13 +81,20 @@ namespace macaque
 		{ _field_real, "don't draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry", FIELD_FLAG_READ_ONLY, &global_render_geometry_struct },
 		{ _field_block, "node map mapping", FIELD_FLAG_READ_ONLY, &instance_node_map_mapping_block, _field_id_slap },
+
+		{ _field_legacy, _field_version_less_or_equal , _engine_type_haloreach },
+		{ _field_legacy, _field_struct, "unknown", &render_model_unknown_struct_struct_definition },
+
 		{ _field_block, "volume samples", &volume_samples_block, _field_id_slap },
 		{ _field_block, "runtime node orientations", FIELD_FLAG_UNKNOWN0, &default_node_orientations_block, _field_id_slap },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
 		{ _field_block, "bone groups", &RenderModelBoneGroupBlock_block, _field_id_slap },
 		FIELD_EXPLANATION("Static Lightmap", nullptr, FIELD_FLAG_NONE, ""),
 		{ _field_tag_reference, "structure meta data", FIELD_FLAG_READ_ONLY, &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_reference },
 		{ _field_tag_reference, "forge lightmap atlases", &RenderModelLightmapAtlasReference },
+
 		{ _field_terminator }
 	};
 
@@ -93,7 +136,13 @@ namespace macaque
 	{
 		{ _field_string_id, "name" },
 		{ _field_short_integer, "base node index" },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_short_integer, "unknown" },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		FIELD_PAD("WAXI", nullptr, FIELD_FLAG_NONE, 2),
+
 		{ _field_terminator }
 	};
 
@@ -125,7 +174,10 @@ namespace macaque
 		{ _field_string_id, "name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
 		{ _field_short_integer, "mesh index", FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "mesh count", FIELD_FLAG_READ_ONLY },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_string_id, "clone name", FIELD_FLAG_READ_ONLY },
+
 		{ _field_long_flags, "instance mask 0-31", FIELD_FLAG_READ_ONLY, &render_model_instance_bitfield_flags_definition },
 		{ _field_long_flags, "instance mask 32-63", FIELD_FLAG_READ_ONLY, &render_model_instance_bitfield_flags_definition },
 		{ _field_long_flags, "instance mask 64-95", FIELD_FLAG_READ_ONLY, &render_model_instance_bitfield_flags_definition },
@@ -150,12 +202,21 @@ namespace macaque
 		FIELD_PAD("RELFLFLLE", nullptr, FIELD_FLAG_NONE, 2),
 		{ _field_real_point_3d, "default translation", FIELD_FLAG_READ_ONLY },
 		{ _field_real_quaternion, "default rotation", FIELD_FLAG_READ_ONLY },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_real, "scale", FIELD_FLAG_READ_ONLY },	// yes its read only, dont question it dumdum
+
 		{ _field_real_vector_3d, "inverse forward", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "inverse left", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "inverse up", FIELD_FLAG_READ_ONLY },
 		{ _field_real_point_3d, "inverse position", FIELD_FLAG_READ_ONLY },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		{ _field_real, "inverse scale", FIELD_FLAG_READ_ONLY },
+
 		{ _field_real, "distance from parent", FIELD_FLAG_READ_ONLY },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
 		FIELD_CUSTOM("Procedural Joint", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_char_enum, "procedure", &procedure_enum_definition },
 		{ _field_char_enum, "procedure axis", &procedure_axis_enum_definition },
@@ -165,6 +226,7 @@ namespace macaque
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+
 		{ _field_terminator }
 	};
 

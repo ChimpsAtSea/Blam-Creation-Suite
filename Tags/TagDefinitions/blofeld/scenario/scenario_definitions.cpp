@@ -225,8 +225,8 @@ namespace blofeld
 		{ _field_legacy, _field_custom },
 		{ _field_legacy, _field_custom, "floating shadows" },
 		{ _field_legacy, _field_struct, "floating shadow settings", &scenarioFloatingShadowSettingsStruct_struct_definition },
-
 		{ _field_legacy, _field_custom },
+
 		{ _field_legacy, _field_explanation, "Clones", "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n" },
 		{ _field_legacy, _field_long_block_flags, "cloned bsp flags" },
 		{ _field_legacy, _field_struct, "lightmap setting{lightmap resolution buckets}", &scenario_lightmap_setting_struct_struct_definition },
@@ -371,7 +371,6 @@ namespace blofeld
 		{ _field_legacy, _field_long_block_index, "audibility index*!" },
 		{ _field_legacy, _field_block, "planar fog visibility*!", &planar_fog_zone_set_visibility_definition_block_block },
 
-
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 8 },
 		{ _field_legacy, _field_block, "budget overrides", &scenario_zone_set_budget_override_block_block },
 		{ _field_legacy, _field_tag_reference, "streaming_reference_tag", &streamingzoneset_reference },
@@ -492,8 +491,11 @@ namespace blofeld
 	{
 		{ _field_legacy, _field_real_point_3d, "position" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		//{ _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition },
+		//replace by the following:
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 
 		{ _field_legacy, _field_angle, "facing:degrees" },
 		{ _field_legacy, _field_angle, "pitch:degrees" },
@@ -1362,8 +1364,10 @@ namespace blofeld
 		{ _field_legacy, _field_real_vector_3d, "up!" },
 		{ _field_legacy, _field_real_point_3d, "position" },
 
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
+		// { _field_legacy, _field_struct, "scenario_bsp_nav", &scenario_bsp_nav_struct_definition }, // #CUSTOM
+		{ _field_custom_long_block_index, "packedKeyOffaceref" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref" },
 
 		{ _field_legacy, _field_real_point_3d, "extents" },
 		{ _field_legacy, _field_real, "z sink#this is only valid for sector type trigger volumes" },

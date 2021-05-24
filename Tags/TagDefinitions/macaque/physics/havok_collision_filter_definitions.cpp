@@ -59,13 +59,17 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_WRITEABLE | TAG_MEMORY_USAGE_NON_ALIASED),
 		HAVOK_GROUP_FILTER_FILTER_STRUCT_ID)
 	{
-		{ _field_long_integer, "hkReferencedObject vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_pointer, "hkReferencedObject vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
-		{ _field_long_integer, "hkpCollidableCollidableFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		{ _field_long_integer, "hkpShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		{ _field_long_integer, "hkpRayShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
-		{ _field_long_integer, "hkpRayCollidableFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_pad, "8byte struct alignment", 4 },
+
+		{ _field_pointer, "hkpCollidableCollidableFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_pointer, "hkpShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_pointer, "hkpRayShapeCollectionFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
+		{ _field_pointer, "hkpRayCollidableFilter vtable", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		FIELD_PAD("m_prepad[2]", nullptr, FIELD_FLAG_NONE, 8),
 		{ _field_long_integer, "m_type", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("m_postpad[3]", nullptr, FIELD_FLAG_NONE, 12),
@@ -102,7 +106,10 @@ namespace macaque
 		{ _field_long_integer, "m_collisionLookupTable29", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "m_collisionLookupTable30", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_long_integer, "m_collisionLookupTable31", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
 		FIELD_PAD("16 byte align pad", nullptr, FIELD_FLAG_NONE, 12),
+
 		{ _field_real_vector_3d, "m_pad256[0]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real, "havok w m_pad256[0]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_vector_3d, "m_pad256[1]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
@@ -111,6 +118,10 @@ namespace macaque
 		{ _field_real, "havok w m_pad256[2]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real_vector_3d, "m_pad256[3]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 		{ _field_real, "havok w m_pad256[3]", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
+
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_pad, "8byte struct alignment", 4 },
+
 		{ _field_terminator }
 	};
 
