@@ -141,7 +141,7 @@ h_group* c_high_level_cache_cluster_transplant::init_tag_group_hierarchy_impl(s_
 		return high_level_group;
 	}
 
-	const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_group_tag_by_group_tag(tag_group_hierarchy.group_tag);
+	const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_group_tag_by_group_tag(cache_cluster.engine_platform_build.engine_type, tag_group_hierarchy.group_tag);
 
 	if (blofeld_tag_group != nullptr)
 	{

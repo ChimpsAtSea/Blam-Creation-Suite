@@ -116,7 +116,7 @@ void c_low_level_tag_source_generator::generate_header() const
 	stream << "\t{" << std::endl;
 	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
 
-	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		stream << "\t\t" << "struct s_" << struct_definition->name << std::endl;
 		stream << "\t\t" << "{" << std::endl;
@@ -264,7 +264,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
-								const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
+								const s_tag_group* tag_group = get_group_tag_by_group_tag(engine_platform_build.engine_type, group_tags[group_tag_index]);
 								ASSERT(tag_group != nullptr);
 								if (group_tag_index > 0)
 								{
@@ -422,7 +422,7 @@ void c_low_level_tag_source_generator::generate_source() const
 	stream << std::endl;
 	stream << std::endl;
 
-	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		stream << "template<> void byteswap<blofeld::" << namespace_name << "::s_" << struct_definition->name << ">(blofeld::" << namespace_name << "::s_" << struct_definition->name << "& value)" << std::endl;
 		stream << "{" << std::endl;
@@ -514,7 +514,7 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 	stream << "#pragma pack(push, 1)" << std::endl << std::endl;
 
 	std::map<std::string, int> string_list_value_unique_counter;
-	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions)
+	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions[engine_platform_build.engine_type])
 	{
 		string_list_value_unique_counter.clear();
 

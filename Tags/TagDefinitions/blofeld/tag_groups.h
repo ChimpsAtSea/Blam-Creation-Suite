@@ -298,8 +298,18 @@
 
 namespace blofeld
 {
-
-	extern BCSAPI const s_tag_group* tag_groups[];
+	extern BCSAPI const s_tag_group* tag_groups_halo1[];
+	extern BCSAPI const s_tag_group* tag_groups_stubbs[];
+	extern BCSAPI const s_tag_group* tag_groups_halo2[];
+	extern BCSAPI const s_tag_group* tag_groups_halo3[];
+	extern BCSAPI const s_tag_group* tag_groups_halo3odst[];
+	extern BCSAPI const s_tag_group* tag_groups_eldorado[];
+	extern BCSAPI const s_tag_group* tag_groups_haloreach[];
+	extern BCSAPI const s_tag_group* tag_groups_halo4[];
+	extern BCSAPI const s_tag_group* tag_groups_gen3_xbox360[];
+	extern BCSAPI const s_tag_group* tag_groups_groundhog[];
+		
+	extern BCSAPI const s_tag_group** tag_groups[k_number_of_engine_types];
 } // namespace blofeld
 
 

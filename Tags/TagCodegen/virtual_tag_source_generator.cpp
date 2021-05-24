@@ -31,7 +31,7 @@ void c_virtual_tag_source_generator::generate_header() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		stream << "\t\t" << "template<>" << std::endl;
 		stream << "\t\t" << "class v_tag_interface<blofeld::" << namespace_name << "::s_" << tag_struct_definition->name << "> : " << std::endl;
@@ -187,7 +187,7 @@ void c_virtual_tag_source_generator::generate_source() const
 	stream << "\t\t\t" << "switch (group_tag)" << std::endl;
 	stream << "\t\t\t" << "{" << std::endl;
 
-	for (const s_tag_group** tag_group = tag_groups; *tag_group; tag_group++)
+	for (const s_tag_group** tag_group = tag_groups[engine_platform_build.engine_type]; *tag_group; tag_group++)
 	{
 		c_fixed_string_128 tag_group_name = (*tag_group)->name;
 		tag_group_name += "_TAG";
@@ -211,7 +211,7 @@ void c_virtual_tag_source_generator::generate_source() const
 	stream << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		//hs << "\t\t" << "template<>" << std::endl;
 		//hs << "\t\t" << "class v_tag_interface<s_" << tag_struct_definition->name << "> : " << std::endl;

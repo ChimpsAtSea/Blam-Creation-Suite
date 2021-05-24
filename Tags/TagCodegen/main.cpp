@@ -4,11 +4,6 @@ const char* c_console::g_console_executable_name = "TagCodegen";
 
 int create_source_file()
 {
-	c_structure_relationship_node::create_structure_relationships();
-	c_structure_relationship_node::create_sorted_tag_struct_definitions();
-	c_structure_relationship_node::create_sorted_tag_enum_definitions();
-	c_structure_relationship_node::create_sorted_tag_block_definitions();
-	
 	int result = 0;
 
 	s_engine_platform_build const engine_and_platform_types[] =
@@ -31,7 +26,11 @@ int create_source_file()
 	tbb::task_group g;
 	for (s_engine_platform_build engine_platform_build : engine_and_platform_types)
 	{
-		
+		c_structure_relationship_node::create_structure_relationships(engine_platform_build);
+		c_structure_relationship_node::create_sorted_tag_struct_definitions(engine_platform_build);
+		c_structure_relationship_node::create_sorted_tag_enum_definitions(engine_platform_build);
+		c_structure_relationship_node::create_sorted_tag_block_definitions(engine_platform_build);
+
 		const char* engine_name;
 		ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
 

@@ -5,7 +5,7 @@ c_halo4_tag_group::c_halo4_tag_group(c_halo4_cache_cluster& cache_cluster, tag g
 	group_name(group_name),
 	cache_cluster(cache_cluster),
 	parent(parent),
-	blofeld_tag_group(blofeld::get_group_tag_by_group_tag(group_tag))
+	blofeld_tag_group(blofeld::get_group_tag_by_group_tag(cache_cluster.engine_platform_build.engine_type, group_tag))
 {
 
 }

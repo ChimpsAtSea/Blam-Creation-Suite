@@ -3667,5 +3667,35 @@
     <None Include="blamlib_string_parser.h.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="blofeld\tag_groups.stubbs.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.halo1.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.halo2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.halo3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.halo3odst.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.halo4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.haloreach.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.groundhog.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.gen3_xbox360.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.eldorado.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

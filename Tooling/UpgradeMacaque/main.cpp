@@ -99,7 +99,7 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd						/* [input] show state of window */
 )
 {
-	for (const blofeld::s_tag_group** current_blofeld_tag_group = blofeld::tag_groups; *current_blofeld_tag_group; current_blofeld_tag_group++)
+	for (const blofeld::s_tag_group** current_blofeld_tag_group = blofeld::tag_groups[_engine_type_gen3_xbox360]; *current_blofeld_tag_group; current_blofeld_tag_group++)
 	{
 		const blofeld::s_tag_group& blofeld_tag_group = **current_blofeld_tag_group;
 

@@ -10,6 +10,9 @@ namespace blofeld
 		t_iterate_structure_fields_callback* callback,
 		void* userdata)
 	{
+		callback(struct_definition, userdata);
+
+
 		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			const char* field_string = field_to_string(current_field->field_type);
@@ -21,57 +24,6 @@ namespace blofeld
 				current_field += field_skip_count;
 				continue;
 			}
-
-			if (recursive)
-			{
-				const s_tag_struct_definition* next_struct_definition = nullptr;
-				switch (current_field->field_type)
-				{
-				case _field_struct:
-				{
-					next_struct_definition = current_field->struct_definition;
-					break;
-				}
-				case _field_array:
-				{
-					next_struct_definition = &current_field->array_definition->struct_definition;
-					break;
-				}
-				case _field_block:
-					if (recursive_block)
-					{
-						next_struct_definition = &current_field->block_definition->struct_definition;
-						break;
-					}
-				}
-
-				if (next_struct_definition != nullptr)
-				{
-					iterate_structure_fields(
-						engine_platform_build,
-						*next_struct_definition,
-						recursive,
-						recursive_block,
-						callback,
-						userdata);
-				}
-			}
-		}
-	}
-
-	void iterate_structure_fields(
-		const s_tag_struct_definition& struct_definition,
-		bool recursive,
-		bool recursive_block,
-		t_iterate_structure_fields_callback* callback,
-		void* userdata)
-	{
-		callback(struct_definition, userdata);
-
-		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
-		{
-			const char* field_string = field_to_string(current_field->field_type);
-			const char* nice_field_string = field_string + 1;
 
 			if (recursive)
 			{
@@ -109,6 +61,7 @@ namespace blofeld
 				if (next_struct_definition != nullptr)
 				{
 					iterate_structure_fields(
+						engine_platform_build,
 						*next_struct_definition,
 						recursive,
 						recursive_block,
@@ -117,6 +70,16 @@ namespace blofeld
 				}
 			}
 		}
+	}
+
+	void iterate_structure_fields(
+		const s_tag_struct_definition& struct_definition,
+		bool recursive,
+		bool recursive_block,
+		t_iterate_structure_fields_callback* callback,
+		void* userdata)
+	{
+		iterate_structure_fields({}, struct_definition, recursive, recursive_block, callback, userdata);
 	}
 
 	enum e_validation_warnings
@@ -310,23 +273,27 @@ namespace blofeld
 		uint32_t validation_attempts = 0;
 		uint32_t successful_validation_attempts = 0;
 
-		for (const s_tag_struct_definition& struct_definition : c_reference_loop(blofeld::get_tag_struct_definitions()))
+		for (unsigned long engine_type_index = 0; engine_type_index < k_number_of_engine_types; engine_type_index++)
 		{
-			validation_attempts++;
-
-			e_validation_result block_failed_validation = _validation_result_ok;
-			const char* const block_name = struct_definition.name;
-
-			e_platform_type platform_type = _platform_type_pc;
-			calculate_struct_size({ _engine_type_not_set, _platform_type_pc, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
-
-			if (block_failed_validation == _validation_result_ok)
+			e_engine_type engine_type = static_cast<e_engine_type>(engine_type_index);
+			for (const s_tag_struct_definition& struct_definition : c_reference_loop(blofeld::get_tag_struct_definitions({ engine_type })))
 			{
-				successful_validation_attempts++;
-			}
-			else
-			{
-				any_block_failed_validation = true;
+				validation_attempts++;
+
+				e_validation_result block_failed_validation = _validation_result_ok;
+				const char* const block_name = struct_definition.name;
+
+				e_platform_type platform_type = _platform_type_pc;
+				calculate_struct_size({ engine_type, _platform_type_pc, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+
+				if (block_failed_validation == _validation_result_ok)
+				{
+					successful_validation_attempts++;
+				}
+				else
+				{
+					any_block_failed_validation = true;
+				}
 			}
 		}
 		float percentage = 100.0f * float(successful_validation_attempts) / float(validation_attempts);

@@ -2734,6 +2734,16 @@
     <None Include="blofeld\sound\looping_sound_definition.inl" />
     <None Include="blofeld\sound\looping_sound_detail_definition.inl" />
     <None Include="blofeld\sound\looping_sound_track_definition.inl" />
+    <None Include="blofeld\tag_groups.eldorado.inl" />
+    <None Include="blofeld\tag_groups.gen3_xbox360.inl" />
+    <None Include="blofeld\tag_groups.groundhog.inl" />
+    <None Include="blofeld\tag_groups.halo1.inl" />
+    <None Include="blofeld\tag_groups.halo2.inl" />
+    <None Include="blofeld\tag_groups.halo3.inl" />
+    <None Include="blofeld\tag_groups.halo3odst.inl" />
+    <None Include="blofeld\tag_groups.halo4.inl" />
+    <None Include="blofeld\tag_groups.haloreach.inl" />
+    <None Include="blofeld\tag_groups.stubbs.inl" />
     <None Include="macaque\sound\looping_sound_definition.inl" />
     <None Include="macaque\sound\looping_sound_detail_definition.inl" />
     <None Include="macaque\sound\looping_sound_track_definition.inl" />
