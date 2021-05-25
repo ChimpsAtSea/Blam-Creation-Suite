@@ -891,9 +891,7 @@ namespace macaque
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach }, //why?
 		FIELD_CUSTOM("custom ui", nullptr, FIELD_FLAG_NONE, _field_id_scenario_zone_set_index),
-
 		{ _field_tag_reference, "scenario", FIELD_FLAG_UNKNOWN0, &scenario_reference },
 		{ _field_long_integer, "zone set", FIELD_FLAG_UNKNOWN0 },
 		{ _field_terminator }

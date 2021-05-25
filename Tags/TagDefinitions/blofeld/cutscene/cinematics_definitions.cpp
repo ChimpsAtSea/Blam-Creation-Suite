@@ -485,10 +485,7 @@ namespace blofeld
 
 	V5_TAG_STRUCT(scenario_and_zone_set_struct)
 	{
-
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 1 }, //why?
 		{ _field_legacy, _field_custom, "custom ui" },
-
 		{ _field_legacy, _field_tag_reference, "scenario!", &scenario_reference },
 		{ _field_legacy, _field_long_integer, "zone set!" },
 		{ _field_legacy, _field_terminator }

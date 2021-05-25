@@ -232,7 +232,10 @@ void c_high_level_tag_source_generator::generate_header() const
 				continue;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->field_type == blofeld::_field_block,
+				&field_name_unique_counter);
 
 			if (!custom_structure_codegen(_custom_structure_codegen_high_level_header, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 			{
@@ -351,7 +354,10 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			continue;
 		}
 
-		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+			current_field->field_type == blofeld::_field_block,
+			&field_name_unique_counter);
 
 		if (!custom_structure_codegen(_custom_structure_codegen_high_level_ctor, stream, "\t\t\t\t", &field_formatter, struct_definition, *current_field, nullptr))
 		{
@@ -543,7 +549,10 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						continue;
 					}
 
-					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+						current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+						current_field->field_type == blofeld::_field_block,
+						&field_name_unique_counter);
 
 					if (!custom_structure_codegen(_custom_structure_codegen_high_level_field_impl, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 					{
@@ -904,7 +913,10 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 					continue;
 				}
 
-				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, &field_name_unique_counter);
+				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+					current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(), 
+					current_field->field_type == blofeld::_field_block, 
+					&field_name_unique_counter);
 
 				if (!custom_structure_codegen(_custom_structure_codegen_high_level_get_field_data_func, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
 				{

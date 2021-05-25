@@ -251,7 +251,7 @@ bool filesystem_write_file_from_memory(const char* filepath, const void* buffer,
 	}
 
 	DWORD bytes_written = 0;
-	BOOL write_file_result = WriteFile(file_handle, buffer, buffer_size, &bytes_written, NULL);
+	BOOL write_file_result = WriteFile(file_handle, buffer, static_cast<DWORD>(buffer_size), &bytes_written, NULL);
 	ASSERT(bytes_written == buffer_size);
 
 	BOOL close_handle_result = CloseHandle(file_handle);

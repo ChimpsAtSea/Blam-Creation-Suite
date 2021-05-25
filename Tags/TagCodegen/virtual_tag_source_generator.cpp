@@ -60,7 +60,10 @@ void c_virtual_tag_source_generator::generate_header() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->field_type == blofeld::_field_block,
+				field_name_unique_counter_ptr);
 
 			if (current_field->field_type > _field_type_non_standard)
 			{
@@ -240,7 +243,10 @@ void c_virtual_tag_source_generator::generate_source() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(current_field->name, current_field->field_type == blofeld::_field_block, field_name_unique_counter_ptr);
+			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->field_type == blofeld::_field_block,
+				field_name_unique_counter_ptr);
 
 			switch (current_field->field_type)
 			{
