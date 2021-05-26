@@ -1301,32 +1301,32 @@ namespace blofeld
 		{ scriptListBlock_block_struct, 4 }, // block
 		{ commandLinkBlock_block_struct, 20 }, // block
 		{ pathfinding_object_index_list_block_block_struct, 4 }, // block
-		{ scenario_scenery_block_block_struct, 384 }, // block
+		{ scenario_scenery_block_block_struct, 380 }, // block
 		{ scenario_scenery_palette_block_block_struct, 16 }, // block
-		{ scenario_biped_block_block_struct, 372 }, // block
+		{ scenario_biped_block_block_struct, 368 }, // block
 		{ scenario_biped_palette_block_block_struct, 16 }, // block
-		{ scenario_vehicle_block_block_struct, 388 }, // block
+		{ scenario_vehicle_block_block_struct, 384 }, // block
 		{ scenario_vehicle_palette_block_block_struct, 16 }, // block
-		{ scenario_equipment_block_block_struct, 344 }, // block
+		{ scenario_equipment_block_block_struct, 340 }, // block
 		{ scenario_equipment_palette_block_block_struct, 16 }, // block
-		{ scenario_weapon_block_block_struct, 372 }, // block
+		{ scenario_weapon_block_block_struct, 368 }, // block
 		{ scenario_weapon_palette_block_block_struct, 16 }, // block
 		{ device_group_block_block_struct, 44 }, // block
-		{ scenario_machine_block_block_struct, 392 }, // block
+		{ scenario_machine_block_block_struct, 388 }, // block
 		{ scenario_machine_palette_block_block_struct, 16 }, // block
-		{ scenario_terminal_block_block_struct, 196 }, // block
+		{ scenario_terminal_block_block_struct, 192 }, // block
 		{ scenario_terminal_palette_block_block_struct, 16 }, // block
-		{ scenario_control_block_block_struct, 384 }, // block
+		{ scenario_control_block_block_struct, 380 }, // block
 		{ scenario_control_palette_block_block_struct, 16 }, // block
-		{ ScenarioDispenserBlock_block_struct, 376 }, // block
+		{ ScenarioDispenserBlock_block_struct, 372 }, // block
 		{ ScenarioDispenserPaletteBlock_block_struct, 16 }, // block
-		{ scenario_sound_scenery_block_block_struct, 212 }, // block
+		{ scenario_sound_scenery_block_block_struct, 208 }, // block
 		{ scenario_sound_scenery_palette_block_block_struct, 16 }, // block
-		{ scenario_giant_block_block_struct, 208 }, // block
+		{ scenario_giant_block_block_struct, 204 }, // block
 		{ scenario_giant_palette_block_block_struct, 16 }, // block
-		{ scenario_effect_scenery_block_block_struct, 344 }, // block
+		{ scenario_effect_scenery_block_block_struct, 340 }, // block
 		{ scenario_effect_scenery_palette_block_block_struct, 16 }, // block
-		{ scenario_spawner_block_block_struct, 192 }, // block
+		{ scenario_spawner_block_block_struct, 188 }, // block
 		{ scenario_spawner_palette_block_block_struct, 16 }, // block
 		{ binkPaletteBlock_block_struct, 16 }, // block
 		{ scenarioAttachedEffectsBlock_block_struct, 20 }, // block
@@ -1426,14 +1426,14 @@ namespace blofeld
 		{ scenario_cluster_data_block_block_struct, 84 }, // block
 		{ object_salt_storage_array_struct_definition, 4 }, // array
 		{ scenario_spawn_data_block_block_struct, 4 }, // block
-		{ scenario_crate_block_block_struct, 380 }, // block
+		{ scenario_crate_block_block_struct, 376 }, // block
 		{ scenario_crate_palette_block_block_struct, 16 }, // block
 		{ flock_palette_block_block_struct, 16 }, // block
 		{ flock_source_block_block_struct, 40 }, // block
 		{ flock_destination_block_block_struct, 32 }, // block
 		{ flock_instance_block_block_struct, 84 }, // block
 		{ SoundSubtitleBlock_block_struct, 8 }, // block
-		{ scenario_creature_block_block_struct, 160 }, // block
+		{ scenario_creature_block_block_struct, 156 }, // block
 		{ scenario_creature_palette_block_block_struct, 16 }, // block
 		{ big_battle_creature_palette_block_block_struct, 16 }, // block
 		{ g_scenario_editor_folder_block_block_struct, 272 }, // block
