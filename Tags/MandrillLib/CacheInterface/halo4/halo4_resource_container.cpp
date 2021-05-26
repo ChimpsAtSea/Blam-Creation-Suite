@@ -3,84 +3,84 @@
 static constexpr s_halo4_tag_resource_info bitmap_texture_interop_resource =
 {
 	"bitmap_texture_interop_resource",
-	blofeld::macaque::bitmap_texture_interop_resource_struct,
+	blofeld::bitmap_texture_interop_resource_struct,
 	4,
 	{ 12, 12, 12 }
 };
 static constexpr s_halo4_tag_resource_info sound_resource_definition =
 {
 	"sound_resource_definition",
-	blofeld::macaque::sound_resource_definition_struct,
+	blofeld::sound_resource_definition_struct,
 	2,
 	{ /* #TODO: unknown */ }
 };
 static constexpr s_halo4_tag_resource_info facial_animation_resource_definition =
 {
 	"facial_animation_resource_definition",
-	blofeld::macaque::facial_animation_resource_definition_struct,
+	blofeld::facial_animation_resource_definition_struct,
 	0,
 	{ 0, 2, 0 }
 };
 static constexpr s_halo4_tag_resource_info model_animation_tag_resource =
 {
 	"model_animation_tag_resource",
-	blofeld::macaque::model_animation_tag_resource_struct,
+	blofeld::model_animation_tag_resource_struct,
 	16,
 	{ 4, 0, 0 }
 };
 static constexpr s_halo4_tag_resource_info render_geometry_api_resource_definition =
 {
 	"render_geometry_api_resource_definition",
-	blofeld::macaque::render_geometry_api_resource_definition_struct,
+	blofeld::render_geometry_api_resource_definition_struct,
 	0,
 	{ 2, 0, 0 }
 };
 static constexpr s_halo4_tag_resource_info bitmap_texture_interleaved_interop_resource =
 {
 	"bitmap_texture_interleaved_interop_resource",
-	blofeld::macaque::bitmap_texture_interleaved_interop_resource_struct,
+	blofeld::bitmap_texture_interleaved_interop_resource_struct,
 	4,
 	{ 12, 12, 0 }
 };
 static constexpr s_halo4_tag_resource_info structure_bsp_tag_resources =
 {
 	"structure_bsp_tag_resources",
-	blofeld::macaque::structure_bsp_tag_resources_struct,
+	blofeld::structure_bsp_tag_resources_struct,
 	0,
 	{ 7, 0, 0 }
 };
 static constexpr s_halo4_tag_resource_info structure_bsp_cache_file_tag_resources =
 {
 	"structure_bsp_cache_file_tag_resources",
-	blofeld::macaque::structure_bsp_cache_file_tag_resources_struct,
+	blofeld::structure_bsp_cache_file_tag_resources_struct,
 	0,
 	{ 4, 0, 0 }
 };
 static constexpr s_halo4_tag_resource_info bink_resource =
 {
 	"bink_resource",
-	blofeld::macaque::bink_resource_struct,
+	blofeld::bink_resource_struct,
 	0,
 	{ /* #TODO: unknown */ }
 };
 static constexpr s_halo4_tag_resource_info pca_coefficients_resource_definition =
 {
 	"pca_coefficients_resource_definition",
-	blofeld::macaque::pca_coefficients_resource_definition_struct,
+	blofeld::pca_coefficients_resource_definition_struct,
 	0,
 	{ /* #TODO: unknown */ }
 };
 static constexpr s_halo4_tag_resource_info stitchable_bitmap_texture_interop_resource =
 {
 	"stitchable_bitmap_texture_interop_resource",
-	blofeld::macaque::stitchable_bitmap_texture_interop_resource_struct,
+	blofeld::stitchable_bitmap_texture_interop_resource_struct,
 	12,
 	{ 12, 12, 12 }
 };
 static constexpr s_halo4_tag_resource_info collision_model_resource =
 {
 	"collision_model_resource",
-	blofeld::macaque::collision_model_resource_struct,
+	blofeld::collision_model_resource_struct,
 	0,
 	{ 7, 0, 0 }
 };
@@ -185,7 +185,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 {
 	using namespace blofeld::xbox360_gen3;
 
-	s_bitmap_block_struct bitmap = *static_cast<const s_bitmap_block_struct*>(instance_info.instance_data);
+	s_bitmap_block_struct_definition bitmap = *static_cast<const s_bitmap_block_struct_definition*>(instance_info.instance_data);
 	byteswap(bitmap);
 
 	BCS_RESULT rs = BCS_S_OK;
@@ -198,7 +198,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 	if(bitmap.hardware_textures_block.count > 0)
 	{
-		const s_bitmap_texture_interop_block_block_struct* hardware_textures_block_data;
+		const s_bitmap_texture_interop_block_struct_definition* hardware_textures_block_data;
 		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.hardware_textures_block.address, *reinterpret_cast<const void**>(&hardware_textures_block_data))))
 		{
 			return rs;
@@ -206,7 +206,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 		for (unsigned long hardware_texture_index = 0; hardware_texture_index < bitmap.hardware_textures_block.count; hardware_texture_index++)
 		{
-			s_bitmap_texture_interop_block_block_struct hardware_texture = hardware_textures_block_data[hardware_texture_index];
+			s_bitmap_texture_interop_block_struct_definition hardware_texture = hardware_textures_block_data[hardware_texture_index];
 			byteswap(hardware_texture);
 
 			unsigned long resource_index = hardware_texture.texture_resource.resource_handle.get_absolute_index();
@@ -221,7 +221,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 	if (bitmap.stitchable_hardware_textures_block.count > 0)
 	{
-		const s_stitchable_bitmap_texture_interop_block_block_struct* stitchable_hardware_textures_block_data;
+		const s_stitchable_bitmap_texture_interop_block_struct_definition* stitchable_hardware_textures_block_data;
 		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.stitchable_hardware_textures_block.address, *reinterpret_cast<const void**>(&stitchable_hardware_textures_block_data))))
 		{
 			return rs;
@@ -229,7 +229,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 		for (unsigned long stitchable_hardware_texture_index = 0; stitchable_hardware_texture_index < bitmap.stitchable_hardware_textures_block.count; stitchable_hardware_texture_index++)
 		{
-			s_stitchable_bitmap_texture_interop_block_block_struct stitchable_hardware_texture = stitchable_hardware_textures_block_data[stitchable_hardware_texture_index];
+			s_stitchable_bitmap_texture_interop_block_struct_definition stitchable_hardware_texture = stitchable_hardware_textures_block_data[stitchable_hardware_texture_index];
 			byteswap(stitchable_hardware_texture);
 
 			unsigned long resource_index = stitchable_hardware_texture.texture_resource.resource_handle.get_absolute_index();
@@ -244,7 +244,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 	if (bitmap.interleaved_hardware_textures_block.count > 0)
 	{
-		const s_bitmap_texture_interleaved_interop_block_block_struct* interleaved_hardware_textures_block_data;
+		const s_bitmap_texture_interleaved_interop_block_struct_definition* interleaved_hardware_textures_block_data;
 		if (BCS_FAILED(rs = tag_reader->page_offset_to_pointer(bitmap.interleaved_hardware_textures_block.address, *reinterpret_cast<const void**>(&interleaved_hardware_textures_block_data))))
 		{
 			return rs;
@@ -252,7 +252,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 
 		for (unsigned long interleaved_hardware_texture_index = 0; interleaved_hardware_texture_index < bitmap.interleaved_hardware_textures_block.count; interleaved_hardware_texture_index++)
 		{
-			s_bitmap_texture_interleaved_interop_block_block_struct interleaved_hardware_texture = interleaved_hardware_textures_block_data[interleaved_hardware_texture_index];
+			s_bitmap_texture_interleaved_interop_block_struct_definition interleaved_hardware_texture = interleaved_hardware_textures_block_data[interleaved_hardware_texture_index];
 			byteswap(interleaved_hardware_texture);
 
 			unsigned long resource_index = interleaved_hardware_texture.interleaved_texture_resource.resource_handle.get_absolute_index();

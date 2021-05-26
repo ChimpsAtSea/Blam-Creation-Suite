@@ -126,7 +126,7 @@ void c_tag_project_tab::render_tags_list_tree()
 		const uint32_t tag_interfaces_count = static_cast<uint32_t>(group->tags.size());
 
 		const char* group_name = group->tag_group.name;
-		const char* group_short_name = group->tag_group.group_tag_str.c_str();
+		const char* group_short_name = group->tag_group.group_tag_short_string.c_str();
 
 		bool display_group = tag_interfaces_count > 0;
 

@@ -387,19 +387,19 @@ void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
 
 		if (tag_struct_container->is_array)
 		{
-			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // array" << std::endl;
+			ss << "\t\t&blofeld::" << tag_struct_container->symbol_name << ", // array" << std::endl;
 		}
 		else if (tag_struct_container->is_tag_group)
 		{
-			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // group" << std::endl;
+			ss << "\t\t&blofeld::" << tag_struct_container->symbol_name << ", // group" << std::endl;
 		}
 		else if (tag_struct_container->is_block)
 		{
-			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << ", // block" << std::endl;
+			ss << "\t\t&blofeld::" << tag_struct_container->symbol_name << ", // block" << std::endl;
 		}
 		else
 		{
-			ss << "\t\t&blofeld::macaque::" << tag_struct_container->symbol_name << "," << std::endl;
+			ss << "\t\t&blofeld::" << tag_struct_container->symbol_name << "," << std::endl;
 		}
 
 	}
@@ -441,19 +441,19 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 
 		if (tag_block.is_array)
 		{
-			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // array" << std::endl;
+			ss << "\t\t{ blofeld::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // array" << std::endl;
 		}
 		else if (tag_struct_container.is_tag_group)
 		{
-			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // group" << std::endl;
+			ss << "\t\t{ blofeld::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // group" << std::endl;
 		}
 		else if (tag_block.is_block)
 		{
-			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // block" << std::endl;
+			ss << "\t\t{ blofeld::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }, // block" << std::endl;
 		}
 		else
 		{
-			ss << "\t\t{ blofeld::macaque::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }," << std::endl;
+			ss << "\t\t{ blofeld::" << tag_struct_container.symbol_name << ", " << tag_struct.size << " }," << std::endl;
 		}
 	}
 	ss << "\t};" << std::endl;

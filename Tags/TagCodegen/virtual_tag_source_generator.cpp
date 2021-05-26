@@ -61,7 +61,7 @@ void c_virtual_tag_source_generator::generate_header() const
 			}
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				field_name_unique_counter_ptr);
 
@@ -244,7 +244,7 @@ void c_virtual_tag_source_generator::generate_source() const
 			}
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				field_name_unique_counter_ptr);
 

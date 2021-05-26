@@ -1,33 +1,67 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block );
 
-	V5_TAG_BLOCK(single_achievement_restricted_level_block, s_single_achivement_restricted_level_definition::k_maximum_count)
+
+	TAG_GROUP(
+		achievements_group,
+		ACHIEVEMENTS_TAG,
+		nullptr,
+		INVALID_TAG,
+		achievements_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		achievements_block,
+		"achievements_block",
+		1,
+		achievements_struct_definition);
+
+	#define SINGLE_ACHIEVEMENT_DEFINITION_BLOCK_ID { 0x7549688B, 0xD7D74EDF, 0x92AC71EF, 0x573D94F5 }
+	TAG_BLOCK(
+		single_achievement_definition_block,
+		"single_achievement_definition_block",
+		k_maximum_achievements,
+		"s_single_achievement_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		SINGLE_ACHIEVEMENT_DEFINITION_BLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "level name^#Compared to map name in scenario" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
+		{ _field_char_enum, "type", &global_achievement_enum },
+		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
+		FIELD_PAD("VJNOSNJER", nullptr, FIELD_FLAG_NONE, 2),
+		{ _field_block, "restricted levels", &single_achievement_restricted_level_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
+	#define SINGLE_ACHIEVEMENT_RESTRICTED_LEVEL_BLOCK_ID { 0x55CEF750, 0x51414598, 0x966B2F43, 0x4A6C23E5 }
+	TAG_BLOCK(
+		single_achievement_restricted_level_block,
+		"single_achievement_restricted_level_block",
+		s_single_achivement_restricted_level_definition::k_maximum_count,
+		"s_single_achivement_restricted_level_definition",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SINGLE_ACHIEVEMENT_RESTRICTED_LEVEL_BLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "name^" },
-		{ _field_legacy, _field_char_enum, "type", &global_achievement_enum },
-		{ _field_legacy, _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
-		{ _field_legacy, _field_pad, "VJNOSNJER", 2 },
-		{ _field_legacy, _field_block, "restricted levels", &single_achievement_restricted_level_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "level name", "Compared to map name in scenario", FIELD_FLAG_INDEX },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
-
-	V5_TAG_STRUCT(achievements_struct_definition)
+	#define ACHIEVEMENTS_STRUCT_DEFINITION_ID { 0x21EA12AC, 0x29164C0A, 0x91892198, 0xD2724D89 }
+	TAG_STRUCT(
+		achievements_struct_definition,
+		"achievements_struct_definition",
+		"s_game_achievements_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		ACHIEVEMENTS_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_block, "achievement", &single_achievement_definition_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_block, "achievement", &single_achievement_definition_block },
+		{ _field_terminator }
 	};
 
 	STRINGS(global_achievement_enum)
@@ -80,71 +114,11 @@ namespace blofeld
 		"save_custom_gametype",
 		"save_screenshot",
 		"save_filmclip",
-		"upload_to_fileshare",
-		// From this point onwards, we don't know what the actual strings are. The following are based on the strings in the tags.
-		"dlc_achievement0",
-		"dlc_achievement1",
-		"dlc_achievement2",
-		"dlc_achievement3",
-		"dlc_achievement4",
-		"dlc_achievement5",
-		"dlc_achievement6",
-		"dlc_achievement7",
-		"dlc_achievement8",
-		"dlc_achievement9",
-		"unknown59",
-		"unknown60",
-		"unknown61",
-		"unknown62",
-		"unknown63",
-		"unknown64",
-		"unknown65",
-		"unknown66",
-		"unknown67",
-		"unknown68",
-		"unknown69",
-		"unknown70",
-		"unknown71",
-		"unknown72",
-		"unknown73",
-		"unknown74",
-		"unknown75",
-		"unknown76",
-		"unknown77",
-		"unknown78",
-		"unknown79",
-		"unknown80",
-		"unknown81",
-		"unknown82",
-		"unknown83",
-		"unknown84",
-		"unknown85",
-		"unknown86",
-		"unknown87",
-		"unknown88",
-		"reach_racer",
-		"dj_brute",
-		"siege_of_madrigal",
-		"fly_pelican_phantom",
-		"club_errera_reference",
-		"moa_burgers",
-		"secret_balcony",
-		"teddy_bear",
-		"hidden_banshees",
-		"tribute_room",
-		"complete_firefight_set",
-		"skullamanjaro_matchmade",
-		"bob_kill",
-		"unknown102",
-		"unknown103",
-		"unknown104",
-		"unknown105",
-		"unknown106",
-		"unknown107",
-		"unknown108",
-		"bxr_mining",
+		"upload_to_fileshare"
 	};
 	STRING_LIST(global_achievement_enum, global_achievement_enum_strings, _countof(global_achievement_enum_strings));
+
+
 
 } // namespace blofeld
 

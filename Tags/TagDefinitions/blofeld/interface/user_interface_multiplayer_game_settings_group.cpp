@@ -1,88 +1,170 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_GROUP_FROM_BLOCK(multiplayer_variant_settings_interface_definition, MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG, multiplayer_variant_settings_interface_definition_block_block );
 
-	V5_TAG_GROUP_FROM_BLOCK(sandbox_text_value_pair_definition, SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG, sandbox_text_value_pair_definition_block_block );
 
-	V5_TAG_GROUP_FROM_BLOCK(text_value_pair_definition, TEXT_VALUE_PAIR_DEFINITION_TAG, text_value_pair_definition_block_block );
+	TAG_GROUP(
+		multiplayer_variant_settings_interface_definition_group,
+		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG,
+		nullptr,
+		INVALID_TAG,
+		multiplayer_variant_settings_interface_definition_block );
 
-	V5_TAG_BLOCK(variant_option_block, k_maximum_variant_category_blocks)
+	TAG_GROUP(
+		sandbox_text_value_pair_definition_group,
+		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG,
+		nullptr,
+		INVALID_TAG,
+		sandbox_text_value_pair_definition_block );
+
+	TAG_GROUP(
+		text_value_pair_definition_group,
+		TEXT_VALUE_PAIR_DEFINITION_TAG,
+		nullptr,
+		INVALID_TAG,
+		text_value_pair_definition_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_variant_settings_interface_definition_block,
+		"multiplayer_variant_settings_interface_definition_block",
+		1,
+		multiplayer_variant_settings_interface_definition_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		sandbox_text_value_pair_definition_block,
+		"sandbox_text_value_pair_definition_block",
+		1,
+		sandbox_text_value_pair_definition_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		text_value_pair_definition_block,
+		"text_value_pair_definition_block",
+		1,
+		text_value_pair_definition_struct_definition);
+
+	#define VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID { 0x7364A0E9, 0x967C43F8, 0x8C275EB9, 0xAF488C6F }
+	TAG_BLOCK(
+		variant_setting_edit_reference_block,
+		"variant_setting_edit_reference_block",
+		k_maximum_game_setting_blocks,
+		"s_variant_setting_edit_reference",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		VARIANT_SETTING_EDIT_REFERENCE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_explanation, "SUB-CATEGORY", "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here" },
-		{ _field_legacy, _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
-		{ _field_legacy, _field_explanation, "PLAYER TRAIT", "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here" },
-		{ _field_legacy, _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
-		{ _field_legacy, _field_long_enum, "player trait category", &game_engine_settings },
-		{ _field_legacy, _field_explanation, "CATEGORY NAME", "string_id name used for the category labelling (used for both sub-category and player-trait references)" },
-		{ _field_legacy, _field_string_id, "category name" },
-		{ _field_legacy, _field_explanation, "CATEGORY DESCRIPTION", "string_id description used for the category description (used for both sub-category and player-trait references)" },
-		{ _field_legacy, _field_string_id, "category description" },
-		{ _field_legacy, _field_explanation, "VALUE-PAIRS", "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here" },
-		{ _field_legacy, _field_tag_reference, "value pairs", &g_text_value_pair_reference },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "name" },
+		{ _field_long_enum, "setting category", FIELD_FLAG_INDEX, &game_engine_settings },
+		{ _field_block, "options", &variant_option_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(variant_setting_edit_reference_block, k_maximum_game_setting_blocks)
+	#define VARIANT_OPTION_BLOCK_ID { 0xE174884E, 0x69AD477F, 0xB879C646, 0x023019A6 }
+	TAG_BLOCK(
+		variant_option_block,
+		"variant_option_block",
+		k_maximum_variant_category_blocks,
+		"s_game_variant_category_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VARIANT_OPTION_BLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "name" },
-		{ _field_legacy, _field_long_enum, "setting category^", &game_engine_settings },
-		{ _field_legacy, _field_block, "options", &variant_option_block_block },
-		{ _field_legacy, _field_terminator }
+		FIELD_EXPLANATION("SUB-CATEGORY", nullptr, FIELD_FLAG_NONE, "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here"),
+		{ _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
+		FIELD_EXPLANATION("PLAYER TRAIT", nullptr, FIELD_FLAG_NONE, "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here"),
+		{ _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
+		{ _field_long_enum, "player trait category", &game_engine_settings },
+		FIELD_EXPLANATION("CATEGORY NAME", nullptr, FIELD_FLAG_NONE, "string_id name used for the category labelling (used for both sub-category and player-trait references)"),
+		{ _field_string_id, "category name" },
+		FIELD_EXPLANATION("CATEGORY DESCRIPTION", nullptr, FIELD_FLAG_NONE, "string_id description used for the category description (used for both sub-category and player-trait references)"),
+		{ _field_string_id, "category description" },
+		FIELD_EXPLANATION("VALUE-PAIRS", nullptr, FIELD_FLAG_NONE, "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here"),
+		{ _field_tag_reference, "value pairs", &g_text_value_pair_reference },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(multiplayer_variant_settings_interface_definition_block, 1, multiplayer_variant_settings_interface_definition_struct_definition_struct_definition );
-
-	V5_TAG_BLOCK(text_value_pair_reference_block, k_maximum_text_value_pairs_per_block)
+	#define SANDBOX_PROPERTY_ALLOWED_VALUES_REFERENCE_BLOCK_ID { 0x266531A0, 0x83F842C7, 0x802AA55C, 0x5A9D94BE }
+	TAG_BLOCK(
+		sandbox_property_allowed_values_reference_block,
+		"sandbox_property_allowed_values_reference_block",
+		k_maximum_sandbox_property_values,
+		"s_sandbox_property_allowed_values_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		SANDBOX_PROPERTY_ALLOWED_VALUES_REFERENCE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_byte_flags, "flags", &text_value_pair_flags },
-		{ _field_legacy, _field_pad, "grug", 3 },
-		{ _field_legacy, _field_long_integer, "enumerated value" },
-		{ _field_legacy, _field_real, "real value" },
-		{ _field_legacy, _field_string_id, "string_id value" },
-		{ _field_legacy, _field_string_id, "label string id" },
-		{ _field_legacy, _field_string_id, "description string id" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "property name" },
+		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
+		FIELD_PAD("blug", nullptr, FIELD_FLAG_NONE, 3),
+		{ _field_block, "allowed values", &text_value_pair_reference_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(sandbox_property_allowed_values_reference_block, k_maximum_sandbox_property_values)
+	#define TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID { 0xF7AE82B9, 0xCEA54D49, 0xABC02F9F, 0x5AB01E19 }
+	TAG_BLOCK(
+		text_value_pair_reference_block,
+		"text_value_pair_reference_block",
+		k_maximum_text_value_pairs_per_block,
+		"s_text_value_pair",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXT_VALUE_PAIR_REFERENCE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "property name" },
-		{ _field_legacy, _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_legacy, _field_pad, "blug", 3 },
-		{ _field_legacy, _field_block, "allowed values", &text_value_pair_reference_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_byte_flags, "flags", &text_value_pair_flags },
+		FIELD_PAD("grug", nullptr, FIELD_FLAG_NONE, 3),
+		{ _field_long_integer, "enumerated value" },
+		{ _field_real, "real value" },
+		{ _field_string_id, "string_id value" },
+		{ _field_string_id, "label string id" },
+		{ _field_string_id, "description string id" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(sandbox_text_value_pair_definition_block, 1, sandbox_text_value_pair_definition_struct_definition_struct_definition );
-
-	V5_TAG_BLOCK_FROM_STRUCT(text_value_pair_definition_block, 1, text_value_pair_definition_struct_definition_struct_definition );
-
-	V5_TAG_STRUCT(multiplayer_variant_settings_interface_definition_struct_definition)
+	#define MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID { 0x07D9BF44, 0xA8044D74, 0x9C09C13F, 0xF5077BB7 }
+	TAG_STRUCT(
+		multiplayer_variant_settings_interface_definition_struct_definition,
+		"multiplayer_variant_settings_interface_definition_struct_definition",
+		"s_multiplayer_variant_settings_interface_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_string_id, "name (unused)" },
-		{ _field_legacy, _field_block, "game engine settings", &variant_setting_edit_reference_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "name (unused)" },
+		{ _field_block, "game engine settings", &variant_setting_edit_reference_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(sandbox_text_value_pair_definition_struct_definition)
+	#define SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0x42D0D8BD, 0x41594A07, 0x93653D79, 0x74AD97DD }
+	TAG_STRUCT(
+		sandbox_text_value_pair_definition_struct_definition,
+		"sandbox_text_value_pair_definition_struct_definition",
+		"s_object_properties_tag_block_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_block, "property values", &sandbox_property_allowed_values_reference_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_block, "property values", &sandbox_property_allowed_values_reference_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(text_value_pair_definition_struct_definition)
+	#define TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID { 0xDFA0A227, 0xB83A4610, 0x8DF352D1, 0x391AB478 }
+	TAG_STRUCT(
+		text_value_pair_definition_struct_definition,
+		"text_value_pair_definition_struct_definition",
+		"s_text_value_pair_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXT_VALUE_PAIR_DEFINITION_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_long_enum, "parameter", &game_variant_parameters },
-		{ _field_legacy, _field_string_id, "name" },
-		{ _field_legacy, _field_string_id, "description text" },
-		{ _field_legacy, _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
-		{ _field_legacy, _field_pad, "shrug", 3 },
-		{ _field_legacy, _field_block, "text value pairs", &text_value_pair_reference_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "parameter", &game_variant_parameters },
+		{ _field_string_id, "name" },
+		{ _field_string_id, "description text" },
+		{ _field_char_enum, "parameter_type", &text_value_pair_parameter_type },
+		FIELD_PAD("shrug", nullptr, FIELD_FLAG_NONE, 3),
+		{ _field_block, "text value pairs", &text_value_pair_reference_block },
+		{ _field_terminator }
 	};
 
 	STRINGS(game_engine_settings)
@@ -1128,6 +1210,8 @@ namespace blofeld
 	TAG_REFERENCE(g_text_value_pair_reference, TEXT_VALUE_PAIR_DEFINITION_TAG);
 
 	TAG_REFERENCE(g_sandbox_object_properties_interface_reference, SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG);
+
+
 
 } // namespace blofeld
 

@@ -83,102 +83,6 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 
 }
 
-#include <high_level_haloreach/highlevel-haloreach-public-pch.h>
-
-class c_test
-{
-public:
-	static void callback(void* userdata, const c_data_change_notification& notification)
-	{
-		reinterpret_cast<c_test*>(userdata)->callback(notification);
-	}
-
-	void callback(const c_data_change_notification& notification)
-	{
-		if (notification.userdata != this)
-		{
-			debug_point;
-		}
-	}
-
-	c_test(c_tag_project* tag_project)
-	{
-		h_notification_system::push_value(this);
-
-		if (blofeld::haloreach::h_cache_file_resource_layout_table_block_struct* cache_file_resource_layout_table = dynamic_cast<decltype(cache_file_resource_layout_table)>(tag_project->tags[2]))
-		{
-			debug_point;
-
-			cache_file_resource_layout_table->add_notification_listener(callback, this);
-
-			//cache_file_resource_layout_table->sections_block[0].page_offsets[0].offset = 100;
-		}
-
-		if (blofeld::haloreach::h_scenario_struct_definition* scenario = dynamic_cast<decltype(scenario)>(tag_project->tags[8]))
-		{
-			debug_point;
-
-			scenario->add_notification_listener(callback, this);
-
-			//scenario->campaign_id = 200;
-			//scenario->skies_block[0].cloud_scale = 2.0f;
-		}
-		
-		h_notification_system::pop_value();
-	}
-};
-
-static int run_mandrill_api_test()
-{
-	// #TODO: cache refactor
-	/*using namespace blofeld;
-	using namespace blofeld::haloreach;
-
-#define REACH_FOLDER L"C:\\!MCC\\haloreach\\"
-
-	const wchar_t* files[] =
-	{
-		REACH_FOLDER L"maps\\20_sword_slayer.map",
-		//REACH_FOLDER L"maps\\m70_a.map", // smallest map
-		//REACH_FOLDER L"maps\\m70_bonus.map",
-		REACH_FOLDER L"maps\\shared.map",
-		REACH_FOLDER L"maps\\campaign.map",
-	};
-	c_cache_cluster* cache_cluster = new c_cache_cluster(files, sizeof(files) / sizeof(*files));
-	c_cache_file* cache_file = cache_cluster->get_cache_file_by_dvd_path("maps\\20_sword_slayer.map");
-	DEBUG_ASSERT(cache_file != nullptr);
-
-	c_tag_project* tag_project = new c_tag_project(*cache_cluster, *cache_file);
-
-	// c_test test(tag_project);
-
-	c_haloreach_cache_compiler* cache_compiler = new c_haloreach_cache_compiler(*tag_project, dynamic_cast<c_haloreach_cache_file*>(cache_file));
-
-	{
-		c_stopwatch stopwatch;
-		stopwatch.start();
-		cache_compiler->compile(REACH_FOLDER L"maps\\custom.map");
-		stopwatch.stop();
-		c_console::write_line_verbose("Compiled generated map in %.2fms", stopwatch.get_miliseconds());
-	}
-
-	delete cache_cluster;
-	delete cache_compiler;
-	delete tag_project;
-
-	{
-		c_stopwatch stopwatch;
-		stopwatch.start();
-		c_cache_file* new_cache_file = c_cache_file::create_cache_file(REACH_FOLDER L"maps\\custom.map");
-		stopwatch.stop();
-		c_console::write_line_verbose("Loaded generated map in %.2fms", stopwatch.get_miliseconds());
-		debug_point;
-	}*/
-	
-
-	return 0;
-}
-
 static void deinit_mandrill()
 {
 	c_console::deinit_console();
@@ -198,7 +102,7 @@ int WINAPI wWinMain(
 	}
 
 	init_mandrill(hInstance, nShowCmd, lpCmdLine);
-	result = run_mandrill_api_test();
+	//result = run_mandrill_api_test();
 	deinit_mandrill();
 
 	return result;

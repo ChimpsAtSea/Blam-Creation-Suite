@@ -18,6 +18,33 @@
     <ClCompile Include="blofeld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tagdefinitions-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types\string_list_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blamlib_string_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types\tag_block_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types\tag_struct_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types\tag_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types\field_type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_group_info.haloreach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_byteswap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="blofeld\__unknown\tag_references.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -834,6 +861,9 @@
     <ClCompile Include="blofeld\tag_files\tag_group_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="blofeld\text\font_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -882,16 +912,22 @@
     <ClCompile Include="blofeld\tag_groups.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\validation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tagdefinitions-private-pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld\tag_structs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\constants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\validation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blofeld\effects\beam_system.cpp">
@@ -900,913 +936,7 @@
     <ClCompile Include="blofeld\effects\contrail_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\constants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="types\string_list_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld\components\chocolate_mountain_new_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blamlib_string_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="types\tag_block_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="types\tag_struct_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="types\tag_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="types\field_type.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tag_group_info.haloreach.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\__unknown\tag_references.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_cues.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_dialogue_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_flocks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_hint_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_mission_dialogue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_orders.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\ai_scenario_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\character_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\cs_scenario_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\firing_position_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\formations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\objectives.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\puppeteerdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\sector_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\squad_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\squad_patrol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\styles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\wave_template_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\ai\zone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\animations\composites\composite_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\animations\pca\pca_animation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\animations\animation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bink\bink_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_group_old_tag_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_group_tag_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_group_xenon_interop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_tag_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_tight_bounds_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\bitmap_usage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\bitmaps\color_table_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cache\cache_file_builder_tag_resource_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cache\cache_file_tag_package_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\camera\camera_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\camera\camera_obstruction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\camera\camera_track_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\components\selfilluminationdefinition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\creatures\creature_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cutscene\cinematics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cutscene\lightrig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cutscene\new_cinematic_lighting_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\cutscene\recorded_animation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\decorators\decorator_tag_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\devices\device_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\editor\editor_scenario_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\camera_shake_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\camo_effect_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\cheap_particle_system_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\decal_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\effect_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\effect_scenery_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\effectglobalforces.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\jetwash.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\lens_flare_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\light_volume_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\lightcones.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\material_effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\modeldissolve.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_emitter_boat_hull_shapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_emitter_custom_shapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_model_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_movement_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_property_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particle_system_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\particleize_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\screen_effect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\shield_impact_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\simulated_input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\tracerdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\effects\vision_mode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\entities\entitydefinition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\entities\spawnerdefinition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\errors\error_report_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\fx\fx_test_tag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\challenges\challenge_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\incidents\incident_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\incidents\incident_response_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\megalogamengine\megalogamengine_string_id_table.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\game_completion_rewards_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_achievements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_avatar_awards.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_commendation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_cookie_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_cookie_purchase_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_grade_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\player_medals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\playermedalaggregators.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\playerrewarddefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rewards\prerequisites_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\progression\playerenlistmentdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\progression\progression_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\armormod_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\campaign_metagame_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\firefight_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_active_camo_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_constants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_controller_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_coop_spawning_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_damage_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_difficulty_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_communication_sound_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_event_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_multiplayer_sounds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_player_traits_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_player_traits_structures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_roles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_engine_spawn_settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_mode_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_performance_throttle_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_player_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\game_ui_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\gameenginesandboxdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\loadout_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\location_name_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\materials_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\multiplayer_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\multiplayer_object_list_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\narrativedefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_model_customization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_rumble.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\player_training.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\silent_assist_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\survival_mode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\game\variant_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\geometry\geometry_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\geometry\geometry_definitions_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\hs\hs_scenario_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\chud\polyart\polyartbasedefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\chud\polyart\polyartdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\chud\polyart\vectorartdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\components\hud\motionsensorbliplist.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\cui\cui_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\emblem\emblem_library.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\hud\hudaudio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\vector_hud\vector_hud_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\controller_mapping_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\meter_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\stylesheetglobalsdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\user_interface_main_menu_voiceover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\user_interface_multiplayer_game_settings_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\user_interface_widget_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\interface\userinterfacehudglobalsdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\airstrike_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\equipment_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\grenadeglobalsdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\item_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\ordnanceglobalsdefinitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\projectile_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\items\weapon_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\lightmapper\lightmapper_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\materials\material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\materials\material_shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\materials\material_shader_bank.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\materials\material_shader_parameter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\math\color_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\math\function_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\math\periodic_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\models\damage_info_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\models\model_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\models\render_model_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\antenna_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cellular_automata.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cellular_automata2d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\cloth.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\fluid_dynamics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\leaf_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\muffins.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\widgets\stereo_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\cheap_light_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\collision_damage_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\crate_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\damage_effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\damage_reporting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\damage_response_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\hologramlighting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\light_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\midnight_light_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\multiplayer_game_objects_constants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\object_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\object_recycling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\scenery_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\objects\target_tracking.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\boat_engine_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\boat_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\breakable_surface_set_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\breakable_surfaces.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\character_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\collision_bsp_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\collision_bsp_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\collision_kd_hierarchy_static_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\collision_model_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\grounded_friction_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\havok_collision_filter_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\havok_mopp_code_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\havok_vehicle_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\physics_model_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\point_physics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\spring_acceleration_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\walker_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\physics\water_physics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_cache_file_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_constant_table.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_global_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_loading_screen_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_performance_throttles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_shader_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\rasterizer\rasterizer_states.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render\authoredlightprobe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render\camera_fx_settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render\render_ssao.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render\render_water_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render_methods\mux_generator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render_methods\render_method_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\render_methods\render_method_types.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\multiplayer_scenario_description.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_cubemap_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_decorator_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_designer_zones_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_dumplings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_interpolators.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_lightmap_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_load_parameters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_map_variant_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_named_location_volumes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_object_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_resource_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_zone_debugger_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\scenario_zone_set_streaming_cache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\scenario\wind_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\simulation\game_interface\simulation_game_interpolation_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sky_atm\atmosphere_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sky_atm\atmosphere_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sky_atm\planar_fog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\game_audibility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\platform_sound_effect_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_acoustics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_cache_file_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_classes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_clusters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_combiner_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_dsp_settings_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_effect_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_environment_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_language_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\sound\sound_scenery_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\detail_object_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\instance_imposter_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\instanced_geometry_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\leaf_map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_bsp_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_design_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_lighting_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_manifest_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_object_associations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_physics_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structure_seam_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\structures\structuremetadata.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_files\self_tracking\file_self_track.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_files\tag_dependency_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_files\tag_group_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_files\tag_vertex_buffers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\text\font_list.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\text\text_group.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\custom_apps\custom_app_globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\biped_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\death_program_selection_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\dialogue_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\giant_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\unit_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\unit_trick_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\vehicle_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\units\vehicle_engine_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\weather\weather_control.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\weather\weather_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\halo4_validation_data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\tag_structs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macaque\inline_files.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tag_byteswap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1815,6 +945,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld_field_type_override.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tagdefinitions-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tagdefinitions-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\field_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_struct_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_block_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_array_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_reference_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\string_list_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blamlib_string_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_interop_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_group_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macaque_field_type_override.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tag_byteswap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\__unknown\tag_references.h">
@@ -2642,6 +1817,9 @@
     <ClInclude Include="blofeld\tag_files\tag_group_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="blofeld\text\font_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2681,58 +1859,22 @@
     <ClInclude Include="blofeld\weather\weather_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld\manual_tag_references.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\tag_groups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\validation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tagdefinitions-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tagdefinitions-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\field_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_struct_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_block_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_array_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_reference_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\string_list_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld\tag_structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blofeld\constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="blofeld\gen3_xbox360_validation_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blofeld\effects\beam_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blofeld\effects\contrail_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h">
@@ -2741,923 +1883,17 @@
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blofeld\effects\beam_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\contrail_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="blofeld\components\chocolate_mountain_new_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blamlib_string_parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types\tag_interop_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blofeld\tag_files\tag_vertex_buffers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_group_info.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque_field_type_override.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\__unknown\tag_references.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_cues.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_dialogue_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_flocks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_hint_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_mission_dialogue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_orders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\ai_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\character_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\cs_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\firing_position_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\formations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\objectives.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\puppeteerdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\sector_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\squad_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\squad_patrol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\styles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\wave_template_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\ai\zone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\animations\composites\composite_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\animations\pca\pca_animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\animations\animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bink\bink_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_group_old_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_group_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_group_xenon_interop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_tight_bounds_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\bitmap_usage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\bitmaps\color_table_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cache\cache_file_builder_tag_resource_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cache\cache_file_tag_package_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\camera\camera_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\camera\camera_obstruction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\camera\camera_track_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\components\selfilluminationdefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\creatures\creature_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cutscene\cinematics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cutscene\lightrig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cutscene\new_cinematic_lighting_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\cutscene\recorded_animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\decorators\decorator_tag_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\devices\device_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\editor\editor_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\camera_shake_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\camo_effect_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\cheap_particle_system_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\decal_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\effect_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\effect_scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\effectglobalforces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\jetwash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\lens_flare_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\light_volume_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\lightcones.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\material_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\modeldissolve.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_emitter_boat_hull_shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_emitter_custom_shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_movement_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_property_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particle_system_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\particleize_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\screen_effect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\shield_impact_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\simulated_input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\tracerdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\effects\vision_mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\entities\entitydefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\entities\spawnerdefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\errors\error_report_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\fx\fx_test_tag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\challenges\challenge_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\incidents\incident_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\incidents\incident_response_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\megalogamengine\megalogamengine_string_id_table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\game_completion_rewards_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_achievements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_avatar_awards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_commendation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_cookie_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_cookie_purchase_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_grade_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\player_medals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\playermedalaggregators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\playerrewarddefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rewards\prerequisites_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\progression\playerenlistmentdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\progression\progression_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\armormod_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\campaign_metagame_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\firefight_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_active_camo_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_controller_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_coop_spawning_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_damage_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_difficulty_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_communication_sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_event_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_multiplayer_sounds.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_player_traits_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_player_traits_structures.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_roles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_engine_spawn_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_mode_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_performance_throttle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_player_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\game_ui_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\gameenginesandboxdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\loadout_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\location_name_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\materials_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\multiplayer_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\multiplayer_object_list_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\narrativedefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_model_customization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_rumble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\player_training.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\silent_assist_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\survival_mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\game\variant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\geometry\geometry_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\geometry\geometry_definitions_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\hs\hs_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\chud\polyart\polyartbasedefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\chud\polyart\polyartdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\chud\polyart\vectorartdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\components\hud\motionsensorbliplist.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\cui\cui_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\emblem\emblem_library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\hud\hudaudio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\vector_hud\vector_hud_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\controller_mapping_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\meter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\stylesheetglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\user_interface_main_menu_voiceover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\user_interface_multiplayer_game_settings_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\user_interface_widget_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\interface\userinterfacehudglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\airstrike_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\equipment_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\grenadeglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\item_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\ordnanceglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\projectile_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\items\weapon_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\lightmapper\lightmapper_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\materials\material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\materials\material_shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\materials\material_shader_bank.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\materials\material_shader_parameter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\math\color_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\math\function_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\math\periodic_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\models\damage_info_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\models\model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\models\render_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\antenna_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cellular_automata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cellular_automata2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\cloth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\fluid_dynamics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\leaf_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\muffins.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\widgets\stereo_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\cheap_light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\collision_damage_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\crate_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\damage_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\damage_reporting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\damage_response_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\hologramlighting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\midnight_light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\multiplayer_game_objects_constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\object_recycling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\objects\target_tracking.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\boat_engine_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\boat_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\breakable_surface_set_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\breakable_surfaces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\character_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\collision_bsp_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\collision_bsp_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\collision_kd_hierarchy_static_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\collision_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\grounded_friction_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\havok_collision_filter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\havok_mopp_code_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\havok_vehicle_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\physics_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\point_physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\spring_acceleration_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\walker_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\physics\water_physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_cache_file_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_constant_table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_global_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_loading_screen_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_performance_throttles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_shader_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\rasterizer\rasterizer_states.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render\authoredlightprobe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render\camera_fx_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render\render_ssao.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render\render_water_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render_methods\mux_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render_methods\render_method_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\render_methods\render_method_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\multiplayer_scenario_description.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_cubemap_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_decorator_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_designer_zones_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_dumplings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_interpolators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_lightmap_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_load_parameters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_map_variant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_named_location_volumes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_resource_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_zone_debugger_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\scenario_zone_set_streaming_cache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\scenario\wind_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\simulation\game_interface\simulation_game_interpolation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sky_atm\atmosphere_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sky_atm\atmosphere_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sky_atm\planar_fog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\game_audibility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\looping_sound_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\looping_sound_detail_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\looping_sound_track_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\platform_sound_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_acoustics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_cache_file_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_classes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_clusters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_combiner_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_dsp_settings_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_effect_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_environment_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_language_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\sound\sound_scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\detail_object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\instance_imposter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\instanced_geometry_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\leaf_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_bsp_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_design_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_lighting_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_manifest_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_object_associations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structure_seam_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\structures\structuremetadata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_files\self_tracking\file_self_track.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_files\tag_dependency_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_files\tag_group_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_files\tag_vertex_buffers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\text\font_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\text\text_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\custom_apps\custom_app_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\biped_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\death_program_selection_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\dialogue_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\giant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\unit_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\unit_trick_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\vehicle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\units\vehicle_engine_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\weather\weather_control.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\weather\weather_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\halo4_validation_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_groups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macaque\tag_structs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_byteswap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="blofeld\sound\looping_sound_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\sound\looping_sound_detail_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\sound\looping_sound_track_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="macaque\sound\looping_sound_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="macaque\sound\looping_sound_detail_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="macaque\sound\looping_sound_track_definition.inl">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="types\tag_field.ctor.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -3667,7 +1903,22 @@
     <None Include="blamlib_string_parser.h.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="blofeld\tag_groups.stubbs.inl">
+    <None Include="blofeld\sound\looping_sound_definition.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\sound\looping_sound_detail_definition.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\sound\looping_sound_track_definition.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.eldorado.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.gen3_xbox360.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.groundhog.inl">
       <Filter>Header Files</Filter>
     </None>
     <None Include="blofeld\tag_groups.halo1.inl">
@@ -3688,14 +1939,11 @@
     <None Include="blofeld\tag_groups.haloreach.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="blofeld\tag_groups.groundhog.inl">
+    <None Include="blofeld\tag_groups.stubbs.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="blofeld\tag_groups.gen3_xbox360.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.eldorado.inl">
-      <Filter>Header Files</Filter>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="blofeld\constants.txt" />
   </ItemGroup>
 </Project>

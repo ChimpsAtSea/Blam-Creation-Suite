@@ -3,7 +3,7 @@
 
 namespace blofeld
 {
-	V5_TAG_GROUP_FROM_BLOCK(chocolate_mountain_new, CHOCOLATE_MOUNTAIN_NEW_TAG, chocolate_mountain_block_block);
+	V5_TAG_GROUP_FROM_BLOCK(chocolate_mountain_new, CHOCOLATE_MOUNTAIN_NEW_TAG, chocolate_mountain_block);
 
 	V5_TAG_BLOCK(lighting_variable_block, 65536)
 	{
@@ -23,7 +23,7 @@ namespace blofeld
 		{ _field_legacy, _field_byte_integer, "unknown" },
 		{ _field_legacy, _field_byte_integer, "unknown" },
 		{ _field_legacy, _field_byte_integer, "unknown" },
-		{ _field_legacy, _field_block, "lighting variables", &lighting_variable_block_block },
+		{ _field_legacy, _field_block, "lighting variables", &lighting_variable_block },
 		{ _field_legacy, _field_terminator }
 	};
 

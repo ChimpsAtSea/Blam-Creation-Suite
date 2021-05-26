@@ -440,6 +440,7 @@ public:
 };
 
 using c_fixed_path = c_fixed_string<0x8000>;
+using c_fixed_string_8 = c_fixed_string<8>;
 using c_fixed_string_16 = c_fixed_string<16>;
 using c_fixed_string_32 = c_fixed_string<32>;
 using c_fixed_string_64 = c_fixed_string<64>;
@@ -458,6 +459,7 @@ template<uint32_t k_capacity>
 using c_fixed_wide_string = c_fixed_string<k_capacity, wchar_t>;
 
 using c_fixed_wide_path = c_fixed_wide_string<0x8000>;
+using c_fixed_wide_string_8 = c_fixed_wide_string<8>;
 using c_fixed_wide_string_16 = c_fixed_wide_string<16>;
 using c_fixed_wide_string_32 = c_fixed_wide_string<32>;
 using c_fixed_wide_string_64 = c_fixed_wide_string<64>;

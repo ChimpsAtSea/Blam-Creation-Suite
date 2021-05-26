@@ -652,15 +652,15 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				debug_point;
 
 				e_halo4_interop_type interop_type = k_num_halo4_interop_types;
-				if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct_struct_definition)
+				if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct)
 				{
 					interop_type = _halo4_polyart_vertex_buffer_interop;
 				}
-				else if (field->struct_definition == &blofeld::polyartIndexBufferDescriptorStruct_struct_definition)
+				else if (field->struct_definition == &blofeld::polyartIndexBufferDescriptorStruct)
 				{
 					interop_type = _halo4_polyart_index_buffer_interop;
 				}
-				else if (field->struct_definition == &blofeld::vectorartVertexBufferDescriptorStruct_struct_definition)
+				else if (field->struct_definition == &blofeld::vectorartVertexBufferDescriptorStruct)
 				{
 					interop_type = _halo4_vectorart_vertex_buffer_interop;
 				}

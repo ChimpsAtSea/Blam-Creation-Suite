@@ -16,8 +16,6 @@
 #ifndef BLOFELD_EXCLUDE_STRUCTS
 #include "blofeld/tag_groups.h"
 #include "blofeld/tag_structs.h"
-#include "macaque/tag_groups.h"
-#include "macaque/tag_structs.h"
 #endif
 #include "blofeld/validation.h"
 

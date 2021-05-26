@@ -1,8 +1,10 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
+
+
 
 	TAG_REFERENCE(render_method_definition_reference, RENDER_METHOD_DEFINITION_TAG, _tag_reference_flag_not_a_resource_dependency);
 
@@ -15,6 +17,8 @@ namespace blofeld
 	TAG_REFERENCE(model_reference, MODEL_TAG);
 
 	TAG_REFERENCE(lightmap_bitmap_reference, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+
+	TAG_REFERENCE(global_geometry_material_block_render_method_reference);
 
 	TAG_REFERENCE(bitmap_reference$3, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
@@ -135,15 +139,15 @@ namespace blofeld
 
 	TAG_REFERENCE(object_reference$2, OBJECT_TAG);
 
+	TAG_REFERENCE(cinematic_scene_reference, CINEMATIC_SCENE_TAG);
+
+	TAG_REFERENCE(cinematic_scene_data_reference, CINEMATIC_SCENE_DATA_TAG);
+
 	TAG_REFERENCE(scenario_reference, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
 	TAG_REFERENCE(cinematic_transition_reference, CINEMATIC_TRANSITION_TAG);
 
 	TAG_REFERENCE(bink_reference, BINK_TAG);
-
-	TAG_REFERENCE(cinematic_scene_reference, CINEMATIC_SCENE_TAG);
-
-	TAG_REFERENCE(cinematic_scene_data_reference, CINEMATIC_SCENE_DATA_TAG);
 
 	TAG_REFERENCE_GROUP(scene_object_attachment_block_attachment_type_reference)
 	{
@@ -341,8 +345,6 @@ namespace blofeld
 
 	TAG_REFERENCE(sound_reference$2, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
-	TAG_REFERENCE(global_geometry_material_block_render_method_reference);
-
 	TAG_REFERENCE(object_reference$6, OBJECT_TAG, _tag_reference_flag_not_a_dependency);
 
 	TAG_REFERENCE(weapon_reference$4, WEAPON_TAG);
@@ -386,11 +388,25 @@ namespace blofeld
 
 	TAG_REFERENCE(weapon_reference$6, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
 
+	TAG_REFERENCE(scenery_reference$2, SCENERY_TAG);
+
+	TAG_REFERENCE(character_reference$6, CHARACTER_TAG);
+
+	TAG_REFERENCE(weapon_reference$7, WEAPON_TAG);
+
+	TAG_REFERENCE(equipment_reference$3, EQUIPMENT_TAG);
+
+	TAG_REFERENCE(vehicle_reference$2, VEHICLE_TAG);
+
+	TAG_REFERENCE(giant_reference, GIANT_TAG);
+
+	TAG_REFERENCE(biped_reference, BIPED_TAG);
+
 	TAG_REFERENCE(render_model_reference$7, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
 
 	TAG_REFERENCE(scenario_structure_bsp_reference, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	TAG_REFERENCE(scenery_reference$2, SCENERY_TAG);
+	TAG_REFERENCE(scenery_reference$3, SCENERY_TAG);
 
 	TAG_REFERENCE_GROUP(attachment_block_type_reference)
 	{
@@ -443,6 +459,8 @@ namespace blofeld
 		INVALID_TAG,
 	};
 
+	TAG_REFERENCE(cheap_light_reference, CHEAP_LIGHT_TAG, _tag_reference_flag_resolved_by_game);
+
 	TAG_REFERENCE(light_reference, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
 
 	TAG_REFERENCE(object_reference$8, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
@@ -455,8 +473,6 @@ namespace blofeld
 		INVALID_TAG,
 	};
 
-	TAG_REFERENCE(cheap_light_reference, CHEAP_LIGHT_TAG, _tag_reference_flag_resolved_by_game);
-
 	TAG_REFERENCE(prefab_reference, PREFAB_TAG);
 
 	TAG_REFERENCE(model_animation_graph_reference$2, MODEL_ANIMATION_GRAPH_TAG);
@@ -467,21 +483,9 @@ namespace blofeld
 
 	TAG_REFERENCE(structure_seams_reference, STRUCTURE_SEAMS_TAG);
 
-	TAG_REFERENCE(scenery_reference$3, SCENERY_TAG);
-
-	TAG_REFERENCE(streamingzoneset_reference, STREAMINGZONESET_TAG);
-
-	TAG_REFERENCE(sound_reference$3, SOUND_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenarioDesignerZoneTagReferenceBlock_tag_reference);
 
 	TAG_REFERENCE(scenery_reference$4, SCENERY_TAG);
-
-	TAG_REFERENCE(biped_reference, BIPED_TAG);
-
-	TAG_REFERENCE(vehicle_reference$2, VEHICLE_TAG);
-
-	TAG_REFERENCE(equipment_reference$3, EQUIPMENT_TAG);
-
-	TAG_REFERENCE(weapon_reference$7, WEAPON_TAG);
 
 	TAG_REFERENCE(device_machine_reference, DEVICE_MACHINE_TAG);
 
@@ -493,13 +497,25 @@ namespace blofeld
 
 	TAG_REFERENCE(sound_scenery_reference, SOUND_SCENERY_TAG);
 
-	TAG_REFERENCE(giant_reference, GIANT_TAG);
+	TAG_REFERENCE(crate_reference$6, CRATE_TAG);
+
+	TAG_REFERENCE(creature_reference$2, CREATURE_TAG);
 
 	TAG_REFERENCE(effect_scenery_reference$2, EFFECT_SCENERY_TAG);
 
 	TAG_REFERENCE(spawner_reference, SPAWNER_TAG);
 
+	TAG_REFERENCE(scenario_budget_references_block_reference_reference);
+
 	TAG_REFERENCE(bink_reference$2, BINK_TAG);
+
+	TAG_REFERENCE(scenarioDesignerResourceDependenciesBlock_tag_reference);
+
+	TAG_REFERENCE(cinematic_reference, CINEMATIC_TAG);
+
+	TAG_REFERENCE(streamingzoneset_reference, STREAMINGZONESET_TAG);
+
+	TAG_REFERENCE(sound_reference$3, SOUND_TAG, _tag_reference_flag_not_a_dependency);
 
 	TAG_REFERENCE(object_reference$9, OBJECT_TAG);
 
@@ -517,13 +533,7 @@ namespace blofeld
 
 	TAG_REFERENCE(style_reference$2, STYLE_TAG);
 
-	TAG_REFERENCE(character_reference$6, CHARACTER_TAG);
-
-	TAG_REFERENCE(crate_reference$6, CRATE_TAG);
-
 	TAG_REFERENCE(flock_reference, FLOCK_TAG);
-
-	TAG_REFERENCE(creature_reference$2, CREATURE_TAG);
 
 	TAG_REFERENCE(big_battle_creature_reference, BIG_BATTLE_CREATURE_TAG);
 
@@ -531,15 +541,7 @@ namespace blofeld
 
 	TAG_REFERENCE(scenario_lightmap_reference, SCENARIO_LIGHTMAP_TAG);
 
-	TAG_REFERENCE(scenarioDesignerZoneTagReferenceBlock_tag_reference);
-
-	TAG_REFERENCE(scenarioDesignerResourceDependenciesBlock_tag_reference);
-
 	TAG_REFERENCE(cheap_particle_emitter_reference, CHEAP_PARTICLE_EMITTER_TAG);
-
-	TAG_REFERENCE(cinematic_reference, CINEMATIC_TAG);
-
-	TAG_REFERENCE(scenario_budget_references_block_reference_reference);
 
 	TAG_REFERENCE(model_reference$5, MODEL_TAG);
 
@@ -628,6 +630,8 @@ namespace blofeld
 	TAG_REFERENCE(SwapTagReferenceDefinition_original_tag_reference);
 
 	TAG_REFERENCE(user_interface_sounds_definition_reference, USER_INTERFACE_SOUNDS_DEFINITION_TAG);
+
+
 
 } // namespace blofeld
 

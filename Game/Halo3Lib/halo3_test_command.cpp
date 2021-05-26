@@ -163,24 +163,24 @@ void print_mainmenu_ui_globals_test_command()
 	//}
 }
 
-s_weapon_block_struct* weapon_get(const char* tag_name)
-{
-	// #TODO: cache refactor
-	//if (char* weapon = halo3_tag_definition_get(blofeld::WEAPON_TAG, tag_name); weapon)
-	//{
-	//	return reinterpret_cast<s_weapon_block_struct*>(weapon);
-	//}
-	return nullptr;
-}
+//s_weapon_block_struct_definition* weapon_get(const char* tag_name)
+//{
+//	// #TODO: cache refactor
+//	//if (char* weapon = halo3_tag_definition_get(blofeld::WEAPON_TAG, tag_name); weapon)
+//	//{
+//	//	return reinterpret_cast<s_weapon_block_struct*>(weapon);
+//	//}
+//	return nullptr;
+//}
 
 template<bool is_centered>
 real_vector3d& first_person_weapon_offset_get(const char* tag_name)
 {
 	static real_vector3d default_offset = {};
-	if (s_weapon_block_struct& weapon = *weapon_get(tag_name); &weapon)
-	{
-		return is_centered ? weapon.centered_first_person_weapon_offset : weapon.first_person_weapon_offset;
-	}
+	//if (s_weapon_block_struct& weapon = *weapon_get(tag_name); &weapon)
+	//{
+	//	return is_centered ? weapon.centered_first_person_weapon_offset : weapon.first_person_weapon_offset;
+	//}
 	return default_offset;
 }
 

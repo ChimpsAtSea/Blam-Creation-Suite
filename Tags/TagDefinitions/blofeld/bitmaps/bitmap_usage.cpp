@@ -1,32 +1,42 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_BLOCK(bitmap_usage_block, 1)
+
+
+	#define BITMAP_USAGE_BLOCK_ID { 0x09E0AE90, 0x64F444D8, 0xAFC0FAB5, 0x0BDCBD57 }
+	TAG_BLOCK(
+		bitmap_usage_block,
+		"bitmap_usage_block",
+		1,
+		"c_bitmap_usage",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		BITMAP_USAGE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_real, "source gamma:0.0 to use xenon curve (default)" },
-		{ _field_legacy, _field_long_enum, "bitmap curve", &bitmap_curve_enum },
-		{ _field_legacy, _field_byte_flags, "flags", &bitmap_usage_flags_def },
-		{ _field_legacy, _field_char_enum, "slicer", &bitmap_usage_slicer_def },
-		{ _field_legacy, _field_byte_flags, "dicer flags", &bitmap_usage_dicer_flags_def },
-		{ _field_legacy, _field_char_enum, "packer", &bitmap_usage_packer_def },
-		{ _field_legacy, _field_byte_flags, "packer flags", &bitmap_usage_packer_flags_def },
-		{ _field_legacy, _field_char_enum, "type", &bitmap_types },
-		{ _field_legacy, _field_char_integer, "mipmap limit" },
-		{ _field_legacy, _field_char_enum, "smallest mip", &bitmap_smallest_mip_def },
-		{ _field_legacy, _field_char_enum, "downsample filter", &bitmap_usage_downsample_filter_def },
-		{ _field_legacy, _field_char_integer, "filter radius bias" },
-		{ _field_legacy, _field_word_flags, "downsample flags", &bitmap_usage_downsample_flags_def },
-		{ _field_legacy, _field_real_rgb_color, "sprite background color" },
-		{ _field_legacy, _field_char_enum, "swizzle red", &bitmap_usage_swizzle_def },
-		{ _field_legacy, _field_char_enum, "swizzle green", &bitmap_usage_swizzle_def },
-		{ _field_legacy, _field_char_enum, "swizzle blue", &bitmap_usage_swizzle_def },
-		{ _field_legacy, _field_char_enum, "swizzle alpha", &bitmap_usage_swizzle_def },
-		{ _field_legacy, _field_long_enum, "bitmap format", &bitmap_usage_format_def },
-		{ _field_legacy, _field_terminator }
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_default),
+		{ _field_real, "source gamma", nullptr, "0.0 to use xenon curve (default)" },
+		{ _field_long_enum, "bitmap curve", &bitmap_curve_enum },
+		{ _field_byte_flags, "flags", &bitmap_usage_flags_def },
+		{ _field_char_enum, "slicer", &bitmap_usage_slicer_def },
+		{ _field_byte_flags, "dicer flags", &bitmap_usage_dicer_flags_def },
+		{ _field_char_enum, "packer", &bitmap_usage_packer_def },
+		{ _field_byte_flags, "packer flags", &bitmap_usage_packer_flags_def },
+		{ _field_char_enum, "type", &bitmap_types },
+		{ _field_char_integer, "mipmap limit" },
+		{ _field_char_enum, "smallest mip", &bitmap_smallest_mip_def },
+		{ _field_char_enum, "downsample filter", &bitmap_usage_downsample_filter_def },
+		{ _field_char_integer, "filter radius bias" },
+		{ _field_word_flags, "downsample flags", &bitmap_usage_downsample_flags_def },
+		{ _field_real_rgb_color, "sprite background color" },
+		{ _field_char_enum, "swizzle red", &bitmap_usage_swizzle_def },
+		{ _field_char_enum, "swizzle green", &bitmap_usage_swizzle_def },
+		{ _field_char_enum, "swizzle blue", &bitmap_usage_swizzle_def },
+		{ _field_char_enum, "swizzle alpha", &bitmap_usage_swizzle_def },
+		{ _field_long_enum, "bitmap format", &bitmap_usage_format_def },
+		{ _field_terminator }
 	};
 
 	STRINGS(bitmap_usage_global_enum)
@@ -244,6 +254,8 @@ namespace blofeld
 		"8-bit 4-channel Vector"
 	};
 	STRING_LIST(bitmap_usage_format_def, bitmap_usage_format_def_strings, _countof(bitmap_usage_format_def_strings));
+
+
 
 } // namespace blofeld
 

@@ -1,8 +1,10 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
+
+
 
 	s_tag_reference_definition Tag::Reference<struct bitmap_group>::s_defaultDefinition;
 	s_tag_reference_definition Tag::Reference<struct ModelDissolveDefinition>::s_defaultDefinition;
@@ -37,6 +39,8 @@ namespace blofeld
 	s_tag_reference_definition Tag::Reference<struct vehicle_definition>::s_defaultDefinition;
 	s_tag_reference_definition Tag::Reference<struct InfinityUIImages>::s_defaultDefinition;
 	s_tag_reference_definition Tag::Reference<struct UserInterfaceHUDGlobalsDefinitions>::s_defaultDefinition;
+
+
 
 } // namespace blofeld
 

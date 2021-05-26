@@ -1,8 +1,10 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
+
+
 
 	STRINGS(global_campaign_difficulty_enum)
 	{
@@ -21,6 +23,8 @@ namespace blofeld
 		"legendary"
 	};
 	STRING_LIST(global_campaign_difficulty_flags, global_campaign_difficulty_flags_strings, _countof(global_campaign_difficulty_flags_strings));
+
+
 
 } // namespace blofeld
 

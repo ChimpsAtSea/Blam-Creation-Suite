@@ -3,12 +3,15 @@
 namespace blofeld
 {
 
+
+
 	extern s_tag_reference_definition render_method_definition_reference;
 	extern s_tag_reference_definition render_method_reference;
 	extern s_tag_reference_definition bitmap_reference;
 	extern s_tag_reference_definition render_method_template_reference;
 	extern s_tag_reference_definition model_reference;
 	extern s_tag_reference_definition lightmap_bitmap_reference;
+	extern s_tag_reference_definition global_geometry_material_block_render_method_reference;
 	extern s_tag_reference_definition bitmap_reference$3;
 	extern s_tag_reference_definition ai_dialogue_globals_reference;
 	extern s_tag_reference_definition formation_reference;
@@ -55,11 +58,11 @@ namespace blofeld
 	extern s_tag_reference_definition effect_reference;
 	extern s_tag_reference_definition crate_reference$4;
 	extern s_tag_reference_definition object_reference$2;
+	extern s_tag_reference_definition cinematic_scene_reference;
+	extern s_tag_reference_definition cinematic_scene_data_reference;
 	extern s_tag_reference_definition scenario_reference;
 	extern s_tag_reference_definition cinematic_transition_reference;
 	extern s_tag_reference_definition bink_reference;
-	extern s_tag_reference_definition cinematic_scene_reference;
-	extern s_tag_reference_definition cinematic_scene_data_reference;
 	extern s_tag_reference_definition scene_object_attachment_block_attachment_type_reference;
 	extern s_tag_reference_definition bitmap_reference$5;
 	extern s_tag_reference_definition cheap_particle_type_library_reference;
@@ -132,7 +135,6 @@ namespace blofeld
 	extern s_tag_reference_definition render_model_reference$5;
 	extern s_tag_reference_definition effect_reference$3;
 	extern s_tag_reference_definition sound_reference$2;
-	extern s_tag_reference_definition global_geometry_material_block_render_method_reference;
 	extern s_tag_reference_definition object_reference$6;
 	extern s_tag_reference_definition weapon_reference$4;
 	extern s_tag_reference_definition requisition_palette_block_name_reference;
@@ -149,9 +151,16 @@ namespace blofeld
 	extern s_tag_reference_definition character_reference$5;
 	extern s_tag_reference_definition vehicle_reference;
 	extern s_tag_reference_definition weapon_reference$6;
+	extern s_tag_reference_definition scenery_reference$2;
+	extern s_tag_reference_definition character_reference$6;
+	extern s_tag_reference_definition weapon_reference$7;
+	extern s_tag_reference_definition equipment_reference$3;
+	extern s_tag_reference_definition vehicle_reference$2;
+	extern s_tag_reference_definition giant_reference;
+	extern s_tag_reference_definition biped_reference;
 	extern s_tag_reference_definition render_model_reference$7;
 	extern s_tag_reference_definition scenario_structure_bsp_reference;
-	extern s_tag_reference_definition scenery_reference$2;
+	extern s_tag_reference_definition scenery_reference$3;
 	extern s_tag_reference_definition attachment_block_type_reference;
 	extern s_tag_reference_definition particle_model_reference$2;
 	extern s_tag_reference_definition bitmap_reference$11;
@@ -166,49 +175,42 @@ namespace blofeld
 	extern s_tag_reference_definition pixel_shader_reference;
 	extern s_tag_reference_definition scenario_wetness_bsp_data_reference;
 	extern s_tag_reference_definition structure_collision_materials_block_render_method_reference;
+	extern s_tag_reference_definition cheap_light_reference;
 	extern s_tag_reference_definition light_reference;
 	extern s_tag_reference_definition object_reference$8;
 	extern s_tag_reference_definition render_model_reference$9;
 	extern s_tag_reference_definition leaf_system_reference;
-	extern s_tag_reference_definition cheap_light_reference;
 	extern s_tag_reference_definition prefab_reference;
 	extern s_tag_reference_definition model_animation_graph_reference$2;
 	extern s_tag_reference_definition game_performance_throttle_reference$2;
 	extern s_tag_reference_definition structure_design_reference;
 	extern s_tag_reference_definition structure_seams_reference;
-	extern s_tag_reference_definition scenery_reference$3;
-	extern s_tag_reference_definition streamingzoneset_reference;
-	extern s_tag_reference_definition sound_reference$3;
+	extern s_tag_reference_definition scenarioDesignerZoneTagReferenceBlock_tag_reference;
 	extern s_tag_reference_definition scenery_reference$4;
-	extern s_tag_reference_definition biped_reference;
-	extern s_tag_reference_definition vehicle_reference$2;
-	extern s_tag_reference_definition equipment_reference$3;
-	extern s_tag_reference_definition weapon_reference$7;
 	extern s_tag_reference_definition device_machine_reference;
 	extern s_tag_reference_definition device_terminal_reference;
 	extern s_tag_reference_definition device_control_reference;
 	extern s_tag_reference_definition device_dispenser_reference;
 	extern s_tag_reference_definition sound_scenery_reference;
-	extern s_tag_reference_definition giant_reference;
+	extern s_tag_reference_definition crate_reference$6;
+	extern s_tag_reference_definition creature_reference$2;
 	extern s_tag_reference_definition effect_scenery_reference$2;
 	extern s_tag_reference_definition spawner_reference;
+	extern s_tag_reference_definition scenario_budget_references_block_reference_reference;
 	extern s_tag_reference_definition bink_reference$2;
+	extern s_tag_reference_definition scenarioDesignerResourceDependenciesBlock_tag_reference;
+	extern s_tag_reference_definition cinematic_reference;
+	extern s_tag_reference_definition streamingzoneset_reference;
+	extern s_tag_reference_definition sound_reference$3;
 	extern s_tag_reference_definition object_reference$9;
 	extern s_tag_reference_definition scenario_requisition_palette_block_name_reference;
 	extern s_tag_reference_definition decal_system_reference;
 	extern s_tag_reference_definition style_reference$2;
-	extern s_tag_reference_definition character_reference$6;
-	extern s_tag_reference_definition crate_reference$6;
 	extern s_tag_reference_definition flock_reference;
-	extern s_tag_reference_definition creature_reference$2;
 	extern s_tag_reference_definition big_battle_creature_reference;
 	extern s_tag_reference_definition ai_mission_dialogue_reference;
 	extern s_tag_reference_definition scenario_lightmap_reference;
-	extern s_tag_reference_definition scenarioDesignerZoneTagReferenceBlock_tag_reference;
-	extern s_tag_reference_definition scenarioDesignerResourceDependenciesBlock_tag_reference;
 	extern s_tag_reference_definition cheap_particle_emitter_reference;
-	extern s_tag_reference_definition cinematic_reference;
-	extern s_tag_reference_definition scenario_budget_references_block_reference_reference;
 	extern s_tag_reference_definition model_reference$5;
 	extern s_tag_reference_definition PuppetHeaderStruct_type_reference;
 	extern s_tag_reference_definition model_animation_graph_reference$3;
@@ -240,6 +242,8 @@ namespace blofeld
 	extern s_tag_reference_definition portrait_poses_definition_reference;
 	extern s_tag_reference_definition SwapTagReferenceDefinition_original_tag_reference;
 	extern s_tag_reference_definition user_interface_sounds_definition_reference;
+
+
 
 } // namespace blofeld
 

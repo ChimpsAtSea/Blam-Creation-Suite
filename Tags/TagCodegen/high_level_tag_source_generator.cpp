@@ -233,7 +233,7 @@ void c_high_level_tag_source_generator::generate_header() const
 			}
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				&field_name_unique_counter);
 
@@ -355,7 +355,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 		}
 
 		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-			current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+			current_field->name,
 			current_field->field_type == blofeld::_field_block,
 			&field_name_unique_counter);
 
@@ -550,7 +550,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 					}
 
 					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-						current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+						current_field->name,
 						current_field->field_type == blofeld::_field_block,
 						&field_name_unique_counter);
 
@@ -914,7 +914,7 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 				}
 
 				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-					current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(), 
+					current_field->name, 
 					current_field->field_type == blofeld::_field_block, 
 					&field_name_unique_counter);
 

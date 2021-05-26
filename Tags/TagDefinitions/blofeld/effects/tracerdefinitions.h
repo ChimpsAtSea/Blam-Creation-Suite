@@ -3,19 +3,21 @@
 namespace blofeld
 {
 
+
+
 	constexpr unsigned long TRACER_SYSTEM_TAG = 'trac';
+	extern s_tag_group tracer_system_group; // tracer_system_block
 
-	extern s_tag_group tracer_system_group;
 
-	extern s_tag_struct_definition tracerDefinitionBlock_block_struct;
+	extern s_tag_block_definition tracer_system_block;
 	extern s_tag_block_definition tracerDefinitionBlock_block;
-	extern s_tag_block_definition tracer_system_block_block;
+	extern s_tag_struct_definition tracerDefinitionBlock_block_struct_definition; // tracerDefinitionBlock_block
 
-	extern s_tag_struct_definition tracer_system_struct_definition_struct_definition; // tag group
-	extern s_tag_struct_definition tracerProperty_real_Struct_struct_definition;
-	extern s_tag_struct_definition tracerProperty_real_vector3d_Struct_struct_definition;
-	extern s_tag_struct_definition tracerProperty_real_point2d_Struct_struct_definition;
-	extern s_tag_struct_definition tracerProperty_real_rgb_color_Struct_struct_definition;
+	extern s_tag_struct_definition tracer_system_struct_definition; // tag group
+	extern s_tag_struct_definition tracerProperty_real_Struct;
+	extern s_tag_struct_definition tracerProperty_real_vector3d_Struct;
+	extern s_tag_struct_definition tracerProperty_real_point2d_Struct;
+	extern s_tag_struct_definition tracerProperty_real_rgb_color_Struct;
 
 	extern c_versioned_string_list tracerStateInputEnum_strings;
 	extern s_string_list_definition tracerStateInputEnum;
@@ -29,6 +31,8 @@ namespace blofeld
 	extern s_string_list_definition tracerAppearanceFlags;
 	extern c_versioned_string_list tracerSystemFlags_strings;
 	extern s_string_list_definition tracerSystemFlags;
+
+
 
 } // namespace blofeld
 

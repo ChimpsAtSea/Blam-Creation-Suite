@@ -143,7 +143,7 @@ void c_low_level_tag_source_generator::generate_header() const
 			}
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				field_name_unique_counter_ptr);
 
@@ -228,34 +228,33 @@ void c_low_level_tag_source_generator::generate_header() const
 				}
 				case _field_tag_reference:
 				{
-					if (current_field->tag_reference_definition == nullptr)
-					{
-						c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
-						has_error = true;
-					}
-					else
+					//if (current_field->tag_reference_definition == nullptr)
+					//{
+					//	c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
+					//	has_error = true;
+					//}
+					//else
 					{
 						bool handled = false;
 
-						long group_tag = current_field->tag_reference_definition->group_tag;
-						uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
-
-
-
 						std::vector<unsigned long> group_tags;
+						if (current_field->tag_reference_definition)
+						{
+							long group_tag = current_field->tag_reference_definition->group_tag;
+							uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
 
-						if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
-						{
-							group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
-						}
-						else if (current_field->tag_reference_definition->group_tags)
-						{
-							for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+							if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
 							{
-								group_tags.push_back(*current_group_tag);
+								group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
+							}
+							else if (current_field->tag_reference_definition->group_tags)
+							{
+								for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+								{
+									group_tags.push_back(*current_group_tag);
+								}
 							}
 						}
-
 
 						if (group_tags.empty())
 						{
@@ -275,11 +274,13 @@ void c_low_level_tag_source_generator::generate_header() const
 									stream << ", ";
 								}
 
-								c_fixed_string_128 tag_group_name = tag_group->name;
-								tag_group_name += "_TAG";
-								tag_group_name.uppercase();
+								//c_fixed_string_128 tag_group_name = tag_group->name;
+								//tag_group_name += "_TAG";
+								//tag_group_name.uppercase();
 
-								stream << tag_group_name.data;
+								//stream << tag_group_name.data;
+
+								stream << tag_group->group_tag_code_string;
 							}
 							stream << "> " << field_formatter.code_name.c_str() << ";";
 						}
@@ -319,7 +320,7 @@ void c_low_level_tag_source_generator::generate_header() const
 				}
 				case _field_long_flags:
 				{
-					
+
 					const blofeld::s_string_list_definition& string_list = *current_field->string_list_definition;
 					stream << "\t\t\t" << "c_flags<e_" << string_list.name << ", long, k_" << string_list.name << "_count> " << field_formatter.code_name.data << ";";
 
@@ -453,7 +454,7 @@ void c_low_level_tag_source_generator::generate_source() const
 			}
 
 			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-				current_field->string_parser.code_name.empty() ? current_field->name : current_field->string_parser.code_name.c_str(),
+				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				field_name_unique_counter_ptr);
 

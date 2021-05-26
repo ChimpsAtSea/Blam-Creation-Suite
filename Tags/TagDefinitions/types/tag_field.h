@@ -11,6 +11,11 @@ namespace blofeld
 	{
 		e_field const field_type;
 		const char* const name;
+		const char* const description;
+		const char* const units;
+		const char* const limits;
+		const char** const old_names;
+		uint32_t const flags;
 		const char* const filename;
 		int32_t const line;
 		union
@@ -38,7 +43,7 @@ namespace blofeld
 		s_engine_platform_build engine_platform_build;
 		uint32_t _version_field_skip_count;
 		t_tag_field_custom_version_callback _custom_version_callback;
-		c_blamlib_string_parser string_parser;
+		//c_blamlib_string_parser string_parser;
 
 	public:
 		template<typename A, typename B>
@@ -54,14 +59,19 @@ namespace blofeld
 			B&& extra_value) :
 			field_type(field_type),
 			name(name),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
 			filename(filename),
 			line(line),
 			pointer((void*)(pointer)),
 			extra_value((void*)(extra_value)),
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr),
-			string_parser(name)
+			_custom_version_callback(nullptr)
+			//string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -78,14 +88,19 @@ namespace blofeld
 			A&& pointer) :
 			field_type(field_type),
 			name(name),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
 			filename(filename),
 			line(line),
 			pointer((void*)(pointer)),
 			extra_value(nullptr),
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr),
-			string_parser(name)
+			_custom_version_callback(nullptr)
+			//string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -100,14 +115,19 @@ namespace blofeld
 			const char* name) :
 			field_type(field_type),
 			name(name),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
 			filename(filename),
 			line(line),
 			pointer(nullptr),
 			extra_value(nullptr),
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr),
-			string_parser(name)
+			_custom_version_callback(nullptr)
+			//string_parser(name)
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -122,14 +142,19 @@ namespace blofeld
 		) :
 			field_type(field_type),
 			name(nullptr),
+				description(),
+				units(),
+				limits(),
+				old_names(),
+				flags(),
 			filename(filename),
 			line(line),
 			pointer(nullptr),
 			extra_value(nullptr),
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr),
-			string_parser("")
+			_custom_version_callback(nullptr)
+			//string_parser("")
 		{
 			ASSERT(field_type < _field_type_non_standard);
 		}
@@ -145,14 +170,19 @@ namespace blofeld
 			uint32_t version_field_skip_count = 1) :
 			field_type(field_type),
 			name(nullptr),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
 			filename(filename),
 			line(line),
 			pointer(nullptr),
 			extra_value(nullptr),
 			engine_platform_build(engine_type_and_build),
 			_version_field_skip_count(version_field_skip_count),
-			_custom_version_callback(nullptr),
-			string_parser(name)
+			_custom_version_callback(nullptr)
+			//string_parser(name)
 		{
 			ASSERT(field_type > _field_type_non_standard);
 		}
@@ -167,14 +197,19 @@ namespace blofeld
 			t_tag_field_custom_version_callback custom_version_callback) :
 			field_type(field_type),
 			name(nullptr),
+			description(),
+			units(),
+			limits(),
+			old_names(),
+			flags(),
 			filename(filename),
 			line(line),
 			pointer(nullptr),
 			extra_value(nullptr),
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(custom_version_callback),
-			string_parser("")
+			_custom_version_callback(custom_version_callback)
+			//string_parser("")
 		{
 			ASSERT(field_type == _field_version_custom);
 		}
@@ -318,7 +353,12 @@ namespace blofeld
 		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, uint32_t flags, const void* pointer, e_field_id id) :
 			field_type(type),
-			name(nullptr),
+			name(name),
+			description(description),
+			units(units),
+			limits(limits),
+			old_names(old_names),
+			flags(flags),
 #ifndef HIDDEN_CODE
 			filename(filename),
 			line(line),
@@ -330,8 +370,8 @@ namespace blofeld
 			extra_value((void*)id), // union
 			engine_platform_build(),
 			_version_field_skip_count(0),
-			_custom_version_callback(nullptr),
-			string_parser(name)
+			_custom_version_callback(nullptr)
+			//string_parser(name)
 		{
 
 		}

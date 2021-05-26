@@ -3,7 +3,9 @@
 namespace blofeld
 {
 
-	extern s_tag_struct_definition midnight_light_struct_struct_definition;
+
+
+	extern s_tag_struct_definition midnight_light_struct;
 
 	extern c_versioned_string_list midnight_light_type_enum_definition_strings;
 	extern s_string_list_definition midnight_light_type_enum_definition;
@@ -19,6 +21,10 @@ namespace blofeld
 	extern s_string_list_definition midnight_gobo_tile_behavior_enum_definition;
 	extern c_versioned_string_list channelDefinitionFlags_strings;
 	extern s_string_list_definition channelDefinitionFlags;
+	extern c_versioned_string_list light_definition_flags_strings;
+	extern s_string_list_definition light_definition_flags;
+
+
 
 } // namespace blofeld
 

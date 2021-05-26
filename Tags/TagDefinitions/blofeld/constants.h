@@ -194,6 +194,7 @@ namespace blofeld
 	extern c_constant MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL;
 	extern c_constant NUMBER_OF_OBJECT_TYPES;
 	extern c_constant MAXIMUM_NODE_INDICES_PER_ERROR_POINT;
+	extern c_constant NUMBER_OF_SCENARIO_RESOURCE_TYPES; // 16
 
 	extern c_constant k_maxEmblemIndicesPerItem;
 	extern c_constant k_max_triangulation_tag_triangles;
@@ -572,7 +573,8 @@ namespace blofeld
 	extern c_constant k_grenade_globals_count;
 	extern c_constant k_interleaved_texture_count;
 	extern c_constant k_facial_animation_track_count;
-
+	extern c_constant k_maximum_hs_source_files_per_scenario; // 8
+	extern c_constant k_number_of_scenario_ai_types; // 2
 	
 	struct s_numberof_sizeof
 	{
@@ -1416,6 +1418,7 @@ namespace blofeld
 #define MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL(BLOFELD_CONST_ARGS)
 #define NUMBER_OF_OBJECT_TYPES NUMBER_OF_OBJECT_TYPES(BLOFELD_CONST_ARGS)
 #define MAXIMUM_NODE_INDICES_PER_ERROR_POINT MAXIMUM_NODE_INDICES_PER_ERROR_POINT(BLOFELD_CONST_ARGS)
+#define NUMBER_OF_SCENARIO_RESOURCE_TYPES NUMBER_OF_SCENARIO_RESOURCE_TYPES(BLOFELD_CONST_ARGS)
 
 #define k_maxEmblemIndicesPerItem k_maxEmblemIndicesPerItem(BLOFELD_CONST_ARGS)
 #define k_max_triangulation_tag_triangles k_max_triangulation_tag_triangles(BLOFELD_CONST_ARGS)
@@ -1795,6 +1798,8 @@ namespace blofeld
 #define k_flag_chunk_count k_flag_chunk_count(BLOFELD_CONST_ARGS)
 #define k_interleaved_texture_count k_interleaved_texture_count(BLOFELD_CONST_ARGS)
 #define k_facial_animation_track_count k_facial_animation_track_count(BLOFELD_CONST_ARGS)
+#define k_maximum_hs_source_files_per_scenario k_maximum_hs_source_files_per_scenario(BLOFELD_CONST_ARGS)
+#define k_number_of_scenario_ai_types k_number_of_scenario_ai_types(BLOFELD_CONST_ARGS)
 
 #endif
 }

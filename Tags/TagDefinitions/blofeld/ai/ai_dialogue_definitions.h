@@ -3,27 +3,29 @@
 namespace blofeld
 {
 
+
+
 	constexpr unsigned long AI_DIALOGUE_GLOBALS_TAG = 'adlg';
+	extern s_tag_group ai_dialogue_globals_group; // ai_dialogue_globals_block
 
-	extern s_tag_group ai_dialogue_globals_group;
 
-	extern s_tag_struct_definition default_stimulus_suppressor_block_block_struct;
-	extern s_tag_block_definition default_stimulus_suppressor_block_block;
-	extern s_tag_struct_definition response_block_block_struct;
-	extern s_tag_block_definition response_block_block;
-	extern s_tag_struct_definition vocalization_definitions_block_block_struct;
-	extern s_tag_block_definition vocalization_definitions_block_block;
-	extern s_tag_struct_definition vocalization_patterns_block_block_struct;
-	extern s_tag_block_definition vocalization_patterns_block_block;
-	extern s_tag_struct_definition dialogue_data_block_block_struct;
-	extern s_tag_block_definition dialogue_data_block_block;
-	extern s_tag_struct_definition involuntary_data_block_block_struct;
-	extern s_tag_block_definition involuntary_data_block_block;
-	extern s_tag_struct_definition predicted_data_block_block_struct;
-	extern s_tag_block_definition predicted_data_block_block;
-	extern s_tag_block_definition ai_dialogue_globals_block_block;
+	extern s_tag_block_definition ai_dialogue_globals_block;
+	extern s_tag_block_definition default_stimulus_suppressor_block;
+	extern s_tag_struct_definition default_stimulus_suppressor_block_struct_definition; // default_stimulus_suppressor_block
+	extern s_tag_block_definition vocalization_definitions_block;
+	extern s_tag_struct_definition vocalization_definitions_block_struct_definition; // vocalization_definitions_block
+	extern s_tag_block_definition response_block;
+	extern s_tag_struct_definition response_block_struct_definition; // response_block
+	extern s_tag_block_definition vocalization_patterns_block;
+	extern s_tag_struct_definition vocalization_patterns_block_struct_definition; // vocalization_patterns_block
+	extern s_tag_block_definition dialogue_data_block;
+	extern s_tag_struct_definition dialogue_data_block_struct_definition; // dialogue_data_block
+	extern s_tag_block_definition involuntary_data_block;
+	extern s_tag_struct_definition involuntary_data_block_struct_definition; // involuntary_data_block
+	extern s_tag_block_definition predicted_data_block;
+	extern s_tag_struct_definition predicted_data_block_struct_definition; // predicted_data_block
 
-	extern s_tag_struct_definition ai_dialogue_globals_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition ai_dialogue_globals_struct_definition; // tag group
 
 	extern c_versioned_string_list dialogue_names_enum_strings;
 	extern s_string_list_definition dialogue_names_enum;
@@ -67,6 +69,8 @@ namespace blofeld
 	extern s_string_list_definition dialogue_condition_flags;
 
 	extern s_tag_reference_definition global_dialogue_reference;
+
+
 
 } // namespace blofeld
 

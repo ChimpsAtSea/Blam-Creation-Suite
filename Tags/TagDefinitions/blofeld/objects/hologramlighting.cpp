@@ -1,72 +1,107 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_BLOCK(hologramLightingGlobalsBlock, 1)
+
+
+	#define HOLOGRAMLIGHTINGGLOBALSBLOCK_ID { 0x8E264B3B, 0x9FD14745, 0x83BCD78E, 0x9FBB73AC }
+	TAG_BLOCK(
+		hologramLightingGlobalsBlock_block,
+		"hologramLightingGlobalsBlock",
+		1,
+		"HologramLightingGlobals",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		HOLOGRAMLIGHTINGGLOBALSBLOCK_ID)
 	{
-		{ _field_legacy, _field_custom, "HOLOGRAM FUNCTIONS" },
-		{ _field_legacy, _field_string_id, "Intensity" },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "KEY LIGHT FUNCTIONS" },
-		{ _field_legacy, _field_struct, "Key Light Functions", &hologramLightFunctions_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "FILL LIGHT FUNCTIONS" },
-		{ _field_legacy, _field_struct, "Fill Light Functions", &hologramLightFunctions_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "RIM LIGHT FUNCTIONS" },
-		{ _field_legacy, _field_struct, "Rim Light Functions", &hologramLightFunctions_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_terminator }
+		FIELD_CUSTOM("HOLOGRAM FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_string_id, "Intensity" },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("KEY LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Key Light Functions", &hologramLightFunctions },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("FILL LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Fill Light Functions", &hologramLightFunctions },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("RIM LIGHT FUNCTIONS", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Rim Light Functions", &hologramLightFunctions },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(hologramLightingBlock, 1, hologramLightingBlock_struct_struct_definition );
+	TAG_BLOCK_FROM_STRUCT(
+		hologramLightingBlock_block,
+		"hologramLightingBlock",
+		1,
+		hologramLightingBlock_struct);
 
-	V5_TAG_STRUCT(hologramLightFunctions)
+	#define HOLOGRAMLIGHTFUNCTIONS_ID { 0x8A259276, 0xAA5542A4, 0x8927B452, 0x0A50BEB1 }
+	TAG_STRUCT(
+		hologramLightFunctions,
+		"hologramLightFunctions",
+		"HologramLightFunctions",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		HOLOGRAMLIGHTFUNCTIONS_ID)
 	{
-		{ _field_legacy, _field_string_id, "Intensity" },
-		{ _field_legacy, _field_string_id, "Forward" },
-		{ _field_legacy, _field_string_id, "Right" },
-		{ _field_legacy, _field_string_id, "Up" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "Intensity" },
+		{ _field_string_id, "Forward" },
+		{ _field_string_id, "Right" },
+		{ _field_string_id, "Up" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(hologramLightingBlock_struct)
+	#define HOLOGRAMLIGHTINGBLOCK_STRUCT_ID { 0xE3E332CA, 0xA5E44DFC, 0x81E9FCB6, 0x6198694A }
+	TAG_STRUCT(
+		hologramLightingBlock_struct,
+		"hologramLightingBlock_struct",
+		"HologramLighting",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		HOLOGRAMLIGHTINGBLOCK_STRUCT_ID)
 	{
-		{ _field_legacy, _field_custom, "HOLOGRAM" },
-		{ _field_legacy, _field_custom, "Intensity" },
-		{ _field_legacy, _field_real, "Intensity" },
-		{ _field_legacy, _field_real, "Intensity Input!" },
-		{ _field_legacy, _field_char_enum, "Transparency Mode", &hologramTransparencyMode },
-		{ _field_legacy, _field_pad, "PADDING1", 3 },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "KEY LIGHT" },
-		{ _field_legacy, _field_struct, "Key Light", &hologramLight_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "FILL LIGHT" },
-		{ _field_legacy, _field_struct, "Fill Light", &hologramLight_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_custom, "RIM LIGHT" },
-		{ _field_legacy, _field_struct, "Rim Light", &hologramLight_struct_definition },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_terminator }
+		FIELD_CUSTOM("HOLOGRAM", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		FIELD_CUSTOM("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		{ _field_real, "Intensity", _field_id_slider_editor },
+		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_char_enum, "Transparency Mode", &hologramTransparencyMode },
+		FIELD_PAD("PADDING1", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("KEY LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Key Light", &hologramLight },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("FILL LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Fill Light", &hologramLight },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		FIELD_CUSTOM("RIM LIGHT", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
+		{ _field_struct, "Rim Light", &hologramLight },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
+		{ _field_terminator }
 	};
 
-	V5_TAG_STRUCT(hologramLight)
+	#define HOLOGRAMLIGHT_ID { 0x3906DA32, 0xFC3C45A6, 0xADEDC284, 0x1B292C95 }
+	TAG_STRUCT(
+		hologramLight,
+		"hologramLight",
+		"HologramLight",
+		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		HOLOGRAMLIGHT_ID)
 	{
-		{ _field_legacy, _field_custom, "Hologram Light" },
-		{ _field_legacy, _field_custom, "Direction" },
-		{ _field_legacy, _field_real, "Direction" },
-		{ _field_legacy, _field_custom, "Front-Back" },
-		{ _field_legacy, _field_real, "Front-Back" },
-		{ _field_legacy, _field_custom, "Intensity" },
-		{ _field_legacy, _field_real, "Intensity" },
-		{ _field_legacy, _field_real, "Intensity Input!" },
-		{ _field_legacy, _field_real, "Forward Input!" },
-		{ _field_legacy, _field_real, "Right Input!" },
-		{ _field_legacy, _field_real, "Up Input!" },
-		{ _field_legacy, _field_terminator }
+		FIELD_CUSTOM("Hologram Light", nullptr, FIELD_FLAG_NONE, _field_id_hologram_light),
+		FIELD_CUSTOM("Direction", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		{ _field_real, "Direction", _field_id_slider_editor },
+		FIELD_CUSTOM("Front-Back", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		{ _field_real, "Front-Back", _field_id_slider_editor },
+		FIELD_CUSTOM("Intensity", nullptr, FIELD_FLAG_NONE, _field_id_slider_editor),
+		{ _field_real, "Intensity", _field_id_slider_editor },
+		{ _field_real, "Intensity Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Forward Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Right Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real, "Up Input", FIELD_FLAG_UNKNOWN0 },
+		{ _field_terminator }
 	};
 
 	STRINGS(hologramTransparencyMode)
@@ -75,6 +110,8 @@ namespace blofeld
 		"expensive"
 	};
 	STRING_LIST(hologramTransparencyMode, hologramTransparencyMode_strings, _countof(hologramTransparencyMode_strings));
+
+
 
 } // namespace blofeld
 

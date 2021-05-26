@@ -54,7 +54,7 @@ namespace blofeld
 	TAG_REFERENCE(contrail_render_method_definition_reference, blofeld::RENDER_METHOD_DEFINITION_TAG);
 	TAG_REFERENCE(contrail_render_method_reference);
 
-	V5_TAG_BLOCK(contrail_system_entry, 65536)
+	V5_TAG_BLOCK(contrail_system_entry_block, 65536)
 	{
 		{ _field_legacy, _field_string_id, "name" },
 		{ _field_legacy, _field_real, "unknown" },
@@ -86,22 +86,22 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown" },
 
 		{ _field_legacy, _field_explanation, "Render Method" },
-		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition_struct_definition },
+		{ _field_legacy, _field_struct, "render method", &render_method_struct_definition },
 
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
 		{ _field_legacy, _field_real, "unknown" },
-		{ _field_legacy, _field_struct, "profile color", &tracerProperty_real_rgb_color_Struct_struct_definition },
-		{ _field_legacy, _field_struct, "profile alpha", &tracerProperty_real_Struct_struct_definition },
-		{ _field_legacy, _field_struct, "profile alpha2", &tracerProperty_real_Struct_struct_definition },
-		{ _field_legacy, _field_struct, "profile black point", &tracerProperty_real_Struct_struct_definition },
-		{ _field_legacy, _field_struct, "profile palette", &tracerProperty_real_Struct_struct_definition },
-		{ _field_legacy, _field_struct, "profile intensity", &tracerProperty_real_Struct_struct_definition },
+		{ _field_legacy, _field_struct, "profile color", &tracerProperty_real_rgb_color_Struct },
+		{ _field_legacy, _field_struct, "profile alpha", &tracerProperty_real_Struct },
+		{ _field_legacy, _field_struct, "profile alpha2", &tracerProperty_real_Struct },
+		{ _field_legacy, _field_struct, "profile black point", &tracerProperty_real_Struct },
+		{ _field_legacy, _field_struct, "profile palette", &tracerProperty_real_Struct },
+		{ _field_legacy, _field_struct, "profile intensity", &tracerProperty_real_Struct },
 
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
-		{ _field_legacy, _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct_struct_definition },
+		{ _field_legacy, _field_struct, "runtime m_gpuData!", &gpu_property_function_color_struct },
 		{ _field_legacy, _field_terminator }
 	};
 

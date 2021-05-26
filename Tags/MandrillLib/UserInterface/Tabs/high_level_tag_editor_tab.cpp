@@ -1,5 +1,8 @@
 #include "mandrilllib-private-pch.h"
 
+#define null_coalesce(value, _default) ((value) ? (value) : (_default))
+#define safe_string(value) null_coalesce(value, "")
+
 using namespace blofeld;
 
 float constexpr pi = 3.14159265359f;
@@ -168,20 +171,18 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	{
-		bool const has_description = !field.string_parser.description.empty();
-
-		if (has_description)
+		if (field.description)
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
 
-		ImGui::TextUnformatted(field.string_parser.display_name.c_str());
+		ImGui::TextUnformatted(field.name);
 
-		if (has_description)
+		if (field.description)
 		{
 			if (ImGui::IsItemHovered())
 			{
-				ImGui::SetTooltip(field.string_parser.description.c_str());
+				ImGui::SetTooltip(field.description);
 			}
 			ImGui::PopStyleColor();
 		}
@@ -192,22 +193,22 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 		if constexpr (field_type == _field_char_integer || field_type == _field_custom_char_block_index || field_type == _field_char_block_index || field_type == _field_char_enum)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S8, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S8, data);
 		}
 		else if constexpr (field_type == _field_byte_flags || field_type == _field_byte_block_flags || field_type == _field_byte_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U8, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U8, data);
 		}
 		else if constexpr (field_type == _field_enum || field_type == _field_short_block_index || field_type == _field_custom_short_block_index || field_type == _field_short_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S16, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S16, data);
 		}
 		else if constexpr (field_type == _field_word_flags || field_type == _field_word_block_flags || field_type == _field_word_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U16, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U16, data);
 		}
 		else if constexpr (
 			field_type == _field_long_enum ||
@@ -220,60 +221,60 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			field_type == _field_long_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S32, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S32, data);
 		}
 		else if constexpr (field_type == _field_dword_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U32, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U32, data);
 		}
 		else if constexpr (field_type == _field_int64_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_S64, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S64, data);
 		}
 		else if constexpr (field_type == _field_qword_integer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U64, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U64, data);
 		}
 		else if constexpr (field_type == _field_real || field_type == _field_real_fraction || field_type == _field_half)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_Float, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_Float, data);
 		}
 		else if constexpr (field_type == _field_short_bounds || field_type == _field_point_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
-			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_S16, data, 2);
+			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, data, 2);
 		}
 		else if constexpr (field_type == _field_rectangle_2d)
 		{
 			ImGui::SetNextItemWidth(800.0f);
-			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_S16, data, 4);
+			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, data, 4);
 		}
 		else if constexpr (field_type == _field_real_vector_2d || field_type == _field_real_bounds || field_type == _field_real_fraction_bounds || field_type == _field_real_point_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
-			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, data, 2);
+			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, data, 2);
 		}
 		else if constexpr (field_type == _field_real_point_3d || field_type == _field_real_rgb_color || field_type == _field_real_hsv_color || field_type == _field_real_plane_2d || field_type == _field_real_vector_3d)
 		{
 			ImGui::SetNextItemWidth(600.0f);
-			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, data, 3);
+			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, data, 3);
 		}
 		else if constexpr (field_type == _field_real_argb_color || field_type == _field_real_ahsv_color || field_type == _field_real_plane_3d || field_type == _field_real_quaternion)
 		{
 			ImGui::SetNextItemWidth(800.0f);
-			result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, data, 4);
+			result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, data, 4);
 		}
 		else if constexpr (field_type == _field_pointer)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 #ifdef _WIN64
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U64, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U64, data);
 #else
-			result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_U32, data);
+			result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U32, data);
 #endif
 		}
 		else if constexpr (field_type == _field_angle)
@@ -281,7 +282,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			float& radians = *static_cast<float*>(data);
 			float degrees = radians * radians_to_degrees;
-			if (result = ImGui::InputScalar(field.string_parser.units.c_str(), ImGuiDataType_Float, &degrees))
+			if (result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_Float, &degrees))
 			{
 				radians = degrees * degrees_to_radians;
 			}
@@ -291,7 +292,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(400.0f);
 			float(&radians)[2] = *static_cast<float(*)[2]>(data);
 			float degrees[2] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees };
-			if (result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, &degrees, 2))
+			if (result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, &degrees, 2))
 			{
 				radians[0] = degrees[0] * degrees_to_radians;
 				radians[1] = degrees[1] * degrees_to_radians;
@@ -300,24 +301,24 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 		else if constexpr (field_type == _field_string)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 32);
+			result = ImGui::InputText(safe_string(field.units), static_cast<char*>(data), 32);
 		}
 		else if constexpr (field_type == _field_long_string)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 256);
+			result = ImGui::InputText(safe_string(field.units), static_cast<char*>(data), 256);
 		}
 		else if constexpr (field_type == _field_string_id || field_type == _field_old_string_id)
 		{
 			ImGui::SetNextItemWidth(350.0f);
-			result = ImGui::InputText(field.string_parser.units.c_str(), static_cast<char*>(data), 2048);
+			result = ImGui::InputText(safe_string(field.units), static_cast<char*>(data), 2048);
 		}
 		else if constexpr (field_type == _field_real_euler_angles_2d)
 		{
 			ImGui::SetNextItemWidth(400.0f);
 			float(&radians)[2] = *static_cast<float(*)[2]>(data);
 			float degrees[2] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees };
-			if (result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, &degrees, 2))
+			if (result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, &degrees, 2))
 			{
 				radians[0] = degrees[0] * degrees_to_radians;
 				radians[1] = degrees[1] * degrees_to_radians;
@@ -328,7 +329,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(600.0f);
 			float(&radians)[3] = *static_cast<float(*)[3]>(data);
 			float degrees[3] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees, radians[2] * radians_to_degrees };
-			if (result = ImGui::InputScalarN(field.string_parser.units.c_str(), ImGuiDataType_Float, &degrees, 3))
+			if (result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, &degrees, 3))
 			{
 				radians[0] = degrees[0] * degrees_to_radians;
 				radians[1] = degrees[1] * degrees_to_radians;
@@ -461,7 +462,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 				ImGui::PushStyleColor(ImGuiCol_HeaderActive, MANDRILL_THEME_DISABLED_HIGH(1.00f));
 			}
 			c_fixed_string_128 header_str;
-			header_str.format("%s : count:%u", field.string_parser.display_name.c_str(), count);
+			header_str.format("%s : count:%u", field.name, count);
 
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_CollapsingHeader | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap;
 			if (is_open)
@@ -763,20 +764,18 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	{
-		bool const has_description = !field.string_parser.description.empty();
-
-		if (has_description)
+		if (field.description)
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
 
-		ImGui::TextUnformatted(field.string_parser.display_name.c_str());
+		ImGui::TextUnformatted(field.name);
 
-		if (has_description)
+		if (field.description)
 		{
 			if (ImGui::IsItemHovered())
 			{
-				ImGui::SetTooltip(field.string_parser.description.c_str());
+				ImGui::SetTooltip(field.description);
 			}
 			ImGui::PopStyleColor();
 		}
@@ -932,7 +931,7 @@ void c_high_level_tag_editor_tab::render_data(h_data& data, const blofeld::s_tag
 		ImGui::SetColumnWidth(0, 400);
 		ImGui::SetColumnWidth(1, 900);
 		{
-			ImGui::TextUnformatted(field.string_parser.display_name.c_str());
+			ImGui::TextUnformatted(field.name);
 		}
 		ImGui::NextColumn();
 		{
@@ -985,7 +984,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(field.string_parser.display_name.c_str());
+		ImGui::Text(field.name);
 	}
 	ImGui::NextColumn();
 	{
@@ -1037,7 +1036,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 					ImGui::PopStyleColor();
 					if (ImGui::IsItemHovered())
 					{
-						ImGui::SetTooltip(current_string_parser.description.c_str());
+						ImGui::SetTooltip(current_string_parser.description);
 					}
 				}
 			}
@@ -1086,7 +1085,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(field.string_parser.display_name.c_str());
+		ImGui::Text(field.name);
 	}
 	ImGui::NextColumn();
 	{
@@ -1141,7 +1140,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 					ImGui::PopStyleColor();
 					if (ImGui::IsItemHovered())
 					{
-						ImGui::SetTooltip(current_string_parser.description.c_str());
+						ImGui::SetTooltip(current_string_parser.description);
 					}
 				}
 			}
@@ -1167,7 +1166,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 {
 	const s_tag_struct_definition& struct_definition = object.get_blofeld_struct_definition();
 
-	if (&struct_definition == &object_struct_definition_struct_definition)
+	if (&struct_definition == &object_struct_definition)
 	{
 		if (custom_tool == nullptr)
 		{
@@ -1275,7 +1274,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 				ImGui::SameLine();
 
 				static const ImVec4 explanation_color = MANDRILL_THEME_COMMENT_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA);
-				const char* display_name = field.string_parser.display_name.c_str();
+				const char* display_name = field.name;
 				ImGui::PushStyleColor(ImGuiCol_Text, explanation_color);
 				if (*display_name)
 				{
@@ -1300,7 +1299,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 				ImGui::Dummy({ 5.0f, 5.0f });
 			}
 			ImGui::EndGroup();
-			const char* description = field.string_parser.description.c_str();
+			const char* description = field.description;
 			if (*description && ImGui::IsItemHovered())
 			{
 				ImGui::BeginTooltipEx(0, ImGuiTooltipFlags_OverridePreviousTooltip);

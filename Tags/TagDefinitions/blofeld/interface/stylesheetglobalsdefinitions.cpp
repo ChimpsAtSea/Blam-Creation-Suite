@@ -1,135 +1,265 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_GROUP_FROM_BLOCK(style_sheet_list, STYLE_SHEET_LIST_TAG, style_sheet_list_block_block );
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetFontIdBlock, 1)
+
+	TAG_GROUP(
+		style_sheet_list_group,
+		STYLE_SHEET_LIST_TAG,
+		nullptr,
+		INVALID_TAG,
+		style_sheet_list_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		style_sheet_list_block,
+		"style_sheet_list_block",
+		1,
+		style_sheet_list_struct_definition);
+
+	#define USERINTERFACESTYLESHEETLANGUAGESBLOCK_ID { 0xB9A0F180, 0xC79A4D66, 0xAEE61E30, 0x3F3DCC4F }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetLanguagesBlock_block,
+		"UserInterfaceStyleSheetLanguagesBlock",
+		k_language_count,
+		"UserInterfaceStyleSheets",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETLANGUAGESBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "font id", &global_font_id_enum_definition },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "language", FIELD_FLAG_INDEX, &style_sheet_language_enum_definition },
+		{ _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
+		{ _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetTextCaseBlock, 1)
+	#define USERINTERFACESTYLESHEETSFONTBLOCK_ID { 0xB11128E6, 0x68214537, 0xA8E93260, 0x4E69F10F }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetsFontBlock_block,
+		"UserInterfaceStyleSheetsFontBlock",
+		k_maximumNumberOfStyleSheets,
+		"StyleFontData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETSFONTBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "text case", &text_case_enum },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "style sheet name", FIELD_FLAG_INDEX },
+		{ _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
+		{ _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block },
+		{ _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block },
+		{ _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock_block },
+		{ _field_block, "scale", &UserInterfaceStyleSheetScaleBlock_block },
+		{ _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetJustificationBlock, 1)
+	#define USERINTERFACESTYLESHEETFONTIDBLOCK_ID { 0x5BE81BA7, 0x18004680, 0xA65EB74C, 0x4E929FBD }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetFontIdBlock_block,
+		"UserInterfaceStyleSheetFontIdBlock",
+		1,
+		"FontId",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETFONTIDBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "justification", &justification_enum },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "font id", &global_font_id_enum_definition },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetAlignmentBlock, 1)
+	#define USERINTERFACESTYLESHEETTEXTCASEBLOCK_ID { 0xB05F2549, 0x82BB4259, 0x8F19D0C0, 0x516F62B1 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetTextCaseBlock_block,
+		"UserInterfaceStyleSheetTextCaseBlock",
+		1,
+		"TextCase",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETTEXTCASEBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "alignment", &alignment_enum },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "text case", &text_case_enum },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetScaleBlock, 1)
+	#define USERINTERFACESTYLESHEETJUSTIFICATIONBLOCK_ID { 0x7A8DC166, 0x65D643A1, 0xB0736299, 0xEDDA2DF0 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetJustificationBlock_block,
+		"UserInterfaceStyleSheetJustificationBlock",
+		1,
+		"TextJustification",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETJUSTIFICATIONBLOCK_ID)
 	{
-		{ _field_legacy, _field_real, "value" },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "justification", &justification_enum },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetFixedHeightBlock, 1)
+	#define USERINTERFACESTYLESHEETALIGNMENTBLOCK_ID { 0x4B81A801, 0x5BCB44F2, 0x85CE1AFF, 0x52B2B89C }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetAlignmentBlock_block,
+		"UserInterfaceStyleSheetAlignmentBlock",
+		1,
+		"TextAlignment",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETALIGNMENTBLOCK_ID)
 	{
-		{ _field_legacy, _field_real, "height" },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "alignment", &alignment_enum },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetsFontBlock, k_maximumNumberOfStyleSheets)
+	#define USERINTERFACESTYLESHEETSCALEBLOCK_ID { 0xC5F63A73, 0xD27A4AB9, 0x98FA924C, 0xED24C942 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetScaleBlock_block,
+		"UserInterfaceStyleSheetScaleBlock",
+		1,
+		"float",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETSCALEBLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "style sheet name^" },
-		{ _field_legacy, _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
-		{ _field_legacy, _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block },
-		{ _field_legacy, _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block },
-		{ _field_legacy, _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock_block },
-		{ _field_legacy, _field_block, "scale", &UserInterfaceStyleSheetScaleBlock_block },
-		{ _field_legacy, _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_real, "value" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetDropShadowStyleBlock, 1)
+	#define USERINTERFACESTYLESHEETFIXEDHEIGHTBLOCK_ID { 0x84C93CAC, 0x83CD4CCC, 0x998C57E3, 0xBF18BC0B }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetFixedHeightBlock_block,
+		"UserInterfaceStyleSheetFixedHeightBlock",
+		1,
+		"float",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETFIXEDHEIGHTBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "drop shadow style", &drop_shadow_style_enum },
-		{ _field_legacy, _field_terminator }
+		{ _field_real, "height" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetColorBlock, 1)
+	#define USERINTERFACESTYLESHEETSVISUALBLOCK_ID { 0x47874FB6, 0x2A7B457C, 0xACFAFE1A, 0xBCCC9980 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetsVisualBlock_block,
+		"UserInterfaceStyleSheetsVisualBlock",
+		k_maximumNumberOfStyleSheets,
+		"StyleVisualData",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETSVISUALBLOCK_ID)
 	{
-		{ _field_legacy, _field_real_argb_color, "color" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "style sheet name", FIELD_FLAG_INDEX },
+		{ _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
+		{ _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block },
+		{ _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block },
+		{ _field_string_id, "gradient name" },
+		{ _field_string_id, "dropshadow name" },
+		{ _field_string_id, "outer glow name" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetsVisualBlock, k_maximumNumberOfStyleSheets)
+	#define USERINTERFACESTYLESHEETDROPSHADOWSTYLEBLOCK_ID { 0xD10ED3B2, 0x6C5D4A22, 0x85467B00, 0x716A2FEC }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetDropShadowStyleBlock_block,
+		"UserInterfaceStyleSheetDropShadowStyleBlock",
+		1,
+		"TextDropShadowStyle",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETDROPSHADOWSTYLEBLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "style sheet name^" },
-		{ _field_legacy, _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
-		{ _field_legacy, _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block },
-		{ _field_legacy, _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block },
-		{ _field_legacy, _field_string_id, "gradient name" },
-		{ _field_legacy, _field_string_id, "dropshadow name" },
-		{ _field_legacy, _field_string_id, "outer glow name" },
-		{ _field_legacy, _field_terminator }
+		{ _field_long_enum, "drop shadow style", &drop_shadow_style_enum },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetLanguagesBlock, k_language_count)
+	#define USERINTERFACESTYLESHEETCOLORBLOCK_ID { 0x5FAF93B6, 0x5AF943A6, 0xA7655CBE, 0xF33914E7 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetColorBlock_block,
+		"UserInterfaceStyleSheetColorBlock",
+		1,
+		"real_argb_color",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETCOLORBLOCK_ID)
 	{
-		{ _field_legacy, _field_long_enum, "language^", &style_sheet_language_enum_definition },
-		{ _field_legacy, _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
-		{ _field_legacy, _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_real_argb_color, "color" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetGradientBlock, 32)
+	#define USERINTERFACESTYLESHEETGRADIENTBLOCK_ID { 0x1AC5DF38, 0x6EA64B1C, 0xAA35ED88, 0x791D8F42 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetGradientBlock_block,
+		"UserInterfaceStyleSheetGradientBlock",
+		32,
+		"UserInterfaceStyleGradient",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETGRADIENTBLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "gradient name^" },
-		{ _field_legacy, _field_real_argb_color, "color1" },
-		{ _field_legacy, _field_real_argb_color, "color2" },
-		{ _field_legacy, _field_real_argb_color, "color3" },
-		{ _field_legacy, _field_real_argb_color, "color4" },
-		{ _field_legacy, _field_real, "angle" },
-		{ _field_legacy, _field_real, "scale" },
-		{ _field_legacy, _field_real_vector_2d, "offset" },
-		{ _field_legacy, _field_long_integer, "number of colors" },
-		{ _field_legacy, _field_long_enum, "gradient shape", &gradient_shape_enum },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "gradient name", FIELD_FLAG_INDEX },
+		{ _field_real_argb_color, "color1" },
+		{ _field_real_argb_color, "color2" },
+		{ _field_real_argb_color, "color3" },
+		{ _field_real_argb_color, "color4" },
+		{ _field_real, "angle" },
+		{ _field_real, "scale" },
+		{ _field_real_vector_2d, "offset" },
+		{ _field_long_integer, "number of colors" },
+		{ _field_long_enum, "gradient shape", &gradient_shape_enum },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetDropshadowBlock, 32)
+	#define USERINTERFACESTYLESHEETDROPSHADOWBLOCK_ID { 0xDA87E841, 0x04AF40A3, 0xA13AC821, 0xA28E40C4 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetDropshadowBlock_block,
+		"UserInterfaceStyleSheetDropshadowBlock",
+		32,
+		"UserInterfaceStyleDropshadow",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETDROPSHADOWBLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "dropshadow name^" },
-		{ _field_legacy, _field_real_argb_color, "color" },
-		{ _field_legacy, _field_real, "angle" },
-		{ _field_legacy, _field_real, "distance" },
-		{ _field_legacy, _field_real, "spread" },
-		{ _field_legacy, _field_real, "size" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "dropshadow name", FIELD_FLAG_INDEX },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "angle" },
+		{ _field_real, "distance" },
+		{ _field_real, "spread" },
+		{ _field_real, "size" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(UserInterfaceStyleSheetOuterGlowBlock, 32)
+	#define USERINTERFACESTYLESHEETOUTERGLOWBLOCK_ID { 0xC337C467, 0x110E4346, 0x8C3AECD1, 0x9D9D6605 }
+	TAG_BLOCK(
+		UserInterfaceStyleSheetOuterGlowBlock_block,
+		"UserInterfaceStyleSheetOuterGlowBlock",
+		32,
+		"UserInterfaceStyleOuterGlow",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		USERINTERFACESTYLESHEETOUTERGLOWBLOCK_ID)
 	{
-		{ _field_legacy, _field_string_id, "outer glow name^" },
-		{ _field_legacy, _field_real_argb_color, "color" },
-		{ _field_legacy, _field_real, "spread" },
-		{ _field_legacy, _field_real, "size" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "outer glow name", FIELD_FLAG_INDEX },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "spread" },
+		{ _field_real, "size" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(style_sheet_list_block, 1, style_sheet_list_struct_definition_struct_definition );
-
-	V5_TAG_STRUCT(style_sheet_list_struct_definition)
+	#define STYLE_SHEET_LIST_STRUCT_DEFINITION_ID { 0xC59ED09C, 0xE2CC4A35, 0xA7C67CF6, 0xBD5B6B99 }
+	TAG_STRUCT(
+		style_sheet_list_struct_definition,
+		"style_sheet_list_struct_definition",
+		"UserInterfaceStyleSheetLanguages",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		STYLE_SHEET_LIST_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block },
-		{ _field_legacy, _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block },
-		{ _field_legacy, _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock_block },
-		{ _field_legacy, _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block },
+		{ _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block },
+		{ _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock_block },
+		{ _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock_block },
+		{ _field_terminator }
 	};
 
 	STRINGS(text_case_enum)
@@ -196,6 +326,8 @@ namespace blofeld
 	STRING_LIST(gradient_shape_enum, gradient_shape_enum_strings, _countof(gradient_shape_enum_strings));
 
 	TAG_REFERENCE(style_sheets_global_reference, STYLE_SHEET_LIST_TAG);
+
+
 
 } // namespace blofeld
 

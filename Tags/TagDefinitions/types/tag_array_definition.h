@@ -14,8 +14,3 @@ namespace blofeld
 		const s_tag_struct_definition& struct_definition;
 	};
 }
-
-namespace macaque
-{
-	using s_tag_array_definition = blofeld::s_tag_array_definition;
-}

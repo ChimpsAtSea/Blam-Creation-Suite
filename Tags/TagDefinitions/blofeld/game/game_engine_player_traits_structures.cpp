@@ -1,101 +1,138 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_BLOCK(player_traits_vitality_block, 1)
+
+
+	#define GAME_ENGINE_PLAYER_TRAITS_BLOCK_ID { 0xAECDFA4E, 0x754147FD, 0xAA99E781, 0xF6537F90 }
+	TAG_BLOCK(
+		game_engine_player_traits_block,
+		"game_engine_player_traits_block",
+		1,
+		"s_game_engine_player_traits",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		GAME_ENGINE_PLAYER_TRAITS_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
-
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 6 },
-		{ _field_legacy, _field_char_enum, "damage resistance", &player_trait_damage_resistance_enum },
-		{ _field_legacy, _field_char_enum, "body multiplier", &player_trait_body_multiplier_enum },
-		{ _field_legacy, _field_char_enum, "body recharge rate", &player_trait_shield_recharge_rate_enum },
-		{ _field_legacy, _field_char_enum, "shield multiplier", &player_trait_shield_multiplier_enum },
-		{ _field_legacy, _field_char_enum, "shield recharge rate", &player_trait_shield_recharge_rate_enum },
-		{ _field_legacy, _field_char_enum, "shield recharge rate 2", &player_trait_shield_recharge_rate_enum }, // #TODO: Could be shield stun duration? Some research is required.
-		
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
-		{ _field_legacy, _field_explanation, "damage resistance", "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"." },
-		{ _field_legacy, _field_real, "damage resistance" },
-		{ _field_legacy, _field_real, "shield multiplier" },
-		{ _field_legacy, _field_real, "body multiplier" },
-		{ _field_legacy, _field_real, "shield stun duration" },
-		{ _field_legacy, _field_real, "shield recharge rate" },
-		{ _field_legacy, _field_real, "body recharge rate" },
-		{ _field_legacy, _field_real, "overshield recharge rate" },
-		{ _field_legacy, _field_real, "vampirism percent" },
-		{ _field_legacy, _field_real, "explosive damage resistance#incoming damage multiplied by (1 - resistance)" },
-		{ _field_legacy, _field_real, "wheelman armor vehicle stun time modifier" },
-		{ _field_legacy, _field_real, "wheelman armor vehicle recharge time modifier" },
-		{ _field_legacy, _field_real, "wheelman armor vehicle emp disabled time modifier" },
-		{ _field_legacy, _field_real, "fall damage multiplier" },
-
-		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_legacy, _field_char_enum, "shield vampirism", &player_trait_shield_vampirism_enum },
-		
-		{ _field_legacy, _field_char_enum, "headshot immunity", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "assassination immunity", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "deathless", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "fast track armor", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
-
-		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_pad, "pad", 3 },
-		
-		{ _field_legacy, _field_terminator }
+		{ _field_block, "vitality traits", &player_traits_vitality_block },
+		{ _field_block, "weapon traits", &player_traits_weapons_block },
+		{ _field_block, "movement traits", &player_traits_movement_block },
+		{ _field_block, "appearance traits", &player_traits_appearance_block },
+		{ _field_block, "sensor traits", &player_traits_sensors_block },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(player_traits_weapons_block, 1)
+	#define PLAYER_TRAITS_VITALITY_BLOCK_ID { 0x8F23B52B, 0x7E564650, 0xBD6ED274, 0xD5A66FE8 }
+	TAG_BLOCK(
+		player_traits_vitality_block,
+		"player_traits_vitality_block",
+		1,
+		"c_player_traits_vitality",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PLAYER_TRAITS_VITALITY_BLOCK_ID)
 	{
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_long_flags, "should apply trait", &player_traits_weapons_float_flags },
+		{ _field_long_flags, "should apply trait", &player_traits_vitality_float_flags },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 6 },
+		{ _field_legacy, _field_char_enum, "damage resistance", &player_trait_damage_resistance },
+		{ _field_legacy, _field_char_enum, "body multiplier", &player_trait_body_multiplier },
+		{ _field_legacy, _field_char_enum, "body recharge rate", &player_trait_body_recharge_rate },
+		{ _field_legacy, _field_char_enum, "shield multiplier", &player_trait_shield_multiplier },
+		{ _field_legacy, _field_char_enum, "shield recharge rate", &player_trait_shield_recharge_rate },
+		{ _field_legacy, _field_char_enum, "shield recharge rate 2", &player_trait_shield_recharge_rate }, // #TODO: This could also be overshield recharge rate. Could be shield stun duration? Some research is required. 
+		
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 14 },
+		FIELD_EXPLANATION("damage resistance", nullptr, FIELD_FLAG_NONE, "Any damage taken is divided by this number.  If you put -1, that means \"invulnerable\"."),
+		{ _field_real, "damage resistance" },
+		{ _field_real, "shield multiplier" },
+		{ _field_real, "body multiplier" },
+		{ _field_real, "shield stun duration" },
+		{ _field_real, "shield recharge rate" },
+		{ _field_real, "body recharge rate" },
+		{ _field_real, "overshield recharge rate" },
+		{ _field_real, "vampirism percent" },
+		{ _field_real, "explosive damage resistance", "incoming damage multiplied by (1 - resistance)" },
+		{ _field_real, "wheelman armor vehicle stun time modifier" },
+		{ _field_real, "wheelman armor vehicle recharge time modifier" },
+		{ _field_real, "wheelman armor vehicle emp disabled time modifier" },
+		{ _field_real, "fall damage multiplier" },
+
+		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
+		{ _field_legacy, _field_char_enum, "shield vampirism", &player_trait_shield_vampirism },
+		
+		{ _field_char_enum, "headshot immunity", &player_trait_bool_enum },
+		{ _field_char_enum, "assassination immunity", &player_trait_bool_enum },
+		{ _field_char_enum, "deathless", &player_trait_bool_enum },
+		{ _field_char_enum, "fast track armor", &player_trait_bool_enum },
+		{ _field_char_enum, "powerup cancellation", &player_trait_powerup_cancellation_enum },
+
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
+		
+		{ _field_terminator }
+	};
+
+	#define PLAYER_TRAITS_WEAPONS_BLOCK_ID { 0xB29D76D0, 0x3A954289, 0xAB81D09D, 0xC0A90761 }
+	TAG_BLOCK(
+		player_traits_weapons_block,
+		"player_traits_weapons_block",
+		1,
+		"s_player_traits_weapons",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PLAYER_TRAITS_WEAPONS_BLOCK_ID)
+	{
+		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
+		{ _field_long_flags, "should apply trait", &player_traits_weapons_float_flags },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_legacy, _field_char_enum, "damage multiplier", &player_trait_damage_modifier_enum },
-		{ _field_legacy, _field_char_enum, "melee damage multiplier", &player_trait_damage_modifier_enum },
-		
+		{ _field_legacy, _field_char_enum, "damage multiplier", &player_trait_damage_modifier },
+		{ _field_legacy, _field_char_enum, "melee damage multiplier", &player_trait_damage_modifier },
+
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_legacy, _field_real, "damage multiplier" },
-		{ _field_legacy, _field_real, "melee damage multiplier" },
+		{ _field_real, "damage multiplier" },
+		{ _field_real, "melee damage multiplier" },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_char_enum, "grenade recharge", &player_trait_bool_enum },
-		
+
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 20 },
-		{ _field_legacy, _field_real, "grenade recharge seconds frag" },
-		{ _field_legacy, _field_real, "grenade recharge seconds plasma" },
-		{ _field_legacy, _field_real, "grenade recharge seconds spike" },
-		{ _field_legacy, _field_real, "hero equipment energy use rate modifier" },
-		{ _field_legacy, _field_real, "hero equipment energy recharge delay modifier" },
-		{ _field_legacy, _field_real, "hero equipment energy recharge rate modifier" },
-		{ _field_legacy, _field_real, "hero equipment initial energy modifier" },
-		{ _field_legacy, _field_real, "equipment energy use rate modifier" },
-		{ _field_legacy, _field_real, "equipment energy recharge delay modifier" },
-		{ _field_legacy, _field_real, "equipment energy use recharge rate modifier" },
-		{ _field_legacy, _field_real, "equipment energy initial energy modifier" },
-		{ _field_legacy, _field_real, "switch speed modifier" },
-		{ _field_legacy, _field_real, "reload speed modifier" },
-		{ _field_legacy, _field_real, "ordnance points modifier" },
-		{ _field_legacy, _field_real, "explosive area of effect radius modifier" },
-		{ _field_legacy, _field_real, "gunner armor modifier" },
-		{ _field_legacy, _field_real, "stability armor modifier" },
-		{ _field_legacy, _field_real, "drop recon warning seconds" },
-		{ _field_legacy, _field_real, "drop recon distance modifier" },
-		{ _field_legacy, _field_real, "assassination speed modifier" },
+		{ _field_real, "grenade recharge seconds frag" },
+		{ _field_real, "grenade recharge seconds plasma" },
+		{ _field_real, "grenade recharge seconds spike" },
+		{ _field_real, "hero equipment energy use rate modifier" },
+		{ _field_real, "hero equipment energy recharge delay modifier" },
+		{ _field_real, "hero equipment energy recharge rate modifier" },
+		{ _field_real, "hero equipment initial energy modifier" },
+		{ _field_real, "equipment energy use rate modifier" },
+		{ _field_real, "equipment energy recharge delay modifier" },
+		{ _field_real, "equipment energy use recharge rate modifier" },
+		{ _field_real, "equipment energy initial energy modifier" },
+		{ _field_real, "switch speed modifier" },
+		{ _field_real, "reload speed modifier" },
+		{ _field_real, "ordnance points modifier" },
+		{ _field_real, "explosive area of effect radius modifier" },
+		{ _field_real, "gunner armor modifier" },
+		{ _field_real, "stability armor modifier" },
+		{ _field_real, "drop recon warning seconds" },
+		{ _field_real, "drop recon distance modifier" },
+		{ _field_real, "assassination speed modifier" },
+
 		
-		{ _field_legacy, _field_char_enum, "weapon pickup allowed", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
-		{ _field_legacy, _field_char_enum, "infinite ammo", &player_trait_infinite_ammo_enum },
-		{ _field_legacy, _field_char_enum, "equipment usage", &player_trait_equipment_usage_enum },
+		{ _field_char_enum, "weapon pickup allowed", &player_trait_bool_enum },
+		{ _field_char_enum, "initial grenade count", &player_trait_initial_grenade_count_enum },
+		{ _field_char_enum, "infinite ammo", &player_trait_infinite_ammo_enum },
+		{ _field_char_enum, "equipment usage", &player_trait_equipment_usage_enum },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_char_enum, "equipment usage excepting auto turret#false will disable all equipment except auto turret", &player_trait_equipment_usage_enum },
-		
-		{ _field_legacy, _field_char_enum, "equipment drop", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "infinite equipment", &player_trait_bool_enum },
+		{ _field_char_enum, "equipment usage excepting auto turret", "false will disable all equipment except auto turret", &player_trait_equipment_usage_enum },
+
+		{ _field_char_enum, "equipment drop", &player_trait_bool_enum },
+		{ _field_char_enum, "infinite equipment", &player_trait_bool_enum },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_char_integer, "unknown" },
@@ -103,70 +140,84 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 9 },
-		{ _field_legacy, _field_char_enum, "weapons ammopack", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "weapons grenadier", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "weapons explode on death armormod#spawns projectile specified in globals.globals", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "ordnance markers visible", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "weapons ordnance reroll available", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "weapons resourceful#grenade probabilities defined in grenade_list.game_globals_grenade_list", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
-		{ _field_legacy, _field_pad, "weapons_padding", 1 },
+		{ _field_char_enum, "weapons ammopack", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons grenadier", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons explode on death armormod", "spawns projectile specified in globals.globals", &player_trait_bool_enum },
+		{ _field_char_enum, "ordnance markers visible", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons ordnance reroll available", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons resourceful", "grenade probabilities defined in grenade_list.game_globals_grenade_list", &player_trait_bool_enum },
+		{ _field_char_enum, "weapons well equipped", &player_trait_bool_enum },
+		{ _field_char_enum, "ordnance disabled", &player_trait_bool_enum },
+		FIELD_PAD("weapons_padding", nullptr, FIELD_FLAG_NONE, 1),
 		
-		{ _field_legacy, _field_explanation, "initial weapons/equipment", "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list." },
-		{ _field_legacy, _field_string_id, "initial primary weapon" },
-		{ _field_legacy, _field_string_id, "initial secondary weapon" },
-		{ _field_legacy, _field_string_id, "initial equipment" },
+		FIELD_EXPLANATION("initial weapons/equipment", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/globals.multiplayer_object_type_list."),
+		{ _field_string_id, "initial primary weapon" },
+		{ _field_string_id, "initial secondary weapon" },
+		{ _field_string_id, "initial equipment" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
-		{ _field_legacy, _field_string_id, "initial tactical package" },
-		{ _field_legacy, _field_string_id, "initial support upgrade" },
-		
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "initial tactical package" },
+		{ _field_string_id, "initial support upgrade" },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(player_traits_movement_block, 1)
+	#define PLAYER_TRAITS_MOVEMENT_BLOCK_ID { 0x4F62673D, 0x6D6146F6, 0xA3A6684D, 0x38C167B3 }
+	TAG_BLOCK(
+		player_traits_movement_block,
+		"player_traits_movement_block",
+		1,
+		"c_player_traits_movement",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PLAYER_TRAITS_MOVEMENT_BLOCK_ID)
 	{
-
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_long_flags, "should apply trait", &player_traits_movement_float_flags },
+		{ _field_long_flags, "should apply trait", &player_traits_movement_float_flags },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_legacy, _field_char_enum, "speed", &player_trait_movement_speed_enum },
-		{ _field_legacy, _field_char_enum, "gravity multiplier", &player_trait_gravity_scale_enum },
-		
+		{ _field_legacy, _field_char_enum, "speed", &player_trait_movement_speed },
+		{ _field_legacy, _field_char_enum, "gravity multiplier", &player_trait_gravity_scale },
+
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
-		{ _field_legacy, _field_real, "speed" },
-		{ _field_legacy, _field_real, "gravity multiplier" },
-		{ _field_legacy, _field_real, "jump multiplier" },
-		{ _field_legacy, _field_real, "turn speed multiplier" },
+		{ _field_real, "speed" },
+		{ _field_real, "gravity multiplier" },
+		{ _field_real, "jump multiplier" },
+		{ _field_real, "turn speed multiplier" },
 		
-		{ _field_legacy, _field_char_enum, "vehicle usage", &player_trait_vehicle_usage },
-		{ _field_legacy, _field_char_enum, "double jump", &player_trait_double_jump },
+		{ _field_char_enum, "vehicle usage", &player_trait_vehicle_usage },
+		{ _field_char_enum, "double jump", &player_trait_double_jump },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
-		{ _field_legacy, _field_explanation, "Jump height", "This is a percentage, and can be any integer up to 400. -1 Is unchanged/default." },
-		{ _field_legacy, _field_long_integer, "Jump height" },
-		
+		{ _field_legacy, _field_explanation, "jump height", "This is a percentage, and can be any integer up to 400. -1 Is unchanged/default." },
+		{ _field_legacy, _field_long_integer, "jump height" },
+
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
-		{ _field_legacy, _field_char_enum, "sprint usage", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "stealthy", &player_trait_bool_enum },
-		{ _field_legacy, _field_pad, "grue", 2 },
+		{ _field_char_enum, "sprint usage", &player_trait_bool_enum },
+		{ _field_char_enum, "automatic momentum usage", &player_trait_bool_enum },
+		{ _field_char_enum, "vaulting enabled", &player_trait_bool_enum },
+		{ _field_char_enum, "stealthy", &player_trait_bool_enum },
+		FIELD_PAD("grue", nullptr, FIELD_FLAG_NONE, 2),
 		
-		{ _field_legacy, _field_terminator }
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(player_traits_appearance_block, 1)
+	#define PLAYER_TRAITS_APPEARANCE_BLOCK_ID { 0x3F915812, 0xEA7541DC, 0xA0BC41A6, 0xE81CFC01 }
+	TAG_BLOCK(
+		player_traits_appearance_block,
+		"player_traits_appearance_block",
+		1,
+		"s_player_traits_appearance",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PLAYER_TRAITS_APPEARANCE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_char_enum, "active camo", &player_trait_active_camo },
-		{ _field_legacy, _field_char_enum, "waypoint", &player_trait_waypoint },
-		{ _field_legacy, _field_char_enum, "gamertag visible", &player_trait_waypoint },
-		{ _field_legacy, _field_char_enum, "aura", &player_trait_aura },
-		
+		{ _field_char_enum, "active camo", &player_trait_active_camo },
+		{ _field_char_enum, "waypoint", &player_trait_waypoint },
+		{ _field_char_enum, "gamertag visible", &player_trait_waypoint },
+		{ _field_char_enum, "aura", &player_trait_aura },
+
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_legacy, _field_char_enum, "forced color", &player_trait_forced_color_enum },
+		{ _field_legacy, _field_char_enum, "forced color", &player_trait_forced_color },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 3 },
 		{ _field_legacy, _field_char_integer, "unknown" },
@@ -174,62 +225,68 @@ namespace blofeld
 		{ _field_legacy, _field_char_integer, "unknown" },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		{ _field_legacy, _field_explanation, "death effect/attached effect", "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects." },
-		{ _field_legacy, _field_string_id, "death effect" },
-		{ _field_legacy, _field_string_id, "attached effect" },
+		FIELD_EXPLANATION("death effect/attached effect", nullptr, FIELD_FLAG_NONE, "Type any string from the relevant sections of multiplayer/megalo/multiplayer_effects.multiplayereffects."),
+		{ _field_string_id, "death effect" },
+		{ _field_string_id, "attached effect" },
 		
-		{ _field_legacy, _field_terminator }
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(player_traits_sensors_block, 1)
+	#define PLAYER_TRAITS_SENSORS_BLOCK_ID { 0xE4C40B0C, 0xE0674B60, 0xAA103371, 0x9BFE5DAA }
+	TAG_BLOCK(
+		player_traits_sensors_block,
+		"player_traits_sensors_block",
+		1,
+		"c_player_traits_sensors",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PLAYER_TRAITS_SENSORS_BLOCK_ID)
 	{
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
-		{ _field_legacy, _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
-		{ _field_legacy, _field_real, "motion tracker range" },
-		{ _field_legacy, _field_real, "nemesis duration:seconds" },
+		{ _field_long_flags, "should apply trait", &player_traits_sensors_float_flags },
+		{ _field_real, "motion tracker range" },
+		{ _field_real, "nemesis duration", nullptr, "seconds" },
 		
-		{ _field_legacy, _field_char_enum, "motion tracker", &player_trait_motion_tracker },
+		{ _field_char_enum, "motion tracker", &player_trait_motion_tracker },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
-		{ _field_legacy, _field_char_enum, "motion tracker range", &player_trait_motion_tracker_range_enum },
-		
+		{ _field_legacy, _field_char_enum, "motion tracker range", &player_trait_motion_tracker_range },
+
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach },
-		{ _field_legacy, _field_char_enum, "motion tracker while zoomed", &player_trait_bool_enum },
+		{ _field_char_enum, "motion tracker while zoomed", &player_trait_bool_enum },
 		
-		{ _field_legacy, _field_char_enum, "directional damage indicator", &player_trait_bool_enum },
+		{ _field_char_enum, "directional damage indicator", &player_trait_bool_enum },
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 5 },
-		{ _field_legacy, _field_char_enum, "vision mode", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "battle awareness", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "threat view", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "aural enhancement", &player_trait_bool_enum },
-		{ _field_legacy, _field_char_enum, "nemesis", &player_trait_bool_enum },
+		{ _field_char_enum, "vision mode", &player_trait_bool_enum },
+		{ _field_char_enum, "battle awareness", &player_trait_bool_enum },
+		{ _field_char_enum, "threat view", &player_trait_bool_enum },
+		{ _field_char_enum, "aural enhancement", &player_trait_bool_enum },
+		{ _field_char_enum, "nemesis", &player_trait_bool_enum },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_char_integer, "unknown" }, // TODO: Some research required
 		
-		{ _field_legacy, _field_terminator }
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(game_engine_player_traits_block, 1)
+	#define GAME_ENGINE_PLAYER_TRAITS_LIST_BLOCK_ID { 0xF63362FC, 0x54C34B03, 0xB281876F, 0x6CDFA31E }
+	TAG_BLOCK(
+		game_engine_player_traits_list_block,
+		"game_engine_player_traits_list_block",
+		64,
+		"s_game_engine_player_traits_list",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		GAME_ENGINE_PLAYER_TRAITS_LIST_BLOCK_ID)
 	{
-		{ _field_legacy, _field_block, "vitality traits", &player_traits_vitality_block_block },
-		{ _field_legacy, _field_block, "weapon traits", &player_traits_weapons_block_block },
-		{ _field_legacy, _field_block, "movement traits", &player_traits_movement_block_block },
-		{ _field_legacy, _field_block, "appearance traits", &player_traits_appearance_block_block },
-		{ _field_legacy, _field_block, "sensor traits", &player_traits_sensors_block_block },
-		{ _field_legacy, _field_terminator }
-	};
-
-	V5_TAG_BLOCK(game_engine_player_traits_list_block, 64)
-	{
-		{ _field_legacy, _field_string_id, "name^" },
-		{ _field_legacy, _field_block, "vitality traits", &player_traits_vitality_block_block },
-		{ _field_legacy, _field_block, "weapon traits", &player_traits_weapons_block_block },
-		{ _field_legacy, _field_block, "movement traits", &player_traits_movement_block_block },
-		{ _field_legacy, _field_block, "appearance traits", &player_traits_appearance_block_block },
-		{ _field_legacy, _field_block, "sensor traits", &player_traits_sensors_block_block },
-		{ _field_legacy, _field_terminator }
+		{ _field_string_id, "name", FIELD_FLAG_INDEX },
+		{ _field_block, "vitality traits", &player_traits_vitality_block },
+		{ _field_block, "weapon traits", &player_traits_weapons_block },
+		{ _field_block, "movement traits", &player_traits_movement_block },
+		{ _field_block, "appearance traits", &player_traits_appearance_block },
+		{ _field_block, "sensor traits", &player_traits_sensors_block },
+		{ _field_terminator }
 	};
 
 	STRINGS(player_trait_bool_enum)
@@ -240,190 +297,30 @@ namespace blofeld
 	};
 	STRING_LIST(player_trait_bool_enum, player_trait_bool_enum_strings, _countof(player_trait_bool_enum_strings));
 
-	STRINGS(player_trait_damage_resistance_enum)
-	{
-		"Unchanged",
-		"10%",
-		"50%",
-		"90%",
-		"100%",
-		"110%",
-		"150%",
-		"200%",
-		"300%",
-		"500%",
-		"1000%",
-		"2000%",
-		"Invulnerable"
-	};
-	STRING_LIST(player_trait_damage_resistance_enum, player_trait_damage_resistance_enum_strings, _countof(player_trait_damage_resistance_enum_strings));
-
-	STRINGS(player_trait_shield_multiplier_enum)
-	{
-		"Unchanged",
-		"No Shields",
-		"Normal Shields",
-		"1.5x Overshields",
-		"2x Overshields",
-		"3x Overshields",
-		"4x Overshields"
-	};
-	STRING_LIST(player_trait_shield_multiplier_enum, player_trait_shield_multiplier_enum_strings, _countof(player_trait_shield_multiplier_enum_strings));
-
-	STRINGS(player_trait_body_multiplier_enum)
-	{
-		"Unchanged",
-		"0%",
-		"100%",
-		"150%",
-		"200%",
-		"300%",
-		"400%"
-	};
-	STRING_LIST(player_trait_body_multiplier_enum, player_trait_body_multiplier_enum_strings, _countof(player_trait_body_multiplier_enum_strings));
-
-	STRINGS(player_trait_shield_recharge_rate_enum)
-	{
-		"Unchanged",
-		"-25%",
-		"-10%",
-		"-5%",
-		"0%",
-		"10%",
-		"25%",
-		"50%",
-		"75%",
-		"90%",
-		"100%",
-		"110%",
-		"125%",
-		"150%",
-		"200%"
-	};
-	STRING_LIST(player_trait_shield_recharge_rate_enum, player_trait_shield_recharge_rate_enum_strings, _countof(player_trait_shield_recharge_rate_enum_strings));
-
-	STRINGS(player_trait_shield_vampirism_enum)
-	{
-		"Unchanged",
-		"Disabled",
-		"10%",
-		"25%",
-		"50%",
-		"100%"
-	};
-	STRING_LIST(player_trait_shield_vampirism_enum, player_trait_shield_vampirism_enum_strings, _countof(player_trait_shield_vampirism_enum_strings));
-
-	STRINGS(player_trait_damage_modifier_enum)
-	{
-		"Unchanged",
-		"0%",
-		"25%",
-		"50%",
-		"75%",
-		"90%",
-		"100%",
-		"110%",
-		"125%",
-		"150%",
-		"200%",
-		"300%",
-		"Instant Kill"
-	};
-	STRING_LIST(player_trait_damage_modifier_enum, player_trait_damage_modifier_enum_strings, _countof(player_trait_damage_modifier_enum_strings));
-	
 	STRINGS(player_trait_initial_grenade_count_enum)
-		{
-			{
-				_engine_type_haloreach,
-				_versioned_string_list_mode_new,
-				{
-					"Unchanged",
-					"Map Default",
-					"None",
-					"1 Frag",
-					"2 Frags",
-					"3 Frags",
-					"4 Frags",
-					"1 Plasma",
-					"2 Plasmas",
-					"3 Plasmas",
-					"4 Plasmas",
-					"1x Each",
-					"2x Each",
-					"3x Each",
-					"4x Each"
-				}
-			},
-			{
-				_engine_type_gen3_xbox360,
-				_versioned_string_list_mode_new,
-				{
-					"unchanged",
-					"map_default",
-					"0",
-					"1_frag",
-					"2_frag",
-					"1_plasma",
-					"2_plasma",
-					"1_type2",
-					"2_type2",
-					"1_type3",
-					"2_type3",
-					"1_type4",
-					"2_type4",
-					"1_type5",
-					"2_type5",
-					"1_type6",
-					"2_type6",
-					"1_type7",
-					"2_type7"
-				}
-			}
-		};
+	{
+		"unchanged",
+		"map_default",
+		"0",
+		"1_frag",
+		"2_frag",
+		"1_plasma",
+		"2_plasma",
+		"1_type2",
+		"2_type2",
+		"1_type3",
+		"2_type3",
+		"1_type4",
+		"2_type4",
+		"1_type5",
+		"2_type5",
+		"1_type6",
+		"2_type6",
+		"1_type7",
+		"2_type7"
+	};
 	STRING_LIST(player_trait_initial_grenade_count_enum, player_trait_initial_grenade_count_enum_strings, _countof(player_trait_initial_grenade_count_enum_strings));
 
-	STRINGS(player_trait_movement_speed_enum)
-	{
-		"Unchanged",
-		"0%",
-		"25%",
-		"50%",
-		"75%",
-		"90%",
-		"100%",
-		"110%",
-		"120%",
-		"130%",
-		"140%",
-		"150%",
-		"160%",
-		"170%",
-		"180%",
-		"190%",
-		"200%",
-		"300%"
-	};
-	STRING_LIST(player_trait_movement_speed_enum, player_trait_movement_speed_enum_strings, _countof(player_trait_movement_speed_enum_strings));
-
-	STRINGS(player_trait_gravity_scale_enum)
-	{
-		"Unchanged",
-		"50%",
-		"75%",
-		"100%",
-		"150%",
-		"200%",
-		"250%",
-		"300%",
-		"350%",
-		"400%",
-		"450%",
-		"500%",
-		"550%",
-		"600%"
-	};
-	STRING_LIST(player_trait_gravity_scale_enum, player_trait_gravity_scale_enum_strings, _countof(player_trait_gravity_scale_enum_strings));
-	
 	STRINGS(player_trait_infinite_ammo_enum)
 	{
 		"unchanged",
@@ -457,24 +354,12 @@ namespace blofeld
 	STRING_LIST(player_trait_vehicle_usage, player_trait_vehicle_usage_strings, _countof(player_trait_vehicle_usage_strings));
 
 	STRINGS(player_trait_double_jump)
-		{
-			{
-				_engine_type_haloreach,
-				_versioned_string_list_mode_new,
-				{
-					"unchanged",
-					"off",
-					"on",
-				}
-			},
-			{
-				_engine_type_gen3_xbox360,
-				_versioned_string_list_mode_append,
-				{
-					"on_plus_lunge"
-				}
-			}
-		};
+	{
+		"unchanged",
+		"off",
+		"on",
+		"on_plus_lunge"
+	};
 	STRING_LIST(player_trait_double_jump, player_trait_double_jump_strings, _countof(player_trait_double_jump_strings));
 
 	STRINGS(player_trait_active_camo)
@@ -487,25 +372,6 @@ namespace blofeld
 		"invisible"
 	};
 	STRING_LIST(player_trait_active_camo, player_trait_active_camo_strings, _countof(player_trait_active_camo_strings));
-
-	STRINGS(player_trait_forced_color_enum)
-	{
-		"Unchanged",
-		"Disabled",
-		"Red",
-		"Blue",
-		"Green",
-		"Orange",
-		"Purple",
-		"Gold",
-		"Brown",
-		"Pink",
-		"White",
-		"Black",
-		"Zombie",
-		"Pink (Unused)"
-	};
-	STRING_LIST(player_trait_forced_color_enum, player_trait_forced_color_enum_strings, _countof(player_trait_forced_color_enum_strings));
 
 	STRINGS(player_trait_waypoint)
 	{
@@ -536,18 +402,19 @@ namespace blofeld
 	};
 	STRING_LIST(player_trait_motion_tracker, player_trait_motion_tracker_strings, _countof(player_trait_motion_tracker_strings));
 
-	STRINGS(player_trait_motion_tracker_range_enum)
+	STRINGS(player_trait_motion_tracker_range)
 	{
-		"Unchanged",
-		"10m",
-		"15m",
-		"25m",
-		"50m",
-		"75m",
-		"100m",
-		"150m"
+		"unchanged",
+		"range_10m",
+		"range_15m",
+		"range_25m",
+		"range_50m",
+		"range_75m",
+		"range_100m",
+		"range_150m"
 	};
-	STRING_LIST(player_trait_motion_tracker_range_enum, player_trait_motion_tracker_range_enum_strings, _countof(player_trait_motion_tracker_range_enum_strings));
+	STRING_LIST(player_trait_motion_tracker_range, player_trait_motion_tracker_range_strings, _countof(player_trait_motion_tracker_range_strings));
+
 
 	STRINGS(player_trait_powerup_cancellation_enum)
 	{
@@ -617,6 +484,8 @@ namespace blofeld
 		"nemesis duration"
 	};
 	STRING_LIST(player_traits_sensors_float_flags, player_traits_sensors_float_flags_strings, _countof(player_traits_sensors_float_flags_strings));
+
+
 
 } // namespace blofeld
 

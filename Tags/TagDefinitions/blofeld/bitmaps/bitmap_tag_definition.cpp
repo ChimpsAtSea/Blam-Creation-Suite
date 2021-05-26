@@ -1,34 +1,44 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_BLOCK(bitmap_data_block_def, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+
+
+	#define BITMAP_DATA_BLOCK_DEF_ID { 0xDEB0516A, 0x021C4498, 0x9941C6CD, 0xC294AA69 }
+	TAG_BLOCK(
+		bitmap_data_block_def_block,
+		"bitmap_data_block_def",
+		MAXIMUM_BITMAPS_PER_BITMAP_GROUP,
+		"bitmap_data_block_def",
+		SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		BITMAP_DATA_BLOCK_DEF_ID)
 	{
-		{ _field_legacy, _field_short_integer, "width*:pixels#DO NOT CHANGE" },
-		{ _field_legacy, _field_short_integer, "height*:pixels#DO NOT CHANGE" },
-		{ _field_legacy, _field_char_integer, "depth*:pixels#DO NOT CHANGE" },
-		{ _field_legacy, _field_byte_flags, "more flags!", &bitmap_more_flags_definition },
-		{ _field_legacy, _field_char_enum, "type*#DO NOT CHANGE", &bitmap_types },
-		{ _field_legacy, _field_char_integer, "four times log2 size*#DO NOT CHANGE" },
-		{ _field_legacy, _field_enum, "format*#DO NOT CHANGE", &bitmap_formats },
-		{ _field_legacy, _field_byte_flags, "flags*", &bitmap_flags },
-		{ _field_legacy, _field_char_integer, "exponent bias" },
-		{ _field_legacy, _field_point_2d, "registration point#the \'center\' of the bitmap - i.e. for particles" },
-		{ _field_legacy, _field_char_integer, "mipmap count*#DO NOT CHANGE (not counting the highest resolution)" },
-		{ _field_legacy, _field_char_enum, "curve#how to convert from pixel value to linear", &bitmap_curve_enum },
-		{ _field_legacy, _field_char_block_index, "interleaved interop" },
-		{ _field_legacy, _field_char_integer, "interleaved texture index" },
-		{ _field_legacy, _field_long_integer, "pixels offset!:bytes#DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)" },
-		{ _field_legacy, _field_long_integer, "pixels size!:bytes#DO NOT CHANGE (total bytes used by this bitmap)" },
+		{ _field_short_integer, "width", "DO NOT CHANGE", "pixels", FIELD_FLAG_READ_ONLY },
+		{ _field_short_integer, "height", "DO NOT CHANGE", "pixels", FIELD_FLAG_READ_ONLY },
+		{ _field_char_integer, "depth", "DO NOT CHANGE", "pixels", FIELD_FLAG_READ_ONLY },
+		{ _field_byte_flags, "more flags", FIELD_FLAG_UNKNOWN0, &bitmap_more_flags_definition },
+		{ _field_char_enum, "type", "DO NOT CHANGE", FIELD_FLAG_READ_ONLY, &bitmap_types },
+		{ _field_char_integer, "four times log2 size", "DO NOT CHANGE", FIELD_FLAG_READ_ONLY },
+		{ _field_enum, "format", "DO NOT CHANGE", FIELD_FLAG_READ_ONLY, &bitmap_formats },
+		{ _field_byte_flags, "flags", FIELD_FLAG_READ_ONLY, &bitmap_flags },
+		{ _field_char_integer, "exponent bias" },
+		{ _field_point_2d, "registration point", "the 'center' of the bitmap - i.e. for particles" },
+		{ _field_char_integer, "mipmap count", "DO NOT CHANGE (not counting the highest resolution)", FIELD_FLAG_READ_ONLY },
+		{ _field_char_enum, "curve", "how to convert from pixel value to linear", &bitmap_curve_enum },
+		{ _field_char_block_index, "interleaved interop", &bitmap_texture_interleaved_interop_block },
+		{ _field_char_integer, "interleaved texture index" },
+		{ _field_long_integer, "pixels offset", "DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)", "bytes", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "pixels size", "DO NOT CHANGE (total bytes used by this bitmap)", "bytes", FIELD_FLAG_UNKNOWN0 },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4 },
-		{ _field_legacy, _field_long_integer, "medium res pixels size!#DO NOT CHANGE" },
-
-		{ _field_legacy, _field_long_integer, "high res pixels size!#DO NOT CHANGE" },
-		{ _field_legacy, _field_long_integer, "hardware format*!" },
-		{ _field_legacy, _field_long_integer, "runtime tag base address*!" },
+		{ _field_long_integer, "medium res pixels size", "DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
+		
+		{ _field_long_integer, "high res pixels size", "DO NOT CHANGE", FIELD_FLAG_UNKNOWN0 },
+		{ _field_long_integer, "hardware format", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
+		{ _field_long_integer, "runtime tag base address", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
 		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
@@ -39,8 +49,8 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
-
-		{ _field_legacy, _field_terminator }
+		
+		{ _field_terminator }
 	};
 
 	STRINGS(bitmap_types)
@@ -137,6 +147,8 @@ namespace blofeld
 		"xbox360 use on demand only!*#DO NOT CHANGE"
 	};
 	STRING_LIST(bitmap_more_flags_definition, bitmap_more_flags_definition_strings, _countof(bitmap_more_flags_definition_strings));
+
+
 
 } // namespace blofeld
 

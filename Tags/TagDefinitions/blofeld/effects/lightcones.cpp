@@ -1,26 +1,45 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_GROUP_FROM_BLOCK(light_cone, LIGHT_CONE_TAG, light_cone_block_block );
 
-	V5_TAG_BLOCK_FROM_STRUCT(light_cone_block, 1, light_cone_struct_definition_struct_definition );
 
-	V5_TAG_STRUCT(light_cone_struct_definition)
+	TAG_GROUP(
+		light_cone_group,
+		LIGHT_CONE_TAG,
+		nullptr,
+		INVALID_TAG,
+		light_cone_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		light_cone_block,
+		"light_cone_block",
+		1,
+		light_cone_struct_definition);
+
+	#define LIGHT_CONE_STRUCT_DEFINITION_ID { 0xEA23F17B, 0x58F148D7, 0xAD1DFE08, 0xBDD37574 }
+	TAG_STRUCT(
+		light_cone_struct_definition,
+		"light_cone_struct_definition",
+		"LightConeDefinition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | 
+		SET_POSTPROCESS_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		LIGHT_CONE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_byte_flags, "flags", &lightConeFlags },
-		{ _field_legacy, _field_pad, "gosh", 3 },
-		{ _field_legacy, _field_custom, "material" },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_struct, "actual material\?", &material_block_struct },
-		{ _field_legacy, _field_custom },
-		{ _field_legacy, _field_real, "angle fade range:degrees" },
-		{ _field_legacy, _field_real, "angle fade cutoff:degrees" },
-		{ _field_legacy, _field_real, "far fade range:wus" },
-		{ _field_legacy, _field_real, "far fade cutoff:wus" },
-		{ _field_legacy, _field_terminator }
+		{ _field_byte_flags, "flags", &lightConeFlags },
+		FIELD_PAD("gosh", nullptr, FIELD_FLAG_NONE, 3),
+		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		{ _field_struct, "actual material?", &material_struct },
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		{ _field_real, "angle fade range", nullptr, "degrees" },
+		{ _field_real, "angle fade cutoff", nullptr, "degrees" },
+		{ _field_real, "far fade range", nullptr, "wus" },
+		{ _field_real, "far fade cutoff", nullptr, "wus" },
+		{ _field_terminator }
 	};
 
 	STRINGS(lightConeFlags)
@@ -28,6 +47,8 @@ namespace blofeld
 		"disabled in split-screen"
 	};
 	STRING_LIST(lightConeFlags, lightConeFlags_strings, _countof(lightConeFlags_strings));
+
+
 
 } // namespace blofeld
 

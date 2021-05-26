@@ -36,14 +36,11 @@ extern s_tag_field CONCAT(tag_fields_name, _fields)[];
 #define V5_TAG_STRUCT_SUFFIX_FIELDS_FORWARD(tag_fields_name) \
 extern s_tag_field CONCAT(tag_fields_name, _fields)[];
 
-#define V5_TAG_BLOCK_STRUCT_FORWARD(tag_struct_name) \
-extern s_tag_struct_definition CONCAT(tag_struct_name, _struct);
-
 #define V5_TAG_STRUCT_FORWARD(tag_struct_name) \
 extern s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition);
 
 #define V5_TAG_BLOCK_FORWARD(tag_block_name) \
-extern s_tag_block_definition CONCAT(tag_block_name, _block);
+extern s_tag_block_definition tag_block_name;
 
 #define V5_TAG_GROUP_FORWARD(tag_group_name) \
 extern s_tag_group CONCAT(tag_group_name, _group);
@@ -81,7 +78,7 @@ s_tag_field symbol##_struct_definition_fields[] =
 
 // symbol, group_tag, parent_group, parent_group_tag, block
 #define TAG_GROUP(symbol, group_tag, parent_group, parent_group_tag, block) \
-s_tag_group symbol = s_tag_group(#symbol, group_tag, parent_group_tag, block, parent_group);
+s_tag_group symbol = s_tag_group(#symbol, #group_tag, group_tag, parent_group_tag, block, parent_group);
 
 #define TAG_BLOCK_FROM_STRUCT(symbol, pretty_name, max_count, struct_definition) \
 s_tag_block_definition symbol = s_tag_block_definition(#symbol, pretty_name, __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<uint32_t>(max_count); }, #max_count, struct_definition );
@@ -97,30 +94,30 @@ s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition) = { STRINGIF
 TAG_FIELDS(CONCAT(tag_struct_name, _struct_definition))
 
 #define V5_TAG_BLOCK_STRUCT(tag_struct_name) \
-V5_TAG_STRUCT_SUFFIX_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct)) \
-s_tag_struct_definition CONCAT(tag_struct_name, _struct) = { STRINGIFY(tag_struct_name)"_struct", STRINGIFY(tag_struct_name)"_struct", STRINGIFY(CONCAT(tag_struct_name, _struct)), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_fields) }; \
-TAG_FIELDS(CONCAT(tag_struct_name, _struct))
+V5_TAG_STRUCT_SUFFIX_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct_definition)) \
+s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition) = { STRINGIFY(tag_struct_name)"_struct_definition", STRINGIFY(tag_struct_name)"_struct_definition", STRINGIFY(CONCAT(tag_struct_name, _struct_definition)), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_definition_fields) }; \
+TAG_FIELDS(CONCAT(tag_struct_name, _struct_definition))
 
 #define V5_TAG_BLOCK(tag_block_name, block_count) \
-V5_TAG_BLOCK_STRUCT_FORWARD(CONCAT(tag_block_name, _block)) \
-s_tag_block_definition CONCAT(tag_block_name, _block) = { STRINGIFY(tag_block_name)"_block", STRINGIFY(tag_block_name)"_block", __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<uint32_t>(block_count); }, #block_count, CONCAT(tag_block_name, _block_struct) }; \
-V5_TAG_BLOCK_STRUCT(CONCAT(tag_block_name, _block))
+V5_TAG_STRUCT_FORWARD(tag_block_name) \
+s_tag_block_definition tag_block_name = { STRINGIFY(tag_block_name), STRINGIFY(tag_block_name), __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<uint32_t>(block_count); }, #block_count, CONCAT(tag_block_name, _struct_definition) }; \
+V5_TAG_BLOCK_STRUCT(tag_block_name)
 
 #define V5_TAG_GROUP(tag_group_name, group_tag) \
-V5_TAG_BLOCK_FORWARD(tag_group_name) \
-s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, INVALID_TAG, CONCAT(tag_group_name, _block), nullptr }; \
-V5_TAG_BLOCK(tag_group_name, 1)
+V5_TAG_BLOCK_FORWARD(CONCAT(tag_group_name, _block)) \
+s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), STRINGIFY(group_tag), group_tag, INVALID_TAG, CONCAT(tag_group_name, _block), nullptr }; \
+V5_TAG_BLOCK(CONCAT(tag_group_name, _block), 1)
 
 #define V5_TAG_GROUP_INHERIT(tag_group_name, group_tag, parent_tag_group_name, parent_group_tag) \
-V5_TAG_BLOCK_FORWARD(tag_group_name) \
+V5_TAG_BLOCK_FORWARD(CONCAT(tag_group_name, _block)) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, parent_group_tag, CONCAT(tag_group_name, _block), &CONCAT(parent_tag_group_name, _group) }; \
-V5_TAG_BLOCK(tag_group_name, 1)
+V5_TAG_BLOCK(CONCAT(tag_group_name, _block), 1)
 
 #define V5_TAG_BLOCK_FROM_STRUCT(block_name, block_count, struct_name) \
-s_tag_block_definition CONCAT(block_name, _block) = { STRINGIFY(block_name)"_block", STRINGIFY(block_name)"_block", __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { return static_cast<uint32_t>(block_count); }, #block_count, struct_name };
+s_tag_block_definition block_name = { STRINGIFY(block_name), STRINGIFY(block_name), __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { return static_cast<uint32_t>(block_count); }, #block_count, struct_name };
 
 #define V5_TAG_GROUP_FROM_BLOCK(tag_group_name, group_tag, block_name) \
-s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, blofeld::INVALID_TAG, block_name, nullptr };
+s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), STRINGIFY(group_tag), group_tag, blofeld::INVALID_TAG, block_name, nullptr };
 
 #define V5_TAG_GROUP_INHERIT_FROM_BLOCK(tag_group_name, group_tag, parent_tag_group_name, parent_group_tag, block_name) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, parent_group_tag, block_name, &CONCAT(parent_tag_group_name, _group) };

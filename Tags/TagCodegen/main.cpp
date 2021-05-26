@@ -111,14 +111,6 @@ int create_source_file()
 
 int wmain(int argc, const wchar_t** argv)
 {
-	blofeld::achievements_block_block;
-
-	
-	
-
-
-
-
 	if (!c_command_line::has_command_line_arg("-output"))
 	{
 		return 1;

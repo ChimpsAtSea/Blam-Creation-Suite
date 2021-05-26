@@ -3,23 +3,25 @@
 namespace blofeld
 {
 
+
+
 	constexpr unsigned long DETAIL_OBJECT_COLLECTION_TAG = 'dobc';
+	extern s_tag_group detail_object_collection_group; // detail_object_collection_block
 
-	extern s_tag_group detail_object_collection_group;
 
-	extern s_tag_struct_definition detail_object_type_block_block_struct;
-	extern s_tag_block_definition detail_object_type_block_block;
-	extern s_tag_block_definition detail_object_collection_block_block;
-	extern s_tag_struct_definition global_detail_object_cells_block_block_struct;
-	extern s_tag_block_definition global_detail_object_cells_block_block;
-	extern s_tag_struct_definition global_detail_object_block_block_struct;
-	extern s_tag_block_definition global_detail_object_block_block;
-	extern s_tag_struct_definition global_detail_object_counts_block_block_struct;
-	extern s_tag_block_definition global_detail_object_counts_block_block;
-	extern s_tag_struct_definition global_z_reference_vector_block_block_struct;
-	extern s_tag_block_definition global_z_reference_vector_block_block;
+	extern s_tag_block_definition detail_object_collection_block;
+	extern s_tag_block_definition detail_object_type_block;
+	extern s_tag_struct_definition detail_object_type_block_struct_definition; // detail_object_type_block
+	extern s_tag_block_definition global_detail_object_cells_block;
+	extern s_tag_struct_definition global_detail_object_cells_block_struct_definition; // global_detail_object_cells_block
+	extern s_tag_block_definition global_detail_object_block;
+	extern s_tag_struct_definition global_detail_object_block_struct_definition; // global_detail_object_block
+	extern s_tag_block_definition global_detail_object_counts_block;
+	extern s_tag_struct_definition global_detail_object_counts_block_struct_definition; // global_detail_object_counts_block
+	extern s_tag_block_definition global_z_reference_vector_block;
+	extern s_tag_struct_definition global_z_reference_vector_block_struct_definition; // global_z_reference_vector_block
 
-	extern s_tag_struct_definition detail_object_collection_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition detail_object_collection_struct_definition; // tag group
 
 	extern c_versioned_string_list detail_object_collection_type_enum_definition_strings;
 	extern s_string_list_definition detail_object_collection_type_enum_definition;
@@ -27,6 +29,8 @@ namespace blofeld
 	extern s_string_list_definition detail_object_type_flags_definition;
 
 	extern s_tag_reference_definition global_detail_object_collection_reference;
+
+
 
 } // namespace blofeld
 

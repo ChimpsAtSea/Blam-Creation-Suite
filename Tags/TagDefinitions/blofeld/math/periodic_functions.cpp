@@ -1,8 +1,10 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
+
+
 
 	STRINGS(global_periodic_functions_enum)
 	{
@@ -46,6 +48,8 @@ namespace blofeld
 		"one"
 	};
 	STRING_LIST(global_reverse_transition_functions_enum, global_reverse_transition_functions_enum_strings, _countof(global_reverse_transition_functions_enum_strings));
+
+
 
 } // namespace blofeld
 

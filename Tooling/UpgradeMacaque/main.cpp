@@ -104,7 +104,7 @@ int WINAPI wWinMain(
 		const blofeld::s_tag_group& blofeld_tag_group = **current_blofeld_tag_group;
 
 		bool processed = false;
-		for (const blofeld::s_tag_group** current_macaque_tag_group = blofeld::macaque::tag_groups; *current_macaque_tag_group; current_macaque_tag_group++)
+		for (const blofeld::s_tag_group** current_macaque_tag_group = blofeld::tag_groups[_engine_type_gen3_xbox360]; *current_macaque_tag_group; current_macaque_tag_group++)
 		{
 			const blofeld::s_tag_group& macaque_tag_group = **current_macaque_tag_group;
 

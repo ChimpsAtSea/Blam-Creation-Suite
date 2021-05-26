@@ -6,9 +6,9 @@ namespace blofeld
 
 	extern s_tag_group chocolate_mountain_new_group;
 
-	extern s_tag_struct_definition lighting_variable_block_block_struct;
-	extern s_tag_block_definition lighting_variable_block_block;
-	extern s_tag_block_definition chocolate_mountain_block_block;
+	extern s_tag_struct_definition lighting_variable_block_struct_definition;
+	extern s_tag_block_definition lighting_variable_block;
+	extern s_tag_block_definition chocolate_mountain_block;
 
 	extern s_tag_struct_definition chocolate_mountain_struct_definition_struct_definition; // tag group
 

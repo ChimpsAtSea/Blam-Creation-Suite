@@ -3,8 +3,10 @@
 namespace blofeld
 {
 
-	extern s_tag_struct_definition looping_sound_track_block_block_struct;
-	extern s_tag_block_definition looping_sound_track_block_block;
+
+
+	extern s_tag_block_definition looping_sound_track_block;
+	extern s_tag_struct_definition looping_sound_track_block_struct_definition; // looping_sound_track_block
 
 
 	extern c_versioned_string_list looping_sound_fade_modes_strings;
@@ -15,6 +17,8 @@ namespace blofeld
 	extern s_string_list_definition looping_sound_track_flags;
 	extern c_versioned_string_list looping_sound_track_layer_flags_strings;
 	extern s_string_list_definition looping_sound_track_layer_flags;
+
+
 
 } // namespace blofeld
 

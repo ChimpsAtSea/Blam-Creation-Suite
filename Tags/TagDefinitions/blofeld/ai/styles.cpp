@@ -1,50 +1,84 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
 
-	V5_TAG_GROUP_FROM_BLOCK(style, STYLE_TAG, style_block_block );
 
-	V5_TAG_BLOCK(style_palette_block, 50)
+
+	TAG_GROUP(
+		style_group,
+		STYLE_TAG,
+		nullptr,
+		INVALID_TAG,
+		style_block );
+
+	TAG_BLOCK_FROM_STRUCT(
+		style_block,
+		"style_block",
+		1,
+		style_struct_definition);
+
+	#define STYLE_PALETTE_BLOCK_ID { 0x3D8C9FE3, 0x023D40AE, 0x968E5BAF, 0x3C164F2B }
+	TAG_BLOCK(
+		style_palette_block,
+		"style_palette_block",
+		50,
+		"style_palette_entry",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		STYLE_PALETTE_BLOCK_ID)
 	{
-		{ _field_legacy, _field_tag_reference, "reference^", &style_reference$2 },
-		{ _field_legacy, _field_terminator }
+		{ _field_tag_reference, "reference", FIELD_FLAG_INDEX, &style_reference$2 },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
+	#define BEHAVIOR_NAMES_BLOCK_ID { 0x3B1809CC, 0x71BE4135, 0xA509EB0E, 0x42358E50 }
+	TAG_BLOCK(
+		behavior_names_block,
+		"behavior_names_block",
+		k_maximum_behavior_count,
+		"style_behavior_name",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		BEHAVIOR_NAMES_BLOCK_ID)
 	{
-		{ _field_legacy, _field_string, "behavior name*^" },
-		{ _field_legacy, _field_terminator }
+		{ _field_string, "behavior name", FIELD_FLAG_READ_ONLY | FIELD_FLAG_INDEX },
+		{ _field_terminator }
 	};
 
-	V5_TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
-
-	V5_TAG_STRUCT(style_struct_definition)
+	#define STYLE_STRUCT_DEFINITION_ID { 0xAC59B7DE, 0x455644C8, 0x9268F008, 0x8B74CD54 }
+	TAG_STRUCT(
+		style_struct_definition,
+		"style_struct_definition",
+		"style_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
+		STYLE_STRUCT_DEFINITION_ID)
 	{
-		{ _field_legacy, _field_string, "name^" },
-		{ _field_legacy, _field_explanation, "Combat status decay options", "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag." },
-		{ _field_legacy, _field_enum, "Combat status decay options", &combat_status_enum },
+		{ _field_string, "name", FIELD_FLAG_INDEX },
+		FIELD_EXPLANATION("Combat status decay options", nullptr, FIELD_FLAG_NONE, "Controls how combat status is allowed to be automatically reduced in the absence of combat stimuli. \'Latch at X\' means that once the level of x is attained (and/or surpassed) the combat status never falls below it. Not applicable when style is applied to a character tag."),
+		{ _field_enum, "Combat status decay options", &combat_status_enum },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
-		{ _field_legacy, _field_pad, "hghq", 2 },
+		FIELD_PAD("hghq", nullptr, FIELD_FLAG_NONE, 2),
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
-		{ _field_legacy, _field_short_integer, "unknown" },
+		{ _field_legacy, _field_short_integer, "@unknown" },
 
-		{ _field_legacy, _field_explanation, "Style Behavior Control", "Check the appropriate box to turn on/off the given behavior" },
-		{ _field_legacy, _field_long_flags, "Style control", &style_control_flags },
-		{ _field_legacy, _field_long_flags, "Behaviors1", &behavior_set1 },
-		{ _field_legacy, _field_long_flags, "Behaviors2", &behavior_set2 },
-		{ _field_legacy, _field_long_flags, "Behaviors3", &behavior_set3 },
-		{ _field_legacy, _field_long_flags, "Behaviors4", &behavior_set4 },
-		{ _field_legacy, _field_long_flags, "Behaviors5", &behavior_set5 },
-		{ _field_legacy, _field_long_flags, "Behaviors6", &behavior_set6 },
-		{ _field_legacy, _field_long_flags, "Behaviors7", &behavior_set7 },
-		{ _field_legacy, _field_long_flags, "Behaviors8", &behavior_set8 },
-		{ _field_legacy, _field_block, "Special movement", &special_movement_block_block },
-		{ _field_legacy, _field_block, "Behavior list", &behavior_names_block_block },
-		{ _field_legacy, _field_terminator }
+		FIELD_EXPLANATION("Style Behavior Control", nullptr, FIELD_FLAG_NONE, "Check the appropriate box to turn on/off the given behavior"),
+		{ _field_long_flags, "Style control", &style_control_flags },
+		{ _field_long_flags, "Behaviors1", &behavior_set1, _field_id_dumb },
+		{ _field_long_flags, "Behaviors2", &behavior_set2, _field_id_dumb },
+		{ _field_long_flags, "Behaviors3", &behavior_set3, _field_id_dumb },
+		{ _field_long_flags, "Behaviors4", &behavior_set4, _field_id_dumb },
+		{ _field_long_flags, "Behaviors5", &behavior_set5, _field_id_dumb },
+		{ _field_long_flags, "Behaviors6", &behavior_set6, _field_id_dumb },
+		{ _field_long_flags, "Behaviors7", &behavior_set7, _field_id_dumb },
+		{ _field_long_flags, "Behaviors8", &behavior_set8, _field_id_dumb },
+		{ _field_block, "Special movement", &special_movement_block },
+		{ _field_block, "Behavior list", &behavior_names_block },
+		{ _field_terminator }
 	};
 
 	STRINGS(behavior_set1)
@@ -309,6 +343,8 @@ namespace blofeld
 		"Latch at Combat"
 	};
 	STRING_LIST(combat_status_enum$2, combat_status_enum$2_strings, _countof(combat_status_enum$2_strings));
+
+
 
 } // namespace blofeld
 

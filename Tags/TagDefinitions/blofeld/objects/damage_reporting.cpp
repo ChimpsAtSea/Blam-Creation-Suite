@@ -1,8 +1,10 @@
 #include <tagdefinitions-private-pch.h>
-#include <blofeld_field_type_override.h>
+#include <macaque_field_type_override.h>
 
 namespace blofeld
 {
+
+
 
 	STRINGS(global_damage_reporting_enum_definition)
 	{
@@ -106,6 +108,8 @@ namespace blofeld
 		"flood prongs"
 	};
 	STRING_LIST(global_damage_reporting_enum_definition, global_damage_reporting_enum_definition_strings, _countof(global_damage_reporting_enum_definition_strings));
+
+
 
 } // namespace blofeld
 

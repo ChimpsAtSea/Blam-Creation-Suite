@@ -7,7 +7,7 @@ namespace blofeld
 
 	V5_TAG_BLOCK(chad_size_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_size_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_size_animation_block },
 		{ _field_legacy, _field_data, "unknown" },
 		{ _field_legacy, _field_terminator }
 	};
@@ -27,7 +27,7 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_color_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_color_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_color_animation_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
@@ -91,7 +91,7 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_ammo_counter_boot_block, 65536)
 	{
-		{ _field_legacy, _field_block, "ammo counter", &chad_ammo_counter_block_block },
+		{ _field_legacy, _field_block, "ammo counter", &chad_ammo_counter_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
@@ -109,49 +109,49 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chad_position_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_position_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_position_animation_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
 	V5_TAG_BLOCK(chad_rotation_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_rotation_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_rotation_animation_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
 	V5_TAG_BLOCK(chad_alpha_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_alpha_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_alpha_animation_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
 	V5_TAG_BLOCK(chad_texture_coords_block, 65536)
 	{
-		{ _field_legacy, _field_block, "animation", &chad_texture_coords_animation_block_block },
+		{ _field_legacy, _field_block, "animation", &chad_texture_coords_animation_block },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_TAG, chad_block_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud_animation, CHUD_ANIMATION_TAG, chad_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chad_block, 1, chad_struct_definition_struct_definition)
 	V5_TAG_STRUCT(chad_struct_definition)
 	{
 		{ _field_legacy, _field_byte_flags, "flags", &chad_flags_definition },
 		{ _field_legacy, _field_byte_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
-		{ _field_legacy, _field_block, "position", &chad_position_block_block },
-		{ _field_legacy, _field_block, "rotation", &chad_rotation_block_block },
-		{ _field_legacy, _field_block, "size", &chad_size_block_block },
-		{ _field_legacy, _field_block, "color", &chad_color_block_block },
-		{ _field_legacy, _field_block, "alpha", &chad_alpha_block_block },
-		{ _field_legacy, _field_block, "alpha unknown", &chad_alpha_block_block },
-		{ _field_legacy, _field_block, "texture coordinates", &chad_texture_coords_block_block },
+		{ _field_legacy, _field_block, "position", &chad_position_block },
+		{ _field_legacy, _field_block, "rotation", &chad_rotation_block },
+		{ _field_legacy, _field_block, "size", &chad_size_block },
+		{ _field_legacy, _field_block, "color", &chad_color_block },
+		{ _field_legacy, _field_block, "alpha", &chad_alpha_block },
+		{ _field_legacy, _field_block, "alpha unknown", &chad_alpha_block },
+		{ _field_legacy, _field_block, "texture coordinates", &chad_texture_coords_block },
 
 		{ _field_legacy, _field_version_less, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "number of frames" },
 
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach, 5 },
-		{ _field_legacy, _field_block, "ammo counter boot", &chad_ammo_counter_boot_block_block },
+		{ _field_legacy, _field_block, "ammo counter boot", &chad_ammo_counter_boot_block },
 		{ _field_legacy, _field_long_integer, "unknown animation block" },
 		{ _field_legacy, _field_long_integer, "unknown animation block" },
 		{ _field_legacy, _field_long_integer, "unknown animation block" },
@@ -221,7 +221,7 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chdt_yesno_states_block, 65536)
 	{
-		{ _field_legacy, _field_block, "triggers", &chdt_triggers_block_block },
+		{ _field_legacy, _field_block, "triggers", &chdt_triggers_block },
 		{ _field_legacy, _field_terminator }
 	};
 	V5_TAG_BLOCK(chdt_placement_data_block, 65536)
@@ -239,9 +239,9 @@ namespace blofeld
 	};
 	V5_TAG_BLOCK(chdt_state_data_block, 65536)
 	{
-		{ _field_legacy, _field_block, "'yes' states", &chdt_yesno_states_block_block },
-		{ _field_legacy, _field_block, "unknown states", &chdt_yesno_states_block_block },
-		{ _field_legacy, _field_block, "'no' states", &chdt_yesno_states_block_block },
+		{ _field_legacy, _field_block, "'yes' states", &chdt_yesno_states_block },
+		{ _field_legacy, _field_block, "unknown states", &chdt_yesno_states_block },
+		{ _field_legacy, _field_block, "'no' states", &chdt_yesno_states_block },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
@@ -326,7 +326,7 @@ namespace blofeld
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },
-		{ _field_legacy, _field_block, "unknown", &chdt_unknown_block_block },
+		{ _field_legacy, _field_block, "unknown", &chdt_unknown_block },
 
 		{ _field_legacy, _field_terminator }
 	};
@@ -340,13 +340,13 @@ namespace blofeld
 		{ _field_legacy, _field_enum, "import input", &chdt_input_definition },
 		{ _field_legacy, _field_enum, "import range input", &chdt_input_definition },
 		{ _field_legacy, _field_tag_reference, "state data template", &chud_widget_state_data_reference },
-		{ _field_legacy, _field_block, "state data", &chdt_state_data_block_block },
+		{ _field_legacy, _field_block, "state data", &chdt_state_data_block },
 		{ _field_legacy, _field_tag_reference, "placement data template", &chud_widget_placement_data_reference },
-		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block_block },
+		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block },
 		{ _field_legacy, _field_tag_reference, "animation data template", &wadt_animation_reference },
-		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block_block },
+		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block },
 		{ _field_legacy, _field_tag_reference, "render data template", &chud_widget_render_data_reference },
-		{ _field_legacy, _field_block, "render data", &chdt_render_data_block_block },
+		{ _field_legacy, _field_block, "render data", &chdt_render_data_block },
 		{ _field_legacy, _field_long_flags, "flags", &chdt_flags_definition },
 		{ _field_legacy, _field_tag_reference, "bitmap", &global_bitmap_reference },
 		{ _field_legacy, _field_byte_integer, "bitmap sprite index" },
@@ -366,13 +366,13 @@ namespace blofeld
 		{ _field_legacy, _field_enum, "import input", &chdt_input_definition },
 		{ _field_legacy, _field_enum, "import range input", &chdt_input_definition },
 		{ _field_legacy, _field_tag_reference, "state data template", &chud_widget_state_data_reference },
-		{ _field_legacy, _field_block, "state data", &chdt_state_data_block_block },
+		{ _field_legacy, _field_block, "state data", &chdt_state_data_block },
 		{ _field_legacy, _field_tag_reference, "placement data template", &chud_widget_placement_data_reference },
-		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block_block },
+		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block },
 		{ _field_legacy, _field_tag_reference, "animation data template", &wadt_animation_reference },
-		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block_block },
+		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block },
 		{ _field_legacy, _field_tag_reference, "render data template", &chud_widget_render_data_reference },
-		{ _field_legacy, _field_block, "render data", &chdt_render_data_block_block },
+		{ _field_legacy, _field_block, "render data", &chdt_render_data_block },
 		{ _field_legacy, _field_word_flags, "flags", &chdt_render_data_flags_definition },
 		{ _field_legacy, _field_enum, "font", &chdt_font_definition },
 		{ _field_legacy, _field_explanation, "string", "This value can be anything from the hud_messages unicode tag, or one of the following, where a - f correspond to Output Scalars a - f in the Render Data block :"
@@ -438,17 +438,17 @@ namespace blofeld
 		{ _field_legacy, _field_enum, "import input", &chdt_input_definition },
 		{ _field_legacy, _field_enum, "import range input", &chdt_input_definition },
 		{ _field_legacy, _field_tag_reference, "state data template", &chud_widget_state_data_reference },
-		{ _field_legacy, _field_block, "state data", &chdt_state_data_block_block },
+		{ _field_legacy, _field_block, "state data", &chdt_state_data_block },
 		{ _field_legacy, _field_tag_reference, "placement data template", &chud_widget_placement_data_reference },
-		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block_block },
+		{ _field_legacy, _field_block, "placement data", &chdt_placement_data_block },
 		{ _field_legacy, _field_tag_reference, "animation data template", &wadt_animation_reference },
-		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block_block },
+		{ _field_legacy, _field_block, "animation data", &chdt_animation_data_block },
 		{ _field_legacy, _field_tag_reference, "render data template", &chud_widget_render_data_reference },
-		{ _field_legacy, _field_block, "render data", &chdt_render_data_block_block },
+		{ _field_legacy, _field_block, "render data", &chdt_render_data_block },
 		{ _field_legacy, _field_tag_reference, "datasource template", &unknown_reference },
-		{ _field_legacy, _field_block, "datasource", &chdt_datasource_block_block },
-		{ _field_legacy, _field_block, "bitmap widgets", &chdt_bitmap_widgets_block_block },
-		{ _field_legacy, _field_block, "text widgets", &chdt_text_widgets_block_block },
+		{ _field_legacy, _field_block, "datasource", &chdt_datasource_block },
+		{ _field_legacy, _field_block, "bitmap widgets", &chdt_bitmap_widgets_block },
+		{ _field_legacy, _field_block, "text widgets", &chdt_text_widgets_block },
 		{ _field_legacy, _field_long_integer, "unknown text addition" },
 		{ _field_legacy, _field_short_integer, "unknown" },
 		{ _field_legacy, _field_short_integer, "unknown" },
@@ -484,7 +484,7 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_TAG, chud_block_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud, CHUD_TAG, chud_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chud_block, 1, chud_struct_definition_struct_definition);
 	V5_TAG_STRUCT(chud_struct_definition)
 	{
@@ -495,12 +495,12 @@ namespace blofeld
 			"As for Placement Data, each index likely refers to each \"HUD Attributes\" index in CHGD to change depending on resolution." },
 		{ _field_legacy, _field_explanation, "Render Data Shader Index", "While represented as an enum, it is actually an index to the \"HUD Shaders\" block in CHGD." },
 		{ _field_legacy, _field_explanation, "Placement Anchor", "Only select \"Use Parent Widget\" for a Bitmap or Text Widget, otherwise the game will crash." },
-		{ _field_legacy, _field_block, "hud widgets", &chdt_hud_widgets_block_block },
+		{ _field_legacy, _field_block, "hud widgets", &chdt_hud_widgets_block },
 		{ _field_legacy, _field_long_integer, "low clip cutoff" },
 		{ _field_legacy, _field_long_integer, "low ammo cutoff" },
 		{ _field_legacy, _field_long_integer, "age cutoff" },
 		{ _field_legacy, _field_long_integer, "sword age cutoff" },
-		{ _field_legacy, _field_block, "compiled widget data", &chdt_compiled_widget_data_block_block },
+		{ _field_legacy, _field_block, "compiled widget data", &chdt_compiled_widget_data_block },
 		{ _field_legacy, _field_terminator }
 	};
 	TAG_REFERENCE(chud_reference, CHUD_TAG);
@@ -647,8 +647,8 @@ namespace blofeld
 		{ _field_legacy, _field_real, "blip above threshold min" },
 		{ _field_legacy, _field_real, "blip below threshold min" },
 		{ _field_legacy, _field_real, "blip below threshold max" },
-		{ _field_legacy, _field_block, "HUD attributes", &chgd_hud_attributes_block_block },
-		{ _field_legacy, _field_block, "HUD sounds", &chgd_hud_sounds_block_block },
+		{ _field_legacy, _field_block, "HUD attributes", &chgd_hud_attributes_block },
+		{ _field_legacy, _field_block, "HUD sounds", &chgd_hud_sounds_block },
 		{ _field_legacy, _field_pad, "unknown", 4 },
 		{ _field_legacy, _field_tag_reference, "unknown", &global_sound_reference },
 		{ _field_legacy, _field_tag_reference, "frag grenade swap sound", &global_sound_reference },
@@ -715,7 +715,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "critical threshold" },
 		{ _field_legacy, _field_data, "function" },
 		{ _field_legacy, _field_data, "function" },
-		{ _field_legacy, _field_block, "waypoint blips", &chgd_waypoint_blips_block_block },
+		{ _field_legacy, _field_block, "waypoint blips", &chgd_waypoint_blips_block },
 		{ _field_legacy, _field_terminator }
 	};
 	V5_TAG_BLOCK(chgd_shaders_block, 65536)
@@ -763,14 +763,14 @@ namespace blofeld
 		{ _field_legacy, _field_terminator }
 	};
 
-	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_TAG, chgd_block_block);
+	V5_TAG_GROUP_FROM_BLOCK(chud_globals, CHUD_GLOBALS_TAG, chgd_block);
 	V5_TAG_BLOCK_FROM_STRUCT(chgd_block, 1, chgd_struct_definition_struct_definition);
 	V5_TAG_STRUCT(chgd_struct_definition)
 	{
-		{ _field_legacy, _field_block, "hud globals", &chgd_hud_globals_block_block },
-		{ _field_legacy, _field_block, "shaders", &chgd_shaders_block_block },
-		{ _field_legacy, _field_block, "unknown", &chgd_unknown_block_block },
-		{ _field_legacy, _field_block, "player training data", &chgd_player_training_data_block_block },
+		{ _field_legacy, _field_block, "hud globals", &chgd_hud_globals_block },
+		{ _field_legacy, _field_block, "shaders", &chgd_shaders_block },
+		{ _field_legacy, _field_block, "unknown", &chgd_unknown_block },
+		{ _field_legacy, _field_block, "player training data", &chgd_player_training_data_block },
 		{ _field_legacy, _field_tag_reference, "start menu emblems", &global_bitmap_reference },
 		{ _field_legacy, _field_byte_integer, "unknown" },
 		{ _field_legacy, _field_byte_integer, "unknown" },
@@ -1432,7 +1432,7 @@ namespace blofeld
 			"\n325   saved film state - is theater"
 			"\n326   saved film state"
 			"\n327   saved film state" },
-		{ _field_legacy, _field_block, "state triggers", &chgd_state_triggers_block_block },
+		{ _field_legacy, _field_block, "state triggers", &chgd_state_triggers_block },
 		{ _field_legacy, _field_terminator }
 	};
 	TAG_REFERENCE(chud_globals_reference, CHUD_GLOBALS_TAG);
