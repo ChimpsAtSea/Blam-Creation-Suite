@@ -17,10 +17,10 @@ class c_h4_tag_reference
 {
 public:
 	const s_h4_tag_reference_definition* reference_definition;
-	c_flags< e_h4_tag_reference_definition_flags, uint32_t> flags;
+	c_flags< e_h4_tag_reference_definition_flags, unsigned long> flags;
 	std::vector<tag_group> tag_groups;
 	s_symbol_file_public* public_symbol;
 
-	c_h4_tag_reference(const char* h4_data, const s_h4_tag_reference_definition* reference_definition, uint32_t definition_address);
+	c_h4_tag_reference(const char* h4_data, const s_h4_tag_reference_definition* reference_definition, unsigned long definition_address);
 };
 

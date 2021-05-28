@@ -2093,30 +2093,30 @@ public:
 		hs_function_documentation = get_function_documentation(name);
 
 		{
-			std::stringstream ss;
-			ss << name;
+			std::stringstream s;
+			s << name;
 			for (uint8_t argument_index = 0; argument_index < arguments_count; argument_index++)
 			{
 				const c_hs_type_definition* type_definition = arguments[argument_index];
-				ss << " <" << type_definition->name << ">";
+				s << " <" << type_definition->name << ">";
 			}
 
 			if (hs_function_documentation)
 			{
 				if (strlen(hs_function_documentation->description) > 0)
 				{
-					ss << "\n\n" << hs_function_documentation->description;
+					s << "\n\n" << hs_function_documentation->description;
 				}
 				if (hs_function_documentation->note != nullptr)
 				{
 					if (strlen(hs_function_documentation->note) > 0)
 					{
-						ss << "\n\n" << hs_function_documentation->note;
+						s << "\n\n" << hs_function_documentation->note;
 					}
 				}
 			}
 
-			documentation = ss.str();
+			documentation = s.str();
 		}
 	}
 

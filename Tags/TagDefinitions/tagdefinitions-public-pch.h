@@ -15,6 +15,7 @@
 
 #ifndef BLOFELD_EXCLUDE_STRUCTS
 #include "blofeld/tag_groups.h"
+#include "blofeld/halo1.h"
 #include "blofeld/tag_structs.h"
 #endif
 #include "blofeld/validation.h"

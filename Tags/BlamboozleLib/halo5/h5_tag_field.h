@@ -5,24 +5,24 @@ struct s_h5_tag_field_definition
 	e_h5_field_type field_type;
 	const char* name_address;
 	void* definition_address;
-	uint32_t group_tag;
-	uint32_t : 32;
+	unsigned long group_tag;
+	unsigned long : 32;
 };
 
 struct s_h5_tag_struct_definition
 {
 	const char* name_address;
-	uint32_t group_tag;
+	unsigned long group_tag;
 	const char* display_name_address;
-	uint32_t block_definition_address;
+	unsigned long block_definition_address;
 };
 
 struct s_h5_tag_block_definition
 {
 	const char* display_name_address;
 	const char* name_address;
-	uint32_t flags;
-	uint32_t maximum_element_count;
+	unsigned long flags;
+	unsigned long maximum_element_count;
 	void* maximum_element_count_string_address;
 	void* field_set_address;
 	GUID* guid_address;
@@ -37,9 +37,9 @@ struct s_h5_tag_block_index_custom_search_definition
 struct s_h5_tag_data_definition
 {
 	const char* definition_name_address;
-	uint32_t flags;
-	uint32_t alignment_bit;
-	uint32_t maximum_size;
+	unsigned long flags;
+	unsigned long alignment_bit;
+	unsigned long maximum_size;
 	const char* maximum_size_string_address;
 	void* byteswap_procedure;
 	void* copy_procedure;
@@ -47,9 +47,9 @@ struct s_h5_tag_data_definition
 
 struct s_h5_tag_reference_definition
 {
-	uint32_t flags;
-	uint32_t group_tag2;
-	uint32_t group_tags_address;
+	unsigned long flags;
+	unsigned long group_tag2;
+	unsigned long group_tags_address;
 };
 
 
@@ -101,21 +101,21 @@ struct s_h5_tag_numerical_definition
 	T step;
 };
 
-using c_h5_tag_field_char_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<int8_t>>;
-using c_h5_tag_field_short_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<int16_t>>;
-using c_h5_tag_field_long_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<int32_t>>;
+using c_h5_tag_field_char_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<char>>;
+using c_h5_tag_field_short_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<short>>;
+using c_h5_tag_field_long_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<long>>;
 using c_h5_tag_field_int64_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<int64_t>>;
-using c_h5_tag_field_byte_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<uint8_t>>;
-using c_h5_tag_field_word_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<uint16_t>>;
-using c_h5_tag_field_dword_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<uint32_t>>;
+using c_h5_tag_field_byte_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<unsigned char>>;
+using c_h5_tag_field_word_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<unsigned short>>;
+using c_h5_tag_field_dword_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<unsigned long>>;
 using c_h5_tag_field_qword_integer = c_h5_tag_field_template<s_h5_tag_numerical_definition<uint64_t>>;
 using c_h5_tag_field_real = c_h5_tag_field_template<s_h5_tag_numerical_definition<float>>;
 
 struct s_h5_tag_enum_definition
 {
-	uint32_t option_count;
-	uint32_t options_address;
-	uint32_t flags; //?
+	unsigned long option_count;
+	unsigned long options_address;
+	unsigned long flags; //?
 };
 
 

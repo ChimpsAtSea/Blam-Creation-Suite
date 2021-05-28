@@ -139,7 +139,7 @@ public:
 	void cleanup_tag_blocks();
 	void cleanup_tag_structs();
 
-	c_h4_tag_group_container* get_container_by_group_tag(uint32_t group_tag);
+	c_h4_tag_group_container* get_container_by_group_tag(unsigned long group_tag);
 	void create_tag_block_source_count_constants(c_h4_tag_block& tag_block);
 
 	c_h4_blamboozle& blamboozle;
@@ -152,6 +152,6 @@ public:
 	std::vector<std::string> maximum_count_constants_source_lines_define;
 	std::vector<std::string> maximum_count_constants_source_lines_constant;
 	std::vector<std::string> maximum_count_constants_source_lines_struct;
-	std::map<std::string, uint32_t> tag_type_name_unique_counter;
+	std::map<std::string, unsigned long> tag_type_name_unique_counter;
 };
 

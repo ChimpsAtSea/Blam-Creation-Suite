@@ -51,5 +51,17 @@ using bint16_t = bigendian_type<int16_t>;
 using bint32_t = bigendian_type<int32_t>;
 using bint64_t = bigendian_type<int64_t>;
 
+using buchar = bigendian_type<unsigned char>;
+using bushort = bigendian_type<unsigned short>;
+using bulong = bigendian_type<unsigned long>;
+using bulonglong = bigendian_type<unsigned long long>;
+using bchar = bigendian_type<char>;
+using bshort = bigendian_type<short>;
+using blong = bigendian_type<long>;
+using blonglong = bigendian_type<long long>;
+
 template<typename T>
-using bpointer32 = bigendian_type<uint32_t>;
+using bptr32 = bigendian_type<unsigned long>;
+
+template<typename T>
+using bptr64 = bigendian_type<unsigned long long>;

@@ -16,6 +16,8 @@ namespace blofeld
 {
 #define _countof_safe(value) (sizeof(value) / sizeof(value[0]))
 
+#define PERSISTENT_ID_UNKNOWN { 0, 0, 0, 0 }
+
 #define VERSION_RANGE(minimum_version, maximum_version) minimum_version, maximum_version
 #define VERSION_MAX(maximum_version) _build_not_set, maximum_version
 #define VERSION_MIN(minimum_version) minimum_version, _build_not_set

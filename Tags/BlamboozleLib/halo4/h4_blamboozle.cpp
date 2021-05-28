@@ -87,7 +87,7 @@ DWORD relative_virtual_address_to_relative_raw_address(DWORD relative_virtual_ad
 	if (raw_section_header)
 	{
 
-		//uint32_t section_rva = relative_virtual_address - raw_section_header->VirtualAddress;
+		//unsigned long section_rva = relative_virtual_address - raw_section_header->VirtualAddress;
 		//const char* raw_data = raw_image_data + raw_section_header->VirtualAddress;
 		//const char* raw_data2 = raw_data + section_rva + 0x600;
 
@@ -99,7 +99,7 @@ DWORD relative_virtual_address_to_relative_raw_address(DWORD relative_virtual_ad
 	return ~DWORD();
 }
 
-const char* h4_va_to_pointer2(const char* data, uint32_t address)
+const char* h4_va_to_pointer2(const char* data, unsigned long address)
 {
 	if (address == 0) return nullptr;
 
@@ -112,7 +112,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 		static const MINIDUMP_DIRECTORY* minidump_memory64_list_directory = nullptr;
 		if (minidump_memory64_list_directory == nullptr)
 		{
-			for (uint32_t minidump_stream_index = 0; minidump_stream_index < minidump_header.NumberOfStreams; minidump_stream_index++)
+			for (unsigned long minidump_stream_index = 0; minidump_stream_index < minidump_header.NumberOfStreams; minidump_stream_index++)
 			{
 				const MINIDUMP_DIRECTORY& minidump_directory = minidump_directories[minidump_stream_index];
 				MINIDUMP_STREAM_TYPE stream_type = static_cast<MINIDUMP_STREAM_TYPE>(minidump_directory.StreamType);
@@ -134,7 +134,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 		{
 			const MINIDUMP_MEMORY64_LIST& minidump_memory64_list = *reinterpret_cast<const MINIDUMP_MEMORY64_LIST*>(data + minidump_memory64_list_directory->Location.Rva);
 			RVA64 minidump_memory64_rva = minidump_memory64_list.BaseRva;
-			for (uint32_t minidump_memory64_index = 0; minidump_memory64_index < minidump_memory64_list.NumberOfMemoryRanges; minidump_memory64_index++)
+			for (unsigned long minidump_memory64_index = 0; minidump_memory64_index < minidump_memory64_list.NumberOfMemoryRanges; minidump_memory64_index++)
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
@@ -166,7 +166,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 	}
 	else
 	{
-		uint32_t pa = relative_virtual_address_to_relative_raw_address(address - h4_base_address, data);
+		unsigned long pa = relative_virtual_address_to_relative_raw_address(address - h4_base_address, data);
 		if (pa != ~DWORD())
 		{
 			executable_image_data = data + pa;
@@ -318,7 +318,7 @@ c_h4_tag_resource* c_h4_blamboozle::get_tag_resource_definition(
 c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 	const char* h4_data,
 	const s_h4_tag_struct_definition* definition_header,
-	uint32_t offset
+	unsigned long offset
 )
 {
 	if (definition_header == nullptr)
@@ -334,7 +334,7 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 		return tag_struct_definition_iterator->second;
 	}
 
-	uint32_t line_number = definition_header->line_number;
+	unsigned long line_number = definition_header->line_number;
 	const char* name = h4_va_to_pointer(h4_data, definition_header->name);
 	const char* filepath = h4_va_to_pointer(h4_data, definition_header->filepath);
 	for (const std::pair<const void*, c_h4_tag_struct*>& tag_struct_key : tag_struct_definitions)
@@ -372,7 +372,7 @@ c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 		return tag_enum_definition_iterator->second;
 	}
 
-	uint32_t line_number = definition_header->line_number;
+	unsigned long line_number = definition_header->line_number;
 	const char* name = h4_va_to_pointer(h4_data, definition_header->name);
 	const char* filepath = h4_va_to_pointer(h4_data, definition_header->filepath);
 	for (const std::pair<const void*, c_h4_tag_enum*>& tag_enum_key : tag_enum_definitions)
@@ -392,7 +392,7 @@ c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 	return tag_enum_definition;
 }
 
-c_h4_tag_reference* c_h4_blamboozle::get_tag_reference_definition(const char* h4_data, const s_h4_tag_reference_definition* definition_header, uint32_t definition_address)
+c_h4_tag_reference* c_h4_blamboozle::get_tag_reference_definition(const char* h4_data, const s_h4_tag_reference_definition* definition_header, unsigned long definition_address)
 {
 	if (definition_header == nullptr)
 	{
@@ -448,14 +448,14 @@ int c_h4_blamboozle::run()
 
 	struct s_h4_tag_layout_entry
 	{
-		buint32_t layout_header;
+		bulong layout_header;
 	};
 
 	const s_h4_tag_layout_entry(&layout_addresses)[h4_num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(h4_va_to_pointer2(h4_data, h4_tag_layout_table_address));
 
 	for (const s_h4_tag_layout_entry& tag_layout_entry : layout_addresses)
 	{
-		uint32_t layout_header_va = tag_layout_entry.layout_header;
+		unsigned long layout_header_va = tag_layout_entry.layout_header;
 		const s_h4_tag_group* layout_header = reinterpret_cast<const s_h4_tag_group*>(h4_va_to_pointer(h4_data, tag_layout_entry.layout_header));
 		//if (layout_header->group_tag.value == 'dpib')
 		//if (_byteswap_ulong(layout_header->group_tag.value) == 'hlmt')

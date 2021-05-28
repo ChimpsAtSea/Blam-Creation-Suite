@@ -939,6 +939,9 @@
     <ClCompile Include="blofeld\components\chocolate_mountain_new_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\halo1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1890,6 +1893,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\components\chocolate_mountain_new_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\halo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

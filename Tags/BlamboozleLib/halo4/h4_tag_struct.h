@@ -164,7 +164,7 @@ struct c_h4_tag_memory_attributes
 
 struct s_tag_persistent_identifier
 {
-	int32_t data[4];
+	long data[4];
 };
 
 struct b_h4_tag_memory_attributes
@@ -175,48 +175,48 @@ struct b_h4_tag_memory_attributes
 
 struct s_h4_tag_persistent_identifier
 {
-	bint32_t data[4];
+	blong data[4];
 };
 
 struct s_h4_byte_swap_definition
 {
-	buint32_t _unknown[7];
+	bulong _unknown[7];
 };
 
 struct s_h4_tag_struct_definition
 {
-	bpointer32<const char*> pretty_name;
-	bpointer32<const char*> name;
-	bpointer32<const char*> filepath;
-	buint32_t line_number;
+	bptr32<const char*> pretty_name;
+	bptr32<const char*> name;
+	bptr32<const char*> filepath;
+	bulong line_number;
 	s_h4_tag_persistent_identifier persistent_identifier;
-	bpointer32<void*> fields_address;
-	buint32_t size;
-	bpointer32<const char*> size_string_address;
-	buint32_t alignment_bits;
-	buint32_t legacy_struct_tag[2];
-	buint32_t unknown1;
-	buint32_t legacy_version;
-	bpointer32<void*> unknown2;
-	buint32_t unknown3;
-	bpointer32<void*> unknown4;
-	buint32_t unknown5;
-	bpointer32<void*> tag_struct_vtable;
+	bptr32<void*> fields_address;
+	bulong size;
+	bptr32<const char*> size_string_address;
+	bulong alignment_bits;
+	bulong legacy_struct_tag[2];
+	bulong unknown1;
+	bulong legacy_version;
+	bptr32<void*> unknown2;
+	bulong unknown3;
+	bptr32<void*> unknown4;
+	bulong unknown5;
+	bptr32<void*> tag_struct_vtable;
 	buint64_t procedures_table_size;
-	buint32_t _unknown1[8];
-	buint32_t exploded_struct_size;
-	buint32_t _unknown2[1];
+	bulong _unknown1[8];
+	bulong exploded_struct_size;
+	bulong _unknown2[1];
 	b_h4_tag_memory_attributes memory_attributes;
-	buint32_t _unknown3;
+	bulong _unknown3;
 	s_h4_byte_swap_definition byte_swap_definition;
 	s_h4_byte_swap_definition cache_file_byte_swap_definition;
-	buint32_t _unknown4;
+	bulong _unknown4;
 	bigendian_type<e_h4_tag_field_set_bit> runtime_flags;
-	buint32_t _unknown5;
-	buint32_t cache_file_size;
-	buint32_t _unknown6[10];
-	bpointer32<void*> descendent_definition;
-	buint32_t _unknown7[2];
+	bulong _unknown5;
+	bulong cache_file_size;
+	bulong _unknown6[10];
+	bptr32<void*> descendent_definition;
+	bulong _unknown7[2];
 };
 static_assert_64(offsetof(s_h4_tag_struct_definition, legacy_struct_tag) == 48);
 static_assert_64(offsetof(s_h4_tag_struct_definition, legacy_version) == 60);
@@ -240,19 +240,19 @@ public:
 	const char* const pretty_name;
 	const char* const name;
 	const char* const filepath;
-	uint32_t const line_number;
+	unsigned long const line_number;
 	const s_h4_tag_field_definition* const fields;
 	const s_h4_tag_struct_definition* const struct_header;
-	uint32_t const size;
+	unsigned long const size;
 	const char* const size_string;
-	uint32_t const alignment_bits;
-	uint32_t legacy_struct_tag[2];
+	unsigned long const alignment_bits;
+	unsigned long legacy_struct_tag[2];
 	std::vector<c_h4_tag_field*> tag_fields;
-	uint32_t offset;
+	unsigned long offset;
 	e_h4_tag_field_set_bit const runtime_flags;
 	c_h4_tag_memory_attributes memory_attributes;
 	s_tag_persistent_identifier persistent_identifier;
 
 protected:
-	c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, uint32_t offset);
+	c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, unsigned long offset);
 };

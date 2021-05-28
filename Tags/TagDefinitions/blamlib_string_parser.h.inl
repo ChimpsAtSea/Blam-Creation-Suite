@@ -1,9 +1,11 @@
 #pragma once
 
+typedef std::map<std::string, int> t_blamlib_string_parser_unique_counter;
+
 class c_blamlib_string_parser
 {
 public:
-	c_blamlib_string_parser(const char* name, bool is_block = 0, std::map<std::string, int>* field_name_unique_counter = nullptr);
+	c_blamlib_string_parser(const char* name, bool is_block = 0, t_blamlib_string_parser_unique_counter* field_name_unique_counter = nullptr);
 	void cleanup_code_name();
 
 	c_fixed_string_2048 string;

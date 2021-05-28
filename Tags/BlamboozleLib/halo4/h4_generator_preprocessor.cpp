@@ -94,7 +94,7 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 {
 	REFERENCE_ASSERT(tag_block);
 
-	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+	unsigned long index = preprocessor.tag_type_name_unique_counter[name]++;
 	if (index > 0)
 	{
 		std::string suffix = std::to_string(index + 1);
@@ -166,7 +166,7 @@ c_h4_tag_struct_container::c_h4_tag_struct_container(
 		name = group_name + "_struct_definition";
 	}
 
-	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+	unsigned long index = preprocessor.tag_type_name_unique_counter[name]++;
 	if (!is_block)
 	{
 		//name = name.substr(0, name.rfind("_struct"));
@@ -217,7 +217,7 @@ c_h4_tag_enum_container::c_h4_tag_enum_container(c_h4_tag_enum& tag_enum, c_h4_g
 {
 	REFERENCE_ASSERT(tag_enum);
 
-	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+	unsigned long index = preprocessor.tag_type_name_unique_counter[name]++;
 	if (index > 0)
 	{
 		std::string suffix = std::to_string(index + 1);
@@ -297,7 +297,7 @@ c_h4_tag_reference_container::c_h4_tag_reference_container(c_h4_tag_reference& t
 
 	if (!name.empty())
 	{
-		uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+		unsigned long index = preprocessor.tag_type_name_unique_counter[name]++;
 		if (index > 0)
 		{
 			std::string suffix = std::to_string(index + 1);
@@ -437,7 +437,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 				approximate_filename += ".cpp";
 				string_transform_lowercase(&approximate_filename.front(), &approximate_filename.back());
 
-				for (uint32_t pos = 0; pos < approximate_filename.size(); pos++)
+				for (unsigned long pos = 0; pos < approximate_filename.size(); pos++)
 				{
 					approximate_filename[pos] = approximate_filename[pos];
 				}
@@ -752,7 +752,7 @@ c_h4_source_file& c_h4_generator_preprocessor::get_source_file(const char* filep
 	return *source_file;
 }
 
-c_h4_tag_group_container* c_h4_generator_preprocessor::get_container_by_group_tag(uint32_t group_tag)
+c_h4_tag_group_container* c_h4_generator_preprocessor::get_container_by_group_tag(unsigned long group_tag)
 {
 	if (group_tag != 0xFFFFFFFF)
 	{

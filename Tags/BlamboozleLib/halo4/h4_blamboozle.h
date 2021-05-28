@@ -36,7 +36,7 @@ public:
 	static c_h4_tag_struct* get_tag_struct_definition(
 		const char* h4_data,
 		const s_h4_tag_struct_definition* definition_header,
-		uint32_t offset);
+		unsigned long offset);
 	static std::map<const void*, c_h4_tag_struct*> tag_struct_definitions;
 
 	static c_h4_tag_interop* get_tag_interop_definition(
@@ -57,7 +57,7 @@ public:
 	static c_h4_tag_reference* get_tag_reference_definition(
 		const char* h4_data,
 		const s_h4_tag_reference_definition* definition_header,
-		uint32_t definition_address);
+		unsigned long definition_address);
 	static std::map<const void*, c_h4_tag_reference*> tag_reference_definitions;
 
 	char* h4_data = nullptr;

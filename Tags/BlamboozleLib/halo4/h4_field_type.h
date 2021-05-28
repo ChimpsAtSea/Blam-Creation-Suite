@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_h4_field_type : uint32_t
+enum e_h4_field_type : unsigned long
 {
 	_h4_field_type_string,
 	_h4_field_type_long_string,
@@ -74,7 +74,7 @@ enum e_h4_field_type : uint32_t
 	_h4_field_type_max,
 };
 
-inline uint32_t h4_field_type_get_size(e_h4_field_type field_type)
+inline unsigned long h4_field_type_get_size(e_h4_field_type field_type)
 {
 	switch (field_type)
 	{

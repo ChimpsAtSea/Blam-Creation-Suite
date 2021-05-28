@@ -165,6 +165,7 @@
     <ClCompile Include="blofeld\gen3_xbox360_validation_data.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions.cpp" />
     <ClCompile Include="blofeld\geometry\geometry_definitions_new.cpp" />
+    <ClCompile Include="blofeld\halo1.cpp" />
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
@@ -480,6 +481,7 @@
     <ClInclude Include="blofeld\gen3_xbox360_validation_data.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions.h" />
     <ClInclude Include="blofeld\geometry\geometry_definitions_new.h" />
+    <ClInclude Include="blofeld\halo1.h" />
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />

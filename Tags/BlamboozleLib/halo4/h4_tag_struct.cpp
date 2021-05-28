@@ -1,6 +1,6 @@
 #include "blamboozlelib-private-pch.h"
 
-c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, uint32_t offset) :
+c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* struct_header, unsigned long offset) :
 	pretty_name(h4_va_to_pointer(h4_data, struct_header->pretty_name)),
 	name(h4_va_to_pointer(h4_data, struct_header->name)),
 	filepath(h4_va_to_pointer(h4_data, struct_header->filepath)),
@@ -39,7 +39,7 @@ c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_defi
 	ASSERT(highest_memory_usage_flag == -1 || highest_memory_usage_flag < k_num_h4_tag_memory_usage_bits);
 	
 	const s_h4_tag_field_definition* field_definition = fields;
-	uint32_t field_index = 0;
+	unsigned long field_index = 0;
 	e_h4_field_type field_type = field_definition->field_type;
 	while (field_type != _h4_field_type_terminator)
 	{

@@ -7,7 +7,7 @@ class c_h4_tag_block
 public:
 	const char* const display_name;
 	const char* const name;
-	uint32_t const maximum_element_count;
+	unsigned long const maximum_element_count;
 	const char* const maximum_element_count_string;
 protected:
 	const s_h4_tag_struct_definition* const struct_definition;

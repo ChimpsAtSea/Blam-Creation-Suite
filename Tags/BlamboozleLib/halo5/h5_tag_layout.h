@@ -3,17 +3,17 @@
 struct s_h5_tag_layout_header
 {
 	const char* name_address;
-	uint32_t flags;
+	unsigned long flags;
 	tag_group group_tag;
 	tag_group parent_group_tag;
-	uint16_t version;
-	uint8_t initialized;
-	uint8_t : 8;
+	unsigned short version;
+	unsigned char initialized;
+	unsigned char : 8;
 	void* _unknown_struct_address;
 	void* definition_address;
 	tag_group child_group_tags[16];
-	uint16_t num_child_group_tags;
-	uint16_t : 16;
+	unsigned short num_child_group_tags;
+	unsigned short : 16;
 	void* default_tag_path_address;
 };
 //static_assert(sizeof(s_h5_tag_layout_header) == 112, "s_h5_tag_layout_header is incorrect size");

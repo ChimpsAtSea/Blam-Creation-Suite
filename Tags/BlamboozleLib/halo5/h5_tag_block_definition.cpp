@@ -17,8 +17,8 @@ c_h5_tag_block_definition::c_h5_tag_block_definition(const char* halo5_forge_dat
 	//const char* name = h5_aa_to_pointer(halo5_forge_data, structure_name_address_table[1]);
 
 
-	uint32_t set_index = 0;
-	//for (uint32_t set_index = 0; set_index < definition_header->field_set_count; set_index++)
+	unsigned long set_index = 0;
+	//for (unsigned long set_index = 0; set_index < definition_header->field_set_count; set_index++)
 	{
 		const s_h5_tag_field_set_header* field_set = field_sets + set_index;
 		c_h5_tag_field_set* tag_field_set = new c_h5_tag_field_set(halo5_forge_data, field_sets + set_index);

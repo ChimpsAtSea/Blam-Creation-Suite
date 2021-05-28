@@ -9,7 +9,7 @@ std::pair<const char*, const char*> c_blamlib_string_parser::bespoke_fixups[] =
 	{ "pivot stride length scale: leg length * this = stride length", "pivot stride length scale#leg length * this = stride length" }
 };
 
-c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_block, std::map<std::string, int>* field_name_unique_counter) :
+c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_block, t_blamlib_string_parser_unique_counter* field_name_unique_counter) :
 	string(_string ? _string : ""),
 	display_name(),
 	alt_name(),
@@ -25,6 +25,11 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	if (string.empty())
 	{
 		return;
+	}
+
+	if (string[0] == '*')
+	{
+		string = string.c_str() + 1;
 	}
 
 	// bespoke fixups
@@ -113,6 +118,7 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	if (code_name == "and") code_name = "_and";
 	if (code_name == "final") code_name = "_final";
 	if (code_name == "real") code_name = "_real";
+	if (code_name == "angle") code_name = "_angle";
 
 	if (field_name_unique_counter)
 	{
@@ -139,6 +145,7 @@ void c_blamlib_string_parser::cleanup_code_name()
 	code_name.replace('>', '_');
 	code_name.replace('<', '_');
 	code_name.replace('=', '_');
+	code_name.remove('%');
 	code_name.remove('{');
 	code_name.remove('}');
 	code_name.remove('@');

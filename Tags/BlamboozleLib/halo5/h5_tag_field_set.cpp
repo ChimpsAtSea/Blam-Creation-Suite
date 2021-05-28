@@ -9,7 +9,7 @@ c_h5_tag_field_set::c_h5_tag_field_set(const char* halo5_forge_data, const s_h5_
 	size_string = h5_aa_to_pointer(halo5_forge_data, set_header->size_string_address);
 
 	const s_h5_tag_field_definition* field_definition = fields;
-	uint32_t field_index = 0;
+	unsigned long field_index = 0;
 	while (field_definition->field_type != _h5_field_type_terminator)
 	{
 		c_h5_tag_field* field = nullptr;
