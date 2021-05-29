@@ -34,7 +34,7 @@ namespace blofeld
 	{
 		{ _field_struct, "base", &havok_shape_collection_struct_2010_2 },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD("foobar666", nullptr, FIELD_FLAG_NONE, 8),
 
 		{ _field_real_vector_3d, "center", FIELD_FLAG_READ_ONLY },
@@ -43,7 +43,7 @@ namespace blofeld
 		{ _field_real, "havok w half extent", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime model definition tag index", FIELD_FLAG_UNKNOWN0 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		{ _field_pointer, "collision bsp reference pointer0", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
@@ -55,7 +55,7 @@ namespace blofeld
 		{ _field_real, "scale", FIELD_FLAG_UNKNOWN0 },
 		FIELD_PAD("3 long pad", nullptr, FIELD_FLAG_NONE, 12),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		{ _field_terminator }
@@ -75,7 +75,7 @@ namespace blofeld
 		FIELD_PAD("m_bvTreeType", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3, 1),
 		FIELD_PAD("3 other bytes", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		// hkMoppBvTreeShapeBase
@@ -83,7 +83,7 @@ namespace blofeld
 		{ _field_pointer, "mopp data skip", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "mopp data size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		{ _field_real_vector_3d, "code info copy", FIELD_FLAG_READ_ONLY },
@@ -94,16 +94,16 @@ namespace blofeld
 		{ _field_pointer, "child shape pointer", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 | FIELD_FLAG_POINTER, _field_id_zero_data },
 		{ _field_long_integer, "child size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "8byte alignment", 4 },
 
 		FIELD_PAD("mopp alignment", nullptr, FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3, 4),
 		{ _field_real, "mopp scale", FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_pad, "final pad", 16 },
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit },
 		FIELD_PAD("final pad", nullptr, FIELD_FLAG_NONE, 12),
 
 		{ _field_terminator }

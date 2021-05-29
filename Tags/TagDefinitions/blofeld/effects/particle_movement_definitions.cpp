@@ -114,7 +114,7 @@ namespace blofeld
 		"turbulence",
 		"global force",
 		"disable swarm collision"
-		//{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		//{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		//{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
 		//"unknown bit 13"
 	};

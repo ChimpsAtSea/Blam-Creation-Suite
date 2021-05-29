@@ -3,7 +3,6 @@
 
 c_mandrill_tab::c_mandrill_tab(const char* title, const char* description, c_mandrill_tab* parent, bool allow_close) :
 	c_mandrill_tab_container(parent),
-	s_mandrill_dynamic_data(),
 	c_mandrill_event_queue(),
 	title(title),
 	description(description),

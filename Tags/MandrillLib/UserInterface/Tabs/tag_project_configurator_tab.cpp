@@ -283,7 +283,7 @@ void c_tag_project_configurator_tab::render_cache_file_selection()
 			ImGui::NextColumn();
 		}
 		{
-			ImGui::TextUnformatted(entry.build_info.build.get_string());
+			ImGui::TextUnformatted(entry.build_info.build_version.get_string());
 			if (entry.build_info.xdk_version)
 			{
 				ImGui::SameLine();
@@ -332,7 +332,12 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 		BCS_RESULT create_cache_cluster_result = ::create_cache_cluster(cache_file_readers, cache_file_reader_count, engine_platform_build, &cache_cluster);
 		ASSERT(BCS_SUCCEEDED(create_cache_cluster_result));
 
-		cache_cluster_transplant = new c_high_level_cache_cluster_transplant(*static_cast<c_halo4_cache_cluster*>(cache_cluster));
+		cache_cluster_transplant = nullptr;
+
+		if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
+		{
+			cache_cluster_transplant = new c_high_level_cache_cluster_transplant(*halo4_cache_cluster);
+		}
 
 		debug_point;
 	}

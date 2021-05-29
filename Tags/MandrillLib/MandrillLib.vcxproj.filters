@@ -63,9 +63,6 @@
     <ClInclude Include="UserInterface\Foundation\mandrill_tab_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface\Foundation\mandrill_dynamic_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserInterface\shader_profile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -189,6 +186,36 @@
     <ClInclude Include="CacheInterface\halo4\halo4_codec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_cache_cluster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_cache_file_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_cache_file_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_debug_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_localization_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_resource_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_tag_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_tag_group_hierarchy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_tag_instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\halo1\halo1_tag_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
@@ -225,9 +252,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface\Foundation\mandrill_tab_container.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomTools\custom_tool_base.cpp">
@@ -342,6 +366,36 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\halo4\halo4_codec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_cache_cluster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_cache_file_header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_cache_file_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_debug_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_localization_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_resource_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_tag_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_tag_group_hierarchy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_tag_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\halo1\halo1_tag_reader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

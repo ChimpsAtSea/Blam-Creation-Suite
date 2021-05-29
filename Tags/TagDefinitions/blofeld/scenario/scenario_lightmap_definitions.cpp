@@ -79,7 +79,7 @@ namespace blofeld
 		
 		{ _field_block, "airprobes", &scenario_lightmap_airprobe_value_block },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 2 },
 		{ _field_legacy, _field_block, "unknown", &scenario_lightmap_bsp_data_unknown1_block },
 		{ _field_legacy, _field_block, "unknown", &scenario_lightmap_bsp_data_unknown2_block },
@@ -350,11 +350,11 @@ namespace blofeld
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_NODE, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIANGLE_MAPPING_PER_MESH_BLOCK_ID)
 	{
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4 },
 		{ _field_legacy, _field_api_interop, "mesh" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_not_equal, _engine_type_groundhog, 2 },
 		{ _field_legacy, _field_version_not_equal, _engine_type_halo4 },
 		{ _field_block, "mesh", &triangle_mapping_block },

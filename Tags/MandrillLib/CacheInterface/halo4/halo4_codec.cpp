@@ -4,7 +4,7 @@ blofeld::s_tag_persistent_identifier k_xdkcompress_codec_identifier = { 0x7EDA2A
 
 #include <lzxlib\lzxlib.h>
 
-int codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
+int h4_codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
 {
 	// xbox 360 sdk
 	/*{
@@ -81,7 +81,7 @@ int codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compressed_b
 	return static_cast<long>(bytes_decoded);
 }
 
-int codec_inflate(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
+int h4_codec_inflate(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
 {
 	z_stream stream{};
 	stream.avail_out = static_cast<uInt>(uncompressed_buffer_size);

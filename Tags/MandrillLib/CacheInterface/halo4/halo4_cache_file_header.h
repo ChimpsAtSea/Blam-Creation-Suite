@@ -122,7 +122,7 @@ namespace halo4
 			c_flags_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type_flags; // see cached_map_file_dependencies_loaded for more information
 			gen3::s_file_last_modification_date timestamp; // see cached_map_file_dependencies_loaded for more information
 			gen3::s_file_last_modification_date scenario_type_timestamps[3]; // see cached_map_file_dependencies_loaded for more information
-			c_fixed_string<32> name;
+			c_static_string<32> name;
 			long unknown1AC;
 			c_static_string<256> relative_path;
 			long minor_version;

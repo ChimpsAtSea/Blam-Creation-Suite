@@ -190,7 +190,7 @@ namespace blofeld
 		"dies in air",
 		"has sweetener",
 		"uses cheap shader"
-		// { _field_version_platform_include, _platform_type_pc, 4 },
+		// { _field_version_platform_include, _platform_type_pc_64bit, 4 },
 		// "bit 7",
 		// "bit 8",
 		// "bit 9",
@@ -214,7 +214,7 @@ namespace blofeld
 		"low res tighter mask#requires depth fade",
 		"never kill verts on GPU (expensive)",
 		"particle velocity relative to camera#makes parallel and perpindicular to velocity behave differently based upon camera motion"
-		// { _field_legacy, _field_version_platform_include, _platform_type_pc, 9 },
+		// { _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 9 },
 		// "unknown bit 15",
 		// "unknown bit 16",
 		// "unknown bit 17",
@@ -232,7 +232,7 @@ namespace blofeld
 	{
 		"frame animation one shot",
 		"can animate backwards"
-		// { _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		// { _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		// "bit 3",
 		// "bit 4"
 	};

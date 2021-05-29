@@ -65,7 +65,7 @@ namespace blofeld
 		{ _field_tag_reference, "explicit vertex shader", &explicit_shader_refs_block_explicit_vertex_shader_reference },
 		{ _field_tag_reference, "explicit pixel shader", FIELD_FLAG_INDEX, &explicit_shader_refs_block_explicit_pixel_shader_reference },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_less, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_tag_reference, "explicit compute shader^", &explicit_shader_refs_block_explicit_pixel_shader_reference },
 

@@ -38,18 +38,6 @@ public:
 	BCS_RESULT get_instance_info(unsigned long tag_index, const s_halo4_tag_instance_info*& instance_info);
 	BCS_RESULT page_offset_to_pointer(long page_offset, const void*& data);
 
-	c_halo4_cache_cluster& cache_cluster;
-	c_halo4_cache_file_reader& cache_reader;
-
-	unsigned long group_count;
-	s_halo4_tag_group_info* groups;
-	unsigned long instance_count;
-	s_halo4_tag_instance_info* instances;
-	unsigned long global_instance_count;
-	s_halo4_tag_global_instance_info* global_instances;
-	unsigned long interop_count;
-	halo4::xbox360::s_cache_file_tag_interop* interops;
-
 private:
 	BCS_RESULT init_interop_table();
 	BCS_RESULT init_interops();
@@ -65,11 +53,24 @@ private:
 
 	BCS_RESULT get_interop_container_by_type_and_descriptor(e_halo4_interop_type interop_type, unsigned long descriptor, c_halo4_interop_container*& interop_container);
 
-	BCS_RESULT get_compression_codec_by_index(long codec_index, e_compression_codec& compression_codec);
+	BCS_RESULT get_compression_codec_by_index(long codec_index, e_halo4_compression_codec& compression_codec);
+
+	c_halo4_cache_cluster& cache_cluster;
+	c_halo4_cache_file_reader& cache_reader;
+
+	unsigned long group_count;
+	s_halo4_tag_group_info* groups;
+	unsigned long instance_count;
+	s_halo4_tag_instance_info* instances;
+	unsigned long global_instance_count;
+	s_halo4_tag_global_instance_info* global_instances;
+	unsigned long interop_count;
+	halo4::xbox360::s_cache_file_tag_interop* interops;
 
 	e_halo4_resource_type* _resource_type_index_to_halo4_resource_type;
 	e_halo4_interop_type* _interop_type_index_to_halo4_interop_type;
 	c_halo4_interop_container** interop_containers;
 	c_halo4_cache_file_reader** _shared_file_index_to_cache_file_reader;
 	unsigned long _shared_file_count;
+
 };

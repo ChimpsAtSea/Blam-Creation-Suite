@@ -160,7 +160,7 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void __fastcall (c
 } };
 
 
-void* (&page_offset_table)[] = reference_symbol<void* []>("page_offset_table", { _engine_type_haloreach, _platform_type_pc, _build_mcc_1_1955_0_0 }, 0x1836726C0);
+void* (&page_offset_table)[] = reference_symbol<void* []>("page_offset_table", { _engine_type_haloreach, _platform_type_pc_64bit, _build_mcc_1_1955_0_0 }, 0x1836726C0);
 
 uintptr_t sub_18004CD88_offset(s_engine_platform_build engine_platform_build)
 {

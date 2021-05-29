@@ -27,13 +27,21 @@ enum e_platform_type : uint8_t
 	_platform_type_xbox_360,
 	_platform_type_xbox_one,
 	_platform_type_pc_32bit,
-	_platform_type_pc,
+	_platform_type_pc_64bit,
 	k_number_of_platform_types
 };
 
 enum e_build : uint64_t
 {
 	_build_not_set,
+	_build_halo1_xbox,
+	_build_halo1_beta_01_05_22_0268,
+	_build_halo1_demo,
+	_build_halo1_pc_retail,
+	_build_halo1_custom_edition,
+	_build_halo1_anniversary_xbox360,
+	_build_halo1_anniversary_mcc,
+	_build_stubbs,
 	_build_mcc_1_824_0_0 = MAKE_FILE_VERSION(1, 824, 0, 0),
 	_build_mcc_1_887_0_0 = MAKE_FILE_VERSION(1, 887, 0, 0),
 	_build_mcc_1_1035_0_0 = MAKE_FILE_VERSION(1, 1035, 0, 0),

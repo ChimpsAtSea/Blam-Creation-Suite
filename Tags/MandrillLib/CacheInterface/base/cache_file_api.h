@@ -44,14 +44,14 @@ struct s_cache_file_build_info
 	long file_length;
 	long file_compressed_length;
 	c_static_string<256> source_file;
-	c_static_string<32> build;
+	c_static_string<32> build_version;
 	c_enum_no_init<gen3::e_scenario_type, short> scenario_type;
 	c_enum_no_init<gen3::e_scenario_load_type, short> scenario_load_type;
 	bool tracked_build;
 	c_flags_no_init<gen3::e_cache_file_header_bit, unsigned char> header_flags;
 	c_flags_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type_flags;
 	gen3::s_file_last_modification_date timestamp;
-	c_fixed_string<32> name;
+	c_static_string<32> name;
 	c_static_string<256> relative_path;
 	intptr32_t expected_base_address;
 	unsigned long xdk_version;

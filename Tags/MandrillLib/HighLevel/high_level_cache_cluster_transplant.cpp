@@ -2,15 +2,17 @@
 
 using namespace blofeld;
 
-c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_halo4_cache_cluster& cache_cluster) :
-	cache_cluster(cache_cluster)
+c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster) :
+	instance_transplant_entries(),
+	instances(),
+	groups(),
+	transplant_entries(),
+	cache_cluster(cache_cluster),
+	engine_platform_build()
 {
 	BCS_RESULT rs;
 
-	if (BCS_FAILED(rs = init_tag_group_hierarchy()))
-	{
-		throw(rs);
-	}
+	ASSERT(BCS_SUCCEEDED(cache_cluster.get_engine_platform_build(engine_platform_build)));
 
 	if (BCS_FAILED(rs = init_transplant_entries()))
 	{
@@ -80,89 +82,34 @@ c_high_level_cache_cluster_transplant::~c_high_level_cache_cluster_transplant()
 
 BCS_RESULT c_high_level_cache_cluster_transplant::init_transplant_entries()
 {
-	for (s_halo4_cache_cluster_entry& cluster_entry : cache_cluster.entries)
-	{
-		c_halo4_cache_file_reader& cache_reader = *cluster_entry.cache_reader;
-		c_halo4_tag_reader* tag_reader = cluster_entry.tag_reader;
+	BCS_RESULT rs = BCS_S_OK;
 
-		s_cache_file_buffer_info tag_section_buffer;
-		if (BCS_SUCCEEDED(cache_reader.get_buffer(_tag_section_buffer, tag_section_buffer))) // skip cache files without tags
+	c_cache_file_reader* const* cache_readers;
+	unsigned long cache_reader_count;
+	if (BCS_FAILED(rs = cache_cluster.get_cache_readers(cache_readers, cache_reader_count)))
+	{
+		return rs;
+	}
+
+	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	{
+		c_cache_file_reader& cache_file_reader = *cache_readers[cache_reader_index];
+
+		c_tag_reader* tag_reader;
+		if (BCS_SUCCEEDED(cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
 		{
-			ASSERT(tag_reader != nullptr);
-			transplant_entries.push_back(&cluster_entry);
-		}
-		else
-		{
-			debug_point;
+			transplant_entries.push_back(&cache_file_reader);
 		}
 	}
 
-	return BCS_S_OK;
+	return rs;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_group_hierarchy()
-{
-	for (s_halo4_tag_group_hierarchy** tag_group_hierarchy_iterator = halo4_tag_group_hierarchy; *tag_group_hierarchy_iterator; tag_group_hierarchy_iterator++) // load tag groups without parents first
-	{
-		s_halo4_tag_group_hierarchy& tag_group_hierarchy = **tag_group_hierarchy_iterator;
-		init_tag_group_hierarchy_impl(tag_group_hierarchy);
-
-		debug_point;
-	}
-
-	return BCS_S_OK;
-}
-
-h_group* c_high_level_cache_cluster_transplant::init_tag_group_hierarchy_impl(s_halo4_tag_group_hierarchy& tag_group_hierarchy)
-{
-	//c_halo4_tag_group* tag_group;
-	//if (BCS_FAILED(get_tag_group(tag_group_hierarchy.group_tag, tag_group)))
-	//{
-	//	c_halo4_tag_group* super_parent = nullptr;
-	//	if (tag_group_hierarchy.parents[1] != nullptr)
-	//	{
-	//		super_parent = init_tag_group_hierarchy_impl(*tag_group_hierarchy.parents[1]);
-	//	}
-
-	//	c_halo4_tag_group* parent = nullptr;
-	//	if (tag_group_hierarchy.parents[0] != nullptr)
-	//	{
-	//		parent = init_tag_group_hierarchy_impl(*tag_group_hierarchy.parents[0]);
-	//		DEBUG_ASSERT(parent->parent == super_parent); // sanity check
-	//	}
-
-	//	tag_group = new c_halo4_tag_group(cache_cluster, tag_group_hierarchy.group_tag, tag_group_hierarchy.group_name, parent);
-	//	groups.push_back(tag_group);
-	//}
-
-	h_group* high_level_group;
-	if (BCS_SUCCEEDED(get_tag_group(tag_group_hierarchy.group_tag, high_level_group)))
-	{
-		return high_level_group;
-	}
-
-	const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_group_tag_by_group_tag(cache_cluster.engine_platform_build.engine_type, tag_group_hierarchy.group_tag);
-
-	if (blofeld_tag_group != nullptr)
-	{
-		high_level_group = new h_group(cache_cluster.engine_platform_build, *blofeld_tag_group);
-		groups.push_back(high_level_group);
-	}
-	else
-	{
-		c_console::write_line("warning: failed to find blofeld definition for group '%s'", tag_group_hierarchy.group_name);
-	}
-
-	debug_point;
-
-	return high_level_group;
-}
-
-BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_index(const s_halo4_cache_cluster_entry& cache_cluster_entry, unsigned long tag_index, h_tag*& tag)
+BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_index(c_cache_file_reader& cache_file_reader, unsigned long tag_index, h_tag*& tag)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const t_transplant_instances* transplant_instances;
-	if (BCS_FAILED(rs = get_cluster_transplant_instances(&cache_cluster_entry, transplant_instances)))
+	if (BCS_FAILED(rs = get_cluster_transplant_instances(cache_file_reader, transplant_instances)))
 	{
 		return rs;
 	}
@@ -192,13 +139,26 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (s_halo4_cache_cluster_entry* cluster_entry : transplant_entries)
+	const blofeld::s_tag_group** tag_groups;
+	if (BCS_FAILED(rs = cache_cluster.get_blofeld_tag_groups(tag_groups)))
 	{
-		c_halo4_tag_reader& tag_reader = *cluster_entry->tag_reader;
+		return rs;
+	}
 
-		for (unsigned long group_index = 0; group_index < tag_reader.group_count; group_index++)
+	for (const blofeld::s_tag_group** tag_group = tag_groups; *tag_group; tag_group++)
+	{
+		auto high_level_group = new h_group(engine_platform_build, **tag_group);
+		groups.push_back(high_level_group);
+	}
+
+	for (c_cache_file_reader* cache_file_reader : transplant_entries)
+	{
+		c_tag_reader* tag_reader;
+		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
+
+		for (unsigned long group_index = 0; group_index < tag_reader->group_count; group_index++)
 		{
-			s_halo4_tag_group_info& group_info = tag_reader.groups[group_index];
+			s_halo4_tag_group_info& group_info = tag_reader->groups[group_index];
 
 			h_group* high_level_group;
 			if (BCS_FAILED(rs = get_tag_group(group_info.group.group_tags[0], high_level_group)))
@@ -219,17 +179,18 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (s_halo4_cache_cluster_entry* cluster_entry : transplant_entries)
+	for (c_cache_file_reader* cache_file_reader : transplant_entries)
 	{
-		c_halo4_tag_reader& tag_reader = *cluster_entry->tag_reader;
+		c_tag_reader* tag_reader;
+		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
 
-		std::pair<s_halo4_cache_cluster_entry*, std::vector<h_tag*>>& instance_transplant_entry = instance_transplant_entries.emplace_back();
-		instance_transplant_entry.first = cluster_entry;
+		t_transplant_instances_keyval& instance_transplant_entry = instance_transplant_entries.emplace_back();
+		instance_transplant_entry.first = cache_file_reader;
 		std::vector<h_tag*>& tag_instances = instance_transplant_entry.second;
 
-		for (unsigned long instance_index = 0; instance_index < tag_reader.instance_count; instance_index++)
+		for (unsigned long instance_index = 0; instance_index < tag_reader->instance_count; instance_index++)
 		{
-			s_halo4_tag_instance_info& tag_instance_info = tag_reader.instances[instance_index];
+			s_halo4_tag_instance_info& tag_instance_info = tag_reader->instances[instance_index];
 			h_group* group;
 			if (BCS_FAILED(rs = get_tag_group(tag_instance_info.group_info->group.group_tags[0], group)))
 			{
@@ -254,13 +215,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (s_halo4_cache_cluster_entry* cluster_entry : transplant_entries)
+	for (c_cache_file_reader* cache_file_reader : transplant_entries)
 	{
-		c_halo4_cache_file_reader& cache_reader = *cluster_entry->cache_reader;
-		c_halo4_tag_reader& tag_reader = *cluster_entry->tag_reader;
+		c_tag_reader* tag_reader;
+		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
 
 		s_cache_file_buffer_info tag_section_buffer;
-		if (BCS_FAILED(rs = cache_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
+		if (BCS_FAILED(rs = cache_file_reader->get_buffer(_tag_section_buffer, tag_section_buffer)))
 		{
 			// #NOTE: this is expected to always succeed as we shouldn't have added any cache files without this
 			// section to transplant_entries
@@ -268,32 +229,32 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 		}
 
 		const t_transplant_instances* transplant_instances;
-		if (BCS_FAILED(rs = get_cluster_transplant_instances(cluster_entry, transplant_instances)))
+		if (BCS_FAILED(rs = get_cluster_transplant_instances(*cache_file_reader, transplant_instances)))
 		{
 			return rs;
 		}
 
-		for (unsigned long instance_index = 0; instance_index < tag_reader.instance_count; instance_index++)
+		for (unsigned long instance_index = 0; instance_index < tag_reader->instance_count; instance_index++)
 		{
-			s_halo4_tag_instance_info& tag_instance_info = tag_reader.instances[instance_index];
+			s_halo4_tag_instance_info& tag_instance_info = tag_reader->instances[instance_index];
 
 			h_tag& high_level_tag = *(*transplant_instances)[instance_index];
 
 			int64_t virtual_address;
-			if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(tag_instance_info.instance.address, virtual_address)))
+			if (BCS_FAILED(rs = cache_file_reader->page_offset_to_virtual_address(tag_instance_info.instance.address, virtual_address)))
 			{
 				return rs;
 			}
 
 			int32_t relative_offset;
-			if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
+			if (BCS_FAILED(rs = cache_file_reader->virtual_address_to_relative_offset(virtual_address, relative_offset)))
 			{
 				return rs;
 			}
 
 			const char* data = tag_section_buffer.begin + relative_offset;
 
-			if (BCS_FAILED(rs = transplant_data(high_level_tag, data, *cluster_entry, cache_reader, high_level_tag.get_blofeld_struct_definition())))
+			if (BCS_FAILED(rs = transplant_data(high_level_tag, data, *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
 			{
 				c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
 				//return rs; //#TODO: enable this!
@@ -307,11 +268,11 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 	return rs;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high_level, const char* const low_level_data, s_halo4_cache_cluster_entry& cluster_entry, c_halo4_cache_file_reader& cache_reader, const blofeld::s_tag_struct_definition& struct_definition)
+BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high_level, const char* const low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-#define use_byteswap() (cache_reader.engine_platform_build.platform_type == _platform_type_xbox_360)
+#define use_byteswap() (engine_platform_build.platform_type == _platform_type_xbox_360)
 #define byteswap_helper_func(value) if (use_byteswap()) byteswap(value)
 #define basic_memory_read(type) \
 	{ \
@@ -325,7 +286,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
 		uint32_t field_skip_count;
-		if (skip_tag_field_version(*field, cache_cluster.engine_platform_build, field_skip_count))
+		if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
 		{
 			field += field_skip_count;
 			continue;
@@ -337,7 +298,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 
 		void* high_level_field_data = high_level.get_field_data(*field);
 
-		uint32_t field_size = get_blofeld_field_size(*field, cache_cluster.engine_platform_build);
+		uint32_t field_size = get_blofeld_field_size(*field, engine_platform_build);
 
 		if (high_level_field_data != nullptr)
 		{
@@ -390,8 +351,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 			case _field_string_id:
 			case _field_old_string_id:
 			{
-				c_halo4_debug_reader* debug_reader;
-				if (BCS_FAILED(rs = cache_cluster.get_debug_reader(cache_reader, debug_reader)))
+				c_debug_reader* debug_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_debug_reader(cache_file_reader, debug_reader)))
 				{
 					return rs;
 				}
@@ -470,7 +431,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				byteswap_helper_func(tag_block);
 
 				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-				uint32_t const block_struct_size = calculate_struct_size(cache_reader.engine_platform_build, block_struct_definition);
+				uint32_t const block_struct_size = calculate_struct_size(engine_platform_build, block_struct_definition);
 
 				block_storage.clear();
 
@@ -488,7 +449,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 					{ // #TODO: function abstraction for this?
 
 						s_cache_file_buffer_info tag_section_buffer;
-						if (BCS_FAILED(rs = cache_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
+						if (BCS_FAILED(rs = cache_file_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
 						{
 							// #NOTE: this is expected to always succeed as we shouldn't have added any cache files without this
 							// section to transplant_entries
@@ -496,13 +457,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 						}
 
 						int64_t virtual_address;
-						if (BCS_FAILED(rs = cache_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
+						if (BCS_FAILED(rs = cache_file_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
 						{
 							return rs;
 						}
 
 						int32_t relative_offset;
-						if (BCS_FAILED(rs = cache_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
+						if (BCS_FAILED(rs = cache_file_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
 						{
 							return rs;
 						}
@@ -520,7 +481,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 						for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
 						{
 							h_object& type = block_storage.emplace_back();
-							transplant_data(type, current_block_data_position, cluster_entry, cache_reader, block_struct_definition);
+							transplant_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
 
 							current_block_data_position += block_struct_size;
 						}
@@ -548,7 +509,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 			case _field_pointer:
 			{
 				uint32_t pointer_size;
-				ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(cache_reader.engine_platform_build.platform_type, &pointer_size)));
+				ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &pointer_size)));
 				switch (pointer_size)
 				{
 				case 4: basic_memory_read(dword);
@@ -560,7 +521,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 			case _field_struct:
 			{
 				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
-				transplant_data(struct_storage, current_data_position, cluster_entry, cache_reader, *field->struct_definition);
+				transplant_data(struct_storage, current_data_position, cache_file_reader, *field->struct_definition);
 			}
 			break;
 			case _field_array:
@@ -568,12 +529,12 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 				const char* raw_array_data_position = current_data_position;
 
-				uint32_t const array_elements_count = field->array_definition->count(cache_cluster.engine_platform_build);
+				uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
 					h_object& array_element_storage = array_storage[array_index];
 
-					transplant_data(array_element_storage, raw_array_data_position, cluster_entry, cache_reader, field->array_definition->struct_definition);
+					transplant_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition);
 
 					raw_array_data_position += array_element_storage.get_low_level_type_size();
 				}
@@ -592,7 +553,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				//h_tag* tag_reference_high_level_tag = get_high_level_tag_by_tag_interface(tag_reference_tag_interface);
 
 				h_tag* tag_reference_high_level_tag;
-				if (BCS_FAILED(rs = get_tag_by_index(cluster_entry, tag_index, tag_reference_high_level_tag)))
+				if (BCS_FAILED(rs = get_tag_by_index(cache_file_reader, tag_index, tag_reference_high_level_tag)))
 				{
 					return rs;
 				}
@@ -622,8 +583,8 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
 				debug_point;
 
-				c_halo4_tag_reader* tag_reader;
-				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_reader, tag_reader)))
+				c_tag_reader* tag_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
 				{
 					return rs;
 				}
@@ -644,34 +605,38 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				h_interop*& interop_storage = *reinterpret_cast<decltype(&interop_storage)>(high_level_field_data);
 				debug_point;
 
-				c_halo4_tag_reader* tag_reader;
-				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_reader, tag_reader)))
+				c_tag_reader* tag_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
 				{
 					return rs;
 				}
-				debug_point;
 
-				e_halo4_interop_type interop_type = k_num_halo4_interop_types;
-				if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct)
+				if (c_halo4_tag_reader* halo4_tag_reader = dynamic_cast<c_halo4_tag_reader*>(tag_reader))
 				{
-					interop_type = _halo4_polyart_vertex_buffer_interop;
-				}
-				else if (field->struct_definition == &blofeld::polyartIndexBufferDescriptorStruct)
-				{
-					interop_type = _halo4_polyart_index_buffer_interop;
-				}
-				else if (field->struct_definition == &blofeld::vectorartVertexBufferDescriptorStruct)
-				{
-					interop_type = _halo4_vectorart_vertex_buffer_interop;
-				}
-				ASSERT(interop_type != k_num_halo4_interop_types);
+					debug_point;
 
-				c_halo4_interop_container* interop_container = nullptr;
-				tag_reader->get_interop_container_by_type_and_descriptor(interop_type, tag_interop.descriptor, interop_container);
+					e_halo4_interop_type interop_type = k_num_halo4_interop_types;
+					if (field->struct_definition == &blofeld::polyartVertexBufferDescriptorStruct)
+					{
+						interop_type = _halo4_polyart_vertex_buffer_interop;
+					}
+					else if (field->struct_definition == &blofeld::polyartIndexBufferDescriptorStruct)
+					{
+						interop_type = _halo4_polyart_index_buffer_interop;
+					}
+					else if (field->struct_definition == &blofeld::vectorartVertexBufferDescriptorStruct)
+					{
+						interop_type = _halo4_vectorart_vertex_buffer_interop;
+					}
+					ASSERT(interop_type != k_num_halo4_interop_types);
 
-				interop_storage = interop_container;
+					c_halo4_interop_container* interop_container = nullptr;
+					halo4_tag_reader->get_interop_container_by_type_and_descriptor(interop_type, tag_interop.descriptor, interop_container);
 
-				debug_point;
+					interop_storage = interop_container;
+
+					debug_point;
+				}
 			}
 			break;
 			case _field_vertex_buffer:
@@ -710,11 +675,11 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_group(tag group_tag, h
 	return BCS_E_FAIL;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instances(const s_halo4_cache_cluster_entry* cache_cluster_entry, const t_transplant_instances*& transplant_instances)
+BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instances(c_cache_file_reader& cache_file_reader, const t_transplant_instances*& transplant_instances)
 {
 	for (auto& instance_transplant_entry : instance_transplant_entries)
 	{
-		if (instance_transplant_entry.first == cache_cluster_entry)
+		if (instance_transplant_entry.first == &cache_file_reader)
 		{
 			transplant_instances = &instance_transplant_entry.second;
 			return BCS_S_OK;

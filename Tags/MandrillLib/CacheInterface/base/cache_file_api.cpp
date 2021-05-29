@@ -16,6 +16,102 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 	BCS_VALIDATE_ARGUMENT(filepath);
 	BCS_VALIDATE_ARGUMENT(engine_platform_build);
 
+	FILE* file_handle = _wfopen(filepath, L"rb");
+	if (file_handle == nullptr)
+	{
+		return BCS_E_FAIL;
+	}
+
+	_fseeki64(file_handle, 0, SEEK_SET);
+
+	blamlib::s_cache_file_header header;
+	if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+	{
+		return BCS_E_FAIL;
+	}
+	_fseeki64(file_handle, 0, SEEK_SET);
+
+	if (header.file_version == 5)
+	{
+		ASSERT(header.header_signature == k_cache_header_signature);
+
+		halo1::pc::s_cache_file_header header;
+		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+		{
+			return BCS_E_FAIL;
+		}
+
+		if (header.build_version.is_empty())
+		{
+			// #TODO: check for 32bit stubbs
+			*engine_platform_build = { _engine_type_stubbs, _platform_type_pc_64bit, _build_stubbs };
+		}
+		else
+		{
+			// #TODO: validate xbox build
+			*engine_platform_build = { _engine_type_halo1, _platform_type_xbox, _build_halo1_xbox };
+		}
+
+		return BCS_S_OK;
+	}
+	if (header.file_version == 6)
+	{
+		if (header.header_signature == k_cache_header_signature)
+		{
+			halo1::pc::s_cache_file_header header;
+			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			{
+				return BCS_E_FAIL;
+			}
+			if (strcmp(header.build_version.get_buffer(), "01.05.22.0268") == 0)
+			{
+				*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_beta_01_05_22_0268 };
+				return BCS_S_OK;
+			}
+		}
+		else
+		{
+			halo1::pc::s_cache_file_header header;
+			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			{
+				return BCS_E_FAIL;
+			}
+			// #TODO: validate demo build
+			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_demo };
+			return BCS_S_OK;
+		}
+	}
+	if (header.file_version == 7)
+	{
+		halo1::demo::s_cache_file_header header;
+		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+		{
+			return BCS_E_FAIL;
+		}
+		// #TODO: validate retail build
+		*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_pc_retail };
+		return BCS_S_OK;
+	}
+	if (header.file_version == 609)
+	{
+		halo1::pc::s_cache_file_header header;
+		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+		{
+			return BCS_E_FAIL;
+		}
+		if (strcmp(header.build_version.get_buffer(), "01.00.00.0609") == 0)
+		{
+			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
+			return BCS_S_OK;
+		}
+	}
+
+
+	*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
+	return BCS_S_OK;
+
+
+
 	// #TODO determine the engine platform
 
 	engine_platform_build->engine_type = _engine_type_gen3_xbox360;
@@ -50,6 +146,18 @@ BCSAPI BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platf
 	{
 		switch (engine_platform_build.engine_type)
 		{
+		case _engine_type_stubbs:
+		case _engine_type_halo1:
+		{
+			switch (engine_platform_build.platform_type)
+			{
+			case _platform_type_xbox:
+			case _platform_type_pc_32bit:
+			case _platform_type_pc_64bit:
+				*cache_file = new c_halo1_cache_file_reader(filepath, engine_platform_build);
+				return BCS_S_OK;
+			}
+		}
 		// #TODO: generate xbox360 version of halo 4 high/virtual/low
 		// then replace _engine_type_gen3_xbox360 with _engine_type_gen3_halo4
 		case _engine_type_gen3_xbox360:
@@ -114,6 +222,12 @@ BCSAPI BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint
 
 	try
 	{
+		if (c_halo1_cache_file_reader* halo1_cache_file = dynamic_cast<c_halo1_cache_file_reader*>(*cache_readers))
+		{
+			*cache_cluster = new c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
+
+			return BCS_S_OK;
+		}
 		if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);

@@ -24,10 +24,10 @@ namespace blofeld
 		{ _field_short_integer, "size", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_short_integer, "count", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY | FIELD_FLAG_UNKNOWN3 },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit },
 		FIELD_PAD("total shit pad1", nullptr, FIELD_FLAG_NONE, 4),
 
-		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_exclude, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_haloreach },
 		FIELD_PAD("total shit pad1", nullptr, FIELD_FLAG_NONE, 8),
 
@@ -45,7 +45,7 @@ namespace blofeld
 		// hkArrayBase
 
 		// unknown Halo 4 PC modification to hkArray/hkArrayBase
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 2 },
 		{ _field_legacy, _field_long_integer, "@unknown" },
 		{ _field_legacy, _field_pad, "padding", 4 },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _field_char_integer, "int8 m_buildType", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("total shit pad2", nullptr, FIELD_FLAG_NONE, 3),
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 4 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 4 },
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_pad, "padding", 12 }, // alignment
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4 },

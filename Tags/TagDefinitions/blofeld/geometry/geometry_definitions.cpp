@@ -759,7 +759,7 @@ namespace blofeld
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_block, "constant buffer interop", &constant_buffer_interops_block }, // assembly
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 2 },
 		{ _field_legacy, _field_block, "@unknown", &g_null_block },
 		{ _field_legacy, _field_block, "@unknown", &g_null_block },

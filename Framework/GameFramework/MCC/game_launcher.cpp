@@ -429,19 +429,19 @@ c_aotus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
 	switch (engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_game_host({ engine_type, _platform_type_pc, c_haloreach_game_host::get_game_runtime().get_build() });
+		return new c_haloreach_game_host({ engine_type, _platform_type_pc_64bit, c_haloreach_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo1:
-		return new c_halo1_game_host({ engine_type, _platform_type_pc, c_halo1_game_host::get_game_runtime().get_build() });
+		return new c_halo1_game_host({ engine_type, _platform_type_pc_64bit, c_halo1_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo2:
-		return new c_halo2_game_host({ engine_type, _platform_type_pc, c_halo2_game_host::get_game_runtime().get_build() });
+		return new c_halo2_game_host({ engine_type, _platform_type_pc_64bit, c_halo2_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo3:
-		return new c_halo3_game_host({ engine_type, _platform_type_pc, c_halo3_game_host::get_game_runtime().get_build() });
+		return new c_halo3_game_host({ engine_type, _platform_type_pc_64bit, c_halo3_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo3odst:
-		return new c_halo3odst_game_host({ engine_type, _platform_type_pc, c_halo3odst_game_host::get_game_runtime().get_build() });
+		return new c_halo3odst_game_host({ engine_type, _platform_type_pc_64bit, c_halo3odst_game_host::get_game_runtime().get_build() });
 	case _engine_type_halo4:
-		return new c_halo4_game_host({ engine_type, _platform_type_pc, c_halo4_game_host::get_game_runtime().get_build() });
+		return new c_halo4_game_host({ engine_type, _platform_type_pc_64bit, c_halo4_game_host::get_game_runtime().get_build() });
 	case _engine_type_groundhog:
-		return new c_groundhog_game_host({ engine_type, _platform_type_pc, c_groundhog_game_host::get_game_runtime().get_build() });
+		return new c_groundhog_game_host({ engine_type, _platform_type_pc_64bit, c_groundhog_game_host::get_game_runtime().get_build() });
 	}
 
 	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");

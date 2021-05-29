@@ -283,8 +283,8 @@ namespace blofeld
 				e_validation_result block_failed_validation = _validation_result_ok;
 				const char* const block_name = struct_definition.name;
 
-				e_platform_type platform_type = _platform_type_pc;
-				calculate_struct_size({ engine_type, _platform_type_pc, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
+				e_platform_type platform_type = _platform_type_pc_64bit;
+				calculate_struct_size({ engine_type, _platform_type_pc_64bit, _build_not_set }, struct_definition, &block_failed_validation, platform_type == _platform_type_not_set, warnings_tracking);
 
 				if (block_failed_validation == _validation_result_ok)
 				{

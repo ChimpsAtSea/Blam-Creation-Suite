@@ -89,8 +89,8 @@ void init_aotus()
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
-		c_function_hook_base::init_function_hook_tree({ _engine_type_mcc, _platform_type_pc, build });
-		c_global_reference::init_global_reference_tree({ _engine_type_mcc, _platform_type_pc, build });
+		c_function_hook_base::init_function_hook_tree({ _engine_type_mcc, _platform_type_pc_64bit, build });
+		c_global_reference::init_global_reference_tree({ _engine_type_mcc, _platform_type_pc_64bit, build });
 	}
 	end_detours();
 }

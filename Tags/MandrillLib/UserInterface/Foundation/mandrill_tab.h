@@ -8,7 +8,7 @@ enum e_menu_render_type
 };
 
 class c_mandrill_tab :
-	public c_mandrill_tab_container, public s_mandrill_dynamic_data, public c_mandrill_event_queue
+	public c_mandrill_tab_container, public c_mandrill_event_queue
 {
 public:
 	non_copyconstructable(c_mandrill_tab);

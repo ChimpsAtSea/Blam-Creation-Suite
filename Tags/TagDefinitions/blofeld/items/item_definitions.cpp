@@ -48,7 +48,7 @@ namespace blofeld
 		FIELD_CUSTOM("$$$ ITEM $$$", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		{ _field_long_flags, "flags", &item_definition_flags },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 4 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 4 },
 		{ _field_legacy, _field_version_equal, _engine_type_halo3odst, 3 },
 		{ _field_legacy, _field_long_integer, "unknown" },
 		{ _field_legacy, _field_long_integer, "unknown" },

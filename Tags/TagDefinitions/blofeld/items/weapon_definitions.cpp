@@ -197,7 +197,7 @@ namespace blofeld
 
 		{ _field_real_vector_3d, "first person weapon offset" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo3, 2 },
 		{ _field_legacy, _field_version_not_equal, _engine_type_groundhog, 1 },
 		{ _field_legacy, _field_real_vector_3d, "centered first person weapon offset" }, // Added in mcc duh

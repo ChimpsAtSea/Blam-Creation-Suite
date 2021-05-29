@@ -33,7 +33,7 @@ BCS_RESULT c_halo4_cache_file_reader::get_build_info(s_cache_file_build_info& bu
 	build_info.file_length = cache_file_header.file_length;
 	build_info.file_compressed_length = cache_file_header.file_compressed_length;
 	build_info.source_file = cache_file_header.source_file;
-	build_info.build = cache_file_header.build;
+	build_info.build_version = cache_file_header.build;
 	build_info.scenario_type = cache_file_header.scenario_type;
 	build_info.scenario_load_type = cache_file_header.scenario_load_type;
 	build_info.tracked_build = cache_file_header.tracked_build;
@@ -163,4 +163,11 @@ BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(unsigned lo
 
 	return BCS_S_OK;
 	//return BCS_E_NOT_IMPLEMENTED;
+}
+
+BCS_RESULT c_halo1_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
+{
+	tag_groups = blofeld::tag_groups[engine_platform_build.engine_type];
+
+	return BCS_S_OK;
 }

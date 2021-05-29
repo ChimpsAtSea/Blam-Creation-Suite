@@ -38,7 +38,7 @@ struct s_resource_priority_data
 	long page_size;
 	long resource_page_offset;
 	short page_index;
-	e_compression_codec compression_codec;
+	e_halo4_compression_codec compression_codec;
 };
 
 struct s_resource_priority_datas

@@ -40,7 +40,7 @@ namespace blofeld
 		{ _field_long_integer, "hardware format", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		{ _field_long_integer, "runtime tag base address", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_greater_or_equal, _engine_type_halo4, 1 },
 		{ _field_legacy, _field_pad, "pad", 4 },
 

@@ -23,7 +23,7 @@ namespace blofeld
 		FIELD_PAD("pad", nullptr, FIELD_FLAG_NONE, 3),
 
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 4 },
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 3 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 3 },
 		{ _field_legacy, _field_pad, "pad", 1 },
 		{ _field_legacy, _field_char_integer, "thorage" },
 		{ _field_legacy, _field_pad, "pad", 1 },
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_long_integer, "maximum allowed", "if this is <= 0, these are 'unlimited' (up to a reasonable code-defined maximum)" },
 		{ _field_long_integer, "price per instance" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_long_integer, "thorage" },
 

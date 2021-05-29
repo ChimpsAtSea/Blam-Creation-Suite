@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_real, "shadow quality lod", "scales resolution of object shadows:[0.0 to 1.0]" },
 		{ _field_real, "floating shadow quality lod", "scales resolution of floating shadow:[0.0 to 1.0], 0 = off" },
 
-		{ _field_legacy, _field_version_platform_include, _platform_type_pc, 2 },
+		{ _field_legacy, _field_version_platform_include, _platform_type_pc_64bit, 2 },
 		{ _field_legacy, _field_version_equal, _engine_type_haloreach, 1 },
 		{ _field_legacy, _field_real, "anisotropic filtering" },
 

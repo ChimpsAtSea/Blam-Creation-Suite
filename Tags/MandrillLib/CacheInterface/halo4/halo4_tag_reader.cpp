@@ -570,7 +570,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 				s_cache_file_resource_page_struct file_page = file_pages[section.file_page_indexes[priority_level_index].page_index];
 				byteswap(file_page);
 
-				e_compression_codec compression_codec = _compression_uncompressed;
+				e_halo4_compression_codec compression_codec = _halo4_compression_uncompressed;
 				if (BCS_FAILED(rs = get_compression_codec_by_index(file_page.codec, compression_codec)))
 				{
 					return rs;
@@ -782,7 +782,7 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 		char* page_data = new char[__max(0x8000, file_page.size)];
 		const char* page_file_data = buffer_info.begin + file_page.file_offset;
 
-		e_compression_codec compression_codec = _compression_uncompressed;
+		e_halo4_compression_codec compression_codec = _halo4_compression_uncompressed;
 		if (BCS_FAILED(rs = get_compression_codec_by_index(file_page.codec, compression_codec)))
 		{
 			return rs;
@@ -790,12 +790,12 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 
 		switch (compression_codec)
 		{
-		case _compression_uncompressed:
+		case _halo4_compression_uncompressed:
 			ASSERT(file_page.size == file_page.file_size);
 			memcpy(page_data, page_file_data, file_page.size);
 			break;
-		case _compression_xdkcompress:
-			codec_inflate_lzx_xbox360(page_file_data, file_page.file_size, page_data, file_page.size);
+		case _halo4_compression_xdkcompress:
+			h4_codec_inflate_lzx_xbox360(page_file_data, file_page.file_size, page_data, file_page.size);
 			break;
 		default:
 			return BCS_E_NOT_IMPLEMENTED; // unknown compression codec
@@ -943,7 +943,7 @@ BCS_RESULT c_halo4_tag_reader::get_interop_container_by_type_and_descriptor(e_ha
 	return BCS_E_FAIL;
 }
 
-BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(long codec_index, e_compression_codec& compression_codec)
+BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(long codec_index, e_halo4_compression_codec& compression_codec)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -996,7 +996,7 @@ BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(long codec_index, 
 
 		if (memcmp(&identifier, &k_xdkcompress_codec_identifier, sizeof(identifier)) == 0)
 		{
-			compression_codec = _compression_xdkcompress;
+			compression_codec = _halo4_compression_xdkcompress;
 		}
 		else
 		{

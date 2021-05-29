@@ -80,7 +80,7 @@ static BCS_RESULT get_platform_string_impl(e_platform_type platform_type, bool p
 		platform_type_string_pair(_platform_type_xbox, "Xbox");
 		platform_type_string_pair(_platform_type_xbox_360, "Xbox 360");
 		platform_type_string_pair(_platform_type_xbox_one, "Xbox One");
-		platform_type_string_pair(_platform_type_pc, "PC");
+		platform_type_string_pair(_platform_type_pc_64bit, "PC");
 		platform_type_string_pair(_platform_type_pc_32bit, "PC (32bit)");
 	}
 #undef platform_type_string_pair
@@ -110,7 +110,7 @@ BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* po
 		*pointer_size = 4;
 		return BCS_S_OK;
 	case _platform_type_xbox_one:
-	case _platform_type_pc:
+	case _platform_type_pc_64bit:
 		*pointer_size = 8;
 		return BCS_S_OK;
 	}
@@ -127,6 +127,14 @@ static BCS_RESULT get_build_string_impl(e_build build, bool pretty_name, const c
 	switch (build)
 	{
 		build_string_pair(_build_not_set, "Not set");
+		build_string_pair(_build_halo1_xbox, "Halo 1 Xbox");
+		build_string_pair(_build_halo1_beta_01_05_22_0268, "Halo 1 PC Beta (01.05.23.0268)");
+		build_string_pair(_build_halo1_demo, "Halo 1 Demo");
+		build_string_pair(_build_halo1_pc_retail, "Halo 1 PC");
+		build_string_pair(_build_halo1_custom_edition, "Halo 1 Custom Edition");
+		build_string_pair(_build_halo1_anniversary_xbox360, "Halo 1 Anniversary (Xbox 360)");
+		build_string_pair(_build_halo1_anniversary_mcc, "Halo 1 Anniversary (MCC)");
+		build_string_pair(_build_stubbs, "Stubbz Generic");
 		build_string_pair(_build_mcc_1_824_0_0, "MCC 1.824.0.0");
 		build_string_pair(_build_mcc_1_887_0_0, "MCC 1.887.0.0");
 		build_string_pair(_build_mcc_1_1035_0_0, "MCC 1.1035.0.0");
