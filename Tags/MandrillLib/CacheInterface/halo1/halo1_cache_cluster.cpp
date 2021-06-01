@@ -8,13 +8,10 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 	resource_readers(),
 	localization_readers()
 {
-	BCS_RESULT rs;
 	BCS_VALIDATE_ARGUMENT_THROW(cache_readers);
 	BCS_VALIDATE_ARGUMENT_THROW(cache_reader_count > 0);
 
-	s_cache_file_buffer_info temp_info;
-
-
+	
 
 	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
@@ -24,6 +21,7 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 		cache_reader->associate_cache_cluster(*this);
 	}
 
+	s_cache_file_buffer_info temp_info;
 	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo1_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
@@ -100,15 +98,15 @@ c_halo1_cache_cluster::~c_halo1_cache_cluster()
 	{
 		delete keyval.second;
 	}
-	for (auto& keyval : debug_readers)
+	for (auto& keyval : tag_readers)
 	{
 		delete keyval.second;
 	}
-	for (auto& keyval : debug_readers)
+	for (auto& keyval : resource_readers)
 	{
 		delete keyval.second;
 	}
-	for (auto& keyval : debug_readers)
+	for (auto& keyval : localization_readers)
 	{
 		delete keyval.second;
 	}

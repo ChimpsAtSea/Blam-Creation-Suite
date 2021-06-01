@@ -54,6 +54,18 @@ h_group::~h_group()
 
 namespace blofeld
 {
+	namespace halo1
+	{
+		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
+	}
+	namespace stubbs
+	{
+		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
+	}
+	namespace halo2
+	{
+		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
+	}
 	namespace halo3
 	{
 		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
@@ -85,6 +97,15 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 	h_tag* tag = nullptr;
 	switch (engine_platform_build.engine_type)
 	{
+	case _engine_type_halo1:
+		tag = blofeld::halo1::create_high_level_tag(*this, filepath);
+		break;
+	case _engine_type_stubbs:
+		tag = blofeld::stubbs::create_high_level_tag(*this, filepath);
+		break;
+	case _engine_type_halo2:
+		tag = blofeld::halo2::create_high_level_tag(*this, filepath);
+		break;
 	case _engine_type_halo3:			
 		tag = blofeld::halo3::create_high_level_tag(*this, filepath);
 		break;

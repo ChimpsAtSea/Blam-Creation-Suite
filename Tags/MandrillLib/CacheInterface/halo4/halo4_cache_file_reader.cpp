@@ -165,7 +165,7 @@ BCS_RESULT c_halo4_cache_file_reader::page_offset_to_virtual_address(unsigned lo
 	//return BCS_E_NOT_IMPLEMENTED;
 }
 
-BCS_RESULT c_halo1_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
+BCS_RESULT c_halo4_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
 {
 	tag_groups = blofeld::tag_groups[engine_platform_build.engine_type];
 

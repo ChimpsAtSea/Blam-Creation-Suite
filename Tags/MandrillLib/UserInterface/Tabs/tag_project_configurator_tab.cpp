@@ -138,8 +138,13 @@ void c_tag_project_configurator_tab::render_impl()
 		break;
 	case _tag_project_configurator_step_display_tags:
 		previous_step = _tag_project_configurator_step_project_settings;
-		next_step = _tag_project_configurator_step_display_tags;
+		next_step = _tag_project_configurator_step_project_creation;
 		render_display_tags();
+		break;
+	case _tag_project_configurator_step_project_creation:
+		previous_step = _tag_project_configurator_step_display_tags;
+		next_step = _tag_project_configurator_step_project_creation;
+		break;
 	}
 
 	bool disable_previous_step = previous_step == step;
@@ -177,6 +182,10 @@ void c_tag_project_configurator_tab::render_impl()
 		else if (step == _tag_project_configurator_step_project_settings)
 		{
 			static bool run_once = auto_proceed = true;
+		} 
+		else if (step == _tag_project_configurator_step_display_tags)
+		{
+			static bool run_once = auto_proceed = true;
 		}
 	}
 #endif
@@ -194,6 +203,9 @@ void c_tag_project_configurator_tab::render_impl()
 			create_cache_cluster();
 			break;
 		case _tag_project_configurator_step_project_settings:
+			break;
+		case _tag_project_configurator_step_display_tags:
+			create_tag_project();
 			break;
 		}
 		step = next_step;
@@ -307,7 +319,7 @@ void c_tag_project_configurator_tab::render_display_tags()
 	if(cache_cluster_transplant)
 	for (h_tag* tag : cache_cluster_transplant->instances)
 	{
-		ImGui::TextUnformatted(tag->tag_filename);
+		ImGui::Text("%s.%s", tag->tag_filepath, tag->group->tag_group.name);
 	}
 }
 
@@ -334,9 +346,9 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 
 		cache_cluster_transplant = nullptr;
 
-		if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
+		//if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 		{
-			cache_cluster_transplant = new c_high_level_cache_cluster_transplant(*halo4_cache_cluster);
+			cache_cluster_transplant = new c_high_level_cache_cluster_transplant(*cache_cluster);
 		}
 
 		debug_point;
@@ -357,5 +369,17 @@ void c_tag_project_configurator_tab::destroy_cache_cluster()
 	if (cache_cluster_transplant != nullptr)
 	{
 		delete cache_cluster_transplant;
+	}
+}
+
+void c_tag_project_configurator_tab::create_tag_project()
+{
+	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
+	{
+		ASSERT(cache_cluster_transplant != nullptr);
+
+		c_tag_project* tag_project = new c_tag_project(*cache_cluster_transplant);
+		c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+		mandrill_user_interface->add_tab(*tag_project_tab);
 	}
 }

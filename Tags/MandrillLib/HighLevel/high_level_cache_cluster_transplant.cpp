@@ -156,14 +156,24 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 		c_tag_reader* tag_reader;
 		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
 
-		for (unsigned long group_index = 0; group_index < tag_reader->group_count; group_index++)
+		c_tag_group** tag_groups = nullptr;
+		unsigned long tag_group_count = 0;
+		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_groups(tag_groups, tag_group_count)));
+
+		for (unsigned long group_index = 0; group_index < tag_group_count; group_index++)
 		{
-			s_halo4_tag_group_info& group_info = tag_reader->groups[group_index];
+			c_tag_group& tag_group = *tag_groups[group_index];
+
+			tag group_tag;
+			ASSERT(BCS_SUCCEEDED(tag_group.get_group_tag(group_tag)));
 
 			h_group* high_level_group;
-			if (BCS_FAILED(rs = get_tag_group(group_info.group.group_tags[0], high_level_group)))
+			if (BCS_FAILED(rs = get_tag_group(group_tag, high_level_group)))
 			{
-				c_console::write_line("missing referenced tag group '%s'", group_info.group_name);
+				const char* tag_group_name = nullptr;
+				ASSERT(BCS_SUCCEEDED(tag_group.get_group_name(tag_group_name)));
+
+				c_console::write_line("missing referenced tag group '%s'", tag_group_name);
 				// all groups should be initialized inside of init_tag_group_hierarchy_impl
 				//return rs;
 			}
@@ -186,21 +196,36 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 
 		t_transplant_instances_keyval& instance_transplant_entry = instance_transplant_entries.emplace_back();
 		instance_transplant_entry.first = cache_file_reader;
-		std::vector<h_tag*>& tag_instances = instance_transplant_entry.second;
+		std::vector<h_tag*>& high_level_tag_instances = instance_transplant_entry.second;
 
-		for (unsigned long instance_index = 0; instance_index < tag_reader->instance_count; instance_index++)
+		c_tag_instance** tag_instances = nullptr;
+		unsigned long tag_instance_count = 0;
+		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_instances(tag_instances, tag_instance_count)));
+
+		for (unsigned long instance_index = 0; instance_index < tag_instance_count; instance_index++)
 		{
-			s_halo4_tag_instance_info& tag_instance_info = tag_reader->instances[instance_index];
+			c_tag_instance& tag_instance = *tag_instances[instance_index];
+			const char* tag_instance_name = nullptr;
+			c_tag_group* tag_group = nullptr;
+			tag group_tag;
+
+			ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
+			ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
+			ASSERT(BCS_SUCCEEDED(tag_group->get_group_tag(group_tag)));
+
 			h_group* group;
-			if (BCS_FAILED(rs = get_tag_group(tag_instance_info.group_info->group.group_tags[0], group)))
+			if (BCS_FAILED(rs = get_tag_group(group_tag, group)))
 			{
-				c_console::write_line("missing instance tag group '%s'", tag_instance_info.group_info->group_name);
+				const char* group_name = nullptr;
+				ASSERT(BCS_SUCCEEDED(tag_group->get_group_name(group_name)));
+
+				c_console::write_line("missing instance tag group '%s'", group_name);
 				return rs;
 			}
 
-			h_tag& high_level_tag = group->create_tag_instance(tag_instance_info.instance_name);
+			h_tag& high_level_tag = group->create_tag_instance(tag_instance_name);
 
-			tag_instances.push_back(&high_level_tag);
+			high_level_tag_instances.push_back(&high_level_tag);
 			instances.push_back(&high_level_tag);
 
 			debug_point;
@@ -234,27 +259,23 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 			return rs;
 		}
 
-		for (unsigned long instance_index = 0; instance_index < tag_reader->instance_count; instance_index++)
+		c_tag_instance** tag_instances = nullptr;
+		unsigned long tag_instance_count = 0;
+		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_instances(tag_instances, tag_instance_count)));
+
+		for (unsigned long instance_index = 0; instance_index < tag_instance_count; instance_index++)
 		{
-			s_halo4_tag_instance_info& tag_instance_info = tag_reader->instances[instance_index];
+			c_tag_instance& tag_instance = *tag_instances[instance_index];
 
 			h_tag& high_level_tag = *(*transplant_instances)[instance_index];
 
-			int64_t virtual_address;
-			if (BCS_FAILED(rs = cache_file_reader->page_offset_to_virtual_address(tag_instance_info.instance.address, virtual_address)))
+			const void* tag_instance_data;
+			if (BCS_FAILED(rs = tag_instance.get_data(tag_instance_data)))
 			{
 				return rs;
 			}
 
-			int32_t relative_offset;
-			if (BCS_FAILED(rs = cache_file_reader->virtual_address_to_relative_offset(virtual_address, relative_offset)))
-			{
-				return rs;
-			}
-
-			const char* data = tag_section_buffer.begin + relative_offset;
-
-			if (BCS_FAILED(rs = transplant_data(high_level_tag, data, *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
+			if (BCS_FAILED(rs = transplant_data(high_level_tag, static_cast<const char*>(tag_instance_data), *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
 			{
 				c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
 				//return rs; //#TODO: enable this!
@@ -441,9 +462,11 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 					DEBUG_ASSERT(tag_block.address != 0xCDCDCDCD);
 				}
 
+				if (tag_block.address > 0x30000)
 				if (tag_block.count > 0)
 				{
 					block_storage.reserve(tag_block.count);
+					ASSERT(tag_block.definition_address == 0);
 
 					const char* block_data;
 					{ // #TODO: function abstraction for this?

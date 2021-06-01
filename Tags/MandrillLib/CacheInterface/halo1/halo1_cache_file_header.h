@@ -107,10 +107,10 @@ namespace halo1
 
 	struct s_cache_file_resource_header
 	{
-		unsigned long resource_type;
-		unsigned long resource_name_buffer;
-		unsigned long resource_instances_address;
-		unsigned long resource_instance_count;
+		unsigned long type;
+		unsigned long tag_names_offset;
+		unsigned long tag_data_offset;
+		unsigned long tag_instance_count;
 	};
 
 	struct s_cache_file_resource_instance

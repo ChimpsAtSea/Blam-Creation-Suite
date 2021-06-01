@@ -39,10 +39,12 @@ protected:
 		_tag_project_configurator_step_cache_file_selection,
 		_tag_project_configurator_step_project_settings,
 		_tag_project_configurator_step_display_tags,
+		_tag_project_configurator_step_project_creation,
 	};
 
 	void create_cache_cluster();
 	void destroy_cache_cluster();
+	void create_tag_project();
 
 	e_tag_project_configurator_step step;
 	c_fixed_wide_path directory;

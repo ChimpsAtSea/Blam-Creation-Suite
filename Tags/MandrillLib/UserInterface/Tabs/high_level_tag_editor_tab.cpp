@@ -167,6 +167,8 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 {
 	using namespace blofeld;
 
+	ImGui::PushID(data);
+
 	bool result = false;
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
@@ -338,6 +340,8 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 		}
 	}
 	ImGui::Columns(1);
+
+	ImGui::PopID();
 
 	return result;
 }
@@ -1300,7 +1304,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 			}
 			ImGui::EndGroup();
 			const char* description = field.description;
-			if (*description && ImGui::IsItemHovered())
+			if (description && ImGui::IsItemHovered())
 			{
 				ImGui::BeginTooltipEx(0, ImGuiTooltipFlags_OverridePreviousTooltip);
 				ImGui::TextUnformatted(description);

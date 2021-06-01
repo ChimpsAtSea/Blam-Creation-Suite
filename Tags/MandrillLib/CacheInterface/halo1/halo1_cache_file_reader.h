@@ -82,6 +82,10 @@ public:
 
 	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
 
+	BCS_RESULT get_cache_file_resource_instance(unsigned long index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance);
+	BCS_RESULT get_cache_file_resource_instance_data(unsigned long index, const void*& tag_instance_data);
+	BCS_RESULT get_cache_file_resource_instance_name(unsigned long index, const char*& tag_instance_name);
+
 	bool is_resource_file;
 
 	c_fixed_wide_path filepath;

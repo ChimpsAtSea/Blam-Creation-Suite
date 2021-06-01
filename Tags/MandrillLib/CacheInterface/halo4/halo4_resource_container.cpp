@@ -101,9 +101,9 @@ const s_halo4_tag_resource_info halo4_tag_resource_infos[k_num_halo4_resource_ty
 	collision_model_resource,
 };
 
-c_halo4_resource_container::c_halo4_resource_container(e_halo4_resource_type resource_type, const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
+c_halo4_resource_container::c_halo4_resource_container(e_halo4_resource_type resource_type, c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
 	resource_type(resource_type),
-	instance_info(instance_info),
+	tag_instance(tag_instance),
 	resource_priority_datas(resource_priority_datas)
 {
 
@@ -119,8 +119,8 @@ void c_halo4_resource_container::digest_page(c_halo4_cache_file_reader& cache_re
 
 }
 
-c_halo4_bitmap_texture_interop_resource::c_halo4_bitmap_texture_interop_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_bitmap_texture_interop_resource, instance_info, resource_priority_datas)
+c_halo4_bitmap_texture_interop_resource::c_halo4_bitmap_texture_interop_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_bitmap_texture_interop_resource, tag_instance, resource_priority_datas)
 {
 
 }
@@ -133,6 +133,14 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 	{
 		return; // nothing to do. is this bad?
 	}
+
+	const char* tag_instance_name = nullptr;
+	c_halo4_tag_group* tag_group = nullptr;
+	const char* tag_group_name = nullptr;
+
+	ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
+	ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
+	ASSERT(BCS_SUCCEEDED(tag_group->get_group_name(tag_group_name)));
 
 	unsigned int debug_index = 0;
 	for (auto& resource_priority_data : resource_priority_datas.data)
@@ -152,7 +160,7 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 			ASSERT(BCS_SUCCEEDED(get_sub_bitmap_index_by_resource_index(cache_reader, sub_bitmap_index)));
 
 			c_fixed_path filepath;
-			filepath.format("data\\%s.%s.%u.%u.bin", instance_info.instance_name, instance_info.group_info->group_name, sub_bitmap_index, debug_index);
+			filepath.format("data\\%s.%s.%u.%u.bin", tag_instance_name, tag_group_name, sub_bitmap_index, debug_index);
 
 			filesystem_write_file_from_memory(filepath, page_data, 1);
 
@@ -185,7 +193,10 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 {
 	using namespace blofeld::xbox360_gen3;
 
-	s_bitmap_block_struct_definition bitmap = *static_cast<const s_bitmap_block_struct_definition*>(instance_info.instance_data);
+	const void* tag_instance_data = nullptr;
+	ASSERT(BCS_SUCCEEDED(tag_instance.get_data(tag_instance_data)));
+
+	s_bitmap_block_struct_definition bitmap = *static_cast<const s_bitmap_block_struct_definition*>(tag_instance_data);
 	byteswap(bitmap);
 
 	BCS_RESULT rs = BCS_S_OK;
@@ -268,68 +279,68 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 	return BCS_E_FAIL;
 }
 
-c_halo4_sound_resource_definition::c_halo4_sound_resource_definition(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_sound_resource_definition, instance_info, resource_priority_datas)
+c_halo4_sound_resource_definition::c_halo4_sound_resource_definition(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_sound_resource_definition, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_facial_animation_resource_definition::c_halo4_facial_animation_resource_definition(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_facial_animation_resource_definition, instance_info, resource_priority_datas)
+c_halo4_facial_animation_resource_definition::c_halo4_facial_animation_resource_definition(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_facial_animation_resource_definition, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_model_animation_tag_resource::c_halo4_model_animation_tag_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_model_animation_tag_resource, instance_info, resource_priority_datas)
+c_halo4_model_animation_tag_resource::c_halo4_model_animation_tag_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_model_animation_tag_resource, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_render_geometry_api_resource_definition::c_halo4_render_geometry_api_resource_definition(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_render_geometry_api_resource_definition, instance_info, resource_priority_datas)
+c_halo4_render_geometry_api_resource_definition::c_halo4_render_geometry_api_resource_definition(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_render_geometry_api_resource_definition, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_bitmap_texture_interleaved_interop_resource::c_halo4_bitmap_texture_interleaved_interop_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_bitmap_texture_interleaved_interop_resource, instance_info, resource_priority_datas)
+c_halo4_bitmap_texture_interleaved_interop_resource::c_halo4_bitmap_texture_interleaved_interop_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_bitmap_texture_interleaved_interop_resource, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_structure_bsp_tag_resources::c_halo4_structure_bsp_tag_resources(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_structure_bsp_tag_resources, instance_info, resource_priority_datas)
+c_halo4_structure_bsp_tag_resources::c_halo4_structure_bsp_tag_resources(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_structure_bsp_tag_resources, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_structure_bsp_cache_file_tag_resources::c_halo4_structure_bsp_cache_file_tag_resources(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_structure_bsp_cache_file_tag_resources, instance_info, resource_priority_datas)
+c_halo4_structure_bsp_cache_file_tag_resources::c_halo4_structure_bsp_cache_file_tag_resources(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_structure_bsp_cache_file_tag_resources, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_bink_resource::c_halo4_bink_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_bink_resource, instance_info, resource_priority_datas)
+c_halo4_bink_resource::c_halo4_bink_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_bink_resource, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_pca_coefficients_resource_definition::c_halo4_pca_coefficients_resource_definition(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_pca_coefficients_resource_definition, instance_info, resource_priority_datas)
+c_halo4_pca_coefficients_resource_definition::c_halo4_pca_coefficients_resource_definition(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_pca_coefficients_resource_definition, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_stitchable_bitmap_texture_interop_resource::c_halo4_stitchable_bitmap_texture_interop_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_stitchable_bitmap_texture_interop_resource, instance_info, resource_priority_datas)
+c_halo4_stitchable_bitmap_texture_interop_resource::c_halo4_stitchable_bitmap_texture_interop_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_stitchable_bitmap_texture_interop_resource, tag_instance, resource_priority_datas)
 {
 
 }
 
-c_halo4_collision_model_resource::c_halo4_collision_model_resource(const s_halo4_tag_instance_info& instance_info, s_resource_priority_datas const& resource_priority_datas) :
-	c_halo4_resource_container(_halo4_collision_model_resource, instance_info, resource_priority_datas)
+c_halo4_collision_model_resource::c_halo4_collision_model_resource(c_halo4_tag_instance& tag_instance, s_resource_priority_datas const& resource_priority_datas) :
+	c_halo4_resource_container(_halo4_collision_model_resource, tag_instance, resource_priority_datas)
 {
 
 }
