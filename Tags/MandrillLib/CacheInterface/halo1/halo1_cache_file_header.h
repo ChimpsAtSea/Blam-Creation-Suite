@@ -75,7 +75,7 @@ namespace halo1
 
 		unsigned long checksum;
 
-		long tag_instance_count;
+		unsigned long tag_instance_count;
 
 		long geometry_vertices_count;
 		unsigned long geometry_vertices_offset;

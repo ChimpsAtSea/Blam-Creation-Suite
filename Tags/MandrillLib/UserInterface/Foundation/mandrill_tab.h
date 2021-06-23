@@ -22,8 +22,9 @@ public:
 	void render_file_dialogue_gui();
 	void render_game_layer();
 
-	const char* get_title() const { return title.c_str(); }
-	const char* get_description() const { return description.c_str(); }
+	void set_next_selected_tab(c_mandrill_tab& next_selected_tab);
+	const char* get_title() const;
+	const char* get_description() const;
 
 	template<typename t_tab>
 	t_tab* search_parent_tab_type()

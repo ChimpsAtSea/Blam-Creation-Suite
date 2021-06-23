@@ -3,7 +3,7 @@
 c_halo1_tag_instance::c_halo1_tag_instance(
 	c_cache_cluster& cache_cluster,
 	c_halo1_tag_group& tag_group,
-	long cache_file_tag_index,
+	unsigned long cache_file_tag_index,
 	const char* instance_name,
 	const void* instance_data) :
 	cache_cluster(cache_cluster),
@@ -40,5 +40,11 @@ BCS_RESULT c_halo1_tag_instance::get_tag_group(c_halo1_tag_group*& out_tag_group
 BCS_RESULT c_halo1_tag_instance::get_tag_group(c_tag_group*& out_tag_group) const
 {
 	out_tag_group = &tag_group;
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_halo1_tag_instance::get_cache_file_tag_index(unsigned long& out_cache_file_tag_index) const
+{
+	out_cache_file_tag_index = cache_file_tag_index;
 	return BCS_S_OK;
 }

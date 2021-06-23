@@ -358,11 +358,13 @@ void c_mandrill_user_interface::render_impl()
 
 		if (ImGui::BeginTabBar("##root"))
 		{
+			c_mandrill_tab* next_selected_tab_temp = next_selected_tab; // read as children can invalidate this value
+
+			next_selected_tab = nullptr;
 			for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
 			{
-				tab.render(next_selected_tab == &tab);
+				tab.render(next_selected_tab_temp == &tab);
 			}
-			next_selected_tab = nullptr;
 
 			ImGui::EndTabBar();
 		}

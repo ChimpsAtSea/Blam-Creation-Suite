@@ -3,8 +3,12 @@
 c_tag_project::c_tag_project(c_high_level_cache_cluster_transplant& transplant) :
 	engine_platform_build(transplant.engine_platform_build),
 	groups(transplant.groups),
-	tags(transplant.instances)
+	tags()
 {
+	for (s_tag_transplant_instance& transplant_instance : transplant.instances)
+	{
+		tags.push_back(transplant_instance.high_level);
+	}
 }
 
 c_tag_project::~c_tag_project()

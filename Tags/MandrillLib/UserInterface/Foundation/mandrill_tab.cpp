@@ -88,3 +88,19 @@ void c_mandrill_tab::render_game_layer()
 {
 	render_game_layer_impl();
 }
+
+void c_mandrill_tab::set_next_selected_tab(c_mandrill_tab& next_selected_tab)
+{
+	// #TODO: assert that this tab is a child
+	this->next_selected_tab = &next_selected_tab;
+}
+
+const char* c_mandrill_tab::get_title() const 
+{ 
+	return title.c_str(); 
+}
+
+const char* c_mandrill_tab::get_description() const 
+{ 
+	return description.c_str(); 
+}

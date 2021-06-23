@@ -105,7 +105,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_transplant_entries()
 	return rs;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_index(c_cache_file_reader& cache_file_reader, unsigned long tag_index, h_tag*& tag)
+BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_low_level_tag_instance(c_cache_file_reader& cache_file_reader, c_tag_instance& tag_instance, h_tag*& tag)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const t_transplant_instances* transplant_instances;
@@ -114,20 +114,16 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_index(c_cache_file_
 		return rs;
 	}
 
-	if (tag_index == 0xFFFFu)
+	for (const s_tag_transplant_instance& transplant_instance : *transplant_instances)
 	{
-		tag = nullptr;
-	}
-	else if (static_cast<size_t>(tag_index) < transplant_instances->size())
-	{
-		tag = (*transplant_instances)[tag_index];
-	}
-	else
-	{
-		rs = BCS_E_FAIL;
+		if (transplant_instance.low_level == &tag_instance)
+		{
+			tag = transplant_instance.high_level;
+			return BCS_S_OK;
+		}
 	}
 
-	return rs;
+	return BCS_E_FAIL;
 }
 
 BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_group_and_filename(h_group& group, const char* filename, h_tag*& tag)
@@ -196,7 +192,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 
 		t_transplant_instances_keyval& instance_transplant_entry = instance_transplant_entries.emplace_back();
 		instance_transplant_entry.first = cache_file_reader;
-		std::vector<h_tag*>& high_level_tag_instances = instance_transplant_entry.second;
+		t_transplant_instances& high_level_tag_instances = instance_transplant_entry.second;
 
 		c_tag_instance** tag_instances = nullptr;
 		unsigned long tag_instance_count = 0;
@@ -208,6 +204,9 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 			const char* tag_instance_name = nullptr;
 			c_tag_group* tag_group = nullptr;
 			tag group_tag;
+
+			unsigned long cache_file_tag_index;
+			ASSERT(BCS_SUCCEEDED(tag_instance.get_cache_file_tag_index(cache_file_tag_index)));
 
 			ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
 			ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
@@ -225,12 +224,20 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 
 			h_tag& high_level_tag = group->create_tag_instance(tag_instance_name);
 
-			high_level_tag_instances.push_back(&high_level_tag);
-			instances.push_back(&high_level_tag);
+			s_tag_transplant_instance transplant_instance;
+			transplant_instance.low_level = &tag_instance;
+			transplant_instance.high_level = &high_level_tag;
+
+			high_level_tag_instances.push_back(transplant_instance);
+			instances.push_back(transplant_instance);
 
 			debug_point;
 		}
-		break; // only do the first map at the moment
+
+		debug_point;
+
+		if (!c_command_line::has_command_line_arg("-allmaps"))
+			break; // only do the first map at the moment
 	}
 
 	return rs;
@@ -245,29 +252,16 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 		c_tag_reader* tag_reader;
 		ASSERT(BCS_SUCCEEDED(cache_cluster.get_tag_reader(*cache_file_reader, tag_reader)));
 
-		s_cache_file_buffer_info tag_section_buffer;
-		if (BCS_FAILED(rs = cache_file_reader->get_buffer(_tag_section_buffer, tag_section_buffer)))
-		{
-			// #NOTE: this is expected to always succeed as we shouldn't have added any cache files without this
-			// section to transplant_entries
-			return rs;
-		}
-
 		const t_transplant_instances* transplant_instances;
 		if (BCS_FAILED(rs = get_cluster_transplant_instances(*cache_file_reader, transplant_instances)))
 		{
 			return rs;
 		}
 
-		c_tag_instance** tag_instances = nullptr;
-		unsigned long tag_instance_count = 0;
-		ASSERT(BCS_SUCCEEDED(tag_reader->get_tag_instances(tag_instances, tag_instance_count)));
-
-		for (unsigned long instance_index = 0; instance_index < tag_instance_count; instance_index++)
+		for (const s_tag_transplant_instance& transplant_instance : *transplant_instances)
 		{
-			c_tag_instance& tag_instance = *tag_instances[instance_index];
-
-			h_tag& high_level_tag = *(*transplant_instances)[instance_index];
+			c_tag_instance& tag_instance = *transplant_instance.low_level;
+			h_tag& high_level_tag = *transplant_instance.high_level;
 
 			const void* tag_instance_data;
 			if (BCS_FAILED(rs = tag_instance.get_data(tag_instance_data)))
@@ -282,8 +276,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 			}
 
 			debug_point;
-		}
-		break; // only do the first map at the moment
+		}		
+		
+		if (!c_command_line::has_command_line_arg("-allmaps"))
+			break; // only do the first map at the moment
 	}
 
 	return rs;
@@ -463,68 +459,68 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				}
 
 				if (tag_block.address > 0x30000)
-				if (tag_block.count > 0)
-				{
-					block_storage.reserve(tag_block.count);
-					ASSERT(tag_block.definition_address == 0);
-
-					const char* block_data;
-					{ // #TODO: function abstraction for this?
-
-						s_cache_file_buffer_info tag_section_buffer;
-						if (BCS_FAILED(rs = cache_file_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
-						{
-							// #NOTE: this is expected to always succeed as we shouldn't have added any cache files without this
-							// section to transplant_entries
-							return rs;
-						}
-
-						int64_t virtual_address;
-						if (BCS_FAILED(rs = cache_file_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
-						{
-							return rs;
-						}
-
-						int32_t relative_offset;
-						if (BCS_FAILED(rs = cache_file_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
-						{
-							return rs;
-						}
-
-						block_data = tag_section_buffer.begin + relative_offset;
-					}
-
-					//const char* const block_data = cache_file.get_tag_block_data(tag_block);
-
-					//if (tag_block.count < 1024)
+					if (tag_block.count > 0)
 					{
 						block_storage.reserve(tag_block.count);
+						ASSERT(tag_block.definition_address == 0);
 
-						const char* current_block_data_position = block_data;
-						for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
-						{
-							h_object& type = block_storage.emplace_back();
-							transplant_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
+						const char* block_data;
+						{ // #TODO: function abstraction for this?
 
-							current_block_data_position += block_struct_size;
+							s_cache_file_buffer_info tag_section_buffer;
+							if (BCS_FAILED(rs = cache_file_reader.get_buffer(_tag_section_buffer, tag_section_buffer)))
+							{
+								// #NOTE: this is expected to always succeed as we shouldn't have added any cache files without this
+								// section to transplant_entries
+								return rs;
+							}
+
+							int64_t virtual_address;
+							if (BCS_FAILED(rs = cache_file_reader.page_offset_to_virtual_address(tag_block.address, virtual_address)))
+							{
+								return rs;
+							}
+
+							int32_t relative_offset;
+							if (BCS_FAILED(rs = cache_file_reader.virtual_address_to_relative_offset(virtual_address, relative_offset)))
+							{
+								return rs;
+							}
+
+							block_data = tag_section_buffer.begin + relative_offset;
 						}
+
+						//const char* const block_data = cache_file.get_tag_block_data(tag_block);
+
+						//if (tag_block.count < 1024)
+						{
+							block_storage.reserve(tag_block.count);
+
+							const char* current_block_data_position = block_data;
+							for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
+							{
+								h_object& type = block_storage.emplace_back();
+								transplant_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
+
+								current_block_data_position += block_struct_size;
+							}
+						}
+						//else
+						//{
+						//	block_storage.resize(tag_block.count);
+
+						//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
+						//	{
+						//		const void* current_block_data = block_data + block_struct_size * index;
+
+						//		h_object& type = block_storage.get(index);
+						//		transplant_data(type, block_data, block_struct_definition);
+						//	};
+						//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
+						//}
+
+						debug_point;
 					}
-					//else
-					//{
-					//	block_storage.resize(tag_block.count);
-
-					//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
-					//	{
-					//		const void* current_block_data = block_data + block_struct_size * index;
-
-					//		h_object& type = block_storage.get(index);
-					//		transplant_data(type, block_data, block_struct_definition);
-					//	};
-					//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
-					//}
-
-					debug_point;
-				}
 				debug_point;
 
 			}
@@ -572,13 +568,26 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 
 				unsigned long tag_index = DATUM_INDEX_TO_ABSOLUTE_INDEX(tag_reference.datum_index);
 
+				c_tag_reader* tag_reader;
+				if (BCS_FAILED(rs = cache_cluster.get_tag_reader(cache_file_reader, tag_reader)))
+				{
+					return rs;
+				}
+
+				c_tag_instance* tag_instance = nullptr;
+				tag_reader->get_tag_instance_by_cache_file_tag_index(tag_index, tag_instance);
+
+
 				//c_tag_interface* tag_reference_tag_interface = cache_file.get_tag_interface(tag_reference.index);
 				//h_tag* tag_reference_high_level_tag = get_high_level_tag_by_tag_interface(tag_reference_tag_interface);
 
-				h_tag* tag_reference_high_level_tag;
-				if (BCS_FAILED(rs = get_tag_by_index(cache_file_reader, tag_index, tag_reference_high_level_tag)))
+				h_tag* tag_reference_high_level_tag = nullptr;
+				if (tag_instance != nullptr)
 				{
-					return rs;
+					if (BCS_FAILED(rs = get_tag_by_low_level_tag_instance(cache_file_reader, *tag_instance, tag_reference_high_level_tag)))
+					{
+						return rs;
+					}
 				}
 
 				tag_ref_storage = tag_reference_high_level_tag;

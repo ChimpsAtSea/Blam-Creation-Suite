@@ -21,6 +21,7 @@ public:
 	virtual BCS_RESULT get_tag_groups(c_tag_group**& tag_groups, unsigned long& tag_group_count) override;
 	BCS_RESULT get_tag_instances(c_halo4_tag_instance**& tag_instances, unsigned long& tag_instance_count);
 	virtual BCS_RESULT get_tag_instances(c_tag_instance**& tag_instances, unsigned long& tag_instance_count) override;
+	virtual BCS_RESULT get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& tag_instance) override;
 
 private:
 	struct s_halo4_tag_group_info

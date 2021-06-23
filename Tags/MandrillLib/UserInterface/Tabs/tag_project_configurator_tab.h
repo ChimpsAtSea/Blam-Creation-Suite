@@ -50,6 +50,7 @@ protected:
 	c_fixed_wide_path directory;
 	bool is_all_selected;
 	std::vector<s_cache_file_list_entry> entries;
+	std::vector<s_cache_file_list_entry> selected_entries;
 	c_cache_cluster* cache_cluster;
 	c_high_level_cache_cluster_transplant* cache_cluster_transplant;
 };

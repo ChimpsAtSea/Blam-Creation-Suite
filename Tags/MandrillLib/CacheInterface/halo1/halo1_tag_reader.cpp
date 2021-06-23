@@ -329,3 +329,28 @@ BCS_RESULT c_halo1_tag_reader::get_tag_instances(c_tag_instance**& out_tag_insta
 	out_tag_instance_count = static_cast<unsigned long>(tag_instances.size());
 	return BCS_S_OK;
 }
+
+BCS_RESULT c_halo1_tag_reader::get_tag_instance_by_cache_file_tag_index(unsigned long cache_file_tag_index, c_tag_instance*& out_tag_instance)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_halo1_tag_instance** tag_instances;
+	unsigned long tag_instances_count;
+	if (BCS_FAILED(rs = get_tag_instances(tag_instances, tag_instances_count)))
+	{
+		return rs;
+	}
+
+	for (unsigned long tag_instance_index = 0; tag_instance_index < tag_instances_count; tag_instance_index++)
+	{
+		c_halo1_tag_instance& tag_instance = *tag_instances[tag_instance_index];
+		if (tag_instance.cache_file_tag_index == cache_file_tag_index)
+		{
+			out_tag_instance = &tag_instance;
+
+			return BCS_S_OK;
+		}
+	}
+
+	return BCS_E_FAIL;
+}

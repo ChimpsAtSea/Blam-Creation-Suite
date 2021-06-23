@@ -65,6 +65,7 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 	directory(directory),
 	is_all_selected(true),
 	entries(),
+	selected_entries(),
 	cache_cluster(),
 	cache_cluster_transplant()
 {
@@ -129,17 +130,14 @@ void c_tag_project_configurator_tab::render_impl()
 	case _tag_project_configurator_step_cache_file_selection:
 		previous_step = _tag_project_configurator_step_cache_file_selection;
 		next_step = _tag_project_configurator_step_project_settings;
-		render_cache_file_selection();
 		break;
 	case _tag_project_configurator_step_project_settings:
 		previous_step = _tag_project_configurator_step_cache_file_selection;
 		next_step = _tag_project_configurator_step_display_tags;
-		render_project_settings();
 		break;
 	case _tag_project_configurator_step_display_tags:
 		previous_step = _tag_project_configurator_step_project_settings;
 		next_step = _tag_project_configurator_step_project_creation;
-		render_display_tags();
 		break;
 	case _tag_project_configurator_step_project_creation:
 		previous_step = _tag_project_configurator_step_display_tags;
@@ -213,6 +211,21 @@ void c_tag_project_configurator_tab::render_impl()
 	if (disable_next_step)
 	{
 		ImGui::PopItemFlag();
+	}
+
+	switch (step)
+	{
+	case _tag_project_configurator_step_cache_file_selection:
+		render_cache_file_selection();
+		break;
+	case _tag_project_configurator_step_project_settings:
+		render_project_settings();
+		break;
+	case _tag_project_configurator_step_display_tags:
+		render_display_tags();
+		break;
+	case _tag_project_configurator_step_project_creation:
+		break;
 	}
 }
 
@@ -317,8 +330,9 @@ void c_tag_project_configurator_tab::render_project_settings()
 void c_tag_project_configurator_tab::render_display_tags()
 {
 	if(cache_cluster_transplant)
-	for (h_tag* tag : cache_cluster_transplant->instances)
+	for (s_tag_transplant_instance& transplant_instance : cache_cluster_transplant->instances)
 	{
+		h_tag* tag = transplant_instance.high_level;
 		ImGui::Text("%s.%s", tag->tag_filepath, tag->group->tag_group.name);
 	}
 }
@@ -327,19 +341,28 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 {
 	DEBUG_ASSERT(cache_cluster == nullptr);
 
-	uint32_t cache_file_reader_count = static_cast<uint32_t>(entries.size());
+	selected_entries.clear();
+	for (s_cache_file_list_entry& entry : entries)
+	{
+		if (entry.selected)
+		{
+			selected_entries.push_back(entry);
+		}
+	}
+
+	uint32_t cache_file_reader_count = static_cast<uint32_t>(selected_entries.size());
 	if (cache_file_reader_count > 0)
 	{
 		c_cache_file_reader** cache_file_readers = new(alloca(sizeof(c_cache_file_reader*) * cache_file_reader_count)) c_cache_file_reader * [cache_file_reader_count];
 
-		for (size_t entry_index = 0; entry_index < entries.size(); entry_index++)
+		for (size_t entry_index = 0; entry_index < selected_entries.size(); entry_index++)
 		{
-			s_cache_file_list_entry& entry = entries[entry_index];
+			s_cache_file_list_entry& entry = selected_entries[entry_index];
 
 			cache_file_readers[entry_index] = entry.cache_reader;
 		}
 
-		s_engine_platform_build engine_platform_build = entries[0].engine_platform_build; // #TODO: seems kinda hacky
+		s_engine_platform_build engine_platform_build = selected_entries[0].engine_platform_build; // #TODO: seems kinda hacky
 
 		BCS_RESULT create_cache_cluster_result = ::create_cache_cluster(cache_file_readers, cache_file_reader_count, engine_platform_build, &cache_cluster);
 		ASSERT(BCS_SUCCEEDED(create_cache_cluster_result));
@@ -381,5 +404,6 @@ void c_tag_project_configurator_tab::create_tag_project()
 		c_tag_project* tag_project = new c_tag_project(*cache_cluster_transplant);
 		c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
 		mandrill_user_interface->add_tab(*tag_project_tab);
+		mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
 	}
 }

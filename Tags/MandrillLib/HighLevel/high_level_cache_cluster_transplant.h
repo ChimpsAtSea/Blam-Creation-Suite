@@ -2,10 +2,17 @@
 
 class c_cache_cluster;
 class c_cache_file_reader;
+class c_tag_instance;
 
 class h_tag;
 class h_object;
 class h_group;
+
+struct s_tag_transplant_instance
+{
+	c_tag_instance* low_level;
+	h_tag* high_level;
+};
 
 class c_high_level_cache_cluster_transplant
 {
@@ -23,17 +30,17 @@ protected:
 	BCS_RESULT transplant_instance_data();
 
 public:
-	BCS_RESULT get_tag_by_index(c_cache_file_reader& cache_file_reader, unsigned long tag_index, h_tag*& tag);
+	BCS_RESULT get_tag_by_low_level_tag_instance(c_cache_file_reader& cache_file_reader, c_tag_instance& tag_instance, h_tag*& tag);
 	BCS_RESULT get_tag_by_group_and_filename(h_group& group, const char* filename, h_tag*& tag);
 	BCS_RESULT get_tag_group(tag group_tag, h_group*& group);
-
-	using t_transplant_instances = std::vector<h_tag*>;
+	
+	using t_transplant_instances = std::vector<s_tag_transplant_instance>;
 	using t_transplant_instances_keyval = std::pair<c_cache_file_reader*, t_transplant_instances>;
 
 	BCS_RESULT get_cluster_transplant_instances(c_cache_file_reader& cache_file_reader, const t_transplant_instances*& transplant_instances);
 
 	using t_instance_transplant_entries = std::vector<t_transplant_instances_keyval>;
-	using t_instances = std::vector<h_tag*>;
+	using t_instances = t_transplant_instances;
 	using t_groups = std::vector<h_group*>;
 	using t_transplant_entries = std::vector<c_cache_file_reader*>;
 
