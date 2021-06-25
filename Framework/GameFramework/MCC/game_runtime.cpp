@@ -1,12 +1,16 @@
 #include "gameframework-private-pch.h"
 
-c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* engine_name, const char* library_file_name, bool use_existing_loaded_module, e_build _build)
+c_game_runtime::c_game_runtime(s_engine_platform_build engine_platform_build, const char* engine_name, const char* library_file_name, bool use_existing_loaded_module)
 	: engine_name(engine_name)
-	, build(_build == _build_not_set ? get_library_file_version(library_file_name) : _build)
+	, engine_platform_build(engine_platform_build)
 	, engine_path(library_file_name)
 {
+	if (engine_platform_build.build == _build_not_set)
+	{
+		engine_platform_build.build = get_library_file_version(library_file_name);
+	}
 
-	if (build == _build_not_set)
+	if (engine_platform_build.build == _build_not_set)
 	{
 		c_console::write_line_verbose("Warning: `c_game_runtime` initialized with `_build_not_set`");
 		return;
@@ -22,8 +26,9 @@ c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* engine_nam
 	}
 	else
 	{
-		void* runtime_base_address;
-		ASSERT(SUCCEEDED(get_engine_runtime_base_address({ engine_type }, &runtime_base_address)));
+		void* runtime_base_address = nullptr;
+		ASSERT(BCS_SUCCEEDED(get_engine_runtime_base_address(engine_platform_build, &runtime_base_address)));
+		ASSERT(runtime_base_address != nullptr);
 		game_module = static_cast<HINSTANCE>(runtime_base_address);
 	}
 }
@@ -41,28 +46,34 @@ c_game_runtime::~c_game_runtime()
 
 __int64 __fastcall c_game_runtime::create_data_access(IDataAccess** data_access)
 {
-	ASSERT(create_data_access_func != nullptr);
-	__IDataAccess* _data_access = nullptr;
-	__int64 result = create_data_access_func(&_data_access);
-	*data_access = nullptr;
-	if (_data_access != nullptr)
+	if (create_data_access_func != nullptr)
 	{
-		*data_access = new IDataAccess(*_data_access, get_build());
+		__IDataAccess* _data_access = nullptr;
+		__int64 result = create_data_access_func(&_data_access);
+		*data_access = nullptr;
+		if (_data_access != nullptr)
+		{
+			*data_access = new IDataAccess(*_data_access, get_build());
+		}
+		return result;
 	}
-	return result;
+	return 0;
 }
 
 signed __int64 __fastcall c_game_runtime::create_game_engine(IGameEngine** game_engine)
 {
-	ASSERT(create_data_access_func != nullptr);
-	__IGameEngine* _game_engine = nullptr;
-	__int64 result = create_game_engine_func(&_game_engine);
-	*game_engine = nullptr;
-	if (_game_engine != nullptr)
+	if (create_game_engine_func != nullptr)
 	{
-		*game_engine = new IGameEngine(*_game_engine, get_build());
+		__IGameEngine* _game_engine = nullptr;
+		__int64 result = create_game_engine_func(&_game_engine);
+		*game_engine = nullptr;
+		if (_game_engine != nullptr)
+		{
+			*game_engine = new IGameEngine(*_game_engine, get_build());
+		}
+		return result;
 	}
-	return result;
+	return 0;
 }
 
 errno_t __fastcall c_game_runtime::set_library_settings(wchar_t* source)

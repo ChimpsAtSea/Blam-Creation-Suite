@@ -72,7 +72,7 @@ public:
 
 protected:
 	IGameEngine* game_engine;
-	c_window& window;
+	c_window* window;
 	c_mouse_input& mouse_input;
 	c_game_runtime& game_runtime;
 	IGameEvents game_events;

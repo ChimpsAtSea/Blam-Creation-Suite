@@ -96,6 +96,7 @@ HINSTANCE load_executable(const char* executable_name, bool load_at_preferred_ad
 		}
 		else
 		{
+			image_data = (char*)GetModuleHandle(NULL);
 			ASSERT(!IsBadReadPtr(image_data, 1));
 		}
 		{
@@ -394,6 +395,11 @@ bool is_previous_caller_part_of_module(HMODULE module, CONTEXT& context, DWORD i
 	frame.AddrPC.Offset = context.Ebp;
 	frame.AddrPC.Offset = context.Esp;
 #endif  
+
+	if (module == NULL)
+	{
+		return false;
+	}
 
 	uintptr_t start_address = reinterpret_cast<uintptr_t>(module);
 	uintptr_t end_address;

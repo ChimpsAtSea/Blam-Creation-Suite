@@ -49,7 +49,7 @@ BCS_RESULT create_memory_mapped_file(const wchar_t* filepath, bool read_only, t_
 		return BCS_E_FAIL;
 	}
 
-	void* file_view = MapViewOfFile(file_map_handle, FILE_MAP_READ, 0, 0, file_size.QuadPart);
+	void* file_view = MapViewOfFile(file_map_handle, FILE_MAP_READ, 0, 0, static_cast<SIZE_T>(file_size.QuadPart));
 	if (file_map_handle == INVALID_HANDLE_VALUE)
 	{
 		// #TODO: include GetLastError

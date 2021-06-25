@@ -31,7 +31,7 @@ c_halo5_game_host::~c_halo5_game_host()
 
 void c_halo5_game_host::init_game_host(e_build build)
 {
-	g_halo5_game_runtime = new c_game_runtime(_engine_type_halo5, "halo5", "halo5.exe", true, build);
+	g_halo5_game_runtime = new c_game_runtime({ _engine_type_halo5, _platform_type_pc_64bit, build }, "halo5", "halo5.exe", true);
 }
 
 void c_halo5_game_host::deinit_game_host()

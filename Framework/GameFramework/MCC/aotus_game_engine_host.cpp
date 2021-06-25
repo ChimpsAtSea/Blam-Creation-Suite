@@ -7,7 +7,7 @@
 c_aotus_game_engine_host::c_aotus_game_engine_host(s_engine_platform_build engine_platform_build, c_game_runtime& rGameRuntime) :
 	IGameEngineHost(engine_platform_build, &game_events),
 	game_engine(nullptr),
-	window(*c_game_launcher::get_window()),
+	window(c_game_launcher::get_window()),
 	mouse_input(*c_game_launcher::get_mouse_input()),
 	game_runtime(rGameRuntime),
 	game_events(),
@@ -27,12 +27,18 @@ c_aotus_game_engine_host::c_aotus_game_engine_host(s_engine_platform_build engin
 	c_fixed_wide_string_256 window_title;
 	window_title.format(L"%S : %S : %S", engine_string, build_string, build_configuration);
 	
-	window.set_title(window_title.c_str()); // #TODO: Replace with push/pop
+	if (window != nullptr)
+	{
+		window->set_title(window_title.c_str()); // #TODO: Replace with push/pop
+	}
 }
 
 c_aotus_game_engine_host::~c_aotus_game_engine_host()
 {
-	window.set_title(L"Aotus");
+	if (window != nullptr)
+	{
+		window->set_title(L"Aotus"); // #TODO: Replace with push/pop
+	}
 }
 
 char c_aotus_game_engine_host::frame_begin()
@@ -416,8 +422,8 @@ bool __fastcall c_aotus_game_engine_host::game_data_update_handler(char* game_da
 	{
 		GameDataStructV2* game_data_typed = reinterpret_cast<GameDataStructV2*>(game_data);
 
-		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
-		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window->get_width_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window->get_height_integer());
 
 		// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
 		game_data_typed->GeneralVideoSettings.TextureResolution = 2;
@@ -473,8 +479,8 @@ bool __fastcall c_aotus_game_engine_host::game_data_update_handler(char* game_da
 	{
 		GameDataStructV1* game_data_typed = reinterpret_cast<GameDataStructV1*>(game_data);
 
-		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window.get_width_integer());
-		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window.get_height_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenWidth = static_cast<int>(window->get_width_integer());
+		game_data_typed->GeneralVideoSettings.DesiredScreenHeight = static_cast<int>(window->get_height_integer());
 
 		// 2 is the maximum quality option any of the engines will let you set without patching them to accept a higher value
 		game_data_typed->GeneralVideoSettings.TextureResolution = 2;
@@ -570,7 +576,7 @@ bool __fastcall c_aotus_game_engine_host::input_update_handler(_QWORD a1, InputB
 	}
 
 	bool is_debug_ui_visible = c_debug_gui::IsVisible();
-	bool is_window_focused = window.is_focused();
+	bool is_window_focused = window->is_focused();
 
 	e_mouse_mode mode = _mouse_mode_none;
 	if (is_window_focused)

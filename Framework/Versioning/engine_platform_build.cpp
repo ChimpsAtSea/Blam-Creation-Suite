@@ -433,6 +433,12 @@ BCS_RESULT get_engine_module_filename(s_engine_platform_build engine_platform_bu
 {
 	// #TODO: Windows Store, and halo_online.exe support using the build type
 
+#define mustard_module_filename_case(_engine_type, _build) \
+	if(engine_platform_build.engine_type == _engine_type && engine_platform_build.build == _build) \
+	{ \
+		*result = "Mustard.exe"; \
+			return BCS_S_OK; \
+	}
 #define engine_module_filename_case(engine_type, module_filename) \
 	case engine_type: \
 		*result = (module_filename); \
@@ -451,6 +457,7 @@ BCS_RESULT get_engine_module_filename(s_engine_platform_build engine_platform_bu
 		engine_module_filename_case(_engine_type_eldorado, "eldorado.exe");
 		engine_module_filename_case(_engine_type_halo5, "halo5forge.exe");
 	}
+#undef mustard_module_filename_case
 #undef engine_module_filename_case
 
 	return BCS_E_NOT_IMPLEMENTED;

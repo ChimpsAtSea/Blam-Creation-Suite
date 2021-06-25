@@ -2,11 +2,11 @@
 class c_game_runtime
 {
 public:
-	c_game_runtime(e_engine_type engine_type, const char* engine_name, const char* library_file_name, bool use_existing_loaded_module = false, e_build build = _build_not_set);
+	c_game_runtime(s_engine_platform_build engine_platform_build, const char* engine_name, const char* library_file_name, bool use_existing_loaded_module = false);
 	~c_game_runtime();
 
 	IDataAccess* get_data_access() const { return data_access; };
-	e_build get_build() const { return build; }
+	e_build get_build() const { return engine_platform_build.build; }
 
 	__int64 __fastcall create_data_access(IDataAccess** data_access);
 	signed __int64 __fastcall create_game_engine(IGameEngine** game_engine);
@@ -18,8 +18,8 @@ private:
 	void loadLibrary(const char* library_file_name);
 
 	std::string engine_name;
+	s_engine_platform_build engine_platform_build;
 	LPCSTR engine_path = "";
-	e_build build = _build_not_set;
 	IDataAccess* data_access = nullptr;
 	HMODULE game_module = NULL;
 

@@ -1,8 +1,6 @@
 #pragma once
 
-#if defined(_WIN64)
 #define ptr32 unsigned long
-#endif
 
 static constexpr ptr32 halo1_base_address = 0x400000;
 static constexpr ptr32 halo1_tag_layout_table_address = 0x009B8D88;

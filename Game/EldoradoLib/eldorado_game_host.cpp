@@ -32,7 +32,7 @@ c_eldorado_game_host::~c_eldorado_game_host()
 
 void c_eldorado_game_host::init_game_host(e_build build)
 {
-	g_eldorado_game_runtime = new c_game_runtime(_engine_type_eldorado, "eldorado", "eldorado.exe", true, build);
+	g_eldorado_game_runtime = new c_game_runtime({ _engine_type_eldorado, _platform_type_pc_32bit, build }, "eldorado", "eldorado.exe", true);
 }
 
 void c_eldorado_game_host::deinit_game_host()

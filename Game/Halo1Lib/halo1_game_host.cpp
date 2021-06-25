@@ -34,26 +34,29 @@ void register_halo1lib()
 }
 
 c_halo1_game_host::c_halo1_game_host(s_engine_platform_build engine_platform_build) :
-	c_aotus_game_engine_host(engine_platform_build, get_game_runtime())
+	c_aotus_game_engine_host(engine_platform_build, get_game_runtime(engine_platform_build))
 {
 	c_console::write_line_verbose("Init %s", __func__);
 
 	init_runtime_modifications(g_halo1_game_runtime->get_build());
 
-	if (g_halo1_engine_state_command != nullptr)
+	if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 	{
-		g_halo1_engine_state_command->set_game_engine(get_game_engine());
-	}
+		if (g_halo1_engine_state_command != nullptr)
+		{
+			g_halo1_engine_state_command->set_game_engine(get_game_engine());
+		}
 
-	if (g_halo1_dev_console_command != nullptr)
-	{
-		g_halo1_dev_console_command->set_game_engine(get_game_engine());
+		if (g_halo1_dev_console_command != nullptr)
+		{
+			g_halo1_dev_console_command->set_game_engine(get_game_engine());
+		}
+
+		c_debug_gui::register_callback(_callback_mode_always_run, input_debug_gui);
 	}
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
-
-	c_debug_gui::register_callback(_callback_mode_always_run, input_debug_gui);
 }
 
 c_halo1_game_host::~c_halo1_game_host()
@@ -71,9 +74,9 @@ c_halo1_game_host::~c_halo1_game_host()
 
 	deinit_runtime_modifications(g_halo1_game_runtime->get_build());
 
-	c_game_runtime& halo1_game_runtime = get_game_runtime();
+	c_game_runtime& halo1_game_runtime = get_game_runtime(engine_platform_build);
 	halo1_game_runtime.~c_game_runtime();
-	new(&halo1_game_runtime) c_game_runtime(_engine_type_halo1, "halo1", "Halo1\\halo1.dll");
+	new(&halo1_game_runtime) c_game_runtime(engine_platform_build, "halo1", "Halo1\\halo1.dll");
 }
 
 void c_halo1_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
@@ -98,18 +101,23 @@ IGameEngine* c_halo1_game_host::get_game_engine() const
 {
 	if (game_engine == nullptr)
 	{
-		__int64 create_game_engine_result = get_game_runtime().create_game_engine((IGameEngine**)&game_engine);
+		__int64 create_game_engine_result = get_game_runtime(engine_platform_build).create_game_engine((IGameEngine**)&game_engine);
 	}
 	ASSERT(game_engine != nullptr);
 
 	return game_engine;
 }
 
-c_game_runtime& c_halo1_game_host::get_game_runtime()
+c_game_runtime& c_halo1_game_host::get_game_runtime(s_engine_platform_build engine_platform_build)
 {
 	if (g_halo1_game_runtime == nullptr)
 	{
-		g_halo1_game_runtime = new c_game_runtime(_engine_type_halo1, "halo1", "Halo1\\halo1.dll");
+		switch (engine_platform_build.build)
+		{
+		default:
+			g_halo1_game_runtime = new c_game_runtime(engine_platform_build, "halo1", "Halo1\\halo1.dll");
+			break;
+		}
 	}
 
 	return *g_halo1_game_runtime;

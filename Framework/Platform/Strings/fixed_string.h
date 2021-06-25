@@ -229,7 +229,15 @@ public:
 		return data;
 	}
 
-	char operator [](size_t index) const
+	template<typename t_index>
+	const char& operator [](t_index index) const
+	{
+		DEBUG_ASSERT(index < k_capacity);
+		return data[index];
+	}
+
+	template<typename t_index>
+	char& operator [](t_index index)
 	{
 		DEBUG_ASSERT(index < k_capacity);
 		return data[index];
@@ -420,7 +428,7 @@ public:
 	uint32_t trim_front()
 	{
 		uint32_t result = 0;
-		if(isspace(*data))
+		if (isspace(*data))
 		{
 			size_t memory_size = size() + 1;
 			char* buffer = new(alloca(memory_size)) char[memory_size];
