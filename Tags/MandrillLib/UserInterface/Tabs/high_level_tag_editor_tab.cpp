@@ -380,7 +380,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 	constexpr float k_min_block_width = 1000.0f;
 	constexpr float k_block_header_height = 80.0f;
 
-	uint32_t const count = enumerable.size();
+	unsigned long const count = enumerable.size();
 
 	ImGui::PushID(&field);
 	ImGuiID const is_open_id = ImGui::GetID("is_open");
@@ -634,8 +634,8 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 
 	if (block != nullptr && is_inserting)
 	{
-		int32_t insert_offset = static_cast<uint32_t>(storage->GetInt(inserting_offset_id));
-		uint32_t insert_count = static_cast<uint32_t>(storage->GetInt(inserting_count_id));
+		int32_t insert_offset = static_cast<unsigned long>(storage->GetInt(inserting_offset_id));
+		unsigned long insert_count = static_cast<unsigned long>(storage->GetInt(inserting_count_id));
 
 		ImGuiIO& io = ImGui::GetIO();
 		ImGui::SetNextWindowPos({ io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f }, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
@@ -720,7 +720,7 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 
 			if (ImGui::Selectable("Insert"))
 			{
-				block->insert_hole(static_cast<uint32_t>(insert_offset), insert_count);
+				block->insert_hole(static_cast<unsigned long>(insert_offset), insert_count);
 				index = insert_offset;
 				is_inserting = false;
 			}
@@ -967,17 +967,17 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
-	uint32_t value = 0;
+	unsigned long value = 0;
 	switch (field.field_type)
 	{
 	case _field_byte_flags:
-		value = *reinterpret_cast<uint8_t*>(data);
+		value = *reinterpret_cast<unsigned char*>(data);
 		break;
 	case _field_word_flags:
-		value = *reinterpret_cast<uint16_t*>(data);
+		value = *reinterpret_cast<unsigned short*>(data);
 		break;
 	case _field_long_flags:
-		value = *reinterpret_cast<uint32_t*>(data);
+		value = *reinterpret_cast<unsigned long*>(data);
 		break;
 	DEBUG_ONLY(default: throw);
 	}
@@ -992,7 +992,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	ImGui::NextColumn();
 	{
-		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
+		unsigned long const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
 		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
@@ -1000,7 +1000,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 
 		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
 		{
-			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
 				bool const current_string_has_tooltip = !current_string_parser.description.empty();
@@ -1008,7 +1008,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 				}
-				uint32_t mask = 1u << string_index;
+				unsigned long mask = 1u << string_index;
 				bool is_flag_set = (value & mask) != 0;
 				if (ImGui::Checkbox(current_string_parser.display_name.c_str(), &is_flag_set))
 				{
@@ -1021,13 +1021,13 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 					switch (field.field_type)
 					{
 					case blofeld::_field_byte_flags:
-						*reinterpret_cast<uint8_t*>(data) = static_cast<uint8_t>(value);
+						*reinterpret_cast<unsigned char*>(data) = static_cast<unsigned char>(value);
 						break;
 					case blofeld::_field_word_flags:
-						*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(value);
+						*reinterpret_cast<unsigned short*>(data) = static_cast<unsigned short>(value);
 						break;
 					case blofeld::_field_long_flags:
-						*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(value);
+						*reinterpret_cast<unsigned long*>(data) = static_cast<unsigned long>(value);
 						break;
 					DEBUG_ONLY(default: throw);
 					}
@@ -1068,17 +1068,17 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	const s_string_list_definition& string_list_definition = *field.string_list_definition;
 
-	uint32_t value = 0;
+	long value = 0;
 	switch (field.field_type)
 	{
 	case _field_char_enum:
-		value = *reinterpret_cast<uint8_t*>(data);
+		value = *reinterpret_cast<char*>(data);
 		break;
 	case _field_enum:
-		value = *reinterpret_cast<uint16_t*>(data);
+		value = *reinterpret_cast<short*>(data);
 		break;
 	case _field_long_enum:
-		value = *reinterpret_cast<uint32_t*>(data);
+		value = *reinterpret_cast<long*>(data);
 		break;
 	DEBUG_ONLY(default: throw);
 	}
@@ -1093,7 +1093,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	ImGui::NextColumn();
 	{
-		uint32_t const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
+		unsigned long const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
 		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
 
 		const char* selected_string_value = "<INVALID VALUE>";
@@ -1111,7 +1111,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
 		{
-			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
 				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
 				bool const current_string_has_tooltip = !current_string_parser.description.empty();
@@ -1125,14 +1125,14 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 
 					switch (field.field_type)
 					{
-					case blofeld::_field_byte_flags:
-						*reinterpret_cast<uint8_t*>(data) = static_cast<uint8_t>(value);
+					case blofeld::_field_char_enum:
+						*reinterpret_cast<char*>(data) = static_cast<char>(value);
 						break;
-					case blofeld::_field_word_flags:
-						*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(value);
+					case blofeld::_field_enum:
+						*reinterpret_cast<short*>(data) = static_cast<short>(value);
 						break;
-					case blofeld::_field_long_flags:
-						*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(value);
+					case blofeld::_field_long_enum:
+						*reinterpret_cast<long*>(data) = static_cast<long>(value);
 						break;
 					DEBUG_ONLY(default: throw);
 					}
@@ -1181,7 +1181,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 	}
 
 	constexpr float indent = 25.0f;
-	uint32_t field_index = 0;
+	unsigned long field_index = 0;
 	for (const s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
 		const s_tag_field& field = **field_pointer;
