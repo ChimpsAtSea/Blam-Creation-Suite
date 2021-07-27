@@ -156,6 +156,9 @@
     <ClInclude Include="Rendering\box_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImGuiAddons\BeginPopupModalEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\box_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiAddons\BeginPopupModalEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

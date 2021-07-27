@@ -25,8 +25,9 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	template<blofeld::e_field field_type>
-	bool render_primitive(void* data, const blofeld::s_tag_field& field); \
-		void render_enumerable(h_enumerable& array, const blofeld::s_tag_field& field);
+	bool render_primitive(void* data, const blofeld::s_tag_field& field);
+	void render_enumerable(h_enumerable& array, const blofeld::s_tag_field& field);
+	bool render_tag(tag& value, const blofeld::s_tag_field& field);
 	bool render_tag_reference(h_tag*& tag_reference, const blofeld::s_tag_field& field);
 	void render_data(h_data& data, const blofeld::s_tag_field& field);
 

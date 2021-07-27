@@ -59,6 +59,7 @@
     <ClInclude Include="CacheInterface\memory_mapped_file.h" />
     <ClInclude Include="CacheInterface\base\tag_group.h" />
     <ClInclude Include="CacheInterface\base\tag_instance.h" />
+    <ClInclude Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
     <ClInclude Include="UserInterface\Tabs\tag_project_configurator_tab.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />
     <ClCompile Include="CacheInterface\base\tag_group.cpp" />
     <ClCompile Include="CacheInterface\base\tag_instance.cpp" />
+    <ClCompile Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\tag_project_configurator_tab.cpp" />

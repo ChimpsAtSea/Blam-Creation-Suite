@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ImGuiAddons\BeginPopupModalEx.h" />
     <ClInclude Include="Blam\blamlib-public-pch.h" />
     <ClInclude Include="Blam\legacy\basic_buffer.h" />
     <ClInclude Include="Blam\Blam.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImGuiAddons\BeginPopupModalEx.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="string_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />

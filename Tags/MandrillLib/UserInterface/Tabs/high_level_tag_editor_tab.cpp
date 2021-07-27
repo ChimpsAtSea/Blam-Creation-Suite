@@ -346,34 +346,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 	return result;
 }
 
-// If 'p_open' is specified for a modal popup window, the popup will have a regular close button which will close the popup.
-// Note that popup visibility status is owned by Dear ImGui (and manipulated with e.g. OpenPopup) so the actual value of *p_open is meaningless here.
-bool BeginPopupModalEx(ImGuiID id, const char* name, bool* p_open, ImGuiWindowFlags flags)
-{
-	ImGuiContext& g = *GImGui;
-	ImGuiWindow* window = g.CurrentWindow;
-	if (!ImGui::IsPopupOpen(id))
-	{
-		g.NextWindowData.ClearFlags(); // We behave like Begin() and need to consume those values
-		return false;
-	}
 
-	// Center modal windows by default
-	// FIXME: Should test for (PosCond & window->SetWindowPosAllowFlags) with the upcoming window.
-	if ((g.NextWindowData.Flags & ImGuiNextWindowDataFlags_HasPos) == 0)
-		ImGui::SetNextWindowPos({ g.IO.DisplaySize.x * 0.5f , g.IO.DisplaySize.y * 0.5f }, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-
-	flags |= ImGuiWindowFlags_Popup | ImGuiWindowFlags_Modal | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings;
-	const bool is_open = ImGui::Begin(name, p_open, flags);
-	if (!is_open || (p_open && !*p_open)) // NB: is_open can be 'false' when the popup is completely clipped (e.g. zero size display)
-	{
-		ImGui::EndPopup();
-		if (is_open)
-			ImGui::ClosePopupToLevel(g.BeginPopupStack.Size, true);
-		return false;
-	}
-	return is_open;
-}
 
 void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, const s_tag_field& field)
 {
@@ -1166,6 +1139,56 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	return result;
 }
 
+bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_field& field)
+{
+	bool result = false;
+
+	ImGui::PushID(&value);
+
+	ImGui::Columns(2, NULL, false);
+	ImGui::SetColumnWidth(0, k_field_display_name_width);
+	ImGui::SetColumnWidth(1, 1150);
+	{
+		ImGui::Text(field.name);
+	}
+	ImGui::NextColumn();
+	{
+		h_group* selected_group = tag_project.get_group_by_group_tag(value);
+		ASSERT(value == blofeld::INVALID_TAG || selected_group != nullptr);
+
+		const char* selected_string_value = "";
+
+		if (selected_group != nullptr)
+		{
+			selected_string_value = selected_group->tag_group.name;
+		}
+
+		if (ImGui::BeginCombo("##tag", selected_string_value))
+		{
+			for (h_group* group : tag_project.groups)
+			{
+				if (ImGui::Selectable(group->tag_group.name))
+				{
+					::tag new_value = group->tag_group.group_tag;
+					if (value != new_value)
+					{
+						value = new_value;
+						result = true;
+					}
+				}
+			}
+
+			ImGui::EndCombo();
+		}
+	}
+
+	ImGui::Columns(1);
+
+	ImGui::PopID();
+
+	return result;
+}
+
 void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object)
 {
 	const s_tag_struct_definition& struct_definition = object.get_blofeld_struct_definition();
@@ -1216,6 +1239,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_real_hsv_color:					data_modified = render_primitive<_field_real_hsv_color>(field_data, field); break;
 		case _field_real_ahsv_color:				data_modified = render_primitive<_field_real_ahsv_color>(field_data, field); break;
 		case _field_short_bounds:					data_modified = render_primitive<_field_short_bounds>(field_data, field); break;
+		case _field_point_2d:						data_modified = render_primitive<_field_point_2d>(field_data, field); break;
 		case _field_real_bounds:					data_modified = render_primitive<_field_real_bounds>(field_data, field); break;
 		case _field_real_fraction_bounds:			data_modified = render_primitive<_field_real_fraction_bounds>(field_data, field); break;
 		case _field_byte_block_flags:				data_modified = render_primitive<_field_byte_block_flags>(field_data, field); break;
@@ -1310,6 +1334,11 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 				ImGui::TextUnformatted(description);
 				ImGui::EndTooltip();
 			}
+			break;
+		}
+		case _field_tag:
+		{
+			render_tag(*static_cast<::tag*>(field_data), field);
 			break;
 		}
 		case _field_pad:

@@ -136,6 +136,12 @@ public:
 	field_type& operator=(const field_type& new_value);
 	bool operator==(const field_type& new_value) const; // #TODO: is it okay to assume the compiler is optimizing here?
 
+	template<typename t_result>
+	operator t_result() const
+	{
+		return static_cast<t_result>(value);
+	}
+
 public:
 	field_type value;
 };

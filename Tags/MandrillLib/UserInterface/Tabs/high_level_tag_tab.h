@@ -2,14 +2,6 @@
 
 class c_haloreach_cache_file;
 
-namespace blofeld
-{
-	namespace haloreach
-	{
-		struct s_bitmap_block_struct;
-	}
-}
-
 class c_high_level_tag_tab :
 	public c_mandrill_tab
 {

@@ -14,3 +14,4 @@
 #include "Tabs\high_level_tag_editor_tab.h"
 #include "Tabs\halo_script_editor.h"
 #include "Tabs\tag_project_configurator_tab.h"
+#include "Tabs\halo1_bitmap_tag_viewer_tab.h"
