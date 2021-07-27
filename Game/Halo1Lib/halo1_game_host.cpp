@@ -38,7 +38,7 @@ c_halo1_game_host::c_halo1_game_host(s_engine_platform_build engine_platform_bui
 {
 	c_console::write_line_verbose("Init %s", __func__);
 
-	init_runtime_modifications(g_halo1_game_runtime->get_build());
+	init_runtime_modifications();
 
 	if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 	{
@@ -72,7 +72,7 @@ c_halo1_game_host::~c_halo1_game_host()
 
 	//game_engine = nullptr;
 
-	deinit_runtime_modifications(g_halo1_game_runtime->get_build());
+	deinit_runtime_modifications();
 
 	c_game_runtime& halo1_game_runtime = get_game_runtime(engine_platform_build);
 	halo1_game_runtime.~c_game_runtime();
@@ -85,8 +85,6 @@ void c_halo1_game_host::frame_end(IDXGISwapChain* swap_chain, _QWORD unknown1)
 	{
 		get_game_engine()->EngineStateUpdate(_engine_state_game_end);
 	}
-
-
 
 	update_camera_data();
 	c_aotus_game_engine_host::frame_end(swap_chain, unknown1);
@@ -156,7 +154,7 @@ errno_t __cdecl _ui64tow_s_hook(
 	}
 }
 
-void c_halo1_game_host::init_runtime_modifications(e_build build)
+void c_halo1_game_host::init_runtime_modifications()
 {
 	g_halo1_engine_state_command = new c_halo1_engine_state_command();
 	g_halo1_halo_script_command = new c_halo1_halo_script_command();
@@ -166,22 +164,22 @@ void c_halo1_game_host::init_runtime_modifications(e_build build)
 	
 	create_dll_hook("api-ms-win-crt-convert-l1-1-0.dll", "_ui64tow_s", _ui64tow_s_hook, ui64tow_s_original);
 
-	c_global_reference::init_global_reference_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
-	c_data_patch_base::init_data_patch_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
-	c_function_hook_base::init_function_hook_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
+	c_global_reference::init_global_reference_tree(engine_platform_build);
+	c_data_patch_base::init_data_patch_tree(engine_platform_build);
+	c_function_hook_base::init_function_hook_tree(engine_platform_build);
 	end_detours();
 }
 
-void c_halo1_game_host::deinit_runtime_modifications(e_build build)
+void c_halo1_game_host::deinit_runtime_modifications()
 {
 	delete g_halo1_engine_state_command;
 	delete g_halo1_halo_script_command;
 	delete g_halo1_dev_console_command;
 
 	init_detours();
-	c_function_hook_base::deinit_function_hook_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
-	c_data_patch_base::deinit_data_patch_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
-	c_global_reference::deinit_global_reference_tree({ _engine_type_halo1, _platform_type_pc_64bit, build });
+	c_function_hook_base::deinit_function_hook_tree(engine_platform_build);
+	c_data_patch_base::deinit_data_patch_tree(engine_platform_build);
+	c_global_reference::deinit_global_reference_tree(engine_platform_build);
 	end_detours();
 
 

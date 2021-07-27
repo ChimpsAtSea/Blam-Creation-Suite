@@ -19,11 +19,11 @@ public:
 	virtual IGameEngine* get_game_engine() const override;
 
 	static inline IDataAccess* get_data_access() { return g_halo4_game_runtime->get_data_access(); }
-	static c_game_runtime& get_game_runtime();
-	static void init_runtime_modifications(e_build build);
-	static void deinit_runtime_modifications(e_build build);
+	static c_game_runtime& get_game_runtime(s_engine_platform_build engine_platform_build);
 
 private:
+	void init_runtime_modifications();
+	void deinit_runtime_modifications();
 	static c_game_runtime* g_halo4_game_runtime;
 };
 

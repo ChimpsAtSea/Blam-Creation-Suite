@@ -18,18 +18,18 @@ public:
 	virtual void render_ui() const override;
 	virtual IGameEngine* get_game_engine() const override;
 
-	static inline IDataAccess* get_data_access() { return g_haloreach_game_runtime.get_data_access(); }
-	static inline c_game_runtime& get_game_runtime() { return g_haloreach_game_runtime; }
-	static void init_runtime_modifications(e_build build);
-	static void deinit_runtime_modifications(e_build build);
+	static inline IDataAccess* get_data_access() { return g_haloreach_game_runtime->get_data_access(); }
+	static c_game_runtime& get_game_runtime(s_engine_platform_build engine_platform_build);
 
 private:
-	static c_haloreach_game_host* current_host;
+	void init_runtime_modifications();
+	void deinit_runtime_modifications();
+
 	static void update_camera_data();
 	static void draw_camera_debug_ui();
 	static void draw_script_debug_ui();
 
-	static c_game_runtime g_haloreach_game_runtime;
+	static c_game_runtime* g_haloreach_game_runtime;
 };
 
 /* ---------- globals */

@@ -111,7 +111,7 @@ uintptr_t halo3_version_number_callback_offset(s_engine_platform_build engine_pl
 }
 c_function_hook_ex<halo3_version_number_callback_offset, bool __fastcall(__int64, wchar_t*, int)> halo3_version_number_callback = { "halo3_version_number_callback", [](__int64 unused, wchar_t* dst, int len)
 {
-	e_build build = c_halo3_game_host::get_game_runtime().get_build();
+	e_build build = c_halo3_game_host::get_game_runtime({}).get_build();
 	
 	const char* build_str;
 	ASSERT(BCS_SUCCEEDED(get_build_string(build, &build_str)));

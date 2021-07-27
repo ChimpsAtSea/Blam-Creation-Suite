@@ -424,24 +424,39 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 }
 #ifdef _WIN64
 
-c_aotus_game_engine_host* game_host_from_engine_type(e_engine_type engine_type)
+c_aotus_game_engine_host* game_host_from_engine_platform_build(s_engine_platform_build engine_platform_build)
 {
-	switch (engine_type)
+	if (engine_platform_build.build == _build_not_set)
+	{
+		const char* engine_type_folder_string;
+		ASSERT(BCS_SUCCEEDED(get_engine_type_folder_string(engine_platform_build.engine_type, &engine_type_folder_string)));
+
+		const char* engine_module_filename;
+		ASSERT(BCS_SUCCEEDED(get_engine_module_filename(engine_platform_build, &engine_module_filename)));
+		
+		c_fixed_path library_filepath;
+		library_filepath.format("%s\\%s", engine_type_folder_string, engine_module_filename);
+		engine_platform_build.build = c_game_runtime::get_library_file_version(library_filepath); // #TODO: move this, and add BCS_RESULT to this
+
+		ASSERT(engine_platform_build != _build_not_set);
+	}
+
+	switch (engine_platform_build.engine_type)
 	{
 	case _engine_type_haloreach:
-		return new c_haloreach_game_host({ engine_type, _platform_type_pc_64bit, c_haloreach_game_host::get_game_runtime().get_build() });
+		return new c_haloreach_game_host(engine_platform_build);
 	case _engine_type_halo1:
-		return new c_halo1_game_host({ engine_type, _platform_type_pc_64bit, c_halo1_game_host::get_game_runtime().get_build() });
+		return new c_halo1_game_host(engine_platform_build);
 	case _engine_type_halo2:
-		return new c_halo2_game_host({ engine_type, _platform_type_pc_64bit, c_halo2_game_host::get_game_runtime().get_build() });
+		return new c_halo2_game_host(engine_platform_build);
 	case _engine_type_halo3:
-		return new c_halo3_game_host({ engine_type, _platform_type_pc_64bit, c_halo3_game_host::get_game_runtime().get_build() });
+		return new c_halo3_game_host(engine_platform_build);
 	case _engine_type_halo3odst:
-		return new c_halo3odst_game_host({ engine_type, _platform_type_pc_64bit, c_halo3odst_game_host::get_game_runtime().get_build() });
+		return new c_halo3odst_game_host(engine_platform_build);
 	case _engine_type_halo4:
-		return new c_halo4_game_host({ engine_type, _platform_type_pc_64bit, c_halo4_game_host::get_game_runtime().get_build() });
+		return new c_halo4_game_host(engine_platform_build);
 	case _engine_type_groundhog:
-		return new c_groundhog_game_host({ engine_type, _platform_type_pc_64bit, c_groundhog_game_host::get_game_runtime().get_build() });
+		return new c_groundhog_game_host(engine_platform_build);
 	}
 
 	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
@@ -545,7 +560,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 {
 	ASSERT(current_game_host == nullptr);
 
-	current_game_host = game_host_from_engine_type(engine_type);
+	current_game_host = game_host_from_engine_platform_build({ engine_type, _platform_type_pc_64bit, _build_not_set });
 	ASSERT(current_game_host != nullptr);
 
 	std::string game_variant, map_variant;
