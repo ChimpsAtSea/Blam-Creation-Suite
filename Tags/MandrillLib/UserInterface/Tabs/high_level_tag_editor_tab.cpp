@@ -996,7 +996,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
-		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(string_list_count));
+		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(__max(1u, string_list_count)));
 
 		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
 		{
@@ -1337,5 +1337,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 
 void c_high_level_tag_editor_tab::render_tag_group()
 {
+	ImGui::Dummy({ 0.0f, 10.0f });
 	render_object(0, tag);
+	ImGui::Dummy({ 0.0f, 10.0f });
 }
