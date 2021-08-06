@@ -71,15 +71,67 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 {
 	using namespace std::placeholders;
 
-	traverse_directory(
-		directory,
-		L"maps\\*.map",
-		0,
-		this,
-		[](void* userdata, const s_traverse_directory_result* result)
+	c_fixed_wide_path package_features = directory;
+	package_features += L"PackageFeatures.xml";
+	if (PathFileExistsW(package_features))
+	{
+		pugi::xml_document doc;
+		if (!doc.load_file(package_features))
 		{
-			return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(result);
-		});
+			goto finished;
+		}
+
+		auto package_features = doc.first_child();
+		if (!package_features || strcmp(package_features.name(), "PackageFeatures") != 0)
+		{
+			goto finished;
+		}
+
+		for (auto child = package_features.child("Feature"); child; child = child.next_sibling("Feature"))
+		{
+			auto name_attribute = child.attribute("Name");
+			const char* name_attribute_str = name_attribute.as_string();
+
+			auto parent_attribute = child.attribute("Parent");
+			const char* parent_attribute_str = parent_attribute.as_string();
+
+			auto primary_module_attribute = child.attribute("PrimaryModule");
+			const char* primary_module_attribute_str = primary_module_attribute.as_string();
+
+			const wchar_t* deploy_directories[] = { L"any", L"ds", L"pc", L"xbox" };
+			for (const wchar_t* deploy_directory : deploy_directories)
+			{
+				c_fixed_wide_path search_directory;
+				search_directory.format(L"deploy\\%s\\%S-rtx-new.module", deploy_directory, primary_module_attribute_str);
+				traverse_directory(
+					directory,
+					search_directory,
+					0,
+					this,
+					[](void* userdata, const s_traverse_directory_result* result)
+					{
+						return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(result);
+					});
+			}
+
+			debug_point;
+		}
+
+		debug_point;
+	}
+	else
+	{
+	finished:;
+		traverse_directory(
+			directory,
+			L"maps\\*.map",
+			0,
+			this,
+			[](void* userdata, const s_traverse_directory_result* result)
+			{
+				return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(result);
+			});
+	}
 
 	for (s_cache_file_list_entry& entry : entries)
 	{
@@ -399,11 +451,12 @@ void c_tag_project_configurator_tab::create_tag_project()
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
-		ASSERT(cache_cluster_transplant != nullptr);
-
-		c_tag_project* tag_project = new c_tag_project(*cache_cluster_transplant);
-		c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
-		mandrill_user_interface->add_tab(*tag_project_tab);
-		mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+		if (cache_cluster_transplant)
+		{
+			c_tag_project* tag_project = new c_tag_project(*cache_cluster_transplant);
+			c_tag_project_tab* tag_project_tab = new c_tag_project_tab(L"", *tag_project, *mandrill_user_interface);
+			mandrill_user_interface->add_tab(*tag_project_tab);
+			mandrill_user_interface->set_next_selected_tab(*tag_project_tab);
+		}
 	}
 }

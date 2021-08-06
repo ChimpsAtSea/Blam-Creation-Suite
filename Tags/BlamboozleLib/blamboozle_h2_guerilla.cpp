@@ -432,7 +432,7 @@ public:
 
 std::map<ptr32, c_h2_tag_block_definition*> tag_block_definitions;
 
-c_h2_tag_block_definition* get_tag_block_definition(ptr32 virtual_address)
+c_h2_tag_block_definition* h1_get_tag_block_definition(ptr32 virtual_address)
 {
 	std::map<ptr32, c_h2_tag_block_definition*>::iterator tag_block_definition_iterator = tag_block_definitions.find(virtual_address);
 

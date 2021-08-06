@@ -95,6 +95,11 @@ enum e_cache_file_buffer_index
 	_tag_language_neutral_read_write_buffer,
 	_tag_language_neutral_write_combined_buffer,
 	_tag_language_neutral_read_only_buffer,
+	_module_file_buffer_root,
+	_module_file_buffer_data0,
+	_module_file_buffer_data1,
+	_module_file_buffer_data2,
+	_module_file_buffer_data3,
 	k_num_cache_file_buffers
 };
 

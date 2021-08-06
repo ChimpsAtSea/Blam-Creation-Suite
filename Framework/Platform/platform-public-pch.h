@@ -64,6 +64,7 @@ using namespace xxhash::literals;
 #include "endianness_util.h"
 #include "callback_util.h"
 #include "settings.h"
+#include "keys.h"
 
 #include "Strings/strings.h"
 

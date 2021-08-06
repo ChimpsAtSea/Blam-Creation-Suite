@@ -3,13 +3,13 @@
 std::map<ptr32, c_h1_tag_block_definition*> tag_block_definitions;
 
 c_h1_tag_block_definition::c_h1_tag_block_definition(const char* guerilla_data, const s_h1_tag_block_definition* definition_header, c_h1_tag_group_definition* tag_group_definition) :
-	name(va_to_pointer(guerilla_data, definition_header->name_address)),
+	name(h1_va_to_pointer(guerilla_data, definition_header->name_address)),
 	code_name(h1_convert_to_code_name(name)),
 	pseudo_struct_definition(nullptr),
 	block_definition(definition_header),
 	tag_group_definition(tag_group_definition)
 {
-	const s_h1_tag_field* fields = reinterpret_cast<const s_h1_tag_field*>(va_to_pointer(guerilla_data, definition_header->fields_address));
+	const s_h1_tag_field* fields = reinterpret_cast<const s_h1_tag_field*>(h1_va_to_pointer(guerilla_data, definition_header->fields_address));
 	pseudo_struct_definition = new c_h1_pseudo_struct_definition(guerilla_data, fields, *this);
 
 	if (tag_group_definition)
@@ -28,7 +28,7 @@ c_h1_tag_block_definition::c_h1_tag_block_definition(const char* guerilla_data, 
 	}
 }
 
-c_h1_tag_block_definition* get_tag_block_definition(const char* guerilla_data, ptr32 virtual_address, c_h1_tag_group_definition* tag_group_definition)
+c_h1_tag_block_definition* h1_get_tag_block_definition(const char* guerilla_data, ptr32 virtual_address, c_h1_tag_group_definition* tag_group_definition)
 {
 	std::map<ptr32, c_h1_tag_block_definition*>::iterator tag_block_definition_iterator = tag_block_definitions.find(virtual_address);
 
@@ -37,7 +37,7 @@ c_h1_tag_block_definition* get_tag_block_definition(const char* guerilla_data, p
 		return tag_block_definition_iterator->second;
 	}
 
-	const s_h1_tag_block_definition* _tag_block_definition = reinterpret_cast<const s_h1_tag_block_definition*>(va_to_pointer(guerilla_data, virtual_address));
+	const s_h1_tag_block_definition* _tag_block_definition = reinterpret_cast<const s_h1_tag_block_definition*>(h1_va_to_pointer(guerilla_data, virtual_address));
 
 	c_h1_tag_block_definition* tag_block_definition = reinterpret_cast<c_h1_tag_block_definition*>(new char[sizeof(c_h1_tag_block_definition)]);
 
@@ -48,7 +48,7 @@ c_h1_tag_block_definition* get_tag_block_definition(const char* guerilla_data, p
 	return tag_block_definition;
 }
 
-void fixup_tag_inheritance_structures()
+void h1_fixup_tag_inheritance_structures()
 {
 	for (auto& keyval : tag_block_definitions)
 	{
@@ -56,7 +56,7 @@ void fixup_tag_inheritance_structures()
 		c_h1_tag_group_definition* tag_group_definition = tag_block_definition->tag_group_definition;
 		if (!tag_group_definition) continue;
 
-		c_h1_tag_group_definition* parent_tag_group_definition = get_tag_group_definition_by_group_tag(tag_group_definition->tag_group_definition->parent_group_tag.value);
+		c_h1_tag_group_definition* parent_tag_group_definition = h1_get_tag_group_definition_by_group_tag(tag_group_definition->tag_group_definition->parent_group_tag.value);
 		if (!parent_tag_group_definition) continue;
 
 		c_h1_pseudo_field_definition* structure_field_definition = new c_h1_pseudo_field_definition(*parent_tag_group_definition);

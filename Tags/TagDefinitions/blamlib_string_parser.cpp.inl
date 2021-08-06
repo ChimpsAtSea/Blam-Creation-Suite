@@ -109,6 +109,11 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 
 	if (code_name == "char") code_name = "_char";
 	if (code_name == "short") code_name = "_short";
+	if (code_name == "long") code_name = "_long";
+	if (code_name == "qword") code_name = "_qword";
+	if (code_name == "dword") code_name = "_dword";
+	if (code_name == "word") code_name = "_word";
+	if (code_name == "byte") code_name = "_byte";
 	if (code_name == "class") code_name = "_class";
 	if (code_name == "default") code_name = "_default";
 	if (code_name == "operator") code_name = "_operator";
@@ -119,6 +124,34 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 	if (code_name == "final") code_name = "_final";
 	if (code_name == "real") code_name = "_real";
 	if (code_name == "angle") code_name = "_angle";
+	if (code_name == "tag") code_name = "_tag";
+	if (code_name == "typename") code_name = "_typename";
+	if (code_name == "int") code_name = "_int";
+	if (code_name == "float") code_name = "_float";
+	if (code_name == "string") code_name = "_string";
+	if (code_name == "register") code_name = "_register";
+	if (code_name == "struct") code_name = "_struct";
+	
+	if (code_name == "s_point2d") code_name = "_s_point2d";
+	if (code_name == "s_rectangle2d") code_name = "_s_rectangle2d";
+	if (code_name == "pixel32") code_name = "_pixel32";
+	if (code_name == "real_fraction") code_name = "_real_fraction";
+	if (code_name == "real_point2d") code_name = "_real_point2d";
+	if (code_name == "real_point3d") code_name = "_real_point3d";
+	if (code_name == "real_vector2d") code_name = "_real_vector2d";
+	if (code_name == "real_vector3d") code_name = "_real_vector3d";
+	if (code_name == "real_quaternion") code_name = "_real_quaternion";
+	if (code_name == "real_euler_angles2d") code_name = "_real_euler_angles2d";
+	if (code_name == "real_euler_angles3d") code_name = "_real_euler_angles3d";
+	if (code_name == "real_plane2d") code_name = "_real_plane2d";
+	if (code_name == "real_plane3d") code_name = "_real_plane3d";
+	if (code_name == "rgb_color") code_name = "_rgb_color";
+	if (code_name == "argb_color") code_name = "_argb_color";
+	if (code_name == "real_hsv_color") code_name = "_real_hsv_color";
+	if (code_name == "real_ahsv_color") code_name = "_real_ahsv_color";
+	if (code_name == "short_bounds") code_name = "_short_bounds";
+	if (code_name == "angle_bounds") code_name = "_angle_bounds";
+	if (code_name == "real_bounds") code_name = "_real_bounds";
 
 	if (field_name_unique_counter)
 	{
@@ -135,6 +168,7 @@ c_blamlib_string_parser::c_blamlib_string_parser(const char* _string, bool is_bl
 void c_blamlib_string_parser::cleanup_code_name()
 {
 	code_name.lowercase();
+	code_name.replace('\xA0', ' ');
 	code_name.replace(' ', '_');
 	code_name.replace('/', '_');
 	code_name.replace('\\', '_');
@@ -145,6 +179,7 @@ void c_blamlib_string_parser::cleanup_code_name()
 	code_name.replace('>', '_');
 	code_name.replace('<', '_');
 	code_name.replace('=', '_');
+	code_name.remove('’');
 	code_name.remove('%');
 	code_name.remove('{');
 	code_name.remove('}');
@@ -218,15 +253,18 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
 			// name flags cleanup
 			fixup_flags(name);
 		}
+		else *name = 0;
 		if (search_for_name_and_alt_name >= 2) // found old_name
 		{
 			read_position = strstr(read_position, old_name) + strlen(old_name);
 			read_position += 1; // ]
 		}
+		else *old_name = 0;
 		if (search_for_name_and_alt_name >= 3) // found flags
 		{
 			read_position = strstr(read_position, flags) + strlen(flags);
 		}
+		else *flags = 0;
 
 		debug_point;
 

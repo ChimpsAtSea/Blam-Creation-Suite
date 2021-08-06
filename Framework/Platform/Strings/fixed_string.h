@@ -411,6 +411,23 @@ public:
 		data[0] = 0;
 	}
 
+	void append(const char* str, size_t new_size)
+	{
+		char* const start = data;
+		char* const end = data + strlen(data);
+		char* const data_end = data + _countof(data);
+		char* write_pos = end;
+		const char* read_pos = str;
+
+		while (*read_pos && write_pos < data_end)
+		{
+			*write_pos = *read_pos;
+			write_pos++;
+			read_pos++;
+		}
+		*write_pos = 0;
+	}
+
 	void shrink(size_t new_size)
 	{
 		size_t current_size = size();

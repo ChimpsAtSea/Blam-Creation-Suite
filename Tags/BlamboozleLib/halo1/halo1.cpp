@@ -49,7 +49,7 @@ void h1_sort_structures(std::vector<c_h1_tag_group_definition*>& group_definitio
 }
 
 std::vector<c_h1_pseudo_struct_definition*> exported_pseudo_struct_definitions;
-void clear_exported_structs()
+void h1_clear_exported_structs()
 {
 	exported_pseudo_struct_definitions.clear();
 }
@@ -68,7 +68,7 @@ bool is_struct_exported(c_h1_pseudo_struct_definition& pseudo_struct_definition)
 }
 
 std::vector<c_h1_tag_reference_definition*> exported_tag_reference_definitions;
-void clear_exported_tag_references()
+void h1_clear_exported_tag_references()
 {
 	exported_tag_reference_definitions.clear();
 }
@@ -87,7 +87,7 @@ bool is_tag_reference_exported(c_h1_tag_reference_definition& tag_reference_defi
 }
 
 std::vector<c_h1_string_list_definition*> exported_string_list_definitions;
-void clear_exported_string_lists()
+void h1_clear_exported_string_lists()
 {
 	exported_string_list_definitions.clear();
 }
@@ -691,9 +691,9 @@ void h1_write_tag_types_source(std::stringstream& s, std::vector<c_h1_pseudo_fie
 
 void h1_export_header(std::stringstream& s, std::vector<c_h1_tag_group_definition*>& group_definitions)
 {
-	clear_exported_structs();
-	clear_exported_tag_references();
-	clear_exported_string_lists();
+	h1_clear_exported_structs();
+	h1_clear_exported_tag_references();
+	h1_clear_exported_string_lists();
 
 	s << "#pragma once" << std::endl;
 	s << std::endl;
@@ -770,9 +770,9 @@ void h1_export_header(std::stringstream& s, std::vector<c_h1_tag_group_definitio
 
 void h1_export_source(std::stringstream& s, std::vector<c_h1_tag_group_definition*>& group_definitions)
 {
-	clear_exported_structs();
-	clear_exported_tag_references();
-	clear_exported_string_lists();
+	h1_clear_exported_structs();
+	h1_clear_exported_tag_references();
+	h1_clear_exported_string_lists();
 
 	s << "#include <tagdefinitions-private-pch.h>" << std::endl;
 	s << "#include <macaque_field_type_override.h>" << std::endl;

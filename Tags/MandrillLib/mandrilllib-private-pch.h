@@ -20,3 +20,4 @@
 
 #define ZLIB_CONST
 #include <zlib/zlib/zlib.h>
+#include <pugixml/src/pugixml.hpp>

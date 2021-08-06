@@ -4,6 +4,8 @@ class c_cache_cluster;
 class c_cache_file_reader;
 class c_tag_instance;
 
+class c_infinite_ucs_reader;
+
 class h_tag;
 class h_object;
 class h_group;
@@ -20,7 +22,8 @@ public:
 	c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster);
 	~c_high_level_cache_cluster_transplant();
 
-	BCS_RESULT transplant_data(h_object& high_level, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
+	BCS_RESULT transplant_cache_file_data(h_object& high_level, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
+	BCS_RESULT transplant_module_file_data(h_object& high_level, c_infinite_ucs_reader* ucs_reader, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
 
 
 protected:
@@ -30,6 +33,7 @@ protected:
 	BCS_RESULT transplant_instance_data();
 
 public:
+	BCS_RESULT get_global_tag_by_low_level_tag_instance(c_tag_instance& tag_instance, h_tag*& tag);
 	BCS_RESULT get_tag_by_low_level_tag_instance(c_cache_file_reader& cache_file_reader, c_tag_instance& tag_instance, h_tag*& tag);
 	BCS_RESULT get_tag_by_group_and_filename(h_group& group, const char* filename, h_tag*& tag);
 	BCS_RESULT get_tag_group(tag group_tag, h_group*& group);

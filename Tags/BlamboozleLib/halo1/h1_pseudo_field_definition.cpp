@@ -1,7 +1,7 @@
 #include "blamboozlelib-private-pch.h"
 
 c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_data, const s_h1_tag_field& field) :
-	name(va_to_pointer(guerilla_data, field.name_address)),
+	name(h1_va_to_pointer(guerilla_data, field.name_address)),
 	field_type(h1_field_type_to_h1_pseudo_field_type(field.field_type)),
 	field(&field),
 	block_definition(nullptr),
@@ -19,7 +19,7 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 		{
 			ASSERT(strstr(name, "#") == nullptr);
 			ASSERT(strstr(name, "(") == nullptr);
-			const char* bad_description = va_to_pointer(guerilla_data, field.definition_address);
+			const char* bad_description = h1_va_to_pointer(guerilla_data, field.definition_address);
 			size_t new_name_buffer_size = strlen(name) + strlen(bad_description) + 2;
 			char* new_name_buffer = new char[new_name_buffer_size];
 			snprintf(new_name_buffer, new_name_buffer_size, "%s#%s", name, bad_description);
@@ -46,10 +46,10 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 	case _h1_pseudo_field_type_short_block_index:
 	case _h1_pseudo_field_type_long_block_index:
 	case _h1_pseudo_field_type_block:
-		block_definition = get_tag_block_definition(guerilla_data, field.definition_address);
+		block_definition = h1_get_tag_block_definition(guerilla_data, field.definition_address);
 		break;
 	case _h1_pseudo_field_type_tag_reference:
-		tag_reference_definition = get_tag_reference_definition(guerilla_data, field.definition_address);
+		tag_reference_definition = h1_get_tag_reference_definition(guerilla_data, field.definition_address);
 		break;
 	case _h1_pseudo_field_type_pad:
 	case _h1_pseudo_field_type_skip:
@@ -59,11 +59,11 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 	case _h1_pseudo_field_type_long_flags:
 	case _h1_pseudo_field_type_word_flags:
 	case _h1_pseudo_field_type_byte_flags:
-		string_list_definition = get_string_list_definition(guerilla_data, field.definition_address);
+		string_list_definition = h1_get_string_list_definition(guerilla_data, field.definition_address);
 		break;
 	case _h1_pseudo_field_type_explanation:
 		if (field.definition_address)
-			explanation = va_to_pointer(guerilla_data, field.definition_address);
+			explanation = h1_va_to_pointer(guerilla_data, field.definition_address);
 		break;
 	}
 }

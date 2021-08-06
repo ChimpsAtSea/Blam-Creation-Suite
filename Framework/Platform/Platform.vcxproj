@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="!Resources\resources_manager.h" />
+    <ClInclude Include="keys.h" />
     <ClInclude Include="callback_util.h" />
     <ClInclude Include="debug_util.h" />
     <ClInclude Include="endianness_util.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="xxhash_cx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="keys.cpp" Condition="!Exists('$(OutDir)Keys.lib')" />
     <ClCompile Include="!Resources\resources_manager.cpp" />
     <ClCompile Include="callback_util.cpp" />
     <ClCompile Include="debug_util.cpp" />

@@ -84,6 +84,10 @@ namespace blofeld
 		_field_dword_integer,
 		_field_qword_integer,
 
+		// halo5/infinite
+		_field_data_path,
+		_field_embedded_tag,
+
 		_field_type_non_standard_custom_type, // custom fields begin here
 		_field_pointer,
 		_field_half,

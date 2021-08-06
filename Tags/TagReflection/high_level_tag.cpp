@@ -52,6 +52,7 @@ h_group::~h_group()
 
 }
 
+// #TODO: fixup this. bad. nasty.
 namespace blofeld
 {
 	namespace halo1
@@ -90,6 +91,10 @@ namespace blofeld
 	{
 		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
 	}
+	namespace infinite
+	{
+		h_tag* create_high_level_tag(h_group& tag_group, const char* tag_filepath);
+	}
 }
 
 h_tag& h_group::create_tag_instance(const char* filepath)
@@ -123,6 +128,9 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 		break;
 	case _engine_type_gen3_xbox360:
 		tag = blofeld::xbox360_gen3::create_high_level_tag(*this, filepath);
+		break;
+	case _engine_type_infinite:
+		tag = blofeld::infinite::create_high_level_tag(*this, filepath);
 		break;
 	default: FATAL_ERROR(L"Unsupported engine type");
 	}

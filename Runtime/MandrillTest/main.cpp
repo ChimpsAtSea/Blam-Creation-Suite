@@ -88,6 +88,8 @@ static void deinit_mandrill()
 	c_console::deinit_console();
 }
 
+#include <discord_rpc.h>
+
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
 	_In_opt_ HINSTANCE hPrevInstance,		/* [input] handle to previous instance */
@@ -100,6 +102,8 @@ int WINAPI wWinMain(
 	{
 		return result;
 	}
+
+
 
 	init_mandrill(hInstance, nShowCmd, lpCmdLine);
 	//result = run_mandrill_api_test();

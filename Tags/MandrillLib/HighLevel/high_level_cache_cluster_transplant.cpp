@@ -36,7 +36,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 
 
 	//// #TODO: Fix this. See fixes below.
-	////for (uint32_t group_index = 0; group_index < cache_file.get_tag_group_count(); group_index++)
+	////for (unsigned long group_index = 0; group_index < cache_file.get_tag_group_count(); group_index++)
 	////{
 	////	c_tag_group_interface* tag_group_interface = cache_file.get_tag_group_interface(group_index);
 
@@ -56,7 +56,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 	//	tags_and_interface.emplace_back(tag_pair);
 	//}
 
-	//auto transplant_high_level_tags = [this](uint32_t index)
+	//auto transplant_high_level_tags = [this](unsigned long index)
 	//{
 	//	s_tag_pair& tag_pair = tags_and_interface[index];
 
@@ -69,10 +69,10 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 	//	DEBUG_ASSERT(tag_group != nullptr);
 	//	const blofeld::s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
 
-	//	transplant_data(high_level_tag, raw_tag_data, tag_struct_definition);
+	//	transplant_cache_file_data(high_level_tag, raw_tag_data, tag_struct_definition);
 	//};
-	////tbb::parallel_for(0u, static_cast<uint32_t>(tags_and_interface.size()), transplant_high_level_tags);
-	//for (uint32_t i = 0; i < tags_and_interface.size(); i++) transplant_high_level_tags(i);
+	////tbb::parallel_for(0u, static_cast<unsigned long>(tags_and_interface.size()), transplant_high_level_tags);
+	//for (unsigned long i = 0; i < tags_and_interface.size(); i++) transplant_high_level_tags(i);
 }
 
 c_high_level_cache_cluster_transplant::~c_high_level_cache_cluster_transplant()
@@ -103,6 +103,30 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_transplant_entries()
 	}
 
 	return rs;
+}
+
+BCS_RESULT c_high_level_cache_cluster_transplant::get_global_tag_by_low_level_tag_instance(c_tag_instance& tag_instance, h_tag*& tag)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_cache_file_reader* const* cache_file_readers;
+	unsigned long cache_file_reader_count;
+	if (BCS_FAILED(rs = cache_cluster.get_cache_readers(cache_file_readers, cache_file_reader_count)))
+	{
+		return rs;
+	}
+
+	for (unsigned long cache_file_reader_index = 0; cache_file_reader_index < cache_file_reader_count; cache_file_reader_index++)
+	{
+		c_cache_file_reader& cache_file_reader = *cache_file_readers[cache_file_reader_index];
+
+		if (BCS_SUCCEEDED(rs = get_tag_by_low_level_tag_instance(cache_file_reader, tag_instance, tag)))
+		{
+			return rs;
+		}
+	}
+
+	return BCS_E_NOT_FOUND;
 }
 
 BCS_RESULT c_high_level_cache_cluster_transplant::get_tag_by_low_level_tag_instance(c_cache_file_reader& cache_file_reader, c_tag_instance& tag_instance, h_tag*& tag)
@@ -205,9 +229,6 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 			c_tag_group* tag_group = nullptr;
 			tag group_tag;
 
-			unsigned long cache_file_tag_index;
-			ASSERT(BCS_SUCCEEDED(tag_instance.get_cache_file_tag_index(cache_file_tag_index)));
-
 			ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
 			ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
 			ASSERT(BCS_SUCCEEDED(tag_group->get_group_tag(group_tag)));
@@ -235,9 +256,6 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 		}
 
 		debug_point;
-
-		if (!c_command_line::has_command_line_arg("-allmaps"))
-			break; // only do the first map at the moment
 	}
 
 	return rs;
@@ -269,23 +287,36 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 				return rs;
 			}
 
-			if (BCS_FAILED(rs = transplant_data(high_level_tag, static_cast<const char*>(tag_instance_data), *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
+			if (engine_platform_build.engine_type < _engine_type_halo5)
 			{
-				c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
-				//return rs; //#TODO: enable this!
+				if (!tag_instance_data || BCS_FAILED(rs = transplant_cache_file_data(high_level_tag, static_cast<const char*>(tag_instance_data), *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
+				{
+					c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+					//return rs; //#TODO: enable this!
+				}
+			}
+			else if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance)) // #TODO: this is kinda nasty
+			{
+				if (BCS_FAILED(rs = transplant_module_file_data(
+					high_level_tag,
+					infinite_tag_instance->ucs_reader,
+					static_cast<const char*>(infinite_tag_instance->ucs_reader->tag_data),
+					*cache_file_reader,
+					high_level_tag.get_blofeld_struct_definition())))
+				{
+					c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+					//return rs; //#TODO: enable this!
+				}
 			}
 
 			debug_point;
-		}		
-		
-		if (!c_command_line::has_command_line_arg("-allmaps"))
-			break; // only do the first map at the moment
+		}
 	}
 
 	return rs;
 }
 
-BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high_level, const char* const low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
+BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_object& high_level, const char* const low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -315,7 +346,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 
 		void* high_level_field_data = high_level.get_field_data(*field);
 
-		uint32_t field_size = get_blofeld_field_size(*field, engine_platform_build);
+		unsigned long field_size = get_blofeld_field_size(*field, engine_platform_build);
 
 		if (high_level_field_data != nullptr)
 		{
@@ -365,6 +396,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 			case _field_word_integer:					basic_memory_read(word);
 			case _field_dword_integer:					basic_memory_read(dword);
 			case _field_qword_integer:					basic_memory_read(qword);
+			case _field_data_path:						basic_memory_read(::c_static_string<256>);
 			case _field_string_id:
 			case _field_old_string_id:
 			{
@@ -448,7 +480,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				byteswap_helper_func(tag_block);
 
 				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-				uint32_t const block_struct_size = calculate_struct_size(engine_platform_build, block_struct_definition);
+				unsigned long const block_struct_size = calculate_struct_size(engine_platform_build, block_struct_definition);
 
 				block_storage.clear();
 
@@ -497,10 +529,10 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 							block_storage.reserve(tag_block.count);
 
 							const char* current_block_data_position = block_data;
-							for (uint32_t block_index = 0; block_index < tag_block.count; block_index++)
+							for (unsigned long block_index = 0; block_index < tag_block.count; block_index++)
 							{
 								h_object& type = block_storage.emplace_back();
-								transplant_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
+								transplant_cache_file_data(type, current_block_data_position, cache_file_reader, block_struct_definition);
 
 								current_block_data_position += block_struct_size;
 							}
@@ -509,14 +541,14 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 						//{
 						//	block_storage.resize(tag_block.count);
 
-						//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](uint32_t index)
+						//	auto transplant_high_level_block = [this, &block_storage, block_data, block_struct_size, block_struct_definition](unsigned long index)
 						//	{
 						//		const void* current_block_data = block_data + block_struct_size * index;
 
 						//		h_object& type = block_storage.get(index);
-						//		transplant_data(type, block_data, block_struct_definition);
+						//		transplant_cache_file_data(type, block_data, block_struct_definition);
 						//	};
-						//	tbb::parallel_for(0u, static_cast<uint32_t>(tag_block.count), transplant_high_level_block);
+						//	tbb::parallel_for(0u, static_cast<unsigned long>(tag_block.count), transplant_high_level_block);
 						//}
 
 						debug_point;
@@ -540,7 +572,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 			case _field_struct:
 			{
 				h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
-				transplant_data(struct_storage, current_data_position, cache_file_reader, *field->struct_definition);
+				transplant_cache_file_data(struct_storage, current_data_position, cache_file_reader, *field->struct_definition);
 			}
 			break;
 			case _field_array:
@@ -548,17 +580,18 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_data(h_object& high
 				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 				const char* raw_array_data_position = current_data_position;
 
-				uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
-				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
+				unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
+				for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
 				{
 					h_object& array_element_storage = array_storage[array_index];
 
-					transplant_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition);
+					transplant_cache_file_data(array_element_storage, raw_array_data_position, cache_file_reader, field->array_definition->struct_definition);
 
 					raw_array_data_position += array_element_storage.get_low_level_type_size();
 				}
 			}
 			break;
+			case _field_embedded_tag:
 			case _field_tag_reference:
 			{
 				s_tag_reference tag_reference = *reinterpret_cast<const s_tag_reference*>(current_data_position);
@@ -718,4 +751,447 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instanc
 		}
 	}
 	return BCS_E_FAIL;
+}
+
+const blofeld::s_tag_struct_definition* inf_get_tag_struct_definition_by_persistent_id(const s_tag_persistent_identifier& persistent_identifier)
+{
+	for (const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions({ _engine_type_infinite }); *tag_struct_definitions; tag_struct_definitions++)
+	{
+		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definitions;
+
+		if (tag_struct_definition.persistent_identifier == persistent_identifier)
+		{
+			return &tag_struct_definition;
+		}
+	}
+
+	return nullptr;
+}
+
+class c_module_file_transplant
+{
+public:
+	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant;
+	s_engine_platform_build engine_platform_build;
+	c_infinite_ucs_reader& ucs_reader;
+	h_object& root_high_level;
+	const blofeld::s_tag_struct_definition& root_struct_definition;
+	c_infinite_cache_cluster& cache_cluster;
+	c_infinite_module_file_reader& cache_file_reader;
+
+	unsigned long root_struct_size;
+	const s_infinite_ucs_tag_block_data* tag_group_tag_block_entry;
+
+	BCS_RESULT transplant_module_file_data(
+		h_object& high_level,
+		long tag_block_index,
+		const char* const tag_block_data,
+		long nugget_index,
+		const char* current_data_position,
+		const s_tag_struct_definition& struct_definition)
+	{
+		BCS_RESULT rs = BCS_S_OK;
+
+#define use_byteswap() (engine_platform_build.platform_type == _platform_type_xbox_360)
+#define byteswap_helper_func(value) if (use_byteswap()) byteswap(value)
+#define basic_memory_read(type) \
+		{ \
+			type _value = *reinterpret_cast<const type*>(current_data_position); \
+			byteswap_helper_func(_value); \
+			*reinterpret_cast<type*>(high_level_field_data) = _value; \
+			break; \
+		}
+
+		for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
+		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
+			{
+				field += field_skip_count;
+				continue;
+			}
+
+			//ptrdiff_t diff = current_data_position - low_level_data;
+			//const char* field_type_str = field_to_string(field->field_type);
+			//c_console::write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
+
+			void* high_level_field_data = high_level.get_field_data(*field);
+
+			unsigned long field_size = cache_file_reader.get_field_size(*field);
+
+			if (high_level_field_data != nullptr)
+			{
+				switch (field->field_type)
+				{
+				case _field_string:							basic_memory_read(::c_static_string<32>);
+				case _field_long_string:					basic_memory_read(::c_static_string<256>);
+				case _field_char_integer:					basic_memory_read(char);
+				case _field_short_integer:					basic_memory_read(short);
+				case _field_long_integer:					basic_memory_read(long);
+				case _field_int64_integer:					basic_memory_read(long long);
+				case _field_angle:							basic_memory_read(angle);
+				case _field_tag:							basic_memory_read(tag);
+				case _field_point_2d:						basic_memory_read(::s_point2d);
+				case _field_rectangle_2d:					basic_memory_read(::s_rectangle2d);
+				case _field_rgb_color:						basic_memory_read(::pixel32);
+				case _field_argb_color:						basic_memory_read(::pixel32);
+				case _field_real:							basic_memory_read(::real);
+				case _field_real_fraction:					basic_memory_read(::real_fraction);
+				case _field_real_point_2d:					basic_memory_read(::real_point2d);
+				case _field_real_point_3d:					basic_memory_read(::real_point3d);
+				case _field_real_vector_2d:					basic_memory_read(::real_vector2d);
+				case _field_real_vector_3d:					basic_memory_read(::real_vector3d);
+				case _field_real_quaternion:				basic_memory_read(::real_quaternion);
+				case _field_real_euler_angles_2d:			basic_memory_read(::real_euler_angles2d);
+				case _field_real_euler_angles_3d:			basic_memory_read(::real_euler_angles3d);
+				case _field_real_plane_2d:					basic_memory_read(::real_plane2d);
+				case _field_real_plane_3d:					basic_memory_read(::real_plane3d);
+				case _field_real_rgb_color:					basic_memory_read(::rgb_color);
+				case _field_real_argb_color:				basic_memory_read(::argb_color);
+				case _field_real_hsv_color:					basic_memory_read(::real_hsv_color);
+				case _field_real_ahsv_color:				basic_memory_read(::real_ahsv_color);
+				case _field_short_bounds:					basic_memory_read(::short_bounds);
+				case _field_angle_bounds:					basic_memory_read(::angle_bounds);
+				case _field_real_bounds:					basic_memory_read(::real_bounds);
+				case _field_real_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
+				case _field_long_block_flags:				basic_memory_read(long);
+				case _field_word_block_flags:				basic_memory_read(word);
+				case _field_byte_block_flags:				basic_memory_read(byte);
+				case _field_char_block_index:				basic_memory_read(char);
+				case _field_custom_char_block_index:		basic_memory_read(char);
+				case _field_short_block_index:				basic_memory_read(short);
+				case _field_custom_short_block_index:		basic_memory_read(short);
+				case _field_long_block_index:				basic_memory_read(long);
+				case _field_custom_long_block_index:		basic_memory_read(long);
+				case _field_byte_integer:					basic_memory_read(byte);
+				case _field_word_integer:					basic_memory_read(word);
+				case _field_dword_integer:					basic_memory_read(dword);
+				case _field_qword_integer:					basic_memory_read(qword);
+				case _field_data_path:						basic_memory_read(::c_static_string<256>);
+				case _field_char_enum:
+				{
+					char data = *reinterpret_cast<const char*>(current_data_position);
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_enum:
+				{
+					short value = *reinterpret_cast<const short*>(current_data_position);
+					byteswap_helper_func(value);
+					long data = value;
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_long_enum:
+				{
+					long data = *reinterpret_cast<const long*>(current_data_position);
+					byteswap_helper_func(data);
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_long_flags:
+				{
+					dword data = *reinterpret_cast<const dword*>(current_data_position);
+					byteswap_helper_func(data);
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_word_flags:
+				{
+					word value = *reinterpret_cast<const word*>(current_data_position);
+					byteswap_helper_func(value);
+					dword data = value;
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_byte_flags:
+				{
+					dword data = *reinterpret_cast<const byte*>(current_data_position);
+					memcpy(high_level_field_data, &data, sizeof(data));
+				}
+				break;
+				case _field_struct:
+				{
+					h_object& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
+					transplant_module_file_data(struct_storage, tag_block_index, tag_block_data, nugget_index, current_data_position, *field->struct_definition);
+				}
+				break;
+				case _field_array:
+				{
+					h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
+					const char* raw_array_data_position = current_data_position;
+
+					unsigned long const block_struct_size = cache_file_reader.calculate_struct_size(field->array_definition->struct_definition);
+
+					unsigned long const array_elements_count = field->array_definition->count(engine_platform_build);
+					for (unsigned long array_index = 0; array_index < array_elements_count; array_index++)
+					{
+						h_object& array_element_storage = array_storage[array_index];
+
+						transplant_module_file_data(array_element_storage, tag_block_index, tag_block_data, nugget_index, raw_array_data_position, field->array_definition->struct_definition);
+
+						raw_array_data_position += block_struct_size;
+					}
+				}
+				break;
+				case _field_block:
+				{
+					s_infinite_ucs_block_field ucs_block_field = *reinterpret_cast<const s_infinite_ucs_block_field*>(current_data_position);
+					h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
+					block_storage.clear();
+
+					DEBUG_ASSERT(ucs_block_field.elements == 0xBCBCBCBCBCBCBCBC);
+					DEBUG_ASSERT(ucs_block_field.count != 0xBCBCBCBC);
+
+					if (ucs_block_field.count > 0)
+					{
+						const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
+						unsigned long const block_struct_size = cache_file_reader.calculate_struct_size(block_struct_definition);
+						unsigned long const total_block_struct_storage_size = block_struct_size * ucs_block_field.count;
+
+						ASSERT(current_data_position != nullptr);
+						ASSERT(tag_block_data != nullptr);
+						long offset = current_data_position - tag_block_data;
+
+						const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
+						long _tag_block_index = 01;
+						for (long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+						{
+							const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
+							const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];
+
+							if (current_tag_block_data.owner_block_index == nugget_index && current_tag_block_data.owner_block_offset == offset)
+							{
+								_tag_block_data = &current_tag_block_data;
+								_tag_block_index = block_index;
+								debug_point;
+								break;
+							}
+
+							debug_point;
+						}
+						ASSERT(_tag_block_data != nullptr);
+						ASSERT(_tag_block_data->nugget_index >= 0);
+						const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
+						ASSERT(nugget.size >= total_block_struct_storage_size);
+						ASSERT(nugget.size == total_block_struct_storage_size);
+
+						const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+						const char* const block_data = root_tag_data + nugget.offset;
+
+						block_storage.reserve(ucs_block_field.count);
+						
+						const char* block_data_position = block_data;
+						for (long block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
+						{
+							h_object& type = block_storage.emplace_back();
+
+							transplant_module_file_data(
+								type,
+								_tag_block_index,
+								block_data,
+								_tag_block_data->nugget_index,
+								block_data_position,
+								block_struct_definition);
+						}
+
+						debug_point;
+					}
+				}
+				break;
+				case _field_data:
+				{
+					const s_infinite_ucs_data_reference_field& ucs_data_reference_field = *reinterpret_cast<const s_infinite_ucs_data_reference_field*>(current_data_position);
+					if (ucs_data_reference_field.size > 0)
+					{
+						long offset = current_data_position - tag_block_data;
+
+						const s_infinite_ucs_data_reference_list* ucs_data_reference = nullptr;
+						for (unsigned long data_index = 0; data_index < ucs_reader.ucs_header->data_reference_count; data_index++)
+						{
+							const s_infinite_ucs_data_reference_list& current_ucs_data_reference = ucs_reader.tag_data_instances[data_index];
+							const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_ucs_data_reference.nugget_index];
+
+							if (current_ucs_data_reference.parent_tag_block_index == tag_block_index && current_ucs_data_reference.owner_block_offset == offset)
+							{
+								ucs_data_reference = &current_ucs_data_reference;
+								debug_point;
+							}
+
+							debug_point;
+						}
+						ASSERT(ucs_data_reference != nullptr);
+						const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[ucs_data_reference->nugget_index];
+						ASSERT(nugget.size >= ucs_data_reference_field.size);
+						ASSERT(nugget.size == ucs_data_reference_field.size);
+
+						const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+						const char* const block_data = root_tag_data + nugget.offset;
+						const char* const block_data_end = block_data + ucs_data_reference_field.size;
+
+						h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
+						data_storage.insert(data_storage.begin(), block_data, block_data_end);
+
+						debug_point;
+					}
+
+					debug_point;
+				}
+				break;
+				case _field_tag_reference:
+				{
+					s_infinite_ucs_tag_reference_field ucs_tag_reference_field = *reinterpret_cast<const s_infinite_ucs_tag_reference_field*>(current_data_position);
+
+					//ASSERT(ucs_tag_reference_field.type_info == 0xBCBCBCBCBCBCBCBC);
+					//ASSERT(ucs_tag_reference_field.name_length != 0xBCBCBCBC);
+					//ASSERT(ucs_tag_reference_field.global_id != 0xBCBCBCBC);
+					//ASSERT(ucs_tag_reference_field.unknown != 0xBCBCBCBC);
+					//ASSERT(ucs_tag_reference_field.group_tag != 0xBCBCBCBC);
+					//ASSERT(ucs_tag_reference_field.local_handle == 0xBCBCBCBC);
+
+					h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+
+					h_tag* tag_reference_high_level_tag = nullptr;
+					if (ucs_tag_reference_field.group_tag != blofeld::INVALID_TAG)
+					{
+						c_tag_instance* tag_instance = nullptr;
+						if (BCS_FAILED(rs = cache_cluster.get_tag_instance_by_global_tag_id_and_group_tag(ucs_tag_reference_field.global_id, ucs_tag_reference_field.group_tag, tag_instance)))
+						{
+							debug_point;
+						}
+						else
+						{
+							if (BCS_FAILED(rs = high_level_cache_cluster_transplant.get_global_tag_by_low_level_tag_instance(*tag_instance, tag_reference_high_level_tag)))
+							{
+								return rs;
+							}
+							debug_point;
+						}
+					}
+
+					tag_ref_storage = tag_reference_high_level_tag;
+
+					debug_point;
+				}
+				break;
+				case _field_pageable:
+				{
+					s_infinite_ucs_pageable_resource_field ucs_pageable_resource_field = *reinterpret_cast<const s_infinite_ucs_pageable_resource_field*>(current_data_position);
+
+					ASSERT(ucs_pageable_resource_field.unknownC == 0);
+
+					if (ucs_pageable_resource_field.unknownC > 0)
+					{
+						debug_point;
+					}
+
+					debug_point;
+				}
+				break;
+				case _field_string_id:
+				{
+					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+
+					string_id string_id = *reinterpret_cast<const ::string_id*>(current_data_position);
+					if (string_id != 0)
+					{
+						c_fixed_string_128 buffer;
+						buffer.format("hashed_string_id:0x%08X", string_id);
+						string_id_storage = buffer;
+					}
+				}
+				break;
+				default: throw;
+				}
+			}
+
+			current_data_position += field_size;
+		}
+
+		return rs;
+	}
+
+	long get_root_tag_block_entry_index()
+	{
+		for (long struct_index = 0; struct_index < ucs_reader.ucs_header->tag_block_count; struct_index++)
+		{
+			const s_infinite_ucs_tag_block_data& struct_entry = ucs_reader.tag_block_instances[struct_index];
+
+			if (struct_entry.type == _infinite_ucs_tag_block_type_tag_group)
+			{
+				return struct_index;
+			}
+
+		}
+		return -1;
+	}
+
+	c_module_file_transplant(
+		c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
+		s_engine_platform_build engine_platform_build,
+		h_object& root_high_level,
+		const blofeld::s_tag_struct_definition& struct_definition,
+		c_infinite_ucs_reader& ucs_reader,
+		c_infinite_cache_cluster& cache_cluster,
+		c_infinite_module_file_reader& cache_file_reader) :
+		high_level_cache_cluster_transplant(high_level_cache_cluster_transplant),
+		engine_platform_build(engine_platform_build),
+		ucs_reader(ucs_reader),
+		root_high_level(root_high_level),
+		root_struct_definition(struct_definition),
+		cache_cluster(cache_cluster),
+		cache_file_reader(cache_file_reader),
+		root_struct_size(cache_file_reader.calculate_struct_size(struct_definition)),
+		tag_group_tag_block_entry(nullptr)
+	{
+		long root_tag_block_entry_index = get_root_tag_block_entry_index();
+		ASSERT(root_tag_block_entry_index >= 0);
+		tag_group_tag_block_entry = &ucs_reader.tag_block_instances[root_tag_block_entry_index];
+		ASSERT(tag_group_tag_block_entry != nullptr);
+		ASSERT(tag_group_tag_block_entry->nugget_index >= 0);
+
+		const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[tag_group_tag_block_entry->nugget_index];
+		ASSERT(nugget.size >= root_struct_size);
+
+		const char* root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+		const char* tag_block_data = root_tag_data + nugget.offset;
+
+		transplant_module_file_data(
+			root_high_level,
+			root_tag_block_entry_index,
+			tag_block_data,
+			tag_group_tag_block_entry->nugget_index,
+			tag_block_data,
+			root_struct_definition);
+	}
+
+	~c_module_file_transplant()
+	{
+
+	}
+
+};
+
+BCS_RESULT c_high_level_cache_cluster_transplant::transplant_module_file_data(h_object& high_level, c_infinite_ucs_reader* ucs_reader, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
+{
+	try
+	{
+		c_module_file_transplant module_file_transplant = c_module_file_transplant(
+			*this,
+			engine_platform_build,
+			high_level,
+			struct_definition,
+			*ucs_reader,
+			*static_cast<c_infinite_cache_cluster*>(&cache_cluster),
+			*static_cast<c_infinite_module_file_reader*>(&cache_file_reader));
+	}
+	catch (BCS_RESULT rs)
+	{
+		return rs;
+	}
+	catch (...)
+	{
+		return BCS_E_FATAL;
+	}
+	return BCS_S_OK;
 }

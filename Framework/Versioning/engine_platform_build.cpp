@@ -42,6 +42,7 @@ static BCS_RESULT get_engine_type_string_impl(e_engine_type engine_type, e_engin
 		engine_type_type_string_pair(_engine_type_gen3_xbox360, "Xbox 360 Gen3", "xbox360_gen3", "xbox360gen3");
 		engine_type_type_string_pair(_engine_type_groundhog, "Groundhog", "groundhog", "groundhog");
 		engine_type_type_string_pair(_engine_type_halo5, "Halo 5 Forge", "halo5", "halo5");
+		engine_type_type_string_pair(_engine_type_infinite, "Halo Infinite", "infinite", "infinite");
 	}
 #undef platform_type_string_pair
 

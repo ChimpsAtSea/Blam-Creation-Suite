@@ -21,4 +21,4 @@ public:
 	c_h1_tag_reference_definition(const char* guerilla_data, const s_h1_tag_reference_definition& tag_reference_definition);
 };
 
-c_h1_tag_reference_definition* get_tag_reference_definition(const char* guerilla_data, ptr32 virtual_address);
+c_h1_tag_reference_definition* h1_get_tag_reference_definition(const char* guerilla_data, ptr32 virtual_address);

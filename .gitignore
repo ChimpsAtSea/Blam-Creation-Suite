@@ -382,7 +382,10 @@ MantleGen/LegacyGen/tag_groups_legacy.h
 *.PVS-Studio.preprocess.cmd.rsp
 *.PVS-Studio.preprocess.cmd
 *.PVS-Studio.cmd
-*.PVS-Studio.cfg
+*.PVS-Studio.
+
+#Temp Folder
+[Tt]emp/
 
 *Mustard.exe
 MantleGen/BlamlibGen/reflection_data.cpp

@@ -12,7 +12,7 @@ c_h1_tag_reference_definition::c_h1_tag_reference_definition(const char* guerill
 	{
 		group_tags.push_back(tag_reference_definition.group_tag);
 	}
-	else if (const tag* group_tag_pointer_begin = reinterpret_cast<const tag*>(va_to_pointer(guerilla_data, tag_reference_definition.group_tags_address)))
+	else if (const tag* group_tag_pointer_begin = reinterpret_cast<const tag*>(h1_va_to_pointer(guerilla_data, tag_reference_definition.group_tags_address)))
 	{
 		for (const tag* group_tag_pointer = group_tag_pointer_begin; *group_tag_pointer != 0xFFFFFFFFu; group_tag_pointer++)
 		{
@@ -22,7 +22,7 @@ c_h1_tag_reference_definition::c_h1_tag_reference_definition(const char* guerill
 
 	for (tag group_tag : group_tags)
 	{
-		c_h1_tag_group_definition* group_definition = get_tag_group_definition_by_group_tag(group_tag);
+		c_h1_tag_group_definition* group_definition = h1_get_tag_group_definition_by_group_tag(group_tag);
 		group_tags2.push_back(group_definition);
 
 		if (!name.empty())
@@ -48,7 +48,7 @@ c_h1_tag_reference_definition::c_h1_tag_reference_definition(const char* guerill
 	debug_point;
 }
 
-c_h1_tag_reference_definition* get_tag_reference_definition(const char* guerilla_data, ptr32 virtual_address)
+c_h1_tag_reference_definition* h1_get_tag_reference_definition(const char* guerilla_data, ptr32 virtual_address)
 {
 	std::map<ptr32, c_h1_tag_reference_definition*>::iterator tag_block_definition_iterator = tag_reference_definitions.find(virtual_address);
 
@@ -57,7 +57,7 @@ c_h1_tag_reference_definition* get_tag_reference_definition(const char* guerilla
 		return tag_block_definition_iterator->second;
 	}
 
-	const s_h1_tag_reference_definition* _tag_reference_definition = reinterpret_cast<const s_h1_tag_reference_definition*>(va_to_pointer(guerilla_data, virtual_address));
+	const s_h1_tag_reference_definition* _tag_reference_definition = reinterpret_cast<const s_h1_tag_reference_definition*>(h1_va_to_pointer(guerilla_data, virtual_address));
 	ASSERT(_tag_reference_definition != nullptr);
 
 	c_h1_tag_reference_definition* tag_reference_definition = reinterpret_cast<c_h1_tag_reference_definition*>(new char[sizeof(c_h1_tag_reference_definition)]);

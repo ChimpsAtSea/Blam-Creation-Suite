@@ -24,7 +24,7 @@ int c_blamboozle_h1_guerilla::run()
 		return 1;
 	}
 
-	ptr32(&layout_addresses)[halo1_num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(guerilla_data + va_to_pa(halo1_tag_layout_table_address));
+	ptr32(&layout_addresses)[halo1_num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(guerilla_data + h1_va_to_pa(halo1_tag_layout_table_address));
 
 	std::vector<c_h1_tag_group_definition*> group_definitions;
 
@@ -32,7 +32,7 @@ int c_blamboozle_h1_guerilla::run()
 	{
 		ptr32 tag_layout_virtual_address = layout_addresses[tag_layout_index];
 
-		c_h1_tag_group_definition* group_definition = get_tag_group_definition(guerilla_data, tag_layout_virtual_address);
+		c_h1_tag_group_definition* group_definition = h1_get_tag_group_definition(guerilla_data, tag_layout_virtual_address);
 		group_definitions.emplace_back(group_definition);
 	}
 
@@ -41,7 +41,7 @@ int c_blamboozle_h1_guerilla::run()
 		group_definition->traverse(guerilla_data);
 	}
 
-	fixup_tag_inheritance_structures();
+	h1_fixup_tag_inheritance_structures();
 	h1_export_code(group_definitions);
 
 	delete[] guerilla_data;

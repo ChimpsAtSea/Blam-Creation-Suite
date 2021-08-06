@@ -61,8 +61,10 @@ public:
 	static void show_startup_banner();
 	BCSAPI static void write_line_verbose(const char* format, ...);
 	BCSAPI static void write_line(const char* format, ...);
+	BCSAPI static void write(const char* format, ...);
 	static int (__cdecl *console_printf_impl)(const char* format, ...);
 	static void write_line_internal(const char* format, va_list args);
+	static void write_internal(const char* format, va_list args);
 
 private:
 	static bool AllocateConsole(const wchar_t* title);

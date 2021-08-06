@@ -53,7 +53,10 @@ namespace blofeld
 				case _field_block:
 					if (recursive_block)
 					{
-						next_struct_definition = &current_field->block_definition->struct_definition;
+						if (current_field->block_definition)
+						{
+							next_struct_definition = &current_field->block_definition->struct_definition;
+						}
 						break;
 					}
 				}

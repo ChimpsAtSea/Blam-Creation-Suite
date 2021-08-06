@@ -324,6 +324,7 @@
     <ClCompile Include="blofeld\weather\weather_control.cpp" />
     <ClCompile Include="blofeld\weather\weather_definition.cpp" />
     <ClCompile Include="blofeld\__unknown\tag_references.cpp" />
+    <ClCompile Include="blofeld\infinite.cpp" />
     <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_type.cpp" />
@@ -642,6 +643,7 @@
     <ClInclude Include="blofeld\weather\weather_control.h" />
     <ClInclude Include="blofeld\weather\weather_definition.h" />
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
+    <ClInclude Include="blofeld\infinite.h" />
     <ClInclude Include="macaque_field_type_override.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
@@ -674,6 +676,7 @@
     <None Include="blofeld\tag_groups.halo3odst.inl" />
     <None Include="blofeld\tag_groups.halo4.inl" />
     <None Include="blofeld\tag_groups.haloreach.inl" />
+    <None Include="blofeld\tag_groups.infinite.inl" />
     <None Include="blofeld\tag_groups.stubbs.inl" />
     <None Include="types\tag_field.ctor.inl" />
   </ItemGroup>
@@ -757,6 +760,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -783,6 +787,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -811,6 +816,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -838,6 +844,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>tagdefinitions-private-pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -3,7 +3,7 @@
 BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_engine_platform_build* engine_platform_build)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
-	
+
 	size_t buffer_length = strlen(filepath);
 	wchar_t* buffer = new(alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
 	mbstowcs(buffer, filepath, buffer_length + 1);
@@ -31,94 +31,106 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 	}
 	_fseeki64(file_handle, 0, SEEK_SET);
 
-	if (header.file_version == 5)
+	if (header.header_signature == _byteswap_ulong('mohd'))
 	{
-		ASSERT(header.header_signature == k_cache_header_signature);
+		// #TODO: support Halo 5 Forge
 
-		halo1::pc::s_cache_file_header header;
-		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
-		{
-			return BCS_E_FAIL;
-		}
-
-		if (header.build_version.is_empty())
-		{
-			// #TODO: check for 32bit stubbs
-			*engine_platform_build = { _engine_type_stubbs, _platform_type_pc_64bit, _build_stubbs };
-		}
-		else
-		{
-			// #TODO: validate xbox build
-			*engine_platform_build = { _engine_type_halo1, _platform_type_xbox, _build_halo1_xbox };
-		}
-
+		*engine_platform_build = { _engine_type_infinite, _platform_type_pc_64bit, _build_infinite_FLT002INT_199229_21_07_20_0001 };
 		return BCS_S_OK;
 	}
-	if (header.file_version == 6)
+
+	//if (header.header_signature == _byteswap_ulong('head') || header.header_signature == 'head')
 	{
-		if (header.header_signature == k_cache_header_signature)
+		if (header.file_version == 5)
 		{
+			ASSERT(header.header_signature == k_cache_header_signature);
+
 			halo1::pc::s_cache_file_header header;
 			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
 			{
 				return BCS_E_FAIL;
 			}
-			if (strcmp(header.build_version.get_buffer(), "01.05.22.0268") == 0)
+
+			if (header.build_version.is_empty())
 			{
-				*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_beta_01_05_22_0268 };
+				// #TODO: check for 32bit stubbs
+				*engine_platform_build = { _engine_type_stubbs, _platform_type_pc_64bit, _build_stubbs };
+			}
+			else
+			{
+				// #TODO: validate xbox build
+				*engine_platform_build = { _engine_type_halo1, _platform_type_xbox, _build_halo1_xbox };
+			}
+
+			return BCS_S_OK;
+		}
+		if (header.file_version == 6)
+		{
+			if (header.header_signature == k_cache_header_signature)
+			{
+				halo1::pc::s_cache_file_header header;
+				if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+				{
+					return BCS_E_FAIL;
+				}
+				if (strcmp(header.build_version.get_buffer(), "01.05.22.0268") == 0)
+				{
+					*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_beta_01_05_22_0268 };
+					return BCS_S_OK;
+				}
+			}
+			else
+			{
+				halo1::pc::s_cache_file_header header;
+				if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+				{
+					return BCS_E_FAIL;
+				}
+				// #TODO: validate demo build
+				*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_demo };
 				return BCS_S_OK;
 			}
 		}
-		else
+		if (header.file_version == 7)
+		{
+			halo1::demo::s_cache_file_header header;
+			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			{
+				return BCS_E_FAIL;
+			}
+			// #TODO: validate retail build
+			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_pc_retail };
+			return BCS_S_OK;
+		}
+		if (header.file_version == 609)
 		{
 			halo1::pc::s_cache_file_header header;
 			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
 			{
 				return BCS_E_FAIL;
 			}
-			// #TODO: validate demo build
-			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_demo };
-			return BCS_S_OK;
+			if (strcmp(header.build_version.get_buffer(), "01.00.00.0609") == 0)
+			{
+				*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
+				return BCS_S_OK;
+			}
 		}
-	}
-	if (header.file_version == 7)
-	{
-		halo1::demo::s_cache_file_header header;
-		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
-		{
-			return BCS_E_FAIL;
-		}
-		// #TODO: validate retail build
-		*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_pc_retail };
+
+
+		*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
+		return BCS_S_OK;
+
+
+
+		// #TODO determine the engine platform
+
+		engine_platform_build->engine_type = _engine_type_gen3_xbox360;
+		engine_platform_build->platform_type = _platform_type_xbox_360;
+		engine_platform_build->build = _build_not_set;
+
 		return BCS_S_OK;
 	}
-	if (header.file_version == 609)
-	{
-		halo1::pc::s_cache_file_header header;
-		if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
-		{
-			return BCS_E_FAIL;
-		}
-		if (strcmp(header.build_version.get_buffer(), "01.00.00.0609") == 0)
-		{
-			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
-			return BCS_S_OK;
-		}
-	}
-
-
-	*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
-	return BCS_S_OK;
-
-
-
-	// #TODO determine the engine platform
-
-	engine_platform_build->engine_type = _engine_type_gen3_xbox360;
-	engine_platform_build->platform_type = _platform_type_xbox_360;
-	engine_platform_build->build = _build_not_set;
-
-	return BCS_S_OK;
+	return BCS_E_FAIL;
 }
 
 BCSAPI BCS_RESULT open_cache_file_reader(const char* filepath, s_engine_platform_build engine_platform_build, bool read_only, bool memory_mapped_file, c_cache_file_reader** cache_file)
@@ -166,7 +178,16 @@ BCSAPI BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platf
 				*cache_file = new c_halo4_cache_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
 			}
+
+		case _engine_type_infinite:
+			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
+			{
+				*cache_file = new c_infinite_module_file_reader(filepath, engine_platform_build);
+				return BCS_S_OK;
+			}
 		}
+
+
 	}
 	catch (BCS_RESULT error_result)
 	{
@@ -205,7 +226,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_buffer(c_cache_file_reader* cache_reader
 	BCS_VALIDATE_ARGUMENT(buffer_index < k_num_cache_file_buffers);
 	BCS_VALIDATE_ARGUMENT(buffer_info);
 
-	return cache_reader->get_buffer(buffer_index , *buffer_info);
+	return cache_reader->get_buffer(buffer_index, *buffer_info);
 }
 
 BCSAPI BCS_RESULT get_cache_file_reader_buffers(c_cache_file_reader* cache_reader, s_cache_file_buffers_info* buffers_info)
@@ -231,6 +252,12 @@ BCSAPI BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint
 		if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
+
+			return BCS_S_OK;
+		}
+		if (c_infinite_module_file_reader* infinite_module_file = dynamic_cast<c_infinite_module_file_reader*>(*cache_readers))
+		{
+			*cache_cluster = new c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
 		}
@@ -266,7 +293,7 @@ BCSAPI BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_
 	if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 	{
 		result = halo4_cache_cluster->get_debug_reader(
-			*static_cast<c_halo4_cache_file_reader*>(cache_reader), 
+			*static_cast<c_halo4_cache_file_reader*>(cache_reader),
 			*reinterpret_cast<c_halo4_debug_reader**>(debug_reader));
 	}
 	return result;

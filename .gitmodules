@@ -10,3 +10,6 @@
 [submodule "discord-rpc"]
 	path = ThirdParty/discord-rpc
 	url = https://github.com/Assault-on-the-Control-Room/discord-rpc.git
+[submodule "ThirdParty\\vcpkg\\vcpkg"]
+	path = ThirdParty\\vcpkg\\vcpkg
+	url = https://github.com/Microsoft/vcpkg.git

@@ -1,0 +1,165 @@
+#include "blamboozlelib-private-pch.h"
+
+const char* inf_field_type_to_string(e_inf_field_type field_type)
+{
+	switch (field_type)
+	{
+	case _inf_field_type_string:														return "string";
+	case _inf_field_type_long_string:													return "long_string";
+	case _inf_field_type_string_id:														return "string_id";
+	case _inf_field_type_old_string_id:													return "old_string_id";
+	case _inf_field_type_char_integer:													return "char_integer";
+	case _inf_field_type_short_integer:													return "short_integer";
+	case _inf_field_type_long_integer:													return "long_integer";
+	case _inf_field_type_int64_integer:													return "int64_integer";
+	case _inf_field_type_angle:															return "angle";
+	case _inf_field_type_tag:															return "tag";
+	case _inf_field_type_char_enum:														return "char_enum";
+	case _inf_field_type_short_enum:													return "short_enum";
+	case _inf_field_type_long_enum:														return "long_enum";
+	case _inf_field_type_long_flags:													return "long_flags";
+	case _inf_field_type_word_flags:													return "word_flags";
+	case _inf_field_type_byte_flags:													return "byte_flags";
+	case _inf_field_type_point_2d:														return "point_2d";
+	case _inf_field_type_rectangle_2d:													return "rectangle_2d";
+	case _inf_field_type_rgb_color:														return "rgb_color";
+	case _inf_field_type_argb_color:													return "argb_color";
+	case _inf_field_type_real:															return "real";
+	case _inf_field_type_real_fraction:													return "real_fraction";
+	case _inf_field_type_real_point_2d:													return "real_point_2d";
+	case _inf_field_type_real_point_3d:													return "real_point_3d";
+	case _inf_field_type_real_vector_2d:												return "real_vector_2d";
+	case _inf_field_type_real_vector_3d:												return "real_vector_3d";
+	case _inf_field_type_real_quaternion:												return "real_quaternion";
+	case _inf_field_type_real_euler_angles_2d:											return "real_euler_angles_2d";
+	case _inf_field_type_real_euler_angles_3d:											return "real_euler_angles_3d";
+	case _inf_field_type_real_plane_2d:													return "real_plane_2d";
+	case _inf_field_type_real_plane_3d:													return "real_plane_3d";
+	case _inf_field_type_real_rgb_color:												return "real_rgb_color";
+	case _inf_field_type_real_argb_color:												return "real_argb_color";
+	case _inf_field_type_real_hsv_color:												return "real_hsv_color";
+	case _inf_field_type_real_ahsv_color:												return "real_ahsv_color";
+	case _inf_field_type_short_integer_bounds:											return "short_integer_bounds";
+	case _inf_field_type_angle_bounds:													return "angle_bounds";
+	case _inf_field_type_real_bounds:													return "real_bounds";
+	case _inf_field_type_fraction_bounds:												return "fraction_bounds";
+	case _inf_field_type_tag_reference:													return "tag_reference";
+	case _inf_field_type_block:															return "block";
+	case _inf_field_type_long_block_flags:												return "long_block_flags";
+	case _inf_field_type_word_block_flags:												return "word_block_flags";
+	case _inf_field_type_byte_block_flags:												return "byte_block_flags";
+	case _inf_field_type_char_block_index:												return "char_block_index";
+	case _inf_field_type_custom_char_block_index:										return "custom_char_block_index";
+	case _inf_field_type_short_block_index:												return "short_block_index";
+	case _inf_field_type_custom_short_block_index:										return "custom_short_block_index";
+	case _inf_field_type_long_block_index:												return "long_block_index";
+	case _inf_field_type_custom_long_block_index:										return "custom_long_block_index";
+	case _inf_field_type_data:															return "data";
+	case _inf_field_type_vertex_buffer:													return "vertex_buffer";
+	case _inf_field_type_pad:															return "pad";
+	case _inf_field_type_skip:															return "skip";
+	case _inf_field_type_explanation:													return "explanation";
+	case _inf_field_type_custom:														return "custom";
+	case _inf_field_type_struct:														return "struct";
+	case _inf_field_type_array:															return "array";
+	case _inf_field_type_pageable_resource:												return "pageable_resource";
+	case _inf_field_type_terminator_X:													return "terminator_X";
+	case _inf_field_type_byte_integer:													return "byte_integer";
+	case _inf_field_type_word_integer:													return "word_integer";
+	case _inf_field_type_dword_integer:													return "dword_integer";
+	case _inf_field_type_qword_integer:													return "qword_integer";
+	case _inf_field_type_block_v2:														return "block_v2";
+	case _inf_field_type_reference_v2:													return "reference_v2";
+	case _inf_field_type_data_v2:														return "data_v2";
+	case _inf_field_type_pageable_resource_64:											return "pageable_resource_64";
+	case _inf_field_type_data_path:														return "data_path";
+	case _inf_field_type_embedded_tag:													return "embedded_tag";
+	case _inf_field_type_UNUSED:														return "UNUSED";
+	case _inf_field_type_block_64:														return "block_64";
+	case _inf_field_type_tag_reference_64:												return "tag_reference_64";
+	case _inf_field_type_data_64:														return "data_64";
+	}
+	return nullptr;
+}
+
+const char* inf_field_type_to_generic_field_type(e_inf_field_type field_type)
+{
+	switch (field_type)
+	{
+	case _inf_field_type_string:														return "_field_string";
+	case _inf_field_type_long_string:													return "_field_long_string";
+	case _inf_field_type_string_id:														return "_field_string_id";
+	case _inf_field_type_old_string_id:													return "_field_old_string_id";
+	case _inf_field_type_char_integer:													return "_field_char_integer";
+	case _inf_field_type_short_integer:													return "_field_short_integer";
+	case _inf_field_type_long_integer:													return "_field_long_integer";
+	case _inf_field_type_int64_integer:													return "_field_int64_integer";
+	case _inf_field_type_angle:															return "_field_angle";
+	case _inf_field_type_tag:															return "_field_tag";
+	case _inf_field_type_char_enum:														return "_field_char_enum";
+	case _inf_field_type_short_enum:													return "_field_enum";
+	case _inf_field_type_long_enum:														return "_field_long_enum";
+	case _inf_field_type_long_flags:													return "_field_long_flags";
+	case _inf_field_type_word_flags:													return "_field_word_flags";
+	case _inf_field_type_byte_flags:													return "_field_byte_flags";
+	case _inf_field_type_point_2d:														return "_field_point_2d";
+	case _inf_field_type_rectangle_2d:													return "_field_rectangle_2d";
+	case _inf_field_type_rgb_color:														return "_field_rgb_color";
+	case _inf_field_type_argb_color:													return "_field_argb_color";
+	case _inf_field_type_real:															return "_field_real";
+	case _inf_field_type_real_fraction:													return "_field_real_fraction";
+	case _inf_field_type_real_point_2d:													return "_field_real_point_2d";
+	case _inf_field_type_real_point_3d:													return "_field_real_point_3d";
+	case _inf_field_type_real_vector_2d:												return "_field_real_vector_2d";
+	case _inf_field_type_real_vector_3d:												return "_field_real_vector_3d";
+	case _inf_field_type_real_quaternion:												return "_field_real_quaternion";
+	case _inf_field_type_real_euler_angles_2d:											return "_field_real_euler_angles_2d";
+	case _inf_field_type_real_euler_angles_3d:											return "_field_real_euler_angles_3d";
+	case _inf_field_type_real_plane_2d:													return "_field_real_plane_2d";
+	case _inf_field_type_real_plane_3d:													return "_field_real_plane_3d";
+	case _inf_field_type_real_rgb_color:												return "_field_real_rgb_color";
+	case _inf_field_type_real_argb_color:												return "_field_real_argb_color";
+	case _inf_field_type_real_hsv_color:												return "_field_real_hsv_color";
+	case _inf_field_type_real_ahsv_color:												return "_field_real_ahsv_color";
+	case _inf_field_type_short_integer_bounds:											return "_field_short_bounds";
+	case _inf_field_type_angle_bounds:													return "_field_angle_bounds";
+	case _inf_field_type_real_bounds:													return "_field_real_bounds";
+	case _inf_field_type_fraction_bounds:												return "_field_real_fraction_bounds";
+	case _inf_field_type_tag_reference:													return "_field_tag_reference";
+	case _inf_field_type_block:															return "_field_block";
+	case _inf_field_type_long_block_flags:												return "_field_long_block_flags";
+	case _inf_field_type_word_block_flags:												return "_field_word_block_flags";
+	case _inf_field_type_byte_block_flags:												return "_field_byte_block_flags";
+	case _inf_field_type_char_block_index:												return "_field_char_block_index";
+	case _inf_field_type_custom_char_block_index:										return "_field_custom_char_block_index";
+	case _inf_field_type_short_block_index:												return "_field_short_block_index";
+	case _inf_field_type_custom_short_block_index:										return "_field_custom_short_block_index";
+	case _inf_field_type_long_block_index:												return "_field_long_block_index";
+	case _inf_field_type_custom_long_block_index:										return "_field_custom_long_block_index";
+	case _inf_field_type_data:															return "_field_data";
+	case _inf_field_type_vertex_buffer:													return "_field_vertex_buffer";
+	case _inf_field_type_pad:															return "_field_pad";
+	case _inf_field_type_skip:															return "_field_skip";
+	case _inf_field_type_explanation:													return "_field_explanation";
+	case _inf_field_type_custom:														return "_field_custom";
+	case _inf_field_type_struct:														return "_field_struct";
+	case _inf_field_type_array:															return "_field_array";
+	case _inf_field_type_pageable_resource:												return "_field_pageable";
+	case _inf_field_type_terminator_X:													return "_field_terminator_X";
+	case _inf_field_type_byte_integer:													return "_field_byte_integer";
+	case _inf_field_type_word_integer:													return "_field_word_integer";
+	case _inf_field_type_dword_integer:													return "_field_dword_integer";
+	case _inf_field_type_qword_integer:													return "_field_qword_integer";
+	case _inf_field_type_block_v2:														return "_field_block";
+	case _inf_field_type_reference_v2:													return "_field_tag_reference";
+	case _inf_field_type_data_v2:														return "_field_data";
+	case _inf_field_type_pageable_resource_64:											return "_field_pageable";
+	case _inf_field_type_data_path:														return "_field_data_path";
+	case _inf_field_type_embedded_tag:													return "_field_embedded_tag";
+	case _inf_field_type_UNUSED:														return "_field_UNUSED";
+	case _inf_field_type_block_64:														return "_field_block";
+	case _inf_field_type_tag_reference_64:												return "_field_tag_reference";
+	case _inf_field_type_data_64:														return "_field_data";
+	}
+	return nullptr;
+}

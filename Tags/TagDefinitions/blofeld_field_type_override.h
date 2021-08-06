@@ -70,6 +70,9 @@
 #define _field_dword_integer _field_dword_integer, __FILE__, __LINE__
 #define _field_qword_integer _field_qword_integer, __FILE__, __LINE__
 
+#define _field_data_path _field_data_path, __FILE__, __LINE__
+#define _field_embedded_tag _field_embedded_tag, __FILE__, __LINE__
+
 #define _field_pointer _field_pointer, __FILE__, __LINE__
 #define _field_half _field_half, __FILE__, __LINE__
 #define _field_version_equal _field_version_equal, __FILE__, __LINE__

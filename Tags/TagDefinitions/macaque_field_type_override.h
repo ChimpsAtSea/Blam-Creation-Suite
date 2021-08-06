@@ -177,6 +177,9 @@
 #define _field_dword_integer blofeld::_field_dword_integer, __FILE__, __LINE__
 #define _field_qword_integer blofeld::_field_qword_integer, __FILE__, __LINE__
 
+#define _field_data_path blofeld::_field_data_path, __FILE__, __LINE__
+#define _field_embedded_tag blofeld::_field_embedded_tag, __FILE__, __LINE__
+
 #define _field_pointer blofeld::_field_pointer, __FILE__, __LINE__
 #define _field_half blofeld::_field_half, __FILE__, __LINE__
 #define _field_version_equal blofeld::_field_version_equal, __FILE__, __LINE__

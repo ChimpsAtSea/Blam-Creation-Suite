@@ -17,6 +17,7 @@ enum e_engine_type : uint8_t
 	_engine_type_gen3_xbox360,
 	_engine_type_groundhog,
 	_engine_type_halo5,
+	_engine_type_infinite,
 	k_number_of_engine_types
 };
 
@@ -100,7 +101,8 @@ enum e_build : uint64_t
 	_build_halo2_guerilla = MAKE_TOOL_VERSION(1, 0, 0, 0, "Tag Editor", "Halo 2 for Windows Vista"),
 	_build_halo5_forge_1_114_4592_2 = HASH_VERSION(0xc64ebca380e26cdd),
 	_build_halo5_forge_1_194_6192_2 = HASH_VERSION(0xf1bafafca2ec154b),
-	_build_midnight_tag_test_untracked_november_13_2013 = HASH_VERSION(0x4ecd85f51db2868a)
+	_build_midnight_tag_test_untracked_november_13_2013 = HASH_VERSION(0x4ecd85f51db2868a),
+	_build_infinite_FLT002INT_199229_21_07_20_0001 = MAKE_FILE_VERSION(1, 2621, 21, 720) // Halo Infinite Flight 30/7/2021
 };
 
 #undef MAKE_FILE_VERSION

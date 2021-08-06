@@ -166,7 +166,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 	{
 		c_settings::read_wstring(_settings_section_mandrill, k_previous_open_maps_setting, open_maps_buffer.str(), open_maps_buffer.capacity(), L"");
 	}
-	
+
 
 	c_fixed_wide_path selected_map_path;
 	c_fixed_string_64k selected_map_tags_list;
@@ -227,7 +227,7 @@ void c_mandrill_user_interface::restore_previous_session(bool use_projects)
 	// #TODO: this is a hack. 
 	// store a pointer to the selected tab, and make it selected using the pointer
 	// rather than opening up the tab again
-	if (!selected_map_path.empty()) 
+	if (!selected_map_path.empty())
 	{
 		if (use_projects)
 		{
@@ -354,6 +354,8 @@ void c_mandrill_user_interface::render_impl()
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
+		ImVec2 window_start_position = ImGui::GetCursorPos();
+
 		render_menu_gui_impl(_menu_render_type_root);
 
 		if (ImGui::BeginTabBar("##root"))
@@ -361,7 +363,8 @@ void c_mandrill_user_interface::render_impl()
 			c_mandrill_tab* next_selected_tab_temp = next_selected_tab; // read as children can invalidate this value
 
 			next_selected_tab = nullptr;
-			for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+			auto children_copy = children; // #TODO: remove the requirement for this copy
+			for (c_mandrill_tab& tab : c_reference_loop(children_copy.data(), children_copy.size()))
 			{
 				tab.render(next_selected_tab_temp == &tab);
 			}
@@ -369,6 +372,51 @@ void c_mandrill_user_interface::render_impl()
 			ImGui::EndTabBar();
 		}
 
+		ImVec2 cursor_start_position = ImGui::GetCursorPos();
+		{
+			ImVec4 username_colors[] =
+			{
+				{ 0.8f, 0.0f, 0.0f, 1.0f },
+				ImGui::GetStyleColorVec4(ImGuiCol_Text),
+				{ 0.8f, 0.42f, 0.0f, 1.0f },
+				{ 0.0f, 0.48f, 0.8f, 1.0f },
+				{ 0.18f, 0.8f, 0.39f, 1.0f },
+			};
+			static long user_type = keys_user_type();
+			if (user_type >= 3)
+			{
+				long user_type_color_index = __min(_countof(username_colors) - 1, user_type);
+				ImVec4& color = username_colors[user_type_color_index];
+				ImGui::PushStyleColor(ImGuiCol_Text, color);
+
+				char buffer[256];
+				const char* username = keys_user_name();
+				unsigned long discriminator = keys_user_discriminator();
+				snprintf(buffer, sizeof(buffer), "%s#%lu", username, discriminator);
+
+				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				ImVec2 text_size = ImGui::CalcTextSize(buffer);
+				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - text_size.x), window_start_position.y });
+				ImGui::TextUnformatted(buffer);
+
+				ImGui::PopStyleColor();
+			}
+			else if(user_type == 0)
+			{
+				ImVec4& color = username_colors[0];
+				ImGui::PushStyleColor(ImGuiCol_Text, color);
+
+				const char* text = "Limited Access";
+				float content_region_width = ImGui::GetContentRegionAvailWidth();
+				ImVec2 text_size = ImGui::CalcTextSize(text);
+				ImVec2 item_spacing = ImGui::GetStyle().ItemSpacing;
+				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - (text_size.x + item_spacing.x)), window_start_position.y });
+				ImGui::TextUnformatted(text);
+
+				ImGui::PopStyleColor();
+			}
+		}
+		ImGui::SetCursorPos(cursor_start_position);
 	}
 	ImGui::End();
 
@@ -460,21 +508,47 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 {
 	if (show_create_tag_project_file_dialogue)
 	{
-		float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
-		float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
-		if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".exe,.xex,.dll"))
+		static long user_type = keys_user_type();
+		if (user_type)
 		{
-			show_create_tag_project_file_dialogue = false;
-
-			std::string selected_path = file_browser->get_current_path();
-			if (!selected_path.empty())
+			float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
+			float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
+			if (file_browser->show_open_file_dialog("Create Tag Project", ImVec2(file_browser_window_width, file_browser_window_height), ".exe,.xex,.dll"))
 			{
-				c_settings::write_string(_settings_section_mandrill, k_previous_open_filepath_setting, selected_path.c_str());
-				c_fixed_wide_path selected_path_buffer;
-				selected_path_buffer.format(L"%S", selected_path.c_str());
-				open_tag_project_configurator_tab(selected_path_buffer.c_str());
+				show_create_tag_project_file_dialogue = false;
+
+				std::string selected_path = file_browser->get_current_path();
+				if (!selected_path.empty())
+				{
+					c_settings::write_string(_settings_section_mandrill, k_previous_open_filepath_setting, selected_path.c_str());
+					c_fixed_wide_path selected_path_buffer;
+					selected_path_buffer.format(L"%S", selected_path.c_str());
+					open_tag_project_configurator_tab(selected_path_buffer.c_str());
+				}
 			}
 		}
+		else
+		{
+			ImVec2 window_position = { 100, 100 };
+			ImVec2 window_size = { 800, 600 };
+
+			ImGui::SetNextWindowPos(window_position, ImGuiCond_Always);
+			ImGui::SetNextWindowSize(window_size, ImGuiCond_Always);
+			ImGui::SetNextWindowFocus();
+			
+			if (ImGui::Begin("Join Chimps at Sea", &show_create_tag_project_file_dialogue, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
+			{
+				ImGui::TextUnformatted("This build of Mandrill requires Discord verification to use");
+				ImGui::Spacing();
+
+				if (ImGui::Button("Join Discord"))
+				{
+					ShellExecute(0, 0, L"https://discord.gg/XhPcuhCSYB", 0, 0, SW_SHOW);
+				}
+			}
+			ImGui::End();
+		}
+
 	}
 	else if (show_open_cache_file_dialogue)
 	{

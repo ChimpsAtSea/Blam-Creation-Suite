@@ -119,13 +119,13 @@ void c_high_level_tag_editor_tab::render_impl()
 		ImGui::SetCursorScreenPos(text_pos);
 
 
-		ImGui::SameLine(0.0f, 25.0f);
-		static bool use_live_mode = false;
-		ImGui::Checkbox("Use Live Mode", &use_live_mode);
-		ImGui::SameLine(0.0f, 25.0f);
-		ImGui::Text("Status:");
-		ImGui::SameLine();
-		ImGui::Text("Ready");
+		//ImGui::SameLine(0.0f, 25.0f);
+		//static bool use_live_mode = false;
+		//ImGui::Checkbox("Use Live Mode", &use_live_mode);
+		//ImGui::SameLine(0.0f, 25.0f);
+		//ImGui::Text("Status:");
+		//ImGui::SameLine();
+		//ImGui::Text("Ready");
 
 
 		finish_pos.x = start_pos.x;
@@ -305,7 +305,7 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(safe_string(field.units), static_cast<char*>(data), 32);
 		}
-		else if constexpr (field_type == _field_long_string)
+		else if constexpr (field_type == _field_long_string || field_type == _field_data_path)
 		{
 			ImGui::SetNextItemWidth(350.0f);
 			result = ImGui::InputText(safe_string(field.units), static_cast<char*>(data), 256);
@@ -1072,14 +1072,17 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		const char* selected_string_value = "<INVALID VALUE>";
 		bool current_string_has_tooltip = false;
 
-		if (const c_blamlib_string_parser* selected_string_parser = string_list_values[value])
+		if (static_cast<unsigned long>(value) < string_list_count)
 		{
-			if (current_string_has_tooltip = !selected_string_parser->description.empty())
+			if (const c_blamlib_string_parser* selected_string_parser = string_list_values[value])
 			{
-				ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
-			}
+				if (current_string_has_tooltip = !selected_string_parser->description.empty())
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
+				}
 
-			selected_string_value = selected_string_parser->display_name.c_str();
+				selected_string_value = selected_string_parser->display_name.c_str();
+			}
 		}
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
@@ -1257,6 +1260,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_real_euler_angles_3d:			data_modified = render_primitive<_field_real_euler_angles_3d>(field_data, field); break;
 		case _field_angle_bounds:					data_modified = render_primitive<_field_angle_bounds>(field_data, field); break;
 		case _field_string:							data_modified = render_primitive<_field_string>(field_data, field); break;
+		case _field_data_path:						data_modified = render_primitive<_field_data_path>(field_data, field); break;
 		case _field_long_string:					data_modified = render_primitive<_field_long_string>(field_data, field); break;
 		case _field_string_id:						data_modified = render_primitive<_field_string_id>(field_data, field); break;
 		case _field_old_string_id:					data_modified = render_primitive<_field_old_string_id>(field_data, field); break;
@@ -1267,6 +1271,7 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_enum:							data_modified = render_enum_definition(field_data, field); break;
 		case _field_long_enum:						data_modified = render_enum_definition(field_data, field); break;
 		case _field_tag_reference:
+		case _field_embedded_tag:
 		{
 			h_tag*& tag_reference = *static_cast<h_tag**>(field_data);
 			data_modified = render_tag_reference(tag_reference, field);

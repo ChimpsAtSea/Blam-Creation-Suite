@@ -23,20 +23,26 @@
 	  
 	  <IncludePath>$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>
-	  <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm\llvm\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm\clang\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\tools\clang\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\discord-rpc\include\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\include\;$(IncludePath)</IncludePath>
 	  
 	  <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
-	  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\discord-rpc-build\cmake_$(PlatformShortName)\src\$(Configuration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
+	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  
+  <ItemDefinitionGroup Condition="Exists('$(OutDir)Keys.lib')">
+	<Link>
+	  <AdditionalDependencies>Keys.lib;%(AdditionalDependencies)</AdditionalDependencies>
+	</Link>
+  </ItemDefinitionGroup>
 </Project>

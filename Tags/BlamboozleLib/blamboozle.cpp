@@ -28,12 +28,14 @@ int blamboozle_run()
 	std::wstring halo1_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo1-guerilla");
 	std::wstring halo2_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo2-guerilla");
 	std::wstring halo5_forge_file = c_command_line::get_command_line_warg("-blamboozle-halo5-forge");
+	std::wstring infinite_preview_file = c_command_line::get_command_line_warg("-blamboozle-infinite");
 	std::wstring halo4_midnight_tags_test = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test");
 
 	if (
 		halo1_guerilla_file.empty() && 
-		halo2_guerilla_file.empty() && 
-		halo5_forge_file.empty() && 
+		halo2_guerilla_file.empty() &&
+		halo5_forge_file.empty() &&
+		infinite_preview_file.empty() &&
 		halo4_midnight_tags_test.empty())
 	{
 		c_console::write_line_verbose("No binary file(s) specified");
@@ -63,88 +65,98 @@ int blamboozle_run()
 		result += blamboozle_run(output_directory.c_str(), halo5_forge_file.c_str(), _engine_type_halo5);
 	}
 
+	if (!infinite_preview_file.empty())
+	{
+		result += blamboozle_run(output_directory.c_str(), infinite_preview_file.c_str(), _engine_type_infinite, true);
+	}
+
 	return result;
 }
 
 int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepath, e_engine_type engine_type, bool skip_hash_check)
 {
-	char* binary_data = nullptr;
-	size_t binary_data_size = 0;
-	if (!filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
+	if (!skip_hash_check)
 	{
-		c_console::write_line_verbose("Failed to open binary file");
-		return 1;
-	}
-	if (binary_data_size == 0)
-	{
-		c_console::write_line_verbose("Binary file was zero sized");
-		return 1;
-	}
 
-	e_build build = _build_not_set;
-
-	{
-		uint64_t library_file_version;
-		wchar_t library_description[2048];
-		wchar_t library_product_name[2048];
-
-		ASSERT(BCS_SUCCEEDED(get_library_file_version(binary_filepath, &library_file_version)));
-		ASSERT(BCS_SUCCEEDED(get_library_description(binary_filepath, library_description, _countof(library_description))));
-		ASSERT(BCS_SUCCEEDED(get_library_product_name(binary_filepath, library_product_name, _countof(library_product_name))));
-
-		uint64_t tool_version = make_tool_version_runtime(library_file_version, library_description, library_product_name);
-
-		if (tool_version == _build_halo1_guerilla)
+		char* binary_data = nullptr;
+		size_t binary_data_size = 0;
+		if (!filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
 		{
-			build = _build_halo1_guerilla;
-			engine_type = _engine_type_halo1;
+			c_console::write_line_verbose("Failed to open binary file");
+			return 1;
 		}
-		else if (tool_version == _build_halo2_guerilla)
+		if (binary_data_size == 0)
 		{
-			build = _build_halo2_guerilla;
-			engine_type = _engine_type_halo2;
+			c_console::write_line_verbose("Binary file was zero sized");
+			return 1;
 		}
-	}
 
-	if (build == _build_not_set && !skip_hash_check)
-	{
-		build = _build_midnight_tag_test_untracked_november_13_2013;
-		engine_type = _engine_type_halo4;
+		e_build build = _build_not_set;
 
-		uint64_t hash = xxhash::xxh64(binary_data, binary_data_size);
-
-		if (hash == _build_halo5_forge_1_114_4592_2)
 		{
-			build = _build_halo5_forge_1_114_4592_2;
-			engine_type = _engine_type_halo5;
+			uint64_t library_file_version;
+			wchar_t library_description[2048];
+			wchar_t library_product_name[2048];
+
+			ASSERT(BCS_SUCCEEDED(get_library_file_version(binary_filepath, &library_file_version)) || skip_hash_check);
+			ASSERT(BCS_SUCCEEDED(get_library_description(binary_filepath, library_description, _countof(library_description))) || skip_hash_check);
+			ASSERT(BCS_SUCCEEDED(get_library_product_name(binary_filepath, library_product_name, _countof(library_product_name))) || skip_hash_check);
+
+			uint64_t tool_version = make_tool_version_runtime(library_file_version, library_description, library_product_name);
+
+			if (tool_version == _build_halo1_guerilla)
+			{
+				build = _build_halo1_guerilla;
+				engine_type = _engine_type_halo1;
+			}
+			else if (tool_version == _build_halo2_guerilla)
+			{
+				build = _build_halo2_guerilla;
+				engine_type = _engine_type_halo2;
+			}
 		}
-		if (hash == _build_halo5_forge_1_194_6192_2)
-		{
-			build = _build_halo5_forge_1_194_6192_2;
-			engine_type = _engine_type_halo5;
-		}
-		if (hash == _build_midnight_tag_test_untracked_november_13_2013)
+
+		if (build == _build_not_set && !skip_hash_check)
 		{
 			build = _build_midnight_tag_test_untracked_november_13_2013;
 			engine_type = _engine_type_halo4;
+
+			uint64_t hash = xxhash::xxh64(binary_data, binary_data_size);
+
+			if (hash == _build_halo5_forge_1_114_4592_2)
+			{
+				build = _build_halo5_forge_1_114_4592_2;
+				engine_type = _engine_type_halo5;
+			}
+			if (hash == _build_halo5_forge_1_194_6192_2)
+			{
+				build = _build_halo5_forge_1_194_6192_2;
+				engine_type = _engine_type_halo5;
+			}
+			if (hash == _build_midnight_tag_test_untracked_november_13_2013)
+			{
+				build = _build_midnight_tag_test_untracked_november_13_2013;
+				engine_type = _engine_type_halo4;
+			}
 		}
+
+		delete[] binary_data;
+
+		if (engine_type == _engine_type_not_set)
+		{
+			c_console::write_line_verbose("Unrecognised executable provided");
+			return 1;
+		}
+
+		const char* build_pretty_name = "unknown";
+		get_build_pretty_string(build, &build_pretty_name);
+
+		c_console::write_line_verbose("Found %s build", build_pretty_name);
+
+		const char* engine_type_name;
+		ASSERT(BCS_SUCCEEDED(get_engine_type_string(engine_type, &engine_type_name)) || skip_hash_check);
+
 	}
-
-	delete[] binary_data;
-
-	if (engine_type == _engine_type_not_set)
-	{
-		c_console::write_line_verbose("Unrecognised executable provided");
-		return 1;
-	}
-
-	const char* build_pretty_name = "unknown";
-	get_build_pretty_string(build, &build_pretty_name);
-	
-	c_console::write_line_verbose("Found %s build", build_pretty_name);
-
-	const char* engine_type_name;
-	ASSERT(BCS_SUCCEEDED(get_engine_type_string(engine_type, &engine_type_name)));
 
 	switch (engine_type)
 	{
@@ -170,6 +182,12 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	{
 		c_blamboozle_h5_forge h5_forge = c_blamboozle_h5_forge(output_directory, binary_filepath);
 		h5_forge.run();
+	}
+	break;
+	case _engine_type_infinite:
+	{
+		c_blamboozle_infinite infinite = c_blamboozle_infinite(output_directory, binary_filepath);
+		infinite.run();
 	}
 	break;
 	}

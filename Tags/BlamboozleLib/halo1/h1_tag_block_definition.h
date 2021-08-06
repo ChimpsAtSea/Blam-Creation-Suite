@@ -30,6 +30,6 @@ public:
 	c_h1_tag_block_definition(const char* guerilla_data, const s_h1_tag_block_definition* definition_header, c_h1_tag_group_definition* tag_group_definition = nullptr);
 };
 
-c_h1_tag_block_definition* get_tag_block_definition(const char* guerilla_data, ptr32 virtual_address, c_h1_tag_group_definition* tag_group_definition = nullptr);
-void fixup_tag_inheritance_structures();
+c_h1_tag_block_definition* h1_get_tag_block_definition(const char* guerilla_data, ptr32 virtual_address, c_h1_tag_group_definition* tag_group_definition = nullptr);
+void h1_fixup_tag_inheritance_structures();
 

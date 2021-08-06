@@ -132,7 +132,7 @@ static void load_plugins()
 
 #include <MandrillLib/mandrilllib-public-pch.h>
 
-static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
+static int init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {
 
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
@@ -143,6 +143,9 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 #endif
 
 	c_console::init_console();
+
+	int keys_result = init_keys();
+	if (keys_result) return keys_result;
 
 	window = new c_window(instance_handle, k_window_title, L"mandrill", _window_icon_mandrill, show_cmd);
 	c_render::init_render(window, instance_handle, true);
@@ -166,9 +169,10 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 	c_debug_gui::show_ui();
 	c_console::show_startup_banner();
 
+	return 0;
 }
 
-static int run_mandrill_api_test()
+static int run_mandrill()
 {
 	while (g_mandrill_running)
 	{
@@ -179,15 +183,26 @@ static int run_mandrill_api_test()
 
 static void deinit_mandrill()
 {
-	mandrill_user_interface->on_close.unregister_callback(application_close_callback);
-	window->on_destroy.unregister_callback(application_close_callback);
-	window->on_update.unregister_callback(application_update_callback);
-	window->on_window_procedure.unregister_callback(c_debug_gui::window_procedure);
+	if (mandrill_user_interface)
+	{
+		mandrill_user_interface->on_close.unregister_callback(application_close_callback);
+	}
+	if (window)
+	{
+		window->on_destroy.unregister_callback(application_close_callback);
+		window->on_update.unregister_callback(application_update_callback);
+		window->on_window_procedure.unregister_callback(c_debug_gui::window_procedure);
+	}
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
-	delete mandrill_user_interface;
-	c_render::deinit_render();
-	delete window;
+	deinit_keys();
+
+	if (mandrill_user_interface) delete mandrill_user_interface;
+	if (window)
+	{
+		c_render::deinit_render();
+		delete window;
+	}
 	c_console::deinit_console();
 }
 
@@ -199,15 +214,17 @@ int WINAPI wWinMain(
 )
 {
 	int result = 0;
-	if (rhesus_crash_reporter(result))
-	{
-		return result;
-	}
+	//if (rhesus_crash_reporter(result))
+	//{
+	//	return result;
+	//}
 
 	if (run_tests(lpCmdLine)) // allow program to exit without running
 	{
-		init_mandrill(hInstance, nShowCmd, lpCmdLine);
-		result = run_mandrill_api_test();
+		if (!(result = init_mandrill(hInstance, nShowCmd, lpCmdLine)))
+		{
+			result = run_mandrill();
+		}
 		deinit_mandrill();
 	}
 	return result;

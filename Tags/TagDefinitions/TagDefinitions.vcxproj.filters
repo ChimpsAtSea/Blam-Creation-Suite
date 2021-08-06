@@ -942,6 +942,9 @@
     <ClCompile Include="blofeld\halo1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\infinite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1898,6 +1901,9 @@
     <ClInclude Include="blofeld\halo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blofeld\infinite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="types\tag_field.ctor.inl">
@@ -1946,6 +1952,9 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="blofeld\tag_groups.stubbs.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="blofeld\tag_groups.infinite.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

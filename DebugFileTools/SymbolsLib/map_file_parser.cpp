@@ -3,9 +3,27 @@
 c_map_file_parser::c_map_file_parser(const wchar_t* mapping_filepath, const char** excluded_libs, size_t excluded_libs_count) :
 	map_file(nullptr)
 {
+	size_t formatted_excluded_libs_buffer_size = 0;
+	for (size_t i = 0; i < excluded_libs_count; i++)
+	{
+		formatted_excluded_libs_buffer_size += snprintf(nullptr, 0, "%s:", excluded_libs[i]) + 1;
+	}
+	const char** const formatted_excluded_libs = new const char* [excluded_libs_count];
+	char* const formatted_excluded_libs_buffer = new char[formatted_excluded_libs_buffer_size];
+	char* formatted_excluded_libs_buffer_pos = formatted_excluded_libs_buffer;
+	for (size_t i = 0; i < excluded_libs_count; i++)
+	{
+		size_t length = sprintf(formatted_excluded_libs_buffer_pos, "%s:", excluded_libs[i]) + 1;
+		formatted_excluded_libs[i] = formatted_excluded_libs_buffer_pos;
+		formatted_excluded_libs_buffer_pos += length;
+	}
+
 	parse_mapping_file_lines(mapping_filepath);
-	parse_mapping_file(excluded_libs, excluded_libs_count);
+	parse_mapping_file(formatted_excluded_libs, excluded_libs_count);
 	create_symbols_blob();
+
+	delete[] formatted_excluded_libs;
+	delete[] formatted_excluded_libs_buffer;
 }
 
 c_map_file_parser::~c_map_file_parser()

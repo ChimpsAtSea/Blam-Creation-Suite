@@ -29,5 +29,5 @@ public:
 	void traverse(const char* guerilla_data);
 };
 
-c_h1_tag_group_definition* get_tag_group_definition(const char* guerilla_data, ptr32 virtual_address);
-c_h1_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);
+c_h1_tag_group_definition* h1_get_tag_group_definition(const char* guerilla_data, ptr32 virtual_address);
+c_h1_tag_group_definition* h1_get_tag_group_definition_by_group_tag(tag group_tag);

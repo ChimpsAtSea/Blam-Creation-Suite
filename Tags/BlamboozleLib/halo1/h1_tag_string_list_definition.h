@@ -20,4 +20,4 @@ public:
 	c_h1_string_list_definition(const char* guerilla_data, const s_h1_string_list_definition& string_list_definition);
 };
 
-c_h1_string_list_definition* get_string_list_definition(const char* guerilla_data, ptr32 virtual_address);
+c_h1_string_list_definition* h1_get_string_list_definition(const char* guerilla_data, ptr32 virtual_address);

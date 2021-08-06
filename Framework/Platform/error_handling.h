@@ -2,6 +2,7 @@
 
 enum BCS_RESULT
 {
+	BCS_E_FATAL = -8,
 	BCS_E_OUT_OF_RANGE = -7,
 	BCS_E_NOT_FOUND = -6,
 	BCS_E_UNSUPPORTED = -5,
@@ -52,7 +53,59 @@ void BCSAPI __fatal_error_internal(const wchar_t* reason, const wchar_t* filepat
 #endif
 
 //#define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE(STRINGIFY(expression)), ##__VA_ARGS__); } } while(false)
+
+
+#ifndef _DEBUG
+
 #define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE( #expression ), ##__VA_ARGS__); } } while(false)
+
+#else
+
+_ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t const* _File, _In_ unsigned _Line);
+
+#define ASSERT(statement) \
+						do  \
+						{  \
+							if(!(statement)) \
+							{ \
+								if (IsDebuggerPresent()) \
+								{ \
+									OutputDebugStringW(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement "\n"); \
+									__debugbreak(); \
+								} \
+								else \
+								{ \
+									_wassert(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement, _CRT_WIDE(__FILE__), __LINE__); \
+								} \
+							} \
+						} while(false)
+
+//#define ASSERT(expression, ...) \
+//do \
+//{ \
+//	if (!(bool)(expression)) \
+//	{ \
+//		const wchar_t* __fatal_error_string_wide = L"" #expression L" | " ##__VA_ARGS__; \
+//		printf("%s(%i): error FATAL: %S", __FILE__, __LINE__, __fatal_error_string_wide); \
+//		if (IsDebuggerPresent()) \
+//		{ \
+//			_wassert(__fatal_error_string_wide, _CRT_WIDE(__FILE__), __LINE__); \
+//		} \
+//		else \
+//		{ \
+//			int message_box_result = MessageBoxW(NULL, __fatal_error_string_wide, L"Fatal Error", MB_ABORTRETRYIGNORE | MB_ICONERROR); \
+//			if (message_box_result != IDIGNORE) \
+//			{ \
+//				exit(1); \
+//			} \
+//		} \
+//	} \
+//} while (false)
+
+
+#endif
+
+
 #define ASSERT_NO_THROW(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR_NO_THROW(_CRT_WIDE(STRINGIFY(expression)), ##__VA_ARGS__); } } while(false)
 
 #ifdef _DEBUG

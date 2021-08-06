@@ -93,6 +93,8 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_word_integer:						return "word";
 	case _field_dword_integer:						return "dword";
 	case _field_qword_integer:						return "qword";
+	case _field_data_path:							return "c_fixed_string_256";
+	case _field_embedded_tag:						return "h_tag*";
 	case _field_pointer: // #NONSTANDARD
 	{
 		uint32_t pointer_size;

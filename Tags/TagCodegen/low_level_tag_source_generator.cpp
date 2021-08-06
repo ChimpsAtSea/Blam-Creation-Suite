@@ -80,6 +80,8 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_word_integer:						return "word";
 	case _field_dword_integer:						return "dword";
 	case _field_qword_integer:						return "qword";
+	case _field_data_path:							return "c_static_string<256>";
+	case _field_embedded_tag:						return "s_tag_reference";
 	case _field_pointer: // #NONSTANDARD
 	{
 		uint32_t pointer_size;
@@ -268,6 +270,10 @@ void c_low_level_tag_source_generator::generate_header() const
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
 								const s_tag_group* tag_group = get_group_tag_by_group_tag(engine_platform_build.engine_type, group_tags[group_tag_index]);
+								if (tag_group == nullptr)
+								{
+									debug_point;
+								}
 								ASSERT(tag_group != nullptr);
 								if (group_tag_index > 0)
 								{

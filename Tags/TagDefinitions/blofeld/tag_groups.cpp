@@ -10,6 +10,7 @@
 #include "tag_groups.halo4.inl"
 #include "tag_groups.gen3_xbox360.inl"
 #include "tag_groups.groundhog.inl"
+#include "tag_groups.infinite.inl"
 
 namespace blofeld
 {
@@ -32,8 +33,9 @@ namespace blofeld
 		tag_groups_gen3_xbox360, // _engine_type_gen3_xbox360
 		tag_groups_groundhog, // _engine_type_groundhog
 		tag_groups_halo5, // _engine_type_halo5
+		tag_groups_infinite, // _engine_type_infinite
 	};
-	static_assert(k_number_of_engine_types == 13); // update this if changed
+	static_assert(k_number_of_engine_types == 14); // update this if changed
 
 } // namespace blofeld
 

@@ -14,7 +14,7 @@ c_h1_pseudo_array_definition::c_h1_pseudo_array_definition(const char* guerilla_
 	if (fields_begin->name_address)
 	{
 		name += " | ";
-		name += va_to_pointer(guerilla_data, fields_begin->name_address);
+		name += h1_va_to_pointer(guerilla_data, fields_begin->name_address);
 	}
 	name += " array";
 
@@ -22,7 +22,7 @@ c_h1_pseudo_array_definition::c_h1_pseudo_array_definition(const char* guerilla_
 	if (fields_begin->name_address)
 	{
 		code_name += "__";
-		code_name += h1_convert_to_code_name(va_to_pointer(guerilla_data, fields_begin->name_address));
+		code_name += h1_convert_to_code_name(h1_va_to_pointer(guerilla_data, fields_begin->name_address));
 	}
 	code_name += "_array";
 

@@ -10,11 +10,11 @@ c_h1_string_list_definition::c_h1_string_list_definition(const char* guerilla_da
 {
 	name = "unnamed_enum";
 
-	const ptr32* options_addresses = reinterpret_cast<const ptr32*>(va_to_pointer(guerilla_data, string_list_definition.options_address));
+	const ptr32* options_addresses = reinterpret_cast<const ptr32*>(h1_va_to_pointer(guerilla_data, string_list_definition.options_address));
 	for (unsigned long option_index = 0; option_index < string_list_definition.option_count; option_index++)
 	{
 		ptr32 option_address = options_addresses[option_index];
-		const char* option = va_to_pointer(guerilla_data, option_address);
+		const char* option = h1_va_to_pointer(guerilla_data, option_address);
 
 		options.push_back(option);
 	}
@@ -34,7 +34,7 @@ c_h1_string_list_definition::c_h1_string_list_definition(const char* guerilla_da
 	debug_point;
 }
 
-c_h1_string_list_definition* get_string_list_definition(const char* guerilla_data, ptr32 virtual_address)
+c_h1_string_list_definition* h1_get_string_list_definition(const char* guerilla_data, ptr32 virtual_address)
 {
 	std::map<ptr32, c_h1_string_list_definition*>::iterator tag_block_definition_iterator = string_list_definitions.find(virtual_address);
 
@@ -43,7 +43,7 @@ c_h1_string_list_definition* get_string_list_definition(const char* guerilla_dat
 		return tag_block_definition_iterator->second;
 	}
 
-	const s_h1_string_list_definition* _string_list_definition = reinterpret_cast<const s_h1_string_list_definition*>(va_to_pointer(guerilla_data, virtual_address));
+	const s_h1_string_list_definition* _string_list_definition = reinterpret_cast<const s_h1_string_list_definition*>(h1_va_to_pointer(guerilla_data, virtual_address));
 	ASSERT(_string_list_definition != nullptr);
 
 	c_h1_string_list_definition* string_list_definition = reinterpret_cast<c_h1_string_list_definition*>(new char[sizeof(c_h1_string_list_definition)]);

@@ -77,6 +77,8 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 	case _field_word_integer:					return sizeof(word);
 	case _field_dword_integer:					return sizeof(dword);
 	case _field_qword_integer:					return sizeof(qword);
+	case _field_embedded_tag:					return sizeof(::s_tag_reference);
+	case _field_data_path:						return sizeof(::c_static_string<256>);
 	case _field_pointer:
 	{
 		uint32_t pointer_size;
@@ -182,6 +184,8 @@ const char* blofeld::field_to_string(e_field field)
 	case _field_word_integer:							return "word integer";
 	case _field_dword_integer:							return "dword integer";
 	case _field_qword_integer:							return "qword integer";
+	case _field_data_path:								return "data path"; // H5F/INF
+	case _field_embedded_tag:							return "embedded tag"; // H5F/INF
 	case _field_pointer:								return "pointer"; // #NONSTANDARD
 	case _field_half:									return "half"; // #NONSTANDARD
 	}

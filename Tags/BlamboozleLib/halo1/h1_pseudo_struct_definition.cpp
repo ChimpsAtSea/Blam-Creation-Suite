@@ -37,7 +37,7 @@ c_h1_pseudo_struct_definition::c_h1_pseudo_struct_definition(
 			break;
 		case _h1_field_type_block:
 		{
-			c_h1_tag_block_definition* tag_block_definition = get_tag_block_definition(guerilla_data, field->definition_address);
+			c_h1_tag_block_definition* tag_block_definition = h1_get_tag_block_definition(guerilla_data, field->definition_address);
 			debug_point;
 		}
 		break;
@@ -79,7 +79,7 @@ c_h1_pseudo_struct_definition::c_h1_pseudo_struct_definition(
 		{
 			if (field->definition_address) // potentially points to a description?
 			{
-				const char* description = va_to_pointer(guerilla_data, field->definition_address);
+				const char* description = h1_va_to_pointer(guerilla_data, field->definition_address);
 				//printf("%s::%s '%s'\n", block_definition.name, pseudo_field->name, description);
 			}
 		}
