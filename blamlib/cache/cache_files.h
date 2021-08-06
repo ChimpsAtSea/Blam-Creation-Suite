@@ -14,6 +14,7 @@ namespace blamlib
 
 	constexpr tag k_cache_header_signature = 'head';
 	constexpr tag k_cache_footer_signature = 'foot';
+	constexpr tag k_module_header_signature = 'mohd';
 	constexpr tag k_cache_tags_signature = 'tags';
 	constexpr tag k_cache_343i_signature = '343i';
 
