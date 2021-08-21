@@ -66,7 +66,17 @@ BCS_RESULT decompress_buffer_oodle(
 	void* uncompressed_buffer,
 	unsigned long uncompressed_buffer_size)
 {
-	return BCS_E_FAIL;
+	BCS_RESULT result = BCS_E_FAIL;
+	void* hack_tastic_buffer = _malloca(uncompressed_buffer_size + 4096);
+	auto decompress_result = Kraken_Decompress(static_cast<const byte*>(compressed_buffer), compressed_buffer_size, static_cast<byte*>(hack_tastic_buffer), uncompressed_buffer_size);
+	if (decompress_result == uncompressed_buffer_size)
+	{
+		memcpy(uncompressed_buffer, hack_tastic_buffer, uncompressed_buffer_size);
+		result = BCS_S_OK;
+	}
+	_freea(hack_tastic_buffer);
+	return result;
+
 }
 
 BCS_RESULT c_infinite_tag_reader::data_offset_fixup(unsigned long offset, unsigned long index, unsigned long& fixed_offset)

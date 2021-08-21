@@ -13,3 +13,6 @@
 [submodule "ThirdParty\\vcpkg\\vcpkg"]
 	path = ThirdParty\\vcpkg\\vcpkg
 	url = https://github.com/Microsoft/vcpkg.git
+[submodule "ThirdParty/Oozle"]
+	path = ThirdParty/Oozle
+	url = https://github.com/ChimpsAtSea/Oozle.git
