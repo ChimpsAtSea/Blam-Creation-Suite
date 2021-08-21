@@ -104,12 +104,12 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 		{
 		case 8: return "long long";
 		case 4: return "long";
-		default: FATAL_ERROR(L"bad pointer size");
+		default: FATAL_ERROR("bad pointer size");
 		}
 		break;
 	}
 	case _field_half:						return "short";
-	default: FATAL_ERROR(L"Unknown field type");
+	default: FATAL_ERROR("Unknown field type");
 	}
 }
 

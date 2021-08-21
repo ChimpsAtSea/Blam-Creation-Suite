@@ -161,7 +161,7 @@ bool c_data_patch_base::ApplyPatch()
 			ASSERT(!packet.second.empty());
 		}
 	}
-	else FATAL_ERROR(L"No Apply Callback");
+	else FATAL_ERROR("No Apply Callback");
 
 	return true;
 }
@@ -228,7 +228,7 @@ c_data_patch_base* c_data_patch_base::init_node(s_engine_platform_build engine_p
 			}
 		}
 	}
-	else FATAL_ERROR(L"No search function provided");
+	else FATAL_ERROR("No search function provided");
 
 	return next_data_patch;
 }

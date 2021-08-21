@@ -1,6 +1,5 @@
 #include "blamboozlelib-private-pch.h"
 
-
 const char* inf_va_to_pointer(const char* data, ptr64 address)
 {
 	if (address == 0) return nullptr;
@@ -54,7 +53,7 @@ const char* inf_pa_to_pointer(const char* data, ptr64 address)
 
 				ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;
-				if (address >= minidump_memory64.StartOfMemoryRange && address < end_of_memory_range)
+				if (address.value() >= minidump_memory64.StartOfMemoryRange && address.value() < end_of_memory_range)
 				{
 					minidump_address_memory64 = &minidump_memory64;
 					minidump_address_memory64_rva = minidump_memory64_rva;
@@ -70,7 +69,7 @@ const char* inf_pa_to_pointer(const char* data, ptr64 address)
 		if (minidump_address_memory64)
 		{
 			const char* midnight_image_data = data + minidump_address_memory64_rva;
-			ULONG64 rva = address - minidump_address_memory64->StartOfMemoryRange;
+			ULONG64 rva = address.value() - minidump_address_memory64->StartOfMemoryRange;
 			executable_image_data = midnight_image_data + rva;
 		}
 	}
@@ -79,7 +78,7 @@ const char* inf_pa_to_pointer(const char* data, ptr64 address)
 		ptr64 pa = inf_va_to_pa(address);
 		if (~pa != 0)
 		{
-			executable_image_data = data + pa;
+			executable_image_data = data + pa.value();
 		}
 	}
 	return executable_image_data;
@@ -225,7 +224,6 @@ bool inf_find_address(const char* data, ptr64 address, std::vector<s_find_result
 	}
 	return results.size() > 0;
 }
-
 
 std::map<c_inf_tag_group_definition*, std::vector<c_inf_tag_struct_definition*>> struct_definitions;
 
@@ -811,37 +809,37 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 void inf_write_tag_reference_flags(std::stringstream& s, c_inf_tag_reference_definition& tag_reference_definition)
 {
 	std::stringstream flags_stream;
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_not_a_dependency))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_not_a_dependency))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_not_a_dependency";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_dont_resolve_in_editor))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_dont_resolve_in_editor))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_dont_resolve_in_editor";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_resolved_manually))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_resolved_manually))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_resolved_manually";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_resolved_by_game))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_resolved_by_game))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_resolved_by_game";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_not_a_resource_dependency))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_not_a_resource_dependency))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_not_a_resource_dependency";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_dependency_for_cache_file_sharing))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_dependency_for_cache_file_sharing))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_dependency_for_cache_file_sharing";
 	}
-	if (tag_reference_definition.tag_reference_definition.flags.test(_h4_tag_reference_flag_reference_ignored_by_bundle_builder))
+	if (tag_reference_definition.tag_reference_definition.flags.test(_inf_tag_reference_flag_reference_ignored_by_bundle_builder))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
 		flags_stream << "_tag_reference_flag_reference_ignored_by_bundle_builder";

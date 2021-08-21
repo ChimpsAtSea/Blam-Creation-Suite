@@ -78,7 +78,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 	{
 		if (data_address != nullptr)
 		{
-			FATAL_ERROR(L"c_global_reference is already initialized. deinitializ first!");
+			FATAL_ERROR("c_global_reference is already initialized. deinitializ first!");
 		}
 
 		if (public_symbol == nullptr)
@@ -88,7 +88,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 			if (public_symbol == nullptr)
 			{
 				c_console::write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
-				DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
+				DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 			}
 			else
 			{
@@ -102,7 +102,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 				if (reference_memory_pointer == nullptr)
 				{
 					c_console::write_line_verbose("c_global_reference: WARNING: Failed to find reference address for symbol '%s'", reference_name);
-					DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find reference address for symbol '%S'", reference_name));
+					DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find reference address for symbol '%S'", reference_name));
 				}
 			}
 		}
@@ -178,7 +178,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 		else
 		{
 			c_console::write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
-			DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
+			DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 		}
 	}
 	return next_global_reference;

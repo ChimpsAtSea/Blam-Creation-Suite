@@ -99,6 +99,14 @@ DWORD relative_virtual_address_to_relative_raw_address(DWORD relative_virtual_ad
 	return ~DWORD();
 }
 
+const char* h4_va_to_pointer(const char* data, bptr32 address)
+{
+	if (address == 0) return 0;
+	const char* result = h4_va_to_pointer2(data, address.value());
+	ASSERT(result);
+	return result;
+}
+
 const char* h4_va_to_pointer2(const char* data, unsigned long address)
 {
 	if (address == 0) return nullptr;
@@ -448,14 +456,14 @@ int c_h4_blamboozle::run()
 
 	struct s_h4_tag_layout_entry
 	{
-		bulong layout_header;
+		bptr32 layout_header;
 	};
 
 	const s_h4_tag_layout_entry(&layout_addresses)[h4_num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(h4_va_to_pointer2(h4_data, h4_tag_layout_table_address));
 
 	for (const s_h4_tag_layout_entry& tag_layout_entry : layout_addresses)
 	{
-		unsigned long layout_header_va = tag_layout_entry.layout_header;
+		unsigned long layout_header_va = tag_layout_entry.layout_header.value();
 		const s_h4_tag_group* layout_header = reinterpret_cast<const s_h4_tag_group*>(h4_va_to_pointer(h4_data, tag_layout_entry.layout_header));
 		//if (layout_header->group_tag.value == 'dpib')
 		//if (_byteswap_ulong(layout_header->group_tag.value) == 'hlmt')

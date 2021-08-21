@@ -108,7 +108,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 				relative_cache_file_path = "maps\\loc.map";
 				break;
 			default:
-				FATAL_ERROR(L"Unsupported data file");
+				FATAL_ERROR("Unsupported data file");
 			}
 
 			c_halo1_cache_file_reader* cache_file_reader;

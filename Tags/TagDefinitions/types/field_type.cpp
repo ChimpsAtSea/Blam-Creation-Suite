@@ -86,7 +86,7 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 		return pointer_size;
 	};
 	case _field_half:							return sizeof(uint16_t);
-	default: FATAL_ERROR(L"unknown field type");
+	default: FATAL_ERROR("unknown field type");
 	}
 }
 

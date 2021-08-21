@@ -78,5 +78,5 @@ enum e_inf_field_type : unsigned long
 	_inf_field_type_data_64
 };
 
-extern const char* int_field_type2_to_string(e_inf_field_type field_type);
+extern const char* inf_field_type_to_string(e_inf_field_type field_type);
 extern const char* inf_field_type_to_generic_field_type(e_inf_field_type field_type);

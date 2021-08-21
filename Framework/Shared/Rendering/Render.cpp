@@ -182,7 +182,7 @@ void c_render::init_directx()
 	}
 	if (s_dxgi_factory == nullptr)
 	{
-		FATAL_ERROR(L"failed to create DXGIFactory. unsupported platform.");
+		FATAL_ERROR("failed to create DXGIFactory. unsupported platform.");
 	}
 
 	UINT createDeviceFlags = 0;

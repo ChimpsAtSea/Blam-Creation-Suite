@@ -91,12 +91,12 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 		{
 		case 8: return "long long";
 		case 4: return "long";
-		default: FATAL_ERROR(L"bad pointer size");
+		default: FATAL_ERROR("bad pointer size");
 		}
 		break;
 	}
 	case _field_half:						return "short";
-	default: FATAL_ERROR(L"Unknown field type");
+	default: FATAL_ERROR("Unknown field type");
 	}
 }
 
@@ -218,8 +218,16 @@ void c_low_level_tag_source_generator::generate_header() const
 				}
 				case _field_struct:
 				{
+					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
 					const char* field_source_type = current_field->struct_definition->name;
-					stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
+					if (field_struct_size > 0)
+					{
+						stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "; // test";
+					}
+					else
+					{
+						stream << "\t\t\t" << "// s_" << field_source_type << " " << field_formatter.code_name.c_str() << "; // empty struct";
+					}
 					break;
 				}
 				case _field_block:
@@ -478,6 +486,15 @@ void c_low_level_tag_source_generator::generate_source() const
 				case _field_explanation:
 				case _field_non_cache_runtime_value:
 					break;
+				case _field_struct:
+				{
+					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+					if (field_struct_size == 0)
+					{
+						stream << "\t" << "// byteswap(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
+						break;
+					}
+				}
 				default:
 					stream << "\t" << "byteswap(value." << field_formatter.code_name.c_str() << ");" << std::endl;
 				}

@@ -555,7 +555,7 @@ __declspec(dllexport) int main()
 				build = static_cast<e_build>(hash);
 				break;
 			default:
-				FATAL_ERROR(L"Unknown Halo 5 build");
+				FATAL_ERROR("Unknown Halo 5 build");
 			}
 
 			if (build != _build_not_set)
@@ -569,7 +569,7 @@ __declspec(dllexport) int main()
 				}
 				else
 				{
-					FATAL_ERROR(L"Failed to load Halo 5");
+					FATAL_ERROR("Failed to load Halo 5");
 				}
 			}
 		}
@@ -619,7 +619,7 @@ __declspec(dllexport) int main()
 	if (engine_type == _engine_type_eldorado)
 	{
 		// the entry point should exit the process and not reach this code
-		FATAL_ERROR(L"Unexpected code region");
+		FATAL_ERROR("Unexpected code region");
 		return 1;
 	}
 

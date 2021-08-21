@@ -185,23 +185,23 @@ struct s_h4_byte_swap_definition
 
 struct s_h4_tag_struct_definition
 {
-	bptr32<const char*> pretty_name;
-	bptr32<const char*> name;
-	bptr32<const char*> filepath;
+	typed_bptr32<const char*> pretty_name;
+	typed_bptr32<const char*> name;
+	typed_bptr32<const char*> filepath;
 	bulong line_number;
 	s_h4_tag_persistent_identifier persistent_identifier;
-	bptr32<void*> fields_address;
+	typed_bptr32<void*> fields_address;
 	bulong size;
-	bptr32<const char*> size_string_address;
+	typed_bptr32<const char*> size_string_address;
 	bulong alignment_bits;
 	bulong legacy_struct_tag[2];
 	bulong unknown1;
 	bulong legacy_version;
-	bptr32<void*> unknown2;
+	typed_bptr32<void*> unknown2;
 	bulong unknown3;
-	bptr32<void*> unknown4;
+	typed_bptr32<void*> unknown4;
 	bulong unknown5;
-	bptr32<void*> tag_struct_vtable;
+	typed_bptr32<void*> tag_struct_vtable;
 	buint64_t procedures_table_size;
 	bulong _unknown1[8];
 	bulong exploded_struct_size;
@@ -215,7 +215,7 @@ struct s_h4_tag_struct_definition
 	bulong _unknown5;
 	bulong cache_file_size;
 	bulong _unknown6[10];
-	bptr32<void*> descendent_definition;
+	typed_bptr32<void*> descendent_definition;
 	bulong _unknown7[2];
 };
 static_assert_64(offsetof(s_h4_tag_struct_definition, legacy_struct_tag) == 48);

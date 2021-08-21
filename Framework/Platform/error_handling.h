@@ -42,6 +42,10 @@ enum BCS_RESULT
 #define BCS_FAILED(result) ((result) < 0)
 #define BCS_SUCCEEDED(result) ((result) >= 0)
 
+#ifndef _DEBUG
+
+#define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE( #expression ), ##__VA_ARGS__); } } while(false)
+
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw
 #define DEBUG_FATAL_ERROR()
@@ -51,13 +55,6 @@ void BCSAPI __fatal_error_internal(const wchar_t* reason, const wchar_t* filepat
 #define FATAL_ERROR(reason, ...) (FATAL_ERROR_NO_THROW(reason, ##__VA_ARGS__), throw)
 #define DEBUG_FATAL_ERROR(reason, ...) do { if (IsDebuggerPresent()) { __fatal_error_internal(reason, _CRT_WIDE(__FILE__), (unsigned)(__LINE__), ##__VA_ARGS__); } } while(false); throw
 #endif
-
-//#define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE(STRINGIFY(expression)), ##__VA_ARGS__); } } while(false)
-
-
-#ifndef _DEBUG
-
-#define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE( #expression ), ##__VA_ARGS__); } } while(false)
 
 #else
 
@@ -79,6 +76,33 @@ _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t co
 								} \
 							} \
 						} while(false)
+
+#define FATAL_ERROR(reason, ...) \
+						do  \
+						{  \
+							if (IsDebuggerPresent()) \
+							{ \
+								OutputDebugStringW(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason "\n"); \
+								__debugbreak(); \
+							} \
+							else \
+							{ \
+								_wassert(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason, _CRT_WIDE(__FILE__), __LINE__); \
+							} \
+						} while(false)
+
+#define FATAL_ERROR_NO_THROW FATAL_ERROR
+
+#define DEBUG_FATAL_ERROR(reason, ...) \
+						do  \
+						{  \
+							if (IsDebuggerPresent()) \
+							{ \
+								OutputDebugStringW(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason "\n"); \
+								__debugbreak(); \
+							} \
+						} while(false)
+
 
 //#define ASSERT(expression, ...) \
 //do \

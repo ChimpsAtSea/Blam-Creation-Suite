@@ -47,7 +47,7 @@ c_window::c_window(
 	if (register_class_ex_result == NULL)
 	{
 		int last_error = GetLastError();
-		FATAL_ERROR(L"Failed to register window class [%i]", last_error);
+		FATAL_ERROR("Failed to register window class [%i]", last_error);
 	}
 
 	// Create the window.
@@ -69,7 +69,7 @@ c_window::c_window(
 	if (window_handle == NULL)
 	{
 		int err = GetLastError();
-		FATAL_ERROR(L"Failed to create window [%i]", err);
+		FATAL_ERROR("Failed to create window [%i]", err);
 	}
 
 	SetWindowLongPtr(window_handle, GWLP_USERDATA, LONG_PTR(this));

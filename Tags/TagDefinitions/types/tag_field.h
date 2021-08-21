@@ -218,7 +218,7 @@ namespace blofeld
 		s_tag_field(e_field type HIDDEN(, const char* filename, int32_t line)) :
 			s_tag_field(type HIDDEN(, filename, line), nullptr, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default)
 		{
-			DEBUG_ONLY(if (type != _field_terminator) FATAL_ERROR(L"Invalid tag constructor usage (expected type == _field_terminator) %S:%i", filename, line));
+			DEBUG_ONLY(if (type != _field_terminator) FATAL_ERROR("Invalid tag constructor usage (expected type == _field_terminator) %S:%i", filename, line));
 		};
 		
 		// type, name

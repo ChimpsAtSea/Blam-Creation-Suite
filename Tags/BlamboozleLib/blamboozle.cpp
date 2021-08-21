@@ -52,7 +52,7 @@ int blamboozle_run()
 
 	if (!halo2_guerilla_file.empty())
 	{
-		result += blamboozle_run(output_directory.c_str(), halo2_guerilla_file.c_str(), _engine_type_halo2);
+		result += blamboozle_run(output_directory.c_str(), halo2_guerilla_file.c_str(), _engine_type_halo2, true);
 	}
 
 	if (!halo4_midnight_tags_test.empty())

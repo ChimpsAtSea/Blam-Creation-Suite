@@ -281,7 +281,7 @@ c_h4_tag_reference_container::c_h4_tag_reference_container(c_h4_tag_reference& t
 				goto found;
 			}
 		}
-		FATAL_ERROR(L"Whhhaaaattt???");
+		FATAL_ERROR("Whhhaaaattt???");
 		for (std::pair<int, const char*>& tag_group : tag_group_names)
 		{
 			if (tag_reference.tag_groups[0].value == _byteswap_ulong(*reinterpret_cast<const unsigned long*>(&tag_group.first)))

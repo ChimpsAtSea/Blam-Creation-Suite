@@ -5,7 +5,7 @@ c_h1_pseudo_array_definition::c_h1_pseudo_array_definition(const char* guerilla_
 	code_name(),
 	pseudo_struct_definition(nullptr),
 	block_definition(block_definition),
-	count(fields_begin->definition_address)
+	count(fields_begin->definition_address.value())
 {
 	ASSERT(fields_begin->field_type == _h1_field_type_array_start);
 	ASSERT(count > 0);

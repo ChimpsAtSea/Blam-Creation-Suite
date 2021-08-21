@@ -1,5 +1,9 @@
 #pragma once
 
+#pragma once
+
+#include "pointer.h"
+#include "memory_dump.h"
 #include "blamboozle_base.h"
 #include "blamboozle_h1_guerilla.h"
 #include "blamboozle_h2_guerilla.h"

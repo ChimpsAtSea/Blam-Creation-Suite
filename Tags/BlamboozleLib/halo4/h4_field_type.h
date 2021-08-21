@@ -226,6 +226,25 @@ inline const char* h4_field_type_to_generic_field_type(e_h4_field_type field_typ
 
 enum e_h4_field_id_type
 {
+	// confirmed from Halo 1
+    _h4_field_id_music_play_dialog = 'mply',
+	_h4_field_id_bitmap_show_dialog = 'bshw',
+	_h4_field_id_hud_interface_show_weapon_dialog = 'whis',
+	_h4_field_id_hud_interface_show_grenade_dialog = 'ghis',
+	_h4_field_id_hud_interface_show_unit_dialog = 'uhis',
+	_h4_field_id_profile_load_dialog = 'prof',
+
+	// confirmed from Halo 2
+	_h4_field_id_sound_playback_dialog = 'sply',
+	_h4_field_id_c_field_function_dialog = 'fned',
+	_h4_field_id_c_tag_template_field_dialog = 'tmpl',
+	_h4_field_id_c_model_bulk_import_dialog = 'hlmt',
+	_h4_field_id_c_editor_tag_command_dialog = 'edit',
+	_h4_field_id_c_marker_play_dialog = 'mkpl',
+	_h4_field_id_c_biquad_graph_dialog = 'biqu',
+	_h4_field_id_c_sound_permutation_dialog = 'snpl',
+
+
 	_h4_field_id_field_group_begin = 'fgrb',
 	_h4_field_id_field_group_end = 'fgre',
 	_h4_field_id_point = 'poin',
@@ -261,6 +280,7 @@ enum e_h4_field_id_type
 	_h4_field_id_function_input_range = 'fnir',
 	_h4_field_id_function_output_modifier = 'fnom',
 	_h4_field_id_function_unknown = 'fn**',
+	_h4_field_id_fnop = 'fnop',
 
 	_h4_field_id_pathfinding = 'path',
 	_h4_field_id_object_id = 'obj#',
@@ -274,14 +294,9 @@ enum e_h4_field_id_type
 	_h4_field_id_block_index_flags = 'bifs',
 	_h4_field_id_block_flags_32bit = 'bf32',
 
-	_h4_field_id_shader_template = 'tmpl',
 	_h4_field_id_shader_unknown = 'ick!',
 
 	_h4_field_id_import_model = 'ipmi',
-	_h4_field_id_high_level_model_tag = 'hlmt',
-
-	_h4_field_id_sound_player = 'snpl',
-	_h4_field_id_unknown_player = 'mkpl',
 
 	_h4_field_id_unknown_maeo = 'maeo',
 	_h4_field_id_unknown_ohoc = 'ohoc',
@@ -304,7 +319,6 @@ enum e_h4_field_id_type
 	_h4_field_id_sort = 'sort',
 	_h4_field_id_slap = 'slap',
 	_h4_field_id_wide = 'wide',
-	_h4_field_id_fnop = 'fnop',
 	_h4_field_id_dumb = 'dumb',
 	_h4_field_id_ugpc = 'ugpc',
 	_h4_field_id_enum = 'enum',
@@ -357,12 +371,12 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_scenario_zone_set_index:				  	return "_field_id_scenario_zone_set_index";
 	case _h4_field_id_block_index_flags:						return "_field_id_block_index_flags";
 	case _h4_field_id_block_flags_32bit:						return "_field_id_block_flags_32bit";
-	case _h4_field_id_shader_template:						  	return "_field_id_shader_template";
+	case _h4_field_id_c_tag_template_field_dialog:						  	return "_field_id_shader_template";
 	case _h4_field_id_shader_unknown:						  	return "_field_id_shader_unknown";
 	case _h4_field_id_import_model:							  	return "_field_id_import_model";
-	case _h4_field_id_high_level_model_tag:					  	return "_field_id_high_level_model_tag";
-	case _h4_field_id_sound_player:							  	return "_field_id_sound_player";
-	case _h4_field_id_unknown_player:						  	return "_field_id_unknown_player";
+	case _h4_field_id_c_model_bulk_import_dialog:					  	return "_field_id_high_level_model_tag";
+	case _h4_field_id_c_sound_permutation_dialog:							  	return "_field_id_sound_player";
+	case _h4_field_id_c_marker_play_dialog:						  	return "_field_id_unknown_player";
 	case _h4_field_id_unknown_maeo:							  	return "_field_id_unknown_maeo";
 	case _h4_field_id_unknown_ohoc:							  	return "_field_id_unknown_ohoc";
 	case _h4_field_id_unknown_function:						  	return "_field_id_unknown_function";

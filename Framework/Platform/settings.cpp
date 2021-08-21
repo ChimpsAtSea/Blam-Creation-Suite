@@ -121,7 +121,7 @@ const char* c_settings::get_section_name_string(e_settings_section section)
 	case _settings_section_mandrill:
 		return "Mandrill";
 	default:
-		FATAL_ERROR(L"unknown <e_settings_section>");
+		FATAL_ERROR("unknown <e_settings_section>");
 		return nullptr;
 	}
 }

@@ -59,9 +59,3 @@ using bchar = bigendian_type<char>;
 using bshort = bigendian_type<short>;
 using blong = bigendian_type<long>;
 using blonglong = bigendian_type<long long>;
-
-template<typename T>
-using bptr32 = bigendian_type<unsigned long>;
-
-template<typename T>
-using bptr64 = bigendian_type<unsigned long long>;

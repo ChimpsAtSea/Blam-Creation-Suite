@@ -38,7 +38,7 @@ c_inf_tag_field::c_inf_tag_field(const char* guerilla_data, const s_inf_tag_fiel
 		break;
 	case _inf_field_type_pad:
 	case _inf_field_type_skip:
-		padding = skip_length = field_definition.definition_address;
+		padding = skip_length = field_definition.definition_address.value();
 		break;
 	case _inf_field_type_char_enum:
 	case _inf_field_type_short_enum:

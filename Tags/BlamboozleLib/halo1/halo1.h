@@ -1,14 +1,12 @@
 #pragma once
 
-#define ptr32 unsigned long
-
 static constexpr ptr32 halo1_base_address = 0x400000;
 static constexpr ptr32 halo1_tag_layout_table_address = 0x009B8D88;
 static constexpr unsigned long halo1_num_tag_layouts = 83;
 
 // #TODO: More sophistocated addressing using sections
-#define h1_va_to_pa(address) (address - halo1_base_address)
-#define h1_va_to_pointer(data, address) (address ? ((const char*)(data + h1_va_to_pa(address))) : 0)
+#define h1_va_to_pa(address) (ptr32(address).value() - halo1_base_address.value())
+#define h1_va_to_pointer(data, address) (ptr32(address).value() ? ((const char*)(data + h1_va_to_pa(address))) : 0)
 
 #include "h1_field_type.h"
 #include "h1_pseudo_field_type.h"

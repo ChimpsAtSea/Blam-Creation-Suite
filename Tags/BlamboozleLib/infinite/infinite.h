@@ -1,17 +1,12 @@
 #pragma once
 
-#define ptr64 unsigned long long
-
 static constexpr ptr64 infinite_base_address = 0x140000000;
 static constexpr ptr64 infinite_dump_base_address = 0x7ff602180000; // #TODO: get this dynamically?
 static constexpr ptr64 infinite_tag_layout_table_address = 0x000001A6FE114000;
 static constexpr unsigned long infinite_num_tag_layouts = 473;
 
-// #TODO: More sophistocated addressing using sections
-#define inf_va_to_pa(address) (address - infinite_base_address)
-//#define inf_va_to_pointer(data, address) (address ? ((const char*)(data + inf_va_to_pa(address))) : 0)
-
-#define inf_va_to_rva(address) (infinite_dump_base_address + (address - infinite_base_address))
+#define inf_va_to_pa(address) ptr64(ptr64(address).value() - infinite_base_address.value())
+#define inf_va_to_rva(address) ptr64(infinite_dump_base_address.value() + (ptr64(address).value() - infinite_base_address.value()))
 const char* inf_va_to_pointer(const char* data, ptr64 address);
 const char* inf_pa_to_pointer(const char* data, ptr64 address);
 
@@ -23,7 +18,6 @@ struct s_find_result
 };
 bool inf_find_string(const char* data, const char* str, std::vector<s_find_result>& results);
 bool inf_find_address(const char* data, ptr64 address, std::vector<s_find_result>& results);
-
 
 #include "inf_field_type.h"
 

@@ -565,7 +565,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 				{
 				case 4: basic_memory_read(dword);
 				case 8: basic_memory_read(qword);
-				default: FATAL_ERROR(L"Unknown pointer size");
+				default: FATAL_ERROR("Unknown pointer size");
 				}
 			}
 			break;

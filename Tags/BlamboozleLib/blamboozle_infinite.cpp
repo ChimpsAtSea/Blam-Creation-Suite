@@ -30,7 +30,7 @@ int c_blamboozle_infinite::run()
 
 	for (unsigned long tag_layout_index = 0; tag_layout_index < infinite_num_tag_layouts; tag_layout_index++)
 	{
-		ptr64 tag_layout_virtual_address = infinite_tag_layout_table_address + tag_layout_index * sizeof(s_inf_tag_group_definition);
+		ptr64 tag_layout_virtual_address = infinite_tag_layout_table_address.value() + tag_layout_index * sizeof(s_inf_tag_group_definition);
 
 		c_inf_tag_group_definition* group_definition = c_inf_tag_group_definition::inf_get_tag_group_definition(infinite_data, tag_layout_virtual_address);
 		group_definitions.emplace_back(group_definition);
@@ -61,7 +61,7 @@ int c_blamboozle_infinite::run()
 	//	const s_inf_tag_field_definition* const tag_field_definitions = (const s_inf_tag_field_definition*)inf_pa_to_pointer(infinite_data, tag_struct_definition.fields_address);
 	//	for (const s_inf_tag_field_definition* tag_field_definition = tag_field_definitions; tag_field_definition->type != _inf_field_type2_terminator_X; tag_field_definition++)
 	//	{
-	//		const char* type_name = int_field_type2_to_string(tag_field_definition->type);
+	//		const char* type_name = inf_field_type2_to_string(tag_field_definition->type);
 	//		const char* name = inf_pa_to_pointer(infinite_data, tag_field_definition->name);
 	//		c_console::write_line("\t%s '%s'", type_name, name);
 	//	}

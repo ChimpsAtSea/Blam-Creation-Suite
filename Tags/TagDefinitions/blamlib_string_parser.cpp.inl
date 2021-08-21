@@ -179,6 +179,8 @@ void c_blamlib_string_parser::cleanup_code_name()
 	code_name.replace('>', '_');
 	code_name.replace('<', '_');
 	code_name.replace('=', '_');
+	code_name.remove('[');
+	code_name.remove(']');
 	code_name.remove('’');
 	code_name.remove('%');
 	code_name.remove('{');
@@ -406,7 +408,7 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string) :
 			break;
 		default:
 			c_console::write_line("unhandled flag '%.1s' 0x%02X example:'%s'", flag, static_cast<int>(*flag), string);
-			FATAL_ERROR(L"Unknown flag");
+			FATAL_ERROR("Unknown flag");
 		}
 
 		debug_point;

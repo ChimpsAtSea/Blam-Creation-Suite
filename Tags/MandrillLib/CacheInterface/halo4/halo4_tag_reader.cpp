@@ -713,7 +713,7 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 		case _halo4_d3d_pixel_shader_interop:
 		default:
 			interop_containers[interop_index] = nullptr;
-			FATAL_ERROR(L"Unsupported interop type");
+			FATAL_ERROR("Unsupported interop type");
 			break;
 		}
 
@@ -1055,7 +1055,7 @@ BCS_RESULT c_halo4_tag_reader::init_resources()
 	////fclose(f);
 
 	//
-	////FATAL_ERROR(L"not implemented");
+	////FATAL_ERROR("not implemented");
 
 	//debug_point;
 

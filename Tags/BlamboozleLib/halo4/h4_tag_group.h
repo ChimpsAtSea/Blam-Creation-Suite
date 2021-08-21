@@ -2,7 +2,7 @@
 
 struct s_h4_tag_group
 {
-	bulong name_address;
+	bptr32 name_address;
 	bulong flags;
 	tag_group group_tag;
 	tag_group parent_group_tag;
@@ -10,7 +10,7 @@ struct s_h4_tag_group
 	unsigned char initialized;
 	unsigned char : 8;
 	bulong vtable; // c_tag_group_vtable
-	bptr32<s_h4_tag_block_definition*> definition_address;
+	typed_bptr32<s_h4_tag_block_definition*> definition_address;
 	btag_group child_group_tags[16];
 	unsigned short num_child_group_tags;
 	unsigned short : 16;

@@ -1,6 +1,6 @@
 #include "gameframework-private-pch.h"
 
-#define IGameEngineHostCreateBarrierDefinition(index) void IGameEngineHost::Function##index() { FATAL_ERROR(L"IGameEngineHost barrier was triggered! index:" STRINGIFY(index)); }
+#define IGameEngineHostCreateBarrierDefinition(index) void IGameEngineHost::Function##index() { FATAL_ERROR("IGameEngineHost barrier was triggered! index:" STRINGIFY(index)); }
 
 /* barrier functions to prevent new versions of games calling our functions */
 IGameEngineHostCreateBarrierDefinition(50);

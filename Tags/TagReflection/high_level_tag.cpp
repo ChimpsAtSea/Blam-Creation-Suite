@@ -132,7 +132,7 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 	case _engine_type_infinite:
 		tag = blofeld::infinite::create_high_level_tag(*this, filepath);
 		break;
-	default: FATAL_ERROR(L"Unsupported engine type");
+	default: FATAL_ERROR("Unsupported engine type");
 	}
 
 	ASSERT(tag != nullptr);

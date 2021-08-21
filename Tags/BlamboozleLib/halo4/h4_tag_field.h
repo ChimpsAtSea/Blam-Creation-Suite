@@ -6,18 +6,18 @@ class c_h4_tag_struct;
 struct s_h4_tag_field_definition
 {
 	bigendian_type<e_h4_field_type> field_type;
-	bptr32<const char*> name_address;
-	bptr32<void*> definition_address;
+	typed_bptr32<const char*> name_address;
+	typed_bptr32<void*> definition_address;
 	bulong tool_tag;
 };
 
 struct s_h4_tag_block_definition
 {
-	bptr32<const char*> display_name;
-	bptr32<const char*> name;
+	typed_bptr32<const char*> display_name;
+	typed_bptr32<const char*> name;
 	bulong maximum_element_count;
-	bptr32<const char*> maximum_element_count_string;
-	bptr32<s_h4_tag_struct_definition*> struct_definition;
+	typed_bptr32<const char*> maximum_element_count_string;
+	typed_bptr32<s_h4_tag_struct_definition*> struct_definition;
 };
 
 
@@ -28,7 +28,7 @@ public:
 		field_type(field_definition->field_type),
 		field_definition(field_definition),
 		name(h4_va_to_pointer(h4_data, field_definition->name_address)),
-		raw(field_definition->definition_address),
+		raw(field_definition->definition_address.value()),
 		tool_tag(field_definition->tool_tag)
 	{
 
@@ -60,7 +60,7 @@ public:
 
 	t_h4_tag_field(const char* h4_data, const s_h4_tag_field_definition* field_definition, e_h4_tag_field_validation_check ensure_valid_definition = _h4_tag_field_validation_check_none) :
 		c_h4_tag_field(h4_data, field_definition),
-		definition(reinterpret_cast<const T*>(h4_va_to_pointer_safe(h4_data, field_definition->definition_address)))
+		definition(reinterpret_cast<const T*>(h4_va_to_pointer(h4_data, field_definition->definition_address.value())))
 	{
 		if (ensure_valid_definition == _h4_tag_field_validation_check_ensure_valid)
 		{
@@ -96,10 +96,10 @@ using c_h4_tag_field_explanation = t_h4_tag_field<const char>;
 
 struct s_h4_tag_enum_definition
 {
-	bptr32<const char*> name;
+	typed_bptr32<const char*> name;
 	bulong option_count;
-	bptr32<bptr32<const char*>*> options;
-	bptr32<const char*> filepath;
+	typed_bptr32<typed_bptr32<const char*>*> options;
+	typed_bptr32<const char*> filepath;
 	bulong line_number;
 };
 
@@ -107,7 +107,7 @@ struct s_h4_tag_reference_definition
 {
 	bulong flags;
 	bulong group_tag;
-	bptr32<bulong*> group_tags_address;
+	typed_bptr32<bulong*> group_tags_address;
 };
 
 class c_h4_tag_field_tag_reference :
@@ -117,10 +117,10 @@ public:
 	c_h4_tag_reference* const reference;
 	c_h4_tag_field_tag_reference(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition),
-		reference(c_h4_blamboozle::get_tag_reference_definition(h4_data, definition, field_definition->definition_address))
+		reference(c_h4_blamboozle::get_tag_reference_definition(h4_data, definition, field_definition->definition_address.value()))
 	{
-		unsigned long definition_address = field_definition->definition_address;
-		unsigned long group_tags_address = this->definition->group_tags_address;
+		unsigned long definition_address = field_definition->definition_address.value();
+		unsigned long group_tags_address = this->definition->group_tags_address.value();
 
 		
 	}
@@ -128,13 +128,13 @@ public:
 
 struct s_h4_tag_data_definition
 {
-	bptr32<const char*> definition_name_address;
+	typed_bptr32<const char*> definition_name_address;
 	unsigned long flags;
 	unsigned long alignment_bit;
 	unsigned long maximum_size;
-	bptr32<const char*> maximum_size_string_address;
-	bptr32<void*> byteswap_procedure;
-	bptr32<void*> copy_procedure;
+	typed_bptr32<const char*> maximum_size_string_address;
+	typed_bptr32<void*> byteswap_procedure;
+	typed_bptr32<void*> copy_procedure;
 	unsigned long : 32; // unknown
 	unsigned long : 32; // unknown
 	unsigned long : 32; // unknown
@@ -147,7 +147,7 @@ public:
 	c_h4_tag_field_data(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		if (definition)
 		{
@@ -165,9 +165,9 @@ public:
 
 	c_h4_tag_field_struct(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition, field_definition->definition_address))
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition, field_definition->definition_address.value()))
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 		const char* field_set_display_name = h4_va_to_pointer(h4_data, definition->pretty_name);
 		const char* field_set_name = h4_va_to_pointer(h4_data, definition->name);
 
@@ -185,7 +185,7 @@ public:
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		tag_block_definition(c_h4_blamboozle::get_tag_block_definition(h4_data, definition, nullptr))
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		
 	}
@@ -201,7 +201,7 @@ public:
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		tag_enum(c_h4_blamboozle::get_tag_enum_definition(h4_data, definition))
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		
 	}
@@ -209,9 +209,9 @@ public:
 
 struct s_h4_block_index_custom_search_definition
 {
-	bptr32<const char*> name_address;
-	bptr32<void*> get_block_procedure;
-	bptr32<void*> is_valid_source_block_procedure;
+	typed_bptr32<const char*> name_address;
+	typed_bptr32<void*> get_block_procedure;
+	typed_bptr32<void*> is_valid_source_block_procedure;
 };
 
 class c_h4_tag_field_custom_block_index :
@@ -223,7 +223,7 @@ public:
 	c_h4_tag_field_custom_block_index(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		name = h4_va_to_pointer(h4_data, definition->name_address);
 
@@ -239,7 +239,7 @@ public:
 
 	c_h4_tag_field_pad(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition),
-		padding(field_definition->definition_address)
+		padding(field_definition->definition_address.value())
 	{
 
 	}
@@ -253,7 +253,7 @@ public:
 
 	c_h4_tag_field_skip(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition),
-		length(field_definition->definition_address)
+		length(field_definition->definition_address.value())
 	{
 
 	}
@@ -261,10 +261,10 @@ public:
 
 struct s_h4_tag_array_definition
 {
-	bptr32<const char*> name;
+	typed_bptr32<const char*> name;
 	bulong element_count;
-	bptr32<const char*> element_count_string;
-	bptr32<s_h4_tag_struct_definition*> struct_definition;
+	typed_bptr32<const char*> element_count_string;
+	typed_bptr32<s_h4_tag_struct_definition*> struct_definition;
 };
 
 class c_h4_tag_field_array :
@@ -285,12 +285,12 @@ public:
 		name(h4_va_to_pointer(h4_data, definition->name)),
 		count(definition->element_count),
 		count_string(h4_va_to_pointer(h4_data, definition->element_count_string)),
-		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition)),
+		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition.value())),
+		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition.value())),
 		tag_array_definition(c_h4_blamboozle::get_tag_array_definition(h4_data, definition))
 	{
-		unsigned long definition_address = field_definition->definition_address;
-		unsigned long struct_definition_address = definition->struct_definition;
+		unsigned long definition_address = field_definition->definition_address.value();
+		unsigned long struct_definition_address = definition->struct_definition.value();
 
 		
 	}
@@ -304,7 +304,7 @@ public:
 	c_h4_tag_field_string(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_invalid)
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		
 	}
@@ -318,7 +318,7 @@ public:
 	c_h4_tag_field_string_id(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_invalid)
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		
 	}
@@ -332,12 +332,12 @@ enum e_tag_resource_type
 
 struct s_h4_tag_resource_definition
 {
-	bptr32<const char*> name;
+	typed_bptr32<const char*> name;
 	bigendian_type<e_tag_resource_type> resource_type;
-	bptr32<s_h4_tag_struct_definition*> struct_definition;
-	bptr32<void*> tag_resource_vtable; // c_tag_resource_vtable<c_sound_resource_vtable>
+	typed_bptr32<s_h4_tag_struct_definition*> struct_definition;
+	typed_bptr32<void*> tag_resource_vtable; // c_tag_resource_vtable<c_sound_resource_vtable>
 	bulong unknown0;
-	bptr32<const char*> filepath;
+	typed_bptr32<const char*> filepath;
 	bulong count;
 	bulong unknown1;
 	bulong unknown2;
@@ -364,17 +364,17 @@ public:
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		name(h4_va_to_pointer(h4_data, definition->name)),
 		resource_type(definition->resource_type),
-		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		tag_resource_vtable(h4_va_to_pointer<void>(h4_data, definition->struct_definition)),
+		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition.value())),
+		tag_resource_vtable(h4_va_to_pointer<void>(h4_data, definition->struct_definition.value())),
 		unknown0(definition->unknown0),
 		filepath(h4_va_to_pointer(h4_data, definition->filepath)),
 		count(definition->count),
 		unknown1(definition->unknown1),
 		unknown2(definition->unknown2),
-		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition)),
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition.value())),
 		tag_resource_definition(c_h4_blamboozle::get_tag_resource_definition(h4_data, definition))
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		ASSERT(unknown0 == 0);
 		//ASSERT(unknown1 == 0);
@@ -387,9 +387,9 @@ public:
 struct s_h4_tag_interop_definition
 {
 	GUID guid;
-	bptr32<s_h4_tag_struct_definition*> struct_definition;
-	bptr32<void*> interop_vtable; // c_tag_d3d_interop_vtable
-	bptr32<const char*> name;
+	typed_bptr32<s_h4_tag_struct_definition*> struct_definition;
+	typed_bptr32<void*> interop_vtable; // c_tag_d3d_interop_vtable
+	typed_bptr32<const char*> name;
 	bulong unknown;
 };
 
@@ -403,7 +403,7 @@ public:
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		tag_interop_definition(c_h4_blamboozle::get_tag_interop_definition(h4_data, definition))
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 
 	}
@@ -424,12 +424,12 @@ public:
 //	c_h4_tag_interop_definition(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 //		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 //		guid(definition->guid),
-//		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
+//		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition.value())),
 //		name(h4_va_to_pointer(h4_data, definition->name)),
 //		unknown(definition->unknown),
-//		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition))
+//		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition, definition->struct_definition.value()))
 //	{
-//		unsigned long definition_address = field_definition->definition_address;
+//		unsigned long definition_address = field_definition->definition_address.value();
 //
 //		
 //	}
@@ -443,7 +443,7 @@ public:
 	c_h4_tag_field_custom(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition)
 	{
-		unsigned long definition_address = field_definition->definition_address;
+		unsigned long definition_address = field_definition->definition_address.value();
 
 		
 	}

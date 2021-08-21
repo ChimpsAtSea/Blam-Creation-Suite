@@ -53,7 +53,7 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 		break;
 	case _h1_pseudo_field_type_pad:
 	case _h1_pseudo_field_type_skip:
-		padding = skip_length = field.definition_address;
+		padding = skip_length = field.definition_address.value();
 		break;
 	case _h1_pseudo_field_type_enum:
 	case _h1_pseudo_field_type_long_flags:
@@ -63,7 +63,7 @@ c_h1_pseudo_field_definition::c_h1_pseudo_field_definition(const char* guerilla_
 		break;
 	case _h1_pseudo_field_type_explanation:
 		if (field.definition_address)
-			explanation = h1_va_to_pointer(guerilla_data, field.definition_address);
+			explanation = h1_va_to_pointer(guerilla_data, field.definition_address.value());
 		break;
 	}
 }
