@@ -42,23 +42,12 @@ enum BCS_RESULT
 #define BCS_FAILED(result) ((result) < 0)
 #define BCS_SUCCEEDED(result) ((result) >= 0)
 
-#ifndef _DEBUG
-
-#define ASSERT(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR(_CRT_WIDE( #expression ), ##__VA_ARGS__); } } while(false)
-
-#if !defined(_DEBUG) && defined(UWP_PLATFORM)
-#define FATAL_ERROR(reason, ...) throw
-#define DEBUG_FATAL_ERROR()
-#else
-void BCSAPI __fatal_error_internal(const wchar_t* reason, const wchar_t* filepath, unsigned int line, ...);
-#define FATAL_ERROR_NO_THROW(reason, ...) __fatal_error_internal(reason, _CRT_WIDE(__FILE__), (unsigned)(__LINE__), ##__VA_ARGS__)
-#define FATAL_ERROR(reason, ...) (FATAL_ERROR_NO_THROW(reason, ##__VA_ARGS__), throw)
-#define DEBUG_FATAL_ERROR(reason, ...) do { if (IsDebuggerPresent()) { __fatal_error_internal(reason, _CRT_WIDE(__FILE__), (unsigned)(__LINE__), ##__VA_ARGS__); } } while(false); throw
-#endif
-
-#else
-
+#ifdef _DEBUG
 _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t const* _File, _In_ unsigned _Line);
+#define assertfunc _wassert
+#else
+#define assertfunc(...)
+#endif
 
 #define ASSERT(statement) \
 						do  \
@@ -72,7 +61,7 @@ _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t co
 								} \
 								else \
 								{ \
-									_wassert(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement, _CRT_WIDE(__FILE__), __LINE__); \
+									assertfunc(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement, _CRT_WIDE(__FILE__), __LINE__); \
 								} \
 							} \
 						} while(false)
@@ -87,7 +76,7 @@ _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t co
 							} \
 							else \
 							{ \
-								_wassert(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason, _CRT_WIDE(__FILE__), __LINE__); \
+								assertfunc(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason, _CRT_WIDE(__FILE__), __LINE__); \
 							} \
 						} while(false)
 
@@ -113,7 +102,7 @@ _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t co
 //		printf("%s(%i): error FATAL: %S", __FILE__, __LINE__, __fatal_error_string_wide); \
 //		if (IsDebuggerPresent()) \
 //		{ \
-//			_wassert(__fatal_error_string_wide, _CRT_WIDE(__FILE__), __LINE__); \
+//			assertfunc(__fatal_error_string_wide, _CRT_WIDE(__FILE__), __LINE__); \
 //		} \
 //		else \
 //		{ \
@@ -125,9 +114,6 @@ _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t co
 //		} \
 //	} \
 //} while (false)
-
-
-#endif
 
 
 #define ASSERT_NO_THROW(expression, ...) do { if(!(bool)(expression)) { FATAL_ERROR_NO_THROW(_CRT_WIDE(STRINGIFY(expression)), ##__VA_ARGS__); } } while(false)

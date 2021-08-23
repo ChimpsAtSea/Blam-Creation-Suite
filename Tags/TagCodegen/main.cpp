@@ -17,6 +17,7 @@ int create_source_file()
 		{ _engine_type_halo4,				_platform_type_pc_64bit },
 		{ _engine_type_groundhog,			_platform_type_pc_64bit },
 		{ _engine_type_gen3_xbox360,		_platform_type_xbox_360 },
+		{ _engine_type_infinite,			_platform_type_pc_64bit },
 	};
 
 	c_console::write_line_verbose("Generating tag code");
