@@ -39,9 +39,9 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 4 },
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach },
 		{ _field_legacy, _field_long_integer, "unknown" }, 

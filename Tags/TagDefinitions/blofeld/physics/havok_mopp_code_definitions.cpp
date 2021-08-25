@@ -66,9 +66,9 @@ namespace blofeld
 
 
 		// ## blam specific data below ##
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_block, "mopp data block ", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &mopp_code_data_definition_block },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_char_integer, "mopp build type", "they say it only matters for ps3", FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY },
 		FIELD_PAD("explicit alignment pad 3", nullptr, FIELD_FLAG_NONE, 3),
 		{ _field_terminator }

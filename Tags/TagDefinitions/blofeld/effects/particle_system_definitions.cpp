@@ -121,9 +121,9 @@ namespace blofeld
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
 		FIELD_CUSTOM("PARTICLE MOTION", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_CUSTOM("particle physics template", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "particle movement", &particle_physics_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 2 },
 		{ _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block },
