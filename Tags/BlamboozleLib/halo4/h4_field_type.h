@@ -254,8 +254,8 @@ enum e_h4_field_id_type
 	_h4_field_id_cents = 'cent',
 	_h4_field_id_zero_data = 'nuke',
 	_h4_field_id_hide = 'ugly',
-	_h4_field_id_hidd_begin = 'hide',
-	_h4_field_id_hidd_end = 'edih',
+	_h4_field_id_hide_begin = 'hide',
+	_h4_field_id_hide_end = 'edih',
 	_h4_field_id_filter = 'filt',
 	_h4_field_id_type = 'type',
 	_h4_field_id_name = 'name',
@@ -338,8 +338,8 @@ inline const char* h4_field_id_type_to_generic_field_id_type(e_h4_field_id_type 
 	case _h4_field_id_cents:									return "_field_id_cents";
 	case _h4_field_id_zero_data:								return "_field_id_zero_data";
 	case _h4_field_id_hide:									  	return "_field_id_hide";
-	case _h4_field_id_hidd_begin:							  	return "_field_id_hidd_begin";
-	case _h4_field_id_hidd_end:								  	return "_field_id_hidd_end";
+	case _h4_field_id_hide_begin:							  	return "_field_id_hide_begin";
+	case _h4_field_id_hide_end:								  	return "_field_id_hide_end";
 	case _h4_field_id_filter:								  	return "_field_id_filter";
 	case _h4_field_id_type:									  	return "_field_id_type";
 	case _h4_field_id_name:									  	return "_field_id_name";

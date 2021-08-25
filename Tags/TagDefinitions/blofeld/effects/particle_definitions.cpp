@@ -119,7 +119,7 @@ namespace blofeld
 
 		{ _field_legacy, _field_version_greater, _engine_type_haloreach, 3 },
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
 
 		{ _field_legacy, _field_version_less_or_equal, _engine_type_haloreach, 10 },
@@ -134,7 +134,7 @@ namespace blofeld
 		{ _field_legacy, _field_real, "unknown@" },
 		{ _field_legacy, _field_tag_reference, "unknown@" },
 
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_unknown_end),
 		{ _field_struct, "aspect ratio", &particle_property_scalar_struct_new },
 		{ _field_struct, "color", "controls how the color of the particle changes as a function of its input", "RGB", &particle_property_color_struct_new },
@@ -157,9 +157,9 @@ namespace blofeld
 		FIELD_CUSTOM("OLD DEPRECATED shader definition", nullptr, FIELD_FLAG_NONE, _field_id_field_group_begin),
 		FIELD_CUSTOM("shader", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
 		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_field_group_end),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual shader?", &shader_particle_struct_definition },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 
 		{ _field_dword_integer, "runtime m_used_particle_states", FIELD_FLAG_UNKNOWN0 },
 		{ _field_dword_integer, "runtime m_constant_per_particle_properties", FIELD_FLAG_UNKNOWN0 },

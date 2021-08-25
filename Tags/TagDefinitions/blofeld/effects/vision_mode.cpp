@@ -31,9 +31,9 @@ namespace blofeld
 		VISIONMODESCREENPASSBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 
@@ -49,9 +49,9 @@ namespace blofeld
 		VISIONMODEENVIRONMENTPASSBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 
@@ -89,9 +89,9 @@ namespace blofeld
 		{ _field_long_flags, "flags", &visionModeBipedPassFlags },
 		{ _field_long_flags, "render for", &visionModeBipedTeamTypes },
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 
@@ -125,9 +125,9 @@ namespace blofeld
 	{
 		{ _field_block, "vehicle types", &visionModeOrdnanceVehicleTypeBlock_block },
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 
@@ -159,9 +159,9 @@ namespace blofeld
 		VISIONMODEORDNANCECROSSHAIRBLOCK_ID)
 	{
 		FIELD_CUSTOM("material", nullptr, FIELD_FLAG_NONE, _field_id_shader_template),
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_begin),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_begin),
 		{ _field_struct, "actual material?", &material_struct },
-		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hidd_end),
+		FIELD_CUSTOM(nullptr, nullptr, FIELD_FLAG_NONE, _field_id_hide_end),
 		{ _field_terminator }
 	};
 
