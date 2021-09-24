@@ -20,8 +20,8 @@ int blamboozle_run()
 	std::wstring output_directory = c_command_line::get_command_line_warg("-blamboozle-output");
 	if (output_directory.empty())
 	{
-		c_console::write_line_verbose("No output directory specified");
-		c_console::write_line_verbose("Usage <output directory> <binary ...>");
+		console_write_line("No output directory specified");
+		console_write_line("Usage <output directory> <binary ...>");
 		return 1;
 	}
 
@@ -38,8 +38,8 @@ int blamboozle_run()
 		infinite_preview_file.empty() &&
 		halo4_midnight_tags_test.empty())
 	{
-		c_console::write_line_verbose("No binary file(s) specified");
-		c_console::write_line_verbose("Usage <output directory> <binary ...>");
+		console_write_line("No binary file(s) specified");
+		console_write_line("Usage <output directory> <binary ...>");
 		return 1;
 	}
 
@@ -80,14 +80,14 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 
 		char* binary_data = nullptr;
 		size_t binary_data_size = 0;
-		if (!filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
+		if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
 		{
-			c_console::write_line_verbose("Failed to open binary file");
+			console_write_line("Failed to open binary file");
 			return 1;
 		}
 		if (binary_data_size == 0)
 		{
-			c_console::write_line_verbose("Binary file was zero sized");
+			console_write_line("Binary file was zero sized");
 			return 1;
 		}
 
@@ -144,14 +144,14 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 
 		if (engine_type == _engine_type_not_set)
 		{
-			c_console::write_line_verbose("Unrecognised executable provided");
+			console_write_line("Unrecognised executable provided");
 			return 1;
 		}
 
 		const char* build_pretty_name = "unknown";
 		get_build_pretty_string(build, &build_pretty_name);
 
-		c_console::write_line_verbose("Found %s build", build_pretty_name);
+		console_write_line("Found %s build", build_pretty_name);
 
 		const char* engine_type_name;
 		ASSERT(BCS_SUCCEEDED(get_engine_type_string(engine_type, &engine_type_name)) || skip_hash_check);

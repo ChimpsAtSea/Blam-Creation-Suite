@@ -17,7 +17,6 @@ namespace blofeld
 	extern s_tag_struct_definition controller_mapping_reference_block_struct_definition; // controller_mapping_reference_block
 
 
-	extern c_versioned_string_list input_mapping_shape_enum_strings;
 	extern s_string_list_definition input_mapping_shape_enum;
 
 

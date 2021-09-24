@@ -15,7 +15,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition silent_assist_globals_struct_definition; // tag group
 
-	extern c_versioned_string_list g_silentAssistFlags_strings;
 	extern s_string_list_definition g_silentAssistFlags;
 
 

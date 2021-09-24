@@ -57,7 +57,7 @@ uintptr_t sub_141806A64_offset(s_engine_platform_build engine_platform_build)
 c_function_hook_ex<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, int a2)> sub_141806A64 = { "sub_141806A64", [](__int64 a1, int a2)
 {
 	const wchar_t* szResult = sub_141806A64(a1, a2);
-	c_console::write_line_verbose("%S", szResult);
+	console_write_line("%S", szResult);
 	return szResult;
 } };
 

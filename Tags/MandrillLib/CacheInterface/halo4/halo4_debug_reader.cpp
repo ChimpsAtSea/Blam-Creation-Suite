@@ -240,18 +240,18 @@ c_halo4_debug_reader::~c_halo4_debug_reader()
 
 BCS_RESULT c_halo4_debug_reader::string_id_to_string(string_id stringid, const char*& string)
 {
-	uint32_t const string_id_index = (stringid >> string_id_index_shift) & string_id_index_mask;
-	uint32_t const string_id_namespace = (stringid >> string_id_namespace_shift) & string_id_namespace_mask;
-	uint32_t const string_id_length = (stringid >> string_id_length_shift) & string_id_length_mask;
+	unsigned long const string_id_index = (stringid >> string_id_index_shift) & string_id_index_mask;
+	unsigned long const string_id_namespace = (stringid >> string_id_namespace_shift) & string_id_namespace_mask;
+	unsigned long const string_id_length = (stringid >> string_id_length_shift) & string_id_length_mask;
 
 	return string_id_to_string(string_id_index, string_id_namespace, string_id_length, string);
 }
 
-BCS_RESULT c_halo4_debug_reader::string_id_to_string(uint32_t string_id_index, uint32_t string_id_namespace, uint32_t string_id_length, const char*& string)
+BCS_RESULT c_halo4_debug_reader::string_id_to_string(unsigned long string_id_index, unsigned long string_id_namespace, unsigned long string_id_length, const char*& string)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	uint32_t string_index;
+	unsigned long string_index;
 	if (BCS_FAILED(rs = string_id_to_index(string_id_index, string_id_namespace, string_id_length, string_index)))
 	{
 		return rs;
@@ -289,16 +289,16 @@ BCS_RESULT c_halo4_debug_reader::get_group_id(tag group_tag, const char*& group_
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_halo4_debug_reader::string_id_to_index(string_id stringid, uint32_t& string_index)
+BCS_RESULT c_halo4_debug_reader::string_id_to_index(string_id stringid, unsigned long& string_index)
 {
-	uint32_t const string_id_index = (stringid & string_id_index_mask) >> string_id_index_shift;
-	uint32_t const string_id_namespace = (stringid & string_id_namespace_mask) >> string_id_namespace_shift;
-	uint32_t const string_id_length = (stringid & string_id_length_mask) >> string_id_length_shift;
+	unsigned long const string_id_index = (stringid & string_id_index_mask) >> string_id_index_shift;
+	unsigned long const string_id_namespace = (stringid & string_id_namespace_mask) >> string_id_namespace_shift;
+	unsigned long const string_id_length = (stringid & string_id_length_mask) >> string_id_length_shift;
 
 	return string_id_to_index(string_id_index, string_id_namespace, string_id_length, string_index);
 }
 
-BCS_RESULT c_halo4_debug_reader::string_id_to_index(uint32_t string_id_index, uint32_t string_id_namespace, uint32_t string_id_length, uint32_t& string_index)
+BCS_RESULT c_halo4_debug_reader::string_id_to_index(unsigned long string_id_index, unsigned long string_id_namespace, unsigned long string_id_length, unsigned long& string_index)
 {
 	halo4::xbox360::s_cache_file_header& cache_file_header = cache_reader.cache_file_header;
 
@@ -322,7 +322,7 @@ BCS_RESULT c_halo4_debug_reader::string_id_to_index(uint32_t string_id_index, ui
 	}
 	else
 	{
-		for (uint32_t namespace_index = 0; namespace_index < string_id_namespace; namespace_index++) // #TODO: pre calculate this table
+		for (unsigned long namespace_index = 0; namespace_index < string_id_namespace; namespace_index++) // #TODO: pre calculate this table
 		{
 			// offset += cache_file.string_id_namespace_table[namespace_index] & 0x1FFFF; // halo reach cache table
 			offset += k_engine_set_counts[namespace_index];

@@ -39,41 +39,21 @@
     <ClInclude Include="Blam\legacy\network_session_peer_state.h" />
     <ClInclude Include="Blam\legacy\observer_camera.h" />
     <ClInclude Include="Blam\mcc_skull.h" />
-    <ClInclude Include="high_precision_timer.h" />
     <ClInclude Include="IconsFontAwesome5.h" />
     <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
-    <ClInclude Include="Rendering\directx_helpers.h" />
-    <ClInclude Include="Rendering\dds.h" />
     <ClInclude Include="shared-types-pch.h" />
     <ClInclude Include="string_helpers.h" />
-    <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
-    <ClInclude Include="ThreadPrimitives\semaphore.h" />
-    <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />
-    <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="ImGuiAddons\dirent\dirent.h" />
     <ClInclude Include="ImGuiAddons\!imgui_addons.h" />
     <ClInclude Include="ImGuiAddons\imgui_file_browser.h" />
     <ClInclude Include="ImGuiAddons\imgui_text_editor.h" />
-    <ClInclude Include="Rendering\box_primitive.h" />
-    <ClInclude Include="Rendering\box_renderer.h" />
-    <ClInclude Include="Rendering\debug_gui.h" />
-    <ClInclude Include="Rendering\primitive_render_manager.h" />
-    <ClInclude Include="Rendering\render.h" />
-    <ClInclude Include="Rendering\Rendering.h" />
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
-    <ClInclude Include="StringUtilities.h" />
-    <ClInclude Include="ThreadPrimitives\ThreadPrimitives.h" />
-    <ClInclude Include="ThreadSafeQueue.h" />
-    <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImGuiAddons\BeginPopupModalEx.cpp" />
-    <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="string_helpers.cpp" />
-    <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
-    <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
     <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -86,19 +66,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Rendering\box_primitive.cpp" />
-    <ClCompile Include="Rendering\box_renderer.cpp" />
-    <ClCompile Include="Rendering\debug_gui.cpp" />
-    <ClCompile Include="Rendering\primitive_render_manager.cpp" />
-    <ClCompile Include="Rendering\render.cpp" />
     <ClCompile Include="shared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringUtilities.cpp" />
-    <ClCompile Include="ThreadPrimitives\thread_subroutine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -110,20 +83,24 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

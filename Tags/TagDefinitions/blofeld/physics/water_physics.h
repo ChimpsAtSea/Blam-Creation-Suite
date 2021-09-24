@@ -19,7 +19,6 @@ namespace blofeld
 	extern s_tag_struct_definition water_physics_drag_properties_struct;
 	extern s_tag_struct_definition physics_force_function_struct;
 
-	extern c_versioned_string_list water_physics_hull_surface_definition_flags_strings;
 	extern s_string_list_definition water_physics_hull_surface_definition_flags;
 
 	extern s_tag_reference_definition water_physics_drag_properties_reference;

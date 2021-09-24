@@ -21,5 +21,8 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
 </Project>

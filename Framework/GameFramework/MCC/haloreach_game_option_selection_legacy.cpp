@@ -236,7 +236,7 @@ const c_map_info* c_haloreach_game_option_selection_legacy::get_selected_map_inf
 
 void c_haloreach_game_option_selection_legacy::select_game_mode()
 {
-	bool show_all_modes = c_command_line::has_command_line_arg("-showallmodes");
+	bool show_all_modes = BCS_SUCCEEDED(command_line_has_argument("showallmodes");
 
 	const char* current_game_mode_str = mcc_game_mode_to_local_string(current_game_mode);
 	if (ImGui::BeginCombo("Game Mode", current_game_mode_str))
@@ -468,14 +468,14 @@ int c_haloreach_game_option_selection_legacy::ReadSavedFilm(const char* pName, s
 		char* saved_fildata = nullptr;
 		size_t saved_fildata_size = 0;
 
-		if (!filesystem_read_file_to_memory(pPath, reinterpret_cast<void**>(&saved_fildata), &saved_fildata_size))
+		if (BCS_FAILED(filesystem_read_file_to_memory(pPath, reinterpret_cast<void**>(&saved_fildata), &saved_fildata_size))
 		{
-			c_console::write_line_verbose("Failed to open saved film file");
+			console_write_line("Failed to open saved film file");
 			return -1;
 		}
 		if (saved_fildata == 0)
 		{
-			c_console::write_line_verbose("Saved film was zero sized");
+			console_write_line("Saved film was zero sized");
 			return -1;
 		}
 
@@ -694,14 +694,14 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* dat
 		char* variant_data = nullptr;
 		size_t variant_data_size = 0;
 
-		if (!filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
+		if (BCS_FAILED(filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
 		{
-			c_console::write_line_verbose("Failed to open map variant file");
+			console_write_line("Failed to open map variant file");
 			return;
 		}
 		if (variant_data == 0)
 		{
-			c_console::write_line_verbose("Map variant was zero sized");
+			console_write_line("Map variant was zero sized");
 			return;
 		}
 
@@ -709,7 +709,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* dat
 		{
 			if (print)
 			{
-				c_console::write_line_verbose("Loading map variant [%s]", filepath.c_str());
+				console_write_line("Loading map variant [%s]", filepath.c_str());
 			}
 
 			map_variant = data_access->map_variant_create_from_file(variant_data, variant_data_size)->map_variant;
@@ -724,7 +724,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* dat
 	{
 		if (print)
 		{
-			c_console::write_line_verbose("Creating map variant for '%s'", selected_map_info->get_friendly_name());
+			console_write_line("Creating map variant for '%s'", selected_map_info->get_friendly_name());
 		}
 
 		map_variant = data_access->map_variant_create_from_map_id(selected_map_info->get_map_id())->map_variant;
@@ -761,14 +761,14 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* da
 	char* variant_data = nullptr;
 	size_t variant_data_size = 0;
 
-	if (!filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
+	if (BCS_FAILED(filesystem_read_file_to_memory(filepath.c_str(), reinterpret_cast<void**>(&variant_data), &variant_data_size))
 	{
-		c_console::write_line_verbose("Failed to open map variant file");
+		console_write_line("Failed to open map variant file");
 		return;
 	}
 	if (variant_data == 0)
 	{
-		c_console::write_line_verbose("Map variant was zero sized");
+		console_write_line("Map variant was zero sized");
 		return;
 	}
 
@@ -776,7 +776,7 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* da
 	{
 		if (print)
 		{
-			c_console::write_line_verbose("Loading game variant [%s]", filepath.c_str());
+			console_write_line("Loading game variant [%s]", filepath.c_str());
 		}
 
 		IGameVariant* game_variant_interface = data_access->game_variant_create_from_file(variant_data, variant_data_size);
@@ -786,7 +786,7 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* da
 		}
 		else
 		{
-			c_console::write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
+			console_write_line(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
 		}
 
 		delete[] variant_data;
@@ -846,7 +846,7 @@ void c_haloreach_game_option_selection_legacy::load_saved_film(const char* saved
 
 	if (filepath.c_str())
 	{
-		c_console::write_line_verbose("Loading saved film [%s]", filepath.c_str());
+		console_write_line("Loading saved film [%s]", filepath.c_str());
 	}
 
 	options.saved_film_path = filepath.c_str();

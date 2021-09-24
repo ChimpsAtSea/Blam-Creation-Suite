@@ -1,22 +1,9 @@
 #include <Platform\platform-public-pch.h>
-#include <Versioning\versioning-public-pch.h>
 #include <Shared\Blam\blamlib-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
-/* ---------- private constants */
-/* ---------- private macros */
-/* ---------- private types */
-/* ---------- private classes */
-/* ---------- globals */
-
-const char* c_console::g_console_executable_name = "UpgradeMacaque";
-
-/* ---------- private prototypes */
-/* ---------- public code */
-/* ---------- private code */
-
-// c_console::write_line_verbose("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
+// console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
 
 std::map<const blofeld::s_tag_struct_definition*, const blofeld::s_tag_struct_definition*> structure_definitions;
 
@@ -46,16 +33,12 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 	{
 		if (blofeld_field->field_type != macaque_field->field_type)
 		{
-			c_console::write_line_verbose("--------------------------------");
-			c_console::write_line_verbose("%s(%i): warning M0002: blofeld struct '%s' >", blofeld->filename, blofeld->line, blofeld->name);
-			c_console::write_line_verbose("%s(%i): warning M0002: macaque struct '%s' >", macaque->filename, macaque->line, macaque->name);
-			c_console::write_line_verbose("--------------------------------");
+			console_write_line("--------------------------------");
+			console_write_line("%s(%i): warning M0002: blofeld struct '%s' >", blofeld->filename, blofeld->line, blofeld->name);
+			console_write_line("%s(%i): warning M0002: macaque struct '%s' >", macaque->filename, macaque->line, macaque->name);
+			console_write_line("--------------------------------");
 			break;
 		}
-
-		c_blamlib_string_parser blofeld_string_parser = c_blamlib_string_parser(blofeld_field->name);
-
-
 
 		switch (macaque_field->field_type)
 		{
@@ -118,7 +101,7 @@ int WINAPI wWinMain(
 
 		if (!processed)
 		{
-			c_console::write_line_verbose("warning M0001: missing tag group '%s'.", blofeld_tag_group.name);
+			console_write_line("warning M0001: missing tag group '%s'.", blofeld_tag_group.name);
 		}
 	}
 

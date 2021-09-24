@@ -15,11 +15,8 @@ namespace blofeld
 	extern s_tag_struct_definition firstPersonpHiddenBodyRegionsBlock_block_struct_definition; // firstPersonpHiddenBodyRegionsBlock_block
 
 
-	extern c_versioned_string_list MomentumFlag_strings;
 	extern s_string_list_definition MomentumFlag;
-	extern c_versioned_string_list player_representation_flags_strings;
 	extern s_string_list_definition player_representation_flags;
-	extern c_versioned_string_list FpBodyRegionFlags_strings;
 	extern s_string_list_definition FpBodyRegionFlags;
 
 

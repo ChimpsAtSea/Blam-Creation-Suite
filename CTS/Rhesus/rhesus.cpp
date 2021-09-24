@@ -75,19 +75,19 @@ void rhesis_write_crashdump()
 			NULL);
 		if (minidump_write_dump_result == TRUE)
 		{
-			c_console::write_line_verbose("Whooooo");
+			console_write_line("Whooooo");
 		}
 		else
 		{
 			HRESULT last_error = static_cast<HRESULT>(GetLastError());
-			c_console::write_line_verbose("Failed to dump crash report");
+			console_write_line("Failed to dump crash report");
 		}
 
 		CloseHandle(dump_file_handle);
 	}
 	else
 	{
-		c_console::write_line_verbose("Failed to create crash report dump file");
+		console_write_line("Failed to create crash report dump file");
 	}
 }
 
@@ -97,7 +97,7 @@ void rhesus_debugger_loop(const DEBUG_EVENT& debug_event)
 
 	const char* debug_event_string = debug_event_code_to_string(debug_event.dwDebugEventCode);
 
-	c_console::write_line("debug_event: %s", debug_event_string);
+	console_write_line("debug_event: %s", debug_event_string);
 	switch (debug_event.dwDebugEventCode)
 	{
 	case EXCEPTION_DEBUG_EVENT:
@@ -108,7 +108,7 @@ void rhesus_debugger_loop(const DEBUG_EVENT& debug_event)
 		// is used by the ContinueDebugEvent function. 
 
 		const char* exception_code_string = exception_code_to_string(debug_event.u.Exception.ExceptionRecord.ExceptionCode);
-		c_console::write_line("exception_code: %s", exception_code_string);
+		console_write_line("exception_code: %s", exception_code_string);
 		switch (debug_event.u.Exception.ExceptionRecord.ExceptionCode)
 		{
 		case EXCEPTION_BREAKPOINT:
@@ -151,7 +151,7 @@ void rhesus_debugger_loop(const DEBUG_EVENT& debug_event)
 
 void rhesus_debugger(DWORD process_creation_flags)
 {
-	c_console::write_line_verbose("Rhesus debugger activated");
+	console_write_line("Rhesus debugger activated");
 
 	STARTUPINFOW startup_info = {};
 	c_fixed_wide_string<32768> command_line = GetCommandLineW();
@@ -184,8 +184,8 @@ bool rhesus_crash_reporter(int& result)
 #endif
 
 	bool is_debugger_present = IsDebuggerPresent();
-	bool is_rhesus = c_command_line::has_command_line_arg("-rhesus");
-	bool is_rhesus_debug = !is_rhesus && c_command_line::has_command_line_arg("-rhesusdebug");
+	bool is_rhesus = BCS_SUCCEEDED(command_line_has_argument("rhesus"));
+	bool is_rhesus_debug = !is_rhesus && BCS_SUCCEEDED(command_line_has_argument("rhesusdebug"));
 
 	if (is_debugger_present && !is_rhesus_debug)
 	{
@@ -194,24 +194,24 @@ bool rhesus_crash_reporter(int& result)
 
 	if (is_rhesus_debug)
 	{
-		c_console::init_console(L"Rhesus");
+		init_console("Rhesus");
 	}
 
-	c_console::write_line_verbose("----- RHESUS CRASH REPORTER DEBUG -----", GetCommandLineA());
-	c_console::write_line_verbose("commandline> %s", GetCommandLineA());
-	c_console::write_line_verbose("%s %s", "is_rhesus", is_rhesus ? "true" : "false");
-	c_console::write_line_verbose("%s %s", "is_rhesus_debug", is_rhesus_debug ? "true" : "false");
+	console_write_line("----- RHESUS CRASH REPORTER DEBUG -----", GetCommandLineA());
+	console_write_line("commandline> %s", GetCommandLineA());
+	console_write_line("%s %s", "is_rhesus", is_rhesus ? "true" : "false");
+	console_write_line("%s %s", "is_rhesus_debug", is_rhesus_debug ? "true" : "false");
 
 	if (is_rhesus)
 	{
-		c_console::write_line_verbose("Rhesus crash reporter activated");
+		console_write_line("Rhesus crash reporter activated");
 		return false;
 	}
 
-	bool no_rhesus = c_command_line::has_command_line_arg("-norhesus");
+	bool no_rhesus = BCS_SUCCEEDED(command_line_has_argument("norhesus"));
 	if (no_rhesus)
 	{
-		c_console::write_line_verbose("Rhesus disabled");
+		console_write_line("Rhesus disabled");
 		return false;
 	}
 
@@ -226,13 +226,13 @@ bool rhesus_crash_reporter(int& result)
 	of this application and attach ourselves as a debugger.
 	*/
 
-	c_console::write_line_verbose("Rhesus debugger output enabled");
+	console_write_line("Rhesus debugger output enabled");
 
 	rhesus_debugger(process_creation_flags);
 
 	if (is_rhesus_debug)
 	{
-		c_console::deinit_console();
+		deinit_console();
 	}
 
 	return true; // indicate that the requester should terminate normal execution of the program

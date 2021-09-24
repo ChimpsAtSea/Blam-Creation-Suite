@@ -127,7 +127,7 @@ void c_discord_presense_api::on_discord_ready(void* user_data, const DiscordUser
 
 void c_discord_presense_api::on_discord_ready(const DiscordUser* connected_user)
 {
-	c_console::write_line(
+	console_write_line(
 		"Discord: connected to user %s#%s - %s\n",
 		connected_user->username,
 		connected_user->discriminator,
@@ -144,7 +144,7 @@ void c_discord_presense_api::on_discord_disconnected(void* user_data, int error_
 
 void c_discord_presense_api::on_discord_disconnected(int error_code, const char* message)
 {
-	c_console::write_line("Discord: disconnected (%d: %s)\n", error_code, message);
+	console_write_line("Discord: disconnected (%d: %s)\n", error_code, message);
 
 	is_connected = false;
 	is_state_update_pending = true;
@@ -157,7 +157,7 @@ void c_discord_presense_api::on_discord_error(void* user_data, int error_code, c
 
 void c_discord_presense_api::on_discord_error(int error_code, const char* message)
 {
-	c_console::write_line("Discord: error (%d: %s)\n", error_code, message);
+	console_write_line("Discord: error (%d: %s)\n", error_code, message);
 }
 
 void c_discord_presense_api::on_discord_join(void* user_data, const char* secret)
@@ -167,7 +167,7 @@ void c_discord_presense_api::on_discord_join(void* user_data, const char* secret
 
 void c_discord_presense_api::on_discord_join(const char* secret)
 {
-	c_console::write_line("Discord: join (%s)\n", secret);
+	console_write_line("Discord: join (%s)\n", secret);
 }
 
 void c_discord_presense_api::on_discord_spectate(void* user_data, const char* secret)
@@ -177,7 +177,7 @@ void c_discord_presense_api::on_discord_spectate(void* user_data, const char* se
 
 void c_discord_presense_api::on_discord_spectate(const char* secret)
 {
-	c_console::write_line("Discord: spectate (%s)\n", secret);
+	console_write_line("Discord: spectate (%s)\n", secret);
 }
 
 void c_discord_presense_api::on_discord_join_request(void* user_data, const DiscordUser* request)
@@ -187,7 +187,7 @@ void c_discord_presense_api::on_discord_join_request(void* user_data, const Disc
 
 void c_discord_presense_api::on_discord_join_request(const DiscordUser* request)
 {
-	c_console::write_line(
+	console_write_line(
 		"Discord: join request from %s#%s - %s\n",
 		request->username,
 		request->discriminator,

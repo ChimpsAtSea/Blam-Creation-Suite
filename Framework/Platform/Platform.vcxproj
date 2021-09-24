@@ -20,61 +20,67 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
-    <ClInclude Include="!Resources\resources_manager.h" />
-    <ClInclude Include="keys.h" />
-    <ClInclude Include="callback_util.h" />
-    <ClInclude Include="debug_util.h" />
-    <ClInclude Include="endianness_util.h" />
-    <ClInclude Include="error_handling.h" />
-    <ClInclude Include="filesystem_util.h" />
-    <ClInclude Include="language_util.h" />
-    <ClInclude Include="math_util.h" />
-    <ClInclude Include="settings.h" />
-    <ClInclude Include="Strings\fixed_string.h" />
+    <ClInclude Include="bcs_api.h" />
+    <ClInclude Include="bcs_assert.h" />
+    <ClInclude Include="bcs_result.h" />
+    <ClInclude Include="bcs_result_handle.h" />
+    <ClInclude Include="callback.h" />
+    <ClInclude Include="clipboard.h" />
+    <ClInclude Include="command_line.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="debug_point.h" />
+    <ClInclude Include="engine_platform_build.h" />
+    <ClInclude Include="filesystem.h" />
+    <ClInclude Include="float16.h" />
+    <ClInclude Include="integral_limits.h" />
     <ClInclude Include="intrinsics.h" />
-    <ClInclude Include="language_runtime.h" />
-    <ClInclude Include="macro_utils.h" />
+    <ClInclude Include="keys.h" />
+    <ClInclude Include="macros.h" />
+    <ClInclude Include="platform-exports-pch.h" />
     <ClInclude Include="platform-private-pch.h" />
     <ClInclude Include="platform-public-pch.h" />
-    <ClInclude Include="platform_types.h" />
-    <ClInclude Include="runtime_util.h" />
-    <ClInclude Include="Strings\stack_string.h" />
-    <ClInclude Include="Strings\strings.h" />
+    <ClInclude Include="process_module.h" />
+    <ClInclude Include="resources.h" />
+    <ClInclude Include="settings.h" />
+    <ClInclude Include="stack_trace.h" />
+    <ClInclude Include="strings.h" />
     <ClInclude Include="threading.h" />
-    <ClInclude Include="Windows\command_line.h" />
-    <ClInclude Include="Windows\console.h" />
-    <ClInclude Include="Windows\window.h" />
-    <ClInclude Include="windows_api.h" />
-    <ClInclude Include="xxhash.h" />
-    <ClInclude Include="xxhash_cx.h" />
+    <ClInclude Include="url.h" />
+    <ClInclude Include="warnings.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bcs_api.cpp" />
+    <ClCompile Include="bcs_assert.cpp" />
+    <ClCompile Include="bcs_result.cpp" />
+    <ClCompile Include="bcs_result_handle.cpp" />
+    <ClCompile Include="callback.cpp" />
+    <ClCompile Include="callback_impl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="clipboard.cpp" />
+    <ClCompile Include="command_line.cpp" />
+    <ClCompile Include="console.cpp" />
+    <ClCompile Include="debug_point.cpp" />
+    <ClCompile Include="engine_platform_build.cpp" />
+    <ClCompile Include="filesystem.cpp" />
+    <ClCompile Include="float16.cpp" />
     <ClCompile Include="keys.cpp" Condition="!Exists('$(OutDir)Keys.lib')" />
-    <ClCompile Include="!Resources\resources_manager.cpp" />
-    <ClCompile Include="callback_util.cpp" />
-    <ClCompile Include="debug_util.cpp" />
-    <ClCompile Include="error_handling.cpp" />
-    <ClCompile Include="filesystem_util.cpp" />
-    <ClCompile Include="math_util.cpp" />
-    <ClCompile Include="settings.cpp" />
-    <ClCompile Include="Strings\fixed_string.cpp" />
     <ClCompile Include="platform-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="runtime_util.cpp" />
-    <ClCompile Include="Strings\stack_string.cpp" />
-    <ClCompile Include="Windows\command_line.cpp" />
-    <ClCompile Include="Windows\console.cpp" />
-    <ClCompile Include="Windows\window.cpp" />
-    <ClCompile Include="xxhash.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="process_module.cpp" />
+    <ClCompile Include="resources.cpp" />
+    <ClCompile Include="settings.cpp" />
+    <ClCompile Include="stack_trace.cpp" />
+    <ClCompile Include="strings.cpp" />
+    <ClCompile Include="threading.cpp" />
+    <ClCompile Include="url.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc" />
@@ -85,16 +91,33 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </AdditionalOptions>
     </FxCompile>
     <FxCompile Include="!Resources\HLSL\BoxShaderVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </AdditionalOptions>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="!Resources\HLSL\BoxShader.hlsli" />
+    <None Include="filesystem.deprecated.inl" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />
@@ -109,25 +132,30 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{EC423DE6-76A4-42B0-AC97-D6D758EB7182}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -149,19 +177,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
-    <MultiProcFXC>true</MultiProcFXC>
+    <MultiProcFXC>false</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
-    <MultiProcFXC>true</MultiProcFXC>
+    <MultiProcFXC>false</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
-    <MultiProcFXC>true</MultiProcFXC>
+    <MultiProcFXC>false</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
-    <MultiProcFXC>true</MultiProcFXC>
+    <MultiProcFXC>false</MultiProcFXC>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -176,12 +204,17 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <FxCompile>
-      <ShaderModel>5.0</ShaderModel>
+      <ShaderModel>6.5</ShaderModel>
+      <AllResourcesBound>true</AllResourcesBound>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>$(OutDir)%(Filename).asm</AssemblerOutputFile>
+      <AdditionalOptions>-Qembed_debug</AdditionalOptions>
     </FxCompile>
     <ResourceCompile />
   </ItemDefinitionGroup>
@@ -198,12 +231,17 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>tbb.lib;Version.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <FxCompile>
-      <ShaderModel>5.0</ShaderModel>
+      <ShaderModel>6.5</ShaderModel>
+      <AllResourcesBound>true</AllResourcesBound>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>$(OutDir)%(Filename).asm</AssemblerOutputFile>
+      <AdditionalOptions>-Qembed_debug</AdditionalOptions>
     </FxCompile>
     <ResourceCompile />
   </ItemDefinitionGroup>
@@ -226,7 +264,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <FxCompile>
-      <ShaderModel>5.0</ShaderModel>
+      <ShaderModel>6.5</ShaderModel>
+      <AllResourcesBound>true</AllResourcesBound>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>$(OutDir)%(Filename).asm</AssemblerOutputFile>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -248,7 +289,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <FxCompile>
-      <ShaderModel>5.0</ShaderModel>
+      <ShaderModel>6.5</ShaderModel>
+      <AllResourcesBound>true</AllResourcesBound>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>$(OutDir)%(Filename).asm</AssemblerOutputFile>
     </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

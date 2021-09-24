@@ -26,7 +26,6 @@ namespace blofeld
 	extern s_tag_struct_definition VolumeFogParametersDefinition;
 	extern s_tag_struct_definition LightShaftParametersDefinition;
 
-	extern c_versioned_string_list atmosphere_flags_strings;
 	extern s_string_list_definition atmosphere_flags;
 
 	extern s_tag_reference_definition global_sky_atmosphere_definition_reference;

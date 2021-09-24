@@ -63,13 +63,9 @@ namespace blofeld
 	extern s_tag_struct_definition PurchasePlayerLoadoutStruct;
 	extern s_tag_struct_definition PurchasePlayerAppearanceStruct;
 
-	extern c_versioned_string_list player_model_customization_area_enum_strings;
 	extern s_string_list_definition player_model_customization_area_enum;
-	extern c_versioned_string_list player_non_model_customization_area_enum_strings;
 	extern s_string_list_definition player_non_model_customization_area_enum;
-	extern c_versioned_string_list player_item_category_enum_strings;
 	extern s_string_list_definition player_item_category_enum;
-	extern c_versioned_string_list cookie_purchase_flags_strings;
 	extern s_string_list_definition cookie_purchase_flags;
 
 

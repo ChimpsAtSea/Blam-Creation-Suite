@@ -18,11 +18,8 @@ namespace blofeld
 	extern s_tag_struct_definition particle_physics_struct_definition; // tag group
 	extern s_tag_struct_definition particle_physics_struct;
 
-	extern c_versioned_string_list particle_movement_flags_strings;
 	extern s_string_list_definition particle_movement_flags;
-	extern c_versioned_string_list particle_movement_type_strings;
 	extern s_string_list_definition particle_movement_type;
-	extern c_versioned_string_list particle_controller_flags_strings;
 	extern s_string_list_definition particle_controller_flags;
 
 	extern s_tag_reference_definition particle_movement_definition;

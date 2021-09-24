@@ -16,7 +16,6 @@ namespace blofeld
 	extern s_tag_struct_definition havok_collision_filter_struct_definition; // tag group
 	extern s_tag_struct_definition havok_group_filter_filter_struct;
 
-	extern c_versioned_string_list collision_filter_enum_strings;
 	extern s_string_list_definition collision_filter_enum;
 
 

@@ -19,7 +19,9 @@ public:
 	friend class c_high_level_tag_tab;
 	friend class c_high_level_tag_editor_tab;
 
-	non_copyconstructable(c_tag_project_tab);
+	c_tag_project_tab() = delete;
+	c_tag_project_tab(c_tag_project_tab const&) = delete;
+	c_tag_project_tab& operator=(c_tag_project_tab const&) = delete;
 
 	c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag_project, c_mandrill_tab& parent);
 	virtual ~c_tag_project_tab();

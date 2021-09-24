@@ -19,7 +19,6 @@ namespace blofeld
 	extern s_tag_struct_definition material_effect_material_block_struct_definition; // material_effect_material_block
 
 
-	extern c_versioned_string_list sweeneter_mode_enum_strings;
 	extern s_string_list_definition sweeneter_mode_enum;
 
 	extern s_tag_reference_definition global_material_effects_reference;

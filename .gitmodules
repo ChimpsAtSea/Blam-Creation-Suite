@@ -16,3 +16,9 @@
 [submodule "ThirdParty/Oozle"]
 	path = ThirdParty/Oozle
 	url = https://github.com/ChimpsAtSea/Oozle.git
+[submodule "ThirdParty/imgui/imgui"]
+	path = ThirdParty/imgui/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "ThirdParty/murmur3"]
+	path = ThirdParty/murmur3
+	url = https://github.com/ChimpsAtSea/murmur3.git

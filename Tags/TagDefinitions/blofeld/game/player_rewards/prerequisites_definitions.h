@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_struct_definition PurchaseLoadoutDefinitionReferenceStruct;
 	extern s_tag_struct_definition PurchaseOrdnanceDefinitionReferenceStruct;
 
-	extern c_versioned_string_list MarketplaceOfferTypeEnum_strings;
 	extern s_string_list_definition MarketplaceOfferTypeEnum;
 
 

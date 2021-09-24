@@ -3,26 +3,32 @@
 class c_infinite_tag_reader;
 class c_infinite_tag_group;
 class c_infinite_ucs_reader;
+class c_module_file_transplant;
 
 class c_infinite_tag_instance : public c_tag_instance
 {
 public:
+	friend class c_module_file_transplant;
 	friend class c_infinite_tag_reader;
 
 	c_infinite_tag_instance(
 		c_cache_cluster& cache_cluster,
 		c_infinite_tag_group& tag_group,
 		const char* instance_name,
-		const void* instance_data,
-		const void** instance_block_data,
-		const infinite::s_module_file_entry* file_entry
+		c_infinite_file_entry_block_map& file_entry_block_map
 	);
 	~c_infinite_tag_instance();
 
-	c_infinite_ucs_reader* ucs_reader;
-	const infinite::s_module_file_entry* file_entry;
+	
 
-	virtual BCS_RESULT get_data(const void*& tag_instance_data) const override;
+	virtual BCS_RESULT get_global_tag_id(long& global_tag_id) const;
+	virtual BCS_RESULT map_data() override;
+	virtual BCS_RESULT unmap_data() override;
+	virtual BCS_RESULT get_ucs_reader(c_infinite_ucs_reader*& ucs_reader) const;
+	virtual BCS_RESULT get_header_data(const void*& header_data, unsigned long& header_data_size) const;
+	virtual BCS_RESULT get_tag_data(const void*& tag_data) const override;
+	virtual BCS_RESULT get_resource_data(const void*& resource_data, unsigned long& resource_data_size) const;
+	virtual BCS_RESULT get_unknown_data(const void*& unknown_data, unsigned long& unknown_data_size) const;
 	virtual BCS_RESULT get_instance_name(const char*& tag_instance_name) const override;
 	BCS_RESULT get_tag_group(c_infinite_tag_group*& tag_group) const;
 	virtual BCS_RESULT get_tag_group(c_tag_group*& tag_group) const override;
@@ -32,7 +38,12 @@ private:
 	c_cache_cluster& cache_cluster;
 	c_infinite_tag_group& tag_group;
 	const char* const instance_name;
-	const void* const instance_data;
-	const void** const instance_block_data;
+	c_infinite_file_entry_block_map& file_entry_block_map;
+	c_infinite_ucs_reader* ucs_reader;
+	void* mapped_data;
+	const char* header_data;
+	const char* tag_data;
+	const char* resource_data;
+	const char* unknown_data;
 };
 

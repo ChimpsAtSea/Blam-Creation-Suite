@@ -23,7 +23,13 @@ public:
 	~c_high_level_cache_cluster_transplant();
 
 	BCS_RESULT transplant_cache_file_data(h_object& high_level, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
-	BCS_RESULT transplant_module_file_data(h_object& high_level, c_infinite_ucs_reader* ucs_reader, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition);
+	BCS_RESULT transplant_module_file_data(
+		c_tag_instance& tag_instance,
+		h_tag& high_level, 
+		c_infinite_ucs_reader* ucs_reader,
+		const char* low_level_data,
+		c_cache_file_reader& cache_file_reader, 
+		const blofeld::s_tag_struct_definition& struct_definition);
 
 
 protected:

@@ -14,7 +14,7 @@ int WINAPI wWinMain(
 
 	std::wstring input_symbols = c_command_line::get_command_line_warg("-input");
 	std::wstring output_directory = c_command_line::get_command_line_warg("-output");
-	bool cache_verify = c_command_line::has_command_line_arg("-cacheverify");
+	bool cache_verify = BCS_SUCCEEDED(command_line_has_argument("cacheverify");
 	std::string excluded_libs_str = c_command_line::get_command_line_arg("-excludedlibs");
 
 	std::vector<std::string> excluded_libs;
@@ -38,8 +38,8 @@ int WINAPI wWinMain(
 	constexpr const char usage[] = "Usage: SymbolsPreprocessor -input:<input filepath> -output:<output filepath> [-cacheverify] [-excludedlibs:<lib filename>,<lib filename>,...]";
 	if (input_symbols.empty())
 	{
-		c_console::write_line_verbose("Input filepath not specified");
-		c_console::write_line_verbose(usage);
+		console_write_line("Input filepath not specified");
+		console_write_line(usage);
 		return 1;
 	}
 

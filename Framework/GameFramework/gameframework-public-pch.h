@@ -6,6 +6,7 @@
 #include "RuntimeManipulation/RuntimeManipulation.h"
 #include "is_valid.h"
 #include "platform_configuration.h"
+#include "game_options_version.h"
 #include "session_manager.h"
 
 #define DISCORD_DISABLE_IO_THREAD

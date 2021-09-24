@@ -7,7 +7,7 @@
 //}
 //FunctionHookVarArgsEx<main_game_start_offset, char __cdecl (s_game_options * game_options)> main_game_start = { "main_game_start", [](s_game_options* game_options)
 //{
-//	c_console::write_line_verbose("main_game_start called!");
+//	console_write_line("main_game_start called!");
 //	return main_game_start(game_options);
 //}};
 
@@ -84,7 +84,7 @@ uintptr_t GameShieldInit_offset(s_engine_platform_build engine_platform_build)
 }
 c_function_hook_ex<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
 {
-	c_console::write_line_verbose("GameShieldInit");
+	console_write_line("GameShieldInit");
 }};
 
 //uintptr_t network_lobby_patch_offset(s_engine_platform_build engine_platform_build)
@@ -161,7 +161,7 @@ uintptr_t Hf2pInit_offset(s_engine_platform_build engine_platform_build)
 }
 c_function_hook_ex<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
-	c_console::write_line_verbose("Hf2pInit_offset");
+	console_write_line("Hf2pInit_offset");
 	if (c_eldorado_game_host::get_build() == _build_eldorado_1_106708_cert_ms23)
 	{
 		// null `g_game_statistics_callback_pointer` this is supposed to happen in `game_statistics_initialize` called from a function within `Hf2pInit`
@@ -181,7 +181,7 @@ uintptr_t Hf2pShutdown_offset(s_engine_platform_build engine_platform_build)
 }
 c_function_hook_ex<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()
 {
-	c_console::write_line_verbose("Hf2pShutdown");
+	console_write_line("Hf2pShutdown");
 	//ShutdownSoundSystem();
 }};
 
@@ -192,7 +192,7 @@ c_function_hook_ex<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown",
 //}
 //c_function_hook_ex<GameClient__Shutdown_offset, void __cdecl()> GameClient__Shutdown = { "GameClient__Shutdown", []()
 //{
-//	c_console::write_line_verbose("GameClient__Shutdown was called");
+//	console_write_line("GameClient__Shutdown was called");
 //	return GameClient__Shutdown();
 //}};
 

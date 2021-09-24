@@ -41,31 +41,18 @@ namespace blofeld
 	extern s_tag_struct_definition PuppetSubActionBranchStruct;
 	extern s_tag_struct_definition PuppetSubActionScriptStruct;
 
-	extern c_versioned_string_list PuppetIndexTypeEnum_strings;
 	extern s_string_list_definition PuppetIndexTypeEnum;
-	extern c_versioned_string_list PuppetActionTypeEnum_strings;
 	extern s_string_list_definition PuppetActionTypeEnum;
-	extern c_versioned_string_list PuppetActionBlendTypeEnum_strings;
 	extern s_string_list_definition PuppetActionBlendTypeEnum;
-	extern c_versioned_string_list PuppetSubActionTypeEnum_strings;
 	extern s_string_list_definition PuppetSubActionTypeEnum;
-	extern c_versioned_string_list SubActionTimeTypeEnum_strings;
 	extern s_string_list_definition SubActionTimeTypeEnum;
-	extern c_versioned_string_list PuppetPathPointTypeEnum_strings;
 	extern s_string_list_definition PuppetPathPointTypeEnum;
-	extern c_versioned_string_list AnimPositionTypeEnum_strings;
 	extern s_string_list_definition AnimPositionTypeEnum;
-	extern c_versioned_string_list PuppetPathPointFlagsDefinition_strings;
 	extern s_string_list_definition PuppetPathPointFlagsDefinition;
-	extern c_versioned_string_list PuppetFlagsDefinition_strings;
 	extern s_string_list_definition PuppetFlagsDefinition;
-	extern c_versioned_string_list PuppetShowFlagsDefinition_strings;
 	extern s_string_list_definition PuppetShowFlagsDefinition;
-	extern c_versioned_string_list PuppetAnimationFlagsDefinition_strings;
 	extern s_string_list_definition PuppetAnimationFlagsDefinition;
-	extern c_versioned_string_list SubActionPointFlagsDefinition_strings;
 	extern s_string_list_definition SubActionPointFlagsDefinition;
-	extern c_versioned_string_list PuppetEditorFlagsDefinition_strings;
 	extern s_string_list_definition PuppetEditorFlagsDefinition;
 
 

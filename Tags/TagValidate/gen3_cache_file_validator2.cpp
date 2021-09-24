@@ -260,21 +260,21 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 					{
 						if (memory_region_a.tag_interface)
 						{
-							c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+							console_write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
 						}
 						uint32_t instance_overlap_bytes = overlap_bytes / memory_region_a.struct_count;
-						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes, instance_overlap_bytes);
-						c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
+						console_write_line("'%s' '%s' [OVERLAP] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes, instance_overlap_bytes);
+						console_write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 						error_count++;
 					}
 					else
 					{
 						if (memory_region_a.tag_interface)
 						{
-							c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+							console_write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
 						}
-						c_console::write_line("'%s' '%s' [OVERLAP] total:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes);
-						c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
+						console_write_line("'%s' '%s' [OVERLAP] total:%ubytes", memory_region_a.name, memory_region_b.name, overlap_bytes);
+						console_write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 						error_count++;
 					}
 				}
@@ -286,34 +286,34 @@ void c_gen3_cache_file_validator2::validate_tag_instances()
 				{
 					if (memory_region_a.tag_interface)
 					{
-						c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+						console_write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
 					}
 					uint32_t instance_hole_bytes = hole_bytes / memory_region_a.struct_count;
-					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes, instance_hole_bytes);
-					c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
+					console_write_line("'%s' '%s' [HOLE] total:%ubytes instance:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes, instance_hole_bytes);
+					console_write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);
 					error_count++;
 				}
 				else
 				{
 					if (memory_region_a.tag_interface)
 					{
-						c_console::write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
+						console_write_line("TAG> '%s'", memory_region_a.tag_interface->get_path_with_group_name_cstr());
 					}
-					c_console::write_line("'%s' '%s' [HOLE] total:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes);
-					c_console::write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);;
+					console_write_line("'%s' '%s' [HOLE] total:%ubytes", memory_region_a.name, memory_region_b.name, hole_bytes);
+					console_write_line("0x%p 0x%p", memory_region_a_end, memory_region_b_start);;
 					error_count++;
 				}
 			}
 
 			//if (error_count >= 1000)
 			//{
-			//	c_console::write_line("too many errors exiting validation");
+			//	console_write_line("too many errors exiting validation");
 			//	break;
 			//}
 		}
 
 	}
-	c_console::write_line("found %u memory region errors", error_count);
+	console_write_line("found %u memory region errors", error_count);
 }
 
 s_tag_validation_data* c_gen3_cache_file_validator2::validate_tag_group(c_tag_interface& tag_interface, char* data, const blofeld::s_tag_struct_definition& struct_definition)
@@ -387,7 +387,7 @@ void c_gen3_cache_file_validator2::validate_tag_block(
 	char* start_data = current_block_data_position;
 	if (start_data == nullptr)
 	{
-		c_console::write_line("invalid block access");
+		console_write_line("invalid block access");
 		return;
 	}
 	ASSERT(start_data);
@@ -469,7 +469,7 @@ void c_gen3_cache_file_validator2::validate_tag_api_interop(
 	char* const start_data = cache_file.get_tag_interop_data(tag_interop);
 	if (start_data == nullptr)
 	{
-		c_console::write_line("invalid interop access");
+		console_write_line("invalid interop access");
 		return;
 	}
 	s_tag_data& tag_data = *reinterpret_cast<s_tag_data*>(start_data);

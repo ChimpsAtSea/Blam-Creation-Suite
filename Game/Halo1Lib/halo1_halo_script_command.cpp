@@ -48,15 +48,15 @@ void halo1_halo_script_dump()
 {
 	if (is_valid(hs_function_table_halo1))
 	{
-		c_console::write_line_verbose("#include <idc.idc>");
-		c_console::write_line_verbose("");
+		console_write_line("#include <idc.idc>");
+		console_write_line("");
 
-		c_console::write_line_verbose("static main()");
-		c_console::write_line_verbose("{");
+		console_write_line("static main()");
+		console_write_line("{");
 
-		c_console::write_line_verbose("    MakeName(0x%08llX, \"_hs_function_table\");", (uintptr_t)&hs_function_table_halo1);
-		c_console::write_line_verbose("    SetType(0x%08llX, \"hs_script_op *\");", (uintptr_t)&hs_function_table_halo1);
-		c_console::write_line_verbose("");
+		console_write_line("    MakeName(0x%08llX, \"_hs_function_table\");", (uintptr_t)&hs_function_table_halo1);
+		console_write_line("    SetType(0x%08llX, \"hs_script_op *\");", (uintptr_t)&hs_function_table_halo1);
+		console_write_line("");
 
 		for (short i = 0; i < 510; i++)
 		{
@@ -81,25 +81,25 @@ void halo1_halo_script_dump()
 				}
 			}
 
-			c_console::write_line_verbose("    // 0x%03X, %s", i, hs_function_name);
+			console_write_line("    // 0x%03X, %s", i, hs_function_name);
 
-			c_console::write_line_verbose("    MakeName(0x%08llX, \"_hs_%s_op\");", hs_function_op, name.c_str());
-			c_console::write_line_verbose("    SetType(0x%08llX, \"hs_script_op\");", hs_function_op);
+			console_write_line("    MakeName(0x%08llX, \"_hs_%s_op\");", hs_function_op, name.c_str());
+			console_write_line("    SetType(0x%08llX, \"hs_script_op\");", hs_function_op);
 
-			c_console::write_line_verbose("    MakeName(0x%08llX, \"_hs_%s_evaluate\");", hs_function_evaluate, name.c_str());
-			c_console::write_line_verbose("    MakeCode(0x%08llX);", hs_function_evaluate);
+			console_write_line("    MakeName(0x%08llX, \"_hs_%s_evaluate\");", hs_function_evaluate, name.c_str());
+			console_write_line("    MakeCode(0x%08llX);", hs_function_evaluate);
 
 
-			c_console::write_line_verbose("");
+			console_write_line("");
 		}
 
 
-		c_console::write_line_verbose("}");
+		console_write_line("}");
 
 		return;
 	}
 
-	c_console::write_line_verbose("Unable to dump");
+	console_write_line("Unable to dump");
 }
 
 c_halo1_halo_script_command::c_halo1_halo_script_command()

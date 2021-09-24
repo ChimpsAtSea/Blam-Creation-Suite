@@ -51,7 +51,7 @@ void byteswap(c_static_string<k_maximum_length>& str)
 
 }
 
-template<uint32_t k_capacity, typename t_char_type = char>
+template<unsigned long k_capacity, typename t_char_type = char>
 void byteswap(c_fixed_string<k_capacity, t_char_type>& str)
 {
 

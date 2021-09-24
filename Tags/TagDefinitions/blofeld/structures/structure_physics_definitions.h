@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_struct_definition global_structure_physics_struct;
 	extern s_tag_struct_definition global_structure_physics_design_struct;
 
-	extern c_versioned_string_list soft_ceiling_type_enum_strings;
 	extern s_string_list_definition soft_ceiling_type_enum;
 
 

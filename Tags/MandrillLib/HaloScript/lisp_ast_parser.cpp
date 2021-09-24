@@ -59,9 +59,9 @@ c_lisp_node::c_lisp_node(c_lisp_node* parent) :
 	if (parent) parent->arguments.push_back(this);
 }
 
-uint32_t c_lisp_node::get_line_count(const char* const root_start_position, const char* const traversal_position)
+unsigned long c_lisp_node::get_line_count(const char* const root_start_position, const char* const traversal_position)
 {
-	uint32_t line_count = 1;
+	unsigned long line_count = 1;
 
 	const char* const start_position = root_start_position;
 	const char* const end_position = traversal_position;
@@ -108,8 +108,8 @@ const char* c_lisp_node::traverse(
 	bool found_node = false;
 	bool skip_extra_character = false;
 
-	uint32_t line_count_start = get_line_count(root_start_position, traversal_position);
-	uint32_t line_count = line_count_start;
+	unsigned long line_count_start = get_line_count(root_start_position, traversal_position);
+	unsigned long line_count = line_count_start;
 	while (traversal_position < traversal_end_position && !finished_searching)
 	{
 		LISP_AST_DEBUG(std::string prefix_search_debug = { traversal_start_position, traversal_position });
@@ -195,7 +195,7 @@ const char* c_lisp_node::traverse(
 			if (search_depth != 0)
 			{
 				errors.push_back({ line_count, 0, _lisp_error_type_unexpected_parser_error_internal_non_zero_search_depth,  "parser error: internal error 'search_depth != 0'" });
-				if (IsDebuggerPresent()) throw; // internal compiler error.
+				DEBUG_FATAL_ERROR("internal compiler error");
 			}
 			search_depth = 1;
 		}
@@ -223,7 +223,7 @@ const char* c_lisp_node::traverse(
 	else if (search_type != _lisp_node_type_uninitialized && !finished_searching) // we started searching for something but something else strange happened
 	{
 		errors.push_back({ line_count, 0, _lisp_error_type_internal_failed_statement_search,  "parser error: internal error 'failed to finish searching statement'" });
-		if(IsDebuggerPresent()) throw; // internal compiler error.
+		DEBUG_FATAL_ERROR("internal compiler error");
 	}
 
 	if (found_node)
@@ -254,7 +254,7 @@ const char* c_lisp_node::traverse(
 			}
 			else
 			{
-				uint32_t last_begin_statement_line_count = get_line_count(root_start_position, last_begin_statement_position);
+				unsigned long last_begin_statement_line_count = get_line_count(root_start_position, last_begin_statement_position);
 				errors.push_back({ last_begin_statement_line_count, 0, _lisp_error_type_missing_end_parenthesis, "syntax error : missing ')'" });
 			}
 		}

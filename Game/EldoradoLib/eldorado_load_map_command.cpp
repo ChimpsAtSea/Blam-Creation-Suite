@@ -75,7 +75,7 @@ bool c_eldorado_load_map_command::execute_command(const std::vector<std::string>
 				game_type = std::stoi(arguments[3]);
 
 			c_console::set_text_color(_console_color_info);
-			c_console::write_line_verbose("Loading map %s", map_name.c_str());
+			console_write_line("Loading map %s", map_name.c_str());
 			load_map(map_name.c_str(), map_type, game_type);
 		}
 		else return false;

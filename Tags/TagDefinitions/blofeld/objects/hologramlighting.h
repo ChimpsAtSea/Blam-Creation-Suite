@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_struct_definition hologramLightingBlock_struct;
 	extern s_tag_struct_definition hologramLight;
 
-	extern c_versioned_string_list hologramTransparencyMode_strings;
 	extern s_string_list_definition hologramTransparencyMode;
 
 

@@ -173,16 +173,16 @@ void network_message_types_test_command()
 	const char* enum_name = "network_message_type";
 	const char* enum_type = "long";
 
-	c_console::write_line_verbose("enum e_%s : %s", enum_name, enum_type);
-	c_console::write_line("{");
+	console_write_line("enum e_%s : %s", enum_name, enum_type);
+	console_write_line("{");
 	for (long i = 0; i < k_number_of_halo3_network_message_types; i++)
 	{
 		std::string name = network_message_type_collection[i].name;
 		std::replace(name.begin(), name.end(), '-', '_');
-		c_console::write_line_verbose("\t_%s_%s,", enum_name, name.c_str());
+		console_write_line("\t_%s_%s,", enum_name, name.c_str());
 	}
-	c_console::write_line_verbose("\tk_number_of_%ss", enum_name);
-	c_console::write_line("}");
+	console_write_line("\tk_number_of_%ss", enum_name);
+	console_write_line("}");
 
 	return;
 }

@@ -189,6 +189,9 @@
     <ClCompile Include="memory_dump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="infinite\inf_tag_pageable_resource_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle_h1_guerilla.h">
@@ -399,6 +402,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="memory_dump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="infinite\inf_tag_pageable_resource_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="endianness.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -35,27 +35,16 @@ namespace blofeld
 	extern s_tag_struct_definition device_machine_struct_definition; // tag group
 	extern s_tag_struct_definition device_terminal_struct_definition; // tag group
 
-	extern c_versioned_string_list device_definition_flags_strings;
 	extern s_string_list_definition device_definition_flags;
-	extern c_versioned_string_list device_lightmap_flags_strings;
 	extern s_string_list_definition device_lightmap_flags;
-	extern c_versioned_string_list machine_types_strings;
 	extern s_string_list_definition machine_types;
-	extern c_versioned_string_list machine_flags_strings;
 	extern s_string_list_definition machine_flags;
-	extern c_versioned_string_list machine_collision_responses_strings;
 	extern s_string_list_definition machine_collision_responses;
-	extern c_versioned_string_list machine_pathfinding_policy_enum_strings;
 	extern s_string_list_definition machine_pathfinding_policy_enum;
-	extern c_versioned_string_list control_types_strings;
 	extern s_string_list_definition control_types;
-	extern c_versioned_string_list control_triggers_strings;
 	extern s_string_list_definition control_triggers;
-	extern c_versioned_string_list teamUseRestrictionEnum_strings;
 	extern s_string_list_definition teamUseRestrictionEnum;
-	extern c_versioned_string_list DispenserDefinitionFlags_strings;
 	extern s_string_list_definition DispenserDefinitionFlags;
-	extern c_versioned_string_list DispenserDefinitionTrigger_strings;
 	extern s_string_list_definition DispenserDefinitionTrigger;
 
 

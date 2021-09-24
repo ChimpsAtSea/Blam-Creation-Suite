@@ -17,9 +17,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition instance_imposter_definition_struct_definition; // tag group
 
-	extern c_versioned_string_list instance_imposter_flags_definition_strings;
 	extern s_string_list_definition instance_imposter_flags_definition;
-	extern c_versioned_string_list instance_imposter_element_flags_definition_strings;
 	extern s_string_list_definition instance_imposter_element_flags_definition;
 
 	extern s_tag_reference_definition global_instance_imposter_reference;

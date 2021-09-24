@@ -93,6 +93,9 @@
     <ClCompile Include="RuntimeManipulation\aotus_legacy\detour_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game_options_version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h">
@@ -222,6 +225,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\aotus_legacy\detour_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_options_version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

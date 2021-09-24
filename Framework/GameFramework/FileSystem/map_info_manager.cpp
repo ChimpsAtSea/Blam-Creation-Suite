@@ -21,7 +21,7 @@ c_map_info_manager::c_map_info_manager(const char* directory_path)
 	}
 	else
 	{
-		c_console::write_line_verbose("MapInfoManager> Failed to find map info directory '%s'. Is Aotus running in the correct working directory?", directory_path);
+		console_write_line("MapInfoManager> Failed to find map info directory '%s'. Is Aotus running in the correct working directory?", directory_path);
 	}
 }
 
@@ -29,12 +29,12 @@ void c_map_info_manager::parse_map_info(const std::filesystem::path& filesystem_
 {
 	std::filesystem::path filesystem_filepath = filesystem_path.filename();
 	const wchar_t* filepath = filesystem_filepath.c_str();
-	c_console::write_line_verbose("MapInfoManager> Parsing %S", filepath);
+	console_write_line("MapInfoManager> Parsing %S", filepath);
 
 	char* raw_map_info_data = filesystem_read_to_memory_legacy(filesystem_path.c_str()); // #TODO: filesystem_read_to_memory_legacy deprecated
 	if (raw_map_info_data == nullptr)
 	{
-		c_console::write_line_verbose("MapInfoManager> Error opening %S for read", filepath);
+		console_write_line("MapInfoManager> Error opening %S for read", filepath);
 		return;
 	}
 
@@ -43,7 +43,7 @@ void c_map_info_manager::parse_map_info(const std::filesystem::path& filesystem_
 
 	if (level_info == nullptr)
 	{
-		c_console::write_line_verbose("MapInfoManager> Error parsing mapinfo %S. Couldn't find level chunk.", filepath);
+		console_write_line("MapInfoManager> Error parsing mapinfo %S. Couldn't find level chunk.", filepath);
 		return;
 	}
 
@@ -51,5 +51,5 @@ void c_map_info_manager::parse_map_info(const std::filesystem::path& filesystem_
 	level_info = &map_infos.emplace_back(filesystem_path, file_parser.get_is_little_endian(), *level_info).get_level_chunk();
 	delete raw_map_info_data;
 
-	c_console::write_line_verbose("MapInfoManager> Parsed level chunk '%S' %i", level_info->level_name[0], level_info->map_id);
+	console_write_line("MapInfoManager> Parsed level chunk '%S' %i", level_info->level_name[0], level_info->map_id);
 }

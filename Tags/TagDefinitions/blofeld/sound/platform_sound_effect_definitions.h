@@ -20,9 +20,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition platform_sound_playback_struct;
 
-	extern c_versioned_string_list platform_sound_playback_component_flags_strings;
 	extern s_string_list_definition platform_sound_playback_component_flags;
-	extern c_versioned_string_list platform_sound_effect_flags_definition_strings;
 	extern s_string_list_definition platform_sound_effect_flags_definition;
 
 

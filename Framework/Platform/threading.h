@@ -1,75 +1,29 @@
 #pragma once
 
-#ifndef NO_TBB
-#define __TBB_SOURCE_DIRECTLY_INCLUDED 1
-#pragma warning( push )
-#pragma warning( disable : 4180 )
+typedef void(*t_parallel_invoke_long_func)(void* userdata, long index);
+BCS_DEBUG_API void parallel_invoke(long start, long end, t_parallel_invoke_long_func parallel_invoke_func, void* userdata);
 
-#include <tbb/tbb.h>
-#include <tbb/parallel_for.h>
-#include <tbb/blocked_range.h>
+typedef void(*t_parallel_invoke_longlong_func)(void* userdata, long long index);
+BCS_DEBUG_API void parallel_invoke(long long start, long long end, t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata);
 
-#pragma warning( pop )
+typedef void(*t_parallel_invoke_ulong_func)(void* userdata, unsigned long index);
+BCS_DEBUG_API void parallel_invoke(unsigned long start, unsigned long end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata);
 
-using namespace tbb;
+typedef void(*t_parallel_invoke_ulonglong_func)(void* userdata, unsigned long long index);
+BCS_DEBUG_API void parallel_invoke(unsigned long long start, unsigned long long end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata);
 
-template<typename F>
-tbb::task* lambda_task(const F& f)
-{
-	class lambda_task_impl : public tbb::task {
-		F my_func;
-		/*override*/ tbb::task* execute() {
-			my_func();
-			return NULL;
-		}
-	public:
-		lambda_task_impl(const F& f) : my_func(f) {}
-	};
+struct t_task_group;
+BCS_DEBUG_API BCS_RESULT task_group_create(t_task_group*& task_group);
 
-	return new(tbb::task::allocate_root()) lambda_task_impl(f);
-}
+BCS_DEBUG_API BCS_RESULT task_group_destroy(t_task_group* task_group);
 
-#define this_invoke(function, ...) ([&]() { this->function(##__VA_ARGS__); })
+typedef void(*t_task_func1)(void* userdata);
+BCS_DEBUG_API BCS_RESULT task_group_run(t_task_group* task_group, t_task_func1 task_func, void* userdata);
+BCS_DEBUG_API BCS_RESULT task_group_run_and_wait(t_task_group* task_group, t_task_func1 task_func, void* userdata);
+typedef void(*t_task_func2)(void* userdata0, void* userdata1);
+BCS_DEBUG_API BCS_RESULT task_group_run(t_task_group* task_group, t_task_func2 task_func, void* userdata0, void* userdata1);
+BCS_DEBUG_API BCS_RESULT task_group_run_and_wait(t_task_group* task_group, t_task_func2 task_func, void* userdata0, void* userdata1);
 
-#endif
-
-
-class c_atomic_lock
-{
-public:
-	void Lock()
-	{
-		while (InterlockedCompareExchange(&lock, 1ul, 0ul) != 0ul) {};
-	}
-
-	bool TryLock()
-	{
-		return InterlockedCompareExchange(&lock, 1ul, 0ul) == 0;
-	}
-
-	void Unlock()
-	{
-		InterlockedDecrement(&lock);
-	}
-private:
-	volatile unsigned long lock;
-};
-
-class c_atomic_lock_guard
-{
-public:
-	c_atomic_lock_guard(c_atomic_lock& rLock)
-		:atomic_lock(rLock)
-	{
-		atomic_lock.Lock();
-	}
-
-	~c_atomic_lock_guard()
-	{
-		atomic_lock.Unlock();
-	}
-
-private:
-	c_atomic_lock& atomic_lock;
-};
+BCS_DEBUG_API BCS_RESULT task_group_wait(t_task_group* task_group);
+BCS_DEBUG_API BCS_RESULT task_group_cancel(t_task_group* task_group);
 

@@ -225,31 +225,22 @@ namespace blofeld
 
 	STRINGS(commendationCategoryEnum)
 	{
-		{
-			_engine_type_haloreach,
-			_versioned_string_list_mode_new,
-			{
-				"campaign",
-				"firefight",
-				"multiplayer"
-			}
-		},
-		{
-			_engine_type_gen3_xbox360,
-			_versioned_string_list_mode_new,
-			{
-				"default",
-				"weapons",
-				"ordnance",
-				"enemies",
-				"vehicles",
-				"player",
-				"armor abilities",
-				"objectives",
-				"customs",
-				"UGC"
-			}
-		}
+		{ _field_legacy, _field_version_less, _engine_type_gen3_xbox360 },
+		"campaign",
+		"firefight",
+		"multiplayer",
+
+		{ _field_legacy, _field_version_greater_or_equal, _engine_type_gen3_xbox360 },
+		"default",
+		"weapons",
+		"ordnance",
+		"enemies",
+		"vehicles",
+		"player",
+		"armor abilities",
+		"objectives",
+		"customs",
+		"UGC"
 	};
 	STRING_LIST(commendationCategoryEnum, commendationCategoryEnum_strings, _countof(commendationCategoryEnum_strings));
 

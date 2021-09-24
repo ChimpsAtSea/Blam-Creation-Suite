@@ -46,15 +46,10 @@ namespace blofeld
 
 	extern s_tag_struct_definition multiplayer_globals_struct_definition; // tag group
 
-	extern c_versioned_string_list requisition_special_buy_enum_strings;
 	extern s_string_list_definition requisition_special_buy_enum;
-	extern c_versioned_string_list emblemInfoFlags_strings;
 	extern s_string_list_definition emblemInfoFlags;
-	extern c_versioned_string_list playerColorEnum_strings;
 	extern s_string_list_definition playerColorEnum;
-	extern c_versioned_string_list game_engine_status_enum_definition_strings;
 	extern s_string_list_definition game_engine_status_enum_definition;
-	extern c_versioned_string_list game_engine_status_flags_definition_strings;
 	extern s_string_list_definition game_engine_status_flags_definition;
 
 

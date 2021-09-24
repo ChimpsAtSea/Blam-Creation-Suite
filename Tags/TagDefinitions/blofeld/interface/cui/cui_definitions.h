@@ -88,33 +88,19 @@ namespace blofeld
 	extern s_tag_struct_definition animation_scalar_function;
 	extern s_tag_struct_definition static_data_struct;
 
-	extern c_versioned_string_list propertyComponentPtrFlags_strings;
 	extern s_string_list_definition propertyComponentPtrFlags;
-	extern c_versioned_string_list property_type_strings;
 	extern s_string_list_definition property_type;
-	extern c_versioned_string_list property_binding_flags_strings;
 	extern s_string_list_definition property_binding_flags;
-	extern c_versioned_string_list binding_conversion_function_enum_definition_strings;
 	extern s_string_list_definition binding_conversion_function_enum_definition;
-	extern c_versioned_string_list binding_conversion_comparison_operator_enum_definition_strings;
 	extern s_string_list_definition binding_conversion_comparison_operator_enum_definition;
-	extern c_versioned_string_list animation_property_composition_type_strings;
 	extern s_string_list_definition animation_property_composition_type;
-	extern c_versioned_string_list animation_property_flags_strings;
 	extern s_string_list_definition animation_property_flags;
-	extern c_versioned_string_list animationInputType_strings;
 	extern s_string_list_definition animationInputType;
-	extern c_versioned_string_list step_type_strings;
 	extern s_string_list_definition step_type;
-	extern c_versioned_string_list step_operator_strings;
 	extern s_string_list_definition step_operator;
-	extern c_versioned_string_list step_variable_strings;
 	extern s_string_list_definition step_variable;
-	extern c_versioned_string_list component_definition_flags_strings;
 	extern s_string_list_definition component_definition_flags;
-	extern c_versioned_string_list editor_overlay_info_flags_strings;
 	extern s_string_list_definition editor_overlay_info_flags;
-	extern c_versioned_string_list editor_property_info_flags_strings;
 	extern s_string_list_definition editor_property_info_flags;
 
 

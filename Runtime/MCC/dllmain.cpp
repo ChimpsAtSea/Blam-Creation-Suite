@@ -15,7 +15,7 @@ extern void deinit_haloreach(s_engine_platform_build engine_platform_build);
 
 void haloreach_dll_loaded_callback()
 {
-	c_console::write_line_verbose("Halo Reach was loaded!");
+	console_write_line("Halo Reach was loaded!");
 	{
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		//c_haloreach_game_host::init_runtime_modifications();
@@ -24,7 +24,7 @@ void haloreach_dll_loaded_callback()
 
 void halo1_dll_loaded_callback()
 {
-	c_console::write_line_verbose("Halo 1 was loaded!");
+	console_write_line("Halo 1 was loaded!");
 	{
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		//c_halo1_game_host::init_runtime_modifications();

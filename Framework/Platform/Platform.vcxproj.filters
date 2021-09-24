@@ -18,85 +18,85 @@
     <ClInclude Include="!Resources\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!Resources\resources_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="platform-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform_types.h">
+    <ClInclude Include="keys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="threading.h">
+    <ClInclude Include="bcs_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="error_handling.h">
+    <ClInclude Include="bcs_assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bcs_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bcs_result_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clipboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="command_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug_point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine_platform_build.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="float16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="integral_limits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="intrinsics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="language_runtime.h">
+    <ClInclude Include="macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="macro_utils.h">
+    <ClInclude Include="process_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\command_line.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="debug_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="runtime_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="endianness_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xxhash_cx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strings\strings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strings\stack_string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strings\fixed_string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="language_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callback_util.h">
+    <ClInclude Include="resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math_util.h">
+    <ClInclude Include="stack_trace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="xxhash.h">
+    <ClInclude Include="threading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="keys.h">
+    <ClInclude Include="warnings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="strings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform-exports-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,49 +104,67 @@
     <ClCompile Include="platform-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="error_handling.cpp">
+    <ClCompile Include="bcs_api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="!Resources\resources_manager.cpp">
+    <ClCompile Include="bcs_assert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Windows\command_line.cpp">
+    <ClCompile Include="bcs_result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Windows\console.cpp">
+    <ClCompile Include="bcs_result_handle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug_util.cpp">
+    <ClCompile Include="clipboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="runtime_util.cpp">
+    <ClCompile Include="command_line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem_util.cpp">
+    <ClCompile Include="console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Strings\stack_string.cpp">
+    <ClCompile Include="debug_point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Strings\fixed_string.cpp">
+    <ClCompile Include="engine_platform_build.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Windows\window.cpp">
+    <ClCompile Include="filesystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="callback_util.cpp">
+    <ClCompile Include="float16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process_module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math_util.cpp">
+    <ClCompile Include="stack_trace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xxhash.c">
+    <ClCompile Include="threading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="keys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="url.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="callback_impl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="!Resources\HLSL\BoxShader.hlsli" />
+    <None Include="filesystem.deprecated.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />

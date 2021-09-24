@@ -22,25 +22,30 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{91D344E6-BECA-4173-A875-EAE40D504152}</ProjectGuid>
     <RootNamespace>AotusFramework</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -179,6 +184,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="game_options_version.cpp" />
     <ClCompile Include="MCC\player_configuration.cpp" />
     <ClCompile Include="Presense\discord_presense_api.cpp" />
     <ClCompile Include="MCC\map_id.cpp" />
@@ -218,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
+    <ClInclude Include="game_options_version.h" />
     <ClInclude Include="Presense\discord_presense_api.h" />
     <ClInclude Include="is_valid.h" />
     <ClInclude Include="MCC\map_id.h" />

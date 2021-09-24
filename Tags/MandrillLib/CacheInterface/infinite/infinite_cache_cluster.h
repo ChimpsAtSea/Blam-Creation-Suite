@@ -37,6 +37,9 @@ public:
 	BCS_RESULT get_tag_instance_by_global_tag_id(long global_tag_id, c_tag_instance*& tag_instance);
 	BCS_RESULT get_tag_instance_by_global_tag_id_and_group_tag(long global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
 
+	BCS_RESULT get_tag_instance_by_global_tag_id64(long long global_tag_id, c_tag_instance*& tag_instance);
+	BCS_RESULT get_tag_instance_by_global_tag_id64_and_group_tag(long long global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
+
 protected:
 	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader);
 	virtual BCS_RESULT get_tag_reader(c_cache_file_reader& cache_reader, c_tag_reader*& tag_reader);
@@ -49,12 +52,16 @@ protected:
 	using t_tag_readers = std::map<c_infinite_module_file_reader*, c_infinite_tag_reader*>;
 	using t_resource_readers = std::map<c_infinite_module_file_reader*, c_infinite_resource_reader*>;
 	using t_localization_readers = std::map<c_infinite_module_file_reader*, c_infinite_localization_reader*>;
+	using t_tag_instances_by_global_id = std::map<long, c_tag_instance*>;
+	using t_tag_instances_by_global_id64 = std::map<long long, c_tag_instance*>;
 
 	t_cache_readers cache_readers;
 	t_debug_readers debug_readers;
 	t_tag_readers tag_readers;
 	t_resource_readers resource_readers;
 	t_localization_readers localization_readers;
+	t_tag_instances_by_global_id tag_instances_by_global_id;
+	t_tag_instances_by_global_id64 tag_instances_by_global_id64;
 
 	s_engine_platform_build engine_platform_build;
 

@@ -17,7 +17,7 @@ uintptr_t console_initialize_offset(s_engine_platform_build engine_platform_buil
 }
 c_function_hook_ex<console_initialize_offset, signed int()> console_initialize = { "console_initialize", []()
 {
-	c_console::write_line_verbose("console_initialize called");
+	console_write_line("console_initialize called");
 	return console_initialize();
 } };
 
@@ -30,7 +30,7 @@ uintptr_t console_open_offset(s_engine_platform_build engine_platform_build)
 }
 c_function_hook_ex<console_open_offset, signed int()> console_open = { "console_open", []()
 {
-	c_console::write_line_verbose("console_open called");
+	console_write_line("console_open called");
 	return console_open();
 } };
 
@@ -41,7 +41,7 @@ uintptr_t console_close_offset(s_engine_platform_build engine_platform_build)
 }
 c_function_hook_ex<console_close_offset, signed int()> console_close = { "console_close", []()
 {
-	c_console::write_line_verbose("console_close called");
+	console_write_line("console_close called");
 	return console_close();
 } };
 

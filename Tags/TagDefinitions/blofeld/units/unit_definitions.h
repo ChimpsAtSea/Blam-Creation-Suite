@@ -48,29 +48,17 @@ namespace blofeld
 	extern s_tag_struct_definition unit_lipsync_scales_struct;
 	extern s_tag_struct_definition unit_birth_struct;
 
-	extern c_versioned_string_list unit_camera_acceleration_displacement_input_strings;
 	extern s_string_list_definition unit_camera_acceleration_displacement_input;
-	extern c_versioned_string_list unit_camera_flags_definition_strings;
 	extern s_string_list_definition unit_camera_flags_definition;
-	extern c_versioned_string_list unit_seat_flags_strings;
 	extern s_string_list_definition unit_seat_flags;
-	extern c_versioned_string_list unit_seat_secondary_flags_strings;
 	extern s_string_list_definition unit_seat_secondary_flags;
-	extern c_versioned_string_list global_ai_seat_type_enum_strings;
 	extern s_string_list_definition global_ai_seat_type_enum;
-	extern c_versioned_string_list initial_weapon_position_strings;
 	extern s_string_list_definition initial_weapon_position;
-	extern c_versioned_string_list sentryTurretBehaviorFlagDefinition_strings;
 	extern s_string_list_definition sentryTurretBehaviorFlagDefinition;
-	extern c_versioned_string_list unit_flags_part1_strings;
 	extern s_string_list_definition unit_flags_part1;
-	extern c_versioned_string_list unit_flags_part2_strings;
 	extern s_string_list_definition unit_flags_part2;
-	extern c_versioned_string_list unit_default_teams$2_strings;
 	extern s_string_list_definition unit_default_teams$2;
-	extern c_versioned_string_list boost_flags_strings;
 	extern s_string_list_definition boost_flags;
-	extern c_versioned_string_list unit_item_owner_size_enum_strings;
 	extern s_string_list_definition unit_item_owner_size_enum;
 
 	extern s_tag_reference_definition integrated_light_toggle_reference; // #CUSTOM

@@ -13,6 +13,6 @@ protected:
 	void enqueue(c_mandrill_event* event);
 	void enqueue(std::function<void(void)> event);
 
-	ThreadSafeQueue<c_mandrill_event*> thread_safe_queue;
+	c_thread_safe_queue<c_mandrill_event*> thread_safe_queue;
 };
 

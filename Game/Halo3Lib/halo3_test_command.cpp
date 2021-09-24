@@ -150,13 +150,13 @@ void print_mainmenu_ui_globals_test_command()
 
 	//						const char* mainmenu_ui_globals_name = halo3_tag_name_get(mainmenu_ui_globals_index);
 	//						const char* mainmenu_ui_globals_group_short_name = group.string;
-	//						c_console::write_line_verbose("mainmenu ui globals: '%s.%s'", mainmenu_ui_globals_name, mainmenu_ui_globals_group_short_name);
+	//						console_write_line("mainmenu ui globals: '%s.%s'", mainmenu_ui_globals_name, mainmenu_ui_globals_group_short_name);
 	//					}
 	//				}
 	//			}
 	//			else
 	//			{
-	//				c_console::write_line_verbose("no mainmenu ui globals tag exists or has the wrong group tag");
+	//				console_write_line("no mainmenu ui globals tag exists or has the wrong group tag");
 	//			}
 	//		}
 	//	}
@@ -246,12 +246,12 @@ extern bool g_use_30_tick;
 void use_30_tick_test_command()
 {
 	g_use_30_tick = !g_use_30_tick;
-	c_console::write_line_verbose("using 30 tick: %s", g_use_30_tick ? "true" : "false");
+	console_write_line("using 30 tick: %s", g_use_30_tick ? "true" : "false");
 }
 
 extern bool g_halo3_disable_c_ui_view_render;
 void halo3_toggle_ui_view_test_command()
 {
 	g_halo3_disable_c_ui_view_render = !g_halo3_disable_c_ui_view_render;
-	c_console::write_line_verbose("c_ui_view disabled: %s", g_halo3_disable_c_ui_view_render ? "true" : "false");
+	console_write_line("c_ui_view disabled: %s", g_halo3_disable_c_ui_view_render ? "true" : "false");
 }

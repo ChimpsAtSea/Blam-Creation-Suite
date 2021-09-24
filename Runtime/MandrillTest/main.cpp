@@ -1,19 +1,9 @@
 #include "mandrillapiprototype-private-pch.h"
 
-/* ---------- private constants */
-/* ---------- private macros */
-/* ---------- private types */
-/* ---------- private classes */
-/* ---------- globals */
-
 bool g_mandrill_running = true;
 const char* c_console::g_console_executable_name = "Mandrill API Prorotype";
 c_window* window = nullptr;
 c_mandrill_user_interface* mandrill_user_interface = nullptr;
-
-/* ---------- private prototypes */
-/* ---------- public code */
-/* ---------- private code */
 
 static void load_plugins()
 {
@@ -29,7 +19,7 @@ static void load_plugins()
 		HMODULE extension_module = LoadLibraryW(filepath);
 		if (extension_module == nullptr)
 		{
-			c_console::write_line_verbose("failed to load plugin '%S' LoadLibrary failed", filename);
+			console_write_line("failed to load plugin '%S' LoadLibrary failed", filename);
 			return true; // continue
 		}
 
@@ -37,7 +27,7 @@ static void load_plugins()
 		//t_create_mandrill_extension* create_mandrill_extension = reinterpret_cast<t_create_mandrill_extension*>(GetProcAddress(extension_module, "create_mandrill_extension"));
 		//if (create_mandrill_extension == nullptr)
 		//{
-		//	c_console::write_line_verbose("failed to load plugin '%S' create_mandrill_extension was not found", filename);
+		//	console_write_line("failed to load plugin '%S' create_mandrill_extension was not found", filename);
 		//	if (extension_module)
 		//	{
 		//		FreeLibrary(extension_module);
@@ -49,7 +39,7 @@ static void load_plugins()
 		//int version = extension->get_version();
 		//if (version != BCS_EXTENSION_VERSION)
 		//{
-		//	c_console::write_line_verbose("failed to load plugin '%S' version missmatch", filename);
+		//	console_write_line("failed to load plugin '%S' version missmatch", filename);
 		//	if (extension_module)
 		//	{
 		//		FreeLibrary(extension_module);
@@ -58,7 +48,7 @@ static void load_plugins()
 		//}
 
 		//const char* extension_name = extension->get_name();
-		//c_console::write_line_verbose("successfully loaded plugin '%s'", extension_name);
+		//console_write_line("successfully loaded plugin '%s'", extension_name);
 
 		//c_mandrill_extension::register_extension(extension);
 

@@ -26,7 +26,7 @@ void c_structure_relationship_node::populate()
 
 	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
-		uint32_t field_skip_count;
+		unsigned long field_skip_count;
 		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 		{
 			current_field += field_skip_count;
@@ -116,8 +116,10 @@ c_structure_relationship_node& c_structure_relationship_node::get_node_by_struct
 
 void c_structure_relationship_node::create_structure_relationships(s_engine_platform_build engine_platform_build)
 {
-	for (const s_tag_struct_definition& tag_struct_definition : c_reference_loop(get_tag_struct_definitions(engine_platform_build)))
+	for (const s_tag_struct_definition** tag_struct_definition_iter = get_tag_struct_definitions(engine_platform_build); *tag_struct_definition_iter; tag_struct_definition_iter++)
 	{
+		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definition_iter;
+
 		nodes[engine_platform_build.engine_type].push_back(new c_structure_relationship_node(engine_platform_build, tag_struct_definition));
 	}
 	for (c_structure_relationship_node* node : nodes[engine_platform_build.engine_type])
@@ -159,7 +161,7 @@ void c_structure_relationship_node::create_sorted_tag_enum_definitions(s_engine_
 	std::sort(sorted_string_list_definitions[engine_platform_build.engine_type].begin(), sorted_string_list_definitions[engine_platform_build.engine_type].end(), [](const s_string_list_definition* a, const s_string_list_definition* b) -> bool
 		{
 			std::string _a = a->name;
-			std::string _b = a->name;
+			std::string _b = b->name;
 			return _a > _b;
 		});
 }
@@ -192,7 +194,7 @@ void c_structure_relationship_node::create_sorted_tag_block_definitions(s_engine
 	std::sort(sorted_block_definitions[engine_platform_build.engine_type].begin(), sorted_block_definitions[engine_platform_build.engine_type].end(), [](const s_tag_block_definition* a, const s_tag_block_definition* b) -> bool
 		{
 			std::string _a = a->name;
-			std::string _b = a->name;
+			std::string _b = b->name;
 			return _a > _b;
 		});
 
@@ -206,7 +208,7 @@ void c_structure_relationship_node::create_sorted_tag_block_definitions(s_engine
 	std::sort(sorted_block_struct_definitions[engine_platform_build.engine_type].begin(), sorted_block_struct_definitions[engine_platform_build.engine_type].end(), [](const s_tag_struct_definition* a, const s_tag_struct_definition* b) -> bool
 		{
 			std::string _a = a->name;
-			std::string _b = a->name;
+			std::string _b = b->name;
 			return _a > _b;
 		});
 }

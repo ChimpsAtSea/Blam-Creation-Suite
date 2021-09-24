@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_sound_bank_version : uint32_t
+enum e_sound_bank_version : unsigned long
 {
 	_sound_bank_version_unsupported,
 	_sound_bank_version_fsb1 = 'FSB1',

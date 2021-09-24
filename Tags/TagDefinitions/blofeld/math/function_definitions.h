@@ -18,9 +18,7 @@ namespace blofeld
 	extern s_tag_struct_definition scalar_function_named_struct;
 	extern s_tag_struct_definition color_function_named_struct;
 
-	extern c_versioned_string_list function_type_enum_definition_strings;
 	extern s_string_list_definition function_type_enum_definition;
-	extern c_versioned_string_list color_graph_type_enum_definition_strings;
 	extern s_string_list_definition color_graph_type_enum_definition;
 
 

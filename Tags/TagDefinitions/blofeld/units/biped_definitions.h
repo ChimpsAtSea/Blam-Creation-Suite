@@ -35,18 +35,12 @@ namespace blofeld
 	extern s_tag_struct_definition biped_ground_fitting_data_struct;
 	extern s_tag_struct_definition BipedMovementHipLeaningStruct;
 
-	extern c_versioned_string_list biped_definition_flags_strings;
 	extern s_string_list_definition biped_definition_flags;
-	extern c_versioned_string_list biped_leap_flags_definition_strings;
 	extern s_string_list_definition biped_leap_flags_definition;
-	extern c_versioned_string_list grab_biped_throw_control_modes_strings;
 	extern s_string_list_definition grab_biped_throw_control_modes;
-	extern c_versioned_string_list biped_ground_fitting_flags_definition_strings;
 	extern s_string_list_definition biped_ground_fitting_flags_definition;
-	extern c_versioned_string_list biped_wall_proximity_composition_mode_strings;
 	extern s_string_list_definition biped_wall_proximity_composition_mode;
 
-	extern c_versioned_string_list biped_lock_on_flags_definition_strings;
 	extern s_string_list_definition biped_lock_on_flags_definition;
 
 } // namespace blofeld

@@ -1,4 +1,37 @@
 #include"mandrilllib-private-pch.h"
+#include <sstream> // #TODO: remove this
+
+void c_hs_function_definition::generate_documentation()
+{
+	hs_function_documentation = get_function_documentation(name);
+
+	{
+		std::stringstream s;
+		s << name;
+		for (uint8_t argument_index = 0; argument_index < arguments_count; argument_index++)
+		{
+			const c_hs_type_definition* type_definition = arguments[argument_index];
+			s << " <" << type_definition->name << ">";
+		}
+
+		if (hs_function_documentation)
+		{
+			if (strlen(hs_function_documentation->description) > 0)
+			{
+				s << "\n\n" << hs_function_documentation->description;
+			}
+			if (hs_function_documentation->note != nullptr)
+			{
+				if (strlen(hs_function_documentation->note) > 0)
+				{
+					s << "\n\n" << hs_function_documentation->note;
+				}
+			}
+		}
+
+		documentation = s.str();
+	}
+}
 
 const c_hs_function_definition hs_function_definitions[hs_function_count] =
 {

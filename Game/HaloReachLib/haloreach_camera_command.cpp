@@ -32,7 +32,7 @@ void haloreach_debug_save_camera()
 		fclose(stream);
 	}
 
-	c_console::write_line_verbose("Unable to save camera");
+	console_write_line("Unable to save camera");
 }
 
 void haloreach_debug_load_camera()
@@ -54,7 +54,7 @@ void haloreach_debug_load_camera()
 		fclose(stream);
 	}
 
-	c_console::write_line_verbose("Unable to load camera");
+	console_write_line("Unable to load camera");
 }
 
 
@@ -97,12 +97,12 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 			c_console::set_text_color(_console_color_info);
 			if (!arg1.compare("save"))
 			{
-				c_console::write_line_verbose("camera save is not currently implemented");
+				console_write_line("camera save is not currently implemented");
 				//haloreach_debug_save_camera();
 			}
 			if (!arg1.compare("load"))
 			{
-				c_console::write_line_verbose("camera load is not currently implemented");
+				console_write_line("camera load is not currently implemented");
 				//haloreach_debug_save_camera();
 			}
 		}

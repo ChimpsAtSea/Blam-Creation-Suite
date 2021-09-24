@@ -64,11 +64,17 @@
     <ClInclude Include="CacheInterface\infinite\infinite_tag_reader.h" />
     <ClInclude Include="CacheInterface\infinite\infinite_ucs_reader.h" />
     <ClInclude Include="HighLevel\HighLevel.h" />
+    <ClInclude Include="HighLevel\infinite_string_id_manager.h" />
+    <ClInclude Include="HighLevel\legacy_string_id_manager.h" />
     <ClInclude Include="HighLevel\tag_project.h" />
     <ClInclude Include="HighLevel\string_id_manager.h" />
     <ClInclude Include="CacheInterface\memory_mapped_file.h" />
     <ClInclude Include="CacheInterface\base\tag_group.h" />
     <ClInclude Include="CacheInterface\base\tag_instance.h" />
+    <ClInclude Include="CacheInterface\infinite\infinite_generic_module_file_entry.h" />
+    <ClInclude Include="CacheInterface\infinite\infinite_file_entry_block_map.h" />
+    <ClInclude Include="UserInterface\Editors\infinite_tag_geometry_d3d12.h" />
+    <ClInclude Include="UserInterface\Editors\model_preview_test.h" />
     <ClInclude Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_tab.h" />
@@ -96,7 +102,6 @@
     <ClInclude Include="UserInterface\Foundation\mandrill_tab.h" />
     <ClInclude Include="UserInterface\Tabs\halo_script_editor.h" />
     <ClInclude Include="UserInterface\UserInterface.h" />
-    <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CacheInterface\base\api_interop.cpp" />
@@ -143,11 +148,17 @@
     <ClCompile Include="CacheInterface\infinite\infinite_tag_instance.cpp" />
     <ClCompile Include="CacheInterface\infinite\infinite_tag_reader.cpp" />
     <ClCompile Include="CacheInterface\infinite\infinite_ucs_reader.cpp" />
+    <ClCompile Include="HighLevel\infinite_string_id_manager.cpp" />
+    <ClCompile Include="HighLevel\legacy_string_id_manager.cpp" />
     <ClCompile Include="HighLevel\tag_project.cpp" />
     <ClCompile Include="HighLevel\string_id_manager.cpp" />
     <ClCompile Include="CacheInterface\memory_mapped_file.cpp" />
     <ClCompile Include="CacheInterface\base\tag_group.cpp" />
     <ClCompile Include="CacheInterface\base\tag_instance.cpp" />
+    <ClCompile Include="CacheInterface\infinite\infinite_generic_module_file_entry.cpp" />
+    <ClCompile Include="CacheInterface\infinite\infinite_file_entry_block_map.cpp" />
+    <ClCompile Include="UserInterface\Editors\infinite_tag_geometry_d3d12.cpp" />
+    <ClCompile Include="UserInterface\Editors\model_preview_test.cpp" />
     <ClCompile Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_tab.cpp" />
@@ -174,7 +185,6 @@
     <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\halo_script_editor.cpp" />
-    <ClCompile Include="virtual_memory_container.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="CacheInterface\halo4\halo4.natvis" />
@@ -194,13 +204,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>

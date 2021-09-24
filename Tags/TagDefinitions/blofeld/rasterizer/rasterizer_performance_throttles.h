@@ -15,7 +15,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition performance_throttles_struct_definition; // tag group
 
-	extern c_versioned_string_list performance_throttle_flags_strings;
 	extern s_string_list_definition performance_throttle_flags;
 
 	extern s_tag_reference_definition global_performance_throttles_reference;

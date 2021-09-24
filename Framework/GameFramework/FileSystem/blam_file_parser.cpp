@@ -19,7 +19,7 @@ c_blam_file_parser::c_blam_file_parser(char* blam_file_data)
 			//{
 			//	s_blamfile_level_chunk* plevel_chunk = static_cast<s_blamfile_level_chunk*>(chunk);
 			//	int map_id = bswap_auto_endian(is_little_endian, plevel_chunk->map_id);
-			//	c_console::write_line_verbose("MapInfoManager> ");
+			//	console_write_line("MapInfoManager> ");
 			//	break;
 			//}
 		case '_eof': is_little_endian = true;
@@ -34,7 +34,7 @@ c_blam_file_parser::c_blam_file_parser(char* blam_file_data)
 
 	} while (!end_of_file_found);
 
-	c_console::write_line_verbose("BlamFileParser> Parsed %i chunks", static_cast<int>(chunks.size()));
+	console_write_line("BlamFileParser> Parsed %i chunks", static_cast<int>(chunks.size()));
 }
 
 s_blamfile_header* c_blam_file_parser::get_first_chunk_by_type_impl(blamfile_chunk_type chunk_type)

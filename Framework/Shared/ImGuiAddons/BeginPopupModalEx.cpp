@@ -6,7 +6,7 @@ bool BeginPopupModalEx(ImGuiID id, const char* name, bool* p_open, ImGuiWindowFl
 {
 	ImGuiContext& g = *GImGui;
 	ImGuiWindow* window = g.CurrentWindow;
-	if (!ImGui::IsPopupOpen(id))
+	if (!ImGui::IsPopupOpen(id, ImGuiPopupFlags_None))
 	{
 		g.NextWindowData.ClearFlags(); // We behave like Begin() and need to consume those values
 		return false;

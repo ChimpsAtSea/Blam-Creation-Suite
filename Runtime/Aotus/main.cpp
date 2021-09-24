@@ -53,11 +53,11 @@ int WINAPI WinMain(
 #else
 	const wchar_t* k_window_title = L"Aotus";
 #endif
-	c_console::write_line("creating window");
+	console_write_line("creating window");
 	window = new c_window(hInstance, k_window_title, L"mandrill", _window_icon_blam_creation_suite, nShowCmd);
-	c_console::write_line("init_render");
+	console_write_line("init_render");
 	c_render::init_render(window, hInstance);
-	c_console::write_line("init_game_launcher");
+	console_write_line("init_game_launcher");
 	c_game_launcher::init_game_launcher(*window);
 
 	window->on_update.register_callback(&update_callback, update_callback);

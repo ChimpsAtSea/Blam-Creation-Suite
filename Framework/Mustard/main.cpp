@@ -455,9 +455,9 @@ void WINAPI RaiseExceptionHook(
 	if (is_caller_loaded_module)
 	{
 		c_console::set_text_color(_console_color_error);
-		c_console::write_line_verbose("Kernel32::RaiseException> Ignoring exception from loaded module");
-		c_console::write_line_verbose("\t0x%X 0x%X 0x%X 0x%zX", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, reinterpret_cast<uintptr_t>(lpArguments));
-		c_console::write_line_verbose("\tstack trace:");
+		console_write_line("Kernel32::RaiseException> Ignoring exception from loaded module");
+		console_write_line("\t0x%X 0x%X 0x%X 0x%zX", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, reinterpret_cast<uintptr_t>(lpArguments));
+		console_write_line("\tstack trace:");
 
 		STACKFRAME frame = {};
 		frame.AddrPC.Mode = AddrModeFlat;
@@ -475,7 +475,7 @@ void WINAPI RaiseExceptionHook(
 
 		while (StackWalk(image_file_machine, current_process, current_thread, &frame, &context, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL))
 		{
-			c_console::write_line_verbose("\t0x%zX", frame.AddrPC.Offset);
+			console_write_line("\t0x%zX", frame.AddrPC.Offset);
 		}
 
 		c_console::set_text_color(_console_color_info);
@@ -484,7 +484,7 @@ void WINAPI RaiseExceptionHook(
 	{
 		c_console::set_text_color(_console_color_info);
 #ifdef _DEBUG
-		c_console::write_line_verbose("Kernel32::RaiseException> Exception occured forwarding to Kernel32");
+		console_write_line("Kernel32::RaiseException> Exception occured forwarding to Kernel32");
 #endif
 		//RaiseExceptionPointer(dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
 	}
@@ -516,7 +516,7 @@ __declspec(dllexport) int main()
 
 		if (loaded_executable_module)
 		{
-			c_console::write_line_verbose("Loaded Eldorado Module");
+			console_write_line("Loaded Eldorado Module");
 		}
 
 		// #TODO: Determine version of Eldorado
@@ -530,7 +530,7 @@ __declspec(dllexport) int main()
 
 		if (loaded_executable_module)
 		{
-			c_console::write_line_verbose("Loaded Halo Online Module");
+			console_write_line("Loaded Halo Online Module");
 		}
 
 		// #TODO: Determine version of Halo Online
@@ -565,7 +565,7 @@ __declspec(dllexport) int main()
 
 				if (loaded_executable_module)
 				{
-					c_console::write_line_verbose("Loaded Halo 5 Module");
+					console_write_line("Loaded Halo 5 Module");
 				}
 				else
 				{

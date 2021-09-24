@@ -9,18 +9,20 @@ namespace blofeld
 	class c_constant
 	{
 	public:
-		c_constant(const char* name, uint32_t value);
+		static constexpr unsigned long k_max_values = 8;
+
+		c_constant(const char* name, long value);
 #ifdef _INITIALIZER_LIST_
-		c_constant(const char* name, std::initializer_list<std::pair<e_engine_type, uint32_t>> list);
-		c_constant(std::initializer_list<std::pair<e_engine_type, std::pair<const char*, uint32_t>>> list);
+		c_constant(const char* name, std::initializer_list<std::pair<s_engine_platform_build, long>> list);
+		c_constant(std::initializer_list<std::pair<s_engine_platform_build, long>> list);
 #endif
+		struct s_value { s_engine_platform_build engine_platform_build; long value; };
 
-		uint32_t operator()(s_engine_platform_build engine_platform_build)
-		{
-			return values[engine_platform_build.engine_type].second;
-		}
-
-		mutable  std::pair<const char*, uint32_t> values[k_number_of_engine_types];
+		long operator()(s_engine_platform_build engine_platform_build);
+		const char* name;
+		unsigned long num_values;
+		long constant_value;
+		mutable s_value values[k_max_values];
 	};
 
 	// manually calculated don't lose difficult 

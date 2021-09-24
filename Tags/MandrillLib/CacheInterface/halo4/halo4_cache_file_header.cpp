@@ -122,7 +122,7 @@ template<> void byteswap<halo4::xbox360::s_cache_file_tags_header>(halo4::xbox36
 	byteswap(tags_header.tags_signature);
 }
 
-uint32_t cache_file_get_absolute_maximum_size()
+unsigned long cache_file_get_absolute_maximum_size()
 {
 	return 0x7FFFFFFF;
 }
@@ -134,36 +134,36 @@ bool shell_build_string_is_compatible(const char* build_string)
 
 bool halo4::xbox360::cache_file_header_verify(halo4::xbox360::s_cache_file_header& header)
 {
-	constexpr uint32_t k_tag_cache_minimum_address = 0xA0000000;
-	constexpr uint32_t k_tag_cache_maximum_address = 0xBFC00000;
+	constexpr unsigned long k_tag_cache_minimum_address = 0xA0000000;
+	constexpr unsigned long k_tag_cache_maximum_address = 0xBFC00000;
 
 	if (header.header_signature != k_cache_header_signature)
 	{
-		c_console::write_line("does not have a valid header signature (is %08x, should be %08x)", header.header_signature, k_cache_header_signature);
+		console_write_line("does not have a valid header signature (is %08x, should be %08x)", header.header_signature, k_cache_header_signature);
 		return false;
 	}
 
 	if (header.file_version != 12)
 	{
-		c_console::write_line("does not have a valid header signature (is %08x, should be %08x)", header.file_version, 12);
+		console_write_line("does not have a valid header signature (is %08x, should be %08x)", header.file_version, 12);
 		return false;
 	}
 
 	if (header.footer_signature != k_cache_footer_signature)
 	{
-		c_console::write_line("does not have a valid footer signature (is %08x, should be %08x)", header.footer_signature, k_cache_footer_signature);
+		console_write_line("does not have a valid footer signature (is %08x, should be %08x)", header.footer_signature, k_cache_footer_signature);
 		return false;
 	}
 
 	if (header.xdk_version != 21119)
 	{
-		c_console::write_line("mismatch in xdk versions (cache file is %d, code is %d)", header.xdk_version, 21119);
+		console_write_line("mismatch in xdk versions (cache file is %d, code is %d)", header.xdk_version, 21119);
 		return false;
 	}
 
 	if (!shell_build_string_is_compatible(header.build.get_string()))
 	{
-		c_console::write_line("the cache file '%s' belongs to an incompatible build (%s)", header.name, header.build);
+		console_write_line("the cache file '%s' belongs to an incompatible build (%s)", header.name, header.build);
 		return false;
 	}
 

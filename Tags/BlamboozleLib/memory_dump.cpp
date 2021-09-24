@@ -108,7 +108,7 @@ const void* dumpfile_to_pointer64(const void* dumpfile, ptr64 address)
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
-				//c_console::write_line_verbose("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
+				//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
 
 				ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;

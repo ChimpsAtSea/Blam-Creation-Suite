@@ -53,3 +53,5 @@
 #include "infinite\infinite_tag_group.h"
 #include "infinite\infinite_tag_instance.h"
 #include "infinite\infinite_ucs_reader.h"
+#include "infinite\infinite_generic_module_file_entry.h"
+#include "infinite\infinite_file_entry_block_map.h"

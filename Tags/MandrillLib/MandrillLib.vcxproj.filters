@@ -36,9 +36,6 @@
     <ClInclude Include="HaloScript\lisp_ast_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="virtual_memory_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -249,6 +246,24 @@
     <ClInclude Include="CacheInterface\infinite\infinite_ucs_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface\Editors\model_preview_test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\infinite\infinite_generic_module_file_entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\infinite\infinite_file_entry_block_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Editors\infinite_tag_geometry_d3d12.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighLevel\infinite_string_id_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighLevel\legacy_string_id_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
@@ -264,9 +279,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HaloScript\lisp_ast_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="virtual_memory_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests.cpp">
@@ -462,6 +474,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\infinite\infinite_ucs_reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Editors\model_preview_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\infinite\infinite_generic_module_file_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\infinite\infinite_file_entry_block_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Editors\infinite_tag_geometry_d3d12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighLevel\legacy_string_id_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighLevel\infinite_string_id_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

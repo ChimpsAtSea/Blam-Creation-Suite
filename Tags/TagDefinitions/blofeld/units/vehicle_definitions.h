@@ -61,27 +61,16 @@ namespace blofeld
 	extern s_tag_struct_definition flight_surface_struct;
 	extern s_tag_struct_definition jackal_glider_drag_struct;
 
-	extern c_versioned_string_list vehicle_flags_strings;
 	extern s_string_list_definition vehicle_flags;
-	extern c_versioned_string_list vehicle_size_enum_strings;
 	extern s_string_list_definition vehicle_size_enum;
-	extern c_versioned_string_list alien_scout_specific_type_enum_strings;
 	extern s_string_list_definition alien_scout_specific_type_enum;
-	extern c_versioned_string_list vehicle_type_enum_strings;
 	extern s_string_list_definition vehicle_type_enum;
-	extern c_versioned_string_list alien_scout_flags_strings;
 	extern s_string_list_definition alien_scout_flags;
-	extern c_versioned_string_list tank_flags_strings;
 	extern s_string_list_definition tank_flags;
-	extern c_versioned_string_list dimensions_enum_strings;
 	extern s_string_list_definition dimensions_enum;
-	extern c_versioned_string_list turret_flags_strings;
 	extern s_string_list_definition turret_flags;
-	extern c_versioned_string_list boat_flags_strings;
 	extern s_string_list_definition boat_flags;
-	extern c_versioned_string_list space_fighter_turn_back_flags_strings;
 	extern s_string_list_definition space_fighter_turn_back_flags;
-	extern c_versioned_string_list space_fighter_roll_flags_strings;
 	extern s_string_list_definition space_fighter_roll_flags;
 
 

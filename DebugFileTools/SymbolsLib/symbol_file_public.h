@@ -26,14 +26,14 @@ struct s_symbol_file_public
 	};
 #endif
 
-	uint32_t rva;
+	unsigned long rva;
 	union
 	{
-		uint16_t section_index;
+		unsigned short section_index;
 		struct
 		{
-			uint64_t : 16;
-			uint64_t rva_plus_base : 48;
+			unsigned long long : 16;
+			unsigned long long rva_plus_base : 48;
 		};
 	};
 };

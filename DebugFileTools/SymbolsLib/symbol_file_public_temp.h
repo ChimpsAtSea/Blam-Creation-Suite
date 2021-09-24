@@ -2,9 +2,9 @@
 
 struct s_symbol_file_public_temp
 {
-	uint32_t section_index;
-	uint32_t rva;
-	uint64_t rva_plus_base;
+	unsigned long section_index;
+	unsigned long rva;
+	unsigned long long rva_plus_base;
 
 	static constexpr size_t k_lib_and_object_size = 256;
 	static constexpr size_t k_symbol_name_size = 1024;

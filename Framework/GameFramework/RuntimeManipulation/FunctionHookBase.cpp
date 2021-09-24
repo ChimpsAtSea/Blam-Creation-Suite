@@ -85,7 +85,7 @@ c_function_hook_base* c_function_hook_base::init_node(s_engine_platform_build en
 			get_engine_module_filename(engine_platform_build, &module_filename);
 			
 			populate_function_ptr(module_filename, base_address, offset, base);
-			c_console::write_line_verbose("Created function pointer for %s", function_name);
+			console_write_line("Created function pointer for %s", function_name);
 		}
 
 		is_hooked = true;

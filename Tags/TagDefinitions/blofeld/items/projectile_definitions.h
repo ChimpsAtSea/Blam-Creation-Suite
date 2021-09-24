@@ -32,19 +32,12 @@ namespace blofeld
 	extern s_tag_struct_definition super_detonation_damage_struct;
 	extern s_tag_struct_definition angular_velocity_lower_bound_struct;
 
-	extern c_versioned_string_list effect_scale_enum_strings;
 	extern s_string_list_definition effect_scale_enum;
-	extern c_versioned_string_list material_response_strings;
 	extern s_string_list_definition material_response;
-	extern c_versioned_string_list material_possible_response_flags_strings;
 	extern s_string_list_definition material_possible_response_flags;
-	extern c_versioned_string_list projectile_flags_strings;
 	extern s_string_list_definition projectile_flags;
-	extern c_versioned_string_list secondary_projectile_flags_strings;
 	extern s_string_list_definition secondary_projectile_flags;
-	extern c_versioned_string_list projectile_detonation_timer_modes_strings;
 	extern s_string_list_definition projectile_detonation_timer_modes;
-	extern c_versioned_string_list projectile_material_response_flags_strings;
 	extern s_string_list_definition projectile_material_response_flags;
 
 	extern s_tag_reference_definition behavior_object_reference;

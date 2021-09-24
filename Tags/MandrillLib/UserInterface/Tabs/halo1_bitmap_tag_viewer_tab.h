@@ -15,7 +15,9 @@ class c_halo1_bitmap_tag_viewer_tab :
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_halo1_bitmap_tag_viewer_tab);
+	c_halo1_bitmap_tag_viewer_tab() = delete;
+	c_halo1_bitmap_tag_viewer_tab(c_halo1_bitmap_tag_viewer_tab const&) = delete;
+	c_halo1_bitmap_tag_viewer_tab& operator=(c_halo1_bitmap_tag_viewer_tab const&) = delete;
 
 	c_halo1_bitmap_tag_viewer_tab(c_tag_project& tag_project, blofeld::halo1::h_bitmap_struct_definition& halo1_bitmap_tag, c_mandrill_tab& parent);
 	virtual ~c_halo1_bitmap_tag_viewer_tab();

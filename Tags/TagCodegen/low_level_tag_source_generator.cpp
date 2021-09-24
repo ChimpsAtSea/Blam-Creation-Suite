@@ -84,7 +84,7 @@ const char* c_low_level_tag_source_generator::field_type_to_low_level_source_typ
 	case _field_embedded_tag:						return "s_tag_reference";
 	case _field_pointer: // #NONSTANDARD
 	{
-		uint32_t pointer_size;
+		unsigned long pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 
 		switch (pointer_size)
@@ -127,7 +127,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -144,10 +144,10 @@ void c_low_level_tag_source_generator::generate_header() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				current_field->name,
 				current_field->field_type == blofeld::_field_block,
-				field_name_unique_counter_ptr);
+				&field_name_unique_counter);
 
 			const char* field_type_string = field_to_string(current_field->field_type);
 
@@ -213,12 +213,17 @@ void c_low_level_tag_source_generator::generate_header() const
 				case _field_array:
 				{
 					const char* field_source_type = current_field->array_definition->struct_definition.name;
-					stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count(engine_platform_build) << "];";
+					unsigned long count = current_field->array_definition->count(engine_platform_build);
+					if (count == 0)
+					{
+						debug_point;
+					}
+					stream << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << count << "];";
 					break;
 				}
 				case _field_struct:
 				{
-					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
 					const char* field_source_type = current_field->struct_definition->name;
 					if (field_struct_size > 0)
 					{
@@ -240,7 +245,7 @@ void c_low_level_tag_source_generator::generate_header() const
 				{
 					//if (current_field->tag_reference_definition == nullptr)
 					//{
-					//	c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
+					//	console_write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
 					//	has_error = true;
 					//}
 					//else
@@ -251,7 +256,7 @@ void c_low_level_tag_source_generator::generate_header() const
 						if (current_field->tag_reference_definition)
 						{
 							long group_tag = current_field->tag_reference_definition->group_tag;
-							uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
+							unsigned long group_tag_count = current_field->tag_reference_definition->group_tag;
 
 							if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
 							{
@@ -386,7 +391,7 @@ void c_low_level_tag_source_generator::generate_header() const
 
 		stream << "\t\t" << "};" << std::endl;
 
-		uint32_t struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
+		unsigned long struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
 
 		// stream << "\t\t" << "static constexpr size_t " << tag_struct_definition->name << "_size = sizeof(s_" << tag_struct_definition->name << ");" << std::endl;
 		// stream << "\t\t" << "static_assert(" << tag_struct_definition->name << "_size == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct s_" << tag_struct_definition->name << " is invalid size\");" << std::endl;
@@ -405,24 +410,12 @@ void c_low_level_tag_source_generator::generate_header() const
 
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".h";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".h";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_low_level_tag_source_generator::generate_source() const
@@ -450,7 +443,7 @@ void c_low_level_tag_source_generator::generate_source() const
 
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -467,10 +460,10 @@ void c_low_level_tag_source_generator::generate_source() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				current_field->name,
 				current_field->field_type == blofeld::_field_block,
-				field_name_unique_counter_ptr);
+				&field_name_unique_counter);
 
 			const char* field_type_string = field_to_string(current_field->field_type);
 
@@ -488,7 +481,7 @@ void c_low_level_tag_source_generator::generate_source() const
 					break;
 				case _field_struct:
 				{
-					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
+					unsigned long field_struct_size = calculate_struct_size(engine_platform_build, *current_field->struct_definition);
 					if (field_struct_size == 0)
 					{
 						stream << "\t" << "// byteswap(value." << field_formatter.code_name.c_str() << "); // empty struct" << std::endl;
@@ -506,25 +499,12 @@ void c_low_level_tag_source_generator::generate_source() const
 		stream << std::endl;
 	}
 
-	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".cpp";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	std::string source_code = stream.str();	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".cpp";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_low_level_tag_source_generator::generate_enum_header() const
@@ -550,18 +530,17 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 	{
 		string_list_value_unique_counter.clear();
 
-		uint32_t count = string_list_definition->count(engine_platform_build);
-		const c_blamlib_string_parser** string_parsers = string_list_definition->strings(engine_platform_build);
+		unsigned long count = string_list_definition->get_count(engine_platform_build);
 
 		stream << "\t\t" << "enum e_" << string_list_definition->name << " : long" << std::endl;
 		stream << "\t\t" << "{" << std::endl;
 
-		for (uint32_t string_index = 0; string_index < count; string_index++)
+		for (unsigned long string_index = 0; string_index < count; string_index++)
 		{
-			const c_blamlib_string_parser& original_string_parser = *string_parsers[string_index];
-			c_blamlib_string_parser string_parser = c_blamlib_string_parser(original_string_parser.string.c_str(), false, &string_list_value_unique_counter);
+			const char* string = string_list_definition->get_string(engine_platform_build, string_index);
+			c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(string, false, &string_list_value_unique_counter);
 
-			stream << "\t\t\t" << "/* " << string_parser.display_name.c_str() << " */" << std::endl;
+			stream << "\t\t\t" << "/* " << string_parser.name.c_str() << " */" << std::endl;
 
 			stream << "\t\t\t_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
 			if (!string_parser.description.empty())
@@ -581,23 +560,10 @@ void c_low_level_tag_source_generator::generate_enum_header() const
 	stream << std::endl << "\t} // end namespace " << namespace_name << std::endl;
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
-	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".enum.h";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	std::string source_code = stream.str();	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "LowLevel/low_level_" + namespace_name + "/" + namespace_name + ".enum.h";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }

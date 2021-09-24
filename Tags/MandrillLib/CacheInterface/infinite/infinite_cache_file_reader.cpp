@@ -1,8 +1,8 @@
 #include "mandrilllib-private-pch.h"
 
-c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build) :
+c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* filepath, s_engine_platform_build _engine_platform_build) :
 	filepath(filepath),
-	engine_platform_build(engine_platform_build),
+	engine_platform_build(_engine_platform_build),
 	files(),
 	file_infos(),
 	cache_cluster(nullptr),
@@ -23,24 +23,28 @@ c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* file
 			module_file_path.format(L"%s_hd%i", filepath, file_index);
 		}
 
-		if (!PathFileExistsW(module_file_path))
+		if(BCS_FAILED(filesystem_filepath_exists(module_file_path)))
 		{
 			ASSERT(file_index > 0);
 			break;
 		}
 
-		if (BCS_FAILED(rs = create_memory_mapped_file(module_file_path, true, &files[file_index])))
+		if (BCS_FAILED(rs = create_memory_mapped_file(module_file_path, true, files[file_index])))
 		{
 			throw(rs);
 		}
 
-		if (BCS_FAILED(rs = get_memory_mapped_file_info(files[file_index], &file_infos[file_index])))
+		if (BCS_FAILED(rs = get_memory_mapped_file_info(files[file_index], file_infos[file_index])))
 		{
 			throw(rs);
 		}
 	}
 
-	module_file_header = reinterpret_cast<infinite::s_module_file_header*>(file_infos[0].file_view_begin);
+	infinite::s_module_file_header_base* module_file_header_base = reinterpret_cast<infinite::s_module_file_header_base*>(file_infos[0].file_view_begin);
+
+	module_file_header = static_cast<infinite::s_module_file_header*>(module_file_header_base);
+
+	debug_point;
 }
 
 c_infinite_module_file_reader::~c_infinite_module_file_reader()
@@ -49,6 +53,36 @@ c_infinite_module_file_reader::~c_infinite_module_file_reader()
 	{
 		ASSERT_NO_THROW(BCS_SUCCEEDED(destroy_memory_mapped_file(files[file_index])));
 	}
+}
+
+BCS_RESULT c_infinite_module_file_reader::get_module_file_entry_structure_size(unsigned long& structure_size) const
+{
+	if (engine_platform_build.build >= _build_infinite_HIFLTA_202700_21_09_06_0001)
+	{
+		structure_size = sizeof(infinite::s_module_file_entry_51);
+		return BCS_S_OK;
+	}
+	else if (engine_platform_build.build >= _build_infinite_FLT002INT_199229_21_07_20_0001)
+	{
+		structure_size = sizeof(infinite::s_module_file_entry_48);
+		return BCS_S_OK;
+	}
+	return BCS_E_UNSUPPORTED;
+}
+
+BCS_RESULT c_infinite_module_file_reader::get_string_buffer_fixup_offset_hack(unsigned long& string_buffer_fixup_offset_hack) const
+{
+	if (engine_platform_build.build >= _build_infinite_HIFLTA_202700_21_09_06_0001)
+	{
+		string_buffer_fixup_offset_hack = 8;
+		return BCS_S_OK;
+	}
+	else if (engine_platform_build.build >= _build_infinite_FLT002INT_199229_21_07_20_0001)
+	{
+		string_buffer_fixup_offset_hack = 0;
+		return BCS_S_OK;
+	}
+	return BCS_E_UNSUPPORTED;
 }
 
 BCS_RESULT c_infinite_module_file_reader::get_build_info(s_cache_file_build_info& build_info) const
@@ -100,14 +134,15 @@ BCS_RESULT c_infinite_module_file_reader::get_section_buffer(gen3::e_cache_file_
 
 BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index buffer_index, s_cache_file_buffer_info& buffer_info) const
 {
+	BCS_RESULT rs = BCS_S_OK;
 	switch (buffer_index)
 	{
 	case _module_file_buffer_root:
 	{
 		buffer_info.begin = file_infos[0].file_view_begin;
 		buffer_info.end = file_infos[0].file_view_end;
-		buffer_info.size = static_cast<uint32_t>(file_infos[0].file_size);
-		return BCS_S_OK;
+		buffer_info.size = static_cast<unsigned long>(file_infos[0].file_size);
+		return rs;
 	}
 	case _module_file_buffer_data0:
 	case _module_file_buffer_data1:
@@ -117,13 +152,25 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 		unsigned long file_info_index = buffer_index - _module_file_buffer_data0;
 		buffer_info.begin = file_infos[file_info_index].file_view_begin;
 		buffer_info.end = file_infos[file_info_index].file_view_end;
-		buffer_info.size = static_cast<uint32_t>(file_infos[file_info_index].file_size);
+		buffer_info.size = static_cast<unsigned long>(file_infos[file_info_index].file_size);
 
 		if (buffer_index == _module_file_buffer_data0)
 		{
+			unsigned long file_entry_size;
+			if (BCS_FAILED(rs = get_module_file_entry_structure_size(file_entry_size)))
+			{
+				return rs;
+			}
+
+			unsigned long string_buffer_fixup_offset_hack;
+			if (BCS_FAILED(rs = get_string_buffer_fixup_offset_hack(string_buffer_fixup_offset_hack)))
+			{
+				return rs;
+			}
+
 			const infinite::s_module_file_header* module_file_header = reinterpret_cast<const infinite::s_module_file_header*>(buffer_info.begin);
-			const infinite::s_module_file_entry* file_entries = reinterpret_cast<const infinite::s_module_file_entry*>(module_file_header + 1);
-			const char* string_buffer = reinterpret_cast<const char*>(file_entries + module_file_header->num_files);
+			const char* file_entries = reinterpret_cast<const char*>(module_file_header + 1);
+			const char* string_buffer = reinterpret_cast<const char*>(file_entries + module_file_header->num_files * file_entry_size);
 			const infinite::s_module_resource_entry* resource_entries = reinterpret_cast<const infinite::s_module_resource_entry*>(string_buffer + module_file_header->string_table_length);
 			const infinite::s_module_block_entry* block_entries = reinterpret_cast<const infinite::s_module_block_entry*>(resource_entries + module_file_header->num_resources);
 			const char* module_file_data_section = reinterpret_cast<const char*>(block_entries + module_file_header->num_file_blocks);
@@ -134,11 +181,13 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 #undef ROUND_UP_VALUE
 
 			buffer_info.begin = module_file_data_section;
-			buffer_info.end = buffer_info.begin + module_file_header->total_data_size;
-			buffer_info.size = module_file_header->total_data_size;
+			// #NOTE: module_file_header->total_data_size is only populated when there is an extra module file (hd1)
+			//buffer_info.end = buffer_info.begin + module_file_header->total_data_size;
+			//buffer_info.size = module_file_header->total_data_size;
+			buffer_info.size = static_cast<unsigned long>(buffer_info.end - buffer_info.begin);
 		}
 
-		return BCS_S_OK;
+		return rs;
 	}
 	case _debug_section_buffer:
 		return get_section_buffer(gen3::_cache_file_section_index_debug, buffer_info);
@@ -148,8 +197,10 @@ BCS_RESULT c_infinite_module_file_reader::get_buffer(e_cache_file_buffer_index b
 		return get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info);
 	case _localization_section_buffer:
 		return get_section_buffer(gen3::_cache_file_section_index_localization, buffer_info);
+	default:
+		rs = BCS_E_UNSUPPORTED;
 	}
-	return BCS_E_UNSUPPORTED;
+	return rs;
 }
 
 BCS_RESULT c_infinite_module_file_reader::get_buffers(s_cache_file_buffers_info& buffers_info) const
@@ -274,7 +325,7 @@ BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::
 //}
 
 
-uint32_t c_infinite_module_file_reader::get_field_size(blofeld::e_field field)
+unsigned long c_infinite_module_file_reader::get_field_size(blofeld::e_field field)
 {
 	using namespace blofeld;
 
@@ -293,7 +344,7 @@ uint32_t c_infinite_module_file_reader::get_field_size(blofeld::e_field field)
 	return get_blofeld_field_size(engine_platform_build.platform_type, field);
 }
 
-uint32_t c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_field& field)
+unsigned long c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_field& field)
 {
 	using namespace blofeld;
 
@@ -304,32 +355,32 @@ uint32_t c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_fiel
 	case _field_skip:							return field.length;
 	case _field_struct:
 	{
-		uint32_t structure_size = this->calculate_struct_size(*field.struct_definition);
+		unsigned long structure_size = this->calculate_struct_size(*field.struct_definition);
 		return structure_size;
 	}
 	case _field_array:
 	{
-		uint32_t structure_size = this->calculate_struct_size(field.array_definition->struct_definition);
-		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
-		uint32_t array_size = structure_size * array_element_count;
+		unsigned long structure_size = this->calculate_struct_size(field.array_definition->struct_definition);
+		unsigned long array_element_count = field.array_definition->count(engine_platform_build);
+		unsigned long array_size = structure_size * array_element_count;
 		return array_size;
 	}
 	default: return get_field_size(field.field_type);
 	}
 }
 
-uint32_t c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition)
+unsigned long c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition)
 {
 	using namespace blofeld;
 
-	uint32_t computed_size = 0;
+	unsigned long computed_size = 0;
 
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 
 		const char* field_string = field_to_string(current_field->field_type);
 
-		uint32_t field_skip_count;
+		unsigned long field_skip_count;
 		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 		{
 			current_field += field_skip_count;
@@ -357,8 +408,8 @@ uint32_t c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_t
 			REFERENCE_ASSERT(array_definition);
 			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 			REFERENCE_ASSERT(struct_definition);
-			uint32_t struct_size = this->calculate_struct_size(struct_definition);
-			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			unsigned long struct_size = this->calculate_struct_size(struct_definition);
+			unsigned long array_data_size = struct_size * array_definition.count(engine_platform_build);
 			field_size = array_data_size;
 			break;
 		}
@@ -373,6 +424,29 @@ uint32_t c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_t
 	//ASSERT((computed_size % (1u << struct_definition.alignment_bits)) == 0);
 
 	return computed_size;
+}
+
+BCS_RESULT c_infinite_module_file_reader::data_offset_fixup(unsigned long long data_offset, unsigned long index, unsigned long long& fixed_offset)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	e_cache_file_buffer_index start = _module_file_buffer_data0;
+	e_cache_file_buffer_index end = static_cast<e_cache_file_buffer_index>(_module_file_buffer_data0 + index);
+
+	fixed_offset = data_offset;
+
+	for (underlying(e_cache_file_buffer_index) buffer_index = start; buffer_index < end; buffer_index++)
+	{
+		s_cache_file_buffer_info data_module_buffer;
+		if (BCS_FAILED(rs = get_buffer(static_cast<e_cache_file_buffer_index>(buffer_index), data_module_buffer)))
+		{
+			return rs;
+		}
+
+		fixed_offset -= data_module_buffer.size;
+	}
+
+	return rs;
 }
 
 

@@ -15,14 +15,14 @@ c_mandrill_tab::~c_mandrill_tab()
 {
 	dispose_children();
 
-	on_closed.call(*this);
+	on_closed(this);
 }
 
 void c_mandrill_tab::dispose_children()
 {
-	for (c_mandrill_tab& tab : c_reverse_reference_loop(children.data(), children.size()))
+	for (c_mandrill_tab* tab : children)
 	{
-		delete& tab;
+		delete tab;
 	}
 	children.clear();
 }
@@ -55,8 +55,7 @@ void c_mandrill_tab::render(bool set_selected)
 		if (set_selected || !_is_selected)
 		{
 			_is_selected = true;
-			on_selected(*this);
-			on_selected_tree_change(*this, *this);
+			on_selected(this);
 		}
 
 		render_impl();

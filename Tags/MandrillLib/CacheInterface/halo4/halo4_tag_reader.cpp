@@ -691,7 +691,7 @@ BCS_RESULT c_halo4_tag_reader::init_interops()
 		//	{
 		//		debug_reader->string_id_to_string(interop_type_identifier.name, name);
 		//	}
-		//	c_console::write_line(name);
+		//	console_write_line(name);
 		//}
 
 		switch (interop_type)
@@ -1158,15 +1158,15 @@ BCS_RESULT c_halo4_tag_reader::export_resources()
 			return BCS_E_NOT_IMPLEMENTED; // unknown compression codec
 		}
 
-		//c_console::write_line("start");
+		//console_write_line("start");
 		for (c_halo4_resource_container* resource_container : resource_containers)
 		{
 			unsigned long page_index = static_cast<unsigned long>(_current_file_page - file_pages);
 
-			//c_console::write_line("begin %s", resource_container->tag_instance.instance_name);
+			//console_write_line("begin %s", resource_container->tag_instance.instance_name);
 			resource_container->digest_page(cache_reader, page_index, page_data);
 		}
-		//c_console::write_line("end");
+		//console_write_line("end");
 
 		delete page_data;
 	}

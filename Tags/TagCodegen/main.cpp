@@ -1,10 +1,128 @@
 #include "tagcodegen-private-pch.h"
+#include <SymbolsLib\symbolslib-public-pch.h>
 
-const char* c_console::g_console_executable_name = "TagCodegen";
+static unsigned long k_ctor_source_count = 64;
 
-int create_source_file()
+BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 {
-	int result = 0;
+	const char* engine_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+	c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Generating low level header (%s)", engine_name);
+	}
+	low_level_tag_source_generator.generate_header();
+	low_level_tag_source_generator.generate_source();
+	low_level_tag_source_generator.generate_enum_header();
+	stopwatch.stop();
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+	}
+	if (low_level_tag_source_generator.has_error)
+	{
+		throw;
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT create_high_level(s_engine_platform_build engine_platform_build)
+{
+	const char* engine_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+	c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+	}
+	console_write_line("Generating high level header (%s)", engine_name);
+	high_level_tag_source_generator.generate_header();
+	stopwatch.stop();
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT create_high_level_ctor(s_engine_platform_build engine_platform_build, unsigned long source_index)
+{
+	const char* engine_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+	c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Generating high level source ctor:%u (%s)", source_index, engine_name);
+	}
+	high_level_tag_source_generator.generate_ctor_source(source_index, k_ctor_source_count);
+	stopwatch.stop();
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating high level source ctor:%u (%s) %.2fms", source_index, engine_name, stopwatch.get_miliseconds());
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT create_high_level_virtual(s_engine_platform_build engine_platform_build)
+{
+	const char* engine_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+	c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Generating high level source virtual functions (%s)", engine_name);
+	}
+	high_level_tag_source_generator.generate_source_virtual();
+	stopwatch.stop();
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating high level source virtual functions (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT create_high_level_misc(s_engine_platform_build engine_platform_build)
+{
+	const char* engine_name;
+	ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
+
+	c_stopwatch stopwatch;
+	stopwatch.start();
+	c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Generating high level source misc (%s)", engine_name);
+	}
+	high_level_tag_source_generator.generate_source_misc();
+	stopwatch.stop();
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
+	{
+		console_write_line("Finished generating high level source misc (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT create_source_file()
+{
+	BCS_RESULT rs = BCS_S_OK;
 
 	s_engine_platform_build const engine_and_platform_types[] =
 	{
@@ -20,11 +138,12 @@ int create_source_file()
 		{ _engine_type_infinite,			_platform_type_pc_64bit },
 	};
 
-	c_console::write_line_verbose("Generating tag code");
+	console_write_line("Generating tag code");
 	c_stopwatch stopwatch;
 	stopwatch.start();
 
-	tbb::task_group g;
+	t_task_group* task_group;
+	ASSERT(BCS_SUCCEEDED(task_group_create(task_group)));
 	for (s_engine_platform_build engine_platform_build : engine_and_platform_types)
 	{
 		c_structure_relationship_node::create_structure_relationships(engine_platform_build);
@@ -32,92 +151,91 @@ int create_source_file()
 		c_structure_relationship_node::create_sorted_tag_enum_definitions(engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_block_definitions(engine_platform_build);
 
-		const char* engine_name;
-		ASSERT(BCS_SUCCEEDED(get_engine_type_pretty_string(engine_platform_build.engine_type, &engine_name)));
-
-		g.run([&result, engine_name, engine_platform_build]
+		task_group_run(
+			task_group,
+			[](void* userdata)
 			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
-				c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating low level header (%s)", engine_name);
-				low_level_tag_source_generator.generate_header();
-				low_level_tag_source_generator.generate_source();
-				low_level_tag_source_generator.generate_enum_header();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-				if (low_level_tag_source_generator.has_error)
-				{
-					throw;
-				}
-			});
+				s_engine_platform_build engine_platform_build = *reinterpret_cast<s_engine_platform_build*>(&userdata);
 
-		g.run([&result, engine_name, engine_platform_build]
+				create_low_level(engine_platform_build);
+			},
+			*reinterpret_cast<void**>(&engine_platform_build));
+		task_group_run(
+			task_group,
+			[](void* userdata)
 			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating high level header (%s)", engine_name);
-				high_level_tag_source_generator.generate_header();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating high level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-			});
+				s_engine_platform_build engine_platform_build = *reinterpret_cast<s_engine_platform_build*>(&userdata);
 
-		static constexpr uint32_t source_count = 64;
-		for (uint32_t source_index = 0; source_index < source_count; source_index++)
+
+				create_high_level(engine_platform_build);
+			},
+			*reinterpret_cast<void**>(&engine_platform_build));
+
+		for (uintptr_t source_index = 0; source_index < k_ctor_source_count; source_index++)
 		{
-			g.run([&result, engine_name, engine_platform_build, source_index]
+			task_group_run(
+				task_group,
+				[](void* userdata0, void* userdata1)
 				{
-					c_stopwatch stopwatch;
-					stopwatch.start();
-					c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-					c_console::write_line_verbose("Generating high level source ctor:%u (%s)", source_index, engine_name);
-					high_level_tag_source_generator.generate_ctor_source(source_index, source_count);
-					stopwatch.stop();
-					c_console::write_line_verbose("Finished generating high level source ctor:%u (%s) %.2fms", source_index, engine_name, stopwatch.get_miliseconds());
-				});
+					s_engine_platform_build engine_platform_build = *reinterpret_cast<s_engine_platform_build*>(&userdata0);
+					uintptr_t source_index = reinterpret_cast<uintptr_t>(userdata1);
+
+					create_high_level_ctor(engine_platform_build, static_cast<unsigned long>(source_index));
+				},
+				*reinterpret_cast<void**>(&engine_platform_build), reinterpret_cast<void*>(source_index));
 		}
 
-		g.run([&result, engine_name, engine_platform_build]
+		task_group_run(
+			task_group,
+			[](void* userdata)
 			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating high level source virtual functions (%s)", engine_name);
-				high_level_tag_source_generator.generate_source_virtual();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating high level source virtual functions (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-			});
+				s_engine_platform_build engine_platform_build = *reinterpret_cast<s_engine_platform_build*>(&userdata);
 
-		g.run([&result, engine_name, engine_platform_build]
+				create_high_level_virtual(engine_platform_build);
+			},
+			*reinterpret_cast<void**>(&engine_platform_build));
+		task_group_run(
+			task_group,
+			[](void* userdata)
 			{
-				c_stopwatch stopwatch;
-				stopwatch.start();
-				c_high_level_tag_source_generator high_level_tag_source_generator(engine_platform_build);
-				c_console::write_line_verbose("Generating high level source misc (%s)", engine_name);
-				high_level_tag_source_generator.generate_source_misc();
-				stopwatch.stop();
-				c_console::write_line_verbose("Finished generating high level source misc (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-			});
+				s_engine_platform_build engine_platform_build = *reinterpret_cast<s_engine_platform_build*>(&userdata);
+
+				create_high_level_misc(engine_platform_build);
+			},
+			*reinterpret_cast<void**>(&engine_platform_build));
 	}
-	g.wait();
+	if (BCS_FAILED(rs = task_group_wait(task_group)))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = task_group_destroy(task_group)))
+	{
+		return rs;
+	}
 
 	stopwatch.stop();
-	c_console::write_line_verbose("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
-
-	return result;
-}
-
-#include <SymbolsLib\symbolslib-public-pch.h>
-
-int wmain(int argc, const wchar_t** argv)
-{
-	if (!c_command_line::has_command_line_arg("-output"))
+	if (BCS_SUCCEEDED(command_line_has_argument("verbose")))
 	{
-		return 1;
+		console_write_line("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
 	}
 
-	int result = create_source_file();
+	return rs;
+}
 
-	return result;
+int main()
+{
+	register_process_module_by_pointer(main);
+	init_console();
+	init_command_line();
+
+	if (!BCS_SUCCEEDED(command_line_has_argument("output")))
+	{
+		return BCS_E_COMMAND_LINE_MISSING;
+	}
+
+	BCS_RESULT rs = create_source_file();
+
+	deinit_command_line();
+	deinit_console();
+	return rs;
 }

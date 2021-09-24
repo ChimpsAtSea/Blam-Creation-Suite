@@ -17,11 +17,11 @@ protected:
 	virtual void render_file_dialogue_gui_impl() override;
 	virtual void render_game_layer_impl() override;
 
-	TextEditor source_code_editor;
-	TextEditor compiler_output;
-	TextEditor::LanguageDefinition source_code_editor_language;
-	mutable c_atomic_temp_value<TextEditor::ErrorMarkers> new_source_code_error_markers;
-	TextEditor::ErrorMarkers source_code_error_markers;
+	//TextEditor source_code_editor;
+	//TextEditor compiler_output;
+	//TextEditor::LanguageDefinition source_code_editor_language;
+	//mutable TextEditor::ErrorMarkers new_source_code_error_markers;
+	//TextEditor::ErrorMarkers source_code_error_markers;
 	bool show_compiler_output;
 };
 

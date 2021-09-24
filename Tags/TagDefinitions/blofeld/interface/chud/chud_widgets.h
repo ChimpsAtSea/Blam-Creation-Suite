@@ -54,21 +54,14 @@ namespace blofeld
 
 	// strings
 
-	extern c_versioned_string_list wadt_flags_definition_strings;
 	extern s_string_list_definition wadt_flags_definition;
-	extern c_versioned_string_list wadt_function_enum_definition_strings;
 	extern s_string_list_definition wadt_function_enum_definition;
 
-	extern c_versioned_string_list wpdt_unknown_flags_definition_strings;
 	extern s_string_list_definition wpdt_unknown_flags_definition;
-	extern c_versioned_string_list wpdt_anchor_enum_definition_strings;
 	extern s_string_list_definition wpdt_anchor_enum_definition;
 
-	extern c_versioned_string_list wrdt_shader_index_enum_definition_strings;
 	extern s_string_list_definition wrdt_shader_index_enum_definition;
-	extern c_versioned_string_list wrdt_output_color_enum_definition_strings;
 	extern s_string_list_definition wrdt_output_color_enum_definition;
-	extern c_versioned_string_list wrdt_output_scalar_enum_definition_strings;
 	extern s_string_list_definition wrdt_output_scalar_enum_definition;
 }
 

@@ -8,6 +8,8 @@ class c_high_level_cache_cluster_transplant;
 
 #define INF_DONT_PROCESS_TAG_DATA 1
 
+class c_infinite_file_entry_block_map;
+
 class c_infinite_tag_reader : public c_tag_reader
 {
 public:
@@ -29,13 +31,9 @@ public:
 private:
 	struct s_infinite_tag_instance_info
 	{
-		const infinite::s_module_file_entry* file_entry;
-		const char* file_name;
-		const char* instance_name;
-		const void* instance_data;
-		const void* instance_block_data[16];
+		c_infinite_file_entry_block_map* file_entry_block_map;
+		const char* filepath;
 		const blofeld::s_tag_group* blofeld_tag_group;
-		c_infinite_tag_group* tag_group;
 	};
 
 	c_infinite_cache_cluster& cache_cluster;
@@ -47,13 +45,17 @@ private:
 
 	t_tag_groups tag_groups;
 	t_tag_instances tag_instances;
-	t_tag_instances_by_filename tag_instances_by_filename;
+	t_tag_instances_by_filename tag_instances_by_filepath;
 
-	using t_tag_instance_infos = std::vector<s_infinite_tag_instance_info>;
+	c_infinite_file_entry_block_map** file_entry_block_maps;
+	unsigned long num_file_entry_block_maps;
 
-	t_tag_instance_infos tag_instance_infos;
+	s_infinite_tag_instance_info* tag_instance_infos;
+	unsigned long num_tag_instance_infos;
 
-	BCS_RESULT data_offset_fixup(unsigned long offset, unsigned long index, unsigned long& fixed_offset);
+
+
+	BCS_RESULT offset_to_data(unsigned long long offset, const char*& data);
 	BCS_RESULT read_tag_instances();
 	BCS_RESULT init_tag_groups();
 	BCS_RESULT init_tag_instances();
@@ -61,5 +63,5 @@ private:
 	BCS_RESULT get_tag_group_by_group_tag(tag group_tag, c_infinite_tag_group*& tag_group) const;
 	BCS_RESULT get_tag_group_by_blofeld_tag_group(const blofeld::s_tag_group& blofeld_tag_group, c_infinite_tag_group*& tag_group) const;
 
-	BCS_RESULT get_instance_info_by_tag_filename(const char* filename, const s_infinite_tag_instance_info*& instance_info);
+	BCS_RESULT get_instance_info_by_tag_filepath(const char* filepath, const s_infinite_tag_instance_info*& instance_info);
 };

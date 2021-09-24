@@ -12,6 +12,7 @@ class c_inf_tag_block_definition;
 class c_inf_tag_reference_definition;
 class c_inf_tag_array_definition;
 class c_inf_tag_struct_definition;
+class c_inf_tag_pageable_resource_definition;
 
 class c_inf_tag_field
 {
@@ -27,6 +28,7 @@ public:
 	c_inf_tag_struct_definition* struct_definition;
 	c_inf_tag_array_definition* array_definition;
 	c_inf_string_list_definition* string_list_definition;
+	c_inf_tag_pageable_resource_definition* pageable_resource_definition;
 
 	unsigned long long padding;
 	unsigned long long skip_length;

@@ -9,11 +9,11 @@ c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath, s_
 	cache_file_header()
 {
 	BCS_RESULT rs;
-	if (BCS_FAILED(rs = create_memory_mapped_file(filepath, true, &file)))
+	if (BCS_FAILED(rs = create_memory_mapped_file(filepath, true, file)))
 	{
 		throw(rs);
 	}
-	if (BCS_FAILED(rs = get_memory_mapped_file_info(file, &file_info)))
+	if (BCS_FAILED(rs = get_memory_mapped_file_info(file, file_info)))
 	{
 		throw(rs);
 	}
@@ -88,7 +88,7 @@ BCS_RESULT c_halo4_cache_file_reader::get_buffer(e_cache_file_buffer_index buffe
 	case _cache_file_buffer:
 		buffer_info.begin = file_info.file_view_begin;
 		buffer_info.end = file_info.file_view_end;
-		buffer_info.size = static_cast<uint32_t>(file_info.file_size);
+		buffer_info.size = static_cast<unsigned long>(file_info.file_size);
 		return BCS_S_OK;
 	case _debug_section_buffer:
 		return get_section_buffer(gen3::_cache_file_section_index_debug, buffer_info);

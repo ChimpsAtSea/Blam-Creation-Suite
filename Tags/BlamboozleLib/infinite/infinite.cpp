@@ -49,7 +49,7 @@ const char* inf_pa_to_pointer(const char* data, ptr64 address)
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
-				//c_console::write_line_verbose("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
+				//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
 
 				ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;
@@ -117,7 +117,7 @@ bool inf_find_string(const char* data, const char* str, std::vector<s_find_resul
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
-				//c_console::write_line_verbose("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
+				//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
 
 				//ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				//ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;
@@ -188,7 +188,7 @@ bool inf_find_address(const char* data, ptr64 address, std::vector<s_find_result
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
-				//c_console::write_line_verbose("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
+				//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
 
 				//ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				//ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;
@@ -681,6 +681,46 @@ void inf_write_fields(std::stringstream& s, std::vector<c_inf_tag_field*>& field
 			s << " }," << std::endl;
 		}
 		break;
+		case _inf_field_type_pageable_resource:
+		case _inf_field_type_pageable_resource_64:
+		{
+			s << "\t\t{ ";
+			s << field_generic_type_name << ", ";
+			s << "\"" << name.c_str() << "\"";
+			if (write_description)
+			{
+				if (!description.empty()) s << ", " << "\"" << description.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_units)
+			{
+				if (!units.empty()) s << ", " << "\"" << units.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_limits)
+			{
+				if (!limits.empty()) s << ", " << "\"" << limits.c_str() << "\"";
+				else s << ", " << "nullptr";
+			}
+			if (write_old_name)
+			{
+				s << ", MAKE_OLD_NAMES(\"" << old_name.c_str() << "\")";
+			}
+			if (write_flags)
+			{
+				s << ", ";
+				inf_generate_tag_field_flags(s, string_parser);
+			}
+
+			ASSERT(tag_field->pageable_resource_definition);
+			if (tag_field->pageable_resource_definition)
+			{
+				s << ", &blofeld::infinite::" << tag_field->pageable_resource_definition->struct_definition.code_name;
+			}
+
+			s << " }," << std::endl;
+		}
+		break;
 		case _inf_field_type_tag_reference:
 		case _inf_field_type_reference_v2:
 		case _inf_field_type_tag_reference_64:
@@ -868,7 +908,7 @@ void inf_write_tag_types_header(std::stringstream& s, std::vector<c_inf_tag_fiel
 			c_inf_string_list_definition& string_list_definition = *tag_field->string_list_definition;
 			if (!is_string_list_exported(string_list_definition))
 			{
-				s << "\textern c_versioned_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
+				//s << "\t//extern t_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
 				s << "\textern s_string_list_definition " << string_list_definition.code_name << ";" << std::endl;
 			}
 		}

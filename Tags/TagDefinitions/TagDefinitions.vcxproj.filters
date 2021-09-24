@@ -24,9 +24,6 @@
     <ClCompile Include="types\string_list_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blamlib_string_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="types\tag_block_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -942,10 +939,19 @@
     <ClCompile Include="blofeld\halo1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\infinite.cpp">
+    <ClCompile Include="slipspace\infinite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blofeld\halo2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="slipspace\infinite_flight1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="definition_migration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="slipspace\infinite_flight2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -984,9 +990,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blamlib_string_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_interop_definition.h">
@@ -1904,21 +1907,24 @@
     <ClInclude Include="blofeld\halo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blofeld\infinite.h">
+    <ClInclude Include="slipspace\infinite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\halo2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="slipspace\infinite_flight1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="definition_migration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="slipspace\infinite_flight2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="types\tag_field.ctor.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blamlib_string_parser.cpp.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blamlib_string_parser.h.inl">
       <Filter>Header Files</Filter>
     </None>
     <None Include="blofeld\sound\looping_sound_definition.inl">
@@ -1960,7 +1966,13 @@
     <None Include="blofeld\tag_groups.stubbs.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="blofeld\tag_groups.infinite.inl">
+    <None Include="slipspace\tag_groups.infinite.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="slipspace\tag_groups.infinite_flight1.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="slipspace\tag_groups.infinite_flight2.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

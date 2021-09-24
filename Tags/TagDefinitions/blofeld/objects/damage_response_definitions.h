@@ -23,11 +23,8 @@ namespace blofeld
 	extern s_tag_struct_definition area_control_scalar_function_struct;
 	extern s_tag_struct_definition area_control_scalar_object_function_struct;
 
-	extern c_versioned_string_list area_control_flags_strings;
 	extern s_string_list_definition area_control_flags;
-	extern c_versioned_string_list damage_response_class_type_enum_strings;
 	extern s_string_list_definition damage_response_class_type_enum;
-	extern c_versioned_string_list damage_response_class_flags_strings;
 	extern s_string_list_definition damage_response_class_flags;
 
 	extern s_tag_reference_definition global_damage_effect_or_response_definition_reference;

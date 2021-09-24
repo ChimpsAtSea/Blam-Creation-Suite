@@ -87,27 +87,16 @@ namespace blofeld
 	extern s_tag_struct_definition user_interface_globals_definition_struct_definition; // tag group
 	extern s_tag_struct_definition user_interface_shared_globals_definition_struct_definition; // tag group
 
-	extern c_versioned_string_list gui_alert_flags_strings;
 	extern s_string_list_definition gui_alert_flags;
-	extern c_versioned_string_list gui_error_category_enum_strings;
 	extern s_string_list_definition gui_error_category_enum;
-	extern c_versioned_string_list gui_error_icon_enum_strings;
 	extern s_string_list_definition gui_error_icon_enum;
-	extern c_versioned_string_list gui_dialog_choice_enum_strings;
 	extern s_string_list_definition gui_dialog_choice_enum;
-	extern c_versioned_string_list gui_dialog_b_button_action_enum_strings;
 	extern s_string_list_definition gui_dialog_b_button_action_enum;
-	extern c_versioned_string_list gui_dialog_flags_strings;
 	extern s_string_list_definition gui_dialog_flags;
-	extern c_versioned_string_list pgcr_enemy_to_category_entry_flags_strings;
 	extern s_string_list_definition pgcr_enemy_to_category_entry_flags;
-	extern c_versioned_string_list pgcr_player_type_enum_strings;
 	extern s_string_list_definition pgcr_player_type_enum;
-	extern c_versioned_string_list cui_camera_pivot_corner_enum_definition_strings;
 	extern s_string_list_definition cui_camera_pivot_corner_enum_definition;
-	extern c_versioned_string_list UIGameStartSequenceFlagsDefinition_strings;
 	extern s_string_list_definition UIGameStartSequenceFlagsDefinition;
-	extern c_versioned_string_list UserInterfaceTagGlobalsFlagsDefinition_strings;
 	extern s_string_list_definition UserInterfaceTagGlobalsFlagsDefinition;
 
 	extern s_tag_reference_definition g_user_interface_globals_reference;

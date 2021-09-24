@@ -1,7 +1,6 @@
 #pragma once
 
 #include "blofeld.h"
-#include "blamlib_string_parser.h"
 #include "blofeld/constants.h"
 #include "types/field_type.h"
 #include "types/tag_group.h"
@@ -15,7 +14,9 @@
 
 #ifndef BLOFELD_EXCLUDE_STRUCTS
 #include "blofeld/tag_groups.h"
-#include "blofeld/infinite.h"
+#include "slipspace/infinite_flight1.h"
+#include "slipspace/infinite_flight2.h"
+#include "slipspace/infinite.h"
 #include "blofeld/halo2.h"
 #include "blofeld/halo1.h"
 #include "blofeld/tag_structs.h"
@@ -25,3 +26,4 @@
 #include "tag_group_info.h"
 
 #include "tag_byteswap.h"
+#include "definition_migration.h"

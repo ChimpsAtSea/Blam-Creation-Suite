@@ -12,7 +12,7 @@ c_game_runtime::c_game_runtime(s_engine_platform_build engine_platform_build, co
 
 	if (engine_platform_build.build == _build_not_set)
 	{
-		c_console::write_line_verbose("Warning: `c_game_runtime` initialized with `_build_not_set`");
+		console_write_line("Warning: `c_game_runtime` initialized with `_build_not_set`");
 		return;
 	}
 
@@ -93,10 +93,10 @@ void c_game_runtime::loadLibrary(const char* library_file_name)
 
 	if (game_module == NULL)
 	{
-		c_console::write_line_verbose("Failed to load module `%s`", library_file_name);
+		console_write_line("Failed to load module `%s`", library_file_name);
 	}
 	ASSERT(game_module != NULL);
-	c_console::write_line_verbose("Module '%s' loaded at 0x%p", library_file_name, game_module);
+	console_write_line("Module '%s' loaded at 0x%p", library_file_name, game_module);
 
 	create_game_engine_func = (t_create_game_engine_func*)GetProcAddress(game_module, "CreateGameEngine");
 	create_data_access_func = (t_create_data_access_func*)GetProcAddress(game_module, "CreateDataAccess");

@@ -67,7 +67,6 @@ namespace blofeld
 	extern s_tag_struct_definition hlsl_include_struct_definition; // tag group
 	extern s_tag_struct_definition rasterizer_compiled_shader_struct;
 
-	extern c_versioned_string_list shader_flags_strings;
 	extern s_string_list_definition shader_flags;
 
 

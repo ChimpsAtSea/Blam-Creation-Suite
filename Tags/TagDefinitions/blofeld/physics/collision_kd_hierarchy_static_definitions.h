@@ -24,7 +24,6 @@ namespace blofeld
 	extern s_tag_array_definition super_node_mapping_index_array;
 	extern s_tag_struct_definition collision_kd_hierarchy_static_struct;
 
-	extern c_versioned_string_list collision_kd_hierarchy_static_hash_table_cull_flags_strings;
 	extern s_string_list_definition collision_kd_hierarchy_static_hash_table_cull_flags;
 
 

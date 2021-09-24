@@ -22,17 +22,11 @@ namespace blofeld
 	extern s_tag_struct_definition particle_struct_definition; // tag group
 	extern s_tag_struct_definition gpu_data_struct$2;
 
-	extern c_versioned_string_list particle_main_flags_strings;
 	extern s_string_list_definition particle_main_flags;
-	extern c_versioned_string_list particle_appearance_flags_strings;
 	extern s_string_list_definition particle_appearance_flags;
-	extern c_versioned_string_list particle_animation_flags_strings;
 	extern s_string_list_definition particle_animation_flags;
-	extern c_versioned_string_list particle_billboard_type_enum_strings;
 	extern s_string_list_definition particle_billboard_type_enum;
-	extern c_versioned_string_list attachment_type_enum_strings;
 	extern s_string_list_definition attachment_type_enum;
-	extern c_versioned_string_list attachment_flags_strings;
 	extern s_string_list_definition attachment_flags;
 
 

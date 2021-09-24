@@ -1,12 +1,12 @@
 // #TODO: cache refactor
 #include "mandrilllib-private-pch.h"
 //
-//bool c_blofeld_tag_debugger_tab::show_hex_values = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_setting, false);
-//bool c_blofeld_tag_debugger_tab::show_hex_values_float = c_settings::read_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, false);
-//bool c_blofeld_tag_debugger_tab::show_broken_block_data = c_settings::read_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, false);
-//bool c_blofeld_tag_debugger_tab::show_field_offsets = c_settings::read_boolean(_settings_section_mandrill, k_show_field_offsets_setting, true);
-//bool c_blofeld_tag_debugger_tab::show_custom_fields = c_settings::read_boolean(_settings_section_mandrill, k_show_custom_fields_setting, false);
-//bool c_blofeld_tag_debugger_tab::use_absolute_offsets = c_settings::read_boolean(_settings_section_mandrill, k_use_absolute_offsets_setting, false);
+//bool c_blofeld_tag_debugger_tab::show_hex_values = settings_read_boolean(_settings_section_mandrill, k_show_hex_values_setting, false);
+//bool c_blofeld_tag_debugger_tab::show_hex_values_float = settings_read_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, false);
+//bool c_blofeld_tag_debugger_tab::show_broken_block_data = settings_read_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, false);
+//bool c_blofeld_tag_debugger_tab::show_field_offsets = settings_read_boolean(_settings_section_mandrill, k_show_field_offsets_setting, true);
+//bool c_blofeld_tag_debugger_tab::show_custom_fields = settings_read_boolean(_settings_section_mandrill, k_show_custom_fields_setting, false);
+//bool c_blofeld_tag_debugger_tab::use_absolute_offsets = settings_read_boolean(_settings_section_mandrill, k_use_absolute_offsets_setting, false);
 //
 //float indent_size = 20.0f;
 //
@@ -42,7 +42,7 @@
 //	ImGui::SameLine();
 //	if (show_field_offsets)
 //	{
-//		uint32_t offset = use_absolute_offsets ? result->absolute_offset : result->field_offset;
+//		unsigned long offset = use_absolute_offsets ? result->absolute_offset : result->field_offset;
 //		ImGui::Text("0x%X | %s %s", offset, blofeld::field_to_string(field.field_type), field.name);
 //	}
 //	else
@@ -51,7 +51,7 @@
 //	}
 //}
 //
-//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
+//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, unsigned long count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
 //{
 //	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
 //	if ((show_hex_values || use_hex))
@@ -150,7 +150,7 @@
 //	e_platform_type platform_type = get_cache_file().get_platform_type();
 //	t_raw_value& raw_value = *reinterpret_cast<t_raw_value*>(data);
 //	c_fixed_string_256 enum_value;
-//	enum_value.format(format_string, static_cast<uint32_t>(raw_value));
+//	enum_value.format(format_string, static_cast<unsigned long>(raw_value));
 //	if (raw_value < field.string_list_definition->count(engine_platform_build))
 //	{
 //		const c_blamlib_string_parser& string_parser = *field.string_list_definition->strings(engine_platform_build)[raw_value];
@@ -310,11 +310,11 @@
 //	render_field_name_and_information(field, result);
 //}
 //
-//uint32_t argb_to_abgr(uint32_t argb_color)
+//unsigned long argb_to_abgr(unsigned long argb_color)
 //{
-//	uint32_t bgra_color = _byteswap_ulong(argb_color);
-//	uint32_t Xbgr_color = bgra_color >> 8;
-//	uint32_t abgr_color = argb_color & 0xFF00FF00 | Xbgr_color & 0x00FF00FF;
+//	unsigned long bgra_color = _byteswap_ulong(argb_color);
+//	unsigned long Xbgr_color = bgra_color >> 8;
+//	unsigned long abgr_color = argb_color & 0xFF00FF00 | Xbgr_color & 0x00FF00FF;
 //	return abgr_color;
 //}
 //
@@ -323,8 +323,8 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	ImGui::Dummy({ result->level * indent_size, 0.0f });
 //	ImGui::SameLine();
-//	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
-//	uint32_t abgr_color = argb_to_abgr(argb_color);
+//	unsigned long argb_color = *reinterpret_cast<unsigned long*>(data);
+//	unsigned long abgr_color = argb_to_abgr(argb_color);
 //	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
 //	ImGui::ColorEdit3("", &float_color.x, ImGuiColorEditFlags_Uint8);
 //	render_field_name_and_information(field, result);
@@ -334,8 +334,8 @@
 //	if (&tag_interface != &this->tag_interface) return;
 //	ImGui::Dummy({ result->level * indent_size, 0.0f });
 //	ImGui::SameLine();
-//	uint32_t argb_color = *reinterpret_cast<uint32_t*>(data);
-//	uint32_t abgr_color = argb_to_abgr(argb_color);
+//	unsigned long argb_color = *reinterpret_cast<unsigned long*>(data);
+//	unsigned long abgr_color = argb_to_abgr(argb_color);
 //	ImVec4 float_color = ImGui::ColorConvertU32ToFloat4(abgr_color);
 //	ImGui::ColorEdit4("", &float_color.x, ImGuiColorEditFlags_Uint8);
 //	render_field_name_and_information(field, result);
@@ -481,8 +481,8 @@
 //		group_tag_str,
 //		tag_reference.name,
 //		tag_reference.name_length,
-//		static_cast<uint32_t>(tag_reference.index),
-//		static_cast<uint32_t>(tag_reference.datum));
+//		static_cast<unsigned long>(tag_reference.index),
+//		static_cast<unsigned long>(tag_reference.datum));
 //}
 //void c_blofeld_tag_debugger_tab::render_field_block(render_field_callback_args)
 //{
@@ -688,7 +688,7 @@
 //{
 //	if (&tag_interface != &this->tag_interface) return;
 //
-//	uint32_t pointer_size = get_platform_pointer_size(get_cache_file().get_platform_type());
+//	unsigned long pointer_size = get_platform_pointer_size(get_cache_file().get_platform_type());
 //	switch (pointer_size)
 //	{
 //	case 8:
@@ -820,7 +820,7 @@
 //
 //	validator->field_render_callback.unregister_callback_by_key(this);
 //
-//	for (uint32_t field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
+//	for (unsigned long field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
 //	{
 //		validator->field_type_render_callbacks[field_type].unregister_callback_by_key(this);
 //	}*/
@@ -887,32 +887,32 @@
 //			if (ImGui::MenuItem(show_hex_values ? "Show Decimal Values" : "Show Hex Values"))
 //			{
 //				show_hex_values = !show_hex_values;
-//				c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_setting, show_hex_values);
+//				settings_write_boolean(_settings_section_mandrill, k_show_hex_values_setting, show_hex_values);
 //			}
 //			if (ImGui::MenuItem(show_hex_values_float ? "Show Decimal Values (Float)" : "Show Hex Values (Float)"))
 //			{
 //				show_hex_values_float = !show_hex_values_float;
-//				c_settings::write_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, show_hex_values_float);
+//				settings_write_boolean(_settings_section_mandrill, k_show_hex_values_float_setting, show_hex_values_float);
 //			}
 //			if (ImGui::MenuItem(show_broken_block_data ? "Hide Broken Block Data" : "Show Broken Block Data"))
 //			{
 //				show_broken_block_data = !show_broken_block_data;
-//				c_settings::write_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, show_broken_block_data);
+//				settings_write_boolean(_settings_section_mandrill, k_show_broken_block_data_setting, show_broken_block_data);
 //			}
 //			if (ImGui::MenuItem(show_field_offsets ? "Hide Field Offsets" : "Show Field Offsets"))
 //			{
 //				show_field_offsets = !show_field_offsets;
-//				c_settings::write_boolean(_settings_section_mandrill, k_show_field_offsets_setting, show_field_offsets);
+//				settings_write_boolean(_settings_section_mandrill, k_show_field_offsets_setting, show_field_offsets);
 //			}
 //			if (ImGui::MenuItem(show_custom_fields ? "Hide Custom Fields" : "Show Custom Fields"))
 //			{
 //				show_custom_fields = !show_custom_fields;
-//				c_settings::write_boolean(_settings_section_mandrill, k_show_custom_fields_setting, show_custom_fields);
+//				settings_write_boolean(_settings_section_mandrill, k_show_custom_fields_setting, show_custom_fields);
 //			}
 //			if (ImGui::MenuItem(use_absolute_offsets ? "Use Relative Offsets" : "Use Absolute Offsets"))
 //			{
 //				use_absolute_offsets = !use_absolute_offsets;
-//				c_settings::write_boolean(_settings_section_mandrill, k_use_absolute_offsets_setting, use_absolute_offsets);
+//				settings_write_boolean(_settings_section_mandrill, k_use_absolute_offsets_setting, use_absolute_offsets);
 //			}
 //
 //

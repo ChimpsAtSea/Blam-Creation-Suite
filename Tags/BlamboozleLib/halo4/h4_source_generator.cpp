@@ -536,7 +536,7 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& s, c_h4_t
 
 void c_h4_source_generator::create_tag_enum_header(std::stringstream& hs, c_h4_tag_enum_container& tag_enum_container)
 {
-	hs << "\textern c_versioned_string_list " << tag_enum_container.name << "_strings;" << std::endl;
+	//hs << "\t//extern t_string_list " << tag_enum_container.name << "_strings;" << std::endl;
 	hs << "\textern s_string_list_definition " << tag_enum_container.name << ";" << std::endl;
 }
 

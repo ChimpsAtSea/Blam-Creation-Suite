@@ -23,7 +23,7 @@ c_function_hook_ex<sub_18001384C_offset, int __fastcall (char* Buffer, size_t Bu
 	auto result = sub_18001384C(Buffer, BufferCount, Format, ArgList);
 	if (sub_180030594.reference_counter > 0)
 	{
-		c_console::write_line(__FUNCTION__ " Buffer:'%s'", Buffer);
+		console_write_line(__FUNCTION__ " Buffer:'%s'", Buffer);
 	}
 	return result;
 } };
@@ -36,7 +36,7 @@ c_function_hook_ex<sub_18001384C_offset, int __fastcall (char* Buffer, size_t Bu
 //}
 //c_function_hook_ex<sub_1800333D0_offset, void __fastcall (const char* unknown, const char* reason)> sub_1800333D0 = { "sub_1800333D0", [](const char* unknown, const char* reason)
 //{
-//	c_console::write_line(__FUNCTION__ " unknown:'%s' reason:'%s'", unknown, reason);
+//	console_write_line(__FUNCTION__ " unknown:'%s' reason:'%s'", unknown, reason);
 //	sub_1800333D0(unknown, reason);
 //} };
 
@@ -48,7 +48,7 @@ uintptr_t CONCAT(sub_##offset, _offset)(s_engine_platform_build engine_platform_
 }																										\
 c_function_hook_ex<sub_##offset##_offset, void __fastcall ()> sub_##offset = { "sub_" #offset, []()		\
 {																										\
-	c_console::write_line("sub_" #offset);																\
+	console_write_line("sub_" #offset);																\
 	sub_##offset();																						\
 } };
 
@@ -85,7 +85,7 @@ uintptr_t sub_18004F224_offset(s_engine_platform_build engine_platform_build)
 c_function_hook_ex<sub_18004F224_offset, char __fastcall (__int64 a1, _DWORD* a2)> sub_18004F224 = { "sub_18004F224", [](__int64 a1, _DWORD* a2)
 {
 	auto result = sub_18004F224(a1, a2);
-	c_console::write_line("sub_18004F224 (second validation function) returned %i", static_cast<int>(result));
+	console_write_line("sub_18004F224 (second validation function) returned %i", static_cast<int>(result));
 	result = 1;
 	return result;
 } };
@@ -156,7 +156,7 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void __fastcall (c
 	c_fixed_string_2048 buffer;
 	buffer.vformat(string, arguments);
 	va_end(arguments);
-	c_console::write_line("DamagedMediaHaltAndDisplayError> %s", buffer.c_str());
+	console_write_line("DamagedMediaHaltAndDisplayError> %s", buffer.c_str());
 } };
 
 
@@ -173,7 +173,7 @@ c_function_hook_ex<sub_18004CD88_offset, void* __fastcall (__int64 a1, __int64 a
 	void* result = sub_18004CD88(a1, a2, alignment, a4);
 	void* page_offset = page_offset_table[5];
 	intptr_t offset = (char*)result - (char*)page_offset;
-	//c_console::write_line("sub_18004CD88 allocator> 0x%llx 0x%llx 0x%llx 0x%x", a1, a2, alignment, static_cast<int>(a4));
-	c_console::write_line("sub_18004CD88 allocator> 0x%llX (offset: 0x%llX) : 0x%llX 0x%X", result, offset, alignment, static_cast<int>(a4));
+	//console_write_line("sub_18004CD88 allocator> 0x%llx 0x%llx 0x%llx 0x%x", a1, a2, alignment, static_cast<int>(a4));
+	console_write_line("sub_18004CD88 allocator> 0x%llX (offset: 0x%llX) : 0x%llX 0x%X", result, offset, alignment, static_cast<int>(a4));
 	return result;
 } };

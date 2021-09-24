@@ -4,12 +4,15 @@ class h_data;
 class h_block;
 class h_enumerable;
 class c_custom_tool_render_model;
+class c_model_preview_test;
 
 class c_high_level_tag_editor_tab :
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_high_level_tag_editor_tab);
+	c_high_level_tag_editor_tab() = delete;
+	c_high_level_tag_editor_tab(c_high_level_tag_editor_tab const&) = delete;
+	c_high_level_tag_editor_tab& operator=(c_high_level_tag_editor_tab const&) = delete;
 
 	c_high_level_tag_editor_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent);
 	virtual ~c_high_level_tag_editor_tab();
@@ -35,10 +38,11 @@ protected:
 	h_tag& tag;
 	ImVec2 viewport_size;
 
-	void render_object(uint32_t level, h_object& object);
+	void render_object(unsigned long level, h_object& object);
 	bool render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 	bool render_enum_definition(void* data, const blofeld::s_tag_field& field);
 	void render_tag_group();
 
 	c_custom_tool_render_model* custom_tool;
+	c_model_preview_test* model_preview_test;
 };

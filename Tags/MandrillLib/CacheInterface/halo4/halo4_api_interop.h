@@ -20,8 +20,8 @@ struct s_halo4_tag_interop_info
 {
 	const char* name;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
-	uint32_t size;
-	uint32_t alignment_bits;
+	unsigned long size;
+	unsigned long alignment_bits;
 };
 extern const s_halo4_tag_interop_info halo4_tag_interop_infos[k_num_halo4_interop_types];
 

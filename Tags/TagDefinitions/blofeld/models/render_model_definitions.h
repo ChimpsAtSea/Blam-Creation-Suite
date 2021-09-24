@@ -50,15 +50,10 @@ namespace blofeld
 	extern s_tag_struct_definition imposter_model_struct_definition; // tag group
 	extern s_tag_struct_definition render_model_lightmap_atlas_struct_definition; // tag group
 
-	extern c_versioned_string_list procedure_enum_definition_strings;
 	extern s_string_list_definition procedure_enum_definition;
-	extern c_versioned_string_list procedure_axis_enum_definition_strings;
 	extern s_string_list_definition procedure_axis_enum_definition;
-	extern c_versioned_string_list render_model_flags_definition_strings;
 	extern s_string_list_definition render_model_flags_definition;
-	extern c_versioned_string_list render_model_instance_bitfield_flags_definition_strings;
 	extern s_string_list_definition render_model_instance_bitfield_flags_definition;
-	extern c_versioned_string_list render_model_marker_flags_definition_strings;
 	extern s_string_list_definition render_model_marker_flags_definition;
 
 	extern s_tag_reference_definition RenderModelLightmapAtlasReference;

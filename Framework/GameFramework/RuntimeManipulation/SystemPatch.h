@@ -10,7 +10,3 @@ public:
 private:
 	static bool s_patchedEnumWindows;
 };
-StaticClassSizeCheck(SystemPatch);
-
-
-

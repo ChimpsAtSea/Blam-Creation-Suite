@@ -13,7 +13,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition cheap_light_struct_definition; // tag group
 
-	extern c_versioned_string_list cheapLightFunctionInputEnum_strings;
 	extern s_string_list_definition cheapLightFunctionInputEnum;
 
 

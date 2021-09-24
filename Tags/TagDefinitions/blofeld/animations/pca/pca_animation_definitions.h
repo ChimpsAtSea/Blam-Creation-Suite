@@ -20,7 +20,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition pca_coefficients_resource_definition_struct;
 
-	extern c_versioned_string_list pca_animation_tag_flags_strings;
 	extern s_string_list_definition pca_animation_tag_flags;
 
 	extern s_tag_reference_definition global_pca_animation_tag_reference;

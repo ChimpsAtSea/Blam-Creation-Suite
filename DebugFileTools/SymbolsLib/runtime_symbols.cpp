@@ -15,9 +15,12 @@ c_runtime_symbols& c_runtime_symbols::runtime()
 c_runtime_symbols::c_runtime_symbols() :
 	symbol_file_header(nullptr),
 	symbol_file_buffer(nullptr),
+	symbol_file_buffer_size(),
 	is_initialized(false)
 {
-	if (c_bcs_resources_manager::copy_resource_to_buffer(_bcs_resource_type_symbols_blob, symbol_file_buffer))
+	
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_SUCCEEDED(rs = resources_read_resource_to_memory(_bcs_resource_type_symbols_blob, symbol_file_buffer, symbol_file_buffer_size)))
 	{
 		symbol_file_header = static_cast<s_symbol_file_header*>(symbol_file_buffer);
 	}
@@ -64,14 +67,14 @@ void c_runtime_symbols::init()
 	symbol_file_header->binary_name_offset += symbol_file_data_address;
 	symbol_file_header->timestamp_string_offset += symbol_file_data_address;
 
-	for (uint32_t section_index = 0; section_index < symbol_file_header->sections_count; section_index++)
+	for (unsigned long section_index = 0; section_index < symbol_file_header->sections_count; section_index++)
 	{
 		s_symbol_file_section& section = symbol_file_header->sections[section_index];
 		section.class_string_offset += symbol_file_data_address;
 		section.name_string_offset += symbol_file_data_address;
 	}
 
-	for (uint32_t public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
 		s_symbol_file_public& public_symbol = symbol_file_header->public_symbols[public_symbol_index];
 		public_symbol.lib_and_object_offset += symbol_file_data_address;
@@ -82,7 +85,7 @@ void c_runtime_symbols::init()
 #endif
 	}
 
-	for (uint32_t static_symbol_index = 0; static_symbol_index < symbol_file_header->static_symbols_count; static_symbol_index++)
+	for (unsigned long static_symbol_index = 0; static_symbol_index < symbol_file_header->static_symbols_count; static_symbol_index++)
 	{
 		s_symbol_file_static& static_symbol = symbol_file_header->static_symbols[static_symbol_index];
 		static_symbol.lib_and_object_offset += symbol_file_data_address;
@@ -102,7 +105,7 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_name(const char* s
 		return nullptr;
 	}
 
-	for (uint32_t public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
 		s_symbol_file_public& public_symbol = symbol_file_header->public_symbols[public_symbol_index];
 
@@ -115,21 +118,21 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_name(const char* s
 	return nullptr;
 }
 
-s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_address(uint64_t relative_virtual_address)
+s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_address(unsigned long long relative_virtual_address)
 {
 	if (symbol_file_header == nullptr)
 	{
 		return nullptr;
 	}
 
-	uint64_t base_virtual_adress = symbol_file_header->preferred_load_address;
+	unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
 	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
 
-	for (uint32_t public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
 		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];
 
-		uint64_t symbol_rva = public_symbol.rva_plus_base - base_virtual_adress; // #TODO: calculate this once
+		unsigned long long symbol_rva = public_symbol.rva_plus_base - base_virtual_adress; // #TODO: calculate this once
 
 		if (symbol_rva == relative_virtual_address)
 		{
@@ -139,14 +142,14 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_a
 	return nullptr;
 }
 
-s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_address(uint64_t relative_virtual_address)
+s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_address(unsigned long long relative_virtual_address)
 {
 	if (symbol_file_header == nullptr)
 	{
 		return nullptr;
 	}
 
-	uint64_t base_virtual_adress = symbol_file_header->preferred_load_address;
+	unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
 	return get_public_symbol_by_relative_virtual_address(relative_virtual_address - base_virtual_adress);
 }
 
@@ -157,11 +160,13 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(vo
 		return nullptr;
 	}
 
-	static HMODULE instance_handle = c_runtime_util::get_current_module();
+	//static HMODULE instance_handle = c_runtime_util::get_current_module();
+	static HMODULE instance_handle = GetModuleHandleA(NULL);
+	console_write_line("#TODO: support symbols accross multiple binaries");
 
-	uint64_t virtual_address = reinterpret_cast<uintptr_t>(pointer);
-	uint64_t module_address = reinterpret_cast<uintptr_t>(instance_handle);
-	uint64_t relative_virtual_address = virtual_address - module_address;
+	unsigned long long virtual_address = reinterpret_cast<uintptr_t>(pointer);
+	unsigned long long module_address = reinterpret_cast<uintptr_t>(instance_handle);
+	unsigned long long relative_virtual_address = virtual_address - module_address;
 
 	return get_public_symbol_by_relative_virtual_address(relative_virtual_address);
 }

@@ -17,12 +17,14 @@ class c_tag_project_configurator_tab :
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_tag_project_configurator_tab);
+	c_tag_project_configurator_tab() = delete;
+	c_tag_project_configurator_tab(c_tag_project_configurator_tab const&) = delete;
+	c_tag_project_configurator_tab& operator=(c_tag_project_configurator_tab const&) = delete;
 
 	c_tag_project_configurator_tab(const wchar_t* directory, c_mandrill_tab& parent);
 	virtual ~c_tag_project_configurator_tab();
 
-	bool process_directory(const s_traverse_directory_result* result);
+	bool process_directory(const wchar_t* file_path, const wchar_t* relative_file_path);
 
 protected:
 	virtual void render_impl() override final;

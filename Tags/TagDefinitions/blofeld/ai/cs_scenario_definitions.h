@@ -15,9 +15,7 @@ namespace blofeld
 	extern s_tag_struct_definition cs_animation_point_block_struct_definition; // cs_animation_point_block
 
 
-	extern c_versioned_string_list point_set_flags_strings;
 	extern s_string_list_definition point_set_flags;
-	extern c_versioned_string_list point_set_traversal_flags_strings;
 	extern s_string_list_definition point_set_traversal_flags;
 
 

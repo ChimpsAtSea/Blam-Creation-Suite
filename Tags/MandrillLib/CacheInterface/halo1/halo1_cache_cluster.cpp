@@ -13,7 +13,7 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 
 	
 
-	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo1_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -22,7 +22,7 @@ c_halo1_cache_cluster::c_halo1_cache_cluster(c_halo1_cache_file_reader** cache_r
 	}
 
 	s_cache_file_buffer_info temp_info;
-	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_halo1_cache_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -185,14 +185,10 @@ BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_halo1_cache_file_reader* c
 
 BCS_RESULT c_halo1_cache_cluster::get_cache_reader_by_relative_path(const char* relative_path, c_halo1_cache_file_reader*& out_cache_reader)
 {
-	BCS_RESULT rs = BCS_S_OK;
 	for (c_halo1_cache_file_reader* cache_reader : cache_readers)
 	{
 		s_cache_file_build_info build_info;
-		if (FAILED(rs = cache_reader->get_build_info(build_info)))
-		{
-			return rs;
-		}
+		BCS_FAIL_RETURN(cache_reader->get_build_info(build_info));
 
 		c_fixed_path cache_relative_path;
 		cache_relative_path.format("maps\\%s.map", build_info.name.get_buffer());
@@ -200,7 +196,7 @@ BCS_RESULT c_halo1_cache_cluster::get_cache_reader_by_relative_path(const char* 
 		if (strcmp(cache_relative_path.c_str(), relative_path) == 0)
 		{
 			out_cache_reader = cache_reader;
-			return rs;
+			return BCS_S_OK;
 		}
 
 		//if (strcmp(build_info.relative_path.get_string(), relative_path) == 0)
@@ -209,9 +205,7 @@ BCS_RESULT c_halo1_cache_cluster::get_cache_reader_by_relative_path(const char* 
 		//	return rs;
 		//}
 	}
-	rs = BCS_E_NOT_FOUND; // failed to find a cache file
-
-	return rs;
+	return BCS_E_NOT_FOUND; // failed to find a cache file
 }
 
 BCS_RESULT c_halo1_cache_cluster::get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader)

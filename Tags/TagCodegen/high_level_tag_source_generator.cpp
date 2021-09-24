@@ -97,7 +97,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_embedded_tag:						return "h_tag*";
 	case _field_pointer: // #NONSTANDARD
 	{
-		uint32_t pointer_size;
+		unsigned long pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 
 		switch (pointer_size)
@@ -143,10 +143,10 @@ void c_high_level_tag_source_generator::generate_header() const
 		//	debug_point;
 		//}
 
-		uint32_t blofeld_field_list_size = 1;
+		unsigned long blofeld_field_list_size = 1;
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -189,8 +189,8 @@ void c_high_level_tag_source_generator::generate_header() const
 		{
 			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
 		}
-		stream << "\t\t\t\t" << "virtual uint32_t get_high_level_type_size() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual uint32_t get_low_level_type_size() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const final;" << std::endl;
 		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
@@ -200,16 +200,16 @@ void c_high_level_tag_source_generator::generate_header() const
 
 		stream << std::endl;
 
-		stream << "\t\t\t\t" << "static uint32_t const high_level_type_size;" << std::endl;
-		stream << "\t\t\t\t" << "static uint32_t const low_level_type_size;" << std::endl;
-		stream << "\t\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_size << "];" << std::endl;
+		stream << "\t\t\t\t" << "static unsigned long const high_level_type_size;" << std::endl;
+		stream << "\t\t\t\t" << "static unsigned long const low_level_type_size;" << std::endl;
+		//stream << "\t\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_size << "];" << std::endl;
 
 		stream << std::endl;
 
-		uint32_t field_index = 0;
+		unsigned long field_index = 0;
 		for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -234,7 +234,7 @@ void c_high_level_tag_source_generator::generate_header() const
 				continue;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				current_field->name,
 				current_field->field_type == blofeld::_field_block,
 				&field_name_unique_counter);
@@ -307,24 +307,12 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.h";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.h";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_high_level_tag_source_generator::generate_tag_constructor_params(std::stringstream& stream, const s_tag_struct_definition& struct_definition) const
@@ -332,7 +320,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
-		uint32_t field_skip_count;
+		unsigned long field_skip_count;
 		if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 		{
 			current_field += field_skip_count;
@@ -356,7 +344,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 			continue;
 		}
 
-		c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+		c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 			current_field->name,
 			current_field->field_type == blofeld::_field_block,
 			&field_name_unique_counter);
@@ -412,7 +400,7 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 	}
 }
 
-void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_index, uint32_t source_count) const
+void c_high_level_tag_source_generator::generate_ctor_source(unsigned long source_index, unsigned long source_count) const
 {
 	std::stringstream stream;
 
@@ -436,7 +424,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << std::endl;
 
 	{
-		uint32_t structure_index = 0;
+		unsigned long structure_index = 0;
 		for (const blofeld::s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -468,7 +456,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 	{
 		std::map<std::string, int> field_name_unique_counter;
-		uint32_t structure_index = 0;
+		unsigned long structure_index = 0;
 		for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -515,7 +503,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 	{
 		std::map<std::string, int> field_name_unique_counter;
-		uint32_t structure_index = 0;
+		unsigned long structure_index = 0;
 		for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 		{
 			if ((structure_index++ % source_count) == source_index)
@@ -523,10 +511,10 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 				const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
-				uint32_t field_index = 0;
+				unsigned long field_index = 0;
 				for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 				{
-					uint32_t field_skip_count;
+					unsigned long field_skip_count;
 					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 					{
 						current_field += field_skip_count;
@@ -551,7 +539,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						continue;
 					}
 
-					c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+					c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 						current_field->name,
 						current_field->field_type == blofeld::_field_block,
 						&field_name_unique_counter);
@@ -630,24 +618,12 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 	stream << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.ctor" + std::to_string(source_index) + ".cpp";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_high_level_tag_source_generator::generate_source_virtual() const
@@ -688,10 +664,10 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 		//	debug_point;
 		//}
 
-		uint32_t blofeld_field_list_count = 1;
+		unsigned long blofeld_field_list_count = 1;
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -706,17 +682,17 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			blofeld_field_list_count++;
 		}
 
-		uint32_t low_level_type_size = calculate_struct_size(engine_platform_build, *tag_struct_definition);
+		unsigned long low_level_type_size = calculate_struct_size(engine_platform_build, *tag_struct_definition);
 
-		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::high_level_type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
-		stream << "\t\t" << "uint32_t const h_" << tag_struct_definition->name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
-		stream << "\t\t" << "const blofeld::s_tag_field* const h_" << tag_struct_definition->name << "::blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << "\t\t" << "unsigned long const h_" << tag_struct_definition->name << "::high_level_type_size = sizeof(h_" << tag_struct_definition->name << ");" << std::endl;
+		stream << "\t\t" << "unsigned long const h_" << tag_struct_definition->name << "::low_level_type_size = " << low_level_type_size << "u;" << std::endl;
+		/*stream << "\t\t" << "const blofeld::s_tag_field* const h_" << tag_struct_definition->name << "::blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
 		stream << "\t\t" << "{" << std::endl;
 		{
-			uint32_t field_index = 0;
+			unsigned long field_index = 0;
 			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
-				uint32_t field_skip_count;
+				unsigned long field_skip_count;
 				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
@@ -733,7 +709,7 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			}
 		}
 		stream << "\t\t\t" << "nullptr" << std::endl;
-		stream << "\t\t" << "};" << std::endl;
+		stream << "\t\t" << "};" << std::endl;*/
 		stream << std::endl;
 
 		if (tag_group != nullptr)
@@ -745,13 +721,13 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 			stream << std::endl;
 		}
 
-		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_high_level_type_size() const" << std::endl;
+		stream << "\t\t" << "unsigned long h_" << tag_struct_definition->name << "::get_high_level_type_size() const" << std::endl;
 		stream << "\t\t{" << std::endl;
 		stream << "\t\t\treturn high_level_type_size;" << std::endl;
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
 
-		stream << "\t\t" << "uint32_t h_" << tag_struct_definition->name << "::get_low_level_type_size() const" << std::endl;
+		stream << "\t\t" << "unsigned long h_" << tag_struct_definition->name << "::get_low_level_type_size() const" << std::endl;
 		stream << "\t\t{" << std::endl;
 		stream << "\t\t\treturn low_level_type_size;" << std::endl;
 		stream << "\t\t}" << std::endl;
@@ -765,6 +741,32 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 
 		stream << "\t\t" << "const blofeld::s_tag_field* const* h_" << tag_struct_definition->name << "::get_blofeld_field_list() const" << std::endl;
 		stream << "\t\t{" << std::endl;
+		{
+			stream << "\t\t\t" << "static const blofeld::s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+			stream << "\t\t\t" << "{" << std::endl;
+			{
+				unsigned long field_index = 0;
+				for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
+				{
+					unsigned long field_skip_count;
+					if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
+					{
+						current_field += field_skip_count;
+						field_index += field_skip_count;
+						continue;
+					}
+
+					if (current_field->field_type > _field_type_non_standard)
+					{
+						continue;
+					}
+
+					stream << "\t\t\t\t" << tag_struct_definition->symbol->symbol_name << ".fields" << " + " << field_index << "," << std::endl;
+				}
+			}
+			stream << "\t\t\t\t" << "nullptr" << std::endl;
+			stream << "\t\t\t" << "};" << std::endl;
+		}
 		stream << "\t\t\treturn blofeld_field_list;" << std::endl;
 		stream << "\t\t}" << std::endl;
 		stream << std::endl;
@@ -788,24 +790,12 @@ void c_high_level_tag_source_generator::generate_source_virtual() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.virtual.cpp";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.virtual.cpp";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_high_level_tag_source_generator::generate_source_misc() const
@@ -832,9 +822,29 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
-	stream << "\t\t" << "h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)" << std::endl;
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+		if (tag_group == nullptr) continue;
+
+		stream << "\t\t" << "static h_tag* h_" << tag_struct_definition->name << "_tag_group_ctor(h_group& group, const char* tag_filepath) { return new h_" << tag_struct_definition->name << "(group, tag_filepath); }" << std::endl;
+	}
+
+	stream << "\t\t" << "using t_create_high_level_tag_group_ctor = h_tag * (h_group& group, const char* tag_filepath);" << std::endl;
+	stream << "\t\t" << "static std::map<const blofeld::s_tag_group*, t_create_high_level_tag_group_ctor*> tag_group_ctors = " << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
+		if (tag_group == nullptr) continue;
+
+		stream << "\t\t\t" << "{ &" << tag_group->symbol->symbol_name << ", h_" << tag_struct_definition->name << "_tag_group_ctor }," << std::endl;
+	}
+	stream << "\t\t" << "};" << std::endl;
+
+	stream << "\t\t" << "h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)" << std::endl;
+	stream << "\t\t" << "{" << std::endl;
+	/*for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 		if (tag_group == nullptr) continue;
@@ -843,28 +853,49 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 		stream << " " << "return new h_" << tag_struct_definition->name << "(group, tag_filepath);" << std::endl;
 	}
 	stream << std::endl;
-	stream << "\t\t\t" << "return nullptr;" << std::endl;
+	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
+	stream << "\t\t\t" << "t_create_high_level_tag_group_ctor* create_high_level_tag_group_ctor = tag_group_ctors[&group.tag_group];" << std::endl;
+	stream << "\t\t\t" << "ASSERT(create_high_level_tag_group_ctor);" << std::endl;
+	stream << "\t\t\t" << "return create_high_level_tag_group_ctor(group, tag_filepath);" << std::endl;
 	stream << "\t\t" << "}" << std::endl;
 	stream << std::endl;
 
-	stream << "\t\t" << "h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
+
+
+
+
+
+
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		stream << "\t\t" << "static h_object* h_" << tag_struct_definition->name << "_object_ctor() { return new h_" << tag_struct_definition->name << "(); }" << std::endl;
+	}
+
+	stream << "\t\t" << "using t_create_high_level_object_ctor = h_object * ();" << std::endl;
+	stream << "\t\t" << "static std::map<const blofeld::s_tag_struct_definition*, t_create_high_level_object_ctor*> object_ctors = " << std::endl;
 	stream << "\t\t" << "{" << std::endl;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
+	{
+		stream << "\t\t\t" << "{ &" << tag_struct_definition->symbol->symbol_name << ", h_" << tag_struct_definition->name << "_object_ctor }," << std::endl;
+	}
+	stream << "\t\t" << "};" << std::endl;
+
+
+
+	stream << "\t\t" << "h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition)" << std::endl;
+	stream << "\t\t" << "{" << std::endl;
+	/*for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
 		const s_tag_group* tag_group = get_tag_struct_tag_group(*tag_struct_definition);
 
 		stream << "\t\t\t" << "if (&struct_definition == &" << tag_struct_definition->symbol->symbol_name << ")";
-		if (tag_group != nullptr)
-		{
-			stream << " " << "return new h_" << tag_struct_definition->name << "();" << std::endl;
-		}
-		else
-		{
-			stream << " " << "return new h_" << tag_struct_definition->name << "();" << std::endl;
-		}
+		stream << " " << "return new h_" << tag_struct_definition->name << "();" << std::endl;
 	}
 	stream << std::endl;
-	stream << "\t\t\t" << "return nullptr;" << std::endl;
+	stream << "\t\t\t" << "return nullptr;" << std::endl;*/
+	stream << "\t\t\t" << "t_create_high_level_object_ctor* create_high_level_object_ctor = object_ctors[&struct_definition];" << std::endl;
+	stream << "\t\t\t" << "ASSERT(create_high_level_object_ctor);" << std::endl;
+	stream << "\t\t\t" << "return create_high_level_object_ctor();" << std::endl;
 	stream << "\t\t" << "}" << std::endl;
 	stream << std::endl;
 
@@ -887,10 +918,10 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 
 
 			field_name_unique_counter.clear();
-			uint32_t field_index = 0;
+			unsigned long field_index = 0;
 			for (const s_tag_field* current_field = struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
-				uint32_t field_skip_count;
+				unsigned long field_skip_count;
 				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
@@ -915,9 +946,9 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 					continue;
 				}
 
-				c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
-					current_field->name, 
-					current_field->field_type == blofeld::_field_block, 
+				c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
+					current_field->name,
+					current_field->field_type == blofeld::_field_block,
 					&field_name_unique_counter);
 
 				if (!custom_structure_codegen(_custom_structure_codegen_high_level_get_field_data_func, stream, "\t\t\t\t", &field_formatter, *struct_definition, *current_field, namespace_name))
@@ -949,10 +980,10 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 			stream << "\t\t\t{" << std::endl;
 
 			field_name_unique_counter.clear();
-			uint32_t field_index = 0;
+			unsigned long field_index = 0;
 			for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++, field_index++)
 			{
-				uint32_t field_skip_count;
+				unsigned long field_skip_count;
 				if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 				{
 					current_field += field_skip_count;
@@ -985,22 +1016,10 @@ void c_high_level_tag_source_generator::generate_source_misc() const
 	stream << std::endl << "} // end namespace blofeld" << std::endl;
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.misc.cpp";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "HighLevel/high_level_" + namespace_name + "/generated/" + namespace_name + "_high_level.misc.cpp";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }

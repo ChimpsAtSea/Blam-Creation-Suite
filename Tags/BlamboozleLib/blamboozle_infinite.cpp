@@ -17,7 +17,7 @@ int c_blamboozle_infinite::run()
 {
 	char* infinite_data = nullptr;
 	size_t data_size = 0;
-	if (!filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&infinite_data), &data_size))
+	if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&infinite_data), &data_size))
 	{
 		return 1;
 	}
@@ -25,6 +25,38 @@ int c_blamboozle_infinite::run()
 	{
 		return 1;
 	}
+
+	//std::vector<s_find_result> default_results;
+	//inf_find_string(infinite_data, "default", default_results);
+
+	//std::vector<s_find_result> reload_1_results;
+	//inf_find_string(infinite_data, "reload_1", reload_1_results);
+
+	//std::vector<s_find_result> reload_2_results;
+	//inf_find_string(infinite_data, "reload_2", reload_2_results);
+
+	//std::vector<s_find_result> chamber_1_results;
+	//inf_find_string(infinite_data, "chamber_1", chamber_1_results);
+
+	//std::vector<s_find_result> chamber_2_results;
+	//inf_find_string(infinite_data, "chamber_2", chamber_2_results);
+
+
+
+
+	//std::vector<s_find_result> reload_2_address_results[2];
+	//std::vector<s_find_result> chamber_1_address_results[2];
+	//std::vector<s_find_result> chamber_2_address_results[2];
+
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	inf_find_address(infinite_data, reload_2_results[i].address, reload_2_address_results[i]);
+
+	//	inf_find_address(infinite_data, chamber_1_results[i].address, chamber_1_address_results[i]);
+
+	//	inf_find_address(infinite_data, chamber_2_results[i].address, chamber_2_address_results[i]);
+	//}
+
 
 	std::vector<c_inf_tag_group_definition*> group_definitions;
 
@@ -47,23 +79,23 @@ int c_blamboozle_infinite::run()
 	//{
 	//	const s_inf_tag_group_definition& tag_group = tag_groups[i];
 	//	const char* tag_group_name = inf_pa_to_pointer(infinite_data, tag_group.name_address);
-	//	c_console::write_line("group %i '%s'", i, tag_group_name);
+	//	console_write_line("group %i '%s'", i, tag_group_name);
 
 	//	const s_inf2_tag_block_definition& tag_block_definition = *(const s_inf2_tag_block_definition*)inf_pa_to_pointer(infinite_data, tag_group.block_definition);
 	//	const char* tag_block_definition_pretty_name = inf_pa_to_pointer(infinite_data, tag_block_definition.pretty_name);
 	//	const char* tag_block_definition_name = inf_pa_to_pointer(infinite_data, tag_block_definition.name);
-	//	c_console::write_line("block '%s'", tag_block_definition_name);
+	//	console_write_line("block '%s'", tag_block_definition_name);
 
 	//	const s_inf2_tag_struct_definition& tag_struct_definition = *(const s_inf2_tag_struct_definition*)inf_pa_to_pointer(infinite_data, tag_block_definition.structure_definition);
 	//	const char* tag_struct_definition_name = inf_pa_to_pointer(infinite_data, tag_struct_definition.name);
-	//	c_console::write_line("struct '%s'", tag_struct_definition_name);
+	//	console_write_line("struct '%s'", tag_struct_definition_name);
 
 	//	const s_inf_tag_field_definition* const tag_field_definitions = (const s_inf_tag_field_definition*)inf_pa_to_pointer(infinite_data, tag_struct_definition.fields_address);
 	//	for (const s_inf_tag_field_definition* tag_field_definition = tag_field_definitions; tag_field_definition->type != _inf_field_type2_terminator_X; tag_field_definition++)
 	//	{
 	//		const char* type_name = inf_field_type2_to_string(tag_field_definition->type);
 	//		const char* name = inf_pa_to_pointer(infinite_data, tag_field_definition->name);
-	//		c_console::write_line("\t%s '%s'", type_name, name);
+	//		console_write_line("\t%s '%s'", type_name, name);
 	//	}
 
 	//	tag_struct_definition.fields_address;

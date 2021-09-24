@@ -22,7 +22,6 @@ namespace blofeld
 	extern s_tag_struct_definition fluid_dynamics_struct_definition; // tag group
 	extern s_tag_struct_definition g_single_scalar_function_evaluation_struct;
 
-	extern c_versioned_string_list fluid_dynamics_flags_strings;
 	extern s_string_list_definition fluid_dynamics_flags;
 
 

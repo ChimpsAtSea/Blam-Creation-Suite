@@ -73,18 +73,18 @@ void c_aotus_game_engine_host::engine_state_update_handler(e_engine_state state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	c_console::write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
+	console_write_line("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
 
 	if (state != _engine_state_unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
 		switch (state)
 		{
 		case _engine_state_push_ui_page:
-			c_console::write_line_verbose("Push UI stack");
+			console_write_line("Push UI stack");
 			LegacyGameLauncher::s_uiStackLength++;
 			break;
 		case _engine_state_pop_ui_page:
-			c_console::write_line_verbose("Pop UI stack");
+			console_write_line("Pop UI stack");
 			LegacyGameLauncher::s_uiStackLength--;
 			break;
 		}
@@ -102,11 +102,11 @@ __int64 c_aotus_game_engine_host::game_shutdown_handler(unsigned int a1, char* a
 
 	if (IsBadReadPtr(a2, 1)) // #LEGACY
 	{
-		c_console::write_line_verbose("%s %u [%p]", __func__, a1, a2);
+		console_write_line("%s %u [%p]", __func__, a1, a2);
 	}
 	else
 	{
-		c_console::write_line_verbose("%s %u [%s]", __func__, a1, a2);
+		console_write_line("%s %u [%s]", __func__, a1, a2);
 	}
 
 	c_game_launcher::game_exited_callback();
@@ -126,7 +126,7 @@ __int64 __fastcall c_aotus_game_engine_host::game_save_handler(LPVOID buffer, si
 	{
 		return __int64(0);
 	}
-	//c_console::write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
+	//console_write_line("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
@@ -187,7 +187,7 @@ __int64 __fastcall c_aotus_game_engine_host::game_save_handler(LPVOID buffer, si
 		delete[] autosave_buffer;
 	}
 
-	c_console::write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
+	console_write_line("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
 
 	return __int64(0);
 }
@@ -201,13 +201,13 @@ void c_aotus_game_engine_host::game_pause_handler(unsigned int)
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
 	{
-		c_console::write_line_verbose("IAotusGameEngineHost::Member07 PauseMenuOpened");
+		console_write_line("IAotusGameEngineHost::Member07 PauseMenuOpened");
 		DebugUI::RegisterCallback(LegacyGameLauncher::DrawPauseMenu);
 		DebugUI::Show();
 	}
 	else
 	{
-		c_console::write_line_verbose("IAotusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
+		console_write_line("IAotusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
 	}
 	*/
 }
@@ -397,18 +397,18 @@ void c_aotus_game_engine_host::session_info_get(s_session_info_part* session_inf
 
 void __fastcall c_aotus_game_engine_host::session_membership_update_handler(s_session_membership* session_membership, uint32_t player_count)
 {
-	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
+	RUNONCE({ console_write_line(__FUNCTION__); });
 }
 
 bool __fastcall c_aotus_game_engine_host::function26()
 {
-	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
+	RUNONCE({ console_write_line(__FUNCTION__); });
 	return false;
 }
 
 bool __fastcall c_aotus_game_engine_host::function27()
 {
-	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
+	RUNONCE({ console_write_line(__FUNCTION__); });
 	return false;
 }
 
@@ -416,7 +416,7 @@ bool __fastcall c_aotus_game_engine_host::game_data_update_handler(char* game_da
 {
 	DEBUG_ASSERT(game_data != nullptr);
 
-	c_console::write_line_verbose(__FUNCTION__);
+	console_write_line(__FUNCTION__);
 
 	if (engine_platform_build.build >= _build_mcc_1_1896_0_0)
 	{
@@ -534,7 +534,7 @@ bool __fastcall c_aotus_game_engine_host::game_data_update_handler(char* game_da
 
 c_player_configuration* __fastcall c_aotus_game_engine_host::player_configuration_get(__int64 value)
 {
-	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
+	RUNONCE({ console_write_line(__FUNCTION__); });
 
 	static c_player_configuration *player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(&player_configuration))
@@ -569,10 +569,10 @@ bool __fastcall c_aotus_game_engine_host::input_update_handler(_QWORD a1, InputB
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
-	static const bool k_has_input_debug = c_command_line::has_command_line_arg("-inputdebug");
+	static const bool k_has_input_debug = BCS_SUCCEEDED(command_line_has_argument("inputdebug");
 	if (k_has_input_debug)
 	{
-		c_console::write_line_verbose("%llu", a1);
+		console_write_line("%llu", a1);
 	}
 
 	bool is_debug_ui_visible = c_debug_gui::IsVisible();
@@ -680,7 +680,7 @@ bool __fastcall c_aotus_game_engine_host::input_update_handler(_QWORD a1, InputB
 
 			if (k_has_input_debug)
 			{
-				c_console::write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
+				console_write_line("%f %f", mouse_input_x, mouse_input_y);
 			}
 		}
 	}
@@ -779,7 +779,7 @@ bool __fastcall c_aotus_game_engine_host::player_name_update_handler(__int64*, w
 		}
 		wcsncpy(player_names[player_index], pName, __min(wcslen(pName) + 1, player_name_max_len));
 		player_names[player_index][player_name_max_index] = 0;
-		c_console::write_line_verbose("player[%d].Name: set %ls", player_index, pName);
+		console_write_line("player[%d].Name: set %ls", player_index, pName);
 	}
 
 	return true;
@@ -819,7 +819,7 @@ char* __fastcall c_aotus_game_engine_host::function40(unsigned int)
 
 int __fastcall c_aotus_game_engine_host::telnet_console_print(const char* buffer)
 {
-	c_console::write_line_verbose("%s\n", buffer);
+	console_write_line("%s\n", buffer);
 	return 0;
 }
 

@@ -72,7 +72,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 	ensure_library_loaded("steam_api64.dll", "MCC\\Binaries\\Win64");
 	init_steam_ownership();
 
-	c_console::write_line("checking supported game versions");
+	console_write_line("checking supported game versions");
 
 	// #TODO: Find a home for this
 
@@ -241,7 +241,7 @@ void c_game_launcher::init_game_launcher(c_window& window)
 		if (autostart_halo_eldorado || autostart_halo_online) start_game(_engine_type_eldorado, _next_launch_mode_generic);
 	}
 
-	c_console::write_line_verbose("and here we go...");
+	console_write_line("and here we go...");
 }
 
 void c_game_launcher::deinit_game_launcher()
@@ -281,7 +281,7 @@ void c_game_launcher::window_destroy_callback()
 		IGameEngine* game_engine = current_game_host->get_game_engine();
 		ASSERT(game_engine != nullptr);
 		game_engine->EngineStateUpdate(_engine_state_immediate_exit);
-		c_console::write_line_verbose("Waiting for game to exit...");
+		console_write_line("Waiting for game to exit...");
 		while (s_is_game_running) { Sleep(1); }
 	}
 }
@@ -459,7 +459,7 @@ c_aotus_game_engine_host* game_host_from_engine_platform_build(s_engine_platform
 		return new c_groundhog_game_host(engine_platform_build);
 	}
 
-	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	console_write_line(__FUNCTION__"> unknown engine_type");
 	return nullptr;
 }
 
@@ -504,7 +504,7 @@ IDataAccess* data_access_from_engine_type(e_engine_type engine_type, e_mcc_game_
 		return c_groundhog_game_host::get_data_access();
 	}
 
-	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	console_write_line(__FUNCTION__"> unknown engine_type");
 	return nullptr;
 }
 
@@ -552,7 +552,7 @@ void default_variants_from_engine_type(e_engine_type engine_type, std::string& g
 		return;
 	}
 
-	c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
+	console_write_line(__FUNCTION__"> unknown engine_type");
 	return;
 }
 
@@ -606,7 +606,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					{
 						// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
 						const char* map_file_name = selected_map_info->get_map_filepath();
-						c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
+						console_write_line("Loading map '%s.map'", map_file_name);
 						{
 							wchar_t map_filepath[MAX_PATH + 1] = {};
 							_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
@@ -682,7 +682,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 	//WaitForSingleObject(hMainGameThread, INFINITE);
 
-	c_console::write_line_verbose("Game has exited.");
+	console_write_line("Game has exited.");
 
 	for (t_generic_game_event game_event : s_game_shutdown_events)
 	{
@@ -715,7 +715,7 @@ void c_game_launcher::init_steam_ownership()
 	bool steam_api_init_result = SteamAPI_Init();
 	if (!steam_api_init_result)
 	{
-		c_console::write_line("Steam failed to initialize.");
+		console_write_line("Steam failed to initialize.");
 		MessageBoxA(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
 	}
@@ -765,7 +765,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
-		c_console::write_line("failed to load library '%s'", library_name);
+		console_write_line("failed to load library '%s'", library_name);
 		MessageBoxA(s_window->get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
@@ -1194,7 +1194,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameOptio
 	}
 	else
 	{
-		c_console::write_line_verbose("Failed to open variant file '%s'", (variant_data_size == 0 ? "variant file was zero sized" : "variant file was not found"));
+		console_write_line("Failed to open variant file '%s'", (variant_data_size == 0 ? "variant file was zero sized" : "variant file was not found"));
 
 		switch (variant_type)
 		{
@@ -1209,7 +1209,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameOptio
 			const char* current_map_name = "Unknown Map";
 			get_map_id_pretty_string(static_cast<e_map_id>(options->map_id), &current_map_name);
 
-			c_console::write_line_verbose("Creating default variant for '%s'", current_map_name);
+			console_write_line("Creating default variant for '%s'", current_map_name);
 			variant_accessor_base = data_access->map_variant_create_from_map_id(options->map_id);
 			break;
 		}

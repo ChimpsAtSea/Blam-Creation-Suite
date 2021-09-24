@@ -76,7 +76,7 @@ protected:
 	c_mouse_input& mouse_input;
 	c_game_runtime& game_runtime;
 	IGameEvents game_events;
-	c_high_precision_timer frame_timer;
+	c_stopwatch frame_timer;
 	double total_frame_cpu_time;
 };
 

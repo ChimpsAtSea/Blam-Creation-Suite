@@ -14,4 +14,3 @@
 #include "UserInterface/UserInterface.h"
 #include "HaloScript/HaloScript.h"
 #include "tests.h"
-#include "virtual_memory_container.h"

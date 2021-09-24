@@ -110,6 +110,14 @@ namespace blofeld
 				identifier_part_2 == value.identifier_part_2 &&
 				identifier_part_3 == value.identifier_part_3;
 		}
+		inline bool operator!=(const s_tag_persistent_identifier& value) const
+		{
+			return
+				identifier_part_0 != value.identifier_part_0 ||
+				identifier_part_1 != value.identifier_part_1 ||
+				identifier_part_2 != value.identifier_part_2 ||
+				identifier_part_3 != value.identifier_part_3;
+		}
 	};
 
 	struct s_tag_struct_definition
@@ -119,7 +127,7 @@ namespace blofeld
 			const char* name,
 			const char* struct_name,
 			const char* filename,
-			int32_t const line,
+			long const line,
 			s_tag_persistent_identifier persistent_identifier,
 			s_tag_field* fields,
 			int alignment_bits = 0
@@ -131,7 +139,7 @@ namespace blofeld
 			const char* name,
 			const char* struct_name,
 			const char* filename,
-			int32_t const line,
+			long const line,
 			c_flags<e_tag_field_set_bit> runtime_flags,
 			c_tag_memory_attributes const memory_attributes,
 			s_tag_persistent_identifier persistent_identifier,
@@ -142,7 +150,7 @@ namespace blofeld
 						//const char(&name)[],
 						//const char(&struct_name)[],
 						//const char(&filename)[],
-						//int32_t const line,
+						//long const line,
 						//s_tag_persistent_identifier persistent_identifier,
 						//s_tag_field(&fields)[],
 						//int alignment_bits = 0

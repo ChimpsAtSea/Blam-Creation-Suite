@@ -14,9 +14,63 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 	tag_project(tag_project),
 	tag(tag),
 	viewport_size(),
-	custom_tool(nullptr)
+	custom_tool(nullptr),
+	model_preview_test(nullptr)
 {
-
+	blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
+	blofeld::infinite::h_objectdefinition* object_tag = nullptr;
+	if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
+	{
+		h_tag* tag = weapon_definition->item.object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &weapon_definition->item.object;
+		}
+	}
+	if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
+	{
+		h_tag* tag = vehicle_definition->unit.object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &vehicle_definition->unit.object;
+		}
+	}
+	if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
+	{
+		h_tag* tag = biped_definition->unit.object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &biped_definition->unit.object;
+		}
+	}
+	if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
+	{
+		h_tag* tag = crate_definition->object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &crate_definition->object;
+		}
+	}
+	if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
+	{
+		h_tag* tag = creature_definition->object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &creature_definition->object;
+		}
+	}
+	if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
+	{
+		h_tag* tag = equipment_definition->item.object.model;
+		if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
+		{
+			object_tag = &equipment_definition->item.object;
+		}
+	}
+	if (model_tag)
+	{
+		model_preview_test = new c_model_preview_test(*model_tag, object_tag);
+	}
 }
 
 c_high_level_tag_editor_tab::~c_high_level_tag_editor_tab()
@@ -965,8 +1019,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 	}
 	ImGui::NextColumn();
 	{
-		unsigned long const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
-		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
+		unsigned long const string_list_count = string_list_definition.get_count(tag_project.engine_platform_build);
 
 		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
 		float const height = __min(element_height * 9.5f, element_height * static_cast<float>(__max(1u, string_list_count)));
@@ -975,7 +1028,10 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 		{
 			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
+				// #TODO: replace string parser for the bitfield
+				/*const char* string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
+				c_blamlib_string_parser current_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
+
 				bool const current_string_has_tooltip = !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
@@ -1015,7 +1071,7 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 					{
 						ImGui::SetTooltip(current_string_parser.description);
 					}
-				}
+				}*/
 			}
 			// #TODO: display out of bounds enum values
 		}
@@ -1066,22 +1122,25 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 	}
 	ImGui::NextColumn();
 	{
-		unsigned long const string_list_count = string_list_definition.count(tag_project.engine_platform_build);
-		const c_blamlib_string_parser** const string_list_values = string_list_definition.strings(tag_project.engine_platform_build);
+		unsigned long const string_list_count = string_list_definition.get_count(tag_project.engine_platform_build);
 
 		const char* selected_string_value = "<INVALID VALUE>";
 		bool current_string_has_tooltip = false;
 
-		if (static_cast<unsigned long>(value) < string_list_count)
+		// #TODO: replace string parser for the enum
+		/*if (static_cast<unsigned long>(value) < string_list_count)
 		{
-			if (const c_blamlib_string_parser* selected_string_parser = string_list_values[value])
+			const char* string = string_list_definition.get_string(tag_project.engine_platform_build, value);
+			if (string)
 			{
-				if (current_string_has_tooltip = !selected_string_parser->description.empty())
+				c_blamlib_string_parser selected_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
+
+				if (current_string_has_tooltip = !selected_string_parser.description.empty())
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 				}
 
-				selected_string_value = selected_string_parser->display_name.c_str();
+				selected_string_value = selected_string_parser.display_name.c_str();
 			}
 		}
 
@@ -1089,7 +1148,9 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		{
 			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const c_blamlib_string_parser& current_string_parser = *string_list_values[string_index];
+				const char* string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
+				c_blamlib_string_parser current_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
+
 				bool const current_string_has_tooltip = !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
@@ -1131,7 +1192,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		if (current_string_has_tooltip)
 		{
 			ImGui::PopStyleColor();
-		}
+		}*/
 		// #TODO: display out of bounds enum values
 	}
 
@@ -1192,7 +1253,7 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 	return result;
 }
 
-void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object)
+void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& object)
 {
 	const s_tag_struct_definition& struct_definition = object.get_blofeld_struct_definition();
 
@@ -1352,8 +1413,52 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 		case _field_non_cache_runtime_value:
 		case _field_custom:
 			break;
+		case _field_pageable:
+		{
+			h_resource*& struct_object = *static_cast<h_resource**>(field_data);
+			if (struct_object)
+			{
+				ImGui::PushID(&field);
+				{
+					ImGui::Columns(2, NULL, false);
+					ImGui::SetColumnWidth(0, 400);
+					ImGui::SetColumnWidth(1, 900);
+					{
+						ImGui::TextUnformatted(field.name);
+					}
+					ImGui::NextColumn();
+					{
+						MemoryEditor memory_editor;
+
+						ImGui::Dummy(ImVec2(0.0f, 3.0f));
+						if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
+						{
+							memory_editor.DrawContents(struct_object->data.data(), struct_object->data.size());
+						}
+						ImGui::EndChild();
+						ImGui::Dummy(ImVec2(0.0f, 3.0f));
+					}
+					ImGui::Columns(1);
+				}
+
+				if (ImGui::Button("Yeeeeeet"))
+				{
+					filesystem_write_file_from_memory("yeet.bin", struct_object->data.data(), struct_object->data.size());
+				}
+
+				ImGui::PopID();
+
+				if (struct_object->object)
+				{
+					render_object(level + 1, *struct_object->object);
+				}
+			}
+			else ImGui::TextUnformatted("Pageable is nulled!!!!");
+		}
+		break;
 		default:
-			ImGui::Text("Unknown type for field '%s'", field.name);
+			const char* field_type_name = field_to_string(field.field_type);
+			ImGui::Text("Unknown type '%s' for field '%s'", field_type_name, field.name);
 			break;
 		}
 
@@ -1372,6 +1477,10 @@ void c_high_level_tag_editor_tab::render_object(uint32_t level, h_object& object
 void c_high_level_tag_editor_tab::render_tag_group()
 {
 	ImGui::Dummy({ 0.0f, 10.0f });
+	if (model_preview_test)
+	{
+		model_preview_test->draw_ui();
+	}
 	render_object(0, tag);
 	ImGui::Dummy({ 0.0f, 10.0f });
 }

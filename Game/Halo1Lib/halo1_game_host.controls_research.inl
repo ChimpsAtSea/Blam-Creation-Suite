@@ -181,7 +181,7 @@ c_function_hook_ex<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __
 		a1 = sub_18071E690_override_value;
 	}
 
-	//c_console::write_line_verbose("sub_18071E690 %u %u", a1, static_cast<uint32_t>(a2));
+	//console_write_line("sub_18071E690 %u %u", a1, static_cast<uint32_t>(a2));
 	auto result = sub_18071E690(a1, a2);
 	return __int64(1);
 	return result;
@@ -285,6 +285,6 @@ c_function_hook_ex<sub_180721840_offset, __int64 __fastcall (char* control_type,
 	= { "sub_180721840", [](char* control_type, char* virtual_key_code_name, __int64 a3)
 {
 	__int64 result = sub_180721840(control_type, virtual_key_code_name, a3);
-	c_console::write_line_verbose("sub_180721840> '%s' '%s' [%lli]", control_type, virtual_key_code_name, result);
+	console_write_line("sub_180721840> '%s' '%s' [%lli]", control_type, virtual_key_code_name, result);
 	return result;
 } };

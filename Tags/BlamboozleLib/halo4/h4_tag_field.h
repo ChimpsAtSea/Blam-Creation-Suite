@@ -152,7 +152,7 @@ public:
 		if (definition)
 		{
 			const char* definition_name = h4_va_to_pointer(h4_data, definition->definition_name_address);
-			c_console::write_line("found data for field '%s' called '%s'", name, definition_name);
+			console_write_line("found data for field '%s' called '%s'", name, definition_name);
 		}
 	}
 };

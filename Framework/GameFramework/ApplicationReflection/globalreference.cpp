@@ -87,7 +87,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 			reference_memory_pointer = nullptr;
 			if (public_symbol == nullptr)
 			{
-				c_console::write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
+				console_write_line("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
 				DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 			}
 			else
@@ -101,7 +101,7 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 
 				if (reference_memory_pointer == nullptr)
 				{
-					c_console::write_line_verbose("c_global_reference: WARNING: Failed to find reference address for symbol '%s'", reference_name);
+					console_write_line("c_global_reference: WARNING: Failed to find reference address for symbol '%s'", reference_name);
 					DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find reference address for symbol '%S'", reference_name));
 				}
 			}
@@ -156,28 +156,28 @@ c_global_reference* c_global_reference::init_node(s_engine_platform_build engine
 			{
 				if (patched_address == original_reference_value)
 				{
-					c_console::write_line_verbose("c_global_reference: Patched %s", reference_name);
+					console_write_line("c_global_reference: Patched %s", reference_name);
 				}
 				else
 				{
 					if (original_reference_value)
 					{
-						c_console::write_line_verbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", reference_name, original_reference_value, patched_address);
+						console_write_line("c_global_reference: Patched %s from 0x%zX to 0x%zX", reference_name, original_reference_value, patched_address);
 					}
 					else
 					{
-						c_console::write_line_verbose("c_global_reference: Patched %s from <null> to 0x%zX", reference_name, patched_address);
+						console_write_line("c_global_reference: Patched %s from <null> to 0x%zX", reference_name, patched_address);
 					}
 				}
 			}
 			else
 			{
-				c_console::write_line_verbose("c_global_reference: WARNING: Failed to address for symbol '%s'", reference_name);
+				console_write_line("c_global_reference: WARNING: Failed to address for symbol '%s'", reference_name);
 			}
 		}
 		else
 		{
-			c_console::write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
+			console_write_line("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
 			DEBUG_ONLY(FATAL_ERROR("c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 		}
 	}
@@ -190,7 +190,7 @@ c_global_reference* c_global_reference::deinit_node(s_engine_platform_build engi
 	{
 		if (data_address)
 		{
-			c_console::write_line_verbose("c_global_reference: Unpatched %s", reference_name);
+			console_write_line("c_global_reference: Unpatched %s", reference_name);
 
 			DWORD old_protect = 0;
 			VirtualProtect(reference_memory_pointer, sizeof(reference_memory_pointer), PAGE_READWRITE, &old_protect);

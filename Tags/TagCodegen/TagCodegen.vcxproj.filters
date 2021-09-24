@@ -36,6 +36,12 @@
     <ClCompile Include="custom_codegen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blamlib_string_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tagcodegen-private-pch.h">
@@ -57,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="custom_codegen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blamlib_string_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem_helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map> // #TODO: remove this
+
 namespace blofeld
 {
 	using t_iterate_structure_fields_callback = void(const s_tag_struct_definition& struct_definition, void* userdata);
@@ -30,7 +32,7 @@ namespace blofeld
 		bool recursive_block,
 		t_iterate_structure_fields_callback* callback,
 		void* userdata = nullptr);
-	uint32_t calculate_struct_size(
+	unsigned long calculate_struct_size(
 		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition, 
 		e_validation_result* block_failed_validation = nullptr,

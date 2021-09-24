@@ -19,7 +19,7 @@ c_halo1_tag_instance::~c_halo1_tag_instance()
 {
 }
 
-BCS_RESULT c_halo1_tag_instance::get_data(const void*& out_tag_instance_data) const
+BCS_RESULT c_halo1_tag_instance::get_tag_data(const void*& out_tag_instance_data) const
 {
 	out_tag_instance_data = instance_data;
 	return BCS_S_OK;

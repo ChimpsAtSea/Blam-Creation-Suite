@@ -27,9 +27,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition ai_mission_dialogue_struct_definition; // tag group
 
-	extern c_versioned_string_list role_group_enum_strings;
 	extern s_string_list_definition role_group_enum;
-	extern c_versioned_string_list scene_flags_strings;
 	extern s_string_list_definition scene_flags;
 
 

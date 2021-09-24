@@ -7,10 +7,10 @@ void c_session_manager::create_game_options(s_engine_platform_build engine_platf
 	e_game_options_version game_options_version = get_game_options_version_from_build(engine_platform_build.build);
 	switch (game_options_version)
 	{
-	case _game_options_version_0: c_console::write_line_verbose("Using game context version 0"); break;
-	case _game_options_version_1: c_console::write_line_verbose("Using game context version 1"); break;
-	case _game_options_version_2: c_console::write_line_verbose("Using game context version 2"); break;
-	case _game_options_version_3: c_console::write_line_verbose("Using game context version 3"); break;
+	case _game_options_version_0: console_write_line("Using game context version 0"); break;
+	case _game_options_version_1: console_write_line("Using game context version 1"); break;
+	case _game_options_version_2: console_write_line("Using game context version 2"); break;
+	case _game_options_version_3: console_write_line("Using game context version 3"); break;
 	}
 	*out_options = new GameOptions(game_options_version);
 	ASSERT(*out_options);

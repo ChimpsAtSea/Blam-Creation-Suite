@@ -14,7 +14,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 
 
 
-	for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
+	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		c_infinite_module_file_reader* cache_reader = cache_readers[cache_reader_index];
 		BCS_VALIDATE_ARGUMENT_THROW(cache_reader);
@@ -22,7 +22,8 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 		cache_reader->associate_cache_cluster(*this);
 	}
 
-	auto loop_body = [&](uint32_t cache_reader_index)
+	// #TODO: multithread this
+	for (unsigned long cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
 	{
 		s_cache_file_buffer_info temp_info;
 
@@ -50,23 +51,7 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 		}
 
 		debug_point;
-	};
-
-	if (c_command_line::has_command_line_arg("-cacheclustermt"))
-	{
-		if (cache_reader_count > 1)
-		{
-			loop_body(0ul);
-			tbb::parallel_for(1ul, cache_reader_count, loop_body);
-		}
 	}
-	else
-	{
-		for (uint32_t cache_reader_index = 0; cache_reader_index < cache_reader_count; cache_reader_index++)
-			loop_body(cache_reader_index);
-	}
-
-
 
 	for (c_infinite_module_file_reader* cache_reader : this->cache_readers)
 	{
@@ -107,6 +92,42 @@ c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader
 			//	throw(rs);
 			//}
 		}
+	}
+
+	unsigned long duplicate_id_count = 0;
+	for (c_infinite_module_file_reader* module_file_reader : this->cache_readers)
+	{
+		c_infinite_tag_reader* tag_reader;
+		BCS_RESULT rs = BCS_S_OK;
+		if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
+		{
+			c_infinite_tag_instance** tag_instances;
+			unsigned long num_tag_instances;
+			if (BCS_FAILED(rs = tag_reader->get_tag_instances(tag_instances, num_tag_instances)))
+			{
+				throw rs;
+			}
+
+			for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
+			{
+				c_infinite_tag_instance& tag_instance = *tag_instances[tag_instance_index];
+				long global_tag_id;
+				if (BCS_FAILED(rs = tag_instance.get_global_tag_id(global_tag_id)))
+				{
+					throw rs;
+				}
+				//DEBUG_ASSERT(tag_instances_by_global_id.find(global_tag_id) == tag_instances_by_global_id.end());
+				if (tag_instances_by_global_id.find(global_tag_id) != tag_instances_by_global_id.end())
+				{
+					duplicate_id_count++;
+				}
+				tag_instances_by_global_id[global_tag_id] = &tag_instance;
+			}
+		}
+	}
+	if (duplicate_id_count > 0)
+	{
+		console_write_line("Duplicate tags %u", duplicate_id_count);
 	}
 }
 
@@ -201,52 +222,85 @@ BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_infinite_module_file_re
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64(long long global_tag_id, c_tag_instance*& tag_instance)
+{
+	t_tag_instances_by_global_id64::const_iterator search = tag_instances_by_global_id64.find(global_tag_id);
+	if (search != tag_instances_by_global_id64.end())
+	{
+		tag_instance = search->second;
+		return BCS_S_OK;
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64_and_group_tag(long long global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
+{
+	t_tag_instances_by_global_id64::const_iterator search = tag_instances_by_global_id64.find(global_tag_id);
+	if (search != tag_instances_by_global_id64.end())
+	{
+		tag_instance = search->second;
+		return BCS_S_OK;
+	}
+	return BCS_E_NOT_FOUND;
+}
+
 BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id(long global_tag_id, c_tag_instance*& tag_instance)
 {
-	BCS_RESULT rs = BCS_S_OK;
-
-	for (c_infinite_module_file_reader* module_file_reader : cache_readers)
+	t_tag_instances_by_global_id::const_iterator search = tag_instances_by_global_id.find(global_tag_id);
+	if (search != tag_instances_by_global_id.end())
 	{
-		c_infinite_tag_reader* tag_reader;
-		if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
-		{
-			if (BCS_SUCCEEDED(rs = tag_reader->get_tag_instance_by_global_tag_id(global_tag_id, tag_instance)))
-			{
-				return rs;
-			}
-		}
+		tag_instance = search->second;
+		return BCS_S_OK;
 	}
-	return rs;
+	return BCS_E_NOT_FOUND;
+	//BCS_RESULT rs = BCS_S_OK;
+
+	//for (c_infinite_module_file_reader* module_file_reader : cache_readers)
+	//{
+	//	c_infinite_tag_reader* tag_reader;
+	//	if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
+	//	{
+	//		if (BCS_SUCCEEDED(rs = tag_reader->get_tag_instance_by_global_tag_id(global_tag_id, tag_instance)))
+	//		{
+	//			return rs;
+	//		}
+	//	}
+	//}
+	//return rs;
 }
 
 BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id_and_group_tag(long global_tag_id, tag group_tag, c_tag_instance*& tag_instance)
 {
-	BCS_RESULT rs = BCS_S_OK;
-
-	for (c_infinite_module_file_reader* module_file_reader : cache_readers)
+	t_tag_instances_by_global_id::const_iterator search = tag_instances_by_global_id.find(global_tag_id);
+	if (search != tag_instances_by_global_id.end())
 	{
-		c_infinite_tag_reader* tag_reader;
-		if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
-		{
-			if (BCS_SUCCEEDED(rs = tag_reader->get_tag_instance_by_global_tag_id_and_group_tag(global_tag_id, group_tag, tag_instance)))
-			{
-				return rs;
-			}
-		}
+		tag_instance = search->second;
+
+		return BCS_S_OK;
 	}
-	return rs;
+	return BCS_E_NOT_FOUND;
+	//BCS_RESULT rs = BCS_S_OK;
+
+	//for (c_infinite_module_file_reader* module_file_reader : cache_readers)
+	//{
+	//	c_infinite_tag_reader* tag_reader;
+	//	if (BCS_SUCCEEDED(rs = get_tag_reader(*module_file_reader, tag_reader)))
+	//	{
+	//		if (BCS_SUCCEEDED(rs = tag_reader->get_tag_instance_by_global_tag_id_and_group_tag(global_tag_id, group_tag, tag_instance)))
+	//		{
+	//			return rs;
+	//		}
+	//	}
+	//}
+	//return rs;
 }
 
 BCS_RESULT c_infinite_cache_cluster::get_cache_reader_by_relative_path(const char* relative_path, c_infinite_module_file_reader*& out_cache_reader)
 {
-	BCS_RESULT rs = BCS_S_OK;
 	for (c_infinite_module_file_reader* cache_reader : cache_readers)
 	{
 		s_cache_file_build_info build_info;
-		if (FAILED(rs = cache_reader->get_build_info(build_info)))
-		{
-			return rs;
-		}
+		BCS_FAIL_RETURN(cache_reader->get_build_info(build_info));
 
 		c_fixed_path cache_relative_path;
 		cache_relative_path.format("maps\\%s.map", build_info.name.get_buffer());
@@ -254,7 +308,7 @@ BCS_RESULT c_infinite_cache_cluster::get_cache_reader_by_relative_path(const cha
 		if (strcmp(cache_relative_path.c_str(), relative_path) == 0)
 		{
 			out_cache_reader = cache_reader;
-			return rs;
+			return BCS_S_OK;
 		}
 
 		//if (strcmp(build_info.relative_path.get_string(), relative_path) == 0)
@@ -263,9 +317,8 @@ BCS_RESULT c_infinite_cache_cluster::get_cache_reader_by_relative_path(const cha
 		//	return rs;
 		//}
 	}
-	rs = BCS_E_NOT_FOUND; // failed to find a cache file
 
-	return rs;
+	return BCS_E_NOT_FOUND;
 }
 
 BCS_RESULT c_infinite_cache_cluster::get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader)

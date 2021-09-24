@@ -18,7 +18,7 @@ void IGameEngineHostEmptyFunction()
 {
 	RUNONCE({
 		c_console::set_text_color(_console_color_error);
-		c_console::write_line_verbose("IGameEngineHostEmptyFunction was hit!");
+		console_write_line("IGameEngineHostEmptyFunction was hit!");
 		c_console::set_text_color(_console_color_info);
 		});
 }

@@ -17,9 +17,7 @@ namespace blofeld
 	extern s_tag_struct_definition vocalization_stimuli_block_definition_block_struct_definition; // vocalization_stimuli_block_definition_block
 
 
-	extern c_versioned_string_list vocalization_stimulus_flags_strings;
 	extern s_string_list_definition vocalization_stimulus_flags;
-	extern c_versioned_string_list dialogue_flags_strings;
 	extern s_string_list_definition dialogue_flags;
 
 

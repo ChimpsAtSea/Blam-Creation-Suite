@@ -36,7 +36,7 @@ c_file_array::c_file_array(
 
 					files.push_back(file_info);
 
-					c_console::write_line_verbose("Reading %s", directory_entry.path().string().c_str());
+					console_write_line("Reading %s", directory_entry.path().string().c_str());
 				}
 			}
 		}

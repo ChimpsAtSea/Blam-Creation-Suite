@@ -1,19 +1,9 @@
 #include <Platform\platform-public-pch.h>
 #include <Shared\shared-public-pch.h>
 
-/* ---------- private constants */
-/* ---------- private macros */
-/* ---------- private types */
-/* ---------- private classes */
-/* ---------- globals */
-
 bool g_running = true;
 const char* c_console::g_console_executable_name = "ImGUI UI Prototype";
 c_window* window = nullptr;
-
-/* ---------- private prototypes */
-/* ---------- public code */
-/* ---------- private code */
 
 void mandrill_init();
 void mandrill_deinit();

@@ -26,13 +26,9 @@ namespace blofeld
 	extern s_tag_struct_definition sound_response_struct_definition; // tag group
 	extern s_tag_struct_definition sound_incident_response_struct_definition; // tag group
 
-	extern c_versioned_string_list sound_combine_response_flags_strings;
 	extern s_string_list_definition sound_combine_response_flags;
-	extern c_versioned_string_list sound_response_queue_flags_strings;
 	extern s_string_list_definition sound_response_queue_flags;
-	extern c_versioned_string_list sound_audience_flags_strings;
 	extern s_string_list_definition sound_audience_flags;
-	extern c_versioned_string_list sound_splitscreen_flags_strings;
 	extern s_string_list_definition sound_splitscreen_flags;
 
 	extern s_tag_reference_definition sound_response_group_reference;

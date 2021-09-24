@@ -1,64 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-// #TODO: better linked list implementation
-
-enum e_traverse_directory_bit
-{
-	_traverse_directory_recursive
-};
-
-struct s_traverse_directory_result
-{
-	c_fixed_wide_path filepath;
-	c_fixed_wide_path relative_filepath;
-};
-using t_traverse_directory_callback = bool(void* userdata, const s_traverse_directory_result* result);
-
-// #TODO: move this into filesystem util
-BCS_RESULT BCSAPI traverse_directory(const wchar_t* directory, const wchar_t* search_criteria, c_flags<e_traverse_directory_bit> flags, void* userdata, t_traverse_directory_callback callback)
-{
-	BCS_VALIDATE_ARGUMENT(directory);
-	if (search_criteria == nullptr) search_criteria = L"";
-	BCS_VALIDATE_ARGUMENT(callback);
-
-	c_fixed_wide_path directory_buffer = directory;
-	PathRemoveBackslashW(directory_buffer);
-
-	c_fixed_wide_path search_criteria_directory_buffer = search_criteria;
-	PathRemoveFileSpecW(search_criteria_directory_buffer);
-
-	c_fixed_wide_path result_directory;
-	if (search_criteria_directory_buffer.empty()) result_directory = directory_buffer;
-	else result_directory.format(L"%s\\%s", directory_buffer.c_str(), search_criteria_directory_buffer.c_str());
-
-	c_fixed_wide_path search_buffer;
-	search_buffer.format(L"%s\\%s", directory_buffer.c_str(), search_criteria);
-
-	WIN32_FIND_DATAW find_data;
-	HANDLE find_file_handle = FindFirstFileExW(search_buffer, FindExInfoBasic, &find_data, FindExSearchNameMatch, NULL, 0);
-
-	if (find_file_handle != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			s_traverse_directory_result traverse_directory_result;
-			traverse_directory_result.filepath.format(L"%s\\%s", result_directory.c_str(), find_data.cFileName);
-			traverse_directory_result.relative_filepath.format(L"%s\\%s", search_criteria_directory_buffer.c_str(), find_data.cFileName);
-
-			bool continue_search = callback(userdata, &traverse_directory_result);
-			if (!continue_search)
-			{
-				break;
-			}
-
-		} while (FindNextFile(find_file_handle, &find_data));
-	}
-
-	FindClose(find_file_handle);
-
-	return BCS_S_OK;
-}
-
 c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* directory, c_mandrill_tab& parent) :
 	c_mandrill_tab("Tag Project Configuration", "Tag Project Configuration", &parent, false),
 	step(),
@@ -71,66 +12,51 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 {
 	using namespace std::placeholders;
 
-	c_fixed_wide_path package_features = directory;
-	package_features += L"PackageFeatures.xml";
-	if (PathFileExistsW(package_features))
+	c_fixed_wide_path deploy_directory = directory;
+	deploy_directory += L"deploy\\";
+
+	if (BCS_SUCCEEDED(filesystem_directory_exists(deploy_directory)))
 	{
-		pugi::xml_document doc;
-		if (!doc.load_file(package_features))
-		{
-			goto finished;
-		}
-
-		auto package_features = doc.first_child();
-		if (!package_features || strcmp(package_features.name(), "PackageFeatures") != 0)
-		{
-			goto finished;
-		}
-
-		for (auto child = package_features.child("Feature"); child; child = child.next_sibling("Feature"))
-		{
-			auto name_attribute = child.attribute("Name");
-			const char* name_attribute_str = name_attribute.as_string();
-
-			auto parent_attribute = child.attribute("Parent");
-			const char* parent_attribute_str = parent_attribute.as_string();
-
-			auto primary_module_attribute = child.attribute("PrimaryModule");
-			const char* primary_module_attribute_str = primary_module_attribute.as_string();
-
-			const wchar_t* deploy_directories[] = { L"any", L"ds", L"pc", L"xbox" };
-			for (const wchar_t* deploy_directory : deploy_directories)
+		filesystem_traverse_directory_folders(
+			deploy_directory,
+			[](void* userdata_pointer, const wchar_t* directory, const wchar_t* relative_directory)
 			{
-				c_fixed_wide_path search_directory;
-				search_directory.format(L"deploy\\%s\\%S-rtx-new.module", deploy_directory, primary_module_attribute_str);
-				traverse_directory(
+				struct s_traverse_directory_userdata
+				{
+					c_tag_project_configurator_tab& configurator_tab;
+					const wchar_t* directory;
+					const wchar_t* relative_directory;
+				};
+				s_traverse_directory_userdata userdata = { *static_cast<c_tag_project_configurator_tab*>(userdata_pointer), directory, relative_directory };
+				filesystem_traverse_directory_files(
 					directory,
-					search_directory,
-					0,
-					this,
-					[](void* userdata, const s_traverse_directory_result* result)
+					L"*-rtx-new.module",
+					[](void* userdata_pointer, const wchar_t* path, const wchar_t* relative_path)
 					{
-						return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(result);
-					});
-			}
+						s_traverse_directory_userdata& userdata = *static_cast<s_traverse_directory_userdata*>(userdata_pointer);
 
-			debug_point;
-		}
+						c_fixed_wide_path relative_path_buffer;
+						relative_path_buffer.format(L"%s%s", userdata.relative_directory + 1, relative_path + 1);
 
+						return userdata.configurator_tab.process_directory(path, relative_path_buffer);
+					},
+					&userdata);
+				return true;
+			},
+			this);
 		debug_point;
+
 	}
 	else
 	{
-	finished:;
-		traverse_directory(
+		filesystem_traverse_directory_files(
 			directory,
 			L"maps\\*.map",
-			0,
-			this,
-			[](void* userdata, const s_traverse_directory_result* result)
+			[](void* userdata, const wchar_t* path, const wchar_t* relative_path)
 			{
-				return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(result);
-			});
+				return static_cast<c_tag_project_configurator_tab*>(userdata)->process_directory(path, relative_path);
+			},
+			this);
 	}
 
 	for (s_cache_file_list_entry& entry : entries)
@@ -144,18 +70,23 @@ c_tag_project_configurator_tab::~c_tag_project_configurator_tab()
 
 }
 
-bool c_tag_project_configurator_tab::process_directory(const s_traverse_directory_result* result)
+bool c_tag_project_configurator_tab::process_directory(const wchar_t* file_path, const wchar_t* relative_file_path)
 {
 	s_cache_file_list_entry entry = {};
-	entry.filepath = result->relative_filepath;
+	entry.filepath = relative_file_path;
 	entry.selected = true; // #TODO: read the build string from any existing shared.map or campaign.map file and then auto select
 
-	if (BCS_FAILED(get_cache_file_reader_engine_and_platform(result->filepath, &entry.engine_platform_build)))
+	if (BCS_SUCCEEDED(command_line_has_argument("autoprojectfirstfile")) && entries.size() > 0)
+	{
+		entry.selected = false;
+	}
+
+	if (BCS_FAILED(get_cache_file_reader_engine_and_platform(file_path, &entry.engine_platform_build)))
 	{
 		return true;
 	}
 
-	if (BCS_FAILED(open_cache_file_reader(result->filepath, entry.engine_platform_build, true, true, &entry.cache_reader)))
+	if (BCS_FAILED(open_cache_file_reader(file_path, entry.engine_platform_build, true, true, &entry.cache_reader)))
 	{
 		return true;
 	}
@@ -223,7 +154,7 @@ void c_tag_project_configurator_tab::render_impl()
 
 #ifdef _DEBUG
 	bool auto_proceed = false;
-	if (c_command_line::has_command_line_arg("-autoproject"))
+	if (BCS_SUCCEEDED(command_line_has_argument("autoproject")))
 	{
 		if (step == _tag_project_configurator_step_cache_file_selection)
 		{
@@ -402,7 +333,7 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 		}
 	}
 
-	uint32_t cache_file_reader_count = static_cast<uint32_t>(selected_entries.size());
+	unsigned long cache_file_reader_count = static_cast<unsigned long>(selected_entries.size());
 	if (cache_file_reader_count > 0)
 	{
 		c_cache_file_reader** cache_file_readers = new(alloca(sizeof(c_cache_file_reader*) * cache_file_reader_count)) c_cache_file_reader * [cache_file_reader_count];

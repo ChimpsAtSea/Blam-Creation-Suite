@@ -30,7 +30,6 @@ namespace blofeld
 	extern s_tag_struct_definition planar_fog_parameters_struct_definition; // tag group
 	extern s_tag_struct_definition planar_fog_set_definition_struct;
 
-	extern c_versioned_string_list planar_fog_flags_strings;
 	extern s_string_list_definition planar_fog_flags;
 
 	extern s_tag_reference_definition global_planar_fog_reference;

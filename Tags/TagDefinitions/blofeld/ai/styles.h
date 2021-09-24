@@ -17,25 +17,15 @@ namespace blofeld
 
 	extern s_tag_struct_definition style_struct_definition; // tag group
 
-	extern c_versioned_string_list behavior_set1_strings;
 	extern s_string_list_definition behavior_set1;
-	extern c_versioned_string_list behavior_set2_strings;
 	extern s_string_list_definition behavior_set2;
-	extern c_versioned_string_list behavior_set3_strings;
 	extern s_string_list_definition behavior_set3;
-	extern c_versioned_string_list behavior_set4_strings;
 	extern s_string_list_definition behavior_set4;
-	extern c_versioned_string_list behavior_set5_strings;
 	extern s_string_list_definition behavior_set5;
-	extern c_versioned_string_list behavior_set6_strings;
 	extern s_string_list_definition behavior_set6;
-	extern c_versioned_string_list behavior_set7_strings;
 	extern s_string_list_definition behavior_set7;
-	extern c_versioned_string_list behavior_set8_strings;
 	extern s_string_list_definition behavior_set8;
-	extern c_versioned_string_list style_control_flags_strings;
 	extern s_string_list_definition style_control_flags;
-	extern c_versioned_string_list combat_status_enum$2_strings;
 	extern s_string_list_definition combat_status_enum$2;
 
 

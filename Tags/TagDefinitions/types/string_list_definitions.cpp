@@ -2,55 +2,87 @@
 
 namespace blofeld
 {
-	inline bool skip_string_list_value_version(const s_versioned_string_list_value& tag_field, s_engine_platform_build engine_platform_build, uint32_t& skip_count)
+	s_string_entry::s_string_entry(const char* string) :
+		type(_string_entry_type_string),
+		string(string)
 	{
-		if (tag_field.string == nullptr)
+
+	}
+
+	s_string_entry::s_string_entry(
+		e_field_legacy,
+		e_field _field_type,
+#ifndef __INTELLISENSE__
+		const char* _filename,
+		int _line,
+#endif
+		c_engine_platform_build _engine_platform_build,
+		unsigned long _version_field_skip_count) :
+		type(_string_entry_type_version),
+		string(nullptr)
+	{
+		version_type = _field_type;
+		filename = _filename;
+		line = _line;
+		engine_platform_build = _engine_platform_build;
+		version_field_skip_count = _version_field_skip_count;
+	}
+
+	bool s_string_entry::skip_tag_field_version(s_engine_platform_build _engine_platform_build, unsigned long& skip_count) const
+	{
+		if (type != _string_entry_type_version)
+		{
+			return false;
+		}
+		if (version_type > _field_type_non_standard)
 		{
 			bool skip_versioning_field = false;
-			skip_count = tag_field._version_field_skip_count;
+			skip_count = version_field_skip_count;
 
-			switch (tag_field._field_type)
+			/*if (field_type == _field_version_custom)
 			{
-			case _field_version_platform_include:
-				if (tag_field.engine_type_and_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
+				ASSERT(_custom_version_callback);
+				skip_count = _custom_version_callback(engine_platform_build);
+				skip_versioning_field = false;
+			}
+			else */
+			if (version_type == _field_version_platform_include)
+			{
+				if (_engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
 				{
-					skip_versioning_field = (tag_field.engine_type_and_build.platform_type & engine_platform_build.platform_type) != 0;
+					skip_versioning_field = (_engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
 				}
-				break;
-			case _field_version_platform_exclude:
-				if (tag_field.engine_type_and_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
+			}
+			else if (version_type == _field_version_platform_exclude)
+			{
+				if (_engine_platform_build.platform_type != _platform_type_not_set && engine_platform_build.platform_type != _platform_type_not_set)
 				{
-					skip_versioning_field = (tag_field.engine_type_and_build.platform_type & engine_platform_build.platform_type) == 0;
+					skip_versioning_field = (_engine_platform_build.platform_type & engine_platform_build.platform_type) != 0;
 				}
-				break;
-			case _field_version_equal:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type == tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build == tag_field.engine_type_and_build.build;
-				break;
-			case _field_version_not_equal:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type != tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build != tag_field.engine_type_and_build.build;
-				break;
-			case _field_version_less:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type < tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build < tag_field.engine_type_and_build.build;
-				break;
-			case _field_version_greater:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type > tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build > tag_field.engine_type_and_build.build;
-				break;
-			case _field_version_less_or_equal:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type <= tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build <= tag_field.engine_type_and_build.build;
-				break;
-			case _field_version_greater_or_equal:
-				skip_versioning_field = tag_field.engine_type_and_build.engine_type == _engine_type_not_set || engine_platform_build.engine_type >= tag_field.engine_type_and_build.engine_type;
-				skip_versioning_field &= tag_field.engine_type_and_build.build == _build_not_set || engine_platform_build.build >= tag_field.engine_type_and_build.build;
-				break;
-			//case _field_version_custom:
-			//	ASSERT(tag_field.engine_type_and_build.custom_version_callback);
-			//	skip_versioning_field = tag_field.engine_type_and_build.custom_version_callback(engine_platform_build, skip_count);
-			//	break;
+			}
+			else
+			{
+				switch (version_type)
+				{
+				case _field_version_equal:
+					skip_versioning_field = _engine_platform_build == engine_platform_build;
+					break;
+				case _field_version_not_equal:
+					skip_versioning_field = _engine_platform_build != engine_platform_build;
+					break;
+				case _field_version_less:
+					skip_versioning_field = _engine_platform_build < engine_platform_build;
+					break;
+				case _field_version_greater:
+					skip_versioning_field = _engine_platform_build > engine_platform_build;
+					break;
+				case _field_version_less_or_equal:
+					skip_versioning_field = _engine_platform_build <= engine_platform_build;
+					break;
+				case _field_version_greater_or_equal:
+					skip_versioning_field = _engine_platform_build >= engine_platform_build;
+					break;
+				}
 			}
 
 			if (skip_versioning_field)
@@ -64,129 +96,59 @@ namespace blofeld
 		return false;
 	}
 
-
-	c_versioned_string_list::c_versioned_string_list() :
-		storage(new s_string_list_storage()),
-		counts(storage->counts),
-		strings(storage->strings),
-		string_lists(storage->string_lists)
+	s_string_list_definition::s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, unsigned long num_string_entries, long start_offset, long end_offset) :
+		name(name),
+		filename(filename),
+		line(line),
+		string_entries(string_entries),
+		num_string_entries(num_string_entries),
+		start_offset(start_offset),
+		end_offset(end_offset)
 	{
 
 	}
 
-	c_versioned_string_list::c_versioned_string_list(std::initializer_list<s_versioned_string_list_value> init_list) :
-		c_versioned_string_list()
+	unsigned long s_string_list_definition::get_count(s_engine_platform_build engine_platform_build) const
 	{
-		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
+		long string_index = 0;
+		for (unsigned long entry_index = 0; entry_index < num_string_entries; entry_index++)
 		{
-			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
+			s_string_entry& string_entry = string_entries[entry_index];
+			unsigned long skip_count;
+			if (string_entry.type == _string_entry_type_version && string_entry.skip_tag_field_version(engine_platform_build, skip_count))
 			{
-				uint32_t current_string_index = 0;
-				uint32_t skip_count = 0;
-				for (const s_versioned_string_list_value& value : init_list)
-				{
-					if (skip_count > 0)
-					{
-						skip_count--;
-						continue;
-					}
-					if (value.string == nullptr)
-					{
-						if (skip_string_list_value_version(value, { static_cast<e_engine_type>(engine_index), static_cast<e_platform_type>(platform_index), _build_not_set }, skip_count))
-						{
-							continue;
-						}
-					}
-
-					if (current_string_index < k_versioned_string_list_table_size)
-					{
-						strings[platform_index][engine_index][current_string_index] = value.string;
-					}
-					current_string_index++;
-				}
-
-				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+				entry_index += skip_count;
+				continue;
 			}
+			string_index++;
 		}
+
+		long string_count_after_offset = __max(start_offset, string_index) - start_offset;
+		long string_count = __min(string_count_after_offset, end_offset - start_offset);
+
+		return static_cast<unsigned long>(string_count);
 	}
 
-	c_versioned_string_list::c_versioned_string_list(std::initializer_list<const char*> init_list) :
-		c_versioned_string_list()
+	const char* s_string_list_definition::get_string(const s_engine_platform_build& engine_platform_build, unsigned long index) const
 	{
-		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
+		long requested_index = static_cast<long>(index) + start_offset;
+		long string_index = 0;
+		for (unsigned long entry_index = 0; entry_index < num_string_entries; entry_index++)
 		{
-			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
+			s_string_entry& string_entry = string_entries[entry_index];
+			unsigned long skip_count;
+			if (string_entry.type == _string_entry_type_version && string_entry.skip_tag_field_version(engine_platform_build, skip_count))
 			{
-				uint32_t current_string_index = 0;
-				for (const char* string : init_list)
-				{
-					if (current_string_index < k_versioned_string_list_table_size)
-					{
-						strings[platform_index][engine_index][current_string_index] = string;
-					}
-					current_string_index++;
-				}
-
-				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
+				entry_index += skip_count;
+				continue;
 			}
-		}
-	}
-
-	c_versioned_string_list::c_versioned_string_list(std::initializer_list<std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>> init_lists) :
-		c_versioned_string_list()
-	{
-		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
-		{
-			for (const std::tuple<e_engine_type, e_versioned_string_list_mode, std::initializer_list<const char*>>& engine_and_init_list : init_lists)
+			if (string_index == requested_index)
 			{
-				e_engine_type engine_type = std::get<0>(engine_and_init_list);
-				e_versioned_string_list_mode string_list_mode = std::get<1>(engine_and_init_list);
-				const std::initializer_list<const char*>& init_list = std::get<2>(engine_and_init_list);
-
-				for (uint32_t engine_index = engine_type; engine_index < k_number_of_engine_types; engine_index++)
-				{
-					uint32_t current_string_index = 0;
-					if (string_list_mode == _versioned_string_list_mode_append)
-					{
-						current_string_index = counts[platform_index][engine_index];
-					}
-
-					for (const char* string : init_list)
-					{
-						if (current_string_index < k_versioned_string_list_table_size)
-						{
-							strings[platform_index][engine_index][current_string_index] = string;
-						}
-						current_string_index++;
-					}
-
-					counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
-				}
+				return string_entry.string;
 			}
+			string_index++;
 		}
+		return nullptr;
 	}
-
-	c_versioned_string_list::c_versioned_string_list(const char** strings_list, size_t strings_list_count) :
-		c_versioned_string_list()
-	{
-		for (uint32_t platform_index = 0; platform_index < k_number_of_platform_types; platform_index++)
-		{
-			for (uint32_t engine_index = 0; engine_index < k_number_of_engine_types; engine_index++)
-			{
-				uint32_t current_string_index = 0;
-				for (const char* string : c_range_loop(strings_list, strings_list_count))
-				{
-					if (current_string_index < k_versioned_string_list_table_size)
-					{
-						strings[platform_index][engine_index][current_string_index] = string;
-					}
-					current_string_index++;
-				}
-
-				counts[platform_index][engine_index] = __min(current_string_index, k_versioned_string_list_table_size);
-			}
-		}
-	}
-
 }
 

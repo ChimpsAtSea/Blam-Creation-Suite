@@ -124,11 +124,11 @@ bool c_data_patch_base::ApplyPatch()
 
 	if (public_symbol)
 	{
-		c_console::write_line_verbose("Applying DataPatch: %s", public_symbol->symbol_name);
+		console_write_line("Applying DataPatch: %s", public_symbol->symbol_name);
 	}
 	else
 	{
-		c_console::write_line_verbose("Applying DataPatch: <unknown>");
+		console_write_line("Applying DataPatch: <unknown>");
 	}
 
 	if (apply_packet)
@@ -175,11 +175,11 @@ bool c_data_patch_base::RevertPatch()
 
 	if (public_symbol)
 	{
-		c_console::write_line_verbose("Reverting DataPatch: %s", public_symbol->symbol_name);
+		console_write_line("Reverting DataPatch: %s", public_symbol->symbol_name);
 	}
 	else
 	{
-		c_console::write_line_verbose("Reverting DataPatch: <unknown>");
+		console_write_line("Reverting DataPatch: <unknown>");
 	}
 
 	for (DataPatchPacket& packet : packets)

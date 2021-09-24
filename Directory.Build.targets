@@ -29,6 +29,10 @@
 	  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\tools\clang\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\discord-rpc\include\;$(IncludePath)</IncludePath>
 	  <IncludePath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\include\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\DirectX-Headers\include\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\murmur3\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\imgui\;$(IncludePath)</IncludePath>
+	  <IncludePath>$(SolutionDir)ThirdParty\imgui\imgui\;$(IncludePath)</IncludePath>
 	  
 	  <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
@@ -40,6 +44,13 @@
 	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
 	  <LibraryPath>$(SolutionDir)ThirdParty\vcpkg\vcpkg\installed\$(PlatformTarget)-windows-static\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>IMGUI_USER_CONFIG="imgui_user_config.h";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="Exists('$(OutDir)Keys.lib')">
 	<Link>
 	  <AdditionalDependencies>Keys.lib;%(AdditionalDependencies)</AdditionalDependencies>

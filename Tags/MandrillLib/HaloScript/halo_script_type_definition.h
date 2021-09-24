@@ -437,13 +437,13 @@ public:
 	c_hs_enum_value(const c_hs_enum_value&) = delete;
 	c_hs_enum_value& operator=(const c_hs_enum_value&) = delete;
 
-	c_hs_enum_value(const char* name, uint32_t value) :
+	c_hs_enum_value(const char* name, unsigned long value) :
 		value(value),
 		name(name)
 	{
 	}
 
-	uint32_t value;
+	unsigned long value;
 	const char* name;
 };
 

@@ -2,27 +2,27 @@
 
 struct s_infinite_ucs_header
 {
-	long magic;							// 'hscu' (UCSH = "Universal Cache Storage Header" ? )
-	long version;						// 27 (0x1B)
+	long magic;								// 'hscu' (UCSH = "Universal Cache Storage Header" ? )
+	long version;							// 27 (0x1B)
 	unsigned long long unknown8;
-	unsigned long long asset_checksum;	// Murmur3_x64_128 hash of(what appears to be) the original file that this file was built from.This is not always the same thing as the file stored in the module.
+	unsigned long long asset_checksum;		// Murmur3_x64_128 hash of(what appears to be) the original file that this file was built from.This is not always the same thing as the file stored in the module.
 	//long unknown18;
-	long tag_dependency_count;			// Number of tag dependencies
-	long nugget_count;				// Number of data blocks
-	long tag_block_count;				// Number of tag structs
-	long data_reference_count;			// Number of data references
-	long tag_reference_count;			// Number of tag references
-	//long string_id_count;				// Number of string_ids
-	unsigned long string_table_size;	// String table size in bytes
-	unsigned long zoneset_data_size;	// Zoneset data size in bytes
+	unsigned long tag_dependency_count;		// Number of tag dependencies
+	unsigned long nugget_count;				// Number of data blocks
+	unsigned long tag_block_count;			// Number of tag structs
+	unsigned long data_reference_count;		// Number of data references
+	unsigned long tag_reference_count;		// Number of tag references
+	//long string_id_count;					// Number of string_ids
+	unsigned long string_table_size;		// String table size in bytes
+	unsigned long zoneset_data_size;		// Zoneset data size in bytes
 	long unknown19;
-	unsigned long header_size;			// Header size in bytes
-	unsigned long data_size;			// Tag data size in bytes
-	unsigned long resource_data_size;	// Resource data size in bytes
+	unsigned long header_size;				// Header size in bytes
+	unsigned long data_size;				// Tag data size in bytes
+	unsigned long resource_data_size;		// Resource data size in bytes
 	long unknown18;
-	unsigned char header_alignment;		// Power of 2 to align the header buffer to(e.g. 4 = align to a multiple of 16 bytes).
-	unsigned char tag_data_alignment;	// Power of 2 to align the tag data buffer to.
-	unsigned char resource_data;		// Alignment	Power of 2 to align the resource data buffer to.
+	unsigned char header_alignment;			// Power of 2 to align the header buffer to(e.g. 4 = align to a multiple of 16 bytes).
+	unsigned char tag_data_alignment;		// Power of 2 to align the tag data buffer to.
+	unsigned char resource_data;			// Alignment	Power of 2 to align the resource data buffer to.
 	unsigned char unknown4B;
 	long unknown4C;
 };
@@ -140,10 +140,8 @@ static_assert(k_infinite_ucs_data_reference_field_size == 0x18);
 struct s_infinite_ucs_tag_reference_field
 {
 	unsigned long long type_info;	// Runtime : pointer to type information.
-	unsigned long name_length;		// Length of the tag's name in characters.
 	long global_id;					// Global ID of the tag.
-	//long long asset_id;			// Asset ID of the tag.
-	unsigned long unknown;
+	long long global_id64;			// Global ID of the tag.
 	long group_tag;					// Group tag(e.g.proj).
 	long local_handle;				// Runtime : the resolved local tag handle.
 };
@@ -165,14 +163,14 @@ static_assert(k_infinite_ucs_pageable_resource_field_size == 0x10);
 class c_infinite_ucs_reader
 {
 public:
-	c_infinite_ucs_reader(const void** instance_block_data);
+	c_infinite_ucs_reader(const void* header_data, const void* tag_data, const void* resource_data);
 	~c_infinite_ucs_reader();
-
-	const void** instance_block_data;
 	
+	long get_root_tag_block_entry_index() const;
+
 	const void* header_data;
 	const void* tag_data;
-	const void* resource_data[16];
+	const void* resource_data;
 
 	const s_infinite_ucs_header* ucs_header;
 	const s_infinite_ucs_tag_dependency_list* tag_dependency_list;
@@ -184,4 +182,9 @@ public:
 	const char* zoneset_data;
 	const void* extra_data;
 	unsigned long extra_data_size;
+
+	long root_tag_block_entry_index;
+	const s_infinite_ucs_tag_block_data* tag_group_tag_block_entry;
+	const s_infinite_ucs_nugget* root_nugget;
+	const char* root_tag_block_data;
 };

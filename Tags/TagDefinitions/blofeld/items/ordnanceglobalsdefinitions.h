@@ -30,7 +30,6 @@ namespace blofeld
 	extern s_tag_struct_definition game_globals_ordnance_list_struct_definition; // tag group
 	extern s_tag_struct_definition scenario_ordnance_list_struct_definition; // tag group
 
-	extern c_versioned_string_list GuiOrdnancePrimiumFlag_strings;
 	extern s_string_list_definition GuiOrdnancePrimiumFlag;
 
 

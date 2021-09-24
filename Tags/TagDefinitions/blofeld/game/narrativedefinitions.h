@@ -15,7 +15,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition NarrativeGlobals_struct_definition; // tag group
 
-	extern c_versioned_string_list NarrativeFlagTypeEnum_strings;
 	extern s_string_list_definition NarrativeFlagTypeEnum;
 
 	extern s_tag_reference_definition NarrativeGlobalsReference;

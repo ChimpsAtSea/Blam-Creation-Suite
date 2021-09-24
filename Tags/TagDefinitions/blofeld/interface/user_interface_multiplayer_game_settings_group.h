@@ -31,13 +31,9 @@ namespace blofeld
 	extern s_tag_struct_definition sandbox_text_value_pair_definition_struct_definition; // tag group
 	extern s_tag_struct_definition text_value_pair_definition_struct_definition; // tag group
 
-	extern c_versioned_string_list game_engine_settings_strings;
 	extern s_string_list_definition game_engine_settings;
-	extern c_versioned_string_list game_variant_parameters_strings;
 	extern s_string_list_definition game_variant_parameters;
-	extern c_versioned_string_list text_value_pair_flags_strings;
 	extern s_string_list_definition text_value_pair_flags;
-	extern c_versioned_string_list text_value_pair_parameter_type_strings;
 	extern s_string_list_definition text_value_pair_parameter_type;
 
 	extern s_tag_reference_definition g_multiplayer_variant_settings_interface_reference;

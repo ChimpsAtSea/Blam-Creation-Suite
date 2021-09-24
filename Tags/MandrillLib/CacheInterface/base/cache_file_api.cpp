@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_engine_platform_build* engine_platform_build)
+BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_engine_platform_build* engine_platform_build)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 
@@ -11,7 +11,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath
 	return get_cache_file_reader_engine_and_platform(buffer, engine_platform_build);
 }
 
-BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_engine_platform_build* engine_platform_build)
+BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_engine_platform_build* engine_platform_build)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	BCS_VALIDATE_ARGUMENT(engine_platform_build);
@@ -25,7 +25,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 	_fseeki64(file_handle, 0, SEEK_SET);
 
 	blamlib::s_cache_file_header header;
-	if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+	if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 	{
 		return BCS_E_FAIL;
 	}
@@ -35,7 +35,17 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 	{
 		// #TODO: support Halo 5 Forge
 
+		// #TODO: Detect version based off executable?
+
 		*engine_platform_build = { _engine_type_infinite, _platform_type_pc_64bit, _build_infinite_FLT002INT_199229_21_07_20_0001 };
+
+		switch (header.file_version)
+		{
+		case 48: engine_platform_build->build = _build_infinite_FLT002INT_199229_21_07_20_0001; break;
+		case 51: engine_platform_build->build = _build_infinite_HIFLTA_202700_21_09_06_0001; break;
+		default: throw(BCS_E_UNSUPPORTED);
+		}
+
 		return BCS_S_OK;
 	}
 
@@ -46,7 +56,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 			ASSERT(header.header_signature == k_cache_header_signature);
 
 			halo1::pc::s_cache_file_header header;
-			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 			{
 				return BCS_E_FAIL;
 			}
@@ -69,7 +79,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 			if (header.header_signature == k_cache_header_signature)
 			{
 				halo1::pc::s_cache_file_header header;
-				if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+				if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 				{
 					return BCS_E_FAIL;
 				}
@@ -82,7 +92,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 			else
 			{
 				halo1::pc::s_cache_file_header header;
-				if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+				if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 				{
 					return BCS_E_FAIL;
 				}
@@ -94,7 +104,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 		if (header.file_version == 7)
 		{
 			halo1::demo::s_cache_file_header header;
-			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 			{
 				return BCS_E_FAIL;
 			}
@@ -105,7 +115,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 		if (header.file_version == 609)
 		{
 			halo1::pc::s_cache_file_header header;
-			if (!filesystem_read_from_file_handle(file_handle, &header, sizeof(header))) // #TODO: pipe BCS result
+			if (!fread(&header, 1, sizeof(header), file_handle)) // #TODO: pipe BCS result
 			{
 				return BCS_E_FAIL;
 			}
@@ -133,7 +143,7 @@ BCSAPI BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filep
 	return BCS_E_FAIL;
 }
 
-BCSAPI BCS_RESULT open_cache_file_reader(const char* filepath, s_engine_platform_build engine_platform_build, bool read_only, bool memory_mapped_file, c_cache_file_reader** cache_file)
+BCS_RESULT open_cache_file_reader(const char* filepath, s_engine_platform_build engine_platform_build, bool read_only, bool memory_mapped_file, c_cache_file_reader** cache_file)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 
@@ -144,7 +154,7 @@ BCSAPI BCS_RESULT open_cache_file_reader(const char* filepath, s_engine_platform
 	return open_cache_file_reader(buffer, engine_platform_build, read_only, memory_mapped_file, cache_file);
 }
 
-BCSAPI BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build, bool read_only, bool memory_mapped_file, c_cache_file_reader** cache_file)
+BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build, bool read_only, bool memory_mapped_file, c_cache_file_reader** cache_file)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	BCS_VALIDATE_ARGUMENT(engine_platform_build);
@@ -201,26 +211,26 @@ BCSAPI BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platf
 	return BCS_E_UNSUPPORTED;
 }
 
-BCSAPI BCS_RESULT close_cache_file_reader(c_cache_file_reader* cache_reader)
+BCS_RESULT close_cache_file_reader(c_cache_file_reader* cache_reader)
 {
 	delete cache_reader;
 
 	return BCS_S_OK;
 }
 
-BCSAPI BCS_RESULT get_cache_file_reader_build_info(c_cache_file_reader* cache_reader, s_cache_file_build_info* build_info)
+BCS_RESULT get_cache_file_reader_build_info(c_cache_file_reader* cache_reader, s_cache_file_build_info* build_info)
 {
 	BCS_VALIDATE_ARGUMENT(build_info);
 	return cache_reader->get_build_info(*build_info);
 }
 
-BCSAPI BCS_RESULT get_cache_file_reader_debug_info(c_cache_file_reader* cache_reader, s_cache_file_debug_info* debug_info)
+BCS_RESULT get_cache_file_reader_debug_info(c_cache_file_reader* cache_reader, s_cache_file_debug_info* debug_info)
 {
 	BCS_VALIDATE_ARGUMENT(debug_info);
 	return cache_reader->get_debug_info(*debug_info);
 }
 
-BCSAPI BCS_RESULT get_cache_file_reader_buffer(c_cache_file_reader* cache_reader, e_cache_file_buffer_index buffer_index, s_cache_file_buffer_info* buffer_info)
+BCS_RESULT get_cache_file_reader_buffer(c_cache_file_reader* cache_reader, e_cache_file_buffer_index buffer_index, s_cache_file_buffer_info* buffer_info)
 {
 	BCS_VALIDATE_ARGUMENT(cache_reader);
 	BCS_VALIDATE_ARGUMENT(buffer_index < k_num_cache_file_buffers);
@@ -229,13 +239,13 @@ BCSAPI BCS_RESULT get_cache_file_reader_buffer(c_cache_file_reader* cache_reader
 	return cache_reader->get_buffer(buffer_index, *buffer_info);
 }
 
-BCSAPI BCS_RESULT get_cache_file_reader_buffers(c_cache_file_reader* cache_reader, s_cache_file_buffers_info* buffers_info)
+BCS_RESULT get_cache_file_reader_buffers(c_cache_file_reader* cache_reader, s_cache_file_buffers_info* buffers_info)
 {
 	BCS_VALIDATE_ARGUMENT(buffers_info);
 	return cache_reader->get_buffers(*buffers_info);
 }
 
-BCSAPI BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build, c_cache_cluster** cache_cluster)
+BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, unsigned long cache_reader_count, s_engine_platform_build engine_platform_build, c_cache_cluster** cache_cluster)
 {
 	BCS_VALIDATE_ARGUMENT(cache_readers);
 	BCS_VALIDATE_ARGUMENT(cache_reader_count > 0);
@@ -274,7 +284,7 @@ BCSAPI BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint
 	return BCS_E_FAIL;
 }
 
-BCSAPI BCS_RESULT destroy_cache_cluster(c_cache_cluster* cache_cluster)
+BCS_RESULT destroy_cache_cluster(c_cache_cluster* cache_cluster)
 {
 	BCS_VALIDATE_ARGUMENT(cache_cluster);
 
@@ -283,7 +293,7 @@ BCSAPI BCS_RESULT destroy_cache_cluster(c_cache_cluster* cache_cluster)
 	return BCS_S_OK;
 }
 
-BCSAPI BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_debug_reader** debug_reader)
+BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_debug_reader** debug_reader)
 {
 	BCS_VALIDATE_ARGUMENT(cache_cluster);
 	BCS_VALIDATE_ARGUMENT(cache_reader);
@@ -299,7 +309,7 @@ BCSAPI BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_
 	return result;
 }
 
-BCSAPI BCS_RESULT destroy_cache_file_debug_reader(c_debug_reader* debug_reader)
+BCS_RESULT destroy_cache_file_debug_reader(c_debug_reader* debug_reader)
 {
 	BCS_VALIDATE_ARGUMENT(debug_reader);
 
@@ -308,7 +318,7 @@ BCSAPI BCS_RESULT destroy_cache_file_debug_reader(c_debug_reader* debug_reader)
 	return BCS_S_OK;
 }
 
-BCSAPI BCS_RESULT get_cache_file_tag_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_tag_reader** tag_reader)
+BCS_RESULT get_cache_file_tag_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_tag_reader** tag_reader)
 {
 	BCS_VALIDATE_ARGUMENT(cache_cluster);
 	BCS_VALIDATE_ARGUMENT(cache_reader);
@@ -317,7 +327,7 @@ BCSAPI BCS_RESULT get_cache_file_tag_reader(c_cache_cluster* cache_cluster, c_ca
 	return cache_cluster->get_tag_reader(*cache_reader, *tag_reader);
 }
 
-BCSAPI BCS_RESULT destroy_cache_file_tag_reader(c_tag_reader* tag_reader)
+BCS_RESULT destroy_cache_file_tag_reader(c_tag_reader* tag_reader)
 {
 	BCS_VALIDATE_ARGUMENT(tag_reader);
 
@@ -326,7 +336,7 @@ BCSAPI BCS_RESULT destroy_cache_file_tag_reader(c_tag_reader* tag_reader)
 	return BCS_S_OK;
 }
 
-BCSAPI BCS_RESULT create_cache_file_resource_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_resource_reader** resource_reader)
+BCS_RESULT create_cache_file_resource_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_resource_reader** resource_reader)
 {
 	BCS_VALIDATE_ARGUMENT(cache_cluster);
 	BCS_VALIDATE_ARGUMENT(cache_reader);
@@ -335,7 +345,7 @@ BCSAPI BCS_RESULT create_cache_file_resource_reader(c_cache_cluster* cache_clust
 	return cache_cluster->get_resource_reader(*cache_reader, *resource_reader);
 }
 
-BCSAPI BCS_RESULT destroy_cache_file_resource_reader(c_resource_reader* resource_reader)
+BCS_RESULT destroy_cache_file_resource_reader(c_resource_reader* resource_reader)
 {
 	BCS_VALIDATE_ARGUMENT(resource_reader);
 
@@ -344,7 +354,7 @@ BCSAPI BCS_RESULT destroy_cache_file_resource_reader(c_resource_reader* resource
 	return BCS_S_OK;
 }
 
-BCSAPI BCS_RESULT create_cache_file_localization_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_localization_reader** localization_reader)
+BCS_RESULT create_cache_file_localization_reader(c_cache_cluster* cache_cluster, c_cache_file_reader* cache_reader, c_localization_reader** localization_reader)
 {
 	BCS_VALIDATE_ARGUMENT(cache_cluster);
 	BCS_VALIDATE_ARGUMENT(cache_reader);
@@ -353,7 +363,7 @@ BCSAPI BCS_RESULT create_cache_file_localization_reader(c_cache_cluster* cache_c
 	return cache_cluster->get_localization_reader(*cache_reader, *localization_reader);
 }
 
-BCSAPI BCS_RESULT destroy_cache_file_localization_reader(c_localization_reader* localization_reader)
+BCS_RESULT destroy_cache_file_localization_reader(c_localization_reader* localization_reader)
 {
 	BCS_VALIDATE_ARGUMENT(localization_reader);
 

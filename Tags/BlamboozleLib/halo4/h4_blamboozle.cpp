@@ -146,7 +146,7 @@ const char* h4_va_to_pointer2(const char* data, unsigned long address)
 			{
 				const MINIDUMP_MEMORY_DESCRIPTOR64& minidump_memory64 = minidump_memory64_list.MemoryRanges[minidump_memory64_index];
 
-				//c_console::write_line_verbose("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
+				//console_write_line("0x%llx [0x%llx:0x%llx]", minidump_memory64.StartOfMemoryRange, minidump_memory64_rva, minidump_memory64.DataSize);
 
 				ULONG64 start_of_memory_range = minidump_memory64.StartOfMemoryRange;
 				ULONG64 end_of_memory_range = start_of_memory_range + minidump_memory64.DataSize;
@@ -427,7 +427,7 @@ int c_h4_blamboozle::run()
 {
 	ASSERT(h4_data == nullptr);
 
-	if (!filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&h4_data), &data_size))
+	if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&h4_data), &data_size))
 	{
 		return 1;
 	}
@@ -438,7 +438,7 @@ int c_h4_blamboozle::run()
 
 	std::wstring mapping_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-map");
 	std::wstring symbols_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-sym");
-	if (!filesystem_filepath_exists(symbols_filepath.c_str()))
+	if (BCS_FAILED(filesystem_filepath_exists(symbols_filepath.c_str())))
 	{
 		c_map_file_parser map_file_parser = c_map_file_parser(mapping_filepath.c_str(), nullptr, 0);
 		map_file_parser.write_output(symbols_filepath.c_str());
@@ -446,7 +446,7 @@ int c_h4_blamboozle::run()
 
 	char* symbols_buffer;
 	size_t symbols_buffer_size;
-	if (!filesystem_read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
+	if (BCS_FAILED(filesystem_read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
 	{
 		return 1;
 	}

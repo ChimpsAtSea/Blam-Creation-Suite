@@ -26,7 +26,7 @@ void register_halo3odstlib()
 c_halo3odst_game_host::c_halo3odst_game_host(s_engine_platform_build engine_platform_build) :
 	c_aotus_game_engine_host(engine_platform_build, get_game_runtime(engine_platform_build))
 {
-	c_console::write_line_verbose("Init %s", __func__);
+	console_write_line("Init %s", __func__);
 
 	init_runtime_modifications();
 
@@ -41,7 +41,7 @@ c_halo3odst_game_host::c_halo3odst_game_host(s_engine_platform_build engine_plat
 
 c_halo3odst_game_host::~c_halo3odst_game_host()
 {
-	c_console::write_line_verbose("Deinit %s", __func__);
+	console_write_line("Deinit %s", __func__);
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky

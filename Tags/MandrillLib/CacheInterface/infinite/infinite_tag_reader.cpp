@@ -7,8 +7,11 @@ c_infinite_tag_reader::c_infinite_tag_reader(c_infinite_cache_cluster& cache_clu
 	cache_reader(cache_reader),
 	tag_groups(),
 	tag_instances(),
-	tag_instances_by_filename(),
-	tag_instance_infos()
+	tag_instances_by_filepath(),
+	file_entry_block_maps(),
+	num_file_entry_block_maps(),
+	tag_instance_infos(),
+	num_tag_instance_infos()
 {
 	BCS_RESULT rs;
 
@@ -30,6 +33,15 @@ c_infinite_tag_reader::c_infinite_tag_reader(c_infinite_cache_cluster& cache_clu
 
 c_infinite_tag_reader::~c_infinite_tag_reader()
 {
+	debug_point;
+
+	for (unsigned long file_entry_block_index = 0; file_entry_block_index < num_file_entry_block_maps; file_entry_block_index++)
+	{
+		c_infinite_file_entry_block_map* file_entry_block_map = file_entry_block_maps[file_entry_block_index];
+		delete file_entry_block_map;
+	}
+	delete[] file_entry_block_maps;
+	delete[] tag_instance_infos;
 }
 
 BCS_RESULT decompress_buffer_zlib(
@@ -60,35 +72,11 @@ BCS_RESULT decompress_buffer_zlib(
 	return BCS_S_OK;
 }
 
-BCS_RESULT decompress_buffer_oodle(
-	const void* compressed_buffer,
-	unsigned long compressed_buffer_size,
-	void* uncompressed_buffer,
-	unsigned long uncompressed_buffer_size)
-{
-	BCS_RESULT result = BCS_E_FAIL;
-	void* hack_tastic_buffer = _malloca(uncompressed_buffer_size + 4096);
-	auto decompress_result = Kraken_Decompress(static_cast<const byte*>(compressed_buffer), compressed_buffer_size, static_cast<byte*>(hack_tastic_buffer), uncompressed_buffer_size);
-	if (decompress_result == uncompressed_buffer_size)
-	{
-		memcpy(uncompressed_buffer, hack_tastic_buffer, uncompressed_buffer_size);
-		result = BCS_S_OK;
-	}
-	_freea(hack_tastic_buffer);
-	return result;
-
-}
-
-BCS_RESULT c_infinite_tag_reader::data_offset_fixup(unsigned long offset, unsigned long index, unsigned long& fixed_offset)
+BCS_RESULT c_infinite_tag_reader::offset_to_data(unsigned long long offset, const char*& data)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	e_cache_file_buffer_index start = _module_file_buffer_data0;
-	e_cache_file_buffer_index end = static_cast<e_cache_file_buffer_index>(_module_file_buffer_data0 + index);
-
-	fixed_offset = offset;
-
-	for (underlying(e_cache_file_buffer_index) buffer_index = start; buffer_index < end; buffer_index++)
+	for (underlying(e_cache_file_buffer_index) buffer_index = _module_file_buffer_data0; buffer_index < _module_file_buffer_data3; buffer_index++)
 	{
 		s_cache_file_buffer_info data_module_buffer;
 		if (BCS_FAILED(rs = cache_reader.get_buffer(static_cast<e_cache_file_buffer_index>(buffer_index), data_module_buffer)))
@@ -96,7 +84,15 @@ BCS_RESULT c_infinite_tag_reader::data_offset_fixup(unsigned long offset, unsign
 			return rs;
 		}
 
-		fixed_offset -= data_module_buffer.size;
+		if (offset > data_module_buffer.size)
+		{
+			offset -= data_module_buffer.size;
+		}
+		else
+		{
+			data = data_module_buffer.begin + offset;
+			return rs;
+		}
 	}
 
 	return rs;
@@ -112,105 +108,86 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 		return rs;
 	}
 
+	unsigned long file_entry_size;
+	if (BCS_FAILED(rs = this->cache_reader.get_module_file_entry_structure_size(file_entry_size)))
+	{
+		return rs;
+	}
+
+	unsigned long string_buffer_fixup_offset_hack;
+	if (BCS_FAILED(rs = cache_reader.get_string_buffer_fixup_offset_hack(string_buffer_fixup_offset_hack)))
+	{
+		return rs;
+	}
+
 	const infinite::s_module_file_header* module_file_header = reinterpret_cast<const infinite::s_module_file_header*>(root_module_buffer.begin);
-	const infinite::s_module_file_entry* file_entries = reinterpret_cast<const infinite::s_module_file_entry*>(module_file_header + 1);
-	const char* string_buffer = reinterpret_cast<const char*>(file_entries + module_file_header->num_files);
+	const char* file_entries = reinterpret_cast<const char*>(module_file_header + 1);
+	const char* string_buffer = reinterpret_cast<const char*>(file_entries + module_file_header->num_files * file_entry_size) + string_buffer_fixup_offset_hack;
 	const infinite::s_module_resource_entry* resource_entries = reinterpret_cast<const infinite::s_module_resource_entry*>(string_buffer + module_file_header->string_table_length);
 	const infinite::s_module_block_entry* block_entries = reinterpret_cast<const infinite::s_module_block_entry*>(resource_entries + module_file_header->num_resources);
-	//const char* module_file_data_section = reinterpret_cast<const char*>(block_entries + module_file_header->num_file_blocks);
 
+
+	file_entry_block_maps = new c_infinite_file_entry_block_map*[module_file_header->num_files];
 	for (long file_entry_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
 	{
-		const infinite::s_module_file_entry& file_entry = file_entries[file_entry_index];
-		if (file_entry.group_tag != blofeld::INVALID_TAG)
+		const char* file_entry_pointer = file_entries + file_entry_size * file_entry_index;
+		c_infinite_file_entry_block_map* file_entry_block_map = new c_infinite_file_entry_block_map(
+			file_entry_index,
+			cache_reader,
+			string_buffer,
+			block_entries,
+			file_entry_pointer,
+			cache_reader.engine_platform_build
+		);
+
+		file_entry_block_maps[file_entry_index] = file_entry_block_map;
+
+		if (file_entry_block_map->file_entry.group_tag != blofeld::INVALID_TAG)
 		{
+			num_tag_instance_infos++;
+		}
+	}
 
-			s_cache_file_buffer_info data_module_buffer;
-			if (BCS_FAILED(rs = cache_reader.get_buffer(static_cast<e_cache_file_buffer_index>(_module_file_buffer_data0 + file_entry.data_file_index), data_module_buffer)))
-			{
-				return rs;
-			}
-			const char* module_file_data_section = data_module_buffer.begin;
-
-			const char* name = string_buffer + file_entry.name_offset;
-			//c_console::write_line(name);
-			//c_console::write_line("0x%X", file_entry.unknown);
-
-			unsigned long x = file_entry.uncompressed_header_data_size + file_entry.uncompressed_tag_data_size + file_entry.uncompressed_resource_data_size + file_entry.unknown_data_size;
-			ASSERT(file_entry.flags.test(_module_file_flag_raw_file) || x == file_entry.total_uncompressed_size);
-
-			debug_point;
-
-			char* file_entry_data = new char[file_entry.total_uncompressed_size];
-			memset(file_entry_data, 0xAC, file_entry.total_uncompressed_size);
-			char* file_entry_block_data[16] = { file_entry_data };
-
-			unsigned long linear_offset = file_entry.data_offset;
-			unsigned long relative_offset;
-			ASSERT(BCS_SUCCEEDED(data_offset_fixup(linear_offset, file_entry.data_file_index, relative_offset)));
-
-			const char* file_entry_raw_data = module_file_data_section + relative_offset;
-
-			if (file_entry.flags.test(_module_file_flag_has_blocks))
-			{
-				for (long block_index = 0; block_index < file_entry.block_count; block_index++)
-				{
-					const infinite::s_module_block_entry& block_entry = block_entries[file_entry.first_block_index + block_index];
-
-					char* block_data = file_entry_data + block_entry.uncompressed_offset;
-					const char* block_raw_data = file_entry_raw_data + block_entry.compressed_offset;
-					if (block_entry.compressed)
-					{
-						BCS_RESULT decompress_result = decompress_buffer_oodle(block_raw_data, block_entry.compressed_size, block_data, block_entry.uncompressed_size);
-						ASSERT(BCS_SUCCEEDED(decompress_result));
-						debug_point;
-					}
-					else
-					{
-						ASSERT(block_entry.compressed_size == block_entry.uncompressed_size);
-						memcpy(block_data, block_raw_data, block_entry.uncompressed_size);
-						debug_point;
-					}
-
-					file_entry_block_data[block_index] = block_data;
-
-					debug_point;
-				}
-			}
-			else
-			{
-
-				ASSERT(file_entry.flags.test(_module_file_flag_raw_file));
-
-				if (file_entry.flags.test(_module_file_flag_compressed))
-				{
-					BCS_RESULT decompress_result = decompress_buffer_oodle(file_entry_raw_data, file_entry.total_compressed_size, file_entry_data, file_entry.total_uncompressed_size);
-					ASSERT(BCS_SUCCEEDED(decompress_result));
-					debug_point;
-				}
-				else
-				{
-					memcpy(file_entry_data, file_entry_raw_data, file_entry.total_uncompressed_size);
-				}
-			}
+	tag_instance_infos = new s_infinite_tag_instance_info[num_tag_instance_infos]{};
+	for (long file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
+	{
+		c_infinite_file_entry_block_map& file_entry_block_map = *file_entry_block_maps[file_entry_index];
+		infinite::c_infinite_generic_module_file_entry& file_entry = file_entry_block_map.file_entry;
+		if (file_entry_block_map.file_entry.group_tag != blofeld::INVALID_TAG) // tag file
+		{
+			ASSERT(file_entry.parent_file_index == -1);
+			s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
 
 			const blofeld::s_tag_group* tag_group = blofeld::get_group_tag_by_group_tag(cache_reader.engine_platform_build.engine_type, file_entry.group_tag);
 			ASSERT(tag_group != nullptr);
 
-			s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos.emplace_back();
-
-			tag_instance_info.file_entry = &file_entry;
-			tag_instance_info.file_name = name;
-			tag_instance_info.instance_name = name;
-			tag_instance_info.instance_data = file_entry_data;
-			for (unsigned long i = 0; i < __min(_countof(tag_instance_info.instance_block_data), _countof(file_entry_block_data)); i++) 
-				tag_instance_info.instance_block_data[i] = file_entry_block_data[i];
+			tag_instance_info.file_entry_block_map = &file_entry_block_map;
+			tag_instance_info.filepath = file_entry_block_map.filepath;
 			tag_instance_info.blofeld_tag_group = tag_group;
-			tag_instance_info.tag_group = nullptr;
-		}
 
+			file_entry_block_map.tag_index = tag_instance_index;
+
+			void* data;
+			BCS_RESULT rst1 = file_entry_block_map.map(data);
+			BCS_RESULT rst2 = file_entry_block_map.unmap(data);
+
+			tag_instance_index++;
+		}
 	}
 
+	for (long file_entry_index = 0, tag_instance_index = 0; file_entry_index < module_file_header->num_files; file_entry_index++)
+	{
+		c_infinite_file_entry_block_map& file_entry_block_map = *file_entry_block_maps[file_entry_index];
+		infinite::c_infinite_generic_module_file_entry& file_entry = file_entry_block_map.file_entry;
+
+		if (file_entry_block_map.file_entry.group_tag == blofeld::INVALID_TAG && file_entry.parent_file_index != -1) // resource file
+		{
+			c_infinite_file_entry_block_map& parent_file_entry_block_map = *file_entry_block_maps[file_entry.parent_file_index];
+			s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[parent_file_entry_block_map.tag_index];
+
+			parent_file_entry_block_map.resource_file_entry_block_maps.push_back(&file_entry_block_map);
+		}
+	}
 	debug_point;
 
 	return rs;
@@ -269,8 +246,9 @@ BCS_RESULT c_infinite_tag_reader::init_tag_instances()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (s_infinite_tag_instance_info& tag_instance_info : tag_instance_infos)
+	for(unsigned long tag_instance_index =0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
 	{
+		s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
 #if !INF_DONT_PROCESS_TAG_DATA
 		// skip null tags
 		if (tag_instance_info.instance_data == nullptr) // #NOTE: is this the best way to do this?
@@ -288,14 +266,12 @@ BCS_RESULT c_infinite_tag_reader::init_tag_instances()
 		c_infinite_tag_instance* tag_instance = new c_infinite_tag_instance(
 			cache_cluster,
 			*tag_group,
-			tag_instance_info.instance_name,
-			tag_instance_info.instance_data,
-			tag_instance_info.instance_block_data,
-			tag_instance_info.file_entry
+			tag_instance_info.filepath,
+			*tag_instance_info.file_entry_block_map
 		);
 
 		tag_instances.push_back(tag_instance);
-		tag_instances_by_filename[tag_instance_info.file_name] = tag_instance;
+		tag_instances_by_filepath[tag_instance_info.filepath] = tag_instance;
 	}
 
 	return rs;
@@ -334,13 +310,14 @@ BCS_RESULT c_infinite_tag_reader::get_tag_group_by_blofeld_tag_group(const blofe
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_infinite_tag_reader::get_instance_info_by_tag_filename(const char* filename, const s_infinite_tag_instance_info*& instance_info)
+BCS_RESULT c_infinite_tag_reader::get_instance_info_by_tag_filepath(const char* filepath, const s_infinite_tag_instance_info*& instance_info)
 {
-	BCS_VALIDATE_ARGUMENT(filename != nullptr);
+	BCS_VALIDATE_ARGUMENT(filepath != nullptr);
 
-	for (s_infinite_tag_instance_info& tag_instance_info : tag_instance_infos)
+	for (unsigned long tag_instance_index = 0; tag_instance_index < num_tag_instance_infos; tag_instance_index++)
 	{
-		if (strcmp(tag_instance_info.instance_name, filename) == 0)
+		s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
+		if (strcmp(tag_instance_info.filepath, filepath) == 0)
 		{
 			instance_info = &tag_instance_info;
 			return BCS_S_OK;
@@ -425,12 +402,18 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_cache_file_tag_index(unsig
 
 BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(unsigned long global_tag_id, c_tag_instance*& out_tag_instance)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	for (c_infinite_tag_instance* tag_instance : tag_instances)
 	{
-		if (tag_instance->file_entry->asset_checksum32 == global_tag_id)
+		long _global_tag_id;
+		if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))
+		{
+			return rs;
+		}
+		if (_global_tag_id == global_tag_id)
 		{
 			out_tag_instance = tag_instance;
-			return BCS_S_OK;
+			return rs;
 		}
 	}
 	return BCS_E_NOT_FOUND;
@@ -438,6 +421,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id(unsigned lon
 
 BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_tag(long global_tag_id, tag group_tag, c_tag_instance*& out_tag_instance)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	c_infinite_tag_group* tag_group;
 	if (BCS_SUCCEEDED(get_tag_group_by_group_tag(group_tag, tag_group)))
 	{
@@ -447,10 +431,19 @@ BCS_RESULT c_infinite_tag_reader::get_tag_instance_by_global_tag_id_and_group_ta
 			// this is better than nothing
 			if (&tag_instance->tag_group == tag_group) 
 			{
-				if (tag_instance->file_entry->asset_checksum32 == global_tag_id)
+				if (strcmp(tag_instance->instance_name, "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model") == 0)
+				{
+					debug_point;
+				}
+				long _global_tag_id;
+				if (BCS_FAILED(rs = tag_instance->get_global_tag_id(_global_tag_id)))
+				{
+					return rs;
+				}
+				if (_global_tag_id == global_tag_id)
 				{
 					out_tag_instance = tag_instance;
-					return BCS_S_OK;
+					return rs;
 				}
 			}
 		}

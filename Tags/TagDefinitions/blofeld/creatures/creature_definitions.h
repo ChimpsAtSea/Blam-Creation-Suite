@@ -20,11 +20,8 @@ namespace blofeld
 
 	extern s_tag_struct_definition creature_struct_definition; // tag group
 
-	extern c_versioned_string_list creature_big_battle_definition_flags_strings;
 	extern s_string_list_definition creature_big_battle_definition_flags;
-	extern c_versioned_string_list creature_definition_flags_strings;
 	extern s_string_list_definition creature_definition_flags;
-	extern c_versioned_string_list unit_default_teams_strings;
 	extern s_string_list_definition unit_default_teams;
 
 

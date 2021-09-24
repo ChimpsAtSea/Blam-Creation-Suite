@@ -11,24 +11,16 @@ enum e_settings_section
 	_settings_section_mandrill
 };
 
-class c_settings
-{
-public:
-	static constexpr char k_settings_path[MAX_PATH] = ".\\Settings.ini";
-	static constexpr wchar_t k_settings_path_wide[MAX_PATH] = L".\\Settings.ini";
+BCS_DEBUG_API bool settings_read_boolean(e_settings_section section, const char* name, bool defaultValue = false);
+BCS_DEBUG_API int settings_read_integer(e_settings_section section, const char* name, int defaultValue = 0);
+BCS_DEBUG_API float settings_read_float(e_settings_section section, const char* name, float defaultValue = 0.0);
+BCS_DEBUG_API unsigned long settings_read_string(e_settings_section section, const char* name, char* buffer, unsigned long buffer_size, const char* default_value = nullptr);
+BCS_DEBUG_API unsigned long settings_read_wstring(e_settings_section section, const char* name, wchar_t* buffer, unsigned long buffer_size, const wchar_t* default_value = nullptr);
 
-	static bool read_boolean(e_settings_section section, const char* name, bool defaultValue = false);
-	static int read_integer(e_settings_section section, const char* name, int defaultValue = 0);
-	static float read_float(e_settings_section section, const char* name, float defaultValue = 0.0);
-	static uint32_t read_string(e_settings_section section, const char* name, char* buffer, uint32_t buffer_size, const char* default_value = nullptr);
-	static uint32_t read_wstring(e_settings_section section, const char* name, wchar_t* buffer, uint32_t buffer_size, const wchar_t* default_value = nullptr);
+BCS_DEBUG_API bool settings_write_boolean(e_settings_section section, const char* name, bool value);
+BCS_DEBUG_API bool settings_write_integer(e_settings_section section, const char* name, int value);
+BCS_DEBUG_API bool settings_write_float(e_settings_section section, const char* name, float value);
+BCS_DEBUG_API bool settings_write_string(e_settings_section section, const char* name, const char* value);
+BCS_DEBUG_API bool settings_write_wstring(e_settings_section section, const char* name, const wchar_t* value);
 
-	static bool write_boolean(e_settings_section section, const char* name, bool value);
-	static bool write_integer(e_settings_section section, const char* name, int value);
-	static bool write_float(e_settings_section section, const char* name, float value);
-	static bool write_string(e_settings_section section, const char* name, const char* value);
-	static bool write_wstring(e_settings_section section, const char* name, const wchar_t* value);
-
-	static const char* get_section_name_string(e_settings_section section);
-};
-
+BCS_DEBUG_API const char* settings_get_section_name_string(e_settings_section section);

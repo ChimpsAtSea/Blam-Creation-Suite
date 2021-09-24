@@ -20,13 +20,9 @@ namespace blofeld
 	extern s_tag_array_definition area_cluster_occupancy_bitvector_array;
 	extern s_tag_struct_definition NavMeshAttachmentsStruct;
 
-	extern c_versioned_string_list area_flags_strings;
 	extern s_string_list_definition area_flags;
-	extern c_versioned_string_list generate_flags_strings;
 	extern s_string_list_definition generate_flags;
-	extern c_versioned_string_list generate_preset_enum_strings;
 	extern s_string_list_definition generate_preset_enum;
-	extern c_versioned_string_list zone_flags_strings;
 	extern s_string_list_definition zone_flags;
 
 

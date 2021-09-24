@@ -28,15 +28,10 @@ namespace blofeld
 	extern s_tag_array_definition runtime_queryable_properties$3_array;
 	extern s_tag_struct_definition material_struct;
 
-	extern c_versioned_string_list layerBlendModeEnum_strings;
 	extern s_string_list_definition layerBlendModeEnum;
-	extern c_versioned_string_list materialPostprocessFlags_strings;
 	extern s_string_list_definition materialPostprocessFlags;
-	extern c_versioned_string_list materialFlags_strings;
 	extern s_string_list_definition materialFlags;
-	extern c_versioned_string_list materialRenderFlags_strings;
 	extern s_string_list_definition materialRenderFlags;
-	extern c_versioned_string_list MaterialTransparentShadowPolicyEnum_strings;
 	extern s_string_list_definition MaterialTransparentShadowPolicyEnum;
 
 

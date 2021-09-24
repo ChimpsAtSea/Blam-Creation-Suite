@@ -194,7 +194,7 @@ BCS_RESULT c_halo4_bitmap_texture_interop_resource::get_sub_bitmap_index_by_reso
 	using namespace blofeld::xbox360_gen3;
 
 	const void* tag_instance_data = nullptr;
-	ASSERT(BCS_SUCCEEDED(tag_instance.get_data(tag_instance_data)));
+	ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_instance_data)));
 
 	s_bitmap_block_struct_definition bitmap = *static_cast<const s_bitmap_block_struct_definition*>(tag_instance_data);
 	byteswap(bitmap);

@@ -109,9 +109,7 @@ namespace blofeld
 	extern s_tag_struct_definition shader_contrail_struct_definition; // tag group
 	extern s_tag_struct_definition material_type_struct;
 
-	extern c_versioned_string_list global_screen_shader_render_layer_enum_strings;
 	extern s_string_list_definition global_screen_shader_render_layer_enum;
-	extern c_versioned_string_list global_screen_shader_flags_definition_strings;
 	extern s_string_list_definition global_screen_shader_flags_definition;
 
 

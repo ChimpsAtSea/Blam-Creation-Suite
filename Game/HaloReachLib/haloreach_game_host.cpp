@@ -32,7 +32,7 @@ void register_haloreachlib()
 c_haloreach_game_host::c_haloreach_game_host(s_engine_platform_build engine_platform_build) :
 	c_aotus_game_engine_host(engine_platform_build, get_game_runtime(engine_platform_build))
 {
-	c_console::write_line_verbose("Init %s", __func__);
+	console_write_line("Init %s", __func__);
 
 	init_runtime_modifications();
 
@@ -48,7 +48,7 @@ c_haloreach_game_host::c_haloreach_game_host(s_engine_platform_build engine_plat
 
 c_haloreach_game_host::~c_haloreach_game_host()
 {
-	c_console::write_line_verbose("Deinit %s", __func__);
+	console_write_line("Deinit %s", __func__);
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
 	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
@@ -178,7 +178,7 @@ void c_haloreach_game_host::update_camera_data()
 
 void c_haloreach_game_host::draw_script_debug_ui()
 {
-	static const bool k_enable_script_debug = c_command_line::has_command_line_arg("-scriptdebug");
+	static const bool k_enable_script_debug = BCS_SUCCEEDED(command_line_has_argument("scriptdebug");
 	if (!k_enable_script_debug)
 	{
 		return;
@@ -210,7 +210,7 @@ void c_haloreach_game_host::draw_script_debug_ui()
 
 void c_haloreach_game_host::draw_camera_debug_ui()
 {
-	static const bool k_enable_camera_debug = c_command_line::has_command_line_arg("-cameradebug");
+	static const bool k_enable_camera_debug = BCS_SUCCEEDED(command_line_has_argument("cameradebug");
 	if (!k_enable_camera_debug)
 	{
 		return;

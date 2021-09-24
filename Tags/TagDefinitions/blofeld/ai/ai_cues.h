@@ -38,15 +38,10 @@ namespace blofeld
 	extern s_tag_struct_definition cue_stimulus_distribution_struct;
 	extern s_tag_struct_definition cue_payload_struct;
 
-	extern c_versioned_string_list cue_flags_strings;
 	extern s_string_list_definition cue_flags;
-	extern c_versioned_string_list cue_template_flags_strings;
 	extern s_string_list_definition cue_template_flags;
-	extern c_versioned_string_list quick_cue_flags_strings;
 	extern s_string_list_definition quick_cue_flags;
-	extern c_versioned_string_list distribution_character_flags_strings;
 	extern s_string_list_definition distribution_character_flags;
-	extern c_versioned_string_list combat_cue_preference_enum_strings;
 	extern s_string_list_definition combat_cue_preference_enum;
 
 

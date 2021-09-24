@@ -30,23 +30,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -92,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;Shlwapi.lib;tbb.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
@@ -140,7 +144,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Version.lib;TagDefinitions.lib;Shlwapi.lib;tbb_static.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Version.lib;TagDefinitions.lib;Shlwapi.lib;tbb.lib;SymbolsLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
@@ -175,7 +179,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="blamlib_string_parser.cpp" />
     <ClCompile Include="custom_codegen.cpp" />
+    <ClCompile Include="filesystem_helper.cpp" />
     <ClCompile Include="high_level_tag_source_generator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="low_level_tag_source_generator.cpp" />
@@ -189,7 +195,9 @@
     <ClCompile Include="virtual_tag_source_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blamlib_string_parser.h" />
     <ClInclude Include="custom_codegen.h" />
+    <ClInclude Include="filesystem_helper.h" />
     <ClInclude Include="high_level_tag_source_generator.h" />
     <ClInclude Include="low_level_tag_source_generator.h" />
     <ClInclude Include="structure_relationship_node.h" />

@@ -23,9 +23,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition detail_object_collection_struct_definition; // tag group
 
-	extern c_versioned_string_list detail_object_collection_type_enum_definition_strings;
 	extern s_string_list_definition detail_object_collection_type_enum_definition;
-	extern c_versioned_string_list detail_object_type_flags_definition_strings;
 	extern s_string_list_definition detail_object_type_flags_definition;
 
 	extern s_tag_reference_definition global_detail_object_collection_reference;

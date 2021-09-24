@@ -21,11 +21,8 @@ namespace blofeld
 
 	extern s_tag_struct_definition flock_struct_definition; // tag group
 
-	extern c_versioned_string_list flock_source_flags_strings;
 	extern s_string_list_definition flock_source_flags;
-	extern c_versioned_string_list destination_type_enum_strings;
 	extern s_string_list_definition destination_type_enum;
-	extern c_versioned_string_list flock_flags_strings;
 	extern s_string_list_definition flock_flags;
 
 

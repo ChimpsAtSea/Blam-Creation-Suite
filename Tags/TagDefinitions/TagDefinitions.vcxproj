@@ -168,6 +168,7 @@
     <ClCompile Include="blofeld\halo1.cpp" />
     <ClCompile Include="blofeld\halo2.cpp" />
     <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp" />
+    <ClCompile Include="slipspace\infinite_flight1.cpp" />
     <ClCompile Include="blofeld\inline_files.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_definitions.cpp" />
     <ClCompile Include="blofeld\interface\chud\chud_widgets.cpp" />
@@ -325,12 +326,12 @@
     <ClCompile Include="blofeld\weather\weather_control.cpp" />
     <ClCompile Include="blofeld\weather\weather_definition.cpp" />
     <ClCompile Include="blofeld\__unknown\tag_references.cpp" />
-    <ClCompile Include="blofeld\infinite.cpp" />
+    <ClCompile Include="slipspace\infinite.cpp" />
+    <ClCompile Include="slipspace\infinite_flight2.cpp" />
     <ClCompile Include="tag_byteswap.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
-    <ClCompile Include="blamlib_string_parser.cpp" />
     <ClCompile Include="tagdefinitions-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -340,9 +341,9 @@
     <ClCompile Include="types\tag_block_definition.cpp" />
     <ClCompile Include="types\tag_group.cpp" />
     <ClCompile Include="types\tag_struct_definition.cpp" />
+    <ClCompile Include="definition_migration.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="blamlib_string_parser.h" />
     <ClInclude Include="blofeld\ai\ai.h" />
     <ClInclude Include="blofeld\ai\ai_cues.h" />
     <ClInclude Include="blofeld\ai\ai_dialogue_definitions.h" />
@@ -486,6 +487,7 @@
     <ClInclude Include="blofeld\halo1.h" />
     <ClInclude Include="blofeld\halo2.h" />
     <ClInclude Include="blofeld\hs\hs_scenario_definitions.h" />
+    <ClInclude Include="slipspace\infinite_flight1.h" />
     <ClInclude Include="blofeld\interface\chud\chud_definitions.h" />
     <ClInclude Include="blofeld\interface\chud\chud_widgets.h" />
     <ClInclude Include="blofeld\interface\chud\polyart\polyartbasedefinitions.h" />
@@ -645,8 +647,9 @@
     <ClInclude Include="blofeld\weather\weather_control.h" />
     <ClInclude Include="blofeld\weather\weather_definition.h" />
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
-    <ClInclude Include="blofeld\infinite.h" />
+    <ClInclude Include="slipspace\infinite.h" />
     <ClInclude Include="macaque_field_type_override.h" />
+    <ClInclude Include="slipspace\infinite_flight2.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
@@ -662,10 +665,9 @@
     <ClInclude Include="types\tag_interop_definition.h" />
     <ClInclude Include="types\tag_reference_definition.h" />
     <ClInclude Include="types\tag_struct_definition.h" />
+    <ClInclude Include="definition_migration.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="blamlib_string_parser.cpp.inl" />
-    <None Include="blamlib_string_parser.h.inl" />
     <None Include="blofeld\sound\looping_sound_definition.inl" />
     <None Include="blofeld\sound\looping_sound_detail_definition.inl" />
     <None Include="blofeld\sound\looping_sound_track_definition.inl" />
@@ -678,8 +680,10 @@
     <None Include="blofeld\tag_groups.halo3odst.inl" />
     <None Include="blofeld\tag_groups.halo4.inl" />
     <None Include="blofeld\tag_groups.haloreach.inl" />
-    <None Include="blofeld\tag_groups.infinite.inl" />
+    <None Include="slipspace\tag_groups.infinite.inl" />
+    <None Include="slipspace\tag_groups.infinite_flight1.inl" />
     <None Include="blofeld\tag_groups.stubbs.inl" />
+    <None Include="slipspace\tag_groups.infinite_flight2.inl" />
     <None Include="types\tag_field.ctor.inl" />
   </ItemGroup>
   <ItemGroup>

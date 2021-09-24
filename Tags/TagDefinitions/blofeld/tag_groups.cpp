@@ -10,7 +10,7 @@
 #include "tag_groups.halo4.inl"
 #include "tag_groups.gen3_xbox360.inl"
 #include "tag_groups.groundhog.inl"
-#include "tag_groups.infinite.inl"
+#include <slipspace/tag_groups.infinite.inl>
 
 namespace blofeld
 {

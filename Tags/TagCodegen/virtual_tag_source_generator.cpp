@@ -43,7 +43,7 @@ void c_virtual_tag_source_generator::generate_header() const
 
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -60,10 +60,10 @@ void c_virtual_tag_source_generator::generate_header() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				current_field->name,
 				current_field->field_type == blofeld::_field_block,
-				field_name_unique_counter_ptr);
+				&field_name_unique_counter);
 
 			if (current_field->field_type > _field_type_non_standard)
 			{
@@ -144,24 +144,12 @@ void c_virtual_tag_source_generator::generate_header() const
 
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.h";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.h";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }
 
 void c_virtual_tag_source_generator::generate_source() const
@@ -226,7 +214,7 @@ void c_virtual_tag_source_generator::generate_source() const
 
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*current_field, engine_platform_build, field_skip_count))
 			{
 				current_field += field_skip_count;
@@ -243,10 +231,10 @@ void c_virtual_tag_source_generator::generate_source() const
 				break;
 			}
 
-			c_blamlib_string_parser field_formatter = c_blamlib_string_parser(
+			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				current_field->name,
 				current_field->field_type == blofeld::_field_block,
-				field_name_unique_counter_ptr);
+				&field_name_unique_counter);
 
 			switch (current_field->field_type)
 			{
@@ -284,22 +272,10 @@ void c_virtual_tag_source_generator::generate_source() const
 	}
 
 	std::string source_code = stream.str();
-	std::string output_filepath = c_command_line::get_command_line_arg("-output") + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.cpp";
-	bool write_output = true;
-	size_t existing_file_size;
-	const char* existing_file_data;
-	if(filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
-	{
-		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
-		{
-			write_output = false;
-		}
-		delete[] existing_file_data;
-	}
+	const char* output;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("output", output)));
+	std::string output_filepath = std::string(output) + "Virtual/virtual_" + namespace_name + "/" + namespace_name + "_virtual.cpp";
 
-	if (write_output)
-	{
-		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-		ASSERT(filesystem_write_file_from_memory_result);
-	}
+	BCS_RESULT rs = write_output_with_logging(output_filepath.c_str(), source_code.data(), source_code.size());
+	ASSERT(BCS_SUCCEEDED(rs));
 }

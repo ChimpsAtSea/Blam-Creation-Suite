@@ -1,10 +1,9 @@
 #include "mandrilllib-private-pch.h"
 
-c_infinite_ucs_reader::c_infinite_ucs_reader(const void** instance_block_data) :
-	instance_block_data(),
-	header_data(instance_block_data[0]),
-	tag_data(instance_block_data[1]),
-	resource_data(),
+c_infinite_ucs_reader::c_infinite_ucs_reader(const void* header_data, const void* tag_data, const void* resource_data) :
+	header_data(header_data),
+	tag_data(tag_data),
+	resource_data(resource_data),
 	ucs_header(),
 	tag_dependency_list(),
 	nuggets(),
@@ -14,16 +13,13 @@ c_infinite_ucs_reader::c_infinite_ucs_reader(const void** instance_block_data) :
 	string_table(),
 	zoneset_data(),
 	extra_data(),
-	extra_data_size()
+	extra_data_size(),
+	root_tag_block_entry_index(),
+	tag_group_tag_block_entry(),
+	root_nugget(),
+	root_tag_block_data()
 {
 	ucs_header = static_cast<const s_infinite_ucs_header*>(header_data);
-
-	for (unsigned long index = 0; ; index++)
-	{
-		const void* value = instance_block_data[index + 2];
-		if (!value) break;
-		resource_data[index] = value;
-	}
 
 	tag_dependency_list = reinterpret_cast<const s_infinite_ucs_tag_dependency_list*>(ucs_header + 1);
 	nuggets = reinterpret_cast<const s_infinite_ucs_nugget*>(tag_dependency_list + ucs_header->tag_dependency_count);
@@ -38,9 +34,35 @@ c_infinite_ucs_reader::c_infinite_ucs_reader(const void** instance_block_data) :
 	extra_data_size = static_cast<unsigned long>(reinterpret_cast<intptr_t>(tag_data) - reinterpret_cast<intptr_t>(extra_data));
 
 	debug_point;
+
+	root_tag_block_entry_index = get_root_tag_block_entry_index();
+	ASSERT(root_tag_block_entry_index >= 0);
+	tag_group_tag_block_entry = &tag_block_instances[root_tag_block_entry_index];
+	ASSERT(tag_group_tag_block_entry != nullptr);
+	ASSERT(tag_group_tag_block_entry->nugget_index >= 0);
+
+	root_nugget = &nuggets[tag_group_tag_block_entry->nugget_index];
+
+	const char* root_tag_data = static_cast<const char*>(tag_data);
+	root_tag_block_data = root_tag_data + root_nugget->offset;
 }
 
 c_infinite_ucs_reader::~c_infinite_ucs_reader()
 {
 
+}
+
+long c_infinite_ucs_reader::get_root_tag_block_entry_index() const
+{
+	for (long struct_index = 0; struct_index < ucs_header->tag_block_count; struct_index++)
+	{
+		const s_infinite_ucs_tag_block_data& struct_entry = tag_block_instances[struct_index];
+
+		if (struct_entry.type == _infinite_ucs_tag_block_type_tag_group)
+		{
+			return struct_index;
+		}
+
+	}
+	return -1;
 }

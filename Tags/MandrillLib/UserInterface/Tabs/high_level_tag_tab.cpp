@@ -44,9 +44,9 @@ void c_high_level_tag_tab::render_impl()
 
 	if (ImGui::BeginTabBar("##TagEditorTabs", ImGuiTabBarFlags_None)) // each tag
 	{
-		for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+		for (c_mandrill_tab* tab : children)
 		{
-			tab.render(next_selected_tab == &tab);
+			tab->render(next_selected_tab == tab);
 		}
 		next_selected_tab = nullptr;
 

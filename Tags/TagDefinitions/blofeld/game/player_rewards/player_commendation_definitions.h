@@ -28,13 +28,9 @@ namespace blofeld
 	extern s_tag_struct_definition commendation_globals_definition_struct_definition; // tag group
 	extern s_tag_struct_definition commendationAggregatorDependent_struct;
 
-	extern c_versioned_string_list commendationCategoryEnum_strings;
 	extern s_string_list_definition commendationCategoryEnum;
-	extern c_versioned_string_list commendationFlags_strings;
 	extern s_string_list_definition commendationFlags;
-	extern c_versioned_string_list commendationSubcategoryEnum_strings;
 	extern s_string_list_definition commendationSubcategoryEnum;
-	extern c_versioned_string_list aggregatorDependentTypeEnumDefinition_strings;
 	extern s_string_list_definition aggregatorDependentTypeEnumDefinition;
 
 

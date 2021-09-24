@@ -4,47 +4,61 @@
 namespace blofeld
 {
 
-	c_constant::c_constant(const char* name, uint32_t constant_value) :
+	c_constant::c_constant(const char* name, long constant_value) :
+		name(name),
+		num_values(),
+		constant_value(constant_value),
 		values()
 	{
-		for (std::pair<const char*, uint32_t>& value : values)
+		
+	}
+
+	c_constant::c_constant(std::initializer_list<std::pair<s_engine_platform_build, long>> list) :
+		c_constant(nullptr, list)
+	{
+
+	}
+
+	c_constant::c_constant(const char* name, std::initializer_list<std::pair<s_engine_platform_build, long>> list) :
+		name(name),
+		num_values(),
+		constant_value(),
+		values()
+	{
+		for (const std::pair<s_engine_platform_build, long>& value : list)
 		{
-			value = { name, constant_value };
+			if (num_values >= k_max_values)
+			{
+				FATAL_ERROR("Exceeded maximum values for c_constant");
+			}
+
+			values[num_values] = { value.first, value.second };
+
+			num_values++;
 		}
 	}
 
-	c_constant::c_constant(const char* name, std::initializer_list<std::pair<e_engine_type, uint32_t>> list) :
-		values()
+	long c_constant::operator()(s_engine_platform_build engine_platform_build)
 	{
-		for (const std::pair<e_engine_type, uint32_t>& value : list)
+		long result = constant_value;
+		for (unsigned long index = 0; index < num_values; index++)
 		{
-			for (uint32_t engine_type = value.first; engine_type < k_number_of_engine_types; engine_type++)
+			if (values[index].engine_platform_build <= engine_platform_build)
 			{
-				values[engine_type] = { name, value.second };
+				result = values[index].value;
 			}
 		}
-	}
-
-	c_constant::c_constant(std::initializer_list<std::pair<e_engine_type, std::pair<const char*, uint32_t>>> list) :
-		values()
-	{
-		for (const std::pair<e_engine_type, std::pair<const char*, uint32_t>>& value : list)
-		{
-			for (uint32_t engine_type = value.first; engine_type < k_number_of_engine_types; engine_type++)
-			{
-				values[engine_type] = value.second;
-			}
-		}
+		return result;
 	}
 
 	c_constant c_cinematic_shot_flags::k_flag_chunk_count =
 	{
 		"c_cinematic_shot_flags::k_flag_chunk_count",
 		{
-			{ _engine_type_not_set, 1 },
-			{ _engine_type_haloreach, 2 },
-			{ _engine_type_halo4, 2 },
-			{ _engine_type_gen3_xbox360, 2 }
+			{ { _engine_type_not_set }, 1 },
+			{ { _engine_type_haloreach }, 2 },
+			{ { _engine_type_halo4 }, 2 },
+			{ { _engine_type_gen3_xbox360 }, 2 }
 		}
 	};
 
@@ -52,10 +66,10 @@ namespace blofeld
 	{
 		"c_node_flags::k_flag_chunk_count",
 		{
-			{ _engine_type_not_set, 2 },
-			{ _engine_type_halo3, 8 },
-			{ _engine_type_halo4, 8 },
-			{ _engine_type_gen3_xbox360, 8 }
+			{ { _engine_type_not_set }, 2 },
+			{ { _engine_type_halo3 }, 8 },
+			{ { _engine_type_halo4 }, 8 },
+			{ { _engine_type_gen3_xbox360 }, 8 }
 		}
 	};
 
@@ -107,9 +121,9 @@ namespace blofeld
 	{
 		"MAXIMUM_REGIONS_PER_MODEL",
 		{
-			{ _engine_type_not_set, 16 },
-			{ _engine_type_halo4, 32 },
-			{ _engine_type_gen3_xbox360, 32 }
+			{ { _engine_type_not_set }, 16 },
+			{ { _engine_type_halo4 }, 32 },
+			{ { _engine_type_gen3_xbox360 }, 32 }
 		}
 	};
 
@@ -394,10 +408,10 @@ namespace blofeld
 	{
 		"k_grenade_globals_count",
 		{
-			{ _engine_type_not_set, 2 },
-			{ _engine_type_halo3, 4 },
-			{ _engine_type_halo3odst, 4 },
-			{ _engine_type_haloreach, 2 }, 
+			{ { _engine_type_not_set }, 2 },
+			{ { _engine_type_halo3 }, 4 },
+			{ { _engine_type_halo3odst }, 4 },
+			{ { _engine_type_haloreach }, 2 },
 		}
 	};
 	c_constant k_interleaved_texture_count = { "k_interleaved_texture_count", 2 };
@@ -529,10 +543,10 @@ namespace blofeld
 	{ 
 		"k_maximum_designer_zone_count", 
 		{
-			{ _engine_type_not_set, 32 },
-			{ _engine_type_haloreach, 32 }, // #NOTE: Deduced as the block flags in cache_file_zone_set_zone_usage_block for reach is only 32bits
-			{ _engine_type_halo4, 64 },
-			{ _engine_type_gen3_xbox360, 64 },
+			{ { _engine_type_not_set }, 32 },
+			{ { _engine_type_haloreach }, 32 }, // #NOTE: Deduced as the block flags in cache_file_zone_set_zone_usage_block for reach is only 32bits
+			{ { _engine_type_halo4 }, 64 },
+			{ { _engine_type_gen3_xbox360 }, 64 },
 		}
 	};
 	c_constant e_scriptableLightRigMax = { "e_scriptableLightRigMax", 128 };
@@ -551,10 +565,10 @@ namespace blofeld
 	{
 		"k_numberOfResourcePriorities",
 		{
-			{ _engine_type_not_set, 12 },
-			{ _engine_type_haloreach, 12 },
-			{ _engine_type_halo4, 17 },
-			{ _engine_type_gen3_xbox360, 17 },
+			{ { _engine_type_not_set }, 12 },
+			{ { _engine_type_haloreach }, 12 },
+			{ { _engine_type_halo4 }, 17 },
+			{ { _engine_type_gen3_xbox360 }, 17 },
 		}
 	};
 	c_constant k_maximum_cells_per_squad = { "k_maximum_cells_per_squad", 10 };
@@ -596,10 +610,10 @@ namespace blofeld
 	{
 		"k_numberOfResourcePriorities",
 		{
-			{ _engine_type_not_set, 2 },
-			{ _engine_type_haloreach, 2 },
-			{ _engine_type_halo4, 3 },
-			{ _engine_type_gen3_xbox360, 3 },
+			{ { _engine_type_not_set }, 2 },
+			{ { _engine_type_haloreach }, 2 },
+			{ { _engine_type_halo4 }, 3 },
+			{ { _engine_type_gen3_xbox360 }, 3 },
 		}
 	};
 
@@ -672,10 +686,10 @@ namespace blofeld
 	{ 
 		"k_model_flag_chunk_count",
 		{
-			{ _engine_type_not_set, 2 },
-			{ _engine_type_haloreach, 2 },
-			{ _engine_type_halo4, 8 },
-			{ _engine_type_gen3_xbox360, 8 },
+			{ { _engine_type_not_set }, 2 },
+			{ { _engine_type_haloreach }, 2 },
+			{ { _engine_type_halo4 }, 8 },
+			{ { _engine_type_gen3_xbox360 }, 8 },
 		}
 	};
 	

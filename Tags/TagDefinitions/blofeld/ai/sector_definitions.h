@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_struct_definition user_edge_block_struct_definition; // user_edge_block
 
 
-	extern c_versioned_string_list MobileNavMeshFlagsDefinition_strings;
 	extern s_string_list_definition MobileNavMeshFlagsDefinition;
 
 

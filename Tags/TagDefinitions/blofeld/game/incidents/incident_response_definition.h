@@ -13,11 +13,8 @@ namespace blofeld
 	extern s_tag_struct_definition specialized_incident_fanfare_block_struct_definition; // specialized_incident_fanfare_block
 
 
-	extern c_versioned_string_list incident_fanfare_event_input_enum_definition_strings;
 	extern s_string_list_definition incident_fanfare_event_input_enum_definition;
-	extern c_versioned_string_list incident_fanfare_queue_type_strings;
 	extern s_string_list_definition incident_fanfare_queue_type;
-	extern c_versioned_string_list incident_fanfare_event_flags_definition_strings;
 	extern s_string_list_definition incident_fanfare_event_flags_definition;
 
 

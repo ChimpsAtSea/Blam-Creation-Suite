@@ -579,7 +579,7 @@ void h1_write_tag_types_header(std::stringstream& s, std::vector<c_h1_pseudo_fie
 			c_h1_string_list_definition& string_list_definition = *tag_field->string_list_definition;
 			if (!is_string_list_exported(string_list_definition))
 			{
-				s << "\textern c_versioned_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
+				//s << "\t//extern t_string_list " << string_list_definition.code_name << "_strings;" << std::endl;
 				s << "\textern s_string_list_definition " << string_list_definition.code_name << ";" << std::endl;
 			}
 		}

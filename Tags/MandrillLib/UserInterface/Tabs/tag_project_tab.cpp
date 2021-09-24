@@ -1,7 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-using namespace DirectX;
-
 c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag_project, c_mandrill_tab& parent) :
 	c_mandrill_tab("Tag Project", "Tag Project", &parent, false),
 	tag_project(tag_project),
@@ -9,7 +7,11 @@ c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag
 	project_filepath(filepath),
 	search_buffer()
 {
-	
+	const char* auto_open_tag;
+	if (BCS_SUCCEEDED(command_line_get_argument("autotag", auto_open_tag)))
+	{
+		open_tag_by_search_name(auto_open_tag);
+	}
 }
 
 c_tag_project_tab::~c_tag_project_tab()
@@ -39,9 +41,9 @@ void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 
 c_high_level_tag_tab& c_tag_project_tab::open_tag_interface_tab(h_tag& tag)
 {
-	for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+	for (c_mandrill_tab* tab : children)
 	{
-		if (c_high_level_tag_tab* high_level_tag_tab = dynamic_cast<c_high_level_tag_tab*>(&tab))
+		if (c_high_level_tag_tab* high_level_tag_tab = dynamic_cast<c_high_level_tag_tab*>(tab))
 		{
 			if (&high_level_tag_tab->get_tag() == &tag)
 			{
@@ -116,6 +118,14 @@ void c_tag_project_tab::render_tags_list_search()
 			open_tag_interface_tab(*tag);
 			search_selected_tag_interface = nullptr;
 		}
+		if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
+		{
+			if (ImGui::MenuItem("Copy as path")) 
+			{
+				clipboard_set_text(tag->tag_filepath);
+			}
+			ImGui::EndPopup();
+		}
 	}
 }
 
@@ -123,10 +133,10 @@ void c_tag_project_tab::render_tags_list_tree()
 {
 	for (h_group* group : tag_project.groups)
 	{
-		const uint32_t tag_interfaces_count = static_cast<uint32_t>(group->tags.size());
+		const unsigned long tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
 
 		const char* group_name = group->tag_group.name;
-		const char* group_short_name = group->tag_group.group_tag_short_string.c_str();
+		const char* group_short_name = group->tag_group.group_tag_short_string;
 
 		bool display_group = tag_interfaces_count > 0;
 
@@ -147,6 +157,14 @@ void c_tag_project_tab::render_tags_list_tree()
 					{
 						open_tag_interface_tab(*tag);
 					}
+				}
+				if (ImGui::BeginPopupContextItem()) // <-- This is using IsItemHovered()
+				{
+					if (ImGui::MenuItem("Copy as path"))
+					{
+						clipboard_set_text(tag->tag_filepath);
+					}
+					ImGui::EndPopup();
 				}
 			}
 
@@ -222,7 +240,7 @@ void c_tag_project_tab::render_impl()
 		if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
 		{
 			c_mandrill_user_interface::explorer_bar_width = ImGui::GetItemRectSize().x + 16.0f;
-			c_settings::write_float(_settings_section_mandrill, c_mandrill_user_interface::k_explorer_bar_width, c_mandrill_user_interface::explorer_bar_width);
+			settings_write_float(_settings_section_mandrill, c_mandrill_user_interface::k_explorer_bar_width, c_mandrill_user_interface::explorer_bar_width);
 		}
 		if (c_mandrill_user_interface::explorer_bar_width < 200.0f)
 		{
@@ -276,17 +294,17 @@ void c_tag_project_tab::render_menu_gui_impl(e_menu_render_type menu_render_type
 	{
 		if (ImGui::BeginMenu("Project"))
 		{
-			for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+			for (c_mandrill_tab* tab : children)
 			{
-				tab.render_menu_gui(_menu_render_type_child);
+				tab->render_menu_gui(_menu_render_type_child);
 			}
 
 			ImGui::EndMenu();
 		}
 
-		for (c_mandrill_tab& tab : c_reference_loop(children.data(), children.size()))
+		for (c_mandrill_tab* tab : children)
 		{
-			tab.render_menu_gui(_menu_render_type_root);
+			tab->render_menu_gui(_menu_render_type_root);
 		}
 	}
 }

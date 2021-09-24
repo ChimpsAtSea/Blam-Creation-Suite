@@ -17,7 +17,6 @@ namespace blofeld
 	extern s_tag_struct_definition formation_point_definition_block_struct_definition; // formation_point_definition_block
 
 
-	extern c_versioned_string_list formation_primitive_flags_strings;
 	extern s_string_list_definition formation_primitive_flags;
 
 

@@ -27,9 +27,7 @@ namespace blofeld
 	extern s_tag_struct_definition collision_model_bsp_struct;
 	extern s_tag_struct_definition collision_model_resource_struct;
 
-	extern c_versioned_string_list pathfinding_sphere_flags_strings;
 	extern s_string_list_definition pathfinding_sphere_flags;
-	extern c_versioned_string_list collision_model_flags_strings;
 	extern s_string_list_definition collision_model_flags;
 
 

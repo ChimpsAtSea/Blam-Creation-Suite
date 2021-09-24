@@ -6,7 +6,9 @@ class c_high_level_tag_tab :
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_high_level_tag_tab);
+	c_high_level_tag_tab() = delete;
+	c_high_level_tag_tab(c_high_level_tag_tab const&) = delete;
+	c_high_level_tag_tab& operator=(c_high_level_tag_tab const&) = delete;
 
 	c_high_level_tag_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent);
 	virtual ~c_high_level_tag_tab();

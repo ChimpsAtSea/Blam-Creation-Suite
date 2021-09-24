@@ -21,7 +21,9 @@ public:
 
 	unsigned long const _structure_size;
 
-	non_copyconstructable(c_halo1_header_wrapper);
+	c_halo1_header_wrapper() = delete;
+	c_halo1_header_wrapper(c_halo1_header_wrapper const&) = delete;
+	c_halo1_header_wrapper& operator=(c_halo1_header_wrapper const&) = delete;
 
 	c_halo1_header_wrapper(halo1::pc::s_cache_file_header& cache_file_header) :
 		header_signature(cache_file_header.header_signature),

@@ -15,28 +15,28 @@
 //
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition)
+//unsigned long c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition)
 //{
-//	uint32_t structure_size = blofeld::calculate_struct_size(cache_file.get_engine_type(), cache_file.get_platform_type(), _build_not_set, struct_definition);
+//	unsigned long structure_size = blofeld::calculate_struct_size(cache_file.get_engine_type(), cache_file.get_platform_type(), _build_not_set, struct_definition);
 //
 //	e_engine_type engine_type = tag_interface.get_cache_file().get_engine_type();
 //	e_platform_type platform_type = tag_interface.get_cache_file().get_platform_type();
 //
-//	uint32_t bytes_traversed = 0;
+//	unsigned long bytes_traversed = 0;
 //	int32_t field_index = 0;
 //	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 //	{
 //		const char* const current_local_tag_memory_position = local_tag_memory + bytes_traversed;
 //		char* const current_game_tag_memory_position = game_tag_memory + bytes_traversed;
 //
-//		uint32_t field_skip_count;
+//		unsigned long field_skip_count;
 //		if (skip_tag_field_version(*current_field, engine_platform_build, _build_not_set, field_skip_count))
 //		{
 //			current_field += field_skip_count;
 //			continue;
 //		}
 //
-//		uint32_t field_size = blofeld::get_blofeld_field_size(platform_type, current_field->field_type);
+//		unsigned long field_size = blofeld::get_blofeld_field_size(platform_type, current_field->field_type);
 //
 //		switch (current_field->field_type)
 //		{
@@ -45,14 +45,14 @@
 //		case blofeld::_field_skip: field_size = current_field->length; break;
 //		case blofeld::_field_struct:
 //		{
-//			uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, *current_field->struct_definition);
+//			unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, *current_field->struct_definition);
 //			field_size += structure_size;
 //			break;
 //		}
 //		case blofeld::_field_array:
 //		{
 //			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
-//			uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, array_definition.struct_definition);
+//			unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, array_definition.struct_definition);
 //			field_size += structure_size * array_definition.count(cache_file.get_engine_type());
 //			break;
 //		}
@@ -67,13 +67,13 @@
 //				intptr_t memory_delta = local_tag_block_memory - current_local_tag_memory_position; // #TODO: fix this madness
 //				char* const game_tag_block_memory = current_game_tag_memory_position + memory_delta;
 //
-//				uint32_t const block_structure_size = blofeld::calculate_struct_size(cache_file.get_engine_type(), cache_file.get_platform_type(), _build_not_set, current_field->block_definition->struct_definition);
-//				uint32_t block_bytes_traversed = 0;
+//				unsigned long const block_structure_size = blofeld::calculate_struct_size(cache_file.get_engine_type(), cache_file.get_platform_type(), _build_not_set, current_field->block_definition->struct_definition);
+//				unsigned long block_bytes_traversed = 0;
 //
 //				//int tag_block_is_same = memcmp(local_tag_block_memory, game_tag_block_memory, block_structure_size * tag_block.count);
 //				//ASSERT(tag_block_is_same == 0);
 //
-//				for (uint32_t i = 0; i < tag_block.count; i++)
+//				for (unsigned long i = 0; i < tag_block.count; i++)
 //				{
 //					const char* const current_local_tag_memory_position = local_tag_block_memory + block_bytes_traversed;
 //					char* const current_game_tag_memory_position = game_tag_block_memory + block_bytes_traversed;
@@ -198,7 +198,7 @@
 //		{
 //			if (c_mandrill_user_interface::s_get_tag_game_memory)
 //			{
-//				char* local_tag_memory = tag_interface.get_data();
+//				char* local_tag_memory = tag_interface.get_tag_data();
 //				char* game_tag_memory = c_mandrill_user_interface::s_get_tag_game_memory(tag_interface.get_index());
 //				if (local_tag_memory && game_tag_memory)
 //				{
@@ -245,7 +245,7 @@
 //
 //		if (is_valid)
 //		{
-//			render_tag_group(tag_interface.get_data(), *blofeld_reflection);
+//			render_tag_group(tag_interface.get_tag_data(), *blofeld_reflection);
 //		}
 //		else
 //		{
@@ -523,7 +523,7 @@
 //
 //	c_blamlib_string_parser field_formatter = c_blamlib_string_parser(field.name); // #TODO: remove
 //
-//	uint32_t& string_id = *static_cast<uint32_t*>(data);
+//	unsigned long& string_id = *static_cast<unsigned long*>(data);
 //	const char* string_id_value = cache_file.get_string_id(string_id, nullptr);
 //	bool is_valid = string_id_value != nullptr;
 //	if (!is_valid) string_id_value = "<invalid string_id>";
@@ -598,8 +598,8 @@
 //			delete& field_formatter;
 //		}
 //
-//		uint32_t position;
-//		uint32_t struct_size;
+//		unsigned long position;
+//		unsigned long struct_size;
 //		bool is_open;
 //		float content_width;
 //		float content_height;
@@ -963,7 +963,7 @@
 //						}
 //						else
 //						{
-//							c_console::write_line("failed to set tag reference, tag group was null");
+//							console_write_line("failed to set tag reference, tag group was null");
 //
 //							tag_reference.group_tag = blofeld::INVALID_TAG;
 //							tag_reference.name = 0;
@@ -1002,7 +1002,7 @@
 //						}
 //						else
 //						{
-//							c_console::write_line("failed to set tag reference, tag group was null");
+//							console_write_line("failed to set tag reference, tag group was null");
 //
 //							tag_reference.group_tag = blofeld::INVALID_TAG;
 //							tag_reference.name = 0;
@@ -1046,7 +1046,7 @@
 //						}
 //						else
 //						{
-//							c_console::write_line("failed to set tag reference, tag group was null");
+//							console_write_line("failed to set tag reference, tag group was null");
 //
 //							tag_reference.group_tag = blofeld::INVALID_TAG;
 //							tag_reference.name = 0;
@@ -1076,7 +1076,7 @@
 //						}
 //						else
 //						{
-//							c_console::write_line("failed to set tag reference, tag group was null");
+//							console_write_line("failed to set tag reference, tag group was null");
 //
 //							tag_reference.group_tag = blofeld::INVALID_TAG;
 //							tag_reference.name = 0;
@@ -1168,7 +1168,7 @@
 //		value = *reinterpret_cast<uint16_t*>(data);
 //		break;
 //	case blofeld::_field_long_flags:
-//		value = *reinterpret_cast<uint32_t*>(data);
+//		value = *reinterpret_cast<unsigned long*>(data);
 //		break;
 //		//case blofeld::_field_qword_flags:
 //		//	current_value = *reinterpret_cast<uint64_t*>(data);
@@ -1221,7 +1221,7 @@
 //	{
 //		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 //		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-//		uint32_t const string_list_count = string_list_definition.count(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+//		unsigned long const string_list_count = string_list_definition.count(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 //		const c_blamlib_string_parser** const string_parsers = string_list_definition.strings(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 //
 //		float const element_height = ImGui::GetTextLineHeight() * 1.45f;
@@ -1229,7 +1229,7 @@
 //
 //		if (ImGui::BeginChild("bitfield", ImVec2(800.0f, height)))
 //		{
-//			for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+//			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 //			{
 //				const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
 //				bool const current_string_has_tooltip = !current_string_parser.description.empty();
@@ -1274,7 +1274,7 @@
 //			*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(new_value);
 //			break;
 //		case blofeld::_field_long_flags:
-//			*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(new_value);
+//			*reinterpret_cast<unsigned long*>(data) = static_cast<unsigned long>(new_value);
 //			break;
 //			//case blofeld::_field_qword_flags:
 //			//	*reinterpret_cast<uint64_t*>(data) = static_cast<uint64_t>(new_value);
@@ -1307,7 +1307,7 @@
 //	}
 //	const blofeld::s_string_list_definition& string_list_definition = *field.string_list_definition;
 //
-//	uint32_t value = 0;
+//	unsigned long value = 0;
 //	switch (field.field_type)
 //	{
 //	case blofeld::_field_char_enum:
@@ -1317,7 +1317,7 @@
 //		value = *reinterpret_cast<uint16_t*>(data);
 //		break;
 //	case blofeld::_field_long_enum:
-//		value = *reinterpret_cast<uint32_t*>(data);
+//		value = *reinterpret_cast<unsigned long*>(data);
 //		break;
 //	DEBUG_ONLY(default: throw);
 //	}
@@ -1336,7 +1336,7 @@
 //	{
 //		e_engine_type const engine_type = cache_file.get_engine_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
 //		e_platform_type const platform_type = cache_file.get_platform_type(); // #TODO: move this value into tag editor tab memory to avoid calling function
-//		uint32_t const string_list_count = string_list_definition.count(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
+//		unsigned long const string_list_count = string_list_definition.count(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 //		const c_blamlib_string_parser** const string_parsers = string_list_definition.strings(engine_platform_build); // #TODO: Is it a good idea to precache this value in the s_flags_dynamic_data?
 //
 //		if (string_list_count > 0)
@@ -1358,7 +1358,7 @@
 //
 //			if (ImGui::BeginCombo("##enum", selected_string_value))
 //			{
-//				for (uint32_t string_index = 0; string_index < string_list_count; string_index++)
+//				for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 //				{
 //					const c_blamlib_string_parser& current_string_parser = *string_parsers[string_index];
 //					bool const current_string_has_tooltip = !current_string_parser.description.empty();
@@ -1402,7 +1402,7 @@
 //			*reinterpret_cast<uint16_t*>(data) = static_cast<uint16_t>(value);
 //			break;
 //		case blofeld::_field_long_enum:
-//			*reinterpret_cast<uint32_t*>(data) = static_cast<uint32_t>(value);
+//			*reinterpret_cast<unsigned long*>(data) = static_cast<unsigned long>(value);
 //			break;
 //		DEBUG_ONLY(default: throw);
 //		}
@@ -1443,7 +1443,7 @@
 //			ImGui::Dummy(ImVec2(0.0f, 3.0f));
 //			if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
 //			{
-//				uint32_t data_size = data.size;
+//				unsigned long data_size = data.size;
 //				char* data_data = cache_file.get_tag_data(data);
 //				if (data_data)
 //				{
@@ -1459,7 +1459,7 @@
 //	ImGui::PopID();
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
+//unsigned long c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
 //{
 //	if (&struct_definition == &blofeld::object_struct_definition_struct_definition)
 //	{
@@ -1474,13 +1474,13 @@
 //	e_platform_type platform_type = tag_interface.get_cache_file().get_platform_type();
 //
 //	constexpr float indent = 25.0f;
-//	uint32_t bytes_traversed = 0;
+//	unsigned long bytes_traversed = 0;
 //	int32_t field_index = 0;
 //	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 //	{
 //		char* current_data_position = structure_data + bytes_traversed;
 //
-//		uint32_t field_skip_count;
+//		unsigned long field_skip_count;
 //		if (skip_tag_field_version(*current_field, engine_platform_build, _build_not_set, field_skip_count))
 //		{
 //			current_field += field_skip_count;
@@ -1488,7 +1488,7 @@
 //		}
 //		ImGui::PushID(field_index);
 //
-//		uint32_t field_size = blofeld::get_blofeld_field_size(platform_type, current_field->field_type);
+//		unsigned long field_size = blofeld::get_blofeld_field_size(platform_type, current_field->field_type);
 //
 //		const char* field_typename = field_to_string(current_field->field_type);
 //		ASSERT(field_typename != nullptr);
@@ -1686,9 +1686,9 @@
 //		}
 //		case blofeld::_field_struct:
 //		{
-//			uint32_t traversed_size = render_tag_struct_definition(level++, current_data_position, *current_field->struct_definition);
+//			unsigned long traversed_size = render_tag_struct_definition(level++, current_data_position, *current_field->struct_definition);
 //#ifdef _DEBUG
-//			uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, *current_field->struct_definition);
+//			unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, _build_not_set, *current_field->struct_definition);
 //			DEBUG_ASSERT(traversed_size == structure_size);
 //#endif
 //			field_size = traversed_size;
@@ -1696,15 +1696,15 @@
 //		}
 //		case blofeld::_field_array:
 //		{
-//			uint32_t array_count = current_field->array_definition->count(engine_type);
+//			unsigned long array_count = current_field->array_definition->count(engine_type);
 //
 //			bool use_array_navigation = true;
 //			if (use_array_navigation)
 //			{
 //				struct s_tag_block_dynamic_data
 //				{
-//					uint32_t position = 0;
-//					uint32_t structure_size = 0;
+//					unsigned long position = 0;
+//					unsigned long structure_size = 0;
 //				};
 //				s_tag_block_dynamic_data& dynamic_data = get_dynamic_data<s_tag_block_dynamic_data>(current_data_position);
 //
@@ -1715,7 +1715,7 @@
 //
 //				if (dynamic_data.position)
 //				{
-//					if (dynamic_data.position == ~uint32_t())
+//					if (dynamic_data.position == ~unsigned long())
 //					{
 //						dynamic_data.position = array_count - 1;
 //					}
@@ -1727,9 +1727,9 @@
 //
 //				char* array_data_position = current_data_position + dynamic_data.structure_size * dynamic_data.position;
 //
-//				for (uint32_t i = 0; i < array_count; i++)
+//				for (unsigned long i = 0; i < array_count; i++)
 //				{
-//					uint32_t traversed_size = render_tag_struct_definition(level++, array_data_position, current_field->array_definition->struct_definition);
+//					unsigned long traversed_size = render_tag_struct_definition(level++, array_data_position, current_field->array_definition->struct_definition);
 //					DEBUG_ASSERT(traversed_size == dynamic_data.structure_size);
 //					array_data_position += traversed_size;
 //				}
@@ -1739,9 +1739,9 @@
 //			}
 //			else
 //			{
-//				for (uint32_t array_index = 0; array_index < array_count; array_index++)
+//				for (unsigned long array_index = 0; array_index < array_count; array_index++)
 //				{
-//					uint32_t traversed_size = render_tag_struct_definition(level++, current_data_position, current_field->array_definition->struct_definition);
+//					unsigned long traversed_size = render_tag_struct_definition(level++, current_data_position, current_field->array_definition->struct_definition);
 //					current_data_position += traversed_size;
 //					bytes_traversed += traversed_size;
 //				}
@@ -1792,7 +1792,7 @@
 //	return bytes_traversed;
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::render_tag_group(char* data, const blofeld::s_tag_group& group)
+//unsigned long c_blofeld_tag_editor_tab::render_tag_group(char* data, const blofeld::s_tag_group& group)
 //{
 //	return render_tag_struct_definition(0, data, group.block_definition.struct_definition);
 //}

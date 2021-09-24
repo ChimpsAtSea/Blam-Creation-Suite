@@ -2,8 +2,8 @@
 
 class c_cache_file_tab;
 
-using t_get_tag_game_memory_callback = char* (uint32_t tag_index);
-using t_get_tag_section_address_callback = char* (uint32_t address);
+using t_get_tag_game_memory_callback = char* (unsigned long tag_index);
+using t_get_tag_section_address_callback = char* (unsigned long address);
 
 #define MANDRILL_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }
 #define MANDRILL_THEME_MED(v) { 0.455f, 0.198f, 0.301f, v }
@@ -28,21 +28,24 @@ class c_mandrill_user_interface :
 	public c_mandrill_tab
 {
 public:
-	non_copyconstructable(c_mandrill_user_interface);
+	c_mandrill_user_interface() = delete;
+	c_mandrill_user_interface(c_mandrill_user_interface const&) = delete;
+	c_mandrill_user_interface& operator=(c_mandrill_user_interface const&) = delete;
 
 	c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
-	void create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
-	void open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
-	void open_tag_project_tab(const wchar_t* filepath, const char* tag_list = nullptr);
-	void open_tag_project_configurator_tab(const wchar_t* directory);
+	BCS_RESULT create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
+	BCS_RESULT open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
+	BCS_RESULT open_tag_project_tab(const wchar_t* filepath, const char* tag_list = nullptr);
+	BCS_RESULT open_tag_project_configurator_tab(const wchar_t* directory);
 	void restore_previous_session(bool use_projects);
 	void save_current_session();
 	void render();
 	void render_game_layer();
 
-	c_callback<void()> on_close;
+	using t_on_close_callback = void();
+	c_typed_callback<t_on_close_callback> on_close;
 
 	inline bool is_game() const { return is_game_mode; }
 	inline bool get_use_full_file_length_display() { return false; }
@@ -83,7 +86,7 @@ protected:
 	bool show_open_cache_file_dialogue;
 	int mandrill_theme_color_count;
 	int mandrill_theme_var_count;
-	ImGuiAddons::ImGuiFileBrowser* file_browser;
+	//ImGuiAddons::ImGuiFileBrowser* file_browser;
 
 public:
 	static t_get_tag_game_memory_callback* s_get_tag_game_memory;

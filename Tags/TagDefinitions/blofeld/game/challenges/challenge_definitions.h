@@ -17,15 +17,10 @@ namespace blofeld
 
 	extern s_tag_struct_definition challenge_globals_definition_struct_definition; // tag group
 
-	extern c_versioned_string_list challenge_definition_flags_strings;
 	extern s_string_list_definition challenge_definition_flags;
-	extern c_versioned_string_list challengeIconDefinition_strings;
 	extern s_string_list_definition challengeIconDefinition;
-	extern c_versioned_string_list challenge_progress_flags_strings;
 	extern s_string_list_definition challenge_progress_flags;
-	extern c_versioned_string_list challenge_category_enum_definition_strings;
 	extern s_string_list_definition challenge_category_enum_definition;
-	extern c_versioned_string_list skull_flags_definition_strings;
 	extern s_string_list_definition skull_flags_definition;
 
 

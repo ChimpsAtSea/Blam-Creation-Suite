@@ -34,11 +34,8 @@ namespace blofeld
 	extern s_tag_array_definition error_report_quad_point_array;
 	extern s_tag_struct_definition error_report_point_definition;
 
-	extern c_versioned_string_list error_report_types_strings;
 	extern s_string_list_definition error_report_types;
-	extern c_versioned_string_list error_report_source_strings;
 	extern s_string_list_definition error_report_source;
-	extern c_versioned_string_list error_report_flags_strings;
 	extern s_string_list_definition error_report_flags;
 
 

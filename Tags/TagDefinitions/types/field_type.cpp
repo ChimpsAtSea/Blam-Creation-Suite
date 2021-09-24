@@ -2,7 +2,7 @@
 
 using namespace blofeld;
 
-uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field field)
+unsigned long blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field field)
 {
 	if (field > _field_type_non_standard)
 	{
@@ -81,16 +81,17 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 	case _field_data_path:						return sizeof(::c_static_string<256>);
 	case _field_pointer:
 	{
-		uint32_t pointer_size;
+		unsigned long pointer_size;
 		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(platform_type, &pointer_size)));
 		return pointer_size;
 	};
 	case _field_half:							return sizeof(uint16_t);
 	default: FATAL_ERROR("unknown field type");
 	}
+	return 0;
 }
 
-uint32_t blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build)
+unsigned long blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine_platform_build engine_platform_build)
 {
 	switch (field.field_type)
 	{
@@ -99,14 +100,14 @@ uint32_t blofeld::get_blofeld_field_size(const s_tag_field& field, s_engine_plat
 	case _field_skip:							return field.length;
 	case _field_struct:
 	{
-		uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, *field.struct_definition);
+		unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, *field.struct_definition);
 		return structure_size;
 	}
 	case _field_array:
 	{
-		uint32_t structure_size = blofeld::calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
-		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
-		uint32_t array_size = structure_size * array_element_count;
+		unsigned long structure_size = blofeld::calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
+		unsigned long array_element_count = field.array_definition->count(engine_platform_build);
+		unsigned long array_size = structure_size * array_element_count;
 		return array_size;
 	}
 	default: return get_blofeld_field_size(engine_platform_build.platform_type, field.field_type);

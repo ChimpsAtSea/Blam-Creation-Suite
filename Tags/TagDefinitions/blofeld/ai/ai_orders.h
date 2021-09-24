@@ -19,21 +19,13 @@ namespace blofeld
 	extern s_tag_struct_definition order_ending_block_struct_definition; // order_ending_block
 
 
-	extern c_versioned_string_list condition_type_enum_strings;
 	extern s_string_list_definition condition_type_enum;
-	extern c_versioned_string_list completion_condition_flags_strings;
 	extern s_string_list_definition completion_condition_flags;
-	extern c_versioned_string_list combination_rules_enum_strings;
 	extern s_string_list_definition combination_rules_enum;
-	extern c_versioned_string_list trigger_flags_strings;
 	extern s_string_list_definition trigger_flags;
-	extern c_versioned_string_list trigger_ref_flags_strings;
 	extern s_string_list_definition trigger_ref_flags;
-	extern c_versioned_string_list order_ending_dialogue_enum_strings;
 	extern s_string_list_definition order_ending_dialogue_enum;
-	extern c_versioned_string_list order_flags_strings;
 	extern s_string_list_definition order_flags;
-	extern c_versioned_string_list force_combat_status_enum_strings;
 	extern s_string_list_definition force_combat_status_enum;
 
 

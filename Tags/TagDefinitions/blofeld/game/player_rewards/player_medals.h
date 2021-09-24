@@ -17,7 +17,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition game_medal_globals_struct_definition; // tag group
 
-	extern c_versioned_string_list medal_class_enum_strings;
 	extern s_string_list_definition medal_class_enum;
 
 

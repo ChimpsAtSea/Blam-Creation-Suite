@@ -3,9 +3,9 @@
 #pragma pack(push, 1)
 struct s_symbol_file_section
 {
-	uint16_t section_index;
-	uint32_t rva;
-	uint32_t length;
+	unsigned short section_index;
+	unsigned long rva;
+	unsigned long length;
 	union
 	{
 		uintptr_t name_string_offset;

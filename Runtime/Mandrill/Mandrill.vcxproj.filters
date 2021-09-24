@@ -21,6 +21,12 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
+    <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mandrill-private-pch.h">

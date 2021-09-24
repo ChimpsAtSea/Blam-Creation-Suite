@@ -485,7 +485,7 @@ uint32_t c_gen3_cache_file_validator::render_tag_struct_definition(
 				{
 					if (tag_interop.descriptor < 0xFFFF)
 					{
-						c_console::write_line("interop %i", tag_interop.descriptor);
+						console_write_line("interop %i", tag_interop.descriptor);
 					}
 
 					char* data_address = cache_file.get_tag_interop_data(tag_interop);

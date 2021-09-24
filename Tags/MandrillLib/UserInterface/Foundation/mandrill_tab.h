@@ -11,7 +11,9 @@ class c_mandrill_tab :
 	public c_mandrill_tab_container, public c_mandrill_event_queue
 {
 public:
-	non_copyconstructable(c_mandrill_tab);
+	c_mandrill_tab() = delete;
+	c_mandrill_tab(c_mandrill_tab const&) = delete;
+	c_mandrill_tab& operator=(c_mandrill_tab const&) = delete;
 
 	c_mandrill_tab(const char* title, const char* description, c_mandrill_tab* parent, bool allow_close = true);
 	virtual ~c_mandrill_tab();

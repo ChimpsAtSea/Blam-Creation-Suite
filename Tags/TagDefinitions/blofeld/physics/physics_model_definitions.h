@@ -104,31 +104,18 @@ namespace blofeld
 	extern s_tag_struct_definition havok_convex_shape_struct_2010_2;
 	extern s_tag_struct_definition constraint_bodies_struct;
 
-	extern c_versioned_string_list physics_material_flags_strings;
 	extern s_string_list_definition physics_material_flags;
-	extern c_versioned_string_list PhantomFlagsV2_strings;
 	extern s_string_list_definition PhantomFlagsV2;
-	extern c_versioned_string_list rigid_body_size_enum_strings;
 	extern s_string_list_definition rigid_body_size_enum;
-	extern c_versioned_string_list physics_material_proxy_collision_groups_strings;
 	extern s_string_list_definition physics_material_proxy_collision_groups;
-	extern c_versioned_string_list shape_enum_strings;
 	extern s_string_list_definition shape_enum;
-	extern c_versioned_string_list physics_model_flags_strings;
 	extern s_string_list_definition physics_model_flags;
-	extern c_versioned_string_list rigid_constraint_types_enum_strings;
 	extern s_string_list_definition rigid_constraint_types_enum;
-	extern c_versioned_string_list physics_model_motor_types_enum_strings;
 	extern s_string_list_definition physics_model_motor_types_enum;
-	extern c_versioned_string_list rigid_body_constraint_edge_constraint_flags_definition_strings;
 	extern s_string_list_definition rigid_body_constraint_edge_constraint_flags_definition;
-	extern c_versioned_string_list nodes_flags_strings;
 	extern s_string_list_definition nodes_flags;
-	extern c_versioned_string_list rigid_body_flags_strings;
 	extern s_string_list_definition rigid_body_flags;
-	extern c_versioned_string_list rigid_body_motion_enum_strings;
 	extern s_string_list_definition rigid_body_motion_enum;
-	extern c_versioned_string_list rigid_body_collision_quality_enum_strings;
 	extern s_string_list_definition rigid_body_collision_quality_enum;
 
 

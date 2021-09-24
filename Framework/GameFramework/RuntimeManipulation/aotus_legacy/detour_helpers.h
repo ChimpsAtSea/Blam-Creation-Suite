@@ -68,11 +68,11 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 	if (detourAttachResult)
 	{
 		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		c_console::write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
+		console_write_line("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
 	}
 	else
 	{
-		c_console::write_line_verbose("Successfully hooked %s", pName);
+		console_write_line("Successfully hooked %s", pName);
 	}
 }
 
@@ -107,11 +107,11 @@ LONG create_hook(e_engine_type engine_type, size_t offset, const char pName[], T
 	if (detourAttachResult)
 	{
 		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		c_console::write_line_verbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
+		console_write_line("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
 	}
 	else
 	{
-		c_console::write_line_verbose("Successfully hooked %s", pName);
+		console_write_line("Successfully hooked %s", pName);
 	}
 	return detourAttachResult;
 }
@@ -133,7 +133,7 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 
 	if (rOriginal)
 	{
-		c_console::write_line_verbose("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, "ERROR_HOOK_ALREADY_ACTIVE");
+		console_write_line("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, "ERROR_HOOK_ALREADY_ACTIVE");
 		return;
 	}
 	rOriginal = (Tb)Procedure;
@@ -147,11 +147,11 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 		if (detourAttachResult)
 		{
 			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-			c_console::write_line_verbose("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, detourAttachResultStr);
+			console_write_line("Failed to hook %s %s. Reason: %s", pModuleName, pProcedureName, detourAttachResultStr);
 		}
 		else
 		{
-			c_console::write_line_verbose("Successfully hooked %s %s", pModuleName, pProcedureName);
+			console_write_line("Successfully hooked %s %s", pModuleName, pProcedureName);
 		}
 	}
 }

@@ -15,3 +15,6 @@
 #include "Tabs\halo_script_editor.h"
 #include "Tabs\tag_project_configurator_tab.h"
 #include "Tabs\halo1_bitmap_tag_viewer_tab.h"
+
+#include "Editors\model_preview_test.h"
+#include "Editors\infinite_tag_geometry_d3d12.h"

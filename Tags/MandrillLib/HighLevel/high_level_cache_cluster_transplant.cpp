@@ -63,7 +63,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 	//	h_tag& high_level_tag = tag_pair.high_level_tag;
 	//	c_tag_interface& tag_interface = tag_pair.tag_interface;
 
-	//	const char* raw_tag_data = tag_interface.get_data();
+	//	const char* raw_tag_data = tag_interface.get_tag_data();
 
 	//	const blofeld::s_tag_group* tag_group = tag_interface.get_blofeld_reflection_data();
 	//	DEBUG_ASSERT(tag_group != nullptr);
@@ -193,7 +193,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 				const char* tag_group_name = nullptr;
 				ASSERT(BCS_SUCCEEDED(tag_group.get_group_name(tag_group_name)));
 
-				c_console::write_line("missing referenced tag group '%s'", tag_group_name);
+				console_write_line("missing referenced tag group '%s'", tag_group_name);
 				// all groups should be initialized inside of init_tag_group_hierarchy_impl
 				//return rs;
 			}
@@ -239,7 +239,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_instances()
 				const char* group_name = nullptr;
 				ASSERT(BCS_SUCCEEDED(tag_group->get_group_name(group_name)));
 
-				c_console::write_line("missing instance tag group '%s'", group_name);
+				console_write_line("missing instance tag group '%s'", group_name);
 				return rs;
 			}
 
@@ -281,31 +281,56 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 			c_tag_instance& tag_instance = *transplant_instance.low_level;
 			h_tag& high_level_tag = *transplant_instance.high_level;
 
-			const void* tag_instance_data;
-			if (BCS_FAILED(rs = tag_instance.get_data(tag_instance_data)))
-			{
-				return rs;
-			}
-
 			if (engine_platform_build.engine_type < _engine_type_halo5)
 			{
+				const void* tag_instance_data;
+				if (BCS_FAILED(rs = tag_instance.get_tag_data(tag_instance_data)))
+				{
+					return rs;
+				}
+
 				if (!tag_instance_data || BCS_FAILED(rs = transplant_cache_file_data(high_level_tag, static_cast<const char*>(tag_instance_data), *cache_file_reader, high_level_tag.get_blofeld_struct_definition())))
 				{
-					c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+					console_write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
 					//return rs; //#TODO: enable this!
 				}
 			}
 			else if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance)) // #TODO: this is kinda nasty
 			{
-				if (BCS_FAILED(rs = transplant_module_file_data(
-					high_level_tag,
-					infinite_tag_instance->ucs_reader,
-					static_cast<const char*>(infinite_tag_instance->ucs_reader->tag_data),
-					*cache_file_reader,
-					high_level_tag.get_blofeld_struct_definition())))
+				if (BCS_FAILED(rs = tag_instance.map_data()))
 				{
-					c_console::write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
-					//return rs; //#TODO: enable this!
+					return rs;
+				}
+
+				BCS_RESULT transplant_result = BCS_S_OK;
+				{
+					c_infinite_ucs_reader* ucs_reader;
+					if (BCS_FAILED(transplant_result = infinite_tag_instance->get_ucs_reader(ucs_reader)))
+					{
+						return transplant_result;
+					}
+
+					if (BCS_FAILED(transplant_result = transplant_module_file_data(
+						tag_instance,
+						high_level_tag,
+						ucs_reader,
+						static_cast<const char*>(ucs_reader->tag_data), // #TODO: should this be an extra api call using get_tag_data on the tag instance?
+						*cache_file_reader,
+						high_level_tag.get_blofeld_struct_definition())))
+					{
+						console_write_line("failed to transplant tag '%s.%s'", high_level_tag.tag_filename, high_level_tag.group->tag_group.name);
+						return transplant_result;
+					}
+				}
+
+				if (BCS_FAILED(rs = tag_instance.unmap_data()))
+				{
+					return rs;
+				}
+
+				if (BCS_FAILED(transplant_result))
+				{
+					return transplant_result;
 				}
 			}
 
@@ -333,7 +358,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 	const char* current_data_position = low_level_data;
 	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
-		uint32_t field_skip_count;
+		unsigned long field_skip_count;
 		if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
 		{
 			field += field_skip_count;
@@ -342,7 +367,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 
 		//ptrdiff_t diff = current_data_position - low_level_data;
 		//const char* field_type_str = field_to_string(field->field_type);
-		//c_console::write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
+		//console_write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
 
 		void* high_level_field_data = high_level.get_field_data(*field);
 
@@ -419,7 +444,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 				}
 				else
 				{
-					//c_console::write_line("warning: failed to find stringid 0x%08X [%s::%s]", string_id, struct_definition.name, field->name);
+					//console_write_line("warning: failed to find stringid 0x%08X [%s::%s]", string_id, struct_definition.name, field->name);
 
 					c_fixed_string_128 buffer;
 					buffer.format("unknown_string_id:0x%08X", string_id);
@@ -559,7 +584,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(h_o
 			break;
 			case _field_pointer:
 			{
-				uint32_t pointer_size;
+				unsigned long pointer_size;
 				ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(engine_platform_build.platform_type, &pointer_size)));
 				switch (pointer_size)
 				{
@@ -768,19 +793,20 @@ const blofeld::s_tag_struct_definition* inf_get_tag_struct_definition_by_persist
 	return nullptr;
 }
 
+static c_infinite_string_id_manager infinite_string_id_manager;
 class c_module_file_transplant
 {
 public:
 	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant;
 	s_engine_platform_build engine_platform_build;
 	c_infinite_ucs_reader& ucs_reader;
-	h_object& root_high_level;
+	c_tag_instance& tag_instance;
+	h_tag& root_high_level;
 	const blofeld::s_tag_struct_definition& root_struct_definition;
 	c_infinite_cache_cluster& cache_cluster;
 	c_infinite_module_file_reader& cache_file_reader;
 
 	unsigned long root_struct_size;
-	const s_infinite_ucs_tag_block_data* tag_group_tag_block_entry;
 
 	BCS_RESULT transplant_module_file_data(
 		h_object& high_level,
@@ -804,7 +830,7 @@ public:
 
 		for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 		{
-			uint32_t field_skip_count;
+			unsigned long field_skip_count;
 			if (skip_tag_field_version(*field, engine_platform_build, field_skip_count))
 			{
 				field += field_skip_count;
@@ -813,7 +839,7 @@ public:
 
 			//ptrdiff_t diff = current_data_position - low_level_data;
 			//const char* field_type_str = field_to_string(field->field_type);
-			//c_console::write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
+			//console_write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
 
 			void* high_level_field_data = high_level.get_field_data(*field);
 
@@ -951,7 +977,7 @@ public:
 
 						ASSERT(current_data_position != nullptr);
 						ASSERT(tag_block_data != nullptr);
-						long offset = current_data_position - tag_block_data;
+						long offset = static_cast<long>(current_data_position - tag_block_data);
 
 						const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
 						long _tag_block_index = 01;
@@ -971,31 +997,36 @@ public:
 							debug_point;
 						}
 						ASSERT(_tag_block_data != nullptr);
-						ASSERT(_tag_block_data->nugget_index >= 0);
-						const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
-						ASSERT(nugget.size >= total_block_struct_storage_size);
-						ASSERT(nugget.size == total_block_struct_storage_size);
 
-						const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
-						const char* const block_data = root_tag_data + nugget.offset;
-
-						block_storage.reserve(ucs_block_field.count);
-						
-						const char* block_data_position = block_data;
-						for (long block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
+						if (_tag_block_data->nugget_index >= 0) // #TODO: this was an assert, why is this -1?
 						{
-							h_object& type = block_storage.emplace_back();
+							ASSERT(_tag_block_data->nugget_index >= 0);
+							const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
+							ASSERT(nugget.size >= total_block_struct_storage_size);
+							ASSERT(nugget.size == total_block_struct_storage_size);
 
-							transplant_module_file_data(
-								type,
-								_tag_block_index,
-								block_data,
-								_tag_block_data->nugget_index,
-								block_data_position,
-								block_struct_definition);
+							const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+							const char* const block_data = root_tag_data + nugget.offset;
+
+							block_storage.reserve(ucs_block_field.count);
+
+							const char* block_data_position = block_data;
+							for (long block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
+							{
+								h_object& type = block_storage.emplace_back();
+
+								transplant_module_file_data(
+									type,
+									_tag_block_index,
+									block_data,
+									_tag_block_data->nugget_index,
+									block_data_position,
+									block_struct_definition);
+							}
+
+							debug_point;
 						}
-
-						debug_point;
+						
 					}
 				}
 				break;
@@ -1004,7 +1035,7 @@ public:
 					const s_infinite_ucs_data_reference_field& ucs_data_reference_field = *reinterpret_cast<const s_infinite_ucs_data_reference_field*>(current_data_position);
 					if (ucs_data_reference_field.size > 0)
 					{
-						long offset = current_data_position - tag_block_data;
+						long offset = static_cast<long>(current_data_position - tag_block_data);
 
 						const s_infinite_ucs_data_reference_list* ucs_data_reference = nullptr;
 						for (unsigned long data_index = 0; data_index < ucs_reader.ucs_header->data_reference_count; data_index++)
@@ -1057,7 +1088,10 @@ public:
 						c_tag_instance* tag_instance = nullptr;
 						if (BCS_FAILED(rs = cache_cluster.get_tag_instance_by_global_tag_id_and_group_tag(ucs_tag_reference_field.global_id, ucs_tag_reference_field.group_tag, tag_instance)))
 						{
-							debug_point;
+							if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.model")
+							{
+								debug_point;
+							}
 						}
 						else
 						{
@@ -1078,9 +1112,125 @@ public:
 				{
 					s_infinite_ucs_pageable_resource_field ucs_pageable_resource_field = *reinterpret_cast<const s_infinite_ucs_pageable_resource_field*>(current_data_position);
 
-					ASSERT(ucs_pageable_resource_field.unknownC == 0);
+					h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
+					debug_point;
 
-					if (ucs_pageable_resource_field.unknownC > 0)
+					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
+					{
+						//if (strcmp(field->name, "mesh resource") == 0)
+						if (ucs_pageable_resource_field.unknownC == 0)
+						{
+							console_write_line("%s", field->string_list_definition->name);
+						}
+						else if(ucs_pageable_resource_field.unknownC > 0)
+						{
+							resource_storage = new h_resource();
+
+							if(strcmp(field->string_list_definition->name, "BitmapDataResource") == 0)
+							{
+								console_write_line("%s", root_high_level.tag_filepath);
+							}
+
+							const blofeld::s_tag_struct_definition& pageable_resource_struct_definition = *field->struct_definition;
+							unsigned long const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
+							unsigned long const total_block_struct_storage_size = pageable_resource_struct_size;
+
+							ASSERT(current_data_position != nullptr);
+							ASSERT(tag_block_data != nullptr);
+							long offset = static_cast<long>(current_data_position - tag_block_data);
+
+							const s_infinite_ucs_tag_block_data* _tag_block_data = nullptr;
+							long _tag_block_index = 01;
+							for (long block_index = 0; block_index < ucs_reader.ucs_header->tag_block_count; block_index++)
+							{
+								const s_infinite_ucs_tag_block_data& current_tag_block_data = ucs_reader.tag_block_instances[block_index];
+								const s_infinite_ucs_nugget& current_nugget = ucs_reader.nuggets[current_tag_block_data.nugget_index];
+
+								if (current_tag_block_data.owner_block_index == nugget_index && current_tag_block_data.owner_block_offset == offset)
+								{
+									_tag_block_data = &current_tag_block_data;
+									_tag_block_index = block_index;
+									debug_point;
+									break;
+								}
+
+								debug_point;
+							}
+							ASSERT(_tag_block_data != nullptr);
+							ASSERT(_tag_block_data->persistent_identifier == pageable_resource_struct_definition.persistent_identifier);
+
+							if (_tag_block_data->nugget_index >= 0) // #TODO: this was an assert, why is this -1?
+							{
+								ASSERT(_tag_block_data->nugget_index >= 0);
+								const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[_tag_block_data->nugget_index];
+								ASSERT(nugget.size >= total_block_struct_storage_size);
+								ASSERT(nugget.size == total_block_struct_storage_size);
+
+								const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
+								const char* const pageable_resource_data = root_tag_data + nugget.offset;
+
+								h_object* pageable_resource_object = h_object::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
+								ASSERT(pageable_resource_object != nullptr);
+
+								resource_storage->object = pageable_resource_object;
+
+								transplant_module_file_data(
+									*pageable_resource_object,
+									_tag_block_index,
+									pageable_resource_data,
+									_tag_block_data->nugget_index,
+									pageable_resource_data,
+									pageable_resource_struct_definition);
+
+								debug_point;
+							}
+
+							{
+								auto& resource_file_entry_block_maps = infinite_tag_instance->file_entry_block_map.resource_file_entry_block_maps;
+
+								const void* tag_resource_data;
+								unsigned long tag_resource_data_size;
+								infinite_tag_instance->get_resource_data(tag_resource_data, tag_resource_data_size);
+
+								const void* tag_header_data;
+								unsigned long tag_header_data_size;
+								infinite_tag_instance->get_header_data(tag_header_data, tag_header_data_size);
+
+
+								//field->struct_definition;
+
+								//char* buffer = (char*)malloc(131072);
+								//char* buffer_end = buffer + 131072;
+								//char* copy_dest[3] = { buffer + 0, buffer + 65536, buffer + 131072 };
+								unsigned int index = 0;
+								for (auto& resource_file_entry_block_map : resource_file_entry_block_maps)
+								{
+									void* external_resource_data;
+									BCS_RESULT rst1 = resource_file_entry_block_map->map(external_resource_data);
+									ASSERT(BCS_SUCCEEDED(rst1));
+
+									debug_point;
+									char* data_start = static_cast<char*>(external_resource_data);
+									char* data_end = data_start + resource_file_entry_block_map->file_entry.uncompressed_size;
+
+									//memcpy(copy_dest[index], data_start, resource_file_entry_block_map->file_entry.uncompressed_size);
+									resource_storage->data.insert(resource_storage->data.end(), data_start, data_end);
+
+									BCS_RESULT rst2 = resource_file_entry_block_map->unmap(external_resource_data);
+									ASSERT(BCS_SUCCEEDED(rst2));
+
+									debug_point;
+
+									index++;
+								}
+								//resource_storage->data.insert(resource_storage->data.begin(), buffer, buffer_end);
+								//free(buffer);
+
+								debug_point;
+							}
+						}
+					}
+					if (ucs_pageable_resource_field.unknownC == 0)
 					{
 						debug_point;
 					}
@@ -1092,12 +1242,20 @@ public:
 				{
 					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 
-					string_id string_id = *reinterpret_cast<const ::string_id*>(current_data_position);
-					if (string_id != 0)
+					string_id stringid = *reinterpret_cast<const ::string_id*>(current_data_position);
+					if (stringid != 0)
 					{
-						c_fixed_string_128 buffer;
-						buffer.format("hashed_string_id:0x%08X", string_id);
-						string_id_storage = buffer;
+						const char* string;
+						if (BCS_SUCCEEDED(infinite_string_id_manager.find_string(stringid, string)))
+						{
+							string_id_storage = string;
+						}
+						else
+						{
+							c_fixed_string_128 buffer;
+							buffer.format("hashed_string_id:0x%08X", stringid);
+							string_id_storage = buffer;
+						}
 					}
 				}
 				break;
@@ -1111,25 +1269,11 @@ public:
 		return rs;
 	}
 
-	long get_root_tag_block_entry_index()
-	{
-		for (long struct_index = 0; struct_index < ucs_reader.ucs_header->tag_block_count; struct_index++)
-		{
-			const s_infinite_ucs_tag_block_data& struct_entry = ucs_reader.tag_block_instances[struct_index];
-
-			if (struct_entry.type == _infinite_ucs_tag_block_type_tag_group)
-			{
-				return struct_index;
-			}
-
-		}
-		return -1;
-	}
-
 	c_module_file_transplant(
 		c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
 		s_engine_platform_build engine_platform_build,
-		h_object& root_high_level,
+		c_tag_instance& tag_instance,
+		h_tag& root_high_level,
 		const blofeld::s_tag_struct_definition& struct_definition,
 		c_infinite_ucs_reader& ucs_reader,
 		c_infinite_cache_cluster& cache_cluster,
@@ -1137,24 +1281,29 @@ public:
 		high_level_cache_cluster_transplant(high_level_cache_cluster_transplant),
 		engine_platform_build(engine_platform_build),
 		ucs_reader(ucs_reader),
+		tag_instance(tag_instance),
 		root_high_level(root_high_level),
 		root_struct_definition(struct_definition),
 		cache_cluster(cache_cluster),
 		cache_file_reader(cache_file_reader),
-		root_struct_size(cache_file_reader.calculate_struct_size(struct_definition)),
-		tag_group_tag_block_entry(nullptr)
+		root_struct_size(cache_file_reader.calculate_struct_size(struct_definition))
 	{
-		long root_tag_block_entry_index = get_root_tag_block_entry_index();
+		/*
+		long root_tag_block_entry_index = ucs_reader.get_root_tag_block_entry_index();
 		ASSERT(root_tag_block_entry_index >= 0);
 		tag_group_tag_block_entry = &ucs_reader.tag_block_instances[root_tag_block_entry_index];
 		ASSERT(tag_group_tag_block_entry != nullptr);
 		ASSERT(tag_group_tag_block_entry->nugget_index >= 0);
 
 		const s_infinite_ucs_nugget& nugget = ucs_reader.nuggets[tag_group_tag_block_entry->nugget_index];
-		ASSERT(nugget.size >= root_struct_size);
 
 		const char* root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
 		const char* tag_block_data = root_tag_data + nugget.offset;
+
+		if (root_high_level.tag_filepath == "objects\\characters\\marine\\attachments\\helmet_goggles\\helmet_goggles.render_model")
+		{
+			debug_point;
+		}
 
 		transplant_module_file_data(
 			root_high_level,
@@ -1162,6 +1311,16 @@ public:
 			tag_block_data,
 			tag_group_tag_block_entry->nugget_index,
 			tag_block_data,
+			root_struct_definition);
+		*/
+
+		ASSERT(ucs_reader.root_nugget->size >= root_struct_size);
+		transplant_module_file_data(
+			root_high_level,
+			ucs_reader.root_tag_block_entry_index,
+			ucs_reader.root_tag_block_data,
+			ucs_reader.tag_group_tag_block_entry->nugget_index,
+			ucs_reader.root_tag_block_data,
 			root_struct_definition);
 	}
 
@@ -1172,13 +1331,20 @@ public:
 
 };
 
-BCS_RESULT c_high_level_cache_cluster_transplant::transplant_module_file_data(h_object& high_level, c_infinite_ucs_reader* ucs_reader, const char* low_level_data, c_cache_file_reader& cache_file_reader, const blofeld::s_tag_struct_definition& struct_definition)
+BCS_RESULT c_high_level_cache_cluster_transplant::transplant_module_file_data(
+	c_tag_instance& tag_instance,
+	h_tag& high_level, 
+	c_infinite_ucs_reader* ucs_reader, 
+	const char* low_level_data, 
+	c_cache_file_reader& cache_file_reader, 
+	const blofeld::s_tag_struct_definition& struct_definition)
 {
 	try
 	{
 		c_module_file_transplant module_file_transplant = c_module_file_transplant(
 			*this,
 			engine_platform_build,
+			tag_instance,
 			high_level,
 			struct_definition,
 			*ucs_reader,
