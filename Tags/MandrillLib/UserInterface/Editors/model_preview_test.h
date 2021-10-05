@@ -11,18 +11,19 @@ namespace blofeld
 }
 
 class c_viewport;
-class c_graphics_d3d12;
-class c_geometry_d3d12;
+class c_camera;
 
 struct ID3D12GraphicsCommandList;
 
 class c_model_preview_test
 {
 public:
-	c_model_preview_test(blofeld::infinite::h_s_model_definition& model_tag, blofeld::infinite::h_objectdefinition* object_tag = nullptr);
+	c_model_preview_test(
+		c_graphics& graphics,
+		blofeld::infinite::h_s_model_definition& model_tag, 
+		blofeld::infinite::h_objectdefinition* object_tag = nullptr);
 	~c_model_preview_test();
 
-	void update_texture_resource(unsigned long width, unsigned long height);
 	void on_viewport_size_changed(unsigned long width, unsigned long height);
 	void render_d3d12(ID3D12GraphicsCommandList* command_list);
 	void draw_ui();
@@ -32,10 +33,10 @@ protected:
 	blofeld::infinite::h_s_model_definition& model_tag;
 	blofeld::infinite::h_objectdefinition* object_tag;
 	blofeld::infinite::h_render_model_definition* render_model;
+	c_graphics& graphics;
 
-	//c_viewport* viewport;
-	//c_camera* camera;
-	//c_graphics_d3d12* graphics;
+	c_viewport* viewport;
+	c_camera* camera;
 	//c_geometry_pipeline_d3d12* geometry_pipeline;
 	//c_hlsl_shader_d3d12* pixel_shader;
 	//struct s_geometry_instance

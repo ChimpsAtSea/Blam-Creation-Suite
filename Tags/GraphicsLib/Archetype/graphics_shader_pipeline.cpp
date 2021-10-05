@@ -12,7 +12,7 @@ c_graphics_shader_pipeline::~c_graphics_shader_pipeline()
 
 BCS_RESULT graphics_shader_pipeline_create(
 	c_graphics* graphics,
-	c_graphics_shader_binary* shader_binaries,
+	c_graphics_shader_binary** shader_binaries,
 	unsigned long num_shader_binaries,
 	c_graphics_shader_pipeline*& shader_pipeline,
 	const char* debug_name)
@@ -21,7 +21,7 @@ BCS_RESULT graphics_shader_pipeline_create(
 	{
 		return graphics_d3d12_shader_pipeline_create(
 			graphics_d3d12,
-			reinterpret_cast<c_graphics_shader_binary_d3d12*>(shader_binaries),
+			reinterpret_cast<c_graphics_shader_binary_d3d12**>(shader_binaries),
 			num_shader_binaries, 
 			*reinterpret_cast<c_graphics_shader_pipeline_d3d12**>(&shader_pipeline),
 			debug_name);

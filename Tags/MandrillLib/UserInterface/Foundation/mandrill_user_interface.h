@@ -32,7 +32,7 @@ public:
 	c_mandrill_user_interface(c_mandrill_user_interface const&) = delete;
 	c_mandrill_user_interface& operator=(c_mandrill_user_interface const&) = delete;
 
-	c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file = nullptr);
+	c_mandrill_user_interface(c_render_context& render_context, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
 	BCS_RESULT create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
@@ -50,6 +50,8 @@ public:
 	inline bool is_game() const { return is_game_mode; }
 	inline bool get_use_full_file_length_display() { return false; }
 	
+	t_callback_handle on_render_foreground_handle;
+	static void on_render_foreground_callback(c_mandrill_user_interface& _this);
 	static void set_get_tag_section_address_callback(t_get_tag_section_address_callback* get_tag_section_address);
 	static void set_get_tag_game_memory_callback(t_get_tag_game_memory_callback* get_tag_game_memory);
 
@@ -76,8 +78,9 @@ public:
 	virtual void add_tab(c_mandrill_tab& tab) override final;
 	virtual void remove_tab(c_mandrill_tab& tab) override final;
 
+public:
+	c_render_context& render_context;
 protected:
-	c_window& window;
 	bool is_session_restored;
 	bool is_exiting;
 	bool is_game_mode;

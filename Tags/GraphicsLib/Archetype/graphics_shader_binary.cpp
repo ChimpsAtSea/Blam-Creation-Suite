@@ -10,7 +10,7 @@ c_graphics_shader_binary::~c_graphics_shader_binary()
 
 }
 
-BCS_RESULT graphics_shader_create(
+BCS_RESULT graphics_shader_binary_create(
 	c_graphics* graphics,
 	e_bcs_resource_type resource_type,
 	c_graphics_shader_binary*& shader_binary,
@@ -27,7 +27,7 @@ BCS_RESULT graphics_shader_create(
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT graphics_shader_create(
+BCS_RESULT graphics_shader_binary_create(
 	c_graphics* graphics,
 	void* shader_binary_data,
 	unsigned long shader_binary_data_size,
@@ -46,7 +46,7 @@ BCS_RESULT graphics_shader_create(
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT graphics_shader_create(
+BCS_RESULT graphics_shader_binary_create(
 	c_graphics* graphics,
 	const char* filepath,
 	c_graphics_shader_binary*& shader_binary,

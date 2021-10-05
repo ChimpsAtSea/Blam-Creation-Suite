@@ -7,9 +7,9 @@ bool c_mandrill_user_interface::use_developer_features = settings_read_boolean(_
 bool c_mandrill_user_interface::show_explorer_bar = settings_read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
 float c_mandrill_user_interface::explorer_bar_width = settings_read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
 
-c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file) :
+c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& render_context, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
-	window(window),
+	render_context(render_context),
 	is_session_restored(false),
 	is_exiting(false),
 	is_game_mode(is_game_mode),
@@ -17,6 +17,7 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	show_create_tag_project_file_dialogue(false),
 	show_open_cache_file_dialogue(false),
 	on_close(),
+	on_render_foreground_handle(),
 	mandrill_theme_color_count(0),
 	mandrill_theme_var_count(0)//,
 	//file_browser(nullptr)
@@ -38,6 +39,8 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_g
 	{
 		open_tag_project_configurator_tab(auto_open_project);
 	}
+
+	render_context.on_render_foreground.add_callback(on_render_foreground_callback, this, on_render_foreground_handle);
 }
 
 c_mandrill_user_interface::~c_mandrill_user_interface()
@@ -306,6 +309,11 @@ void c_mandrill_user_interface::render_game_layer()
 	render_game_layer_impl();
 }
 
+void c_mandrill_user_interface::on_render_foreground_callback(c_mandrill_user_interface& _this)
+{
+	_this.render();
+}
+
 void c_mandrill_user_interface::set_get_tag_section_address_callback(t_get_tag_section_address_callback* get_tag_section_address)
 {
 	s_get_tag_section_address = get_tag_section_address;
@@ -329,12 +337,12 @@ void c_mandrill_user_interface::render_impl()
 	if (is_game_mode)
 	{
 		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize({ window.width_float - margin * 2.0f, window.height_float - margin * 2.0f }, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize({ render_context.get_width_float() - margin * 2.0f, render_context.get_height_float() - margin * 2.0f }, ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-		ImGui::SetNextWindowSize({ window.width_float - margin * 2.0f, window.height_float - margin * 2.0f }, ImGuiCond_Always);
+		ImGui::SetNextWindowSize({ render_context.get_width_float() - margin * 2.0f, render_context.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
 
 		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
 		imgui_window_flags |= ImGuiWindowFlags_NoMove;

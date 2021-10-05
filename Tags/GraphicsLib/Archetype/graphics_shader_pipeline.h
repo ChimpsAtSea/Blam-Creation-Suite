@@ -13,7 +13,7 @@ public:
 
 BCS_DEBUG_API BCS_RESULT graphics_shader_pipeline_create(
 	c_graphics* graphics,
-	c_graphics_shader_binary* shader_binaries,
+	c_graphics_shader_binary** shader_binaries,
 	unsigned long num_shader_binaries,
 	c_graphics_shader_pipeline*& shader_pipeline,
 	const char* debug_name = nullptr);

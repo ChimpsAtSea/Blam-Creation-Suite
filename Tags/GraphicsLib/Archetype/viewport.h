@@ -10,8 +10,8 @@ public:
 	c_viewport(const c_viewport&) = delete;
 	c_viewport& operator=(const c_viewport&) = delete;
 
-	explicit c_viewport();
-	~c_viewport();
+	BCS_DEBUG_API explicit c_viewport();
+	BCS_DEBUG_API ~c_viewport();
 
 	unsigned long width;
 	unsigned long height;
@@ -19,9 +19,9 @@ public:
 	float height_float;
 	float aspect_ratio;
 
-	void set_size(unsigned long width, unsigned long height);
-	void set_width(unsigned long width);
-	void set_height(unsigned long height);
+	BCS_DEBUG_API void set_size(unsigned long width, unsigned long height);
+	BCS_DEBUG_API void set_width(unsigned long width);
+	BCS_DEBUG_API void set_height(unsigned long height);
 
 	c_typed_callback<t_viewport_on_size_changed_callback> on_size_changed;
 };

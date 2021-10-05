@@ -58,3 +58,10 @@ enum BCS_RESULT
 	{ \
 		return COMBINE(__bcs_result_, __LINE__); \
 	}
+
+#define BCS_FAIL_THROW(expression) \
+	BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
+	if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
+	{ \
+		throw COMBINE(__bcs_result_, __LINE__); \
+	}

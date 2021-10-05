@@ -30,3 +30,6 @@
 #include "D3D12/OLD/d3d12-private-pch.h"
 #include "Windows/windows-private-pch.h"
 #include "ThirdParty/thirdparty-public-pch.h"
+
+#include "Scenes\imgui_viewport_render_context.h"
+#include "Scenes\window_render_context.h"

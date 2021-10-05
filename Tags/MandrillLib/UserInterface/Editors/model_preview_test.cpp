@@ -19,12 +19,14 @@ T _dynamic_cast(V const& value)
 #define dynamic_cast _dynamic_cast
 
 c_model_preview_test::c_model_preview_test(
+	c_graphics& graphics,
 	blofeld::infinite::h_s_model_definition& model_tag,
 	blofeld::infinite::h_objectdefinition* object_tag) :
 	model_tag(model_tag),
 	object_tag(object_tag),
 	render_model(dynamic_cast<decltype(render_model)>(model_tag.render_model)),
-	//viewport(),
+	graphics(graphics),
+	viewport(),
 	//camera(),
 	//graphics(),
 	//pixel_shader(),
@@ -43,42 +45,40 @@ c_model_preview_test::c_model_preview_test(
 	viewport_height(),
 	selected_variant_index(0)
 {
-	//if (render_model)
-	//{
-	//	viewport = new c_viewport();
-	//	graphics = new c_graphics_d3d12(viewport);
-	//	camera = new c_camera(*graphics);
-	//	pixel_shader = new c_hlsl_shader_d3d12(_bcs_resource_type_viewport_default_pixel_shader);
-	//	geometry_pipeline = new c_geometry_pipeline_d3d12(*graphics, *graphics->default_pipeline_signature, pixel_shader);
+	if (render_model)
+	{
+		viewport = new c_viewport();
 
-	//	unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
-	//	for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
-	//	{
-	//		c_infinite_tag_geometry_d3d12* geometry = new c_infinite_tag_geometry_d3d12(*graphics, *render_model, mesh_index);
-	//		c_constant_buffer_d3d12* geometry_instance = new c_constant_buffer_d3d12(*graphics, sizeof(r_instance), L"geometry_instance");
+		static c_graphics_shader_binary* graphics_shader_binary;
+		static auto shader_binary_result = graphics_shader_binary_create(&graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
 
-	//		geometry_instances.push_back({ geometry, geometry_instance });
-	//	}
+		static c_graphics_shader_pipeline* graphics_shader_pipeline;
+		static auto shader_pipeline_result = graphics_shader_pipeline_create(&graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
 
-	//	using namespace std::placeholders;
-	//	graphics->on_render_scene = std::bind(&c_model_preview_test::render_d3d12, this, _1);
-	//	viewport->on_size_changed = std::bind(&c_model_preview_test::on_viewport_size_changed, this, _1, _2);
+		//camera = new c_camera(*graphics);
+		//pixel_shader = new c_hlsl_shader_d3d12(_bcs_resource_type_viewport_default_pixel_shader);
+		//geometry_pipeline = new c_geometry_pipeline_d3d12(*graphics, *graphics->default_pipeline_signature, pixel_shader);
 
-	//	debug_point;
-	//}
+		//unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
+		//for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
+		//{
+		//	c_infinite_tag_geometry_d3d12* geometry = new c_infinite_tag_geometry_d3d12(*graphics, *render_model, mesh_index);
+		//	c_constant_buffer_d3d12* geometry_instance = new c_constant_buffer_d3d12(*graphics, sizeof(r_instance), L"geometry_instance");
+
+		//	geometry_instances.push_back({ geometry, geometry_instance });
+		//}
+
+		//using namespace std::placeholders;
+		//graphics->on_render_scene = std::bind(&c_model_preview_test::render_d3d12, this, _1);
+		//viewport->on_size_changed = std::bind(&c_model_preview_test::on_viewport_size_changed, this, _1, _2);
+
+		//debug_point;
+	}
 }
 
 c_model_preview_test::~c_model_preview_test()
 {
-	//delete graphics;
-	//delete viewport;
-}
-
-void c_model_preview_test::update_texture_resource(unsigned long width, unsigned long height)
-{
-	//width = __max(1ul, width);
-	//height = __max(1ul, height);
-	//viewport->set_size(width, height);
+	delete viewport;
 }
 
 void c_model_preview_test::on_viewport_size_changed(unsigned long width, unsigned long height)
@@ -320,7 +320,6 @@ void c_model_preview_test::draw_viewport()
 	viewport_width_float = static_cast<float>(viewport_width);
 	viewport_height_float = static_cast<float>(viewport_height);
 
-	update_texture_resource(viewport_width, viewport_height);
 	//viewport->set_size(viewport_width, viewport_height);
 	//graphics->update(1.0f / 60.0f);
 	//graphics->render();

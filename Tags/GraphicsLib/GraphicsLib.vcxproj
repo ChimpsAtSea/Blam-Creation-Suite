@@ -51,6 +51,8 @@
     <ClCompile Include="Archetype\window.cpp" />
     <ClCompile Include="Archetype\imgui_context.cpp" />
     <ClCompile Include="Archetype\graphics_swap_chain.cpp" />
+    <ClCompile Include="Scenes\imgui_viewport_render_context.cpp" />
+    <ClCompile Include="Scenes\render_context.cpp" />
     <ClCompile Include="Windows\window_windows.cpp" />
     <ClCompile Include="D3D11\graphics_d3d11.cpp" />
     <ClCompile Include="ThirdParty\stb_image.cpp">
@@ -71,6 +73,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Scenes\window_render_context.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archetype\archetype-public-pch.h" />
@@ -105,6 +108,8 @@
     <ClInclude Include="Archetype\window.h" />
     <ClInclude Include="Archetype\imgui_context.h" />
     <ClInclude Include="Archetype\graphics_swap_chain.h" />
+    <ClInclude Include="Scenes\imgui_viewport_render_context.h" />
+    <ClInclude Include="Scenes\render_context.h" />
     <ClInclude Include="Windows\window_windows.h" />
     <ClInclude Include="D3D11\graphics_d3d11.h" />
     <ClInclude Include="ThirdParty\stb_image.h" />
@@ -112,6 +117,7 @@
     <ClInclude Include="ThirdParty\thirdparty-public-pch.h" />
     <ClInclude Include="ThirdParty\tinyobjloader.h" />
     <ClInclude Include="Windows\windows-private-pch.h" />
+    <ClInclude Include="Scenes\window_render_context.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\cpp_types.hlsli" />
