@@ -15,33 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="symbolslib-public-pch.h">
+    <ClInclude Include="symbolsruntime-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbolslib-private-pch.h">
+    <ClInclude Include="symbolsruntime-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="map_file_parser.h">
+    <ClInclude Include="symbol_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbol_file_section_temp.h">
+    <ClInclude Include="symbol_file_public.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbol_file_static_temp.h">
+    <ClInclude Include="symbol_file_section.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbol_file_header_temp.h">
+    <ClInclude Include="symbol_file_static.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="symbol_file_public_temp.h">
+    <ClInclude Include="symbol_file_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime_symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="symbolslib-private-pch.cpp">
+    <ClCompile Include="symbolsruntime-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="map_file_parser.cpp">
+    <ClCompile Include="symbol_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runtime_symbols.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -32,7 +32,7 @@ namespace blofeld
 		bool recursive_block,
 		t_iterate_structure_fields_callback* callback,
 		void* userdata = nullptr);
-	unsigned long calculate_struct_size(
+	BCS_DEBUG_API unsigned long calculate_struct_size(
 		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition, 
 		e_validation_result* block_failed_validation = nullptr,

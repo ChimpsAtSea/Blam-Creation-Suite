@@ -1,61 +1,164 @@
 #include <Platform\platform-public-pch.h>
+#include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
-const char* c_console::g_console_executable_name = "SymbolsPreprocessor";
+#define CHECK_ARGUMENT(argument) \
+	if (BCS_FAILED(rs = command_line_has_argument(argument))) \
+	{ \
+		console_write_line("ResourcesPackager> missing argument -" argument); \
+		return rs; \
+	}
 
-int WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPWSTR lpCmdLine,
-	_In_ int nShowCmd
-)
+const char* excluded_symbol_libs[] =
 {
-	c_console::init_console();
+	"tbb_static",
+	"pugixml",
+	"discord-rpc",
+	"syelog",
+	"steam_api64",
+	"detours",
 
-	std::wstring input_symbols = c_command_line::get_command_line_warg("-input");
-	std::wstring output_directory = c_command_line::get_command_line_warg("-output");
-	bool cache_verify = BCS_SUCCEEDED(command_line_has_argument("cacheverify");
-	std::string excluded_libs_str = c_command_line::get_command_line_arg("-excludedlibs");
+	"Blamboozle",
+	"BlamboozleLib",
+	"blamlib",
+	"FSBDump",
+	"FSBLib",
+	"GameFramework",
 
-	std::vector<std::string> excluded_libs;
+	//"EldoradoLib",
+	//"GroundhogLib",
+	//"Halo1Lib",
+	//"Halo2Lib",
+	//"Halo3Lib",
+	//"Halo3OdstLib",
+	//"Halo4Lib",
+	//"Halo5Lib",
+	//"HaloReachLib",
+
+	"HighLevel_Groundhog",
+	"HighLevel_Halo1",
+	"HighLevel_Halo2",
+	"HighLevel_Halo3",
+	"HighLevel_Halo3ODST",
+	"HighLevel_Halo4",
+	"HighLevel_HaloReach",
+	"HighLevel_Xbox360Gen3",
+	"HighLevel_Infinite",
+	"imgui",
+	"ImGUIUIPrototype",
+	"Ketchup",
+	"LowLevel_Groundhog",
+	"LowLevel_Halo1",
+	"LowLevel_Halo2",
+	"LowLevel_Halo3",
+	"LowLevel_Halo3ODST",
+	"LowLevel_Halo4",
+	"LowLevel_HaloReach",
+	"LowLevel_Xbox360Gen3",
+	"LowLevel_Infinite",
+	"Mandrill",
+	"MandrillLib",
+	"MandrillSDK",
+	"MandrillTest",
+	"MCC",
+	"Mustard",
+	"NoesisGUI",
+
+	"Aotus",
+	"Platform",
+
+	"ResourcesPackager",
+	"Rhesus",
+	"Shared",
+
+	"SymbolsLib",
+
+	"SymbolsPreprocessor",
+	"TagCodegen",
+	//"TagDefinitions",
+	"TagDefinitionsUnitTest",
+	"TagDefinitionsValidate",
+	"TagReflection",
+	"TagValidate",
+
+	"Versioning",
+
+	"Virtual_Groundhog",
+	"Virtual_Halo1",
+	"Virtual_Halo2",
+	"Virtual_Halo3",
+	"Virtual_Halo3ODST",
+	"Virtual_Halo4",
+	"Virtual_HaloReach",
+	"Virtual_Xbox360Gen3",
+
+	"zlib"
+};
+
+static BCS_RESULT generate_symbol_file_binary()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	const wchar_t* symbol_filepath;
+	if (BCS_FAILED(rs = command_line_get_argument(L"symbolfile", symbol_filepath)))
 	{
-		std::stringstream excluded_libs_string_stream(excluded_libs_str);
-		std::string excluded_lib;
-		while (std::getline(excluded_libs_string_stream, excluded_lib, ','))
-		{
-			excluded_libs.push_back(excluded_lib);
-		}
-	}
-	
-	// build a stack table to avoid expensive stl calls
-	size_t excluded_libs_count = excluded_libs.size();
-	const char** excluded_libs_raw = reinterpret_cast<const char**>(alloca(excluded_libs_count * sizeof(const char*)));
-	for (size_t excluded_lib_index = 0; excluded_lib_index < excluded_libs_count; excluded_lib_index++)
-	{
-		excluded_libs_raw[excluded_lib_index] = excluded_libs[excluded_lib_index].c_str();
+		console_write_line("ResourcesPackager> missing argument -symbolfile");
+		return rs;
 	}
 
-	constexpr const char usage[] = "Usage: SymbolsPreprocessor -input:<input filepath> -output:<output filepath> [-cacheverify] [-excludedlibs:<lib filename>,<lib filename>,...]";
-	if (input_symbols.empty())
+	const wchar_t* output_filepath;
+	if (BCS_FAILED(rs = command_line_get_argument(L"outputfile", output_filepath)))
 	{
-		console_write_line("Input filepath not specified");
-		console_write_line(usage);
-		return 1;
+		console_write_line("ResourcesPackager> missing argument -outputfile");
+		return rs;
 	}
 
-	try
+	t_symbol_file_parser* symbol_file_parser;
+	if (BCS_FAILED(rs = symbol_file_parser_create(symbol_filepath, excluded_symbol_libs, _countof(excluded_symbol_libs), symbol_file_parser)))
 	{
-		c_map_file_parser map_file_parser = c_map_file_parser(input_symbols.c_str(), excluded_libs_raw, excluded_libs_count);
-		if (!output_directory.empty())
-		{
-			map_file_parser.write_output(output_directory.c_str());
-		}
-	}
-	catch (...)
-	{
-		return 1;
+		return rs;
 	}
 
-	c_console::deinit_console();
-	return 0;
+	const char* symbol_file_data;
+	unsigned long symbol_file_data_size;
+	BCS_RESULT write_symbol_data_result = BCS_S_OK;
+	if (BCS_SUCCEEDED(write_symbol_data_result = symbol_file_parser_get_symbol_data(symbol_file_parser, symbol_file_data, symbol_file_data_size)))
+	{
+		write_symbol_data_result = filesystem_write_file_from_memory(output_filepath, symbol_file_data, symbol_file_data_size);
+	}
+
+	if (BCS_FAILED(rs = symbol_file_parser_destroy(symbol_file_parser)))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(write_symbol_data_result))
+	{
+		return write_symbol_data_result;
+	}
+
+	return rs;
+}
+
+int main()
+{
+	init_command_line(nullptr);
+	init_console();
+
+	BCS_RESULT rs = BCS_S_OK;
+
+	CHECK_ARGUMENT("outputfile");
+	CHECK_ARGUMENT("symbolfile");
+
+	rs = generate_symbol_file_binary();
+
+	deinit_console();
+	deinit_command_line();
+
+	if (BCS_SUCCEEDED(rs))
+	{
+		console_write_line("ResourcesPackager> Successfully updated resources");
+	}
+
+	return rs;
 }

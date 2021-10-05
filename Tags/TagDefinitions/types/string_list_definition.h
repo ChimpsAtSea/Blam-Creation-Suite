@@ -47,8 +47,8 @@ namespace blofeld
 	{
 	public:
 		s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, unsigned long num_string_entries, long start_offset = 0, long end_offset = LONG_MAX);
-		unsigned long get_count(s_engine_platform_build engine_platform_build) const;
-		const char* get_string(const s_engine_platform_build& engine_platform_build, unsigned long index) const;
+		BCS_DEBUG_API unsigned long get_count(s_engine_platform_build engine_platform_build) const;
+		BCS_DEBUG_API const char* get_string(const s_engine_platform_build& engine_platform_build, unsigned long index) const;
 
 		const char* name;
 		const char* filename;

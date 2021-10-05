@@ -19,6 +19,7 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd
 )
 {
+	blofeld::collision_model_resource_struct;
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
 
 	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));

@@ -7,8 +7,9 @@
 #include <Platform\platform-public-pch.h>
 #include <Shared\Blam\blamlib-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <SymbolsLib\symbolslib-public-pch.h>
+#include <SymbolsRuntime\symbolsruntime-public-pch.h>
 
+#define BLOFELD_DLL_EXPORT
 #include "tagdefinitions-public-pch.h"
 #include "blofeld/gen3_xbox360_validation_data.h"
 

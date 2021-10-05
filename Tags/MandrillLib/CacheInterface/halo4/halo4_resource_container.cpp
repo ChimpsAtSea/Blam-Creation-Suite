@@ -1,83 +1,83 @@
 #include "mandrilllib-private-pch.h"
 
-static constexpr s_halo4_tag_resource_info bitmap_texture_interop_resource =
+static s_halo4_tag_resource_info bitmap_texture_interop_resource =
 {
 	"bitmap_texture_interop_resource",
 	blofeld::bitmap_texture_interop_resource_struct,
 	4,
 	{ 12, 12, 12 }
 };
-static constexpr s_halo4_tag_resource_info sound_resource_definition =
+static s_halo4_tag_resource_info sound_resource_definition =
 {
 	"sound_resource_definition",
 	blofeld::sound_resource_definition_struct,
 	2,
 	{ /* #TODO: unknown */ }
 };
-static constexpr s_halo4_tag_resource_info facial_animation_resource_definition =
+static s_halo4_tag_resource_info facial_animation_resource_definition =
 {
 	"facial_animation_resource_definition",
 	blofeld::facial_animation_resource_definition_struct,
 	0,
 	{ 0, 2, 0 }
 };
-static constexpr s_halo4_tag_resource_info model_animation_tag_resource =
+static s_halo4_tag_resource_info model_animation_tag_resource =
 {
 	"model_animation_tag_resource",
 	blofeld::model_animation_tag_resource_struct,
 	16,
 	{ 4, 0, 0 }
 };
-static constexpr s_halo4_tag_resource_info render_geometry_api_resource_definition =
+static s_halo4_tag_resource_info render_geometry_api_resource_definition =
 {
 	"render_geometry_api_resource_definition",
 	blofeld::render_geometry_api_resource_definition_struct,
 	0,
 	{ 2, 0, 0 }
 };
-static constexpr s_halo4_tag_resource_info bitmap_texture_interleaved_interop_resource =
+static s_halo4_tag_resource_info bitmap_texture_interleaved_interop_resource =
 {
 	"bitmap_texture_interleaved_interop_resource",
 	blofeld::bitmap_texture_interleaved_interop_resource_struct,
 	4,
 	{ 12, 12, 0 }
 };
-static constexpr s_halo4_tag_resource_info structure_bsp_tag_resources =
+static s_halo4_tag_resource_info structure_bsp_tag_resources =
 {
 	"structure_bsp_tag_resources",
 	blofeld::structure_bsp_tag_resources_struct,
 	0,
 	{ 7, 0, 0 }
 };
-static constexpr s_halo4_tag_resource_info structure_bsp_cache_file_tag_resources =
+static s_halo4_tag_resource_info structure_bsp_cache_file_tag_resources =
 {
 	"structure_bsp_cache_file_tag_resources",
 	blofeld::structure_bsp_cache_file_tag_resources_struct,
 	0,
 	{ 4, 0, 0 }
 };
-static constexpr s_halo4_tag_resource_info bink_resource =
+static s_halo4_tag_resource_info bink_resource =
 {
 	"bink_resource",
 	blofeld::bink_resource_struct,
 	0,
 	{ /* #TODO: unknown */ }
 };
-static constexpr s_halo4_tag_resource_info pca_coefficients_resource_definition =
+static s_halo4_tag_resource_info pca_coefficients_resource_definition =
 {
 	"pca_coefficients_resource_definition",
 	blofeld::pca_coefficients_resource_definition_struct,
 	0,
 	{ /* #TODO: unknown */ }
 };
-static constexpr s_halo4_tag_resource_info stitchable_bitmap_texture_interop_resource =
+static s_halo4_tag_resource_info stitchable_bitmap_texture_interop_resource =
 {
 	"stitchable_bitmap_texture_interop_resource",
 	blofeld::stitchable_bitmap_texture_interop_resource_struct,
 	12,
 	{ 12, 12, 12 }
 };
-static constexpr s_halo4_tag_resource_info collision_model_resource =
+static s_halo4_tag_resource_info collision_model_resource =
 {
 	"collision_model_resource",
 	blofeld::collision_model_resource_struct,

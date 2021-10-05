@@ -16,7 +16,7 @@ blofeld::s_tag_block_definition::s_tag_block_definition(
 	max_count(max_count),
 	max_count_string(max_count_string),
 	struct_definition(struct_definition),
-	symbol(c_runtime_symbols::runtime().get_public_symbol_by_virtual_address(this))
+	symbol()
 {
-
+	symbol_manager_get_public_symbol_by_pointer(this, symbol);
 }

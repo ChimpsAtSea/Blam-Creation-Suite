@@ -133,6 +133,7 @@
     <ClCompile Include="CacheInterface\infinite\infinite_generic_module_file_entry.cpp" />
     <ClCompile Include="CacheInterface\infinite\infinite_file_entry_block_map.cpp" />
     <ClCompile Include="HighLevel\high_level_cache_cluster_transplant.cpp" />
+    <ClCompile Include="high_level_ctor.cpp" />
     <ClCompile Include="mandrilllib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -10,11 +10,6 @@
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 
-
-
-
-
-
 #include "mandrilllib-public-pch.h"
 
 #define ZLIB_CONST

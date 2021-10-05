@@ -1,55 +1,20 @@
-#include "symbolslib-private-pch.h"
+#include "symbolsruntime-private-pch.h"
 
-c_runtime_symbols* c_runtime_symbols::runtime_symbols = nullptr;
-
-c_runtime_symbols& c_runtime_symbols::runtime()
+c_runtime_symbols::c_runtime_symbols(
+	HMODULE module_handle, 
+	void* symbol_file_data, 
+	unsigned long long symbol_file_data_size) :
+	module_handle(module_handle),
+	symbol_file_header(static_cast<s_symbol_file_header*>(symbol_file_data)),
+	symbol_file_buffer(symbol_file_data),
+	symbol_file_buffer_size(symbol_file_data_size)
 {
-	if (runtime_symbols == nullptr)
-	{
-		runtime_symbols = new c_runtime_symbols();
-	}
-	ASSERT(runtime_symbols != nullptr);
-	return *runtime_symbols;
-}
-
-c_runtime_symbols::c_runtime_symbols() :
-	symbol_file_header(nullptr),
-	symbol_file_buffer(nullptr),
-	symbol_file_buffer_size(),
-	is_initialized(false)
-{
-	
-	BCS_RESULT rs = BCS_S_OK;
-	if (BCS_SUCCEEDED(rs = resources_read_resource_to_memory(_bcs_resource_type_symbols_blob, symbol_file_buffer, symbol_file_buffer_size)))
-	{
-		symbol_file_header = static_cast<s_symbol_file_header*>(symbol_file_buffer);
-	}
-
-	init();
-}
-
-c_runtime_symbols::c_runtime_symbols(char* symbol_file_data, size_t symbol_file_data_size) :
-	symbol_file_header(nullptr),
-	symbol_file_buffer(nullptr),
-	is_initialized(false)
-{
-	DEBUG_ASSERT(symbol_file_data != nullptr);
-	DEBUG_ASSERT(symbol_file_data_size > 0);
-
-	symbol_file_buffer = new char[symbol_file_data_size];
-	memcpy(symbol_file_buffer, symbol_file_data, symbol_file_data_size);
-
-	symbol_file_header = static_cast<s_symbol_file_header*>(symbol_file_buffer);
-
 	init();
 }
 
 c_runtime_symbols::~c_runtime_symbols()
 {
-	if (symbol_file_buffer != nullptr)
-	{
-		delete symbol_file_buffer;
-	}
+
 }
 
 void c_runtime_symbols::init()
@@ -153,7 +118,7 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_addre
 	return get_public_symbol_by_relative_virtual_address(relative_virtual_address - base_virtual_adress);
 }
 
-s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(void* pointer)
+s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(const void* pointer)
 {
 	if (symbol_file_header == nullptr)
 	{
@@ -161,11 +126,10 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(vo
 	}
 
 	//static HMODULE instance_handle = c_runtime_util::get_current_module();
-	static HMODULE instance_handle = GetModuleHandleA(NULL);
 	console_write_line("#TODO: support symbols accross multiple binaries");
 
 	unsigned long long virtual_address = reinterpret_cast<uintptr_t>(pointer);
-	unsigned long long module_address = reinterpret_cast<uintptr_t>(instance_handle);
+	unsigned long long module_address = reinterpret_cast<uintptr_t>(module_handle);
 	unsigned long long relative_virtual_address = virtual_address - module_address;
 
 	return get_public_symbol_by_relative_virtual_address(relative_virtual_address);

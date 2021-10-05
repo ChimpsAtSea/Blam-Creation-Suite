@@ -8,6 +8,8 @@
 #include <mutex>
 
 #include <Platform\platform-public-pch.h>
+#include <SymbolsRuntime\symbolsruntime-public-pch.h>
+
 #include "symbolslib-public-pch.h"
 
 #include "symbol_file_section_temp.h"

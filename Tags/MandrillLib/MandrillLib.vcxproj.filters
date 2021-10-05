@@ -356,6 +356,9 @@
     <ClCompile Include="HighLevel\infinite_string_id_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="high_level_ctor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="CacheInterface\halo4\halo4.natvis" />

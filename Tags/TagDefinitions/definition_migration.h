@@ -15,7 +15,7 @@ bool definition_migration_compare_block(
 	const blofeld::s_tag_block_definition& new_block_definition,
 	s_engine_platform_build engine_platform_build);
 
-extern bool definition_migration(
+BCS_DEBUG_API bool definition_migration(
 	const blofeld::s_tag_group** old_tag_groups,
 	const blofeld::s_tag_group** new_tag_groups,
 	s_engine_platform_build engine_platform_build);

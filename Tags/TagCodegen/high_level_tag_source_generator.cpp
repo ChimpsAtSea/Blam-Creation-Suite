@@ -130,8 +130,8 @@ void c_high_level_tag_source_generator::generate_header() const
 	stream << "\tnamespace " << namespace_name << std::endl;
 	stream << "\t{" << std::endl << std::endl;
 
-	stream << "\t\th_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
-	stream << "\t\th_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
+	stream << "\t\tBCS_DEBUG_API h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl << std::endl;
+	stream << "\t\tBCS_DEBUG_API h_object* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
@@ -176,12 +176,12 @@ void c_high_level_tag_source_generator::generate_header() const
 
 		if (tag_group != nullptr)
 		{
-			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
-			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
+			stream << "\t\t\t\t" << "BCS_DEBUG_API h_" << struct_definition->name << "(h_group& group, const char* tag_filepath);" << std::endl;
+			stream << "\t\t\t\t" << "BCS_DEBUG_API h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		else
 		{
-			stream << "\t\t\t\t" << "h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
+			stream << "\t\t\t\t" << "BCS_DEBUG_API h_" << struct_definition->name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		stream << std::endl;
 

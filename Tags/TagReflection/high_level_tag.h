@@ -347,24 +347,24 @@ class h_typed_block :
 	public h_block
 {
 public:
-	h_typed_block(h_type* parent = nullptr);
+	BCS_DEBUG_API h_typed_block(h_type* parent = nullptr);
 
-	virtual h_custom_type& operator[](unsigned long index) final;
-	virtual const h_custom_type& operator[](unsigned long index) const final;
-	virtual h_custom_type& get(unsigned long index) final;
-	virtual const h_custom_type& get(unsigned long index) const final;
-	virtual const h_custom_type* data() final;
-	virtual unsigned long get_high_level_type_size() const final;
-	virtual unsigned long get_low_level_type_size() const final;
-	virtual unsigned long size() const final;
-	virtual unsigned long data_size() const final;
-	virtual h_custom_type& emplace_back() final;
-	virtual h_custom_type& emplace_back(const h_object& value) final;
-	virtual void reserve(unsigned long count) final;
-	virtual void resize(unsigned long count) final;
-	virtual void insert_hole(unsigned long index, unsigned long count) final;
-	virtual void remove(unsigned long index) final;
-	virtual void clear() final;
+	BCS_DEBUG_API virtual h_custom_type& operator[](unsigned long index) final;
+	BCS_DEBUG_API virtual const h_custom_type& operator[](unsigned long index) const final;
+	BCS_DEBUG_API virtual h_custom_type& get(unsigned long index) final;
+	BCS_DEBUG_API virtual const h_custom_type& get(unsigned long index) const final;
+	BCS_DEBUG_API virtual const h_custom_type* data() final;
+	BCS_DEBUG_API virtual unsigned long get_high_level_type_size() const final;
+	BCS_DEBUG_API virtual unsigned long get_low_level_type_size() const final;
+	BCS_DEBUG_API virtual unsigned long size() const final;
+	BCS_DEBUG_API virtual unsigned long data_size() const final;
+	BCS_DEBUG_API virtual h_custom_type& emplace_back() final;
+	BCS_DEBUG_API virtual h_custom_type& emplace_back(const h_object& value) final;
+	BCS_DEBUG_API virtual void reserve(unsigned long count) final;
+	BCS_DEBUG_API virtual void resize(unsigned long count) final;
+	BCS_DEBUG_API virtual void insert_hole(unsigned long index, unsigned long count) final;
+	BCS_DEBUG_API virtual void remove(unsigned long index) final;
+	BCS_DEBUG_API virtual void clear() final;
 
 	//protected:
 	//	h_typed_block(h_typed_block const&) = default;

@@ -13,6 +13,12 @@
 #include "types/tag_field.h"
 
 #ifndef BLOFELD_EXCLUDE_STRUCTS
+#ifdef BLOFELD_DLL_EXPORT
+#include <Platform\platform-exports-pch.h>
+#endif
+#define s_tag_block_definition BCS_DEBUG_API s_tag_block_definition
+#define s_tag_struct_definition BCS_DEBUG_API s_tag_struct_definition
+#define s_tag_group BCS_DEBUG_API s_tag_group
 #include "blofeld/tag_groups.h"
 #include "slipspace/infinite_flight1.h"
 #include "slipspace/infinite_flight2.h"
@@ -20,6 +26,9 @@
 #include "blofeld/halo2.h"
 #include "blofeld/halo1.h"
 #include "blofeld/tag_structs.h"
+#undef s_tag_block_definition
+#undef s_tag_struct_definition
+#undef s_tag_group
 #endif
 #include "blofeld/validation.h"
 

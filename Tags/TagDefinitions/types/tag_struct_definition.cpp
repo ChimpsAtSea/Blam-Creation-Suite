@@ -22,8 +22,9 @@ s_tag_struct_definition::s_tag_struct_definition(
 	, persistent_identifier(persistent_identifier)
 	, fields(fields)
 	, alignment_bits(alignment_bits)
-	, symbol(c_runtime_symbols::runtime().get_public_symbol_by_virtual_address(this))
+	, symbol()
 {
+	symbol_manager_get_public_symbol_by_pointer(this, symbol);
 
 }
 
@@ -60,7 +61,8 @@ s_tag_struct_definition::s_tag_struct_definition(
 	, persistent_identifier(persistent_identifier)
 	, fields(fields)
 	, alignment_bits(alignment_bits)
-	, symbol(c_runtime_symbols::runtime().get_public_symbol_by_virtual_address(this))
+	, symbol()
 {
+	symbol_manager_get_public_symbol_by_pointer(this, symbol);
 
 }
