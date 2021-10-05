@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 #define null_coalesce(value, _default) ((value) ? (value) : (_default))
 #define safe_string(value) null_coalesce(value, "")

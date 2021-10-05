@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 c_tag_project_tab::c_tag_project_tab(const wchar_t* filepath, c_tag_project& tag_project, c_mandrill_tab& parent) :
 	c_mandrill_tab("Tag Project", "Tag Project", &parent, false),

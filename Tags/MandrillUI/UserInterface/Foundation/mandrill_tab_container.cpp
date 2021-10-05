@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 c_mandrill_tab_container::c_mandrill_tab_container(c_mandrill_tab* parent, bool allow_close) :
 	on_selected(),

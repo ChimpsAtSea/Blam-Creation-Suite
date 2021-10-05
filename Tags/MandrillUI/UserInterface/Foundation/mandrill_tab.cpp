@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 
 c_mandrill_tab::c_mandrill_tab(const char* title, const char* description, c_mandrill_tab* parent, bool allow_close) :

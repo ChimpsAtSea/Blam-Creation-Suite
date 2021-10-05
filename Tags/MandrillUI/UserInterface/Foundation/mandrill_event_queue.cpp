@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 class c_mandrill_lambda_event :
 	public c_mandrill_event

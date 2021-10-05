@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "mandrillui-private-pch.h"
 
 const c_hs_global_definition hs_globals_definitions[hs_globals_count] =
 {

@@ -1,4 +1,4 @@
-#include"mandrilllib-private-pch.h"
+#include"mandrillui-private-pch.h"
 #include <sstream> // #TODO: remove this
 
 void c_hs_function_definition::generate_documentation()
