@@ -183,8 +183,6 @@ const char* h4_va_to_pointer2(const char* data, unsigned long address)
 	return executable_image_data;
 }
 
-c_runtime_symbols* c_h4_blamboozle::symbols = nullptr;
-
 c_h4_blamboozle::c_h4_blamboozle(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
 	c_blamboozle_base(_output_directory, _binary_filepath),
 	h4_data(nullptr),
@@ -427,7 +425,7 @@ int c_h4_blamboozle::run()
 {
 	ASSERT(h4_data == nullptr);
 
-	if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&h4_data), &data_size))
+	if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), *reinterpret_cast<void**>(&h4_data), data_size)))
 	{
 		return 1;
 	}
@@ -436,23 +434,28 @@ int c_h4_blamboozle::run()
 		return 1;
 	}
 
-	std::wstring mapping_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-map");
-	std::wstring symbols_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-sym");
-	if (BCS_FAILED(filesystem_filepath_exists(symbols_filepath.c_str())))
+	const wchar_t* symbols_filepath;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument(L"blamboozle-halo4-tag-test-sym", symbols_filepath)));
+
+	if (BCS_FAILED(filesystem_filepath_exists(symbols_filepath)))
 	{
-		c_map_file_parser map_file_parser = c_map_file_parser(mapping_filepath.c_str(), nullptr, 0);
-		map_file_parser.write_output(symbols_filepath.c_str());
+		const wchar_t* mapping_filepath;
+		ASSERT(BCS_SUCCEEDED(command_line_get_argument(L"blamboozle-halo4-tag-test-map", mapping_filepath)));
+
+		t_symbol_file_parser* symbol_file_parser;
+		ASSERT(BCS_SUCCEEDED(symbol_file_parser_create(mapping_filepath, nullptr, 0, symbol_file_parser)));
+		ASSERT(BCS_SUCCEEDED(symbol_file_parser_write_output(symbol_file_parser, symbols_filepath)));
+		ASSERT(BCS_SUCCEEDED(symbol_file_parser_destroy(symbol_file_parser)));
 	}
 
 	char* symbols_buffer;
-	size_t symbols_buffer_size;
-	if (BCS_FAILED(filesystem_read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
+	unsigned long long symbols_buffer_size;
+	if (BCS_FAILED(filesystem_read_file_to_memory(symbols_filepath, *reinterpret_cast<void**>(&symbols_buffer), symbols_buffer_size)))
 	{
 		return 1;
 	}
 
-	c_runtime_symbols runtime_symbols = c_runtime_symbols(symbols_buffer, symbols_buffer_size);
-	symbols = &runtime_symbols;
+	FATAL_ERROR("Symbols need to be implemented again by mapping the dump file region into the symbols manager");
 
 	struct s_h4_tag_layout_entry
 	{

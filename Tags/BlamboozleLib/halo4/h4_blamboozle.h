@@ -61,8 +61,7 @@ public:
 	static std::map<const void*, c_h4_tag_reference*> tag_reference_definitions;
 
 	char* h4_data = nullptr;
-	size_t data_size = 0;
+	unsigned long long data_size = 0;
 	std::vector<c_h4_tag_group*> tag_groups;
-	static c_runtime_symbols* symbols;
 };
 

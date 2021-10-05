@@ -23,4 +23,3 @@ public:
 
 	c_h4_tag_reference(const char* h4_data, const s_h4_tag_reference_definition* reference_definition, unsigned long definition_address);
 };
-

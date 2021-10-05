@@ -1,10 +1,8 @@
 #include "callback.h"
 
 #ifdef _WIN64
-#pragma comment(linker, "/alternatename:??R_callback@@QEAAXZZ=execute_callback_list") // s_callback::operator()(...)
 #pragma comment(linker, "/export:??R_callback@@QEAAXZZ=execute_callback_list") // s_callback::operator()(...)
 #else
-#pragma comment(linker, "/alternatename:??R_callback@@QAAXZZ=_execute_callback_list") // s_callback::operator()(...)
 #pragma comment(linker, "/export:??R_callback@@QAAXZZ=_execute_callback_list") // s_callback::operator()(...)
 #endif
 

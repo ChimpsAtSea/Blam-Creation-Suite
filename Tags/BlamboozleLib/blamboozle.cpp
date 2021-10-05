@@ -17,26 +17,33 @@ uint64_t make_tool_version_runtime(uint64_t library_file_version, const wchar_t*
 
 int blamboozle_run()
 {
-	std::wstring output_directory = c_command_line::get_command_line_warg("-blamboozle-output");
-	if (output_directory.empty())
+	const wchar_t* output_directory;
+	if (BCS_FAILED(command_line_get_argument(L"blamboozle-output", output_directory)))
 	{
 		console_write_line("No output directory specified");
 		console_write_line("Usage <output directory> <binary ...>");
 		return 1;
 	}
 
-	std::wstring halo1_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo1-guerilla");
-	std::wstring halo2_guerilla_file = c_command_line::get_command_line_warg("-blamboozle-halo2-guerilla");
-	std::wstring halo5_forge_file = c_command_line::get_command_line_warg("-blamboozle-halo5-forge");
-	std::wstring infinite_preview_file = c_command_line::get_command_line_warg("-blamboozle-infinite");
-	std::wstring halo4_midnight_tags_test = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test");
 
-	if (
-		halo1_guerilla_file.empty() && 
-		halo2_guerilla_file.empty() &&
-		halo5_forge_file.empty() &&
-		infinite_preview_file.empty() &&
-		halo4_midnight_tags_test.empty())
+	const wchar_t* halo1_guerilla_file;
+	const wchar_t* halo2_guerilla_file;
+	const wchar_t* halo4_midnight_tags_test;
+	const wchar_t* halo5_forge_file;
+	const wchar_t* infinite_preview_file;
+
+	BCS_RESULT rs0 = command_line_get_argument(L"blamboozle-halo1-guerilla", halo1_guerilla_file);
+	BCS_RESULT rs1 = command_line_get_argument(L"blamboozle-halo2-guerilla", halo2_guerilla_file);
+	BCS_RESULT rs2 = command_line_get_argument(L"blamboozle-halo4-tag-test", halo4_midnight_tags_test);
+	BCS_RESULT rs3 = command_line_get_argument(L"blamboozle-halo5-forge", halo5_forge_file);
+	BCS_RESULT rs4 = command_line_get_argument(L"blamboozle-infinite", infinite_preview_file);
+
+	if(
+		BCS_FAILED(rs0) && 
+		BCS_FAILED(rs1) && 
+		BCS_FAILED(rs2) && 
+		BCS_FAILED(rs3) && 
+		BCS_FAILED(rs4))
 	{
 		console_write_line("No binary file(s) specified");
 		console_write_line("Usage <output directory> <binary ...>");
@@ -45,29 +52,29 @@ int blamboozle_run()
 
 	int result = 0;
 
-	if (!halo1_guerilla_file.empty())
+	if (BCS_SUCCEEDED(rs0))
 	{
-		result += blamboozle_run(output_directory.c_str(), halo1_guerilla_file.c_str(), _engine_type_halo1);
+		result += blamboozle_run(output_directory, halo1_guerilla_file, _engine_type_halo1);
 	}
 
-	if (!halo2_guerilla_file.empty())
+	if (BCS_SUCCEEDED(rs1))
 	{
-		result += blamboozle_run(output_directory.c_str(), halo2_guerilla_file.c_str(), _engine_type_halo2, true);
+		result += blamboozle_run(output_directory, halo2_guerilla_file, _engine_type_halo2, true);
 	}
 
-	if (!halo4_midnight_tags_test.empty())
+	if (BCS_SUCCEEDED(rs2))
 	{
-		result += blamboozle_run(output_directory.c_str(), halo4_midnight_tags_test.c_str(), _engine_type_halo4, true);
+		result += blamboozle_run(output_directory, halo4_midnight_tags_test, _engine_type_halo4, true);
 	}
 
-	if (!halo5_forge_file.empty())
+	if (BCS_SUCCEEDED(rs3))
 	{
-		result += blamboozle_run(output_directory.c_str(), halo5_forge_file.c_str(), _engine_type_halo5);
+		result += blamboozle_run(output_directory, halo5_forge_file, _engine_type_halo5);
 	}
 
-	if (!infinite_preview_file.empty())
+	if (BCS_SUCCEEDED(rs4))
 	{
-		result += blamboozle_run(output_directory.c_str(), infinite_preview_file.c_str(), _engine_type_infinite, true);
+		result += blamboozle_run(output_directory, infinite_preview_file, _engine_type_infinite, true);
 	}
 
 	return result;
@@ -79,8 +86,8 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 	{
 
 		char* binary_data = nullptr;
-		size_t binary_data_size = 0;
-		if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
+		unsigned long long binary_data_size = 0;
+		if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath, *reinterpret_cast<void**>(&binary_data), binary_data_size)))
 		{
 			console_write_line("Failed to open binary file");
 			return 1;

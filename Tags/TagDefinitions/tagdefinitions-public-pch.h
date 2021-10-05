@@ -30,6 +30,7 @@
 #undef s_tag_struct_definition
 #undef s_tag_group
 #endif
+#include "tag_groups/tag_groups.h"
 #include "blofeld/validation.h"
 
 #include "tag_group_info.h"

@@ -1,8 +1,16 @@
 #pragma once
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <DbgHelp.h>
+#include <sstream> // #TODO: replace with custom string stream implementation
+#include <set>
+
 #include <Platform\platform-public-pch.h>
+#include <TemplateLibrary\templatelibrary-public-pch.h>
 #include <Shared\shared-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
+#include <SymbolsRuntime\symbolsruntime-public-pch.h>
 
 #include "endianness.h"
 

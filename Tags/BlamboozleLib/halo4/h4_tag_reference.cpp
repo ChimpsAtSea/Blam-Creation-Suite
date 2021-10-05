@@ -3,8 +3,9 @@
 c_h4_tag_reference::c_h4_tag_reference(const char* h4_data, const s_h4_tag_reference_definition* reference_definition, unsigned long definition_address) :
 	reference_definition(reference_definition),
 	flags(reference_definition->flags),
-	public_symbol(c_h4_blamboozle::symbols->get_public_symbol_by_base_virtual_address(definition_address))
+	public_symbol()
 {
+	ASSERT(BCS_SUCCEEDED(symbol_manager_get_public_symbol_by_rva_plus_base(h4_data, definition_address, public_symbol)));
 	if (reference_definition->group_tag != 0xFFFFFFFF)
 	{
 		unsigned long value = reference_definition->group_tag;

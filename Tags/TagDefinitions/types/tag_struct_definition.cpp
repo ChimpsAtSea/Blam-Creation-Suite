@@ -1,5 +1,7 @@
 #include "tagdefinitions-private-pch.h"
 
+#pragma optimize("", off)
+
 using namespace blofeld;
 
 s_tag_struct_definition::s_tag_struct_definition(

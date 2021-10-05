@@ -906,9 +906,6 @@
     <ClCompile Include="blofeld\manual_tag_references.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blofeld\tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld\tag_structs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -952,6 +949,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="slipspace\infinite_flight2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tag_groups\tag_groups.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1922,6 +1922,9 @@
     <ClInclude Include="slipspace\infinite_flight2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tag_groups\tag_groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="types\tag_field.ctor.inl">
@@ -1936,36 +1939,6 @@
     <None Include="blofeld\sound\looping_sound_track_definition.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="blofeld\tag_groups.eldorado.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.gen3_xbox360.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.groundhog.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.halo1.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.halo2.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.halo3.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.halo3odst.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.halo4.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.haloreach.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="blofeld\tag_groups.stubbs.inl">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="slipspace\tag_groups.infinite.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -1973,6 +1946,36 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="slipspace\tag_groups.infinite_flight2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.eldorado.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.gen3_xbox360.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.groundhog.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.halo1.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.halo2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.halo3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.halo3odst.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.halo4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.haloreach.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="tag_groups\tag_groups.stubbs.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

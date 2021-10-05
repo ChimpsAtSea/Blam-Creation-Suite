@@ -1,7 +1,4 @@
-#include <Platform\platform-public-pch.h>
-#include <Shared\Blam\blamlib-public-pch.h>
-#include <SymbolsLib\symbolslib-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
+#include "upgrademacaque-private-pch.h"
 
 // console_write_line("%s(%i): warning V0002: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", struct_definition.filename, struct_definition.line, block_name, computed_size, expected_size);
 
@@ -75,13 +72,13 @@ void validate_structure_definition(const blofeld::s_tag_struct_definition* blofe
 	while (blofeld_field->field_type != _field_terminator && macaque_field->field_type != _field_terminator);
 };
 
-int WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
-	_In_opt_ HINSTANCE hPrevInstance,		/* [input] handle to previous instance */
-	_In_ LPWSTR lpCmdLine,					/* [input] pointer to command line */
-	_In_ int nShowCmd						/* [input] show state of window */
-)
+int main()
 {
+	init_command_line(nullptr);
+	init_console();
+
+	BCS_RESULT rs = BCS_S_OK;
+
 	for (const blofeld::s_tag_group** current_blofeld_tag_group = blofeld::tag_groups[_engine_type_gen3_xbox360]; *current_blofeld_tag_group; current_blofeld_tag_group++)
 	{
 		const blofeld::s_tag_group& blofeld_tag_group = **current_blofeld_tag_group;
@@ -105,17 +102,5 @@ int WINAPI wWinMain(
 		}
 	}
 
-	return 0;
+	return rs;
 }
-
-int main()
-{
-	SetThreadErrorMode(SEM_NOGPFAULTERRORBOX, NULL);
-	SetErrorMode(SEM_NOGPFAULTERRORBOX);
-
-	HMODULE current_instance = c_runtime_util::get_current_module();
-	LPWSTR command_line_wide = GetCommandLineW();
-
-	return wWinMain(current_instance, NULL, command_line_wide, SW_SHOWNORMAL);
-}
-

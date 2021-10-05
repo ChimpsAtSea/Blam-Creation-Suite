@@ -25,7 +25,7 @@ private:
 
 public:
 
-	c_blamlib_string_parser_v2(const char* string, bool is_block, std::map<std::string, int>* string_list_value_unique_counter);
+	c_blamlib_string_parser_v2(const char* string, bool is_block = false, std::map<std::string, int>* string_list_value_unique_counter = nullptr);
 	~c_blamlib_string_parser_v2();
 	void fixup_flags(char* string);
 

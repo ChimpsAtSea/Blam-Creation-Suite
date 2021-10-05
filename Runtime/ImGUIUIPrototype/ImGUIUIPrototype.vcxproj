@@ -94,7 +94,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Shared.lib;d3d11.lib;dxgi.lib;tbb_static.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Shared.lib;GraphicsLib.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +112,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Shared.lib;d3d11.lib;dxgi.lib;tbb_static.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Shared.lib;GraphicsLib.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Shared.lib;d3d11.lib;dxgi.lib;tbb_static.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Shared.lib;GraphicsLib.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +144,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Shared.lib;d3d11.lib;dxgi.lib;tbb_static.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;TemplateLibrary.lib;Shared.lib;GraphicsLib.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;zlib.lib;imgui.lib;Shlwapi.lib;Dbghelp.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -153,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="imguiuiprototype-private-pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

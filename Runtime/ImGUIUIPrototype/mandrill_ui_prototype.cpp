@@ -1,5 +1,4 @@
-#include <Platform\platform-public-pch.h>
-#include <Shared\shared-public-pch.h>
+#include "imguiuiprototype-private-pch.h"
 
 #define MANDRILL_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }
 #define MANDRILL_THEME_MED(v) { 0.455f, 0.198f, 0.301f, v }
@@ -92,7 +91,7 @@ void mandrill_theme()
 	push_color(ImGuiCol_PlotHistogram, MANDRILL_THEME_TEXT(0.63f));
 	push_color(ImGuiCol_PlotHistogramHovered, MANDRILL_THEME_MED(1.00f));
 	push_color(ImGuiCol_TextSelectedBg, MANDRILL_THEME_MED(0.43f));
-	push_color(ImGuiCol_ModalWindowDarkening, MANDRILL_THEME_BG(0.73f));
+	//push_color(ImGuiCol_ModalWindowDarkening, MANDRILL_THEME_BG(0.73f));
 
 	push_color(ImGuiCol_Tab, ImVec4(0.14f, 0.16f, 0.19f, 1.00f));
 	push_color(ImGuiCol_TabHovered, MANDRILL_THEME_MED(0.78f));
@@ -493,7 +492,7 @@ void mandrill(c_window& window)
 {
 	float margin = 4.0f;
 	ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-	ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+	ImGui::SetNextWindowSize({ window.width_float - margin * 2.0f, window.height_float - margin * 2.0f }, ImGuiCond_Always);
 
 	ImGuiWindowFlags imgui_window_flags = 0;
 	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;

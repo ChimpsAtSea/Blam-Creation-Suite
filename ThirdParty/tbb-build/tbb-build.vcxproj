@@ -102,18 +102,8 @@
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if "$(Configuration)" == "Debug" (
-
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="0"
-
-) else (
-
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-
-)
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
@@ -125,22 +115,37 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+if "$(Configuration)" == "Debug" (
 
-    echo TBB is already built
-	
+    if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb.lib" (
+    
+        echo TBB is already built
+    	
+    ) else (
+    
+        msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    
+    )
+
+    if not exist "$(OutDir)tbb.dll" (
+    
+        xcopy "$(ProjectDir)cmake_$(PlatformShortName)\Debug\tbb.dll" "$(OutDir)"
+    
+    )
+
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+    
+        echo TBB is already built
+    	
+    ) else (
+    
+        msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    
+    )
 
 )
-
-if not exist "$(OutDir)tbb.dll" (
-
-xcopy "$(ProjectDir)cmake_$(PlatformShortName)\Debug\tbb.dll" "$(OutDir)"
-
-)
-
 
 
 </Command>
@@ -234,18 +239,8 @@ xcopy "$(ProjectDir)cmake_$(PlatformShortName)\Debug\tbb.dll" "$(OutDir)"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if "$(Configuration)" == "Debug" (
-
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="0"
-
-) else (
-
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-
-)
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
@@ -257,22 +252,37 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+if "$(Configuration)" == "Debug" (
 
-    echo TBB is already built
-	
+    if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb.lib" (
+    
+        echo TBB is already built
+    	
+    ) else (
+    
+        msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    
+    )
+
+    if not exist "$(OutDir)tbb.dll" (
+    
+        xcopy "$(ProjectDir)cmake_$(PlatformShortName)\Debug\tbb.dll" "$(OutDir)"
+    
+    )
+
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+    
+        echo TBB is already built
+    	
+    ) else (
+    
+        msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    
+    )
 
 )
-
-if not exist "$(OutDir)tbb.dll" (
-
-xcopy "$(ProjectDir)cmake_$(PlatformShortName)\Debug\tbb.dll" "$(OutDir)"
-
-)
-
 
 
 </Command>

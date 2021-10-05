@@ -1,5 +1,7 @@
 #include "symbolsruntime-private-pch.h"
 
+#pragma optimize("", off)
+
 struct s_symbol_file_instance
 {
 	HMODULE module_handle;
@@ -49,7 +51,14 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 
 	void* symbol_binary_buffer;
 	unsigned long long symbol_binary_buffer_size;
-	BCS_FAIL_RETURN(filesystem_read_file_to_memory(symbol_binary_filepath, symbol_binary_buffer, symbol_binary_buffer_size));
+	if (BCS_FAILED(filesystem_read_file_to_memory(symbol_binary_filepath, symbol_binary_buffer, symbol_binary_buffer_size)))
+	{
+		BCS_FAIL_RETURN(resources_read_resource_to_memory(_bcs_resource_type_symbols_blob, symbol_binary_buffer, symbol_binary_buffer_size));
+	}
+	else
+	{
+		console_write_line_with_debug("Loaded '%s' runtime symbols.", symbol_binary_filepath);
+	}
 
 	unsigned long symbol_file_instance_index = num_symbol_file_instances++;
 	if (symbol_file_instance_index >= _countof(symbol_file_instances))
@@ -65,8 +74,6 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 	symbol_file_instance.symbol_binary_buffer_size = symbol_binary_buffer_size;
 
 	out_symbol_file_instance = &symbol_file_instance;
-
-	console_write_line_with_debug("Loaded '%s' runtime symbols.", symbol_binary_filepath);
 
 	return BCS_S_OK;
 }
@@ -88,4 +95,9 @@ BCS_RESULT symbol_manager_get_public_symbol_by_pointer(const void* pointer, s_sy
 		return BCS_E_NOT_FOUND; // #TODO: refactor c_runtime_symbols and pipe the BCS_RESULT back out
 	}
 	return BCS_S_OK;
+}
+
+BCS_DEBUG_API BCS_RESULT symbol_manager_get_public_symbol_by_rva_plus_base(const void* module_instance, unsigned long long rva_plus_base, s_symbol_file_public*& public_symbol)
+{
+	return BCS_E_NOT_IMPLEMENTED;
 }

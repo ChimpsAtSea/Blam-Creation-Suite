@@ -59,7 +59,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 	default_font_configuration.PixelSnapH = true;
 
 	void* default_font_resource_data;
-	unsigned long default_font_resource_data_size;
+	unsigned long long default_font_resource_data_size;
 	resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, default_font_resource_data, default_font_resource_data_size);
 
 	imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(default_font_resource_data, static_cast<int>(default_font_resource_data_size), default_font_size, &default_font_configuration, imgui_io.Fonts->GetGlyphRangesDefault());
@@ -71,7 +71,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 	font_awesome_font_configuration.PixelSnapH = true;
 
 	void* font_awesome_font_resource_data;
-	unsigned long font_awesome_font_resource_data_size;
+	unsigned long long font_awesome_font_resource_data_size;
 	resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, font_awesome_font_resource_data, font_awesome_font_resource_data_size);
 
 	static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };

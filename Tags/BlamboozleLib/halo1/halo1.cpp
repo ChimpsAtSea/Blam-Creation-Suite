@@ -895,10 +895,10 @@ void h1_export_code(std::vector<c_h1_tag_group_definition*>& group_definitions)
 	std::string source_string = source_stream.str();
 
 
-	std::string output_directory = c_command_line::get_command_line_arg("-blamboozle-output");
-	ASSERT(!output_directory.empty());
-	std::string source_output_filepath = output_directory + "\\halo1.cpp";
-	std::string header_output_filepath = output_directory + "\\halo1.h";
+	const char* output_directory;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("blamboozle-output", output_directory)));
+	std::string source_output_filepath = std::string(output_directory) + "\\halo1.cpp";
+	std::string header_output_filepath = std::string(output_directory) + "\\halo1.h";
 
 	bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_string.c_str(), header_string.size());
 	ASSERT(macaque_header_write_file_result);

@@ -1,85 +1,44 @@
-#include <Platform\platform-public-pch.h>
-#include <Shared\shared-public-pch.h>
+#include "imguiuiprototype-private-pch.h"
 
-bool g_running = true;
-const char* c_console::g_console_executable_name = "ImGUI UI Prototype";
-c_window* window = nullptr;
-
-void mandrill_init();
-void mandrill_deinit();
-void mandrill(c_window& window);
-
-static void application_ui_callback()
-{
-	mandrill(*window);
-}
-
-static void application_update_callback()
-{
-	constexpr float clear_shade = 33.0f / 255.0f;
-	static float clear_color[] = { clear_shade, clear_shade, clear_shade, 1.0f };
-	c_render::begin_frame(true, clear_color);
-	c_render::end_frame();
-}
-
-static void application_close_callback()
-{
-	g_running = false;
-}
-
-static void init(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
-{
 #ifdef _DEBUG
-	const wchar_t* k_window_title = L"ImGUI UI Prototype Debug";
+static constexpr const char window_title[] = "Mandrill Debug";
 #else
-	const wchar_t* k_window_title = L"ImGUI UI Prototype";
+static constexpr const char window_title[] = "Mandrill";
 #endif
 
-	window = new c_window(instance_handle, k_window_title, L"imgui-ui-prototype", _window_icon_default, show_cmd);
-	c_render::init_render(window, c_runtime_util::get_current_module(), true);
+static c_window* window;
+static c_render_context* window_render_context;
 
-	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
-	window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
-	window->on_update.register_callback(application_update_callback);
-	window->on_destroy.register_callback(application_close_callback);
-
-	c_debug_gui::show_ui();
-
-	mandrill_init();
-}
-
-static int run()
-{
-	while (g_running)
-	{
-		window->update();
-	}
-	return 0;
-}
-
-static void deinit()
-{
-	mandrill_deinit();
-
-	window->on_destroy.unregister_callback(application_close_callback);
-	window->on_update.unregister_callback(application_update_callback);
-	window->on_window_procedure.unregister_callback(c_debug_gui::window_procedure);
-	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
-
-	c_render::deinit_render();
-	delete window;
-}
+static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
+static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 
 int WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
-	_In_opt_ HINSTANCE hPrevInstance,		/* [input] handle to previous instance */
-	_In_ LPWSTR lpCmdLine,					/* [input] pointer to command line */
-	_In_ int nShowCmd						/* [input] show state of window */
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nShowCmd
 )
 {
-	int result = 0;
-	init(hInstance, nShowCmd, lpCmdLine);
-	result = run();
-	deinit();
-	return result;
+	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
+
+	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
+	BCS_RESULT rs0 = init_command_line(lpCmdLine);
+	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument("console")) ? init_console() : BCS_S_OK;
+	BCS_RESULT rs2 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, window);
+	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
+
+	window_render_context->on_render_foreground;
+	window_render_context->render();
+
+	if (BCS_SUCCEEDED(rs3)) rs3 = render_context_destroy(window_render_context);
+	if (BCS_SUCCEEDED(rs2)) rs2 = window_destroy(window);
+	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
+	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
+
+	BCS_FAIL_RETURN(rs3);
+	BCS_FAIL_RETURN(rs2);
+	BCS_FAIL_RETURN(rs1);
+	BCS_FAIL_RETURN(rs0);
+
+	return 0;
 }

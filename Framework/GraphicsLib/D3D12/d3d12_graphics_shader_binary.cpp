@@ -26,7 +26,7 @@ BCS_RESULT graphics_d3d12_shader_binary_create(
 	BCS_RESULT rs = BCS_S_OK;
 
 	void* shader_binary_data;
-	unsigned long shader_binary_data_size;
+	unsigned long long shader_binary_data_size;
 	if (BCS_FAILED(rs = resources_read_resource_to_memory(resource_type, shader_binary_data, shader_binary_data_size)))
 	{
 		return rs;

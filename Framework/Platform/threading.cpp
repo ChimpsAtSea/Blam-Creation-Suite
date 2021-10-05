@@ -4,6 +4,10 @@
 #pragma warning( push )
 #pragma warning( disable : 4180 )
 
+#ifndef _DEBUG
+#pragma comment(lib, "tbb_static.lib")
+#endif
+
 #include <tbb/tbb.h>
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>

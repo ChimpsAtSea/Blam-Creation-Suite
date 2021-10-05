@@ -1,6 +1,8 @@
 #include "platform-private-pch.h"
 #include <Platform\!Resources\resource.h>
 
+#pragma optimize("", off)
+
 #define RESOURCE_ENTRY(resource_type, filename, int_resource) { #resource_type, filename, int_resource }
 struct s_resource_entry { const char* name; const char* filename; LPWSTR resource_int; };
 static s_resource_entry resource_entries[] =
@@ -127,7 +129,7 @@ BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*
 	return BCS_S_OK;
 }
 
-BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long& resource_size)
+BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long long& resource_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* filename;
@@ -180,7 +182,7 @@ BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long& 
 	return rs;
 }
 
-BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, unsigned long& buffer_size)
+BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, unsigned long long& buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* filename;
@@ -250,11 +252,11 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 	return rs;
 }
 
-BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& out_buffer, unsigned long& out_buffer_size)
+BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& out_buffer, unsigned long long& out_buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned long buffer_size;
+	unsigned long long buffer_size;
 	if (BCS_FAILED(rs = resources_get_resource_size(type, buffer_size)))
 	{
 		return rs;
@@ -273,13 +275,13 @@ BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& ou
 	return rs;
 }
 
-BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, unsigned long buffer_size)
+BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, unsigned long long buffer_size)
 {
 	FATAL_ERROR("NOT IMPLEMENTED");
 	return BCS_E_NOT_IMPLEMENTED;
 }
 
-BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* filepath, const void* buffer, unsigned long buffer_size)
+BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* filepath, const void* buffer, unsigned long long buffer_size)
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	BCS_VALIDATE_ARGUMENT(buffer);

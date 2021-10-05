@@ -2,6 +2,61 @@
 
 class c_h4_tag_group_container;
 
+static bool string_ends_with(std::string const& string, std::string const& ending)
+{
+	if (string.length() >= ending.length())
+	{
+		return (0 == string.compare(string.length() - ending.length(), ending.length(), ending));
+	}
+	return false;
+}
+
+static void string_transform_lowercase(char* begin, char* end)
+{
+	for (char* pos = begin; pos < end; pos++)
+	{
+		*pos = tolower(*pos);
+	}
+}
+
+static void string_transform_lowercase(char* string, size_t size)
+{
+	string_transform_lowercase(string, string + size);
+}
+
+static void string_transform_uppercase(char* begin, char* end)
+{
+	for (char* pos = begin; pos < end; pos++)
+	{
+		*pos = toupper(*pos);
+	}
+}
+
+static void string_transform_uppercase(char* string, size_t size)
+{
+	string_transform_uppercase(string, string + size);
+}
+
+static bool string_replace(std::string& string, std::string search, std::string replace)
+{
+	bool replaced = false;
+
+	size_t current_position = string.find(search);
+	while (current_position != std::string::npos)
+	{
+		replaced = true;
+		string.replace(current_position, search.size(), replace);
+		current_position = string.find(search, current_position + replace.size());
+	}
+
+	return replaced;
+}
+
+static void string_remove(std::string& string, std::string search)
+{
+	string_replace(string, search, "");
+}
+
 c_h4_source_file::c_h4_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor) :
 	preprocessor(preprocessor),
 	is_header(string_ends_with(filepath, ".h")),
@@ -12,16 +67,16 @@ c_h4_source_file::c_h4_source_file(const char* filepath, c_h4_generator_preproce
 	full_header_output_filepath(),
 	tag_groups()
 {
-	std::string output_directory = c_command_line::get_command_line_arg("-generated-output");
-	ASSERT(!output_directory.empty());
+	const char* output_directory;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("generated-output", output_directory)));
 
 	source_output_filepath = filepath;
 	header_output_filepath = filepath;
 	header_output_filepath.resize(header_output_filepath.size() - 3);
 	header_output_filepath += "h";
 
-	full_source_output_filepath = output_directory + "\\" + source_output_filepath;
-	full_header_output_filepath = output_directory + "\\" + header_output_filepath;
+	full_source_output_filepath = std::string(output_directory) + "\\" + source_output_filepath;
+	full_header_output_filepath = std::string(output_directory) + "\\" + header_output_filepath;
 }
 
 c_h4_tag_group_container::c_h4_tag_group_container(c_h4_tag_group& tag_group, c_h4_generator_preprocessor& preprocessor, c_h4_source_file& source_file) :

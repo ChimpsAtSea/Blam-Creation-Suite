@@ -309,7 +309,6 @@
     <ClCompile Include="blofeld\tag_files\tag_dependency_definitions.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_vertex_buffers.cpp" />
-    <ClCompile Include="blofeld\tag_groups.cpp" />
     <ClCompile Include="blofeld\tag_structs.cpp" />
     <ClCompile Include="blofeld\text\font_list.cpp" />
     <ClCompile Include="blofeld\text\text_group.cpp" />
@@ -329,6 +328,7 @@
     <ClCompile Include="slipspace\infinite.cpp" />
     <ClCompile Include="slipspace\infinite_flight2.cpp" />
     <ClCompile Include="tag_byteswap.cpp" />
+    <ClCompile Include="tag_groups\tag_groups.cpp" />
     <ClCompile Include="tag_group_info.haloreach.cpp" />
     <ClCompile Include="types\field_type.cpp" />
     <ClCompile Include="types\string_list_definitions.cpp" />
@@ -655,6 +655,7 @@
     <ClInclude Include="blofeld_field_type_override.h" />
     <ClInclude Include="tagdefinitions-public-pch.h" />
     <ClInclude Include="tag_byteswap.h" />
+    <ClInclude Include="tag_groups\tag_groups.h" />
     <ClInclude Include="tag_group_info.h" />
     <ClInclude Include="types\field_type.h" />
     <ClInclude Include="types\string_list_definition.h" />
@@ -671,19 +672,19 @@
     <None Include="blofeld\sound\looping_sound_definition.inl" />
     <None Include="blofeld\sound\looping_sound_detail_definition.inl" />
     <None Include="blofeld\sound\looping_sound_track_definition.inl" />
-    <None Include="blofeld\tag_groups.eldorado.inl" />
-    <None Include="blofeld\tag_groups.gen3_xbox360.inl" />
-    <None Include="blofeld\tag_groups.groundhog.inl" />
-    <None Include="blofeld\tag_groups.halo1.inl" />
-    <None Include="blofeld\tag_groups.halo2.inl" />
-    <None Include="blofeld\tag_groups.halo3.inl" />
-    <None Include="blofeld\tag_groups.halo3odst.inl" />
-    <None Include="blofeld\tag_groups.halo4.inl" />
-    <None Include="blofeld\tag_groups.haloreach.inl" />
     <None Include="slipspace\tag_groups.infinite.inl" />
     <None Include="slipspace\tag_groups.infinite_flight1.inl" />
-    <None Include="blofeld\tag_groups.stubbs.inl" />
     <None Include="slipspace\tag_groups.infinite_flight2.inl" />
+    <None Include="tag_groups\tag_groups.eldorado.inl" />
+    <None Include="tag_groups\tag_groups.gen3_xbox360.inl" />
+    <None Include="tag_groups\tag_groups.groundhog.inl" />
+    <None Include="tag_groups\tag_groups.halo1.inl" />
+    <None Include="tag_groups\tag_groups.halo2.inl" />
+    <None Include="tag_groups\tag_groups.halo3.inl" />
+    <None Include="tag_groups\tag_groups.halo3odst.inl" />
+    <None Include="tag_groups\tag_groups.halo4.inl" />
+    <None Include="tag_groups\tag_groups.haloreach.inl" />
+    <None Include="tag_groups\tag_groups.stubbs.inl" />
     <None Include="types\tag_field.ctor.inl" />
   </ItemGroup>
   <ItemGroup>
@@ -709,14 +710,14 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -782,7 +783,7 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <PostBuildEvent>
-      <Command>$(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
+      <Command>if '$(ConfigurationType)' == 'DynamicLibrary' $(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -811,7 +812,7 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <PostBuildEvent>
-      <Command>$(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
+      <Command>if '$(ConfigurationType)' == 'DynamicLibrary' $(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -841,7 +842,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>$(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
+      <Command>if '$(ConfigurationType)' == 'DynamicLibrary' $(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -871,7 +872,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>$(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
+      <Command>if '$(ConfigurationType)' == 'DynamicLibrary' $(OutDir)SymbolsPreprocessor.exe -symbolfile:$(TargetDir)$(TargetFileName).map -outputfile:$(TargetDir)$(TargetFileName).sym</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

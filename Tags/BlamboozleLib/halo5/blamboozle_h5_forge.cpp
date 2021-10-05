@@ -45,8 +45,8 @@ int c_blamboozle_h5_forge::run()
 {
 	{
 		char* halo5_forge_data = nullptr;
-		size_t data_size = 0;
-		if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&halo5_forge_data), &data_size))
+		unsigned long long data_size = 0;
+		if (BCS_FAILED(filesystem_read_file_to_memory(binary_filepath.c_str(), *reinterpret_cast<void**>(&halo5_forge_data), data_size)))
 		{
 			return 1;
 		}

@@ -175,8 +175,10 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 	}
 
 	{
-		std::string output_directory = c_command_line::get_command_line_arg("-generated-output");
-		ASSERT(!output_directory.empty());
+		const char* _output_directory;
+		ASSERT(BCS_SUCCEEDED(command_line_get_argument("generated-output", _output_directory)));
+		std::string output_directory = _output_directory;
+
 		std::string source_output_filepath = output_directory + "\\tag_groups.cpp";
 
 		{

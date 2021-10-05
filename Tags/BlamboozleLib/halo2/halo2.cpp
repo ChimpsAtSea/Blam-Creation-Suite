@@ -4,10 +4,10 @@ const char* h2_va_to_pointer_with_external_string(const char* data, ptr32 addres
 {
 	if (address == 0) return nullptr;
 
-	static std::string blamboozle_halo2_language = c_command_line::get_command_line_arg("-blamboozle-halo2-language");
-	ASSERT(blamboozle_halo2_language.size() > 0);
+	const char* blamboozle_halo2_language;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("blamboozle-halo2-language", blamboozle_halo2_language)));
 
-	static HMODULE h2_language = LoadLibraryA(blamboozle_halo2_language.c_str());
+	static HMODULE h2_language = LoadLibraryA(blamboozle_halo2_language);
 	ASSERT(h2_language);
 
 	static char string_buffer[5209][4096] = {};
@@ -288,7 +288,7 @@ void h2_write_fields(std::stringstream& s, std::vector<c_h2_pseudo_field_definit
 	{
 		const char* field_generic_type_name = h2_pseudo_field_type_to_generic_field_type(tag_field->field_type);
 
-		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name);
+		c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(tag_field->name, false, nullptr);
 
 		c_fixed_string_4096 name;
 		c_fixed_string_4096 description;
@@ -1066,10 +1066,10 @@ void h2_export_code(
 	std::string source_string = source_stream.str();
 
 
-	std::string output_directory = c_command_line::get_command_line_arg("-blamboozle-output");
-	ASSERT(!output_directory.empty());
-	std::string source_output_filepath = output_directory + "\\halo2.cpp";
-	std::string header_output_filepath = output_directory + "\\halo2.h";
+	const char* output_directory;
+	ASSERT(BCS_SUCCEEDED(command_line_get_argument("blamboozle-output", output_directory)));
+	std::string source_output_filepath = std::string(output_directory) + "\\halo2.cpp";
+	std::string header_output_filepath = std::string(output_directory) + "\\halo2.h";
 
 	bool macaque_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_string.c_str(), header_string.size());
 	ASSERT(macaque_header_write_file_result);

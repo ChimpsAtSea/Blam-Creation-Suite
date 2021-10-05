@@ -7,7 +7,7 @@ BCS_DEBUG_API extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #else
 #define __bcs_assertfunc(...)
 #define __bcs_is_debugger_present(...) false
-#define __bcs_is_write_debug_string(...) false
+#define __bcs_write_debug_string(...) false
 #endif
 
 #define ASSERT(statement) \
