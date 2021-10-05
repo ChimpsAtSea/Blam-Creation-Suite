@@ -14,7 +14,7 @@ KEYS_API void deinit_keys()
 
 KEYS_API long keys_user_type()
 {
-	return 0;
+	return 1;
 }
 
 KEYS_API const char* keys_user_name()
@@ -24,5 +24,5 @@ KEYS_API const char* keys_user_name()
 
 KEYS_API unsigned long keys_user_discriminator()
 {
-	return 1;
+	return 0;
 }

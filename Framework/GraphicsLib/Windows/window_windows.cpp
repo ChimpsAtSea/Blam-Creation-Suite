@@ -3,33 +3,52 @@
 c_window_windows::c_window_windows(
 	const char* window_title,
 	const char* window_id,
+	e_window_icon window_icon_type,
 	unsigned long init_width,
 	unsigned long init_height,
+	float4 background_color,
 	const char* debug_name) :
 	window_handle(NULL),
+	window_brush(NULL),
+	window_icon(NULL),
+	process_module(),
+	window_class_name(),
 	is_open(true)
 {
-	BCS_RESULT rs = BCS_S_OK;
-	union
-	{
-		HINSTANCE instance_handle;
-		void* process_module;
-	};
-	if (BCS_FAILED(rs = get_process_module(process_module)))
-	{
-		throw rs;
-	}
+	BCS_FAIL_THROW(get_process_module(process_module));
 
 	BCS_CHAR_TO_WIDECHAR_STACK(window_title, window_title_wc);
-	BCS_CHAR_TO_WIDECHAR_STACK(window_id, window_id_wc);
+	BCS_CHAR_TO_WIDECHAR_HEAP(window_id, window_id_wc);
+	window_class_name = window_id_wc;
+
+	unsigned char background_red = static_cast<unsigned char>(background_color.x * 255.0f);
+	unsigned char background_green = static_cast<unsigned char>(background_color.y * 255.0f);
+	unsigned char background_blue = static_cast<unsigned char>(background_color.z * 255.0f);
+	unsigned char background_alpha = static_cast<unsigned char>(background_color.w * 255.0f);
+	window_brush = CreateSolidBrush(RGB(background_red, background_green, background_blue));
+
+	switch (window_icon_type)
+	{
+	case _window_icon_blam_creation_suite:
+		resources_get_resource_icon_handle(_bcs_resource_type_icon_blam_creation_suite, window_icon);
+		break;
+	case _window_icon_mandrill:
+		resources_get_resource_icon_handle(_bcs_resource_type_icon_mandrill, window_icon);
+		break;
+	case _window_icon_application:
+	default:
+		resources_get_resource_icon_handle(_bcs_resource_type_icon_application, window_icon);
+		break;
+	}
 
 	{
-		WNDCLASS window_class{};
+		WNDCLASS window_class = {};
 		window_class.lpfnWndProc = window_procedure_callback;
 		window_class.hInstance = instance_handle;
 		window_class.lpszClassName = window_id_wc;
-		window_class.hbrBackground = CreateSolidBrush(0xFF000000); // solid black
-		RegisterClass(&window_class);
+		window_class.hbrBackground = window_brush;
+		window_class.hIcon = window_icon;
+		RegisterClassW(&window_class);
 	}
 
 	if (init_width == ULONG_MAX)
@@ -43,7 +62,7 @@ c_window_windows::c_window_windows(
 
 	SetProcessDPIAware();
 
-	window_handle = CreateWindowEx(
+	window_handle = CreateWindowExW(
 		0,                              // Optional window styles.
 		window_id_wc,					// Window class
 		window_title_wc,				// Window text
@@ -56,7 +75,7 @@ c_window_windows::c_window_windows(
 		NULL							// Additional application data
 	);
 
-	SetWindowLongPtr(window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
+	SetWindowLongPtrW(window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
 	ShowWindow(window_handle, SW_SHOW);
 
@@ -70,7 +89,17 @@ c_window_windows::c_window_windows(
 
 c_window_windows::~c_window_windows()
 {
-	
+	BOOL delete_brush_result = DeleteObject(window_brush);
+	if (delete_brush_result == FALSE)
+	{
+		throw BCS_E_FAIL;
+	}
+	BOOL unregister_window_class_result = UnregisterClassW(window_class_name, instance_handle);
+	if (unregister_window_class_result == FALSE)
+	{
+		throw BCS_E_FAIL;
+	}
+	free(const_cast<wchar_t*>(window_class_name));
 }
 
 bool c_window_windows::update()
@@ -86,7 +115,7 @@ bool c_window_windows::update()
 
 LRESULT CALLBACK c_window_windows::window_procedure_callback(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam)
 {
-	LONG_PTR get_window_long_ptr_result = GetWindowLongPtr(window_handle, GWLP_USERDATA);
+	LONG_PTR get_window_long_ptr_result = GetWindowLongPtrW(window_handle, GWLP_USERDATA);
 	c_window_windows* window = reinterpret_cast<c_window_windows*>(get_window_long_ptr_result);
 
 	if (window != nullptr) // let the window instance handle the message
@@ -128,8 +157,10 @@ LRESULT c_window_windows::window_procedure(HWND window_handle, UINT message, WPA
 BCS_RESULT window_windows_create(
 	const char* window_title,
 	const char* window_id,
+	e_window_icon window_icon,
 	unsigned long width,
 	unsigned long height,
+	float4 background_color,
 	c_window_windows*& window,
 	const char* debug_name)
 {
@@ -138,8 +169,10 @@ BCS_RESULT window_windows_create(
 		window = new c_window_windows(
 			window_title,
 			window_id,
+			window_icon,
 			width,
 			height,
+			background_color,
 			debug_name);
 	}
 	catch (BCS_RESULT rs)

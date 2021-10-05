@@ -51,7 +51,7 @@
       <PreprocessorDefinitions>IMGUI_USER_CONFIG="imgui_user_config.h";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="Exists('$(OutDir)Keys.lib')">
+  <ItemDefinitionGroup Condition="Exists('$(OutDir)Keys.lib') And '$(Configuration)'=='Release'">
 	<Link>
 	  <AdditionalDependencies>Keys.lib;%(AdditionalDependencies)</AdditionalDependencies>
 	</Link>

@@ -4,6 +4,8 @@
 #include <Windows.h>
 #include <shlwapi.h>
 
+#include <map>
+
 #include <Platform\platform-public-pch.h>
 
 #include <Platform\platform-exports-pch.h>

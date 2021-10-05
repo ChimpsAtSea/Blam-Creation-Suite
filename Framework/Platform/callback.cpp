@@ -182,6 +182,17 @@ BCS_RESULT c_callback::add_callback(void* callback, void* userdata0, void* userd
 
 BCS_RESULT c_callback::remove_callback(t_callback_handle callback_handle)
 {
-	//DEBUG_FATAL_ERROR("implement");
+	s_callback_entry** current_entry = &entry;
+	while (*current_entry)
+	{
+		if ((*current_entry)->unique_id == callback_handle)
+		{
+			s_callback_entry* delete_entry = (*current_entry);
+			(*current_entry) = delete_entry->next_entry;
+			delete delete_entry;
+			return BCS_S_OK;
+		}
+		current_entry = &(*current_entry)->next_entry;
+	}
 	return BCS_E_NOT_IMPLEMENTED;
 }

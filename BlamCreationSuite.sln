@@ -583,6 +583,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MandrillUI", "Tags\Mandrill
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymbolsRuntime", "DebugFileTools\SymbolsRuntime\SymbolsRuntime.vcxproj", "{B8654A90-B174-4432-A7AD-6F493BA97AB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EC423DE6-76A4-42B0-AC97-D6D758EB7182} = {EC423DE6-76A4-42B0-AC97-D6D758EB7182}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

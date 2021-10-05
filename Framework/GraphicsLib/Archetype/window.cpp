@@ -13,8 +13,10 @@ c_window::~c_window()
 BCS_RESULT window_create(
 	const char* window_title,
 	const char* window_id,
+	e_window_icon window_icon,
 	unsigned long width,
 	unsigned long height,
+	float4 background_color,
 	c_window*& window,
 	const char* debug_name)
 {
@@ -22,8 +24,10 @@ BCS_RESULT window_create(
 	return window_windows_create(
 		window_title,
 		window_id,
+		window_icon,
 		width,
 		height, 
+		background_color,
 		*reinterpret_cast<c_window_windows**>(&window),
 		debug_name);
 	debug_point;

@@ -7,7 +7,8 @@ c_runtime_symbols::c_runtime_symbols(
 	module_handle(module_handle),
 	symbol_file_header(static_cast<s_symbol_file_header*>(symbol_file_data)),
 	symbol_file_buffer(symbol_file_data),
-	symbol_file_buffer_size(symbol_file_data_size)
+	symbol_file_buffer_size(symbol_file_data_size),
+	public_symbol_lookup_by_rva_plus_base()
 {
 	init();
 }
@@ -61,6 +62,13 @@ void c_runtime_symbols::init()
 #endif
 	}
 
+	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
+	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	{
+		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];
+
+		public_symbol_lookup_by_rva_plus_base[public_symbol.rva_plus_base] = &public_symbol;
+	}
 }
 
 s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_name(const char* symbol_name)
@@ -91,19 +99,26 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_relative_virtual_a
 	}
 
 	unsigned long long base_virtual_adress = symbol_file_header->preferred_load_address;
+	unsigned long long relative_virtual_address_plus_base = base_virtual_adress + relative_virtual_address;
+
 	s_symbol_file_public* public_symbols = symbol_file_header->public_symbols;
 
-	for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
+	/*for (unsigned long public_symbol_index = 0; public_symbol_index < symbol_file_header->public_symbols_count; public_symbol_index++)
 	{
 		s_symbol_file_public& public_symbol = public_symbols[public_symbol_index];
 
-		unsigned long long symbol_rva = public_symbol.rva_plus_base - base_virtual_adress; // #TODO: calculate this once
-
-		if (symbol_rva == relative_virtual_address)
+		if (public_symbol.rva_plus_base == relative_virtual_address_plus_base)
 		{
 			return &public_symbol;
 		}
+	}*/
+
+	t_public_symbol_lookup_by_rva_plus_base::const_iterator search = public_symbol_lookup_by_rva_plus_base.find(relative_virtual_address_plus_base);
+	if (search != public_symbol_lookup_by_rva_plus_base.end())
+	{
+		return search->second;
 	}
+
 	return nullptr;
 }
 
@@ -124,9 +139,6 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(co
 	{
 		return nullptr;
 	}
-
-	//static HMODULE instance_handle = c_runtime_util::get_current_module();
-	console_write_line("#TODO: support symbols accross multiple binaries");
 
 	unsigned long long virtual_address = reinterpret_cast<uintptr_t>(pointer);
 	unsigned long long module_address = reinterpret_cast<uintptr_t>(module_handle);

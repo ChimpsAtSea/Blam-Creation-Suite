@@ -84,6 +84,15 @@ constexpr decltype(auto) underlying_cast(T value)
 		mbstowcs(widechar_buffer_name, char_buffer_name, __buffer_length); \
 	}
 
+#define BCS_CHAR_TO_WIDECHAR_HEAP(char_buffer_name, widechar_buffer_name) \
+	wchar_t* widechar_buffer_name = nullptr; \
+	if(char_buffer_name > 0) \
+	{ \
+		size_t __buffer_length = strlen(char_buffer_name) + 1; \
+		widechar_buffer_name = static_cast<wchar_t*>(malloc(sizeof(wchar_t) * (__buffer_length))); \
+		mbstowcs(widechar_buffer_name, char_buffer_name, __buffer_length); \
+	}
+
 #ifdef assert
 #undef assert
 #endif

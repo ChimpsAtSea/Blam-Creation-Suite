@@ -67,7 +67,7 @@
     <ClCompile Include="engine_platform_build.cpp" />
     <ClCompile Include="filesystem.cpp" />
     <ClCompile Include="float16.cpp" />
-    <ClCompile Include="keys.cpp" Condition="!Exists('$(OutDir)Keys.lib')" />
+    <ClCompile Include="keys.cpp" Condition="!Exists('$(OutDir)Keys.lib') Or '$(Configuration)'!='Release'" />
     <ClCompile Include="platform-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

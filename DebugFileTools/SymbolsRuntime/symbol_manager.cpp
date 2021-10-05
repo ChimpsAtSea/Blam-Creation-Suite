@@ -66,6 +66,8 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 
 	out_symbol_file_instance = &symbol_file_instance;
 
+	console_write_line_with_debug("Loaded '%s' runtime symbols.", symbol_binary_filepath);
+
 	return BCS_S_OK;
 }
 

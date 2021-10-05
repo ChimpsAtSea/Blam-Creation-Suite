@@ -82,3 +82,43 @@ BCS_RESULT console_write_line(const char* format, ...)
 
 	return BCS_S_OK;
 }
+
+BCS_RESULT console_write_line_with_debug(const char* format, ...)
+{
+	if (console_mutex)
+	{
+		DWORD wait_for_mutex_result = WaitForSingleObject(console_mutex, INFINITE);
+		if (wait_for_mutex_result != WAIT_OBJECT_0)
+		{
+			return BCS_E_FAIL;
+		}
+	}
+
+	va_list args;
+	va_start(args, format);
+	int requested_buffer_size = vsnprintf(nullptr, 0, format, args);
+	if (requested_buffer_size <= 0)
+	{
+		return BCS_E_FAIL;
+	}
+	char* output_buffer = static_cast<char*>(_malloca(requested_buffer_size + 2));
+	int written_buffer_size = vsnprintf(output_buffer, requested_buffer_size + 1, format, args);
+	output_buffer[requested_buffer_size + 1] = 0; // make sure null terminated
+	output_buffer[requested_buffer_size] = '\n'; // append new line
+	OutputDebugStringA(output_buffer);
+	output_buffer[requested_buffer_size] = 0; // make sure null terminated
+	puts(output_buffer);
+	_freea(output_buffer);
+	va_end(args);
+
+	if (console_mutex)
+	{
+		BOOL release_mutex_result = ReleaseMutex(console_mutex);
+		if (release_mutex_result == 0)
+		{
+			return BCS_E_FAIL;
+		}
+	}
+
+	return BCS_S_OK;
+}

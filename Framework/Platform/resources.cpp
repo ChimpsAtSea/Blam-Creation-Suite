@@ -30,8 +30,10 @@ BCS_RESULT resources_get_resource_type(e_bcs_resource_type type, LPCWSTR& resour
 	case _bcs_resource_type_icon_blam_creation_suite:
 	case _bcs_resource_type_icon_mandrill:
 		resource_type = RT_ICON;
+		break;
 	default:
 		resource_type = RT_RCDATA;
+		break;
 	}
 
 	return BCS_S_OK;
