@@ -12,20 +12,17 @@ namespace blofeld
 
 class c_viewport;
 class c_camera;
-
-struct ID3D12GraphicsCommandList;
+class c_render_context;
 
 class c_model_preview_test
 {
 public:
 	c_model_preview_test(
-		c_graphics& graphics,
+		c_render_context& parent_render_context,
 		blofeld::infinite::h_s_model_definition& model_tag, 
 		blofeld::infinite::h_objectdefinition* object_tag = nullptr);
 	~c_model_preview_test();
 
-	void on_viewport_size_changed(unsigned long width, unsigned long height);
-	void render_d3d12(ID3D12GraphicsCommandList* command_list);
 	void draw_ui();
 	void draw_viewport();
 	bool handle_viewport_drag_and_wheel(ImVec2& drag, float& wheel);
@@ -33,7 +30,8 @@ protected:
 	blofeld::infinite::h_s_model_definition& model_tag;
 	blofeld::infinite::h_objectdefinition* object_tag;
 	blofeld::infinite::h_render_model_definition* render_model;
-	c_graphics& graphics;
+	c_render_context& parent_render_context;
+	c_render_context* render_context;
 
 	c_viewport* viewport;
 	c_camera* camera;

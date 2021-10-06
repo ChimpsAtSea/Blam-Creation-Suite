@@ -77,6 +77,12 @@ void c_window_render_context::render()
 	}
 }
 
+BCS_RESULT c_window_render_context::get_viewport(c_viewport*& out_viewport)
+{
+	out_viewport = &window;
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_window_render_context::get_window(c_window*& out_window)
 {
 	out_window = &window;

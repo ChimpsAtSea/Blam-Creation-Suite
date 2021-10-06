@@ -18,7 +18,12 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	heap_flags(),
 	heap_properties(),
 	resource_state(),
-	resource_description()
+	resource_description(),
+	srv_descriptor_index(ULONG_MAX),
+	srv_cpu_descriptor_handle(),
+	srv_gpu_descriptor_handle(),
+	swap_chain_resize_start_handle(),
+	swap_chain_resize_finish_handle()
 {
 	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
 		graphics,
@@ -59,7 +64,12 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	heap_flags(),
 	heap_properties(),
 	resource_state(),
-	resource_description()
+	resource_description(),
+	srv_descriptor_index(ULONG_MAX),
+	srv_cpu_descriptor_handle(),
+	srv_gpu_descriptor_handle(),
+	swap_chain_resize_start_handle(),
+	swap_chain_resize_finish_handle()
 {
 	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
 		graphics,
@@ -75,6 +85,8 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	clear_value.Color[1] = clear_color.y;
 	clear_value.Color[2] = clear_color.z;
 	clear_value.Color[3] = clear_color.w;
+
+	heap_flags = D3D12_HEAP_FLAG_ALLOW_ALL_BUFFERS_AND_TEXTURES;
 
 	resource_state = D3D12_RESOURCE_STATE_RENDER_TARGET;
 
@@ -119,7 +131,12 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	heap_flags(),
 	heap_properties(),
 	resource_state(),
-	resource_description()
+	resource_description(),
+	srv_descriptor_index(ULONG_MAX),
+	srv_cpu_descriptor_handle(),
+	srv_gpu_descriptor_handle(),
+	swap_chain_resize_start_handle(),
+	swap_chain_resize_finish_handle()
 {
 	descriptor_heap_cpu = new c_descriptor_heap_d3d12(
 		graphics,
@@ -197,9 +214,9 @@ void c_graphics_render_target_d3d12::init_resource()
 	{
 		HRESULT create_committed_resource_result = graphics.device->CreateCommittedResource(
 			&heap_properties,
-			D3D12_HEAP_FLAG_ALLOW_ALL_BUFFERS_AND_TEXTURES,
+			heap_flags,
 			&resource_description,
-			D3D12_RESOURCE_STATE_DEPTH_WRITE,
+			resource_state,
 			&clear_value,
 			IID_PPV_ARGS(&resource)
 		);
@@ -212,6 +229,21 @@ void c_graphics_render_target_d3d12::init_resource()
 	case _graphics_render_target_type_d3d12_swapchain:
 	case _graphics_render_target_type_d3d12_color:
 	{
+		srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->allocate();
+		srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_cpu_descriptor_handle(srv_descriptor_index);
+		srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_gpu_descriptor_handle(srv_descriptor_index);
+
+		// Create a shader resource view for the texture
+		D3D12_SHADER_RESOURCE_VIEW_DESC shader_resource_view_description = {};
+		shader_resource_view_description.Format = dxgi_format;
+		shader_resource_view_description.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		shader_resource_view_description.Texture2D.MipLevels = __max(1u, resource_description.MipLevels);
+		shader_resource_view_description.Texture2D.MostDetailedMip = 0;
+		shader_resource_view_description.Texture2D.PlaneSlice = 0;
+		shader_resource_view_description.Texture2D.ResourceMinLODClamp = 0.0f;
+		shader_resource_view_description.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		graphics.device->CreateShaderResourceView(resource, &shader_resource_view_description, srv_cpu_descriptor_handle);
+
 		D3D12_CPU_DESCRIPTOR_HANDLE rtv_cpu_descriptor_handle = descriptor_heap_cpu->get_cpu_descriptor_handle(0);
 		graphics.device->CreateRenderTargetView(resource, nullptr, rtv_cpu_descriptor_handle);
 		break;
@@ -248,6 +280,12 @@ BCS_RESULT c_graphics_render_target_d3d12::resize(unsigned long width, unsigned 
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_graphics_render_target_d3d12::get_ui_image_display_handle(void*& display_handle)
+{
+	display_handle = reinterpret_cast<void*>(srv_gpu_descriptor_handle.ptr);
+	return BCS_S_OK;
+}
+
 void c_graphics_render_target_d3d12::swap_chain_resize_start(c_graphics_render_target_d3d12& _this, unsigned long width, unsigned long height)
 {
 	console_write_line(__FUNCTION__);
@@ -262,7 +300,7 @@ void c_graphics_render_target_d3d12::swap_chain_resize_finish(c_graphics_render_
 	_this.init_resource();
 }
 
-void c_graphics_render_target_d3d12::clear_render_target()
+BCS_RESULT c_graphics_render_target_d3d12::clear_render_target()
 {
 	switch (render_target_type)
 	{
@@ -273,7 +311,7 @@ void c_graphics_render_target_d3d12::clear_render_target()
 			clear_value.Color, 
 			0, 
 			nullptr);
-		break;
+		return BCS_S_OK;
 	case _graphics_render_target_type_d3d12_depth_stencil:
 		graphics.command_list->ClearDepthStencilView(
 			descriptor_heap_cpu->cpu_descriptor_handle, 
@@ -282,8 +320,9 @@ void c_graphics_render_target_d3d12::clear_render_target()
 			clear_value.DepthStencil.Stencil,
 			0, 
 			nullptr); // #NOTE: Clear to zero because depth is inverted
-		break;
+		return BCS_S_OK;
 	}
+	return BCS_E_NOT_IMPLEMENTED;
 }
 BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 	c_graphics_d3d12* graphics,

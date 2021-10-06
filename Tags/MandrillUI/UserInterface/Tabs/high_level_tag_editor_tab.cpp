@@ -19,65 +19,60 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
-		c_graphics* graphics;
-		if (BCS_SUCCEEDED(mandrill_user_interface->render_context.get_graphics(graphics)))
+		blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
+		blofeld::infinite::h_objectdefinition* object_tag = nullptr;
+		if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
 		{
-			blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
-			blofeld::infinite::h_objectdefinition* object_tag = nullptr;
-			if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
+			h_tag* tag = weapon_definition->item.object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = weapon_definition->item.object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &weapon_definition->item.object;
-				}
+				object_tag = &weapon_definition->item.object;
 			}
-			if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
+		}
+		if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
+		{
+			h_tag* tag = vehicle_definition->unit.object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = vehicle_definition->unit.object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &vehicle_definition->unit.object;
-				}
+				object_tag = &vehicle_definition->unit.object;
 			}
-			if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
+		}
+		if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
+		{
+			h_tag* tag = biped_definition->unit.object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = biped_definition->unit.object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &biped_definition->unit.object;
-				}
+				object_tag = &biped_definition->unit.object;
 			}
-			if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
+		}
+		if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
+		{
+			h_tag* tag = crate_definition->object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = crate_definition->object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &crate_definition->object;
-				}
+				object_tag = &crate_definition->object;
 			}
-			if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
+		}
+		if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
+		{
+			h_tag* tag = creature_definition->object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = creature_definition->object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &creature_definition->object;
-				}
+				object_tag = &creature_definition->object;
 			}
-			if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
+		}
+		if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
+		{
+			h_tag* tag = equipment_definition->item.object.model;
+			if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 			{
-				h_tag* tag = equipment_definition->item.object.model;
-				if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
-				{
-					object_tag = &equipment_definition->item.object;
-				}
+				object_tag = &equipment_definition->item.object;
 			}
+		}
 
-			if (model_tag)
-			{
-				model_preview_test = new c_model_preview_test(*graphics, *model_tag, object_tag);
-			}
-
+		if (model_tag)
+		{
+			model_preview_test = new c_model_preview_test(mandrill_user_interface->render_context, *model_tag, object_tag);
 		}
 	}
 }

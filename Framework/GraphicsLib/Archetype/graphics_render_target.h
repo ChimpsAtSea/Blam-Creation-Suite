@@ -10,6 +10,8 @@ public:
 	virtual ~c_graphics_render_target();
 
 	virtual BCS_RESULT resize(unsigned long width, unsigned long height) = 0;
+	virtual BCS_RESULT clear_render_target() = 0;
+	virtual BCS_RESULT get_ui_image_display_handle(void*& display_handle) = 0;
 
 	using t_graphics_resize_callback = void(unsigned long width, unsigned long height);
 	c_typed_callback<t_graphics_resize_callback> on_resize;

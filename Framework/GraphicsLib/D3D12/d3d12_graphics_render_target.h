@@ -43,10 +43,11 @@ public:
 		bool shared);
 	virtual ~c_graphics_render_target_d3d12();
 
-	void clear_render_target();
 	void init_resource();
 	void deinit_resource();
 	virtual BCS_RESULT resize(unsigned long width, unsigned long height) override;
+	virtual BCS_RESULT clear_render_target() override;
+	virtual BCS_RESULT get_ui_image_display_handle(void*& display_handle) override;
 
 	static void swap_chain_resize_start(c_graphics_render_target_d3d12& _this, unsigned long width, unsigned long height);
 	static void swap_chain_resize_finish(c_graphics_render_target_d3d12& _this, unsigned long width, unsigned long height);
@@ -66,6 +67,10 @@ public:
 	D3D12_HEAP_PROPERTIES heap_properties;
 	D3D12_RESOURCE_STATES resource_state;
 	D3D12_RESOURCE_DESC resource_description;
+
+	unsigned long srv_descriptor_index;
+	D3D12_CPU_DESCRIPTOR_HANDLE srv_cpu_descriptor_handle;
+	D3D12_GPU_DESCRIPTOR_HANDLE srv_gpu_descriptor_handle;
 
 	t_callback_handle swap_chain_resize_start_handle;
 	t_callback_handle swap_chain_resize_finish_handle;

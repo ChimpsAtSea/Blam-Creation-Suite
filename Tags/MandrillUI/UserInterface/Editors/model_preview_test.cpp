@@ -19,13 +19,14 @@ T _dynamic_cast(V const& value)
 #define dynamic_cast _dynamic_cast
 
 c_model_preview_test::c_model_preview_test(
-	c_graphics& graphics,
+	c_render_context& parent_render_context,
 	blofeld::infinite::h_s_model_definition& model_tag,
 	blofeld::infinite::h_objectdefinition* object_tag) :
 	model_tag(model_tag),
 	object_tag(object_tag),
 	render_model(dynamic_cast<decltype(render_model)>(model_tag.render_model)),
-	graphics(graphics),
+	parent_render_context(parent_render_context),
+	render_context(nullptr),
 	viewport(),
 	//camera(),
 	//graphics(),
@@ -49,11 +50,21 @@ c_model_preview_test::c_model_preview_test(
 	{
 		viewport = new c_viewport();
 
-		static c_graphics_shader_binary* graphics_shader_binary;
-		static auto shader_binary_result = graphics_shader_binary_create(&graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
+		float4 background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
+		BCS_FAIL_THROW(render_context_imgui_create(
+			parent_render_context,
+			*viewport,
+			background_color,
+			render_context));
 
+		c_graphics* graphics;
+		parent_render_context.get_graphics(graphics);
+
+		static c_graphics_shader_binary* graphics_shader_binary;
+		static auto shader_binary_result = graphics_shader_binary_create(graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
+		
 		static c_graphics_shader_pipeline* graphics_shader_pipeline;
-		static auto shader_pipeline_result = graphics_shader_pipeline_create(&graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
+		static auto shader_pipeline_result = graphics_shader_pipeline_create(graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
 
 		//camera = new c_camera(*graphics);
 		//pixel_shader = new c_hlsl_shader_d3d12(_bcs_resource_type_viewport_default_pixel_shader);
@@ -72,7 +83,7 @@ c_model_preview_test::c_model_preview_test(
 		//graphics->on_render_scene = std::bind(&c_model_preview_test::render_d3d12, this, _1);
 		//viewport->on_size_changed = std::bind(&c_model_preview_test::on_viewport_size_changed, this, _1, _2);
 
-		//debug_point;
+		debug_point;
 	}
 }
 
@@ -80,132 +91,127 @@ c_model_preview_test::~c_model_preview_test()
 {
 	delete viewport;
 }
-
-void c_model_preview_test::on_viewport_size_changed(unsigned long width, unsigned long height)
-{
-	//graphics->resize_render_targets();
-}
-
-void c_model_preview_test::render_d3d12(ID3D12GraphicsCommandList* command_list)
-{
-	//using namespace DirectX;
-
-	//camera->update_perspective(60.0f * DEG2RAD, viewport->get_aspect_ratio());
-	//if (object_tag)
-	//{
-	//	camera->update_view(
-	//		{ 
-	//			object_tag->bounding_offset.value.x, 
-	//			object_tag->bounding_offset.value.y, 
-	//			object_tag->bounding_offset.value.z 
-	//		});
-	//}
-	//else
-	//{
-	//	camera->update_view({ 0.0f, 0.0f, 0.0f });
-	//}
-	//
-	//camera->render();
-
-	//{
-	//	command_list->SetGraphicsRootSignature(graphics->default_pipeline_signature->root_signature);
-	//	command_list->SetGraphicsRootDescriptorTable(0, camera->constant_buffer->get_gpu_descriptor_handle(graphics->current_frame_index));
-	//	//command_list->SetGraphicsRootDescriptorTable(2, albedo_texture->gpu_desctiptor_handle);
-	//	//command_list->SetGraphicsRootDescriptorTable(3, ambient_occlusion_texture->gpu_desctiptor_handle);
-
-	//	blofeld::infinite::h_render_model_definition* render_model = dynamic_cast<decltype(render_model)>(model_tag.render_model);
-
-	//	if (!model_tag.variants_block.empty())
-	//	{
-	//		auto& selected_variant = model_tag.variants_block[selected_variant_index];
-
-	//		for (auto& runtime_variant_region_index : selected_variant.runtime_variant_region_indices)
-	//		{
-	//			char runtime_region_index = runtime_variant_region_index.runtime_region_index;
-
-	//			if (runtime_region_index >= 0)
-	//			{
-	//				auto& runtime_render_model_region = render_model->regions_block[runtime_region_index];
-	//				auto& permutation = runtime_render_model_region.permutations_block.front();
-
-
-	//				if (permutation.mesh_index.value >= 0)
-	//				{
-	//					short mesh_start_index = permutation.mesh_index;
-	//					short mesh_end_index = mesh_start_index + permutation.mesh_count.value;
-	//					for (short mesh_index = mesh_start_index; mesh_index < mesh_end_index; mesh_index++)
-	//					{
-	//						auto& geometry_instance = geometry_instances[mesh_index];
-
-	//						r_instance instance;
-	//						instance.color = { 1.0f, 1.0f, 1.0f, 1.0f };
-	//						instance.transform = XMMatrixTranspose(XMMatrixScaling(scale, scale, scale));
-
-	//						geometry_instance.geometry_instance->update_resource(&instance, 0, sizeof(instance));
-
-	//						command_list->SetGraphicsRootDescriptorTable(1, geometry_instance.geometry_instance->get_gpu_descriptor_handle());
-
-	//						command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_depth_only, _vertex_layout_type_p));
-	//						geometry_instance.geometry->draw_instanced(1);
-
-	//						command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_opaque, _vertex_layout_type_ptcn));
-	//						geometry_instance.geometry->draw_instanced(1);
-	//					}
-	//				}
-	//			}
-	//		}
-	//	}
-	//	else
-	//	{
-	//		for (auto& runtime_render_model_region : render_model->regions_block)
-	//		{
-	//			auto& permutation = runtime_render_model_region.permutations_block.front();
-
-	//			if (permutation.mesh_index.value >= 0)
-	//			{
-	//				short mesh_start_index = permutation.mesh_index;
-	//				short mesh_end_index = mesh_start_index + permutation.mesh_count.value;
-	//				for (short mesh_index = mesh_start_index; mesh_index < mesh_end_index; mesh_index++)
-	//				{
-	//					auto& geometry_instance = geometry_instances[mesh_index];
-
-	//					r_instance instance;
-	//					instance.color = { 1.0f, 1.0f, 1.0f, 1.0f };
-	//					instance.transform = XMMatrixTranspose(XMMatrixScaling(scale, scale, scale));
-
-	//					geometry_instance.geometry_instance->update_resource(&instance, 0, sizeof(instance));
-
-	//					command_list->SetGraphicsRootDescriptorTable(1, geometry_instance.geometry_instance->get_gpu_descriptor_handle());
-
-	//					command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_depth_only, _vertex_layout_type_p));
-	//					geometry_instance.geometry->draw_instanced(1);
-
-	//					command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_opaque, _vertex_layout_type_ptcn));
-	//					geometry_instance.geometry->draw_instanced(1);
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
-
-	//if (object_tag != nullptr && show_bounding_radius)
-	//{
-	//	s_debug_geometry_sphere sphere;
-	//	sphere.color = { 1,0,0,1 };
-	//	sphere.transform = XMMatrixTranspose(
-	//		XMMatrixScaling(
-	//			scale * object_tag->bounding_radius.value,
-	//			scale * object_tag->bounding_radius.value,
-	//			scale * object_tag->bounding_radius.value) *
-	//		XMMatrixTranslation(
-	//			object_tag->bounding_offset.value.x,
-	//			object_tag->bounding_offset.value.y,
-	//			object_tag->bounding_offset.value.z));
-	//	debug_push_sphere(graphics, &sphere);
-
-	//	graphics->render_debug_geometry(camera);
-	//}
-}
+//
+//void c_model_preview_test::render_d3d12(ID3D12GraphicsCommandList* command_list)
+//{
+//	//using namespace DirectX;
+//
+//	//camera->update_perspective(60.0f * DEG2RAD, viewport->get_aspect_ratio());
+//	//if (object_tag)
+//	//{
+//	//	camera->update_view(
+//	//		{ 
+//	//			object_tag->bounding_offset.value.x, 
+//	//			object_tag->bounding_offset.value.y, 
+//	//			object_tag->bounding_offset.value.z 
+//	//		});
+//	//}
+//	//else
+//	//{
+//	//	camera->update_view({ 0.0f, 0.0f, 0.0f });
+//	//}
+//	//
+//	//camera->render();
+//
+//	//{
+//	//	command_list->SetGraphicsRootSignature(graphics->default_pipeline_signature->root_signature);
+//	//	command_list->SetGraphicsRootDescriptorTable(0, camera->constant_buffer->get_gpu_descriptor_handle(graphics->current_frame_index));
+//	//	//command_list->SetGraphicsRootDescriptorTable(2, albedo_texture->gpu_desctiptor_handle);
+//	//	//command_list->SetGraphicsRootDescriptorTable(3, ambient_occlusion_texture->gpu_desctiptor_handle);
+//
+//	//	blofeld::infinite::h_render_model_definition* render_model = dynamic_cast<decltype(render_model)>(model_tag.render_model);
+//
+//	//	if (!model_tag.variants_block.empty())
+//	//	{
+//	//		auto& selected_variant = model_tag.variants_block[selected_variant_index];
+//
+//	//		for (auto& runtime_variant_region_index : selected_variant.runtime_variant_region_indices)
+//	//		{
+//	//			char runtime_region_index = runtime_variant_region_index.runtime_region_index;
+//
+//	//			if (runtime_region_index >= 0)
+//	//			{
+//	//				auto& runtime_render_model_region = render_model->regions_block[runtime_region_index];
+//	//				auto& permutation = runtime_render_model_region.permutations_block.front();
+//
+//
+//	//				if (permutation.mesh_index.value >= 0)
+//	//				{
+//	//					short mesh_start_index = permutation.mesh_index;
+//	//					short mesh_end_index = mesh_start_index + permutation.mesh_count.value;
+//	//					for (short mesh_index = mesh_start_index; mesh_index < mesh_end_index; mesh_index++)
+//	//					{
+//	//						auto& geometry_instance = geometry_instances[mesh_index];
+//
+//	//						r_instance instance;
+//	//						instance.color = { 1.0f, 1.0f, 1.0f, 1.0f };
+//	//						instance.transform = XMMatrixTranspose(XMMatrixScaling(scale, scale, scale));
+//
+//	//						geometry_instance.geometry_instance->update_resource(&instance, 0, sizeof(instance));
+//
+//	//						command_list->SetGraphicsRootDescriptorTable(1, geometry_instance.geometry_instance->get_gpu_descriptor_handle());
+//
+//	//						command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_depth_only, _vertex_layout_type_p));
+//	//						geometry_instance.geometry->draw_instanced(1);
+//
+//	//						command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_opaque, _vertex_layout_type_ptcn));
+//	//						geometry_instance.geometry->draw_instanced(1);
+//	//					}
+//	//				}
+//	//			}
+//	//		}
+//	//	}
+//	//	else
+//	//	{
+//	//		for (auto& runtime_render_model_region : render_model->regions_block)
+//	//		{
+//	//			auto& permutation = runtime_render_model_region.permutations_block.front();
+//
+//	//			if (permutation.mesh_index.value >= 0)
+//	//			{
+//	//				short mesh_start_index = permutation.mesh_index;
+//	//				short mesh_end_index = mesh_start_index + permutation.mesh_count.value;
+//	//				for (short mesh_index = mesh_start_index; mesh_index < mesh_end_index; mesh_index++)
+//	//				{
+//	//					auto& geometry_instance = geometry_instances[mesh_index];
+//
+//	//					r_instance instance;
+//	//					instance.color = { 1.0f, 1.0f, 1.0f, 1.0f };
+//	//					instance.transform = XMMatrixTranspose(XMMatrixScaling(scale, scale, scale));
+//
+//	//					geometry_instance.geometry_instance->update_resource(&instance, 0, sizeof(instance));
+//
+//	//					command_list->SetGraphicsRootDescriptorTable(1, geometry_instance.geometry_instance->get_gpu_descriptor_handle());
+//
+//	//					command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_depth_only, _vertex_layout_type_p));
+//	//					geometry_instance.geometry->draw_instanced(1);
+//
+//	//					command_list->SetPipelineState(geometry_pipeline->get_pipeline_state(_pipeline_mode_opaque, _vertex_layout_type_ptcn));
+//	//					geometry_instance.geometry->draw_instanced(1);
+//	//				}
+//	//			}
+//	//		}
+//	//	}
+//	//}
+//
+//	//if (object_tag != nullptr && show_bounding_radius)
+//	//{
+//	//	s_debug_geometry_sphere sphere;
+//	//	sphere.color = { 1,0,0,1 };
+//	//	sphere.transform = XMMatrixTranspose(
+//	//		XMMatrixScaling(
+//	//			scale * object_tag->bounding_radius.value,
+//	//			scale * object_tag->bounding_radius.value,
+//	//			scale * object_tag->bounding_radius.value) *
+//	//		XMMatrixTranslation(
+//	//			object_tag->bounding_offset.value.x,
+//	//			object_tag->bounding_offset.value.y,
+//	//			object_tag->bounding_offset.value.z));
+//	//	debug_push_sphere(graphics, &sphere);
+//
+//	//	graphics->render_debug_geometry(camera);
+//	//}
+//}
 
 void c_model_preview_test::draw_ui()
 {
@@ -320,15 +326,8 @@ void c_model_preview_test::draw_viewport()
 	viewport_width_float = static_cast<float>(viewport_width);
 	viewport_height_float = static_cast<float>(viewport_height);
 
-	//viewport->set_size(viewport_width, viewport_height);
-	//graphics->update(1.0f / 60.0f);
-	//graphics->render();
-
-	ImVec2 start_pos = ImGui::GetCursorScreenPos();
-	ImVec2 content_region = { viewport_width_float, viewport_height_float };
-	ImVec2 end_pos = { start_pos.x * content_region.x, start_pos.y * content_region.y };
-
-	//ImGui::Image(graphics->d3d11_render_target_shader_resource_views[graphics->current_frame_index], content_region);
+	viewport->set_size(viewport_width, viewport_height);
+	render_context->render();
 
 	ImVec2 viewport_drag;
 	float viewport_wheel;
@@ -341,7 +340,7 @@ void c_model_preview_test::draw_viewport()
 bool c_model_preview_test::handle_viewport_drag_and_wheel(ImVec2& mouse_drag_delta, float& mouse_wheel_delta)
 {
 	ImGuiContext& g = *GImGui;
-	if (!ImGui::IsItemHovered())
+	if (!(ImGui::IsItemHovered() || is_dragging_camera))
 	{
 		// fixup for image control
 		g.HoveredIdUsingMouseWheel = false;

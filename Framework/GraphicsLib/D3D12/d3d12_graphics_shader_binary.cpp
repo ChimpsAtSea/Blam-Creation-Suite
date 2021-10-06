@@ -2,19 +2,19 @@
 
 c_graphics_shader_binary_d3d12::c_graphics_shader_binary_d3d12(
 	c_graphics_d3d12& graphics,
-	void* shader_binary_data,
-	unsigned long shader_binary_data_size,
+	void* src_shader_binary_data,
+	unsigned long src_shader_binary_data_size,
 	const char* debug_name) :
 	graphics(graphics),
-	shader_binary_data(shader_binary_data),
-	shader_binary_data_size(shader_binary_data_size)
+	shader_binary_data(malloc(shader_binary_data_size)),
+	shader_binary_data_size(src_shader_binary_data_size)
 {
-
+	memcpy(shader_binary_data, src_shader_binary_data, shader_binary_data_size);
 }
 
 c_graphics_shader_binary_d3d12::~c_graphics_shader_binary_d3d12()
 {
-	delete shader_binary_data;
+	free(shader_binary_data);
 }
 
 BCS_RESULT graphics_d3d12_shader_binary_create(

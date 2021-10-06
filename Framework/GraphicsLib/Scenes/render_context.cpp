@@ -22,11 +22,15 @@ BCS_RESULT render_context_window_create(
 }
 
 BCS_RESULT render_context_imgui_create(
-	c_imgui_context& imgui_context,
+	c_render_context& parent_render_context,
+	c_viewport& viewport,
+	float4 clear_color,
 	c_render_context*& render_context)
 {
-	return imgui_viewport_render_context_window_create(
-		imgui_context,
+	return render_context_imgui_viewport_create(
+		parent_render_context,
+		viewport,
+		clear_color,
 		*reinterpret_cast<c_imgui_viewport_render_context**>(&render_context));
 }
 
@@ -38,7 +42,7 @@ BCS_RESULT render_context_destroy(c_render_context* render_context)
 	}
 	if (c_imgui_viewport_render_context* imgui_viewport_render_context = dynamic_cast<c_imgui_viewport_render_context*>(render_context))
 	{
-		return imgui_viewport_render_context_destroy(imgui_viewport_render_context);
+		return render_context_imgui_viewport_destroy(imgui_viewport_render_context);
 	}
 	return BCS_E_UNSUPPORTED;
 }

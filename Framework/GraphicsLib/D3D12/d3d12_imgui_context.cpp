@@ -72,7 +72,7 @@ void c_imgui_context_d3d12::init_imgui_font()
 
 	void* font_awesome_font_resource_data;
 	unsigned long long font_awesome_font_resource_data_size;
-	resources_read_resource_to_memory(_bcs_resource_type_font_cousine_regular, font_awesome_font_resource_data, font_awesome_font_resource_data_size);
+	resources_read_resource_to_memory(_bcs_resource_type_font_font_awesome, font_awesome_font_resource_data, font_awesome_font_resource_data_size);
 
 	static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
 	imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_awesome_font_resource_data, static_cast<int>(font_awesome_font_resource_data_size), font_awesome_font_size, &font_awesome_font_configuration, icon_ranges);
@@ -126,6 +126,12 @@ void c_imgui_context_d3d12::render()
 
 	ImGui::Render();
 	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), graphics.command_list);
+}
+
+BCS_RESULT c_imgui_context_d3d12::get_context(ImGuiContext*& out_imgui_context)
+{
+	out_imgui_context = imgui_context;
+	return BCS_S_OK;
 }
 
 static BOOL CALLBACK monitor_enum_procedure(HMONITOR monitor_handle, HDC device_context_handle, LPRECT rectangle, LPARAM userdata)

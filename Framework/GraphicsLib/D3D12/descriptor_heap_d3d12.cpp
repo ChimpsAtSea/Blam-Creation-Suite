@@ -21,8 +21,8 @@ c_descriptor_heap_d3d12::c_descriptor_heap_d3d12(c_graphics_d3d12& graphics, D3D
 	ASSERT(SUCCEEDED(create_desctiptor_heap_result));
 	descriptor_heap->SetName(name);
 
-	cpu_descriptor_handle = descriptor_heap->GetCPUDescriptorHandleForHeapStart();;
-	gpu_descriptor_handle = descriptor_heap->GetGPUDescriptorHandleForHeapStart();;
+	cpu_descriptor_handle = descriptor_heap->GetCPUDescriptorHandleForHeapStart();
+	gpu_descriptor_handle = descriptor_heap->GetGPUDescriptorHandleForHeapStart();
 }
 
 c_descriptor_heap_d3d12::~c_descriptor_heap_d3d12()

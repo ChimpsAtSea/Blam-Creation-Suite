@@ -78,7 +78,7 @@ BCS_RESULT resources_get_resource_handle(e_bcs_resource_type type, HRSRC& resour
 	{
 		return BCS_E_NOT_FOUND;
 	}
-	
+
 	return rs;
 }
 
@@ -135,28 +135,39 @@ BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, unsigned long l
 	const char* filename;
 	if (BCS_SUCCEEDED(rs = resources_get_resource_filename(type, filename)))
 	{
-		if (BCS_FAILED(rs = filesystem_filepath_exists(filename)))
+		void* process_module;
+		if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
 		{
-			return rs;
-		}
-		else
-		{
-			unsigned long long local_resource_file_size;
-			if (BCS_FAILED(rs = filesystem_get_file_size(filename, local_resource_file_size)))
+			char resource_local_filepath[MAX_PATH];
+			GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
+			PathRemoveFileSpecA(resource_local_filepath);
+			strcat(resource_local_filepath, "\\");
+			strcat(resource_local_filepath, filename);
+
+			if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
 			{
 				return rs;
 			}
-
-			if (local_resource_file_size >= ULONG_MAX)
+			else
 			{
-				return BCS_E_FAIL;
-			}
+				unsigned long long local_resource_file_size;
+				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_file_size)))
+				{
+					return rs;
+				}
 
-			resource_size = static_cast<unsigned long>(local_resource_file_size);
+				if (local_resource_file_size >= ULONG_MAX)
+				{
+					return BCS_E_FAIL;
+				}
+
+				resource_size = static_cast<unsigned long>(local_resource_file_size);
+
+				return rs;
+			}
 
 			return rs;
 		}
-
 		return rs;
 	}
 
@@ -188,29 +199,40 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 	const char* filename;
 	if (BCS_SUCCEEDED(rs = resources_get_resource_filename(type, filename)))
 	{
-		if (BCS_FAILED(rs = filesystem_filepath_exists(filename)))
+		void* process_module;
+		if (BCS_SUCCEEDED(rs = get_process_module(process_module)))
 		{
-			return rs;
-		}
-		else
-		{
-			unsigned long long local_resource_size;
-			if (BCS_FAILED(rs = filesystem_get_file_size(filename, local_resource_size)))
+			char resource_local_filepath[MAX_PATH];
+			GetModuleFileNameA(static_cast<HMODULE>(process_module), resource_local_filepath, _countof(resource_local_filepath));
+			PathRemoveFileSpecA(resource_local_filepath);
+			strcat(resource_local_filepath, "\\");
+			strcat(resource_local_filepath, filename);
+
+			if (BCS_FAILED(rs = filesystem_filepath_exists(resource_local_filepath)))
 			{
 				return rs;
 			}
-
-			unsigned long long read_data_size = __min(local_resource_size, buffer_size);
-			if (read_data_size >= ULONG_MAX)
+			else
 			{
-				return BCS_E_FAIL;
-			}
+				unsigned long long local_resource_size;
+				if (BCS_FAILED(rs = filesystem_get_file_size(resource_local_filepath, local_resource_size)))
+				{
+					return rs;
+				}
 
-			if (BCS_FAILED(rs = filesystem_copy_file_to_buffer(filename, buffer, read_data_size)))
-			{
+				unsigned long long read_data_size = __min(local_resource_size, buffer_size);
+				if (read_data_size >= ULONG_MAX)
+				{
+					return BCS_E_FAIL;
+				}
+
+				if (BCS_FAILED(rs = filesystem_copy_file_to_buffer(resource_local_filepath, buffer, read_data_size)))
+				{
+					return rs;
+				}
+
 				return rs;
 			}
-
 			return rs;
 		}
 
@@ -325,7 +347,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 	{
 		rs = BCS_E_FAIL;
 	}
-	
+
 	return rs;
 }
 

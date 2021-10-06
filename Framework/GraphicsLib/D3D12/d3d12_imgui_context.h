@@ -34,6 +34,7 @@ public:
 	static void __cdecl on_window_procedure_callback(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam);
 
 	virtual void render() override;
+	virtual BCS_RESULT get_context(ImGuiContext*& imgui_context) override;
 
 	static float calculate_font_scale_factor();
 };
