@@ -404,8 +404,6 @@ bool c_high_level_tag_editor_tab::render_primitive(void* data, const s_tag_field
 	return result;
 }
 
-
-
 void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, const s_tag_field& field)
 {
 	constexpr float k_min_block_width = 1000.0f;
@@ -452,8 +450,12 @@ void c_high_level_tag_editor_tab::render_enumerable(h_enumerable& enumerable, co
 			ImGui::SameLine();
 			ImGui::BeginGroup();
 
+			ImGui::PushID(index);
+
 			h_object& object = enumerable.get(index);
 			render_object(0, object);
+
+			ImGui::PopID();
 
 			ImGui::EndGroup();
 			ImGui::Dummy({ 8.0f, 8.0f });
@@ -958,8 +960,33 @@ bool c_high_level_tag_editor_tab::render_tag_reference(h_tag*& tag_reference, co
 	return result;
 }
 
+static const blofeld::s_tag_field* g_current_field;
+class c_high_level_imgui_memory_editor_settings :
+	public s_imgui_memory_editor_settings
+{
+public:
+	c_high_level_imgui_memory_editor_settings() :
+		s_imgui_memory_editor_settings()
+	{
+		CustomUIFn = custom_ui_function;
+	}
+
+	static bool custom_ui_function(void* userdata, void* data, size_t size)
+	{
+		bool is_handled = true;
+		if (ImGui::Button("Export"))
+		{
+			filesystem_write_file_from_memory("export.bin", data, size);
+		}
+		ImGui::SameLine();
+		return is_handled;
+	}
+};
+static c_high_level_imgui_memory_editor_settings imgui_memory_editor_settings;
+
 void c_high_level_tag_editor_tab::render_data(h_data& data, const blofeld::s_tag_field& field)
 {
+	g_current_field = &field;
 	ImGui::PushID(&field);
 	{
 		ImGui::Columns(2, NULL, false);
@@ -970,12 +997,10 @@ void c_high_level_tag_editor_tab::render_data(h_data& data, const blofeld::s_tag
 		}
 		ImGui::NextColumn();
 		{
-			MemoryEditor memory_editor;
-
 			ImGui::Dummy(ImVec2(0.0f, 3.0f));
 			if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
 			{
-				memory_editor.DrawContents(data.data(), data.size());
+				imgui_memory_editor(imgui_memory_editor_settings, data.data(), data.size(), &data);
 			}
 			ImGui::EndChild();
 			ImGui::Dummy(ImVec2(0.0f, 3.0f));
@@ -1033,17 +1058,16 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
 				// #TODO: replace string parser for the bitfield
-				/*const char* string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
-				c_blamlib_string_parser current_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
+				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
 
-				bool const current_string_has_tooltip = !current_string_parser.description.empty();
+				bool const current_string_has_tooltip = false; // !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 				}
 				unsigned long mask = 1u << string_index;
 				bool is_flag_set = (value & mask) != 0;
-				if (ImGui::Checkbox(current_string_parser.display_name.c_str(), &is_flag_set))
+				if (ImGui::Checkbox(current_string, &is_flag_set))
 				{
 					value &= ~mask;
 					if (is_flag_set)
@@ -1073,9 +1097,9 @@ bool c_high_level_tag_editor_tab::render_flags_definition(void* data, const s_ta
 					ImGui::PopStyleColor();
 					if (ImGui::IsItemHovered())
 					{
-						ImGui::SetTooltip(current_string_parser.description);
+						//ImGui::SetTooltip(current_string_parser.description);
 					}
-				}*/
+				}
 			}
 			// #TODO: display out of bounds enum values
 		}
@@ -1132,35 +1156,23 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		bool current_string_has_tooltip = false;
 
 		// #TODO: replace string parser for the enum
-		/*if (static_cast<unsigned long>(value) < string_list_count)
+		if (static_cast<unsigned long>(value) < string_list_count)
 		{
-			const char* string = string_list_definition.get_string(tag_project.engine_platform_build, value);
-			if (string)
-			{
-				c_blamlib_string_parser selected_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
-
-				if (current_string_has_tooltip = !selected_string_parser.description.empty())
-				{
-					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
-				}
-
-				selected_string_value = selected_string_parser.display_name.c_str();
-			}
+			selected_string_value = string_list_definition.get_string(tag_project.engine_platform_build, value);
 		}
 
 		if (ImGui::BeginCombo("##enum", selected_string_value))
 		{
 			for (unsigned long string_index = 0; string_index < string_list_count; string_index++)
 			{
-				const char* string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
-				c_blamlib_string_parser current_string_parser = c_blamlib_string_parser(string, false); // #TODO: replace me
+				const char* current_string = string_list_definition.get_string(tag_project.engine_platform_build, string_index);
 
-				bool const current_string_has_tooltip = !current_string_parser.description.empty();
+				bool const current_string_has_tooltip = false; // !current_string_parser.description.empty();
 				if (current_string_has_tooltip)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 				}
-				if (ImGui::Selectable(current_string_parser.display_name.c_str()))
+				if (ImGui::Selectable(current_string))
 				{
 					value = string_index;
 
@@ -1185,7 +1197,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 					ImGui::PopStyleColor();
 					if (ImGui::IsItemHovered())
 					{
-						ImGui::SetTooltip(current_string_parser.description);
+						//ImGui::SetTooltip(current_string_parser.description);
 					}
 				}
 			}
@@ -1196,7 +1208,7 @@ bool c_high_level_tag_editor_tab::render_enum_definition(void* data, const s_tag
 		if (current_string_has_tooltip)
 		{
 			ImGui::PopStyleColor();
-		}*/
+		}
 		// #TODO: display out of bounds enum values
 	}
 
@@ -1259,6 +1271,8 @@ bool c_high_level_tag_editor_tab::render_tag(::tag& value, const blofeld::s_tag_
 
 void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& object)
 {
+	ImGui::PushID(&object);
+
 	const s_tag_struct_definition& struct_definition = object.get_blofeld_struct_definition();
 
 	if (&struct_definition == &object_struct_definition)
@@ -1432,12 +1446,11 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 					}
 					ImGui::NextColumn();
 					{
-						MemoryEditor memory_editor;
-
 						ImGui::Dummy(ImVec2(0.0f, 3.0f));
 						if (ImGui::BeginChild("##data", { 0.0f, ImGui::GetTextLineHeight() * 9.5f }, false))
 						{
-							memory_editor.DrawContents(struct_object->data.data(), struct_object->data.size());
+							static s_imgui_memory_editor_settings settings;
+							imgui_memory_editor(settings, struct_object->data.data(), struct_object->data.size());
 						}
 						ImGui::EndChild();
 						ImGui::Dummy(ImVec2(0.0f, 3.0f));
@@ -1476,6 +1489,7 @@ void c_high_level_tag_editor_tab::render_object(unsigned long level, h_object& o
 
 		ImGui::PopID();
 	}
+	ImGui::PopID();
 }
 
 void c_high_level_tag_editor_tab::render_tag_group()

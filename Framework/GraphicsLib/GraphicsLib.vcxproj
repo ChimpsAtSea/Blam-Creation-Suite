@@ -51,6 +51,7 @@
     <ClCompile Include="Archetype\window.cpp" />
     <ClCompile Include="Archetype\imgui_context.cpp" />
     <ClCompile Include="Archetype\graphics_swap_chain.cpp" />
+    <ClCompile Include="ImGui\imgui_memory_editor.cpp" />
     <ClCompile Include="Scenes\imgui_viewport_render_context.cpp" />
     <ClCompile Include="Scenes\render_context.cpp" />
     <ClCompile Include="Windows\window_windows.cpp" />
@@ -108,6 +109,8 @@
     <ClInclude Include="Archetype\window.h" />
     <ClInclude Include="Archetype\imgui_context.h" />
     <ClInclude Include="Archetype\graphics_swap_chain.h" />
+    <ClInclude Include="ImGui\imgui-public-pch.h" />
+    <ClInclude Include="ImGui\imgui_memory_editor.h" />
     <ClInclude Include="Scenes\imgui_viewport_render_context.h" />
     <ClInclude Include="Scenes\render_context.h" />
     <ClInclude Include="Windows\window_windows.h" />
