@@ -59,6 +59,27 @@ c_tag_project_configurator_tab::c_tag_project_configurator_tab(const wchar_t* di
 			this);
 	}
 
+	const wchar_t* modules[128] = {};
+	unsigned long num_modules = _countof(modules);
+	if (BCS_SUCCEEDED(command_line_get_arguments(L"autoproject-module", modules, num_modules)) && num_modules > 0)
+	{
+
+		for (s_cache_file_list_entry& entry : entries)
+		{
+			entry.selected = false;
+			for (unsigned long module_index = 0; module_index < num_modules; module_index++)
+			{
+				const wchar_t* module_name = modules[module_index];
+
+				if (wcscmp(entry.filepath, module_name) == 0)
+				{
+					entry.selected = true;
+					break;
+				}
+			}
+		}
+	}
+
 	for (s_cache_file_list_entry& entry : entries)
 	{
 		is_all_selected &= entry.selected;
@@ -75,11 +96,6 @@ bool c_tag_project_configurator_tab::process_directory(const wchar_t* file_path,
 	s_cache_file_list_entry entry = {};
 	entry.filepath = relative_file_path;
 	entry.selected = true; // #TODO: read the build string from any existing shared.map or campaign.map file and then auto select
-
-	if (BCS_SUCCEEDED(command_line_has_argument("autoprojectfirstfile")) && entries.size() > 0)
-	{
-		entry.selected = false;
-	}
 
 	if (BCS_FAILED(get_cache_file_reader_engine_and_platform(file_path, &entry.engine_platform_build)))
 	{

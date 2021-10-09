@@ -97,11 +97,14 @@ BCS_RESULT deinit_command_line()
 BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
+
+	unsigned long argument_length = strlen(argument);
+
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_mb > 0 && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
+		if (command_line_argument.argument_length_mb >= argument_length && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
 		{
 			value = command_line_argument.value_mb;
 			return BCS_S_OK;
@@ -113,12 +116,15 @@ BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 BCS_RESULT command_line_get_argument_count(const char* argument, unsigned long& argument_count)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
+
+	unsigned long argument_length = strlen(argument);
+
 	argument_count = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_mb > 0 && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
+		if (command_line_argument.argument_length_mb >= argument_length && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
 		{
 			argument_count++;
 		}
@@ -136,12 +142,14 @@ BCS_RESULT command_line_get_arguments(const char* argument, const char** values_
 	BCS_VALIDATE_ARGUMENT(argument);
 	BCS_VALIDATE_ARGUMENT(*argument);
 
+	unsigned long argument_length = strlen(argument);
+
 	unsigned long argument_buffer_index = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count && argument_buffer_index < values_buffer_size; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_mb > 0 && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
+		if (command_line_argument.argument_length_mb >= argument_length && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
 		{
 			values_buffer[argument_buffer_index++] = command_line_argument.value_mb;
 		}
@@ -152,11 +160,13 @@ BCS_RESULT command_line_get_arguments(const char* argument, const char** values_
 
 BCS_RESULT command_line_has_argument(const char* argument)
 {
+	unsigned long argument_length = strlen(argument);
+
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_mb > 0 && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
+		if (command_line_argument.argument_length_mb >= argument_length && strncmp(command_line_argument.argument_mb, argument, command_line_argument.argument_length_mb) == 0)
 		{
 			return BCS_S_OK;
 		}
@@ -167,11 +177,14 @@ BCS_RESULT command_line_has_argument(const char* argument)
 BCS_RESULT command_line_get_argument(const wchar_t* argument, const wchar_t*& value)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
+
+	unsigned long argument_length = wcslen(argument);
+
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_wc > 0 && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
+		if (command_line_argument.argument_length_wc >= argument_length && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
 		{
 			value = command_line_argument.value_wc;
 			return BCS_S_OK;
@@ -183,12 +196,15 @@ BCS_RESULT command_line_get_argument(const wchar_t* argument, const wchar_t*& va
 BCS_RESULT command_line_get_argument_count(const wchar_t* argument, unsigned long& argument_count)
 {
 	BCS_VALIDATE_ARGUMENT(argument);
+
+	unsigned long argument_length = wcslen(argument);
+
 	argument_count = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_wc > 0 && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
+		if (command_line_argument.argument_length_wc >= argument_length && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
 		{
 			argument_count++;
 		}
@@ -206,12 +222,14 @@ BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** v
 	BCS_VALIDATE_ARGUMENT(argument);
 	BCS_VALIDATE_ARGUMENT(*argument);
 
+	unsigned long argument_length = wcslen(argument);
+
 	unsigned long argument_buffer_index = 0;
 	for (int argument_index = 0; argument_index < command_line_arguments_count && argument_buffer_index < values_buffer_size; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_wc > 0 && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
+		if (command_line_argument.argument_length_wc >= argument_length && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
 		{
 			values_buffer[argument_buffer_index++] = command_line_argument.value_wc;
 		}
@@ -222,11 +240,12 @@ BCS_RESULT command_line_get_arguments(const wchar_t* argument, const wchar_t** v
 
 BCS_RESULT command_line_has_argument(const wchar_t* argument)
 {
+	unsigned long argument_length = wcslen(argument);
 	for (int argument_index = 0; argument_index < command_line_arguments_count; argument_index++)
 	{
 		s_command_line_argument& command_line_argument = command_line_arguments[argument_index];
 
-		if (command_line_argument.argument_length_wc > 0 && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
+		if (command_line_argument.argument_length_wc >= argument_length && wcsncmp(command_line_argument.argument_wc, argument, command_line_argument.argument_length_wc) == 0)
 		{
 			return BCS_S_OK;
 		}
