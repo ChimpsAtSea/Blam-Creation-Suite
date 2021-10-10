@@ -17,7 +17,6 @@ c_viewport::~c_viewport()
 
 void c_viewport::set_size(unsigned long _width, unsigned long _height)
 {
-	console_write_line(__FUNCTION__);
 	_width = __max(1u, _width);
 	_height = __max(1u, _height);
 
@@ -25,6 +24,8 @@ void c_viewport::set_size(unsigned long _width, unsigned long _height)
 	{
 		return;
 	}
+
+	console_write_line(__FUNCTION__);
 
 	width = _width;
 	height = _height;

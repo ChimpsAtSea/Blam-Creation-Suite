@@ -2,6 +2,7 @@
 
 class c_graphics;
 class c_graphics_render_target;
+class c_viewport;
 
 class c_graphics_render_pass
 {
@@ -20,6 +21,7 @@ public:
 
 BCS_DEBUG_API BCS_RESULT graphics_render_pass_create(
 	c_graphics* graphics,
+	c_viewport* viewport,
 	c_graphics_render_target** color_render_targets,
 	c_graphics_render_target** depth_render_targets,
 	unsigned long num_color_render_targets,

@@ -39,6 +39,7 @@ c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 
 	BCS_FAIL_THROW(graphics_render_pass_create(
 		graphics,
+		&viewport,
 		swap_chain_render_targets,
 		&depth_render_target,
 		swap_chain_frames,

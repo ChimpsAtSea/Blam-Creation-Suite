@@ -66,38 +66,18 @@ c_model_preview_test::c_model_preview_test(
 		c_graphics* graphics;
 		parent_render_context.get_graphics(graphics);
 
-		c_graphics_shader_binary* graphics_shader_binary;
-		auto shader_binary_result = graphics_shader_binary_create(graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
-		ASSERT(BCS_SUCCEEDED(shader_binary_result));
-
-		c_graphics_shader_pipeline* graphics_shader_pipeline;
-		auto shader_pipeline_result = graphics_shader_pipeline_create(graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
-		ASSERT(BCS_SUCCEEDED(shader_pipeline_result));
-
 		auto camera_create_result = graphics_camera_create(graphics, *viewport, camera);
 		ASSERT(BCS_SUCCEEDED(camera_create_result));
 
+		debug_point;
 
+		unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
+		for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
+		{
+			c_infinite_tag_model* infinite_tag_model = new c_infinite_tag_model(*graphics, *render_model, mesh_index);
 
-
-
-
-		//camera = new c_camera(*graphics);
-		//pixel_shader = new c_hlsl_shader_d3d12(_bcs_resource_type_viewport_default_pixel_shader);
-		//geometry_pipeline = new c_geometry_pipeline_d3d12(*graphics, *graphics->default_pipeline_signature, pixel_shader);
-
-		//unsigned long mesh_count = render_model->render_geometry.meshes_block.size();
-		//for (unsigned long mesh_index = 0; mesh_index < mesh_count; mesh_index++)
-		//{
-		//	c_infinite_tag_geometry_d3d12* geometry = new c_infinite_tag_geometry_d3d12(*graphics, *render_model, mesh_index);
-		//	c_constant_buffer_d3d12* geometry_instance = new c_constant_buffer_d3d12(*graphics, sizeof(r_instance), L"geometry_instance");
-
-		//	geometry_instances.push_back({ geometry, geometry_instance });
-		//}
-
-		//using namespace std::placeholders;
-		//graphics->on_render_scene = std::bind(&c_model_preview_test::render_d3d12, this, _1);
-		//viewport->on_size_changed = std::bind(&c_model_preview_test::on_viewport_size_changed, this, _1, _2);
+			model_parts.push_back(infinite_tag_model);
+		}
 
 		debug_point;
 	}
@@ -107,6 +87,23 @@ c_model_preview_test::~c_model_preview_test()
 {
 	delete viewport;
 }
+
+void c_model_preview_test::imgui_viewport_render_background_callback(c_model_preview_test& _this)
+{
+	c_graphics_buffer* camera_buffer;
+	_this.camera->get_graphics_buffer(camera_buffer);
+	_this.camera->update_buffers();
+	camera_buffer->bind(0);
+
+	for (c_infinite_tag_model* infinite_tag_model : _this.model_parts)
+	{
+		infinite_tag_model->render();
+		debug_point;
+	}
+
+	debug_point;
+}
+
 //
 //void c_model_preview_test::render_d3d12(ID3D12GraphicsCommandList* command_list)
 //{
@@ -349,7 +346,7 @@ void c_model_preview_test::draw_viewport()
 	float viewport_wheel;
 	if (handle_viewport_drag_and_wheel(viewport_drag, viewport_wheel))
 	{
-		//camera->handle_input(viewport_drag.x, viewport_drag.y, viewport_wheel);
+		camera->handle_input(viewport_drag.x, viewport_drag.y, viewport_wheel);
 	}
 }
 
@@ -413,15 +410,4 @@ bool c_model_preview_test::handle_viewport_drag_and_wheel(ImVec2& mouse_drag_del
 	}
 
 	return false;
-}
-
-void c_model_preview_test::imgui_viewport_render_background_callback(c_model_preview_test& _this)
-{
-	_this.camera->update_buffers();
-	c_graphics_buffer* camera_buffer;
-	_this.camera->get_graphics_buffer(camera_buffer);
-
-
-
-	debug_point;
 }

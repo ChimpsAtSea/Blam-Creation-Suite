@@ -12,7 +12,11 @@ c_graphics_camera_d3d12::c_graphics_camera_d3d12(
 	camera_hash(),
 	viewport_size_changed_handle()
 {
-	BCS_FAIL_THROW(graphics_buffer_create(&graphics, sizeof(r_camera_d3d12), 1, graphics_buffer));
+	BCS_FAIL_THROW(graphics_buffer_create(
+		&graphics, 
+		_graphics_buffer_type_unordered_access_view, 
+		sizeof(r_camera_d3d12),
+		graphics_buffer));
 
 	aspect_ratio = viewport.aspect_ratio;
 	yaw_degrees = 45.0f;
@@ -28,17 +32,17 @@ c_graphics_camera_d3d12::~c_graphics_camera_d3d12()
 	BCS_FAIL_THROW(graphics_buffer_destroy(graphics_buffer));
 }
 
-float3 operator*(float3& a, float b)
+static float3 operator*(float3& a, float b)
 {
 	return { a.x * b, a.y * b, a.z * b };
 }
 
-float3 operator+(float3 a, float3 b)
+static float3 operator+(float3 a, float3 b)
 {
 	return { a.x + b.x, a.y + b.x, a.z + b.x };
 }
 
-void float3_to_dxvector(float3& a, DirectX::XMVECTOR& v)
+static void float3_to_dxvector(float3& a, DirectX::XMVECTOR& v)
 {
 	v.m128_f32[0] = a.x;
 	v.m128_f32[1] = a.y;
@@ -46,7 +50,7 @@ void float3_to_dxvector(float3& a, DirectX::XMVECTOR& v)
 	v.m128_f32[3] = 0.0f;
 }
 
-void dxvector_to_float4(DirectX::XMVECTOR& v, float4& b)
+static void dxvector_to_float4(DirectX::XMVECTOR& v, float4& b)
 {
 	b.x = v.m128_f32[0];
 	b.y = v.m128_f32[1];
@@ -54,7 +58,7 @@ void dxvector_to_float4(DirectX::XMVECTOR& v, float4& b)
 	b.w = v.m128_f32[3];
 }
 
-void dxmatrix_to_float4x4(DirectX::XMMATRIX& m, float4x4& b)
+static void dxmatrix_to_float4x4(DirectX::XMMATRIX& m, float4x4& b)
 {
 	// #TODO: hack
 	dxvector_to_float4(m.r[0], reinterpret_cast<float4*>(&b)[0]);
@@ -71,10 +75,15 @@ void c_graphics_camera_d3d12::update_buffers()
 	{
 		return;
 	}
-	camera_hash = current_camera_hash;
 
 	using namespace DirectX;
 
+	far_distance = __max(10000.0f, radius * 2.0f);
+	near_distance = far_distance / 1000000.0f;
+	pitch_degrees = __clamp(pitch_degrees, -89.9f, 89.9f);
+	yaw_degrees += 180.0f;
+	while (yaw_degrees < 0.0f) yaw_degrees += 360.0f;
+	yaw_degrees = fmodf(yaw_degrees, 360.0f) - 180.0f;
 
 	float rotation_xy_length = cosf(pitch_degrees * DEG2RAD);
 	float3 view_rotation = {
@@ -95,9 +104,6 @@ void c_graphics_camera_d3d12::update_buffers()
 	float3_to_dxvector(focus_position, dx_focus_position);
 	float3_to_dxvector(up_direction, dx_up_direction);
 
-	far_distance = __max(10000.0f, radius * 2.0f);
-	near_distance = far_distance / 1000000.0f;
-
 	XMMATRIX dx_perspective_transposed = XMMatrixPerspectiveFovRH(
 		field_of_view_vertical,
 		aspect_ratio,
@@ -111,7 +117,7 @@ void c_graphics_camera_d3d12::update_buffers()
 		dx_focus_position,
 		dx_up_direction);
 
-	XMMATRIX dx_view = XMMatrixTranspose(dx_perspective_transposed);
+	XMMATRIX dx_view = XMMatrixTranspose(dx_view_transposed);
 
 	XMMATRIX dx_view_perspective = XMMatrixMultiply(dx_perspective, dx_view);
 
@@ -123,11 +129,16 @@ void c_graphics_camera_d3d12::update_buffers()
 
 	r_camera_d3d12& camera_gpu_data = static_cast<r_camera_d3d12&>(*this);
 	graphics_buffer->write_data(&camera_gpu_data, sizeof(r_camera_d3d12));
+
+	current_camera_hash = XXH64(&camera_data, sizeof(s_camera_state_d3d12), 0);
+	camera_hash = current_camera_hash;
+
+	console_write_line("%f %f %f", yaw_degrees, pitch_degrees, radius);
 }
 
 void c_graphics_camera_d3d12::set_field_of_view_degrees(float field_of_view_degrees)
 {
-	field_of_view_degrees = __clamp(0.1f, 179.9f, field_of_view_degrees);
+	field_of_view_degrees = __clamp(field_of_view_degrees, 0.1f, 179.9f);
 	field_of_view_degrees *= DEG2RAD;
 	field_of_view_horizontal = field_of_view_degrees;
 	field_of_view_vertical = atanf(tanf(field_of_view_degrees / 2.0f) / aspect_ratio) * 2.0f;
@@ -171,6 +182,17 @@ void c_graphics_camera_d3d12::add_radius(float radius)
 void c_graphics_camera_d3d12::get_graphics_buffer(c_graphics_buffer*& out_graphics_buffer)
 {
 	out_graphics_buffer = graphics_buffer;
+}
+
+void c_graphics_camera_d3d12::handle_input(float x_pixels, float y_pixels, float z_wheel)
+{
+	add_yaw(x_pixels * 0.5f);
+	add_pitch(y_pixels * 0.5f);
+	
+	float scale = abs(radius * 0.05f);
+	float distance_delta = z_wheel * scale;
+	radius += distance_delta;
+	radius = __max(0.01f, radius);
 }
 
 void __cdecl c_graphics_camera_d3d12::viewport_size_changed(c_graphics_camera_d3d12& _this, unsigned long width, unsigned long height)

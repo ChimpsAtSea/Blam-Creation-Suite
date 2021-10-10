@@ -27,7 +27,6 @@
 #include "graphicslib-public-pch.h"
 #include "D3D11/d3d11-private-pch.h"
 #include "D3D12/d3d12-private-pch.h"
-#include "D3D12/OLD/d3d12-private-pch.h"
 #include "Windows/windows-private-pch.h"
 #include "ThirdParty/thirdparty-public-pch.h"
 

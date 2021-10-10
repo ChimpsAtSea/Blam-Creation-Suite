@@ -5,16 +5,7 @@
 //#define USE_PIX
 //#include <WinPixEventRuntime/pix3.h>
 
-template<typename T, typename Tx>
-T interface_cast(Tx* base)
-{
-	T result = nullptr;
-	if (base)
-	{
-		base->QueryInterface(IID_PPV_ARGS(&result));
-	}
-	return result;
-}
+
 
 #include "HLSL/cpp_types.hlsli"
 #include "directx_helpers.h"

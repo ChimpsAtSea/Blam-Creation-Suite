@@ -6,9 +6,10 @@ c_graphics_shader_binary_d3d12::c_graphics_shader_binary_d3d12(
 	unsigned long src_shader_binary_data_size,
 	const char* debug_name) :
 	graphics(graphics),
-	shader_binary_data(malloc(shader_binary_data_size)),
+	shader_binary_data(),
 	shader_binary_data_size(src_shader_binary_data_size)
 {
+	shader_binary_data = malloc(src_shader_binary_data_size);
 	memcpy(shader_binary_data, src_shader_binary_data, shader_binary_data_size);
 }
 

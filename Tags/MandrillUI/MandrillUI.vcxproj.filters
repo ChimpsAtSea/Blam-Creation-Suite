@@ -90,7 +90,10 @@
     <ClInclude Include="UserInterface\Editors\model_preview_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface\Editors\infinite_tag_geometry_d3d12.h">
+    <ClInclude Include="UserInterface\Editors\infinite_tag_mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Editors\infinite_tag_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -155,7 +158,10 @@
     <ClCompile Include="UserInterface\Editors\model_preview_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface\Editors\infinite_tag_geometry_d3d12.cpp">
+    <ClCompile Include="UserInterface\Editors\infinite_tag_mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,6 +13,7 @@ public:
 	c_graphics_render_pass_d3d12& operator=(const c_graphics_render_pass_d3d12&) = delete;
 	c_graphics_render_pass_d3d12(
 		c_graphics_d3d12& graphics,
+		c_viewport& viewport,
 		c_graphics_render_target_d3d12** color_render_targets,
 		c_graphics_render_target_d3d12** depth_render_targets,
 		unsigned long num_color_render_targets,
@@ -22,7 +23,6 @@ public:
 		const wchar_t* debug_name);
 	virtual ~c_graphics_render_pass_d3d12();
 
-	void set_viewport(c_viewport* viewport);
 	void setup_viewport();
 	BCS_RESULT init_descriptor_handles();
 	BCS_RESULT deinit_descriptor_handles();
@@ -44,13 +44,14 @@ public:
 	unsigned long current_render_target_swap_index;
 	unsigned long current_render_target_start_index;
 	unsigned long current_depth_stencil_swap_index;
-	c_viewport* viewport;
+	c_viewport& viewport;
 	D3D12_VIEWPORT d3d12_viewport;
 	D3D12_RECT scissor_rectangle;
 };
 
 BCS_RESULT graphics_d3d12_render_pass_create(
 	c_graphics_d3d12* graphics,
+	c_viewport* viewport,
 	c_graphics_render_target_d3d12** color_render_targets,
 	c_graphics_render_target_d3d12** depth_render_targets,
 	unsigned long num_color_render_targets,

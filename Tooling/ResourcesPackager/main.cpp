@@ -196,6 +196,8 @@ BCS_RESULT resources_package_viewport_shaders()
 		_bcs_resource_type_viewport_ptcn_vertex_shader,
 		_bcs_resource_type_viewport_debug_pixel_shader,
 		_bcs_resource_type_viewport_default_pixel_shader,
+		_bcs_resource_type_generic_infinite_vertex_shader,
+		_bcs_resource_type_generic_infinite_pixel_shader,
 	};
 
 	for (e_bcs_resource_type resource_type : viewport_shader_resources)

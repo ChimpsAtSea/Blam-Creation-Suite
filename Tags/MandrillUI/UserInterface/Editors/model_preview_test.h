@@ -14,6 +14,8 @@ class c_viewport;
 class c_graphics_camera;
 class c_render_context;
 
+class c_infinite_tag_model;
+
 class c_model_preview_test
 {
 public:
@@ -35,14 +37,8 @@ protected:
 
 	c_viewport* viewport;
 	c_graphics_camera* camera;
-	//c_geometry_pipeline_d3d12* geometry_pipeline;
-	//c_hlsl_shader_d3d12* pixel_shader;
-	//struct s_geometry_instance
-	//{
-	//	c_geometry_d3d12* geometry;
-	//	c_constant_buffer_d3d12* geometry_instance;
-	//};
-	//std::vector<s_geometry_instance> geometry_instances;
+
+	std::vector<c_infinite_tag_model*> model_parts;
 
 	t_callback_handle imgui_viewport_render_background_callback_handle;
 	static void imgui_viewport_render_background_callback(c_model_preview_test& _this);

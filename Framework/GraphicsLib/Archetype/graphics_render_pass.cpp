@@ -12,6 +12,7 @@ c_graphics_render_pass::~c_graphics_render_pass()
 
 BCS_RESULT graphics_render_pass_create(
 	c_graphics* graphics,
+	c_viewport* viewport,
 	c_graphics_render_target** color_render_targets,
 	c_graphics_render_target** depth_render_targets,
 	unsigned long num_color_render_targets,
@@ -25,6 +26,7 @@ BCS_RESULT graphics_render_pass_create(
 	{
 		return graphics_d3d12_render_pass_create(
 			graphics_d3d12,
+			viewport,
 			reinterpret_cast<c_graphics_render_target_d3d12**>(color_render_targets),
 			reinterpret_cast<c_graphics_render_target_d3d12**>(depth_render_targets),
 			num_color_render_targets,

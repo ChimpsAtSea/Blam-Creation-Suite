@@ -20,11 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Archetype\graphics_camera.cpp" />
+    <ClCompile Include="Archetype\graphics_render_instance.cpp" />
     <ClCompile Include="Archetype\viewport.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_buffer.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_camera.cpp" />
+    <ClCompile Include="D3D12\d3d12_graphics_data_format.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_geometry.cpp" />
+    <ClCompile Include="D3D12\d3d12_graphics_render_instance.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_render_pass.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_render_target.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_shader_binary.cpp" />
@@ -32,6 +35,7 @@
     <ClCompile Include="D3D12\d3d12_graphics_swap_chain.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_texture.cpp" />
     <ClCompile Include="Archetype\graphics.cpp" />
+    <ClCompile Include="D3D12\d3d12_graphics_vertex_layout.cpp" />
     <ClCompile Include="D3D12\descriptor_heap_allocator_d3d12.cpp" />
     <ClCompile Include="D3D12\descriptor_heap_d3d12.cpp" />
     <ClCompile Include="D3D12\d3d12_imgui_context.cpp" />
@@ -53,6 +57,7 @@
     <ClCompile Include="Archetype\window.cpp" />
     <ClCompile Include="Archetype\imgui_context.cpp" />
     <ClCompile Include="Archetype\graphics_swap_chain.cpp" />
+    <ClCompile Include="Archetype\graphics_vertex_layout.cpp" />
     <ClCompile Include="ImGui\imgui_memory_editor.cpp" />
     <ClCompile Include="Scenes\imgui_viewport_render_context.cpp" />
     <ClCompile Include="Scenes\render_context.cpp" />
@@ -81,20 +86,24 @@
   <ItemGroup>
     <ClInclude Include="Archetype\archetype-public-pch.h" />
     <ClInclude Include="Archetype\graphics_camera.h" />
+    <ClInclude Include="Archetype\graphics_render_instance.h" />
     <ClInclude Include="Archetype\viewport.h" />
     <ClInclude Include="D3D11\d3d11-private-pch.h" />
-    <ClInclude Include="D3D12\camera_gpu_data.h" />
+    <ClInclude Include="D3D12\d3d12_gpu_data_structures.h" />
     <ClInclude Include="D3D12\d3d12-private-pch.h" />
     <ClInclude Include="D3D12\d3d12_graphics.h" />
     <ClInclude Include="D3D12\d3d12_graphics_buffer.h" />
     <ClInclude Include="D3D12\d3d12_graphics_camera.h" />
+    <ClInclude Include="D3D12\d3d12_graphics_data_format.h" />
     <ClInclude Include="D3D12\d3d12_graphics_geometry.h" />
+    <ClInclude Include="D3D12\d3d12_graphics_render_instance.h" />
     <ClInclude Include="D3D12\d3d12_graphics_render_pass.h" />
     <ClInclude Include="D3D12\d3d12_graphics_render_target.h" />
     <ClInclude Include="D3D12\d3d12_graphics_shader_binary.h" />
     <ClInclude Include="D3D12\d3d12_graphics_shader_pipeline.h" />
     <ClInclude Include="D3D12\d3d12_graphics_swap_chain.h" />
     <ClInclude Include="D3D12\d3d12_graphics_texture.h" />
+    <ClInclude Include="D3D12\d3d12_graphics_vertex_layout.h" />
     <ClInclude Include="D3D12\descriptor_heap_allocator_d3d12.h" />
     <ClInclude Include="D3D12\descriptor_heap_d3d12.h" />
     <ClInclude Include="D3D12\d3d12_imgui_context.h" />
@@ -114,6 +123,7 @@
     <ClInclude Include="Archetype\window.h" />
     <ClInclude Include="Archetype\imgui_context.h" />
     <ClInclude Include="Archetype\graphics_swap_chain.h" />
+    <ClInclude Include="Archetype\graphics_vertex_layout.h" />
     <ClInclude Include="ImGui\imgui-public-pch.h" />
     <ClInclude Include="ImGui\imgui_memory_editor.h" />
     <ClInclude Include="Scenes\imgui_viewport_render_context.h" />
@@ -130,6 +140,7 @@
   <ItemGroup>
     <None Include="HLSL\cpp_types.hlsli" />
     <None Include="HLSL\descriptor_table.hlsli" />
+    <None Include="HLSL\generic_infinite_shader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="HLSL\debug_shader.hlsl">
@@ -143,6 +154,18 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="HLSL\generic_infinite_pixel_shader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="HLSL\generic_infinite_vertex_shader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="HLSL\vertex_layout_p.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>

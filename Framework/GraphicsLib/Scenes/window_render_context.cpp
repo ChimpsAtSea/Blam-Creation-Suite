@@ -35,6 +35,7 @@ c_window_render_context::c_window_render_context(
 
 	BCS_FAIL_THROW(graphics_render_pass_create(
 		graphics,
+		&window,
 		swap_chain_render_targets,
 		&depth_render_target,
 		swap_chain_frames,

@@ -15,7 +15,7 @@ enum e_pipeline_mode
 };
 const char* pipeline_mode_to_string(e_pipeline_mode pipeline_mode);
 
-struct s_vertex_layout_description
+struct s_graphics_vertex_layout_description
 {
 	D3D12_INPUT_ELEMENT_DESC* input_element_descriptions;
 	unsigned long input_element_description_count;
@@ -23,7 +23,7 @@ struct s_vertex_layout_description
 extern D3D12_INPUT_ELEMENT_DESC p_vertex_layout_descriptions[];
 extern D3D12_INPUT_ELEMENT_DESC pc_vertex_layout_descriptions[];
 extern D3D12_INPUT_ELEMENT_DESC ptcn_vertex_layout_descriptions[];
-extern s_vertex_layout_description vertex_layout_descriptions[k_number_of_vertex_layout_types];
+extern s_graphics_vertex_layout_description vertex_layout_descriptions[k_number_of_vertex_layout_types];
 
 struct s_pipeline_mode_description
 {

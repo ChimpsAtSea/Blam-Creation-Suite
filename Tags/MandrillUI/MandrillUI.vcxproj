@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UserInterface\Editors\infinite_tag_geometry_d3d12.h" />
+    <ClInclude Include="UserInterface\Editors\infinite_tag_model.h" />
+    <ClInclude Include="UserInterface\Editors\infinite_tag_mesh.h" />
     <ClInclude Include="UserInterface\Editors\model_preview_test.h" />
     <ClInclude Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.h" />
     <ClInclude Include="UserInterface\Tabs\high_level_tag_editor_tab.h" />
@@ -47,7 +48,8 @@
     <ClInclude Include="UserInterface\UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="UserInterface\Editors\infinite_tag_geometry_d3d12.cpp" />
+    <ClCompile Include="UserInterface\Editors\infinite_tag_model.cpp" />
+    <ClCompile Include="UserInterface\Editors\infinite_tag_mesh.cpp" />
     <ClCompile Include="UserInterface\Editors\model_preview_test.cpp" />
     <ClCompile Include="UserInterface\Tabs\halo1_bitmap_tag_viewer_tab.cpp" />
     <ClCompile Include="UserInterface\Tabs\high_level_tag_editor_tab.cpp" />

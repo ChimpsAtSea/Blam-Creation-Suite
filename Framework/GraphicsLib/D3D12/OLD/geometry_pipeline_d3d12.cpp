@@ -35,7 +35,7 @@ void c_geometry_pipeline_d3d12::init_pipeline_state(e_pipeline_mode pipeline_mod
 	pipeline_state_description.DSVFormat = DXGI_FORMAT_D32_FLOAT;
 	pipeline_state_description.SampleDesc.Count = 1;
 
-	s_vertex_layout_description& vertex_layout_description = vertex_layout_descriptions[vertex_layout];
+	s_graphics_vertex_layout_description& vertex_layout_description = vertex_layout_descriptions[vertex_layout];
 
 	pipeline_state_description.InputLayout.pInputElementDescs = vertex_layout_description.input_element_descriptions;
 	pipeline_state_description.InputLayout.NumElements = vertex_layout_description.input_element_description_count;

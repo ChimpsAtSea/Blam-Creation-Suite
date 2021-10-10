@@ -129,6 +129,21 @@
     <ClCompile Include="D3D12\d3d12_graphics_camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Archetype\graphics_vertex_layout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D12\d3d12_graphics_vertex_layout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D12\d3d12_graphics_data_format.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Archetype\graphics_render_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D12\d3d12_graphics_render_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphicslib-public-pch.h">
@@ -269,13 +284,29 @@
     <ClInclude Include="D3D12\d3d12_graphics_camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D3D12\camera_gpu_data.h">
+    <ClInclude Include="D3D12\d3d12_gpu_data_structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Archetype\graphics_vertex_layout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D12\d3d12_graphics_vertex_layout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D12\d3d12_graphics_data_format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Archetype\graphics_render_instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D12\d3d12_graphics_render_instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\cpp_types.hlsli" />
     <None Include="HLSL\descriptor_table.hlsli" />
+    <None Include="HLSL\generic_infinite_shader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="HLSL\debug_shader.hlsl" />
@@ -283,5 +314,7 @@
     <FxCompile Include="HLSL\vertex_layout_p.hlsl" />
     <FxCompile Include="HLSL\vertex_layout_ptcn.hlsl" />
     <FxCompile Include="HLSL\vertex_layout_pc.hlsl" />
+    <FxCompile Include="HLSL\generic_infinite_pixel_shader.hlsl" />
+    <FxCompile Include="HLSL\generic_infinite_vertex_shader.hlsl" />
   </ItemGroup>
 </Project>

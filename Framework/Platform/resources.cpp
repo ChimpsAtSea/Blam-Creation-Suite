@@ -7,19 +7,21 @@
 struct s_resource_entry { const char* name; const char* filename; LPWSTR resource_int; };
 static s_resource_entry resource_entries[] =
 {
-	RESOURCE_ENTRY(_bcs_resource_type_icon_application, 					nullptr,						MAKEINTRESOURCEW(IDI_ICON_APPLICATION)),
-	RESOURCE_ENTRY(_bcs_resource_type_icon_blam_creation_suite, 			nullptr,						MAKEINTRESOURCEW(IDI_ICON_BLAM_CREATION_SUITE)),
-	RESOURCE_ENTRY(_bcs_resource_type_icon_mandrill, 						nullptr,						MAKEINTRESOURCEW(IDI_ICON_MANDRILL)),
-	RESOURCE_ENTRY(_bcs_resource_type_font_cousine_regular, 				nullptr,						MAKEINTRESOURCEW(IDR_FONT_COUSING_REGULAR)),
-	RESOURCE_ENTRY(_bcs_resource_type_font_font_awesome, 					nullptr,						MAKEINTRESOURCEW(IDR_FONT_FONT_AWESOME)),
-	RESOURCE_ENTRY(_bcs_resource_type_box_pixel_shader, 					"BoxShaderPS.cso",				MAKEINTRESOURCEW(IDR_BOXSHADERPS)),
-	RESOURCE_ENTRY(_bcs_resource_type_box_vertex_shader, 					"BoxShaderVS.cso",				MAKEINTRESOURCEW(IDR_BOXSHADERVS)),
-	RESOURCE_ENTRY(_bcs_resource_type_viewport_p_vertex_shader, 			"vertex_layout_p.cso",          MAKEINTRESOURCEW(IDR_VIEWPORT_P_SHADER_VS)),
-	RESOURCE_ENTRY(_bcs_resource_type_viewport_pc_vertex_shader, 			"vertex_layout_pc.cso",         MAKEINTRESOURCEW(IDR_VIEWPORT_PC_SHADER_VS)),
-	RESOURCE_ENTRY(_bcs_resource_type_viewport_ptcn_vertex_shader, 			"vertex_layout_ptcn.cso",		MAKEINTRESOURCEW(IDR_VIEWPORT_PTCN_SHADER_VSVS)),
-	RESOURCE_ENTRY(_bcs_resource_type_viewport_debug_pixel_shader, 			"debug_shader.cso",				MAKEINTRESOURCEW(IDR_VIEWPORT_DEBUG_SHADER_PS)),
-	RESOURCE_ENTRY(_bcs_resource_type_viewport_default_pixel_shader, 		"default_shader.cso",			MAKEINTRESOURCEW(IDR_VIEWPORT_DEFAULT_SHADER_PS)),
-	RESOURCE_ENTRY(_bcs_resource_type_symbols_blob, 						nullptr,						MAKEINTRESOURCEW(IDR_MAPDATABASE)),
+	RESOURCE_ENTRY(_bcs_resource_type_icon_application, 					nullptr,								MAKEINTRESOURCEW(IDI_ICON_APPLICATION)),
+	RESOURCE_ENTRY(_bcs_resource_type_icon_blam_creation_suite, 			nullptr,								MAKEINTRESOURCEW(IDI_ICON_BLAM_CREATION_SUITE)),
+	RESOURCE_ENTRY(_bcs_resource_type_icon_mandrill, 						nullptr,								MAKEINTRESOURCEW(IDI_ICON_MANDRILL)),
+	RESOURCE_ENTRY(_bcs_resource_type_font_cousine_regular, 				nullptr,								MAKEINTRESOURCEW(IDR_FONT_COUSING_REGULAR)),
+	RESOURCE_ENTRY(_bcs_resource_type_font_font_awesome, 					nullptr,								MAKEINTRESOURCEW(IDR_FONT_FONT_AWESOME)),
+	RESOURCE_ENTRY(_bcs_resource_type_box_pixel_shader, 					"BoxShaderPS.cso",						MAKEINTRESOURCEW(IDR_BOXSHADERPS)),
+	RESOURCE_ENTRY(_bcs_resource_type_box_vertex_shader, 					"BoxShaderVS.cso",						MAKEINTRESOURCEW(IDR_BOXSHADERVS)),
+	RESOURCE_ENTRY(_bcs_resource_type_viewport_p_vertex_shader, 			"vertex_layout_p.cso",					MAKEINTRESOURCEW(IDR_VIEWPORT_P_SHADER_VS)),
+	RESOURCE_ENTRY(_bcs_resource_type_viewport_pc_vertex_shader, 			"vertex_layout_pc.cso",					MAKEINTRESOURCEW(IDR_VIEWPORT_PC_SHADER_VS)),
+	RESOURCE_ENTRY(_bcs_resource_type_viewport_ptcn_vertex_shader, 			"vertex_layout_ptcn.cso",				MAKEINTRESOURCEW(IDR_VIEWPORT_PTCN_SHADER_VSVS)),
+	RESOURCE_ENTRY(_bcs_resource_type_viewport_debug_pixel_shader, 			"debug_shader.cso",						MAKEINTRESOURCEW(IDR_VIEWPORT_DEBUG_SHADER_PS)),
+	RESOURCE_ENTRY(_bcs_resource_type_viewport_default_pixel_shader, 		"default_shader.cso",					MAKEINTRESOURCEW(IDR_VIEWPORT_DEFAULT_SHADER_PS)),
+	RESOURCE_ENTRY(_bcs_resource_type_generic_infinite_vertex_shader, 		"generic_infinite_vertex_shader.cso",	MAKEINTRESOURCEW(IDR_VIEWPORT_DEFAULT_SHADER_PS)),
+	RESOURCE_ENTRY(_bcs_resource_type_generic_infinite_pixel_shader, 		"generic_infinite_pixel_shader.cso",	MAKEINTRESOURCEW(IDR_VIEWPORT_DEFAULT_SHADER_PS)),
+	RESOURCE_ENTRY(_bcs_resource_type_symbols_blob, 						nullptr,								MAKEINTRESOURCEW(IDR_MAPDATABASE)),
 };
 static_assert(_countof(resource_entries) == k_number_of_bcs_resource_types);
 #undef RESOURCE_ENTRY

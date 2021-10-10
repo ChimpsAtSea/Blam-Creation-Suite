@@ -14,6 +14,10 @@ BCS_RESULT graphics_shader_pipeline_create(
 	c_graphics* graphics,
 	c_graphics_shader_binary** shader_binaries,
 	unsigned long num_shader_binaries,
+	e_graphics_data_format* render_target_data_formats,
+	unsigned long num_render_targets,
+	e_graphics_data_format* depth_data_format,
+	c_graphics_vertex_layout* vertex_layout,
 	c_graphics_shader_pipeline*& shader_pipeline,
 	const char* debug_name)
 {
@@ -22,7 +26,11 @@ BCS_RESULT graphics_shader_pipeline_create(
 		return graphics_d3d12_shader_pipeline_create(
 			graphics_d3d12,
 			reinterpret_cast<c_graphics_shader_binary_d3d12**>(shader_binaries),
-			num_shader_binaries, 
+			num_shader_binaries,
+			render_target_data_formats,
+			num_render_targets,
+			depth_data_format,
+			dynamic_cast<c_graphics_vertex_layout_d3d12*>(vertex_layout),
 			*reinterpret_cast<c_graphics_shader_pipeline_d3d12**>(&shader_pipeline),
 			debug_name);
 	}

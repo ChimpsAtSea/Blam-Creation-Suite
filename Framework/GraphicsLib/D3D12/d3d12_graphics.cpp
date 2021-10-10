@@ -299,12 +299,59 @@ void c_graphics_d3d12::deinit_synchronization_objects()
 
 void c_graphics_d3d12::init_root_signature()
 {
+	static D3D12_DESCRIPTOR_RANGE descriptor_range_uav_0 = {};
+	descriptor_range_uav_0.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	descriptor_range_uav_0.NumDescriptors = 1;
+	descriptor_range_uav_0.BaseShaderRegister = 0;
+	descriptor_range_uav_0.RegisterSpace = 0;
+	descriptor_range_uav_0.OffsetInDescriptorsFromTableStart = 0;
+
+	static D3D12_DESCRIPTOR_RANGE descriptor_range_uav_1 = {};
+	descriptor_range_uav_1.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	descriptor_range_uav_1.NumDescriptors = 1;
+	descriptor_range_uav_1.BaseShaderRegister = 1;
+	descriptor_range_uav_1.RegisterSpace = 0;
+	descriptor_range_uav_1.OffsetInDescriptorsFromTableStart = 0;
+
+	static D3D12_ROOT_DESCRIPTOR_TABLE descriptor_table_uav_0 = {};
+	descriptor_table_uav_0.NumDescriptorRanges = 1;
+	descriptor_table_uav_0.pDescriptorRanges = &descriptor_range_uav_0;
+
+	static D3D12_ROOT_DESCRIPTOR_TABLE descriptor_table_uav_1 = {};
+	descriptor_table_uav_1.NumDescriptorRanges = 1;
+	descriptor_table_uav_1.pDescriptorRanges = &descriptor_range_uav_1;
+	
+	static D3D12_ROOT_DESCRIPTOR_TABLE* descriptor_tables[] =
+	{
+		&descriptor_table_uav_0,
+		&descriptor_table_uav_1,
+	};
+
+	static D3D12_ROOT_PARAMETER root_parameters[_countof(descriptor_tables)] = {};
+	for (unsigned long index = 0; index < _countof(descriptor_tables); index++)
+	{
+		D3D12_ROOT_PARAMETER& root_parameter = root_parameters[index];
+		D3D12_ROOT_DESCRIPTOR_TABLE* descriptor_table = descriptor_tables[index];
+
+		root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE; // this is a descriptor table
+		root_parameter.DescriptorTable = *descriptor_table; // this is our descriptor table for this root parameter
+		root_parameter.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL; // our pixel shader will be the only shader accessing this parameter for now
+	}
+
 	CD3DX12_ROOT_SIGNATURE_DESC root_signature_description;
-	root_signature_description.Init(0, nullptr, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+	root_signature_description.Init(
+		_countof(root_parameters),
+		root_parameters,
+		0, 
+		nullptr,
+		D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT | // we can deny shader stages here for better performance
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS |
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS |
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS);
 
 	ID3DBlob* root_signature_blob = nullptr;
 	ID3DBlob* root_signature_error_blob = nullptr;
-	HRESULT serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1, &root_signature_blob, &root_signature_error_blob);
+	HRESULT serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
 	if (root_signature_error_blob)
 	{
 		// #TODO: Handle the error

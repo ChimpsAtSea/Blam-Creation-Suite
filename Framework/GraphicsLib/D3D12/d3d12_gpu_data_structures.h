@@ -17,3 +17,9 @@ struct r_camera_d3d12
 	int feedback_scan_offset_mask;
 	int frame_index;
 };
+
+struct r_render_instance_d3d12
+{
+	float4 color;
+	float4x4 transform;
+};

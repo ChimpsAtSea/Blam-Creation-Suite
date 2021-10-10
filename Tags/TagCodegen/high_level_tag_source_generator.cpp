@@ -187,16 +187,25 @@ void c_high_level_tag_source_generator::generate_header() const
 
 		if (tag_group != nullptr)
 		{
-			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
+			stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const;" << std::endl;
+			//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_group& get_blofeld_group_definition() const final;" << std::endl;
 		}
-		stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data) final;" << std::endl;
-		stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const final;" << std::endl;
+		stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const;" << std::endl;
+		stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const;" << std::endl;
+		stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field);" << std::endl;
+		stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const;" << std::endl;
+		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const;" << std::endl;
+		stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const;" << std::endl;
+		stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data);" << std::endl;
+		stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual unsigned long get_high_level_type_size() const final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual unsigned long get_low_level_type_size() const final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual void* get_field_data(const blofeld::s_tag_field& field) final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual bool is_field_active(const blofeld::s_tag_field& field) const final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_struct_definition& get_blofeld_struct_definition() const final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual const blofeld::s_tag_field* const* get_blofeld_field_list() const final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual void copy_from_memory(const void* data) final;" << std::endl;
+		//stream << "\t\t\t\t" << "virtual void copy_to_memory(void* data) const final;" << std::endl;
 
 		stream << std::endl;
 

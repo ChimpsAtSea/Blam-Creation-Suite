@@ -37,6 +37,7 @@ public:
 	virtual void set_radius(float radius) override;
 	virtual void add_radius(float radius) override;
 	virtual void get_graphics_buffer(c_graphics_buffer*& graphics_buffer) override;
+	virtual void handle_input(float x_pixels, float y_pixels, float z_wheel) override;
 
 	static void __cdecl viewport_size_changed(c_graphics_camera_d3d12& _this, unsigned long width, unsigned long height);
 

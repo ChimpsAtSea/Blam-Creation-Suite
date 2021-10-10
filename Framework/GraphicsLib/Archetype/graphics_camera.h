@@ -21,6 +21,7 @@ public:
 	virtual void set_radius(float radius) = 0;
 	virtual void add_radius(float radius) = 0;
 	virtual void get_graphics_buffer(c_graphics_buffer*& graphics_buffer) = 0;
+	virtual void handle_input(float x_pixels, float y_pixels, float z_wheel) = 0;
 };
 
 BCS_DEBUG_API BCS_RESULT graphics_camera_create(

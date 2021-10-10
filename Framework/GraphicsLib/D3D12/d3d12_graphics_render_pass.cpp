@@ -2,6 +2,7 @@
 
 c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	c_graphics_d3d12& graphics,
+	c_viewport& viewport,
 	c_graphics_render_target_d3d12** _color_render_targets,
 	c_graphics_render_target_d3d12** _depth_render_targets,
 	unsigned long num_color_render_targets,
@@ -19,7 +20,7 @@ c_graphics_render_pass_d3d12::c_graphics_render_pass_d3d12(
 	current_render_target_swap_index(0),
 	current_render_target_start_index(0),
 	current_depth_stencil_swap_index(0),
-	viewport(),
+	viewport(viewport),
 	d3d12_viewport(),
 	scissor_rectangle()
 {
@@ -70,31 +71,16 @@ c_graphics_render_pass_d3d12::~c_graphics_render_pass_d3d12()
 	delete depth_render_targets;
 }
 
-void c_graphics_render_pass_d3d12::set_viewport(c_viewport* _viewport)
-{
-	viewport = _viewport;
-}
-
 void c_graphics_render_pass_d3d12::setup_viewport()
 {
 	d3d12_viewport = {};
 	scissor_rectangle = {};
 
 	d3d12_viewport.MaxDepth = 1.0f;
-	if (viewport)
-	{
-		d3d12_viewport.Width = viewport->width_float;
-		d3d12_viewport.Height = viewport->height_float;
-		scissor_rectangle.right = viewport->width;
-		scissor_rectangle.bottom = viewport->height;
-	}
-	else
-	{
-		d3d12_viewport.Width = 1.0f;
-		d3d12_viewport.Height = 1.0f;
-		scissor_rectangle.right = 1;
-		scissor_rectangle.bottom = 1;
-	}
+	d3d12_viewport.Width = viewport.width_float;
+	d3d12_viewport.Height = viewport.height_float;
+	scissor_rectangle.right = viewport.width;
+	scissor_rectangle.bottom = viewport.height;
 }
 
 BCS_RESULT c_graphics_render_pass_d3d12::init_descriptor_handles()
@@ -215,6 +201,7 @@ void c_graphics_render_pass_d3d12::render(c_graphics_swap_chain* swap_chain)
 
 BCS_RESULT graphics_d3d12_render_pass_create(
 	c_graphics_d3d12* graphics,
+	c_viewport* viewport,
 	c_graphics_render_target_d3d12** color_render_targets,
 	c_graphics_render_target_d3d12** depth_render_targets,
 	unsigned long num_color_render_targets,
@@ -229,6 +216,7 @@ BCS_RESULT graphics_d3d12_render_pass_create(
 	{
 		render_pass = new c_graphics_render_pass_d3d12(
 			*graphics,
+			*viewport,
 			color_render_targets,
 			depth_render_targets,
 			num_color_render_targets,

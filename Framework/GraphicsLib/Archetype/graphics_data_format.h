@@ -2,7 +2,11 @@
 
 enum e_graphics_data_format
 {
-    _graphics_data_format_rgba8,
+    _graphics_data_format_unspecified,
+    _graphics_data_format_r8g8b8a8_unorm,
+    _graphics_data_format_r32g32_float,
+    _graphics_data_format_r32g32b32_float,
+    _graphics_data_format_r32g32b32a32_float,
     _graphics_data_format_depth_float32,
 };
 
