@@ -11,6 +11,7 @@ public:
 	virtual ~c_graphics_render_pass();
 
 	virtual BCS_RESULT resize(unsigned long width, unsigned height) = 0;
+	virtual void bind_render_targets() = 0;
 	virtual void render(c_graphics_swap_chain* swap_chain = nullptr) = 0;
 
 	using t_render_callback_d3d12 = void();

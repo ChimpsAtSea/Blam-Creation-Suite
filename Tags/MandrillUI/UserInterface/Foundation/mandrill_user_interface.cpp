@@ -7,9 +7,9 @@ bool c_mandrill_user_interface::use_developer_features = settings_read_boolean(_
 bool c_mandrill_user_interface::show_explorer_bar = settings_read_boolean(_settings_section_mandrill, k_show_explorer_bar, true);
 float c_mandrill_user_interface::explorer_bar_width = settings_read_float(_settings_section_mandrill, k_explorer_bar_width, 500.0f);
 
-c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& render_context, bool is_game_mode, const wchar_t* startup_file) :
+c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
-	render_context(render_context),
+	imgui_viewport_render_context(imgui_viewport_render_context),
 	is_session_restored(false),
 	is_exiting(false),
 	is_game_mode(is_game_mode),
@@ -40,7 +40,7 @@ c_mandrill_user_interface::c_mandrill_user_interface(c_render_context& render_co
 		open_tag_project_configurator_tab(auto_open_project);
 	}
 
-	render_context.on_render_foreground.add_callback(on_render_foreground_callback, this, on_render_foreground_handle);
+	imgui_viewport_render_context.on_render_foreground.add_callback(on_render_foreground_callback, this, on_render_foreground_handle);
 }
 
 c_mandrill_user_interface::~c_mandrill_user_interface()
@@ -337,12 +337,12 @@ void c_mandrill_user_interface::render_impl()
 	if (is_game_mode)
 	{
 		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize({ render_context.get_width_float() - margin * 2.0f, render_context.get_height_float() - margin * 2.0f }, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f }, ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-		ImGui::SetNextWindowSize({ render_context.get_width_float() - margin * 2.0f, render_context.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+		ImGui::SetNextWindowSize({ imgui_viewport_render_context.get_width_float() - margin * 2.0f, imgui_viewport_render_context.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
 
 		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
 		imgui_window_flags |= ImGuiWindowFlags_NoMove;

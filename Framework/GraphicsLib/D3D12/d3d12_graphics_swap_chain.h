@@ -2,6 +2,7 @@
 
 class c_graphics_d3d12;
 class c_window_windows;
+class c_imgui_viewport_render_context;
 
 struct IDXGISwapChain3;
 
@@ -14,6 +15,12 @@ public:
 		c_window_windows& window,
 		unsigned long num_back_buffers,
 		const char* debug_name);
+	c_graphics_swap_chain_d3d12(
+		c_graphics_d3d12& graphics,
+		c_imgui_viewport_render_context& imgui_viewport_render_context,
+		c_viewport& viewport,
+		unsigned long num_back_buffers,
+		const char* debug_name);
 	virtual ~c_graphics_swap_chain_d3d12();
 
 	virtual void present() override;
@@ -22,6 +29,9 @@ public:
 	static void window_resize_event(c_graphics_swap_chain_d3d12& _this, unsigned long width, unsigned long height);
 
 	c_graphics_d3d12& graphics;
+	c_viewport& viewport;
+	c_window_windows* window;
+	c_imgui_viewport_render_context* imgui_viewport_render_context;
 	IDXGISwapChain3* dxgi_swap_chain;
 	DXGI_SWAP_CHAIN_DESC swap_chain_description;
 	unsigned long num_back_buffers;
@@ -32,6 +42,12 @@ public:
 BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_window_windows* window,
+	unsigned long num_back_buffers,
+	c_graphics_swap_chain_d3d12*& swap_chain,
+	const char* debug_name = nullptr);
+BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
+	c_graphics_d3d12* graphics,
+	c_imgui_viewport_render_context* imgui_viewport_render_context,
 	unsigned long num_back_buffers,
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name = nullptr);

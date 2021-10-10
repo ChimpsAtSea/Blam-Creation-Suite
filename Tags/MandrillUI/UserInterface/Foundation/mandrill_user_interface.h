@@ -32,7 +32,7 @@ public:
 	c_mandrill_user_interface(c_mandrill_user_interface const&) = delete;
 	c_mandrill_user_interface& operator=(c_mandrill_user_interface const&) = delete;
 
-	c_mandrill_user_interface(c_render_context& render_context, bool is_game_mode, const wchar_t* startup_file = nullptr);
+	c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
 	BCS_RESULT create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
@@ -79,7 +79,7 @@ public:
 	virtual void remove_tab(c_mandrill_tab& tab) override final;
 
 public:
-	c_render_context& render_context;
+	c_render_context& imgui_viewport_render_context;
 protected:
 	bool is_session_restored;
 	bool is_exiting;

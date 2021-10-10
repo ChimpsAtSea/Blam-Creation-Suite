@@ -33,3 +33,5 @@
 
 #include "Scenes\imgui_viewport_render_context.h"
 #include "Scenes\window_render_context.h"
+
+#include <DirectXMath.h>

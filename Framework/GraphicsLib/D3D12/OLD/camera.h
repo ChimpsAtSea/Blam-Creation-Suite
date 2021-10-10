@@ -30,11 +30,11 @@ public:
 	float field_of_view_horizontal;
 	float field_of_view_vertical;
 	float aspect_ratio;
-	bool is_dragging;
 	float yaw_degrees;
 	float pitch_degrees;
-	float distance;
+	float radius;
 	POINT previous_drag_point;
+	bool is_dragging;
 
 	c_constant_buffer_array_d3d12* constant_buffer;
 	c_graphics_d3d12& graphics;

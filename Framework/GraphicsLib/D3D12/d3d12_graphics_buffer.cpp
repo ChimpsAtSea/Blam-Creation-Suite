@@ -40,6 +40,48 @@ unsigned long c_graphics_unordered_access_view_buffer_d3d12::get_data_size() con
 	return data_size;
 }
 
+BCS_RESULT c_graphics_unordered_access_view_buffer_d3d12::write_data(const void* buffer, unsigned long buffer_size)
+{
+	if (buffer_size > data_size)
+	{
+		return BCS_E_OUT_OF_RANGE;
+	}
+
+	void* gpu_buffer_data;
+	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
+	HRESULT map_result = upload_heap->Map(0, &read_range, &gpu_buffer_data);
+	if (FAILED(map_result))
+	{
+		return BCS_E_FAIL;
+	}
+
+	memcpy(gpu_buffer_data, buffer, buffer_size);
+	upload_heap->Unmap(0, nullptr);
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_graphics_unordered_access_view_buffer_d3d12::read_data(void* buffer, unsigned long buffer_size)
+{
+	if (buffer_size > data_size)
+	{
+		return BCS_E_OUT_OF_RANGE;
+	}
+
+	void* gpu_buffer_data;
+	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
+	HRESULT map_result = upload_heap->Map(0, &read_range, &gpu_buffer_data);
+	if (FAILED(map_result))
+	{
+		return BCS_E_FAIL;
+	}
+
+	memcpy(buffer, gpu_buffer_data, buffer_size);
+	upload_heap->Unmap(0, nullptr);
+
+	return BCS_S_OK;
+}
+
 unsigned long c_graphics_unordered_access_view_buffer_d3d12::get_gpu_descriptor_heap_index() const
 {
 	return shader_visible_descriptor_heap_index;
@@ -49,15 +91,14 @@ void c_graphics_unordered_access_view_buffer_d3d12::update_resource(void* data, 
 	ASSERT(size <= data_size);
 	ASSERT(size + offset <= data_size);
 
-	// constant buffer
-	void* constant_buffer_data;
+	void* buffer_data;
 	CD3DX12_RANGE read_range(0, 0);	// We do not intend to read from this resource on the CPU.
-	HRESULT map_result = upload_heap->Map(0, &read_range, &constant_buffer_data);
+	HRESULT map_result = upload_heap->Map(0, &read_range, &buffer_data);
 	ASSERT(SUCCEEDED(map_result));
 
 	if (SUCCEEDED(map_result))
 	{
-		memcpy(constant_buffer_data, data, size);
+		memcpy(buffer_data, data, size);
 		upload_heap->Unmap(0, nullptr);
 	}
 
@@ -93,7 +134,10 @@ void c_graphics_unordered_access_view_buffer_d3d12::init_unordered_access_view_b
 		IID_PPV_ARGS(&uav_resource));
 	ASSERT(SUCCEEDED(create_comitted_resource_result));
 	//uav_resource->SetName(L"c_graphics_unordered_access_view_buffer_d3d12::uav_resource");
-	uav_resource->SetName(name);
+	if (name)
+	{
+		uav_resource->SetName(name);
+	}
 }
 
 void c_graphics_unordered_access_view_buffer_d3d12::deinit_unordered_access_view_buffer()

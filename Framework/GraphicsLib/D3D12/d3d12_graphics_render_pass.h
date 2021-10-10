@@ -27,6 +27,7 @@ public:
 	BCS_RESULT init_descriptor_handles();
 	BCS_RESULT deinit_descriptor_handles();
 	virtual BCS_RESULT resize(unsigned long width, unsigned height) override;
+	virtual void bind_render_targets() override;
 	virtual void render(c_graphics_swap_chain* swap_chain = nullptr) override;
 	void transition_color_render_targets(D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
 

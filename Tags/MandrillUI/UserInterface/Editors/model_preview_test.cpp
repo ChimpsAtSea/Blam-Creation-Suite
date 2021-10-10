@@ -26,9 +26,10 @@ c_model_preview_test::c_model_preview_test(
 	object_tag(object_tag),
 	render_model(dynamic_cast<decltype(render_model)>(model_tag.render_model)),
 	parent_render_context(parent_render_context),
-	render_context(nullptr),
+	imgui_viewport_render_context(nullptr),
 	viewport(),
-	//camera(),
+	camera(),
+	imgui_viewport_render_background_callback_handle(),
 	//graphics(),
 	//pixel_shader(),
 	//geometry_pipeline(),
@@ -55,16 +56,31 @@ c_model_preview_test::c_model_preview_test(
 			parent_render_context,
 			*viewport,
 			background_color,
-			render_context));
+			imgui_viewport_render_context));
+
+		BCS_FAIL_THROW(imgui_viewport_render_context->on_render_background.add_callback(
+			imgui_viewport_render_background_callback, 
+			this, 
+			imgui_viewport_render_background_callback_handle));
 
 		c_graphics* graphics;
 		parent_render_context.get_graphics(graphics);
 
-		static c_graphics_shader_binary* graphics_shader_binary;
-		static auto shader_binary_result = graphics_shader_binary_create(graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
-		
-		static c_graphics_shader_pipeline* graphics_shader_pipeline;
-		static auto shader_pipeline_result = graphics_shader_pipeline_create(graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
+		c_graphics_shader_binary* graphics_shader_binary;
+		auto shader_binary_result = graphics_shader_binary_create(graphics, _bcs_resource_type_viewport_default_pixel_shader, graphics_shader_binary);
+		ASSERT(BCS_SUCCEEDED(shader_binary_result));
+
+		c_graphics_shader_pipeline* graphics_shader_pipeline;
+		auto shader_pipeline_result = graphics_shader_pipeline_create(graphics, &graphics_shader_binary, 1, graphics_shader_pipeline);
+		ASSERT(BCS_SUCCEEDED(shader_pipeline_result));
+
+		auto camera_create_result = graphics_camera_create(graphics, *viewport, camera);
+		ASSERT(BCS_SUCCEEDED(camera_create_result));
+
+
+
+
+
 
 		//camera = new c_camera(*graphics);
 		//pixel_shader = new c_hlsl_shader_d3d12(_bcs_resource_type_viewport_default_pixel_shader);
@@ -327,7 +343,7 @@ void c_model_preview_test::draw_viewport()
 	viewport_height_float = static_cast<float>(viewport_height);
 
 	viewport->set_size(viewport_width, viewport_height);
-	render_context->render();
+	imgui_viewport_render_context->render();
 
 	ImVec2 viewport_drag;
 	float viewport_wheel;
@@ -397,4 +413,15 @@ bool c_model_preview_test::handle_viewport_drag_and_wheel(ImVec2& mouse_drag_del
 	}
 
 	return false;
+}
+
+void c_model_preview_test::imgui_viewport_render_background_callback(c_model_preview_test& _this)
+{
+	_this.camera->update_buffers();
+	c_graphics_buffer* camera_buffer;
+	_this.camera->get_graphics_buffer(camera_buffer);
+
+
+
+	debug_point;
 }

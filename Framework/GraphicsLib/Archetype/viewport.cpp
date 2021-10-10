@@ -2,7 +2,10 @@
 
 c_viewport::c_viewport() :
 	width(1),
-	height(1)
+	height(1),
+	width_float(1.0f),
+	height_float(1.0f),
+	aspect_ratio(1.0f)
 {
 	
 }

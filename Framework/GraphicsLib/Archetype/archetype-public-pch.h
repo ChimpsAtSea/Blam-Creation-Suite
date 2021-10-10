@@ -9,6 +9,7 @@
 #include "graphics_shader_binary.h"
 #include "graphics_buffer.h"
 #include "graphics_swap_chain.h"
+#include "graphics_camera.h"
 #include "graphics.h"
 
 #include "imgui_context.h"

@@ -13,6 +13,7 @@ public:
 	~c_imgui_viewport_render_context();
 
 	virtual void render() override;
+	virtual void present();
 	virtual BCS_RESULT get_viewport(c_viewport*& viewport) override;
 	virtual BCS_RESULT get_window(c_window*& window) override;
 	virtual BCS_RESULT get_imgui_context(c_imgui_context*& imgui_context) override;
@@ -23,11 +24,23 @@ public:
 	virtual float get_height_float() override;
 
 	static void __cdecl viewport_size_changed(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height);
+	static void __cdecl render_pass_render(c_imgui_viewport_render_context& _this);
+	static void __cdecl swap_chain_resize_finish(c_imgui_viewport_render_context& _this, unsigned long width, unsigned long height);
+	
+
+	static constexpr unsigned long swap_chain_frames = 4;
 
 	c_render_context& parent_render_context;
 	c_viewport& viewport;
-	c_graphics_render_target* render_target;
 	t_callback_handle viewport_size_changed_handle;
+	t_callback_handle render_pass_render_handle;
+	t_callback_handle swap_chain_resize_finish_handle;
+
+	c_graphics_render_target* depth_render_target;
+	c_graphics_swap_chain* swap_chain;
+	c_graphics_render_target* swap_chain_render_targets[swap_chain_frames];
+	c_graphics_render_pass* render_pass;
+
 };
 
 BCS_RESULT render_context_imgui_viewport_create(

@@ -34,6 +34,25 @@ BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
 	return BCS_E_UNSUPPORTED;
 }
 
+BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
+	c_graphics* graphics,
+	c_imgui_viewport_render_context* imgui_viewport_render_context,
+	unsigned long num_back_buffers,
+	c_graphics_swap_chain*& swap_chain,
+	const char* debug_name)
+{
+	if (c_graphics_d3d12* graphics_d3d12 = dynamic_cast<c_graphics_d3d12*>(graphics))
+	{
+		return graphics_d3d12_swap_chain_create(
+			graphics_d3d12,
+			imgui_viewport_render_context,
+			num_back_buffers,
+			*reinterpret_cast<c_graphics_swap_chain_d3d12**>(&swap_chain),
+			debug_name);
+	}
+	return BCS_E_UNSUPPORTED;
+}
+
 BCS_DEBUG_API BCS_RESULT graphics_swap_chain_destroy(c_graphics_swap_chain* swap_chain)
 {
 	if (c_graphics_swap_chain_d3d12* swap_chain_d3d12 = dynamic_cast<c_graphics_swap_chain_d3d12*>(swap_chain))

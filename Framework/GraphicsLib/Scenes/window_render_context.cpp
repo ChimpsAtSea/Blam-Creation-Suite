@@ -66,6 +66,23 @@ c_window_render_context::~c_window_render_context()
 	BCS_FAIL_THROW(render_pass_render_callback);
 	BCS_FAIL_THROW(imgui_context_render_callback);
 	BCS_FAIL_THROW(swap_chain_on_resize_finish);
+
+	BCS_RESULT render_pass_destroy_result = graphics_render_pass_destroy(render_pass);
+	for (unsigned long swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
+	{
+		BCS_RESULT swap_chain_render_target_destroy_result = graphics_render_target_destroy(swap_chain_render_targets[swap_chain_index]);
+		ASSERT(BCS_SUCCEEDED(swap_chain_render_target_destroy_result));
+	}
+	BCS_RESULT swap_chain_destroy_result = graphics_swap_chain_destroy(swap_chain);
+	BCS_RESULT depth_render_target_destroy_result = graphics_render_target_destroy(depth_render_target);
+	BCS_RESULT imgui_context_destroy_result = graphics_imgui_context_destroy(imgui_context);
+	BCS_RESULT graphics_destroy_result = graphics_destroy(graphics);
+
+	BCS_FAIL_THROW(render_pass_destroy_result);
+	BCS_FAIL_THROW(swap_chain_destroy_result);
+	BCS_FAIL_THROW(depth_render_target_destroy_result);
+	BCS_FAIL_THROW(imgui_context_destroy_result);
+	BCS_FAIL_THROW(graphics_destroy_result);
 }
 
 void c_window_render_context::render()

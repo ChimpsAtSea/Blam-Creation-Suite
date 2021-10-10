@@ -8,10 +8,43 @@ enum e_graphics_data_format
 
 #ifdef __cplusplus
 
-#define c_type_1(type, name) union name { name(type x) :data{x} {} type data[1]; struct { type x; }; }
-#define c_type_2(type, name) union name { name(type x, type ) :data{x,y} {} type data[2]; struct { type x, y; }; }
-#define c_type_3(type, name) union name { name(type x, type y, type z) :data{x,y,z} {} type data[3]; struct { type x, y, z; }; }
-#define c_type_4(type, name) union name { name(type x, type y, type z, type w) :data{x,y,z,w} {} type data[4]; struct { type x, y, z, w; }; }
+#define c_type_1(type, name) union name##1      \
+{                                               \
+    name##1() :data{ } {}                       \
+    name##1(type x) :data{ x } {}               \
+    type data[1];                               \
+    struct { type x; };                         \
+}                                       
+#define c_type_2(type, name) union name##2                                  \
+{                                                                           \
+    name##2() :data{ } {}                                                   \
+    name##2(type x, type) :data{ x,y } {}                                   \
+    name##2(name##1 value) :data{ value.x, value.x } {}                     \
+    type data[2];                                                           \
+    struct { type x, y; };                                                  \
+}
+#define c_type_3(type, name) union name##3                                  \
+{                                                                           \
+    name##3() :data{ } {}                                                   \
+    name##3(type x, type y, type z) :data{ x,y,z } {}                       \
+    name##3(name##1 value) :data{ value.x, value.x, value.x } {}            \
+    name##3(name##2 value) :data{ value.x, value.y } {}                     \
+    type data[3];                                                           \
+    struct { type x, y, z; };                                               \
+    name##2 xy;                                                             \
+}
+#define c_type_4(type, name) union name##4                                  \
+{                                                                           \
+    name##4() :data{ } {}                                                   \
+    name##4(type x, type y, type z, type w) :data{ x,y,z,w } {}             \
+    name##4(name##1 value) :data{ value.x, value.x, value.x, value.x } {}   \
+    name##4(name##2 value) :data{ value.x, value.y, value.x, value.y } {}   \
+    name##4(name##3 value) :data{ value.x, value.y, value.z } {}            \
+    type data[4];                                                           \
+    struct { type x, y, z, w; };                                            \
+    name##3 xyz;                                                            \
+    name##2 xy;                                                             \
+}
 
 #else
 
@@ -22,22 +55,22 @@ enum e_graphics_data_format
 
 #endif
 
-c_type_1(unsigned long, bool1);
-c_type_2(unsigned long, bool2);
-c_type_3(unsigned long, bool3);
-c_type_4(unsigned long, bool4);
-c_type_1(long, int1);
-c_type_2(long, int2);
-c_type_3(long, int3);
-c_type_4(long, int4);
-c_type_1(unsigned long, uint1);
-c_type_2(unsigned long, uint2);
-c_type_3(unsigned long, uint3);
-c_type_4(unsigned long, uint4);
-c_type_1(float, float1);
-c_type_2(float, float2);
-c_type_3(float, float3);
-c_type_4(float, float4);
+c_type_1(unsigned long, bool);
+c_type_2(unsigned long, bool);
+c_type_3(unsigned long, bool);
+c_type_4(unsigned long, bool);
+c_type_1(long, int);
+c_type_2(long, int);
+c_type_3(long, int);
+c_type_4(long, int);
+c_type_1(unsigned long, uint);
+c_type_2(unsigned long, uint);
+c_type_3(unsigned long, uint);
+c_type_4(unsigned long, uint);
+c_type_1(float, float);
+c_type_2(float, float);
+c_type_3(float, float);
+c_type_4(float, float);
 
 typedef union
 {

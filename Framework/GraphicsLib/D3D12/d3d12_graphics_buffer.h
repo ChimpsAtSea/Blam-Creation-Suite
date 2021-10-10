@@ -19,6 +19,8 @@ public:
 	D3D12_GPU_DESCRIPTOR_HANDLE get_gpu_descriptor_handle() const;
 	ID3D12Resource* get_resource() const;
 	unsigned long get_data_size() const;
+	virtual BCS_RESULT write_data(const void* buffer, unsigned long buffer_size) override;
+	virtual BCS_RESULT read_data(void* buffer, unsigned long buffer_size) override;
 	unsigned long get_gpu_descriptor_heap_index() const;
 	void update_resource(void* data, size_t offset, size_t size);
 

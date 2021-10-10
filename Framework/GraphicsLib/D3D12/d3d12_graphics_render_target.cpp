@@ -33,12 +33,34 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 		L"c_graphics_d3d12::rtv_descriptor_heap_allocator_cpu"
 	);
 
-	dxgi_format = swap_chain.swap_chain_description.BufferDesc.Format;
+	dxgi_format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	clear_value.Format = dxgi_format;
 	clear_value.Color[0] = clear_color.x;
 	clear_value.Color[1] = clear_color.y;
 	clear_value.Color[2] = clear_color.z;
 	clear_value.Color[3] = clear_color.w;
+
+	heap_flags = D3D12_HEAP_FLAG_ALLOW_ALL_BUFFERS_AND_TEXTURES;
+
+	resource_state = D3D12_RESOURCE_STATE_RENDER_TARGET;
+
+	heap_properties.Type = D3D12_HEAP_TYPE_DEFAULT;
+	heap_properties.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	heap_properties.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	heap_properties.CreationNodeMask = 1;
+	heap_properties.VisibleNodeMask = 1;
+
+	resource_description.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+	resource_description.Alignment = 0;
+	resource_description.Width = swap_chain.viewport.width;
+	resource_description.Height = swap_chain.viewport.height;
+	resource_description.DepthOrArraySize = 1;
+	resource_description.MipLevels = 0;
+	resource_description.Format = dxgi_format;
+	resource_description.SampleDesc.Count = 1;
+	resource_description.SampleDesc.Quality = 0;
+	resource_description.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
+	resource_description.Flags = D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET;
 
 	swap_chain.on_resize_start.add_callback(swap_chain_resize_start, this, swap_chain_resize_start_handle);
 	swap_chain.on_resize_finish.add_callback(swap_chain_resize_finish, this, swap_chain_resize_finish_handle);
@@ -199,7 +221,7 @@ c_graphics_render_target_d3d12::~c_graphics_render_target_d3d12()
 
 void c_graphics_render_target_d3d12::init_resource()
 {
-	if (render_target_type == _graphics_render_target_type_d3d12_swapchain)
+	if (render_target_type == _graphics_render_target_type_d3d12_swapchain && swap_chain->dxgi_swap_chain != nullptr)
 	{
 		console_write_line("swap_chain_buffer_index %u ", swap_chain_buffer_index);
 		HRESULT get_buffer_result = swap_chain->dxgi_swap_chain->GetBuffer(swap_chain_buffer_index, IID_PPV_ARGS(&resource));

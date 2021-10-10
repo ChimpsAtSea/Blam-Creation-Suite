@@ -159,8 +159,19 @@ void c_graphics_render_pass_d3d12::transition_color_render_targets(D3D12_RESOURC
 	}
 }
 
+void c_graphics_render_pass_d3d12::bind_render_targets()
+{
+	D3D12_CPU_DESCRIPTOR_HANDLE* current_color_render_target_cpu_handles = color_render_target_cpu_handles + current_render_target_start_index;
+	D3D12_CPU_DESCRIPTOR_HANDLE* current_depth_render_target_cpu_handles = depth_render_target_cpu_handles + current_depth_stencil_swap_index;
+
+	ID3D12GraphicsCommandList1* command_list = graphics.command_list;
+	command_list->OMSetRenderTargets(num_render_target_per_frame, current_color_render_target_cpu_handles, FALSE, current_depth_render_target_cpu_handles);
+}
+
 void c_graphics_render_pass_d3d12::render(c_graphics_swap_chain* swap_chain)
 {
+	c_graphics_swap_chain_d3d12* swap_chain_d3d12 = dynamic_cast<c_graphics_swap_chain_d3d12*>(swap_chain);
+
 	ID3D12GraphicsCommandList1* command_list = graphics.command_list;
 
 	setup_viewport();
@@ -176,12 +187,12 @@ void c_graphics_render_pass_d3d12::render(c_graphics_swap_chain* swap_chain)
 
 	current_depth_stencil_swap_index = (current_depth_stencil_swap_index) % num_depth_render_targets;
 
-	transition_color_render_targets(D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	if (swap_chain_d3d12 && swap_chain_d3d12->dxgi_swap_chain)
+	{
+		transition_color_render_targets(D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	}
 
-	D3D12_CPU_DESCRIPTOR_HANDLE* current_color_render_target_cpu_handles = color_render_target_cpu_handles + current_render_target_start_index;
-	D3D12_CPU_DESCRIPTOR_HANDLE* current_depth_render_target_cpu_handles = depth_render_target_cpu_handles + current_depth_stencil_swap_index;
-
-	command_list->OMSetRenderTargets(num_render_target_per_frame, current_color_render_target_cpu_handles, FALSE, current_depth_render_target_cpu_handles);
+	bind_render_targets();
 
 	for (unsigned long render_target_offset = 0; render_target_offset < num_render_target_per_frame; render_target_offset++)
 	{
@@ -191,10 +202,12 @@ void c_graphics_render_pass_d3d12::render(c_graphics_swap_chain* swap_chain)
 	}
 	depth_render_targets[current_depth_stencil_swap_index]->clear_render_target();
 
-
 	render_callback();
 
-	transition_color_render_targets(D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	if (swap_chain_d3d12 && swap_chain_d3d12->dxgi_swap_chain)
+	{
+		transition_color_render_targets(D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	}
 
 	current_render_target_swap_index++;
 	current_depth_stencil_swap_index++;

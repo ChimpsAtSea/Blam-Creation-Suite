@@ -8,6 +8,8 @@ protected:
 	c_graphics_buffer();
 public:
 	virtual ~c_graphics_buffer();
+	virtual BCS_RESULT write_data(const void* buffer, unsigned long buffer_size) = 0;
+	virtual BCS_RESULT read_data(void* buffer, unsigned long buffer_size) = 0;
 };
 
 BCS_DEBUG_API BCS_RESULT graphics_buffer_create(

@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Archetype\graphics_camera.cpp" />
     <ClCompile Include="Archetype\viewport.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_buffer.cpp" />
+    <ClCompile Include="D3D12\d3d12_graphics_camera.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_geometry.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_render_pass.cpp" />
     <ClCompile Include="D3D12\d3d12_graphics_render_target.cpp" />
@@ -78,11 +80,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archetype\archetype-public-pch.h" />
+    <ClInclude Include="Archetype\graphics_camera.h" />
     <ClInclude Include="Archetype\viewport.h" />
     <ClInclude Include="D3D11\d3d11-private-pch.h" />
+    <ClInclude Include="D3D12\camera_gpu_data.h" />
     <ClInclude Include="D3D12\d3d12-private-pch.h" />
     <ClInclude Include="D3D12\d3d12_graphics.h" />
     <ClInclude Include="D3D12\d3d12_graphics_buffer.h" />
+    <ClInclude Include="D3D12\d3d12_graphics_camera.h" />
     <ClInclude Include="D3D12\d3d12_graphics_geometry.h" />
     <ClInclude Include="D3D12\d3d12_graphics_render_pass.h" />
     <ClInclude Include="D3D12\d3d12_graphics_render_target.h" />
@@ -239,7 +244,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;imgui.lib;Shcore.lib;Platform.lib;TemplateLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;imgui.lib;Shcore.lib;Platform.lib;TemplateLibrary.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -274,7 +279,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;imgui.lib;Shcore.lib;Platform.lib;TemplateLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;imgui.lib;Shcore.lib;Platform.lib;TemplateLibrary.lib;xxhash.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

@@ -72,7 +72,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& tag_proj
 
 		if (model_tag)
 		{
-			model_preview_test = new c_model_preview_test(mandrill_user_interface->render_context, *model_tag, object_tag);
+			model_preview_test = new c_model_preview_test(mandrill_user_interface->imgui_viewport_render_context, *model_tag, object_tag);
 		}
 	}
 }
